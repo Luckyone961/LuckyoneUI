@@ -1,0 +1,9 @@
+## Interface: 80300
+## Author: Luckyone (Code template by Blazeflack)
+## Version: 1.00
+## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r
+## Notes: Contains layouts from Luckyone
+## RequiredDeps: ElvUI
+## DefaultState: enabled
+
+Core\Code.lua
