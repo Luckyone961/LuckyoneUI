@@ -1,4 +1,3 @@
---Don't worry about this
 local addon, ns = ...
 local Version = GetAddOnMetadata(addon, "Version")
 
@@ -11,19 +10,14 @@ local StopMusic = StopMusic
 -- These are things we do not cache
 -- GLOBALS: PluginInstallStepComplete, PluginInstallFrame
 
---Change this line and use a unique name for your plugin.
 local MyPluginName = "LuckyoneUI"
 
---Create references to ElvUI internals
 local E, L, V, P, G = unpack(ElvUI)
 
---Create reference to LibElvUIPlugin
 local EP = LibStub("LibElvUIPlugin-1.0")
 
---Create a new ElvUI module so ElvUI can handle initialization when ready
 local mod = E:NewModule(MyPluginName, "AceHook-3.0", "AceEvent-3.0", "AceTimer-3.0");
 
---This function will hold your layout settings
 local function SetupLayout(layout)
 	if layout == "dps" or layout == "tank" then
 	E.db["databars"]["reputation"]["font"] = "Expressway"
@@ -1516,42 +1510,22 @@ local function SetupLayout(layout)
 	E.db["chat"]["panelWidth"] = 410
 	end
 
-	--[[
-		--If you want to modify the base layout according to
-		-- certain conditions then this is how you could do it
-		if layout == "tank" then
-			--Make some changes to the layout posted above
-		elseif layout == "dps" then
-			--Make some other changes
-		elseif layout == "healer" then
-			--Make some different changes
-		end
-	--]]
-
-	--[[
-	--	This section at the bottom is just to update ElvUI and display a message
-	--]]
-	--Update ElvUI
 	E:UpdateAll(true)
-	--Show message about layout being set
+
 	PluginInstallStepComplete.message = "Layout Set"
 	PluginInstallStepComplete:Show()
 end
 
---This function is executed when you press "Skip Process" or "Finished" in the installer.
 local function InstallComplete()
 	if GetCVarBool("Sound_EnableMusic") then
 		StopMusic()
 	end
 
-	--Set a variable tracking the version of the addon when layout was installed
 	E.db[MyPluginName].install_version = Version
 
 	ReloadUI()
 end
 
---This is the data we pass on to the ElvUI Plugin Installer.
---The Plugin Installer is reponsible for displaying the install guide for this layout.
 local InstallerData = {
 	Title = format("|cff4beb2c%s %s|r", MyPluginName, "Installation"),
 	Name = MyPluginName,
@@ -1600,7 +1574,6 @@ local InstallerData = {
 	StepTitleTextJustification = "RIGHT",
 }
 
---This function holds the options table which will be inserted into the ElvUI config
 local function InsertOptions()
 	E.Options.args.MyPluginName = {
 		order = 100,
@@ -1648,24 +1621,19 @@ local function InsertOptions()
 	}
 end
 
---Create a unique table for our plugin
 P[MyPluginName] = {}
 
---This function will handle initialization of the addon
 function mod:Initialize()
-	--Initiate installation process if ElvUI install is complete and our plugin install has not yet been run
+
 	if E.private.install_complete and E.db[MyPluginName].install_version == nil then
 		E:GetModule("PluginInstaller"):Queue(InstallerData)
 	end
 	
-	--Insert our options table when ElvUI config is loaded
 	EP:RegisterPlugin(addon, InsertOptions)
 end
 
---This function will get called by ElvUI automatically when it is ready to initialize modules
 local function CallbackInitialize()
 	mod:Initialize()
 end
 
---Register module with callback so it gets initialized when ready
 E:RegisterModule(MyPluginName, CallbackInitialize)
