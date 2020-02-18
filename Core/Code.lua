@@ -1562,9 +1562,9 @@ local InstallerData = {
 		end,
 	},
 	StepTitles = {
-		[1] = "Welcome",
-		[2] = "Layouts",
-		[3] = "Installation Complete",
+		[1] = "(1) Welcome",
+		[2] = "(2) Layouts",
+		[3] = "(3) Installation Complete",
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0, 179/255, 1},
