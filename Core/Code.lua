@@ -7,7 +7,6 @@ local GetCVarBool = GetCVarBool
 local ReloadUI = ReloadUI
 local StopMusic = StopMusic
 
--- These are things we do not cache
 -- GLOBALS: PluginInstallStepComplete, PluginInstallFrame
 
 local MyPluginName = "LuckyoneUI"
@@ -1541,7 +1540,7 @@ local InstallerData = {
 		end,
 		[2] = function()
 			PluginInstallFrame.SubTitle:SetText("Layouts")
-			PluginInstallFrame.Desc1:SetText("These are the layouts that are available. Please click a button below to apply the layout of your choosing.")
+			PluginInstallFrame.Desc1:SetText("Please click a button below to apply the layout of your choosing.")
 			PluginInstallFrame.Desc2:SetText("Importance: |cff07D400High|r")
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript("OnClick", function() SetupLayout("tank") end)
@@ -1588,7 +1587,7 @@ local function InsertOptions()
 			description1 = {
 				order = 2,
 				type = "description",
-				name = format("%s is a layout for ElvUI.", MyPluginName),
+				name = format("%s is a layout collection for ElvUI.", MyPluginName),
 			},
 			spacer1 = {
 				order = 3,
@@ -1603,7 +1602,7 @@ local function InsertOptions()
 			description2 = {
 				order = 5,
 				type = "description",
-				name = "The installation guide should pop up automatically after you have completed the ElvUI installation. If you wish to re-run the installation process for this layout then please click the button below.",
+				name = "If you wish to re-run the installation process for Luckyone's layouts then please click the button below.",
 			},
 			spacer2 = {
 				order = 6,
