@@ -591,7 +591,7 @@ local function SetupLayout(layout)
 	E.db["actionbar"]["bar9"]["buttonsize"] = 28
 	E.db["actionbar"]["countTextPosition"] = "BOTTOMLEFT"
 	E.db["actionbar"]["microbar"]["enabled"] = true
-	E.db["actionbar"]["microbar"]["mouseover"] = true
+	E.db["actionbar"]["microbar"]["mouseover"] = false
 	E.db["actionbar"]["microbar"]["buttonSize"] = 18
 	E.db["actionbar"]["cooldown"]["expireIndicator"]["g"] = 0
 	E.db["actionbar"]["cooldown"]["expireIndicator"]["b"] = 0
@@ -604,7 +604,7 @@ local function SetupLayout(layout)
 	E.db["actionbar"]["bar5"]["buttons"] = 12
 	E.db["actionbar"]["bar2"]["enabled"] = true
 	E.db["actionbar"]["bar2"]["buttonsPerRow"] = 1
-	E.db["actionbar"]["bar2"]["mouseover"] = true
+	E.db["actionbar"]["bar2"]["mouseover"] = false
 	E.db["actionbar"]["bar2"]["buttonsize"] = 28
 	E.db["actionbar"]["font"] = "Expressway"
 	E.db["actionbar"]["bar7"]["buttonsize"] = 28
@@ -612,7 +612,7 @@ local function SetupLayout(layout)
 	E.db["actionbar"]["extraActionButton"]["alpha"] = 0.8
 	E.db["actionbar"]["macrotext"] = true
 	E.db["actionbar"]["stanceBar"]["buttonsize"] = 28
-	E.db["actionbar"]["stanceBar"]["mouseover"] = true
+	E.db["actionbar"]["stanceBar"]["mouseover"] = false
 	E.db["actionbar"]["barPet"]["buttonsPerRow"] = 10
 	E.db["actionbar"]["barPet"]["buttonsize"] = 28
 	E.db["actionbar"]["barPet"]["backdrop"] = false
@@ -4804,7 +4804,7 @@ local function SetupLayout(layout)
 	E.db["actionbar"]["fontOutline"] = "OUTLINE"
 	E.db["actionbar"]["countTextPosition"] = "BOTTOMLEFT"
 	E.db["actionbar"]["microbar"]["enabled"] = true
-	E.db["actionbar"]["microbar"]["mouseover"] = true
+	E.db["actionbar"]["microbar"]["mouseover"] = false
 	E.db["actionbar"]["microbar"]["buttonSize"] = 18
 	E.db["actionbar"]["cooldown"]["expireIndicator"]["g"] = 0
 	E.db["actionbar"]["cooldown"]["expireIndicator"]["b"] = 0
@@ -4822,12 +4822,12 @@ local function SetupLayout(layout)
 	E.db["actionbar"]["bar2"]["buttonsize"] = 28
 	E.db["actionbar"]["bar2"]["buttonspacing"] = 1
 	E.db["actionbar"]["bar2"]["buttonsPerRow"] = 1
-	E.db["actionbar"]["bar2"]["mouseover"] = true
+	E.db["actionbar"]["bar2"]["mouseover"] = false
 	E.db["actionbar"]["macrotext"] = true
-	E.db["actionbar"]["stanceBar"]["mouseover"] = true
+	E.db["actionbar"]["stanceBar"]["mouseover"] = false
 	E.db["actionbar"]["barPet"]["buttonsPerRow"] = 10
 	E.db["actionbar"]["barPet"]["buttonsize"] = 28
-	E.db["actionbar"]["barPet"]["mouseover"] = true
+	E.db["actionbar"]["barPet"]["mouseover"] = false
 	E.db["actionbar"]["bar4"]["enabled"] = false
 	E.db["actionbar"]["bar4"]["buttonspacing"] = 1
 	E.db["actionbar"]["bar4"]["buttonsPerRow"] = 3
