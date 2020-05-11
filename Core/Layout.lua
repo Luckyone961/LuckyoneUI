@@ -21,13 +21,37 @@ local function SetupLayout(layout)
 	if layout == "dps" or layout == "tank" then
 	--Profile
 
-	--Character settings
-
+	--Private
+	E.private["skins"]["cleanBossButton"] = true
+	E.private["skins"]["parchmentRemover"]["enable"] = true
+	E.private["sle"]["skins"]["objectiveTracker"]["color"]["a"] = 1
+	E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
+	E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
+	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "ElvUI Blank"
+	E.private["sle"]["install_complete"] = "BETA"
+	E.private["general"]["normTex"] = "Solid"
+	E.private["general"]["namefont"] = "Expressway"
+	E.private["general"]["glossTex"] = "Solid"
+	E.private["general"]["dmgfont"] = "Expressway"
+	E.private["general"]["chatBubbleFont"] = "Expressway"
+	E.private["general"]["totemBar"] = false
 	elseif layout == "healer" then
 	--Profile
 
-	--Character Settings
-
+	--Private
+	E.private["skins"]["cleanBossButton"] = true
+	E.private["skins"]["parchmentRemover"]["enable"] = true
+	E.private["sle"]["skins"]["objectiveTracker"]["color"]["a"] = 1
+	E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
+	E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
+	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "ElvUI Blank"
+	E.private["sle"]["install_complete"] = "BETA"
+	E.private["general"]["normTex"] = "Solid"
+	E.private["general"]["namefont"] = "Expressway"
+	E.private["general"]["glossTex"] = "Solid"
+	E.private["general"]["dmgfont"] = "Expressway"
+	E.private["general"]["chatBubbleFont"] = "Expressway"
+	E.private["general"]["totemBar"] = false
 	end
 
 	E:UpdateAll(true)
