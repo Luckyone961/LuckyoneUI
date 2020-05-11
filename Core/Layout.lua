@@ -1827,7 +1827,7 @@ local InstallerData = {
 		[2] = function()
 			PluginInstallFrame.SubTitle:SetText("Layouts")
 			PluginInstallFrame.Desc1:SetText("Please click a button below to apply the layout of your choosing.")
-			PluginInstallFrame.Desc2:SetText("Importance: |cff07D400High|r")
+			PluginInstallFrame.Desc2:SetText("Importance: |cff4beb2cHigh|r")
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript("OnClick", function() SetupLayout("tank") end)
 			PluginInstallFrame.Option1:SetText("Tank")
