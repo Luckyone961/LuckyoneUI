@@ -2,8 +2,9 @@
 ## Author: Luckyone
 ## Version: 1.02
 ## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r
-## Notes: Contains layouts from Luckyone
+## Notes: Luckyone's ElvUI Layouts
 ## RequiredDeps: ElvUI
 ## DefaultState: enabled
 
-Core\Layout.lua
+Core\load_core.xml
+Settings\load_settings.xml
