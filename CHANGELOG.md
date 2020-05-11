@@ -1,6 +1,7 @@
-### Version 1.02 [XX-XX-2020]
+### Version 1.02 [XX-05-2020]
 **Layout update DPS/TANK**  
 **Layout update Heal**  
+**Requires ElvUI 11.42**  
 ___
 ### Version 1.01 [29-02-2020]
 **Default texture ElvUI_Blank**  
