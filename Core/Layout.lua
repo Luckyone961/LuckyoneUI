@@ -1817,9 +1817,9 @@ local InstallerData = {
 	tutorialImage = "Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga",
 	Pages = {
 		[1] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText("Welcome to the installation for %s.", MyPluginName)
-			PluginInstallFrame.Desc1:SetText("This installation process will guide you through a few steps and apply settings to your current ElvUI profile. If you want to be able to go back to your original settings then create a new profile before going through this installation process.")
-			PluginInstallFrame.Desc2:SetText("Please press the continue button if you wish to go through the installation process, otherwise click the 'Skip Process' button.")
+			PluginInstallFrame.SubTitle:SetFormattedText("Welcome to the %s installer.", MyPluginName)
+			PluginInstallFrame.Desc1:SetText("This installation process will guide you through a few steps and apply settings to your current ElvUI profile.")
+			PluginInstallFrame.Desc2:SetText("|cffdd0017If you want to be able to go back to your original settings then create a new profile before going through this installation process.|r")
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
 			PluginInstallFrame.Option1:SetText("Skip Process")
@@ -1848,15 +1848,15 @@ local InstallerData = {
 		end,
 	},
 	StepTitles = {
-		[1] = "(1) Welcome",
-		[2] = "(2) Layouts",
-		[3] = "(3) Installation Complete",
+		[1] = "Welcome",
+		[2] = "Layouts",
+		[3] = "Installation Complete",
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0, 179/255, 1},
 	StepTitleWidth = 200,
 	StepTitleButtonWidth = 180,
-	StepTitleTextJustification = "RIGHT",
+	StepTitleTextJustification = "CENTER",
 }
 
 local function InsertOptions()
@@ -1870,33 +1870,8 @@ local function InsertOptions()
 				type = "header",
 				name = MyPluginName,
 			},
-			description1 = {
-				order = 2,
-				type = "description",
-				name = format("%s is a layout collection for ElvUI.", MyPluginName),
-			},
-			spacer1 = {
-				order = 3,
-				type = "description",
-				name = "\n\n\n",
-			},
-			header2 = {
-				order = 4,
-				type = "header",
-				name = "Installation",
-			},
-			description2 = {
-				order = 5,
-				type = "description",
-				name = "If you wish to re-run the installation process for Luckyone's layouts then please click the button below.",
-			},
-			spacer2 = {
-				order = 6,
-				type = "description",
-				name = "",
-			},
 			install = {
-				order = 7,
+				order = 3,
 				type = "execute",
 				name = "Install",
 				desc = "Run the installation process.",
