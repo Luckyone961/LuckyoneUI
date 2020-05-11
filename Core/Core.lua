@@ -84,15 +84,51 @@ local function InsertOptions()
 			header1 = {
 				order = 1,
 				type = "header",
-				name = MyPluginName,
+				name = "|cff4beb2cLuckyoneUI|r",
 			},
 			install = {
-				order = 3,
+				order = 2,
 				type = "execute",
-				name = "Install",
+				name = "Run the Installer",
 				desc = "Run the installation process.",
 				func = function() E:GetModule("PluginInstaller"):Queue(InstallerData); E:ToggleOptionsUI(); end,
 			},
+			changelog = {
+				order = 3,
+				type = 'input',
+				width = 'full',
+				name = "Changelog:",
+				get = function() return 'https://git.tukui.org/Luckyone/ElvUI_LuckyoneUI/-/blob/master/CHANGELOG.md' end,
+			},
+			issues = {
+				order = 4,
+				type = 'input',
+				width = 'full',
+				name = "Report issues here:",
+				get = function() return 'https://git.tukui.org/Luckyone/ElvUI_LuckyoneUI/-/issues' end,
+			},
+			header2 = {
+				order = 5,
+				type = "header",
+				name = "Author",
+			},
+			author = {
+				order = 6,
+				type = "description",
+				name = "|cffFF7D0ALuckyone|r (EU) - LaughingSkull",
+				fontSize = "large",
+			},
+			header3 = {
+				order = 7,
+				type = "header",
+				name = "Credits",
+			},
+			credits = {
+				order = 8,
+				type = "description",
+				name = "|cffF58CBARepooc|r",
+				fontSize = "medium",
+			}
 		},
 	}
 end
