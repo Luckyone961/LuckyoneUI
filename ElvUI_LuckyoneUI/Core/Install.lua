@@ -59,7 +59,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText("Please click the button below to apply Luckyone's CVar setup for maxCameraDistance and other tweaks.")
 			PluginInstallFrame.Desc2:SetText("Importance: |cff4beb2cOptional|r")
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript("OnClick", function() SetupCVars() end)
+			PluginInstallFrame.Option1:SetScript("OnClick", function() L1UI:SetupCVars() end)
 			PluginInstallFrame.Option1:SetText("Setup CVars")
 		end,
 		[5] = function()

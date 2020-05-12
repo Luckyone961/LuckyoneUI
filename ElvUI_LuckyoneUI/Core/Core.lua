@@ -27,7 +27,7 @@ function L1UI:AddonSetup(addon)
 end
 
 --Setup CVars
-local function SetupCVars()
+function L1UI:SetupCVars()
     --Maximize the camera zoom
     SetCVar("cameraDistanceMaxZoomFactor", 2.6)
     --Remove ugly colors while dead

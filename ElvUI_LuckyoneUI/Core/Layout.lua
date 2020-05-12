@@ -751,7 +751,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["yOffset"] = 0
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["enable"] = true
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["font"] = "Expressway"
-	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[guild]"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[guild:brackets]"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["yOffset"] = 0
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["yOffset"] = 0
@@ -809,7 +809,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["PLAYER"]["nameOnly"] = true
 	E.db["nameplates"]["units"]["PLAYER"]["title"]["enable"] = true
 	E.db["nameplates"]["units"]["PLAYER"]["title"]["font"] = "Expressway"
-	E.db["nameplates"]["units"]["PLAYER"]["title"]["format"] = "[guild]"
+	E.db["nameplates"]["units"]["PLAYER"]["title"]["format"] = "[guild:brackets]"
 	E.db["nameplates"]["units"]["PLAYER"]["title"]["yOffset"] = 0
 	E.db["nameplates"]["units"]["PLAYER"]["name"]["enable"] = true
 	E.db["nameplates"]["units"]["PLAYER"]["name"]["font"] = "Expressway"
