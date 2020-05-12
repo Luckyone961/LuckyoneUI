@@ -82,4 +82,6 @@ function LUI:GetBigWigsProfile()
             },
         }
     end
+
+    BigWigs.db:SetProfile(key)
 end
