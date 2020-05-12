@@ -55,7 +55,7 @@ function LUI:Configtable()
 			credits = {
 				order = 8,
 				type = "description",
-				name = "|cffF58CBARepooc|r |cff0070DEAzilroka|r",
+				name = "|cff0070DEAzilroka|r |cffF58CBARepooc|r |cFF8866ccSimpy|r",
 				fontSize = "medium",
 			}
 		},
