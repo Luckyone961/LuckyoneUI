@@ -41,7 +41,7 @@ function L1UI:SetupCVars()
 	--Enable advanced logging
 	SetCVar("advancedCombatLogging", 1)
 	--Chat editbox style
-	SetCVar("chatStyle", classic)
+	SetCVar("chatStyle", "classic")
 	--NamePlate setup
 	SetCVar("nameplateMinAlpha", 1)
 	SetCVar("nameplateMinScale", 1)
