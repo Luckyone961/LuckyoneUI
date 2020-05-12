@@ -1,7 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
-local LUI = E:GetModule("LuckyoneUI");
+local L1UI = E:GetModule("LuckyoneUI");
 
-function LUI:SetupLayout(layout)
+function L1UI:SetupLayout(layout)
 	if layout == "dps" or layout == "tank" then
 	--Profile
 	E.db["databars"]["reputation"]["font"] = "Expressway"

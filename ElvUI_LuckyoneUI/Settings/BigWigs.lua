@@ -1,7 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
-local LUI = E:GetModule("LuckyoneUI");
+local L1UI = E:GetModule("LuckyoneUI");
 
-function LUI:GetBigWigsProfile()
+function L1UI:GetBigWigsProfile()
     local key = "Lucky"
 
     LoadAddOn("BigWigs_Options")

@@ -2,24 +2,24 @@ local addon, ns = ...
 local E, L, V, P, G = unpack(ElvUI)
 local MyPluginName = "LuckyoneUI"
 local EP = LibStub("LibElvUIPlugin-1.0")
-local LUI = E:NewModule(MyPluginName, "AceHook-3.0", "AceEvent-3.0", "AceTimer-3.0");
+local L1UI = E:NewModule(MyPluginName, "AceHook-3.0", "AceEvent-3.0", "AceTimer-3.0");
 
-LUI.Version = GetAddOnMetadata(addon, "Version")
-LUI.Config = {}
+L1UI.Version = GetAddOnMetadata(addon, "Version")
+L1UI.Config = {}
 P[MyPluginName] = {}
 
-function LUI:Initialize()
+function L1UI:Initialize()
 
 	if E.private.install_complete and E.db[MyPluginName].install_version == nil then
-		E:GetModule("PluginInstaller"):Queue(LUI.InstallerData)
+		E:GetModule("PluginInstaller"):Queue(L1UI.InstallerData)
 	end
-	--Insert LUI Config
-	EP:RegisterPlugin(addon, LUI.Configtable)
+	--Insert L1UI Config
+	EP:RegisterPlugin(addon, L1UI.Configtable)
 end
 
 --Called by ElvUI automatically when it is ready to initialize modules
 local function CallbackInitialize()
-	LUI:Initialize()
+	L1UI:Initialize()
 end
 
 E:RegisterModule(MyPluginName, CallbackInitialize)

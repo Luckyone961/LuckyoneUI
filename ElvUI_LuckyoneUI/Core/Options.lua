@@ -1,10 +1,10 @@
 local E, L, V, P, G = unpack(ElvUI)
 local MyPluginName = "LuckyoneUI"
-local LUI = E:GetModule("LuckyoneUI");
+local L1UI = E:GetModule("LuckyoneUI");
 local format = string.format
 
 --Insert options table into the ElvUI OptionsUI
-function LUI:Configtable()
+function L1UI:Configtable()
 	E.Options.args[MyPluginName] = {
 		order = 100,
 		type = "group",
@@ -20,7 +20,7 @@ function LUI:Configtable()
 				type = "execute",
 				name = "Run the Installer",
 				desc = "Run the installation process.",
-				func = function() E:GetModule("PluginInstaller"):Queue(LUI.InstallerData); E:ToggleOptionsUI(); end,
+				func = function() E:GetModule("PluginInstaller"):Queue(L1UI.InstallerData); E:ToggleOptionsUI(); end,
 			},
 			changelog = {
 				order = 3,
@@ -60,7 +60,7 @@ function LUI:Configtable()
 			}
 		},
     }
-    for _, func in pairs(LUI.Config) do
+    for _, func in pairs(L1UI.Config) do
         func()
     end
 end

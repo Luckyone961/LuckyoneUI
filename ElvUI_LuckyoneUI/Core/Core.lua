@@ -1,21 +1,21 @@
 local E, L, V, P, G = unpack(ElvUI)
 local MyPluginName = "LuckyoneUI"
-local LUI = E:GetModule("LuckyoneUI");
+local L1UI = E:GetModule("LuckyoneUI");
 
 local IsAddOnLoaded = IsAddOnLoaded
 
 --Setup AddOns
-function LUI:AddonSetup(addon)
+function L1UI:AddonSetup(addon)
 
     --BigWigs
     if IsAddOnLoaded('BigWigs') then
-        LUI:GetBigWigsProfile()
+        L1UI:GetBigWigsProfile()
         E:Print('BigWigs profile has been set.')
     end
 
     --ProjectAzilroka
     if IsAddOnLoaded('ProjectAzilroka') then
-        LUI:GetPAProfile()
+        L1UI:GetPAProfile()
         E:Print('ProjectAzilroka profile has been set.')
     end
 
