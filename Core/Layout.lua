@@ -1,6 +1,10 @@
 local E, L, V, P, G = unpack(ElvUI)
+local MyPluginName = "LuckyoneUI"
+local LUI = E:GetModule("LuckyoneUI");
+local IsAddOnLoaded = IsAddOnLoaded
+local format = string.format
 
-function SetupLayout(layout)
+function LUI:SetupLayout(layout)
 	if layout == "dps" or layout == "tank" then
 	--Profile
 	E.db["databars"]["reputation"]["font"] = "Expressway"
@@ -1780,6 +1784,6 @@ function SetupLayout(layout)
 
 	E:UpdateAll(true)
 
-	PluginInstallStepComplete.message = "Layout Set"
+	PluginInstallStepComplete.message = "|cff4beb2cLuckyoneUI|r Layout has been set"
 	PluginInstallStepComplete:Show()
 end
