@@ -240,9 +240,8 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["tabFontSize"] = 11
 	E.db["chat"]["throttleInterval"] = 0
 
-	--UnitFrames General
+	--UnitFrames Colors
 
-	E.db["unitframe"]["auraBlacklistModifier"] = "NONE"
 	E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = 0.039215601980686
 	E.db["unitframe"]["colors"]["auraBarBuff"]["g"] = 0.48627343773842
 	E.db["unitframe"]["colors"]["auraBarBuff"]["r"] = 0.99999779462814
@@ -300,6 +299,10 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["colors"]["power"]["RAGE"]["r"] = 1
 	E.db["unitframe"]["colors"]["transparentAurabars"] = true
 	E.db["unitframe"]["colors"]["useDeadBackdrop"] = true
+
+	--UnitFrames General
+
+	E.db["unitframe"]["auraBlacklistModifier"] = "NONE"
 	E.db["unitframe"]["cooldown"]["daysIndicator"]["g"] = 0.4
 	E.db["unitframe"]["cooldown"]["daysIndicator"]["r"] = 0.4
 	E.db["unitframe"]["cooldown"]["expireIndicator"]["b"] = 0
@@ -309,12 +312,21 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["fontSize"] = 12
 	E.db["unitframe"]["statusbar"] = "Solid"
+
+	--UnitFrames Arena
+
 	E.db["unitframe"]["units"]["arena"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["arena"]["health"]["text_format"] = "[perhp<%]"
 	E.db["unitframe"]["units"]["arena"]["name"]["text_format"] = "[namecolor][name:abbrev:long]"
 	E.db["unitframe"]["units"]["arena"]["power"]["height"] = 6
 	E.db["unitframe"]["units"]["arena"]["power"]["text_format"] = "[powercolor][curpp]"
+
+	--UnitFrames Assist
+
 	E.db["unitframe"]["units"]["assist"]["enable"] = false
+
+	--UnitFrames Boss
+
 	E.db["unitframe"]["units"]["boss"]["buffs"]["enable"] = false
 	E.db["unitframe"]["units"]["boss"]["buffs"]["fontSize"] = 16
 	E.db["unitframe"]["units"]["boss"]["buffs"]["sizeOverride"] = 46
@@ -335,6 +347,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["boss"]["power"]["text_format"] = "[powercolor][curpp]"
 	E.db["unitframe"]["units"]["boss"]["targetGlow"] = false
 	E.db["unitframe"]["units"]["boss"]["width"] = 189
+
+	--UnitFrames Focus
+
 	E.db["unitframe"]["units"]["focus"]["buffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["maxDuration"] = 0
@@ -359,6 +374,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["focus"]["power"]["text_format"] = "[powercolor][power:current]"
 	E.db["unitframe"]["units"]["focus"]["power"]["xOffset"] = -2
 	E.db["unitframe"]["units"]["focus"]["threatStyle"] = "NONE"
+
+	--UnitFrames FocusTarget
+
 	E.db["unitframe"]["units"]["focustarget"]["buffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["focustarget"]["debuffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["focustarget"]["disableMouseoverGlow"] = true
@@ -374,6 +392,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["focustarget"]["power"]["height"] = 6
 	E.db["unitframe"]["units"]["focustarget"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["focustarget"]["width"] = 80
+
+	--UnitFrames Party
+
 	E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 3
 	E.db["unitframe"]["units"]["party"]["classbar"]["fill"] = "spaced"
 	E.db["unitframe"]["units"]["party"]["classbar"]["height"] = 6
@@ -410,6 +431,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["party"]["targetsGroup"]["height"] = 10
 	E.db["unitframe"]["units"]["party"]["threatStyle"] = "NONE"
 	E.db["unitframe"]["units"]["party"]["width"] = 145
+
+	--UnitFrames Pet
+
 	E.db["unitframe"]["units"]["pet"]["buffIndicator"]["enable"] = false
 	E.db["unitframe"]["units"]["pet"]["castbar"]["height"] = 10
 	E.db["unitframe"]["units"]["pet"]["castbar"]["iconAttachedTo"] = "Castbar"
@@ -429,8 +453,14 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["pet"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["pet"]["threatStyle"] = "NONE"
 	E.db["unitframe"]["units"]["pet"]["width"] = 80
+
+	--UnitFrames PetTarget
+
 	E.db["unitframe"]["units"]["pettarget"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["pettarget"]["health"]["frequentUpdates"] = true
+
+	--UnitFrames Player
+
 	E.db["unitframe"]["units"]["player"]["aurabar"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["player"]["aurabar"]["enable"] = false
 	E.db["unitframe"]["units"]["player"]["aurabar"]["height"] = 17
@@ -472,6 +502,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["texture"] = "RESTING"
 	E.db["unitframe"]["units"]["player"]["threatStyle"] = "NONE"
 	E.db["unitframe"]["units"]["player"]["width"] = 189
+
+	--UnitFrames Raid
+
 	E.db["unitframe"]["units"]["raid"]["classbar"]["fill"] = "spaced"
 	E.db["unitframe"]["units"]["raid"]["classbar"]["height"] = 6
 	E.db["unitframe"]["units"]["raid"]["debuffs"]["perrow"] = 5
@@ -520,6 +553,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 1
 	E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid31,exists] hide;show"
 	E.db["unitframe"]["units"]["raid"]["width"] = 150
+
+	--UnitFrames Raid40
+
 	E.db["unitframe"]["units"]["raid40"]["classbar"]["fill"] = "spaced"
 	E.db["unitframe"]["units"]["raid40"]["classbar"]["height"] = 6
 	E.db["unitframe"]["units"]["raid40"]["health"]["frequentUpdates"] = true
@@ -533,9 +569,18 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid40"]["threatStyle"] = "NONE"
 	E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 2
 	E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid31,noexists] hide;show"
+
+	--UnitFrames RaidPet
+
 	E.db["unitframe"]["units"]["raidpet"]["health"]["text_format"] = "[perhp<%]"
 	E.db["unitframe"]["units"]["raidpet"]["threatStyle"] = "NONE"
+
+	--UnitFrames Tank
+
 	E.db["unitframe"]["units"]["tank"]["enable"] = false
+
+	--UnitFrames Target
+
 	E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["target"]["aurabar"]["enable"] = false
 	E.db["unitframe"]["units"]["target"]["aurabar"]["height"] = 17
@@ -574,6 +619,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["target"]["power"]["xOffset"] = -2
 	E.db["unitframe"]["units"]["target"]["threatStyle"] = "NONE"
 	E.db["unitframe"]["units"]["target"]["width"] = 189
+
+	--UnitFrames TargetTarget
+
 	E.db["unitframe"]["units"]["targettarget"]["buffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["targettarget"]["debuffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["targettarget"]["debuffs"]["enable"] = false
@@ -590,6 +638,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 6
 	E.db["unitframe"]["units"]["targettarget"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["targettarget"]["width"] = 80
+
+	--UnitFrames TargetTargetTarget
+
 	E.db["unitframe"]["units"]["targettargettarget"]["buffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
@@ -697,6 +748,9 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["plateSize"]["personalWidth"] = 155
 	E.db["nameplates"]["statusbar"] = "Solid"
 	E.db["nameplates"]["targetGlow"] = "style1"
+
+	--NamePlates Enemy NPC
+
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Expressway"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFontSize"] = 8
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["font"] = "Expressway"
@@ -738,6 +792,9 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["size"] = 20
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["xOffset"] = -3
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Expressway"
+
+	--NamePlates Enemy Player
+
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Expressway"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFontSize"] = 8
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["font"] = "Expressway"
@@ -780,6 +837,9 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["raidTargetIndicator"]["xOffset"] = -3
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["format"] = "[npctitle]"
+
+	--NamePlates Friendly NPC
+
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFont"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFontSize"] = 8
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["font"] = "Expressway"
@@ -823,6 +883,9 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["enable"] = true
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["yOffset"] = 0
+
+	--NamePlates Friendly Player
+
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["timeToHold"] = 2
@@ -840,6 +903,9 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[guild:brackets]"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["yOffset"] = 0
+
+	--NamePlates Player
+
 	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFont"] = "Expressway"
 	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["maxDuration"] = 0
 	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,TurtleBuffs"
@@ -865,7 +931,13 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["PLAYER"]["title"]["yOffset"] = 0
 	E.db["nameplates"]["units"]["PLAYER"]["visibility"]["hideDelay"] = 0
 	E.db["nameplates"]["units"]["PLAYER"]["visibility"]["showInCombat"] = false
+
+	--NamePlates Target
+
 	E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style1"
+
+	--NamePlates Visibility
+
 	E.db["nameplates"]["visibility"]["enemy"]["guardians"] = true
 	E.db["nameplates"]["visibility"]["enemy"]["minions"] = true
 
@@ -1185,7 +1257,7 @@ function L1UI:SetupLayout(layout)
 	E.db["sle"]["minimap"]["mapicons"]["spacing"] = 1
 	E.db["sle"]["raidmarkers"]["enable"] = false
 
-	--UnitFrames General
+	--UnitFrames Colors
 
 	E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = 0.23
 	E.db["unitframe"]["colors"]["auraBarBuff"]["g"] = 0.12
@@ -1245,11 +1317,17 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["colors"]["power"]["RAGE"]["r"] = 1
 	E.db["unitframe"]["colors"]["transparentAurabars"] = true
 	E.db["unitframe"]["colors"]["useDeadBackdrop"] = true
+
+	--UnitFrames General
+
 	E.db["unitframe"]["font"] = "Expressway"
 	E.db["unitframe"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["fontSize"] = 12
 	E.db["unitframe"]["smartRaidFilter"] = false
 	E.db["unitframe"]["statusbar"] = "Solid"
+
+	--UnitFrames Arena
+
 	E.db["unitframe"]["units"]["arena"]["castbar"]["width"] = 246
 	E.db["unitframe"]["units"]["arena"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["arena"]["disableTargetGlow"] = true
@@ -1257,7 +1335,13 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["arena"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["arena"]["health"]["text_format"] = "[perhp<%]"
 	E.db["unitframe"]["units"]["arena"]["power"]["height"] = 6
+
+	--UnitFrames Assist
+
 	E.db["unitframe"]["units"]["assist"]["enable"] = false
+
+	--UnitFrames Boss
+
 	E.db["unitframe"]["units"]["boss"]["buffs"]["enable"] = false
 	E.db["unitframe"]["units"]["boss"]["buffs"]["fontSize"] = 16
 	E.db["unitframe"]["units"]["boss"]["buffs"]["sizeOverride"] = 46
@@ -1277,6 +1361,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["boss"]["power"]["height"] = 6
 	E.db["unitframe"]["units"]["boss"]["targetGlow"] = false
 	E.db["unitframe"]["units"]["boss"]["width"] = 189
+
+	--UnitFrames Focus
+
 	E.db["unitframe"]["units"]["focus"]["castbar"]["width"] = 189
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["anchorPoint"] = "TOPLEFT"
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Expressway"
@@ -1304,6 +1391,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["focus"]["power"]["xOffset"] = 72
 	E.db["unitframe"]["units"]["focus"]["power"]["yOffset"] = -18
 	E.db["unitframe"]["units"]["focus"]["width"] = 189
+
+	--UnitFrames FocusTarget
+
 	E.db["unitframe"]["units"]["focustarget"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["focustarget"]["disableTargetGlow"] = true
 	E.db["unitframe"]["units"]["focustarget"]["health"]["frequentUpdates"] = true
@@ -1318,6 +1408,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["focustarget"]["portrait"]["overlay"] = true
 	E.db["unitframe"]["units"]["focustarget"]["power"]["height"] = 6
 	E.db["unitframe"]["units"]["focustarget"]["width"] = 80
+
+	--UnitFrames Party
+
 	E.db["unitframe"]["units"]["party"]["buffIndicator"]["size"] = 10
 	E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 3
 	E.db["unitframe"]["units"]["party"]["classbar"]["fill"] = "spaced"
@@ -1370,6 +1463,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["party"]["summonIcon"]["xOffset"] = 50
 	E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 22
 	E.db["unitframe"]["units"]["party"]["width"] = 189
+
+	--UnitFrames Pet
+
 	E.db["unitframe"]["units"]["pet"]["castbar"]["height"] = 12
 	E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 80
 	E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
@@ -1383,8 +1479,14 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["pet"]["power"]["enable"] = false
 	E.db["unitframe"]["units"]["pet"]["power"]["height"] = 6
 	E.db["unitframe"]["units"]["pet"]["width"] = 80
+
+	--UnitFrames PetTarget
+
 	E.db["unitframe"]["units"]["pettarget"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["pettarget"]["health"]["frequentUpdates"] = true
+
+	--UnitFrames Player
+
 	E.db["unitframe"]["units"]["player"]["aurabar"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["player"]["aurabar"]["enable"] = false
 	E.db["unitframe"]["units"]["player"]["aurabar"]["height"] = 17
@@ -1428,6 +1530,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["enable"] = false
 	E.db["unitframe"]["units"]["player"]["threatStyle"] = "NONE"
 	E.db["unitframe"]["units"]["player"]["width"] = 189
+
+	--UnitFrames Raid
+
 	E.db["unitframe"]["units"]["raid"]["classbar"]["fill"] = "spaced"
 	E.db["unitframe"]["units"]["raid"]["classbar"]["height"] = 6
 	E.db["unitframe"]["units"]["raid"]["debuffs"]["sizeOverride"] = 30
@@ -1463,6 +1568,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 0
 	E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid31,exists] hide;show"
 	E.db["unitframe"]["units"]["raid"]["width"] = 100
+
+	--UnitFrames Raid40
+
 	E.db["unitframe"]["units"]["raid40"]["classbar"]["fill"] = "spaced"
 	E.db["unitframe"]["units"]["raid40"]["classbar"]["height"] = 6
 	E.db["unitframe"]["units"]["raid40"]["debuffs"]["sizeOverride"] = 30
@@ -1498,9 +1606,18 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 0
 	E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid31,noexists] hide;show"
 	E.db["unitframe"]["units"]["raid40"]["width"] = 100
+
+	--UnitFrames RaidPet
+
 	E.db["unitframe"]["units"]["raidpet"]["healPrediction"]["healType"] = "ALL_HEALS"
 	E.db["unitframe"]["units"]["raidpet"]["health"]["text_format"] = "[perhp<%]"
+
+	--UnitFrames Tank
+
 	E.db["unitframe"]["units"]["tank"]["enable"] = false
+
+	--UnitFrames Target
+
 	E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["target"]["aurabar"]["enable"] = false
 	E.db["unitframe"]["units"]["target"]["aurabar"]["height"] = 17
@@ -1539,6 +1656,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["target"]["power"]["xOffset"] = 72
 	E.db["unitframe"]["units"]["target"]["power"]["yOffset"] = -18
 	E.db["unitframe"]["units"]["target"]["width"] = 189
+
+	--UnitFrames TargetTarget
+
 	E.db["unitframe"]["units"]["targettarget"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["targettarget"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["targettarget"]["health"]["position"] = "CENTER"
@@ -1551,6 +1671,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["targettarget"]["portrait"]["overlay"] = true
 	E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 6
 	E.db["unitframe"]["units"]["targettarget"]["width"] = 80
+
+	--UnitFrames TargetTargetTarget
+
 	E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["targettargettarget"]["health"]["frequentUpdates"] = true
 
@@ -1653,6 +1776,9 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["plateSize"]["personalHeight"] = 35
 	E.db["nameplates"]["plateSize"]["personalWidth"] = 155
 	E.db["nameplates"]["statusbar"] = "Solid"
+
+	--NamePlates Enemy NPC
+
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Expressway"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFontSize"] = 8
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["font"] = "Expressway"
@@ -1694,6 +1820,9 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["size"] = 20
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["xOffset"] = -3
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Expressway"
+
+	--NamePlates Enemy Player
+
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Expressway"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFontSize"] = 8
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["font"] = "Expressway"
@@ -1736,6 +1865,9 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["raidTargetIndicator"]["xOffset"] = -3
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["format"] = "[npctitle]"
+
+	--NamePlates Friendly NPC
+
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFont"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFontSize"] = 8
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["font"] = "Expressway"
@@ -1779,6 +1911,9 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["enable"] = true
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["yOffset"] = 0
+
+	--NamePlates Friendly Player
+
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["timeToHold"] = 2
@@ -1796,7 +1931,13 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[guild]"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["yOffset"] = 0
+
+	--NamePlates Target
+
 	E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style1"
+
+	--NamePlates Visibility
+
 	E.db["nameplates"]["visibility"]["enemy"]["guardians"] = true
 	E.db["nameplates"]["visibility"]["enemy"]["minions"] = true
 
