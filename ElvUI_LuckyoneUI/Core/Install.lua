@@ -2,6 +2,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local MyPluginName = "LuckyoneUI"
 local L1UI = E:GetModule("LuckyoneUI");
 
+--Cache
 local ReloadUI = ReloadUI
 local StopMusic = StopMusic
 local format = string.format
