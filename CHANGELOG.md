@@ -7,7 +7,7 @@ Updated both chat windows
 **New Additions:**  
 New installer step: AddOn Profiles  
 (This step will set up BigWigs and ProjectAzilroka)  
-New installer step: CVars
+New installer step: CVars  
 (This step will set up tweaks like maxCameraDistance)  
 **Misc:**  
 Updated config  
