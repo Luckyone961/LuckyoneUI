@@ -6,9 +6,10 @@ local LUI = E:NewModule(MyPluginName, "AceHook-3.0", "AceEvent-3.0", "AceTimer-3
 
 LUI.Version = GetAddOnMetadata(addon, "Version")
 LUI.Config = {}
+P[MyPluginName] = {}
 
 function LUI:Initialize()
-    E.private.install_complete = E.version
+	E.private.install_complete = E.version
 
 	if E.private.install_complete and E.db[MyPluginName].install_version == nil then
 		E:GetModule("PluginInstaller"):Queue(LUI.InstallerData)

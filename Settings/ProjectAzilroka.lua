@@ -1,6 +1,8 @@
 local E, L, V, P, G = unpack(ElvUI)
 local LUI = E:GetModule("LuckyoneUI");
 
+local _G = _G
+
 function LUI:GetPAProfile()
     local PA = _G.ProjectAzilroka
     PA.data:SetProfile('Lucky')
