@@ -59,8 +59,8 @@ function L1UI:Configtable()
 				fontSize = "medium",
 			}
 		},
-    }
-    for _, func in pairs(L1UI.Config) do
-        func()
-    end
+	}
+	for _, func in pairs(L1UI.Config) do
+		func()
+	end
 end
