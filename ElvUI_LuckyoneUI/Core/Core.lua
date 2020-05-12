@@ -14,6 +14,12 @@ function L1UI:AddonSetup(addon)
         E:Print('BigWigs profile has been set.')
     end
 
+    --Details! Damage Meter
+    if IsAddOnLoaded('Details') then
+        L1UI:GetDetailsProfile()
+        E:Print('Details profile has been set.')
+    end
+
     --ProjectAzilroka
     if IsAddOnLoaded('ProjectAzilroka') then
         L1UI:GetPAProfile()
