@@ -37,12 +37,16 @@ function L1UI:SetupCVars()
     --Chat editbox style
     SetCVar("chatStyle", classic)
     --NamePlate setup
-    SetCVar("nameplateLargerScale", 0)
     SetCVar("nameplateMinAlpha", 1)
     SetCVar("nameplateMinScale", 1)
-    SetCVar("nameplateMotion", 1)
-    SetCVar("nameplateSelectedScale", 1)
     SetCVar("nameplateSelfAlpha", 1)
+    SetCVar("nameplateLargerScale", 0)
+    SetCVar("nameplateSelectedScale", 1)
+    --Overlapping 0 Stacking 1
+    SetCVar("nameplateMotion", 1)
+    --Overlap H and V
+    SetCVar("nameplateOverlapH", 1)
+    SetCVar("nameplateOverlapV", 1.5)
     --Hardware cursor
     SetCVar("rawMouseEnable", 1)
     --Quality of life
