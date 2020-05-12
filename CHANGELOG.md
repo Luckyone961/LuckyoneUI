@@ -7,7 +7,7 @@ Set up the new ElvUI 11.42 DataTexts
 Updated both chat windows  
 **New Additions:**  
 New installer step: AddOn Profiles  
-(This step will set up BigWigs and ProjectAzilroka)  
+(This step will set up BigWigs, Details, ProjectAzilroka)  
 New installer step: CVars  
 (This step will set up tweaks like maxCameraDistance)  
 **Misc:**  
