@@ -5,7 +5,7 @@ local format = string.format
 
 --Insert options table into the ElvUI OptionsUI
 function LUI:Configtable()
-	E.Options.args.MyPluginName = {
+	E.Options.args[MyPluginName] = {
 		order = 100,
 		type = "group",
 		name = format("|cff4beb2c%s|r", MyPluginName),
@@ -55,7 +55,7 @@ function LUI:Configtable()
 			credits = {
 				order = 8,
 				type = "description",
-				name = "|cffF58CBARepooc|r",
+				name = "|cffF58CBARepooc|r |cff0070DEAzilroka|r",
 				fontSize = "medium",
 			}
 		},
