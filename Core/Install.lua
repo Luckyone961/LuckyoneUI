@@ -43,6 +43,14 @@ LUI.InstallerData = {
 			PluginInstallFrame.Option3:SetText("DPS")
 		end,
 		[3] = function()
+			PluginInstallFrame.SubTitle:SetFormattedText("AddOn Profiles")
+			PluginInstallFrame.Desc1:SetText("Please click the button below to apply Luckyone's AddOn profiles for e.g BigWigs and ProjectAzilroka.")
+			PluginInstallFrame.Desc2:SetText("|cffdd0017This will override your WTF settings for those specific AddOns, make sure to have a backup of your WTF folder if you want to go back at some point.|r")
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript("OnClick", function() LUI:AddonSetup('addon') end)
+			PluginInstallFrame.Option1:SetText("Setup AddOns")
+		end,
+		[4] = function()
 			PluginInstallFrame.SubTitle:SetText("Installation Complete")
 			PluginInstallFrame.Desc1:SetText("You have completed the installation process.")
 			PluginInstallFrame.Desc2:SetText("Please click the button below in order to finalize the process and automatically reload your UI.")
@@ -54,7 +62,8 @@ LUI.InstallerData = {
 	StepTitles = {
 		[1] = "Welcome",
 		[2] = "Layouts",
-		[3] = "Installation Complete",
+		[3] = "AddOn Profiles",
+		[4] = "Installation Complete",
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0, 179/255, 1},
