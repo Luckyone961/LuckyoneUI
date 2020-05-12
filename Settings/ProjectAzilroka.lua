@@ -1,5 +1,4 @@
 local E, L, V, P, G = unpack(ElvUI)
-local MyPluginName = "LuckyoneUI"
 local LUI = E:GetModule("LuckyoneUI");
 
 function LUI:GetPAProfile()
