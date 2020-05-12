@@ -3,7 +3,9 @@ local L1UI = E:GetModule("LuckyoneUI");
 
 function L1UI:SetupLayout(layout)
 	if layout == "dps" or layout == "tank" then
-	--Profile
+
+	--DataBars
+
 	E.db["databars"]["reputation"]["font"] = "Expressway"
 	E.db["databars"]["reputation"]["orientation"] = "HORIZONTAL"
 	E.db["databars"]["reputation"]["height"] = 13
@@ -31,6 +33,9 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["honor"]["height"] = 13
 	E.db["databars"]["honor"]["textSize"] = 9
 	E.db["databars"]["honor"]["width"] = 359
+
+	--Shadow & Light
+
 	E.db["sle"]["raidmarkers"]["enable"] = false
 	E.db["sle"]["media"]["fonts"]["gossip"]["size"] = 11
 	E.db["sle"]["media"]["fonts"]["gossip"]["font"] = "Expressway"
@@ -103,6 +108,9 @@ function L1UI:SetupLayout(layout)
 	E.db["sle"]["chat"]["editboxhistory"] = 50
 	E.db["sle"]["nameplates"]["targetcount"]["font"] = "Expressway"
 	E.db["sle"]["nameplates"]["threat"]["font"] = "Expressway"
+
+	--Movers
+
 	E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,290"
 	E.db["movers"]["ElvUF_FocusTargetMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-530,-498"
 	E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-187,-1"
@@ -173,6 +181,9 @@ function L1UI:SetupLayout(layout)
 	E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-22"
 	E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-186,-124"
 	E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1"
+
+	--Tooltip
+
 	E.db["tooltip"]["showElvUIUsers"] = true
 	E.db["tooltip"]["healthBar"]["statusPosition"] = "TOP"
 	E.db["tooltip"]["healthBar"]["font"] = "Expressway"
@@ -186,6 +197,9 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["itemCount"] = "BOTH"
 	E.db["tooltip"]["visibility"]["combatOverride"] = "SHIFT"
 	E.db["tooltip"]["smallTextFontSize"] = 11
+
+	--Auras
+
 	E.db["auras"]["cooldown"]["hoursIndicator"]["r"] = 0.4
 	E.db["auras"]["cooldown"]["expireIndicator"]["g"] = 0
 	E.db["auras"]["cooldown"]["expireIndicator"]["b"] = 0
@@ -202,6 +216,9 @@ function L1UI:SetupLayout(layout)
 	E.db["auras"]["fadeThreshold"] = -1
 	E.db["auras"]["barTexture"] = "Solid"
 	E.db["auras"]["font"] = "Expressway"
+
+	--Chat
+
 	E.db["chat"]["tabFont"] = "Expressway"
 	E.db["chat"]["tabFontSize"] = 11
 	E.db["chat"]["lfgIcons"] = false
@@ -222,6 +239,9 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["panelColor"]["r"] = 0.058823529411765
 	E.db["chat"]["fade"] = false
 	E.db["chat"]["panelWidth"] = 410
+
+	--UnitFrames General
+
 	E.db["unitframe"]["auraBlacklistModifier"] = "NONE"
 	E.db["unitframe"]["fontSize"] = 12
 	E.db["unitframe"]["units"]["pettarget"]["disableMouseoverGlow"] = true
@@ -574,6 +594,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["cooldown"]["hoursIndicator"]["r"] = 0.4
 	E.db["unitframe"]["cooldown"]["daysIndicator"]["g"] = 0.4
 	E.db["unitframe"]["cooldown"]["daysIndicator"]["r"] = 0.4
+
+	--DataTexts General
+
 	E.db["datatexts"]["goldCoins"] = true
 	E.db["datatexts"]["goldFormat"] = "SMART"
 	E.db["datatexts"]["panelTransparency"] = true
@@ -606,6 +629,9 @@ function L1UI:SetupLayout(layout)
 	E.db["datatexts"]["battleground"] = false
 	E.db["datatexts"]["localtime"] = false
 	E.db["datatexts"]["panelBackdrop"] = false
+
+	--ActionBars
+
 	E.db["actionbar"]["bar3"]["enabled"] = false
 	E.db["actionbar"]["bar3"]["buttons"] = 12
 	E.db["actionbar"]["bar3"]["buttonsPerRow"] = 12
@@ -647,6 +673,9 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["bar4"]["buttonsPerRow"] = 12
 	E.db["actionbar"]["bar4"]["backdrop"] = false
 	E.db["actionbar"]["bar4"]["buttonsize"] = 28
+
+	--NamePlates General
+
 	E.db["nameplates"]["targetGlow"] = "style1"
 	E.db["nameplates"]["plateSize"]["personalWidth"] = 155
 	E.db["nameplates"]["plateSize"]["friendlyWidth"] = 155
@@ -839,6 +868,9 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["cooldown"]["daysIndicator"]["r"] = 0.4
 	E.db["nameplates"]["visibility"]["enemy"]["minions"] = true
 	E.db["nameplates"]["visibility"]["enemy"]["guardians"] = true
+
+	--Bags
+
 	E.db["bags"]["countFontSize"] = 11
 	E.db["bags"]["countFont"] = "Expressway"
 	E.db["bags"]["itemLevelFont"] = "Expressway"
@@ -854,6 +886,9 @@ function L1UI:SetupLayout(layout)
 	E.db["bags"]["cooldown"]["daysIndicator"]["g"] = 0.4
 	E.db["bags"]["cooldown"]["daysIndicator"]["r"] = 0.4
 	E.db["bags"]["bagWidth"] = 410
+
+	--Cooldown Text
+
 	E.db["cooldown"]["secondsColor"]["b"] = 1
 	E.db["cooldown"]["hoursIndicator"]["r"] = 0.4
 	E.db["cooldown"]["expireIndicator"]["g"] = 0
@@ -861,6 +896,9 @@ function L1UI:SetupLayout(layout)
 	E.db["cooldown"]["threshold"] = 4
 	E.db["cooldown"]["daysIndicator"]["g"] = 0.4
 	E.db["cooldown"]["daysIndicator"]["r"] = 0.4
+
+	--General
+
 	E.db["general"]["totems"]["enable"] = false
 	E.db["general"]["fontSize"] = 11
 	E.db["general"]["interruptAnnounce"] = "SAY"
@@ -907,7 +945,9 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["smoothingAmount"] = 0.66
 	E.db["general"]["talkingHeadFrameScale"] = 0.75
 	E.db["general"]["bonusObjectivePosition"] = "AUTO"
-	--Private
+
+	--Private Exports
+
 	E.private["skins"]["cleanBossButton"] = true
 	E.private["skins"]["parchmentRemover"]["enable"] = true
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["a"] = 1
@@ -921,8 +961,11 @@ function L1UI:SetupLayout(layout)
 	E.private["general"]["dmgfont"] = "Expressway"
 	E.private["general"]["chatBubbleFont"] = "Expressway"
 	E.private["general"]["totemBar"] = false
+
 	elseif layout == "healer" then
-	--Profile
+
+	--DataBars
+
 	E.db["databars"]["reputation"]["font"] = "Expressway"
 	E.db["databars"]["reputation"]["height"] = 13
 	E.db["databars"]["reputation"]["orientation"] = "HORIZONTAL"
@@ -950,6 +993,9 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["honor"]["orientation"] = "HORIZONTAL"
 	E.db["databars"]["honor"]["textSize"] = 9
 	E.db["databars"]["honor"]["width"] = 359
+
+	--General
+
 	E.db["general"]["totems"]["enable"] = false
 	E.db["general"]["totems"]["growthDirection"] = "HORIZONTAL"
 	E.db["general"]["totems"]["size"] = 32
@@ -993,6 +1039,9 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["valuecolor"]["b"] = 0.039215601980686
 	E.db["general"]["talkingHeadFrameScale"] = 0.75
 	E.db["general"]["bonusObjectivePosition"] = "AUTO"
+
+	--Movers
+
 	E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,15,0"
 	E.db["movers"]["ElvUF_FocusTargetMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-438,-414"
 	E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-187,-1"
@@ -1061,6 +1110,9 @@ function L1UI:SetupLayout(layout)
 	E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-22"
 	E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-187,-131"
 	E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1"
+
+	--Tooltip
+
 	E.db["tooltip"]["showElvUIUsers"] = true
 	E.db["tooltip"]["healthBar"]["statusPosition"] = "TOP"
 	E.db["tooltip"]["healthBar"]["font"] = "Expressway"
@@ -1074,10 +1126,16 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["colorAlpha"] = 0.85
 	E.db["tooltip"]["visibility"]["combatOverride"] = "SHIFT"
 	E.db["tooltip"]["smallTextFontSize"] = 11
+
+	--Auras
+
 	E.db["auras"]["debuffs"]["horizontalSpacing"] = 1
 	E.db["auras"]["debuffs"]["size"] = 26
 	E.db["auras"]["buffs"]["horizontalSpacing"] = 1
 	E.db["auras"]["buffs"]["size"] = 26
+
+	--Shadow & Light
+
 	E.db["sle"]["armory"]["inspect"]["enchant"]["fontSize"] = 9
 	E.db["sle"]["armory"]["inspect"]["enchant"]["font"] = "Expressway"
 	E.db["sle"]["armory"]["inspect"]["gem"]["xOffset"] = 4
@@ -1126,6 +1184,9 @@ function L1UI:SetupLayout(layout)
 	E.db["sle"]["minimap"]["mapicons"]["iconmouseover"] = true
 	E.db["sle"]["minimap"]["mapicons"]["spacing"] = 1
 	E.db["sle"]["raidmarkers"]["enable"] = false
+
+	--UnitFrames General
+
 	E.db["unitframe"]["fontSize"] = 12
 	E.db["unitframe"]["units"]["targettarget"]["portrait"]["overlay"] = true
 	E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 6
@@ -1492,6 +1553,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["smartRaidFilter"] = false
 	E.db["unitframe"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["statusbar"] = "Solid"
+
+	--DataTexts General
+
 	E.db["datatexts"]["goldCoins"] = true
 	E.db["datatexts"]["goldFormat"] = "SMART"
 	E.db["datatexts"]["panelTransparency"] = true
@@ -1524,6 +1588,9 @@ function L1UI:SetupLayout(layout)
 	E.db["datatexts"]["font"] = "Expressway"
 	E.db["datatexts"]["battleground"] = false
 	E.db["datatexts"]["panelBackdrop"] = false
+
+	--ActionBars
+
 	E.db["actionbar"]["bar3"]["enabled"] = false
 	E.db["actionbar"]["bar3"]["buttons"] = 12
 	E.db["actionbar"]["bar3"]["buttonspacing"] = 1
@@ -1562,6 +1629,9 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["barPet"]["buttonsize"] = 28
 	E.db["actionbar"]["barPet"]["mouseover"] = true
 	E.db["actionbar"]["backdropSpacingConverted"] = true
+
+	--NamePlates General
+
 	E.db["nameplates"]["nonTargetTransparency"] = 1
 	E.db["nameplates"]["plateSize"]["personalWidth"] = 155
 	E.db["nameplates"]["plateSize"]["friendlyWidth"] = 155
@@ -1729,6 +1799,9 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["cooldown"]["hoursIndicator"]["r"] = 0.4
 	E.db["nameplates"]["cooldown"]["daysIndicator"]["g"] = 0.4
 	E.db["nameplates"]["cooldown"]["daysIndicator"]["r"] = 0.4
+
+	--Bags
+
 	E.db["bags"]["countFontSize"] = 12
 	E.db["bags"]["countFont"] = "Expressway"
 	E.db["bags"]["itemLevelFont"] = "Expressway"
@@ -1744,7 +1817,13 @@ function L1UI:SetupLayout(layout)
 	E.db["bags"]["cooldown"]["daysIndicator"]["g"] = 0.4
 	E.db["bags"]["cooldown"]["daysIndicator"]["r"] = 0.4
 	E.db["bags"]["bagWidth"] = 410
+
+	--Cooldown Text
+
 	E.db["cooldown"]["secondsColor"]["b"] = 1
+
+	--Chat
+
 	E.db["chat"]["separateSizes"] = true
 	E.db["chat"]["desaturateVoiceIcons"] = false
 	E.db["chat"]["throttleInterval"] = 0
@@ -1763,7 +1842,9 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["panelWidthRight"] = 410
 	E.db["chat"]["numScrollMessages"] = 2
 	E.db["chat"]["panelWidth"] = 410
-	--Private
+
+	--Private Exports
+
 	E.private["skins"]["cleanBossButton"] = true
 	E.private["skins"]["parchmentRemover"]["enable"] = true
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["a"] = 1
@@ -1777,6 +1858,7 @@ function L1UI:SetupLayout(layout)
 	E.private["general"]["dmgfont"] = "Expressway"
 	E.private["general"]["chatBubbleFont"] = "Expressway"
 	E.private["general"]["totemBar"] = false
+
 	end
 
 	E:StaggeredUpdateAll(nil, true)
