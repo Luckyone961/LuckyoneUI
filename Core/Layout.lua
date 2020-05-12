@@ -1,7 +1,5 @@
 local E, L, V, P, G = unpack(ElvUI)
-local MyPluginName = "LuckyoneUI"
 local LUI = E:GetModule("LuckyoneUI");
-local format = string.format
 
 function LUI:SetupLayout(layout)
 	if layout == "dps" or layout == "tank" then
@@ -1781,7 +1779,7 @@ function LUI:SetupLayout(layout)
 	E.private["general"]["totemBar"] = false
 	end
 
-	E:UpdateAll(true)
+	E:StaggeredUpdateAll(nil, true)
 
 	PluginInstallStepComplete.message = "|cff4beb2cLuckyoneUI|r Layout has been set"
 	PluginInstallStepComplete:Show()
