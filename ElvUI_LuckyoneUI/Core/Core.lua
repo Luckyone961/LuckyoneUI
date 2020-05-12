@@ -3,6 +3,7 @@ local MyPluginName = "LuckyoneUI"
 local L1UI = E:GetModule("LuckyoneUI");
 
 local IsAddOnLoaded = IsAddOnLoaded
+local SetCVar = SetCVar
 
 --Setup AddOns
 function L1UI:AddonSetup(addon)
@@ -22,5 +23,31 @@ function L1UI:AddonSetup(addon)
     E:StaggeredUpdateAll(nil, true)
 
     PluginInstallStepComplete.message = "AddOn profiles have been set"
+    PluginInstallStepComplete:Show()
+end
+
+--Setup CVars
+local function SetupCVars()
+    --Maximize the camera zoom
+    SetCVar("cameraDistanceMaxZoomFactor", 2.6)
+    --Remove ugly colors while dead
+    SetCVar("ffxDeath", 0)
+    --Enable advanced logging
+    SetCVar("advancedCombatLogging", 1)
+    --Chat editbox style
+    SetCVar("chatStyle", classic)
+    --NamePlate setup
+    SetCVar("nameplateLargerScale", 0)
+    SetCVar("nameplateMinAlpha", 1)
+    SetCVar("nameplateMinScale", 1)
+    SetCVar("nameplateMotion", 1)
+    SetCVar("nameplateSelectedScale", 1)
+    SetCVar("nameplateSelfAlpha", 1)
+    --Hardware cursor
+    SetCVar("rawMouseEnable", 1)
+    --Quality of life
+    SetCVar("SpellQueueWindow", 50)
+
+    PluginInstallStepComplete.message = "CVars have been set"
     PluginInstallStepComplete:Show()
 end

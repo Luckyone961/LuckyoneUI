@@ -55,6 +55,14 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetText("Setup AddOns")
 		end,
 		[4] = function()
+			PluginInstallFrame.SubTitle:SetFormattedText("CVars")
+			PluginInstallFrame.Desc1:SetText("Please click the button below to apply Luckyone's CVar setup for maxCameraDistance and other tweaks.")
+			PluginInstallFrame.Desc2:SetText("Importance: |cff4beb2cOptional|r")
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript("OnClick", function() SetupCVars() end)
+			PluginInstallFrame.Option1:SetText("Setup CVars")
+		end,
+		[5] = function()
 			PluginInstallFrame.SubTitle:SetText("Installation Complete")
 			PluginInstallFrame.Desc1:SetText("You have completed the installation process.")
 			PluginInstallFrame.Desc2:SetText("Please click the button below in order to finalize the process and automatically reload your UI.")
@@ -67,7 +75,8 @@ L1UI.InstallerData = {
 		[1] = "Welcome",
 		[2] = "Layouts",
 		[3] = "AddOn Profiles",
-		[4] = "Installation Complete",
+		[4] = "CVars",
+		[5] = "Installation Complete",
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0, 179/255, 1},
