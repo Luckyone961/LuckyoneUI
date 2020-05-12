@@ -9,7 +9,6 @@ LUI.Config = {}
 P[MyPluginName] = {}
 
 function LUI:Initialize()
-	E.private.install_complete = E.version
 
 	if E.private.install_complete and E.db[MyPluginName].install_version == nil then
 		E:GetModule("PluginInstaller"):Queue(LUI.InstallerData)
