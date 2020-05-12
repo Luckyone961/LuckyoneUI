@@ -7,9 +7,6 @@ local LUI = E:NewModule(MyPluginName, "AceHook-3.0", "AceEvent-3.0", "AceTimer-3
 LUI.Version = GetAddOnMetadata(addon, "Version")
 LUI.Config = {}
 
---Cache Lua / WoW API
-local format = string.format
-
 function LUI:Initialize()
     E.private.install_complete = E.version
 
