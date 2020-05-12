@@ -10,7 +10,7 @@ local function InstallComplete()
 		StopMusic()
 	end
 
-	E.db[MyPluginName].install_version = Version
+	E.db[MyPluginName].install_version = LUI.Version
 
 	ReloadUI()
 end
