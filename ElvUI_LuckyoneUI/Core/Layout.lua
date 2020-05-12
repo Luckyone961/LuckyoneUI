@@ -650,36 +650,19 @@ function L1UI:SetupLayout(layout)
 
 	E.db["datatexts"]["battleground"] = false
 	E.db["datatexts"]["font"] = "Expressway"
-	E.db["datatexts"]["friends"]["hideApp"] = true
-	E.db["datatexts"]["friends"]["hideBSAp"] = true
-	E.db["datatexts"]["friends"]["hideD3"] = true
-	E.db["datatexts"]["friends"]["hideDST2"] = true
-	E.db["datatexts"]["friends"]["hideHero"] = true
-	E.db["datatexts"]["friends"]["hidePro"] = true
-	E.db["datatexts"]["friends"]["hideS1"] = true
-	E.db["datatexts"]["friends"]["hideS2"] = true
-	E.db["datatexts"]["friends"]["hideVIPR"] = true
-	E.db["datatexts"]["friends"]["hideWTCG"] = true
 	E.db["datatexts"]["goldCoins"] = true
 	E.db["datatexts"]["goldFormat"] = "SMART"
 	E.db["datatexts"]["localtime"] = false
 	E.db["datatexts"]["panelBackdrop"] = false
-	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "System"
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
-	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["right"] = "Bags"
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "System"
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Bags"
-	E.db["datatexts"]["panels"]["LeftMiniPanel"] = "Time"
 	E.db["datatexts"]["panels"]["MinimapPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["MinimapPanel"][1] = "Time"
-	E.db["datatexts"]["panels"]["RightChatDataPanel"]["left"] = "Gold"
-	E.db["datatexts"]["panels"]["RightChatDataPanel"]["middle"] = "ElvUI Config"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
-	E.db["datatexts"]["panels"]["RightChatDataPanel"]["right"] = "WeakAuras"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][1] = "Currencies"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][2] = "ElvUI Config"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][3] = "WeakAuras"
-	E.db["datatexts"]["panelTransparency"] = true
 
 	--ActionBars
 
@@ -1681,36 +1664,18 @@ function L1UI:SetupLayout(layout)
 
 	E.db["datatexts"]["battleground"] = false
 	E.db["datatexts"]["font"] = "Expressway"
-	E.db["datatexts"]["friends"]["hideApp"] = true
-	E.db["datatexts"]["friends"]["hideBSAp"] = true
-	E.db["datatexts"]["friends"]["hideD3"] = true
-	E.db["datatexts"]["friends"]["hideDST2"] = true
-	E.db["datatexts"]["friends"]["hideHero"] = true
-	E.db["datatexts"]["friends"]["hidePro"] = true
-	E.db["datatexts"]["friends"]["hideS1"] = true
-	E.db["datatexts"]["friends"]["hideS2"] = true
-	E.db["datatexts"]["friends"]["hideVIPR"] = true
-	E.db["datatexts"]["friends"]["hideWTCG"] = true
 	E.db["datatexts"]["goldCoins"] = true
 	E.db["datatexts"]["goldFormat"] = "SMART"
 	E.db["datatexts"]["panelBackdrop"] = false
-	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "System"
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
-	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["right"] = "Bags"
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "System"
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Bags"
-	E.db["datatexts"]["panels"]["LeftMiniPanel"] = "Time"
 	E.db["datatexts"]["panels"]["MinimapPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["MinimapPanel"][1] = "Time"
-	E.db["datatexts"]["panels"]["RightChatDataPanel"]["left"] = "Gold"
-	E.db["datatexts"]["panels"]["RightChatDataPanel"]["middle"] = "ElvUI Config"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
-	E.db["datatexts"]["panels"]["RightChatDataPanel"]["right"] = "WeakAuras"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][1] = "Currencies"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][2] = "ElvUI Config"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][3] = "WeakAuras"
-	E.db["datatexts"]["panels"]["SLE_DataPanel_3"] = ""
-	E.db["datatexts"]["panelTransparency"] = true
 
 	--ActionBars
 
