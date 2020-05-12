@@ -1,7 +1,11 @@
 local E, L, V, P, G = unpack(ElvUI)
 local MyPluginName = "LuckyoneUI"
 local L1UI = E:GetModule("LuckyoneUI");
+
+local ReloadUI = ReloadUI
+local StopMusic = StopMusic
 local format = string.format
+local GetCVarBool = GetCVarBool
 
 --Run this on "Skip Process" and "Finished"
 local function InstallComplete()
