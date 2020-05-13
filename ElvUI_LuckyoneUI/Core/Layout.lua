@@ -2,6 +2,11 @@ local E, L, V, P, G = unpack(ElvUI)
 local L1UI = E:GetModule("LuckyoneUI");
 
 function L1UI:SetupLayout(layout)
+
+	if not E.db.movers then
+		E.db.movers = {}
+	end
+
 	if layout == "dps" or layout == "tank" then
 
 	--DataBars
