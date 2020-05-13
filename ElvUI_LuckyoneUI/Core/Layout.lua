@@ -40,7 +40,7 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["reputation"]["width"] = 359
 
 	--Shadow & Light
-
+	if IsAddonLoaded('Shadow & Light') then
 	E.db["sle"]["armory"]["character"]["background"]["overlay"] = false
 	E.db["sle"]["armory"]["character"]["corruption"]["font"] = "Expressway"
 	E.db["sle"]["armory"]["character"]["corruption"]["fontSize"] = 12
@@ -113,7 +113,7 @@ function L1UI:SetupLayout(layout)
 	E.db["sle"]["nameplates"]["threat"]["font"] = "Expressway"
 	E.db["sle"]["raidmarkers"]["enable"] = false
 	E.db["sle"]["skins"]["objectiveTracker"]["classHeader"] = true
-
+	end
 	--Movers
 
 	E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-22"
@@ -1195,7 +1195,7 @@ function L1UI:SetupLayout(layout)
 	E.db["auras"]["debuffs"]["size"] = 26
 
 	--Shadow & Light
-
+	if IsAddonLoaded('Shadow & Light') then
 	E.db["sle"]["armory"]["character"]["background"]["overlay"] = false
 	E.db["sle"]["armory"]["character"]["corruption"]["font"] = "Expressway"
 	E.db["sle"]["armory"]["character"]["corruption"]["fontSize"] = 12
@@ -1244,6 +1244,7 @@ function L1UI:SetupLayout(layout)
 	E.db["sle"]["minimap"]["mapicons"]["iconmouseover"] = true
 	E.db["sle"]["minimap"]["mapicons"]["spacing"] = 1
 	E.db["sle"]["raidmarkers"]["enable"] = false
+	end
 
 	--UnitFrames Colors
 
