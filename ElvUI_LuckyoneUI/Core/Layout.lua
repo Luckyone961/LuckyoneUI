@@ -40,7 +40,8 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["reputation"]["width"] = 359
 
 	--Shadow & Light
-	if IsAddonLoaded('Shadow & Light') then
+
+	if IsAddOnLoaded('ElvUI_SLE') then
 	E.db["sle"]["armory"]["character"]["background"]["overlay"] = false
 	E.db["sle"]["armory"]["character"]["corruption"]["font"] = "Expressway"
 	E.db["sle"]["armory"]["character"]["corruption"]["fontSize"] = 12
@@ -114,6 +115,7 @@ function L1UI:SetupLayout(layout)
 	E.db["sle"]["raidmarkers"]["enable"] = false
 	E.db["sle"]["skins"]["objectiveTracker"]["classHeader"] = true
 	end
+
 	--Movers
 
 	E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-22"
@@ -171,9 +173,6 @@ function L1UI:SetupLayout(layout)
 	E.db["movers"]["ReputationBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,1"
 	E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,24"
 	E.db["movers"]["ShiftAB"] = "TOPLEFT,ElvUIParent,BOTTOMLEFT,1,1081"
-	E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,290"
-	E.db["movers"]["SLE_DataPanel_2_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,-243,188"
-	E.db["movers"]["SLE_DataPanel_4_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,-191,101"
 	E.db["movers"]["SocialMenuMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,196"
 	E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-59,-182"
 	E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-206"
@@ -1016,11 +1015,14 @@ function L1UI:SetupLayout(layout)
 	E.private["general"]["totemBar"] = false
 	E.private["skins"]["cleanBossButton"] = true
 	E.private["skins"]["parchmentRemover"]["enable"] = true
+
+	if IsAddOnLoaded('ElvUI_SLE') then
 	E.private["sle"]["install_complete"] = "BETA"
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["a"] = 1
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
 	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "ElvUI Blank"
+	end
 
 	elseif layout == "healer" then
 
@@ -1153,9 +1155,6 @@ function L1UI:SetupLayout(layout)
 	E.db["movers"]["ReputationBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
 	E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,24"
 	E.db["movers"]["ShiftAB"] = "TOPLEFT,ElvUIParent,BOTTOMLEFT,1,1081"
-	E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,15,0"
-	E.db["movers"]["SLE_DataPanel_2_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,-243,188"
-	E.db["movers"]["SLE_DataPanel_4_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,-191,101"
 	E.db["movers"]["SLE_FarmSeedMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,248"
 	E.db["movers"]["SocialMenuMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,193"
 	E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-59,-182"
@@ -1195,7 +1194,8 @@ function L1UI:SetupLayout(layout)
 	E.db["auras"]["debuffs"]["size"] = 26
 
 	--Shadow & Light
-	if IsAddonLoaded('Shadow & Light') then
+
+	if IsAddOnLoaded('ElvUI_SLE') then
 	E.db["sle"]["armory"]["character"]["background"]["overlay"] = false
 	E.db["sle"]["armory"]["character"]["corruption"]["font"] = "Expressway"
 	E.db["sle"]["armory"]["character"]["corruption"]["fontSize"] = 12
@@ -1965,11 +1965,14 @@ function L1UI:SetupLayout(layout)
 	E.private["general"]["totemBar"] = false
 	E.private["skins"]["cleanBossButton"] = true
 	E.private["skins"]["parchmentRemover"]["enable"] = true
+
+	if IsAddOnLoaded('ElvUI_SLE') then
 	E.private["sle"]["install_complete"] = "BETA"
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["a"] = 1
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
 	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "ElvUI Blank"
+	end
 
 	end
 
