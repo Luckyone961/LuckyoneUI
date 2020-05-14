@@ -124,4 +124,9 @@ function L1UI:GetBigWigsProfile()
 	end
 
 	BigWigs.db:SetProfile(key)
+
+	if not BigWigs3DB.profileKeys then
+		BigWigs3DB.profileKeys = {}
+	end
+	BigWigs3DB.profileKeys[E.mynameRealm] = key
 end
