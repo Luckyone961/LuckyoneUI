@@ -319,7 +319,6 @@ function L1UI:SetupLayout(layout)
 
 	--UnitFrames Arena
 
-	E.db["unitframe"]["units"]["arena"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["arena"]["health"]["text_format"] = "[perhp<%]"
 	E.db["unitframe"]["units"]["arena"]["name"]["text_format"] = "[namecolor][name:abbrev:long]"
 	E.db["unitframe"]["units"]["arena"]["power"]["height"] = 6
@@ -343,7 +342,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["boss"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["boss"]["disableTargetGlow"] = true
-	E.db["unitframe"]["units"]["boss"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["boss"]["health"]["text_format"] = "[perhp<%]"
 	E.db["unitframe"]["units"]["boss"]["height"] = 35
 	E.db["unitframe"]["units"]["boss"]["name"]["text_format"] = "[namecolor][name:abbrev:long]"
@@ -364,7 +362,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["focus"]["disableTargetGlow"] = true
 	E.db["unitframe"]["units"]["focus"]["healPrediction"]["healType"] = "ALL_HEALS"
 	E.db["unitframe"]["units"]["focus"]["healPrediction"]["showAbsorbAmount"] = true
-	E.db["unitframe"]["units"]["focus"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["focus"]["health"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["focus"]["health"]["text_format"] = "[perhp<%] || [health:current]"
 	E.db["unitframe"]["units"]["focus"]["health"]["xOffset"] = 1
@@ -385,7 +382,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["focustarget"]["debuffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["focustarget"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["focustarget"]["disableTargetGlow"] = true
-	E.db["unitframe"]["units"]["focustarget"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["focustarget"]["health"]["position"] = "CENTER"
 	E.db["unitframe"]["units"]["focustarget"]["health"]["text_format"] = "[perhp<%]"
 	E.db["unitframe"]["units"]["focustarget"]["health"]["xOffset"] = 0
@@ -405,7 +401,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["party"]["debuffs"]["perrow"] = 2
 	E.db["unitframe"]["units"]["party"]["debuffs"]["sizeOverride"] = 35
 	E.db["unitframe"]["units"]["party"]["growthDirection"] = "DOWN_RIGHT"
-	E.db["unitframe"]["units"]["party"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["party"]["health"]["position"] = "BOTTOM"
 	E.db["unitframe"]["units"]["party"]["health"]["text_format"] = ""
 	E.db["unitframe"]["units"]["party"]["health"]["xOffset"] = 0
@@ -446,7 +441,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 80
 	E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["pet"]["healPrediction"]["showAbsorbAmount"] = true
-	E.db["unitframe"]["units"]["pet"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["pet"]["health"]["position"] = "CENTER"
 	E.db["unitframe"]["units"]["pet"]["health"]["text_format"] = "[perhp<%]"
 	E.db["unitframe"]["units"]["pet"]["health"]["xOffset"] = 0
@@ -461,7 +455,6 @@ function L1UI:SetupLayout(layout)
 	--UnitFrames PetTarget
 
 	E.db["unitframe"]["units"]["pettarget"]["disableMouseoverGlow"] = true
-	E.db["unitframe"]["units"]["pettarget"]["health"]["frequentUpdates"] = true
 
 	--UnitFrames Player
 
@@ -485,7 +478,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["player"]["debuffs"]["yOffset"] = 20
 	E.db["unitframe"]["units"]["player"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["player"]["healPrediction"]["showAbsorbAmount"] = true
-	E.db["unitframe"]["units"]["player"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["player"]["health"]["position"] = "RIGHT"
 	E.db["unitframe"]["units"]["player"]["health"]["text_format"] = "[health:current] || [perhp<%]"
 	E.db["unitframe"]["units"]["player"]["health"]["xOffset"] = 0
@@ -516,7 +508,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 6
 	E.db["unitframe"]["units"]["raid"]["growthDirection"] = "DOWN_RIGHT"
 	E.db["unitframe"]["units"]["raid"]["healPrediction"]["showAbsorbAmount"] = true
-	E.db["unitframe"]["units"]["raid"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 	E.db["unitframe"]["units"]["raid"]["height"] = 25
 	E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = -1
@@ -562,7 +553,6 @@ function L1UI:SetupLayout(layout)
 
 	E.db["unitframe"]["units"]["raid40"]["classbar"]["fill"] = "spaced"
 	E.db["unitframe"]["units"]["raid40"]["classbar"]["height"] = 6
-	E.db["unitframe"]["units"]["raid40"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 	E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 2
 	E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[namecolor][name:veryshort]"
@@ -603,7 +593,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["target"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["target"]["healPrediction"]["healType"] = "ALL_HEALS"
 	E.db["unitframe"]["units"]["target"]["healPrediction"]["showAbsorbAmount"] = true
-	E.db["unitframe"]["units"]["target"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["target"]["health"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["target"]["health"]["text_format"] = "[perhp<%] || [health:current]"
 	E.db["unitframe"]["units"]["target"]["health"]["xOffset"] = 1
@@ -630,7 +619,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["targettarget"]["debuffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["targettarget"]["debuffs"]["enable"] = false
 	E.db["unitframe"]["units"]["targettarget"]["disableMouseoverGlow"] = true
-	E.db["unitframe"]["units"]["targettarget"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["targettarget"]["health"]["position"] = "CENTER"
 	E.db["unitframe"]["units"]["targettarget"]["health"]["text_format"] = "[perhp<%]"
 	E.db["unitframe"]["units"]["targettarget"]["health"]["xOffset"] = 0
@@ -648,7 +636,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["targettargettarget"]["buffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
-	E.db["unitframe"]["units"]["targettargettarget"]["health"]["frequentUpdates"] = true
 
 	--DataTexts General
 
@@ -1320,7 +1307,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["arena"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["arena"]["disableTargetGlow"] = true
 	E.db["unitframe"]["units"]["arena"]["healPrediction"]["healType"] = "ALL_HEALS"
-	E.db["unitframe"]["units"]["arena"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["arena"]["health"]["text_format"] = "[perhp<%]"
 	E.db["unitframe"]["units"]["arena"]["power"]["height"] = 6
 
@@ -1343,7 +1329,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["boss"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["boss"]["disableTargetGlow"] = true
-	E.db["unitframe"]["units"]["boss"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["boss"]["health"]["text_format"] = "[perhp<%]"
 	E.db["unitframe"]["units"]["boss"]["height"] = 35
 	E.db["unitframe"]["units"]["boss"]["power"]["height"] = 6
@@ -1363,7 +1348,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["focus"]["disableTargetGlow"] = true
 	E.db["unitframe"]["units"]["focus"]["healPrediction"]["healType"] = "ALL_HEALS"
 	E.db["unitframe"]["units"]["focus"]["health"]["attachTextTo"] = "Frame"
-	E.db["unitframe"]["units"]["focus"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["focus"]["health"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["focus"]["health"]["text_format"] = "[perhp]% || [health:current]"
 	E.db["unitframe"]["units"]["focus"]["health"]["xOffset"] = 2
@@ -1384,7 +1368,6 @@ function L1UI:SetupLayout(layout)
 
 	E.db["unitframe"]["units"]["focustarget"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["focustarget"]["disableTargetGlow"] = true
-	E.db["unitframe"]["units"]["focustarget"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["focustarget"]["health"]["position"] = "CENTER"
 	E.db["unitframe"]["units"]["focustarget"]["health"]["text_format"] = "[healthcolor][health:percent]"
 	E.db["unitframe"]["units"]["focustarget"]["health"]["xOffset"] = 0
@@ -1410,7 +1393,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["party"]["healPrediction"]["enable"] = true
 	E.db["unitframe"]["units"]["party"]["healPrediction"]["healType"] = "ALL_HEALS"
 	E.db["unitframe"]["units"]["party"]["healPrediction"]["showAbsorbAmount"] = true
-	E.db["unitframe"]["units"]["party"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["party"]["health"]["position"] = "BOTTOM"
 	E.db["unitframe"]["units"]["party"]["health"]["text_format"] = ""
 	E.db["unitframe"]["units"]["party"]["health"]["xOffset"] = 0
@@ -1459,7 +1441,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["pet"]["healPrediction"]["healType"] = "ALL_HEALS"
 	E.db["unitframe"]["units"]["pet"]["healPrediction"]["showAbsorbAmount"] = true
-	E.db["unitframe"]["units"]["pet"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["pet"]["health"]["text_format"] = "[perhp<%]"
 	E.db["unitframe"]["units"]["pet"]["health"]["xOffset"] = 0
 	E.db["unitframe"]["units"]["pet"]["height"] = 25
@@ -1471,7 +1452,6 @@ function L1UI:SetupLayout(layout)
 	--UnitFrames PetTarget
 
 	E.db["unitframe"]["units"]["pettarget"]["disableMouseoverGlow"] = true
-	E.db["unitframe"]["units"]["pettarget"]["health"]["frequentUpdates"] = true
 
 	--UnitFrames Player
 
@@ -1497,7 +1477,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["player"]["healPrediction"]["healType"] = "ALL_HEALS"
 	E.db["unitframe"]["units"]["player"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["player"]["health"]["attachTextTo"] = "Frame"
-	E.db["unitframe"]["units"]["player"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["player"]["health"]["position"] = "RIGHT"
 	E.db["unitframe"]["units"]["player"]["health"]["text_format"] = "[health:current] || [perhp]%"
 	E.db["unitframe"]["units"]["player"]["health"]["xOffset"] = 0
@@ -1527,7 +1506,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid"]["healPrediction"]["enable"] = true
 	E.db["unitframe"]["units"]["raid"]["healPrediction"]["healType"] = "ALL_HEALS"
 	E.db["unitframe"]["units"]["raid"]["healPrediction"]["showAbsorbAmount"] = true
-	E.db["unitframe"]["units"]["raid"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 	E.db["unitframe"]["units"]["raid"]["height"] = 40
 	E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
@@ -1565,7 +1543,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid40"]["healPrediction"]["enable"] = true
 	E.db["unitframe"]["units"]["raid40"]["healPrediction"]["healType"] = "ALL_HEALS"
 	E.db["unitframe"]["units"]["raid40"]["healPrediction"]["showAbsorbAmount"] = true
-	E.db["unitframe"]["units"]["raid40"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 	E.db["unitframe"]["units"]["raid40"]["height"] = 35
 	E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 0
@@ -1625,7 +1602,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["target"]["healPrediction"]["healType"] = "ALL_HEALS"
 	E.db["unitframe"]["units"]["target"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["target"]["health"]["attachTextTo"] = "Frame"
-	E.db["unitframe"]["units"]["target"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["target"]["health"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["target"]["health"]["text_format"] = "[perhp]% || [health:current]"
 	E.db["unitframe"]["units"]["target"]["health"]["xOffset"] = 2
@@ -1648,7 +1624,6 @@ function L1UI:SetupLayout(layout)
 	--UnitFrames TargetTarget
 
 	E.db["unitframe"]["units"]["targettarget"]["disableMouseoverGlow"] = true
-	E.db["unitframe"]["units"]["targettarget"]["health"]["frequentUpdates"] = true
 	E.db["unitframe"]["units"]["targettarget"]["health"]["position"] = "CENTER"
 	E.db["unitframe"]["units"]["targettarget"]["health"]["text_format"] = "[perhp<%]"
 	E.db["unitframe"]["units"]["targettarget"]["health"]["xOffset"] = 0
@@ -1663,7 +1638,6 @@ function L1UI:SetupLayout(layout)
 	--UnitFrames TargetTargetTarget
 
 	E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
-	E.db["unitframe"]["units"]["targettargettarget"]["health"]["frequentUpdates"] = true
 
 	--DataTexts General
 
