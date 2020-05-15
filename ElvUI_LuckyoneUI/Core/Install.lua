@@ -29,6 +29,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.SubTitle:SetFormattedText("Welcome")
 			PluginInstallFrame.Desc1:SetText("This installation process will guide you through a few steps and apply settings to your current ElvUI profile.")
 			PluginInstallFrame.Desc2:SetText("Note: |cff4beb2cMake sure you have a backup of your current profile|r")
+			PluginInstallFrame.Desc3:SetText("|cffff0007Check your ElvUI version before you run the installer\nRequired version: 11.42 or later")
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
 			PluginInstallFrame.Option1:SetText("Skip Process")
@@ -48,14 +49,30 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option3:SetText("DPS")
 		end,
 		[3] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText("AddOn Profiles")
-			PluginInstallFrame.Desc1:SetText("Please click the button below to apply Luckyone's profiles for AddOns like\nBigWigs, Details! Damage Meter and ProjectAzilroka.")
+			PluginInstallFrame.SubTitle:SetFormattedText("BigWigs Profile")
+			PluginInstallFrame.Desc1:SetText("Please click the button below to apply Luckyone's profile for BigWigs.")
 			PluginInstallFrame.Desc2:SetText("Importance: |cff4beb2cOptional|r")
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript("OnClick", function() L1UI:AddonSetup('addon') end)
-			PluginInstallFrame.Option1:SetText("Setup AddOns")
+			PluginInstallFrame.Option1:SetScript("OnClick", function() L1UI:AddonSetupBW('addon') end)
+			PluginInstallFrame.Option1:SetText("Setup BigWigs")
 		end,
 		[4] = function()
+			PluginInstallFrame.SubTitle:SetFormattedText("Details Profile")
+			PluginInstallFrame.Desc1:SetText("Please click the button below to apply Luckyone's profile for Details! Damage Meter.")
+			PluginInstallFrame.Desc2:SetText("Importance: |cff4beb2cOptional|r")
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript("OnClick", function() L1UI:AddonSetupDT('addon') end)
+			PluginInstallFrame.Option1:SetText("Setup Details")
+		end,
+		[5] = function()
+			PluginInstallFrame.SubTitle:SetFormattedText("ProjectAzilroka Profile")
+			PluginInstallFrame.Desc1:SetText("Please click the button below to apply Luckyone's profile for ProjectAzilroka.")
+			PluginInstallFrame.Desc2:SetText("Importance: |cff4beb2cOptional|r")
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript("OnClick", function() L1UI:AddonSetupPA('addon') end)
+			PluginInstallFrame.Option1:SetText("Setup ProjectAzilroka")
+		end,
+		[6] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText("CVars")
 			PluginInstallFrame.Desc1:SetText("Please click the button below to apply Luckyone's CVar setup for minor tweaks like\n MaxCameraZoom, ChatStyle and HardwareCursor.")
 			PluginInstallFrame.Desc2:SetText("Importance: |cff4beb2cOptional|r")
@@ -63,7 +80,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript("OnClick", function() L1UI:SetupCVars() end)
 			PluginInstallFrame.Option1:SetText("Setup CVars")
 		end,
-		[5] = function()
+		[7] = function()
 			PluginInstallFrame.SubTitle:SetText("Installation Complete")
 			PluginInstallFrame.Desc1:SetText("You have completed the installation process, please click 'Finished' to reload the UI.")
 			PluginInstallFrame.Desc2:SetText("Importance: |cff4beb2cHigh|r")
@@ -74,10 +91,12 @@ L1UI.InstallerData = {
 	},
 	StepTitles = {
 		[1] = "Welcome",
-		[2] = "Layouts",
-		[3] = "AddOn Profiles",
-		[4] = "CVars",
-		[5] = "Installation Complete",
+		[2] = "ElvUI Layouts",
+		[3] = "BigWigs Profile",
+		[4] = "Details Profile",
+		[5] = "ProjectAzilroka Profile",
+		[6] = "CVars",
+		[7] = "Installation Complete",
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0, 179/255, 1},

@@ -6,30 +6,39 @@ local L1UI = E:GetModule("LuckyoneUI");
 local IsAddOnLoaded = IsAddOnLoaded
 local SetCVar = SetCVar
 
---Setup AddOns
-function L1UI:AddonSetup(addon)
+--Setup AddOns[1]
+function L1UI:AddonSetupBW(addon)
 
-	--BigWigs
 	if IsAddOnLoaded('BigWigs') then
 		L1UI:GetBigWigsProfile()
 		E:Print('BigWigs profile has been set.')
 	end
 
-	--Details! Damage Meter
+	PluginInstallStepComplete.message = "BigWigs profile has been set"
+	PluginInstallStepComplete:Show()
+end
+
+--Setup AddOns[2]
+function L1UI:AddonSetupDT(addon)
+
 	if IsAddOnLoaded('Details') then
 		L1UI:GetDetailsProfile()
 		E:Print('Details profile has been set.')
 	end
 
-	--ProjectAzilroka
+	PluginInstallStepComplete.message = "Details profile has been set"
+	PluginInstallStepComplete:Show()
+end
+
+--Setup AddOns[3]
+function L1UI:AddonSetupPA(addon)
+
 	if IsAddOnLoaded('ProjectAzilroka') then
 		L1UI:GetPAProfile()
 		E:Print('ProjectAzilroka profile has been set.')
 	end
 
-	E:StaggeredUpdateAll(nil, true)
-
-	PluginInstallStepComplete.message = "AddOn profiles have been set"
+	PluginInstallStepComplete.message = "ProjectAzilroka profile has been set"
 	PluginInstallStepComplete:Show()
 end
 
@@ -58,6 +67,8 @@ function L1UI:SetupCVars()
 	SetCVar("rawMouseEnable", 1)
 	--Quality of life
 	SetCVar("SpellQueueWindow", 50)
+
+	E:Print('CVars have been set.')
 
 	PluginInstallStepComplete.message = "CVars have been set"
 	PluginInstallStepComplete:Show()
