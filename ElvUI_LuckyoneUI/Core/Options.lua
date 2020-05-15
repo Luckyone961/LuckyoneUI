@@ -20,7 +20,7 @@ function L1UI:Configtable()
 			install = {
 				order = 2,
 				type = "execute",
-				name = "Run the Installer",
+				name = "Install",
 				desc = "Run the installation process.",
 				func = function() E:GetModule("PluginInstaller"):Queue(L1UI.InstallerData); E:ToggleOptionsUI(); end,
 			},
@@ -38,24 +38,31 @@ function L1UI:Configtable()
 				name = "Report issues here:",
 				get = function() return 'https://git.tukui.org/Luckyone/ElvUI_LuckyoneUI/-/issues' end,
 			},
-			header2 = {
+			website = {
 				order = 5,
+				type = 'input',
+				width = 'full',
+				name = "Addon link:",
+				get = function() return 'https://www.tukui.org/addons.php?id=154' end,
+			},
+			header2 = {
+				order = 6,
 				type = "header",
 				name = "Author",
 			},
 			author = {
-				order = 6,
+				order = 7,
 				type = "description",
 				name = "|cffFF7D0ALuckyone|r (EU) - LaughingSkull",
 				fontSize = "large",
 			},
 			header3 = {
-				order = 7,
+				order = 8,
 				type = "header",
 				name = "Credits",
 			},
 			credits = {
-				order = 8,
+				order = 9,
 				type = "description",
 				name = "|cff0070DEAzilroka|r |cffC41F3BKringel|r |cffF58CBARepooc|r |cFF8866ccSimpy|r",
 				fontSize = "medium",
