@@ -21,6 +21,12 @@ function L1UI:AddonSetup(addon)
 		E:Print('Details profile has been set.')
 	end
 
+	--GottaGoFast
+	if IsAddOnLoaded('GottaGoFast') then
+		L1UI:GetGGFProfile()
+		E:Print('GottaGoFast profile has been set.')
+	end
+
 	--ProjectAzilroka
 	if IsAddOnLoaded('ProjectAzilroka') then
 		L1UI:GetPAProfile()
