@@ -1008,7 +1008,7 @@ function L1UI:SetupLayout(layout)
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["a"] = 1
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
-	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "ElvUI Blank"
+	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Solid"
 	end
 
 	elseif layout == "healer" then
@@ -1944,7 +1944,7 @@ function L1UI:SetupLayout(layout)
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["a"] = 1
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
-	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "ElvUI Blank"
+	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Solid"
 	end
 
 	end

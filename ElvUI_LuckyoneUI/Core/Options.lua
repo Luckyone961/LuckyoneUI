@@ -2,10 +2,9 @@ local E, L, V, P, G = unpack(ElvUI)
 local MyPluginName = "LuckyoneUI"
 local L1UI = E:GetModule("LuckyoneUI");
 
---Cache
 local format = string.format
 
---Insert options table into the ElvUI OptionsUI
+--Options table for the ElvUI OptionsUI
 function L1UI:Configtable()
 	E.Options.args[MyPluginName] = {
 		order = 100,

@@ -1,7 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
 local L1UI = E:GetModule("LuckyoneUI");
 
---Lua functions
 local _G = _G
 
 function L1UI:GetPAProfile()

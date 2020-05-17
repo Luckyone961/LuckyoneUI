@@ -2,7 +2,6 @@ local E, L, V, P, G = unpack(ElvUI)
 local MyPluginName = "LuckyoneUI"
 local L1UI = E:GetModule("LuckyoneUI");
 
---Cache
 local ReloadUI = ReloadUI
 local StopMusic = StopMusic
 local format = string.format
@@ -19,7 +18,7 @@ local function InstallComplete()
 	ReloadUI()
 end
 
---Installer Data
+--Installer Steps
 L1UI.InstallerData = {
 	Title = format("|cff4beb2c%s %s|r", MyPluginName, "Installation"),
 	Name = MyPluginName,
