@@ -228,6 +228,7 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["fadeTabsNoBackdrop"] = false
 	E.db["chat"]["font"] = "Expressway"
 	E.db["chat"]["fontOutline"] = "OUTLINE"
+	E.db["chat"]["hideChatToggles"] = true
 	E.db["chat"]["lfgIcons"] = false
 	E.db["chat"]["numScrollMessages"] = 2
 	E.db["chat"]["panelColor"]["a"] = 0.80822542309761
@@ -1913,6 +1914,7 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["fade"] = false
 	E.db["chat"]["font"] = "Expressway"
 	E.db["chat"]["fontOutline"] = "OUTLINE"
+	E.db["chat"]["hideChatToggles"] = true
 	E.db["chat"]["numScrollMessages"] = 2
 	E.db["chat"]["panelColor"]["a"] = 0.8500000089407
 	E.db["chat"]["panelColor"]["b"] = 0.058823529411765
