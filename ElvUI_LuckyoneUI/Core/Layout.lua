@@ -223,27 +223,27 @@ function L1UI:SetupLayout(layout)
 
 	--Chat
 
-	CH.db["desaturateVoiceIcons"] = false
-	CH.db["fade"] = false
-	CH.db["fadeTabsNoBackdrop"] = false
-	CH.db["font"] = "Expressway"
-	CH.db["fontOutline"] = "OUTLINE"
-	CH.db["hideChatToggles"] = true
-	CH.db["lfgIcons"] = false
-	CH.db["numScrollMessages"] = 2
-	CH.db["panelColor"]["a"] = 0.80822542309761
-	CH.db["panelColor"]["b"] = 0.058823529411765
-	CH.db["panelColor"]["g"] = 0.058823529411765
-	CH.db["panelColor"]["r"] = 0.058823529411765
-	CH.db["panelColorConverted"] = true
-	CH.db["panelHeight"] = 171
-	CH.db["panelHeightRight"] = 171
-	CH.db["panelWidth"] = 410
-	CH.db["panelWidthRight"] = 410
-	CH.db["separateSizes"] = true
-	CH.db["tabFont"] = "Expressway"
-	CH.db["tabFontSize"] = 11
-	CH.db["throttleInterval"] = 0
+	E.db["chat"]["desaturateVoiceIcons"] = false
+	E.db["chat"]["fade"] = false
+	E.db["chat"]["fadeTabsNoBackdrop"] = false
+	E.db["chat"]["font"] = "Expressway"
+	E.db["chat"]["fontOutline"] = "OUTLINE"
+	E.db["chat"]["hideChatToggles"] = true
+	E.db["chat"]["lfgIcons"] = false
+	E.db["chat"]["numScrollMessages"] = 2
+	E.db["chat"]["panelColor"]["a"] = 0.80822542309761
+	E.db["chat"]["panelColor"]["b"] = 0.058823529411765
+	E.db["chat"]["panelColor"]["g"] = 0.058823529411765
+	E.db["chat"]["panelColor"]["r"] = 0.058823529411765
+	E.db["chat"]["panelColorConverted"] = true
+	E.db["chat"]["panelHeight"] = 171
+	E.db["chat"]["panelHeightRight"] = 171
+	E.db["chat"]["panelWidth"] = 410
+	E.db["chat"]["panelWidthRight"] = 410
+	E.db["chat"]["separateSizes"] = true
+	E.db["chat"]["tabFont"] = "Expressway"
+	E.db["chat"]["tabFontSize"] = 11
+	E.db["chat"]["throttleInterval"] = 0
 
 	--UnitFrames Colors
 
@@ -1910,25 +1910,25 @@ function L1UI:SetupLayout(layout)
 
 	--Chat
 
-	CH.db["desaturateVoiceIcons"] = false
-	CH.db["fade"] = false
-	CH.db["font"] = "Expressway"
-	CH.db["fontOutline"] = "OUTLINE"
-	CH.db["hideChatToggles"] = true
-	CH.db["numScrollMessages"] = 2
-	CH.db["panelColor"]["a"] = 0.8500000089407
-	CH.db["panelColor"]["b"] = 0.058823529411765
-	CH.db["panelColor"]["g"] = 0.058823529411765
-	CH.db["panelColor"]["r"] = 0.058823529411765
-	CH.db["panelColorConverted"] = true
-	CH.db["panelHeight"] = 171
-	CH.db["panelHeightRight"] = 171
-	CH.db["panelWidth"] = 410
-	CH.db["panelWidthRight"] = 410
-	CH.db["separateSizes"] = true
-	CH.db["tabFont"] = "Expressway"
-	CH.db["tabFontSize"] = 11
-	CH.db["throttleInterval"] = 0
+	E.db["chat"]["desaturateVoiceIcons"] = false
+	E.db["chat"]["fade"] = false
+	E.db["chat"]["font"] = "Expressway"
+	E.db["chat"]["fontOutline"] = "OUTLINE"
+	E.db["chat"]["hideChatToggles"] = true
+	E.db["chat"]["numScrollMessages"] = 2
+	E.db["chat"]["panelColor"]["a"] = 0.8500000089407
+	E.db["chat"]["panelColor"]["b"] = 0.058823529411765
+	E.db["chat"]["panelColor"]["g"] = 0.058823529411765
+	E.db["chat"]["panelColor"]["r"] = 0.058823529411765
+	E.db["chat"]["panelColorConverted"] = true
+	E.db["chat"]["panelHeight"] = 171
+	E.db["chat"]["panelHeightRight"] = 171
+	E.db["chat"]["panelWidth"] = 410
+	E.db["chat"]["panelWidthRight"] = 410
+	E.db["chat"]["separateSizes"] = true
+	E.db["chat"]["tabFont"] = "Expressway"
+	E.db["chat"]["tabFontSize"] = 11
+	E.db["chat"]["throttleInterval"] = 0
 
 	--Private Exports
 
