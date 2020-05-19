@@ -89,3 +89,30 @@ function L1UI:SetupCVars()
 	PluginInstallStepComplete.message = "CVars have been set"
 	PluginInstallStepComplete:Show()
 end
+
+--Setup Private
+function L1UI:SetupPrivate()
+
+	E.private["general"]["chatBubbleFont"] = "Expressway"
+	E.private["general"]["dmgfont"] = "Expressway"
+	E.private["general"]["glossTex"] = "Solid"
+	E.private["general"]["namefont"] = "Expressway"
+	E.private["general"]["normTex"] = "Solid"
+	E.private["general"]["totemBar"] = false
+	E.private["skins"]["cleanBossButton"] = true
+	E.private["skins"]["parchmentRemover"]["enable"] = true
+
+	if IsAddOnLoaded('ElvUI_SLE') then
+	E.private["sle"]["professions"]["deconButton"]["enable"] = false
+	E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
+	E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
+	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Solid"
+	end
+
+	E:StaggeredUpdateAll(nil, true)
+
+	PluginInstallStepComplete.message = "Fonts and Textures have been set."
+	PluginInstallStepComplete:Show()
+
+	E:Print('Note: Fonts do not change until you restart the WoW.')
+end

@@ -28,7 +28,7 @@ function L1UI:Configtable()
 				type = "execute",
 				name = "Apply Character Settings",
 				desc = "Click this button once per character to apply fonts and textures.",
-				func = function() E:Print('Placeholder') end,
+				func = function() L1UI:SetupPrivate(); end,
 			},
 			changelog = {
 				order = 3,
