@@ -91,6 +91,7 @@ function L1UI:SetupLayout(layout)
 	E.db["sle"]["bags"]["petLevel"]["fonts"]["size"] = 12
 	E.db["sle"]["chat"]["dpsSpam"] = true
 	E.db["sle"]["chat"]["editboxhistory"] = 50
+	E.db["sle"]["chat"]["tab"]["style"] = "ARROWRIGHT"
 	E.db["sle"]["media"]["fonts"]["editbox"]["font"] = "Expressway"
 	E.db["sle"]["media"]["fonts"]["editbox"]["size"] = 11
 	E.db["sle"]["media"]["fonts"]["gossip"]["font"] = "Expressway"
@@ -235,7 +236,6 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["panelColor"]["b"] = 0.058823529411765
 	E.db["chat"]["panelColor"]["g"] = 0.058823529411765
 	E.db["chat"]["panelColor"]["r"] = 0.058823529411765
-	E.db["chat"]["panelColorConverted"] = true
 	E.db["chat"]["panelHeight"] = 171
 	E.db["chat"]["panelHeightRight"] = 171
 	E.db["chat"]["panelWidth"] = 410
@@ -280,6 +280,9 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["colors"]["health"]["g"] = 0
 	E.db["unitframe"]["colors"]["health"]["r"] = 0
 	E.db["unitframe"]["colors"]["healthMultiplier"] = 1
+	E.db["unitframe"]["colors"]["power_backdrop"]["b"] = 0.50196078431373
+	E.db["unitframe"]["colors"]["power_backdrop"]["g"] = 0.50196078431373
+	E.db["unitframe"]["colors"]["power_backdrop"]["r"] = 0.50196078431373
 	E.db["unitframe"]["colors"]["power"]["ENERGY"]["b"] = 0
 	E.db["unitframe"]["colors"]["power"]["ENERGY"]["g"] = 1
 	E.db["unitframe"]["colors"]["power"]["ENERGY"]["r"] = 1
@@ -302,6 +305,8 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["colors"]["power"]["RAGE"]["b"] = 0
 	E.db["unitframe"]["colors"]["power"]["RAGE"]["g"] = 0
 	E.db["unitframe"]["colors"]["power"]["RAGE"]["r"] = 1
+	E.db["unitframe"]["colors"]["selection"][0]["b"] = 0.17254901960784
+	E.db["unitframe"]["colors"]["selection"][0]["g"] = 0.17254901960784
 	E.db["unitframe"]["colors"]["transparentAurabars"] = true
 	E.db["unitframe"]["colors"]["useDeadBackdrop"] = true
 
@@ -332,7 +337,6 @@ function L1UI:SetupLayout(layout)
 	--UnitFrames Boss
 
 	E.db["unitframe"]["units"]["boss"]["buffs"]["enable"] = false
-	E.db["unitframe"]["units"]["boss"]["buffs"]["fontSize"] = 16
 	E.db["unitframe"]["units"]["boss"]["buffs"]["sizeOverride"] = 46
 	E.db["unitframe"]["units"]["boss"]["buffs"]["xOffset"] = -3
 	E.db["unitframe"]["units"]["boss"]["castbar"]["width"] = 189
@@ -348,12 +352,12 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["boss"]["name"]["text_format"] = "[namecolor][name:abbrev:long]"
 	E.db["unitframe"]["units"]["boss"]["power"]["height"] = 6
 	E.db["unitframe"]["units"]["boss"]["power"]["text_format"] = "[powercolor][curpp]"
-	E.db["unitframe"]["units"]["boss"]["targetGlow"] = false
 	E.db["unitframe"]["units"]["boss"]["width"] = 189
 
 	--UnitFrames Focus
 
 	E.db["unitframe"]["units"]["focus"]["buffs"]["countFont"] = "Expressway"
+	E.db["unitframe"]["units"]["focus"]["debuffs"]["anchorPoint"] = "TOPLEFT"
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["maxDuration"] = 0
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["numrows"] = 2
@@ -361,7 +365,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["yOffset"] = 20
 	E.db["unitframe"]["units"]["focus"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["focus"]["disableTargetGlow"] = true
-	E.db["unitframe"]["units"]["focus"]["healPrediction"]["healType"] = "ALL_HEALS"
 	E.db["unitframe"]["units"]["focus"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["focus"]["health"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["focus"]["health"]["text_format"] = "[perhp<%] || [health:current]"
@@ -592,7 +595,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["target"]["debuffs"]["numrows"] = 2
 	E.db["unitframe"]["units"]["target"]["debuffs"]["yOffset"] = 20
 	E.db["unitframe"]["units"]["target"]["disableMouseoverGlow"] = true
-	E.db["unitframe"]["units"]["target"]["healPrediction"]["healType"] = "ALL_HEALS"
 	E.db["unitframe"]["units"]["target"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["target"]["health"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["target"]["health"]["text_format"] = "[perhp<%] || [health:current]"
@@ -644,8 +646,6 @@ function L1UI:SetupLayout(layout)
 	E.db["datatexts"]["font"] = "Expressway"
 	E.db["datatexts"]["goldCoins"] = true
 	E.db["datatexts"]["goldFormat"] = "SMART"
-	E.db["datatexts"]["localtime"] = false
-	E.db["datatexts"]["panelBackdrop"] = false
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "System"
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Bags"
@@ -663,6 +663,7 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["bar2"]["buttonsize"] = 28
 	E.db["actionbar"]["bar2"]["buttonsPerRow"] = 1
 	E.db["actionbar"]["bar2"]["enabled"] = true
+	E.db["actionbar"]["bar2"]["mouseover"] = true
 	E.db["actionbar"]["bar3"]["buttons"] = 12
 	E.db["actionbar"]["bar3"]["buttonsize"] = 28
 	E.db["actionbar"]["bar3"]["buttonsPerRow"] = 12
@@ -698,7 +699,9 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["macrotext"] = true
 	E.db["actionbar"]["microbar"]["buttonSize"] = 18
 	E.db["actionbar"]["microbar"]["enabled"] = true
+	E.db["actionbar"]["microbar"]["mouseover"] = true
 	E.db["actionbar"]["stanceBar"]["buttonsize"] = 28
+	E.db["actionbar"]["stanceBar"]["mouseover"] = true
 
 	--NamePlates General
 
@@ -722,7 +725,6 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["plateSize"]["personalHeight"] = 35
 	E.db["nameplates"]["plateSize"]["personalWidth"] = 155
 	E.db["nameplates"]["statusbar"] = "Solid"
-	E.db["nameplates"]["targetGlow"] = "style1"
 
 	--NamePlates Enemy NPC
 
@@ -876,7 +878,6 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["power"]["text"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["enable"] = true
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["font"] = "Expressway"
-	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[guild:brackets]"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["yOffset"] = 0
 
 	--NamePlates Player
@@ -902,7 +903,6 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["PLAYER"]["power"]["text"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["PLAYER"]["title"]["enable"] = true
 	E.db["nameplates"]["units"]["PLAYER"]["title"]["font"] = "Expressway"
-	E.db["nameplates"]["units"]["PLAYER"]["title"]["format"] = "[guild:brackets]"
 	E.db["nameplates"]["units"]["PLAYER"]["title"]["yOffset"] = 0
 	E.db["nameplates"]["units"]["PLAYER"]["visibility"]["hideDelay"] = 0
 	E.db["nameplates"]["units"]["PLAYER"]["visibility"]["showInCombat"] = false
@@ -950,12 +950,14 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["altPowerBar"]["height"] = 18
 	E.db["general"]["altPowerBar"]["statusBar"] = "Solid"
 	E.db["general"]["autoRepair"] = "PLAYER"
+	E.db["general"]["backdropcolor"]["b"] = 0.10196078431373
+	E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
+	E.db["general"]["backdropcolor"]["r"] = 0.10196078431373
 	E.db["general"]["backdropfadecolor"]["a"] = 0.80000001192093
 	E.db["general"]["backdropfadecolor"]["b"] = 0.058823529411765
 	E.db["general"]["backdropfadecolor"]["g"] = 0.058823529411765
 	E.db["general"]["backdropfadecolor"]["r"] = 0.058823529411765
 	E.db["general"]["bonusObjectivePosition"] = "AUTO"
-	E.db["general"]["bordercolor"]["a"] = 1
 	E.db["general"]["bordercolor"]["b"] = 0
 	E.db["general"]["bordercolor"]["g"] = 0
 	E.db["general"]["bordercolor"]["r"] = 0
@@ -988,9 +990,9 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["threat"]["textOutline"] = "OUTLINE"
 	E.db["general"]["threat"]["textSize"] = 11
 	E.db["general"]["totems"]["enable"] = false
-	E.db["general"]["valuecolor"]["b"] = 0.039215601980686
-	E.db["general"]["valuecolor"]["g"] = 0.48627343773842
-	E.db["general"]["valuecolor"]["r"] = 0.99999779462814
+	E.db["general"]["valuecolor"]["b"] = 0.44705784320831
+	E.db["general"]["valuecolor"]["g"] = 0.82744914293289
+	E.db["general"]["valuecolor"]["r"] = 0.66666519641876
 	E.db["general"]["vehicleSeatIndicatorSize"] = 64
 
 	--Private Exports
