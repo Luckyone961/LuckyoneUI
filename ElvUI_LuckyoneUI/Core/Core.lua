@@ -41,6 +41,18 @@ function L1UI:AddonSetupPA(addon)
 	PluginInstallStepComplete:Show()
 end
 
+--Setup AddOns[4]
+function L1UI:AddonSetupGGF(addon)
+
+	if IsAddOnLoaded('GottaGoFast') then
+		L1UI:GetGGFProfile()
+		E:Print('GottaGoFast profile has been set.')
+	end
+
+	PluginInstallStepComplete.message = "GottaGoFast profile has been set"
+	PluginInstallStepComplete:Show()
+end
+
 --Setup CVars
 function L1UI:SetupCVars()
 	--Maximize the camera zoom
