@@ -57,28 +57,33 @@ end
 function L1UI:SetupCVars()
 	--Maximize the camera zoom
 	SetCVar("cameraDistanceMaxZoomFactor", 2.6)
+
 	--Remove ugly colors while dead
 	SetCVar("ffxDeath", 0)
+
 	--Enable advanced logging
 	SetCVar("advancedCombatLogging", 1)
+
 	--Chat editbox style
 	SetCVar("chatStyle", "classic")
+
 	--NamePlate setup
 	SetCVar("nameplateMinAlpha", 1)
 	SetCVar("nameplateMinScale", 1)
 	SetCVar("nameplateSelfAlpha", 1)
 	SetCVar("nameplateLargerScale", 0)
 	SetCVar("nameplateSelectedScale", 1)
-	--Overlapping 0 Stacking 1
 	SetCVar("nameplateMotion", 1)
-	--Overlap H and V
 	SetCVar("nameplateOverlapH", 1)
-	SetCVar("nameplateOverlapV", 1.5)
+	SetCVar("nameplateOverlapV", 1.6)
+
 	--Hardware cursor
 	SetCVar("rawMouseEnable", 1)
+
 	--Quality of life
 	SetCVar("SpellQueueWindow", 50)
 
+	--Chat print
 	E:Print('CVars have been set.')
 
 	PluginInstallStepComplete.message = "CVars have been set"
