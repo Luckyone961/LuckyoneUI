@@ -1007,8 +1007,7 @@ function L1UI:SetupLayout(layout)
 	E.private["skins"]["parchmentRemover"]["enable"] = true
 
 	if IsAddOnLoaded('ElvUI_SLE') then
-	E.private["sle"]["install_complete"] = "BETA"
-	E.private["sle"]["skins"]["objectiveTracker"]["color"]["a"] = 1
+	E.private["sle"]["professions"]["deconButton"]["enable"] = false
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
 	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Solid"
@@ -1962,8 +1961,7 @@ function L1UI:SetupLayout(layout)
 	E.private["skins"]["parchmentRemover"]["enable"] = true
 
 	if IsAddOnLoaded('ElvUI_SLE') then
-	E.private["sle"]["install_complete"] = "BETA"
-	E.private["sle"]["skins"]["objectiveTracker"]["color"]["a"] = 1
+	E.private["sle"]["professions"]["deconButton"]["enable"] = false
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
 	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Solid"
