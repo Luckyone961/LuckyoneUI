@@ -23,6 +23,13 @@ function L1UI:Configtable()
 				desc = "Run the installation process.",
 				func = function() E:GetModule("PluginInstaller"):Queue(L1UI.InstallerData); E:ToggleOptionsUI(); end,
 			},
+			private = {
+				order = 3,
+				type = "execute",
+				name = "Apply Character Settings",
+				desc = "Click this button once per character to apply fonts and textures.",
+				func = function() E:Print('Placeholder') end,
+			},
 			changelog = {
 				order = 3,
 				type = 'input',
