@@ -9,7 +9,7 @@ function L1UI:GetDetailsProfile()
 	if _detalhes_global then twipe(_detalhes_global) end
 	_detalhes_global = {
 		["__profiles"] = {
-			[key] = {
+				[key] = {
 				["show_arena_role_icon"] = false,
 				["capture_real"] = {
 					["heal"] = true,
@@ -28,8 +28,8 @@ function L1UI:GetDetailsProfile()
 					["quick_detection"] = false,
 					["reset_spec_cache"] = false,
 					["no_alerts"] = false,
-					["use_animation_accel"] = true,
 					["disable_mythic_dungeon"] = false,
+					["use_animation_accel"] = true,
 				},
 				["all_players_are_group"] = false,
 				["use_row_animations"] = true,
@@ -333,16 +333,16 @@ function L1UI:GetDetailsProfile()
 					},
 					["submenu_wallpaper"] = true,
 					["fontsize_title"] = 10,
-					["icon_border_texcoord"] = {
-						["B"] = 0.921875,
-						["L"] = 0.078125,
-						["T"] = 0.078125,
-						["R"] = 0.921875,
+					["fontcolor"] = {
+						1, -- [1]
+						1, -- [2]
+						1, -- [3]
+						1, -- [4]
 					},
 					["commands"] = {
 					},
 					["tooltip_max_abilities"] = 6,
-					["fontface"] = "Friz Quadrata TT",
+					["fontface"] = "Expressway",
 					["border_color"] = {
 						0, -- [1]
 						0, -- [2]
@@ -369,11 +369,11 @@ function L1UI:GetDetailsProfile()
 						0.213000011444092, -- [3]
 						0.279000015258789, -- [4]
 					},
-					["fontcolor"] = {
-						1, -- [1]
-						1, -- [2]
-						1, -- [3]
-						1, -- [4]
+					["icon_border_texcoord"] = {
+						["R"] = 0.921875,
+						["L"] = 0.078125,
+						["T"] = 0.078125,
+						["B"] = 0.921875,
 					},
 					["menus_bg_color"] = {
 						0.8, -- [1]
@@ -439,35 +439,760 @@ function L1UI:GetDetailsProfile()
 					["scale"] = 1,
 				},
 				["animation_speed_maxtravel"] = 3,
-				["time_type_original"] = 2,
-				["default_bg_alpha"] = 0.5,
+				["instances_segments_locked"] = false,
+				["deadlog_limit"] = 16,
 				["font_faces"] = {
 					["menus"] = "Expressway",
 				},
-				["time_type"] = 2,
-				["death_tooltip_width"] = 350,
-				["animate_scroll"] = false,
+				["instances_no_libwindow"] = false,
+				["instances"] = {
+					{
+						["__pos"] = {
+							["normal"] = {
+								["y"] = -441.1739807128906,
+								["x"] = 653.8643188476562,
+								["w"] = 199.9999389648438,
+								["h"] = 155.2770385742188,
+							},
+							["solo"] = {
+								["y"] = 2,
+								["x"] = 1,
+								["w"] = 300,
+								["h"] = 200,
+							},
+						},
+						["hide_in_combat_type"] = 1,
+						["clickthrough_window"] = false,
+						["menu_anchor"] = {
+							16, -- [1]
+							0, -- [2]
+							["side"] = 2,
+						},
+						["bg_r"] = 0.0941176470588235,
+						["hide_out_of_combat"] = false,
+						["color_buttons"] = {
+							1, -- [1]
+							1, -- [2]
+							1, -- [3]
+							1, -- [4]
+						},
+						["toolbar_icon_file"] = "Interface\\AddOns\\Details\\images\\toolbar_icons",
+						["micro_displays_locked"] = true,
+						["tooltip"] = {
+							["n_abilities"] = 3,
+							["n_enemies"] = 3,
+						},
+						["switch_all_roles_in_combat"] = false,
+						["clickthrough_toolbaricons"] = false,
+						["clickthrough_rows"] = false,
+						["ignore_mass_showhide"] = false,
+						["switch_all_roles_after_wipe"] = false,
+						["menu_icons"] = {
+							true, -- [1]
+							true, -- [2]
+							true, -- [3]
+							true, -- [4]
+							true, -- [5]
+							false, -- [6]
+							["space"] = -2,
+							["shadow"] = false,
+						},
+						["switch_damager"] = false,
+						["micro_displays_side"] = 2,
+						["window_scale"] = 1,
+						["hide_icon"] = true,
+						["toolbar_side"] = 1,
+						["bg_g"] = 0.0941176470588235,
+						["bg_b"] = 0.0941176470588235,
+						["switch_healer_in_combat"] = false,
+						["color"] = {
+							0.0705882352941177, -- [1]
+							0.0705882352941177, -- [2]
+							0.0705882352941177, -- [3]
+							0, -- [4]
+						},
+						["skin"] = "Minimalistic",
+						["following"] = {
+							["enabled"] = true,
+							["bar_color"] = {
+								1, -- [1]
+								1, -- [2]
+								1, -- [3]
+							},
+							["text_color"] = {
+								1, -- [1]
+								1, -- [2]
+								1, -- [3]
+							},
+						},
+						["switch_healer"] = false,
+						["StatusBarSaved"] = {
+							["center"] = "DETAILS_STATUSBAR_PLUGIN_CLOCK",
+							["right"] = "DETAILS_STATUSBAR_PLUGIN_PDPS",
+							["options"] = {
+								["DETAILS_STATUSBAR_PLUGIN_PDPS"] = {
+									["textYMod"] = 1,
+									["textXMod"] = 0,
+									["textFace"] = "Accidental Presidency",
+									["textAlign"] = 0,
+									["textStyle"] = 2,
+									["textSize"] = 10,
+									["textColor"] = {
+										1, -- [1]
+										1, -- [2]
+										1, -- [3]
+										1, -- [4]
+									},
+								},
+								["DETAILS_STATUSBAR_PLUGIN_PSEGMENT"] = {
+									["textColor"] = {
+										1, -- [1]
+										1, -- [2]
+										1, -- [3]
+										1, -- [4]
+									},
+									["segmentType"] = 2,
+									["textXMod"] = 0,
+									["textFace"] = "Accidental Presidency",
+									["textAlign"] = 0,
+									["textStyle"] = 2,
+									["textSize"] = 10,
+									["textYMod"] = 1,
+								},
+								["DETAILS_STATUSBAR_PLUGIN_CLOCK"] = {
+									["textColor"] = {
+										1, -- [1]
+										1, -- [2]
+										1, -- [3]
+										1, -- [4]
+									},
+									["textXMod"] = 6,
+									["textFace"] = "Accidental Presidency",
+									["textAlign"] = 0,
+									["textStyle"] = 2,
+									["timeType"] = 1,
+									["textSize"] = 10,
+									["textYMod"] = 1,
+								},
+							},
+							["left"] = "DETAILS_STATUSBAR_PLUGIN_PSEGMENT",
+						},
+						["switch_tank_in_combat"] = false,
+						["bg_alpha"] = 0,
+						["__snapV"] = false,
+						["__locked"] = true,
+						["menu_alpha"] = {
+							["enabled"] = false,
+							["onleave"] = 1,
+							["ignorebars"] = false,
+							["iconstoo"] = true,
+							["onenter"] = 1,
+						},
+						["__snapH"] = false,
+						["show_statusbar"] = false,
+						["__was_opened"] = true,
+						["strata"] = "LOW",
+						["clickthrough_incombatonly"] = true,
+						["__snap"] = {
+							[3] = 2,
+						},
+						["backdrop_texture"] = "Details Ground",
+						["hide_in_combat_alpha"] = 0,
+						["switch_damager_in_combat"] = false,
+						["plugins_grow_direction"] = 1,
+						["libwindow"] = {
+							["y"] = 22.03258895874023,
+							["x"] = -207.63818359375,
+							["point"] = "BOTTOMRIGHT",
+							["scale"] = 1,
+						},
+						["statusbar_info"] = {
+							["alpha"] = 0,
+							["overlay"] = {
+								0.0705882352941177, -- [1]
+								0.0705882352941177, -- [2]
+								0.0705882352941177, -- [3]
+							},
+						},
+						["row_show_animation"] = {
+							["anim"] = "Fade",
+							["options"] = {
+							},
+						},
+						["bars_grow_direction"] = 1,
+						["stretch_button_side"] = 1,
+						["bars_sort_direction"] = 1,
+						["show_sidebars"] = false,
+						["grab_on_top"] = false,
+						["instance_button_anchor"] = {
+							-27, -- [1]
+							1, -- [2]
+						},
+						["menu_anchor_down"] = {
+							16, -- [1]
+							-3, -- [2]
+						},
+						["auto_current"] = true,
+						["version"] = 3,
+						["attribute_text"] = {
+							["show_timer"] = {
+								true, -- [1]
+								true, -- [2]
+								true, -- [3]
+							},
+							["shadow"] = true,
+							["side"] = 1,
+							["text_color"] = {
+								1, -- [1]
+								1, -- [2]
+								1, -- [3]
+								1, -- [4]
+							},
+							["custom_text"] = "{name}",
+							["text_face"] = "Expressway",
+							["anchor"] = {
+								-18, -- [1]
+								3, -- [2]
+							},
+							["enabled"] = true,
+							["enable_custom_text"] = false,
+							["text_size"] = 11,
+						},
+						["row_info"] = {
+							["textR_outline"] = true,
+							["spec_file"] = "Interface\\AddOns\\Details\\images\\spec_icons_normal",
+							["textL_outline"] = true,
+							["texture_highlight"] = "Interface\\FriendsFrame\\UI-FriendsList-Highlight",
+							["textL_outline_small"] = true,
+							["percent_type"] = 1,
+							["fixed_text_color"] = {
+								1, -- [1]
+								1, -- [2]
+								1, -- [3]
+							},
+							["space"] = {
+								["right"] = 0,
+								["left"] = 0,
+								["between"] = 1,
+							},
+							["texture_background_class_color"] = false,
+							["textL_outline_small_color"] = {
+								0, -- [1]
+								0, -- [2]
+								0, -- [3]
+								1, -- [4]
+							},
+							["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+							["textL_custom_text"] = "{data1}. {data3}{data2}",
+							["font_size"] = 11,
+							["textL_translit_text"] = false,
+							["texture_custom_file"] = "Interface\\",
+							["texture_file"] = "Interface\\Buttons\\WHITE8X8",
+							["height"] = 16,
+							["use_spec_icons"] = true,
+							["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small",
+							["icon_grayscale"] = false,
+							["models"] = {
+								["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
+								["lower_model"] = "World\\EXPANSION02\\DOODADS\\Coldarra\\COLDARRALOCUS.m2",
+								["upper_alpha"] = 0.5,
+								["lower_enabled"] = false,
+								["lower_alpha"] = 0.1,
+								["upper_enabled"] = false,
+							},
+							["textR_bracket"] = "(",
+							["textR_enable_custom_text"] = false,
+							["fixed_texture_background_color"] = {
+								0, -- [1]
+								0, -- [2]
+								0, -- [3]
+								0.1500000357627869, -- [4]
+							},
+							["fixed_texture_color"] = {
+								0, -- [1]
+								0, -- [2]
+								0, -- [3]
+								1, -- [4]
+							},
+							["textL_show_number"] = true,
+							["textL_enable_custom_text"] = false,
+							["textR_show_data"] = {
+								true, -- [1]
+								true, -- [2]
+								false, -- [3]
+							},
+							["textR_custom_text"] = "{data1} ({data2}, {data3}%)",
+							["texture"] = "Solid",
+							["texture_custom"] = "",
+							["start_after_icon"] = true,
+							["textR_class_colors"] = false,
+							["alpha"] = 1,
+							["texture_background"] = "Details D'ictum (reverse)",
+							["textL_class_colors"] = false,
+							["textR_outline_small_color"] = {
+								0, -- [1]
+								0, -- [2]
+								0, -- [3]
+								1, -- [4]
+							},
+							["no_icon"] = false,
+							["icon_offset"] = {
+								0, -- [1]
+								0, -- [2]
+							},
+							["textR_outline_small"] = true,
+							["font_face"] = "Expressway",
+							["texture_class_colors"] = true,
+							["backdrop"] = {
+								["enabled"] = false,
+								["texture"] = "1 Pixel",
+								["color"] = {
+									1, -- [1]
+									1, -- [2]
+									1, -- [3]
+									1, -- [4]
+								},
+								["size"] = 12,
+							},
+							["fast_ps_update"] = true,
+							["textR_separator"] = "NONE",
+							["texture_background_file"] = "Interface\\AddOns\\Details\\images\\bar4_reverse",
+						},
+						["hide_in_combat"] = false,
+						["posicao"] = {
+							["normal"] = {
+								["y"] = -441.1739807128906,
+								["x"] = 653.8643188476562,
+								["w"] = 199.9999389648438,
+								["h"] = 155.2770385742188,
+							},
+							["solo"] = {
+								["y"] = 2,
+								["x"] = 1,
+								["w"] = 300,
+								["h"] = 200,
+							},
+						},
+						["auto_hide_menu"] = {
+							["left"] = true,
+							["right"] = false,
+						},
+						["desaturated_menu"] = false,
+						["wallpaper"] = {
+							["enabled"] = false,
+							["texcoord"] = {
+								0, -- [1]
+								1, -- [2]
+								0, -- [3]
+								0.7, -- [4]
+							},
+							["overlay"] = {
+								1, -- [1]
+								1, -- [2]
+								1, -- [3]
+								1, -- [4]
+							},
+							["anchor"] = "all",
+							["height"] = 114.042518615723,
+							["alpha"] = 0.5,
+							["width"] = 283.000183105469,
+						},
+						["total_bar"] = {
+							["enabled"] = false,
+							["only_in_group"] = true,
+							["icon"] = "Interface\\ICONS\\INV_Sigil_Thorim",
+							["color"] = {
+								1, -- [1]
+								1, -- [2]
+								1, -- [3]
+							},
+						},
+						["switch_tank"] = false,
+						["skin_custom"] = "",
+						["bars_inverted"] = false,
+						["menu_icons_size"] = 0.850000023841858,
+					}, -- [1]
+					{
+						["__pos"] = {
+							["normal"] = {
+								["y"] = -441.1739807128906,
+								["x"] = 855.6795043945312,
+								["w"] = 203.6306304931641,
+								["h"] = 155.2770385742188,
+							},
+							["solo"] = {
+								["y"] = 2,
+								["x"] = 1,
+								["w"] = 300,
+								["h"] = 200,
+							},
+						},
+						["hide_in_combat_type"] = 1,
+						["clickthrough_window"] = false,
+						["menu_anchor"] = {
+							16, -- [1]
+							0, -- [2]
+							["side"] = 2,
+						},
+						["bg_r"] = 0.0941176470588235,
+						["hide_out_of_combat"] = false,
+						["color_buttons"] = {
+							1, -- [1]
+							1, -- [2]
+							1, -- [3]
+							1, -- [4]
+						},
+						["toolbar_icon_file"] = "Interface\\AddOns\\Details\\images\\toolbar_icons",
+						["micro_displays_locked"] = true,
+						["tooltip"] = {
+							["n_abilities"] = 3,
+							["n_enemies"] = 3,
+						},
+						["switch_all_roles_in_combat"] = false,
+						["clickthrough_toolbaricons"] = false,
+						["clickthrough_rows"] = false,
+						["ignore_mass_showhide"] = false,
+						["switch_all_roles_after_wipe"] = false,
+						["menu_icons"] = {
+							true, -- [1]
+							true, -- [2]
+							true, -- [3]
+							true, -- [4]
+							true, -- [5]
+							false, -- [6]
+							["space"] = -2,
+							["shadow"] = false,
+						},
+						["switch_damager"] = false,
+						["micro_displays_side"] = 2,
+						["window_scale"] = 1,
+						["hide_icon"] = true,
+						["toolbar_side"] = 1,
+						["bg_g"] = 0.0941176470588235,
+						["bg_b"] = 0.0941176470588235,
+						["switch_healer_in_combat"] = false,
+						["color"] = {
+							0.0705882352941177, -- [1]
+							0.0705882352941177, -- [2]
+							0.0705882352941177, -- [3]
+							0, -- [4]
+						},
+						["skin"] = "Minimalistic",
+						["following"] = {
+							["bar_color"] = {
+								1, -- [1]
+								1, -- [2]
+								1, -- [3]
+							},
+							["enabled"] = true,
+							["text_color"] = {
+								1, -- [1]
+								1, -- [2]
+								1, -- [3]
+							},
+						},
+						["switch_healer"] = false,
+						["StatusBarSaved"] = {
+							["center"] = "DETAILS_STATUSBAR_PLUGIN_CLOCK",
+							["right"] = "DETAILS_STATUSBAR_PLUGIN_PDPS",
+							["options"] = {
+								["DETAILS_STATUSBAR_PLUGIN_PDPS"] = {
+									["textColor"] = {
+										1, -- [1]
+										1, -- [2]
+										1, -- [3]
+										1, -- [4]
+									},
+									["textXMod"] = 0,
+									["textFace"] = "Accidental Presidency",
+									["textStyle"] = 2,
+									["textAlign"] = 0,
+									["textSize"] = 10,
+									["textYMod"] = 1,
+								},
+								["DETAILS_STATUSBAR_PLUGIN_PSEGMENT"] = {
+									["textColor"] = {
+										1, -- [1]
+										1, -- [2]
+										1, -- [3]
+										1, -- [4]
+									},
+									["segmentType"] = 2,
+									["textFace"] = "Accidental Presidency",
+									["textXMod"] = 0,
+									["textAlign"] = 0,
+									["textStyle"] = 2,
+									["textSize"] = 10,
+									["textYMod"] = 1,
+								},
+								["DETAILS_STATUSBAR_PLUGIN_CLOCK"] = {
+									["textColor"] = {
+										1, -- [1]
+										1, -- [2]
+										1, -- [3]
+										1, -- [4]
+									},
+									["textFace"] = "Accidental Presidency",
+									["textXMod"] = 6,
+									["textAlign"] = 0,
+									["timeType"] = 1,
+									["textStyle"] = 2,
+									["textSize"] = 10,
+									["textYMod"] = 1,
+								},
+							},
+							["left"] = "DETAILS_STATUSBAR_PLUGIN_PSEGMENT",
+						},
+						["switch_tank_in_combat"] = false,
+						["bg_alpha"] = 0,
+						["__snapV"] = false,
+						["__locked"] = true,
+						["menu_alpha"] = {
+							["enabled"] = false,
+							["onenter"] = 1,
+							["iconstoo"] = true,
+							["ignorebars"] = false,
+							["onleave"] = 1,
+						},
+						["__snapH"] = false,
+						["show_statusbar"] = false,
+						["__was_opened"] = true,
+						["strata"] = "LOW",
+						["clickthrough_incombatonly"] = true,
+						["__snap"] = {
+							1, -- [1]
+						},
+						["backdrop_texture"] = "Details Ground",
+						["hide_in_combat_alpha"] = 0,
+						["switch_damager_in_combat"] = false,
+						["plugins_grow_direction"] = 1,
+						["libwindow"] = {
+							["y"] = 22.03258895874023,
+							["x"] = -4.007568359375,
+							["point"] = "BOTTOMRIGHT",
+							["scale"] = 1,
+						},
+						["statusbar_info"] = {
+							["alpha"] = 0,
+							["overlay"] = {
+								0.0705882352941177, -- [1]
+								0.0705882352941177, -- [2]
+								0.0705882352941177, -- [3]
+							},
+						},
+						["row_show_animation"] = {
+							["anim"] = "Fade",
+							["options"] = {
+							},
+						},
+						["bars_grow_direction"] = 1,
+						["stretch_button_side"] = 1,
+						["bars_sort_direction"] = 1,
+						["show_sidebars"] = false,
+						["grab_on_top"] = false,
+						["instance_button_anchor"] = {
+							-27, -- [1]
+							1, -- [2]
+						},
+						["menu_anchor_down"] = {
+							16, -- [1]
+							-3, -- [2]
+						},
+						["auto_current"] = true,
+						["version"] = 3,
+						["attribute_text"] = {
+							["enabled"] = true,
+							["shadow"] = true,
+							["side"] = 1,
+							["text_color"] = {
+								1, -- [1]
+								1, -- [2]
+								1, -- [3]
+								1, -- [4]
+							},
+							["custom_text"] = "{name}",
+							["text_face"] = "Expressway",
+							["anchor"] = {
+								-18, -- [1]
+								3, -- [2]
+							},
+							["text_size"] = 11,
+							["enable_custom_text"] = false,
+							["show_timer"] = {
+								true, -- [1]
+								true, -- [2]
+								true, -- [3]
+							},
+						},
+						["row_info"] = {
+							["textR_outline"] = true,
+							["spec_file"] = "Interface\\AddOns\\Details\\images\\spec_icons_normal",
+							["textL_outline"] = true,
+							["texture_highlight"] = "Interface\\FriendsFrame\\UI-FriendsList-Highlight",
+							["textL_outline_small"] = true,
+							["percent_type"] = 1,
+							["fixed_text_color"] = {
+								1, -- [1]
+								1, -- [2]
+								1, -- [3]
+							},
+							["space"] = {
+								["right"] = 0,
+								["left"] = 0,
+								["between"] = 1,
+							},
+							["texture_background_class_color"] = false,
+							["textL_outline_small_color"] = {
+								0, -- [1]
+								0, -- [2]
+								0, -- [3]
+								1, -- [4]
+							},
+							["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+							["textL_custom_text"] = "{data1}. {data3}{data2}",
+							["models"] = {
+								["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
+								["lower_model"] = "World\\EXPANSION02\\DOODADS\\Coldarra\\COLDARRALOCUS.m2",
+								["upper_alpha"] = 0.5,
+								["lower_enabled"] = false,
+								["lower_alpha"] = 0.1,
+								["upper_enabled"] = false,
+							},
+							["textL_translit_text"] = false,
+							["height"] = 16,
+							["texture_file"] = "Interface\\Buttons\\WHITE8X8",
+							["texture_custom_file"] = "Interface\\",
+							["texture_background_file"] = "Interface\\AddOns\\Details\\images\\bar4_reverse",
+							["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small",
+							["icon_grayscale"] = false,
+							["font_size"] = 11,
+							["use_spec_icons"] = true,
+							["texture_custom"] = "",
+							["start_after_icon"] = true,
+							["fixed_texture_color"] = {
+								0, -- [1]
+								0, -- [2]
+								0, -- [3]
+								1, -- [4]
+							},
+							["textL_show_number"] = true,
+							["fixed_texture_background_color"] = {
+								0, -- [1]
+								0, -- [2]
+								0, -- [3]
+								0.1500000357627869, -- [4]
+							},
+							["textL_enable_custom_text"] = false,
+							["textR_custom_text"] = "{data1} ({data2}, {data3}%)",
+							["texture"] = "Solid",
+							["textR_enable_custom_text"] = false,
+							["textR_show_data"] = {
+								true, -- [1]
+								true, -- [2]
+								false, -- [3]
+							},
+							["texture_background"] = "Details D'ictum (reverse)",
+							["textR_outline_small_color"] = {
+								0, -- [1]
+								0, -- [2]
+								0, -- [3]
+								1, -- [4]
+							},
+							["textL_class_colors"] = false,
+							["textR_class_colors"] = false,
+							["alpha"] = 1,
+							["no_icon"] = false,
+							["icon_offset"] = {
+								0, -- [1]
+								0, -- [2]
+							},
+							["textR_outline_small"] = true,
+							["font_face"] = "Expressway",
+							["texture_class_colors"] = true,
+							["backdrop"] = {
+								["enabled"] = false,
+								["size"] = 12,
+								["color"] = {
+									1, -- [1]
+									1, -- [2]
+									1, -- [3]
+									1, -- [4]
+								},
+								["texture"] = "1 Pixel",
+							},
+							["fast_ps_update"] = true,
+							["textR_separator"] = "NONE",
+							["textR_bracket"] = "(",
+						},
+						["hide_in_combat"] = false,
+						["posicao"] = {
+							["normal"] = {
+								["y"] = -441.1739807128906,
+								["x"] = 855.6795043945312,
+								["w"] = 203.6306304931641,
+								["h"] = 155.2770385742188,
+							},
+							["solo"] = {
+								["y"] = 2,
+								["x"] = 1,
+								["w"] = 300,
+								["h"] = 200,
+							},
+						},
+						["auto_hide_menu"] = {
+							["left"] = true,
+							["right"] = false,
+						},
+						["desaturated_menu"] = false,
+						["wallpaper"] = {
+							["overlay"] = {
+								1, -- [1]
+								1, -- [2]
+								1, -- [3]
+								1, -- [4]
+							},
+							["texcoord"] = {
+								0, -- [1]
+								1, -- [2]
+								0, -- [3]
+								0.7, -- [4]
+							},
+							["enabled"] = false,
+							["anchor"] = "all",
+							["height"] = 114.042518615723,
+							["alpha"] = 0.5,
+							["width"] = 283.000183105469,
+						},
+						["total_bar"] = {
+							["enabled"] = false,
+							["only_in_group"] = true,
+							["icon"] = "Interface\\ICONS\\INV_Sigil_Thorim",
+							["color"] = {
+								1, -- [1]
+								1, -- [2]
+								1, -- [3]
+							},
+						},
+						["switch_tank"] = false,
+						["skin_custom"] = "",
+						["bars_inverted"] = false,
+						["menu_icons_size"] = 0.850000023841858,
+					}, -- [2]
+				},
+				["data_broker_text"] = "",
 				["segments_amount"] = 18,
 				["report_lines"] = 5,
 				["clear_ungrouped"] = true,
-				["class_icons_small"] = "Interface\\AddOns\\Details\\images\\classes_small",
+				["use_battleground_server_parser"] = false,
 				["skin"] = "WoW Interface",
 				["override_spellids"] = true,
-				["pvp_as_group"] = true,
-				["force_activity_time_pvp"] = true,
-				["numerical_system"] = 1,
-				["player_details_window"] = {
-					["scale"] = 1.01413834095001,
-					["bar_texture"] = "Skyline",
-					["skin"] = "ElvUI",
-				},
+				["use_scroll"] = false,
+				["report_schema"] = 1,
+				["overall_clear_newboss"] = true,
+				["overall_clear_logout"] = true,
 				["minimum_combat_time"] = 5,
-				["chat_tab_embed"] = {
-					["enabled"] = false,
-					["tab_name"] = "",
-					["x_offset"] = 0,
-					["y_offset"] = 0,
-					["single_window"] = false,
+				["font_sizes"] = {
+					["menus"] = 11,
 				},
 				["cloud_capture"] = true,
 				["damage_taken_everything"] = false,
@@ -476,7 +1201,13 @@ function L1UI:GetDetailsProfile()
 					["height"] = 158,
 					["width"] = 310,
 				},
-				["memory_threshold"] = 3,
+				["chat_tab_embed"] = {
+					["enabled"] = false,
+					["tab_name"] = "",
+					["x_offset"] = 0,
+					["y_offset"] = 0,
+					["single_window"] = false,
+				},
 				["deadlog_events"] = 32,
 				["window_clamp"] = {
 					-8, -- [1]
@@ -498,11 +1229,11 @@ function L1UI:GetDetailsProfile()
 						0, -- [3]
 						0.25, -- [4]
 					},
-					["SHAMAN"] = {
-						0.25, -- [1]
-						0.49609375, -- [2]
-						0.25, -- [3]
-						0.5, -- [4]
+					["ROGUE"] = {
+						0.49609375, -- [1]
+						0.7421875, -- [2]
+						0, -- [3]
+						0.25, -- [4]
 					},
 					["MAGE"] = {
 						0.25, -- [1]
@@ -534,11 +1265,11 @@ function L1UI:GetDetailsProfile()
 						0.5, -- [3]
 						0.75, -- [4]
 					},
-					["MONSTER"] = {
-						0, -- [1]
-						0.25, -- [2]
-						0.75, -- [3]
-						1, -- [4]
+					["WARLOCK"] = {
+						0.7421875, -- [1]
+						0.98828125, -- [2]
+						0.25, -- [3]
+						0.5, -- [4]
 					},
 					["UNKNOW"] = {
 						0.5, -- [1]
@@ -552,11 +1283,11 @@ function L1UI:GetDetailsProfile()
 						0.25, -- [3]
 						0.5, -- [4]
 					},
-					["ROGUE"] = {
-						0.49609375, -- [1]
-						0.7421875, -- [2]
-						0, -- [3]
-						0.25, -- [4]
+					["UNGROUPPLAYER"] = {
+						0.5, -- [1]
+						0.75, -- [2]
+						0.75, -- [3]
+						1, -- [4]
 					},
 					["Alliance"] = {
 						0.49609375, -- [1]
@@ -564,11 +1295,11 @@ function L1UI:GetDetailsProfile()
 						0.75, -- [3]
 						1, -- [4]
 					},
-					["WARLOCK"] = {
-						0.7421875, -- [1]
-						0.98828125, -- [2]
-						0.25, -- [3]
-						0.5, -- [4]
+					["ENEMY"] = {
+						0, -- [1]
+						0.25, -- [2]
+						0.75, -- [3]
+						1, -- [4]
 					},
 					["DEMONHUNTER"] = {
 						0.73828126, -- [1]
@@ -588,22 +1319,31 @@ function L1UI:GetDetailsProfile()
 						0.5, -- [3]
 						0.75, -- [4]
 					},
-					["UNGROUPPLAYER"] = {
-						0.5, -- [1]
-						0.75, -- [2]
-						0.75, -- [3]
-						1, -- [4]
+					["SHAMAN"] = {
+						0.25, -- [1]
+						0.49609375, -- [2]
+						0.25, -- [3]
+						0.5, -- [4]
 					},
-					["ENEMY"] = {
+					["MONSTER"] = {
 						0, -- [1]
 						0.25, -- [2]
 						0.75, -- [3]
 						1, -- [4]
 					},
 				},
-				["overall_flag"] = 16,
+				["windows_fade_out"] = {
+					"out", -- [1]
+					0.2, -- [2]
+				},
 				["disable_alldisplays_window"] = false,
-				["numerical_system_symbols"] = "auto",
+				["standard_skin"] = false,
+				["hotcorner_topleft"] = {
+					["hide"] = false,
+				},
+				["trash_auto_remove"] = true,
+				["animation_speed_triggertravel"] = 5,
+				["clear_graphic"] = true,
 				["class_colors"] = {
 					["HUNTER"] = {
 						0.67, -- [1]
@@ -703,791 +1443,51 @@ function L1UI:GetDetailsProfile()
 						0.5, -- [3]
 					},
 				},
-				["hotcorner_topleft"] = {
-					["hide"] = false,
-				},
-				["broadcaster_enabled"] = false,
-				["clear_graphic"] = true,
-				["total_abbreviation"] = 2,
 				["segments_auto_erase"] = 1,
 				["options_group_edit"] = true,
-				["segments_amount_to_save"] = 18,
+				["broadcaster_enabled"] = false,
 				["minimap"] = {
 					["onclick_what_todo"] = 1,
 					["radius"] = 160,
-					["text_type"] = 1,
+					["hide"] = true,
 					["minimapPos"] = 220,
 					["text_format"] = 3,
-					["hide"] = true,
+					["text_type"] = 1,
 				},
 				["instances_amount"] = 5,
 				["max_window_size"] = {
 					["height"] = 450,
 					["width"] = 480,
 				},
-				["default_bg_color"] = 0.0941,
+				["deny_score_messages"] = false,
 				["only_pvp_frags"] = false,
 				["disable_stretch_button"] = false,
-				["deny_score_messages"] = false,
-				["animation_speed_triggertravel"] = 5,
-				["trash_auto_remove"] = true,
+				["default_bg_color"] = 0.0941,
+				["segments_amount_to_save"] = 18,
+				["total_abbreviation"] = 2,
 				["segments_panic_mode"] = false,
-				["standard_skin"] = false,
-				["windows_fade_out"] = {
-					"out", -- [1]
-					0.2, -- [2]
-				},
+				["numerical_system_symbols"] = "auto",
+				["overall_flag"] = 16,
 				["row_fade_out"] = {
 					"out", -- [1]
 					0.2, -- [2]
 				},
-				["font_sizes"] = {
-					["menus"] = 10,
+				["memory_threshold"] = 3,
+				["player_details_window"] = {
+					["scale"] = 1.01413834095001,
+					["skin"] = "ElvUI",
+					["bar_texture"] = "Skyline",
 				},
-				["overall_clear_logout"] = false,
-				["overall_clear_newboss"] = true,
-				["report_schema"] = 1,
-				["use_scroll"] = false,
-				["use_battleground_server_parser"] = false,
+				["numerical_system"] = 1,
+				["force_activity_time_pvp"] = true,
+				["pvp_as_group"] = false,
+				["class_icons_small"] = "Interface\\AddOns\\Details\\images\\classes_small",
 				["disable_reset_button"] = false,
-				["data_broker_text"] = "",
-				["instances"] = {
-					{
-						["__pos"] = {
-							["normal"] = {
-								["y"] = -441.1738510131836,
-								["x"] = 653.8643188476562,
-								["w"] = 199.9999389648438,
-								["h"] = 155.2770385742188,
-							},
-							["solo"] = {
-								["y"] = 2,
-								["x"] = 1,
-								["w"] = 300,
-								["h"] = 200,
-							},
-						},
-						["hide_in_combat_type"] = 1,
-						["clickthrough_window"] = false,
-						["menu_anchor"] = {
-							16, -- [1]
-							0, -- [2]
-							["side"] = 2,
-						},
-						["bg_r"] = 0.0941176470588235,
-						["hide_out_of_combat"] = false,
-						["color_buttons"] = {
-							1, -- [1]
-							1, -- [2]
-							1, -- [3]
-							1, -- [4]
-						},
-						["toolbar_icon_file"] = "Interface\\AddOns\\Details\\images\\toolbar_icons",
-						["micro_displays_locked"] = true,
-						["tooltip"] = {
-							["n_abilities"] = 3,
-							["n_enemies"] = 3,
-						},
-						["switch_all_roles_in_combat"] = false,
-						["clickthrough_toolbaricons"] = false,
-						["clickthrough_rows"] = false,
-						["ignore_mass_showhide"] = false,
-						["switch_all_roles_after_wipe"] = false,
-						["menu_icons"] = {
-							true, -- [1]
-							true, -- [2]
-							true, -- [3]
-							true, -- [4]
-							true, -- [5]
-							false, -- [6]
-							["space"] = -2,
-							["shadow"] = false,
-						},
-						["switch_damager"] = false,
-						["micro_displays_side"] = 2,
-						["window_scale"] = 1,
-						["hide_icon"] = true,
-						["toolbar_side"] = 1,
-						["bg_g"] = 0.0941176470588235,
-						["bg_b"] = 0.0941176470588235,
-						["switch_healer_in_combat"] = false,
-						["color"] = {
-							0.0705882352941177, -- [1]
-							0.0705882352941177, -- [2]
-							0.0705882352941177, -- [3]
-							0, -- [4]
-						},
-						["skin"] = "Minimalistic",
-						["following"] = {
-							["enabled"] = true,
-							["bar_color"] = {
-								1, -- [1]
-								1, -- [2]
-								1, -- [3]
-							},
-							["text_color"] = {
-								1, -- [1]
-								1, -- [2]
-								1, -- [3]
-							},
-						},
-						["switch_healer"] = false,
-						["StatusBarSaved"] = {
-							["center"] = "DETAILS_STATUSBAR_PLUGIN_CLOCK",
-							["right"] = "DETAILS_STATUSBAR_PLUGIN_PDPS",
-							["options"] = {
-								["DETAILS_STATUSBAR_PLUGIN_PDPS"] = {
-									["textColor"] = {
-										1, -- [1]
-										1, -- [2]
-										1, -- [3]
-										1, -- [4]
-									},
-									["textXMod"] = 0,
-									["textFace"] = "Accidental Presidency",
-									["textStyle"] = 2,
-									["textAlign"] = 0,
-									["textSize"] = 10,
-									["textYMod"] = 1,
-								},
-								["DETAILS_STATUSBAR_PLUGIN_PSEGMENT"] = {
-									["textColor"] = {
-										1, -- [1]
-										1, -- [2]
-										1, -- [3]
-										1, -- [4]
-									},
-									["segmentType"] = 2,
-									["textFace"] = "Accidental Presidency",
-									["textXMod"] = 0,
-									["textAlign"] = 0,
-									["textStyle"] = 2,
-									["textSize"] = 10,
-									["textYMod"] = 1,
-								},
-								["DETAILS_STATUSBAR_PLUGIN_CLOCK"] = {
-									["textColor"] = {
-										1, -- [1]
-										1, -- [2]
-										1, -- [3]
-										1, -- [4]
-									},
-									["timeType"] = 1,
-									["textXMod"] = 6,
-									["textAlign"] = 0,
-									["textFace"] = "Accidental Presidency",
-									["textStyle"] = 2,
-									["textSize"] = 10,
-									["textYMod"] = 1,
-								},
-							},
-							["left"] = "DETAILS_STATUSBAR_PLUGIN_PSEGMENT",
-						},
-						["switch_tank_in_combat"] = false,
-						["bg_alpha"] = 0,
-						["__snapV"] = false,
-						["__locked"] = true,
-						["menu_alpha"] = {
-							["enabled"] = false,
-							["onenter"] = 1,
-							["iconstoo"] = true,
-							["ignorebars"] = false,
-							["onleave"] = 1,
-						},
-						["__snapH"] = false,
-						["show_statusbar"] = false,
-						["__was_opened"] = true,
-						["strata"] = "LOW",
-						["clickthrough_incombatonly"] = true,
-						["__snap"] = {
-							[3] = 2,
-						},
-						["backdrop_texture"] = "Details Ground",
-						["hide_in_combat_alpha"] = 0,
-						["switch_damager_in_combat"] = false,
-						["plugins_grow_direction"] = 1,
-						["libwindow"] = {
-							["y"] = 22.0327205657959,
-							["x"] = -207.63818359375,
-							["point"] = "BOTTOMRIGHT",
-							["scale"] = 1,
-						},
-						["statusbar_info"] = {
-							["alpha"] = 0,
-							["overlay"] = {
-								0.0705882352941177, -- [1]
-								0.0705882352941177, -- [2]
-								0.0705882352941177, -- [3]
-							},
-						},
-						["row_show_animation"] = {
-							["anim"] = "Fade",
-							["options"] = {
-							},
-						},
-						["bars_grow_direction"] = 1,
-						["stretch_button_side"] = 1,
-						["bars_sort_direction"] = 1,
-						["show_sidebars"] = false,
-						["grab_on_top"] = false,
-						["instance_button_anchor"] = {
-							-27, -- [1]
-							1, -- [2]
-						},
-						["menu_anchor_down"] = {
-							16, -- [1]
-							-3, -- [2]
-						},
-						["auto_current"] = true,
-						["version"] = 3,
-						["attribute_text"] = {
-							["enabled"] = true,
-							["shadow"] = false,
-							["side"] = 1,
-							["text_size"] = 12,
-							["custom_text"] = "{name}",
-							["text_face"] = "Expressway",
-							["anchor"] = {
-								-18, -- [1]
-								3, -- [2]
-							},
-							["text_color"] = {
-								1, -- [1]
-								1, -- [2]
-								1, -- [3]
-								1, -- [4]
-							},
-							["enable_custom_text"] = false,
-							["show_timer"] = {
-								true, -- [1]
-								true, -- [2]
-								true, -- [3]
-							},
-						},
-						["row_info"] = {
-							["textR_outline"] = false,
-							["spec_file"] = "Interface\\AddOns\\Details\\images\\spec_icons_normal",
-							["textL_outline"] = false,
-							["texture_highlight"] = "Interface\\FriendsFrame\\UI-FriendsList-Highlight",
-							["textL_outline_small"] = true,
-							["percent_type"] = 1,
-							["fixed_text_color"] = {
-								1, -- [1]
-								1, -- [2]
-								1, -- [3]
-							},
-							["space"] = {
-								["right"] = 0,
-								["left"] = 0,
-								["between"] = 1,
-							},
-							["texture_background_class_color"] = false,
-							["textL_outline_small_color"] = {
-								0, -- [1]
-								0, -- [2]
-								0, -- [3]
-								1, -- [4]
-							},
-							["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
-							["backdrop"] = {
-								["enabled"] = false,
-								["size"] = 12,
-								["color"] = {
-									1, -- [1]
-									1, -- [2]
-									1, -- [3]
-									1, -- [4]
-								},
-								["texture"] = "Details BarBorder 2",
-							},
-							["font_size"] = 11,
-							["textL_translit_text"] = false,
-							["height"] = 16,
-							["texture_file"] = "Interface\\AddOns\\BigWigs\\Media\\Textures\\BantoBar",
-							["texture_background_file"] = "Interface\\AddOns\\Details\\images\\bar4_reverse",
-							["textR_bracket"] = "(",
-							["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small",
-							["icon_grayscale"] = false,
-							["models"] = {
-								["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
-								["lower_model"] = "World\\EXPANSION02\\DOODADS\\Coldarra\\COLDARRALOCUS.m2",
-								["upper_alpha"] = 0.5,
-								["lower_enabled"] = false,
-								["lower_alpha"] = 0.1,
-								["upper_enabled"] = false,
-							},
-							["use_spec_icons"] = true,
-							["textR_enable_custom_text"] = false,
-							["textL_custom_text"] = "{data1}. {data3}{data2}",
-							["fixed_texture_color"] = {
-								0, -- [1]
-								0, -- [2]
-								0, -- [3]
-								1, -- [4]
-							},
-							["textL_show_number"] = true,
-							["textL_enable_custom_text"] = false,
-							["textR_show_data"] = {
-								true, -- [1]
-								true, -- [2]
-								false, -- [3]
-							},
-							["textR_custom_text"] = "{data1} ({data2}, {data3}%)",
-							["fixed_texture_background_color"] = {
-								0, -- [1]
-								0, -- [2]
-								0, -- [3]
-								0.150228589773178, -- [4]
-							},
-							["textR_outline_small"] = true,
-							["start_after_icon"] = true,
-							["textR_class_colors"] = false,
-							["textR_outline_small_color"] = {
-								0, -- [1]
-								0, -- [2]
-								0, -- [3]
-								1, -- [4]
-							},
-							["texture_background"] = "Details D'ictum (reverse)",
-							["textL_class_colors"] = false,
-							["alpha"] = 1,
-							["no_icon"] = false,
-							["icon_offset"] = {
-								0, -- [1]
-								0, -- [2]
-							},
-							["texture_custom"] = "",
-							["font_face"] = "Expressway",
-							["texture_class_colors"] = true,
-							["texture"] = "BantoBar",
-							["fast_ps_update"] = true,
-							["textR_separator"] = "NONE",
-							["texture_custom_file"] = "Interface\\",
-						},
-						["hide_in_combat"] = false,
-						["posicao"] = {
-							["normal"] = {
-								["y"] = -441.1738510131836,
-								["x"] = 653.8643188476562,
-								["w"] = 199.9999389648438,
-								["h"] = 155.2770385742188,
-							},
-							["solo"] = {
-								["y"] = 2,
-								["x"] = 1,
-								["w"] = 300,
-								["h"] = 200,
-							},
-						},
-						["auto_hide_menu"] = {
-							["left"] = true,
-							["right"] = false,
-						},
-						["desaturated_menu"] = false,
-						["wallpaper"] = {
-							["enabled"] = false,
-							["texcoord"] = {
-								0, -- [1]
-								1, -- [2]
-								0, -- [3]
-								0.7, -- [4]
-							},
-							["overlay"] = {
-								1, -- [1]
-								1, -- [2]
-								1, -- [3]
-								1, -- [4]
-							},
-							["anchor"] = "all",
-							["height"] = 114.042518615723,
-							["alpha"] = 0.5,
-							["width"] = 283.000183105469,
-						},
-						["total_bar"] = {
-							["enabled"] = false,
-							["only_in_group"] = true,
-							["icon"] = "Interface\\ICONS\\INV_Sigil_Thorim",
-							["color"] = {
-								1, -- [1]
-								1, -- [2]
-								1, -- [3]
-							},
-						},
-						["switch_tank"] = false,
-						["skin_custom"] = "",
-						["bars_inverted"] = false,
-						["menu_icons_size"] = 0.850000023841858,
-					}, -- [1]
-					{
-						["__pos"] = {
-							["normal"] = {
-								["y"] = -441.1738510131836,
-								["x"] = 855.6795043945312,
-								["w"] = 203.6306304931641,
-								["h"] = 155.2770385742188,
-							},
-							["solo"] = {
-								["y"] = 2,
-								["x"] = 1,
-								["w"] = 300,
-								["h"] = 200,
-							},
-						},
-						["hide_in_combat_type"] = 1,
-						["clickthrough_window"] = false,
-						["menu_anchor"] = {
-							16, -- [1]
-							0, -- [2]
-							["side"] = 2,
-						},
-						["bg_r"] = 0.0941176470588235,
-						["hide_out_of_combat"] = false,
-						["color_buttons"] = {
-							1, -- [1]
-							1, -- [2]
-							1, -- [3]
-							1, -- [4]
-						},
-						["toolbar_icon_file"] = "Interface\\AddOns\\Details\\images\\toolbar_icons",
-						["micro_displays_locked"] = true,
-						["tooltip"] = {
-							["n_abilities"] = 3,
-							["n_enemies"] = 3,
-						},
-						["switch_all_roles_in_combat"] = false,
-						["clickthrough_toolbaricons"] = false,
-						["clickthrough_rows"] = false,
-						["ignore_mass_showhide"] = false,
-						["switch_all_roles_after_wipe"] = false,
-						["menu_icons"] = {
-							true, -- [1]
-							true, -- [2]
-							true, -- [3]
-							true, -- [4]
-							true, -- [5]
-							false, -- [6]
-							["space"] = -2,
-							["shadow"] = false,
-						},
-						["switch_damager"] = false,
-						["micro_displays_side"] = 2,
-						["window_scale"] = 1,
-						["hide_icon"] = true,
-						["toolbar_side"] = 1,
-						["bg_g"] = 0.0941176470588235,
-						["bg_b"] = 0.0941176470588235,
-						["switch_healer_in_combat"] = false,
-						["color"] = {
-							0.0705882352941177, -- [1]
-							0.0705882352941177, -- [2]
-							0.0705882352941177, -- [3]
-							0, -- [4]
-						},
-						["skin"] = "Minimalistic",
-						["following"] = {
-							["bar_color"] = {
-								1, -- [1]
-								1, -- [2]
-								1, -- [3]
-							},
-							["enabled"] = true,
-							["text_color"] = {
-								1, -- [1]
-								1, -- [2]
-								1, -- [3]
-							},
-						},
-						["switch_healer"] = false,
-						["StatusBarSaved"] = {
-							["center"] = "DETAILS_STATUSBAR_PLUGIN_CLOCK",
-							["right"] = "DETAILS_STATUSBAR_PLUGIN_PDPS",
-							["options"] = {
-								["DETAILS_STATUSBAR_PLUGIN_PDPS"] = {
-									["textYMod"] = 1,
-									["textXMod"] = 0,
-									["textFace"] = "Accidental Presidency",
-									["textAlign"] = 0,
-									["textStyle"] = 2,
-									["textSize"] = 10,
-									["textColor"] = {
-										1, -- [1]
-										1, -- [2]
-										1, -- [3]
-										1, -- [4]
-									},
-								},
-								["DETAILS_STATUSBAR_PLUGIN_PSEGMENT"] = {
-									["textColor"] = {
-										1, -- [1]
-										1, -- [2]
-										1, -- [3]
-										1, -- [4]
-									},
-									["segmentType"] = 2,
-									["textXMod"] = 0,
-									["textFace"] = "Accidental Presidency",
-									["textAlign"] = 0,
-									["textStyle"] = 2,
-									["textSize"] = 10,
-									["textYMod"] = 1,
-								},
-								["DETAILS_STATUSBAR_PLUGIN_CLOCK"] = {
-									["textColor"] = {
-										1, -- [1]
-										1, -- [2]
-										1, -- [3]
-										1, -- [4]
-									},
-									["textStyle"] = 2,
-									["textFace"] = "Accidental Presidency",
-									["textAlign"] = 0,
-									["textXMod"] = 6,
-									["timeType"] = 1,
-									["textSize"] = 10,
-									["textYMod"] = 1,
-								},
-							},
-							["left"] = "DETAILS_STATUSBAR_PLUGIN_PSEGMENT",
-						},
-						["switch_tank_in_combat"] = false,
-						["bg_alpha"] = 0,
-						["__snapV"] = false,
-						["__locked"] = true,
-						["menu_alpha"] = {
-							["enabled"] = false,
-							["onleave"] = 1,
-							["ignorebars"] = false,
-							["iconstoo"] = true,
-							["onenter"] = 1,
-						},
-						["__snapH"] = false,
-						["show_statusbar"] = false,
-						["__was_opened"] = true,
-						["strata"] = "LOW",
-						["clickthrough_incombatonly"] = true,
-						["__snap"] = {
-							1, -- [1]
-						},
-						["backdrop_texture"] = "Details Ground",
-						["hide_in_combat_alpha"] = 0,
-						["switch_damager_in_combat"] = false,
-						["plugins_grow_direction"] = 1,
-						["libwindow"] = {
-							["y"] = 22.0327205657959,
-							["x"] = -4.007568359375,
-							["point"] = "BOTTOMRIGHT",
-							["scale"] = 1,
-						},
-						["statusbar_info"] = {
-							["alpha"] = 0,
-							["overlay"] = {
-								0.0705882352941177, -- [1]
-								0.0705882352941177, -- [2]
-								0.0705882352941177, -- [3]
-							},
-						},
-						["row_show_animation"] = {
-							["anim"] = "Fade",
-							["options"] = {
-							},
-						},
-						["bars_grow_direction"] = 1,
-						["stretch_button_side"] = 1,
-						["bars_sort_direction"] = 1,
-						["show_sidebars"] = false,
-						["grab_on_top"] = false,
-						["instance_button_anchor"] = {
-							-27, -- [1]
-							1, -- [2]
-						},
-						["menu_anchor_down"] = {
-							16, -- [1]
-							-3, -- [2]
-						},
-						["auto_current"] = true,
-						["version"] = 3,
-						["attribute_text"] = {
-							["show_timer"] = {
-								true, -- [1]
-								true, -- [2]
-								true, -- [3]
-							},
-							["shadow"] = false,
-							["side"] = 1,
-							["text_size"] = 12,
-							["custom_text"] = "{name}",
-							["text_face"] = "Expressway",
-							["anchor"] = {
-								-18, -- [1]
-								3, -- [2]
-							},
-							["enabled"] = true,
-							["enable_custom_text"] = false,
-							["text_color"] = {
-								1, -- [1]
-								1, -- [2]
-								1, -- [3]
-								1, -- [4]
-							},
-						},
-						["row_info"] = {
-							["textR_outline"] = false,
-							["spec_file"] = "Interface\\AddOns\\Details\\images\\spec_icons_normal",
-							["textL_outline"] = false,
-							["texture_highlight"] = "Interface\\FriendsFrame\\UI-FriendsList-Highlight",
-							["textL_outline_small"] = true,
-							["percent_type"] = 1,
-							["fixed_text_color"] = {
-								1, -- [1]
-								1, -- [2]
-								1, -- [3]
-							},
-							["space"] = {
-								["right"] = 0,
-								["left"] = 0,
-								["between"] = 1,
-							},
-							["texture_background_class_color"] = false,
-							["start_after_icon"] = true,
-							["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
-							["backdrop"] = {
-								["enabled"] = false,
-								["texture"] = "Details BarBorder 2",
-								["color"] = {
-									1, -- [1]
-									1, -- [2]
-									1, -- [3]
-									1, -- [4]
-								},
-								["size"] = 12,
-							},
-							["models"] = {
-								["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
-								["lower_model"] = "World\\EXPANSION02\\DOODADS\\Coldarra\\COLDARRALOCUS.m2",
-								["upper_alpha"] = 0.5,
-								["lower_enabled"] = false,
-								["lower_alpha"] = 0.1,
-								["upper_enabled"] = false,
-							},
-							["textL_translit_text"] = false,
-							["texture_custom_file"] = "Interface\\",
-							["texture_file"] = "Interface\\AddOns\\BigWigs\\Media\\Textures\\BantoBar",
-							["textR_bracket"] = "(",
-							["use_spec_icons"] = true,
-							["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small",
-							["icon_grayscale"] = false,
-							["font_size"] = 11.0907115936279,
-							["texture_background_file"] = "Interface\\AddOns\\Details\\images\\bar4_reverse",
-							["texture_custom"] = "",
-							["textL_custom_text"] = "{data1}. {data3}{data2}",
-							["fixed_texture_color"] = {
-								0, -- [1]
-								0, -- [2]
-								0, -- [3]
-								1, -- [4]
-							},
-							["textL_show_number"] = true,
-							["texture"] = "BantoBar",
-							["textL_enable_custom_text"] = false,
-							["textR_custom_text"] = "{data1} ({data2}, {data3}%)",
-							["fixed_texture_background_color"] = {
-								0, -- [1]
-								0, -- [2]
-								0, -- [3]
-								0.150228589773178, -- [4]
-							},
-							["textR_outline_small"] = true,
-							["textR_show_data"] = {
-								true, -- [1]
-								true, -- [2]
-								false, -- [3]
-							},
-							["texture_background"] = "Details D'ictum (reverse)",
-							["alpha"] = 1,
-							["textL_class_colors"] = false,
-							["textR_class_colors"] = false,
-							["textR_outline_small_color"] = {
-								0, -- [1]
-								0, -- [2]
-								0, -- [3]
-								1, -- [4]
-							},
-							["no_icon"] = false,
-							["icon_offset"] = {
-								0, -- [1]
-								0, -- [2]
-							},
-							["textR_enable_custom_text"] = false,
-							["font_face"] = "Expressway",
-							["texture_class_colors"] = true,
-							["textL_outline_small_color"] = {
-								0, -- [1]
-								0, -- [2]
-								0, -- [3]
-								1, -- [4]
-							},
-							["fast_ps_update"] = true,
-							["textR_separator"] = "NONE",
-							["height"] = 16.1860446929932,
-						},
-						["hide_in_combat"] = false,
-						["posicao"] = {
-							["normal"] = {
-								["y"] = -441.1738510131836,
-								["x"] = 855.6795043945312,
-								["w"] = 203.6306304931641,
-								["h"] = 155.2770385742188,
-							},
-							["solo"] = {
-								["y"] = 2,
-								["x"] = 1,
-								["w"] = 300,
-								["h"] = 200,
-							},
-						},
-						["auto_hide_menu"] = {
-							["left"] = true,
-							["right"] = false,
-						},
-						["desaturated_menu"] = false,
-						["wallpaper"] = {
-							["overlay"] = {
-								1, -- [1]
-								1, -- [2]
-								1, -- [3]
-								1, -- [4]
-							},
-							["texcoord"] = {
-								0, -- [1]
-								1, -- [2]
-								0, -- [3]
-								0.7, -- [4]
-							},
-							["enabled"] = false,
-							["anchor"] = "all",
-							["height"] = 114.042518615723,
-							["alpha"] = 0.5,
-							["width"] = 283.000183105469,
-						},
-						["total_bar"] = {
-							["enabled"] = false,
-							["only_in_group"] = true,
-							["icon"] = "Interface\\ICONS\\INV_Sigil_Thorim",
-							["color"] = {
-								1, -- [1]
-								1, -- [2]
-								1, -- [3]
-							},
-						},
-						["switch_tank"] = false,
-						["skin_custom"] = "",
-						["bars_inverted"] = false,
-						["menu_icons_size"] = 0.850000023841858,
-					}, -- [2]
-				},
-				["instances_no_libwindow"] = false,
-				["deadlog_limit"] = 16,
-				["instances_segments_locked"] = false,
+				["animate_scroll"] = false,
+				["death_tooltip_width"] = 350,
+				["time_type"] = 2,
+				["default_bg_alpha"] = 0.5,
+				["time_type_original"] = 2,
 			},
 		},
 	}
