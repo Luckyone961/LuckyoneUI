@@ -227,6 +227,7 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["desaturateVoiceIcons"] = false
 	E.db["chat"]["fade"] = false
 	E.db["chat"]["fadeTabsNoBackdrop"] = false
+	E.db["chat"]["fadeUndockedTabs"] = false
 	E.db["chat"]["font"] = "Expressway"
 	E.db["chat"]["fontOutline"] = "OUTLINE"
 	E.db["chat"]["hideChatToggles"] = true
@@ -1932,6 +1933,7 @@ function L1UI:SetupLayout(layout)
 
 	E.db["chat"]["desaturateVoiceIcons"] = false
 	E.db["chat"]["fade"] = false
+	E.db["chat"]["fadeUndockedTabs"] = false
 	E.db["chat"]["font"] = "Expressway"
 	E.db["chat"]["fontOutline"] = "OUTLINE"
 	E.db["chat"]["hideChatToggles"] = true
