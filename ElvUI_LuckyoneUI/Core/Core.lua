@@ -93,14 +93,19 @@ end
 --Setup Private
 function L1UI:SetupPrivate()
 
+	--Private ElvUI
+
 	E.private["general"]["chatBubbleFont"] = "Expressway"
 	E.private["general"]["dmgfont"] = "Expressway"
 	E.private["general"]["glossTex"] = "Solid"
 	E.private["general"]["namefont"] = "Expressway"
 	E.private["general"]["normTex"] = "Solid"
 	E.private["general"]["totemBar"] = false
+	E.private["install_complete"] = "11.41"
 	E.private["skins"]["cleanBossButton"] = true
 	E.private["skins"]["parchmentRemover"]["enable"] = true
+
+	--Private Shadow&Light
 
 	if IsAddOnLoaded('ElvUI_SLE') then
 	E.private["sle"]["professions"]["deconButton"]["enable"] = false
