@@ -937,7 +937,7 @@ function L1UI:SetupLayout(layout)
 	E.private["general"]["totemBar"] = false
 	E.private["install_complete"] = "11.41"
 	E.private["skins"]["cleanBossButton"] = true
-	E.private["skins"]["parchmentRemover"]["enable"] = true
+	E.private["skins"]["parchmentRemoverEnable"] = true
 
 	--Private Shadow&Light
 
@@ -1862,7 +1862,7 @@ function L1UI:SetupLayout(layout)
 	E.private["general"]["totemBar"] = false
 	E.private["install_complete"] = "11.41"
 	E.private["skins"]["cleanBossButton"] = true
-	E.private["skins"]["parchmentRemover"]["enable"] = true
+	E.private["skins"]["parchmentRemoverEnable"] = true
 
 	--Private Shadow&Light
 
