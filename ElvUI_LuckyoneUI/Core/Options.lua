@@ -51,24 +51,31 @@ function L1UI:Configtable()
 				name = "Addon link:",
 				get = function() return 'https://www.tukui.org/addons.php?id=154' end,
 			},
-			header2 = {
+			discord = {
 				order = 6,
+				type = 'input',
+				width = 'full',
+				name = "Discord:",
+				get = function() return 'https://discord.gg/xRY4bwA' end,
+			},
+			header2 = {
+				order = 7,
 				type = "header",
 				name = "Author",
 			},
 			author = {
-				order = 7,
+				order = 8,
 				type = "description",
 				name = "|cffFF7D0ALuckyone|r (EU) - LaughingSkull",
 				fontSize = "large",
 			},
 			header3 = {
-				order = 8,
+				order = 9,
 				type = "header",
 				name = "Credits",
 			},
 			credits = {
-				order = 9,
+				order = 10,
 				type = "description",
 				name = "|cff0070DEAzilroka|r |cffC41F3BKringel|r |cffF58CBARepooc|r |cFF8866ccSimpy|r",
 				fontSize = "medium",
