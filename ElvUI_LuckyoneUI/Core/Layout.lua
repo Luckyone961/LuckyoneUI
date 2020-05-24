@@ -159,6 +159,7 @@ function L1UI:SetupLayout(layout)
 	--DataTexts
 
 	E.db["datatexts"]["battleground"] = false
+	E.db["datatexts"]["currencies"]["displayedCurrency"] = "GOLD"
 	E.db["datatexts"]["font"] = "Expressway"
 	E.db["datatexts"]["goldCoins"] = true
 	E.db["datatexts"]["goldFormat"] = "SMART"
@@ -168,7 +169,7 @@ function L1UI:SetupLayout(layout)
 	E.db["datatexts"]["panels"]["MinimapPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["MinimapPanel"][1] = "Time"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
-	E.db["datatexts"]["panels"]["RightChatDataPanel"][1] = "Currencies"
+	E.db["datatexts"]["panels"]["RightChatDataPanel"][1] = "Gold"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][2] = "ElvUI Config"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][3] = "WeakAuras"
 
@@ -1084,6 +1085,7 @@ function L1UI:SetupLayout(layout)
 	--DataTexts
 
 	E.db["datatexts"]["battleground"] = false
+	E.db["datatexts"]["currencies"]["displayedCurrency"] = "GOLD"
 	E.db["datatexts"]["font"] = "Expressway"
 	E.db["datatexts"]["goldCoins"] = true
 	E.db["datatexts"]["goldFormat"] = "SMART"
@@ -1093,7 +1095,7 @@ function L1UI:SetupLayout(layout)
 	E.db["datatexts"]["panels"]["MinimapPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["MinimapPanel"][1] = "Time"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
-	E.db["datatexts"]["panels"]["RightChatDataPanel"][1] = "Currencies"
+	E.db["datatexts"]["panels"]["RightChatDataPanel"][1] = "Gold"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][2] = "ElvUI Config"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][3] = "WeakAuras"
 
