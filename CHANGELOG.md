@@ -1,17 +1,20 @@
-### Version 1.02 [XX-05-2020]
+### Version 1.02 [XX-XX-2020]
 **Required ElvUI Version: 11.42**  
-
 **Changes:**  
 Set the default texture to Solid  
 Set up the new ElvUI 11.42 DataTexts  
 Updated both chat windows  
 **New Additions:**  
-New installer step: AddOn Profiles  
-(This step will set up BigWigs, Details, ProjectAzilroka)  
+New installer steps: AddOn Profiles  
+• BigWigs  
+• Details! Damage Meter  
+• ProjectAzilroka  
+• GottaGoFast  
 New installer step: CVars  
-(This step will set up tweaks like maxCameraDistance)  
+• Set up tweaks like maxCameraDistance  
 **Misc:**  
-Updated config  
+Updated options  
+Added Discord  
 Added credits  
 ___
 ### Version 1.01 [29-02-2020]
