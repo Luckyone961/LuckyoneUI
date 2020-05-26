@@ -114,6 +114,8 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["separateSizes"] = true
 	E.db["chat"]["tabFont"] = "Expressway"
 	E.db["chat"]["tabFontSize"] = 11
+	E.db["chat"]["tabSelectedTextEnabled"] = false
+	E.db["chat"]["tabSelector"] = "NONE"
 	E.db["chat"]["throttleInterval"] = 0
 
 	--Cooldown
@@ -1090,6 +1092,8 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["separateSizes"] = true
 	E.db["chat"]["tabFont"] = "Expressway"
 	E.db["chat"]["tabFontSize"] = 11
+	E.db["chat"]["tabSelectedTextEnabled"] = false
+	E.db["chat"]["tabSelector"] = "NONE"
 	E.db["chat"]["throttleInterval"] = 0
 
 	--Cooldown
