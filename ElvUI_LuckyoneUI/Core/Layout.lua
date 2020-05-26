@@ -1228,8 +1228,8 @@ function L1UI:SetupLayout(layout)
 	E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,438,398"
 	E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,103"
 	E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,520,385"
-	E.db["movers"]["ElvUF_Raid40Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,142"
-	E.db["movers"]["ElvUF_RaidMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,182"
+	E.db["movers"]["ElvUF_Raid40Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,149"
+	E.db["movers"]["ElvUF_RaidMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,187"
 	E.db["movers"]["ElvUF_RaidpetMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-140"
 	E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-520,365"
 	E.db["movers"]["ElvUF_TargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-520,385"
@@ -1244,14 +1244,14 @@ function L1UI:SetupLayout(layout)
 	E.db["movers"]["LevelUpBossBannerMover"] = "TOP,ElvUIParent,TOP,0,-22"
 	E.db["movers"]["LootFrameMover"] = "TOP,ElvUIParent,TOP,-263,-250"
 	E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-365"
-	E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-1"
+	E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,180,-1"
 	E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1"
 	E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,0,-92"
 	E.db["movers"]["MirrorTimer2Mover"] = "TOP,ElvUIParent,TOP,0,-111"
 	E.db["movers"]["MirrorTimer3Mover"] = "TOP,ElvUIParent,TOP,0,-130"
 	E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-86,-234"
 	E.db["movers"]["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,124"
-	E.db["movers"]["RaidUtility_Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,461,-1"
+	E.db["movers"]["RaidUtility_Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,431,-1"
 	E.db["movers"]["ReputationBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
 	E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1"
 	E.db["movers"]["ShiftAB"] = "TOPLEFT,ElvUIParent,BOTTOMLEFT,1,1081"
@@ -1847,7 +1847,7 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid"]["roleIcon"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["raid"]["summonIcon"]["attachTo"] = "BOTTOM"
 	E.db["unitframe"]["units"]["raid"]["summonIcon"]["size"] = 20
-	E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 0
+	E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = -1
 	E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid31,exists] hide;show"
 	E.db["unitframe"]["units"]["raid"]["width"] = 100
 	E.db["unitframe"]["units"]["raid40"]["classbar"]["fill"] = "spaced"
@@ -1880,7 +1880,7 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid40"]["roleIcon"]["yOffset"] = -11
 	E.db["unitframe"]["units"]["raid40"]["summonIcon"]["attachTo"] = "BOTTOM"
 	E.db["unitframe"]["units"]["raid40"]["summonIcon"]["size"] = 20
-	E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 0
+	E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = -1
 	E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid31,noexists] hide;show"
 	E.db["unitframe"]["units"]["raid40"]["width"] = 100
 	E.db["unitframe"]["units"]["raidpet"]["health"]["text_format"] = "[perhp<%]"
