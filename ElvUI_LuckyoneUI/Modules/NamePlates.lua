@@ -3,18 +3,10 @@ local L1UI = E:GetModule("LuckyoneUI");
 
 function L1UI:SetupStyleFilters()
 
-	E.global.nameplate.filters.Luckyone_AD = {}
-	E.global.nameplate.filters.Luckyone_FH = {}
-	E.global.nameplate.filters.Luckyone_KR = {}
-	E.global.nameplate.filters.Luckyone_ML = {}
-	E.global.nameplate.filters.Luckyone_SIEGE = {}
-	E.global.nameplate.filters.Luckyone_SOTS = {}
-	E.global.nameplate.filters.Luckyone_TD = {}
-	E.global.nameplate.filters.Luckyone_TOS = {}
-	E.global.nameplate.filters.Luckyone_UR = {}
-	E.global.nameplate.filters.Luckyone_WM = {}
-	E.global.nameplate.filters.Luckyone_WORK = {}
-	E.global.nameplate.filters.Luckyone_YARD = {}
+	for _, filterName in pairs({'Luckyone_AD', 'Luckyone_FH', 'Luckyone_KR', 'Luckyone_ML', 'Luckyone_SIEGE', 'Luckyone_SOTS', 'Luckyone_TD', 'Luckyone_TOS', 'Luckyone_UR', 'Luckyone_WM', 'Luckyone_WORK', 'Luckyone_YARD'}) do
+		E.global["nameplate"]["filters"][filterName] = { actions = { color = { healthColor = {} }, tags = {} }, triggers = { names = {} } }
+		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
+	end
 
 	--Atal'Dazar
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["actions"]["color"]["health"] = true
@@ -163,20 +155,6 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150251"] = true
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150292"] = true
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150297"] = true
-
-	--Enable them
-	E.db["nameplates"]["filters"]["Luckyone_AD"]["triggers"]["enable"] = true
-	E.db["nameplates"]["filters"]["Luckyone_FH"]["triggers"]["enable"] = true
-	E.db["nameplates"]["filters"]["Luckyone_KR"]["triggers"]["enable"] = true
-	E.db["nameplates"]["filters"]["Luckyone_ML"]["triggers"]["enable"] = true
-	E.db["nameplates"]["filters"]["Luckyone_SIEGE"]["triggers"]["enable"] = true
-	E.db["nameplates"]["filters"]["Luckyone_SOTS"]["triggers"]["enable"] = true
-	E.db["nameplates"]["filters"]["Luckyone_TD"]["triggers"]["enable"] = true
-	E.db["nameplates"]["filters"]["Luckyone_TOS"]["triggers"]["enable"] = true
-	E.db["nameplates"]["filters"]["Luckyone_UR"]["triggers"]["enable"] = true
-	E.db["nameplates"]["filters"]["Luckyone_WM"]["triggers"]["enable"] = true
-	E.db["nameplates"]["filters"]["Luckyone_WORK"]["triggers"]["enable"] = true
-	E.db["nameplates"]["filters"]["Luckyone_YARD"]["triggers"]["enable"] = true
 
 	E:StaggeredUpdateAll(nil, true)
 end
