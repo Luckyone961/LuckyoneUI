@@ -6,6 +6,7 @@ function L1UI:SetupStyleFilters()
 	for _, filterName in pairs({'Luckyone_AD', 'Luckyone_FH', 'Luckyone_KR', 'Luckyone_ML', 'Luckyone_SIEGE', 'Luckyone_SOTS', 'Luckyone_TD', 'Luckyone_TOS', 'Luckyone_UR', 'Luckyone_WM', 'Luckyone_WORK', 'Luckyone_YARD'}) do
 		E.global["nameplate"]["filters"][filterName] = {}
 		E.NamePlates:StyleFilterCopyDefaults(E.global["nameplate"]["filters"][filterName])
+		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 	end
 
 	--Atal'Dazar
@@ -156,10 +157,14 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150292"] = true
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150297"] = true
 
-	--Enable them
-	for _, filterName in pairs({'Luckyone_AD', 'Luckyone_FH', 'Luckyone_KR', 'Luckyone_ML', 'Luckyone_SIEGE', 'Luckyone_SOTS', 'Luckyone_TD', 'Luckyone_TOS', 'Luckyone_UR', 'Luckyone_WM', 'Luckyone_WORK', 'Luckyone_YARD'}) do
-		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
-	end
+	--Edited default filters
+	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0.49019607843137
+	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["g"] = 0
+	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
+	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["scale"] = 1
+	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["triggers"]["priority"] = 1
+	E.global["nameplate"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = -1
+	E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["scale"] = 1
 
 	E:StaggeredUpdateAll(nil, true)
 end
