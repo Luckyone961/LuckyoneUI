@@ -8,4 +8,5 @@
 
 Init.lua
 Core\load_core.xml
+Modules\load_modules.xml
 Settings\load_settings.xml
