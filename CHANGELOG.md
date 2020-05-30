@@ -12,6 +12,8 @@ New installer steps: AddOn Profiles
 • GottaGoFast  
 New installer step: CVars  
 • Set up tweaks like maxCameraDistance  
+New installer step: Style Filters  
+• Set up ElvUI NamePlate Style Filters  
 **Misc:**  
 Updated options  
 Added Discord  
