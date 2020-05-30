@@ -120,5 +120,5 @@ function L1UI:SetupPrivate()
 	PluginInstallStepComplete.message = "Fonts and Textures have been set."
 	PluginInstallStepComplete:Show()
 
-	E:Print('Note: Fonts do not change until you restart the WoW.')
+	E:Print('Note: Fonts do not change until you restart WoW.')
 end
