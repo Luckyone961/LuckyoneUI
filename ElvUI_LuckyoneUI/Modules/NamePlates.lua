@@ -156,5 +156,10 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150292"] = true
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150297"] = true
 
+	--Enable them
+	for _, filterName in pairs({'Luckyone_AD', 'Luckyone_FH', 'Luckyone_KR', 'Luckyone_ML', 'Luckyone_SIEGE', 'Luckyone_SOTS', 'Luckyone_TD', 'Luckyone_TOS', 'Luckyone_UR', 'Luckyone_WM', 'Luckyone_WORK', 'Luckyone_YARD'}) do
+		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
+	end
+
 	E:StaggeredUpdateAll(nil, true)
 end
