@@ -331,6 +331,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["spacing"] = 0
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 1
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["font"] = "Expressway"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontSize"] = 10
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconPosition"] = "LEFT"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 22
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textPosition"] = "ONBAR"
@@ -351,7 +352,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["format"] = "[perhp<%]"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Expressway"
-	E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = "[level][ >classification]"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = "[level][classificationcolor][ >classification]"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = 3
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -10
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Expressway"
@@ -574,8 +575,6 @@ function L1UI:SetupLayout(layout)
 	E.db["sle"]["bags"]["petLevel"]["fonts"]["font"] = "Expressway"
 	E.db["sle"]["bags"]["petLevel"]["fonts"]["size"] = 12
 	E.db["sle"]["chat"]["dpsSpam"] = true
-	E.db["sle"]["chat"]["editboxhistory"] = 50
-	E.db["sle"]["chat"]["tab"]["style"] = "ARROWRIGHT"
 	E.db["sle"]["media"]["fonts"]["editbox"]["font"] = "Expressway"
 	E.db["sle"]["media"]["fonts"]["editbox"]["size"] = 11
 	E.db["sle"]["media"]["fonts"]["gossip"]["font"] = "Expressway"
@@ -587,12 +586,13 @@ function L1UI:SetupLayout(layout)
 	E.db["sle"]["media"]["fonts"]["objectiveHeader"]["font"] = "Expressway"
 	E.db["sle"]["media"]["fonts"]["objectiveHeader"]["size"] = 11
 	E.db["sle"]["media"]["fonts"]["pvp"]["font"] = "Expressway"
+	E.db["sle"]["media"]["fonts"]["pvp"]["size"] = 24
 	E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["font"] = "Expressway"
 	E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["size"] = 22
 	E.db["sle"]["media"]["fonts"]["subzone"]["font"] = "Expressway"
 	E.db["sle"]["media"]["fonts"]["subzone"]["size"] = 24
 	E.db["sle"]["media"]["fonts"]["zone"]["font"] = "Expressway"
-	E.db["sle"]["media"]["fonts"]["zone"]["size"] = 30
+	E.db["sle"]["media"]["fonts"]["zone"]["size"] = 28
 	E.db["sle"]["minimap"]["mapicons"]["iconmouseover"] = true
 	E.db["sle"]["minimap"]["mapicons"]["spacing"] = 1
 	E.db["sle"]["nameplates"]["targetcount"]["font"] = "Expressway"
@@ -619,7 +619,6 @@ function L1UI:SetupLayout(layout)
 
 	--UnitFrames
 
-	E.db["unitframe"]["auraBlacklistModifier"] = "NONE"
 	E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = 0.99
 	E.db["unitframe"]["colors"]["auraBarBuff"]["g"] = 0.99
 	E.db["unitframe"]["colors"]["auraBarBuff"]["r"] = 0.99
@@ -643,6 +642,7 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["colors"]["disconnected"]["b"] = 1
 	E.db["unitframe"]["colors"]["disconnected"]["g"] = 1
 	E.db["unitframe"]["colors"]["disconnected"]["r"] = 1
+	E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["texture"] = "Solid"
 	E.db["unitframe"]["colors"]["health_backdrop_dead"]["b"] = 0
 	E.db["unitframe"]["colors"]["health_backdrop_dead"]["g"] = 0.043137254901961
 	E.db["unitframe"]["colors"]["health_backdrop_dead"]["r"] = 1
@@ -722,7 +722,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["yOffset"] = 20
 	E.db["unitframe"]["units"]["focus"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["focus"]["disableTargetGlow"] = true
-	E.db["unitframe"]["units"]["focus"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["focus"]["health"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["focus"]["health"]["text_format"] = "[perhp<%] || [health:current]"
 	E.db["unitframe"]["units"]["focus"]["health"]["xOffset"] = 1
@@ -750,6 +749,7 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["focustarget"]["power"]["height"] = 6
 	E.db["unitframe"]["units"]["focustarget"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["focustarget"]["width"] = 80
+	E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 3
 	E.db["unitframe"]["units"]["party"]["classbar"]["fill"] = "spaced"
 	E.db["unitframe"]["units"]["party"]["classbar"]["height"] = 6
@@ -792,12 +792,11 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["pet"]["castbar"]["iconXOffset"] = 0
 	E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 80
 	E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
-	E.db["unitframe"]["units"]["pet"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["pet"]["health"]["position"] = "CENTER"
 	E.db["unitframe"]["units"]["pet"]["health"]["text_format"] = "[perhp<%]"
 	E.db["unitframe"]["units"]["pet"]["health"]["xOffset"] = 0
 	E.db["unitframe"]["units"]["pet"]["height"] = 25
-	E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = "[namecolor][level] || Pet"
+	E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = "[namecolor][level< || ]Pet"
 	E.db["unitframe"]["units"]["pet"]["name"]["yOffset"] = 20
 	E.db["unitframe"]["units"]["pet"]["power"]["height"] = 6
 	E.db["unitframe"]["units"]["pet"]["power"]["powerPrediction"] = true
@@ -823,13 +822,12 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["player"]["debuffs"]["numrows"] = 2
 	E.db["unitframe"]["units"]["player"]["debuffs"]["yOffset"] = 20
 	E.db["unitframe"]["units"]["player"]["disableMouseoverGlow"] = true
-	E.db["unitframe"]["units"]["player"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["player"]["health"]["position"] = "RIGHT"
 	E.db["unitframe"]["units"]["player"]["health"]["text_format"] = "[health:current] || [perhp<%]"
 	E.db["unitframe"]["units"]["player"]["health"]["xOffset"] = 0
 	E.db["unitframe"]["units"]["player"]["height"] = 35
 	E.db["unitframe"]["units"]["player"]["name"]["position"] = "TOPRIGHT"
-	E.db["unitframe"]["units"]["player"]["name"]["text_format"] = "[namecolor][level] || [name:abbrev:long]"
+	E.db["unitframe"]["units"]["player"]["name"]["text_format"] = "[namecolor][level< || ][name:abbrev:long]"
 	E.db["unitframe"]["units"]["player"]["name"]["yOffset"] = 20
 	E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] = true
 	E.db["unitframe"]["units"]["player"]["power"]["height"] = 6
@@ -850,7 +848,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 10
 	E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 6
 	E.db["unitframe"]["units"]["raid"]["growthDirection"] = "DOWN_RIGHT"
-	E.db["unitframe"]["units"]["raid"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 	E.db["unitframe"]["units"]["raid"]["height"] = 25
 	E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = -1
@@ -915,6 +912,7 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["target"]["buffs"]["numrows"] = 2
 	E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = 2
 	E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 189
+	E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = false
 	E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "TOPLEFT"
 	E.db["unitframe"]["units"]["target"]["debuffs"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Expressway"
@@ -922,14 +920,13 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["target"]["debuffs"]["numrows"] = 2
 	E.db["unitframe"]["units"]["target"]["debuffs"]["yOffset"] = 20
 	E.db["unitframe"]["units"]["target"]["disableMouseoverGlow"] = true
-	E.db["unitframe"]["units"]["target"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["target"]["health"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["target"]["health"]["text_format"] = "[perhp<%] || [health:current]"
 	E.db["unitframe"]["units"]["target"]["health"]["xOffset"] = 1
 	E.db["unitframe"]["units"]["target"]["height"] = 35
 	E.db["unitframe"]["units"]["target"]["middleClickFocus"] = false
 	E.db["unitframe"]["units"]["target"]["name"]["position"] = "TOPLEFT"
-	E.db["unitframe"]["units"]["target"]["name"]["text_format"] = "[namecolor][name:abbrev:long] || [level] [classification:icon]"
+	E.db["unitframe"]["units"]["target"]["name"]["text_format"] = "[namecolor][name:abbrev:long][ || >level][classificationcolor][ >classification]"
 	E.db["unitframe"]["units"]["target"]["name"]["yOffset"] = 20
 	E.db["unitframe"]["units"]["target"]["orientation"] = "LEFT"
 	E.db["unitframe"]["units"]["target"]["phaseIndicator"]["scale"] = 0.5
@@ -939,6 +936,7 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["target"]["power"]["position"] = "RIGHT"
 	E.db["unitframe"]["units"]["target"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["target"]["power"]["xOffset"] = -2
+	E.db["unitframe"]["units"]["target"]["raidRoleIcons"]["position"] = "TOPRIGHT"
 	E.db["unitframe"]["units"]["target"]["threatStyle"] = "NONE"
 	E.db["unitframe"]["units"]["target"]["width"] = 189
 	E.db["unitframe"]["units"]["targettarget"]["buffs"]["countFont"] = "Expressway"
@@ -1306,12 +1304,13 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["spacing"] = 0
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 1
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["font"] = "Expressway"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontSize"] = 10
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["height"] = 6
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconPosition"] = "LEFT"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 22
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textPosition"] = "ONBAR"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeToHold"] = 2
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["width"] = 160
-	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["yOffset"] = -11
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countFont"] = "Expressway"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countFontSize"] = 8
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["font"] = "Expressway"
@@ -1326,7 +1325,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["format"] = "[perhp<%]"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Expressway"
-	E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = "[level][ >classification]"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = "[level][classificationcolor][ >classification]"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = 3
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -10
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Expressway"
@@ -1347,10 +1346,14 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["fontSize"] = 10
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["maxDuration"] = 0
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["numAuras"] = 2
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = "Blacklist,RaidBuffsElvUI,Dispellable,PlayerBuffs,TurtleBuffs"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["size"] = 20
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["spacing"] = 0
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 1
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["font"] = "Expressway"
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["fontOutline"] = "NONE"
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["fontSize"] = 12
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["height"] = 6
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconPosition"] = "LEFT"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 22
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["textPosition"] = "ONBAR"
@@ -1392,6 +1395,9 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["spacing"] = 0
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["yOffset"] = 1
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["font"] = "Expressway"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["fontOutline"] = "NONE"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["fontSize"] = 12
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["height"] = 6
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["iconPosition"] = "LEFT"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["iconSize"] = 22
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["textPosition"] = "ONBAR"
@@ -1426,7 +1432,9 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["textPosition"] = "RIGHT"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["size"] = 20
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["xOffset"] = -3
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["enable"] = true
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "Expressway"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["yOffset"] = 0
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontSize"] = 8
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["font"] = "Expressway"
@@ -1469,7 +1477,9 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpindicator"]["size"] = 35
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["raidTargetIndicator"]["size"] = 20
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["raidTargetIndicator"]["xOffset"] = -3
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["enable"] = true
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["font"] = "Expressway"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["yOffset"] = 0
 	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFont"] = "Expressway"
 	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["maxDuration"] = 0
 	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,TurtleBuffs"
@@ -1549,8 +1559,6 @@ function L1UI:SetupLayout(layout)
 	E.db["sle"]["bags"]["petLevel"]["fonts"]["font"] = "Expressway"
 	E.db["sle"]["bags"]["petLevel"]["fonts"]["size"] = 12
 	E.db["sle"]["chat"]["dpsSpam"] = true
-	E.db["sle"]["chat"]["editboxhistory"] = 50
-	E.db["sle"]["chat"]["tab"]["style"] = "ARROWRIGHT"
 	E.db["sle"]["media"]["fonts"]["editbox"]["font"] = "Expressway"
 	E.db["sle"]["media"]["fonts"]["editbox"]["size"] = 11
 	E.db["sle"]["media"]["fonts"]["gossip"]["font"] = "Expressway"
@@ -1726,7 +1734,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["party"]["debuffs"]["sizeOverride"] = 38
 	E.db["unitframe"]["units"]["party"]["growthDirection"] = "DOWN_RIGHT"
 	E.db["unitframe"]["units"]["party"]["healPrediction"]["enable"] = true
-	E.db["unitframe"]["units"]["party"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["party"]["health"]["position"] = "BOTTOM"
 	E.db["unitframe"]["units"]["party"]["health"]["text_format"] = ""
 	E.db["unitframe"]["units"]["party"]["health"]["xOffset"] = 0
@@ -1770,7 +1777,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["pet"]["castbar"]["height"] = 12
 	E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 80
 	E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
-	E.db["unitframe"]["units"]["pet"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["pet"]["health"]["position"] = "CENTER"
 	E.db["unitframe"]["units"]["pet"]["health"]["text_format"] = "[perhp<%]"
 	E.db["unitframe"]["units"]["pet"]["health"]["xOffset"] = 0
@@ -1799,7 +1805,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["player"]["debuffs"]["numrows"] = 2
 	E.db["unitframe"]["units"]["player"]["debuffs"]["yOffset"] = 20
 	E.db["unitframe"]["units"]["player"]["disableMouseoverGlow"] = true
-	E.db["unitframe"]["units"]["player"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["player"]["health"]["attachTextTo"] = "Frame"
 	E.db["unitframe"]["units"]["player"]["health"]["position"] = "RIGHT"
 	E.db["unitframe"]["units"]["player"]["health"]["text_format"] = "[health:current] || [perhp]%"
@@ -1807,7 +1812,7 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["player"]["health"]["yOffset"] = 9
 	E.db["unitframe"]["units"]["player"]["height"] = 38
 	E.db["unitframe"]["units"]["player"]["name"]["position"] = "TOPRIGHT"
-	E.db["unitframe"]["units"]["player"]["name"]["text_format"] = "[namecolor][level] || [name:abbrev:long]"
+	E.db["unitframe"]["units"]["player"]["name"]["text_format"] = "[namecolor][level< || ][name:abbrev:long]"
 	E.db["unitframe"]["units"]["player"]["name"]["yOffset"] = 20
 	E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] = true
 	E.db["unitframe"]["units"]["player"]["power"]["height"] = 19
@@ -1825,7 +1830,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid"]["classbar"]["height"] = 6
 	E.db["unitframe"]["units"]["raid"]["debuffs"]["sizeOverride"] = 30
 	E.db["unitframe"]["units"]["raid"]["healPrediction"]["enable"] = true
-	E.db["unitframe"]["units"]["raid"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 	E.db["unitframe"]["units"]["raid"]["height"] = 40
 	E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
@@ -1858,7 +1862,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid40"]["classbar"]["height"] = 6
 	E.db["unitframe"]["units"]["raid40"]["debuffs"]["sizeOverride"] = 30
 	E.db["unitframe"]["units"]["raid40"]["healPrediction"]["enable"] = true
-	E.db["unitframe"]["units"]["raid40"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 	E.db["unitframe"]["units"]["raid40"]["height"] = 35
 	E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 0
@@ -1898,6 +1901,7 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["target"]["buffs"]["numrows"] = 2
 	E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = 2
 	E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 189
+	E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = false
 	E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "TOPLEFT"
 	E.db["unitframe"]["units"]["target"]["debuffs"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Expressway"
@@ -1905,7 +1909,6 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["target"]["debuffs"]["numrows"] = 2
 	E.db["unitframe"]["units"]["target"]["debuffs"]["yOffset"] = 20
 	E.db["unitframe"]["units"]["target"]["disableMouseoverGlow"] = true
-	E.db["unitframe"]["units"]["target"]["healPrediction"]["showAbsorbAmount"] = true
 	E.db["unitframe"]["units"]["target"]["health"]["attachTextTo"] = "Frame"
 	E.db["unitframe"]["units"]["target"]["health"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["target"]["health"]["text_format"] = "[perhp]% || [health:current]"
@@ -1914,7 +1917,7 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["target"]["height"] = 38
 	E.db["unitframe"]["units"]["target"]["middleClickFocus"] = false
 	E.db["unitframe"]["units"]["target"]["name"]["position"] = "TOPLEFT"
-	E.db["unitframe"]["units"]["target"]["name"]["text_format"] = "[namecolor][name:abbrev:long] || [level] [classification:icon]"
+	E.db["unitframe"]["units"]["target"]["name"]["text_format"] = "[namecolor][name:abbrev:long][ || >level][classificationcolor][ >classification]"
 	E.db["unitframe"]["units"]["target"]["name"]["yOffset"] = 20
 	E.db["unitframe"]["units"]["target"]["orientation"] = "LEFT"
 	E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] = true
