@@ -171,7 +171,7 @@ function L1UI:SetupStyleFilters()
 	E:StaggeredUpdateAll(nil, true)
 
 	--NamePlate CVars
-	SetCVar("nameplateLargerScale", 0)
+	SetCVar("nameplateLargerScale", 1)
 	SetCVar("nameplateMinAlpha", 1)
 	SetCVar("nameplateMinScale", 1)
 	SetCVar("nameplateMotion", 1)
