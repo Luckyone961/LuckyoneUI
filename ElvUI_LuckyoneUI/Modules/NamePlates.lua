@@ -1,6 +1,8 @@
 local E, L, V, P, G = unpack(ElvUI)
 local L1UI = E:GetModule("LuckyoneUI");
 
+local SetCVar = SetCVar
+
 function L1UI:SetupStyleFilters()
 
 	for _, filterName in pairs({'Luckyone_AD', 'Luckyone_FH', 'Luckyone_KR', 'Luckyone_ML', 'Luckyone_SIEGE', 'Luckyone_SOTS', 'Luckyone_TD', 'Luckyone_TOS', 'Luckyone_UR', 'Luckyone_WM', 'Luckyone_WORK', 'Luckyone_YARD'}) do
@@ -167,4 +169,15 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["scale"] = 1
 
 	E:StaggeredUpdateAll(nil, true)
+
+	--NamePlate CVars
+	SetCVar("nameplateMinAlpha", 1)
+	SetCVar("nameplateMinScale", 1)
+	SetCVar("nameplateSelfAlpha", 1)
+	SetCVar("nameplateLargerScale", 0)
+	SetCVar("nameplateSelectedScale", 1)
+	SetCVar("nameplateOccludedAlphaMult", 1)
+	SetCVar("nameplateMotion", 1)
+	SetCVar("nameplateOverlapH", 1)
+	SetCVar("nameplateOverlapV", 1.6)
 end
