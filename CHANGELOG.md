@@ -5,7 +5,7 @@ Set the default texture to Solid
 Set up the new ElvUI 11.42 DataTexts  
 Updated both chat windows  
 **New Additions:**  
-New installer steps: AddOn Profiles  
+New installer steps: AddOn profiles  
 • BigWigs  
 • Details! Damage Meter  
 • ProjectAzilroka  
