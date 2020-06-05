@@ -57,25 +57,18 @@ end
 function L1UI:SetupCVars()
 	--Maximize the camera zoom
 	SetCVar("cameraDistanceMaxZoomFactor", 2.6)
-
 	--Remove ugly colors while dead
 	SetCVar("ffxDeath", 0)
-
 	--Enable advanced logging
 	SetCVar("advancedCombatLogging", 1)
-
 	--Chat editbox style
 	SetCVar("chatStyle", "classic")
-
 	--Hardware cursor
 	SetCVar("rawMouseEnable", 1)
-
 	--Quality of life
 	SetCVar("SpellQueueWindow", 50)
 
-	--Chat print
 	E:Print('CVars have been set.')
-
 	PluginInstallStepComplete.message = "CVars have been set"
 	PluginInstallStepComplete:Show()
 end
