@@ -187,4 +187,6 @@ function L1UI:SetupStyleFilters()
 	SetCVar("UnitNameEnemyPetName", 1)
 	SetCVar("UnitNameEnemyPlayerName", 1)
 	SetCVar("UnitNameEnemyTotem", 1)
+
+	E:Print('NamePlate StyleFilters have been set.')
 end
