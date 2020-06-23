@@ -1825,6 +1825,7 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["player"]["power"]["height"] = 19
 	E.db["unitframe"]["units"]["player"]["power"]["position"] = "CENTER"
 	E.db["unitframe"]["units"]["player"]["power"]["powerPrediction"] = true
+	E.db["unitframe"]["units"]["player"]["power"]["text_format"] = "[powercolor][power:current]"
 	E.db["unitframe"]["units"]["player"]["power"]["xOffset"] = -72
 	E.db["unitframe"]["units"]["player"]["power"]["yOffset"] = -18
 	E.db["unitframe"]["units"]["player"]["pvp"]["position"] = "LEFT"
