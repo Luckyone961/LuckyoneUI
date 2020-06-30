@@ -14,6 +14,9 @@ New installer step: CVars
 • Set up tweaks like maxCameraDistance  
 New installer step: Style Filters  
 • Set up ElvUI NamePlate Style Filters  
+New fonts:  
+• Alpha Echo  
+• Roboto Light  
 **Misc:**  
 Updated options  
 Added Discord  

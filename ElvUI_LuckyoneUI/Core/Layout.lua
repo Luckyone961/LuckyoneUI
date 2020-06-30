@@ -722,6 +722,7 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["boss"]["power"]["text_format"] = "[powercolor][curpp]"
 	E.db["unitframe"]["units"]["boss"]["width"] = 189
 	E.db["unitframe"]["units"]["focus"]["buffs"]["countFont"] = "Expressway"
+	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["enable"] = false
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["anchorPoint"] = "TOPLEFT"
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["maxDuration"] = 0
@@ -1695,6 +1696,7 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["boss"]["power"]["height"] = 6
 	E.db["unitframe"]["units"]["boss"]["width"] = 189
 	E.db["unitframe"]["units"]["focus"]["castbar"]["width"] = 189
+	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["enable"] = false
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["anchorPoint"] = "TOPLEFT"
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["maxDuration"] = 0
