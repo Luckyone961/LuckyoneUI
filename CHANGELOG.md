@@ -1,4 +1,10 @@
-### Version 1.02 [XX-XX-2020]
+### Version 1.03 [XX-XX-2020]
+**Changes:**  
+Enabled RaidDebuff Indicator for Raid40 frames  
+**Misc:**  
+Fixed Raid40 frames for the healer layout  
+___
+### Version 1.02 [08-07-2020]
 **Required ElvUI Version: 11.42**  
 **Changes:**  
 Set the default texture to Solid  
