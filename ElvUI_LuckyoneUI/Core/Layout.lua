@@ -3,11 +3,11 @@ local L1UI = E:GetModule("LuckyoneUI");
 
 function L1UI:SetupLayout(layout)
 
+	if layout == "dps" or layout == "tank" then
+
 	if not E.db.movers then
 		E.db.movers = {}
 	end
-
-	if layout == "dps" or layout == "tank" then
 
 	--ActionBars
 
@@ -995,6 +995,10 @@ function L1UI:SetupLayout(layout)
 
 	elseif layout == "healer" then
 
+	if not E.db.movers then
+		E.db.movers = {}
+	end
+
 	--ActionBars
 
 	E.db["actionbar"]["bar1"]["buttonsize"] = 28
@@ -1839,11 +1843,15 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid"]["classbar"]["fill"] = "spaced"
 	E.db["unitframe"]["units"]["raid"]["classbar"]["height"] = 6
 	E.db["unitframe"]["units"]["raid"]["debuffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 0
+	E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 1
+	E.db["unitframe"]["units"]["raid"]["growthDirection"] = "RIGHT_DOWN"
 	E.db["unitframe"]["units"]["raid"]["healPrediction"]["enable"] = true
 	E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 	E.db["unitframe"]["units"]["raid"]["height"] = 40
 	E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
 	E.db["unitframe"]["units"]["raid"]["name"]["attachTextTo"] = "Frame"
+	E.db["unitframe"]["units"]["raid"]["name"]["position"] = "CENTER"
 	E.db["unitframe"]["units"]["raid"]["name"]["text_format"] = "[namecolor][name:veryshort]"
 	E.db["unitframe"]["units"]["raid"]["numGroups"] = 6
 	E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["anchorPoint"] = "TOP"
@@ -1857,6 +1865,7 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid"]["rdebuffs"]["size"] = 18
 	E.db["unitframe"]["units"]["raid"]["rdebuffs"]["stack"]["position"] = "CENTER"
 	E.db["unitframe"]["units"]["raid"]["rdebuffs"]["stack"]["yOffset"] = 0
+	E.db["unitframe"]["units"]["raid"]["rdebuffs"]["xOffset"] = 0
 	E.db["unitframe"]["units"]["raid"]["readycheckIcon"]["position"] = "TOP"
 	E.db["unitframe"]["units"]["raid"]["readycheckIcon"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["raid"]["roleIcon"]["damager"] = false
