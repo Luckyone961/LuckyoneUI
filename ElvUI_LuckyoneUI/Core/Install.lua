@@ -28,7 +28,6 @@ L1UI.InstallerData = {
 			PluginInstallFrame.SubTitle:SetFormattedText("Welcome")
 			PluginInstallFrame.Desc1:SetText("This installation process will guide you through a few steps and apply settings to your current ElvUI profile.")
 			PluginInstallFrame.Desc2:SetText("Note: |cff4beb2cMake sure you have a backup of your current profile|r")
-			PluginInstallFrame.Desc3:SetText("|cffff0007Check your ElvUI version before you run the installer\nRequired version: 11.42 or later")
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
 			PluginInstallFrame.Option1:SetText("Skip Process")
