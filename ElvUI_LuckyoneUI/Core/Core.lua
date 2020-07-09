@@ -7,7 +7,6 @@ local SetCVar = SetCVar
 
 --Setup AddOns[1]
 function L1UI:AddonSetupBW(addon)
-
 	if IsAddOnLoaded('BigWigs') then
 		L1UI:GetBigWigsProfile()
 		E:Print('BigWigs profile has been set.')
@@ -19,7 +18,6 @@ end
 
 --Setup AddOns[2]
 function L1UI:AddonSetupDT(addon)
-
 	if IsAddOnLoaded('Details') then
 		L1UI:GetDetailsProfile()
 		E:Print('Details profile has been set.')
@@ -31,7 +29,6 @@ end
 
 --Setup AddOns[3]
 function L1UI:AddonSetupPA(addon)
-
 	if IsAddOnLoaded('ProjectAzilroka') then
 		L1UI:GetPAProfile()
 		E:Print('ProjectAzilroka profile has been set.')
@@ -43,7 +40,6 @@ end
 
 --Setup AddOns[4]
 function L1UI:AddonSetupGGF(addon)
-
 	if IsAddOnLoaded('GottaGoFast') then
 		L1UI:GetGGFProfile()
 		E:Print('GottaGoFast profile has been set.')
@@ -75,7 +71,6 @@ end
 
 --Setup Private
 function L1UI:SetupPrivate()
-
 	--Private ElvUI
 
 	E.private["general"]["chatBubbleFont"] = "Expressway"

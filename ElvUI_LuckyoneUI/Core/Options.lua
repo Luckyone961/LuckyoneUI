@@ -82,6 +82,7 @@ function L1UI:Configtable()
 			}
 		},
 	}
+
 	for _, func in pairs(L1UI.Config) do
 		func()
 	end

@@ -9,10 +9,10 @@ L1UI.Config = {}
 P[MyPluginName] = {}
 
 function L1UI:Initialize()
-
 	if E.private.install_complete and E.db[MyPluginName].install_version == nil then
 		E:GetModule("PluginInstaller"):Queue(L1UI.InstallerData)
 	end
+
 	--Insert L1UI Config
 	EP:RegisterPlugin(addon, L1UI.Configtable)
 end
