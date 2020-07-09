@@ -1891,6 +1891,7 @@ function L1UI:SetupLayout(layout)
 	E.db["unitframe"]["units"]["raid40"]["power"]["height"] = 3
 	E.db["unitframe"]["units"]["raid40"]["raidicon"]["size"] = 12
 	E.db["unitframe"]["units"]["raid40"]["raidicon"]["yOffset"] = -2
+	E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["enable"] = true
 	E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["font"] = "Expressway"
 	E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["size"] = 16
