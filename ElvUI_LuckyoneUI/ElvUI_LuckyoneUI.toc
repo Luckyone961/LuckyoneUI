@@ -1,6 +1,6 @@
 ## Interface: 80300
 ## Author: Luckyone
-## Version: 1.02
+## Version: 1.03
 ## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r
 ## Notes: Luckyone's ElvUI Layouts
 ## RequiredDeps: ElvUI
