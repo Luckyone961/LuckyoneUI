@@ -79,6 +79,17 @@ function L1UI:Configtable()
 				type = "description",
 				name = "|cff0070DEAzilroka|r |cffC41F3BKringel|r |cffF58CBARepooc|r |cFF8866ccSimpy|r",
 				fontSize = "medium",
+			},
+			header4 = {
+				order = 12,
+				type = "header",
+				name = "Helpers",
+			},
+			thanks = {
+				order = 13,
+				type = "description",
+				name = "|cffe6cc80Gandi Illusion Sniefer Xyf|r",
+				fontSize = "medium",
 			}
 		},
 	}
