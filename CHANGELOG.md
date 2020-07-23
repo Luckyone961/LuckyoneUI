@@ -1,3 +1,6 @@
+### Version 1.04 [XX-XX-2020]
+  
+___
 ### Version 1.03 [24-07-2020]
 **Changes:**  
 Enabled RaidDebuff Indicator for Raid40 frames  
