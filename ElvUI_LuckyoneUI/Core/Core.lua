@@ -5,7 +5,6 @@ local L1UI = E:GetModule("LuckyoneUI");
 local IsAddOnLoaded = IsAddOnLoaded
 local SetCVar = SetCVar
 
---Setup AddOns[1]
 function L1UI:AddonSetupBW(addon)
 	if IsAddOnLoaded('BigWigs') then
 		L1UI:GetBigWigsProfile()
@@ -16,7 +15,6 @@ function L1UI:AddonSetupBW(addon)
 	PluginInstallStepComplete:Show()
 end
 
---Setup AddOns[2]
 function L1UI:AddonSetupDT(addon)
 	if IsAddOnLoaded('Details') then
 		L1UI:GetDetailsProfile()
@@ -27,7 +25,6 @@ function L1UI:AddonSetupDT(addon)
 	PluginInstallStepComplete:Show()
 end
 
---Setup AddOns[3]
 function L1UI:AddonSetupPA(addon)
 	if IsAddOnLoaded('ProjectAzilroka') then
 		L1UI:GetPAProfile()
@@ -38,7 +35,6 @@ function L1UI:AddonSetupPA(addon)
 	PluginInstallStepComplete:Show()
 end
 
---Setup AddOns[4]
 function L1UI:AddonSetupGGF(addon)
 	if IsAddOnLoaded('GottaGoFast') then
 		L1UI:GetGGFProfile()
@@ -49,29 +45,22 @@ function L1UI:AddonSetupGGF(addon)
 	PluginInstallStepComplete:Show()
 end
 
---Setup CVars
 function L1UI:SetupCVars()
-	--Maximize the camera zoom
+
 	SetCVar("cameraDistanceMaxZoomFactor", 2.6)
-	--Remove ugly colors while dead
 	SetCVar("ffxDeath", 0)
-	--Enable advanced logging
 	SetCVar("advancedCombatLogging", 1)
-	--Chat editbox style
 	SetCVar("chatStyle", "classic")
-	--Hardware cursor
 	SetCVar("rawMouseEnable", 1)
-	--Quality of life
 	SetCVar("SpellQueueWindow", 50)
 
+	--Chat print & Complete message
 	E:Print('CVars have been set.')
 	PluginInstallStepComplete.message = "CVars have been set"
 	PluginInstallStepComplete:Show()
 end
 
---Setup Private
 function L1UI:SetupPrivate()
-	--Private ElvUI
 
 	E.private["general"]["chatBubbleFont"] = "Expressway"
 	E.private["general"]["dmgfont"] = "Expressway"
@@ -82,8 +71,6 @@ function L1UI:SetupPrivate()
 	E.private["install_complete"] = "11.41"
 	E.private["skins"]["cleanBossButton"] = true
 	E.private["skins"]["parchmentRemoverEnable"] = true
-
-	--Private Shadow&Light
 
 	if IsAddOnLoaded('ElvUI_SLE') then
 	E.private["sle"]["professions"]["deconButton"]["enable"] = false

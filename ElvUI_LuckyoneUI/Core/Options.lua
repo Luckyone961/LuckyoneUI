@@ -4,7 +4,6 @@ local L1UI = E:GetModule("LuckyoneUI");
 
 local format = string.format
 
---Options table for the ElvUI OptionsUI
 function L1UI:Configtable()
 	E.Options.args[MyPluginName] = {
 		order = 100,
@@ -26,8 +25,8 @@ function L1UI:Configtable()
 			private = {
 				order = 3,
 				type = "execute",
-				name = "Apply Character Settings",
-				desc = "Click this button once per character to apply fonts and textures.",
+				name = "Apply Private Settings",
+				desc = "This will setup Fonts, Textures and Skins.",
 				func = function() L1UI:SetupPrivate(); end,
 			},
 			changelog = {

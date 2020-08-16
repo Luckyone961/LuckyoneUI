@@ -7,7 +7,6 @@ local StopMusic = StopMusic
 local format = string.format
 local GetCVarBool = GetCVarBool
 
---Run this on "Skip Process" and "Finished"
 local function InstallComplete()
 	if GetCVarBool("Sound_EnableMusic") then
 		StopMusic()
@@ -18,7 +17,6 @@ local function InstallComplete()
 	ReloadUI()
 end
 
---Installer Steps
 L1UI.InstallerData = {
 	Title = format("|cff4beb2c%s %s|r", MyPluginName, "Installation"),
 	Name = MyPluginName,
