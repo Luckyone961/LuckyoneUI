@@ -86,3 +86,26 @@ function L1UI:SetupPrivate()
 
 	E:Print('Note: Fonts do not change until you restart WoW.')
 end
+
+function L1UI:NameplateReset()
+
+	--NamePlate CVars
+	SetCVar("nameplateLargerScale", 1)
+	SetCVar("nameplateMinAlpha", 1)
+	SetCVar("nameplateMinScale", 1)
+	SetCVar("nameplateMotion", 1)
+	SetCVar("nameplateOccludedAlphaMult", 1)
+	SetCVar("nameplateOverlapH", 1)
+	SetCVar("nameplateOverlapV", 1.6)
+	SetCVar("nameplateSelectedScale", 1)
+	SetCVar("nameplateSelfAlpha", 1)
+
+	--Name CVars
+	SetCVar("UnitNameEnemyGuardianName", 1)
+	SetCVar("UnitNameEnemyMinionName", 1)
+	SetCVar("UnitNameEnemyPetName", 1)
+	SetCVar("UnitNameEnemyPlayerName", 1)
+	SetCVar("UnitNameEnemyTotem", 1)
+
+	E:Print('NamePlate CVars have been reset to default.')
+end
