@@ -1,5 +1,11 @@
 ### Version 1.04 [XX-XX-2020]
-  
+**Changes:**  
+Updated the LuckyoneUI options layout  
+**New Additions:**  
+New option: Reset Nameplate CVars  
+• This button can reset Nameplate CVars to LuckyoneUI defaults  
+**Misc:**  
+Updated Credits  
 ___
 ### Version 1.03 [24-07-2020]
 **Changes:**  
