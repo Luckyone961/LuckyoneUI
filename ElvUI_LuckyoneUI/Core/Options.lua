@@ -117,7 +117,7 @@ function L1UI:Configtable()
 					header3 = {
 						order = 5,
 						type = "header",
-						name = "Helpers",
+						name = "Testers",
 					},
 					thanks = {
 						order = 6,
