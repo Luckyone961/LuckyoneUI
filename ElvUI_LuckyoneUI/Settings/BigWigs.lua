@@ -2,8 +2,8 @@ local E, L, V, P, G = unpack(ElvUI)
 local L1UI = E:GetModule('LuckyoneUI');
 
 function L1UI:GetBigWigsProfile()
-	local main = "Lucky"
-	local heal = "Lucky Healing"
+	local main = "Luckyone DPS/TANK"
+	local heal = "Luckyone Healing"
 
 	LoadAddOn("BigWigs_Options")
 	LoadAddOn("BigWigs")

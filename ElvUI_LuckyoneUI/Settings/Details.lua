@@ -4,7 +4,7 @@ local L1UI = E:GetModule('LuckyoneUI');
 local twipe = table.wipe
 
 function L1UI:GetDetailsProfile()
-	local key = "Lucky"
+	local key = "Luckyone"
 
 	if _detalhes_global then twipe(_detalhes_global) end
 	_detalhes_global = {
