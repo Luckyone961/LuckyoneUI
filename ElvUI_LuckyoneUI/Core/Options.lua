@@ -1,6 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
-local MyPluginName = "LuckyoneUI"
-local L1UI = E:GetModule("LuckyoneUI");
+local MyPluginName = 'LuckyoneUI'
+local L1UI = E:GetModule('LuckyoneUI');
 
 local format = string.format
 
@@ -9,7 +9,7 @@ function L1UI:Configtable()
 	E.Options.args[MyPluginName] = {
 		order = 100,
 		type = 'group',
-		name = format("|cff4beb2c%s|r", MyPluginName),
+		name = format('|cff4beb2c%s|r', MyPluginName),
 		childGroups = 'tab',
 		args = {
 			header1 = {
@@ -32,7 +32,7 @@ function L1UI:Configtable()
 						type = 'execute',
 						name = 'Install',
 						desc = 'Run the installation process.',
-						func = function() E:GetModule("PluginInstaller"):Queue(L1UI.InstallerData); E:ToggleOptionsUI(); end,
+						func = function() E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData); E:ToggleOptionsUI(); end,
 					},
 					header2 = {
 						order = 3,

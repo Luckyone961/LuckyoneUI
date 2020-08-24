@@ -1,12 +1,12 @@
 local E, L, V, P, G = unpack(ElvUI)
-local L1UI = E:GetModule("LuckyoneUI");
+local L1UI = E:GetModule('LuckyoneUI');
 
 function L1UI:SetupLayout(layout)
 	if not E.db.movers then
 		E.db.movers = {}
 	end
 
-	if layout == "dps" then
+	if layout == 'dps' then
 		--Paste Here
 
 		--Shadow&Light
@@ -16,8 +16,6 @@ function L1UI:SetupLayout(layout)
 		end
 
 		--NamePlate Reset Var
-
-		E.db["v11NamePlateReset"] = true
 
 		--Private ElvUI
 
@@ -29,7 +27,7 @@ function L1UI:SetupLayout(layout)
 			--Paste Here
 		end
 
-	elseif layout == "healer" then
+	elseif layout == 'healer' then
 		--Paste Here
 
 		--Shadow&Light
@@ -39,8 +37,6 @@ function L1UI:SetupLayout(layout)
 		end
 
 		--NamePlate Reset Var
-
-		E.db["v11NamePlateReset"] = true
 
 		--Private ElvUI
 
@@ -55,6 +51,6 @@ function L1UI:SetupLayout(layout)
 
 	E:StaggeredUpdateAll(nil, true)
 
-	PluginInstallStepComplete.message = "|cff4beb2cLuckyoneUI|r Layout has been set"
+	PluginInstallStepComplete.message = '|cff4beb2cLuckyoneUI|r Layout has been set'
 	PluginInstallStepComplete:Show()
 end

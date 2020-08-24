@@ -1,11 +1,11 @@
 local E, L, V, P, G = unpack(ElvUI)
-local L1UI = E:GetModule("LuckyoneUI");
+local L1UI = E:GetModule('LuckyoneUI');
 
 local _G = _G
 
 function L1UI:GetPAProfile()
 	local PA = _G.ProjectAzilroka
-	PA.data:SetProfile('Lucky')
+	PA.data:SetProfile('Luckyone')
 
 	--Disabled Modules
 	PA.db["EnhancedShadows"]["Enable"] = false
