@@ -6,7 +6,7 @@ function L1UI:SetupLayout(layout)
 		E.db.movers = {}
 	end
 
-	if layout == "dps" or layout == "tank" then
+	if layout == "dps" then
 		--Paste Here
 
 		--Shadow&Light
