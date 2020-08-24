@@ -141,7 +141,7 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
 	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["scale"] = 1
 	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["triggers"]["priority"] = 1
-	E.global["nameplate"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = -1
+	E.global["nameplate"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = 0.7
 	E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["scale"] = 1
 
 	E:StaggeredUpdateAll(nil, true)
