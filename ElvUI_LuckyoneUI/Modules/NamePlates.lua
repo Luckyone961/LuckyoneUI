@@ -15,8 +15,6 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["actions"]["color"]["healthColor"]["r"] = 0
-	E.global["nameplate"]["filters"]["Luckyone_AD"]["actions"]["tags"]["level"] = "||cff0098ff[level]||r"
-	E.global["nameplate"]["filters"]["Luckyone_AD"]["actions"]["tags"]["name"] = "||cff0098ff[name:abbrev:long]||r"
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["triggers"]["names"]["122969"] = true
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["triggers"]["names"]["122972"] = true
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["triggers"]["names"]["122973"] = true
@@ -26,8 +24,6 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["actions"]["color"]["healthColor"]["r"] = 0
-	E.global["nameplate"]["filters"]["Luckyone_FH"]["actions"]["tags"]["level"] = "||cff0098ff[level]||r"
-	E.global["nameplate"]["filters"]["Luckyone_FH"]["actions"]["tags"]["name"] = "||cff0098ff[name:abbrev:long]||r"
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["triggers"]["names"]["126918"] = true
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["triggers"]["names"]["127111"] = true
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["triggers"]["names"]["129529"] = true
@@ -39,8 +35,6 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["actions"]["color"]["healthColor"]["r"] = 0
-	E.global["nameplate"]["filters"]["Luckyone_KR"]["actions"]["tags"]["level"] = "||cff0098ff[level]||r"
-	E.global["nameplate"]["filters"]["Luckyone_KR"]["actions"]["tags"]["name"] = "||cff0098ff[name:abbrev:long]||r"
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["triggers"]["names"]["134158"] = true
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["triggers"]["names"]["134174"] = true
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["triggers"]["names"]["134331"] = true
@@ -52,8 +46,6 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["actions"]["color"]["healthColor"]["r"] = 0
-	E.global["nameplate"]["filters"]["Luckyone_ML"]["actions"]["tags"]["level"] = "||cff0098ff[level]||r"
-	E.global["nameplate"]["filters"]["Luckyone_ML"]["actions"]["tags"]["name"] = "||cff0098ff[name:abbrev:long]||r"
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["triggers"]["names"]["129802"] = true
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["triggers"]["names"]["130661"] = true
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["triggers"]["names"]["133430"] = true
@@ -65,8 +57,6 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["actions"]["color"]["healthColor"]["r"] = 0
-	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["actions"]["tags"]["level"] = "||cff0098ff[level]||r"
-	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["actions"]["tags"]["name"] = "||cff0098ff[name:abbrev:long]||r"
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["triggers"]["names"]["129367"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["triggers"]["names"]["129370"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["triggers"]["names"]["137517"] = true
@@ -79,8 +69,6 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["actions"]["color"]["healthColor"]["r"] = 0
-	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["actions"]["tags"]["level"] = "||cff0098ff[level]||r"
-	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["actions"]["tags"]["name"] = "||cff0098ff[name:abbrev:long]||r"
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["triggers"]["names"]["134139"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["triggers"]["names"]["134150"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["triggers"]["names"]["134417"] = true
@@ -93,8 +81,6 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["actions"]["color"]["healthColor"]["r"] = 0
-	E.global["nameplate"]["filters"]["Luckyone_TD"]["actions"]["tags"]["level"] = "||cff0098ff[level]||r"
-	E.global["nameplate"]["filters"]["Luckyone_TD"]["actions"]["tags"]["name"] = "||cff0098ff[name:abbrev:long]||r"
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["triggers"]["names"]["127482"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["triggers"]["names"]["127488"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["triggers"]["names"]["130026"] = true
@@ -103,8 +89,6 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["actions"]["color"]["healthColor"]["r"] = 0
-	E.global["nameplate"]["filters"]["Luckyone_TOS"]["actions"]["tags"]["level"] = "||cff0098ff[level]||r"
-	E.global["nameplate"]["filters"]["Luckyone_TOS"]["actions"]["tags"]["name"] = "||cff0098ff[name:abbrev:long]||r"
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["triggers"]["names"]["134364"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["triggers"]["names"]["134599"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["triggers"]["names"]["134629"] = true
@@ -115,8 +99,6 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["actions"]["color"]["healthColor"]["r"] = 0
-	E.global["nameplate"]["filters"]["Luckyone_UR"]["actions"]["tags"]["level"] = "||cff0098ff[level]||r"
-	E.global["nameplate"]["filters"]["Luckyone_UR"]["actions"]["tags"]["name"] = "||cff0098ff[name:abbrev:long]||r"
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["triggers"]["names"]["130909"] = true
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["triggers"]["names"]["131492"] = true
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["triggers"]["names"]["133835"] = true
@@ -126,8 +108,6 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["actions"]["color"]["healthColor"]["r"] = 0
-	E.global["nameplate"]["filters"]["Luckyone_WM"]["actions"]["tags"]["level"] = "||cff0098ff[level]||r"
-	E.global["nameplate"]["filters"]["Luckyone_WM"]["actions"]["tags"]["name"] = "||cff0098ff[name:abbrev:long]||r"
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["triggers"]["names"]["131586"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["triggers"]["names"]["131587"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["triggers"]["names"]["131812"] = true
@@ -139,8 +119,6 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["r"] = 0
-	E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["tags"]["level"] = "||cff0098ff[level]||r"
-	E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["tags"]["name"] = "||cff0098ff[name:abbrev:long]||r"
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["144293"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["144294"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["151325"] = true
@@ -149,8 +127,6 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["r"] = 0
-	E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["tags"]["level"] = "||cff0098ff[level]||r"
-	E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["tags"]["name"] = "||cff0098ff[name:abbrev:long]||r"
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150146"] = true
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150160"] = true
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150168"] = true
@@ -171,22 +147,22 @@ function L1UI:SetupStyleFilters()
 	E:StaggeredUpdateAll(nil, true)
 
 	--NamePlate CVars
-	SetCVar("nameplateLargerScale", 1)
-	SetCVar("nameplateMinAlpha", 1)
-	SetCVar("nameplateMinScale", 1)
-	SetCVar("nameplateMotion", 1)
-	SetCVar("nameplateOccludedAlphaMult", 1)
-	SetCVar("nameplateOverlapH", 1)
-	SetCVar("nameplateOverlapV", 1.6)
-	SetCVar("nameplateSelectedScale", 1)
-	SetCVar("nameplateSelfAlpha", 1)
+	SetCVar('nameplateLargerScale', 1)
+	SetCVar('nameplateMinAlpha', 1)
+	SetCVar('nameplateMinScale', 1)
+	SetCVar('nameplateMotion', 1)
+	SetCVar('nameplateOccludedAlphaMult', 1)
+	SetCVar('nameplateOverlapH', 1)
+	SetCVar('nameplateOverlapV', 1.6)
+	SetCVar('nameplateSelectedScale', 1)
+	SetCVar('nameplateSelfAlpha', 1)
 
 	--Name CVars
-	SetCVar("UnitNameEnemyGuardianName", 1)
-	SetCVar("UnitNameEnemyMinionName", 1)
-	SetCVar("UnitNameEnemyPetName", 1)
-	SetCVar("UnitNameEnemyPlayerName", 1)
-	SetCVar("UnitNameEnemyTotem", 1)
+	SetCVar('UnitNameEnemyGuardianName', 1)
+	SetCVar('UnitNameEnemyMinionName', 1)
+	SetCVar('UnitNameEnemyPetName', 1)
+	SetCVar('UnitNameEnemyPlayerName', 1)
+	SetCVar('UnitNameEnemyTotem', 1)
 
 	E:Print('NamePlate StyleFilters have been set.')
 end
