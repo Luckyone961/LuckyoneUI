@@ -82,14 +82,6 @@ function L1UI:Configtable()
 						func = function() L1UI:AddonSetupPA(addon); end,
 						confirm = true,
 					},
-					gottagofast = {
-						order = 7,
-						type = 'execute',
-						name = 'GottaGoFast',
-						desc = 'Reset to LuckyoneUI defaults.',
-						func = function() L1UI:AddonSetupGGF(addon); end,
-						confirm = true,
-					},
 				},
 			},
 			links = {

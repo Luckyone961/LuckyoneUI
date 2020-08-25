@@ -74,14 +74,6 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetText('Setup ProjectAzilroka')
 		end,
 		[7] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText('GottaGoFast Profile')
-			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for GottaGoFast.')
-			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
-			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupGGF('addon') end)
-			PluginInstallFrame.Option1:SetText('Setup GottaGoFast')
-		end,
-		[8] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('CVars')
 			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones CVar setup for minor tweaks like\n MaxCameraZoom, ChatStyle and HardwareCursor.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
@@ -89,7 +81,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupCVars() end)
 			PluginInstallFrame.Option1:SetText('Setup CVars')
 		end,
-		[9] = function()
+		[8] = function()
 			PluginInstallFrame.SubTitle:SetText('Installation Complete')
 			PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cHigh|r')
@@ -105,9 +97,8 @@ L1UI.InstallerData = {
 		[4] = 'BigWigs',
 		[5] = 'Details',
 		[6] = 'ProjectAzilroka',
-		[7] = 'GottaGoFast',
-		[8] = 'CVars',
-		[9] = 'Installation Complete',
+		[7] = 'CVars',
+		[8] = 'Installation Complete',
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0, 179/255, 1},

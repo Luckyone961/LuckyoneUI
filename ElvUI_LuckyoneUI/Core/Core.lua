@@ -6,6 +6,7 @@ local IsAddOnLoaded = IsAddOnLoaded
 local SetCVar = SetCVar
 
 function L1UI:AddonSetupBW(addon)
+
 	if IsAddOnLoaded('BigWigs') then
 		L1UI:GetBigWigsProfile()
 		E:Print('BigWigs profile has been set.')
@@ -16,6 +17,7 @@ function L1UI:AddonSetupBW(addon)
 end
 
 function L1UI:AddonSetupDT(addon)
+
 	if IsAddOnLoaded('Details') then
 		L1UI:GetDetailsProfile()
 		E:Print('Details profile has been set.')
@@ -26,22 +28,13 @@ function L1UI:AddonSetupDT(addon)
 end
 
 function L1UI:AddonSetupPA(addon)
+
 	if IsAddOnLoaded('ProjectAzilroka') then
 		L1UI:GetPAProfile()
 		E:Print('ProjectAzilroka profile has been set.')
 	end
 
 	PluginInstallStepComplete.message = 'ProjectAzilroka profile has been set.'
-	PluginInstallStepComplete:Show()
-end
-
-function L1UI:AddonSetupGGF(addon)
-	if IsAddOnLoaded('GottaGoFast') then
-		L1UI:GetGGFProfile()
-		E:Print('GottaGoFast profile has been set.')
-	end
-
-	PluginInstallStepComplete.message = 'GottaGoFast profile has been set.'
 	PluginInstallStepComplete:Show()
 end
 
