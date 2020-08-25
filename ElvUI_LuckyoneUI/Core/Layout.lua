@@ -133,7 +133,6 @@ function L1UI:SetupLayout(layout)
 	E.private["general"]["chatBubbleFont"] = "Expressway"
 	E.private["general"]["dmgfont"] = "Expressway"
 	E.private["general"]["glossTex"] = "Solid"
-	E.private["general"]["loot"] = false
 	E.private["general"]["namefont"] = "Expressway"
 	E.private["general"]["normTex"] = "Solid"
 	E.private["general"]["totemBar"] = false
