@@ -76,6 +76,7 @@ function L1UI:SetupPrivate()
 
 	--Private Shadow&Light
 	if IsAddOnLoaded('ElvUI_SLE') then
+	E.private["sle"]["install_complete"] = "3.77"
 	E.private["sle"]["professions"]["deconButton"]["enable"] = false
 	E.private["sle"]["skins"]["objectiveTracker"]["BGbackdrop"] = false
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
