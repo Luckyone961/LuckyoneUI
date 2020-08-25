@@ -639,6 +639,7 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["alwaysShowRealm"] = true
 	E.db["tooltip"]["colorAlpha"] = 0.8
 	E.db["tooltip"]["font"] = "Expressway"
+	E.db["tooltip"]["headerFontSize"] = 11
 	E.db["tooltip"]["healthBar"]["font"] = "Expressway"
 	E.db["tooltip"]["healthBar"]["fontSize"] = 11
 	E.db["tooltip"]["healthBar"]["height"] = 4
@@ -646,6 +647,8 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["itemCount"] = "BOTH"
 	E.db["tooltip"]["showElvUIUsers"] = true
 	E.db["tooltip"]["showMount"] = false
+	E.db["tooltip"]["smallTextFontSize"] = 11
+	E.db["tooltip"]["textFontSize"] = 11
 	--UnitFrame Custom Texts
 	E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["arena"]["customTexts"]["Luckyone_HP"] = {
