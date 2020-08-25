@@ -9,11 +9,11 @@ Removed: GottaGoFast addon profile
 New option: Reset Nameplate CVars  
 • This button can reset Nameplate CVars to LuckyoneUI defaults  
 **Misc:**  
-Updated Credits  
 Redesigned options  
 Bigwigs profile update  
 Details profile update  
 ProjectAzilroka profile update  
+Updated Credits  
 ___
 ### Version 1.03 [24-07-2020]
 **Changes:**  
