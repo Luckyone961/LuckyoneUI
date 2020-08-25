@@ -1,11 +1,19 @@
 ### Version 1.04 [XX-XX-2020]
+**Required ElvUI Version: 11.50**  
 **Changes:**  
-Updated the LuckyoneUI options layout  
+Completely new UI layout for both DPS/TANK and Healing  
+• There will be a Discord post about the changes  
+Removed: GottaGoFast addon profile  
+• Note: I will no longer use GottaGoFast in Shadowlands  
 **New Additions:**  
 New option: Reset Nameplate CVars  
 • This button can reset Nameplate CVars to LuckyoneUI defaults  
 **Misc:**  
 Updated Credits  
+Redesigned options  
+Bigwigs profile update  
+Details profile update  
+ProjectAzilroka profile update  
 ___
 ### Version 1.03 [24-07-2020]
 **Changes:**  
