@@ -137,7 +137,7 @@ function L1UI:SetupLayout(layout)
 	E.private["general"]["namefont"] = "Expressway"
 	E.private["general"]["normTex"] = "Solid"
 	E.private["general"]["totemBar"] = false
-	E.private["install_complete"] = "11.41"
+	E.private["install_complete"] = "11.49"
 	E.private["skins"]["cleanBossButton"] = true
 	E.private["skins"]["parchmentRemoverEnable"] = true
 

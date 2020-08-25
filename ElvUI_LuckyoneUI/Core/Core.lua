@@ -63,19 +63,19 @@ function L1UI:SetupPrivate()
 	E.private["general"]["namefont"] = "Expressway"
 	E.private["general"]["normTex"] = "Solid"
 	E.private["general"]["totemBar"] = false
-	E.private["install_complete"] = "11.41"
+	E.private["install_complete"] = "11.49"
 	E.private["skins"]["cleanBossButton"] = true
 	E.private["skins"]["parchmentRemoverEnable"] = true
 
 	--Private Shadow&Light
 	if IsAddOnLoaded('ElvUI_SLE') then
-	E.private["sle"]["install_complete"] = "3.77"
-	E.private["sle"]["professions"]["deconButton"]["enable"] = false
-	E.private["sle"]["skins"]["objectiveTracker"]["BGbackdrop"] = false
-	E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
-	E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
-	E.private["sle"]["skins"]["objectiveTracker"]["skinnedTextureLogo"] = "SLE"
-	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Solid"
+		E.private["sle"]["install_complete"] = "3.77"
+		E.private["sle"]["professions"]["deconButton"]["enable"] = false
+		E.private["sle"]["skins"]["objectiveTracker"]["BGbackdrop"] = false
+		E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
+		E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
+		E.private["sle"]["skins"]["objectiveTracker"]["skinnedTextureLogo"] = "SLE"
+		E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Solid"
 	end
 
 	E:StaggeredUpdateAll(nil, true)
