@@ -1356,8 +1356,8 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid"]["name"]["position"] = "LEFT"
 		E.db["unitframe"]["units"]["raid"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["numGroups"] = 6
+		E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["anchorPoint"] = "LEFT"
 		E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["scale"] = 0.5
-		E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["xOffset"] = 20
 		E.db["unitframe"]["units"]["raid"]["power"]["enable"] = false
 		E.db["unitframe"]["units"]["raid"]["raidicon"]["attachTo"] = "RIGHT"
 		E.db["unitframe"]["units"]["raid"]["raidicon"]["attachToObject"] = "Health"
@@ -1972,7 +1972,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 1
 		E.db["unitframe"]["units"]["raid"]["name"]["text_format"] = "[namecolor][name:veryshort]"
 		E.db["unitframe"]["units"]["raid"]["numGroups"] = 6
-		E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["anchorPoint"] = "RIGHT"
+		E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["anchorPoint"] = "LEFT"
 		E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["scale"] = 0.5
 		E.db["unitframe"]["units"]["raid"]["power"]["enable"] = false
 		E.db["unitframe"]["units"]["raid"]["rdebuffs"]["font"] = "Expressway"
