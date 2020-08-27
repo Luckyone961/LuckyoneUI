@@ -316,13 +316,6 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["reputation"]["textSize"] = 9
 	E.db["databars"]["reputation"]["width"] = 12
 	--DataTexts
-	E.db["datatexts"]["battleground"] = false
-	E.db["datatexts"]["currencies"]["displayedCurrency"] = "GOLD"
-	E.db["datatexts"]["font"] = "Expressway"
-	E.db["datatexts"]["friends"]["hideApp"] = true
-	E.db["datatexts"]["friends"]["hideBSAp"] = true
-	E.db["datatexts"]["goldCoins"] = true
-	E.db["datatexts"]["goldFormat"] = "SMART"
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] = false
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "System"

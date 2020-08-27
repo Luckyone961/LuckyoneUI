@@ -1,3 +1,7 @@
+### Version 1.05 [XX-XX-2020]
+**Misc:**  
+Removed old (unused) DataTexts  
+___
 ### Version 1.04 [27-08-2020]
 **Required ElvUI Version: 11.50**  
 **Changes:**  
