@@ -1056,7 +1056,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["colors"]["health"]["b"] = 0.058823529411765
 		E.db["unitframe"]["colors"]["health"]["g"] = 0.058823529411765
 		E.db["unitframe"]["colors"]["health"]["r"] = 0.058823529411765
-		E.db["unitframe"]["colors"]["healthMultiplier"] = 1
+		E.db["unitframe"]["colors"]["healthMultiplier"] = 0.75
 		E.db["unitframe"]["colors"]["power_backdrop"]["b"] = 0.50196078431373
 		E.db["unitframe"]["colors"]["power_backdrop"]["g"] = 0.50196078431373
 		E.db["unitframe"]["colors"]["power_backdrop"]["r"] = 0.50196078431373
@@ -1591,7 +1591,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["colors"]["health"]["b"] = 0.058823529411765
 		E.db["unitframe"]["colors"]["health"]["g"] = 0.058823529411765
 		E.db["unitframe"]["colors"]["health"]["r"] = 0.058823529411765
-		E.db["unitframe"]["colors"]["healthMultiplier"] = 1
+		E.db["unitframe"]["colors"]["healthMultiplier"] = 0.75
 		E.db["unitframe"]["colors"]["power_backdrop"]["b"] = 0.50196078431373
 		E.db["unitframe"]["colors"]["power_backdrop"]["g"] = 0.50196078431373
 		E.db["unitframe"]["colors"]["power_backdrop"]["r"] = 0.50196078431373
