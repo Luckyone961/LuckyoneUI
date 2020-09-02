@@ -66,6 +66,14 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetText('Setup Details')
 		end,
 		[6] = function()
+			PluginInstallFrame.SubTitle:SetFormattedText('OmniCD Profile')
+			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for OmniCD Party CDs.')
+			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupOCD('addon') end)
+			PluginInstallFrame.Option1:SetText('Setup Party CDs')
+		end,
+		[7] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('ProjectAzilroka Profile')
 			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for ProjectAzilroka.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
@@ -73,7 +81,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupPA('addon') end)
 			PluginInstallFrame.Option1:SetText('Setup ProjectAzilroka')
 		end,
-		[7] = function()
+		[8] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('CVars')
 			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones CVar setup for minor tweaks like\n MaxCameraZoom, ChatStyle and HardwareCursor.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
@@ -81,7 +89,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupCVars() end)
 			PluginInstallFrame.Option1:SetText('Setup CVars')
 		end,
-		[8] = function()
+		[9] = function()
 			PluginInstallFrame.SubTitle:SetText('Installation Complete')
 			PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cHigh|r')
@@ -96,9 +104,10 @@ L1UI.InstallerData = {
 		[3] = 'Style Filters',
 		[4] = 'BigWigs',
 		[5] = 'Details',
-		[6] = 'ProjectAzilroka',
-		[7] = 'CVars',
-		[8] = 'Installation Complete',
+		[6] = 'OmniCD',
+		[7] = 'ProjectAzilroka',
+		[8] = 'CVars',
+		[9] = 'Installation Complete',
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0, 179/255, 1},

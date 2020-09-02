@@ -27,6 +27,17 @@ function L1UI:AddonSetupDT(addon)
 	PluginInstallStepComplete:Show()
 end
 
+function L1UI:AddonSetupOCD(addon)
+
+	if IsAddOnLoaded('OmniCD') then
+		L1UI:GetOmniCDProfile()
+		E:Print('OmniCD profile has been set.')
+	end
+
+	PluginInstallStepComplete.message = 'OmniCD profile has been set.'
+	PluginInstallStepComplete:Show()
+end
+
 function L1UI:AddonSetupPA(addon)
 
 	if IsAddOnLoaded('ProjectAzilroka') then
