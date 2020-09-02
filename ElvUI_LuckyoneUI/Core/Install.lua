@@ -1,6 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
-local MyPluginName = 'LuckyoneUI'
-local L1UI = E:GetModule('LuckyoneUI');
+local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local ReloadUI = ReloadUI
 local StopMusic = StopMusic
@@ -12,14 +10,14 @@ local function InstallComplete()
 		StopMusic()
 	end
 
-	E.db[MyPluginName].install_version = L1UI.Version
+	E.db.L1UI.install_version = L1UI.Version
 
 	ReloadUI()
 end
 
 L1UI.InstallerData = {
-	Title = format('|cff4beb2c%s %s|r', MyPluginName, 'Installation'),
-	Name = MyPluginName,
+	Title = format('|cff4beb2c%s %s|r', L1UI.Name, 'Installation'),
+	Name = L1UI.Name,
 	tutorialImage = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga',
 	Pages = {
 		[1] = function()

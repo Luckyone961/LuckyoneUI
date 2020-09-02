@@ -1,5 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
-local L1UI = E:GetModule('LuckyoneUI');
+local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local _G = _G
 

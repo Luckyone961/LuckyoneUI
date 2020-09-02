@@ -1,6 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
-local MyPluginName = 'LuckyoneUI'
-local L1UI = E:GetModule('LuckyoneUI');
+local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local IsAddOnLoaded = IsAddOnLoaded
 local SetCVar = SetCVar
