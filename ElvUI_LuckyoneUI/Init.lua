@@ -14,18 +14,16 @@ _G[addon] = Engine
 
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 L1UI.Config = {}
-L1UI.Name = "LuckyoneUI"
+L1UI.Name = 'LuckyoneUI'
 
 function L1UI:Initialize()
 	if E.private.install_complete and E.db.L1UI.install_version == nil then
 		E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData)
 	end
 
-	--Insert L1UI Config
 	EP:RegisterPlugin(addon, L1UI.Configtable)
 end
 
---Called by ElvUI automatically when it is ready to initialize modules
 local function CallbackInitialize()
 	L1UI:Initialize()
 end

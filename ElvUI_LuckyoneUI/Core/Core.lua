@@ -10,8 +10,6 @@ function L1UI:AddonSetupBW(addon)
 		E:Print('BigWigs profile has been set.')
 	end
 
-	PluginInstallStepComplete.message = 'BigWigs profile has been set.'
-	PluginInstallStepComplete:Show()
 end
 
 function L1UI:AddonSetupDT(addon)
@@ -21,8 +19,6 @@ function L1UI:AddonSetupDT(addon)
 		E:Print('Details profile has been set.')
 	end
 
-	PluginInstallStepComplete.message = 'Details profile has been set.'
-	PluginInstallStepComplete:Show()
 end
 
 function L1UI:AddonSetupOCD(addon)
@@ -32,8 +28,6 @@ function L1UI:AddonSetupOCD(addon)
 		E:Print('OmniCD profile has been set.')
 	end
 
-	PluginInstallStepComplete.message = 'OmniCD profile has been set.'
-	PluginInstallStepComplete:Show()
 end
 
 function L1UI:AddonSetupPA(addon)
@@ -43,8 +37,6 @@ function L1UI:AddonSetupPA(addon)
 		E:Print('ProjectAzilroka profile has been set.')
 	end
 
-	PluginInstallStepComplete.message = 'ProjectAzilroka profile has been set.'
-	PluginInstallStepComplete:Show()
 end
 
 function L1UI:SetupCVars()
@@ -56,10 +48,7 @@ function L1UI:SetupCVars()
 	SetCVar('rawMouseEnable', 1)
 	SetCVar('SpellQueueWindow', 50)
 
-	--Chat print & Complete message
 	E:Print('CVars have been set.')
-	PluginInstallStepComplete.message = 'CVars have been set.'
-	PluginInstallStepComplete:Show()
 end
 
 function L1UI:SetupPrivate()
@@ -87,9 +76,6 @@ function L1UI:SetupPrivate()
 	end
 
 	E:StaggeredUpdateAll(nil, true)
-
-	PluginInstallStepComplete.message = 'Fonts and Textures have been set.'
-	PluginInstallStepComplete:Show()
 
 	E:Print('Note: Fonts do not change until you restart WoW.')
 end
