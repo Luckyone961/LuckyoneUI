@@ -2,11 +2,9 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local format = string.format
 
-if E.db.luckyoneui == nil then E.db.luckyoneui = {} end
-
 function L1UI:Configtable()
 
-	E.Options.args.luckyoneui = {
+	E.Options.args.L1UI = {
 		order = 100,
 		type = 'group',
 		name = format('|cff4beb2c%s|r', L1UI.Name),
