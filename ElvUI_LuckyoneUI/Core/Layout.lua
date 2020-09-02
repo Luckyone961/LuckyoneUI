@@ -2072,5 +2072,5 @@ function L1UI:SetupLayout(layout)
 
 	E:StaggeredUpdateAll(nil, true)
 
-	L1UI:Print('Layout has been set')
+	L1UI:Print('Layout has been set.')
 end
