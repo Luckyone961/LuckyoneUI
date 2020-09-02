@@ -100,14 +100,14 @@ function L1UI:Configtable()
 						type = 'input',
 						width = 'full',
 						name = 'Changelog:',
-						get = function() return 'https://git.tukui.org/Luckyone/ElvUI_LuckyoneUI/-/blob/master/CHANGELOG.md' end,
+						get = function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/blob/master/CHANGELOG.md' end,
 					},
 					issues = {
 						order = 2,
 						type = 'input',
 						width = 'full',
 						name = 'Report issues here:',
-						get = function() return 'https://git.tukui.org/Luckyone/ElvUI_LuckyoneUI/-/issues' end,
+						get = function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/issues' end,
 					},
 					website = {
 						order = 3,
