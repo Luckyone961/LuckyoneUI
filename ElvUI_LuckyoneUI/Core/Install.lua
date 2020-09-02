@@ -36,7 +36,7 @@ L1UI.InstallerData = {
 		end,
 		[3] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('Style Filters')
-			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones NamePlate Style Filters\n All 12 BfA dungeons are supported.')
+			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones NamePlate Style Filters.\n All 12 BfA dungeons are supported.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupStyleFilters() end)
@@ -76,7 +76,7 @@ L1UI.InstallerData = {
 		end,
 		[8] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('CVars')
-			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones CVar setup for minor tweaks like\n MaxCameraZoom, ChatStyle and HardwareCursor.')
+			PluginInstallFrame.Desc1:SetText('This will apply the following CVar values:\n\ncameraDistanceMaxZoomFactor 2.6\nadvancedCombatLogging 1\nSpellQueueWindow 50\nrawMouseEnable 1\nffxDeath 0')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupCVars() end)
