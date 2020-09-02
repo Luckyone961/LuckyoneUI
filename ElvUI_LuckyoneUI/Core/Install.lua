@@ -6,12 +6,7 @@ local format = string.format
 local GetCVarBool = GetCVarBool
 
 local function InstallComplete()
-	if GetCVarBool('Sound_EnableMusic') then
-		StopMusic()
-	end
-
 	E.db.L1UI.install_version = L1UI.Version
-
 	ReloadUI()
 end
 

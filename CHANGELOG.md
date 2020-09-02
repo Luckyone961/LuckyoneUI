@@ -1,4 +1,11 @@
-### Version 1.05 [XX-XX-2020]
+### Version 1.05 [XX-09-2020]
+**Required ElvUI Version: 11.51**  
+**Changes:**  
+Changed health backdrop alpha from 1 to 0.75  
+**New Additions:**  
+New installer step: OmniCD  
+• This step will apply my AddOn profile for OmniCD (optional)  
+• OmniCD is a lightweight AddOn replacement for the ZT Party CDs WeakAura  
 **Misc:**  
 Removed old (unused) DataTexts  
 ___

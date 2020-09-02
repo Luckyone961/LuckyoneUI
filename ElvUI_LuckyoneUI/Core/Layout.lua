@@ -2072,6 +2072,5 @@ function L1UI:SetupLayout(layout)
 
 	E:StaggeredUpdateAll(nil, true)
 
-	PluginInstallStepComplete.message = '|cff4beb2cLuckyoneUI|r Layout has been set'
-	PluginInstallStepComplete:Show()
+	L1UI:Print('Layout has been set')
 end
