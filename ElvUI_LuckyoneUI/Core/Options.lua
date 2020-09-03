@@ -40,24 +40,31 @@ function L1UI:Configtable()
 					private = {
 						order = 4,
 						type = 'execute',
-						name = 'Media Defaults',
-						desc = 'This will setup Fonts, Textures and Skins.',
+						name = 'Reset Media',
+						desc = 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.',
 						func = function() L1UI:SetupPrivate(); end,
 					},
-					npreset = {
+					cvars = {
 						order = 5,
 						type = 'execute',
-						name = 'Nameplate CVars',
-						desc = 'This will reset Nameplate CVars to default.',
+						name = 'Reset CVars',
+						desc = 'Reset CVars to LuckyoneUI defaults.',
+						func = function() L1UI:SetupCVars(); end,
+					},
+					npreset = {
+						order = 6,
+						type = 'execute',
+						name = 'Reset Nameplate CVars',
+						desc = 'Reset Nameplate CVars to LuckyoneUI defaults.',
 						func = function() L1UI:NameplateReset(); end,
 					},
 					header3 = {
-						order = 6,
+						order = 7,
 						type = 'header',
 						name = 'Addon Profiles',
 					},
 					bigwigs = {
-						order = 7,
+						order = 8,
 						type = 'execute',
 						name = 'BigWigs',
 						desc = 'Reset to LuckyoneUI defaults.',
@@ -65,7 +72,7 @@ function L1UI:Configtable()
 						confirm = true,
 					},
 					details = {
-						order = 8,
+						order = 9,
 						type = 'execute',
 						name = 'Details! Damage Meter',
 						desc = 'Reset to LuckyoneUI defaults.',
@@ -73,7 +80,7 @@ function L1UI:Configtable()
 						confirm = true,
 					},
 					omnicd = {
-						order = 9,
+						order = 10,
 						type = 'execute',
 						name = 'OmniCD Party CDs',
 						desc = 'Reset to LuckyoneUI defaults.',
@@ -81,7 +88,7 @@ function L1UI:Configtable()
 						confirm = true,
 					},
 					projectazilroka = {
-						order = 10,
+						order = 11,
 						type = 'execute',
 						name = 'ProjectAzilroka',
 						desc = 'Reset to LuckyoneUI defaults.',

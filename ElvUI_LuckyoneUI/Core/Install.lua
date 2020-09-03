@@ -1,9 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local ReloadUI = ReloadUI
-local StopMusic = StopMusic
 local format = string.format
-local GetCVarBool = GetCVarBool
 
 local function InstallComplete()
 	E.db.L1UI.install_version = L1UI.Version
