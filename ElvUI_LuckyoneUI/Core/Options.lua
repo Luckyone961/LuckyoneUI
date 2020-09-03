@@ -43,6 +43,7 @@ function L1UI:Configtable()
 						name = 'Reset Media',
 						desc = 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.',
 						func = function() L1UI:SetupPrivate(); end,
+						confirm = true,
 					},
 					cvars = {
 						order = 5,
@@ -50,6 +51,7 @@ function L1UI:Configtable()
 						name = 'Reset CVars',
 						desc = 'Reset CVars to LuckyoneUI defaults.',
 						func = function() L1UI:SetupCVars(); end,
+						confirm = true,
 					},
 					npreset = {
 						order = 6,
@@ -57,6 +59,7 @@ function L1UI:Configtable()
 						name = 'Reset Nameplate CVars',
 						desc = 'Reset Nameplate CVars to LuckyoneUI defaults.',
 						func = function() L1UI:NameplateReset(); end,
+						confirm = true,
 					},
 					header3 = {
 						order = 7,
