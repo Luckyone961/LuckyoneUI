@@ -6,8 +6,13 @@ Changed health backdrop alpha from 1 to 0.75
 New installer step: OmniCD  
 • This step will apply my AddOn profile for OmniCD (optional)  
 • OmniCD is a lightweight AddOn replacement for the ZT Party CDs WeakAura  
+New option: Reset CVars  
+• This button can reset CVars to LuckyoneUI defaults  
+• I also added a list of all changed CVars in the installer  
 **Misc:**  
 Removed old (unused) DataTexts  
+Added confirms for all options  
+Updated git links  
 ___
 ### Version 1.04 [27-08-2020]
 **Required ElvUI Version: 11.50**  
