@@ -2,6 +2,8 @@
 **Required ElvUI Version: 11.52**  
 **Changes:**  
 Changed health backdrop alpha from 1 to 0.75  
+Changed text format from name:abbrev to name:last  
+Increased the information panel height by 1px (font was overlapping the border)  
 **New Additions:**  
 New installer step: OmniCD  
 • This step will apply my AddOn profile for OmniCD (optional)  
