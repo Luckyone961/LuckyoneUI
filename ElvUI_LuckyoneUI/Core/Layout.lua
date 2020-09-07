@@ -1182,7 +1182,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["focus"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["focus"]["height"] = 30
 		E.db["unitframe"]["units"]["focus"]["infoPanel"]["enable"] = true
-		E.db["unitframe"]["units"]["focus"]["infoPanel"]["height"] = 16
+		E.db["unitframe"]["units"]["focus"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["focus"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["focus"]["name"]["position"] = "TOPLEFT"
 		E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = ""
@@ -1207,7 +1207,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["focustarget"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["focustarget"]["height"] = 30
 		E.db["unitframe"]["units"]["focustarget"]["infoPanel"]["enable"] = true
-		E.db["unitframe"]["units"]["focustarget"]["infoPanel"]["height"] = 16
+		E.db["unitframe"]["units"]["focustarget"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["focustarget"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["focustarget"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["focustarget"]["portrait"]["overlay"] = true
@@ -1234,7 +1234,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["party"]["health"]["yOffset"] = 2
 		E.db["unitframe"]["units"]["party"]["height"] = 40
 		E.db["unitframe"]["units"]["party"]["horizontalSpacing"] = 1
-		E.db["unitframe"]["units"]["party"]["infoPanel"]["height"] = 12
+		E.db["unitframe"]["units"]["party"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["party"]["name"]["attachTextTo"] = "Frame"
 		E.db["unitframe"]["units"]["party"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["party"]["orientation"] = "MIDDLE"
@@ -1278,7 +1278,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["pet"]["height"] = 30
 		E.db["unitframe"]["units"]["pet"]["infoPanel"]["enable"] = true
-		E.db["unitframe"]["units"]["pet"]["infoPanel"]["height"] = 16
+		E.db["unitframe"]["units"]["pet"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["pet"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["pet"]["portrait"]["overlay"] = true
@@ -1311,7 +1311,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["player"]["height"] = 30
 		E.db["unitframe"]["units"]["player"]["infoPanel"]["enable"] = true
-		E.db["unitframe"]["units"]["player"]["infoPanel"]["height"] = 16
+		E.db["unitframe"]["units"]["player"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["player"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["player"]["name"]["position"] = "TOPRIGHT"
 		E.db["unitframe"]["units"]["player"]["name"]["yOffset"] = 20
@@ -1438,7 +1438,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["target"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["target"]["height"] = 30
 		E.db["unitframe"]["units"]["target"]["infoPanel"]["enable"] = true
-		E.db["unitframe"]["units"]["target"]["infoPanel"]["height"] = 16
+		E.db["unitframe"]["units"]["target"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["target"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["target"]["middleClickFocus"] = false
 		E.db["unitframe"]["units"]["target"]["name"]["position"] = "TOPLEFT"
@@ -1464,7 +1464,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["targettarget"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["targettarget"]["height"] = 30
 		E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["enable"] = true
-		E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["height"] = 16
+		E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["targettarget"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["targettarget"]["portrait"]["overlay"] = true
@@ -1772,7 +1772,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["focus"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["focus"]["height"] = 30
 		E.db["unitframe"]["units"]["focus"]["infoPanel"]["enable"] = true
-		E.db["unitframe"]["units"]["focus"]["infoPanel"]["height"] = 16
+		E.db["unitframe"]["units"]["focus"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["focus"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["focus"]["name"]["position"] = "TOPLEFT"
 		E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = ""
@@ -1797,7 +1797,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["focustarget"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["focustarget"]["height"] = 30
 		E.db["unitframe"]["units"]["focustarget"]["infoPanel"]["enable"] = true
-		E.db["unitframe"]["units"]["focustarget"]["infoPanel"]["height"] = 16
+		E.db["unitframe"]["units"]["focustarget"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["focustarget"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["focustarget"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["focustarget"]["portrait"]["overlay"] = true
@@ -1833,7 +1833,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["party"]["health"]["yOffset"] = 2
 		E.db["unitframe"]["units"]["party"]["height"] = 40
 		E.db["unitframe"]["units"]["party"]["horizontalSpacing"] = 1
-		E.db["unitframe"]["units"]["party"]["infoPanel"]["height"] = 12
+		E.db["unitframe"]["units"]["party"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["party"]["name"]["attachTextTo"] = "Frame"
 		E.db["unitframe"]["units"]["party"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["party"]["orientation"] = "MIDDLE"
@@ -1895,7 +1895,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["pet"]["height"] = 30
 		E.db["unitframe"]["units"]["pet"]["infoPanel"]["enable"] = true
-		E.db["unitframe"]["units"]["pet"]["infoPanel"]["height"] = 16
+		E.db["unitframe"]["units"]["pet"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["pet"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["pet"]["portrait"]["overlay"] = true
@@ -1928,7 +1928,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["player"]["height"] = 30
 		E.db["unitframe"]["units"]["player"]["infoPanel"]["enable"] = true
-		E.db["unitframe"]["units"]["player"]["infoPanel"]["height"] = 16
+		E.db["unitframe"]["units"]["player"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["player"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["player"]["name"]["position"] = "TOPRIGHT"
 		E.db["unitframe"]["units"]["player"]["name"]["yOffset"] = 20
@@ -2033,7 +2033,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["target"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["target"]["height"] = 30
 		E.db["unitframe"]["units"]["target"]["infoPanel"]["enable"] = true
-		E.db["unitframe"]["units"]["target"]["infoPanel"]["height"] = 16
+		E.db["unitframe"]["units"]["target"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["target"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["target"]["middleClickFocus"] = false
 		E.db["unitframe"]["units"]["target"]["name"]["position"] = "TOPLEFT"
@@ -2059,7 +2059,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["targettarget"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["targettarget"]["height"] = 30
 		E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["enable"] = true
-		E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["height"] = 16
+		E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["targettarget"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["targettarget"]["portrait"]["overlay"] = true
