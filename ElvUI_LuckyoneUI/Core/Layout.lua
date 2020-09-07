@@ -696,7 +696,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[namecolor][name:medium]",
+		["text_format"] = "[namecolor][name:last]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -741,7 +741,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "LEFT",
 		["size"] = 12,
-		["text_format"] = "[namecolor][name:veryshort]",
+		["text_format"] = "[namecolor][name:last]",
 		["xOffset"] = 2,
 		["yOffset"] = 1
 	}
@@ -775,7 +775,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 12,
-		["text_format"] = "[namecolor][name:veryshort]",
+		["text_format"] = "[namecolor][name:last]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -844,7 +844,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "LEFT",
 		["size"] = 12,
-		["text_format"] = "[namecolor][name:veryshort]",
+		["text_format"] = "[namecolor][name:last]",
 		["xOffset"] = 2,
 		["yOffset"] = 1
 	}
@@ -901,7 +901,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "LEFT",
 		["size"] = 12,
-		["text_format"] = "[namecolor][name:veryshort]",
+		["text_format"] = "[namecolor][name:last]",
 		["xOffset"] = 2,
 		["yOffset"] = 1
 	}
@@ -935,7 +935,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 12,
-		["text_format"] = "[namecolor][name:veryshort]",
+		["text_format"] = "[namecolor][name:last]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -1717,7 +1717,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Name"]["fontOutline"] = "OUTLINE"
 		E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Name"]["justifyH"] = "CENTER"
 		E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Name"]["size"] = 14
-		E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Name"]["text_format"] = "[namecolor][name:medium]"
+		E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Name"]["text_format"] = "[namecolor][name:last]"
 		E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Name"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Name"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Power"]["attachTextTo"] = "Health"
