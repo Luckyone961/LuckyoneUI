@@ -732,7 +732,7 @@ function L1UI:SetupLayout(layout)
 		["size"] = 12,
 		["text_format"] = "[namecolor][level][classificationcolor][ >classification]",
 		["xOffset"] = 0,
-		["yOffset"] = 0
+		["yOffset"] = 1
 	}
 	E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Name"] = {
 		["attachTextTo"] = "InfoPanel",
@@ -743,7 +743,7 @@ function L1UI:SetupLayout(layout)
 		["size"] = 12,
 		["text_format"] = "[namecolor][name:veryshort]",
 		["xOffset"] = 2,
-		["yOffset"] = 0
+		["yOffset"] = 1
 	}
 	E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Power"] = {
 		["attachTextTo"] = "InfoPanel",
@@ -754,7 +754,7 @@ function L1UI:SetupLayout(layout)
 		["size"] = 12,
 		["text_format"] = "[powercolor][perpp<%]",
 		["xOffset"] = 0,
-		["yOffset"] = 0
+		["yOffset"] = 1
 	}
 	E.db["unitframe"]["units"]["focustarget"]["customTexts"] = E.db["unitframe"]["units"]["focustarget"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["focustarget"]["customTexts"]["Luckyone_HP"] = {
@@ -777,7 +777,7 @@ function L1UI:SetupLayout(layout)
 		["size"] = 12,
 		["text_format"] = "[namecolor][name:veryshort]",
 		["xOffset"] = 0,
-		["yOffset"] = 0
+		["yOffset"] = 1
 	}
 	E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["party"]["customTexts"]["Luckyone_Name"] = {
@@ -812,7 +812,7 @@ function L1UI:SetupLayout(layout)
 		["size"] = 12,
 		["text_format"] = "[namecolor]Pet",
 		["xOffset"] = 0,
-		["yOffset"] = 0
+		["yOffset"] = 1
 	}
 	E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_HP"] = {
@@ -835,7 +835,7 @@ function L1UI:SetupLayout(layout)
 		["size"] = 12,
 		["text_format"] = "[namecolor][level]",
 		["xOffset"] = 0,
-		["yOffset"] = 0
+		["yOffset"] = 1
 	}
 	E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Name"] = {
 		["attachTextTo"] = "InfoPanel",
@@ -846,7 +846,7 @@ function L1UI:SetupLayout(layout)
 		["size"] = 12,
 		["text_format"] = "[namecolor][name:veryshort]",
 		["xOffset"] = 2,
-		["yOffset"] = 0
+		["yOffset"] = 1
 	}
 	E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Power"] = {
 		["attachTextTo"] = "InfoPanel",
@@ -857,7 +857,7 @@ function L1UI:SetupLayout(layout)
 		["size"] = 12,
 		["text_format"] = "[powercolor][perpp<%]",
 		["xOffset"] = 0,
-		["yOffset"] = 0
+		["yOffset"] = 1
 	}
 	E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["Luckyone_Name"] = {
@@ -892,7 +892,7 @@ function L1UI:SetupLayout(layout)
 		["size"] = 12,
 		["text_format"] = "[namecolor][level][classificationcolor][ >classification]",
 		["xOffset"] = 0,
-		["yOffset"] = 0
+		["yOffset"] = 1
 	}
 	E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Name"] = {
 		["attachTextTo"] = "InfoPanel",
@@ -903,7 +903,7 @@ function L1UI:SetupLayout(layout)
 		["size"] = 12,
 		["text_format"] = "[namecolor][name:veryshort]",
 		["xOffset"] = 2,
-		["yOffset"] = 0
+		["yOffset"] = 1
 	}
 	E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Power"] = {
 		["attachTextTo"] = "InfoPanel",
@@ -914,7 +914,7 @@ function L1UI:SetupLayout(layout)
 		["size"] = 12,
 		["text_format"] = "[powercolor][perpp<%]",
 		["xOffset"] = 0,
-		["yOffset"] = 0
+		["yOffset"] = 1
 	}
 	E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Luckyone_HP"] = {
@@ -937,7 +937,7 @@ function L1UI:SetupLayout(layout)
 		["size"] = 12,
 		["text_format"] = "[namecolor][name:veryshort]",
 		["xOffset"] = 0,
-		["yOffset"] = 0
+		["yOffset"] = 1
 	}
 
 	if layout == 'dps' then
