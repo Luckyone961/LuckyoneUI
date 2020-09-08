@@ -844,7 +844,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "LEFT",
 		["size"] = 12,
-		["text_format"] = "[namecolor][name:last]",
+		["text_format"] = "[namecolor][name:veryshort]",
 		["xOffset"] = 2,
 		["yOffset"] = 1
 	}
