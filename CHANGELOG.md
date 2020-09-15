@@ -4,6 +4,7 @@
 Changed health backdrop alpha from 1 to 0.75  
 Changed text format from name:abbrev to name:last  
 Fixed some pixel issues on Enemy NPC NamePlates (castbar icon/offset)  
+Improved Boss Frames Buffs and Debuffs (3 per row | 2 rows | 6 total)  
 Increased the information panel height by 1px (font was overlapping the border)  
 **New Additions:**  
 New installer step: OmniCD  
