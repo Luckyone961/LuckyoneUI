@@ -1448,7 +1448,9 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["target"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["target"]["name"]["yOffset"] = 20
 		E.db["unitframe"]["units"]["target"]["orientation"] = "LEFT"
+		E.db["unitframe"]["units"]["target"]["phaseIndicator"]["anchorPoint"] = "LEFT"
 		E.db["unitframe"]["units"]["target"]["phaseIndicator"]["scale"] = 0.5
+		E.db["unitframe"]["units"]["target"]["phaseIndicator"]["xOffset"] = 5
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] = true
 		E.db["unitframe"]["units"]["target"]["power"]["detachedWidth"] = 189
 		E.db["unitframe"]["units"]["target"]["power"]["height"] = 6
@@ -1956,7 +1958,9 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["target"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["target"]["name"]["yOffset"] = 20
 		E.db["unitframe"]["units"]["target"]["orientation"] = "LEFT"
+		E.db["unitframe"]["units"]["target"]["phaseIndicator"]["anchorPoint"] = "LEFT"
 		E.db["unitframe"]["units"]["target"]["phaseIndicator"]["scale"] = 0.5
+		E.db["unitframe"]["units"]["target"]["phaseIndicator"]["xOffset"] = 5
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] = true
 		E.db["unitframe"]["units"]["target"]["power"]["detachedWidth"] = 189
 		E.db["unitframe"]["units"]["target"]["power"]["height"] = 6
