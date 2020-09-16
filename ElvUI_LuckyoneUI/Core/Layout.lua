@@ -381,9 +381,6 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["smoothingAmount"] = 0.75
 	E.db["general"]["talkingHeadFrameBackdrop"] = true
 	E.db["general"]["talkingHeadFrameScale"] = 0.73
-	E.db["general"]["threat"]["enable"] = false
-	E.db["general"]["threat"]["textOutline"] = "OUTLINE"
-	E.db["general"]["threat"]["textSize"] = 11
 	E.db["general"]["totems"]["enable"] = false
 	E.db["general"]["valuecolor"]["b"] = 0.039215601980686
 	E.db["general"]["valuecolor"]["g"] = 0.48627343773842
