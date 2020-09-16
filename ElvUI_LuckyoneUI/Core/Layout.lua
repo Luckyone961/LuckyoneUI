@@ -647,7 +647,7 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["smallTextFontSize"] = 11
 	E.db["tooltip"]["textFontSize"] = 11
 
-	--UnitFrame Custom Texts
+	--Custom Text: Arena
 	E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["arena"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -682,6 +682,8 @@ function L1UI:SetupLayout(layout)
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
+
+	--Custom Text: Boss
 	E.db["unitframe"]["units"]["boss"]["customTexts"] = E.db["unitframe"]["units"]["boss"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -716,6 +718,8 @@ function L1UI:SetupLayout(layout)
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
+
+	--Custom Text: Focus
 	E.db["unitframe"]["units"]["focus"]["customTexts"] = E.db["unitframe"]["units"]["focus"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -761,6 +765,8 @@ function L1UI:SetupLayout(layout)
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
+
+	--Custom Text: Focus Target
 	E.db["unitframe"]["units"]["focustarget"]["customTexts"] = E.db["unitframe"]["units"]["focustarget"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["focustarget"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -784,6 +790,8 @@ function L1UI:SetupLayout(layout)
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
+
+	--Custom Text: Party
 	E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["party"]["customTexts"]["Luckyone_Name"] = {
 		["attachTextTo"] = "Health",
@@ -796,6 +804,8 @@ function L1UI:SetupLayout(layout)
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
+
+	--Custom Text: Pet
 	E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["pet"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -819,6 +829,8 @@ function L1UI:SetupLayout(layout)
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
+
+	--Custom Text: Player
 	E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -864,6 +876,8 @@ function L1UI:SetupLayout(layout)
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
+
+	--Custom Text: Raid
 	E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["Luckyone_Name"] = {
 		["attachTextTo"] = "Health",
@@ -876,6 +890,8 @@ function L1UI:SetupLayout(layout)
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
+
+	--Custom Text: Target
 	E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -921,6 +937,8 @@ function L1UI:SetupLayout(layout)
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
+
+	--Custom Text: TargetTarget
 	E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",

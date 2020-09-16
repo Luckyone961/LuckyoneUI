@@ -1,109 +1,180 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
-
-local format = string.format
+local ACH = E.Libs.ACH
 
 function L1UI:Configtable()
 
 	E.Options.args.L1UI = {
 		order = 100,
 		type = 'group',
-		name = format('|cff4beb2c%s|r', L1UI.Name),
+		name = L1UI.Name,
 		childGroups = 'tab',
 		args = {
 			header1 = {
 				order = 1,
 				type = 'header',
-				name = '|cff4beb2cLuckyoneUI|r',
+				name = L1UI.Name.." "..L1UI.Version,
 			},
 			general = {
 				type = 'group',
 				name = 'General',
 				order = 1,
 				args = {
-					header1 = {
+					installer = {
 						order = 1,
-						type = 'header',
+						type = 'group',
+						inline = true,
 						name = 'Installer',
+						args = {
+							install = {
+								order = 2,
+								type = 'execute',
+								name = 'Install',
+								desc = 'Run the installation process.',
+								func = function() E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData); E:ToggleOptionsUI(); end,
+							},
+						},
 					},
-					install = {
-						order = 2,
-						type = 'execute',
-						name = 'Install',
-						desc = 'Run the installation process.',
-						func = function() E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData); E:ToggleOptionsUI(); end,
-					},
-					header2 = {
+					defaults = {
 						order = 3,
-						type = 'header',
+						type = 'group',
+						inline = true,
 						name = 'Defaults',
+						args = {
+							private = {
+								order = 4,
+								type = 'execute',
+								name = 'Reset Media',
+								desc = 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.',
+								func = function() L1UI:SetupPrivate(); end,
+								confirm = true,
+							},
+							cvars = {
+								order = 5,
+								type = 'execute',
+								name = 'Reset CVars',
+								desc = 'Reset CVars to LuckyoneUI defaults.',
+								func = function() L1UI:SetupCVars(); end,
+								confirm = true,
+							},
+							npreset = {
+								order = 6,
+								type = 'execute',
+								name = 'Reset Nameplate CVars',
+								desc = 'Reset Nameplate CVars to LuckyoneUI defaults.',
+								func = function() L1UI:NameplateReset(); end,
+								confirm = true,
+							},
+						},
 					},
-					private = {
-						order = 4,
-						type = 'execute',
-						name = 'Reset Media',
-						desc = 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.',
-						func = function() L1UI:SetupPrivate(); end,
-						confirm = true,
-					},
-					cvars = {
-						order = 5,
-						type = 'execute',
-						name = 'Reset CVars',
-						desc = 'Reset CVars to LuckyoneUI defaults.',
-						func = function() L1UI:SetupCVars(); end,
-						confirm = true,
-					},
-					npreset = {
-						order = 6,
-						type = 'execute',
-						name = 'Reset Nameplate CVars',
-						desc = 'Reset Nameplate CVars to LuckyoneUI defaults.',
-						func = function() L1UI:NameplateReset(); end,
-						confirm = true,
-					},
-					header3 = {
+					addons = {
 						order = 7,
-						type = 'header',
+						type = 'group',
+						inline = true,
 						name = 'Addon Profiles',
+						args = {
+							bigwigs = {
+								order = 8,
+								type = 'execute',
+								name = 'BigWigs',
+								desc = 'Reset to LuckyoneUI defaults.',
+								func = function() L1UI:AddonSetupBW(addon); end,
+								confirm = true,
+							},
+							details = {
+								order = 9,
+								type = 'execute',
+								name = 'Details! Damage Meter',
+								desc = 'Reset to LuckyoneUI defaults.',
+								func = function() L1UI:AddonSetupDT(addon); end,
+								confirm = true,
+							},
+							omnicd = {
+								order = 10,
+								type = 'execute',
+								name = 'OmniCD Party CDs',
+								desc = 'Reset to LuckyoneUI defaults.',
+								func = function() L1UI:AddonSetupOCD(addon); end,
+								confirm = true,
+							},
+							projectazilroka = {
+								order = 11,
+								type = 'execute',
+								name = 'ProjectAzilroka',
+								desc = 'Reset to LuckyoneUI defaults.',
+								func = function() L1UI:AddonSetupPA(addon); end,
+								confirm = true,
+							},
+						},
 					},
-					bigwigs = {
-						order = 8,
-						type = 'execute',
-						name = 'BigWigs',
-						desc = 'Reset to LuckyoneUI defaults.',
-						func = function() L1UI:AddonSetupBW(addon); end,
-						confirm = true,
+				},
+			},
+			info = {
+				type = 'group',
+				name = 'Informations',
+				order = 2,
+				args = {
+					cvardesc = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Description',
+						args = {
+							desc = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = 'A list of all CVars changed by LuckyoneUI',
+							},
+						},
 					},
-					details = {
-						order = 9,
-						type = 'execute',
-						name = 'Details! Damage Meter',
-						desc = 'Reset to LuckyoneUI defaults.',
-						func = function() L1UI:AddonSetupDT(addon); end,
-						confirm = true,
+					defaults = {
+						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'CVars (Defaults)',
+						args = {
+							desc = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = 'If you are looking for the Blizzard default values of those CVars:\nI suggest using the AddOn "Advanced Interface Options"\nIt has a CVar browser and shows all the default values on mouseover.',
+							},
+						},
 					},
-					omnicd = {
-						order = 10,
-						type = 'execute',
-						name = 'OmniCD Party CDs',
-						desc = 'Reset to LuckyoneUI defaults.',
-						func = function() L1UI:AddonSetupOCD(addon); end,
-						confirm = true,
+					cvar = {
+						order = 3,
+						type = 'group',
+						inline = true,
+						name = 'CVars (General)',
+						args = {
+							cvars = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = '- cameraDistanceMaxZoomFactor 2.6\n- ffxDeath 0\n- advancedCombatLogging 1\n- chatStyle classic\n- rawMouseEnable 1\n- SpellQueueWindow 50',
+							},
+						},
 					},
-					projectazilroka = {
-						order = 11,
-						type = 'execute',
-						name = 'ProjectAzilroka',
-						desc = 'Reset to LuckyoneUI defaults.',
-						func = function() L1UI:AddonSetupPA(addon); end,
-						confirm = true,
+					nameplateCvar = {
+						order = 4,
+						type = 'group',
+						inline = true,
+						name = 'CVars (NamePlates)',
+						args = {
+							cvars = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = '- nameplateLargerScale 1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1',
+							},
+						},
 					},
 				},
 			},
 			links = {
 				type = 'group',
 				name = 'Links',
-				order = 2,
+				order = 3,
 				args = {
 					changelog = {
 						order = 1,
@@ -145,7 +216,7 @@ function L1UI:Configtable()
 			credits = {
 				type = 'group',
 				name = 'Credits',
-				order = 3,
+				order = 4,
 				args = {
 					header1 = {
 						order = 1,
@@ -179,9 +250,9 @@ function L1UI:Configtable()
 						type = 'description',
 						name = '|cffe6cc80Gandi Illusion Sniefer Xyf|r',
 						fontSize = 'medium',
-					}
-				}
-			}
+					},
+				},
+			},
 		},
 	}
 
