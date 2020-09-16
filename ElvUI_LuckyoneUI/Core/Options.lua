@@ -22,6 +22,11 @@ local TESTERS = {
 	'|cffABD473Xyf|r',
 }
 
+local SUPPORT = {
+	'|cffe6cc80DaPaKnat|r',
+	'|cffe6cc80Fooseq|r',
+}
+
 local function SortList(a, b)
 	return E:StripString(a) < E:StripString(b)
 end
@@ -29,6 +34,7 @@ end
 sort(AUTHORS, SortList)
 sort(CODING, SortList)
 sort(TESTERS, SortList)
+sort(SUPPORT, SortList)
 
 for _, name in pairs(AUTHORS) do
 	tinsert(L1UI.CreditsList, name)
@@ -44,6 +50,11 @@ for _, name in pairs(TESTERS) do
 	tinsert(L1UI.CreditsList, name)
 end
 local TESTER_STRING = table.concat(TESTERS, '|n')
+
+for _, name in pairs(SUPPORT) do
+	tinsert(L1UI.CreditsList, name)
+end
+local SUPPORT_STRING = table.concat(SUPPORT, '|n')
 
 function L1UI:Configtable()
 
@@ -259,6 +270,20 @@ function L1UI:Configtable()
 								type = 'description',
 								fontSize = 'medium',
 								name = TESTER_STRING,
+							},
+						},
+					},
+					supporter = {
+						order = 4,
+						type = 'group',
+						inline = true,
+						name = 'Supporter',
+						args = {
+							desc = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = SUPPORT_STRING,
 							},
 						},
 					},
