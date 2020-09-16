@@ -269,9 +269,9 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["maxLines"] = 200
 	E.db["chat"]["numScrollMessages"] = 2
 	E.db["chat"]["panelColor"]["a"] = 0.7531320899725
-	E.db["chat"]["panelColor"]["r"] = 0.058823529411765
-	E.db["chat"]["panelColor"]["g"] = 0.058823529411765
 	E.db["chat"]["panelColor"]["b"] = 0.058823529411765
+	E.db["chat"]["panelColor"]["g"] = 0.058823529411765
+	E.db["chat"]["panelColor"]["r"] = 0.058823529411765
 	E.db["chat"]["panelHeight"] = 171
 	E.db["chat"]["panelHeightRight"] = 171
 	E.db["chat"]["panelWidth"] = 414
@@ -348,9 +348,9 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
 	E.db["general"]["backdropcolor"]["r"] = 0.10196078431373
 	E.db["general"]["backdropfadecolor"]["a"] = 0.7531320899725
-	E.db["general"]["backdropfadecolor"]["r"] = 0.058823529411765
-	E.db["general"]["backdropfadecolor"]["g"] = 0.058823529411765
 	E.db["general"]["backdropfadecolor"]["b"] = 0.058823529411765
+	E.db["general"]["backdropfadecolor"]["g"] = 0.058823529411765
+	E.db["general"]["backdropfadecolor"]["r"] = 0.058823529411765
 	E.db["general"]["bonusObjectivePosition"] = "AUTO"
 	E.db["general"]["bordercolor"]["b"] = 0
 	E.db["general"]["bordercolor"]["g"] = 0
@@ -458,8 +458,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["pvpindicator"]["size"] = 35
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Expressway"
-	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["fontSize"] = 14
-	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["size"] = 16
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["size"] = 25
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textPosition"] = "CENTER"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["size"] = 20
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["xOffset"] = -3
@@ -552,7 +551,6 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["xOffset"] = 3
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["yOffset"] = -10
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "Expressway"
-	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["format"] = "[namecolor][name]"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["yOffset"] = -10
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["pvpindicator"]["size"] = 35
@@ -562,6 +560,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["textPosition"] = "CENTER"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["size"] = 20
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["xOffset"] = -3
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["enable"] = true
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontSize"] = 8
@@ -599,13 +598,13 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["markHealers"] = false
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["markTanks"] = false
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["font"] = "Expressway"
-	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = "[namecolor][name]"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["yOffset"] = -10
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["nameOnly"] = true
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["power"]["text"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpindicator"]["size"] = 35
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["raidTargetIndicator"]["size"] = 20
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["raidTargetIndicator"]["xOffset"] = -3
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["enable"] = true
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFont"] = "Expressway"
 	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["maxDuration"] = 0
@@ -636,7 +635,6 @@ function L1UI:SetupLayout(layout)
 
 	--Tooltip
 	E.db["tooltip"]["alwaysShowRealm"] = true
-	E.db["tooltip"]["colorAlpha"] = 0.8
 	E.db["tooltip"]["font"] = "Expressway"
 	E.db["tooltip"]["headerFontSize"] = 11
 	E.db["tooltip"]["healthBar"]["font"] = "Expressway"
@@ -998,7 +996,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-429,1"
 		E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1"
 		E.db["movers"]["LevelUpBossBannerMover"] = "TOP,ElvUIParent,TOP,0,-57"
-		E.db["movers"]["LootFrameMover"] = "TOP,ElvUIParent,TOP,0,-157"
+		E.db["movers"]["LootFrameMover"] = "TOP,ElvUIParent,TOP,0,-160"
 		E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-492"
 		E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,180,-1"
 		E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1"
@@ -1007,7 +1005,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["MirrorTimer3Mover"] = "TOP,ElvUIParent,TOP,0,-116"
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-86,-214"
 		E.db["movers"]["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,124"
-		E.db["movers"]["RaidUtility_Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,411,-1"
+		E.db["movers"]["RaidUtility_Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,432,-1"
 		E.db["movers"]["ReputationBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1"
 		E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1"
 		E.db["movers"]["ShiftAB"] = "TOPLEFT,ElvUIParent,BOTTOMLEFT,1,1081"
