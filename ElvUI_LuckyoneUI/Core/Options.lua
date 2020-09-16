@@ -1,6 +1,50 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local ACH = E.Libs.ACH
 
+local sort, tinsert = sort, tinsert
+
+local AUTHORS = {
+	'|cffFF7D0ALuckyone|r (EU) - LaughingSkull',
+}
+
+local CODING = {
+	'|cff0070DEAzilroka|r',
+	'|cffFF7D0AMerathilis|r',
+	'|cffF58CBARepooc|r',
+	'|cFF8866ccSimpy|r',
+}
+
+local TESTERS = {
+	'|cffC41F3BKringel|r',
+	'|cff00FF96AltBridge|r',
+	'|cffF58CBAIllusion|r',
+	'|cff69CCF0Sniefer|r',
+	'|cffABD473Xyf|r',
+}
+
+local function SortList(a, b)
+	return E:StripString(a) < E:StripString(b)
+end
+
+sort(AUTHORS, SortList)
+sort(CODING, SortList)
+sort(TESTERS, SortList)
+
+for _, name in pairs(AUTHORS) do
+	tinsert(L1UI.CreditsList, name)
+end
+local AUTHORS_STRING = table.concat(AUTHORS, '|n')
+
+for _, name in pairs(CODING) do
+	tinsert(L1UI.CreditsList, name)
+end
+local CODING_STRING = table.concat(CODING, '|n')
+
+for _, name in pairs(TESTERS) do
+	tinsert(L1UI.CreditsList, name)
+end
+local TESTER_STRING = table.concat(TESTERS, '|n')
+
 function L1UI:Configtable()
 
 	E.Options.args.L1UI = {
@@ -171,10 +215,59 @@ function L1UI:Configtable()
 					},
 				},
 			},
+			credits = {
+				type = 'group',
+				name = 'Credits',
+				order = 3,
+				args = {
+					author = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Author',
+						args = {
+							desc = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = AUTHORS_STRING,
+							},
+						},
+					},
+					coding = {
+						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'Coding',
+						args = {
+							desc = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = CODING_STRING,
+							},
+						},
+					},
+					testers = {
+						order = 3,
+						type = 'group',
+						inline = true,
+						name = 'Testers',
+						args = {
+							desc = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = TESTER_STRING,
+							},
+						},
+					},
+				},
+			},
 			links = {
 				type = 'group',
 				name = 'Links',
-				order = 3,
+				order = 4,
 				args = {
 					changelog = {
 						order = 1,
@@ -210,46 +303,6 @@ function L1UI:Configtable()
 						width = 'full',
 						name = 'Wowhead Guide:',
 						get = function() return 'https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide' end,
-					},
-				},
-			},
-			credits = {
-				type = 'group',
-				name = 'Credits',
-				order = 4,
-				args = {
-					header1 = {
-						order = 1,
-						type = 'header',
-						name = 'Author',
-					},
-					author = {
-						order = 2,
-						type = 'description',
-						name = '|cffFF7D0ALuckyone|r (EU) - LaughingSkull',
-						fontSize = 'large',
-					},
-					header2 = {
-						order = 3,
-						type = 'header',
-						name = 'Credits',
-					},
-					credits = {
-						order = 4,
-						type = 'description',
-						name = '|cff0070DEAzilroka|r |cffC41F3BKringel|r |cffFF7D0AMerathilis|r |cffF58CBARepooc|r |cFF8866ccSimpy|r',
-						fontSize = 'medium',
-					},
-					header3 = {
-						order = 5,
-						type = 'header',
-						name = 'Testers',
-					},
-					thanks = {
-						order = 6,
-						type = 'description',
-						name = '|cffe6cc80Gandi Illusion Sniefer Xyf|r',
-						fontSize = 'medium',
 					},
 				},
 			},

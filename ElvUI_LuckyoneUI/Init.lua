@@ -15,6 +15,7 @@ Engine[6] = G
 _G[addon] = Engine;
 
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
+L1UI.CreditsList = {}
 L1UI.Config = {}
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
 
