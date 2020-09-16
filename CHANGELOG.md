@@ -15,9 +15,9 @@ New option: Reset CVars
 • This button can reset CVars to LuckyoneUI defaults  
 • I also added a list of all changed CVars in the installer  
 **Misc:**  
-Removed old (unused) DataTexts  
-Added confirms for all options  
-Updated git links  
+Updated options layout  
+Updated credits  
+Added confirm popups for reset buttons  
 ___
 ### Version 1.04 [27-08-2020]
 **Required ElvUI Version: 11.50**  
