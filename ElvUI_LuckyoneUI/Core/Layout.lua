@@ -216,6 +216,7 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["stanceBar"]["buttonsize"] = 28
 	E.db["actionbar"]["stanceBar"]["mouseover"] = true
 	E.db["actionbar"]["transparent"] = true
+
 	--Auras
 	E.db["auras"]["barTexture"] = "Solid"
 	E.db["auras"]["buffs"]["countFontSize"] = 14
@@ -236,6 +237,7 @@ function L1UI:SetupLayout(layout)
 	E.db["auras"]["fadeThreshold"] = -1
 	E.db["auras"]["font"] = "Expressway"
 	E.db["auras"]["fontOutline"] = "OUTLINE"
+
 	--Bags
 	E.db["bags"]["bagWidth"] = 414
 	E.db["bags"]["bankWidth"] = 414
@@ -252,6 +254,7 @@ function L1UI:SetupLayout(layout)
 	E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
 	E.db["bags"]["itemLevelFontSize"] = 11
 	E.db["bags"]["vendorGrays"]["enable"] = true
+
 	--Chat
 	E.db["chat"]["desaturateVoiceIcons"] = false
 	E.db["chat"]["editboxHistorySize"] = 30
@@ -279,6 +282,7 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["tabSelectedTextEnabled"] = false
 	E.db["chat"]["tabSelector"] = "NONE"
 	E.db["chat"]["throttleInterval"] = 0
+
 	--Cooldown Text
 	E.db["cooldown"]["daysIndicator"]["g"] = 0.4
 	E.db["cooldown"]["daysIndicator"]["r"] = 0.4
@@ -287,6 +291,7 @@ function L1UI:SetupLayout(layout)
 	E.db["cooldown"]["hoursIndicator"]["r"] = 0.4
 	E.db["cooldown"]["secondsColor"]["b"] = 1
 	E.db["cooldown"]["threshold"] = 4
+
 	--DataBars
 	E.db["databars"]["azerite"]["font"] = "Expressway"
 	E.db["databars"]["azerite"]["fontOutline"] = "OUTLINE"
@@ -316,6 +321,7 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["reputation"]["orientation"] = "VERTICAL"
 	E.db["databars"]["reputation"]["textSize"] = 9
 	E.db["databars"]["reputation"]["width"] = 12
+
 	--DataTexts
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] = false
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
@@ -333,6 +339,7 @@ function L1UI:SetupLayout(layout)
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][1] = "Gold"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][2] = "ElvUI Config"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][3] = "WeakAuras"
+
 	--General
 	E.db["general"]["altPowerBar"]["font"] = "Expressway"
 	E.db["general"]["altPowerBar"]["statusBar"] = "Solid"
@@ -382,6 +389,7 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["valuecolor"]["g"] = 0.48627343773842
 	E.db["general"]["valuecolor"]["r"] = 0.99999779462814
 	E.db["general"]["vehicleSeatIndicatorSize"] = 64
+
 	--NamePlates
 	E.db["nameplates"]["colors"]["castbarDesaturate"] = false
 	E.db["nameplates"]["colors"]["castColor"]["g"] = 1
@@ -628,6 +636,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["PLAYER"]["visibility"]["showInCombat"] = false
 	E.db["nameplates"]["visibility"]["enemy"]["guardians"] = true
 	E.db["nameplates"]["visibility"]["enemy"]["minions"] = true
+
 	--Tooltip
 	E.db["tooltip"]["alwaysShowRealm"] = true
 	E.db["tooltip"]["colorAlpha"] = 0.8
@@ -642,6 +651,7 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["showMount"] = false
 	E.db["tooltip"]["smallTextFontSize"] = 11
 	E.db["tooltip"]["textFontSize"] = 11
+
 	--UnitFrame Custom Texts
 	E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["arena"]["customTexts"]["Luckyone_HP"] = {
