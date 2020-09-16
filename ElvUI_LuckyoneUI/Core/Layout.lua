@@ -9,41 +9,41 @@ function L1UI:SetupLayout(layout)
 	end
 
 	--ElvUI Globals
-	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
-	E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	E.global["general"]["commandBarSetting"] = "DISABLED"
+	E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	E.global["general"]["smallerWorldMapScale"] = 0.8
+	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
 
 	--Shadow&Light Globals
 	if IsAddOnLoaded('ElvUI_SLE') then
+		E.global["sle"]["advanced"]["confirmed"] = true
 		E.global["sle"]["advanced"]["gameMenu"]["enable"] = false
 		E.global["sle"]["advanced"]["general"] = true
-		E.global["sle"]["advanced"]["confirmed"] = true
 	end
 
 	--Custom DataText
 	do
 		E.DataTexts:BuildPanelFrame("Luckyone_ActionBars_DT")
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["panelTransparency"] = true
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["border"] = false
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipYOffset"] = 5
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["numPoints"] = 3
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipAnchor"] = "ANCHOR_TOP"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameLevel"] = 1
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["enable"] = true
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["backdrop"] = true
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 359
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["border"] = false
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["enable"] = true
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["enable"] = true
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["font"] = "Expressway"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontSize"] = 12
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontOutline"] = "NONE"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontSize"] = 12
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameLevel"] = 1
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameStrata"] = "LOW"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["name"] = "Luckyone_ActionBars_DT"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["mouseover"] = false
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["height"] = 13
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipXOffset"] = 0
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = "[petbattle] hide;show"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["growth"] = "HORIZONTAL"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["height"] = 13
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["mouseover"] = false
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["name"] = "Luckyone_ActionBars_DT"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["numPoints"] = 3
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["panelTransparency"] = true
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipAnchor"] = "ANCHOR_TOP"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipXOffset"] = 0
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipYOffset"] = 5
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = "[petbattle] hide;show"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 359
 	end
 
 	--Shadow&Light
