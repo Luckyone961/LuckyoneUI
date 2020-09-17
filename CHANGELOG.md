@@ -1,4 +1,4 @@
-### Version 1.05 [XX-09-2020]
+### Version 1.05 [18-09-2020]
 **Required ElvUI Version: 11.52**  
 **Changes:**  
 Changed health backdrop alpha from 1 to 0.75  
