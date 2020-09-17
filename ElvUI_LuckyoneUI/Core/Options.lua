@@ -87,6 +87,14 @@ function L1UI:Configtable()
 								desc = 'Run the installation process.',
 								func = function() E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData); E:ToggleOptionsUI(); end,
 							},
+							chat = {
+								order = 3,
+								type = 'execute',
+								name = 'Setup Chat',
+								desc = 'Setup custom chat tabs Whisper, Guild, Party.',
+								func = function() L1UI:SetupChat(); end,
+								confirm = true,
+							},
 						},
 					},
 					defaults = {
