@@ -9,7 +9,7 @@ local function InstallComplete()
 end
 
 L1UI.InstallerData = {
-	Title = format(L1UI.Name, 'Installation'),
+	Title = format('|cff4beb2c%s %s|r', L1UI.Name, 'Installation'),
 	Name = L1UI.Name,
 	tutorialImage = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga',
 	Pages = {
