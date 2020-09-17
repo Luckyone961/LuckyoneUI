@@ -11,6 +11,7 @@ local FCF_ResetChatWindows = FCF_ResetChatWindows
 local FCF_SetChatWindowFontSize = FCF_SetChatWindowFontSize
 
 local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
+local ChatFrame_RemoveMessageGroup = ChatFrame_RemoveMessageGroup
 local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
 
 function L1UI:SetupChat()
@@ -76,6 +77,7 @@ function L1UI:SetupChat()
 	--Jump back to General tab
 	FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
 
+	--Remove whispers from General tab
 	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'IGNORED')
 	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'WHISPER')
 	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'BN_WHISPER')
