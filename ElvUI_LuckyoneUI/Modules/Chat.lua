@@ -7,6 +7,9 @@ local FCF_OpenNewWindow = FCF_OpenNewWindow
 local FCF_ResetChatWindows = FCF_ResetChatWindows
 local FCF_SetChatWindowFontSize = FCF_SetChatWindowFontSize
 
+local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
+local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
+
 function L1UI:SetupChat()
 
 	--Reset to default
@@ -36,6 +39,27 @@ function L1UI:SetupChat()
 		elseif id == 5 then
 			FCF_SetWindowName(frame, 'Party')
 		end
+	end
+
+	--Tab setup: Whisper
+	local chats = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
+	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame3)
+	for _, k in ipairs(chats) do
+		ChatFrame_AddMessageGroup(_G.ChatFrame3, k)
+	end
+
+	--Tab setup: Guild
+	chats = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
+	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame4)
+	for _, k in ipairs(chats) do
+		ChatFrame_AddMessageGroup(_G.ChatFrame4, k)
+	end
+
+	--Tab setup: Party
+	chats = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER' }
+	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
+	for _, k in ipairs(chats) do
+		ChatFrame_AddMessageGroup(_G.ChatFrame5, k)
 	end
 
 end
