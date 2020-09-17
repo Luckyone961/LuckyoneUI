@@ -1928,7 +1928,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid40"]["height"] = 26
 		E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 1
-		E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = ""
+		E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[namecolor][name:veryshort]"
 		E.db["unitframe"]["units"]["raid40"]["phaseIndicator"]["anchorPoint"] = "RIGHT"
 		E.db["unitframe"]["units"]["raid40"]["phaseIndicator"]["scale"] = 0.5
 		E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["enable"] = true
