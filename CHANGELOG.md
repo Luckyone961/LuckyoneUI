@@ -8,6 +8,9 @@ Fixed some pixel issues on Enemy NPC NamePlates (castbar icon/offset)
 Improved Boss Frames Buffs and Debuffs (3 per row | 2 rows | 6 total)  
 Increased the information panel height by 1px (font was overlapping the border)  
 **New Additions:**  
+New installer step: Chat  
+• This step will setup the custom chat tabs like in my screenshots  
+• General - Log - Whisper - Guild - Party  
 New installer step: OmniCD  
 • This step will apply my AddOn profile for OmniCD (optional)  
 • OmniCD is a lightweight AddOn replacement for the ZT Party CDs WeakAura  
