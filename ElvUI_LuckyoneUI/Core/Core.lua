@@ -49,7 +49,6 @@ function L1UI:SetupCVars()
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('ffxDeath', 0)
 	SetCVar('advancedCombatLogging', 1)
-	SetCVar('chatStyle', 'classic')
 	SetCVar('rawMouseEnable', 1)
 	SetCVar('SpellQueueWindow', 50)
 

@@ -1,7 +1,8 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
-local ACH = E.Libs.ACH
 
-local sort, tinsert = sort, tinsert
+local sort = sort
+local pairs = pairs
+local tinsert = tinsert
 
 local AUTHORS = {
 	'|cffFF7D0ALuckyone|r (EU) - LaughingSkull',
@@ -214,7 +215,7 @@ function L1UI:Configtable()
 								order = 1,
 								type = 'description',
 								fontSize = 'medium',
-								name = '- cameraDistanceMaxZoomFactor 2.6\n- ffxDeath 0\n- advancedCombatLogging 1\n- chatStyle classic\n- rawMouseEnable 1\n- SpellQueueWindow 50',
+								name = '- cameraDistanceMaxZoomFactor 2.6\n- ffxDeath 0\n- advancedCombatLogging 1\n- rawMouseEnable 1\n- SpellQueueWindow 50',
 							},
 						},
 					},

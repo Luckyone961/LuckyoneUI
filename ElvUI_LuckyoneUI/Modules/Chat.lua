@@ -2,6 +2,9 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
 
 local _G = _G
+local ipairs = ipairs
+local SetCVar = SetCVar
+
 local FCF_SetWindowName = FCF_SetWindowName
 local FCF_OpenNewWindow = FCF_OpenNewWindow
 local FCF_ResetChatWindows = FCF_ResetChatWindows
@@ -25,7 +28,12 @@ function L1UI:SetupChat()
 		local frame = _G[name]
 		local id = frame:GetID()
 
-		--Set Font Size
+		--Update tab colors
+		if E.private.chat.enable then
+			CH:FCFTab_UpdateColors(CH:GetTab(_G[name]))
+		end
+
+		--Set font size
 		FCF_SetChatWindowFontSize(nil, frame, 11)
 
 		if id == 1 then
@@ -61,5 +69,8 @@ function L1UI:SetupChat()
 	for _, k in ipairs(chats) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame5, k)
 	end
+
+	--Chat CVars
+	SetCVar('chatStyle', 'classic')
 
 end

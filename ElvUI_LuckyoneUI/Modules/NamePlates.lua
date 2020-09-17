@@ -1,5 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local pairs = pairs
+
 local SetCVar = SetCVar
 
 function L1UI:SetupStyleFilters()
@@ -19,6 +21,7 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["triggers"]["names"]["122973"] = true
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["triggers"]["names"]["127315"] = true
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["triggers"]["names"]["128434"] = true
+
 	--Freehold
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
@@ -30,6 +33,7 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["triggers"]["names"]["129602"] = true
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["triggers"]["names"]["130012"] = true
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["triggers"]["names"]["130404"] = true
+
 	--Kings Rest
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
@@ -41,6 +45,7 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["triggers"]["names"]["135235"] = true
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["triggers"]["names"]["137478"] = true
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["triggers"]["names"]["138489"] = true
+
 	--Motherlode
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
@@ -52,6 +57,7 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["triggers"]["names"]["134232"] = true
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["triggers"]["names"]["136470"] = true
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["triggers"]["names"]["136934"] = true
+
 	--Siege of Boralus
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
@@ -64,6 +70,7 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["triggers"]["names"]["138465"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["triggers"]["names"]["141283"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["triggers"]["names"]["141284"] = true
+
 	--Shrine of the Storm
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
@@ -76,6 +83,7 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["triggers"]["names"]["136186"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["triggers"]["names"]["136214"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["triggers"]["names"]["136297"] = true
+
 	--Tol'Dagor
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
@@ -84,6 +92,7 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["triggers"]["names"]["127488"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["triggers"]["names"]["130026"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["triggers"]["names"]["135699"] = true
+
 	--Temple of Sethraliss
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
@@ -94,6 +103,7 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["triggers"]["names"]["134990"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["triggers"]["names"]["139110"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["triggers"]["names"]["139949"] = true
+
 	--Underrot
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
@@ -103,6 +113,7 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["triggers"]["names"]["133835"] = true
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["triggers"]["names"]["134284"] = true
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["triggers"]["names"]["138187"] = true
+
 	--Waycrest Manor
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
@@ -114,6 +125,7 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["triggers"]["names"]["131849"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["triggers"]["names"]["131858"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["triggers"]["names"]["134041"] = true
+
 	--Mechagon Workshop
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
@@ -122,6 +134,7 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["144294"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["151325"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["151657"] = true
+
 	--Mechagon Junkyard
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255

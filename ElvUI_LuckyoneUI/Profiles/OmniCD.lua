@@ -2,7 +2,6 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 function L1UI:GetOmniCDProfile()
 
-
 OmniCDDB = {
 	["version"] = 2,
 	["global"] = {

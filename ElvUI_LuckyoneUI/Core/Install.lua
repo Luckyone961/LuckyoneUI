@@ -9,7 +9,7 @@ local function InstallComplete()
 end
 
 L1UI.InstallerData = {
-	Title = format('|cff4beb2c%s %s|r', L1UI.Name, 'Installation'),
+	Title = format(L1UI.Name, 'Installation'),
 	Name = L1UI.Name,
 	tutorialImage = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga',
 	Pages = {
@@ -34,7 +34,7 @@ L1UI.InstallerData = {
 		end,
 		[3] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('Style Filters')
-			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones NamePlate Style Filters.\n All 12 BfA dungeons are supported.')
+			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones NamePlate Style Filters.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupStyleFilters() end)
@@ -73,6 +73,14 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetText('Setup ProjectAzilroka')
 		end,
 		[8] = function()
+			PluginInstallFrame.SubTitle:SetFormattedText('Chat')
+			PluginInstallFrame.Desc1:SetText('This will setup the chat windows to look like this:\n\nLeft Chat: General - Log - Whisper - Guild - Party\n\nRight Chat: Details! Damage Meter')
+			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupChat() end)
+			PluginInstallFrame.Option1:SetText('Setup Chat')
+		end,
+		[9] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('CVars')
 			PluginInstallFrame.Desc1:SetText('This will apply the following CVar values:\n\ncameraDistanceMaxZoomFactor 2.6\nadvancedCombatLogging 1\nSpellQueueWindow 50\nrawMouseEnable 1\nffxDeath 0')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
@@ -80,7 +88,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupCVars() end)
 			PluginInstallFrame.Option1:SetText('Setup CVars')
 		end,
-		[9] = function()
+		[10] = function()
 			PluginInstallFrame.SubTitle:SetText('Installation Complete')
 			PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cHigh|r')
@@ -97,8 +105,9 @@ L1UI.InstallerData = {
 		[5] = 'Details',
 		[6] = 'OmniCD',
 		[7] = 'ProjectAzilroka',
-		[8] = 'CVars',
-		[9] = 'Installation Complete',
+		[8] = 'Chat',
+		[9] = 'CVars',
+		[10] = 'Installation Complete',
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0, 179/255, 1},
