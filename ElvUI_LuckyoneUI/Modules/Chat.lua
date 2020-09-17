@@ -76,5 +76,9 @@ function L1UI:SetupChat()
 	--Jump back to General tab
 	FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
 
+	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'IGNORED')
+	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'WHISPER')
+	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'BN_WHISPER')
+
 	L1UI:Print('Chat setup successful.')
 end
