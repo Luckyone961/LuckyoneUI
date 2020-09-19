@@ -25,7 +25,7 @@ function L1UI:SetupLayout(layout)
 	do
 		E.DataTexts:BuildPanelFrame("Luckyone_ActionBars_DT")
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["backdrop"] = true
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["border"] = false
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["border"] = true
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["enable"] = true
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["enable"] = true
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["font"] = "Expressway"
