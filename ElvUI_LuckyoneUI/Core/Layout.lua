@@ -435,6 +435,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["numAuras"] = 6
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["size"] = 22
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["spacing"] = 0
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["xOffset"] = 1
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = -10
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["eliteIcon"]["size"] = 14
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["eliteIcon"]["xOffset"] = 3
@@ -491,6 +492,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["size"] = 22
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["spacing"] = 0
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["xOffset"] = 1
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = -10
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["height"] = 18
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["font"] = "Expressway"
@@ -540,6 +542,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["size"] = 20
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["spacing"] = 0
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["xOffset"] = 1
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["yOffset"] = 1
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["eliteIcon"]["size"] = 14
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["eliteIcon"]["xOffset"] = 3
@@ -587,6 +590,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["size"] = 20
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["spacing"] = 0
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["xOffset"] = 1
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["yOffset"] = 1
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["height"] = 12
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["text"]["font"] = "Expressway"
