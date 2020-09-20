@@ -7,6 +7,7 @@ Added 1px border around the custom ActionBars DataText
 New installer step: AddOnSkins  
 • This step will apply my AddOn profile for AddOnSkins (optional)  
 **Misc:**  
+OmniCD profile update  
 Updated credits  
 ___
 ### Version 1.05 [18-09-2020]
