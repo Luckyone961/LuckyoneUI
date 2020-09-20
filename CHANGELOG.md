@@ -4,6 +4,8 @@
 Fixed NamePlates Debuffs (pixel perfect issue)  
 Added 1px border around the custom ActionBars DataText  
 **New Additions:**  
+New installer step: AddOnSkins  
+• This step will apply my AddOn profile for AddOnSkins (optional)  
 **Misc:**  
 Updated credits  
 ___
