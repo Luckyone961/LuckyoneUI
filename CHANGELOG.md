@@ -1,3 +1,12 @@
+### Version 1.06 [XX-XX-2020]
+**Shadowlands pre-patch version**  
+**Changes:**  
+Fixed NamePlates Debuffs (pixel perfect issue)  
+Added 1px border around the custom ActionBars DataText  
+**New Additions:**  
+**Misc:**  
+Updated credits  
+___
 ### Version 1.05 [18-09-2020]
 **Required ElvUI Version: 11.52**  
 **Changes:**  
