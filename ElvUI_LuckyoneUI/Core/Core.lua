@@ -8,6 +8,15 @@ function L1UI:Print(msg)
 	print('|cff4beb2cLuckyoneUI|r: '..msg)
 end
 
+function L1UI:AddonSetupAS(addon)
+
+	if IsAddOnLoaded('AddOnSkins') then
+		L1UI:GetASProfile()
+		L1UI:Print('AddOnSkins profile has been set.')
+	end
+
+end
+
 function L1UI:AddonSetupBW(addon)
 
 	if IsAddOnLoaded('BigWigs') then
