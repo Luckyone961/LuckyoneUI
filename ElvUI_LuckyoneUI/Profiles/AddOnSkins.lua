@@ -17,6 +17,8 @@ function L1UI:GetASProfile()
 	AS.db['EmbedBackdropTransparent'] = false
 	AS.db['EmbedOoC'] = false
 	AS.db['EmbedRightChat'] = false
+	AS.db['EmbedSystem'] = false
+	AS.db['EmbedSystemDual'] = false
 	AS.db['EmbedSystemMessage'] = false
 
 end
