@@ -137,8 +137,16 @@ function L1UI:Configtable()
 						inline = true,
 						name = 'Addon Profiles',
 						args = {
-							bigwigs = {
+							addonskins = {
 								order = 8,
+								type = 'execute',
+								name = 'AddOnSkins',
+								desc = 'Reset to LuckyoneUI defaults.',
+								func = function() L1UI:AddonSetupAS(addon); end,
+								confirm = true,
+							},
+							bigwigs = {
+								order = 9,
 								type = 'execute',
 								name = 'BigWigs',
 								desc = 'Reset to LuckyoneUI defaults.',
@@ -146,7 +154,7 @@ function L1UI:Configtable()
 								confirm = true,
 							},
 							details = {
-								order = 9,
+								order = 10,
 								type = 'execute',
 								name = 'Details! Damage Meter',
 								desc = 'Reset to LuckyoneUI defaults.',
@@ -154,7 +162,7 @@ function L1UI:Configtable()
 								confirm = true,
 							},
 							omnicd = {
-								order = 10,
+								order = 11,
 								type = 'execute',
 								name = 'OmniCD Party CDs',
 								desc = 'Reset to LuckyoneUI defaults.',
@@ -162,7 +170,7 @@ function L1UI:Configtable()
 								confirm = true,
 							},
 							projectazilroka = {
-								order = 11,
+								order = 12,
 								type = 'execute',
 								name = 'ProjectAzilroka',
 								desc = 'Reset to LuckyoneUI defaults.',
