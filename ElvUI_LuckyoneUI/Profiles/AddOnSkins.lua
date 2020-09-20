@@ -8,4 +8,14 @@ function L1UI:GetASProfile()
 
 	AS.data:SetProfile('Luckyone')
 
+	--General
+	AS.db["DBMFont"] = 'Expressway'
+	AS.db["Shadows"] = false
+
+	--Embed
+	AS.db["EmbedBackdrop"] = false
+	AS.db["EmbedBackdropTransparent"] = false
+	AS.db["EmbedRightChat"] = false
+	AS.db["EmbedSystemMessage"] = false
+
 end
