@@ -26,6 +26,7 @@ local TESTERS = {
 local SUPPORT = {
 	'|cffe6cc80DaPaKnat|r',
 	'|cffe6cc80Fooseq|r',
+	'|cffe6cc80MonkeyHack|r',
 }
 
 local function SortList(a, b)
