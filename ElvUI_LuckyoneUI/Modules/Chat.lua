@@ -14,6 +14,7 @@ local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
 local ChatFrame_RemoveMessageGroup = ChatFrame_RemoveMessageGroup
 local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
 
+--Chat setup
 function L1UI:SetupChat()
 
 	--Reset to default

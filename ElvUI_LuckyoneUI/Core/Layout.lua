@@ -2,6 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local IsAddOnLoaded = IsAddOnLoaded
 
+--Layout setup (DPS/TANK & Healing) + Shadow&Light
 function L1UI:SetupLayout(layout)
 
 	if not E.db.movers then

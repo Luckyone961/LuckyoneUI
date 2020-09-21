@@ -8,6 +8,7 @@ function L1UI:Print(msg)
 	print('|cff4beb2cLuckyoneUI|r: '..msg)
 end
 
+--AddOnSkins Profile
 function L1UI:AddonSetupAS(addon)
 
 	if IsAddOnLoaded('AddOnSkins') then
@@ -17,6 +18,7 @@ function L1UI:AddonSetupAS(addon)
 
 end
 
+--BigWigs Profile
 function L1UI:AddonSetupBW(addon)
 
 	if IsAddOnLoaded('BigWigs') then
@@ -26,6 +28,7 @@ function L1UI:AddonSetupBW(addon)
 
 end
 
+--Details Profile
 function L1UI:AddonSetupDT(addon)
 
 	if IsAddOnLoaded('Details') then
@@ -35,6 +38,7 @@ function L1UI:AddonSetupDT(addon)
 
 end
 
+--OmniCD Profile
 function L1UI:AddonSetupOCD(addon)
 
 	if IsAddOnLoaded('OmniCD') then
@@ -44,6 +48,7 @@ function L1UI:AddonSetupOCD(addon)
 
 end
 
+--ProjectAzilroka Profile
 function L1UI:AddonSetupPA(addon)
 
 	if IsAddOnLoaded('ProjectAzilroka') then
@@ -53,6 +58,7 @@ function L1UI:AddonSetupPA(addon)
 
 end
 
+--CVars General
 function L1UI:SetupCVars()
 
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
@@ -64,6 +70,31 @@ function L1UI:SetupCVars()
 	L1UI:Print('CVars have been set.')
 end
 
+--CVars NamePlates
+function L1UI:NameplateReset()
+
+	--NamePlate CVars
+	SetCVar('nameplateLargerScale', 1)
+	SetCVar('nameplateMinAlpha', 1)
+	SetCVar('nameplateMinScale', 1)
+	SetCVar('nameplateMotion', 1)
+	SetCVar('nameplateOccludedAlphaMult', 1)
+	SetCVar('nameplateOverlapH', 1)
+	SetCVar('nameplateOverlapV', 1.6)
+	SetCVar('nameplateSelectedScale', 1)
+	SetCVar('nameplateSelfAlpha', 1)
+
+	--Name CVars
+	SetCVar('UnitNameEnemyGuardianName', 1)
+	SetCVar('UnitNameEnemyMinionName', 1)
+	SetCVar('UnitNameEnemyPetName', 1)
+	SetCVar('UnitNameEnemyPlayerName', 1)
+	SetCVar('UnitNameEnemyTotem', 1)
+
+	L1UI:Print('NamePlate CVars have been reset to default.')
+end
+
+--Private
 function L1UI:SetupPrivate()
 
 	--Private ElvUI
@@ -91,27 +122,4 @@ function L1UI:SetupPrivate()
 	E:StaggeredUpdateAll(nil, true)
 
 	L1UI:Print('Note: Fonts do not change until you restart WoW.')
-end
-
-function L1UI:NameplateReset()
-
-	--NamePlate CVars
-	SetCVar('nameplateLargerScale', 1)
-	SetCVar('nameplateMinAlpha', 1)
-	SetCVar('nameplateMinScale', 1)
-	SetCVar('nameplateMotion', 1)
-	SetCVar('nameplateOccludedAlphaMult', 1)
-	SetCVar('nameplateOverlapH', 1)
-	SetCVar('nameplateOverlapV', 1.6)
-	SetCVar('nameplateSelectedScale', 1)
-	SetCVar('nameplateSelfAlpha', 1)
-
-	--Name CVars
-	SetCVar('UnitNameEnemyGuardianName', 1)
-	SetCVar('UnitNameEnemyMinionName', 1)
-	SetCVar('UnitNameEnemyPetName', 1)
-	SetCVar('UnitNameEnemyPlayerName', 1)
-	SetCVar('UnitNameEnemyTotem', 1)
-
-	L1UI:Print('NamePlate CVars have been reset to default.')
 end

@@ -4,6 +4,7 @@ local pairs = pairs
 
 local SetCVar = SetCVar
 
+--NamePlates setup
 function L1UI:SetupNamePlates()
 
 	for _, filterName in pairs({'Luckyone_AD', 'Luckyone_FH', 'Luckyone_KR', 'Luckyone_ML', 'Luckyone_SIEGE', 'Luckyone_SOTS', 'Luckyone_TD', 'Luckyone_TOS', 'Luckyone_UR', 'Luckyone_WM', 'Luckyone_WORK', 'Luckyone_YARD'}) do

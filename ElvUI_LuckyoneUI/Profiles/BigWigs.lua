@@ -1,5 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+--BigWigs profile setup
 function L1UI:GetBigWigsProfile()
 	local main = "Luckyone DPS/TANK"
 	local heal = "Luckyone Healing"
