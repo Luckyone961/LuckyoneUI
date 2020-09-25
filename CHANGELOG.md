@@ -1,12 +1,14 @@
 ### Version 1.06 [XX-XX-2020]
 **Shadowlands pre-patch version**  
 **Changes:**  
+New recommended UI scale: 0.71111111 (1080p Auto-Scale)  
 Fixed NamePlates Debuffs (pixel perfect issue)  
 Added 1px border around the custom ActionBars DataText  
 **New Additions:**  
 New installer step: AddOnSkins  
 • This step will apply my AddOn profile for AddOnSkins (optional)  
 **Misc:**  
+Pixel perfect update for patch 9.0.1 / 9.0.2  
 OmniCD profile update  
 Updated credits  
 ___
