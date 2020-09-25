@@ -15,7 +15,6 @@ function L1UI:AddonSetupAS(addon)
 		L1UI:GetASProfile()
 		L1UI:Print('AddOnSkins profile has been set.')
 	end
-
 end
 
 --BigWigs Profile
@@ -25,7 +24,6 @@ function L1UI:AddonSetupBW(addon)
 		L1UI:GetBigWigsProfile()
 		L1UI:Print('BigWigs profile has been set.')
 	end
-
 end
 
 --Details Profile
@@ -35,7 +33,6 @@ function L1UI:AddonSetupDT(addon)
 		L1UI:GetDetailsProfile()
 		L1UI:Print('Details profile has been set.')
 	end
-
 end
 
 --OmniCD Profile
@@ -45,7 +42,6 @@ function L1UI:AddonSetupOCD(addon)
 		L1UI:GetOmniCDProfile()
 		L1UI:Print('OmniCD profile has been set.')
 	end
-
 end
 
 --ProjectAzilroka Profile
@@ -55,7 +51,6 @@ function L1UI:AddonSetupPA(addon)
 		L1UI:GetPAProfile()
 		L1UI:Print('ProjectAzilroka profile has been set.')
 	end
-
 end
 
 --CVars General

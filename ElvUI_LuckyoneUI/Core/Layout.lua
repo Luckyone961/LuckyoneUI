@@ -2017,7 +2017,6 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["targettargettarget"]["buffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
-
 	end
 
 	E:StaggeredUpdateAll(nil, true)

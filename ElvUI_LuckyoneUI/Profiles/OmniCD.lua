@@ -344,5 +344,4 @@ function L1UI:GetOmniCDProfile()
 			},
 		},
 	}
-
 end

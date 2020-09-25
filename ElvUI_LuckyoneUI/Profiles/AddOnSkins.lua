@@ -21,5 +21,4 @@ function L1UI:GetASProfile()
 	AS.db['EmbedSystem'] = false
 	AS.db['EmbedSystemDual'] = false
 	AS.db['EmbedSystemMessage'] = false
-
 end
