@@ -40,7 +40,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupNamePlates() end)
-			PluginInstallFrame.Option1:SetText('NamePlates')
+			PluginInstallFrame.Option1:SetText('Setup NamePlates')
 		end,
 		[4] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('Chat')
