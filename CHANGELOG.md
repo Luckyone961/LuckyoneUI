@@ -9,6 +9,8 @@ New installer step: AddOnSkins
 • This step will apply my AddOn profile for AddOnSkins (optional)  
 **Misc:**  
 Pixel perfect update for patch 9.0.1 / 9.0.2  
+ProjectAzilroka profile update  
+BigWigs profile update  
 OmniCD profile update  
 Updated credits  
 ___
