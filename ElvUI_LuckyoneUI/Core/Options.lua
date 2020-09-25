@@ -4,12 +4,12 @@ local sort = sort
 local pairs = pairs
 local tinsert = tinsert
 
---Author list
+-- Author list
 local AUTHORS = {
 	'|cffFF7D0ALuckyone|r (EU) - LaughingSkull',
 }
 
---Coding list
+-- Coding list
 local CODING = {
 	'|cff0070DEAzilroka|r',
 	'|cffFF7D0AMerathilis|r',
@@ -17,7 +17,7 @@ local CODING = {
 	'|cFF8866ccSimpy|r',
 }
 
---Testers list
+-- Testers list
 local TESTERS = {
 	'|cffC41F3BKringel|r',
 	'|cff00FF96AltBridge|r',
@@ -26,14 +26,14 @@ local TESTERS = {
 	'|cffABD473Xyf|r',
 }
 
---Dono list
+-- Dono list
 local SUPPORT = {
 	'|cffe6cc80DaPaKnat|r',
 	'|cffe6cc80Fooseq|r',
 	'|cffe6cc80MonkeyHack|r',
 }
 
---Sort
+-- Sort
 local function SortList(a, b)
 	return E:StripString(a) < E:StripString(b)
 end
@@ -43,31 +43,31 @@ sort(CODING, SortList)
 sort(TESTERS, SortList)
 sort(SUPPORT, SortList)
 
---Author table
+-- Author table
 for _, name in pairs(AUTHORS) do
 	tinsert(L1UI.CreditsList, name)
 end
 local AUTHORS_STRING = table.concat(AUTHORS, '|n')
 
---Coding table
+-- Coding table
 for _, name in pairs(CODING) do
 	tinsert(L1UI.CreditsList, name)
 end
 local CODING_STRING = table.concat(CODING, '|n')
 
---Testers table
+-- Testers table
 for _, name in pairs(TESTERS) do
 	tinsert(L1UI.CreditsList, name)
 end
 local TESTER_STRING = table.concat(TESTERS, '|n')
 
---Dono table
+-- Dono table
 for _, name in pairs(SUPPORT) do
 	tinsert(L1UI.CreditsList, name)
 end
 local SUPPORT_STRING = table.concat(SUPPORT, '|n')
 
---LuckyoneUI ingame options
+-- LuckyoneUI ingame options
 function L1UI:Configtable()
 
 	E.Options.args.L1UI = {

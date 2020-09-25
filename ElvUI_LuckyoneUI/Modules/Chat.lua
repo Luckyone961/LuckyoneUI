@@ -14,28 +14,28 @@ local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
 local ChatFrame_RemoveMessageGroup = ChatFrame_RemoveMessageGroup
 local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
 
---Chat setup
+-- Chat setup
 function L1UI:SetupChat()
 
-	--Reset to default
+	-- Reset to default
 	FCF_ResetChatWindows()
 
-	--Create new windows
-	FCF_OpenNewWindow() --id 3
-	FCF_OpenNewWindow() --id 4
-	FCF_OpenNewWindow() --id 5
+	-- Create new windows
+	FCF_OpenNewWindow() -- id 3
+	FCF_OpenNewWindow() -- id 4
+	FCF_OpenNewWindow() -- id 5
 
-	--Rename all windows
+	-- Rename all windows
 	for _, name in ipairs(_G.CHAT_FRAMES) do
 		local frame = _G[name]
 		local id = frame:GetID()
 
-		--Update tab colors
+		-- Update tab colors
 		if E.private.chat.enable then
 			CH:FCFTab_UpdateColors(CH:GetTab(_G[name]))
 		end
 
-		--Set font size
+		-- Set font size
 		FCF_SetChatWindowFontSize(nil, frame, 11)
 
 		if id == 1 then
@@ -51,34 +51,34 @@ function L1UI:SetupChat()
 		end
 	end
 
-	--Tab setup: Whisper
+	-- Tab setup: Whisper
 	local chats = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame3)
 	for _, k in ipairs(chats) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame3, k)
 	end
 
-	--Tab setup: Guild
+	-- Tab setup: Guild
 	chats = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame4)
 	for _, k in ipairs(chats) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame4, k)
 	end
 
-	--Tab setup: Party
+	-- Tab setup: Party
 	chats = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 	for _, k in ipairs(chats) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame5, k)
 	end
 
-	--Chat CVars
+	-- Chat CVars
 	SetCVar('chatStyle', 'classic')
 
-	--Jump back to General tab
+	-- Jump back to General tab
 	FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
 
-	--Remove whispers from General tab
+	-- Remove whispers from General tab
 	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'IGNORED')
 	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'WHISPER')
 	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'BN_WHISPER')

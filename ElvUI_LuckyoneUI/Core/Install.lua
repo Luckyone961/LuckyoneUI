@@ -3,13 +3,13 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local ReloadUI = ReloadUI
 local format = string.format
 
---Set version & reload on "Skip" and "Finished"
+-- Set version & reload on "Skip" and "Finished"
 local function InstallComplete()
 	E.db.L1UI.install_version = L1UI.Version
 	ReloadUI()
 end
 
---Installer Steps
+-- Installer Steps
 L1UI.InstallerData = {
 	Title = format('|cff4beb2c%s %s|r', L1UI.Name, 'Installation'),
 	Name = L1UI.Name,

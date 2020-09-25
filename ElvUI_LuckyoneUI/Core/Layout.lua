@@ -2,27 +2,27 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local IsAddOnLoaded = IsAddOnLoaded
 
---Layout setup (DPS/TANK & Healing) + Shadow&Light
+-- Layout setup (DPS/TANK & Healing) + Shadow&Light
 function L1UI:SetupLayout(layout)
 
 	if not E.db.movers then
 		E.db.movers = {}
 	end
 
-	--ElvUI Globals
+	-- ElvUI Global DB
 	E.global["general"]["commandBarSetting"] = "DISABLED"
 	E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	E.global["general"]["smallerWorldMapScale"] = 0.8
 	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
 
-	--Shadow&Light Globals
+	-- Shadow&Light Global DB
 	if IsAddOnLoaded('ElvUI_SLE') then
 		E.global["sle"]["advanced"]["confirmed"] = true
 		E.global["sle"]["advanced"]["gameMenu"]["enable"] = false
 		E.global["sle"]["advanced"]["general"] = true
 	end
 
-	--Custom DataText
+	-- Custom DataText
 	do
 		E.DataTexts:BuildPanelFrame("Luckyone_ActionBars_DT")
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["backdrop"] = true
@@ -47,7 +47,7 @@ function L1UI:SetupLayout(layout)
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 359
 	end
 
-	--Shadow&Light
+	-- Shadow&Light
 	if IsAddOnLoaded('ElvUI_SLE') then
 		E.db["sle"]["armory"]["character"]["background"]["overlay"] = false
 		E.db["sle"]["armory"]["character"]["corruption"]["font"] = "Expressway"
@@ -131,7 +131,7 @@ function L1UI:SetupLayout(layout)
 		E.db["sle"]["tooltip"]["RaidProg"]["raids"]["uldir"] = false
 	end
 
-	--Private ElvUI
+	-- ElvUI Private DB
 	E.private["general"]["chatBubbleFont"] = "Expressway"
 	E.private["general"]["dmgfont"] = "Expressway"
 	E.private["general"]["glossTex"] = "Solid"
@@ -142,7 +142,7 @@ function L1UI:SetupLayout(layout)
 	E.private["skins"]["cleanBossButton"] = true
 	E.private["skins"]["parchmentRemoverEnable"] = true
 
-	--Private Shadow&Light
+	-- Shadow&Light Private DB
 	if IsAddOnLoaded('ElvUI_SLE') then
 		E.private["sle"]["install_complete"] = "3.77"
 		E.private["sle"]["professions"]["deconButton"]["enable"] = false
@@ -153,10 +153,10 @@ function L1UI:SetupLayout(layout)
 		E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Solid"
 	end
 
-	--v11
+	-- v11
 	E.db["v11NamePlateReset"] = true
 
-	--ActionBars
+	-- ActionBars
 	E.db["actionbar"]["bar1"]["alpha"] = 0.75
 	E.db["actionbar"]["bar1"]["buttonsize"] = 28
 	E.db["actionbar"]["bar2"]["alpha"] = 0.75
@@ -218,7 +218,7 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["stanceBar"]["mouseover"] = true
 	E.db["actionbar"]["transparent"] = true
 
-	--Auras
+	-- Auras
 	E.db["auras"]["barTexture"] = "Solid"
 	E.db["auras"]["buffs"]["countFontSize"] = 14
 	E.db["auras"]["buffs"]["durationFontSize"] = 12
@@ -239,7 +239,7 @@ function L1UI:SetupLayout(layout)
 	E.db["auras"]["font"] = "Expressway"
 	E.db["auras"]["fontOutline"] = "OUTLINE"
 
-	--Bags
+	-- Bags
 	E.db["bags"]["bagWidth"] = 414
 	E.db["bags"]["bankWidth"] = 414
 	E.db["bags"]["cooldown"]["daysIndicator"]["g"] = 0.4
@@ -256,7 +256,7 @@ function L1UI:SetupLayout(layout)
 	E.db["bags"]["itemLevelFontSize"] = 11
 	E.db["bags"]["vendorGrays"]["enable"] = true
 
-	--Chat
+	-- Chat
 	E.db["chat"]["desaturateVoiceIcons"] = false
 	E.db["chat"]["editboxHistorySize"] = 30
 	E.db["chat"]["editBoxPosition"] = "ABOVE_CHAT"
@@ -284,7 +284,7 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["tabSelector"] = "NONE"
 	E.db["chat"]["throttleInterval"] = 0
 
-	--Cooldown Text
+	-- Cooldown Text
 	E.db["cooldown"]["daysIndicator"]["g"] = 0.4
 	E.db["cooldown"]["daysIndicator"]["r"] = 0.4
 	E.db["cooldown"]["expireIndicator"]["b"] = 0
@@ -293,7 +293,7 @@ function L1UI:SetupLayout(layout)
 	E.db["cooldown"]["secondsColor"]["b"] = 1
 	E.db["cooldown"]["threshold"] = 4
 
-	--DataBars
+	-- DataBars
 	E.db["databars"]["azerite"]["font"] = "Expressway"
 	E.db["databars"]["azerite"]["fontOutline"] = "OUTLINE"
 	E.db["databars"]["azerite"]["height"] = 171
@@ -323,7 +323,7 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["reputation"]["textSize"] = 9
 	E.db["databars"]["reputation"]["width"] = 12
 
-	--DataTexts
+	-- DataTexts
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] = false
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "System"
@@ -341,7 +341,7 @@ function L1UI:SetupLayout(layout)
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][2] = "ElvUI Config"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"][3] = "WeakAuras"
 
-	--General
+	-- General
 	E.db["general"]["altPowerBar"]["font"] = "Expressway"
 	E.db["general"]["altPowerBar"]["statusBar"] = "Solid"
 	E.db["general"]["autoRepair"] = "PLAYER"
@@ -388,7 +388,7 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["valuecolor"]["r"] = 0.99999779462814
 	E.db["general"]["vehicleSeatIndicatorSize"] = 64
 
-	--NamePlates
+	-- NamePlates
 	E.db["nameplates"]["colors"]["castbarDesaturate"] = false
 	E.db["nameplates"]["colors"]["castColor"]["g"] = 1
 	E.db["nameplates"]["colors"]["castColor"]["r"] = 0.023529411764706
@@ -638,7 +638,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["visibility"]["enemy"]["guardians"] = true
 	E.db["nameplates"]["visibility"]["enemy"]["minions"] = true
 
-	--Tooltip
+	-- Tooltip
 	E.db["tooltip"]["alwaysShowRealm"] = true
 	E.db["tooltip"]["font"] = "Expressway"
 	E.db["tooltip"]["headerFontSize"] = 11
@@ -652,7 +652,7 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["smallTextFontSize"] = 11
 	E.db["tooltip"]["textFontSize"] = 11
 
-	--Custom Text: Arena
+	-- Custom Text: Arena
 	E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["arena"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -688,7 +688,7 @@ function L1UI:SetupLayout(layout)
 		["yOffset"] = 0
 	}
 
-	--Custom Text: Boss
+	-- Custom Text: Boss
 	E.db["unitframe"]["units"]["boss"]["customTexts"] = E.db["unitframe"]["units"]["boss"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -724,7 +724,7 @@ function L1UI:SetupLayout(layout)
 		["yOffset"] = 0
 	}
 
-	--Custom Text: Focus
+	-- Custom Text: Focus
 	E.db["unitframe"]["units"]["focus"]["customTexts"] = E.db["unitframe"]["units"]["focus"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -771,7 +771,7 @@ function L1UI:SetupLayout(layout)
 		["yOffset"] = 1
 	}
 
-	--Custom Text: Focus Target
+	-- Custom Text: Focus Target
 	E.db["unitframe"]["units"]["focustarget"]["customTexts"] = E.db["unitframe"]["units"]["focustarget"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["focustarget"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -796,7 +796,7 @@ function L1UI:SetupLayout(layout)
 		["yOffset"] = 1
 	}
 
-	--Custom Text: Party
+	-- Custom Text: Party
 	E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["party"]["customTexts"]["Luckyone_Name"] = {
 		["attachTextTo"] = "Health",
@@ -810,7 +810,7 @@ function L1UI:SetupLayout(layout)
 		["yOffset"] = 0
 	}
 
-	--Custom Text: Pet
+	-- Custom Text: Pet
 	E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["pet"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -835,7 +835,7 @@ function L1UI:SetupLayout(layout)
 		["yOffset"] = 1
 	}
 
-	--Custom Text: Player
+	-- Custom Text: Player
 	E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -882,7 +882,7 @@ function L1UI:SetupLayout(layout)
 		["yOffset"] = 1
 	}
 
-	--Custom Text: Raid
+	-- Custom Text: Raid
 	E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["Luckyone_Name"] = {
 		["attachTextTo"] = "Health",
@@ -896,7 +896,7 @@ function L1UI:SetupLayout(layout)
 		["yOffset"] = 0
 	}
 
-	--Custom Text: Target
+	-- Custom Text: Target
 	E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -943,7 +943,7 @@ function L1UI:SetupLayout(layout)
 		["yOffset"] = 1
 	}
 
-	--Custom Text: TargetTarget
+	-- Custom Text: TargetTarget
 	E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
@@ -970,12 +970,12 @@ function L1UI:SetupLayout(layout)
 
 	if layout == 'dps' then
 
-		--Growth Directions
+		-- Growth Directions
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "RIGHT_DOWN"
 
-		--Movers
+		-- Movers
 		E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-139"
 		E.db["movers"]["AltPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,153"
 		E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
@@ -1046,7 +1046,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,0,209"
 
-		--UnitFrames
+		-- UnitFrames
 		E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = 0.99
 		E.db["unitframe"]["colors"]["auraBarBuff"]["g"] = 0.99
 		E.db["unitframe"]["colors"]["auraBarBuff"]["r"] = 0.99
@@ -1510,12 +1510,12 @@ function L1UI:SetupLayout(layout)
 
 	elseif layout == 'healer' then
 
-		--Growth Directions
+		-- Growth Directions
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "RIGHT_DOWN"
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "RIGHT_DOWN"
 
-		--Movers
+		-- Movers
 		E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-139"
 		E.db["movers"]["AltPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,367"
 		E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
@@ -1586,7 +1586,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,200,367"
 
-		--UnitFrames
+		-- UnitFrames
 		E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = 0.99
 		E.db["unitframe"]["colors"]["auraBarBuff"]["g"] = 0.99
 		E.db["unitframe"]["colors"]["auraBarBuff"]["r"] = 0.99

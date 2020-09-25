@@ -2,7 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local twipe = table.wipe
 
---Details profile setup
+-- Details profile setup
 function L1UI:GetDetailsProfile()
 	local key = "Luckyone"
 

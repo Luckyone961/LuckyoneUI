@@ -4,7 +4,7 @@ local pairs = pairs
 
 local SetCVar = SetCVar
 
---NamePlates setup
+-- NamePlates setup
 function L1UI:SetupNamePlates()
 
 	for _, filterName in pairs({'Luckyone_AD', 'Luckyone_FH', 'Luckyone_KR', 'Luckyone_ML', 'Luckyone_SIEGE', 'Luckyone_SOTS', 'Luckyone_TD', 'Luckyone_TOS', 'Luckyone_UR', 'Luckyone_WM', 'Luckyone_WORK', 'Luckyone_YARD'}) do
@@ -13,7 +13,7 @@ function L1UI:SetupNamePlates()
 		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 	end
 
-	--Atal'Dazar
+	-- Atal'Dazar
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["actions"]["color"]["healthColor"]["r"] = 0
@@ -23,7 +23,7 @@ function L1UI:SetupNamePlates()
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["triggers"]["names"]["127315"] = true
 	E.global["nameplate"]["filters"]["Luckyone_AD"]["triggers"]["names"]["128434"] = true
 
-	--Freehold
+	-- Freehold
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["actions"]["color"]["healthColor"]["r"] = 0
@@ -35,7 +35,7 @@ function L1UI:SetupNamePlates()
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["triggers"]["names"]["130012"] = true
 	E.global["nameplate"]["filters"]["Luckyone_FH"]["triggers"]["names"]["130404"] = true
 
-	--Kings Rest
+	-- Kings Rest
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["actions"]["color"]["healthColor"]["r"] = 0
@@ -47,7 +47,7 @@ function L1UI:SetupNamePlates()
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["triggers"]["names"]["137478"] = true
 	E.global["nameplate"]["filters"]["Luckyone_KR"]["triggers"]["names"]["138489"] = true
 
-	--Motherlode
+	-- Motherlode
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["actions"]["color"]["healthColor"]["r"] = 0
@@ -59,7 +59,7 @@ function L1UI:SetupNamePlates()
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["triggers"]["names"]["136470"] = true
 	E.global["nameplate"]["filters"]["Luckyone_ML"]["triggers"]["names"]["136934"] = true
 
-	--Siege of Boralus
+	-- Siege of Boralus
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["actions"]["color"]["healthColor"]["r"] = 0
@@ -72,7 +72,7 @@ function L1UI:SetupNamePlates()
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["triggers"]["names"]["141283"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SIEGE"]["triggers"]["names"]["141284"] = true
 
-	--Shrine of the Storm
+	-- Shrine of the Storm
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["actions"]["color"]["healthColor"]["r"] = 0
@@ -85,7 +85,7 @@ function L1UI:SetupNamePlates()
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["triggers"]["names"]["136214"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SOTS"]["triggers"]["names"]["136297"] = true
 
-	--Tol'Dagor
+	-- Tol'Dagor
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["actions"]["color"]["healthColor"]["r"] = 0
@@ -94,7 +94,7 @@ function L1UI:SetupNamePlates()
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["triggers"]["names"]["130026"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TD"]["triggers"]["names"]["135699"] = true
 
-	--Temple of Sethraliss
+	-- Temple of Sethraliss
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["actions"]["color"]["healthColor"]["r"] = 0
@@ -105,7 +105,7 @@ function L1UI:SetupNamePlates()
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["triggers"]["names"]["139110"] = true
 	E.global["nameplate"]["filters"]["Luckyone_TOS"]["triggers"]["names"]["139949"] = true
 
-	--Underrot
+	-- Underrot
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["actions"]["color"]["healthColor"]["r"] = 0
@@ -115,7 +115,7 @@ function L1UI:SetupNamePlates()
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["triggers"]["names"]["134284"] = true
 	E.global["nameplate"]["filters"]["Luckyone_UR"]["triggers"]["names"]["138187"] = true
 
-	--Waycrest Manor
+	-- Waycrest Manor
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["actions"]["color"]["healthColor"]["r"] = 0
@@ -127,7 +127,7 @@ function L1UI:SetupNamePlates()
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["triggers"]["names"]["131858"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WM"]["triggers"]["names"]["134041"] = true
 
-	--Mechagon Workshop
+	-- Mechagon Workshop
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["r"] = 0
@@ -136,7 +136,7 @@ function L1UI:SetupNamePlates()
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["151325"] = true
 	E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["151657"] = true
 
-	--Mechagon Junkyard
+	-- Mechagon Junkyard
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["g"] = 0.59607843137255
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["r"] = 0
@@ -148,7 +148,7 @@ function L1UI:SetupNamePlates()
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150292"] = true
 	E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150297"] = true
 
-	--Edited default filters
+	-- Edited default filters
 	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0.49019607843137
 	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["g"] = 0
 	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
@@ -159,7 +159,7 @@ function L1UI:SetupNamePlates()
 
 	E:StaggeredUpdateAll(nil, true)
 
-	--NamePlate CVars
+	-- NamePlate CVars
 	SetCVar('nameplateLargerScale', 1)
 	SetCVar('nameplateMinAlpha', 1)
 	SetCVar('nameplateMinScale', 1)
@@ -170,7 +170,7 @@ function L1UI:SetupNamePlates()
 	SetCVar('nameplateSelectedScale', 1)
 	SetCVar('nameplateSelfAlpha', 1)
 
-	--Name CVars
+	-- Name CVars
 	SetCVar('UnitNameEnemyGuardianName', 1)
 	SetCVar('UnitNameEnemyMinionName', 1)
 	SetCVar('UnitNameEnemyPetName', 1)

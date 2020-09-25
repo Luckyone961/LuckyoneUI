@@ -3,12 +3,12 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local IsAddOnLoaded = IsAddOnLoaded
 local SetCVar = SetCVar
 
---LuckyoneUI print
+-- LuckyoneUI print
 function L1UI:Print(msg)
 	print('|cff4beb2cLuckyoneUI|r: '..msg)
 end
 
---AddOnSkins Profile
+-- AddOnSkins Profile
 function L1UI:AddonSetupAS(addon)
 
 	if IsAddOnLoaded('AddOnSkins') then
@@ -17,7 +17,7 @@ function L1UI:AddonSetupAS(addon)
 	end
 end
 
---BigWigs Profile
+-- BigWigs Profile
 function L1UI:AddonSetupBW(addon)
 
 	if IsAddOnLoaded('BigWigs') then
@@ -26,7 +26,7 @@ function L1UI:AddonSetupBW(addon)
 	end
 end
 
---Details Profile
+-- Details Profile
 function L1UI:AddonSetupDT(addon)
 
 	if IsAddOnLoaded('Details') then
@@ -35,7 +35,7 @@ function L1UI:AddonSetupDT(addon)
 	end
 end
 
---OmniCD Profile
+-- OmniCD Profile
 function L1UI:AddonSetupOCD(addon)
 
 	if IsAddOnLoaded('OmniCD') then
@@ -44,7 +44,7 @@ function L1UI:AddonSetupOCD(addon)
 	end
 end
 
---ProjectAzilroka Profile
+-- ProjectAzilroka Profile
 function L1UI:AddonSetupPA(addon)
 
 	if IsAddOnLoaded('ProjectAzilroka') then
@@ -53,7 +53,7 @@ function L1UI:AddonSetupPA(addon)
 	end
 end
 
---CVars General
+-- CVars General
 function L1UI:SetupCVars()
 
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
@@ -65,10 +65,10 @@ function L1UI:SetupCVars()
 	L1UI:Print('CVars have been set.')
 end
 
---CVars NamePlates
+-- CVars NamePlates
 function L1UI:NameplateReset()
 
-	--NamePlate CVars
+	-- NamePlate CVars
 	SetCVar('nameplateLargerScale', 1)
 	SetCVar('nameplateMinAlpha', 1)
 	SetCVar('nameplateMinScale', 1)
@@ -79,7 +79,7 @@ function L1UI:NameplateReset()
 	SetCVar('nameplateSelectedScale', 1)
 	SetCVar('nameplateSelfAlpha', 1)
 
-	--Name CVars
+	-- Name CVars
 	SetCVar('UnitNameEnemyGuardianName', 1)
 	SetCVar('UnitNameEnemyMinionName', 1)
 	SetCVar('UnitNameEnemyPetName', 1)
@@ -89,10 +89,10 @@ function L1UI:NameplateReset()
 	L1UI:Print('NamePlate CVars have been reset to default.')
 end
 
---Private
+-- Private DB
 function L1UI:SetupPrivate()
 
-	--Private ElvUI
+	-- ElvUI Private DB
 	E.private["general"]["chatBubbleFont"] = "Expressway"
 	E.private["general"]["dmgfont"] = "Expressway"
 	E.private["general"]["glossTex"] = "Solid"
@@ -103,7 +103,7 @@ function L1UI:SetupPrivate()
 	E.private["skins"]["cleanBossButton"] = true
 	E.private["skins"]["parchmentRemoverEnable"] = true
 
-	--Private Shadow&Light
+	-- Shadow&Light Private DB
 	if IsAddOnLoaded('ElvUI_SLE') then
 		E.private["sle"]["install_complete"] = "3.77"
 		E.private["sle"]["professions"]["deconButton"]["enable"] = false

@@ -2,7 +2,7 @@ local LSM = LibStub("LibSharedMedia-3.0")
 
 if LSM == nil then return end
 
---Fonts
+-- Fonts
 LSM:Register('font','Alpha Echo', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Fonts\alpha_echo.ttf]])
 LSM:Register('font','Grandstander', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Fonts\Grandstander-VariableFont_wght.ttf]])
 LSM:Register('font','Kufam', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Fonts\Kufam-VariableFont_wght.ttf]])
