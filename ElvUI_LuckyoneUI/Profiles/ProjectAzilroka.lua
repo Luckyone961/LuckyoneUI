@@ -53,6 +53,4 @@ function L1UI:GetPAProfile()
 	PA.db["BrokerLDB"]["Font"] = "Expressway"
 
 	-- Movers
-	E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-59,-182"
-	E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-185"
 end
