@@ -644,7 +644,7 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["healthBar"]["fontSize"] = 11
 	E.db["tooltip"]["healthBar"]["height"] = 4
 	E.db["tooltip"]["healthBar"]["statusPosition"] = "TOP"
-	E.db["tooltip"]["itemCount"] = "BOTH"
+	E.db["tooltip"]["itemCount"] = "NONE"
 	E.db["tooltip"]["showElvUIUsers"] = true
 	E.db["tooltip"]["showMount"] = false
 	E.db["tooltip"]["smallTextFontSize"] = 11
