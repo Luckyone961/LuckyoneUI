@@ -280,6 +280,10 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["panelWidth"] = 414
 	E.db["chat"]["panelWidthRight"] = 414
 	E.db["chat"]["separateSizes"] = true
+	E.db["chat"]["showHistory"]["CHANNEL"] = false
+	E.db["chat"]["showHistory"]["EMOTE"] = false
+	E.db["chat"]["showHistory"]["SAY"] = false
+	E.db["chat"]["showHistory"]["YELL"] = false
 	E.db["chat"]["tabFont"] = "Expressway"
 	E.db["chat"]["tabFontSize"] = 11
 	E.db["chat"]["tabSelectedTextEnabled"] = false
