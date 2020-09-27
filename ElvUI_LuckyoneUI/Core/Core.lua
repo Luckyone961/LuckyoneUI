@@ -56,9 +56,9 @@ end
 -- CVars General
 function L1UI:SetupCVars()
 
+	SetCVar('advancedCombatLogging', 1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('ffxDeath', 0)
-	SetCVar('advancedCombatLogging', 1)
 	SetCVar('rawMouseEnable', 1)
 	SetCVar('SpellQueueWindow', 50)
 

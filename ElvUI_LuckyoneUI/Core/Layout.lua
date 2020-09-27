@@ -48,7 +48,30 @@ function L1UI:SetupLayout(layout)
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 358
 	end
 
-	-- Shadow&Light
+	-- ElvUI Private DB
+	E.private["general"]["chatBubbleFont"] = "Expressway"
+	E.private["general"]["dmgfont"] = "Expressway"
+	E.private["general"]["glossTex"] = "Solid"
+	E.private["general"]["namefont"] = "Expressway"
+	E.private["general"]["normTex"] = "Solid"
+	E.private["general"]["totemBar"] = false
+	E.private["install_complete"] = "11.49"
+	E.private["skins"]["cleanBossButton"] = true
+	E.private["skins"]["parchmentRemoverEnable"] = true
+
+	-- Shadow&Light Private DB
+	if IsAddOnLoaded('ElvUI_SLE') then
+		E.private["sle"]["install_complete"] = "3.77"
+		E.private["sle"]["module"]["blizzmove"]["enable"] = false
+		E.private["sle"]["professions"]["deconButton"]["enable"] = false
+		E.private["sle"]["skins"]["objectiveTracker"]["BGbackdrop"] = false
+		E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
+		E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
+		E.private["sle"]["skins"]["objectiveTracker"]["skinnedTextureLogo"] = "SLE"
+		E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Solid"
+	end
+
+	-- Shadow&Light Profile
 	if IsAddOnLoaded('ElvUI_SLE') then
 		E.db["sle"]["armory"]["character"]["background"]["overlay"] = false
 		E.db["sle"]["armory"]["character"]["corruption"]["font"] = "Expressway"
@@ -132,31 +155,52 @@ function L1UI:SetupLayout(layout)
 		E.db["sle"]["tooltip"]["RaidProg"]["raids"]["uldir"] = false
 	end
 
-	-- ElvUI Private DB
-	E.private["general"]["chatBubbleFont"] = "Expressway"
-	E.private["general"]["dmgfont"] = "Expressway"
-	E.private["general"]["glossTex"] = "Solid"
-	E.private["general"]["namefont"] = "Expressway"
-	E.private["general"]["normTex"] = "Solid"
-	E.private["general"]["totemBar"] = false
-	E.private["install_complete"] = "11.49"
-	E.private["skins"]["cleanBossButton"] = true
-	E.private["skins"]["parchmentRemoverEnable"] = true
-
-	-- Shadow&Light Private DB
-	if IsAddOnLoaded('ElvUI_SLE') then
-		E.private["sle"]["install_complete"] = "3.77"
-		E.private["sle"]["module"]["blizzmove"]["enable"] = false
-		E.private["sle"]["professions"]["deconButton"]["enable"] = false
-		E.private["sle"]["skins"]["objectiveTracker"]["BGbackdrop"] = false
-		E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
-		E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
-		E.private["sle"]["skins"]["objectiveTracker"]["skinnedTextureLogo"] = "SLE"
-		E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Solid"
-	end
-
 	-- v11
 	E.db["v11NamePlateReset"] = true
+
+	-- General
+	E.db["general"]["altPowerBar"]["font"] = "Expressway"
+	E.db["general"]["altPowerBar"]["statusBar"] = "Solid"
+	E.db["general"]["autoRepair"] = "PLAYER"
+	E.db["general"]["backdropcolor"]["b"] = 0.10196078431373
+	E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
+	E.db["general"]["backdropcolor"]["r"] = 0.10196078431373
+	E.db["general"]["backdropfadecolor"]["a"] = 0.7531320899725
+	E.db["general"]["backdropfadecolor"]["b"] = 0.058823529411765
+	E.db["general"]["backdropfadecolor"]["g"] = 0.058823529411765
+	E.db["general"]["backdropfadecolor"]["r"] = 0.058823529411765
+	E.db["general"]["bonusObjectivePosition"] = "AUTO"
+	E.db["general"]["bottomPanel"] = false
+	E.db["general"]["durabilityScale"] = 0.5
+	E.db["general"]["enhancedPvpMessages"] = false
+	E.db["general"]["font"] = "Expressway"
+	E.db["general"]["fontSize"] = 11
+	E.db["general"]["fontStyle"] = "NONE"
+	E.db["general"]["interruptAnnounce"] = "SAY"
+	E.db["general"]["itemLevel"]["itemLevelFont"] = "Expressway"
+	E.db["general"]["itemLevel"]["itemLevelFontSize"] = 11
+	E.db["general"]["loginmessage"] = false
+	E.db["general"]["minimap"]["icons"]["difficulty"]["position"] = "TOPRIGHT"
+	E.db["general"]["minimap"]["icons"]["difficulty"]["scale"] = 0.9
+	E.db["general"]["minimap"]["icons"]["lfgEye"]["position"] = "BOTTOMLEFT"
+	E.db["general"]["minimap"]["icons"]["lfgEye"]["scale"] = 1.1
+	E.db["general"]["minimap"]["icons"]["lfgEye"]["xOffset"] = -2
+	E.db["general"]["minimap"]["icons"]["lfgEye"]["yOffset"] = -2
+	E.db["general"]["minimap"]["locationFont"] = "Expressway"
+	E.db["general"]["minimap"]["locationFontSize"] = 14
+	E.db["general"]["minimap"]["locationText"] = "SHOW"
+	E.db["general"]["minimap"]["resetZoom"]["time"] = 15
+	E.db["general"]["minimap"]["size"] = 160
+	E.db["general"]["objectiveFrameAutoHide"] = false
+	E.db["general"]["objectiveFrameHeight"] = 600
+	E.db["general"]["smoothingAmount"] = 0.75
+	E.db["general"]["talkingHeadFrameBackdrop"] = true
+	E.db["general"]["talkingHeadFrameScale"] = 0.73
+	E.db["general"]["totems"]["enable"] = false
+	E.db["general"]["valuecolor"]["b"] = 0.039215601980686
+	E.db["general"]["valuecolor"]["g"] = 0.48627343773842
+	E.db["general"]["valuecolor"]["r"] = 0.99999779462814
+	E.db["general"]["vehicleSeatIndicatorSize"] = 64
 
 	-- ActionBars
 	E.db["actionbar"]["bar1"]["alpha"] = 0.75
@@ -220,6 +264,23 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["stanceBar"]["mouseover"] = true
 	E.db["actionbar"]["transparent"] = true
 
+	-- Bags
+	E.db["bags"]["bagWidth"] = 414
+	E.db["bags"]["bankWidth"] = 414
+	E.db["bags"]["cooldown"]["daysIndicator"]["g"] = 0.4
+	E.db["bags"]["cooldown"]["daysIndicator"]["r"] = 0.4
+	E.db["bags"]["cooldown"]["expireIndicator"]["b"] = 0
+	E.db["bags"]["cooldown"]["expireIndicator"]["g"] = 0
+	E.db["bags"]["cooldown"]["hoursIndicator"]["r"] = 0.4
+	E.db["bags"]["cooldown"]["override"] = true
+	E.db["bags"]["countFont"] = "Expressway"
+	E.db["bags"]["countFontOutline"] = "OUTLINE"
+	E.db["bags"]["countFontSize"] = 11
+	E.db["bags"]["itemLevelFont"] = "Expressway"
+	E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
+	E.db["bags"]["itemLevelFontSize"] = 11
+	E.db["bags"]["vendorGrays"]["enable"] = true
+
 	-- Auras
 	E.db["auras"]["barTexture"] = "Solid"
 	E.db["auras"]["buffs"]["countFontSize"] = 14
@@ -240,23 +301,6 @@ function L1UI:SetupLayout(layout)
 	E.db["auras"]["fadeThreshold"] = -1
 	E.db["auras"]["font"] = "Expressway"
 	E.db["auras"]["fontOutline"] = "OUTLINE"
-
-	-- Bags
-	E.db["bags"]["bagWidth"] = 414
-	E.db["bags"]["bankWidth"] = 414
-	E.db["bags"]["cooldown"]["daysIndicator"]["g"] = 0.4
-	E.db["bags"]["cooldown"]["daysIndicator"]["r"] = 0.4
-	E.db["bags"]["cooldown"]["expireIndicator"]["b"] = 0
-	E.db["bags"]["cooldown"]["expireIndicator"]["g"] = 0
-	E.db["bags"]["cooldown"]["hoursIndicator"]["r"] = 0.4
-	E.db["bags"]["cooldown"]["override"] = true
-	E.db["bags"]["countFont"] = "Expressway"
-	E.db["bags"]["countFontOutline"] = "OUTLINE"
-	E.db["bags"]["countFontSize"] = 11
-	E.db["bags"]["itemLevelFont"] = "Expressway"
-	E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
-	E.db["bags"]["itemLevelFontSize"] = 11
-	E.db["bags"]["vendorGrays"]["enable"] = true
 
 	-- Chat
 	E.db["chat"]["desaturateVoiceIcons"] = false
@@ -341,50 +385,6 @@ function L1UI:SetupLayout(layout)
 	E.db["datatexts"]["panels"]["MinimapPanel"][1] = "Time"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["enable"] = false
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
-
-	-- General
-	E.db["general"]["altPowerBar"]["font"] = "Expressway"
-	E.db["general"]["altPowerBar"]["statusBar"] = "Solid"
-	E.db["general"]["autoRepair"] = "PLAYER"
-	E.db["general"]["backdropcolor"]["b"] = 0.10196078431373
-	E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
-	E.db["general"]["backdropcolor"]["r"] = 0.10196078431373
-	E.db["general"]["backdropfadecolor"]["a"] = 0.7531320899725
-	E.db["general"]["backdropfadecolor"]["b"] = 0.058823529411765
-	E.db["general"]["backdropfadecolor"]["g"] = 0.058823529411765
-	E.db["general"]["backdropfadecolor"]["r"] = 0.058823529411765
-	E.db["general"]["bonusObjectivePosition"] = "AUTO"
-	E.db["general"]["bottomPanel"] = false
-	E.db["general"]["durabilityScale"] = 0.5
-	E.db["general"]["enhancedPvpMessages"] = false
-	E.db["general"]["font"] = "Expressway"
-	E.db["general"]["fontSize"] = 11
-	E.db["general"]["fontStyle"] = "NONE"
-	E.db["general"]["interruptAnnounce"] = "SAY"
-	E.db["general"]["itemLevel"]["itemLevelFont"] = "Expressway"
-	E.db["general"]["itemLevel"]["itemLevelFontSize"] = 11
-	E.db["general"]["loginmessage"] = false
-	E.db["general"]["minimap"]["icons"]["difficulty"]["position"] = "TOPRIGHT"
-	E.db["general"]["minimap"]["icons"]["difficulty"]["scale"] = 0.9
-	E.db["general"]["minimap"]["icons"]["lfgEye"]["position"] = "BOTTOMLEFT"
-	E.db["general"]["minimap"]["icons"]["lfgEye"]["scale"] = 1.1
-	E.db["general"]["minimap"]["icons"]["lfgEye"]["xOffset"] = -2
-	E.db["general"]["minimap"]["icons"]["lfgEye"]["yOffset"] = -2
-	E.db["general"]["minimap"]["locationFont"] = "Expressway"
-	E.db["general"]["minimap"]["locationFontSize"] = 14
-	E.db["general"]["minimap"]["locationText"] = "SHOW"
-	E.db["general"]["minimap"]["resetZoom"]["time"] = 15
-	E.db["general"]["minimap"]["size"] = 160
-	E.db["general"]["objectiveFrameAutoHide"] = false
-	E.db["general"]["objectiveFrameHeight"] = 600
-	E.db["general"]["smoothingAmount"] = 0.75
-	E.db["general"]["talkingHeadFrameBackdrop"] = true
-	E.db["general"]["talkingHeadFrameScale"] = 0.73
-	E.db["general"]["totems"]["enable"] = false
-	E.db["general"]["valuecolor"]["b"] = 0.039215601980686
-	E.db["general"]["valuecolor"]["g"] = 0.48627343773842
-	E.db["general"]["valuecolor"]["r"] = 0.99999779462814
-	E.db["general"]["vehicleSeatIndicatorSize"] = 64
 
 	-- NamePlates
 	E.db["nameplates"]["colors"]["castbarDesaturate"] = false
@@ -968,12 +968,12 @@ function L1UI:SetupLayout(layout)
 
 	if layout == 'dps' then
 
-		-- Growth Directions
+		-- Growth Directions DPS/TANK
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "RIGHT_DOWN"
 
-		-- Movers
+		-- Movers DPS/TANK
 		E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-139"
 		E.db["movers"]["AltPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,152"
 		E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
@@ -1044,7 +1044,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,0,209"
 
-		-- UnitFrames
+		-- UnitFrames DPS/TANK
 		E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = 0.99
 		E.db["unitframe"]["colors"]["auraBarBuff"]["g"] = 0.99
 		E.db["unitframe"]["colors"]["auraBarBuff"]["r"] = 0.99
@@ -1508,12 +1508,12 @@ function L1UI:SetupLayout(layout)
 
 	elseif layout == 'healer' then
 
-		-- Growth Directions
+		-- Growth Directions Healing
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "RIGHT_DOWN"
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "RIGHT_DOWN"
 
-		-- Movers
+		-- Movers Healing
 		E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-139"
 		E.db["movers"]["AltPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,368"
 		E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
@@ -1584,7 +1584,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,200,367"
 
-		-- UnitFrames
+		-- UnitFrames Healing
 		E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = 0.99
 		E.db["unitframe"]["colors"]["auraBarBuff"]["g"] = 0.99
 		E.db["unitframe"]["colors"]["auraBarBuff"]["r"] = 0.99
