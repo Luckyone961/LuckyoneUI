@@ -23,10 +23,10 @@ function L1UI:GetPAProfile()
 
 	-- SquareMinimapButtons Setup
 	PA.db["SquareMinimapButtons"]["Backdrop"] = false
-	PA.db["SquareMinimapButtons"]["BarMouseOver"] = true
-	PA.db["SquareMinimapButtons"]["ButtonSpacing"] = 1
+	PA.db["SquareMinimapButtons"]["BarMouseOver"] = false
+	PA.db["SquareMinimapButtons"]["ButtonSpacing"] = 0
 	PA.db["SquareMinimapButtons"]["ButtonsPerRow"] = 6
-	PA.db["SquareMinimapButtons"]["IconSize"] = 26
+	PA.db["SquareMinimapButtons"]["IconSize"] = 27
 	PA.db["SquareMinimapButtons"]["MoveQueue"] = false
 	PA.db["SquareMinimapButtons"]["MoveTracker"] = false
 	PA.db["SquareMinimapButtons"]["Shadows"] = false
