@@ -1,4 +1,4 @@
-### Version 1.06 [XX-XX-2020]
+### Version 1.06 [14-10-2020]
 **Shadowlands pre-patch version**  
 **Changes:**  
 New recommended UI scale: 0.71111111 (1080p Auto-Scale)  
@@ -10,6 +10,7 @@ New installer step: AddOnSkins
 **Misc:**  
 Pixel perfect update for patch 9.0.1 / 9.0.2  
 ProjectAzilroka profile update  
+Details profile update  
 BigWigs profile update  
 OmniCD profile update  
 Updated credits  
