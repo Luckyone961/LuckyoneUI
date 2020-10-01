@@ -60,10 +60,8 @@ function L1UI:GetBigWigsProfile()
 						[main] = {
 							["endPullSound"] = "None",
 							["voice"] = "English: Heroes of the Storm",
-							["combatLog"] = true,
 						},
 						[heal] = {
-							["combatLog"] = true,
 							["voice"] = "English: Heroes of the Storm",
 							["endPullSound"] = "None",
 						},
