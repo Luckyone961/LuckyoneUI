@@ -416,6 +416,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = "Blacklist,Dispellable"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["size"] = 22
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["spacing"] = 0
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["xOffset"] = -1
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = -10
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontSize"] = 10
@@ -472,13 +473,14 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = "Blacklist,Dispellable"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["size"] = 22
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["spacing"] = 0
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["xOffset"] = -1
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = -10
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["fontSize"] = 10
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["height"] = 12
-	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetX"] = -1
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetY"] = -1
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconPosition"] = "LEFT"
-	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 32
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 33
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["textPosition"] = "ONBAR"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["timeToHold"] = 2
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["width"] = 165
