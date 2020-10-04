@@ -1327,6 +1327,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["buffs"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 20
 		E.db["unitframe"]["units"]["player"]["castbar"]["latency"] = false
+		E.db["unitframe"]["units"]["player"]["castbar"]["timeToHold"] = 2
 		E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 358
 		E.db["unitframe"]["units"]["player"]["classbar"]["enable"] = false
 		E.db["unitframe"]["units"]["player"]["classbar"]["height"] = 6
@@ -1453,6 +1454,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Dispellable"
 		E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 23
 		E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = 1
+		E.db["unitframe"]["units"]["target"]["castbar"]["timeToHold"] = 2
 		E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 190
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = false
 		E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "TOPLEFT"
@@ -1868,6 +1870,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["buffs"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 20
 		E.db["unitframe"]["units"]["player"]["castbar"]["latency"] = false
+		E.db["unitframe"]["units"]["player"]["castbar"]["timeToHold"] = 2
 		E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 358
 		E.db["unitframe"]["units"]["player"]["classbar"]["enable"] = false
 		E.db["unitframe"]["units"]["player"]["classbar"]["height"] = 6
@@ -1963,6 +1966,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Dispellable"
 		E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 23
 		E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = 1
+		E.db["unitframe"]["units"]["target"]["castbar"]["timeToHold"] = 2
 		E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 190
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = false
 		E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "TOPLEFT"
