@@ -53,6 +53,15 @@ function L1UI:AddonSetupPA(addon)
 	end
 end
 
+-- Shadow&Light Profile
+function L1UI:AddonSetupSLE(addon)
+
+	if IsAddOnLoaded('ElvUI_SLE') then
+		L1UI:GetSLEProfile()
+		L1UI:Print('Shadow&Light profile has been set.')
+	end
+end
+
 -- CVars General
 function L1UI:SetupCVars()
 
@@ -102,18 +111,6 @@ function L1UI:SetupPrivate()
 	E.private["install_complete"] = "11.49"
 	E.private["skins"]["cleanBossButton"] = true
 	E.private["skins"]["parchmentRemoverEnable"] = true
-
-	-- Shadow&Light Private DB
-	if IsAddOnLoaded('ElvUI_SLE') then
-		E.private["sle"]["install_complete"] = "3.77"
-		E.private["sle"]["module"]["blizzmove"]["enable"] = false
-		E.private["sle"]["professions"]["deconButton"]["enable"] = false
-		E.private["sle"]["skins"]["objectiveTracker"]["BGbackdrop"] = false
-		E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
-		E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
-		E.private["sle"]["skins"]["objectiveTracker"]["skinnedTextureLogo"] = "SLE"
-		E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Solid"
-	end
 
 	E:StaggeredUpdateAll(nil, true)
 
