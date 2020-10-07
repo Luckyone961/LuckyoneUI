@@ -9,6 +9,11 @@ function L1UI:SetupLayout(layout)
 		E.db.movers = {}
 	end
 
+	-- AddOnSkins Profile
+	if IsAddOnLoaded('AddOnSkins') then
+		L1UI:GetASProfile()
+	end
+
 	-- Shadow&Light Profile
 	if IsAddOnLoaded('ElvUI_SLE') then
 		L1UI:GetSLEProfile()
