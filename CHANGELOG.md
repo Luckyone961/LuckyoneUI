@@ -6,8 +6,8 @@ Fixed NamePlates Buffs and Debuffs (pixel perfect issue)
 Added 1px border around the custom ActionBars DataText  
 Adjusted movers and settings for the Shadowlands ElvUI DataBars  
 **New Additions:**  
-New installer step: AddOnSkins  
-• This step will apply my AddOn profile for AddOnSkins (optional)  
+Added my AddOn profile for AddOnSkins  
+Added an option to reset Shadow&Light back to LuckyoneUI default  
 **Misc:**  
 Pixel perfect update for patch 9.0.1 / 9.0.2  
 ProjectAzilroka profile update  
