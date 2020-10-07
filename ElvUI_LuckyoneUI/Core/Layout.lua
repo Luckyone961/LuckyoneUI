@@ -344,32 +344,29 @@ function L1UI:SetupLayout(layout)
 	E.db["cooldown"]["threshold"] = 4
 
 	-- DataBars
+	E.db["databars"]["azerite"]["enable"] = false
 	E.db["databars"]["azerite"]["font"] = "Expressway"
 	E.db["databars"]["azerite"]["fontOutline"] = "OUTLINE"
 	E.db["databars"]["azerite"]["height"] = 169
 	E.db["databars"]["azerite"]["hideAtMaxLevel"] = false
-	E.db["databars"]["azerite"]["mouseover"] = true
 	E.db["databars"]["azerite"]["orientation"] = "VERTICAL"
 	E.db["databars"]["azerite"]["width"] = 10
 	E.db["databars"]["experience"]["font"] = "Expressway"
 	E.db["databars"]["experience"]["height"] = 169
-	E.db["databars"]["experience"]["mouseover"] = true
 	E.db["databars"]["experience"]["orientation"] = "VERTICAL"
 	E.db["databars"]["experience"]["width"] = 10
+	E.db["databars"]["honor"]["enable"] = false
 	E.db["databars"]["honor"]["font"] = "Expressway"
 	E.db["databars"]["honor"]["height"] = 169
-	E.db["databars"]["honor"]["mouseover"] = true
 	E.db["databars"]["honor"]["orientation"] = "VERTICAL"
 	E.db["databars"]["honor"]["width"] = 10
-	E.db["databars"]["reputation"]["enable"] = true
 	E.db["databars"]["reputation"]["font"] = "Expressway"
 	E.db["databars"]["reputation"]["height"] = 169
-	E.db["databars"]["reputation"]["mouseover"] = true
 	E.db["databars"]["reputation"]["orientation"] = "VERTICAL"
 	E.db["databars"]["reputation"]["width"] = 10
+	E.db["databars"]["threat"]["enable"] = false
 	E.db["databars"]["threat"]["font"] = "Expressway"
 	E.db["databars"]["threat"]["height"] = 169
-	E.db["databars"]["threat"]["mouseover"] = true
 	E.db["databars"]["threat"]["width"] = 10
 
 	-- DataTexts
