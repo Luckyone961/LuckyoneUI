@@ -1,9 +1,10 @@
 ### Version 1.06 [14-10-2020]
-**Shadowlands pre-patch version**  
+**Shadowlands pre-patch version, make sure to update ElvUI first**  
 **Changes:**  
 New recommended UI scale: 0.71111111 (1080p Auto-Scale)  
-Fixed NamePlates Debuffs (pixel perfect issue)  
+Fixed NamePlates Buffs and Debuffs (pixel perfect issue)  
 Added 1px border around the custom ActionBars DataText  
+Adjusted movers and settings for the Shadowlands ElvUI DataBars  
 **New Additions:**  
 New installer step: AddOnSkins  
 • This step will apply my AddOn profile for AddOnSkins (optional)  
