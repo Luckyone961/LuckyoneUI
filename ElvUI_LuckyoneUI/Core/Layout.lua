@@ -2,7 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local IsAddOnLoaded = IsAddOnLoaded
 
--- Layout setup (DPS/TANK & Healing) + Shadow&Light
+-- Layout Setup ( DPS/TANK & Healing )
 function L1UI:SetupLayout(layout)
 
 	if not E.db.movers then
@@ -12,6 +12,11 @@ function L1UI:SetupLayout(layout)
 	-- AddOnSkins Profile
 	if IsAddOnLoaded('AddOnSkins') then
 		L1UI:GetASProfile()
+	end
+
+	-- ProjectAzilroka Profile
+	if IsAddOnLoaded('ProjectAzilroka') then
+		L1UI:GetPAProfile()
 	end
 
 	-- Shadow&Light Profile

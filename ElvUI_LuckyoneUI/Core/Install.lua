@@ -83,14 +83,6 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetText('Setup OmniCD')
 		end,
 		[9] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText('ProjectAzilroka Profile')
-			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for ProjectAzilroka.')
-			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
-			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupPA('addon') end)
-			PluginInstallFrame.Option1:SetText('Setup ProjectAzilroka')
-		end,
-		[10] = function()
 			PluginInstallFrame.SubTitle:SetText('Installation Complete')
 			PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cHigh|r')
@@ -108,8 +100,7 @@ L1UI.InstallerData = {
 		[6] = 'BigWigs',
 		[7] = 'Details',
 		[8] = 'OmniCD',
-		[9] = 'ProjectAzilroka',
-		[10] = 'Installation Complete',
+		[9] = 'Installation Complete',
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0, 179/255, 1},
