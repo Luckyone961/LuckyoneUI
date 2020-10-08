@@ -20,12 +20,6 @@ function L1UI:GetSLEProfile()
 
 	-- Profile DB
 	E.db["sle"]["armory"]["character"]["background"]["overlay"] = false
-	E.db["sle"]["armory"]["character"]["corruption"]["font"] = "Expressway"
-	E.db["sle"]["armory"]["character"]["corruption"]["fontSize"] = 12
-	E.db["sle"]["armory"]["character"]["corruptionText"]["font"] = "Expressway"
-	E.db["sle"]["armory"]["character"]["corruptionText"]["fontSize"] = 11
-	E.db["sle"]["armory"]["character"]["corruptionText"]["icon"] = true
-	E.db["sle"]["armory"]["character"]["corruptionText"]["style"] = "Hide"
 	E.db["sle"]["armory"]["character"]["durability"]["display"] = "Hide"
 	E.db["sle"]["armory"]["character"]["durability"]["font"] = "Expressway"
 	E.db["sle"]["armory"]["character"]["durability"]["fontSize"] = 11
@@ -39,10 +33,6 @@ function L1UI:GetSLEProfile()
 	E.db["sle"]["armory"]["character"]["ilvl"]["font"] = "Expressway"
 	E.db["sle"]["armory"]["character"]["ilvl"]["fontSize"] = 11
 	E.db["sle"]["armory"]["inspect"]["background"]["overlay"] = false
-	E.db["sle"]["armory"]["inspect"]["corruptionText"]["font"] = "Expressway"
-	E.db["sle"]["armory"]["inspect"]["corruptionText"]["fontSize"] = 11
-	E.db["sle"]["armory"]["inspect"]["corruptionText"]["icon"] = true
-	E.db["sle"]["armory"]["inspect"]["corruptionText"]["style"] = "Hide"
 	E.db["sle"]["armory"]["inspect"]["enable"] = true
 	E.db["sle"]["armory"]["inspect"]["enchant"]["font"] = "Expressway"
 	E.db["sle"]["armory"]["inspect"]["enchant"]["fontSize"] = 9
