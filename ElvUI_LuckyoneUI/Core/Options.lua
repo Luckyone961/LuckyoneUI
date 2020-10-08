@@ -209,9 +209,9 @@ function L1UI:Configtable()
 					},
 				},
 			},
-			info = {
+			cvars = {
 				type = 'group',
-				name = 'Informations',
+				name = 'CVars',
 				order = 2,
 				args = {
 					cvardesc = {
@@ -323,7 +323,7 @@ function L1UI:Configtable()
 						order = 4,
 						type = 'group',
 						inline = true,
-						name = 'Supporter',
+						name = 'Supporters',
 						args = {
 							desc = {
 								order = 1,
