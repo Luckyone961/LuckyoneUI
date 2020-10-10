@@ -1,5 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 
 -- Layout Setup ( DPS/TANK & Healing )
@@ -8,6 +9,11 @@ function L1UI:SetupLayout(layout)
 	if not E.db.movers then
 		E.db.movers = {}
 	end
+
+	-- Global UI Scale
+	E.global["general"]["UIScale"] = 0.71111111111111
+	-- CVar UI Scale
+	SetCVar('uiScale', 0.71111111111111)
 
 	-- AddOnSkins Profile
 	if IsAddOnLoaded('AddOnSkins') then
