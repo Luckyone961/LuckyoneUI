@@ -1,7 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local IsAddOnLoaded = IsAddOnLoaded
 local SetCVar = SetCVar
+local IsAddOnLoaded = IsAddOnLoaded
 
 -- LuckyoneUI print
 function L1UI:Print(msg)
@@ -115,4 +115,47 @@ function L1UI:SetupPrivate()
 	E:StaggeredUpdateAll(nil, true)
 
 	L1UI:Print('Note: Fonts do not change until you restart WoW.')
+end
+
+-- Global DB
+function L1UI:SetupGlobal()
+
+	-- ElvUI Global DB
+	E.global["general"]["commandBarSetting"] = "DISABLED"
+	E.global["general"]["mapAlphaWhenMoving"] = 0.35
+	E.global["general"]["smallerWorldMapScale"] = 0.8
+	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
+
+	-- Custom DataText
+	do
+		E.DataTexts:BuildPanelFrame("Luckyone_ActionBars_DT")
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["backdrop"] = true
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["border"] = true
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["enable"] = true
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["enable"] = true
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["font"] = "Expressway"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontOutline"] = "NONE"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontSize"] = 12
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameLevel"] = 1
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameStrata"] = "LOW"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["growth"] = "HORIZONTAL"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["height"] = 13
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["mouseover"] = false
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["name"] = "Luckyone_ActionBars_DT"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["numPoints"] = 3
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["panelTransparency"] = true
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["textJustify"] = "CENTER"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipAnchor"] = "ANCHOR_TOP"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipXOffset"] = 0
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipYOffset"] = 5
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = "[petbattle] hide;show"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 358
+	end
+end
+
+-- UI Scale
+function L1UI:SetupScale()
+
+	E.global["general"]["UIScale"] = 0.71111111111111
+	SetCVar('uiScale', 0.71111111111111)
 end

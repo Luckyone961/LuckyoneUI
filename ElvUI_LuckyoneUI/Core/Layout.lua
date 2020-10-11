@@ -3,17 +3,20 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 
--- Layout Setup ( DPS/TANK & Healing )
 function L1UI:SetupLayout(layout)
 
 	if not E.db.movers then
 		E.db.movers = {}
 	end
 
-	-- Global UI Scale
-	E.global["general"]["UIScale"] = 0.71111111111111
-	-- CVar UI Scale
-	SetCVar('uiScale', 0.71111111111111)
+	-- Setup UI Scale
+	L1UI:SetupScale()
+
+	-- Setup Global DB
+	L1UI:SetupGlobal()
+
+	-- Setup Private DB
+	L1UI:SetupPrivate()
 
 	-- AddOnSkins Profile
 	if IsAddOnLoaded('AddOnSkins') then
@@ -29,49 +32,6 @@ function L1UI:SetupLayout(layout)
 	if IsAddOnLoaded('ElvUI_SLE') then
 		L1UI:GetSLEProfile()
 	end
-
-	-- ElvUI Global DB
-	E.global["general"]["commandBarSetting"] = "DISABLED"
-	E.global["general"]["mapAlphaWhenMoving"] = 0.35
-	E.global["general"]["smallerWorldMapScale"] = 0.8
-	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
-
-	-- Custom DataText
-	do
-		E.DataTexts:BuildPanelFrame("Luckyone_ActionBars_DT")
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["backdrop"] = true
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["border"] = true
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["enable"] = true
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["enable"] = true
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["font"] = "Expressway"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontOutline"] = "NONE"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontSize"] = 12
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameLevel"] = 1
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameStrata"] = "LOW"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["growth"] = "HORIZONTAL"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["height"] = 13
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["mouseover"] = false
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["name"] = "Luckyone_ActionBars_DT"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["numPoints"] = 3
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["panelTransparency"] = true
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["textJustify"] = "CENTER"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipAnchor"] = "ANCHOR_TOP"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipXOffset"] = 0
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipYOffset"] = 5
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = "[petbattle] hide;show"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 358
-	end
-
-	-- ElvUI Private DB
-	E.private["general"]["chatBubbleFont"] = "Expressway"
-	E.private["general"]["dmgfont"] = "Expressway"
-	E.private["general"]["glossTex"] = "Solid"
-	E.private["general"]["namefont"] = "Expressway"
-	E.private["general"]["normTex"] = "Solid"
-	E.private["general"]["totemBar"] = false
-	E.private["install_complete"] = "11.49"
-	E.private["skins"]["cleanBossButton"] = true
-	E.private["skins"]["parchmentRemoverEnable"] = true
 
 	-- v11
 	E.db["v11NamePlateReset"] = true
