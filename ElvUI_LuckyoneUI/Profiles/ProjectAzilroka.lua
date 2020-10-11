@@ -11,7 +11,7 @@ function L1UI:GetPAProfile()
 	-- Module toggles
 	PA.db["AuraReminder"]["Enable"] = false
 	PA.db["BigButtons"]["Enable"] = false
-	PA.db["cooldown"]["enable"] = false
+	PA.db["Cooldown"]["Enable"] = false
 	PA.db["DragonOverlay"]["Enable"] = false
 	PA.db["EnhancedShadows"]["Enable"] = false
 	PA.db["MouseoverAuras"]["Enable"] = false
