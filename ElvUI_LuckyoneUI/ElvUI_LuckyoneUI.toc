@@ -5,7 +5,6 @@
 ## Notes: Luckyone's ElvUI Layouts
 ## RequiredDeps: ElvUI
 ## DefaultState: enabled
-## Version: @project-version@
 
 Init.lua
 Core\load_core.xml
