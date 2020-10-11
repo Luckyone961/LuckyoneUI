@@ -224,27 +224,29 @@ function L1UI:SetupLayout(layout)
 	-- DataBars
 	E.db["databars"]["azerite"]["enable"] = false
 	E.db["databars"]["azerite"]["font"] = "Expressway"
-	E.db["databars"]["azerite"]["fontOutline"] = "OUTLINE"
-	E.db["databars"]["azerite"]["height"] = 169
+	E.db["databars"]["azerite"]["height"] = 171
 	E.db["databars"]["azerite"]["hideAtMaxLevel"] = false
 	E.db["databars"]["azerite"]["orientation"] = "VERTICAL"
 	E.db["databars"]["azerite"]["width"] = 10
 	E.db["databars"]["experience"]["font"] = "Expressway"
-	E.db["databars"]["experience"]["height"] = 169
+	E.db["databars"]["experience"]["height"] = 171
+	E.db["databars"]["experience"]["hideAtMaxLevel"] = false
 	E.db["databars"]["experience"]["orientation"] = "VERTICAL"
 	E.db["databars"]["experience"]["width"] = 10
 	E.db["databars"]["honor"]["enable"] = false
 	E.db["databars"]["honor"]["font"] = "Expressway"
-	E.db["databars"]["honor"]["height"] = 169
+	E.db["databars"]["honor"]["height"] = 171
 	E.db["databars"]["honor"]["orientation"] = "VERTICAL"
 	E.db["databars"]["honor"]["width"] = 10
+	E.db["databars"]["reputation"]["enable"] = true
 	E.db["databars"]["reputation"]["font"] = "Expressway"
-	E.db["databars"]["reputation"]["height"] = 169
+	E.db["databars"]["reputation"]["height"] = 171
 	E.db["databars"]["reputation"]["orientation"] = "VERTICAL"
 	E.db["databars"]["reputation"]["width"] = 10
 	E.db["databars"]["threat"]["enable"] = false
 	E.db["databars"]["threat"]["font"] = "Expressway"
-	E.db["databars"]["threat"]["height"] = 169
+	E.db["databars"]["threat"]["height"] = 171
+	E.db["databars"]["threat"]["orientation"] = "VERTICAL"
 	E.db["databars"]["threat"]["width"] = 10
 
 	-- DataTexts
@@ -855,7 +857,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["AltPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,152"
 		E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
 		E.db["movers"]["ArtifactBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,16"
-		E.db["movers"]["AzeriteBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,430,2"
+		E.db["movers"]["AzeriteBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
 		E.db["movers"]["BelowMinimapContainerMover"] = "TOP,ElvUIParent,TOP,0,-37"
 		E.db["movers"]["BNETMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,174"
 		E.db["movers"]["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,209"
@@ -888,10 +890,10 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-530,320"
 		E.db["movers"]["ElvUIBagMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,173"
 		E.db["movers"]["ElvUIBankMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173"
-		E.db["movers"]["ExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,417,2"
+		E.db["movers"]["ExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,1"
 		E.db["movers"]["GhostFrameMover"] = "TOP,ElvUIParent,TOP,0,-161"
 		E.db["movers"]["GMMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-489,-1"
-		E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-430,2"
+		E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1"
 		E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1"
 		E.db["movers"]["LevelUpBossBannerMover"] = "TOP,ElvUIParent,TOP,0,-57"
 		E.db["movers"]["LootFrameMover"] = "TOP,ElvUIParent,TOP,0,-160"
@@ -904,20 +906,20 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-86,-214"
 		E.db["movers"]["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,123"
 		E.db["movers"]["RaidUtility_Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,347,-1"
-		E.db["movers"]["ReputationBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,2"
+		E.db["movers"]["ReputationBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1"
 		E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1"
 		E.db["movers"]["ShiftAB"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-1"
 		E.db["movers"]["SocialMenuMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,196"
 		E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-185"
 		E.db["movers"]["TalkingHeadFrameMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,174"
 		E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,242,348"
-		E.db["movers"]["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-443,2"
+		E.db["movers"]["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,1"
 		E.db["movers"]["TooltipMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135"
 		E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-10"
 		E.db["movers"]["TotemBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,413,1"
 		E.db["movers"]["UIErrorsFrameMover"] = "TOP,ElvUIParent,TOP,0,-78"
 		E.db["movers"]["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,176"
-		E.db["movers"]["VehicleSeatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,442,1"
+		E.db["movers"]["VehicleSeatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,438,1"
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,0,209"
 
