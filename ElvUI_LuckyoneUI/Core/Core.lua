@@ -9,7 +9,7 @@ function L1UI:Print(msg)
 end
 
 -- AddOnSkins Profile
-function L1UI:AddonSetupAS(addon)
+function L1UI:AddonSetupAS()
 
 	if IsAddOnLoaded('AddOnSkins') then
 		L1UI:GetASProfile()
@@ -18,7 +18,7 @@ function L1UI:AddonSetupAS(addon)
 end
 
 -- BigWigs Profile
-function L1UI:AddonSetupBW(addon)
+function L1UI:AddonSetupBW()
 
 	if IsAddOnLoaded('BigWigs') then
 		L1UI:GetBigWigsProfile()
@@ -27,7 +27,7 @@ function L1UI:AddonSetupBW(addon)
 end
 
 -- Details Profile
-function L1UI:AddonSetupDT(addon)
+function L1UI:AddonSetupDT()
 
 	if IsAddOnLoaded('Details') then
 		L1UI:GetDetailsProfile()
@@ -36,7 +36,7 @@ function L1UI:AddonSetupDT(addon)
 end
 
 -- OmniCD Profile
-function L1UI:AddonSetupOCD(addon)
+function L1UI:AddonSetupOCD()
 
 	if IsAddOnLoaded('OmniCD') then
 		L1UI:GetOmniCDProfile()
@@ -45,7 +45,7 @@ function L1UI:AddonSetupOCD(addon)
 end
 
 -- ProjectAzilroka Profile
-function L1UI:AddonSetupPA(addon)
+function L1UI:AddonSetupPA()
 
 	if IsAddOnLoaded('ProjectAzilroka') then
 		L1UI:GetPAProfile()
@@ -54,7 +54,7 @@ function L1UI:AddonSetupPA(addon)
 end
 
 -- Shadow&Light Profile
-function L1UI:AddonSetupSLE(addon)
+function L1UI:AddonSetupSLE()
 
 	if IsAddOnLoaded('ElvUI_SLE') then
 		L1UI:GetSLEProfile()

@@ -154,7 +154,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'AddOnSkins',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupAS(addon); end,
+								func = function() L1UI:AddonSetupAS(); end,
 								confirm = true,
 							},
 							projectazilroka = {
@@ -162,7 +162,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'ProjectAzilroka',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupPA(addon); end,
+								func = function() L1UI:AddonSetupPA(); end,
 								confirm = true,
 							},
 							sle = {
@@ -170,7 +170,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'Shadow&Light',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupSLE(addon); end,
+								func = function() L1UI:AddonSetupSLE(); end,
 								confirm = true,
 							},
 						},
@@ -186,7 +186,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'BigWigs',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupBW(addon); end,
+								func = function() L1UI:AddonSetupBW(); end,
 								confirm = true,
 							},
 							details = {
@@ -194,7 +194,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'Details! Damage Meter',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupDT(addon); end,
+								func = function() L1UI:AddonSetupDT(); end,
 								confirm = true,
 							},
 							omnicd = {
@@ -202,7 +202,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'OmniCD Party CDs',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupOCD(addon); end,
+								func = function() L1UI:AddonSetupOCD(); end,
 								confirm = true,
 							},
 						},

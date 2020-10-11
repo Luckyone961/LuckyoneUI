@@ -63,7 +63,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for BigWigs.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupBW('addon') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupBW() end)
 			PluginInstallFrame.Option1:SetText('Setup BigWigs')
 		end,
 		[7] = function()
@@ -71,7 +71,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for Details! Damage Meter.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupDT('addon') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupDT() end)
 			PluginInstallFrame.Option1:SetText('Setup Details')
 		end,
 		[8] = function()
@@ -79,7 +79,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for OmniCD Party CDs.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupOCD('addon') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupOCD() end)
 			PluginInstallFrame.Option1:SetText('Setup OmniCD')
 		end,
 		[9] = function()
