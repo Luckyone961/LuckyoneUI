@@ -155,7 +155,8 @@ end
 
 -- UI Scale
 function L1UI:SetupScale()
+	local pixel = E:PixelBestSize()
 
-	E.global["general"]["UIScale"] = 0.71111111111111
-	SetCVar('uiScale', 0.71111111111111)
+	E.global["general"]["UIScale"] = pixel
+	SetCVar('uiScale', pixel)
 end
