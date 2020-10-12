@@ -864,7 +864,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["AzeriteBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
 		E.db["movers"]["BelowMinimapContainerMover"] = "TOP,ElvUIParent,TOP,0,-37"
 		E.db["movers"]["BNETMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,174"
-		E.db["movers"]["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,209"
+		E.db["movers"]["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,185"
 		E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
 		E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,-1"
 		E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,153"
@@ -922,10 +922,10 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-10"
 		E.db["movers"]["TotemBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,413,1"
 		E.db["movers"]["UIErrorsFrameMover"] = "TOP,ElvUIParent,TOP,0,-78"
-		E.db["movers"]["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,176"
+		E.db["movers"]["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,152"
 		E.db["movers"]["VehicleSeatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,438,1"
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
-		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,0,209"
+		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,0,185"
 
 		-- UnitFrames DPS/TANK
 		E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = 0.99
