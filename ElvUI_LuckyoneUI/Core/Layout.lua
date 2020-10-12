@@ -127,7 +127,8 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["countTextPosition"] = "BOTTOM"
 	E.db["actionbar"]["countTextYOffset"] = 1
 	E.db["actionbar"]["extraActionButton"]["alpha"] = 0.8
-	E.db["actionbar"]["extraActionButton"]["scale"] = 0.5
+	E.db["actionbar"]["extraActionButton"]["clean"] = true
+	E.db["actionbar"]["extraActionButton"]["scale"] = 0.65
 	E.db["actionbar"]["font"] = "Expressway"
 	E.db["actionbar"]["fontOutline"] = "OUTLINE"
 	E.db["actionbar"]["hotkeyTextPosition"] = "TOPLEFT"
@@ -141,6 +142,9 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["stanceBar"]["buttonsize"] = 27
 	E.db["actionbar"]["stanceBar"]["mouseover"] = true
 	E.db["actionbar"]["transparent"] = true
+	E.db["actionbar"]["zoneActionButton"]["alpha"] = 0.8
+	E.db["actionbar"]["zoneActionButton"]["clean"] = true
+	E.db["actionbar"]["zoneActionButton"]["scale"] = 0.65
 
 	-- Bags
 	E.db["bags"]["bagWidth"] = 414
