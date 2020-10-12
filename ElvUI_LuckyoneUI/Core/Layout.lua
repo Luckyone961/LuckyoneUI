@@ -149,6 +149,7 @@ function L1UI:SetupLayout(layout)
 	-- Bags
 	E.db["bags"]["bagWidth"] = 414
 	E.db["bags"]["bankWidth"] = 414
+	E.db["bags"]["clearSearchOnClose"] = true
 	E.db["bags"]["cooldown"]["daysIndicator"]["g"] = 0.4
 	E.db["bags"]["cooldown"]["daysIndicator"]["r"] = 0.4
 	E.db["bags"]["cooldown"]["expireIndicator"]["b"] = 0
@@ -157,10 +158,11 @@ function L1UI:SetupLayout(layout)
 	E.db["bags"]["cooldown"]["override"] = true
 	E.db["bags"]["countFont"] = "Expressway"
 	E.db["bags"]["countFontOutline"] = "OUTLINE"
-	E.db["bags"]["countFontSize"] = 11
+	E.db["bags"]["countFontSize"] = 12
 	E.db["bags"]["itemLevelFont"] = "Expressway"
 	E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
-	E.db["bags"]["itemLevelFontSize"] = 11
+	E.db["bags"]["itemLevelFontSize"] = 12
+	E.db["bags"]["transparent"] = true
 	E.db["bags"]["vendorGrays"]["enable"] = true
 
 	-- Auras
