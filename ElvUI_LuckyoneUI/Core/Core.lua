@@ -108,8 +108,7 @@ function L1UI:SetupPrivate()
 	E.private["general"]["namefont"] = "Expressway"
 	E.private["general"]["normTex"] = "Solid"
 	E.private["general"]["totemBar"] = false
-	E.private["install_complete"] = "11.49"
-	E.private["skins"]["cleanBossButton"] = true
+	E.private["install_complete"] = "11.52"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 
 	E:StaggeredUpdateAll(nil, true)
