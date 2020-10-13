@@ -65,6 +65,9 @@ end
 -- CVars General
 function L1UI:SetupCVars()
 
+	-- ElvUI CVars
+	E:SetupCVars(noDisplayMsg)
+
 	SetCVar('advancedCombatLogging', 1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('ffxDeath', 0)
