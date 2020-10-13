@@ -1,7 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local IsAddOnLoaded = IsAddOnLoaded
 local SetCVar = SetCVar
+local IsAddOnLoaded = IsAddOnLoaded
 
 -- LuckyoneUI print
 function L1UI:Print(msg)
@@ -9,7 +9,7 @@ function L1UI:Print(msg)
 end
 
 -- AddOnSkins Profile
-function L1UI:AddonSetupAS(addon)
+function L1UI:AddonSetupAS()
 
 	if IsAddOnLoaded('AddOnSkins') then
 		L1UI:GetASProfile()
@@ -18,7 +18,7 @@ function L1UI:AddonSetupAS(addon)
 end
 
 -- BigWigs Profile
-function L1UI:AddonSetupBW(addon)
+function L1UI:AddonSetupBW()
 
 	if IsAddOnLoaded('BigWigs') then
 		L1UI:GetBigWigsProfile()
@@ -27,7 +27,7 @@ function L1UI:AddonSetupBW(addon)
 end
 
 -- Details Profile
-function L1UI:AddonSetupDT(addon)
+function L1UI:AddonSetupDT()
 
 	if IsAddOnLoaded('Details') then
 		L1UI:GetDetailsProfile()
@@ -36,7 +36,7 @@ function L1UI:AddonSetupDT(addon)
 end
 
 -- OmniCD Profile
-function L1UI:AddonSetupOCD(addon)
+function L1UI:AddonSetupOCD()
 
 	if IsAddOnLoaded('OmniCD') then
 		L1UI:GetOmniCDProfile()
@@ -45,7 +45,7 @@ function L1UI:AddonSetupOCD(addon)
 end
 
 -- ProjectAzilroka Profile
-function L1UI:AddonSetupPA(addon)
+function L1UI:AddonSetupPA()
 
 	if IsAddOnLoaded('ProjectAzilroka') then
 		L1UI:GetPAProfile()
@@ -53,12 +53,24 @@ function L1UI:AddonSetupPA(addon)
 	end
 end
 
+-- Shadow&Light Profile
+function L1UI:AddonSetupSLE()
+
+	if IsAddOnLoaded('ElvUI_SLE') then
+		L1UI:GetSLEProfile()
+		L1UI:Print('Shadow&Light profile has been set.')
+	end
+end
+
 -- CVars General
 function L1UI:SetupCVars()
 
+	-- ElvUI CVars
+	E:SetupCVars(noDisplayMsg)
+
+	SetCVar('advancedCombatLogging', 1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('ffxDeath', 0)
-	SetCVar('advancedCombatLogging', 1)
 	SetCVar('rawMouseEnable', 1)
 	SetCVar('SpellQueueWindow', 50)
 
@@ -99,22 +111,54 @@ function L1UI:SetupPrivate()
 	E.private["general"]["namefont"] = "Expressway"
 	E.private["general"]["normTex"] = "Solid"
 	E.private["general"]["totemBar"] = false
-	E.private["install_complete"] = "11.49"
-	E.private["skins"]["cleanBossButton"] = true
+	E.private["install_complete"] = "11.52"
 	E.private["skins"]["parchmentRemoverEnable"] = true
-
-	-- Shadow&Light Private DB
-	if IsAddOnLoaded('ElvUI_SLE') then
-		E.private["sle"]["install_complete"] = "3.77"
-		E.private["sle"]["professions"]["deconButton"]["enable"] = false
-		E.private["sle"]["skins"]["objectiveTracker"]["BGbackdrop"] = false
-		E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
-		E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
-		E.private["sle"]["skins"]["objectiveTracker"]["skinnedTextureLogo"] = "SLE"
-		E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Solid"
-	end
 
 	E:StaggeredUpdateAll(nil, true)
 
 	L1UI:Print('Note: Fonts do not change until you restart WoW.')
+end
+
+-- Global DB
+function L1UI:SetupGlobal()
+
+	-- ElvUI Global DB
+	E.global["general"]["commandBarSetting"] = "DISABLED"
+	E.global["general"]["mapAlphaWhenMoving"] = 0.35
+	E.global["general"]["smallerWorldMapScale"] = 0.8
+	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
+
+	-- Custom DataText
+	do
+		E.DataTexts:BuildPanelFrame("Luckyone_ActionBars_DT")
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["backdrop"] = true
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["border"] = true
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["enable"] = true
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["enable"] = true
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["font"] = "Expressway"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontOutline"] = "NONE"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontSize"] = 12
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameLevel"] = 1
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameStrata"] = "LOW"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["growth"] = "HORIZONTAL"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["height"] = 13
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["mouseover"] = false
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["name"] = "Luckyone_ActionBars_DT"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["numPoints"] = 3
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["panelTransparency"] = true
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["textJustify"] = "CENTER"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipAnchor"] = "ANCHOR_TOP"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipXOffset"] = 0
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipYOffset"] = 5
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = "[petbattle] hide;show"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 358
+	end
+end
+
+-- UI Scale
+function L1UI:SetupScale()
+	local pixel = E:PixelBestSize()
+
+	E.global["general"]["UIScale"] = pixel
+	SetCVar('uiScale', pixel)
 end

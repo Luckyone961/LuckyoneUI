@@ -31,6 +31,8 @@ local SUPPORT = {
 	'|cffe6cc80DaPaKnat|r',
 	'|cffe6cc80Fooseq|r',
 	'|cffe6cc80MonkeyHack|r',
+	'|cffe6cc80GUSTENFTW|r',
+	'|cffe6cc80Liam|r',
 }
 
 -- Sort
@@ -93,14 +95,14 @@ function L1UI:Configtable()
 						name = 'Installer',
 						args = {
 							install = {
-								order = 2,
+								order = 1,
 								type = 'execute',
 								name = 'Install',
 								desc = 'Run the installation process.',
 								func = function() E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData); E:ToggleOptionsUI(); end,
 							},
 							chat = {
-								order = 3,
+								order = 2,
 								type = 'execute',
 								name = 'Setup Chat',
 								desc = 'Setup custom chat tabs Whisper, Guild, Party.',
@@ -110,13 +112,13 @@ function L1UI:Configtable()
 						},
 					},
 					defaults = {
-						order = 3,
+						order = 2,
 						type = 'group',
 						inline = true,
 						name = 'Defaults',
 						args = {
 							private = {
-								order = 4,
+								order = 1,
 								type = 'execute',
 								name = 'Reset Media',
 								desc = 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.',
@@ -124,7 +126,7 @@ function L1UI:Configtable()
 								confirm = true,
 							},
 							cvars = {
-								order = 5,
+								order = 2,
 								type = 'execute',
 								name = 'Reset CVars',
 								desc = 'Reset CVars to LuckyoneUI defaults.',
@@ -132,7 +134,7 @@ function L1UI:Configtable()
 								confirm = true,
 							},
 							npreset = {
-								order = 6,
+								order = 3,
 								type = 'execute',
 								name = 'Reset Nameplate CVars',
 								desc = 'Reset Nameplate CVars to LuckyoneUI defaults.',
@@ -141,59 +143,75 @@ function L1UI:Configtable()
 							},
 						},
 					},
+					plugins = {
+						order = 3,
+						type = 'group',
+						inline = true,
+						name = 'Plugin Profiles',
+						args = {
+							addonskins = {
+								order = 1,
+								type = 'execute',
+								name = 'AddOnSkins',
+								desc = 'Reset to LuckyoneUI defaults.',
+								func = function() L1UI:AddonSetupAS(); end,
+								confirm = true,
+							},
+							projectazilroka = {
+								order = 2,
+								type = 'execute',
+								name = 'ProjectAzilroka',
+								desc = 'Reset to LuckyoneUI defaults.',
+								func = function() L1UI:AddonSetupPA(); end,
+								confirm = true,
+							},
+							sle = {
+								order = 3,
+								type = 'execute',
+								name = 'Shadow&Light',
+								desc = 'Reset to LuckyoneUI defaults.',
+								func = function() L1UI:AddonSetupSLE(); end,
+								confirm = true,
+							},
+						},
+					},
 					addons = {
-						order = 7,
+						order = 4,
 						type = 'group',
 						inline = true,
 						name = 'Addon Profiles',
 						args = {
-							addonskins = {
-								order = 8,
-								type = 'execute',
-								name = 'AddOnSkins',
-								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupAS(addon); end,
-								confirm = true,
-							},
 							bigwigs = {
-								order = 9,
+								order = 1,
 								type = 'execute',
 								name = 'BigWigs',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupBW(addon); end,
+								func = function() L1UI:AddonSetupBW(); end,
 								confirm = true,
 							},
 							details = {
-								order = 10,
+								order = 2,
 								type = 'execute',
 								name = 'Details! Damage Meter',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupDT(addon); end,
+								func = function() L1UI:AddonSetupDT(); end,
 								confirm = true,
 							},
 							omnicd = {
-								order = 11,
+								order = 3,
 								type = 'execute',
 								name = 'OmniCD Party CDs',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupOCD(addon); end,
-								confirm = true,
-							},
-							projectazilroka = {
-								order = 12,
-								type = 'execute',
-								name = 'ProjectAzilroka',
-								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupPA(addon); end,
+								func = function() L1UI:AddonSetupOCD(); end,
 								confirm = true,
 							},
 						},
 					},
 				},
 			},
-			info = {
+			cvars = {
 				type = 'group',
-				name = 'Informations',
+				name = 'CVars',
 				order = 2,
 				args = {
 					cvardesc = {
@@ -305,7 +323,7 @@ function L1UI:Configtable()
 						order = 4,
 						type = 'group',
 						inline = true,
-						name = 'Supporter',
+						name = 'Supporters',
 						args = {
 							desc = {
 								order = 1,

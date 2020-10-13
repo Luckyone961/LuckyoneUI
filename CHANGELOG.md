@@ -1,12 +1,18 @@
-### Version 1.06 [XX-XX-2020]
-**Shadowlands pre-patch version**  
+### Version 1.06 [14-10-2020]
+**Shadowlands pre-patch version, make sure to update ElvUI first**  
 **Changes:**  
-Fixed NamePlates Debuffs (pixel perfect issue)  
+Pixel perfect update for patch 9.0.1 / 9.0.2  
+Fixed NamePlates Buffs and Debuffs (pixel perfect issue)  
 Added 1px border around the custom ActionBars DataText  
+Adjusted movers and settings for the Shadowlands ElvUI changes  
 **New Additions:**  
-New installer step: AddOnSkins  
-• This step will apply my AddOn profile for AddOnSkins (optional)  
+Added my AddOn profile for AddOnSkins  
+Added an option to reset Shadow&Light back to LuckyoneUI default  
 **Misc:**  
+ProjectAzilroka profile update  
+Shadow&Light profile update  
+Details profile update  
+BigWigs profile update  
 OmniCD profile update  
 Updated credits  
 ___
