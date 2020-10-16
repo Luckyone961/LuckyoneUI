@@ -1,3 +1,8 @@
+### Version 1.07 [XX-XX-2020]
+**Changes:**  
+**New Additions:**  
+**Misc:**  
+___
 ### Version 1.06 [14-10-2020]
 **Shadowlands pre-patch version, make sure to update ElvUI first**  
 **Changes:**  
