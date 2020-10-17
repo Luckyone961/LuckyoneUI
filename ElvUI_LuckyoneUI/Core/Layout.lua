@@ -129,6 +129,7 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["extraActionButton"]["alpha"] = 0.8
 	E.db["actionbar"]["extraActionButton"]["clean"] = true
 	E.db["actionbar"]["extraActionButton"]["scale"] = 0.65
+	E.db["actionbar"]["flyoutSize"] = 28
 	E.db["actionbar"]["font"] = "Expressway"
 	E.db["actionbar"]["fontOutline"] = "OUTLINE"
 	E.db["actionbar"]["hotkeyTextPosition"] = "TOPLEFT"
