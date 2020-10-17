@@ -236,7 +236,6 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["azerite"]["width"] = 10
 	E.db["databars"]["experience"]["font"] = "Expressway"
 	E.db["databars"]["experience"]["height"] = 171
-	E.db["databars"]["experience"]["hideAtMaxLevel"] = false
 	E.db["databars"]["experience"]["orientation"] = "VERTICAL"
 	E.db["databars"]["experience"]["width"] = 10
 	E.db["databars"]["honor"]["enable"] = false
