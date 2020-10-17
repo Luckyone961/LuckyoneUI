@@ -20,6 +20,7 @@ function L1UI:GetPAProfile()
 	PA.db["QuestSounds"]["Enable"] = false
 	PA.db["ReputationReward"]["Enable"] = false
 	PA.db["stAddonManager"]["Enable"] = false
+	PA.db["MasterExperience"]["Enable"] = false
 
 	-- SquareMinimapButtons Setup
 	PA.db["SquareMinimapButtons"]["Backdrop"] = false
