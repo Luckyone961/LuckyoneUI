@@ -1,3 +1,11 @@
+### Version 1.08 [XX-XX-2020]
+**Changes:**  
+Updated Cooldown Text  
+Updated Minimap Buffs & Debuffs  
+**New Additions:**  
+**Misc:**  
+Pixel perfect mover updates  
+___
 ### Version 1.07 [21-10-2020]
 **Changes:**  
 Installer will now automatically set UI scale to my suggested value  
