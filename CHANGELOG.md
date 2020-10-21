@@ -5,6 +5,7 @@ Layouts will now automatically hide the XP bar on max level
 Pixel Perfect Mover Update (Healing)  
 Pixel Perfect Mover Update (DPS/TANK)  
 **New Additions:**  
+None  
 **Misc:**  
 Fixed stance bar / micro bar overlap on Druids  
 ProjectAzilroka profile update  
