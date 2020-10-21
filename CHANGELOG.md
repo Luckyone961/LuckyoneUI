@@ -1,7 +1,13 @@
-### Version 1.07 [XX-XX-2020]
+### Version 1.07 [21-10-2020]
 **Changes:**  
+Installer will now automatically set UI scale to my suggested value  
+Layouts will now automatically hide the XP bar on max level  
+Pixel Perfect Mover Update (Healing)  
+Pixel Perfect Mover Update (DPS/TANK)  
 **New Additions:**  
 **Misc:**  
+Fixed stance bar / micro bar overlap on Druids  
+ProjectAzilroka profile update  
 ___
 ### Version 1.06 [14-10-2020]
 **Shadowlands pre-patch version, make sure to update ElvUI first**  
