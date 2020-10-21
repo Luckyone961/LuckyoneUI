@@ -167,20 +167,20 @@ function L1UI:SetupLayout(layout)
 	E.db["bags"]["vendorGrays"]["enable"] = true
 
 	-- Auras
+	E.db["auras"]["barNoDuration"] = false
 	E.db["auras"]["barTexture"] = "Solid"
 	E.db["auras"]["buffs"]["countFontSize"] = 14
 	E.db["auras"]["buffs"]["durationFontSize"] = 12
-	E.db["auras"]["buffs"]["horizontalSpacing"] = 1
+	E.db["auras"]["buffs"]["horizontalSpacing"] = 2
 	E.db["auras"]["buffs"]["size"] = 26
 	E.db["auras"]["cooldown"]["daysIndicator"]["g"] = 0.4
 	E.db["auras"]["cooldown"]["daysIndicator"]["r"] = 0.4
 	E.db["auras"]["cooldown"]["expireIndicator"]["b"] = 0
 	E.db["auras"]["cooldown"]["expireIndicator"]["g"] = 0
 	E.db["auras"]["cooldown"]["hoursIndicator"]["r"] = 0.4
-	E.db["auras"]["cooldown"]["override"] = true
 	E.db["auras"]["debuffs"]["countFontSize"] = 14
 	E.db["auras"]["debuffs"]["durationFontSize"] = 12
-	E.db["auras"]["debuffs"]["horizontalSpacing"] = 1
+	E.db["auras"]["debuffs"]["horizontalSpacing"] = 2
 	E.db["auras"]["debuffs"]["maxWraps"] = 2
 	E.db["auras"]["debuffs"]["size"] = 26
 	E.db["auras"]["fadeThreshold"] = -1
@@ -224,9 +224,11 @@ function L1UI:SetupLayout(layout)
 	E.db["cooldown"]["daysIndicator"]["r"] = 0.4
 	E.db["cooldown"]["expireIndicator"]["b"] = 0
 	E.db["cooldown"]["expireIndicator"]["g"] = 0
+	E.db["cooldown"]["fonts"]["font"] = "Expressway"
+	E.db["cooldown"]["fonts"]["fontSize"] = 12
 	E.db["cooldown"]["hoursIndicator"]["r"] = 0.4
 	E.db["cooldown"]["secondsColor"]["b"] = 1
-	E.db["cooldown"]["threshold"] = 4
+	E.db["cooldown"]["threshold"] = 5
 
 	-- DataBars
 	E.db["databars"]["azerite"]["enable"] = false
@@ -868,9 +870,9 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["BNETMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173"
 		E.db["movers"]["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,189"
 		E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
-		E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,-1"
+		E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-165,-1"
 		E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,153"
-		E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,-128"
+		E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-165,-128"
 		E.db["movers"]["DigSiteProgressBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,157"
 		E.db["movers"]["DTPanelLuckyone_ActionBars_DTMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,1"
 		E.db["movers"]["DurabilityFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-214"
@@ -902,7 +904,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ElvUIBankMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173"
 		E.db["movers"]["ExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,1"
 		E.db["movers"]["GhostFrameMover"] = "TOP,ElvUIParent,TOP,0,-161"
-		E.db["movers"]["GMMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-489,-1"
+		E.db["movers"]["GMMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-502,-1"
 		E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1"
 		E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1"
 		E.db["movers"]["LevelUpBossBannerMover"] = "TOP,ElvUIParent,TOP,0,-57"
@@ -1416,9 +1418,9 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["BNETMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173"
 		E.db["movers"]["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,127"
 		E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
-		E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,-1"
+		E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-165,-1"
 		E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,153"
-		E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,-128"
+		E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-165,-128"
 		E.db["movers"]["DigSiteProgressBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,157"
 		E.db["movers"]["DTPanelLuckyone_ActionBars_DTMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,1"
 		E.db["movers"]["DurabilityFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-214"
@@ -1450,7 +1452,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ElvUIBankMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173"
 		E.db["movers"]["ExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,1"
 		E.db["movers"]["GhostFrameMover"] = "TOP,ElvUIParent,TOP,0,-161"
-		E.db["movers"]["GMMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-489,-1"
+		E.db["movers"]["GMMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-502,-1"
 		E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1"
 		E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1"
 		E.db["movers"]["LevelUpBossBannerMover"] = "TOP,ElvUIParent,TOP,0,-57"
