@@ -5,7 +5,7 @@ local format = string.format
 
 -- Set version & reload on "Skip" and "Finished"
 local function InstallComplete()
-	E.db.L1UI.install_version = L1UI.Version
+	E.private.L1UI.install_version = L1UI.Version
 	ReloadUI()
 end
 

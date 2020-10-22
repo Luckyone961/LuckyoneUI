@@ -20,7 +20,7 @@ L1UI.Config = {}
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
 
 function L1UI:Initialize()
-	if E.private.install_complete and E.db.L1UI.install_version == nil then
+	if E.private.install_complete and E.private.L1UI.install_version == nil then
 		E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData)
 	end
 

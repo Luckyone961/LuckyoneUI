@@ -1,11 +1,44 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local _G = _G
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 
 -- LuckyoneUI print
 function L1UI:Print(msg)
 	print('|cff4beb2cLuckyoneUI|r: '..msg)
+end
+
+-- Boss Banner Toggle
+function L1UI:DisableBoss()
+	if E.private.L1UI.disabledFrames.BossBanner ~= true then return end
+
+	local BossBanner = _G.BossBanner
+	BossBanner:UnregisterAllEvents()
+end
+
+-- LevelUp Banner Toggle
+function L1UI:DisableLevelUp()
+	if E.private.L1UI.disabledFrames.LevelUpDisplay ~= true then return end
+
+	local LevelUpDisplay = _G.LevelUpDisplay
+	LevelUpDisplay:UnregisterAllEvents()
+end
+
+-- Zone Text Toggle
+function L1UI:DisableZoneText()
+	if E.private.L1UI.disabledFrames.ZoneTextFrame ~= true then return end
+
+	local ZoneTextFrame = _G.ZoneTextFrame
+	ZoneTextFrame:UnregisterAllEvents()
+end
+
+-- Alert Toggle
+function L1UI:DisableAlertFrame()
+	if E.private.L1UI.disabledFrames.AlertFrame ~= true then return end
+
+	local AlertFrame = _G.AlertFrame
+	AlertFrame:UnregisterAllEvents()
 end
 
 -- AddOnSkins Profile
