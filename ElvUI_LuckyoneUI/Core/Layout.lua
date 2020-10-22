@@ -337,7 +337,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -10
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["fontSize"] = 12
-	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[name:last][classificationcolor][ >classification]"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[name:last][classificationcolor][ >luckyone:classification]"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["parent"] = "Health"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["xOffset"] = 1
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["yOffset"] = -15
@@ -436,7 +436,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["health"]["text"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["health"]["text"]["format"] = "[perhp<%]"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = "Expressway"
-	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["format"] = "[level][classificationcolor][ >classification]"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["format"] = "[level][classificationcolor][ >luckyone:classification]"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["xOffset"] = 3
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["yOffset"] = -10
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "Expressway"
@@ -482,7 +482,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["text"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["text"]["format"] = "[perhp<%]"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["font"] = "Expressway"
-	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["format"] = "[level][classificationcolor][ >classification]"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["format"] = "[level][classificationcolor][ >luckyone:classification]"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["xOffset"] = 3
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["yOffset"] = -10
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["markHealers"] = false
@@ -629,7 +629,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "RIGHT",
 		["size"] = 12,
-		["text_format"] = "[namecolor][level][classificationcolor][ >classification]",
+		["text_format"] = "[namecolor][level][classificationcolor][ >luckyone:classification]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -801,7 +801,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "RIGHT",
 		["size"] = 12,
-		["text_format"] = "[namecolor][level][classificationcolor][ >classification]",
+		["text_format"] = "[namecolor][level][classificationcolor][ >luckyone:classification]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
