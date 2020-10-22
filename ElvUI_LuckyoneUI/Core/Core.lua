@@ -9,36 +9,24 @@ function L1UI:Print(msg)
 	print('|cff4beb2cLuckyoneUI|r: '..msg)
 end
 
--- Boss Banner Toggle
-function L1UI:DisableBoss()
-	if E.private.L1UI.disabledFrames.BossBanner ~= true then return end
+-- Hide certain Blizzard Frames
+function L1UI:DisabledFrames()
 
-	local BossBanner = _G.BossBanner
-	BossBanner:UnregisterAllEvents()
-end
+	if E.private.L1UI.disabledFrames.BossBanner == true then
+		_G.BossBanner:UnregisterAllEvents()
+	end
 
--- LevelUp Banner Toggle
-function L1UI:DisableLevelUp()
-	if E.private.L1UI.disabledFrames.LevelUpDisplay ~= true then return end
+	if E.private.L1UI.disabledFrames.LevelUpDisplay == true then
+		_G.LevelUpDisplay:UnregisterAllEvents()
+	end
 
-	local LevelUpDisplay = _G.LevelUpDisplay
-	LevelUpDisplay:UnregisterAllEvents()
-end
+	if E.private.L1UI.disabledFrames.ZoneTextFrame == true then
+		_G.ZoneTextFrame:UnregisterAllEvents()
+	end
 
--- Zone Text Toggle
-function L1UI:DisableZoneText()
-	if E.private.L1UI.disabledFrames.ZoneTextFrame ~= true then return end
-
-	local ZoneTextFrame = _G.ZoneTextFrame
-	ZoneTextFrame:UnregisterAllEvents()
-end
-
--- Alert Toggle
-function L1UI:DisableAlertFrame()
-	if E.private.L1UI.disabledFrames.AlertFrame ~= true then return end
-
-	local AlertFrame = _G.AlertFrame
-	AlertFrame:UnregisterAllEvents()
+	if E.private.L1UI.disabledFrames.AlertFrame == true then
+		_G.AlertFrame:UnregisterAllEvents()
+	end
 end
 
 -- AddOnSkins Profile
