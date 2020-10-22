@@ -12,19 +12,19 @@ end
 -- Hide certain Blizzard Frames
 function L1UI:DisabledFrames()
 
-	if E.private.L1UI.disabledFrames.BossBanner == true then
+	if E.private.L1UI.disabledFrames.BossBanner then
 		_G.BossBanner:UnregisterAllEvents()
 	end
 
-	if E.private.L1UI.disabledFrames.LevelUpDisplay == true then
+	if E.private.L1UI.disabledFrames.LevelUpDisplay then
 		_G.LevelUpDisplay:UnregisterAllEvents()
 	end
 
-	if E.private.L1UI.disabledFrames.ZoneTextFrame == true then
+	if E.private.L1UI.disabledFrames.ZoneTextFrame then
 		_G.ZoneTextFrame:UnregisterAllEvents()
 	end
 
-	if E.private.L1UI.disabledFrames.AlertFrame == true then
+	if E.private.L1UI.disabledFrames.AlertFrame then
 		_G.AlertFrame:UnregisterAllEvents()
 	end
 end
