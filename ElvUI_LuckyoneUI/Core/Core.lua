@@ -27,6 +27,10 @@ function L1UI:DisabledFrames()
 	if E.private.L1UI.disabledFrames.AlertFrame then
 		_G.AlertFrame:UnregisterAllEvents()
 	end
+
+	if (E.private.L1UI.disabledFrames.BossBanner and E.private.L1UI.disabledFrames.LevelUpDisplay) then
+		E:DisableMover('LevelUpBossBannerMover')
+	end
 end
 
 -- AddOnSkins Profile
