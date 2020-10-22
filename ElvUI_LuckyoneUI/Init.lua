@@ -19,12 +19,17 @@ L1UI.CreditsList = {}
 L1UI.Config = {}
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
 
+function L1UI:PLAYER_ENTERING_WORLD()
+	L1UI:DisabledFrames()
+end
+
 function L1UI:Initialize()
 	if E.private.install_complete and E.private.L1UI.install_version == nil then
 		E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData)
 	end
 
 	EP:RegisterPlugin(addon, L1UI.Configtable)
+	L1UI:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
 
 local function CallbackInitialize()
