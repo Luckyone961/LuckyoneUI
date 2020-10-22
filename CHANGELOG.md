@@ -5,8 +5,11 @@ Updated Minimap Buffs & Debuffs
 **New Additions:**  
 Added options to hide certain Blizzard Frames  
 • Boss Banner, LevelUp Display, Zone Text, Alert Frames  
+Added a new ElvUI text format tag [luckyone:classification]  
+• This tag displays classification (Rare/Elite) without the word 'Affix'  
 **Misc:**  
 Pixel perfect mover updates  
+Updated all classification tags  
 ___
 ### Version 1.07 [21-10-2020]
 **Changes:**  
