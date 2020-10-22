@@ -26,6 +26,7 @@ function L1UI:DisabledFrames()
 
 	if E.private.L1UI.disabledFrames.AlertFrame then
 		_G.AlertFrame:UnregisterAllEvents()
+		E:DisableMover('AlertFrameMover')
 	end
 
 	if (E.private.L1UI.disabledFrames.BossBanner and E.private.L1UI.disabledFrames.LevelUpDisplay) then
