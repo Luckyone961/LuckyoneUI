@@ -3,6 +3,8 @@
 Updated Cooldown Text  
 Updated Minimap Buffs & Debuffs  
 **New Additions:**  
+Added options to hide certain Blizzard Frames  
+• Boss Banner, LevelUp Display, Zone Text, Alert Frames  
 **Misc:**  
 Pixel perfect mover updates  
 ___
