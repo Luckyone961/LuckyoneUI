@@ -1,4 +1,4 @@
-### Version 1.08 [XX-XX-2020]
+### Version 1.08 [23-10-2020]
 **Changes:**  
 Updated Cooldown Text  
 Updated Minimap Buffs & Debuffs  
