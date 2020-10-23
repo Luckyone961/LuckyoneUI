@@ -8,6 +8,8 @@ Added options to hide certain Blizzard Frames
 Added a new ElvUI text format tag [luckyone:classification]  
 • This tag displays classification (Rare/Elite) without the word 'Affix'  
 **Misc:**  
+OmniCD profile update  
+Details profile update  
 Pixel perfect mover updates  
 Updated all classification tags  
 ___
