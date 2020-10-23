@@ -59,8 +59,6 @@ function L1UI:GetSLEProfile()
 	E.db["sle"]["armory"]["stats"]["statFonts"]["font"] = "Expressway"
 	E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "OUTLINE"
 	E.db["sle"]["armory"]["stats"]["statFonts"]["size"] = 11
-	E.db["sle"]["media"]["fonts"]["editbox"]["font"] = "Expressway"
-	E.db["sle"]["media"]["fonts"]["editbox"]["size"] = 11
 	E.db["sle"]["media"]["fonts"]["gossip"]["font"] = "Expressway"
 	E.db["sle"]["media"]["fonts"]["gossip"]["size"] = 11
 	E.db["sle"]["media"]["fonts"]["mail"]["font"] = "Expressway"
