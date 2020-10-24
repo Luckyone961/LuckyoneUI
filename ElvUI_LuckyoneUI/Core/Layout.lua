@@ -68,7 +68,7 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["minimap"]["locationFontSize"] = 14
 	E.db["general"]["minimap"]["locationText"] = "SHOW"
 	E.db["general"]["minimap"]["resetZoom"]["time"] = 15
-	E.db["general"]["minimap"]["size"] = 160
+	E.db["general"]["minimap"]["size"] = 161
 	E.db["general"]["objectiveFrameAutoHide"] = false
 	E.db["general"]["objectiveFrameHeight"] = 600
 	E.db["general"]["smoothingAmount"] = 0.75
