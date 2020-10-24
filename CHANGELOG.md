@@ -1,3 +1,9 @@
+### Version 1.09 [XX-XX-2020]
+**Changes:**  
+**New Additions:**  
+**Misc:**  
+ProjectAzilroka profile update  
+___
 ### Version 1.08 [23-10-2020]
 **Changes:**  
 Updated Cooldown Text  
