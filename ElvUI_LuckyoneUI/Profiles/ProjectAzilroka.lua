@@ -25,9 +25,9 @@ function L1UI:GetPAProfile()
 	-- SquareMinimapButtons Setup
 	PA.db["SquareMinimapButtons"]["Backdrop"] = false
 	PA.db["SquareMinimapButtons"]["BarMouseOver"] = false
-	PA.db["SquareMinimapButtons"]["ButtonSpacing"] = 0
+	PA.db["SquareMinimapButtons"]["ButtonSpacing"] = -1
 	PA.db["SquareMinimapButtons"]["ButtonsPerRow"] = 6
-	PA.db["SquareMinimapButtons"]["IconSize"] = 27
+	PA.db["SquareMinimapButtons"]["IconSize"] = 28
 	PA.db["SquareMinimapButtons"]["MoveQueue"] = false
 	PA.db["SquareMinimapButtons"]["MoveTracker"] = false
 	PA.db["SquareMinimapButtons"]["Shadows"] = false
@@ -40,5 +40,5 @@ function L1UI:GetPAProfile()
 	PA.db["EnhancedFriendsList"]["Texture"] = "Solid"
 
 	-- Movers
-	E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-185"
+	E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187"
 end
