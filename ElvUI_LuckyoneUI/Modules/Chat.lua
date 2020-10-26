@@ -75,6 +75,7 @@ function L1UI:SetupChat()
 
 	-- Chat CVars
 	SetCVar('chatStyle', 'classic')
+	SetCVar('whisperMode', 'inline')
 
 	-- Jump back to General tab
 	FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
