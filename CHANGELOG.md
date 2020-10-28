@@ -1,6 +1,8 @@
 ### Version 1.09 [XX-XX-2020]
 **Changes:**  
 **New Additions:**  
+New installer step: Theme  
+• Choose between Dark (Default) and Class colored UnitFrames  
 **Misc:**  
 ProjectAzilroka profile update  
 ___
