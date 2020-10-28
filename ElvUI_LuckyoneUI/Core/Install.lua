@@ -36,7 +36,7 @@ L1UI.InstallerData = {
 		end,
 		[3] = function()
 			PluginInstallFrame.SubTitle:SetText('UnitFrames Color Theme')
-			PluginInstallFrame.Desc1:SetText('Please click a button below to set the UnitFrames Color Theme.\n\nFeel free to skip this step if you like default color theme.')
+			PluginInstallFrame.Desc1:SetText('Please click a button below to set the UnitFrames Color Theme.\n\nFeel free to skip this step if you like the default color theme.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupTheme('dark') end)
