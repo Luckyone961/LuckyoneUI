@@ -35,6 +35,17 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetText('Healing')
 		end,
 		[3] = function()
+			PluginInstallFrame.SubTitle:SetText('UnitFrames Color Theme')
+			PluginInstallFrame.Desc1:SetText('Please click a button below to set the UnitFrames Color Theme.\n\nFeel free to skip this step if you like default color theme.')
+			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupTheme('dark') end)
+			PluginInstallFrame.Option1:SetText('Dark')
+			PluginInstallFrame.Option2:Show()
+			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:SetupTheme('class') end)
+			PluginInstallFrame.Option2:SetText('Class')
+		end,
+		[4] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('NamePlates')
 			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones NamePlate Style Filters.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
@@ -42,7 +53,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupNamePlates() end)
 			PluginInstallFrame.Option1:SetText('Setup NamePlates')
 		end,
-		[4] = function()
+		[5] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('Chat')
 			PluginInstallFrame.Desc1:SetText('This will setup the chat windows to look like this:\n\nLeft Chat: General - Log - Whisper - Guild - Party\n\nRight Chat: Details! Damage Meter')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
@@ -50,7 +61,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupChat() end)
 			PluginInstallFrame.Option1:SetText('Setup Chat')
 		end,
-		[5] = function()
+		[6] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('CVars')
 			PluginInstallFrame.Desc1:SetText('This will apply the following CVar values:\n\ncameraDistanceMaxZoomFactor 2.6\nadvancedCombatLogging 1\nSpellQueueWindow 50\nrawMouseEnable 1\nffxDeath 0')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
@@ -58,7 +69,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupCVars() end)
 			PluginInstallFrame.Option1:SetText('Setup CVars')
 		end,
-		[6] = function()
+		[7] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('BigWigs Profile')
 			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for BigWigs.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
@@ -66,7 +77,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupBW() end)
 			PluginInstallFrame.Option1:SetText('Setup BigWigs')
 		end,
-		[7] = function()
+		[8] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('Details Profile')
 			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for Details! Damage Meter.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
@@ -74,7 +85,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupDT() end)
 			PluginInstallFrame.Option1:SetText('Setup Details')
 		end,
-		[8] = function()
+		[9] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('OmniCD Profile')
 			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for OmniCD Party CDs.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
@@ -82,7 +93,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupOCD() end)
 			PluginInstallFrame.Option1:SetText('Setup OmniCD')
 		end,
-		[9] = function()
+		[10] = function()
 			PluginInstallFrame.SubTitle:SetText('Installation Complete')
 			PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cHigh|r')
@@ -94,13 +105,14 @@ L1UI.InstallerData = {
 	StepTitles = {
 		[1] = 'Welcome',
 		[2] = 'Layouts',
-		[3] = 'NamePlates',
-		[4] = 'Chat',
-		[5] = 'CVars',
-		[6] = 'BigWigs',
-		[7] = 'Details',
-		[8] = 'OmniCD',
-		[9] = 'Installation Complete',
+		[3] = 'Theme',
+		[4] = 'NamePlates',
+		[5] = 'Chat',
+		[6] = 'CVars',
+		[7] = 'BigWigs',
+		[8] = 'Details',
+		[9] = 'OmniCD',
+		[10] = 'Installation Complete',
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0, 179/255, 1},
