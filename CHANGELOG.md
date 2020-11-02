@@ -1,5 +1,6 @@
-### Version 1.09 [XX-XX-2020]
+### Version 1.09 [02-11-2020]
 **Changes:**  
+Adjustments for ElvUI 12.07 - make sure to update  
 **New Additions:**  
 New installer step: Theme  
 • Choose between Dark (Default) and Class colored UnitFrames  
