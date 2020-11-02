@@ -5,4 +5,5 @@
 	<Script file='Options.lua'/>
 	<Script file='Tags.lua'/>
 	<Script file='Themes.lua'/>
+	<Script file='Update.lua'/>
 </Ui>
