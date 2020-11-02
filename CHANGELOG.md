@@ -1,7 +1,10 @@
 ### Version 1.10 [XX-XX-2020]
 **Changes:**  
 **New Additions:**  
+Added Update DPS/TANK and Update Healing buttons to the config  
+• You can now update your layout without re-running the installer  
 **Misc:**  
+Simpy made the SetupLayout function faster PogChamp  
 ___
 ### Version 1.09 [02-11-2020]
 **Changes:**  
