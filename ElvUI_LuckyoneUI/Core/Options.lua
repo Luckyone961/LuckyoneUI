@@ -111,8 +111,31 @@ function L1UI:Configtable()
 							},
 						},
 					},
-					defaults = {
+					update = {
 						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'Update',
+						args = {
+							dps = {
+								order = 1,
+								type = 'execute',
+								name = 'Update (Current layout: DPS/TANK)',
+								desc = 'Update your current Profile to LuckyoneUI version:'..L1UI.Version,
+								func = function() L1UI:UpdateLayout('dps'); end,
+							},
+							healer = {
+								order = 2,
+								type = 'execute',
+								name = 'Update (Current layout: Healing)',
+								desc = 'Update your current Profile to LuckyoneUI version:'..L1UI.Version,
+								func = function() L1UI:UpdateLayout('healer'); end,
+								confirm = true,
+							},
+						},
+					},
+					defaults = {
+						order = 3,
 						type = 'group',
 						inline = true,
 						name = 'Defaults',
@@ -144,7 +167,7 @@ function L1UI:Configtable()
 						},
 					},
 					plugins = {
-						order = 3,
+						order = 4,
 						type = 'group',
 						inline = true,
 						name = 'Plugin Profiles',
@@ -176,7 +199,7 @@ function L1UI:Configtable()
 						},
 					},
 					addons = {
-						order = 4,
+						order = 5,
 						type = 'group',
 						inline = true,
 						name = 'Addon Profiles',
@@ -208,7 +231,7 @@ function L1UI:Configtable()
 						},
 					},
 					disabledFrames = {
-						order = 5,
+						order = 6,
 						type = 'group',
 						inline = true,
 						name = 'Disabled Blizzard Frames',
