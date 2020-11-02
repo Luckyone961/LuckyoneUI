@@ -1,3 +1,8 @@
+### Version 1.10 [XX-XX-2020]
+**Changes:**  
+**New Additions:**  
+**Misc:**  
+___
 ### Version 1.09 [02-11-2020]
 **Changes:**  
 Adjustments for ElvUI 12.07 - make sure to update  
