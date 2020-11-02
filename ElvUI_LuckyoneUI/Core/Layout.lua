@@ -124,6 +124,7 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["cooldown"]["expireIndicator"]["b"] = 0
 	E.db["actionbar"]["cooldown"]["expireIndicator"]["g"] = 0
 	E.db["actionbar"]["cooldown"]["hoursIndicator"]["r"] = 0.4
+	E.db["actionbar"]["cooldown"]["override"] = false
 	E.db["actionbar"]["countTextPosition"] = "BOTTOM"
 	E.db["actionbar"]["countTextYOffset"] = 1
 	E.db["actionbar"]["extraActionButton"]["alpha"] = 0.8
@@ -156,7 +157,6 @@ function L1UI:SetupLayout(layout)
 	E.db["bags"]["cooldown"]["expireIndicator"]["b"] = 0
 	E.db["bags"]["cooldown"]["expireIndicator"]["g"] = 0
 	E.db["bags"]["cooldown"]["hoursIndicator"]["r"] = 0.4
-	E.db["bags"]["cooldown"]["override"] = true
 	E.db["bags"]["countFont"] = "Expressway"
 	E.db["bags"]["countFontOutline"] = "OUTLINE"
 	E.db["bags"]["countFontSize"] = 12
@@ -263,7 +263,7 @@ function L1UI:SetupLayout(layout)
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"]["enable"] = true
 	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"][1] = "System"
-	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"][2] = "Combat/Arena Time"
+	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"][2] = "Combat"
 	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"][3] = "Durability"
 	E.db["datatexts"]["panels"]["MinimapPanel"]["numPoints"] = 1
 	E.db["datatexts"]["panels"]["MinimapPanel"]["panelTransparency"] = true
@@ -285,6 +285,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["cooldown"]["expireIndicator"]["b"] = 0
 	E.db["nameplates"]["cooldown"]["expireIndicator"]["g"] = 0
 	E.db["nameplates"]["cooldown"]["hoursIndicator"]["r"] = 0.4
+	E.db["nameplates"]["cooldown"]["override"] = false
 	E.db["nameplates"]["lowHealthThreshold"] = 0.5
 	E.db["nameplates"]["plateSize"]["enemyHeight"] = 40
 	E.db["nameplates"]["plateSize"]["enemyWidth"] = 165
@@ -496,7 +497,30 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["raidTargetIndicator"]["xOffset"] = -3
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["enable"] = true
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["font"] = "Expressway"
-	E.db["nameplates"]["units"]["PLAYER"]["enable"] = false
+	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFont"] = "Expressway"
+	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["maxDuration"] = 0
+	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,TurtleBuffs"
+	E.db["nameplates"]["units"]["PLAYER"]["castbar"]["font"] = "Expressway"
+	E.db["nameplates"]["units"]["PLAYER"]["castbar"]["timeToHold"] = 2
+	E.db["nameplates"]["units"]["PLAYER"]["castbar"]["yOffset"] = -10
+	E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["countFont"] = "Expressway"
+	E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["priority"] = "Blacklist,Dispellable,blockNoDuration,Personal,Boss,CCDebuffs"
+	E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["font"] = "Expressway"
+	E.db["nameplates"]["units"]["PLAYER"]["level"]["enable"] = true
+	E.db["nameplates"]["units"]["PLAYER"]["level"]["font"] = "Expressway"
+	E.db["nameplates"]["units"]["PLAYER"]["level"]["yOffset"] = 0
+	E.db["nameplates"]["units"]["PLAYER"]["name"]["enable"] = true
+	E.db["nameplates"]["units"]["PLAYER"]["name"]["font"] = "Expressway"
+	E.db["nameplates"]["units"]["PLAYER"]["name"]["format"] = "[namecolor][name]"
+	E.db["nameplates"]["units"]["PLAYER"]["name"]["yOffset"] = 0
+	E.db["nameplates"]["units"]["PLAYER"]["nameOnly"] = true
+	E.db["nameplates"]["units"]["PLAYER"]["power"]["enable"] = false
+	E.db["nameplates"]["units"]["PLAYER"]["power"]["text"]["font"] = "Expressway"
+	E.db["nameplates"]["units"]["PLAYER"]["title"]["enable"] = true
+	E.db["nameplates"]["units"]["PLAYER"]["title"]["font"] = "Expressway"
+	E.db["nameplates"]["units"]["PLAYER"]["title"]["yOffset"] = 0
+	E.db["nameplates"]["units"]["PLAYER"]["visibility"]["hideDelay"] = 0
+	E.db["nameplates"]["units"]["PLAYER"]["visibility"]["showInCombat"] = false
 	E.db["nameplates"]["visibility"]["enemy"]["guardians"] = true
 	E.db["nameplates"]["visibility"]["enemy"]["minions"] = true
 
@@ -885,7 +909,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1"
 		E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1"
 		E.db["movers"]["LevelUpBossBannerMover"] = "TOP,ElvUIParent,TOP,0,-57"
-		E.db["movers"]["LootFrameMover"] = "TOP,ElvUIParent,TOP,0,-161"
+		E.db["movers"]["LootFrameMover"] = "TOP,ElvUIParent,TOP,0,-160"
 		E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-492"
 		E.db["movers"]["MasterExperienceMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,343,-299"
 		E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,174,-1"
@@ -899,6 +923,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ReputationBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1"
 		E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1"
 		E.db["movers"]["ShiftAB"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-1"
+		E.db["movers"]["SLEGhostFrameMover"] = "TOP,ElvUIParent,TOP,0,-160"
 		E.db["movers"]["SocialMenuMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,196"
 		E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187"
 		E.db["movers"]["TalkingHeadFrameMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,174"
@@ -945,8 +970,9 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["texture"] = "Solid"
 		E.db["unitframe"]["colors"]["health_backdrop_dead"]["b"] = 0.011764705882353
 		E.db["unitframe"]["colors"]["health_backdrop_dead"]["g"] = 0.011764705882353
-		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0.011764705882353
-		E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0.011764705882353
+		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0.10196078431373
+		E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0.10196078431373
+		E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0.10196078431373
 		E.db["unitframe"]["colors"]["health"]["b"] = 0.058823529411765
 		E.db["unitframe"]["colors"]["health"]["g"] = 0.058823529411765
 		E.db["unitframe"]["colors"]["health"]["r"] = 0.058823529411765
@@ -990,6 +1016,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["cooldown"]["expireIndicator"]["b"] = 0
 		E.db["unitframe"]["cooldown"]["expireIndicator"]["g"] = 0
 		E.db["unitframe"]["cooldown"]["hoursIndicator"]["r"] = 0.4
+		E.db["unitframe"]["cooldown"]["override"] = false
 		E.db["unitframe"]["font"] = "Expressway"
 		E.db["unitframe"]["fontOutline"] = "OUTLINE"
 		E.db["unitframe"]["fontSize"] = 12
