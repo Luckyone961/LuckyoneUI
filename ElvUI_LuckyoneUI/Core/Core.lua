@@ -140,8 +140,6 @@ function L1UI:SetupPrivate()
 	E.private["install_complete"] = "12.06"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 
-	E:StaggeredUpdateAll(nil, true)
-
 	L1UI:Print('Note: Fonts do not change until you restart WoW.')
 end
 

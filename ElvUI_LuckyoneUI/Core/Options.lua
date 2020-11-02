@@ -122,7 +122,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'Reset Media',
 								desc = 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.',
-								func = function() L1UI:SetupPrivate(); end,
+								func = function() L1UI:SetupPrivate(); E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
 							cvars = {
