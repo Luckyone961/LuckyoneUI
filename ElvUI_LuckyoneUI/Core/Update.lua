@@ -6,8 +6,8 @@ function L1UI:UpdateLayout(layout)
 
 	-- General
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[name:last][classificationcolor][ >luckyone:classification]"
-	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["format"] = "[level][classificationcolor][ >luckyone:classification]"
-	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["format"] = "[level][classificationcolor][ >luckyone:classification]"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["format"] = "[level]"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["format"] = "[level]"
 
 	if layout == 'dps' then
 		-- DPS/TANK db

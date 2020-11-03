@@ -434,7 +434,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["health"]["text"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["health"]["text"]["format"] = "[perhp<%]"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = "Expressway"
-	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["format"] = "[level][classificationcolor][ >luckyone:classification]"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["format"] = "[level]"
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["xOffset"] = 3
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["yOffset"] = -10
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "Expressway"
@@ -480,7 +480,7 @@ function L1UI:SetupLayout(layout)
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["text"]["font"] = "Expressway"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["text"]["format"] = "[perhp<%]"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["font"] = "Expressway"
-	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["format"] = "[level][classificationcolor][ >luckyone:classification]"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["format"] = "[level]"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["xOffset"] = 3
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["yOffset"] = -10
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["markHealers"] = false
