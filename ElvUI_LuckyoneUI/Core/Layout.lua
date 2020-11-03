@@ -1,6 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 
 function L1UI:SetupLayout(layout)
