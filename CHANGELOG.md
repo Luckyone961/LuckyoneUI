@@ -1,5 +1,6 @@
 ### Version 1.10 [XX-XX-2020]
 **Changes:**  
+Fixes for ElvUI version 12.09  
 **New Additions:**  
 Added Update DPS/TANK and Update Healing buttons to the config  
 • You can now update your layout without re-running the installer  
