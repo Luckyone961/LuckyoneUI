@@ -139,8 +139,6 @@ function L1UI:SetupPrivate()
 	E.private["general"]["totemBar"] = false
 	E.private["install_complete"] = "12.06"
 	E.private["skins"]["parchmentRemoverEnable"] = true
-
-	L1UI:Print('Note: Fonts do not change until you restart WoW.')
 end
 
 -- Global DB

@@ -123,6 +123,7 @@ function L1UI:Configtable()
 								name = 'Update DPS/TANK',
 								desc = 'Update your current profile to LuckyoneUI version: '..L1UI.Version,
 								func = function() L1UI:UpdateLayout('dps'); end,
+								confirm = true,
 							},
 							healer = {
 								order = 2,
