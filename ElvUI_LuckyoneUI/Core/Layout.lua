@@ -33,9 +33,6 @@ function L1UI:SetupLayout(layout)
 		L1UI:GetSLEProfile()
 	end
 
-	-- v11
-	E.db["v11NamePlateReset"] = true
-
 	-- General
 	E.db["general"]["altPowerBar"]["font"] = "Expressway"
 	E.db["general"]["altPowerBar"]["statusBar"] = "Solid"
