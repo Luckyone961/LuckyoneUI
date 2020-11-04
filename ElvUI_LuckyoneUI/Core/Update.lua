@@ -11,6 +11,10 @@ function L1UI:UpdateLayout(layout)
 	E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Level"]["text_format"] = "[namecolor][level][classificationcolor][ >luckyone:classification]"
 	E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Level"]["text_format"] = "[namecolor][level][classificationcolor][ >luckyone:classification]"
 
+	E.db["databars"]["experience"]["questCompletedOnly"] = true
+
+	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"][2] = "Combat"
+
 	if layout == 'dps' then
 		-- DPS/TANK db
 	elseif layout == 'healer' then
