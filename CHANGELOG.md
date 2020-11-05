@@ -6,6 +6,7 @@ Updated the experience bar to show only completed quests
 Added Update DPS/TANK and Update Healing buttons to the config  
 • You can now update your layout without re-running the installer  
 **Misc:**  
+SharedMedia update (Fonts, Statusbar textures)  
 Simpy made the SetupLayout function faster PogChamp  
 ___
 ### Version 1.09 [02-11-2020]
