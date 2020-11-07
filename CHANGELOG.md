@@ -1,4 +1,4 @@
-### Version 1.10 [XX-XX-2020]
+### Version 1.10 [07-11-2020]
 **Changes:**  
 Fixes for ElvUI version 12.09  
 Updated the experience bar to show only completed quests  
