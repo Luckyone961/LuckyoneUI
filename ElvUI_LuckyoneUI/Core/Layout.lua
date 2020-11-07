@@ -163,8 +163,8 @@ function L1UI:SetupLayout(layout)
 	E.db["bags"]["vendorGrays"]["enable"] = true
 
 	-- Auras
-	E.db["auras"]["barNoDuration"] = false
-	E.db["auras"]["barTexture"] = "Solid"
+	E.db["auras"]["buffs"]["countFont"] = "Expressway"
+	E.db["auras"]["buffs"]["countFontOutline"] = "OUTLINE"
 	E.db["auras"]["buffs"]["countFontSize"] = 14
 	E.db["auras"]["buffs"]["durationFontSize"] = 12
 	E.db["auras"]["buffs"]["horizontalSpacing"] = 2
@@ -174,14 +174,13 @@ function L1UI:SetupLayout(layout)
 	E.db["auras"]["cooldown"]["expireIndicator"]["b"] = 0
 	E.db["auras"]["cooldown"]["expireIndicator"]["g"] = 0
 	E.db["auras"]["cooldown"]["hoursIndicator"]["r"] = 0.4
+	E.db["auras"]["debuffs"]["countFont"] = "Expressway"
+	E.db["auras"]["debuffs"]["countFontOutline"] = "OUTLINE"
 	E.db["auras"]["debuffs"]["countFontSize"] = 14
 	E.db["auras"]["debuffs"]["durationFontSize"] = 12
 	E.db["auras"]["debuffs"]["horizontalSpacing"] = 2
 	E.db["auras"]["debuffs"]["maxWraps"] = 2
 	E.db["auras"]["debuffs"]["size"] = 26
-	E.db["auras"]["fadeThreshold"] = -1
-	E.db["auras"]["font"] = "Expressway"
-	E.db["auras"]["fontOutline"] = "OUTLINE"
 
 	-- Chat
 	E.db["chat"]["desaturateVoiceIcons"] = false
