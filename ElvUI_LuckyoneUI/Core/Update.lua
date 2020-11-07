@@ -2,16 +2,10 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 function L1UI:UpdateLayout(layout)
 
-	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[name:last][classificationcolor][ >luckyone:classification]"
-	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["format"] = "[level]"
-	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["format"] = "[level]"
-
-	E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Level"]["text_format"] = "[namecolor][level][classificationcolor][ >luckyone:classification]"
-	E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Level"]["text_format"] = "[namecolor][level][classificationcolor][ >luckyone:classification]"
-
-	E.db["databars"]["experience"]["questCompletedOnly"] = true
-
-	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"][2] = "Combat"
+	E.db["auras"]["buffs"]["countFont"] = "Expressway"
+	E.db["auras"]["buffs"]["countFontOutline"] = "OUTLINE"
+	E.db["auras"]["debuffs"]["countFont"] = "Expressway"
+	E.db["auras"]["debuffs"]["countFontOutline"] = "OUTLINE"
 
 	if layout == 'dps' then
 		-- DPS/TANK db
