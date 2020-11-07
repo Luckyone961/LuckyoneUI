@@ -1,3 +1,8 @@
+### Version 1.12 [XX-XX-2020]
+**Changes:**  
+**New Additions:**  
+**Misc:**  
+___
 ### Version 1.11 [07-11-2020]
 **Changes:**  
 Hotfix for ElvUI 12.10  
