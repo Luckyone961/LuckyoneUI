@@ -1,8 +1,6 @@
-### Version 1.11 [XX-XX-2020]
+### Version 1.11 [07-11-2020]
 **Changes:**  
-**New Additions:**  
-**Misc:**  
-Minor Auras (Buffs/Debuffs) tweaks  
+Hotfix for ElvUI 12.10  
 ___
 ### Version 1.10 [07-11-2020]
 **Changes:**  
