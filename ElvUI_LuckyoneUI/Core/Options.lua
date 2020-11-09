@@ -216,7 +216,6 @@ function L1UI:Configtable()
 								order = 1,
 								type = 'execute',
 								name = 'Setup Chat',
-								desc = 'Setup Chat.',
 								func = function() L1UI:SetupChat(); end,
 								confirm = true,
 							},
@@ -233,6 +232,20 @@ function L1UI:Configtable()
 								type = 'description',
 								fontSize = 'medium',
 								name = 'Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]',
+							},
+						},
+					},
+					chatVars = {
+						order = 3,
+						type = 'group',
+						inline = true,
+						name = 'Chat CVars',
+						args = {
+							desc = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = '- chatStyle classic\n- whisperMode inline',
 							},
 						},
 					},
@@ -332,7 +345,7 @@ function L1UI:Configtable()
 							addonskins = {
 								order = 1,
 								type = 'execute',
-								name = 'AddOnSkins',
+								name = '|cff16C3F2AddOn|r|cFFFFFFFFSkins|r',
 								desc = 'Reset to LuckyoneUI defaults.',
 								func = function() L1UI:AddonSetupAS(); end,
 								confirm = true,
@@ -340,7 +353,7 @@ function L1UI:Configtable()
 							projectazilroka = {
 								order = 2,
 								type = 'execute',
-								name = 'ProjectAzilroka',
+								name = '|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r',
 								desc = 'Reset to LuckyoneUI defaults.',
 								func = function() L1UI:AddonSetupPA(); end,
 								confirm = true,
@@ -348,7 +361,7 @@ function L1UI:Configtable()
 							sle = {
 								order = 3,
 								type = 'execute',
-								name = 'Shadow&Light',
+								name = '|cff9482c9Shadow & Light|r',
 								desc = 'Reset to LuckyoneUI defaults.',
 								func = function() L1UI:AddonSetupSLE(); end,
 								confirm = true,
