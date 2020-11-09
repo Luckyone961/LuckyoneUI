@@ -1,5 +1,6 @@
 ### Version 1.12 [XX-XX-2020]
 **Changes:**  
+New options layout  
 **New Additions:**  
 **Misc:**  
 ___
