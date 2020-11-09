@@ -2,6 +2,7 @@
 **Changes:**  
 New options layout  
 **New Additions:**  
+Added LibGroupInSpecT-1.1  
 **Misc:**  
 ___
 ### Version 1.11 [07-11-2020]
