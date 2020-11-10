@@ -69,11 +69,11 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["objectiveFrameHeight"] = 600
 	E.db["general"]["smoothingAmount"] = 0.75
 	E.db["general"]["talkingHeadFrameBackdrop"] = true
-	E.db["general"]["talkingHeadFrameScale"] = 0.73
+	E.db["general"]["talkingHeadFrameScale"] = 0.72
 	E.db["general"]["totems"]["enable"] = false
-	E.db["general"]["valuecolor"]["b"] = 0.039215601980686
-	E.db["general"]["valuecolor"]["g"] = 0.48627343773842
-	E.db["general"]["valuecolor"]["r"] = 0.99999779462814
+	E.db["general"]["valuecolor"]["b"] = 0.59607714414597
+	E.db["general"]["valuecolor"]["g"] = 0.99999779462814
+	E.db["general"]["valuecolor"]["r"] = 0
 	E.db["general"]["vehicleSeatIndicatorSize"] = 64
 
 	-- ActionBars
@@ -926,7 +926,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["SLEGhostFrameMover"] = "TOP,ElvUIParent,TOP,0,-160"
 		E.db["movers"]["SocialMenuMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,196"
 		E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187"
-		E.db["movers"]["TalkingHeadFrameMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,174"
+		E.db["movers"]["TalkingHeadFrameMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,174"
 		E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,242,348"
 		E.db["movers"]["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,1"
 		E.db["movers"]["TooltipMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135"
@@ -1198,7 +1198,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 80
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
-		E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
 		E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["pet"]["healPrediction"]["absorbStyle"] = "NONE"
 		E.db["unitframe"]["units"]["pet"]["health"]["position"] = "CENTER"
@@ -1221,6 +1221,8 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["buffs"]["attachTo"] = "FRAME"
 		E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["player"]["buffs"]["yOffset"] = 1
+		E.db["unitframe"]["units"]["player"]["castbar"]["customTextFont"]["font"] = "Expressway"
+		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "Expressway"
 		E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 20
 		E.db["unitframe"]["units"]["player"]["castbar"]["latency"] = false
 		E.db["unitframe"]["units"]["player"]["castbar"]["timeToHold"] = 2
