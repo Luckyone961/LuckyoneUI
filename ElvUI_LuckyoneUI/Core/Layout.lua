@@ -923,7 +923,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ReputationBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1"
 		E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1"
 		E.db["movers"]["ShiftAB"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-1"
-		E.db["movers"]["SLEGhostFrameMover"] = "TOP,ElvUIParent,TOP,0,-160"
+		E.db["movers"]["SLEGhostFrameMover"] = "TOP,ElvUIParent,TOP,0,-161"
 		E.db["movers"]["SocialMenuMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,196"
 		E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187"
 		E.db["movers"]["TalkingHeadFrameMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,174"
