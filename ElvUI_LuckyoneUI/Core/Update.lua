@@ -12,6 +12,9 @@ function L1UI:UpdateLayout(layout)
 	E.db["movers"]["SLEGhostFrameMover"] = "TOP,ElvUIParent,TOP,0,-161"
 	E.db["movers"]["TalkingHeadFrameMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,174"
 
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["format"] = "[level]"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["format"] = "[level]"
+
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
 
 	E.db["unitframe"]["units"]["player"]["castbar"]["customTextFont"]["font"] = "Expressway"
