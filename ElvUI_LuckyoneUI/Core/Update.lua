@@ -5,6 +5,8 @@ function L1UI:UpdateLayout(layout)
 	-- General db
 	E.db["general"]["talkingHeadFrameScale"] = 0.72
 
+	E.db["actionbar"]["stanceBar"]["alpha"] = 0.75
+
 	E.db["tooltip"]["fontOutline"] = "OUTLINE"
 
 	E.db["movers"]["SLEGhostFrameMover"] = "TOP,ElvUIParent,TOP,0,-161"

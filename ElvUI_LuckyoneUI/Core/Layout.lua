@@ -136,7 +136,7 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["microbar"]["buttonSize"] = 18
 	E.db["actionbar"]["microbar"]["enabled"] = true
 	E.db["actionbar"]["microbar"]["mouseover"] = true
-	E.db["actionbar"]["stanceBar"]["alpha"] = 0.8
+	E.db["actionbar"]["stanceBar"]["alpha"] = 0.75
 	E.db["actionbar"]["stanceBar"]["buttonsize"] = 27
 	E.db["actionbar"]["stanceBar"]["mouseover"] = true
 	E.db["actionbar"]["transparent"] = true
