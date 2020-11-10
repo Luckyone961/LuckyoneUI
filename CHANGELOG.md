@@ -1,4 +1,4 @@
-### Version 1.12 [XX-11-2020]
+### Version 1.12 [10-11-2020]
 **Changes:**  
 New options layout  
 **New Additions:**  
