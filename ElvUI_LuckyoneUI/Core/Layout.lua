@@ -1476,10 +1476,10 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ReputationBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1"
 		E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1"
 		E.db["movers"]["ShiftAB"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-1"
-		E.db["movers"]["SLEGhostFrameMover"] = "TOP,ElvUIParent,TOP,0,-160"
+		E.db["movers"]["SLEGhostFrameMover"] = "TOP,ElvUIParent,TOP,0,-161"
 		E.db["movers"]["SocialMenuMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,196"
 		E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187"
-		E.db["movers"]["TalkingHeadFrameMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,174"
+		E.db["movers"]["TalkingHeadFrameMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,174"
 		E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,242,348"
 		E.db["movers"]["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,1"
 		E.db["movers"]["TooltipMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135"
@@ -1751,7 +1751,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 80
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
-		E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
 		E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["pet"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["pet"]["health"]["position"] = "CENTER"
@@ -1774,6 +1774,8 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["buffs"]["attachTo"] = "FRAME"
 		E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["player"]["buffs"]["yOffset"] = 1
+		E.db["unitframe"]["units"]["player"]["castbar"]["customTextFont"]["font"] = "Expressway"
+		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "Expressway"
 		E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 20
 		E.db["unitframe"]["units"]["player"]["castbar"]["latency"] = false
 		E.db["unitframe"]["units"]["player"]["castbar"]["timeToHold"] = 2
