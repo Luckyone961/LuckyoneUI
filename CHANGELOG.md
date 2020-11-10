@@ -1,9 +1,11 @@
-### Version 1.12 [XX-XX-2020]
+### Version 1.12 [XX-11-2020]
 **Changes:**  
 New options layout  
 **New Additions:**  
 Added LibGroupInSpecT-1.1  
+• You can delete the standalone Lib addon now  
 **Misc:**  
+Minor updates for both layouts  
 ___
 ### Version 1.11 [07-11-2020]
 **Changes:**  
