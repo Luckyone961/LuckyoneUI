@@ -1,3 +1,3 @@
 <Ui xmlns='http://www.blizzard.com/wow/ui/'>
-	<Include file='LibGroupInSpecT-1.1\lib.xml'/>
+	<Script file='LibGroupInSpecT-1.1\LibGroupInSpecT-1.1.lua'/>
 </Ui>
