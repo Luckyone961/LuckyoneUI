@@ -3,22 +3,6 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 function L1UI:UpdateLayout(layout)
 
 	-- General db
-	E.db["general"]["talkingHeadFrameScale"] = 0.72
-
-	E.db["actionbar"]["stanceBar"]["alpha"] = 0.75
-
-	E.db["tooltip"]["fontOutline"] = "OUTLINE"
-
-	E.db["movers"]["SLEGhostFrameMover"] = "TOP,ElvUIParent,TOP,0,-161"
-	E.db["movers"]["TalkingHeadFrameMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,174"
-
-	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["format"] = "[level]"
-	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["format"] = "[level]"
-
-	E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
-
-	E.db["unitframe"]["units"]["player"]["castbar"]["customTextFont"]["font"] = "Expressway"
-	E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "Expressway"
 
 	if layout == 'dps' then
 		-- DPS/TANK db
