@@ -1,3 +1,9 @@
+### Version 1.13 [XX-XX-2020]
+**Changes:**  
+**New Additions:**  
+**Misc:**  
+Minor LibGroupInSpecT-1.1 fix  
+___
 ### Version 1.12 [10-11-2020]
 **Changes:**  
 New options layout  
