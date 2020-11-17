@@ -12,6 +12,15 @@ function L1UI:SetupNamePlates()
 		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 	end]]
 
+	-- Halls of Atonement
+	-- Mists of Tirna Scithe
+	-- Plaguefall
+	-- The Necrotic Wake
+	-- Theater of Pain
+	-- Sanguine Depths
+	-- Spires of Ascension
+	-- De Other Side
+
 	-- Edited default filters
 	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0.49019607843137
 	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["g"] = 0
