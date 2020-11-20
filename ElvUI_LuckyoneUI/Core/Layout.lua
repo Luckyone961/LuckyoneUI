@@ -39,7 +39,7 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["backdropcolor"]["b"] = 0.10196078431373
 	E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
 	E.db["general"]["backdropcolor"]["r"] = 0.10196078431373
-	E.db["general"]["backdropfadecolor"]["a"] = 0.7531320899725
+	E.db["general"]["backdropfadecolor"]["a"] = 0.73697072267532
 	E.db["general"]["backdropfadecolor"]["b"] = 0.058823529411765
 	E.db["general"]["backdropfadecolor"]["g"] = 0.058823529411765
 	E.db["general"]["backdropfadecolor"]["r"] = 0.058823529411765
@@ -71,9 +71,9 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["talkingHeadFrameBackdrop"] = true
 	E.db["general"]["talkingHeadFrameScale"] = 0.72
 	E.db["general"]["totems"]["enable"] = false
-	E.db["general"]["valuecolor"]["b"] = 0.59607714414597
-	E.db["general"]["valuecolor"]["g"] = 0.99999779462814
-	E.db["general"]["valuecolor"]["r"] = 0
+	E.db["general"]["valuecolor"]["b"] = 0.039215601980686
+	E.db["general"]["valuecolor"]["g"] = 0.48627343773842
+	E.db["general"]["valuecolor"]["r"] = 0.99999779462814
 	E.db["general"]["vehicleSeatIndicatorSize"] = 64
 
 	-- ActionBars
