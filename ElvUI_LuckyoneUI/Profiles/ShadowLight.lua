@@ -87,6 +87,9 @@ function L1UI:GetSLEProfile()
 	E.db["sle"]["screensaver"]["title"]["font"] = "Expressway"
 	E.db["sle"]["screensaver"]["xpack"] = 192
 	E.db["sle"]["skins"]["objectiveTracker"]["classHeader"] = true
+	E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["b"] = 1
+	E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["g"] = 0
+	E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["r"] = 0.81960784313725
 	E.db["sle"]["skins"]["objectiveTracker"]["underlineClass"] = true
 	E.db["sle"]["skins"]["talkinghead"]["hide"] = true
 end
