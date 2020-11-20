@@ -490,6 +490,13 @@ function L1UI:Configtable()
 						name = 'Interrupts 2/2',
 						get = function() return 'wago.io/cHKY2f9Pl' end,
 					},
+					trinket = {
+						order = 18,
+						type = 'input',
+						width = 'normal',
+						name = 'Trinket tracker',
+						get = function() return 'wago.io/Trinket' end,
+					},
 				},
 			},
 			credits = {
