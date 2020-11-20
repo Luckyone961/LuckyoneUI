@@ -1,5 +1,4 @@
-### Version 1.13 [XX-XX-2020]
-**Changes:**  
+### Version 1.13 [XX-11-2020]
 **New Additions:**  
 Shadowlands WeakAuras for all 12 classes (hidden wago links)  
 • Note: Those are not yet perfect because I dont play them all  
