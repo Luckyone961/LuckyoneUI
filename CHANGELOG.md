@@ -1,7 +1,11 @@
 ### Version 1.13 [XX-11-2020]
+**Changes:**  
+Minor edits for TargetTarget and FocusTarget  
 **New Additions:**  
-Shadowlands WeakAuras for all 12 classes (hidden wago links)  
-• Note: Those are not yet perfect because I dont play them all  
+Added a WeakAuras section in the options  
+• ClassAuras for all 12 classes  
+• General WeakAuras like !keys & interrupt tracker  
+• Note: Those are not 100% perfect, I will try to update them during the first tier  
 **Misc:**  
 Minor LibGroupInSpecT-1.1 fix  
 ___
