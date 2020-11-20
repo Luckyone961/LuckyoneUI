@@ -1132,7 +1132,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["focustarget"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Dispellable"
 		E.db["unitframe"]["units"]["focustarget"]["debuffs"]["attachTo"] = "BUFFS"
 		E.db["unitframe"]["units"]["focustarget"]["debuffs"]["countFont"] = "Expressway"
-		E.db["unitframe"]["units"]["focustarget"]["debuffs"]["priority"] = "Blacklist,Personal,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist"
+		E.db["unitframe"]["units"]["focustarget"]["debuffs"]["maxDuration"] = 0
 		E.db["unitframe"]["units"]["focustarget"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["focustarget"]["disableTargetGlow"] = true
 		E.db["unitframe"]["units"]["focustarget"]["enable"] = true
@@ -1227,6 +1227,18 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["buffs"]["attachTo"] = "FRAME"
 		E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["player"]["buffs"]["yOffset"] = 1
+		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["color"]["b"] = 0.30980392156863
+		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["color"]["g"] = 0.30980392156863
+		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["color"]["r"] = 0.30980392156863
+		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0.50196078431373
+		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0.50196078431373
+		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0.50196078431373
+		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorInterrupted"]["b"] = 0.30196078431373
+		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorInterrupted"]["g"] = 0.30196078431373
+		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorInterrupted"]["r"] = 0.30196078431373
+		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorNoInterrupt"]["b"] = 0.25098039215686
+		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorNoInterrupt"]["g"] = 0.25098039215686
+		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorNoInterrupt"]["r"] = 0.78039215686275
 		E.db["unitframe"]["units"]["player"]["castbar"]["customTextFont"]["font"] = "Expressway"
 		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "Expressway"
 		E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 20
@@ -1398,6 +1410,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["targettarget"]["buffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["targettarget"]["debuffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["targettarget"]["debuffs"]["enable"] = false
+		E.db["unitframe"]["units"]["targettarget"]["debuffs"]["maxDuration"] = 0
 		E.db["unitframe"]["units"]["targettarget"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["targettarget"]["health"]["position"] = "CENTER"
 		E.db["unitframe"]["units"]["targettarget"]["health"]["xOffset"] = 0
