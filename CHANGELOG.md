@@ -1,6 +1,8 @@
 ### Version 1.13 [XX-XX-2020]
 **Changes:**  
 **New Additions:**  
+Shadowlands WeakAuras for all 12 classes (hidden wago links)  
+• Note: Those are not yet perfect because I dont play them all  
 **Misc:**  
 Minor LibGroupInSpecT-1.1 fix  
 ___
