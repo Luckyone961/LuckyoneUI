@@ -370,10 +370,101 @@ function L1UI:Configtable()
 					},
 				},
 			},
+			weakauras = {
+				type = 'group',
+				name = '|cff4beb2cWeakAuras|r',
+				order = 9,
+				args = {
+					class1 = {
+						order = 1,
+						type = 'input',
+						width = 'normal',
+						name = '|cffFF7C0ADruid:|r',
+						get = function() return '' end,
+					},
+					class2 = {
+						order = 2,
+						type = 'input',
+						width = 'normal',
+						name = '|cffFFFFFFPriest:|r',
+						get = function() return '' end,
+					},
+					class3 = {
+						order = 3,
+						type = 'input',
+						width = 'normal',
+						name = '|cff00FF98Monk:|r',
+						get = function() return '' end,
+					},
+					class4 = {
+						order = 4,
+						type = 'input',
+						width = 'normal',
+						name = '|cff8788EEWarlock:|r',
+						get = function() return '' end,
+					},
+					class5 = {
+						order = 5,
+						type = 'input',
+						width = 'normal',
+						name = '|cffAAD372Hunter:|r',
+						get = function() return '' end,
+					},
+					class6 = {
+						order = 6,
+						type = 'input',
+						width = 'normal',
+						name = '|cffFFF468Rogue:|r',
+						get = function() return '' end,
+					},
+					class7 = {
+						order = 7,
+						type = 'input',
+						width = 'normal',
+						name = '|cff3FC7EBMage:|r',
+						get = function() return '' end,
+					},
+					class8 = {
+						order = 8,
+						type = 'input',
+						width = 'normal',
+						name = '|cffA330C9DH:|r',
+						get = function() return '' end,
+					},
+					class9 = {
+						order = 9,
+						type = 'input',
+						width = 'normal',
+						name = '|cffC41E3ADK:|r',
+						get = function() return '' end,
+					},
+					class10 = {
+						order = 10,
+						type = 'input',
+						width = 'normal',
+						name = '|cffF48CBAPaladin:|r',
+						get = function() return '' end,
+					},
+					class11 = {
+						order = 11,
+						type = 'input',
+						width = 'normal',
+						name = '|cff0070DDShaman:|r',
+						get = function() return '' end,
+					},
+					class12 = {
+						order = 12,
+						type = 'input',
+						width = 'normal',
+						name = '|cffC69B6DWarrior:|r',
+						get = function() return '' end,
+					},
+				},
+			},
 			credits = {
 				type = 'group',
 				name = '|cffFF7D0ACredits|r',
-				order = 9,
+				order = 10,
 				args = {
 					author = {
 						order = 1,
@@ -436,7 +527,7 @@ function L1UI:Configtable()
 			links = {
 				type = 'group',
 				name = '|cffFF7D0ALinks|r',
-				order = 10,
+				order = 11,
 				args = {
 					changelog = {
 						order = 1,
