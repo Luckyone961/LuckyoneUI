@@ -6,20 +6,20 @@ local SetCVar = SetCVar
 -- NamePlates setup
 function L1UI:SetupNamePlates()
 
-	--[[for _, filterName in pairs({'Name1', 'Name2'}) do
+	--[[for _, filterName in pairs({'Luckyone_HOA', 'Luckyone_MISTS', 'Luckyone_PF', 'Luckyone_NW', 'Luckyone_TOP', 'Luckyone_SD', 'Luckyone_SOA', 'Luckyone_DOS'}) do
 		E.global["nameplate"]["filters"][filterName] = {}
 		E.NamePlates:StyleFilterCopyDefaults(E.global["nameplate"]["filters"][filterName])
 		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 	end]]
 
-	-- Halls of Atonement
-	-- Mists of Tirna Scithe
-	-- Plaguefall
-	-- The Necrotic Wake
-	-- Theater of Pain
-	-- Sanguine Depths
-	-- Spires of Ascension
-	-- De Other Side
+	-- Halls of Atonement [HOA]
+	-- Mists of Tirna Scithe [MISTS]
+	-- Plaguefall [PF]
+	-- The Necrotic Wake [NW]
+	-- Theater of Pain [TOP]
+	-- Sanguine Depths [SD]
+	-- Spires of Ascension [SOA]
+	-- De Other Side [DOS]
 
 	-- Edited default filters
 	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0.49019607843137
