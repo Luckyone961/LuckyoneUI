@@ -33,6 +33,7 @@ local SUPPORT = {
 	'|cffe6cc80MonkeyHack|r',
 	'|cffe6cc80Midnatt|r',
 	'|cffe6cc80Liam|r',
+	'|cffe6ccBadbrain|r'
 }
 
 -- Sort
