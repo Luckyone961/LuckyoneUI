@@ -2,6 +2,7 @@
 **Changes:**  
 **New Additions:**  
 **Misc:**  
+Updated Credits  
 ___
 ### Version 1.13 [23-11-2020]
 **Changes:**  
