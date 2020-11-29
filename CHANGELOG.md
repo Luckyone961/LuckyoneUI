@@ -1,8 +1,9 @@
-### Version 1.14 [XX-XX-2020]
+### Version 1.14 [XX-12-2020]
 **Changes:**  
 **New Additions:**  
 **Misc:**  
 Updated Credits  
+Updated OmniCD profile  
 ___
 ### Version 1.13 [23-11-2020]
 **Changes:**  
