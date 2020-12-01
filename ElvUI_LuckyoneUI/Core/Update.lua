@@ -3,6 +3,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 function L1UI:UpdateLayout(layout)
 
 	--General db
+	E.db["general"]["backdropfadecolor"]["a"] = 0.75
 
 	if layout == 'dps' then
 		-- DPS/TANK db
