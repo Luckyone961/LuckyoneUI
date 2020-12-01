@@ -1,5 +1,7 @@
 ### Version 1.14 [XX-12-2020]
 **Changes:**  
+Minor changes to some anchors/movers  
+• Extra Action Button, Zone Ability Button, Maw jailer frame  
 **New Additions:**  
 **Misc:**  
 Updated Credits  
