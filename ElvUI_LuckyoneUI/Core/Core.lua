@@ -175,6 +175,8 @@ function L1UI:SetupGlobal()
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = "[petbattle] hide;show"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 358
 	end
+
+	E.global["datatexts"]["settings"]["Currencies"]["tooltipData"][8][4] = true
 end
 
 -- UI Scale
