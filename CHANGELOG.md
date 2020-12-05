@@ -1,3 +1,6 @@
+### Version 1.15 [05-12-2020]
+**Fixed the broken Layout installer step**
+___
 ### Version 1.14 [05-12-2020]
 **Changes:**  
 Minor changes to some anchors/movers  
