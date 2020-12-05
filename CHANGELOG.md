@@ -1,11 +1,10 @@
-### Version 1.14 [XX-12-2020]
+### Version 1.14 [05-12-2020]
 **Changes:**  
 Minor changes to some anchors/movers  
 • Extra Action Button, Zone Ability Button, Maw jailer frame  
-**New Additions:**  
 **Misc:**  
 Updated Credits  
-Updated OmniCD profile  
+Updated OmniCD for version 2.5  
 ___
 ### Version 1.13 [23-11-2020]
 **Changes:**  
