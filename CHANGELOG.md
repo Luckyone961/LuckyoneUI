@@ -1,3 +1,10 @@
+### Version 1.16 [XX-XX-2020]
+**Changes:**  
+**New Additions:**  
+**Misc:**  
+Updated OmniCD (Tank CDs & Personal CDs)  
+Updated Credits  
+___
 ### Version 1.15 [05-12-2020]
 **Fixed the broken Layout installer step**
 ___
