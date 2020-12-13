@@ -21,6 +21,7 @@ L1UI.Name = '|cff4beb2cLuckyoneUI|r'
 
 function L1UI:PLAYER_ENTERING_WORLD()
 	L1UI:DisabledFrames()
+	L1UI:LoadCommands()
 end
 
 function L1UI:Initialize()

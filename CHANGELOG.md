@@ -1,6 +1,9 @@
 ### Version 1.16 [XX-XX-2020]
 **Changes:**  
 **New Additions:**  
+Added 2 chat commands to open the Weekly Reward Frame (Great Vault)  
+• /weekly
+• /vault
 **Misc:**  
 Updated OmniCD (Tank CDs & Personal CDs)  
 Updated Credits  
