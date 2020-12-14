@@ -6,8 +6,9 @@ Added 2 chat commands to open the Weekly Reward Frame (Great Vault)
 • /weekly
 • /vault
 **Misc:**  
-Updated OmniCD profile  
+Updated BigWigs profile  
 Updated Details profile  
+Updated OmniCD profile  
 Updated Credits  
 ___
 ### Version 1.15 [05-12-2020]
