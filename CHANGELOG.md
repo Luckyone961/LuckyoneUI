@@ -1,10 +1,15 @@
+### Version 1.17 [XX-XX-2020]
+**Changes:**  
+**New Additions:**  
+**Misc:**  
+___
 ### Version 1.16 [14-12-2020]
 **Changes:**  
 Removed the health bar from mouseover tooltip  
 **New Additions:**  
 Added 2 chat commands to open the Weekly Reward Frame (Great Vault)  
-• /weekly
-• /vault
+• /weekly  
+• /vault  
 **Misc:**  
 Updated BigWigs profile  
 Updated Details profile  
