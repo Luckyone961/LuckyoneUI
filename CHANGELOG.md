@@ -1,6 +1,7 @@
 ### Version 1.17 [XX-XX-2020]
 **Changes:**  
 **New Additions:**  
+Added custom Style Filters for all 8 Shadowlands Dungeons  
 **Misc:**  
 ___
 ### Version 1.16 [14-12-2020]
