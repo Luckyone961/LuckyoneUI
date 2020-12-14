@@ -1,4 +1,4 @@
-### Version 1.16 [XX-XX-2020]
+### Version 1.16 [14-12-2020]
 **Changes:**  
 Removed the health bar from mouseover tooltip  
 **New Additions:**  
