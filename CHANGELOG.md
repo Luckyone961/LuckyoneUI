@@ -1,11 +1,13 @@
 ### Version 1.16 [XX-XX-2020]
 **Changes:**  
+Removed the health bar from mouseover tooltip  
 **New Additions:**  
 Added 2 chat commands to open the Weekly Reward Frame (Great Vault)  
 • /weekly
 • /vault
 **Misc:**  
-Updated OmniCD (Tank CDs & Personal CDs)  
+Updated OmniCD profile  
+Updated Details profile  
 Updated Credits  
 ___
 ### Version 1.15 [05-12-2020]
