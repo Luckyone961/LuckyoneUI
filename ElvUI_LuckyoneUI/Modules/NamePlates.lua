@@ -76,7 +76,7 @@ function L1UI:SetupNamePlates()
 	E.global["nameplate"]["filters"]["Luckyone_SD"]["triggers"]["names"]["162040"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SD"]["triggers"]["names"]["162057"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SD"]["triggers"]["names"]["171376"] = true
-	E.global["nameplate"]["filters"]["Luckyone_SD"]["triggers"]["names"]["172265"] = true
+	E.global["nameplate"]["filters"]["Luckyone_SD"]["triggers"]["names"]["171799"] = true
 	E.global["nameplate"]["filters"]["Luckyone_SD"]["triggers"]["priority"] = 2
 
 	-- Spires of Ascension [SOA]
