@@ -127,6 +127,53 @@ function L1UI:NameplateReset()
 	L1UI:Print('NamePlate CVars have been reset to default.')
 end
 
+-- Raidframe styles
+function L1UI:RaidFrames(style)
+
+	if not E.db.movers then
+		E.db.movers = {}
+	end
+
+	if style == 'vertical' then
+
+		-- Growth / Mover
+		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-76"
+		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "DOWN_RIGHT"
+
+		-- Setup
+		E.db["unitframe"]["units"]["raid"]["classbar"]["fill"] = "spaced"
+		E.db["unitframe"]["units"]["raid"]["classbar"]["height"] = 6
+		E.db["unitframe"]["units"]["raid"]["debuffs"]["countFont"] = "Expressway"
+		E.db["unitframe"]["units"]["raid"]["debuffs"]["desaturate"] = false
+		E.db["unitframe"]["units"]["raid"]["debuffs"]["maxDuration"] = 0
+		E.db["unitframe"]["units"]["raid"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
+		E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
+		E.db["unitframe"]["units"]["raid"]["height"] = 35
+		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 1
+		E.db["unitframe"]["units"]["raid"]["name"]["text_format"] = ""
+		E.db["unitframe"]["units"]["raid"]["numGroups"] = 6
+		E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["anchorPoint"] = "LEFT"
+		E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["scale"] = 0.5
+		E.db["unitframe"]["units"]["raid"]["power"]["enable"] = false
+		E.db["unitframe"]["units"]["raid"]["rdebuffs"]["font"] = "Expressway"
+		E.db["unitframe"]["units"]["raid"]["rdebuffs"]["fontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["raid"]["rdebuffs"]["size"] = 18
+		E.db["unitframe"]["units"]["raid"]["roleIcon"]["enable"] = false
+		E.db["unitframe"]["units"]["raid"]["summonIcon"]["attachTo"] = "LEFT"
+		E.db["unitframe"]["units"]["raid"]["threatStyle"] = "NONE"
+		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 1
+		E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid31,exists] hide;show"
+		E.db["unitframe"]["units"]["raid"]["width"] = 90
+	
+	elseif style == 'block' then
+
+	end
+
+	E:StaggeredUpdateAll(nil, true)
+
+	L1UI:Print('Raidframe style set.')
+end
+
 -- Private DB
 function L1UI:SetupPrivate()
 
