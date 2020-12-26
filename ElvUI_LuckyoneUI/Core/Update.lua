@@ -7,7 +7,6 @@ function L1UI:UpdateLayout(layout)
 	end
 
 	--General db
-	E.db["tooltip"]["healthBar"]["statusPosition"] = "DISABLED"
 	E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI"
 	E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI"

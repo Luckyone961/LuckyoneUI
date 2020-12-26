@@ -1,8 +1,14 @@
 ### Version 1.17 [XX-XX-2020]
 **Changes:**  
+Updated the Filter Priority for Buffs to show important Mythic+ Buffs  
 **New Additions:**  
+Added options to quickly swap between vertical and block style RaidFrames  
+• Those options are for the DPS/TANK layout  
 Added custom Style Filters for all 8 Shadowlands Dungeons  
+• Important mobs will have a blue NamePlate like in my BfA filters  
 **Misc:**  
+Updated Credits  
+Added UnitFrames config section  
 ___
 ### Version 1.16 [14-12-2020]
 **Changes:**  
