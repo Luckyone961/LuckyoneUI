@@ -376,10 +376,41 @@ function L1UI:Configtable()
 					},
 				},
 			},
+			unitframes = {
+				type = 'group',
+				name = '|cff4beb2cUnitFrames|r',
+				order = 9,
+				args = {
+					raid = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Raidframe Style',
+						args = {
+							vertical = {
+								order = 1,
+								type = 'execute',
+								name = 'Vertical',
+								desc = 'Vertical Style',
+								func = function() L1UI:RaidFrames('vertical'); end,
+								confirm = true,
+							},
+							block = {
+								order = 2,
+								type = 'execute',
+								name = 'Block',
+								desc = 'Block Style',
+								func = function() L1UI:RaidFrames('block'); end,
+								confirm = true,
+							},
+						},
+					},
+				},
+			},
 			weakauras = {
 				type = 'group',
 				name = '|cff4beb2cWeakAuras|r',
-				order = 9,
+				order = 10,
 				args = {
 					header1 = {
 						order = 1,
@@ -508,7 +539,7 @@ function L1UI:Configtable()
 			credits = {
 				type = 'group',
 				name = '|cffFF7D0ACredits|r',
-				order = 10,
+				order = 11,
 				args = {
 					author = {
 						order = 1,
@@ -571,7 +602,7 @@ function L1UI:Configtable()
 			links = {
 				type = 'group',
 				name = '|cffFF7D0ALinks|r',
-				order = 11,
+				order = 12,
 				args = {
 					changelog = {
 						order = 1,
