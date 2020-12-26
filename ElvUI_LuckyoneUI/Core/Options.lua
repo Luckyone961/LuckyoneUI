@@ -548,6 +548,13 @@ function L1UI:Configtable()
 						name = 'Trinket tracker',
 						get = function() return 'wago.io/Trinket' end,
 					},
+					affixes = {
+						order = 19,
+						type = 'input',
+						width = 'normal',
+						name = 'Mythic+ Affixes',
+						get = function() return 'wago.io/affixes' end,
+					},
 				},
 			},
 			credits = {
