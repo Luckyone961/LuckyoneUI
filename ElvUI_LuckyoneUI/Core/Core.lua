@@ -215,8 +215,6 @@ function L1UI:RaidFrames(style)
 		E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["height"] = 40
 		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 1
-		E.db["unitframe"]["units"]["raid"]["name"]["attachTextTo"] = "Frame"
-		E.db["unitframe"]["units"]["raid"]["name"]["position"] = "LEFT"
 		E.db["unitframe"]["units"]["raid"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["numGroups"] = 6
 		E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["anchorPoint"] = "LEFT"
