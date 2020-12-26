@@ -405,6 +405,20 @@ function L1UI:Configtable()
 							},
 						},
 					},
+					desc = {
+						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'Note',
+						args = {
+							raidDesc = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = 'The options above are for the DPS/TANK layout.',
+							},
+						},
+					},
 				},
 			},
 			weakauras = {
