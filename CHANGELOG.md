@@ -1,9 +1,11 @@
-### Version 1.17 [XX-XX-2020]
+### Version 1.17 [XX-12-2020]
 **Changes:**  
-Updated the Filter Priority for Buffs to show important Mythic+ Buffs  
+Updated the Filter Priority for Buffs to show important Mythic+ Buffs (ElvUI 12.17)  
 **New Additions:**  
 Added options to quickly swap between vertical and block style RaidFrames  
 • Those options are for the DPS/TANK layout  
+Added options to choose which Buffs/Debuffs you want to see  
+• For Player, Target, Focus and NamePlates  
 Added custom Style Filters for all 8 Shadowlands Dungeons  
 • Important mobs will have a blue NamePlate like in my BfA filters  
 **Misc:**  
