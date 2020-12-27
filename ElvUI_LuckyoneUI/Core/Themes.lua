@@ -157,7 +157,7 @@ function L1UI:RaidFrames(style)
 		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 1
 		E.db["unitframe"]["units"]["raid"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["numGroups"] = 6
-		E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["anchorPoint"] = "LEFT"
+		E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["anchorPoint"] = "BOTTOM"
 		E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["scale"] = 0.5
 		E.db["unitframe"]["units"]["raid"]["power"]["enable"] = false
 		E.db["unitframe"]["units"]["raid"]["raidicon"]["attachTo"] = "RIGHT"
@@ -172,7 +172,7 @@ function L1UI:RaidFrames(style)
 		E.db["unitframe"]["units"]["raid"]["rdebuffs"]["stack"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["raid"]["rdebuffs"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["raid"]["readycheckIcon"]["attachTo"] = "Frame"
-		E.db["unitframe"]["units"]["raid"]["readycheckIcon"]["xOffset"] = 48
+		E.db["unitframe"]["units"]["raid"]["readycheckIcon"]["xOffset"] = 1
 		E.db["unitframe"]["units"]["raid"]["resurrectIcon"]["size"] = 25
 		E.db["unitframe"]["units"]["raid"]["roleIcon"]["attachTo"] = "Frame"
 		E.db["unitframe"]["units"]["raid"]["roleIcon"]["damager"] = false
@@ -180,6 +180,7 @@ function L1UI:RaidFrames(style)
 		E.db["unitframe"]["units"]["raid"]["roleIcon"]["size"] = 12
 		E.db["unitframe"]["units"]["raid"]["roleIcon"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["raid"]["roleIcon"]["yOffset"] = 0
+		E.db["unitframe"]["units"]["raid"]["summonIcon"]["attachTo"] = "BOTTOM"
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["size"] = 25
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["xOffset"] = 35
 		E.db["unitframe"]["units"]["raid"]["threatStyle"] = "NONE"
