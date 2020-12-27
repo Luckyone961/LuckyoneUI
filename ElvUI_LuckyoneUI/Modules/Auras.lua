@@ -8,26 +8,34 @@ function L1UI:SetupBuffs(frame, type)
 
 	if frame == 'player' then
 		if type == 'all' then
+			E.db["unitframe"]["units"]["player"]["buffs"]["perrow"] = 8
 			E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = all
 		else
+			E.db["unitframe"]["units"]["player"]["buffs"]["perrow"] = 2
 			E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = min
 		end
 	elseif frame == 'target' then
 		if type == 'all' then
+			E.db["unitframe"]["units"]["target"]["buffs"]["perrow"] = 8
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = all
 		else
+			E.db["unitframe"]["units"]["target"]["buffs"]["perrow"] = 2
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = min
 		end
 	elseif frame == 'focus' then
 		if type == 'all' then
+			E.db["unitframe"]["units"]["focus"]["buffs"]["perrow"] = 8
 			E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = all
 		else
+			E.db["unitframe"]["units"]["focus"]["buffs"]["perrow"] = 2
 			E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = min
 		end
 	elseif frame == 'nameplate' then
 		if type == 'all' then
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["numAuras"] = 8
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = all
 		else
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["numAuras"] = 2
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = min
 		end
 	end
