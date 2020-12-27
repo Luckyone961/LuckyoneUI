@@ -1,5 +1,19 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+--[[
+E.db["unitframe"]["units"]["player"]["buffs"]["priority"]
+E.db["unitframe"]["units"]["player"]["debuffs"]["priority"]
+
+E.db["unitframe"]["units"]["target"]["buffs"]["priority"]
+E.db["unitframe"]["units"]["target"]["debuffs"]["priority"]
+
+E.db["unitframe"]["units"]["focus"]["buffs"]["priority"]
+E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"]
+
+E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"]
+E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"]
+]]
+
 -- Filters: Buffs
 function L1UI:SetupBuffs(frame, type)
 
@@ -25,7 +39,7 @@ end
 function L1UI:SetupDebuffs(frame, type)
 
 	local all = "Blacklist,Personal,nonPersonal"
-	local min = "Blacklist,RaidDebuffs,Dispellable"
+	local min = "Blacklist,Personal,CCDebuffs"
 
 	if frame == 'player' then
 
