@@ -119,10 +119,16 @@ function L1UI:Configtable()
 					},
 				},
 			},
+			auras = {
+				type = 'group',
+				name = '|cff4beb2cAuras|r',
+				order = 3,
+				args = {},
+			},
 			addons = {
 				type = 'group',
 				name = '|cff4beb2cAddons|r',
-				order = 3,
+				order = 4,
 				args = {
 					addons = {
 						order = 1,
@@ -161,7 +167,7 @@ function L1UI:Configtable()
 			blizzard = {
 				type = 'group',
 				name = '|cff4beb2cBlizzard|r',
-				order = 4,
+				order = 5,
 				args = {
 					disabledFrames = {
 						order = 1,
@@ -210,7 +216,7 @@ function L1UI:Configtable()
 			chat = {
 				type = 'group',
 				name = '|cff4beb2cChat|r',
-				order = 5,
+				order = 6,
 				args = {
 					chatSetup = {
 						order = 1,
@@ -258,7 +264,7 @@ function L1UI:Configtable()
 				},
 			},
 			cvars = {
-				order = 6,
+				order = 7,
 				type = 'group',
 				name = '|cff4beb2cCVars|r',
 				args = {
@@ -317,7 +323,7 @@ function L1UI:Configtable()
 			media = {
 				type = 'group',
 				name = '|cff4beb2cMedia|r',
-				order = 7,
+				order = 8,
 				args = {
 					defaults = {
 						order = 1,
@@ -340,7 +346,7 @@ function L1UI:Configtable()
 			plugins = {
 				type = 'group',
 				name = '|cff4beb2cPlugins|r',
-				order = 8,
+				order = 9,
 				args = {
 					plugins = {
 						order = 1,
@@ -379,7 +385,7 @@ function L1UI:Configtable()
 			unitframes = {
 				type = 'group',
 				name = '|cff4beb2cUnitFrames|r',
-				order = 9,
+				order = 10,
 				args = {
 					raid = {
 						order = 1,
@@ -424,7 +430,7 @@ function L1UI:Configtable()
 			weakauras = {
 				type = 'group',
 				name = '|cff4beb2cWeakAuras|r',
-				order = 10,
+				order = 11,
 				args = {
 					header1 = {
 						order = 1,
@@ -560,7 +566,7 @@ function L1UI:Configtable()
 			credits = {
 				type = 'group',
 				name = '|cffFF7D0ACredits|r',
-				order = 11,
+				order = 12,
 				args = {
 					author = {
 						order = 1,
@@ -623,7 +629,7 @@ function L1UI:Configtable()
 			links = {
 				type = 'group',
 				name = '|cffFF7D0ALinks|r',
-				order = 12,
+				order = 13,
 				args = {
 					changelog = {
 						order = 1,

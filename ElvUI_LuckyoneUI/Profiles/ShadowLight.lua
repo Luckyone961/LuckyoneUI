@@ -9,7 +9,7 @@ function L1UI:GetSLEProfile()
 	E.global["sle"]["advanced"]["general"] = true
 
 	-- Private DB
-	E.private["sle"]["install_complete"] = "4.08"
+	E.private["sle"]["install_complete"] = "4.18"
 	E.private["sle"]["module"]["blizzmove"]["enable"] = true
 	E.private["sle"]["module"]["screensaver"] = true
 	E.private["sle"]["professions"]["deconButton"]["enable"] = false
