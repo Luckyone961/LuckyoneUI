@@ -122,8 +122,80 @@ function L1UI:Configtable()
 			auras = {
 				type = 'group',
 				name = '|cff4beb2cAuras|r',
-				order = 3,
-				args = {},
+				order = 2,
+				childGroups = 'tab',
+				args = {
+					buffs = {
+						type = 'group',
+						name = '|cFF3296FFBuffs|r',
+						order = 1,
+						args = {
+							player = {
+								order = 1,
+								type = 'group',
+								name = 'Player Frame',
+								inline = true,
+								args = {},
+							},
+							target = {
+								order = 2,
+								type = 'group',
+								name = 'Target Frame',
+								inline = true,
+								args = {},
+							},
+							focus = {
+								order = 3,
+								type = 'group',
+								name = 'Focus Frame',
+								inline = true,
+								args = {},
+							},
+							nameplate1 = {
+								order = 4,
+								type = 'group',
+								name = 'NamePlates: Enemy NPC',
+								inline = true,
+								args = {},
+							},
+						},
+					},
+					debuffs = {
+						type = 'group',
+						name = '|cFFC80000Debuffs|r',
+						order = 2,
+						args = {
+							player = {
+								order = 1,
+								type = 'group',
+								name = 'Player Frame',
+								inline = true,
+								args = {},
+							},
+							target = {
+								order = 2,
+								type = 'group',
+								name = 'Target Frame',
+								inline = true,
+								args = {},
+							},
+							focus = {
+								order = 3,
+								type = 'group',
+								name = 'Focus Frame',
+								inline = true,
+								args = {},
+							},
+							nameplate1 = {
+								order = 4,
+								type = 'group',
+								name = 'NamePlates: Enemy NPC',
+								inline = true,
+								args = {},
+							},
+						},
+					},
+				},
 			},
 			addons = {
 				type = 'group',
