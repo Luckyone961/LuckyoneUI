@@ -1,9 +1,10 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- Filters: Buffs
-function L1UI:SetupBuffs(frame)
+function L1UI:SetupBuffs(frame, type)
 
 	local all = "Blacklist,Personal,nonPersonal"
+	local min = "Blacklist,Dispellable,RaidBuffsElvUI"
 
 	if frame == 'player' then
 
@@ -21,9 +22,10 @@ function L1UI:SetupBuffs(frame)
 end
 
 -- Filters: Debuffs
-function L1UI:SetupDebuffs(frame)
+function L1UI:SetupDebuffs(frame, type)
 
 	local all = "Blacklist,Personal,nonPersonal"
+	local min = "Blacklist,RaidDebuffs,Dispellable"
 
 	if frame == 'player' then
 
