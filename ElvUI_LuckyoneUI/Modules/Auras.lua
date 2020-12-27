@@ -1,19 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
---[[
-E.db["unitframe"]["units"]["player"]["buffs"]["priority"]
-E.db["unitframe"]["units"]["player"]["debuffs"]["priority"]
-
-E.db["unitframe"]["units"]["target"]["buffs"]["priority"]
-E.db["unitframe"]["units"]["target"]["debuffs"]["priority"]
-
-E.db["unitframe"]["units"]["focus"]["buffs"]["priority"]
-E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"]
-
-E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"]
-E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"]
-]]
-
 -- Filters: Buffs
 function L1UI:SetupBuffs(frame, type)
 
@@ -21,13 +7,29 @@ function L1UI:SetupBuffs(frame, type)
 	local min = "Blacklist,Dispellable,RaidBuffsElvUI"
 
 	if frame == 'player' then
-
+		if type == 'all' then
+			E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = all
+		else
+			E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = min
+		end
 	elseif frame == 'target' then
-
+		if type == 'all' then
+			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = all
+		else
+			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = min
+		end
 	elseif frame == 'focus' then
-
+		if type == 'all' then
+			E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = all
+		else
+			E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = min
+		end
 	elseif frame == 'nameplate' then
-
+		if type == 'all' then
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = all
+		else
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = min
+		end
 	end
 
 	E:StaggeredUpdateAll(nil, true)
@@ -42,13 +44,29 @@ function L1UI:SetupDebuffs(frame, type)
 	local min = "Blacklist,Personal,CCDebuffs"
 
 	if frame == 'player' then
-
+		if type == 'all' then
+			E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = all
+		else
+			E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = min
+		end
 	elseif frame == 'target' then
-
+		if type == 'all' then
+			E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = all
+		else
+			E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = min
+		end
 	elseif frame == 'focus' then
-
+		if type == 'all' then
+			E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = all
+		else
+			E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = min
+		end
 	elseif frame == 'nameplate' then
-
+		if type == 'all' then
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = all
+		else
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = min
+		end
 	end
 
 	E:StaggeredUpdateAll(nil, true)
