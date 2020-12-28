@@ -1,3 +1,8 @@
+### Version 1.18 [XX-XX-2021]
+**Changes:**  
+**New Additions:**  
+**Misc:**  
+___
 ### Version 1.17 [27-12-2020]
 **Changes:**  
 Updated the Filter Priority for Buffs to show important Mythic+ Buffs (ElvUI 12.17)  
