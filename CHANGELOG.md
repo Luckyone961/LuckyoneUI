@@ -1,7 +1,9 @@
 ### Version 1.18 [XX-XX-2021]
 **Changes:**  
+ActionBar fixes for the latest ElvUI changes (Use Update button)  
 **New Additions:**  
 **Misc:**  
+Minor Arena Frame tweaks  
 ___
 ### Version 1.17 [27-12-2020]
 **Changes:**  
