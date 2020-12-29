@@ -522,7 +522,7 @@ function L1UI:Configtable()
 						order = 1,
 						type = 'group',
 						inline = true,
-						name = 'Defaults',
+						name = 'Fonts, Textures & Skins',
 						args = {
 							private = {
 								order = 1,

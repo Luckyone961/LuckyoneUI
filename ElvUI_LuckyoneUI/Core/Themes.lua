@@ -182,7 +182,7 @@ function L1UI:RaidFrames(style)
 		E.db["unitframe"]["units"]["raid"]["roleIcon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["attachTo"] = "BOTTOM"
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["size"] = 25
-		E.db["unitframe"]["units"]["raid"]["summonIcon"]["xOffset"] = 35
+		E.db["unitframe"]["units"]["raid"]["summonIcon"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["raid"]["threatStyle"] = "NONE"
 		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 1
 		E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid31,exists] hide;show"
