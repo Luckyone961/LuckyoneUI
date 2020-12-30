@@ -137,7 +137,7 @@ function L1UI:RaidFrames(style)
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:medium]",
+			["text_format"] = "[namecolor][name:short]",
 			["xOffset"] = 0,
 			["yOffset"] = 5
 		}
