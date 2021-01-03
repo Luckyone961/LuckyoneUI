@@ -222,6 +222,45 @@ function L1UI:UpdateLayout(layout)
 	E.db["actionbar"]["zoneActionButton"]["hotkeyTextYOffset"] = -1
 	E.db["actionbar"]["zoneActionButton"]["scale"] = 0.65
 
+	E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
+	E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_HP"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = true,
+		["font"] = "Expressway",
+		["fontOutline"] = "OUTLINE",
+		["justifyH"] = "CENTER",
+		["size"] = 14,
+		["text_format"] = "[perhp<%] || [health:current:shortvalue]",
+		["xOffset"] = 0,
+		["yOffset"] = 0
+	}
+
+	E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
+	E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_HP"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = true,
+		["font"] = "Expressway",
+		["fontOutline"] = "OUTLINE",
+		["justifyH"] = "CENTER",
+		["size"] = 14,
+		["text_format"] = "[health:current:shortvalue] || [perhp<%]",
+		["xOffset"] = 0,
+		["yOffset"] = 0
+	}
+
+	E.db["unitframe"]["units"]["focus"]["customTexts"] = E.db["unitframe"]["units"]["focus"]["customTexts"] or {}
+	E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_HP"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = true,
+		["font"] = "Expressway",
+		["fontOutline"] = "OUTLINE",
+		["justifyH"] = "CENTER",
+		["size"] = 14,
+		["text_format"] = "[perhp<%] || [health:current:shortvalue]",
+		["xOffset"] = 0,
+		["yOffset"] = 0
+	}
+
 	if layout == 'dps' then
 		-- DPS/TANK db
 	elseif layout == 'healer' then

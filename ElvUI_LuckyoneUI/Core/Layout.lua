@@ -772,7 +772,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[perhp<%] || [health:current]",
+		["text_format"] = "[perhp<%] || [health:current:shortvalue]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -883,7 +883,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[health:current] || [perhp<%]",
+		["text_format"] = "[health:current:shortvalue] || [perhp<%]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -944,7 +944,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[perhp<%] || [health:current]",
+		["text_format"] = "[perhp<%] || [health:current:shortvalue]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
