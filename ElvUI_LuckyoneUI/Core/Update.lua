@@ -177,7 +177,6 @@ function L1UI:UpdateLayout(layout)
 	E.db["actionbar"]["barPet"]["hotkeyTextPosition"] = "TOPLEFT"
 	E.db["actionbar"]["barPet"]["hotkeyTextYOffset"] = -1
 	E.db["actionbar"]["barPet"]["point"] = "TOPLEFT"
-	E.db["actionbar"]["convertPages"] = true
 	E.db["actionbar"]["cooldown"]["daysIndicator"]["g"] = 0.4
 	E.db["actionbar"]["cooldown"]["daysIndicator"]["r"] = 0.4
 	E.db["actionbar"]["cooldown"]["expireIndicator"]["b"] = 0
