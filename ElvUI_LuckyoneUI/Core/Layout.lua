@@ -32,6 +32,9 @@ function L1UI:SetupLayout(layout)
 		L1UI:GetSLEProfile()
 	end
 
+	-- AB Conversion
+	E.db["convertPages"] = true
+
 	-- General
 	E.db["general"]["altPowerBar"]["font"] = "Expressway"
 	E.db["general"]["altPowerBar"]["statusBar"] = "Solid"
