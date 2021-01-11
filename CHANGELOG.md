@@ -1,9 +1,10 @@
 ### Version 1.18 [XX-01-2021]
 **Changes:**  
-ActionBar fixes for the latest ElvUI changes  
-Health text format fixes for the latest ElvUI changes  
+ActionBar fixes for ElvUI 12.18  
+Health text format fixes for ElvUI 12.18  
 **Misc:**  
 Minor Arena Frame tweaks  
+Minor tooltip tweaks  
 ___
 ### Version 1.17 [27-12-2020]
 **Changes:**  
