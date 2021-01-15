@@ -258,21 +258,6 @@ function L1UI:UpdateLayout(layout)
 		["yOffset"] = 0
 	}
 
-	E.db["tooltip"]["alwaysShowRealm"] = true
-	E.db["tooltip"]["font"] = "Expressway"
-	E.db["tooltip"]["fontOutline"] = "OUTLINE"
-	E.db["tooltip"]["headerFontSize"] = 11
-	E.db["tooltip"]["healthBar"]["font"] = "Expressway"
-	E.db["tooltip"]["healthBar"]["fontSize"] = 11
-	E.db["tooltip"]["healthBar"]["height"] = 4
-	E.db["tooltip"]["healthBar"]["statusPosition"] = "DISABLED"
-	E.db["tooltip"]["itemCount"] = "NONE"
-	E.db["tooltip"]["showElvUIUsers"] = true
-	E.db["tooltip"]["showMount"] = false
-	E.db["tooltip"]["smallTextFontSize"] = 11
-	E.db["tooltip"]["textFontSize"] = 11
-	E.db["tooltip"]["visibility"]["combatOverride"] = "CTRL"
-
 	if layout == 'dps' then
 		-- DPS/TANK db
 	elseif layout == 'healer' then
