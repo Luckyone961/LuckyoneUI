@@ -139,7 +139,7 @@ function L1UI:RaidFrames(style)
 			["size"] = 12,
 			["text_format"] = "[namecolor][name:short]",
 			["xOffset"] = 0,
-			["yOffset"] = 5
+			["yOffset"] = 0
 		}
 
 		-- Setup
