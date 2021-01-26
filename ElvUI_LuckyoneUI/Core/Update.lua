@@ -15,6 +15,12 @@ function L1UI:UpdateLayout(layout)
 	E.db["unitframe"]["units"]["arena"]["pvpclassificationindicator"]["size"] = 25
 	E.db["unitframe"]["units"]["arena"]["pvpclassificationindicator"]["xOffset"] = -20
 
+	-- Boss Frame
+	E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Expressway"
+	E.db["unitframe"]["units"]["boss"]["buffs"]["sizeOverride"] = 22
+	E.db["unitframe"]["units"]["boss"]["buffs"]["numrows"] = 2
+	E.db["unitframe"]["units"]["boss"]["buffs"]["yOffset"] = 11
+
 	-- ActionBar dev changes
 	E.db["actionbar"]["bar1"]["alpha"] = 0.75
 	E.db["actionbar"]["bar1"]["buttonSize"] = 28
