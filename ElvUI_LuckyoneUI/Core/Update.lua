@@ -219,6 +219,9 @@ function L1UI:UpdateLayout(layout)
 	E.db["actionbar"]["zoneActionButton"]["hotkeyTextYOffset"] = -1
 	E.db["actionbar"]["zoneActionButton"]["scale"] = 0.65
 
+	-- Chat
+	E.db["chat"]["editBoxPosition"] = "ABOVE_CHAT_INSIDE"
+
 	E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",

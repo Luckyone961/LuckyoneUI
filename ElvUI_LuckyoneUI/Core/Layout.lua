@@ -327,7 +327,7 @@ function L1UI:SetupLayout(layout)
 
 	-- Chat
 	E.db["chat"]["editboxHistorySize"] = 30
-	E.db["chat"]["editBoxPosition"] = "ABOVE_CHAT"
+	E.db["chat"]["editBoxPosition"] = "ABOVE_CHAT_INSIDE"
 	E.db["chat"]["fade"] = false
 	E.db["chat"]["fadeTabsNoBackdrop"] = false
 	E.db["chat"]["font"] = "Expressway"
