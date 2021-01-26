@@ -222,6 +222,9 @@ function L1UI:UpdateLayout(layout)
 	-- Chat
 	E.db["chat"]["editBoxPosition"] = "ABOVE_CHAT_INSIDE"
 
+	-- General
+	E.db["general"]["autoRepair"] = "GUILD"
+
 	E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_HP"] = {
 		["attachTextTo"] = "Health",
