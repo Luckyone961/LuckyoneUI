@@ -1,11 +1,15 @@
 ### Version 1.18 [XX-02-2021]
 **Changes:**  
+Health text format fixes for ElvUI 12.18  
 ActionBar fixes for ElvUI 12.18  
 • The update button will set the bars back to the known LuckyoneUI defaults  
-Health text format fixes for ElvUI 12.18  
+Updated Buffs for the Boss Frame  
+• Smaller icon size, 2 rows, 3 buffs per row  
 **Misc:**  
 Minor Arena Frame tweaks  
-BigWigs profile update  
+Minor Chat Editbox tweaks  
+Auto Repair on Guild by default  
+Updated BigWigs profile  
 ___
 ### Version 1.17 [27-12-2020]
 **Changes:**  
