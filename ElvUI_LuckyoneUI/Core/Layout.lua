@@ -1012,7 +1012,7 @@ function L1UI:SetupLayout(layout)
 
 		-- Growth Directions DPS/TANK
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "DOWN_RIGHT"
-		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "DOWN_RIGHT"
+		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "RIGHT_DOWN"
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "RIGHT_DOWN"
 
 		-- Movers DPS/TANK
