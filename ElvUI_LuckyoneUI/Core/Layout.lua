@@ -38,7 +38,7 @@ function L1UI:SetupLayout(layout)
 	-- General
 	E.db["general"]["altPowerBar"]["font"] = "Expressway"
 	E.db["general"]["altPowerBar"]["statusBar"] = "Solid"
-	E.db["general"]["autoRepair"] = "PLAYER"
+	E.db["general"]["autoRepair"] = "GUILD"
 	E.db["general"]["backdropcolor"]["b"] = 0.10196078431373
 	E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
 	E.db["general"]["backdropcolor"]["r"] = 0.10196078431373
