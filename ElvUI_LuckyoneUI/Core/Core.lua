@@ -79,6 +79,15 @@ function L1UI:AddonSetupOCD()
 	end
 end
 
+-- Plater Profile
+function L1UI:AddonSetupPlater()
+
+	if IsAddOnLoaded('Plater') then
+		L1UI:GetPlaterProfile()
+		L1UI:Print('Plater profile has been set.')
+	end
+end
+
 -- ProjectAzilroka Profile
 function L1UI:AddonSetupPA()
 
