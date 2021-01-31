@@ -584,7 +584,7 @@ function L1UI:Configtable()
 						order = 1,
 						type = 'group',
 						inline = true,
-						name = 'Raidframe Style',
+						name = 'UnitFrames Color Theme',
 						args = {
 							dark = {
 								order = 1,
