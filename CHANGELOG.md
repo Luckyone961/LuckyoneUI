@@ -9,6 +9,7 @@ Updated Buffs for the Boss Frame
 Minor Arena Frame tweaks  
 Minor Chat Editbox tweaks  
 Auto Repair on Guild by default  
+Added config buttons for color themes  
 Updated BigWigs profile  
 ___
 ### Version 1.17 [27-12-2020]
