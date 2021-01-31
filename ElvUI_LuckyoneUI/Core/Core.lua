@@ -52,6 +52,15 @@ function L1UI:AddonSetupBW()
 	end
 end
 
+-- DBM Profile
+function L1UI:AddonSetupDBM()
+
+	if IsAddOnLoaded('DBM-Core') then
+		L1UI:GetDBMProfile()
+		L1UI:Print('DBM profile has been set.')
+	end
+end
+
 -- Details Profile
 function L1UI:AddonSetupDT()
 
