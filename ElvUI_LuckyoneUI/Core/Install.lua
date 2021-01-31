@@ -71,7 +71,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetText('Setup CVars')
 		end,
 		[7] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText('BigWigs Profile')
+			PluginInstallFrame.SubTitle:SetFormattedText('BossMod Profile')
 			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for BigWigs.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
@@ -110,7 +110,7 @@ L1UI.InstallerData = {
 		[4] = 'NamePlates',
 		[5] = 'Chat',
 		[6] = 'CVars',
-		[7] = 'BigWigs',
+		[7] = 'BossMods',
 		[8] = 'Details',
 		[9] = 'OmniCD',
 		[10] = 'Installation Complete',
