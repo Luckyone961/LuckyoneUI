@@ -1,4 +1,4 @@
-### Version 1.18 [XX-02-2021]
+### Version 1.18 [02-02-2021]
 **Changes:**  
 Health text format fixes for ElvUI 12.18  
 ActionBar fixes for ElvUI 12.18  
