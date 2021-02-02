@@ -198,7 +198,7 @@ function L1UI:Configtable()
 								},
 							},
 							boss = {
-								order = 3,
+								order = 4,
 								type = 'group',
 								name = 'Boss Frame',
 								inline = true,
@@ -220,7 +220,7 @@ function L1UI:Configtable()
 								},
 							},
 							nameplate1 = {
-								order = 4,
+								order = 5,
 								type = 'group',
 								name = 'NamePlates: Enemy NPC',
 								inline = true,
