@@ -30,6 +30,14 @@ function L1UI:SetupBuffs(frame, type)
 			E.db["unitframe"]["units"]["focus"]["buffs"]["perrow"] = 2
 			E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = min
 		end
+	elseif frame == 'boss' then
+		if type == 'all' then
+			E.db["unitframe"]["units"]["boss"]["buffs"]["perrow"] = 8
+			E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = all
+		else
+			E.db["unitframe"]["units"]["boss"]["buffs"]["perrow"] = 3
+			E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = min
+		end
 	elseif frame == 'nameplate' then
 		if type == 'all' then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["numAuras"] = 8
@@ -68,6 +76,12 @@ function L1UI:SetupDebuffs(frame, type)
 			E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = all
 		else
 			E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = min
+		end
+	elseif frame == 'boss' then
+		if type == 'all' then
+			E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = all
+		else
+			E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = min
 		end
 	elseif frame == 'nameplate' then
 		if type == 'all' then

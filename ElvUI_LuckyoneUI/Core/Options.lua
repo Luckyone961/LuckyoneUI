@@ -197,6 +197,28 @@ function L1UI:Configtable()
 									},
 								},
 							},
+							boss = {
+								order = 3,
+								type = 'group',
+								name = 'Boss Frame',
+								inline = true,
+								args = {
+									min = {
+										order = 1,
+										type = 'execute',
+										name = 'Minimalistic',
+										desc = 'Minimalistic. Only important auras.',
+										func = function() L1UI:SetupBuffs('boss', 'min'); end,
+									},
+									all = {
+										order = 2,
+										type = 'execute',
+										name = 'Show All',
+										desc = 'Show all auras except blacklisted.',
+										func = function() L1UI:SetupBuffs('boss', 'all'); end,
+									},
+								},
+							},
 							nameplate1 = {
 								order = 4,
 								type = 'group',
@@ -292,8 +314,30 @@ function L1UI:Configtable()
 									},
 								},
 							},
-							nameplate1 = {
+							boss = {
 								order = 4,
+								type = 'group',
+								name = 'Boss Frame',
+								inline = true,
+								args = {
+									min = {
+										order = 1,
+										type = 'execute',
+										name = 'Minimalistic',
+										desc = 'Minimalistic. Only important auras.',
+										func = function() L1UI:SetupDebuffs('boss', 'min'); end,
+									},
+									all = {
+										order = 2,
+										type = 'execute',
+										name = 'Show All',
+										desc = 'Show all auras except blacklisted.',
+										func = function() L1UI:SetupDebuffs('boss', 'all'); end,
+									},
+								},
+							},
+							nameplate1 = {
+								order = 5,
 								type = 'group',
 								name = 'NamePlates: Enemy NPC',
 								inline = true,
