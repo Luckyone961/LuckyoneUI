@@ -6,6 +6,10 @@ function L1UI:UpdateLayout(layout)
 		E.db.movers = {}
 	end
 
+	E.db["bags"]["itemInfoFont"] = "Expressway"
+	E.db["bags"]["itemInfoFontOutline"] = "OUTLINE"
+	E.db["bags"]["itemInfoFontSize"] = 12
+
 	if layout == 'dps' then
 		-- DPS/TANK db
 	elseif layout == 'healer' then
