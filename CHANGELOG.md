@@ -1,3 +1,8 @@
+### Version 1.19 [XX-XX-2021]
+**Changes:**  
+**New Additions:**  
+**Misc:**  
+___
 ### Version 1.18 [02-02-2021]
 **Changes:**  
 Health text format fixes for ElvUI 12.18  
