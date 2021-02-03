@@ -295,6 +295,9 @@ function L1UI:SetupLayout(layout)
 	E.db["bags"]["countFont"] = "Expressway"
 	E.db["bags"]["countFontOutline"] = "OUTLINE"
 	E.db["bags"]["countFontSize"] = 12
+	E.db["bags"]["itemInfoFont"] = "Expressway"
+	E.db["bags"]["itemInfoFontOutline"] = "OUTLINE"
+	E.db["bags"]["itemInfoFontSize"] = 12
 	E.db["bags"]["itemLevelFont"] = "Expressway"
 	E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
 	E.db["bags"]["itemLevelFontSize"] = 12
