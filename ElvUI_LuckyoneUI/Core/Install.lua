@@ -46,13 +46,13 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetText('Class')
 		end,
 		[4] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText('NamePlates')
+			PluginInstallFrame.SubTitle:SetFormattedText('Style Filters')
 			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones NamePlate Style Filters.')
 			PluginInstallFrame.Desc2:SetText('All 8 Shadowlands Dungeons are supported.')
 			PluginInstallFrame.Desc3:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupNamePlates() end)
-			PluginInstallFrame.Option1:SetText('Setup NamePlates')
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupStyleFilters() end)
+			PluginInstallFrame.Option1:SetText('Setup Style Filters')
 		end,
 		[5] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('Chat')

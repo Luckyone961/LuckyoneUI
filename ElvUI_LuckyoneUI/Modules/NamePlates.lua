@@ -3,8 +3,8 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local pairs = pairs
 local SetCVar = SetCVar
 
--- NamePlates setup
-function L1UI:SetupNamePlates()
+-- Style Filter Setup
+function L1UI:SetupStyleFilters()
 
 	for _, filterName in pairs({'Luckyone_HOA', 'Luckyone_MISTS', 'Luckyone_PF', 'Luckyone_NW', 'Luckyone_TOP', 'Luckyone_SD', 'Luckyone_SOA', 'Luckyone_DOS'}) do
 		E.global["nameplate"]["filters"][filterName] = {}
