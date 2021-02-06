@@ -362,10 +362,228 @@ function L1UI:Configtable()
 					},
 				},
 			},
-			addons = {
+			blizzard = {
+				type = 'group',
+				name = '|cff4beb2cBlizzard|r',
+				order = 3,
+				args = {
+					disabledFrames = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Hide Blizzard Frames',
+						get = function(info) return E.private.L1UI.disabledFrames[info[#info]] end,
+						set = function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value; E:StaticPopup_Show('PRIVATE_RL') end,
+						args = {
+							BossBanner = {
+								order = 1,
+								type = 'toggle',
+								name = 'Boss Banner',
+								desc = 'Hide the Boss Banner',
+								get = function(info) return E.private.L1UI.disabledFrames.BossBanner end,
+								set = function(info, value) E.private.L1UI.disabledFrames.BossBanner = value; E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+							LevelUpDisplay = {
+								order = 2,
+								type = 'toggle',
+								name = 'LevelUp Display',
+								desc = 'Hide the LevelUp Display',
+								get = function(info) return E.private.L1UI.disabledFrames.LevelUpDisplay end,
+								set = function(info, value) E.private.L1UI.disabledFrames.LevelUpDisplay = value; E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+							ZoneTextFrame = {
+								order = 3,
+								type = 'toggle',
+								name = 'Zone Text',
+								desc = 'Hide the Zone Text',
+								get = function(info) return E.private.L1UI.disabledFrames.ZoneTextFrame end,
+								set = function(info, value) E.private.L1UI.disabledFrames.ZoneTextFrame = value; E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+							AlertFrame = {
+								order = 4,
+								type = 'toggle',
+								name = 'Alert Frame',
+								desc = 'Hide the Loot/Alert Frame',
+								get = function(info) return E.private.L1UI.disabledFrames.AlertFrame end,
+								set = function(info, value) E.private.L1UI.disabledFrames.AlertFrame = value; E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+						},
+					},
+				},
+			},
+			chat = {
+				type = 'group',
+				name = '|cff4beb2cChat|r',
+				order = 4,
+				args = {
+					chatSetup = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Setup Chat',
+						args = {
+							chat = {
+								order = 1,
+								type = 'execute',
+								name = 'Setup Chat',
+								func = function() L1UI:SetupChat(); end,
+								confirm = true,
+							},
+						},
+					},
+					chatDesc = {
+						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'Description',
+						args = {
+							desc = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = 'Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]',
+							},
+						},
+					},
+					chatVars = {
+						order = 3,
+						type = 'group',
+						inline = true,
+						name = 'Chat CVars',
+						args = {
+							desc = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = '- chatStyle classic\n- whisperMode inline',
+							},
+						},
+					},
+				},
+			},
+			cvars = {
+				order = 5,
+				type = 'group',
+				name = '|cff4beb2cCVars|r',
+				args = {
+					setup = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Setup CVars',
+						args = {
+							generalVars = {
+								order = 1,
+								type = 'execute',
+								name = 'General CVars',
+								func = function() L1UI:SetupCVars(); end,
+								confirm = true,
+							},
+							nameplateVars = {
+								order = 2,
+								type = 'execute',
+								name = 'NamePlate CVars',
+								func = function() L1UI:NameplateCVars(); end,
+								confirm = true,
+							},
+						},
+					},
+					generalDesc = {
+						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'General CVars',
+						args = {
+							cvars = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = '- cameraDistanceMaxZoomFactor 2.6\n- ffxDeath 0\n- advancedCombatLogging 1\n- rawMouseEnable 1\n- SpellQueueWindow 50',
+							},
+						},
+					},
+					nameplateDesc = {
+						order = 3,
+						type = 'group',
+						inline = true,
+						name = 'NamePlate CVars',
+						args = {
+							cvars = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = '- nameplateLargerScale 1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1',
+							},
+						},
+					},
+				},
+			},
+			media = {
+				type = 'group',
+				name = '|cff4beb2cMedia|r',
+				order = 6,
+				args = {
+					defaults = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Fonts, Textures & Skins',
+						args = {
+							private = {
+								order = 1,
+								type = 'execute',
+								name = 'Reset Media',
+								desc = 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.',
+								func = function() L1UI:SetupPrivate(); E:StaggeredUpdateAll(nil, true) end,
+								confirm = true,
+							},
+						},
+					},
+				},
+			},
+			plugins = {
+				type = 'group',
+				name = '|cff4beb2cPlugins|r',
+				order = 7,
+				args = {
+					plugins = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Plugin Profiles',
+						args = {
+							addonskins = {
+								order = 1,
+								type = 'execute',
+								name = '|cff16C3F2AddOn|r|cFFFFFFFFSkins|r',
+								desc = 'Reset to LuckyoneUI defaults.',
+								func = function() L1UI:AddonSetupAS(); end,
+								confirm = true,
+							},
+							projectazilroka = {
+								order = 2,
+								type = 'execute',
+								name = '|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r',
+								desc = 'Reset to LuckyoneUI defaults.',
+								func = function() L1UI:AddonSetupPA(); end,
+								confirm = true,
+							},
+							sle = {
+								order = 3,
+								type = 'execute',
+								name = '|cff9482c9Shadow & Light|r',
+								desc = 'Reset to LuckyoneUI defaults.',
+								func = function() L1UI:AddonSetupSLE(); end,
+								confirm = true,
+							},
+						},
+					},
+				},
+			},
+			profiles = {
 				type = 'group',
 				name = '|cff4beb2cProfiles|r',
-				order = 4,
+				order = 8,
 				args = {
 					bossmods = {
 						order = 1,
@@ -441,228 +659,10 @@ function L1UI:Configtable()
 					},
 				},
 			},
-			blizzard = {
-				type = 'group',
-				name = '|cff4beb2cBlizzard|r',
-				order = 5,
-				args = {
-					disabledFrames = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'Hide Blizzard Frames',
-						get = function(info) return E.private.L1UI.disabledFrames[info[#info]] end,
-						set = function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value; E:StaticPopup_Show('PRIVATE_RL') end,
-						args = {
-							BossBanner = {
-								order = 1,
-								type = 'toggle',
-								name = 'Boss Banner',
-								desc = 'Hide the Boss Banner',
-								get = function(info) return E.private.L1UI.disabledFrames.BossBanner end,
-								set = function(info, value) E.private.L1UI.disabledFrames.BossBanner = value; E:StaticPopup_Show('PRIVATE_RL') end,
-							},
-							LevelUpDisplay = {
-								order = 2,
-								type = 'toggle',
-								name = 'LevelUp Display',
-								desc = 'Hide the LevelUp Display',
-								get = function(info) return E.private.L1UI.disabledFrames.LevelUpDisplay end,
-								set = function(info, value) E.private.L1UI.disabledFrames.LevelUpDisplay = value; E:StaticPopup_Show('PRIVATE_RL') end,
-							},
-							ZoneTextFrame = {
-								order = 3,
-								type = 'toggle',
-								name = 'Zone Text',
-								desc = 'Hide the Zone Text',
-								get = function(info) return E.private.L1UI.disabledFrames.ZoneTextFrame end,
-								set = function(info, value) E.private.L1UI.disabledFrames.ZoneTextFrame = value; E:StaticPopup_Show('PRIVATE_RL') end,
-							},
-							AlertFrame = {
-								order = 4,
-								type = 'toggle',
-								name = 'Alert Frame',
-								desc = 'Hide the Loot/Alert Frame',
-								get = function(info) return E.private.L1UI.disabledFrames.AlertFrame end,
-								set = function(info, value) E.private.L1UI.disabledFrames.AlertFrame = value; E:StaticPopup_Show('PRIVATE_RL') end,
-							},
-						},
-					},
-				},
-			},
-			chat = {
-				type = 'group',
-				name = '|cff4beb2cChat|r',
-				order = 6,
-				args = {
-					chatSetup = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'Setup Chat',
-						args = {
-							chat = {
-								order = 1,
-								type = 'execute',
-								name = 'Setup Chat',
-								func = function() L1UI:SetupChat(); end,
-								confirm = true,
-							},
-						},
-					},
-					chatDesc = {
-						order = 2,
-						type = 'group',
-						inline = true,
-						name = 'Description',
-						args = {
-							desc = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = 'Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]',
-							},
-						},
-					},
-					chatVars = {
-						order = 3,
-						type = 'group',
-						inline = true,
-						name = 'Chat CVars',
-						args = {
-							desc = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = '- chatStyle classic\n- whisperMode inline',
-							},
-						},
-					},
-				},
-			},
-			cvars = {
-				order = 7,
-				type = 'group',
-				name = '|cff4beb2cCVars|r',
-				args = {
-					setup = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'Setup CVars',
-						args = {
-							generalVars = {
-								order = 1,
-								type = 'execute',
-								name = 'General CVars',
-								func = function() L1UI:SetupCVars(); end,
-								confirm = true,
-							},
-							nameplateVars = {
-								order = 2,
-								type = 'execute',
-								name = 'NamePlate CVars',
-								func = function() L1UI:NameplateCVars(); end,
-								confirm = true,
-							},
-						},
-					},
-					generalDesc = {
-						order = 2,
-						type = 'group',
-						inline = true,
-						name = 'General CVars',
-						args = {
-							cvars = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = '- cameraDistanceMaxZoomFactor 2.6\n- ffxDeath 0\n- advancedCombatLogging 1\n- rawMouseEnable 1\n- SpellQueueWindow 50',
-							},
-						},
-					},
-					nameplateDesc = {
-						order = 3,
-						type = 'group',
-						inline = true,
-						name = 'NamePlate CVars',
-						args = {
-							cvars = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = '- nameplateLargerScale 1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1',
-							},
-						},
-					},
-				},
-			},
-			media = {
-				type = 'group',
-				name = '|cff4beb2cMedia|r',
-				order = 8,
-				args = {
-					defaults = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'Fonts, Textures & Skins',
-						args = {
-							private = {
-								order = 1,
-								type = 'execute',
-								name = 'Reset Media',
-								desc = 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.',
-								func = function() L1UI:SetupPrivate(); E:StaggeredUpdateAll(nil, true) end,
-								confirm = true,
-							},
-						},
-					},
-				},
-			},
-			plugins = {
-				type = 'group',
-				name = '|cff4beb2cPlugins|r',
-				order = 9,
-				args = {
-					plugins = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'Plugin Profiles',
-						args = {
-							addonskins = {
-								order = 1,
-								type = 'execute',
-								name = '|cff16C3F2AddOn|r|cFFFFFFFFSkins|r',
-								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupAS(); end,
-								confirm = true,
-							},
-							projectazilroka = {
-								order = 2,
-								type = 'execute',
-								name = '|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r',
-								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupPA(); end,
-								confirm = true,
-							},
-							sle = {
-								order = 3,
-								type = 'execute',
-								name = '|cff9482c9Shadow & Light|r',
-								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupSLE(); end,
-								confirm = true,
-							},
-						},
-					},
-				},
-			},
 			themes = {
 				type = 'group',
 				name = '|cff4beb2cThemes|r',
-				order = 10,
+				order = 9,
 				args = {
 					raid = {
 						order = 1,
@@ -693,7 +693,7 @@ function L1UI:Configtable()
 			unitframes = {
 				type = 'group',
 				name = '|cff4beb2cUnitFrames|r',
-				order = 11,
+				order = 10,
 				args = {
 					raid = {
 						order = 1,
@@ -738,7 +738,7 @@ function L1UI:Configtable()
 			weakauras = {
 				type = 'group',
 				name = '|cff4beb2cWeakAuras|r',
-				order = 12,
+				order = 11,
 				args = {
 					header1 = {
 						order = 1,
@@ -874,7 +874,7 @@ function L1UI:Configtable()
 			credits = {
 				type = 'group',
 				name = '|cffFF7D0ACredits|r',
-				order = 13,
+				order = 12,
 				args = {
 					author = {
 						order = 1,
@@ -937,7 +937,7 @@ function L1UI:Configtable()
 			links = {
 				type = 'group',
 				name = '|cffFF7D0ALinks|r',
-				order = 14,
+				order = 13,
 				args = {
 					changelog = {
 						order = 1,
