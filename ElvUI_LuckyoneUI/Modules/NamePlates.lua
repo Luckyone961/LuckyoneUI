@@ -8,10 +8,13 @@ function L1UI:SetupNamePlates(addon)
 
 	if addon == 'ElvUI' then
 
-		-- Toggle
+		-- Toggle on
 		E.private["nameplates"]["enable"] = true
 
-		-- DB
+		-- Style Filters & CVars
+		L1UI:SetupStyleFilters()
+
+		-- NamePlate DB
 		E.db["nameplates"]["colors"]["castbarDesaturate"] = false
 		E.db["nameplates"]["colors"]["castColor"]["g"] = 1
 		E.db["nameplates"]["colors"]["castColor"]["r"] = 0.023529411764706
@@ -274,8 +277,11 @@ function L1UI:SetupNamePlates(addon)
 
 	elseif addon == 'Plater' then
 
-		-- Toggle
-		E.private["nameplates"]["enable"] = true
+		-- Toggle off
+		E.private["nameplates"]["enable"] = false
+
+		-- Setup Plater Layout
+		L1UI:AddonSetupPlater()
 
 	end
 end
