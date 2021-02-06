@@ -364,10 +364,10 @@ function L1UI:Configtable()
 			},
 			addons = {
 				type = 'group',
-				name = '|cff4beb2cAddons|r',
+				name = '|cff4beb2cProfiles|r',
 				order = 4,
 				args = {
-					BossMod = {
+					bossmods = {
 						order = 1,
 						type = 'group',
 						inline = true,
@@ -391,8 +391,32 @@ function L1UI:Configtable()
 							},
 						},
 					},
-					addons = {
+					nameplates = {
 						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'NamePlate Profiles',
+						args = {
+							elvui = {
+								order = 1,
+								type = 'execute',
+								name = 'ElvUI',
+								desc = 'Reset to LuckyoneUI defaults.',
+								func = function() L1UI:SetupNamePlates('ElvUI'); end,
+								confirm = true,
+							},
+							plater = {
+								order = 2,
+								type = 'execute',
+								name = 'Plater',
+								desc = 'Reset to LuckyoneUI defaults.',
+								func = function() L1UI:SetupNamePlates('Plater'); end,
+								confirm = true,
+							},
+						},
+					},
+					addons = {
+						order = 3,
 						type = 'group',
 						inline = true,
 						name = 'Addon Profiles',
