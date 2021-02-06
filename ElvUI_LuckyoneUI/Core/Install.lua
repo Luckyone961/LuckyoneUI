@@ -72,11 +72,14 @@ L1UI.InstallerData = {
 		end,
 		[7] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('BossMod Profile')
-			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for BigWigs.')
+			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile your BossMod Addon.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupBW() end)
-			PluginInstallFrame.Option1:SetText('Setup BigWigs')
+			PluginInstallFrame.Option1:SetText('BigWigs')
+			PluginInstallFrame.Option2:Show()
+			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:AddonSetupDBM() end)
+			PluginInstallFrame.Option2:SetText('DBM')
 		end,
 		[8] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('Details Profile')
@@ -107,7 +110,7 @@ L1UI.InstallerData = {
 		[1] = 'Welcome',
 		[2] = 'Layouts',
 		[3] = 'Theme',
-		[4] = 'NamePlates',
+		[4] = 'Style Filters',
 		[5] = 'Chat',
 		[6] = 'CVars',
 		[7] = 'BossMods',

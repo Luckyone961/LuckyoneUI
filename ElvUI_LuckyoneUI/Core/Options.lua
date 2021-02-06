@@ -367,11 +367,11 @@ function L1UI:Configtable()
 				name = '|cff4beb2cAddons|r',
 				order = 4,
 				args = {
-					addons = {
+					BossMod = {
 						order = 1,
 						type = 'group',
 						inline = true,
-						name = 'Addon Profiles',
+						name = 'BossMods Profiles',
 						args = {
 							bigwigs = {
 								order = 1,
@@ -381,6 +381,22 @@ function L1UI:Configtable()
 								func = function() L1UI:AddonSetupBW(); end,
 								confirm = true,
 							},
+							dbm = {
+								order = 2,
+								type = 'execute',
+								name = 'DBM',
+								desc = 'Reset to LuckyoneUI defaults.',
+								func = function() L1UI:AddonSetupDBM(); end,
+								confirm = true,
+							},
+						},
+					},
+					addons = {
+						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'Addon Profiles',
+						args = {
 							details = {
 								order = 2,
 								type = 'execute',
