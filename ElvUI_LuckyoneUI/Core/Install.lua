@@ -35,7 +35,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetText('Healing')
 		end,
 		[3] = function()
-			PluginInstallFrame.SubTitle:SetText('UnitFrames Color Theme')
+			PluginInstallFrame.SubTitle:SetText('Color Theme')
 			PluginInstallFrame.Desc1:SetText('Please click a button below to set the UnitFrames Color Theme.\n\nFeel free to skip this step if you like the default color theme.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
@@ -46,15 +46,6 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetText('Class')
 		end,
 		[4] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText('Style Filters')
-			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones NamePlate Style Filters.')
-			PluginInstallFrame.Desc2:SetText('All 8 Shadowlands Dungeons are supported.')
-			PluginInstallFrame.Desc3:SetText('Importance: |cff4beb2cOptional|r')
-			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupStyleFilters() end)
-			PluginInstallFrame.Option1:SetText('Setup Style Filters')
-		end,
-		[5] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('Chat')
 			PluginInstallFrame.Desc1:SetText('This will setup the chat windows to look like this:\n\nLeft Chat: General - Log - Whisper - Guild - Party\n\nRight Chat: Details! Damage Meter')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
@@ -62,13 +53,24 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupChat() end)
 			PluginInstallFrame.Option1:SetText('Setup Chat')
 		end,
-		[6] = function()
+		[5] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('CVars')
 			PluginInstallFrame.Desc1:SetText('This will apply the following CVar values:\n\ncameraDistanceMaxZoomFactor 2.6\nadvancedCombatLogging 1\nSpellQueueWindow 50\nrawMouseEnable 1\nffxDeath 0')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupCVars() end)
 			PluginInstallFrame.Option1:SetText('Setup CVars')
+		end,
+		[6] = function()
+			PluginInstallFrame.SubTitle:SetFormattedText('NamePlates')
+			PluginInstallFrame.Desc1:SetText('Choose between ElvUI NamePlates and Plater NamePlates.')
+			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cHigh|r')
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupNamePlates('ElvUI') end)
+			PluginInstallFrame.Option1:SetText('ElvUI')
+			PluginInstallFrame.Option2:Show()
+			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:SetupNamePlates('Plater') end)
+			PluginInstallFrame.Option2:SetText('Plater')
 		end,
 		[7] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('BossMod Profile')
@@ -109,10 +111,10 @@ L1UI.InstallerData = {
 	StepTitles = {
 		[1] = 'Welcome',
 		[2] = 'Layouts',
-		[3] = 'Theme',
-		[4] = 'Style Filters',
-		[5] = 'Chat',
-		[6] = 'CVars',
+		[3] = 'Color Theme',
+		[4] = 'Chat',
+		[5] = 'CVars',
+		[6] = 'NamePlates',
 		[7] = 'BossMods',
 		[8] = 'Details',
 		[9] = 'OmniCD',

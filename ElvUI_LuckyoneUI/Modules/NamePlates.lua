@@ -3,6 +3,16 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local pairs = pairs
 local SetCVar = SetCVar
 
+-- NamePlate Setup
+function L1UI:SetupNamePlates(addon)
+
+	if addon == 'ElvUI' then
+
+	elseif addon == 'Plater' then
+
+	end
+end
+
 -- Style Filter Setup
 function L1UI:SetupStyleFilters()
 
