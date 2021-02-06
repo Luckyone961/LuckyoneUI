@@ -538,7 +538,7 @@ function L1UI:Configtable()
 								order = 2,
 								type = 'execute',
 								name = 'NamePlate CVars',
-								func = function() L1UI:NameplateReset(); end,
+								func = function() L1UI:NameplateCVars(); end,
 								confirm = true,
 							},
 						},

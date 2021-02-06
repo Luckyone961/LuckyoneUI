@@ -123,7 +123,7 @@ function L1UI:SetupCVars()
 end
 
 -- CVars NamePlates
-function L1UI:NameplateReset()
+function L1UI:NameplateCVars()
 
 	-- NamePlate CVars
 	SetCVar('nameplateLargerScale', 1)
