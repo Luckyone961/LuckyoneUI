@@ -275,13 +275,19 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["visibility"]["enemy"]["guardians"] = true
 		E.db["nameplates"]["visibility"]["enemy"]["minions"] = true
 
+		-- Set CVars
+		L1UI:NameplateCVars()
+
 	elseif addon == 'Plater' then
 
-		-- Toggle off
+		-- Toggle off ElvUI Module
 		E.private["nameplates"]["enable"] = false
 
 		-- Setup Plater Layout
 		L1UI:AddonSetupPlater()
+
+		-- Set CVars
+		L1UI:NameplateCVars()
 
 	end
 end
