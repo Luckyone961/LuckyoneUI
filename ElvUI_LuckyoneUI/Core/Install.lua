@@ -100,6 +100,11 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetText('Setup OmniCD')
 		end,
 		[10] = function()
+			PluginInstallFrame.SubTitle:SetFormattedText('WeakAuras')
+			PluginInstallFrame.Desc1:SetText('You can find WeakAuras for all 12 Classes and some Utility WeakAuras in the LuckyoneUI config.')
+			PluginInstallFrame.Desc2:SetText('\nElvUI Options -> LuckyoneUI -> WeakAuras')
+		end,
+		[11] = function()
 			PluginInstallFrame.SubTitle:SetText('Installation Complete')
 			PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cHigh|r')
@@ -118,7 +123,8 @@ L1UI.InstallerData = {
 		[7] = 'BossMods',
 		[8] = 'Details',
 		[9] = 'OmniCD',
-		[10] = 'Installation Complete',
+		[10] = 'WeakAuras',
+		[11] = 'Installation Complete',
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0, 179/255, 1},
