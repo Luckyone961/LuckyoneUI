@@ -498,7 +498,7 @@ function L1UI:Configtable()
 								order = 1,
 								type = 'description',
 								fontSize = 'medium',
-								name = '- cameraDistanceMaxZoomFactor 2.6\n- ffxDeath 0\n- advancedCombatLogging 1\n- rawMouseEnable 1',
+								name = '- cameraDistanceMaxZoomFactor 2.6\n- advancedCombatLogging 1\n- rawMouseEnable 1\n- ffxDeath 0\n- ffxGlow 0',
 							},
 						},
 					},

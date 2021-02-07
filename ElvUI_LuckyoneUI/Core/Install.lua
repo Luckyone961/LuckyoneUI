@@ -55,7 +55,7 @@ L1UI.InstallerData = {
 		end,
 		[5] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('CVars')
-			PluginInstallFrame.Desc1:SetText('This will apply the following CVar values:\n\ncameraDistanceMaxZoomFactor 2.6\nadvancedCombatLogging 1\nrawMouseEnable 1\nffxDeath 0')
+			PluginInstallFrame.Desc1:SetText('This will apply the following CVar values:\n\ncameraDistanceMaxZoomFactor 2.6\nadvancedCombatLogging 1\nrawMouseEnable 1\nffxDeath 0\nffxGlow 0')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupCVars() end)
