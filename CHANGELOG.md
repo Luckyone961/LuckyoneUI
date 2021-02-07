@@ -7,6 +7,7 @@ DBM Profile
 Plater Profile  
 **Misc:**  
 AddOns section rename to Profiles  
+WeakAuras updates  
 ___
 ### Version 1.18 [02-02-2021]
 **Changes:**  
