@@ -117,7 +117,6 @@ function L1UI:SetupCVars()
 	SetCVar('ffxDeath', 0)
 	SetCVar('ffxGlow', 0)
 	SetCVar('rawMouseEnable', 1)
-	SetCVar('SpellQueueWindow', 50)
 
 	L1UI:Print('CVars have been set.')
 end
