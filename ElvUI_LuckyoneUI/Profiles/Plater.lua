@@ -2446,9 +2446,470 @@ function L1UI:GetPlaterProfile()
 					}, -- [19]
 				},
 				["aura_cache_by_name"] = {
+					["enrage"] = {
+						8599, -- [1]
+						12686, -- [2]
+						15061, -- [3]
+						15097, -- [4]
+						15716, -- [5]
+						18501, -- [6]
+						19451, -- [7]
+						19812, -- [8]
+						22428, -- [9]
+						23128, -- [10]
+						23342, -- [11]
+						26041, -- [12]
+						26051, -- [13]
+						28371, -- [14]
+						30485, -- [15]
+						31540, -- [16]
+						31915, -- [17]
+						32714, -- [18]
+						33958, -- [19]
+						34670, -- [20]
+						37605, -- [21]
+						37648, -- [22]
+						37975, -- [23]
+						38046, -- [24]
+						38166, -- [25]
+						38664, -- [26]
+						39031, -- [27]
+						41254, -- [28]
+						41447, -- [29]
+						42705, -- [30]
+						42745, -- [31]
+						43139, -- [32]
+						44427, -- [33]
+						45111, -- [34]
+						47399, -- [35]
+						48138, -- [36]
+						48142, -- [37]
+						48193, -- [38]
+						50420, -- [39]
+						51513, -- [40]
+						52470, -- [41]
+						54287, -- [42]
+						54427, -- [43]
+						55285, -- [44]
+						56646, -- [45]
+						59697, -- [46]
+						59707, -- [47]
+						59828, -- [48]
+						60075, -- [49]
+						61369, -- [50]
+						63227, -- [51]
+						68335, -- [52]
+						68541, -- [53]
+						70371, -- [54]
+						71205, -- [55]
+						72143, -- [56]
+						75998, -- [57]
+						76100, -- [58]
+						76862, -- [59]
+						78722, -- [60]
+						78943, -- [61]
+						80084, -- [62]
+						80467, -- [63]
+						86736, -- [64]
+						102134, -- [65]
+						108169, -- [66]
+						109889, -- [67]
+						109890, -- [68]
+						115430, -- [69]
+						119629, -- [70]
+						126370, -- [71]
+						127823, -- [72]
+						129016, -- [73]
+						130196, -- [74]
+						133052, -- [75]
+						140758, -- [76]
+						144404, -- [77]
+						145411, -- [78]
+						145554, -- [79]
+						145692, -- [80]
+						145974, -- [81]
+						150498, -- [82]
+						150500, -- [83]
+						154982, -- [84]
+						156314, -- [85]
+						163483, -- [86]
+						164257, -- [87]
+						164811, -- [88]
+						165947, -- [89]
+						172360, -- [90]
+						172781, -- [91]
+						175192, -- [92]
+						175337, -- [93]
+						176048, -- [94]
+						178658, -- [95]
+						179681, -- [96]
+						184361, -- [97]
+						184362, -- [98]
+						186882, -- [99]
+						188480, -- [100]
+						190225, -- [101]
+						197064, -- [102]
+						201279, -- [103]
+						207680, -- [104]
+						212561, -- [105]
+						214037, -- [106]
+						216363, -- [107]
+						218121, -- [108]
+						222022, -- [109]
+						222042, -- [110]
+						224604, -- [111]
+						225319, -- [112]
+						225320, -- [113]
+						228318, -- [114]
+						228895, -- [115]
+						237689, -- [116]
+						245566, -- [117]
+						257260, -- [118]
+						257391, -- [119]
+						257609, -- [120]
+						258463, -- [121]
+						259975, -- [122]
+						260355, -- [123]
+						261893, -- [124]
+						266095, -- [125]
+						271369, -- [126]
+						273422, -- [127]
+						273874, -- [128]
+						275091, -- [129]
+						275667, -- [130]
+						277573, -- [131]
+						297152, -- [132]
+						298078, -- [133]
+						300414, -- [134]
+						302483, -- [135]
+						304178, -- [136]
+						307506, -- [137]
+						311086, -- [138]
+						313675, -- [139]
+						314466, -- [140]
+						316133, -- [141]
+						316424, -- [142]
+						316425, -- [143]
+						317535, -- [144]
+						317553, -- [145]
+						319147, -- [146]
+						321820, -- [147]
+						323599, -- [148]
+						323828, -- [149]
+						324085, -- [150]
+						329989, -- [151]
+						330631, -- [152]
+						332169, -- [153]
+						334800, -- [154]
+						343484, -- [155]
+					},
+					["bulwark of maldraxxus"] = {
+						336449, -- [1]
+						336450, -- [2]
+						336451, -- [3]
+					},
+					["congealed contagion"] = {
+						321268, -- [1]
+						328175, -- [2]
+						333737, -- [3]
+						340271, -- [4]
+						340273, -- [5]
+					},
+					["engorge"] = {
+						321402, -- [1]
+						334653, -- [2]
+					},
+					["blood barrier"] = {
+						262980, -- [1]
+						269185, -- [2]
+						269281, -- [3]
+						322759, -- [4]
+						322766, -- [5]
+						322773, -- [6]
+						323482, -- [7]
+						329840, -- [8]
+						329849, -- [9]
+						329852, -- [10]
+					},
+					["undying rage"] = {
+						333227, -- [1]
+					},
 					["bolster"] = {
 						209859, -- [1]
 						280001, -- [2]
+					},
+					["spectral"] = {
+						290506, -- [1]
+						344739, -- [2]
+						346603, -- [3]
+					},
+					["prideful"] = {
+						340186, -- [1]
+						340384, -- [2]
+						340880, -- [3]
+						342333, -- [4]
+					},
+					["commanding presence"] = {
+						328839, -- [1]
+						330545, -- [2]
+						330546, -- [3]
+					},
+					["death wish"] = {
+						199261, -- [1]
+						331510, -- [2]
+					},
+					["recharge anima"] = {
+						321367, -- [1]
+						324046, -- [2]
+						327280, -- [3]
+						327416, -- [4]
+					},
+					["stoneskin"] = {
+						28995, -- [1]
+						31986, -- [2]
+						54722, -- [3]
+						68893, -- [4]
+						149157, -- [5]
+						151729, -- [6]
+						300514, -- [7]
+						304074, -- [8]
+						313060, -- [9]
+						316527, -- [10]
+						322433, -- [11]
+						325060, -- [12]
+						330452, -- [13]
+						343155, -- [14]
+					},
+					["raging tantrum"] = {
+						333241, -- [1]
+						333242, -- [2]
+					},
+					["forsworn doctrine"] = {
+						317936, -- [1]
+						331213, -- [2]
+					},
+					["sanguine ichor"] = {
+						226489, -- [1]
+						226510, -- [2]
+						226512, -- [3]
+						340299, -- [4]
+						340324, -- [5]
+						342073, -- [6]
+					},
+					["fixate"] = {
+						12021, -- [1]
+						34719, -- [2]
+						40414, -- [3]
+						40607, -- [4]
+						40892, -- [5]
+						41294, -- [6]
+						41295, -- [7]
+						41614, -- [8]
+						41951, -- [9]
+						41976, -- [10]
+						49026, -- [11]
+						52537, -- [12]
+						53626, -- [13]
+						73544, -- [14]
+						73545, -- [15]
+						73686, -- [16]
+						73687, -- [17]
+						78617, -- [18]
+						78618, -- [19]
+						78625, -- [20]
+						80093, -- [21]
+						80094, -- [22]
+						91829, -- [23]
+						91830, -- [24]
+						97025, -- [25]
+						97027, -- [26]
+						97486, -- [27]
+						99284, -- [28]
+						99526, -- [29]
+						99559, -- [30]
+						99849, -- [31]
+						99999, -- [32]
+						100007, -- [33]
+						100011, -- [34]
+						100014, -- [35]
+						100288, -- [36]
+						100548, -- [37]
+						105695, -- [38]
+						111723, -- [39]
+						111725, -- [40]
+						118303, -- [41]
+						118448, -- [42]
+						118964, -- [43]
+						120434, -- [44]
+						120831, -- [45]
+						120837, -- [46]
+						120839, -- [47]
+						122477, -- [48]
+						124070, -- [49]
+						125390, -- [50]
+						125393, -- [51]
+						125895, -- [52]
+						125896, -- [53]
+						129149, -- [54]
+						132760, -- [55]
+						132984, -- [56]
+						133042, -- [57]
+						133112, -- [58]
+						133196, -- [59]
+						133843, -- [60]
+						136594, -- [61]
+						137686, -- [62]
+						137687, -- [63]
+						138486, -- [64]
+						139034, -- [65]
+						140189, -- [66]
+						140547, -- [67]
+						141918, -- [68]
+						142097, -- [69]
+						142388, -- [70]
+						142870, -- [71]
+						143292, -- [72]
+						143445, -- [73]
+						143682, -- [74]
+						143864, -- [75]
+						144036, -- [76]
+						146540, -- [77]
+						146581, -- [78]
+						147665, -- [79]
+						147712, -- [80]
+						148243, -- [81]
+						149337, -- [82]
+						150702, -- [83]
+						152310, -- [84]
+						153787, -- [85]
+						154769, -- [86]
+						154952, -- [87]
+						155196, -- [88]
+						155207, -- [89]
+						156652, -- [90]
+						156653, -- [91]
+						156665, -- [92]
+						157168, -- [93]
+						157625, -- [94]
+						157763, -- [95]
+						158702, -- [96]
+						159373, -- [97]
+						167757, -- [98]
+						172866, -- [99]
+						173079, -- [100]
+						173080, -- [101]
+						174627, -- [102]
+						176544, -- [103]
+						177643, -- [104]
+						178139, -- [105]
+						186572, -- [106]
+						186574, -- [107]
+						187621, -- [108]
+						197849, -- [109]
+						197850, -- [110]
+						198161, -- [111]
+						198477, -- [112]
+						199618, -- [113]
+						199619, -- [114]
+						200349, -- [115]
+						201015, -- [116]
+						202081, -- [117]
+						202453, -- [118]
+						203983, -- [119]
+						204873, -- [120]
+						205011, -- [121]
+						205054, -- [122]
+						206364, -- [123]
+						208739, -- [124]
+						210099, -- [125]
+						213466, -- [126]
+						216115, -- [127]
+						218369, -- [128]
+						220727, -- [129]
+						224072, -- [130]
+						224307, -- [131]
+						224532, -- [132]
+						225388, -- [133]
+						226044, -- [134]
+						226088, -- [135]
+						227221, -- [136]
+						229593, -- [137]
+						234189, -- [138]
+						238674, -- [139]
+						239280, -- [140]
+						239556, -- [141]
+						241657, -- [142]
+						243461, -- [143]
+						243590, -- [144]
+						243613, -- [145]
+						244653, -- [146]
+						244657, -- [147]
+						244860, -- [148]
+						245406, -- [149]
+						253001, -- [150]
+						254491, -- [151]
+						255860, -- [152]
+						256311, -- [153]
+						257858, -- [154]
+						262240, -- [155]
+						262241, -- [156]
+						262242, -- [157]
+						262243, -- [158]
+						262244, -- [159]
+						262245, -- [160]
+						264215, -- [161]
+						264219, -- [162]
+						267406, -- [163]
+						269103, -- [164]
+						269936, -- [165]
+						270509, -- [166]
+						272427, -- [167]
+						272482, -- [168]
+						275269, -- [169]
+						275270, -- [170]
+						276020, -- [171]
+						277556, -- [172]
+						285694, -- [173]
+						285696, -- [174]
+						285697, -- [175]
+						285702, -- [176]
+						285703, -- [177]
+						285813, -- [178]
+						286135, -- [179]
+						286539, -- [180]
+						286974, -- [181]
+						287845, -- [182]
+						288390, -- [183]
+						288623, -- [184]
+						289925, -- [185]
+						291917, -- [186]
+						296524, -- [187]
+						299484, -- [188]
+						304298, -- [189]
+						305699, -- [190]
+						306957, -- [191]
+						307260, -- [192]
+						308360, -- [193]
+						309859, -- [194]
+						314729, -- [195]
+						315093, -- [196]
+						315094, -- [197]
+						318059, -- [198]
+						318078, -- [199]
+						318540, -- [200]
+						319781, -- [201]
+						320740, -- [202]
+						326082, -- [203]
+						326892, -- [204]
+						327902, -- [205]
+						330115, -- [206]
+						330966, -- [207]
+						330967, -- [208]
+						331343, -- [209]
+						337617, -- [210]
+						340797, -- [211]
+						340827, -- [212]
+						343496, -- [213]
 					},
 					["unstable affliction"] = {
 						30108, -- [1]
@@ -2482,6 +2943,46 @@ function L1UI:GetPlaterProfile()
 						334315, -- [29]
 						342938, -- [30]
 					},
+					["guessing game"] = {
+						321471, -- [1]
+						336499, -- [2]
+					},
+					["bursting with pride"] = {
+						340873, -- [1]
+						342332, -- [2]
+					},
+					["inspiring presence"] = {
+						185089, -- [1]
+						185090, -- [2]
+						192944, -- [3]
+						320973, -- [4]
+						320980, -- [5]
+						327808, -- [6]
+						327812, -- [7]
+						335034, -- [8]
+						343502, -- [9]
+					},
+					["boneshatter shield"] = {
+						343470, -- [1]
+						344423, -- [2]
+					},
+					["morbid fixation"] = {
+						338504, -- [1]
+						338606, -- [2]
+						338610, -- [3]
+						343555, -- [4]
+						343556, -- [5]
+						343558, -- [6]
+					},
+					["loyal beasts"] = {
+						326450, -- [1]
+					},
+					["icebound aegis"] = {
+						321368, -- [1]
+						321370, -- [2]
+						321754, -- [3]
+						321755, -- [4]
+					},
 				},
 				["health_cutoff_upper"] = false,
 				["aura2_y_offset"] = 5,
@@ -2504,6 +3005,10 @@ function L1UI:GetPlaterProfile()
 						"Shriekwing", -- [1]
 						"Castle Nathria", -- [2]
 					},
+					[165076] = {
+						"Gluttonous Tick", -- [1]
+						"Sanguine Depths", -- [2]
+					},
 					[164407] = {
 						"Sludgefist", -- [1]
 						"Castle Nathria", -- [2]
@@ -2512,9 +3017,17 @@ function L1UI:GetPlaterProfile()
 						"Tremor Totem", -- [1]
 						"Isle of Conquest", -- [2]
 					},
+					[162049] = {
+						"Vestige of Doubt", -- [1]
+						"Sanguine Depths", -- [2]
+					},
 					[167691] = {
 						"Stasis Trap", -- [1]
 						"Castle Nathria", -- [2]
+					},
+					[100820] = {
+						"Spirit Wolf", -- [1]
+						"Isle of Conquest", -- [2]
 					},
 					[173142] = {
 						"Dread Feaster", -- [1]
@@ -2524,9 +3037,17 @@ function L1UI:GetPlaterProfile()
 						"Court Executor", -- [1]
 						"Castle Nathria", -- [2]
 					},
+					[165556] = {
+						"Fleeting Manifestation", -- [1]
+						"Sanguine Depths", -- [2]
+					},
 					[5925] = {
 						"Grounding Totem", -- [1]
 						"Isle of Conquest", -- [2]
+					},
+					[168457] = {
+						"Stonewall Gargon", -- [1]
+						"Sanguine Depths", -- [2]
 					},
 					[169924] = {
 						"Veteran Stoneguard", -- [1]
@@ -2535,6 +3056,10 @@ function L1UI:GetPlaterProfile()
 					[165111] = {
 						"Drust Spiteclaw", -- [1]
 						"Mists of Tirna Scithe", -- [2]
+					},
+					[168968] = {
+						"Plaguebound Fallen", -- [1]
+						"Plaguefall", -- [2]
 					},
 					[174100] = {
 						"Nathrian Singuard", -- [1]
@@ -2592,6 +3117,10 @@ function L1UI:GetPlaterProfile()
 						"Stone Legion Goliath", -- [1]
 						"Castle Nathria", -- [2]
 					},
+					[168365] = {
+						"Fungret Shroomtender", -- [1]
+						"Plaguefall", -- [2]
+					},
 					[69792] = {
 						"Saitamå", -- [1]
 						"Isle of Conquest", -- [2]
@@ -2628,6 +3157,10 @@ function L1UI:GetPlaterProfile()
 						"High Torturer Darithos", -- [1]
 						"Castle Nathria", -- [2]
 					},
+					[78001] = {
+						"Cloudburst Totem", -- [1]
+						"Isle of Conquest", -- [2]
+					},
 					[171396] = {
 						"Kyrian Goliath", -- [1]
 						"Isle of Conquest", -- [2]
@@ -2635,6 +3168,10 @@ function L1UI:GetPlaterProfile()
 					[168113] = {
 						"General Grashaal", -- [1]
 						"Castle Nathria", -- [2]
+					},
+					[162057] = {
+						"Chamber Sentinel", -- [1]
+						"Sanguine Depths", -- [2]
 					},
 					[98035] = {
 						"Dreadstalker", -- [1]
@@ -2651,6 +3188,10 @@ function L1UI:GetPlaterProfile()
 					[173756] = {
 						"Stone Husk", -- [1]
 						"Isle of Conquest", -- [2]
+					},
+					[167955] = {
+						"Sanguine Cadet", -- [1]
+						"Sanguine Depths", -- [2]
 					},
 					[171557] = {
 						"Shade of Bargast", -- [1]
@@ -2671,6 +3212,10 @@ function L1UI:GetPlaterProfile()
 					[165470] = {
 						"Nathrian Executor", -- [1]
 						"Castle Nathria", -- [2]
+					},
+					[128142] = {
+						"Voidling", -- [1]
+						"Warsong Gulch", -- [2]
 					},
 					[173949] = {
 						"Nathrian Soldier", -- [1]
@@ -2695,6 +3240,14 @@ function L1UI:GetPlaterProfile()
 					[2630] = {
 						"Earthbind Totem", -- [1]
 						"Isle of Conquest", -- [2]
+					},
+					[168882] = {
+						"Fleeting Manifestation", -- [1]
+						"Sanguine Depths", -- [2]
+					},
+					[166396] = {
+						"Noble Skirmisher", -- [1]
+						"Sanguine Depths", -- [2]
 					},
 					[173568] = {
 						"Anima Crazed Worker", -- [1]
@@ -2736,6 +3289,14 @@ function L1UI:GetPlaterProfile()
 						"Dutiful Attendant", -- [1]
 						"Castle Nathria", -- [2]
 					},
+					[166589] = {
+						"Animated Weapon", -- [1]
+						"Sanguine Depths", -- [2]
+					},
+					[167956] = {
+						"Dark Acolyte", -- [1]
+						"Sanguine Depths", -- [2]
+					},
 					[169458] = {
 						"Hecutis", -- [1]
 						"Castle Nathria", -- [2]
@@ -2744,13 +3305,25 @@ function L1UI:GetPlaterProfile()
 						"Water Elemental", -- [1]
 						"Isle of Conquest", -- [2]
 					},
+					[168594] = {
+						"Chamber Sentinel", -- [1]
+						"Sanguine Depths", -- [2]
+					},
 					[165474] = {
 						"Nathrian Assassin", -- [1]
 						"Castle Nathria", -- [2]
 					},
+					[34802] = {
+						"Glaive Thrower", -- [1]
+						"Isle of Conquest", -- [2]
+					},
 					[174208] = {
 						"Court Executor", -- [1]
 						"Castle Nathria", -- [2]
+					},
+					[171455] = {
+						"Stonewall Gargon", -- [1]
+						"Sanguine Depths", -- [2]
 					},
 					[135002] = {
 						"Demonic Tyrant", -- [1]
@@ -2764,6 +3337,14 @@ function L1UI:GetPlaterProfile()
 						"Kennel Overseer", -- [1]
 						"Castle Nathria", -- [2]
 					},
+					[174712] = {
+						"Scavenging Mawrat", -- [1]
+						"Isle of Conquest", -- [2]
+					},
+					[162103] = {
+						"Executor Tarvold", -- [1]
+						"Sanguine Depths", -- [2]
+					},
 					[165762] = {
 						"Soul Infuser", -- [1]
 						"Castle Nathria", -- [2]
@@ -2776,9 +3357,25 @@ function L1UI:GetPlaterProfile()
 						"Dancing Fools", -- [1]
 						"Castle Nathria", -- [2]
 					},
+					[162051] = {
+						"Frenzied Ghoul", -- [1]
+						"Sanguine Depths", -- [2]
+					},
+					[172265] = {
+						"Remnant of Fury", -- [1]
+						"Sanguine Depths", -- [2]
+					},
+					[168058] = {
+						"Infused Quill-feather", -- [1]
+						"Sanguine Depths", -- [2]
+					},
 					[165189] = {
 						"Wolf", -- [1]
 						"Isle of Conquest", -- [2]
+					},
+					[165521] = {
+						"Lady Inerva Darkvein", -- [1]
+						"Castle Nathria", -- [2]
 					},
 					[165763] = {
 						"Vile Occultist", -- [1]
@@ -2792,9 +3389,25 @@ function L1UI:GetPlaterProfile()
 						"Wtfmageop", -- [1]
 						"Isle of Conquest", -- [2]
 					},
+					[171799] = {
+						"Depths Warden", -- [1]
+						"Sanguine Depths", -- [2]
+					},
+					[36565] = {
+						"Apothecary Baxter", -- [1]
+						"Shadowfang Keep", -- [2]
+					},
 					[174338] = {
 						"Stinky Feedhauler", -- [1]
 						"Castle Nathria", -- [2]
+					},
+					[171805] = {
+						"Research Scribe", -- [1]
+						"Sanguine Depths", -- [2]
+					},
+					[171376] = {
+						"Head Custodian Javlin", -- [1]
+						"Sanguine Depths", -- [2]
 					},
 					[165764] = {
 						"Rockbound Vanquisher", -- [1]
@@ -2804,9 +3417,41 @@ function L1UI:GetPlaterProfile()
 						"Hargitas", -- [1]
 						"Castle Nathria", -- [2]
 					},
+					[162040] = {
+						"Grand Overseer", -- [1]
+						"Sanguine Depths", -- [2]
+					},
+					[162056] = {
+						"Rockbound Sprite", -- [1]
+						"Sanguine Depths", -- [2]
+					},
+					[162039] = {
+						"Wicked Oppressor", -- [1]
+						"Sanguine Depths", -- [2]
+					},
+					[162099] = {
+						"General Kaal", -- [1]
+						"Sanguine Depths", -- [2]
+					},
+					[173729] = {
+						"Manifestation of Pride", -- [1]
+						"Sanguine Depths", -- [2]
+					},
+					[73967] = {
+						"Niuzao", -- [1]
+						"Isle of Conquest", -- [2]
+					},
 					[105451] = {
 						"Counterstrike Totem", -- [1]
 						"Isle of Conquest", -- [2]
+					},
+					[58960] = {
+						"Azrarion", -- [1]
+						"Isle of Conquest", -- [2]
+					},
+					[168591] = {
+						"Ravenous Dreadbat", -- [1]
+						"Sanguine Depths", -- [2]
 					},
 					[168156] = {
 						"Remornia", -- [1]
@@ -2815,6 +3460,10 @@ function L1UI:GetPlaterProfile()
 					[173798] = {
 						"Rat of Unusual Size", -- [1]
 						"Castle Nathria", -- [2]
+					},
+					[162100] = {
+						"Kryxis the Voracious", -- [1]
+						"Sanguine Depths", -- [2]
 					},
 					[34924] = {
 						"High Commander Halford Wyrmbane", -- [1]
@@ -2832,12 +3481,28 @@ function L1UI:GetPlaterProfile()
 						"Dragost", -- [1]
 						"Castle Nathria", -- [2]
 					},
+					[162047] = {
+						"Insatiable Brute", -- [1]
+						"Sanguine Depths", -- [2]
+					},
 					[170197] = {
 						"Conjured Manifestation", -- [1]
 						"Castle Nathria", -- [2]
 					},
+					[29264] = {
+						"Spirit Raptor", -- [1]
+						"Isle of Conquest", -- [2]
+					},
 					[61245] = {
 						"Capacitor Totem", -- [1]
+						"Isle of Conquest", -- [2]
+					},
+					[162133] = {
+						"General Kaal", -- [1]
+						"Sanguine Depths", -- [2]
+					},
+					[175425] = {
+						"Mawsworn Darkcaster", -- [1]
 						"Isle of Conquest", -- [2]
 					},
 					[55659] = {
@@ -2852,9 +3517,17 @@ function L1UI:GetPlaterProfile()
 						"Huntsman Altimor", -- [1]
 						"Castle Nathria", -- [2]
 					},
+					[162038] = {
+						"Regal Mistdancer", -- [1]
+						"Sanguine Depths", -- [2]
+					},
 					[173800] = {
 						"Sewer Rat", -- [1]
 						"Castle Nathria", -- [2]
+					},
+					[162102] = {
+						"Grand Proctor Beryllia", -- [1]
+						"Sanguine Depths", -- [2]
 					},
 					[173609] = {
 						"Nathrian Conservator", -- [1]
@@ -2868,6 +3541,10 @@ function L1UI:GetPlaterProfile()
 						"Baron Duskhollow", -- [1]
 						"Castle Nathria", -- [2]
 					},
+					[166523] = {
+						"Vesper Totem", -- [1]
+						"Isle of Conquest", -- [2]
+					},
 					[165067] = {
 						"Margore", -- [1]
 						"Castle Nathria", -- [2]
@@ -2878,6 +3555,18 @@ function L1UI:GetPlaterProfile()
 					},
 					[167406] = {
 						"Sire Denathrius", -- [1]
+						"Castle Nathria", -- [2]
+					},
+					[169753] = {
+						"Famished Tick", -- [1]
+						"Sanguine Depths", -- [2]
+					},
+					[170199] = {
+						"Harnessed Specter", -- [1]
+						"Castle Nathria", -- [2]
+					},
+					[169196] = {
+						"Crimson Cabalist", -- [1]
 						"Castle Nathria", -- [2]
 					},
 					[173164] = {
@@ -2904,8 +3593,8 @@ function L1UI:GetPlaterProfile()
 						"Earthen Wall Totem", -- [1]
 						"Isle of Conquest", -- [2]
 					},
-					[73967] = {
-						"Niuzao", -- [1]
+					[63508] = {
+						"Xuen", -- [1]
 						"Isle of Conquest", -- [2]
 					},
 					[165483] = {
@@ -2916,29 +3605,29 @@ function L1UI:GetPlaterProfile()
 						"Baleful Shadow", -- [1]
 						"Castle Nathria", -- [2]
 					},
-					[170199] = {
-						"Harnessed Specter", -- [1]
+					[165481] = {
+						"Court Assassin", -- [1]
 						"Castle Nathria", -- [2]
 					},
 					[173484] = {
 						"Conjured Manifestation", -- [1]
 						"Castle Nathria", -- [2]
 					},
-					[169196] = {
-						"Crimson Cabalist", -- [1]
-						"Castle Nathria", -- [2]
-					},
-					[63508] = {
-						"Xuen", -- [1]
-						"Isle of Conquest", -- [2]
+					[162041] = {
+						"Grubby Dirtcruncher", -- [1]
+						"Sanguine Depths", -- [2]
 					},
 					[174090] = {
 						"Nathrian Hierarch", -- [1]
 						"Castle Nathria", -- [2]
 					},
-					[165481] = {
-						"Court Assassin", -- [1]
-						"Castle Nathria", -- [2]
+					[99541] = {
+						"Risen Skulker", -- [1]
+						"The Battle for Gilneas", -- [2]
+					},
+					[36272] = {
+						"Apothecary Frye", -- [1]
+						"Shadowfang Keep", -- [2]
 					},
 					[6112] = {
 						"Windfury Totem", -- [1]
@@ -2952,9 +3641,9 @@ function L1UI:GetPlaterProfile()
 						"Loyal Gargon", -- [1]
 						"Castle Nathria", -- [2]
 					},
-					[58960] = {
-						"Azrarion", -- [1]
-						"Isle of Conquest", -- [2]
+					[36296] = {
+						"Apothecary Hummel", -- [1]
+						"Shadowfang Keep", -- [2]
 					},
 					[59764] = {
 						"Healing Tide Totem", -- [1]
@@ -3040,17 +3729,17 @@ function L1UI:GetPlaterProfile()
 						"Nathrian Hawkeye", -- [1]
 						"Castle Nathria", -- [2]
 					},
-					[165521] = {
-						"Lady Inerva Darkvein", -- [1]
-						"Castle Nathria", -- [2]
+					[171384] = {
+						"Research Scribe", -- [1]
+						"Sanguine Depths", -- [2]
 					},
 					[114565] = {
 						"Guardian of the Forgotten Queen", -- [1]
 						"The Battle for Gilneas", -- [2]
 					},
-					[34802] = {
-						"Glaive Thrower", -- [1]
-						"Isle of Conquest", -- [2]
+					[171448] = {
+						"Dreadful Huntmaster", -- [1]
+						"Sanguine Depths", -- [2]
 					},
 					[164920] = {
 						"Drust Soulcleaver", -- [1]
@@ -3072,9 +3761,9 @@ function L1UI:GetPlaterProfile()
 						"Darkglare", -- [1]
 						"Isle of Conquest", -- [2]
 					},
-					[99541] = {
-						"Risen Skulker", -- [1]
-						"The Battle for Gilneas", -- [2]
+					[1863] = {
+						"Sarrida", -- [1]
+						"Isle of Conquest", -- [2]
 					},
 					[149555] = {
 						"Abomination", -- [1]
@@ -3084,9 +3773,9 @@ function L1UI:GetPlaterProfile()
 						"Horde Battle Standard", -- [1]
 						"Isle of Conquest", -- [2]
 					},
-					[29264] = {
-						"Spirit Raptor", -- [1]
-						"Isle of Conquest", -- [2]
+					[162046] = {
+						"Famished Tick", -- [1]
+						"Sanguine Depths", -- [2]
 					},
 					[101398] = {
 						"Psyfiend", -- [1]
@@ -4257,25 +4946,6 @@ function L1UI:GetPlaterProfile()
 					["Aura Reorder"] = 3,
 					["Hide Neutral Units"] = 1,
 				},
-				["captured_spells"] = {
-					[186257] = {
-						["type"] = "BUFF",
-						["source"] = "Easy-Sunstrider",
-						["event"] = "SPELL_AURA_APPLIED",
-						["npcID"] = 0,
-					},
-					[781] = {
-						["source"] = "Easy-Sunstrider",
-						["event"] = "SPELL_CAST_SUCCESS",
-						["npcID"] = 0,
-					},
-					[118922] = {
-						["type"] = "BUFF",
-						["source"] = "Easy-Sunstrider",
-						["event"] = "SPELL_AURA_APPLIED",
-						["npcID"] = 0,
-					},
-				},
 				["aura_frame1_anchor"] = {
 					["y"] = 2,
 				},
@@ -4311,7 +4981,7 @@ function L1UI:GetPlaterProfile()
 					["nameplateShowFriendlyMinions"] = "0",
 					["NamePlateVerticalScale"] = "1",
 				},
-				["login_counter"] = 253,
+				["login_counter"] = 322,
 				["bossmod_aura_height"] = 30,
 				["aura_stack_font"] = "Expressway",
 				["hide_friendly_castbars"] = true,
@@ -4514,18 +5184,23 @@ function L1UI:GetPlaterProfile()
 					{
 						["Enabled"] = true,
 						["Revision"] = 43,
-						["OptionsValues"] = {
-						},
-						["LastHookEdited"] = "Nameplate Updated",
-						["Author"] = "Luckyone-Laughing Skull",
 						["Options"] = {
+						},
+						["HooksTemp"] = {
+						},
+						["Author"] = "Luckyone-Laughing Skull",
+						["OptionsValues"] = {
 						},
 						["Desc"] = "",
 						["Hooks"] = {
 							["Nameplate Updated"] = "function (self, unitId, unitFrame, envTable)\n    local unitName = UnitName(unitId)\n    \n    -- Show First Name [Whitelist table]\n    local firstName = {}\n    \n    -- Show Full Name [Whitelist table]\n    local fullName = {\n        [3527] = true, -- Healing Stream Totem\n        [2630] = true, -- Earthbind Totem\n        [61245] = true, -- Capacitor Totem\n        [5925] = true, -- Grounding Totem\n        [105451] = true, -- Counterstrike Totem\n        [105427] = true, -- Skyfury Totem\n        [97369] = true, -- Liquid Magma Totem\n    }\n    \n    if (unitName) then\n        local  a ,b, c ,d ,e ,f = strsplit(' ', unitName, 5)\n        \n        if firstName [unitFrame.namePlateNpcId] then\n            unitFrame.healthBar.unitName:SetText(a)\n        elseif fullName[unitFrame.namePlateNpcId] then\n            unitFrame.healthBar.unitName:SetText(unitName)\n        else\n            unitFrame.healthBar.unitName:SetText(f or e or d or c or b or a)\n        end\n    end\nend",
 						},
 						["Prio"] = 1,
+						["Name"] = "Custom Name",
+						["PlaterCore"] = 1,
+						["LastHookEdited"] = "Nameplate Updated",
 						["Time"] = 1612740503,
+						["Icon"] = "INTERFACE\\ICONS\\Ability_Argus_DeathFog",
 						["LoadConditions"] = {
 							["talent"] = {
 							},
@@ -4548,21 +5223,16 @@ function L1UI:GetPlaterProfile()
 							["spec"] = {
 							},
 						},
-						["HooksTemp"] = {
-							["Nameplate Updated"] = "function (self, unitId, unitFrame, envTable)\n    local unitName = UnitName(unitId)\n    \n    -- Show First Name [Whitelist table]\n    local firstName = {}\n    \n    -- Show Full Name [Whitelist table]\n    local fullName = {\n        [3527] = true, -- Healing Stream Totem\n        [2630] = true, -- Earthbind Totem\n        [61245] = true, -- Capacitor Totem\n        [5925] = true, -- Grounding Totem\n        [105451] = true, -- Counterstrike Totem\n        [105427] = true, -- Skyfury Totem\n        [97369] = true, -- Liquid Magma Totem\n    }\n    \n    if (unitName) then\n        local  a ,b, c ,d ,e ,f = strsplit(' ', unitName, 5)\n        \n        if firstName [unitFrame.namePlateNpcId] then\n            unitFrame.healthBar.unitName:SetText(a)\n        elseif fullName[unitFrame.namePlateNpcId] then\n            unitFrame.healthBar.unitName:SetText(unitName)\n        else\n            unitFrame.healthBar.unitName:SetText(f or e or d or c or b or a)\n        end\n    end\nend",
-						},
-						["Name"] = "Custom Name",
-						["Icon"] = "INTERFACE\\ICONS\\Ability_Argus_DeathFog",
-						["PlaterCore"] = 1,
 					}, -- [1]
 					{
 						["Enabled"] = true,
 						["Revision"] = 37,
-						["OptionsValues"] = {
-						},
-						["LastHookEdited"] = "",
-						["Author"] = "Luckyone-Laughing Skull",
 						["Options"] = {
+						},
+						["HooksTemp"] = {
+						},
+						["Author"] = "Luckyone-Laughing Skull",
+						["OptionsValues"] = {
 						},
 						["Desc"] = "",
 						["Hooks"] = {
@@ -4570,7 +5240,11 @@ function L1UI:GetPlaterProfile()
 							["Nameplate Updated"] = "function (self, unitId, unitFrame, envTable)\n    \n    local color = envTable.NpcColors [unitFrame.namePlateUnitNameLower] or envTable.NpcColors [unitFrame.namePlateUnitName] or envTable.NpcColors [unitFrame.namePlateNpcId]\n    \n    if (color) then\n        Plater.SetNameplateColor (unitFrame, color)\n    end\n    \nend",
 						},
 						["Prio"] = 1,
+						["Name"] = "Custom Bar Color",
+						["PlaterCore"] = 1,
+						["LastHookEdited"] = "",
 						["Time"] = 1612572888,
+						["Icon"] = "INTERFACE\\ICONS\\Ability_Argus_EdgeOfObliteration",
 						["LoadConditions"] = {
 							["talent"] = {
 							},
@@ -4593,20 +5267,20 @@ function L1UI:GetPlaterProfile()
 							["spec"] = {
 							},
 						},
-						["HooksTemp"] = {
-						},
-						["Name"] = "Custom Bar Color",
-						["Icon"] = "INTERFACE\\ICONS\\Ability_Argus_EdgeOfObliteration",
-						["PlaterCore"] = 1,
 					}, -- [2]
 					{
 						["Enabled"] = true,
-						["Revision"] = 12,
-						["OptionsValues"] = {
-						},
-						["LastHookEdited"] = "",
-						["Author"] = "Luckyone-Laughing Skull",
+						["Revision"] = 13,
 						["Options"] = {
+						},
+						["HooksTemp"] = {
+							["Nameplate Removed"] = "function (self, unitId, unitFrame, envTable, modTable)\n    envTable.UpdateBorder (unitFrame, false)\nend",
+							["Cast Start"] = "function (self, unitId, unitFrame, envTable)\n    \n    envTable.UpdateIconPosition (unitFrame)\n    envTable.UpdateBorder (unitFrame, true)\n    \nend",
+							["Cast Update"] = "function (self, unitId, unitFrame, envTable)\n    \n    envTable.UpdateIconPosition (unitFrame)\n    \nend",
+							["Constructor"] = "function (self, unitId, unitFrame, envTable)\n    \n    envTable.ShowIcon = Plater.db.profile.castbar_icon_show\n    envTable.IconAnchor = \"left\"\n    envTable.IconSizeOffset = 0\n    \n    envTable.ShowShield = false\n    envTable.ShieldTexture = [[Interface\\GROUPFRAME\\UI-GROUP-MAINTANKICON]]\n    envTable.ShieldDesaturated = true\n    envTable.ShieldColor = {1, 1, 1 ,1}\n    envTable.ShieldSize = {10, 12}\n    \n    function envTable.UpdateIconPosition (unitFrame)\n        local castBar = unitFrame.castBar\n        local icon = castBar.Icon\n        local shield = castBar.BorderShield\n        \n        if (envTable.ShowIcon) then\n            icon:ClearAllPoints()\n            \n            if (envTable.IconAnchor == \"left\") then\n                icon:SetPoint (\"topright\", unitFrame.healthBar, \"topleft\", 0, envTable.IconSizeOffset)\n                icon:SetPoint (\"bottomright\", unitFrame.castBar, \"bottomleft\", 0, 0)    \n                \n            elseif (envTable.IconAnchor == \"right\") then\n                icon:SetPoint (\"topleft\", unitFrame.healthBar, \"topright\", 0, envTable.IconSizeOffset)\n                icon:SetPoint (\"bottomleft\", unitFrame.castBar, \"bottomright\", 0, 0)\n                \n            end\n            \n            icon:SetWidth (icon:GetHeight())\n            icon:Show()\n            \n        else\n            icon:Hide()\n            \n        end\n        \n        if (envTable.ShowShield and not castBar.canInterrupt) then\n            shield:Show()\n            shield:SetAlpha (1)\n            shield:SetTexCoord (0, 1, 0, 1)\n            shield:SetVertexColor (1, 1, 1, 1)\n            \n            shield:SetTexture (envTable.ShieldTexture)\n            shield:SetDesaturated (envTable.ShieldDesaturated)\n            \n            if (not envTable.ShieldDesaturated) then\n                shield:SetVertexColor (DetailsFramework:ParseColors (envTable.ShieldColor))\n            end\n            \n            shield:SetSize (unpack (envTable.ShieldSize))\n            \n            shield:ClearAllPoints()\n            shield:SetPoint (\"center\", castBar, \"left\", 0, 0)\n            \n        else\n            shield:Hide()\n            \n        end\n        \n    end\n    \n    function envTable.UpdateBorder (unitFrame, casting)\n        local healthBar = unitFrame.healthBar\n        local castBar = unitFrame.castBar\n        \n        if casting then\n            if envTable.ShowIcon and castBar.Icon:IsShown() then\n                if envTable.IconAnchor == \"left\" then\n                    healthBar.border:SetPoint(\"TOPLEFT\", castBar.Icon, \"TOPLEFT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMRIGHT\", castBar, \"BOTTOMRIGHT\", 0, 0)\n                elseif envTable.IconAnchor == \"right\" then\n                    healthBar.border:SetPoint(\"TOPRIGHT\", castBar.Icon, \"TOPRIGHT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMLEFT\", castBar, \"BOTTOMLEFT\", 0, 0) \n                end\n            else\n                if envTable.IconAnchor == \"left\" then\n                    healthBar.border:SetPoint(\"TOPLEFT\", healthBar, \"TOPLEFT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMRIGHT\", castBar, \"BOTTOMRIGHT\", 0, 0)\n                elseif envTable.IconAnchor == \"right\" then\n                    healthBar.border:SetPoint(\"TOPRIGHT\", healthBar, \"TOPRIGHT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMLEFT\", castBar, \"BOTTOMLEFT\", 0, 0) \n                end\n            end\n        else\n            if envTable.IconAnchor == \"left\" then\n                healthBar.border:SetPoint(\"TOPLEFT\", healthBar, \"TOPLEFT\", 0, 0)\n                healthBar.border:SetPoint(\"BOTTOMRIGHT\", healthBar, \"BOTTOMRIGHT\", 0, 0)\n            elseif envTable.IconAnchor == \"right\" then\n                healthBar.border:SetPoint(\"TOPRIGHT\", healthBar, \"TOPRIGHT\", 0, 0)\n                healthBar.border:SetPoint(\"BOTTOMLEFT\", healthBar, \"BOTTOMLEFT\", 0, 0) \n            end\n        end\n    end\n    \n    if not unitFrame.castBar.borderChangeHooked then\n        hooksecurefunc(unitFrame.castBar, \"Hide\", function() envTable.UpdateBorder(unitFrame, false) end)\n        unitFrame.castBar.borderChangeHooked = true\n    end\n    \nend",
+						},
+						["Author"] = "Luckyone-Laughing Skull",
+						["OptionsValues"] = {
 						},
 						["Desc"] = "",
 						["Hooks"] = {
@@ -4616,12 +5290,7 @@ function L1UI:GetPlaterProfile()
 							["Constructor"] = "function (self, unitId, unitFrame, envTable)\n    \n    envTable.ShowIcon = Plater.db.profile.castbar_icon_show\n    envTable.IconAnchor = \"left\"\n    envTable.IconSizeOffset = 0\n    \n    envTable.ShowShield = false\n    envTable.ShieldTexture = [[Interface\\GROUPFRAME\\UI-GROUP-MAINTANKICON]]\n    envTable.ShieldDesaturated = true\n    envTable.ShieldColor = {1, 1, 1 ,1}\n    envTable.ShieldSize = {10, 12}\n    \n    function envTable.UpdateIconPosition (unitFrame)\n        local castBar = unitFrame.castBar\n        local icon = castBar.Icon\n        local shield = castBar.BorderShield\n        \n        if (envTable.ShowIcon) then\n            icon:ClearAllPoints()\n            \n            if (envTable.IconAnchor == \"left\") then\n                icon:SetPoint (\"topright\", unitFrame.healthBar, \"topleft\", 0, envTable.IconSizeOffset)\n                icon:SetPoint (\"bottomright\", unitFrame.castBar, \"bottomleft\", 0, 0)    \n                \n            elseif (envTable.IconAnchor == \"right\") then\n                icon:SetPoint (\"topleft\", unitFrame.healthBar, \"topright\", 0, envTable.IconSizeOffset)\n                icon:SetPoint (\"bottomleft\", unitFrame.castBar, \"bottomright\", 0, 0)\n                \n            end\n            \n            icon:SetWidth (icon:GetHeight())\n            icon:Show()\n            \n        else\n            icon:Hide()\n            \n        end\n        \n        if (envTable.ShowShield and not castBar.canInterrupt) then\n            shield:Show()\n            shield:SetAlpha (1)\n            shield:SetTexCoord (0, 1, 0, 1)\n            shield:SetVertexColor (1, 1, 1, 1)\n            \n            shield:SetTexture (envTable.ShieldTexture)\n            shield:SetDesaturated (envTable.ShieldDesaturated)\n            \n            if (not envTable.ShieldDesaturated) then\n                shield:SetVertexColor (DetailsFramework:ParseColors (envTable.ShieldColor))\n            end\n            \n            shield:SetSize (unpack (envTable.ShieldSize))\n            \n            shield:ClearAllPoints()\n            shield:SetPoint (\"center\", castBar, \"left\", 0, 0)\n            \n        else\n            shield:Hide()\n            \n        end\n        \n    end\n    \n    function envTable.UpdateBorder (unitFrame, casting)\n        local healthBar = unitFrame.healthBar\n        local castBar = unitFrame.castBar\n        \n        if casting then\n            if envTable.ShowIcon and castBar.Icon:IsShown() then\n                if envTable.IconAnchor == \"left\" then\n                    healthBar.border:SetPoint(\"TOPLEFT\", castBar.Icon, \"TOPLEFT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMRIGHT\", castBar, \"BOTTOMRIGHT\", 0, 0)\n                elseif envTable.IconAnchor == \"right\" then\n                    healthBar.border:SetPoint(\"TOPRIGHT\", castBar.Icon, \"TOPRIGHT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMLEFT\", castBar, \"BOTTOMLEFT\", 0, 0) \n                end\n            else\n                if envTable.IconAnchor == \"left\" then\n                    healthBar.border:SetPoint(\"TOPLEFT\", healthBar, \"TOPLEFT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMRIGHT\", castBar, \"BOTTOMRIGHT\", 0, 0)\n                elseif envTable.IconAnchor == \"right\" then\n                    healthBar.border:SetPoint(\"TOPRIGHT\", healthBar, \"TOPRIGHT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMLEFT\", castBar, \"BOTTOMLEFT\", 0, 0) \n                end\n            end\n        else\n            if envTable.IconAnchor == \"left\" then\n                healthBar.border:SetPoint(\"TOPLEFT\", healthBar, \"TOPLEFT\", 0, 0)\n                healthBar.border:SetPoint(\"BOTTOMRIGHT\", healthBar, \"BOTTOMRIGHT\", 0, 0)\n            elseif envTable.IconAnchor == \"right\" then\n                healthBar.border:SetPoint(\"TOPRIGHT\", healthBar, \"TOPRIGHT\", 0, 0)\n                healthBar.border:SetPoint(\"BOTTOMLEFT\", healthBar, \"BOTTOMLEFT\", 0, 0) \n            end\n        end\n    end\n    \n    if not unitFrame.castBar.borderChangeHooked then\n        hooksecurefunc(unitFrame.castBar, \"Hide\", function() envTable.UpdateBorder(unitFrame, false) end)\n        unitFrame.castBar.borderChangeHooked = true\n    end\n    \nend",
 						},
 						["Prio"] = 1,
-						["Time"] = 1612571026,
-						["PlaterCore"] = 1,
-						["HooksTemp"] = {
-						},
 						["Name"] = "Custom Castbar",
-						["Icon"] = "INTERFACE\\ICONS\\Ability_Argus_SoulBombDebuffLarge",
 						["LoadConditions"] = {
 							["talent"] = {
 							},
@@ -4644,6 +5313,10 @@ function L1UI:GetPlaterProfile()
 							["race"] = {
 							},
 						},
+						["LastHookEdited"] = "Constructor",
+						["Time"] = 1612820040,
+						["Icon"] = "INTERFACE\\ICONS\\Ability_Argus_SoulBombDebuffLarge",
+						["PlaterCore"] = 1,
 					}, -- [3]
 				},
 				["extra_icon_caster_outline"] = "OUTLINE",
@@ -4676,7 +5349,31 @@ function L1UI:GetPlaterProfile()
 						[342938] = true,
 					},
 					["buff_tracked"] = {
+						[344739] = true,
+						[331510] = true,
+						[340880] = true,
+						[326450] = true,
+						[340873] = true,
+						[321754] = true,
+						[343470] = true,
+						[327808] = true,
+						[343502] = true,
+						[330545] = true,
+						[317936] = true,
+						[336451] = true,
+						[343558] = true,
+						[322773] = true,
 						[209859] = true,
+						[226510] = true,
+						[333227] = true,
+						[336499] = true,
+						[178658] = true,
+						[327416] = true,
+						[321402] = true,
+						[322433] = true,
+						[326892] = true,
+						[333241] = true,
+						[333737] = true,
 					},
 				},
 				["extra_icon_caster_font"] = "Expressway",
