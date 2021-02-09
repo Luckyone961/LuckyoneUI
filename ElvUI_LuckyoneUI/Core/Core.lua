@@ -150,6 +150,7 @@ function L1UI:SetupPrivate()
 
 	-- ElvUI Private DB
 	E.private["general"]["chatBubbleFont"] = "Expressway"
+	E.private["general"]["chatBubbleFontOutline"] = "OUTLINE"
 	E.private["general"]["dmgfont"] = "Expressway"
 	E.private["general"]["glossTex"] = "Solid"
 	E.private["general"]["namefont"] = "Expressway"
