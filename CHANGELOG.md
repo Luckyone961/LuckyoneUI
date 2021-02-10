@@ -10,8 +10,8 @@ Tags
 • luckyone:healermana:current  
 • luckyone:healermana:percent  
 **Misc:**  
-AddOns section rename to Profiles  
-WeakAuras updates  
+AddOns section renamed to Profiles  
+WeakAuras updates on wago  
 ___
 ### Version 1.18 [02-02-2021]
 **Changes:**  
