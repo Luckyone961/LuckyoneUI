@@ -39,7 +39,7 @@ ElvUF.Tags.Methods['luckyone:healermana:percent'] = function(unit)
 		if (max == 0) then
 			return 0
 		else
-			return format("%.1f", UnitPower(unit, Enum.PowerType.Mana) / max * 100)
+			return math.floor(UnitPower(unit, Enum.PowerType.Mana) / max * 100 + .5)
 		end
 	end
 end
