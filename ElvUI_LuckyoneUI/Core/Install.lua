@@ -73,8 +73,8 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetText('Plater')
 		end,
 		[7] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText('BossMod Profile')
-			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile your BossMod Addon.')
+			PluginInstallFrame.SubTitle:SetFormattedText('BossMods')
+			PluginInstallFrame.Desc1:SetText('Choose between DBM and BigWigs.')
 			PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupBW() end)
@@ -100,7 +100,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetText('Setup OmniCD')
 		end,
 		[10] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText('WeakAuras')
+			PluginInstallFrame.SubTitle:SetFormattedText('WeakAuras Information')
 			PluginInstallFrame.Desc1:SetText('You can find WeakAuras for all 12 Classes and some Utility WeakAuras in the LuckyoneUI config.')
 			PluginInstallFrame.Desc2:SetText('\nElvUI Options -> LuckyoneUI -> WeakAuras')
 		end,

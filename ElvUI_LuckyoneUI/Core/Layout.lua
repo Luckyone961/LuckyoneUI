@@ -259,6 +259,8 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["flyoutSize"] = 28
 	E.db["actionbar"]["font"] = "Expressway"
 	E.db["actionbar"]["fontOutline"] = "OUTLINE"
+	E.db["actionbar"]["hotkeyTextPosition"] = "TOPLEFT"
+	E.db["actionbar"]["macroTextPosition"] = "BOTTOM"
 	E.db["actionbar"]["microbar"]["buttonHeight"] = 25
 	E.db["actionbar"]["microbar"]["buttonSize"] = 18
 	E.db["actionbar"]["microbar"]["buttonSpacing"] = 1
@@ -277,10 +279,6 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["vehicleExitButton"]["hotkeyFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["zoneActionButton"]["alpha"] = 0.8
 	E.db["actionbar"]["zoneActionButton"]["clean"] = true
-	E.db["actionbar"]["zoneActionButton"]["hotkeyFont"] = "Expressway"
-	E.db["actionbar"]["zoneActionButton"]["hotkeyFontOutline"] = "OUTLINE"
-	E.db["actionbar"]["zoneActionButton"]["hotkeyTextPosition"] = "TOPLEFT"
-	E.db["actionbar"]["zoneActionButton"]["hotkeyTextYOffset"] = -1
 	E.db["actionbar"]["zoneActionButton"]["scale"] = 0.65
 
 	-- Bags
