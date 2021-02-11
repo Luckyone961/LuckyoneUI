@@ -10,6 +10,9 @@ function L1UI:UpdateLayout(layout)
 	E.db["bags"]["itemInfoFontOutline"] = "OUTLINE"
 	E.db["bags"]["itemInfoFontSize"] = 12
 
+	E.db["actionbar"]["hotkeyTextPosition"] = "TOPLEFT"
+	E.db["actionbar"]["macroTextPosition"] = "BOTTOM"
+
 	E.private["general"]["chatBubbleFontOutline"] = "OUTLINE"
 
 	if layout == 'dps' then
