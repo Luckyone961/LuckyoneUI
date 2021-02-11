@@ -1,3 +1,10 @@
+### Version 1.20 [XX-XX-2021]
+**Changes:**  
+**New Additions:**  
+**Misc:**  
+OmniCD Profile update  
+Details Profile update  
+___
 ### Version 1.19 [11-02-2021]
 **Changes:**  
 Installer Steps reworked  
