@@ -1,8 +1,8 @@
-### Version 1.19 [XX-02-2021]
+### Version 1.19 [11-02-2021]
 **Changes:**  
 Installer Steps reworked  
 • Added options for DBM and Plater  
-Updated Fonts for Anima Items in Bags
+Updated Fonts for Anima Items in Bags  
 **New Additions:**  
 DBM Profile  
 Plater Profile  
