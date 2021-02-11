@@ -844,6 +844,9 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["colors"]["castColor"]["b"] = 0
 		E.db["unitframe"]["colors"]["castColor"]["g"] = 1
 		E.db["unitframe"]["colors"]["castColor"]["r"] = 0.023529411764706
+		E.db["unitframe"]["colors"]["castInterruptedColor"]["b"] = 0.30196078431373
+		E.db["unitframe"]["colors"]["castInterruptedColor"]["g"] = 0.30196078431373
+		E.db["unitframe"]["colors"]["castInterruptedColor"]["r"] = 0.30196078431373
 		E.db["unitframe"]["colors"]["castNoInterrupt"]["b"] = 0.007843137254902
 		E.db["unitframe"]["colors"]["castNoInterrupt"]["g"] = 0
 		E.db["unitframe"]["colors"]["castNoInterrupt"]["r"] = 1
@@ -964,7 +967,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["countFontSize"] = 14
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["numrows"] = 2
-		E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = "Blacklist,Personal"
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["spacing"] = 0
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["xOffset"] = -1
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = 11

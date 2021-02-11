@@ -13,6 +13,8 @@ function L1UI:UpdateLayout(layout)
 	E.db["actionbar"]["hotkeyTextPosition"] = "TOPLEFT"
 	E.db["actionbar"]["macroTextPosition"] = "BOTTOM"
 
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
+
 	E.private["general"]["chatBubbleFontOutline"] = "OUTLINE"
 
 	if layout == 'dps' then
