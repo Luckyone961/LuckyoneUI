@@ -6,17 +6,6 @@ function L1UI:UpdateLayout(layout)
 		E.db.movers = {}
 	end
 
-	E.db["bags"]["itemInfoFont"] = "Expressway"
-	E.db["bags"]["itemInfoFontOutline"] = "OUTLINE"
-	E.db["bags"]["itemInfoFontSize"] = 12
-
-	E.db["actionbar"]["hotkeyTextPosition"] = "TOPLEFT"
-	E.db["actionbar"]["macroTextPosition"] = "BOTTOM"
-
-	E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
-
-	E.private["general"]["chatBubbleFontOutline"] = "OUTLINE"
-
 	if layout == 'dps' then
 		-- DPS/TANK db
 	elseif layout == 'healer' then
@@ -26,6 +15,4 @@ function L1UI:UpdateLayout(layout)
 	E:StaggeredUpdateAll(nil, true)
 
 	L1UI:Print('Layout has been updated.')
-
-	ReloadUI()
 end
