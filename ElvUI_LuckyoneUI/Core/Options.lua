@@ -40,6 +40,7 @@ local SUPPORT = {
 	'|cffe6cc80DevinDog|r',
 	'|cffe6cc80ShowNoMercy|r',
 	'|cffe6cc80triplebeamdreams|r',
+	'|cffe6cc80Lox|r',
 }
 
 -- Sort
