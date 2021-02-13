@@ -6,6 +6,13 @@ function L1UI:UpdateLayout(layout)
 		E.db.movers = {}
 	end
 
+	-- Fix weird ActionBar stuff
+	E.db["actionbar"]["bar4"]["buttons"] = 12
+	E.db["actionbar"]["bar5"]["enabled"] = true
+	E.db["actionbar"]["bar6"]["buttons"] = 12
+	E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
+	E.db["actionbar"]["bar6"]["enabled"] = false
+
 	if layout == 'dps' then
 		-- DPS/TANK db
 	elseif layout == 'healer' then

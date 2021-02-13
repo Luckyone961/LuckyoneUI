@@ -127,6 +127,7 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["bar3"]["macroTextYOffset"] = 1
 	E.db["actionbar"]["bar4"]["alpha"] = 0.75
 	E.db["actionbar"]["bar4"]["backdrop"] = false
+	E.db["actionbar"]["bar4"]["buttons"] = 12
 	E.db["actionbar"]["bar4"]["buttonSize"] = 28
 	E.db["actionbar"]["bar4"]["buttonsPerRow"] = 12
 	E.db["actionbar"]["bar4"]["countFont"] = "Expressway"
@@ -150,6 +151,7 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["bar5"]["countFont"] = "Expressway"
 	E.db["actionbar"]["bar5"]["countFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["bar5"]["countTextPosition"] = "BOTTOM"
+	E.db["actionbar"]["bar5"]["enabled"] = true
 	E.db["actionbar"]["bar5"]["hotkeyFont"] = "Expressway"
 	E.db["actionbar"]["bar5"]["hotkeyFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["bar5"]["hotkeyTextPosition"] = "TOPLEFT"
@@ -161,10 +163,13 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["bar5"]["macroTextYOffset"] = 1
 	E.db["actionbar"]["bar5"]["mouseover"] = true
 	E.db["actionbar"]["bar6"]["alpha"] = 0.75
+	E.db["actionbar"]["bar6"]["buttons"] = 12
 	E.db["actionbar"]["bar6"]["buttonSize"] = 28
+	E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
 	E.db["actionbar"]["bar6"]["countFont"] = "Expressway"
 	E.db["actionbar"]["bar6"]["countFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["bar6"]["countTextPosition"] = "BOTTOM"
+	E.db["actionbar"]["bar6"]["enabled"] = false
 	E.db["actionbar"]["bar6"]["hotkeyFont"] = "Expressway"
 	E.db["actionbar"]["bar6"]["hotkeyFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["bar6"]["hotkeyTextPosition"] = "TOPLEFT"
