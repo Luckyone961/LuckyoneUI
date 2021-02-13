@@ -1,9 +1,10 @@
-### Version 1.20 [XX-XX-2021]
+### Version 1.20 [XX-02-2021]
 **Changes:**  
-**New Additions:**  
+Fixed some issues with ActionBars 4, 5, 6  
 **Misc:**  
 OmniCD Profile update  
 Details Profile update  
+WeakAura updates on wago (Credits: Badbrain)  
 ___
 ### Version 1.19 [11-02-2021]
 **Changes:**  
