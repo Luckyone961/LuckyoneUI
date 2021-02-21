@@ -1,6 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local _G = _G
+local LoadAddOn = LoadAddOn
 
 function L1UI:WeeklyReward()
 

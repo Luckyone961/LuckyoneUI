@@ -2,9 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 function L1UI:UpdateLayout(layout)
 
-	if not E.db.movers then
-		E.db.movers = {}
-	end
+	if not E.db.movers then E.db.movers = {} end
 
 	-- Fix weird ActionBar stuff
 	E.db["actionbar"]["bar4"]["buttons"] = 12

@@ -5,14 +5,15 @@ function L1UI:GetBigWigsProfile()
 	local main = "Luckyone DPS/TANK"
 	local heal = "Luckyone Healing"
 
-	LoadAddOn("BigWigs_Options")
-	LoadAddOn("BigWigs")
+	if not BigWigs3DB then BigWigs3DB = {} end
+	if not BigWigsIconDB then BigWigsIconDB = {} end
+	if not BigWigsStatsDB then BigWigsStatsDB = {} end
 
-	if BigWigs3DB['profiles'] == nil then BigWigs3DB['profiles'] = {} end
-
-	if BigWigs3DB['profiles'][main] == nil then
-		BigWigs3DB = {
-			["namespaces"] = {
+	BigWigs3DB = {
+		["profileKeys"] = {
+			[E.mynameRealm] = main,
+		},
+		["namespaces"] = {
 				["BigWigs_Plugins_Victory"] = {
 					["profiles"] = {
 						[main] = {
@@ -302,33 +303,29 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
+		},
+		["global"] = {
+			["watchedMovies"] = {
 			},
-			["global"] = {
-				["watchedMovies"] = {
-				},
+		},
+		["profiles"] = {
+			[main] = {
+				["showZoneMessages"] = false,
+				["fakeDBMVersion"] = true,
+				["flash"] = false,
 			},
-			["profileKeys"] = {
-				[E.mynameRealm] = main,
+			[heal] = {
+				["showZoneMessages"] = false,
+				["flash"] = false,
+				["fakeDBMVersion"] = true,
 			},
-			["profiles"] = {
-				[main] = {
-					["showZoneMessages"] = false,
-					["fakeDBMVersion"] = true,
-					["flash"] = false,
-				},
-				[heal] = {
-					["showZoneMessages"] = false,
-					["flash"] = false,
-					["fakeDBMVersion"] = true,
-				},
-			},
-		}
-		BigWigsIconDB = {
-			["hide"] = true,
-		}
-		BigWigsStatsDB = {
-		}
-	end
+		},
+	}
+	BigWigsIconDB = {
+		["hide"] = true,
+	}
+	BigWigsStatsDB = {
+	}
 
 	BigWigs.db:SetProfile(main)
 end

@@ -3,6 +3,11 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 -- DBM profile setup
 function L1UI:GetDBMProfile()
 
+	if not DBM_MinimapIcon then DBM_MinimapIcon = {} end
+	if not DBM_AllSavedOptions then DBM_AllSavedOptions = {} end
+	if not DBT_AllPersistentOptions then DBT_AllPersistentOptions = {} end
+	if not DBMCastleNathria_AllSavedVars then DBMCastleNathria_AllSavedVars = {} end
+
 	DBM:CreateProfile("Luckyone")
 
 	DBM_AllSavedOptions = {

@@ -1,13 +1,11 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local twipe = table.wipe
-
 -- Details profile setup
 function L1UI:GetDetailsProfile()
 
 	local key = "Luckyone"
 
-	if _detalhes_global then twipe(_detalhes_global) end
+	if not _detalhes_global then _detalhes_global = {} end
 
 	_detalhes_global = {
 		["npcid_pool"] = {

@@ -1,11 +1,9 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local twipe = table.wipe
-
 -- OmniCD profile setup
 function L1UI:GetOmniCDProfile()
 
-	if OmniCDDB then twipe(OmniCDDB) end
+	if not OmniCDDB then OmniCDDB = {} end
 
 	OmniCDDB = {
 		["profileKeys"] = {

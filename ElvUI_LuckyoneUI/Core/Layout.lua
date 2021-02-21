@@ -4,9 +4,7 @@ local IsAddOnLoaded = IsAddOnLoaded
 
 function L1UI:SetupLayout(layout)
 
-	if not E.db.movers then
-		E.db.movers = {}
-	end
+	if not E.db.movers then E.db.movers = {} end
 
 	-- Setup UI Scale
 	L1UI:SetupScale()
