@@ -8,7 +8,6 @@
 
 Init.lua
 Core\load_core.xml
-Libraries\load_libraries.xml
 Media\load_media.xml
 Modules\load_modules.xml
 Profiles\load_profiles.xml
