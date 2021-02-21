@@ -842,20 +842,6 @@ function L1UI:Configtable()
 						name = 'Link !keys',
 						get = function() return 'wago.io/bfakeys' end,
 					},
-					interrupts1 = {
-						order = 16,
-						type = 'input',
-						width = 'normal',
-						name = 'Interrupts 1/2',
-						get = function() return 'wago.io/N_wYs5wbK' end,
-					},
-					interrupts2 = {
-						order = 17,
-						type = 'input',
-						width = 'normal',
-						name = 'Interrupts 2/2',
-						get = function() return 'wago.io/cHKY2f9Pl' end,
-					},
 					trinket = {
 						order = 18,
 						type = 'input',
