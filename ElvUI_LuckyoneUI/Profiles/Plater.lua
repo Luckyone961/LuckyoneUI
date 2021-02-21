@@ -1,7 +1,11 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local twipe = table.wipe
+
 -- Plater profile setup
 function L1UI:GetPlaterProfile()
+
+	if PlaterDB then twipe(PlaterDB) end
 
 	PlaterDB = {
 		["profileKeys"] = {
