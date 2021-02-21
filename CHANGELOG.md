@@ -1,10 +1,14 @@
 ### Version 1.20 [XX-02-2021]
 **Changes:**  
 Fixed some issues with ActionBars 4, 5, 6  
+Removed LibGroupInSpecT-1.1  
+Removed ZenTracker WeakAuras  
+**New Additions:**  
+Interrupt tracking bars from OmniCD  
 **Misc:**  
 OmniCD Profile update  
 Details Profile update  
-WeakAura updates on wago (Credits: Badbrain)  
+WeakAuras update  
 ___
 ### Version 1.19 [11-02-2021]
 **Changes:**  
