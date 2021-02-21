@@ -13,6 +13,9 @@ function L1UI:UpdateLayout(layout)
 	E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
 	E.db["actionbar"]["bar6"]["enabled"] = false
 
+	E.db["general"]["autoRepair"] = "PLAYER"
+	E.db["general"]["interruptAnnounce"] = "EMOTE"
+
 	if layout == 'dps' then
 		-- DPS/TANK db
 	elseif layout == 'healer' then

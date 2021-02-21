@@ -38,7 +38,7 @@ function L1UI:SetupLayout(layout)
 	-- General
 	E.db["general"]["altPowerBar"]["font"] = "Expressway"
 	E.db["general"]["altPowerBar"]["statusBar"] = "Solid"
-	E.db["general"]["autoRepair"] = "GUILD"
+	E.db["general"]["autoRepair"] = "PLAYER"
 	E.db["general"]["backdropcolor"]["b"] = 0.10196078431373
 	E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
 	E.db["general"]["backdropcolor"]["r"] = 0.10196078431373
@@ -53,7 +53,7 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["font"] = "Expressway"
 	E.db["general"]["fontSize"] = 11
 	E.db["general"]["fontStyle"] = "NONE"
-	E.db["general"]["interruptAnnounce"] = "SAY"
+	E.db["general"]["interruptAnnounce"] = "EMOTE"
 	E.db["general"]["itemLevel"]["itemLevelFont"] = "Expressway"
 	E.db["general"]["itemLevel"]["itemLevelFontSize"] = 11
 	E.db["general"]["loginmessage"] = false
