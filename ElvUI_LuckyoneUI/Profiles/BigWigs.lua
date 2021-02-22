@@ -1,9 +1,14 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local LoadAddOn = LoadAddOn
+
 -- BigWigs profile setup
 function L1UI:GetBigWigsProfile()
 	local main = "Luckyone DPS/TANK"
 	local heal = "Luckyone Healing"
+
+	LoadAddOn("BigWigs")
+	LoadAddOn("BigWigs_Options")
 
 	if not BigWigs3DB then BigWigs3DB = {} end
 	if not BigWigsIconDB then BigWigsIconDB = {} end
