@@ -1,4 +1,4 @@
-### Version 1.20 [XX-02-2021]
+### Version 1.20 [22-02-2021]
 **Changes:**  
 Fixed some issues with ActionBars 4, 5, 6  
 Removed LibGroupInSpecT-1.1  
@@ -9,7 +9,9 @@ Announce Interrupts default is now EMOTE
 Interrupt tracking bars from OmniCD  
 **Misc:**  
 WeakAuras update  
+DBM Profile update  
 OmniCD Profile update  
+Plater Profile update  
 Details Profile update  
 ___
 ### Version 1.19 [11-02-2021]
