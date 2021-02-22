@@ -3,12 +3,14 @@
 Fixed some issues with ActionBars 4, 5, 6  
 Removed LibGroupInSpecT-1.1  
 Removed ZenTracker WeakAuras  
+Auto Repair default is now back to PLAYER  
+Announce Interrupts default is now EMOTE  
 **New Additions:**  
 Interrupt tracking bars from OmniCD  
 **Misc:**  
+WeakAuras update  
 OmniCD Profile update  
 Details Profile update  
-WeakAuras update  
 ___
 ### Version 1.19 [11-02-2021]
 **Changes:**  
