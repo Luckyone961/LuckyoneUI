@@ -24,6 +24,7 @@ function L1UI:GetDetailsProfile()
 		["report_where"] = "WHISPER",
 		["auto_open_news_window"] = false,
 		["got_first_run"] = true,
+		["always_use_profile"] = true,
 		["report_pos"] = {
 			1, -- [1]
 			1, -- [2]
@@ -40,17 +41,6 @@ function L1UI:GetDetailsProfile()
 		["exp90temp"] = {
 			["delete_damage_TCOB"] = true,
 		},
-		["always_use_profile"] = true,
-		["immersion_special_units"] = true,
-		["boss_mods_timers"] = {
-			["encounter_timers_bw"] = {
-			},
-			["encounter_timers_dbm"] = {
-			},
-		},
-		["spell_school_cache"] = {
-		},
-		["deathlog_healingdone_min"] = 1,
 		["__profiles"] = {
 			[key] = {
 				["show_arena_role_icon"] = false,
@@ -488,6 +478,8 @@ function L1UI:GetDetailsProfile()
 					["menus"] = "Expressway",
 				},
 				["time_type"] = 2,
+				["segments_amount"] = 18,
+				["animate_scroll"] = false,
 				["instances"] = {
 					{
 						["__pos"] = {
@@ -520,7 +512,7 @@ function L1UI:GetDetailsProfile()
 							1, -- [4]
 						},
 						["toolbar_icon_file"] = "Interface\\AddOns\\Details\\images\\toolbar_icons",
-						["micro_displays_locked"] = true,
+						["skin_custom"] = "",
 						["fontstrings_width"] = 35,
 						["tooltip"] = {
 							["n_abilities"] = 3,
@@ -528,107 +520,28 @@ function L1UI:GetDetailsProfile()
 						},
 						["switch_all_roles_in_combat"] = false,
 						["clickthrough_toolbaricons"] = false,
-						["row_info"] = {
-							["textR_outline"] = true,
-							["spec_file"] = "Interface\\AddOns\\Details\\images\\spec_icons_normal",
-							["textL_outline"] = true,
-							["textR_outline_small"] = false,
-							["textR_show_data"] = {
-								true, -- [1]
-								true, -- [2]
-								false, -- [3]
-							},
-							["percent_type"] = 1,
-							["fixed_text_color"] = {
+						["attribute_text"] = {
+							["show_timer"] = false,
+							["shadow"] = false,
+							["side"] = 1,
+							["text_color"] = {
 								1, -- [1]
 								1, -- [2]
 								1, -- [3]
-							},
-							["space"] = {
-								["right"] = 0,
-								["left"] = 0,
-								["between"] = 0,
-							},
-							["texture_background_class_color"] = false,
-							["textL_outline_small_color"] = {
-								0, -- [1]
-								0, -- [2]
-								0, -- [3]
 								1, -- [4]
 							},
-							["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
-							["backdrop"] = {
-								["enabled"] = false,
-								["texture"] = "Details BarBorder 2",
-								["color"] = {
-									1, -- [1]
-									1, -- [2]
-									1, -- [3]
-									1, -- [4]
-								},
-								["size"] = 10,
+							["custom_text"] = "{name}",
+							["text_face"] = "Expressway",
+							["anchor"] = {
+								-18, -- [1]
+								3, -- [2]
 							},
-							["font_size"] = 11,
-							["textL_translit_text"] = false,
-							["texture_custom_file"] = "Interface\\",
-							["texture_file"] = "Interface\\Buttons\\WHITE8X8",
-							["textR_bracket"] = "(",
-							["models"] = {
-								["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
-								["lower_model"] = "World\\EXPANSION02\\DOODADS\\Coldarra\\COLDARRALOCUS.m2",
-								["upper_alpha"] = 0.5,
-								["lower_enabled"] = false,
-								["lower_alpha"] = 0.1,
-								["upper_enabled"] = false,
-							},
-							["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small",
-							["icon_grayscale"] = false,
-							["textL_custom_text"] = "{data1}. {data3}{data2}",
-							["use_spec_icons"] = true,
-							["textR_enable_custom_text"] = false,
-							["textL_enable_custom_text"] = false,
-							["fixed_texture_color"] = {
-								0, -- [1]
-								0, -- [2]
-								0, -- [3]
-							},
-							["textL_show_number"] = false,
-							["texture_custom"] = "",
-							["texture_highlight"] = "Interface\\FriendsFrame\\UI-FriendsList-Highlight",
-							["textR_custom_text"] = "{data1} ({data2}, {data3}%)",
-							["texture"] = "Solid",
-							["start_after_icon"] = false,
-							["texture_background_file"] = "Interface\\Buttons\\WHITE8X8",
-							["textL_class_colors"] = false,
-							["alpha"] = 1,
-							["texture_background"] = "Solid",
-							["textR_class_colors"] = false,
-							["textR_outline_small_color"] = {
-								0, -- [1]
-								0, -- [2]
-								0, -- [3]
-								1, -- [4]
-							},
-							["no_icon"] = false,
-							["icon_offset"] = {
-								0, -- [1]
-								0, -- [2]
-							},
-							["fixed_texture_background_color"] = {
-								0, -- [1]
-								0, -- [2]
-								0, -- [3]
-								0.150228589773178, -- [4]
-							},
-							["font_face"] = "Expressway",
-							["texture_class_colors"] = true,
-							["textL_outline_small"] = false,
-							["fast_ps_update"] = true,
-							["textR_separator"] = "NONE",
-							["height"] = 17,
+							["enabled"] = true,
+							["enable_custom_text"] = false,
+							["text_size"] = 10,
 						},
-						["switch_tank"] = false,
-						["plugins_grow_direction"] = 1,
+						["ignore_mass_showhide"] = false,
+						["switch_all_roles_after_wipe"] = false,
 						["menu_icons"] = {
 							false, -- [1]
 							true, -- [2]
@@ -807,7 +720,7 @@ function L1UI:GetDetailsProfile()
 							-27, -- [1]
 							1, -- [2]
 						},
-						["bg_alpha"] = 0,
+						["version"] = 3,
 						["fontstrings_text4_anchor"] = 0,
 						["__locked"] = true,
 						["menu_alpha"] = {
@@ -817,13 +730,13 @@ function L1UI:GetDetailsProfile()
 							["iconstoo"] = true,
 							["onenter"] = 1,
 						},
-						["switch_all_roles_after_wipe"] = false,
+						["switch_damager"] = false,
 						["row_show_animation"] = {
 							["anim"] = "Fade",
 							["options"] = {
 							},
 						},
-						["bars_inverted"] = false,
+						["fontstrings_text3_anchor"] = 35,
 						["strata"] = "LOW",
 						["clickthrough_incombatonly"] = false,
 						["__snap"] = {
@@ -831,7 +744,105 @@ function L1UI:GetDetailsProfile()
 						},
 						["stretch_button_side"] = 1,
 						["hide_in_combat_alpha"] = 0,
-						["icon_desaturated"] = false,
+						["row_info"] = {
+							["textR_outline"] = true,
+							["spec_file"] = "Interface\\AddOns\\Details\\images\\spec_icons_normal",
+							["textL_outline"] = true,
+							["textR_outline_small"] = false,
+							["textR_show_data"] = {
+								true, -- [1]
+								true, -- [2]
+								false, -- [3]
+							},
+							["percent_type"] = 1,
+							["fixed_text_color"] = {
+								1, -- [1]
+								1, -- [2]
+								1, -- [3]
+							},
+							["space"] = {
+								["right"] = 0,
+								["left"] = 0,
+								["between"] = 0,
+							},
+							["texture_background_class_color"] = false,
+							["textL_outline_small_color"] = {
+								0, -- [1]
+								0, -- [2]
+								0, -- [3]
+								1, -- [4]
+							},
+							["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+							["backdrop"] = {
+								["enabled"] = false,
+								["texture"] = "Details BarBorder 2",
+								["color"] = {
+									1, -- [1]
+									1, -- [2]
+									1, -- [3]
+									1, -- [4]
+								},
+								["size"] = 10,
+							},
+							["models"] = {
+								["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
+								["lower_model"] = "World\\EXPANSION02\\DOODADS\\Coldarra\\COLDARRALOCUS.m2",
+								["upper_alpha"] = 0.5,
+								["lower_enabled"] = false,
+								["lower_alpha"] = 0.1,
+								["upper_enabled"] = false,
+							},
+							["textL_translit_text"] = false,
+							["texture_custom_file"] = "Interface\\",
+							["texture_file"] = "Interface\\Buttons\\WHITE8X8",
+							["textR_bracket"] = "(",
+							["font_size"] = 11,
+							["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small",
+							["icon_grayscale"] = false,
+							["textL_custom_text"] = "{data1}. {data3}{data2}",
+							["use_spec_icons"] = true,
+							["textR_enable_custom_text"] = false,
+							["textL_enable_custom_text"] = false,
+							["fixed_texture_color"] = {
+								0, -- [1]
+								0, -- [2]
+								0, -- [3]
+							},
+							["textL_show_number"] = false,
+							["texture_custom"] = "",
+							["texture_highlight"] = "Interface\\FriendsFrame\\UI-FriendsList-Highlight",
+							["textR_custom_text"] = "{data1} ({data2}, {data3}%)",
+							["texture"] = "Solid",
+							["start_after_icon"] = false,
+							["texture_background_file"] = "Interface\\Buttons\\WHITE8X8",
+							["textL_class_colors"] = false,
+							["alpha"] = 1,
+							["texture_background"] = "Solid",
+							["textR_class_colors"] = false,
+							["textR_outline_small_color"] = {
+								0, -- [1]
+								0, -- [2]
+								0, -- [3]
+								1, -- [4]
+							},
+							["no_icon"] = false,
+							["icon_offset"] = {
+								0, -- [1]
+								0, -- [2]
+							},
+							["fixed_texture_background_color"] = {
+								0, -- [1]
+								0, -- [2]
+								0, -- [3]
+								0.150228589773178, -- [4]
+							},
+							["font_face"] = "Expressway",
+							["texture_class_colors"] = true,
+							["textL_outline_small"] = false,
+							["fast_ps_update"] = true,
+							["textR_separator"] = "NONE",
+							["height"] = 17,
+						},
 						["show_statusbar"] = false,
 						["libwindow"] = {
 							["y"] = 0.9999418258666992,
@@ -848,42 +859,23 @@ function L1UI:GetDetailsProfile()
 							},
 						},
 						["backdrop_texture"] = "Details Ground",
-						["menu_anchor_down"] = {
-							16, -- [1]
-							-3, -- [2]
-						},
-						["switch_damager"] = false,
-						["switch_tank_in_combat"] = false,
 						["bars_grow_direction"] = 1,
-						["switch_damager_in_combat"] = false,
-						["bars_sort_direction"] = 1,
-						["clickthrough_rows"] = false,
-						["auto_current"] = true,
 						["auto_hide_menu"] = {
 							["left"] = false,
 							["right"] = false,
 						},
-						["version"] = 3,
-						["attribute_text"] = {
-							["show_timer"] = false,
-							["shadow"] = false,
-							["side"] = 1,
-							["text_color"] = {
-								1, -- [1]
-								1, -- [2]
-								1, -- [3]
-								1, -- [4]
-							},
-							["custom_text"] = "{name}",
-							["text_face"] = "Expressway",
-							["anchor"] = {
-								-18, -- [1]
-								3, -- [2]
-							},
-							["enabled"] = true,
-							["enable_custom_text"] = false,
-							["text_size"] = 10,
+						["bg_alpha"] = 0,
+						["switch_tank_in_combat"] = false,
+						["switch_damager_in_combat"] = false,
+						["bars_inverted"] = false,
+						["bars_sort_direction"] = 1,
+						["auto_current"] = true,
+						["icon_desaturated"] = false,
+						["menu_anchor_down"] = {
+							16, -- [1]
+							-3, -- [2]
 						},
+						["clickthrough_rows"] = false,
 						["hide_in_combat"] = false,
 						["posicao"] = {
 							["normal"] = {
@@ -899,8 +891,8 @@ function L1UI:GetDetailsProfile()
 								["h"] = 200,
 							},
 						},
-						["skin_custom"] = "",
-						["ignore_mass_showhide"] = false,
+						["switch_tank"] = false,
+						["plugins_grow_direction"] = 1,
 						["wallpaper"] = {
 							["enabled"] = false,
 							["texture"] = "Interface\\AddOns\\Details\\images\\background",
@@ -932,7 +924,7 @@ function L1UI:GetDetailsProfile()
 							},
 						},
 						["show_sidebars"] = false,
-						["fontstrings_text3_anchor"] = 35,
+						["micro_displays_locked"] = true,
 						["use_multi_fontstrings"] = false,
 						["menu_icons_size"] = 0.8500000238418579,
 					}, -- [1]
@@ -1015,11 +1007,6 @@ function L1UI:GetDetailsProfile()
 								},
 								["size"] = 12,
 							},
-							["font_size"] = 11,
-							["textL_translit_text"] = false,
-							["texture_custom_file"] = "Interface\\",
-							["texture_file"] = "Interface\\Buttons\\WHITE8X8",
-							["textR_bracket"] = "(",
 							["models"] = {
 								["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
 								["lower_model"] = "World\\EXPANSION02\\DOODADS\\Coldarra\\COLDARRALOCUS.m2",
@@ -1028,6 +1015,11 @@ function L1UI:GetDetailsProfile()
 								["lower_alpha"] = 0.1,
 								["upper_enabled"] = false,
 							},
+							["textL_translit_text"] = false,
+							["texture_custom_file"] = "Interface\\",
+							["texture_file"] = "Interface\\Buttons\\WHITE8X8",
+							["textR_bracket"] = "(",
+							["font_size"] = 11,
 							["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small",
 							["icon_grayscale"] = false,
 							["textL_custom_text"] = "{data1}. {data3}{data2}",
@@ -1386,8 +1378,6 @@ function L1UI:GetDetailsProfile()
 						["menu_icons_size"] = 0.850000023841858,
 					}, -- [2]
 				},
-				["animate_scroll"] = false,
-				["segments_amount"] = 18,
 				["report_lines"] = 4,
 				["clear_ungrouped"] = true,
 				["class_icons_small"] = "Interface\\AddOns\\Details\\images\\classes_small",
@@ -1401,15 +1391,7 @@ function L1UI:GetDetailsProfile()
 					["skin"] = "ElvUI",
 					["bar_texture"] = "Skyline",
 				},
-				["minimum_combat_time"] = 5,
-				["memory_threshold"] = 3,
-				["cloud_capture"] = true,
-				["damage_taken_everything"] = false,
-				["scroll_speed"] = 2,
-				["new_window_size"] = {
-					["height"] = 158,
-					["width"] = 310,
-				},
+				["overall_clear_logout"] = false,
 				["chat_tab_embed"] = {
 					["enabled"] = false,
 					["y_offset"] = 0,
@@ -1417,6 +1399,13 @@ function L1UI:GetDetailsProfile()
 					["tab_name"] = "",
 					["single_window"] = false,
 				},
+				["cloud_capture"] = true,
+				["damage_taken_everything"] = false,
+				["scroll_speed"] = 2,
+				["font_sizes"] = {
+					["menus"] = 10,
+				},
+				["memory_threshold"] = 3,
 				["deadlog_events"] = 32,
 				["window_clamp"] = {
 					-8, -- [1]
@@ -1474,11 +1463,11 @@ function L1UI:GetDetailsProfile()
 						0.5, -- [3]
 						0.75, -- [4]
 					},
-					["WARLOCK"] = {
-						0.7421875, -- [1]
-						0.98828125, -- [2]
-						0.25, -- [3]
-						0.5, -- [4]
+					["ENEMY"] = {
+						0, -- [1]
+						0.25, -- [2]
+						0.75, -- [3]
+						1, -- [4]
 					},
 					["UNKNOW"] = {
 						0.5, -- [1]
@@ -1504,11 +1493,11 @@ function L1UI:GetDetailsProfile()
 						0.75, -- [3]
 						1, -- [4]
 					},
-					["ENEMY"] = {
-						0, -- [1]
-						0.25, -- [2]
-						0.75, -- [3]
-						1, -- [4]
+					["WARLOCK"] = {
+						0.7421875, -- [1]
+						0.98828125, -- [2]
+						0.25, -- [3]
+						0.5, -- [4]
 					},
 					["DEMONHUNTER"] = {
 						0.73828126, -- [1]
@@ -1545,33 +1534,9 @@ function L1UI:GetDetailsProfile()
 				["disable_alldisplays_window"] = false,
 				["numerical_system_symbols"] = "auto",
 				["deny_score_messages"] = false,
-				["trash_auto_remove"] = true,
-				["broadcaster_enabled"] = false,
-				["clear_graphic"] = true,
 				["total_abbreviation"] = 2,
-				["animation_speed_triggertravel"] = 5,
-				["options_group_edit"] = true,
 				["segments_amount_to_save"] = 18,
-				["minimap"] = {
-					["onclick_what_todo"] = 1,
-					["radius"] = 160,
-					["hide"] = true,
-					["minimapPos"] = 220,
-					["text_format"] = 3,
-					["text_type"] = 1,
-				},
-				["instances_amount"] = 3,
-				["max_window_size"] = {
-					["height"] = 450,
-					["width"] = 480,
-				},
-				["default_bg_color"] = 0.0941,
-				["only_pvp_frags"] = false,
-				["disable_stretch_button"] = true,
-				["segments_auto_erase"] = 2,
-				["hotcorner_topleft"] = {
-					["hide"] = false,
-				},
+				["clear_graphic"] = true,
 				["class_colors"] = {
 					["HUNTER"] = {
 						0.67, -- [1]
@@ -1583,10 +1548,10 @@ function L1UI:GetDetailsProfile()
 						0.61, -- [2]
 						0.43, -- [3]
 					},
-					["SHAMAN"] = {
-						0, -- [1]
-						0.44, -- [2]
-						0.87, -- [3]
+					["PALADIN"] = {
+						0.96, -- [1]
+						0.55, -- [2]
+						0.73, -- [3]
 					},
 					["MAGE"] = {
 						0.41, -- [1]
@@ -1618,10 +1583,10 @@ function L1UI:GetDetailsProfile()
 						0.12, -- [2]
 						0.23, -- [3]
 					},
-					["ARENA_GREEN"] = {
-						0.4, -- [1]
-						1, -- [2]
-						0.4, -- [3]
+					["WARLOCK"] = {
+						0.58, -- [1]
+						0.51, -- [2]
+						0.79, -- [3]
 					},
 					["UNKNOW"] = {
 						0.2, -- [1]
@@ -1633,15 +1598,15 @@ function L1UI:GetDetailsProfile()
 						1, -- [2]
 						1, -- [3]
 					},
-					["WARLOCK"] = {
-						0.58, -- [1]
-						0.51, -- [2]
-						0.79, -- [3]
-					},
 					["ROGUE"] = {
 						1, -- [1]
 						0.96, -- [2]
 						0.41, -- [3]
+					},
+					["SHAMAN"] = {
+						0, -- [1]
+						0.44, -- [2]
+						0.87, -- [3]
 					},
 					["ENEMY"] = {
 						0.94117, -- [1]
@@ -1660,16 +1625,40 @@ function L1UI:GetDetailsProfile()
 						1, -- [2]
 						0, -- [3]
 					},
-					["PALADIN"] = {
-						0.96, -- [1]
-						0.55, -- [2]
-						0.73, -- [3]
+					["ARENA_GREEN"] = {
+						0.4, -- [1]
+						1, -- [2]
+						0.4, -- [3]
 					},
 					["PET"] = {
 						0.3, -- [1]
 						0.4, -- [2]
 						0.5, -- [3]
 					},
+				},
+				["animation_speed_triggertravel"] = 5,
+				["options_group_edit"] = true,
+				["broadcaster_enabled"] = false,
+				["minimap"] = {
+					["onclick_what_todo"] = 1,
+					["radius"] = 160,
+					["hide"] = true,
+					["minimapPos"] = 220,
+					["text_format"] = 3,
+					["text_type"] = 1,
+				},
+				["instances_amount"] = 3,
+				["max_window_size"] = {
+					["height"] = 450,
+					["width"] = 480,
+				},
+				["default_bg_color"] = 0.0941,
+				["only_pvp_frags"] = false,
+				["disable_stretch_button"] = true,
+				["segments_auto_erase"] = 2,
+				["trash_auto_remove"] = true,
+				["hotcorner_topleft"] = {
+					["hide"] = false,
 				},
 				["segments_panic_mode"] = false,
 				["standard_skin"] = false,
@@ -1681,10 +1670,11 @@ function L1UI:GetDetailsProfile()
 					"out", -- [1]
 					0.2, -- [2]
 				},
-				["font_sizes"] = {
-					["menus"] = 10,
+				["new_window_size"] = {
+					["height"] = 158,
+					["width"] = 310,
 				},
-				["overall_clear_logout"] = false,
+				["minimum_combat_time"] = 5,
 				["overall_clear_newboss"] = false,
 				["report_schema"] = 1,
 				["use_scroll"] = false,
@@ -1697,33 +1687,21 @@ function L1UI:GetDetailsProfile()
 				["instances_segments_locked"] = true,
 			},
 		},
-		["tutorial"] = {
-			["unlock_button"] = 0,
-			["main_help_button"] = 930,
-			["FORGE_TUTORIAL"] = true,
-			["DETAILS_INFO_TUTORIAL1"] = true,
-			["alert_frames"] = {
-				false, -- [1]
-				false, -- [2]
-				false, -- [3]
-				false, -- [4]
-				false, -- [5]
-				false, -- [6]
+		["immersion_special_units"] = true,
+		["deathlog_healingdone_min_arena"] = 400,
+		["boss_mods_timers"] = {
+			["encounter_timers_bw"] = {
 			},
-			["bookmark_tutorial"] = false,
-			["MIN_COMBAT_TIME"] = true,
-			["OVERALLDATA_WARNING1"] = 5,
-			["logons"] = 930,
-			["version_announce"] = 0,
-			["DETAILS_INFO_TUTORIAL2"] = 10,
-			["ctrl_click_close_tutorial"] = false,
-			["DISABLE_ONDEATH_PANEL"] = true,
-			["STREAMER_PLUGIN_FIRSTRUN"] = true,
+			["encounter_timers_dbm"] = {
+			},
 		},
-		["damage_scroll_auto_open"] = true,
 		["plater"] = {
 			["realtime_dps_enabled"] = false,
-			["damage_taken_shadow"] = true,
+			["damage_taken_anchor"] = {
+				["y"] = 0,
+				["x"] = 0,
+				["side"] = 7,
+			},
 			["realtime_dps_player_shadow"] = true,
 			["damage_taken_enabled"] = false,
 			["realtime_dps_player_size"] = 12,
@@ -1739,12 +1717,8 @@ function L1UI:GetDetailsProfile()
 				["x"] = 0,
 				["side"] = 7,
 			},
-			["damage_taken_anchor"] = {
-				["y"] = 0,
-				["x"] = 0,
-				["side"] = 7,
-			},
 			["realtime_dps_size"] = 12,
+			["damage_taken_shadow"] = true,
 			["damage_taken_color"] = {
 				1, -- [1]
 				1, -- [2]
@@ -1764,6 +1738,32 @@ function L1UI:GetDetailsProfile()
 			},
 			["realtime_dps_player_enabled"] = false,
 			["realtime_dps_shadow"] = true,
+		},
+		["spell_school_cache"] = {
+		},
+		["deathlog_healingdone_min"] = 1,
+		["tutorial"] = {
+			["unlock_button"] = 0,
+			["main_help_button"] = 1052,
+			["FORGE_TUTORIAL"] = true,
+			["DETAILS_INFO_TUTORIAL1"] = true,
+			["alert_frames"] = {
+				false, -- [1]
+				false, -- [2]
+				false, -- [3]
+				false, -- [4]
+				false, -- [5]
+				false, -- [6]
+			},
+			["bookmark_tutorial"] = false,
+			["MIN_COMBAT_TIME"] = true,
+			["OVERALLDATA_WARNING1"] = 5,
+			["logons"] = 1052,
+			["version_announce"] = 0,
+			["DETAILS_INFO_TUTORIAL2"] = 10,
+			["ctrl_click_close_tutorial"] = false,
+			["DISABLE_ONDEATH_PANEL"] = true,
+			["STREAMER_PLUGIN_FIRSTRUN"] = true,
 		},
 		["exit_log"] = {
 			"1 - Closing Janela Info.", -- [1]
@@ -1795,7 +1795,22 @@ function L1UI:GetDetailsProfile()
 			["last_mythicrun_chart"] = {
 			},
 		},
+		["damage_scroll_auto_open"] = true,
 		["damage_scroll_position"] = {
+		},
+		["plugin_window_pos"] = {
+			["y"] = -16.993896484375,
+			["x"] = 189.5004119873047,
+			["point"] = "TOPLEFT",
+			["scale"] = 1,
+		},
+		["global_plugin_database"] = {
+			["DETAILS_PLUGIN_ENCOUNTER_DETAILS"] = {
+				["encounter_timers_bw"] = {
+				},
+				["encounter_timers_dbm"] = {
+				},
+			},
 		},
 		["run_code"] = {
 			["on_groupchange"] = "\n-- this code runs when the player enter or leave a group",
@@ -1804,16 +1819,6 @@ function L1UI:GetDetailsProfile()
 			["on_specchanged"] = "\n-- run when the player changes its spec",
 			["on_leavecombat"] = "\n-- this code runs when the player leave combat",
 			["on_entercombat"] = "\n-- this code runs when the player enters in combat",
-		},
-		["plugin_window_pos"] = {
-			["y"] = -79.99420166015625,
-			["x"] = -40.99964904785156,
-			["point"] = "TOP",
-			["scale"] = 1,
-		},
-		["current_exp_raid_encounters"] = {
-			[2407] = true,
-			[2417] = true,
 		},
 		["switchSaved"] = {
 			["slots"] = 16,
@@ -1860,13 +1865,17 @@ function L1UI:GetDetailsProfile()
 				}, -- [16]
 			},
 		},
-		["spellid_ignored"] = {
-		},
-		["createauraframe"] = {
-			["y"] = 7.62939453125e-06,
-			["x"] = -3.0517578125e-05,
-			["point"] = "CENTER",
-			["scale"] = 1,
+		["current_exp_raid_encounters"] = {
+			[2417] = true,
+			[2418] = true,
+			[2412] = true,
+			[2405] = true,
+			[2383] = true,
+			[2406] = true,
+			[2399] = true,
+			[2407] = true,
+			[2402] = true,
+			[2398] = true,
 		},
 		["data_wipes_exp"] = {
 			["9"] = true,
@@ -1876,8 +1885,17 @@ function L1UI:GetDetailsProfile()
 			["11"] = false,
 			["10"] = false,
 		},
+		["spellid_ignored"] = {
+		},
+		["createauraframe"] = {
+			["y"] = 7.62939453125e-06,
+			["x"] = -3.0517578125e-05,
+			["point"] = "CENTER",
+			["scale"] = 1,
+		},
 		["item_level_pool"] = {
 		},
+		["show_totalhitdamage_on_overkill"] = false,
 		["savedCustomSpells"] = {
 			{
 				2, -- [1]
@@ -2115,7 +2133,8 @@ function L1UI:GetDetailsProfile()
 				"Interface\\Addons\\Details\\images\\icon_astral_shift", -- [3]
 			}, -- [47]
 		},
-		["show_totalhitdamage_on_overkill"] = false,
+		["profile_by_spec"] = {
+		},
 		["realm_sync"] = true,
 		["raid_data"] = {
 			["mythic_raid_data"] = {
@@ -2129,17 +2148,11 @@ function L1UI:GetDetailsProfile()
 		},
 		["details_auras"] = {
 		},
-		["global_plugin_database"] = {
-			["DETAILS_PLUGIN_ENCOUNTER_DETAILS"] = {
-				["encounter_timers_bw"] = {
-				},
-				["encounter_timers_dbm"] = {
-				},
-			},
+		["displays_by_spec"] = {
 		},
 		["savedTimeCaptures"] = {
 		},
-		["latest_news_saw"] = "v9.0.2.8156",
+		["latest_news_saw"] = "v9.0.2.8246",
 		["custom"] = {
 			{
 				["source"] = false,
@@ -2377,7 +2390,7 @@ function L1UI:GetDetailsProfile()
 				["damage"] = true,
 			},
 		},
-		["last_changelog_size"] = 5005,
+		["last_changelog_size"] = 5455,
 		["immersion_unit_special_icons"] = true,
 		["lastUpdateWarning"] = 1608585777,
 		["dungeon_data"] = {
