@@ -1,5 +1,10 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+--[[
+	Copy Paste stuff
+	[E.mynameRealm] = "Luckyone",
+]]
+
 -- OmniCD profile setup
 function L1UI:GetOmniCDProfile()
 
