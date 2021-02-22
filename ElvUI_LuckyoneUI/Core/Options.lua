@@ -4,6 +4,8 @@ local sort = sort
 local pairs = pairs
 local tinsert = tinsert
 
+local ReloadUI = ReloadUI
+
 -- Author list
 local AUTHORS = {
 	'|cffFF7D0ALuckyone|r (EU) - LaughingSkull',
@@ -558,7 +560,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = '|cff16C3F2AddOn|r|cFFFFFFFFSkins|r',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupAS(); end,
+								func = function() L1UI:AddonSetupAS(); ReloadUI(); end,
 								confirm = true,
 							},
 							projectazilroka = {
@@ -566,7 +568,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = '|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupPA(); end,
+								func = function() L1UI:AddonSetupPA(); ReloadUI(); end,
 								confirm = true,
 							},
 							sle = {
@@ -574,7 +576,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = '|cff9482c9Shadow & Light|r',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupSLE(); end,
+								func = function() L1UI:AddonSetupSLE(); ReloadUI(); end,
 								confirm = true,
 							},
 						},
@@ -597,7 +599,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'BigWigs',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupBW(); end,
+								func = function() L1UI:AddonSetupBW(); ReloadUI(); end,
 								confirm = true,
 							},
 							dbm = {
@@ -605,7 +607,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'DBM',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupDBM(); end,
+								func = function() L1UI:AddonSetupDBM(); ReloadUI(); end,
 								confirm = true,
 							},
 						},
@@ -621,7 +623,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'ElvUI',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:SetupNamePlates('ElvUI'); end,
+								func = function() L1UI:SetupNamePlates('ElvUI'); ReloadUI(); end,
 								confirm = true,
 							},
 							plater = {
@@ -629,7 +631,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'Plater',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:SetupNamePlates('Plater'); end,
+								func = function() L1UI:SetupNamePlates('Plater'); ReloadUI(); end,
 								confirm = true,
 							},
 						},
@@ -645,7 +647,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'Details',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupDT(); end,
+								func = function() L1UI:AddonSetupDT(); ReloadUI(); end,
 								confirm = true,
 							},
 							omnicd = {
@@ -653,7 +655,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'OmniCD',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupOCD(); end,
+								func = function() L1UI:AddonSetupOCD(); ReloadUI(); end,
 								confirm = true,
 							},
 						},
