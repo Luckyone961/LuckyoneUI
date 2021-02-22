@@ -4,15 +4,12 @@ local LoadAddOn = LoadAddOn
 
 -- BigWigs profile setup
 function L1UI:GetBigWigsProfile()
+
 	local main = "Luckyone DPS/TANK"
 	local heal = "Luckyone Healing"
 
 	LoadAddOn("BigWigs")
 	LoadAddOn("BigWigs_Options")
-
-	if not BigWigs3DB then BigWigs3DB = {} end
-	if not BigWigsIconDB then BigWigsIconDB = {} end
-	if not BigWigsStatsDB then BigWigsStatsDB = {} end
 
 	BigWigs3DB = {
 		["profileKeys"] = {

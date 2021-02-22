@@ -5,8 +5,6 @@ function L1UI:GetDetailsProfile()
 
 	local key = "Luckyone"
 
-	if not _detalhes_global then _detalhes_global = {} end
-
 	_detalhes_global = {
 		["npcid_pool"] = {
 		},
