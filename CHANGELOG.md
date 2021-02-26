@@ -3,6 +3,8 @@
 **New Additions:**  
 OmniCD Profile for the Healing layout  
 **Misc:**  
+UI will now reload after profile updates  
+ProjectAzilroka profile update  
 ___
 ### Version 1.20 [22-02-2021]
 **Changes:**  
