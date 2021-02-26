@@ -14,13 +14,14 @@ function L1UI:GetPAProfile()
 	PA.db["Cooldown"]["Enable"] = false
 	PA.db["DragonOverlay"]["Enable"] = false
 	PA.db["EnhancedShadows"]["Enable"] = false
+	PA.db["MasterExperience"]["Enable"] = false
 	PA.db["MouseoverAuras"]["Enable"] = false
 	PA.db["MovableFrames"]["Enable"] = false
 	PA.db["OzCooldowns"]["Enable"] = false
 	PA.db["QuestSounds"]["Enable"] = false
 	PA.db["ReputationReward"]["Enable"] = false
 	PA.db["stAddonManager"]["Enable"] = false
-	PA.db["MasterExperience"]["Enable"] = false
+	PA.db["TorghastBuffs"]["Enable"] = false
 
 	-- SquareMinimapButtons Setup
 	PA.db["SquareMinimapButtons"]["Backdrop"] = false
