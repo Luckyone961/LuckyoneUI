@@ -43,6 +43,8 @@ local SUPPORT = {
 	'|cffe6cc80ShowNoMercy|r',
 	'|cffe6cc80triplebeamdreams|r',
 	'|cffe6cc80Lox|r',
+	'|cffe6cc80garbar|r',
+	'|cffe6cc80dukes|r',
 }
 
 -- Sort
