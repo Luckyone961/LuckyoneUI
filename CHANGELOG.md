@@ -1,10 +1,12 @@
 ### Version 1.21 [  -  -2021]
 **Changes:**  
+Merged the Plugins config section into Profiles  
+Added LuckyoneUI version on top of the ElvUI config  
 **New Additions:**  
-OmniCD Profile for the Healing layout  
+Added OmniCD Profile for the Healing layout  
 **Misc:**  
-UI will now reload after profile updates  
 ProjectAzilroka profile update  
+UI will now reload after profile updates  
 ___
 ### Version 1.20 [22-02-2021]
 **Changes:**  
