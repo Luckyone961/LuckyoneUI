@@ -143,7 +143,7 @@ function L1UI:Configtable()
 							player = {
 								order = 1,
 								type = 'group',
-								name = 'Player Frame',
+								name = 'Player Frame Buffs',
 								inline = true,
 								args = {
 									min = {
@@ -165,7 +165,7 @@ function L1UI:Configtable()
 							target = {
 								order = 2,
 								type = 'group',
-								name = 'Target Frame',
+								name = 'Target Frame Buffs',
 								inline = true,
 								args = {
 									min = {
@@ -187,7 +187,7 @@ function L1UI:Configtable()
 							focus = {
 								order = 3,
 								type = 'group',
-								name = 'Focus Frame',
+								name = 'Focus Frame Buffs',
 								inline = true,
 								args = {
 									min = {
@@ -209,7 +209,7 @@ function L1UI:Configtable()
 							boss = {
 								order = 4,
 								type = 'group',
-								name = 'Boss Frame',
+								name = 'Boss Frame Buffs',
 								inline = true,
 								args = {
 									min = {
@@ -231,7 +231,7 @@ function L1UI:Configtable()
 							nameplate1 = {
 								order = 5,
 								type = 'group',
-								name = 'NamePlates: Enemy NPC',
+								name = 'NamePlates: Enemy NPC Buffs',
 								inline = true,
 								args = {
 									min = {
@@ -260,7 +260,7 @@ function L1UI:Configtable()
 							player = {
 								order = 1,
 								type = 'group',
-								name = 'Player Frame',
+								name = 'Player Frame Debuffs',
 								inline = true,
 								args = {
 									min = {
@@ -282,7 +282,7 @@ function L1UI:Configtable()
 							target = {
 								order = 2,
 								type = 'group',
-								name = 'Target Frame',
+								name = 'Target Frame Debuffs',
 								inline = true,
 								args = {
 									min = {
@@ -304,7 +304,7 @@ function L1UI:Configtable()
 							focus = {
 								order = 3,
 								type = 'group',
-								name = 'Focus Frame',
+								name = 'Focus Frame Debuffs',
 								inline = true,
 								args = {
 									min = {
@@ -326,7 +326,7 @@ function L1UI:Configtable()
 							boss = {
 								order = 4,
 								type = 'group',
-								name = 'Boss Frame',
+								name = 'Boss Frame Debuffs',
 								inline = true,
 								args = {
 									min = {
@@ -348,7 +348,7 @@ function L1UI:Configtable()
 							nameplate1 = {
 								order = 5,
 								type = 'group',
-								name = 'NamePlates: Enemy NPC',
+								name = 'NamePlates: Enemy NPC Debuffs',
 								inline = true,
 								args = {
 									min = {
@@ -550,16 +550,16 @@ function L1UI:Configtable()
 					},
 				},
 			},
-			plugins = {
+			profiles = {
 				type = 'group',
-				name = '|cff4beb2cPlugins|r',
+				name = '|cff4beb2cProfiles|r',
 				order = 7,
 				args = {
 					plugins = {
 						order = 1,
 						type = 'group',
 						inline = true,
-						name = 'Plugin Profiles',
+						name = 'ElvUI Plugins',
 						args = {
 							addonskins = {
 								order = 1,
@@ -587,15 +587,8 @@ function L1UI:Configtable()
 							},
 						},
 					},
-				},
-			},
-			profiles = {
-				type = 'group',
-				name = '|cff4beb2cProfiles|r',
-				order = 8,
-				args = {
 					bossmods = {
-						order = 1,
+						order = 2,
 						type = 'group',
 						inline = true,
 						name = 'BossMods Profiles',
@@ -619,7 +612,7 @@ function L1UI:Configtable()
 						},
 					},
 					nameplates = {
-						order = 2,
+						order = 3,
 						type = 'group',
 						inline = true,
 						name = 'NamePlate Profiles',
@@ -643,7 +636,7 @@ function L1UI:Configtable()
 						},
 					},
 					addons = {
-						order = 3,
+						order = 4,
 						type = 'group',
 						inline = true,
 						name = 'Addon Profiles',
@@ -671,7 +664,7 @@ function L1UI:Configtable()
 			themes = {
 				type = 'group',
 				name = '|cff4beb2cThemes|r',
-				order = 9,
+				order = 8,
 				args = {
 					raid = {
 						order = 1,
@@ -702,7 +695,7 @@ function L1UI:Configtable()
 			unitframes = {
 				type = 'group',
 				name = '|cff4beb2cUnitFrames|r',
-				order = 10,
+				order = 9,
 				args = {
 					raid = {
 						order = 1,
@@ -747,7 +740,7 @@ function L1UI:Configtable()
 			weakauras = {
 				type = 'group',
 				name = '|cff4beb2cWeakAuras|r',
-				order = 11,
+				order = 10,
 				args = {
 					header1 = {
 						order = 1,
@@ -869,7 +862,7 @@ function L1UI:Configtable()
 			credits = {
 				type = 'group',
 				name = '|cffFF7D0ACredits|r',
-				order = 12,
+				order = 11,
 				args = {
 					author = {
 						order = 1,
@@ -932,7 +925,7 @@ function L1UI:Configtable()
 			links = {
 				type = 'group',
 				name = '|cffFF7D0ALinks|r',
-				order = 13,
+				order = 12,
 				args = {
 					changelog = {
 						order = 1,
