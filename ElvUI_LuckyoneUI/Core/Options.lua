@@ -2,7 +2,8 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local sort = sort
 local pairs = pairs
-local tinsert = tinsert
+local tinsert = table.insert
+local tconcat = table.concat
 
 local ReloadUI = ReloadUI
 
@@ -41,13 +42,13 @@ local SUPPORT = {
 	'|cffe6cc80Treelyté|r',
 	'|cffe6cc80DevinDog|r',
 	'|cffe6cc80ShowNoMercy|r',
-	'|cffe6cc80triplebeamdreams|r',
+	'|cffe6cc80Triplebeamdreams|r',
 	'|cffe6cc80Lox|r',
-	'|cffe6cc80garbar|r',
-	'|cffe6cc80dukes|r',
+	'|cffe6cc80Garbar|r',
+	'|cffe6cc80Dukes|r',
 }
 
--- Sort
+-- SortList
 local function SortList(a, b)
 	return E:StripString(a) < E:StripString(b)
 end
@@ -61,28 +62,31 @@ sort(SUPPORT, SortList)
 for _, name in pairs(AUTHORS) do
 	tinsert(L1UI.CreditsList, name)
 end
-local AUTHORS_STRING = table.concat(AUTHORS, '|n')
+local AUTHORS_STRING = tconcat(AUTHORS, '|n')
 
 -- Coding table
 for _, name in pairs(CODING) do
 	tinsert(L1UI.CreditsList, name)
 end
-local CODING_STRING = table.concat(CODING, '|n')
+local CODING_STRING = tconcat(CODING, '|n')
 
 -- Testers table
 for _, name in pairs(TESTERS) do
 	tinsert(L1UI.CreditsList, name)
 end
-local TESTER_STRING = table.concat(TESTERS, '|n')
+local TESTER_STRING = tconcat(TESTERS, '|n')
 
 -- Dono table
 for _, name in pairs(SUPPORT) do
 	tinsert(L1UI.CreditsList, name)
 end
-local SUPPORT_STRING = table.concat(SUPPORT, '|n')
+local SUPPORT_STRING = tconcat(SUPPORT, '|n')
 
 -- LuckyoneUI ingame options
 function L1UI:Configtable()
+
+	-- Add LuckyoneUI version on top of the ElvUI config
+	E.Options.name = E.Options.name.." + "..L1UI.Name.." "..L1UI.Version
 
 	E.Options.args.L1UI = {
 		order = 100,
