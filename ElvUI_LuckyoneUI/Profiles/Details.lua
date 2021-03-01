@@ -812,12 +812,12 @@ function L1UI:GetDetailsProfile()
 							["texture_custom"] = "",
 							["texture_highlight"] = "Interface\\FriendsFrame\\UI-FriendsList-Highlight",
 							["textR_custom_text"] = "{data1} ({data2}, {data3}%)",
-							["texture"] = "Solid",
+							["texture"] = "Minimalist",
 							["start_after_icon"] = false,
 							["texture_background_file"] = "Interface\\Buttons\\WHITE8X8",
 							["textL_class_colors"] = false,
 							["alpha"] = 1,
-							["texture_background"] = "Solid",
+							["texture_background"] = "Minimalist",
 							["textR_class_colors"] = false,
 							["textR_outline_small_color"] = {
 								0, -- [1]
@@ -1035,12 +1035,12 @@ function L1UI:GetDetailsProfile()
 							["texture_custom"] = "",
 							["texture_highlight"] = "Interface\\FriendsFrame\\UI-FriendsList-Highlight",
 							["textR_custom_text"] = "{data1} ({data2}, {data3}%)",
-							["texture"] = "Solid",
+							["texture"] = "Minimalist",
 							["start_after_icon"] = false,
 							["texture_background_file"] = "Interface\\Buttons\\WHITE8X8",
 							["textL_class_colors"] = false,
 							["alpha"] = 1,
-							["texture_background"] = "Solid",
+							["texture_background"] = "Minimalist",
 							["textR_class_colors"] = false,
 							["textR_outline_small_color"] = {
 								0, -- [1]

@@ -36,7 +36,7 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["plateSize"]["friendlyWidth"] = 165
 		E.db["nameplates"]["plateSize"]["personalHeight"] = 40
 		E.db["nameplates"]["plateSize"]["personalWidth"] = 165
-		E.db["nameplates"]["statusbar"] = "Solid"
+		E.db["nameplates"]["statusbar"] = "Minimalist"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Expressway"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFontSize"] = 10
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countPosition"] = "TOP"

@@ -38,7 +38,7 @@ function L1UI:GetPAProfile()
 	PA.db["EnhancedFriendsList"]["InfoFontSize"] = 10
 	PA.db["EnhancedFriendsList"]["NameFontSize"] = 11
 	PA.db["EnhancedFriendsList"]["StatusIconPack"] = "Square"
-	PA.db["EnhancedFriendsList"]["Texture"] = "Solid"
+	PA.db["EnhancedFriendsList"]["Texture"] = "Minimalist"
 
 	-- Movers
 	E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187"

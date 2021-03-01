@@ -35,7 +35,7 @@ function L1UI:SetupLayout(layout)
 
 	-- General
 	E.db["general"]["altPowerBar"]["font"] = "Expressway"
-	E.db["general"]["altPowerBar"]["statusBar"] = "Solid"
+	E.db["general"]["altPowerBar"]["statusBar"] = "Minimalist"
 	E.db["general"]["autoRepair"] = "PLAYER"
 	E.db["general"]["backdropcolor"]["b"] = 0.10196078431373
 	E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
@@ -868,7 +868,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["colors"]["disconnected"]["b"] = 0.65098039215686
 		E.db["unitframe"]["colors"]["disconnected"]["g"] = 0.74901960784314
 		E.db["unitframe"]["colors"]["disconnected"]["r"] = 0.83921568627451
-		E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["texture"] = "Solid"
+		E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["texture"] = "Minimalist"
 		E.db["unitframe"]["colors"]["health_backdrop_dead"]["b"] = 0.011764705882353
 		E.db["unitframe"]["colors"]["health_backdrop_dead"]["g"] = 0.011764705882353
 		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0.10196078431373
@@ -921,7 +921,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["font"] = "Expressway"
 		E.db["unitframe"]["fontOutline"] = "OUTLINE"
 		E.db["unitframe"]["fontSize"] = 12
-		E.db["unitframe"]["statusbar"] = "Solid"
+		E.db["unitframe"]["statusbar"] = "Minimalist"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["anchorPoint"] = "RIGHT"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countFontSize"] = 14
@@ -1436,7 +1436,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["colors"]["disconnected"]["b"] = 1
 		E.db["unitframe"]["colors"]["disconnected"]["g"] = 1
 		E.db["unitframe"]["colors"]["disconnected"]["r"] = 1
-		E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["texture"] = "Solid"
+		E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["texture"] = "Minimalist"
 		E.db["unitframe"]["colors"]["healPrediction"]["personal"]["b"] = 0.50196078431373
 		E.db["unitframe"]["colors"]["health_backdrop_dead"]["b"] = 0
 		E.db["unitframe"]["colors"]["health_backdrop_dead"]["g"] = 0.043137254901961
@@ -1488,7 +1488,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["font"] = "Expressway"
 		E.db["unitframe"]["fontOutline"] = "OUTLINE"
 		E.db["unitframe"]["fontSize"] = 12
-		E.db["unitframe"]["statusbar"] = "Solid"
+		E.db["unitframe"]["statusbar"] = "Minimalist"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["anchorPoint"] = "RIGHT"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countFontSize"] = 14

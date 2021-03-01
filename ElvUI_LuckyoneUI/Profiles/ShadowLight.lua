@@ -16,7 +16,7 @@ function L1UI:GetSLEProfile()
 	E.private["sle"]["skins"]["objectiveTracker"]["BGbackdrop"] = false
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
-	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Solid"
+	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Minimalist"
 	E.private["sle"]["skins"]["objectiveTracker"]["underlineHeight"] = 2
 	E.private["sle"]["skins"]["petbattles"]["enable"] = false
 

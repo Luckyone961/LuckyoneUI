@@ -1,5 +1,6 @@
 ### Version 1.21 [  -  -2021]
 **Changes:**  
+Set the default texture to Minimalist  
 Merged the Plugins config section into Profiles  
 Added LuckyoneUI version on top of the ElvUI config  
 **New Additions:**  

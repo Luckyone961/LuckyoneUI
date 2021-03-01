@@ -519,8 +519,8 @@ function L1UI:GetOmniCDProfile()
 					},
 					["textures"] = {
 						["statusBar"] = {
-							["BG"] = "Solid",
-							["bar"] = "Solid",
+							["BG"] = "Minimalist",
+							["bar"] = "Minimalist",
 						},
 					},
 				},
@@ -1019,8 +1019,8 @@ function L1UI:GetOmniCDProfile()
 					},
 					["textures"] = {
 						["statusBar"] = {
-							["BG"] = "Solid",
-							["bar"] = "Solid",
+							["BG"] = "Minimalist",
+							["bar"] = "Minimalist",
 						},
 					},
 				},
