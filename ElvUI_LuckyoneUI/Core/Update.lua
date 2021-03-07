@@ -114,7 +114,5 @@ function L1UI:UpdateLayout(layout)
 
 	E:StaggeredUpdateAll(nil, true)
 
-	L1UI:Print('Layout has been updated.')
-
-	ReloadUI()
+	L1UI:Print('Layout has been updated. A /reload is suggested.')
 end
