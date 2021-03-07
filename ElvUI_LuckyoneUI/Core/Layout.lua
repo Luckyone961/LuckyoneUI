@@ -427,13 +427,12 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["healthBar"]["font"] = "Expressway"
 	E.db["tooltip"]["healthBar"]["fontSize"] = 11
 	E.db["tooltip"]["healthBar"]["height"] = 4
-	E.db["tooltip"]["healthBar"]["statusPosition"] = "DISABLED"
+	E.db["tooltip"]["healthBar"]["statusPosition"] = "TOP"
 	E.db["tooltip"]["itemCount"] = "NONE"
 	E.db["tooltip"]["showElvUIUsers"] = true
 	E.db["tooltip"]["showMount"] = false
 	E.db["tooltip"]["smallTextFontSize"] = 11
 	E.db["tooltip"]["textFontSize"] = 11
-	E.db["tooltip"]["visibility"]["combatOverride"] = "CTRL"
 
 	-- Custom Text: Arena
 	E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
