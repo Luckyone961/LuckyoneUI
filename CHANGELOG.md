@@ -1,6 +1,6 @@
 ### Version 1.21 [09-03-2021]
 **Changes:**  
-Updates for ElvUI 12.21 & Patch 9.0.5
+Updates for ElvUI 12.21 & Patch 9.0.5  
 Set the default texture to Minimalist  
 Merged the Plugins config section into Profiles  
 Added LuckyoneUI version on top of the ElvUI config  
