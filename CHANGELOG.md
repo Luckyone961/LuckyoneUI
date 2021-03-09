@@ -1,8 +1,12 @@
-### Version 1.21 [  -  -2021]
+### Version 1.21 [09-03-2021]
 **Changes:**  
+Updates for ElvUI 12.21 & Patch 9.0.5  
+Set the default texture to Minimalist  
 Merged the Plugins config section into Profiles  
 Added LuckyoneUI version on top of the ElvUI config  
+Updated Target Marker Icon position, size and offset for all frames  
 **New Additions:**  
+Target Marker for Pet Frame  
 Added OmniCD Profile for the Healing layout  
 **Misc:**  
 ProjectAzilroka profile update  

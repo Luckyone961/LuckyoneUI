@@ -152,9 +152,9 @@ function L1UI:SetupPrivate()
 	E.private["general"]["chatBubbleFont"] = "Expressway"
 	E.private["general"]["chatBubbleFontOutline"] = "OUTLINE"
 	E.private["general"]["dmgfont"] = "Expressway"
-	E.private["general"]["glossTex"] = "Solid"
+	E.private["general"]["glossTex"] = "Minimalist"
 	E.private["general"]["namefont"] = "Expressway"
-	E.private["general"]["normTex"] = "Solid"
+	E.private["general"]["normTex"] = "Minimalist"
 	E.private["general"]["totemBar"] = false
 	E.private["install_complete"] = "12.16"
 	E.private["skins"]["parchmentRemoverEnable"] = true
