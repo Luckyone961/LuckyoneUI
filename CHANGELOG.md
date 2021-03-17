@@ -2,6 +2,8 @@
 **Changes:**  
 **New Additions:**  
 **Misc:**  
+DBM profile update  
+Plater profile update  
 ___
 ### Version 1.21 [09-03-2021]
 **Changes:**  
