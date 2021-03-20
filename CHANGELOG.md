@@ -4,6 +4,7 @@
 **Misc:**  
 DBM profile update  
 Plater profile update  
+OmniCD profile update  
 ___
 ### Version 1.21 [09-03-2021]
 **Changes:**  
