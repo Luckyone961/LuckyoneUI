@@ -46,6 +46,7 @@ local SUPPORT = {
 	'|cffe6cc80Lox|r',
 	'|cffe6cc80Garbar|r',
 	'|cffe6cc80Dukes|r',
+	'|cffe6cc80Debeleus|r',
 }
 
 -- SortList
