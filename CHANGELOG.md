@@ -2,6 +2,7 @@
 **Changes:**  
 **New Additions:**  
 **Misc:**  
+WeakAura updates  
 DBM profile update  
 Plater profile update  
 OmniCD profile update  
