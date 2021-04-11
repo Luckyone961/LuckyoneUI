@@ -1,11 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
---[[
-	Copy Paste stuff
-	[E.mynameRealm] = {
-]]
+-- [E.mynameRealm]
 
--- DBM profile setup
 function L1UI:GetDBMProfile()
 
 	DBM:CreateProfile("Luckyone")

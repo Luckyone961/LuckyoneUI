@@ -1,6 +1,4 @@
-### Version 1.22 [  -  -2021]
-**Changes:**  
-**New Additions:**  
+### Version 1.22 [12-04-2021]
 **Misc:**  
 WeakAura updates  
 DBM profile update  

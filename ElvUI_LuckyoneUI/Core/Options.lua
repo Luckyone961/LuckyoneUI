@@ -7,12 +7,10 @@ local tconcat = table.concat
 
 local ReloadUI = ReloadUI
 
--- Author list
 local AUTHORS = {
 	'|cffFF7D0ALuckyone|r (EU) - LaughingSkull',
 }
 
--- Coding list
 local CODING = {
 	'|cff0070DEAzilroka|r',
 	'|cffFF7D0AMerathilis|r',
@@ -20,7 +18,6 @@ local CODING = {
 	'|cFF8866ccSimpy|r',
 }
 
--- Testers list
 local TESTERS = {
 	'|cffC41F3BKringel|r',
 	'|cff00FF96AltBridge|r',
@@ -29,7 +26,6 @@ local TESTERS = {
 	'|cffABD473Xyf|r',
 }
 
--- Dono list
 local SUPPORT = {
 	'|cffe6cc80DaPaKnat|r',
 	'|cffe6cc80Fooseq|r',
@@ -49,7 +45,6 @@ local SUPPORT = {
 	'|cffe6cc80Debeleus|r',
 }
 
--- SortList
 local function SortList(a, b)
 	return E:StripString(a) < E:StripString(b)
 end
@@ -59,34 +54,28 @@ sort(CODING, SortList)
 sort(TESTERS, SortList)
 sort(SUPPORT, SortList)
 
--- Author table
 for _, name in pairs(AUTHORS) do
 	tinsert(L1UI.CreditsList, name)
 end
 local AUTHORS_STRING = tconcat(AUTHORS, '|n')
 
--- Coding table
 for _, name in pairs(CODING) do
 	tinsert(L1UI.CreditsList, name)
 end
 local CODING_STRING = tconcat(CODING, '|n')
 
--- Testers table
 for _, name in pairs(TESTERS) do
 	tinsert(L1UI.CreditsList, name)
 end
 local TESTER_STRING = tconcat(TESTERS, '|n')
 
--- Dono table
 for _, name in pairs(SUPPORT) do
 	tinsert(L1UI.CreditsList, name)
 end
 local SUPPORT_STRING = tconcat(SUPPORT, '|n')
 
--- LuckyoneUI ingame options
 function L1UI:Configtable()
 
-	-- Add LuckyoneUI version on top of the ElvUI config
 	E.Options.name = E.Options.name.." + "..L1UI.Name.." "..L1UI.Version
 
 	E.Options.args.L1UI = {

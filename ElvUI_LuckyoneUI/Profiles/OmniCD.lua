@@ -1,11 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
---[[
-	Copy Paste stuff
-	[E.mynameRealm] = "Luckyone DPS/TANK",
-]]
+-- [E.mynameRealm] = "Luckyone DPS/TANK"
 
--- OmniCD profile setup
 function L1UI:GetOmniCDProfile()
 
 	OmniCDDB = {

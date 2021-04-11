@@ -2,12 +2,8 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local LoadAddOn = LoadAddOn
 
---[[
-	Copy Paste stuff
-	[E.mynameRealm] = main,
-]]
+-- [E.mynameRealm] = main
 
--- BigWigs profile setup
 function L1UI:GetBigWigsProfile()
 
 	local main = "Luckyone DPS/TANK"

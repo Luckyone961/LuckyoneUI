@@ -1,6 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
--- Shadow&Light profile setup
 function L1UI:GetSLEProfile()
 
 	-- Global DB

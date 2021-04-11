@@ -3,18 +3,14 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local pairs = pairs
 local SetCVar = SetCVar
 
--- NamePlate Setup
 function L1UI:SetupNamePlates(addon)
 
 	if addon == 'ElvUI' then
 
-		-- Toggle on
 		E.private["nameplates"]["enable"] = true
 
-		-- Style Filters & CVars
 		L1UI:SetupStyleFilters()
 
-		-- NamePlate DB
 		E.db["nameplates"]["colors"]["castbarDesaturate"] = false
 		E.db["nameplates"]["colors"]["castColor"]["g"] = 1
 		E.db["nameplates"]["colors"]["castColor"]["r"] = 0.023529411764706
@@ -275,24 +271,19 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["visibility"]["enemy"]["guardians"] = true
 		E.db["nameplates"]["visibility"]["enemy"]["minions"] = true
 
-		-- Set CVars
 		L1UI:NameplateCVars()
 
 	elseif addon == 'Plater' then
 
-		-- Toggle off ElvUI Module
 		E.private["nameplates"]["enable"] = false
 
-		-- Setup Plater Layout
 		L1UI:AddonSetupPlater()
 
-		-- Set CVars
 		L1UI:NameplateCVars()
 
 	end
 end
 
--- Style Filter Setup
 function L1UI:SetupStyleFilters()
 
 	for _, filterName in pairs({'Luckyone_HOA', 'Luckyone_MISTS', 'Luckyone_PF', 'Luckyone_NW', 'Luckyone_TOP', 'Luckyone_SD', 'Luckyone_SOA', 'Luckyone_DOS'}) do
@@ -399,23 +390,7 @@ function L1UI:SetupStyleFilters()
 
 	E:StaggeredUpdateAll(nil, true)
 
-	-- NamePlate CVars
-	SetCVar('nameplateLargerScale', 1)
-	SetCVar('nameplateMinAlpha', 1)
-	SetCVar('nameplateMinScale', 1)
-	SetCVar('nameplateMotion', 1)
-	SetCVar('nameplateOccludedAlphaMult', 1)
-	SetCVar('nameplateOverlapH', 1)
-	SetCVar('nameplateOverlapV', 1.6)
-	SetCVar('nameplateSelectedScale', 1)
-	SetCVar('nameplateSelfAlpha', 1)
-
-	-- Name CVars
-	SetCVar('UnitNameEnemyGuardianName', 1)
-	SetCVar('UnitNameEnemyMinionName', 1)
-	SetCVar('UnitNameEnemyPetName', 1)
-	SetCVar('UnitNameEnemyPlayerName', 1)
-	SetCVar('UnitNameEnemyTotem', 1)
+	L1UI:NameplateCVars()
 
 	L1UI:Print('NamePlate StyleFilters and CVars have been set.')
 end
