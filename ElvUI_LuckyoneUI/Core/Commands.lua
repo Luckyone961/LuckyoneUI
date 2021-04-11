@@ -7,7 +7,6 @@ function L1UI:WeeklyReward()
 
 	local List = _G.SlashCmdList
 
-	-- v1
 	if not List.WEEKLY then
 		_G.SLASH_WEEKLY1 = '/weekly'
 		List.WEEKLY = function()
@@ -16,7 +15,6 @@ function L1UI:WeeklyReward()
 		end
 	end
 
-	-- v2
 	if not List.VAULT then
 		_G.SLASH_VAULT1 = '/vault'
 		List.VAULT = function()
@@ -26,7 +24,6 @@ function L1UI:WeeklyReward()
 	end
 end
 
--- Register on init
 function L1UI:LoadCommands()
 
 	L1UI:WeeklyReward()

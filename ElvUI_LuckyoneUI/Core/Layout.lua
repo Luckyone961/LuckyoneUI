@@ -6,31 +6,24 @@ function L1UI:SetupLayout(layout)
 
 	if not E.db.movers then E.db.movers = {} end
 
-	-- Setup UI Scale
 	L1UI:SetupScale()
 
-	-- Setup Global DB
 	L1UI:SetupGlobal()
 
-	-- Setup Private DB
 	L1UI:SetupPrivate()
 
-	-- AddOnSkins Profile
 	if IsAddOnLoaded('AddOnSkins') then
 		L1UI:GetASProfile()
 	end
 
-	-- ProjectAzilroka Profile
 	if IsAddOnLoaded('ProjectAzilroka') then
 		L1UI:GetPAProfile()
 	end
 
-	-- Shadow&Light Profile
 	if IsAddOnLoaded('ElvUI_SLE') then
 		L1UI:GetSLEProfile()
 	end
 
-	-- AB Conversion
 	E.db["convertPages"] = true
 
 	-- General

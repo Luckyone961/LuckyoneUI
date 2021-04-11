@@ -1,3 +1,11 @@
+### Version 1.22 [12-04-2021]
+**Misc:**  
+WeakAura updates  
+DBM profile update  
+Plater profile update  
+OmniCD profile update  
+BigWigs profile update  
+___
 ### Version 1.21 [09-03-2021]
 **Changes:**  
 Updates for ElvUI 12.21 & Patch 9.0.5  

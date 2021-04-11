@@ -2,7 +2,6 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local _G = _G
 
--- ProjectAzilroka profile setup
 function L1UI:GetPAProfile()
 
 	local PA = _G.ProjectAzilroka

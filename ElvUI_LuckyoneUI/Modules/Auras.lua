@@ -1,6 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
--- Filters: Buffs
 function L1UI:SetupBuffs(frame, type)
 
 	local all = "Blacklist,Personal,nonPersonal"
@@ -53,7 +52,6 @@ function L1UI:SetupBuffs(frame, type)
 	L1UI:Print('Buff filters updated.')
 end
 
--- Filters: Debuffs
 function L1UI:SetupDebuffs(frame, type)
 
 	local all = "Blacklist,Personal,nonPersonal"

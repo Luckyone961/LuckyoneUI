@@ -6,7 +6,6 @@ local ElvUF = E.oUF
 	ref: elvui\ElvUI\Libraries\oUF\elements\tags.lua
 ]]
 
--- Classification without Affix
 ElvUF.Tags.Events['luckyone:classification'] = 'UNIT_CLASSIFICATION_CHANGED'
 ElvUF.Tags.Methods['luckyone:classification'] = function(unit)
 	local class = UnitClassification(unit)
@@ -21,7 +20,6 @@ ElvUF.Tags.Methods['luckyone:classification'] = function(unit)
 	end
 end
 
--- Healer Mana Current
 ElvUF.Tags.Events['luckyone:healermana:current'] = 'UNIT_POWER_FREQUENT UNIT_MAXPOWER'
 ElvUF.Tags.Methods['luckyone:healermana:current'] = function(unit)
 	local role = UnitGroupRolesAssigned(unit)
@@ -30,7 +28,6 @@ ElvUF.Tags.Methods['luckyone:healermana:current'] = function(unit)
 	end
 end
 
--- Healer Mana Percent
 ElvUF.Tags.Events['luckyone:healermana:percent'] = 'UNIT_MAXPOWER UNIT_POWER_FREQUENT'
 ElvUF.Tags.Methods['luckyone:healermana:percent'] = function(unit)
 	local role = UnitGroupRolesAssigned(unit)
