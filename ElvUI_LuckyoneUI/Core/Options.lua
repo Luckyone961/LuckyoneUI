@@ -43,6 +43,7 @@ local SUPPORT = {
 	'|cffe6cc80Garbar|r',
 	'|cffe6cc80Dukes|r',
 	'|cffe6cc80Debeleus|r',
+	'|cffe6cc80Kenneth|r',
 }
 
 local function SortList(a, b)
