@@ -930,7 +930,7 @@ function L1UI:Configtable()
 						type = 'input',
 						width = 'full',
 						name = 'Changelog:',
-						get = function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/blob/master/CHANGELOG.md' end,
+						get = function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/blob/main/CHANGELOG.md' end,
 					},
 					issues = {
 						order = 2,
