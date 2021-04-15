@@ -13,37 +13,37 @@ local AUTHORS = {
 
 local CODING = {
 	'|cff0070DEAzilroka|r',
-	'|cffFF7D0AMerathilis|r',
-	'|cffF58CBARepooc|r',
 	'|cFF8866ccSimpy|r',
+	'|cffF58CBARepooc|r',
+	'|cffFF7D0AMerathilis|r',
 }
 
 local TESTERS = {
-	'|cffC41F3BKringel|r',
 	'|cff00FF96AltBridge|r',
-	'|cffF58CBAIllusion|r',
 	'|cff69CCF0Sniefer|r',
 	'|cffABD473Xyf|r',
+	'|cffC41F3BKringel|r',
+	'|cffF58CBAIllusion|r',
 }
 
 local SUPPORT = {
-	'|cffe6cc80DaPaKnat|r',
-	'|cffe6cc80Fooseq|r',
-	'|cffe6cc80MonkeyHack|r',
-	'|cffe6cc80Midnatt|r',
-	'|cffe6cc80Liam|r',
 	'|cffe6cc80Badbrain|r',
-	'|cffe6cc80Littlesack|r',
 	'|cffe6cc80Calmcacil|r',
-	'|cffe6cc80Treelyté|r',
-	'|cffe6cc80DevinDog|r',
-	'|cffe6cc80ShowNoMercy|r',
-	'|cffe6cc80Triplebeamdreams|r',
-	'|cffe6cc80Lox|r',
-	'|cffe6cc80Garbar|r',
-	'|cffe6cc80Dukes|r',
+	'|cffe6cc80DaPaKnat|r',
 	'|cffe6cc80Debeleus|r',
+	'|cffe6cc80DevinDog|r',
+	'|cffe6cc80Dukes|r',
+	'|cffe6cc80Fooseq|r',
+	'|cffe6cc80Garbar|r',
 	'|cffe6cc80Kenneth|r',
+	'|cffe6cc80Liam|r',
+	'|cffe6cc80Littlesack|r',
+	'|cffe6cc80Lox|r',
+	'|cffe6cc80Midnatt|r',
+	'|cffe6cc80MonkeyHack|r',
+	'|cffe6cc80ShowNoMercy|r',
+	'|cffe6cc80Treelyté|r',
+	'|cffe6cc80Triplebeamdreams|r',
 }
 
 local function SortList(a, b)
@@ -77,7 +77,7 @@ local SUPPORT_STRING = tconcat(SUPPORT, '|n')
 
 function L1UI:Configtable()
 
-	E.Options.name = E.Options.name.." + "..L1UI.Name.." "..L1UI.Version
+	E.Options.name = E.Options.name..' + '..L1UI.Name..' '..L1UI.Version
 
 	E.Options.args.L1UI = {
 		order = 100,
@@ -87,7 +87,7 @@ function L1UI:Configtable()
 			header1 = {
 				order = 1,
 				type = 'header',
-				name = L1UI.Name.." "..L1UI.Version,
+				name = L1UI.Name..' '..L1UI.Version,
 			},
 			installer = {
 				order = 2,
