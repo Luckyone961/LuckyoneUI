@@ -652,10 +652,31 @@ function L1UI:Configtable()
 					},
 				},
 			},
+			skins = {
+				type = 'group',
+				name = '|cff4beb2cSkins|r',
+				order = 8,
+				args = {
+					blizzard = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Blizzard Frames',
+						args = {},
+					},
+					addons = {
+						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'AddOn Frames',
+						args = {},
+					},
+				},
+			},
 			themes = {
 				type = 'group',
 				name = '|cff4beb2cThemes|r',
-				order = 8,
+				order = 9,
 				args = {
 					raid = {
 						order = 1,
@@ -686,7 +707,7 @@ function L1UI:Configtable()
 			unitframes = {
 				type = 'group',
 				name = '|cff4beb2cUnitFrames|r',
-				order = 9,
+				order = 10,
 				args = {
 					raid = {
 						order = 1,
@@ -731,7 +752,7 @@ function L1UI:Configtable()
 			weakauras = {
 				type = 'group',
 				name = '|cff4beb2cWeakAuras|r',
-				order = 10,
+				order = 11,
 				args = {
 					header1 = {
 						order = 1,
@@ -860,7 +881,7 @@ function L1UI:Configtable()
 			credits = {
 				type = 'group',
 				name = '|cffFF7D0ACredits|r',
-				order = 11,
+				order = 12,
 				args = {
 					author = {
 						order = 1,
@@ -923,7 +944,7 @@ function L1UI:Configtable()
 			links = {
 				type = 'group',
 				name = '|cffFF7D0ALinks|r',
-				order = 12,
+				order = 13,
 				args = {
 					changelog = {
 						order = 1,

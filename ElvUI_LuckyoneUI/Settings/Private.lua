@@ -13,4 +13,6 @@ V.L1UI = {
 		AlertFrame = false,
 	},
 
+	skins = {},
+
 }
