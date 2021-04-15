@@ -123,7 +123,7 @@ function L1UI:Configtable()
 			auras = {
 				order = 2,
 				type = 'group',
-				name = '|cff4beb2cAuras|r',
+				name = format('|cff4beb2c%s|r', 'Auras'),
 				childGroups = 'tab',
 				args = {
 					buffs = {
@@ -364,7 +364,7 @@ function L1UI:Configtable()
 			},
 			blizzard = {
 				type = 'group',
-				name = '|cff4beb2cBlizzard|r',
+				name = format('|cff4beb2c%s|r', 'Blizzard'),
 				order = 3,
 				args = {
 					disabledFrames = {
@@ -413,7 +413,7 @@ function L1UI:Configtable()
 			},
 			chat = {
 				type = 'group',
-				name = '|cff4beb2cChat|r',
+				name = format('|cff4beb2c%s|r', 'Chat'),
 				order = 4,
 				args = {
 					chatSetup = {
@@ -464,7 +464,7 @@ function L1UI:Configtable()
 			cvars = {
 				order = 5,
 				type = 'group',
-				name = '|cff4beb2cCVars|r',
+				name = format('|cff4beb2c%s|r', 'CVars'),
 				args = {
 					setup = {
 						order = 1,
@@ -520,7 +520,7 @@ function L1UI:Configtable()
 			},
 			media = {
 				type = 'group',
-				name = '|cff4beb2cMedia|r',
+				name = format('|cff4beb2c%s|r', 'Media'),
 				order = 6,
 				args = {
 					defaults = {
@@ -543,7 +543,7 @@ function L1UI:Configtable()
 			},
 			profiles = {
 				type = 'group',
-				name = '|cff4beb2cProfiles|r',
+				name = format('|cff4beb2c%s|r', 'Profiles'),
 				order = 7,
 				args = {
 					plugins = {
@@ -654,7 +654,7 @@ function L1UI:Configtable()
 			},
 			skins = {
 				type = 'group',
-				name = '|cff4beb2cSkins|r',
+				name = format('|cff4beb2c%s|r', 'Skins'),
 				order = 8,
 				args = {
 					blizzard = {
@@ -675,7 +675,7 @@ function L1UI:Configtable()
 			},
 			themes = {
 				type = 'group',
-				name = '|cff4beb2cThemes|r',
+				name = format('|cff4beb2c%s|r', 'Themes'),
 				order = 9,
 				args = {
 					raid = {
@@ -706,7 +706,7 @@ function L1UI:Configtable()
 			},
 			unitframes = {
 				type = 'group',
-				name = '|cff4beb2cUnitFrames|r',
+				name = format('|cff4beb2c%s|r', 'UnitFrames'),
 				order = 10,
 				args = {
 					raid = {
@@ -751,7 +751,7 @@ function L1UI:Configtable()
 			},
 			weakauras = {
 				type = 'group',
-				name = '|cff4beb2cWeakAuras|r',
+				name = format('|cff4beb2c%s|r', 'WeakAuras'),
 				order = 11,
 				args = {
 					header1 = {
@@ -880,7 +880,7 @@ function L1UI:Configtable()
 			},
 			credits = {
 				type = 'group',
-				name = '|cffFF7D0ACredits|r',
+				name = format('|cffFF7D0A%s|r', 'Credits'),
 				order = 12,
 				args = {
 					author = {
@@ -943,7 +943,7 @@ function L1UI:Configtable()
 			},
 			links = {
 				type = 'group',
-				name = '|cffFF7D0ALinks|r',
+				name = format('|cffFF7D0A%s|r', 'Links'),
 				order = 13,
 				args = {
 					changelog = {
