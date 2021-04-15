@@ -9,7 +9,6 @@ function L1UI:GetPAProfile()
 
 	-- Module toggles
 	PA.db["AuraReminder"]["Enable"] = false
-	PA.db["BigButtons"]["Enable"] = false
 	PA.db["Cooldown"]["Enable"] = false
 	PA.db["DragonOverlay"]["Enable"] = false
 	PA.db["EnhancedShadows"]["Enable"] = false
@@ -20,6 +19,7 @@ function L1UI:GetPAProfile()
 	PA.db["QuestSounds"]["Enable"] = false
 	PA.db["ReputationReward"]["Enable"] = false
 	PA.db["stAddonManager"]["Enable"] = false
+	PA.db["SunsongRanchFarmer"]["Enable"] = false
 	PA.db["TorghastBuffs"]["Enable"] = false
 
 	-- SquareMinimapButtons Setup
