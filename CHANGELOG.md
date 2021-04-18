@@ -1,3 +1,8 @@
+### Version 1.23 []
+**Changes:**  
+**New Additions:**  
+**Misc:**  
+___
 ### Version 1.22 [12-04-2021]
 **Misc:**  
 WeakAura updates  
