@@ -677,7 +677,65 @@ function L1UI:Configtable()
 				type = 'group',
 				name = format('|cff4beb2c%s|r', 'Tags'),
 				order = 9,
-				args = {},
+				args = {
+					groups = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Tags',
+						args = {
+							available = {
+								order = 1,
+								type = 'execute',
+								name = 'Available Tags',
+								desc = 'Jump to the Available Tag list.',
+								func = function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', L1UI.Name) end,
+							},
+							elvui = {
+								order = 2,
+								type = 'execute',
+								name = 'Use ElvUI Tags',
+								func = function() L1UI:SwapTags('elvui') end,
+								confirm = true,
+							},
+							luckyone = {
+								order = 3,
+								type = 'execute',
+								name = 'Use Luckyone Tags',
+								func = function() L1UI:SwapTags('luckyone') end,
+								confirm = true,
+							},
+						},
+					},
+					elvuiDesc = {
+						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'ElvUI Tags',
+						args = {
+							elvui = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = '- perhp\n- classification',
+							},
+						},
+					},
+					luckyoneDesc = {
+						order = 3,
+						type = 'group',
+						inline = true,
+						name = 'Luckyone Tags',
+						args = {
+							luckyone = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = '- luckyone:health:percent\n- luckyone:classification\n- luckyone:healermana:percent',
+							},
+						},
+					},
+				},
 			},
 			themes = {
 				type = 'group',
