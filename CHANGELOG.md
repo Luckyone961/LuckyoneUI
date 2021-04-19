@@ -13,6 +13,7 @@ Tag: luckyone:health:percent
 **Misc:**  
 Updated Credits  
 Updated WeakAuras on Wago  
+• Mostly Paladin, Warlock, Shaman, DH, Druid  
 ___
 ### Version 1.22 [12-04-2021]
 **Misc:**  
