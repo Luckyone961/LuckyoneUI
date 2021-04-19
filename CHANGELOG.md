@@ -1,7 +1,13 @@
 ### Version 1.23 []
 **Changes:**  
+Absorb Style setup  
+Heal Prediction setup  
 **New Additions:**  
+Tag: luckyone:health:percent  
+• Displays health percentage with 0 decimals at full health  
+• 1 decimal below 100% health and 2 decimals below 10% health  
 **Misc:**  
+Updated Credits  
 ___
 ### Version 1.22 [12-04-2021]
 **Misc:**  
