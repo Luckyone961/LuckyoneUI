@@ -436,7 +436,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "LEFT",
 		["size"] = 14,
-		["text_format"] = "[perhp<%]",
+		["text_format"] = "[luckyone:health:percent]",
 		["xOffset"] = 1,
 		["yOffset"] = 0
 	}
@@ -472,7 +472,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "LEFT",
 		["size"] = 14,
-		["text_format"] = "[perhp<%]",
+		["text_format"] = "[luckyone:health:percent]",
 		["xOffset"] = 1,
 		["yOffset"] = 0
 	}
@@ -508,7 +508,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[perhp<%] || [health:current:shortvalue]",
+		["text_format"] = "[luckyone:health:percent] | [health:current:shortvalue]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -555,7 +555,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[perhp<%]",
+		["text_format"] = "[luckyone:health:percent]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -594,7 +594,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[perhp<%]",
+		["text_format"] = "[luckyone:health:percent]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -619,7 +619,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[health:current:shortvalue] || [perhp<%]",
+		["text_format"] = "[health:current:shortvalue] | [luckyone:health:percent]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -680,7 +680,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[perhp<%] || [health:current:shortvalue]",
+		["text_format"] = "[luckyone:health:percent] | [health:current:shortvalue]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -727,7 +727,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[perhp<%]",
+		["text_format"] = "[luckyone:health:percent]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -1266,7 +1266,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 1
 		E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid31,noexists] hide;show"
 		E.db["unitframe"]["units"]["raid40"]["width"] = 82
-		E.db["unitframe"]["units"]["raidpet"]["health"]["text_format"] = "[perhp<%]"
+		E.db["unitframe"]["units"]["raidpet"]["health"]["text_format"] = "[luckyone:health:percent]"
 		E.db["unitframe"]["units"]["raidpet"]["threatStyle"] = "NONE"
 		E.db["unitframe"]["units"]["tank"]["debuffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["tank"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
@@ -1832,7 +1832,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 1
 		E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid31,noexists] hide;show"
 		E.db["unitframe"]["units"]["raid40"]["width"] = 90
-		E.db["unitframe"]["units"]["raidpet"]["health"]["text_format"] = "[perhp<%]"
+		E.db["unitframe"]["units"]["raidpet"]["health"]["text_format"] = "[luckyone:health:percent]"
 		E.db["unitframe"]["units"]["raidpet"]["threatStyle"] = "NONE"
 		E.db["unitframe"]["units"]["tank"]["debuffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["tank"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
