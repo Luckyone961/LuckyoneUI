@@ -146,6 +146,7 @@ end
 function L1UI:SetupGlobal()
 
 	E.global["general"]["commandBarSetting"] = "DISABLED"
+	E.global["general"]["fadeMapWhenMoving"] = false
 	E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	E.global["general"]["smallerWorldMapScale"] = 0.8
 	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
