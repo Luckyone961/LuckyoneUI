@@ -2,7 +2,10 @@
 **Changes:**  
 Absorb Style setup  
 Heal Prediction setup  
+Added font outline for DataTexts  
 **New Additions:**  
+Config section "Tags"  
+Config section "Skins" (WIP)  
 Tag: luckyone:health:percent  
 • Displays health percentage with 0 decimals at full health  
 • 1 decimal below 100% health and 2 decimals below 10% health  
