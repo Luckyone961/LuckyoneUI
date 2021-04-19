@@ -1,6 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
-
 local ElvUF = E.oUF
+
+local floor = floor
 
 local UnitPower = UnitPower
 local UnitHealth = UnitHealth

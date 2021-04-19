@@ -12,17 +12,11 @@ function L1UI:SetupLayout(layout)
 
 	L1UI:SetupPrivate()
 
-	if IsAddOnLoaded('AddOnSkins') then
-		L1UI:GetASProfile()
-	end
+	if IsAddOnLoaded('AddOnSkins') then L1UI:GetASProfile() end
 
-	if IsAddOnLoaded('ProjectAzilroka') then
-		L1UI:GetPAProfile()
-	end
+	if IsAddOnLoaded('ProjectAzilroka') then L1UI:GetPAProfile() end
 
-	if IsAddOnLoaded('ElvUI_SLE') then
-		L1UI:GetSLEProfile()
-	end
+	if IsAddOnLoaded('ElvUI_SLE') then L1UI:GetSLEProfile() end
 
 	E.db["convertPages"] = true
 
