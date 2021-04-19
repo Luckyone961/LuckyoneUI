@@ -3,6 +3,7 @@
 Absorb Style setup  
 Heal Prediction setup  
 Added font outline for DataTexts  
+No longer fade worldmap while moving  
 **New Additions:**  
 Config section "Tags"  
 Config section "Skins" (WIP)  
