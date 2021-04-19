@@ -12,6 +12,7 @@ Tag: luckyone:health:percent
 • 1 decimal below 100% health and 2 decimals below 10% health  
 **Misc:**  
 Updated Credits  
+Updated WeakAuras on Wago  
 ___
 ### Version 1.22 [12-04-2021]
 **Misc:**  

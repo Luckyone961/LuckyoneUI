@@ -6,6 +6,8 @@ function L1UI:UpdateLayout(layout)
 
 	if not E.db.movers then E.db.movers = {} end
 
+	E.global["general"]["fadeMapWhenMoving"] = false
+
 	E.db["datatexts"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["arena"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 	E.db["unitframe"]["units"]["arena"]["healPrediction"]["enable"] = true
