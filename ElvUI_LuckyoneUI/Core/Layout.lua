@@ -65,9 +65,9 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["talkingHeadFrameBackdrop"] = true
 	E.db["general"]["talkingHeadFrameScale"] = 0.72
 	E.db["general"]["totems"]["enable"] = false
-	E.db["general"]["valuecolor"]["b"] = 0.039215601980686
-	E.db["general"]["valuecolor"]["g"] = 0.48627343773842
-	E.db["general"]["valuecolor"]["r"] = 0.99999779462814
+	E.db["general"]["valuecolor"]["b"] = 0.99
+	E.db["general"]["valuecolor"]["g"] = 0.99
+	E.db["general"]["valuecolor"]["r"] = 0.99
 	E.db["general"]["vehicleSeatIndicatorSize"] = 64
 
 	-- ActionBars
@@ -400,6 +400,7 @@ function L1UI:SetupLayout(layout)
 
 	-- DataTexts
 	E.db["datatexts"]["font"] = "Expressway"
+	E.db["datatexts"]["fontOutline"] = "OUTLINE"
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] = false
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"]["enable"] = true
@@ -756,7 +757,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
 		E.db["movers"]["ArtifactBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,16"
 		E.db["movers"]["AzeriteBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
-		E.db["movers"]["BelowMinimapContainerMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,80,485"
+		E.db["movers"]["BelowMinimapContainerMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,70,485"
 		E.db["movers"]["BNETMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173"
 		E.db["movers"]["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,-168,128"
 		E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
@@ -783,7 +784,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ElvUF_FocusTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-530,470"
 		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,450,-323"
 		E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,531,320"
-		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,105"
+		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,106"
 		E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-253,320"
 		E.db["movers"]["ElvUF_Raid40Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173"
 		E.db["movers"]["ElvUF_RaidMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173"
@@ -821,6 +822,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,1"
 		E.db["movers"]["TooltipMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135"
 		E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-57"
+		E.db["movers"]["TorghastBuffsMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-51"
 		E.db["movers"]["TotemBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,413,1"
 		E.db["movers"]["UIErrorsFrameMover"] = "TOP,ElvUIParent,TOP,0,-78"
 		E.db["movers"]["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,182"
@@ -931,6 +933,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["sizeOverride"] = 45
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["xOffset"] = -1
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["yOffset"] = 0
+		E.db["unitframe"]["units"]["arena"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["arena"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["arena"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["arena"]["height"] = 45
@@ -998,7 +1001,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["focus"]["debuffs"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["focus"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["focus"]["disableTargetGlow"] = true
-		E.db["unitframe"]["units"]["focus"]["healPrediction"]["absorbStyle"] = "NONE"
+		E.db["unitframe"]["units"]["focus"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["focus"]["health"]["position"] = "CENTER"
 		E.db["unitframe"]["units"]["focus"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["focus"]["height"] = 30
@@ -1057,7 +1060,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["party"]["debuffs"]["xOffset"] = 1
 		E.db["unitframe"]["units"]["party"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["party"]["disableTargetGlow"] = true
-		E.db["unitframe"]["units"]["party"]["healPrediction"]["absorbStyle"] = "NONE"
+		E.db["unitframe"]["units"]["party"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["party"]["healPrediction"]["enable"] = true
 		E.db["unitframe"]["units"]["party"]["health"]["position"] = "BOTTOM"
 		E.db["unitframe"]["units"]["party"]["health"]["text_format"] = ""
@@ -1106,7 +1109,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
 		E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
-		E.db["unitframe"]["units"]["pet"]["healPrediction"]["absorbStyle"] = "NONE"
+		E.db["unitframe"]["units"]["pet"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["pet"]["health"]["position"] = "CENTER"
 		E.db["unitframe"]["units"]["pet"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["pet"]["height"] = 30
@@ -1159,7 +1162,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["debuffs"]["desaturate"] = false
 		E.db["unitframe"]["units"]["player"]["debuffs"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["player"]["disableMouseoverGlow"] = true
-		E.db["unitframe"]["units"]["player"]["healPrediction"]["absorbStyle"] = "NONE"
+		E.db["unitframe"]["units"]["player"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["player"]["health"]["position"] = "CENTER"
 		E.db["unitframe"]["units"]["player"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["player"]["health"]["xOffset"] = 0
@@ -1201,6 +1204,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["raid"]["disableTargetGlow"] = true
 		E.db["unitframe"]["units"]["raid"]["healPrediction"]["absorbStyle"] = "WRAPPED"
+		E.db["unitframe"]["units"]["raid"]["healPrediction"]["enable"] = true
 		E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["height"] = 40
 		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 1
@@ -1244,6 +1248,8 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid40"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
 		E.db["unitframe"]["units"]["raid40"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["raid40"]["disableTargetGlow"] = true
+		E.db["unitframe"]["units"]["raid40"]["healPrediction"]["absorbStyle"] = "WRAPPED"
+		E.db["unitframe"]["units"]["raid40"]["healPrediction"]["enable"] = true
 		E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid40"]["height"] = 26
 		E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 1
@@ -1295,7 +1301,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
 		E.db["unitframe"]["units"]["target"]["debuffs"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["target"]["disableMouseoverGlow"] = true
-		E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "NONE"
+		E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["target"]["health"]["position"] = "CENTER"
 		E.db["unitframe"]["units"]["target"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["target"]["health"]["xOffset"] = 0
@@ -1531,6 +1537,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["sizeOverride"] = 45
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["xOffset"] = -1
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["yOffset"] = 0
+		E.db["unitframe"]["units"]["arena"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["arena"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["arena"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["arena"]["height"] = 45
@@ -1599,7 +1606,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["focus"]["debuffs"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["focus"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["focus"]["disableTargetGlow"] = true
-		E.db["unitframe"]["units"]["focus"]["healPrediction"]["absorbStyle"] = "NONE"
+		E.db["unitframe"]["units"]["focus"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["focus"]["health"]["position"] = "CENTER"
 		E.db["unitframe"]["units"]["focus"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["focus"]["height"] = 30
@@ -1658,7 +1665,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["party"]["debuffs"]["xOffset"] = 1
 		E.db["unitframe"]["units"]["party"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["party"]["disableTargetGlow"] = true
-		E.db["unitframe"]["units"]["party"]["healPrediction"]["absorbStyle"] = "NONE"
+		E.db["unitframe"]["units"]["party"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["party"]["healPrediction"]["enable"] = true
 		E.db["unitframe"]["units"]["party"]["health"]["position"] = "BOTTOM"
 		E.db["unitframe"]["units"]["party"]["health"]["text_format"] = ""
@@ -1745,7 +1752,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["debuffs"]["desaturate"] = false
 		E.db["unitframe"]["units"]["player"]["debuffs"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["player"]["disableMouseoverGlow"] = true
-		E.db["unitframe"]["units"]["player"]["healPrediction"]["absorbStyle"] = "NONE"
+		E.db["unitframe"]["units"]["player"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["player"]["health"]["position"] = "CENTER"
 		E.db["unitframe"]["units"]["player"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["player"]["health"]["xOffset"] = 0
@@ -1781,6 +1788,8 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
 		E.db["unitframe"]["units"]["raid"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["raid"]["disableTargetGlow"] = true
+		E.db["unitframe"]["units"]["raid"]["healPrediction"]["absorbStyle"] = "WRAPPED"
+		E.db["unitframe"]["units"]["raid"]["healPrediction"]["enable"] = true
 		E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["height"] = 40
 		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 1
@@ -1812,6 +1821,8 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid40"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
 		E.db["unitframe"]["units"]["raid40"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["raid40"]["disableTargetGlow"] = true
+		E.db["unitframe"]["units"]["raid40"]["healPrediction"]["absorbStyle"] = "WRAPPED"
+		E.db["unitframe"]["units"]["raid40"]["healPrediction"]["enable"] = true
 		E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid40"]["height"] = 26
 		E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 1
@@ -1832,7 +1843,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 1
 		E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid31,noexists] hide;show"
 		E.db["unitframe"]["units"]["raid40"]["width"] = 90
-		E.db["unitframe"]["units"]["raidpet"]["health"]["text_format"] = "[luckyone:health:percent]"
+		E.db["unitframe"]["units"]["raidpet"]["health"]["text_format"] = "[perhp<%]"
 		E.db["unitframe"]["units"]["raidpet"]["threatStyle"] = "NONE"
 		E.db["unitframe"]["units"]["tank"]["debuffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["tank"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
@@ -1861,7 +1872,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
 		E.db["unitframe"]["units"]["target"]["debuffs"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["target"]["disableMouseoverGlow"] = true
-		E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "NONE"
+		E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["target"]["health"]["position"] = "CENTER"
 		E.db["unitframe"]["units"]["target"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["target"]["health"]["xOffset"] = 0
