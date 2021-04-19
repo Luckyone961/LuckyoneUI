@@ -2,9 +2,12 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local ElvUF = E.oUF
 
---[[
-	ref: elvui\ElvUI\Libraries\oUF\elements\tags.lua
-]]
+local UnitPower = UnitPower
+local UnitHealth = UnitHealth
+local UnitPowerMax = UnitPowerMax
+local UnitHealthMax = UnitHealthMax
+local UnitClassification = UnitClassification
+local UnitGroupRolesAssigned = UnitGroupRolesAssigned
 
 ElvUF.Tags.Events['luckyone:classification'] = 'UNIT_CLASSIFICATION_CHANGED'
 ElvUF.Tags.Methods['luckyone:classification'] = function(unit)
@@ -32,15 +35,24 @@ ElvUF.Tags.Events['luckyone:healermana:percent'] = 'UNIT_MAXPOWER UNIT_POWER_FRE
 ElvUF.Tags.Methods['luckyone:healermana:percent'] = function(unit)
 	local role = UnitGroupRolesAssigned(unit)
 	if (role == 'HEALER') then
-		local max = UnitPowerMax(unit, Enum.PowerType.Mana)
-		if (max == 0) then
+		local powerMax = UnitPowerMax(unit, Enum.PowerType.Mana)
+		if (powerMax == 0) then
 			return 0
 		else
-			return math.floor(UnitPower(unit, Enum.PowerType.Mana) / max * 100 + .5)
+			return floor(UnitPower(unit, Enum.PowerType.Mana) / powerMax * 100 + .5)
 		end
 	end
+end
+
+ElvUF.Tags.Events['luckyone:health:percent'] = 'UNIT_HEALTH UNIT_MAXHEALTH'
+ElvUF.Tags.Methods['luckyone:health:percent'] = function(unit)
+	local currentHealth, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
+	local percent = currentHealth / maxHealth * 100
+
+	return E:GetFormattedText('PERCENT', currentHealth, maxHealth, percent == 100 and 0 or percent < 10 and 2 or 1, nil)
 end
 
 E:AddTagInfo('luckyone:classification', L1UI.Name, "Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'")
 E:AddTagInfo('luckyone:healermana:current', L1UI.Name, "Displays the unit's Mana (Role: Healer)")
 E:AddTagInfo('luckyone:healermana:percent', L1UI.Name, "Displays the unit's Mana in percent (Role: Healer)")
+E:AddTagInfo('luckyone:health:percent', L1UI.Name, "Displayes the unit's Health in percent with 1 decimal and hide decimals while at 100%")
