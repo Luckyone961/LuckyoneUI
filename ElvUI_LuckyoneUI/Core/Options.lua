@@ -673,10 +673,16 @@ function L1UI:Configtable()
 					},
 				},
 			},
+			tags = {
+				type = 'group',
+				name = format('|cff4beb2c%s|r', 'Tags'),
+				order = 9,
+				args = {},
+			},
 			themes = {
 				type = 'group',
 				name = format('|cff4beb2c%s|r', 'Themes'),
-				order = 9,
+				order = 10,
 				args = {
 					raid = {
 						order = 1,
@@ -707,7 +713,7 @@ function L1UI:Configtable()
 			unitframes = {
 				type = 'group',
 				name = format('|cff4beb2c%s|r', 'UnitFrames'),
-				order = 10,
+				order = 11,
 				args = {
 					raid = {
 						order = 1,
@@ -752,7 +758,7 @@ function L1UI:Configtable()
 			weakauras = {
 				type = 'group',
 				name = format('|cff4beb2c%s|r', 'WeakAuras'),
-				order = 11,
+				order = 12,
 				args = {
 					header1 = {
 						order = 1,
@@ -881,7 +887,7 @@ function L1UI:Configtable()
 			credits = {
 				type = 'group',
 				name = format('|cffFF7D0A%s|r', 'Credits'),
-				order = 12,
+				order = 13,
 				args = {
 					author = {
 						order = 1,
@@ -944,14 +950,14 @@ function L1UI:Configtable()
 			links = {
 				type = 'group',
 				name = format('|cffFF7D0A%s|r', 'Links'),
-				order = 13,
+				order = 14,
 				args = {
 					changelog = {
 						order = 1,
 						type = 'input',
 						width = 'full',
 						name = 'Changelog:',
-						get = function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/blob/main/CHANGELOG.md' end,
+						get = function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/blob/development/CHANGELOG.md' end,
 					},
 					issues = {
 						order = 2,
