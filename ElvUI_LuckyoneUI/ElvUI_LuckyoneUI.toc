@@ -1,6 +1,6 @@
 ## Interface: 90005
 ## Author: Luckyone
-## Version: 1.22
+## Version: 1.23
 ## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r
 ## Notes: Luckyone's ElvUI Edit
 ## RequiredDeps: ElvUI
@@ -9,6 +9,7 @@
 Init.lua
 Core\load_core.xml
 Media\load_media.xml
+Skins\load_skins.xml
 Modules\load_modules.xml
 Profiles\load_profiles.xml
 Settings\load_settings.xml

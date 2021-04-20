@@ -2,6 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local sort = sort
 local pairs = pairs
+local format = format
 local tinsert = table.insert
 local tconcat = table.concat
 
@@ -13,37 +14,37 @@ local AUTHORS = {
 
 local CODING = {
 	'|cff0070DEAzilroka|r',
-	'|cffFF7D0AMerathilis|r',
-	'|cffF58CBARepooc|r',
 	'|cFF8866ccSimpy|r',
+	'|cffF58CBARepooc|r',
+	'|cffFF7D0AMerathilis|r',
 }
 
 local TESTERS = {
-	'|cffC41F3BKringel|r',
 	'|cff00FF96AltBridge|r',
-	'|cffF58CBAIllusion|r',
 	'|cff69CCF0Sniefer|r',
 	'|cffABD473Xyf|r',
+	'|cffC41F3BKringel|r',
+	'|cffF58CBAIllusion|r',
 }
 
 local SUPPORT = {
-	'|cffe6cc80DaPaKnat|r',
-	'|cffe6cc80Fooseq|r',
-	'|cffe6cc80MonkeyHack|r',
-	'|cffe6cc80Midnatt|r',
-	'|cffe6cc80Liam|r',
 	'|cffe6cc80Badbrain|r',
-	'|cffe6cc80Littlesack|r',
 	'|cffe6cc80Calmcacil|r',
-	'|cffe6cc80Treelyté|r',
-	'|cffe6cc80DevinDog|r',
-	'|cffe6cc80ShowNoMercy|r',
-	'|cffe6cc80Triplebeamdreams|r',
-	'|cffe6cc80Lox|r',
-	'|cffe6cc80Garbar|r',
-	'|cffe6cc80Dukes|r',
+	'|cffe6cc80DaPaKnat|r',
 	'|cffe6cc80Debeleus|r',
+	'|cffe6cc80DevinDog|r',
+	'|cffe6cc80Dukes|r',
+	'|cffe6cc80Fooseq|r',
+	'|cffe6cc80Garbar|r',
 	'|cffe6cc80Kenneth|r',
+	'|cffe6cc80Liam|r',
+	'|cffe6cc80Littlesack|r',
+	'|cffe6cc80Lox|r',
+	'|cffe6cc80Midnatt|r',
+	'|cffe6cc80MonkeyHack|r',
+	'|cffe6cc80ShowNoMercy|r',
+	'|cffe6cc80Treelyté|r',
+	'|cffe6cc80Triplebeamdreams|r',
 }
 
 local function SortList(a, b)
@@ -77,7 +78,7 @@ local SUPPORT_STRING = tconcat(SUPPORT, '|n')
 
 function L1UI:Configtable()
 
-	E.Options.name = E.Options.name.." + "..L1UI.Name.." "..L1UI.Version
+	E.Options.name = E.Options.name..' + '..L1UI.Name..' '..L1UI.Version
 
 	E.Options.args.L1UI = {
 		order = 100,
@@ -87,7 +88,7 @@ function L1UI:Configtable()
 			header1 = {
 				order = 1,
 				type = 'header',
-				name = L1UI.Name.." "..L1UI.Version,
+				name = L1UI.Name..' '..L1UI.Version,
 			},
 			installer = {
 				order = 2,
@@ -100,14 +101,14 @@ function L1UI:Configtable()
 						type = 'execute',
 						name = 'Install',
 						desc = '(Re)-Run the installation process.',
-						func = function() E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData); E:ToggleOptionsUI(); end,
+						func = function() E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData) E:ToggleOptionsUI() end,
 					},
 					update1 = {
 						order = 2,
 						type = 'execute',
 						name = 'Update DPS/TANK',
 						desc = 'Update DPS/TANK layout to LuckyoneUI version: '..L1UI.Version,
-						func = function() L1UI:UpdateLayout('dps'); end,
+						func = function() L1UI:UpdateLayout('dps') end,
 						confirm = true,
 					},
 					update2 = {
@@ -115,7 +116,7 @@ function L1UI:Configtable()
 						type = 'execute',
 						name = 'Update Healing',
 						desc = 'Update Healing layout to LuckyoneUI version: '..L1UI.Version,
-						func = function() L1UI:UpdateLayout('healer'); end,
+						func = function() L1UI:UpdateLayout('healer') end,
 						confirm = true,
 					},
 				},
@@ -123,7 +124,7 @@ function L1UI:Configtable()
 			auras = {
 				order = 2,
 				type = 'group',
-				name = '|cff4beb2cAuras|r',
+				name = format('|cff4beb2c%s|r', 'Auras'),
 				childGroups = 'tab',
 				args = {
 					buffs = {
@@ -142,14 +143,14 @@ function L1UI:Configtable()
 										type = 'execute',
 										name = 'Minimalistic',
 										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupBuffs('player', 'min'); end,
+										func = function() L1UI:SetupBuffs('player', 'min') end,
 									},
 									all = {
 										order = 2,
 										type = 'execute',
 										name = 'Show All',
 										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupBuffs('player', 'all'); end,
+										func = function() L1UI:SetupBuffs('player', 'all') end,
 									},
 								},
 							},
@@ -164,14 +165,14 @@ function L1UI:Configtable()
 										type = 'execute',
 										name = 'Minimalistic',
 										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupBuffs('target', 'min'); end,
+										func = function() L1UI:SetupBuffs('target', 'min') end,
 									},
 									all = {
 										order = 2,
 										type = 'execute',
 										name = 'Show All',
 										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupBuffs('target', 'all'); end,
+										func = function() L1UI:SetupBuffs('target', 'all') end,
 									},
 								},
 							},
@@ -186,14 +187,14 @@ function L1UI:Configtable()
 										type = 'execute',
 										name = 'Minimalistic',
 										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupBuffs('focus', 'min'); end,
+										func = function() L1UI:SetupBuffs('focus', 'min') end,
 									},
 									all = {
 										order = 2,
 										type = 'execute',
 										name = 'Show All',
 										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupBuffs('focus', 'all'); end,
+										func = function() L1UI:SetupBuffs('focus', 'all') end,
 									},
 								},
 							},
@@ -208,14 +209,14 @@ function L1UI:Configtable()
 										type = 'execute',
 										name = 'Minimalistic',
 										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupBuffs('boss', 'min'); end,
+										func = function() L1UI:SetupBuffs('boss', 'min') end,
 									},
 									all = {
 										order = 2,
 										type = 'execute',
 										name = 'Show All',
 										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupBuffs('boss', 'all'); end,
+										func = function() L1UI:SetupBuffs('boss', 'all') end,
 									},
 								},
 							},
@@ -230,14 +231,14 @@ function L1UI:Configtable()
 										type = 'execute',
 										name = 'Minimalistic',
 										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupBuffs('nameplate', 'min'); end,
+										func = function() L1UI:SetupBuffs('nameplate', 'min') end,
 									},
 									all = {
 										order = 2,
 										type = 'execute',
 										name = 'Show All',
 										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupBuffs('nameplate', 'all'); end,
+										func = function() L1UI:SetupBuffs('nameplate', 'all') end,
 									},
 								},
 							},
@@ -259,14 +260,14 @@ function L1UI:Configtable()
 										type = 'execute',
 										name = 'Minimalistic',
 										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupDebuffs('player', 'min'); end,
+										func = function() L1UI:SetupDebuffs('player', 'min') end,
 									},
 									all = {
 										order = 2,
 										type = 'execute',
 										name = 'Show All',
 										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupDebuffs('player', 'all'); end,
+										func = function() L1UI:SetupDebuffs('player', 'all') end,
 									},
 								},
 							},
@@ -281,14 +282,14 @@ function L1UI:Configtable()
 										type = 'execute',
 										name = 'Minimalistic',
 										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupDebuffs('target', 'min'); end,
+										func = function() L1UI:SetupDebuffs('target', 'min') end,
 									},
 									all = {
 										order = 2,
 										type = 'execute',
 										name = 'Show All',
 										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupDebuffs('target', 'all'); end,
+										func = function() L1UI:SetupDebuffs('target', 'all') end,
 									},
 								},
 							},
@@ -303,14 +304,14 @@ function L1UI:Configtable()
 										type = 'execute',
 										name = 'Minimalistic',
 										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupDebuffs('focus', 'min'); end,
+										func = function() L1UI:SetupDebuffs('focus', 'min') end,
 									},
 									all = {
 										order = 2,
 										type = 'execute',
 										name = 'Show All',
 										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupDebuffs('focus', 'all'); end,
+										func = function() L1UI:SetupDebuffs('focus', 'all') end,
 									},
 								},
 							},
@@ -325,14 +326,14 @@ function L1UI:Configtable()
 										type = 'execute',
 										name = 'Minimalistic',
 										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupDebuffs('boss', 'min'); end,
+										func = function() L1UI:SetupDebuffs('boss', 'min') end,
 									},
 									all = {
 										order = 2,
 										type = 'execute',
 										name = 'Show All',
 										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupDebuffs('boss', 'all'); end,
+										func = function() L1UI:SetupDebuffs('boss', 'all') end,
 									},
 								},
 							},
@@ -347,14 +348,14 @@ function L1UI:Configtable()
 										type = 'execute',
 										name = 'Minimalistic',
 										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupDebuffs('nameplate', 'min'); end,
+										func = function() L1UI:SetupDebuffs('nameplate', 'min') end,
 									},
 									all = {
 										order = 2,
 										type = 'execute',
 										name = 'Show All',
 										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupDebuffs('nameplate', 'all'); end,
+										func = function() L1UI:SetupDebuffs('nameplate', 'all') end,
 									},
 								},
 							},
@@ -364,7 +365,7 @@ function L1UI:Configtable()
 			},
 			blizzard = {
 				type = 'group',
-				name = '|cff4beb2cBlizzard|r',
+				name = format('|cff4beb2c%s|r', 'Blizzard'),
 				order = 3,
 				args = {
 					disabledFrames = {
@@ -373,7 +374,7 @@ function L1UI:Configtable()
 						inline = true,
 						name = 'Hide Blizzard Frames',
 						get = function(info) return E.private.L1UI.disabledFrames[info[#info]] end,
-						set = function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value; E:StaticPopup_Show('PRIVATE_RL') end,
+						set = function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value E:StaticPopup_Show('PRIVATE_RL') end,
 						args = {
 							BossBanner = {
 								order = 1,
@@ -381,7 +382,7 @@ function L1UI:Configtable()
 								name = 'Boss Banner',
 								desc = 'Hide the Boss Banner',
 								get = function(info) return E.private.L1UI.disabledFrames.BossBanner end,
-								set = function(info, value) E.private.L1UI.disabledFrames.BossBanner = value; E:StaticPopup_Show('PRIVATE_RL') end,
+								set = function(info, value) E.private.L1UI.disabledFrames.BossBanner = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 							LevelUpDisplay = {
 								order = 2,
@@ -389,7 +390,7 @@ function L1UI:Configtable()
 								name = 'LevelUp Display',
 								desc = 'Hide the LevelUp Display',
 								get = function(info) return E.private.L1UI.disabledFrames.LevelUpDisplay end,
-								set = function(info, value) E.private.L1UI.disabledFrames.LevelUpDisplay = value; E:StaticPopup_Show('PRIVATE_RL') end,
+								set = function(info, value) E.private.L1UI.disabledFrames.LevelUpDisplay = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 							ZoneTextFrame = {
 								order = 3,
@@ -397,7 +398,7 @@ function L1UI:Configtable()
 								name = 'Zone Text',
 								desc = 'Hide the Zone Text',
 								get = function(info) return E.private.L1UI.disabledFrames.ZoneTextFrame end,
-								set = function(info, value) E.private.L1UI.disabledFrames.ZoneTextFrame = value; E:StaticPopup_Show('PRIVATE_RL') end,
+								set = function(info, value) E.private.L1UI.disabledFrames.ZoneTextFrame = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 							AlertFrame = {
 								order = 4,
@@ -405,7 +406,7 @@ function L1UI:Configtable()
 								name = 'Alert Frame',
 								desc = 'Hide the Loot/Alert Frame',
 								get = function(info) return E.private.L1UI.disabledFrames.AlertFrame end,
-								set = function(info, value) E.private.L1UI.disabledFrames.AlertFrame = value; E:StaticPopup_Show('PRIVATE_RL') end,
+								set = function(info, value) E.private.L1UI.disabledFrames.AlertFrame = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 						},
 					},
@@ -413,7 +414,7 @@ function L1UI:Configtable()
 			},
 			chat = {
 				type = 'group',
-				name = '|cff4beb2cChat|r',
+				name = format('|cff4beb2c%s|r', 'Chat'),
 				order = 4,
 				args = {
 					chatSetup = {
@@ -426,7 +427,7 @@ function L1UI:Configtable()
 								order = 1,
 								type = 'execute',
 								name = 'Setup Chat',
-								func = function() L1UI:SetupChat(); end,
+								func = function() L1UI:SetupChat() end,
 								confirm = true,
 							},
 						},
@@ -464,7 +465,7 @@ function L1UI:Configtable()
 			cvars = {
 				order = 5,
 				type = 'group',
-				name = '|cff4beb2cCVars|r',
+				name = format('|cff4beb2c%s|r', 'CVars'),
 				args = {
 					setup = {
 						order = 1,
@@ -476,14 +477,14 @@ function L1UI:Configtable()
 								order = 1,
 								type = 'execute',
 								name = 'General CVars',
-								func = function() L1UI:SetupCVars(); end,
+								func = function() L1UI:SetupCVars() end,
 								confirm = true,
 							},
 							nameplateVars = {
 								order = 2,
 								type = 'execute',
 								name = 'NamePlate CVars',
-								func = function() L1UI:NameplateCVars(); end,
+								func = function() L1UI:NameplateCVars() end,
 								confirm = true,
 							},
 						},
@@ -520,7 +521,7 @@ function L1UI:Configtable()
 			},
 			media = {
 				type = 'group',
-				name = '|cff4beb2cMedia|r',
+				name = format('|cff4beb2c%s|r', 'Media'),
 				order = 6,
 				args = {
 					defaults = {
@@ -534,7 +535,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'Reset Media',
 								desc = 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.',
-								func = function() L1UI:SetupPrivate(); E:StaggeredUpdateAll(nil, true) end,
+								func = function() L1UI:SetupPrivate() E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
 						},
@@ -543,7 +544,7 @@ function L1UI:Configtable()
 			},
 			profiles = {
 				type = 'group',
-				name = '|cff4beb2cProfiles|r',
+				name = format('|cff4beb2c%s|r', 'Profiles'),
 				order = 7,
 				args = {
 					plugins = {
@@ -557,7 +558,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = '|cff16C3F2AddOn|r|cFFFFFFFFSkins|r',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupAS(); ReloadUI(); end,
+								func = function() L1UI:AddonSetupAS() ReloadUI() end,
 								confirm = true,
 							},
 							projectazilroka = {
@@ -565,7 +566,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = '|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupPA(); ReloadUI(); end,
+								func = function() L1UI:AddonSetupPA() ReloadUI() end,
 								confirm = true,
 							},
 							sle = {
@@ -573,7 +574,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = '|cff9482c9Shadow & Light|r',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupSLE(); ReloadUI(); end,
+								func = function() L1UI:AddonSetupSLE() ReloadUI() end,
 								confirm = true,
 							},
 						},
@@ -589,7 +590,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'BigWigs',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupBW(); ReloadUI(); end,
+								func = function() L1UI:AddonSetupBW() ReloadUI() end,
 								confirm = true,
 							},
 							dbm = {
@@ -597,7 +598,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'DBM',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupDBM(); ReloadUI(); end,
+								func = function() L1UI:AddonSetupDBM() ReloadUI() end,
 								confirm = true,
 							},
 						},
@@ -613,7 +614,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'ElvUI',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:SetupNamePlates('ElvUI'); ReloadUI(); end,
+								func = function() L1UI:SetupNamePlates('ElvUI') ReloadUI() end,
 								confirm = true,
 							},
 							plater = {
@@ -621,7 +622,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'Plater',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:SetupNamePlates('Plater'); ReloadUI(); end,
+								func = function() L1UI:SetupNamePlates('Plater') ReloadUI() end,
 								confirm = true,
 							},
 						},
@@ -637,7 +638,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'Details',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupDT(); ReloadUI(); end,
+								func = function() L1UI:AddonSetupDT() ReloadUI() end,
 								confirm = true,
 							},
 							omnicd = {
@@ -645,8 +646,93 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'OmniCD',
 								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupOCD(); ReloadUI(); end,
+								func = function() L1UI:AddonSetupOCD() ReloadUI() end,
 								confirm = true,
+							},
+						},
+					},
+				},
+			},
+			skins = {
+				type = 'group',
+				name = format('|cff4beb2c%s|r', 'Skins'),
+				order = 8,
+				args = {
+					blizzard = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Blizzard Frames',
+						args = {},
+					},
+					addons = {
+						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'AddOn Frames',
+						args = {},
+					},
+				},
+			},
+			tags = {
+				type = 'group',
+				name = format('|cff4beb2c%s|r', 'Tags'),
+				order = 9,
+				args = {
+					groups = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Tags',
+						args = {
+							available = {
+								order = 1,
+								type = 'execute',
+								name = 'Available Tags',
+								desc = 'Jump to the Available Tag list.',
+								func = function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', L1UI.Name) end,
+							},
+							elvui = {
+								order = 2,
+								type = 'execute',
+								name = 'Use ElvUI Tags',
+								func = function() L1UI:SwapTags('elvui') end,
+								confirm = true,
+							},
+							luckyone = {
+								order = 3,
+								type = 'execute',
+								name = 'Use Luckyone Tags',
+								func = function() L1UI:SwapTags('luckyone') end,
+								confirm = true,
+							},
+						},
+					},
+					elvuiDesc = {
+						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'ElvUI Tags',
+						args = {
+							elvui = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = '- perhp\n- classification',
+							},
+						},
+					},
+					luckyoneDesc = {
+						order = 3,
+						type = 'group',
+						inline = true,
+						name = 'Luckyone Tags',
+						args = {
+							luckyone = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = '- luckyone:health:percent\n- luckyone:classification\n- luckyone:healermana:percent',
 							},
 						},
 					},
@@ -654,8 +740,8 @@ function L1UI:Configtable()
 			},
 			themes = {
 				type = 'group',
-				name = '|cff4beb2cThemes|r',
-				order = 8,
+				name = format('|cff4beb2c%s|r', 'Themes'),
+				order = 10,
 				args = {
 					raid = {
 						order = 1,
@@ -668,7 +754,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'Dark',
 								desc = 'Dark Style (Default)',
-								func = function() L1UI:SetupTheme('dark'); end,
+								func = function() L1UI:SetupTheme('dark') end,
 								confirm = true,
 							},
 							class = {
@@ -676,7 +762,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'Class Color',
 								desc = 'Class Color Style',
-								func = function() L1UI:SetupTheme('class'); end,
+								func = function() L1UI:SetupTheme('class') end,
 								confirm = true,
 							},
 						},
@@ -685,8 +771,8 @@ function L1UI:Configtable()
 			},
 			unitframes = {
 				type = 'group',
-				name = '|cff4beb2cUnitFrames|r',
-				order = 9,
+				name = format('|cff4beb2c%s|r', 'UnitFrames'),
+				order = 11,
 				args = {
 					raid = {
 						order = 1,
@@ -699,7 +785,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'Vertical',
 								desc = 'Vertical Style',
-								func = function() L1UI:RaidFrames('vertical'); end,
+								func = function() L1UI:RaidFrames('vertical') end,
 								confirm = true,
 							},
 							block = {
@@ -707,7 +793,7 @@ function L1UI:Configtable()
 								type = 'execute',
 								name = 'Block',
 								desc = 'Block Style',
-								func = function() L1UI:RaidFrames('block'); end,
+								func = function() L1UI:RaidFrames('block') end,
 								confirm = true,
 							},
 						},
@@ -730,8 +816,8 @@ function L1UI:Configtable()
 			},
 			weakauras = {
 				type = 'group',
-				name = '|cff4beb2cWeakAuras|r',
-				order = 10,
+				name = format('|cff4beb2c%s|r', 'WeakAuras'),
+				order = 12,
 				args = {
 					header1 = {
 						order = 1,
@@ -859,8 +945,8 @@ function L1UI:Configtable()
 			},
 			credits = {
 				type = 'group',
-				name = '|cffFF7D0ACredits|r',
-				order = 11,
+				name = format('|cffFF7D0A%s|r', 'Credits'),
+				order = 13,
 				args = {
 					author = {
 						order = 1,
@@ -922,15 +1008,15 @@ function L1UI:Configtable()
 			},
 			links = {
 				type = 'group',
-				name = '|cffFF7D0ALinks|r',
-				order = 12,
+				name = format('|cffFF7D0A%s|r', 'Links'),
+				order = 14,
 				args = {
 					changelog = {
 						order = 1,
 						type = 'input',
 						width = 'full',
 						name = 'Changelog:',
-						get = function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/blob/master/CHANGELOG.md' end,
+						get = function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/blob/development/CHANGELOG.md' end,
 					},
 					issues = {
 						order = 2,

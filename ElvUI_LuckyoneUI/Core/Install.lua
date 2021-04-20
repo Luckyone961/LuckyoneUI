@@ -1,7 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local format = format
 local ReloadUI = ReloadUI
-local format = string.format
 
 local function InstallComplete()
 	E.private.L1UI.install_version = L1UI.Version
