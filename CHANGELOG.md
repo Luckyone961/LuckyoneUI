@@ -1,4 +1,4 @@
-### Version 1.23 []
+### Version 1.23 [20-04-2021]
 **Changes:**  
 Absorb Style setup  
 Heal Prediction setup  
@@ -13,7 +13,7 @@ Tag: luckyone:health:percent
 **Misc:**  
 Updated Credits  
 Updated WeakAuras on Wago  
-• Mostly Paladin, Warlock, Shaman, DH, Druid  
+• Mostly Paladin, Warlock, Shaman, DH, DK, Druid  
 ___
 ### Version 1.22 [12-04-2021]
 **Misc:**  
