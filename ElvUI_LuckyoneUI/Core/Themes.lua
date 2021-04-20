@@ -193,6 +193,7 @@ function L1UI:SwapTags(group)
 
 	if group == 'elvui' then
 
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["format"] = "[perhp<%]"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[name:last][classificationcolor][ >classification]"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["format"] = "[perhp<%]"
@@ -232,6 +233,7 @@ function L1UI:SwapTags(group)
 
 	elseif group == 'luckyone' then
 
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["format"] = "[luckyone:health:percent]"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[name:last][classificationcolor][ >luckyone:classification]"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["format"] = "[luckyone:health:percent]"
@@ -272,6 +274,4 @@ function L1UI:SwapTags(group)
 	end
 
 	E:StaggeredUpdateAll(nil, true)
-
-	ReloadUI()
 end
