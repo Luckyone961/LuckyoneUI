@@ -26,6 +26,8 @@ function L1UI:UpdateLayout(layout)
 	E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 	E.db["unitframe"]["units"]["target"]["healPrediction"]["enable"] = true
 
+	L1UI:SwapTags('luckyone')
+
 	if layout == 'dps' then
 
 	elseif layout == 'healer' then
@@ -33,6 +35,4 @@ function L1UI:UpdateLayout(layout)
 	end
 
 	E:StaggeredUpdateAll(nil, true)
-
-	ReloadUI()
 end
