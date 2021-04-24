@@ -1,3 +1,7 @@
+### Version 1.24 [24-04-2021]
+**Hotfix:**  
+Layout Installer Hotfix (ProjectAzilroka related)  
+___
 ### Version 1.23 [20-04-2021]
 **Changes:**  
 Absorb Style setup  
