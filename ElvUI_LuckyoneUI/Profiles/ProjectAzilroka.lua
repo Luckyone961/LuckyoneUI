@@ -19,7 +19,7 @@ function L1UI:GetPAProfile()
 	PA.db["QuestSounds"]["Enable"] = false
 	PA.db["ReputationReward"]["Enable"] = false
 	PA.db["stAddonManager"]["Enable"] = false
-	PA.db["SunsongRanchFarmer"]["Enable"] = false
+	--PA.db["SunsongRanchFarmer"]["Enable"] = false
 	PA.db["TorghastBuffs"]["Enable"] = false
 
 	-- SquareMinimapButtons Setup
