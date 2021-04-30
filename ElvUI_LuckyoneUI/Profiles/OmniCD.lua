@@ -1,7 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
--- [E.mynameRealm] = "Luckyone DPS/TANK"
-
+-- OmniCD Profile
 function L1UI:GetOmniCDProfile()
 
 	OmniCDDB = {

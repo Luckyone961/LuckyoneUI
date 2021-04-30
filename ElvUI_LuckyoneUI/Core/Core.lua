@@ -4,10 +4,17 @@ local _G = _G
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 
+-- Constants
+L1UI.Retail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
+L1UI.Classic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
+L1UI.TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+
+-- LuckyoneUI chat print
 function L1UI:Print(msg)
 	print('|cff4beb2cLuckyoneUI|r: '..msg)
 end
 
+-- Toggle Blizzard Frames
 function L1UI:DisabledFrames()
 
 	if E.private.L1UI.disabledFrames.BossBanner then
@@ -32,6 +39,7 @@ function L1UI:DisabledFrames()
 	end
 end
 
+-- Load AddOnSkins Profile
 function L1UI:AddonSetupAS()
 
 	if IsAddOnLoaded('AddOnSkins') then
@@ -40,6 +48,7 @@ function L1UI:AddonSetupAS()
 	end
 end
 
+-- Load BigWigs Profile
 function L1UI:AddonSetupBW()
 
 	if IsAddOnLoaded('BigWigs') then
@@ -48,6 +57,7 @@ function L1UI:AddonSetupBW()
 	end
 end
 
+-- Load DBM Profile
 function L1UI:AddonSetupDBM()
 
 	if IsAddOnLoaded('DBM-Core') then
@@ -56,6 +66,7 @@ function L1UI:AddonSetupDBM()
 	end
 end
 
+-- Load Details Profile
 function L1UI:AddonSetupDT()
 
 	if IsAddOnLoaded('Details') then
@@ -64,6 +75,7 @@ function L1UI:AddonSetupDT()
 	end
 end
 
+-- Load OmniCD Profile
 function L1UI:AddonSetupOCD()
 
 	if IsAddOnLoaded('OmniCD') then
@@ -72,6 +84,7 @@ function L1UI:AddonSetupOCD()
 	end
 end
 
+-- Load Plater Profile
 function L1UI:AddonSetupPlater()
 
 	if IsAddOnLoaded('Plater') then
@@ -80,6 +93,7 @@ function L1UI:AddonSetupPlater()
 	end
 end
 
+-- Load ProjectAzilroka Profile
 function L1UI:AddonSetupPA()
 
 	if IsAddOnLoaded('ProjectAzilroka') then
@@ -88,6 +102,7 @@ function L1UI:AddonSetupPA()
 	end
 end
 
+-- Load Shadow&Light Profile
 function L1UI:AddonSetupSLE()
 
 	if IsAddOnLoaded('ElvUI_SLE') then
@@ -96,6 +111,7 @@ function L1UI:AddonSetupSLE()
 	end
 end
 
+-- General CVars
 function L1UI:SetupCVars()
 
 	E:SetupCVars(noDisplayMsg)
@@ -109,6 +125,7 @@ function L1UI:SetupCVars()
 	L1UI:Print('CVars have been set.')
 end
 
+-- NamePlate CVars
 function L1UI:NameplateCVars()
 
 	SetCVar('nameplateLargerScale', 1)
@@ -130,6 +147,7 @@ function L1UI:NameplateCVars()
 	L1UI:Print('NamePlate CVars have been set.')
 end
 
+-- E.private
 function L1UI:SetupPrivate()
 
 	E.private["general"]["chatBubbleFont"] = "Expressway"
@@ -143,6 +161,7 @@ function L1UI:SetupPrivate()
 	E.private["skins"]["parchmentRemoverEnable"] = true
 end
 
+-- E.global
 function L1UI:SetupGlobal()
 
 	E.global["general"]["commandBarSetting"] = "DISABLED"
@@ -151,6 +170,7 @@ function L1UI:SetupGlobal()
 	E.global["general"]["smallerWorldMapScale"] = 0.8
 	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
 
+	-- Luckyone Custom DataText (below ActionBars)
 	do
 		E.DataTexts:BuildPanelFrame("Luckyone_ActionBars_DT")
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["backdrop"] = true
@@ -177,6 +197,7 @@ function L1UI:SetupGlobal()
 	end
 end
 
+-- Set UI Scale
 function L1UI:SetupScale()
 
 	E.global["general"]["UIScale"] = 0.71111111111111

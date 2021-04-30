@@ -1,7 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
--- [E.mynameRealm] = "Luckyone"
-
+-- Plater Profile
 function L1UI:GetPlaterProfile()
 
 	PlaterDB = {

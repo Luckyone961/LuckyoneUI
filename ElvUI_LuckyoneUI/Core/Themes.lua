@@ -2,6 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local ReloadUI = ReloadUI
 
+-- UnitFrame color themes
 function L1UI:SetupTheme(theme)
 
 	if theme == 'dark' then
@@ -39,6 +40,7 @@ function L1UI:SetupTheme(theme)
 	L1UI:Print('Theme has been set.')
 end
 
+-- RaidFrame layouts
 function L1UI:RaidFrames(style)
 
 	if not E.db.movers then E.db.movers = {} end
@@ -178,6 +180,7 @@ function L1UI:RaidFrames(style)
 	ReloadUI()
 end
 
+-- Switch between LuckyoneUI and ElvUI text formats
 function L1UI:SwapTags(group)
 
 	E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}

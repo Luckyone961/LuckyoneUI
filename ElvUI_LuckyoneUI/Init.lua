@@ -4,26 +4,30 @@ local addon, Engine = ...
 
 local _G = _G
 
+-- Ace
 local L1UI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0');
 
-Engine[1] = L1UI
-Engine[2] = E
-Engine[3] = L
-Engine[4] = V
-Engine[5] = P
-Engine[6] = G
+Engine[1] = L1UI -- LuckyoneUI
+Engine[2] = E -- ElvUI Engine
+Engine[3] = L -- ElvUI Locales
+Engine[4] = V -- ElvUI PrivateDB
+Engine[5] = P -- ElvUI ProfileDB
+Engine[6] = G -- ElvUI GlobalDB
 _G[addon] = Engine;
 
-L1UI.Version = GetAddOnMetadata(addon, 'Version')
-L1UI.CreditsList = {}
+-- Constants & Tables
 L1UI.Config = {}
+L1UI.CreditsList = {}
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
+L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
+-- Load the following on login
 function L1UI:PLAYER_ENTERING_WORLD()
 	L1UI:DisabledFrames()
 	L1UI:LoadCommands()
 end
 
+-- Init
 function L1UI:Initialize()
 	if E.private.install_complete and E.private.L1UI.install_version == nil then
 		E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData)
@@ -33,6 +37,7 @@ function L1UI:Initialize()
 	L1UI:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
 
+-- Callback
 local function CallbackInitialize()
 	L1UI:Initialize()
 end

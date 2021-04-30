@@ -3,12 +3,15 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local pairs = pairs
 local SetCVar = SetCVar
 
+-- NamePlate Setup for ElvUI and Plater (addon arg 'ElvUI' and 'Plater' available)
 function L1UI:SetupNamePlates(addon)
 
 	if addon == 'ElvUI' then
 
+		-- Make sure to enable ElvUI NamePlates
 		E.private["nameplates"]["enable"] = true
 
+		-- Setup custom StyleFilters
 		L1UI:SetupStyleFilters()
 
 		E.db["nameplates"]["colors"]["castbarDesaturate"] = false
@@ -271,19 +274,24 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["visibility"]["enemy"]["guardians"] = true
 		E.db["nameplates"]["visibility"]["enemy"]["minions"] = true
 
+		-- Set NamePlate CVars
 		L1UI:NameplateCVars()
 
 	elseif addon == 'Plater' then
 
+		-- Make sure to disable ElvUI NamePlates if Plater is selected
 		E.private["nameplates"]["enable"] = false
 
+		-- Load Plater profile
 		L1UI:AddonSetupPlater()
 
+		-- Set NamePlate CVars
 		L1UI:NameplateCVars()
 
 	end
 end
 
+-- Custom StyleFilters for all Shadowlands Dungeons
 function L1UI:SetupStyleFilters()
 
 	for _, filterName in pairs({'Luckyone_HOA', 'Luckyone_MISTS', 'Luckyone_PF', 'Luckyone_NW', 'Luckyone_TOP', 'Luckyone_SD', 'Luckyone_SOA', 'Luckyone_DOS'}) do
@@ -390,6 +398,7 @@ function L1UI:SetupStyleFilters()
 
 	E:StaggeredUpdateAll(nil, true)
 
+	-- Set NamePlate CVars
 	L1UI:NameplateCVars()
 
 	L1UI:Print('NamePlate StyleFilters and CVars have been set.')

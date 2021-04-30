@@ -3,6 +3,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local LoadAddOn = LoadAddOn
 
+-- LuckyoneUI chat commands
 function L1UI:WeeklyReward()
 
 	local List = _G.SlashCmdList
@@ -24,6 +25,7 @@ function L1UI:WeeklyReward()
 	end
 end
 
+-- Load the following functions on init
 function L1UI:LoadCommands()
 
 	L1UI:WeeklyReward()

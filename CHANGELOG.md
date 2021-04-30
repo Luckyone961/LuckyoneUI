@@ -1,3 +1,8 @@
+### Version 1.25 [ETA: 🍨]
+**Changes:**  
+**New Additions:**  
+**Misc:**  
+___
 ### Version 1.24 [24-04-2021]
 **Hotfix:**  
 Layout Installer Hotfix (ProjectAzilroka related)  

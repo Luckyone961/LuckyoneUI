@@ -1,13 +1,14 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+-- Shadow & Light Profile
 function L1UI:GetSLEProfile()
 
-	-- Global DB
+	-- Shadow & Light Global DB
 	E.global["sle"]["advanced"]["confirmed"] = true
 	E.global["sle"]["advanced"]["gameMenu"]["enable"] = false
 	E.global["sle"]["advanced"]["general"] = true
 
-	-- Private DB
+	-- Shadow & Light Private DB
 	E.private["sle"]["install_complete"] = "4.18"
 	E.private["sle"]["module"]["blizzmove"]["enable"] = true
 	E.private["sle"]["module"]["screensaver"] = true
@@ -19,7 +20,7 @@ function L1UI:GetSLEProfile()
 	E.private["sle"]["skins"]["objectiveTracker"]["underlineHeight"] = 2
 	E.private["sle"]["skins"]["petbattles"]["enable"] = false
 
-	-- Profile DB
+	-- Shadow & Light Profile DB
 	E.db["sle"]["armory"]["character"]["background"]["overlay"] = false
 	E.db["sle"]["armory"]["character"]["durability"]["display"] = "Hide"
 	E.db["sle"]["armory"]["character"]["durability"]["font"] = "Expressway"

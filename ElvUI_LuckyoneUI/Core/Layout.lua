@@ -2,6 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local IsAddOnLoaded = IsAddOnLoaded
 
+-- ElvUI Layouts
 function L1UI:SetupLayout(layout)
 
 	if not E.db.movers then E.db.movers = {} end

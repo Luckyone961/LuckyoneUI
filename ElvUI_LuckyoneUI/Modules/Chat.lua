@@ -15,14 +15,18 @@ local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
 local ChatFrame_RemoveMessageGroup = ChatFrame_RemoveMessageGroup
 local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
 
+-- Chat setup for tabs, windows and channels
 function L1UI:SetupChat()
 
+	-- Reset chat to Blizzard defaults
 	FCF_ResetChatWindows()
 
-	FCF_OpenNewWindow()
-	FCF_OpenNewWindow()
-	FCF_OpenNewWindow()
+	-- General and Log are always id 1 and 2
+	FCF_OpenNewWindow() -- id 3
+	FCF_OpenNewWindow() -- id 4
+	FCF_OpenNewWindow() -- id 5
 
+	-- Rename and color all 5 tabs
 	for _, name in ipairs(_G.CHAT_FRAMES) do
 		local frame = _G[name]
 		local id = frame:GetID()
@@ -46,29 +50,35 @@ function L1UI:SetupChat()
 		end
 	end
 
+	-- Setup whisper tab
 	local chats = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame3)
 	for _, k in ipairs(chats) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame3, k)
 	end
 
+	-- Setup Guild tab
 	chats = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame4)
 	for _, k in ipairs(chats) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame4, k)
 	end
 
+	-- Setup Party tab
 	chats = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 	for _, k in ipairs(chats) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame5, k)
 	end
 
+	-- Set Chat CVars
 	SetCVar('chatStyle', 'classic')
 	SetCVar('whisperMode', 'inline')
 
+	-- Jump back to main tab
 	FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
 
+	-- Remove Whispers from main tab
 	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'IGNORED')
 	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'WHISPER')
 	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'BN_WHISPER')

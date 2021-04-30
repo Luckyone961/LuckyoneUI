@@ -8,6 +8,9 @@ local tconcat = table.concat
 
 local ReloadUI = ReloadUI
 
+---------------------------------------------
+------------------ Credits ------------------
+---------------------------------------------
 local AUTHORS = {
 	'|cffFF7D0ALuckyone|r (EU) - LaughingSkull',
 }
@@ -76,6 +79,9 @@ for _, name in pairs(SUPPORT) do
 end
 local SUPPORT_STRING = tconcat(SUPPORT, '|n')
 
+--------------------------------------------
+------------------ Config ------------------
+--------------------------------------------
 function L1UI:Configtable()
 
 	E.Options.name = E.Options.name..' + '..L1UI.Name..' '..L1UI.Version

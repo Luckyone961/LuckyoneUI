@@ -10,6 +10,7 @@ local UnitHealthMax = UnitHealthMax
 local UnitClassification = UnitClassification
 local UnitGroupRolesAssigned = UnitGroupRolesAssigned
 
+-- Display unit classification without 'affix' on minor enemies
 ElvUF.Tags.Events['luckyone:classification'] = 'UNIT_CLASSIFICATION_CHANGED'
 ElvUF.Tags.Methods['luckyone:classification'] = function(unit)
 	local class = UnitClassification(unit)
@@ -24,6 +25,7 @@ ElvUF.Tags.Methods['luckyone:classification'] = function(unit)
 	end
 end
 
+-- Display mana (current) if the unit is flagged healer
 ElvUF.Tags.Events['luckyone:healermana:current'] = 'UNIT_POWER_FREQUENT UNIT_MAXPOWER'
 ElvUF.Tags.Methods['luckyone:healermana:current'] = function(unit)
 	local role = UnitGroupRolesAssigned(unit)
@@ -32,6 +34,7 @@ ElvUF.Tags.Methods['luckyone:healermana:current'] = function(unit)
 	end
 end
 
+-- Display mana (percent) if the unit is flagged healer
 ElvUF.Tags.Events['luckyone:healermana:percent'] = 'UNIT_MAXPOWER UNIT_POWER_FREQUENT'
 ElvUF.Tags.Methods['luckyone:healermana:percent'] = function(unit)
 	local role = UnitGroupRolesAssigned(unit)
@@ -45,6 +48,7 @@ ElvUF.Tags.Methods['luckyone:healermana:percent'] = function(unit)
 	end
 end
 
+-- Display percentage health: 100% 0 decimals | <100% 1 decimal | <10% 2 decimals
 ElvUF.Tags.Events['luckyone:health:percent'] = 'UNIT_HEALTH UNIT_MAXHEALTH'
 ElvUF.Tags.Methods['luckyone:health:percent'] = function(unit)
 	local currentHealth, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
