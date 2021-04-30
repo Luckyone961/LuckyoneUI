@@ -1,5 +1,9 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local sort = sort
+local tinsert = table.insert
+local tconcat = table.concat
+
 local AUTHORS = {
 	'|cffFF7D0ALuckyone|r (EU) - LaughingSkull',
 }
@@ -51,19 +55,19 @@ sort(SUPPORT, SortList)
 for _, name in pairs(AUTHORS) do
 	tinsert(L1UI.CreditsList, name)
 end
-local AUTHORS_STRING = tconcat(AUTHORS, '|n')
+L1UI.AUTHORS_STRING = tconcat(AUTHORS, '|n')
 
 for _, name in pairs(CODING) do
 	tinsert(L1UI.CreditsList, name)
 end
-local CODING_STRING = tconcat(CODING, '|n')
+L1UI.CODING_STRING = tconcat(CODING, '|n')
 
 for _, name in pairs(TESTERS) do
 	tinsert(L1UI.CreditsList, name)
 end
-local TESTER_STRING = tconcat(TESTERS, '|n')
+L1UI.TESTER_STRING = tconcat(TESTERS, '|n')
 
 for _, name in pairs(SUPPORT) do
 	tinsert(L1UI.CreditsList, name)
 end
-local SUPPORT_STRING = tconcat(SUPPORT, '|n')
+L1UI.SUPPORT_STRING = tconcat(SUPPORT, '|n')

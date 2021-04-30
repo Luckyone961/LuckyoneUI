@@ -1,10 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local sort = sort
 local pairs = pairs
 local format = format
-local tinsert = table.insert
-local tconcat = table.concat
 
 local ReloadUI = ReloadUI
 
@@ -891,7 +888,7 @@ function L1UI:Configtable()
 								order = 1,
 								type = 'description',
 								fontSize = 'medium',
-								name = AUTHORS_STRING,
+								name = L1UI.AUTHORS_STRING,
 							},
 						},
 					},
@@ -905,7 +902,7 @@ function L1UI:Configtable()
 								order = 1,
 								type = 'description',
 								fontSize = 'medium',
-								name = CODING_STRING,
+								name = L1UI.CODING_STRING,
 							},
 						},
 					},
@@ -919,7 +916,7 @@ function L1UI:Configtable()
 								order = 1,
 								type = 'description',
 								fontSize = 'medium',
-								name = TESTER_STRING,
+								name = L1UI.TESTER_STRING,
 							},
 						},
 					},
@@ -933,7 +930,7 @@ function L1UI:Configtable()
 								order = 1,
 								type = 'description',
 								fontSize = 'medium',
-								name = SUPPORT_STRING,
+								name = L1UI.SUPPORT_STRING,
 							},
 						},
 					},
