@@ -4,11 +4,6 @@ local _G = _G
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 
--- Constants
-L1UI.Retail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
-L1UI.Classic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
-L1UI.TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-
 -- LuckyoneUI chat print
 function L1UI:Print(msg)
 	print('|cff4beb2cLuckyoneUI|r: '..msg)
