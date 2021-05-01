@@ -187,16 +187,16 @@ L1UI.Options.args.weakauras.args.affixes = ACH:Input('Mythic+ Affixes', nil, 18,
 L1UI.Options.args.credits = ACH:Group(format('|cffFF7D0A%s|r', 'Credits'), nil, 13)
 L1UI.Options.args.credits.args.author = ACH:Group('Author', nil, 1)
 L1UI.Options.args.credits.args.author.inline = true
-L1UI.Options.args.credits.args.author.args.desc = ACH:Description('', 1, 'medium')
+L1UI.Options.args.credits.args.author.args.desc = ACH:Description(L1UI.AUTHORS_STRING, 1, 'medium')
 L1UI.Options.args.credits.args.coding = ACH:Group('Coding', nil, 2)
 L1UI.Options.args.credits.args.coding.inline = true
-L1UI.Options.args.credits.args.coding.args.desc = ACH:Description('', 1, 'medium')
+L1UI.Options.args.credits.args.coding.args.desc = ACH:Description(L1UI.CODING_STRING, 1, 'medium')
 L1UI.Options.args.credits.args.testers = ACH:Group('Testers', nil, 3)
 L1UI.Options.args.credits.args.testers.inline = true
-L1UI.Options.args.credits.args.testers.args.desc = ACH:Description('', 1, 'medium')
+L1UI.Options.args.credits.args.testers.args.desc = ACH:Description(L1UI.TESTER_STRING, 1, 'medium')
 L1UI.Options.args.credits.args.supporter = ACH:Group('Supporters', nil, 4)
 L1UI.Options.args.credits.args.supporter.inline = true
-L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description('', 1, 'medium')
+L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description(L1UI.SUPPORT_STRING, 1, 'medium')
 
 -- Links
 L1UI.Options.args.links = ACH:Group(format('|cffFF7D0A%s|r', 'Links'), nil, 14)
