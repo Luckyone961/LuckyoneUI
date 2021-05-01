@@ -1,987 +1,271 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local ACH = L1UI.Libs.ACH
 
-local pairs = pairs
 local format = format
-
 local ReloadUI = ReloadUI
 
--- Ingame Config
-function L1UI:Configtable()
+-- ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
+-- ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
+-- ACH:Execute(name, desc, order, func, image, confirm, width, get, set, disabled, hidden)
+-- ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
+-- ACH:Header(name, order, get, set, hidden)
+-- ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
+-- ACH:MultiSelect(name, desc, order, values, confirm, width, get, set, disabled, hidden)
+-- ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
+-- ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
+-- ACH:Spacer(order, width, hidden)
+-- ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
 
+L1UI.Options = ACH:Group(L1UI.Name, nil, 100)
+L1UI.Options.args.header = ACH:Header(L1UI.Name..' '..L1UI.Version, 1)
+
+L1UI.Options.args.installer = ACH:Group('Installer & Update', nil, 2)
+L1UI.Options.args.installer.inline = true
+
+L1UI.Options.args.installer.args.install = ACH:Execute('Install', '(Re)-Run the installation process.', 1, function() E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData) E:ToggleOptionsUI() end)
+L1UI.Options.args.installer.args.updateD = ACH:Execute('Update DPS/TANK', 'Update DPS/TANK layout to LuckyoneUI version: '..L1UI.Version, 2, function() L1UI:UpdateLayout('dps') end, nil, true)
+L1UI.Options.args.installer.args.updateH = ACH:Execute('Update Healing', 'Update Healing layout to LuckyoneUI version: '..L1UI.Version, 3, function() L1UI:UpdateLayout('healer') end, nil, true)
+
+L1UI.Options.args.auras = ACH:Group(format('|cff4beb2c%s|r', 'Auras'), nil, 2, 'tab')
+L1UI.Options.args.auras.args.buffs = ACH:Group(format('|cff3296ff%s|r', 'Buffs'), nil, 1)
+L1UI.Options.args.auras.args.debuffs = ACH:Group(format('|cffC80000%s|r', 'Debuffs'), nil, 2)
+
+L1UI.Options.args.auras.args.buffs.args.player = ACH:Group('Player Frame Buffs', nil, 1)
+L1UI.Options.args.auras.args.buffs.args.player.inline = true
+
+L1UI.Options.args.auras.args.buffs.args.player.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupBuffs('player', 'min') end)
+L1UI.Options.args.auras.args.buffs.args.player.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupBuffs('player', 'all') end)
+
+L1UI.Options.args.auras.args.buffs.args.target = ACH:Group('Target Frame Buffs', nil, 2)
+L1UI.Options.args.auras.args.buffs.args.target.inline = true
+
+L1UI.Options.args.auras.args.buffs.args.target.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupBuffs('target', 'min') end)
+L1UI.Options.args.auras.args.buffs.args.target.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupBuffs('target', 'all') end)
+
+L1UI.Options.args.auras.args.buffs.args.focus = ACH:Group('Focus Frame Buffs', nil, 3)
+L1UI.Options.args.auras.args.buffs.args.focus.inline = true
+
+L1UI.Options.args.auras.args.buffs.args.focus.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupBuffs('focus', 'min') end)
+L1UI.Options.args.auras.args.buffs.args.focus.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupBuffs('focus', 'all') end)
+
+L1UI.Options.args.auras.args.buffs.args.boss = ACH:Group('Boss Frame Buffs', nil, 4)
+L1UI.Options.args.auras.args.buffs.args.boss.inline = true
+
+L1UI.Options.args.auras.args.buffs.args.boss.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupBuffs('boss', 'min') end)
+L1UI.Options.args.auras.args.buffs.args.boss.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupBuffs('boss', 'all') end)
+
+L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC = ACH:Group('NamePlates: Enemy NPC Buffs', nil, 5)
+L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.inline = true
+
+L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupBuffs('nameplate', 'min') end)
+L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupBuffs('nameplate', 'all') end)
+
+L1UI.Options.args.auras.args.debuffs.args.player = ACH:Group('Player Frame Debuffs', nil, 1)
+L1UI.Options.args.auras.args.debuffs.args.player.inline = true
+
+L1UI.Options.args.auras.args.debuffs.args.player.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupDebuffs('player', 'min') end)
+L1UI.Options.args.auras.args.debuffs.args.player.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupDebuffs('player', 'all') end)
+
+L1UI.Options.args.auras.args.debuffs.args.target = ACH:Group('Target Frame Debuffs', nil, 2)
+L1UI.Options.args.auras.args.debuffs.args.target.inline = true
+
+L1UI.Options.args.auras.args.debuffs.args.target.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupDebuffs('target', 'min') end)
+L1UI.Options.args.auras.args.debuffs.args.target.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupDebuffs('target', 'all') end)
+
+L1UI.Options.args.auras.args.debuffs.args.focus = ACH:Group('Focus Frame Debuffs', nil, 3)
+L1UI.Options.args.auras.args.debuffs.args.focus.inline = true
+
+L1UI.Options.args.auras.args.debuffs.args.focus.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupDebuffs('focus', 'min') end)
+L1UI.Options.args.auras.args.debuffs.args.focus.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupDebuffs('focus', 'all') end)
+
+L1UI.Options.args.auras.args.debuffs.args.boss = ACH:Group('Boss Frame Debuffs', nil, 4)
+L1UI.Options.args.auras.args.debuffs.args.boss.inline = true
+
+L1UI.Options.args.auras.args.debuffs.args.boss.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupDebuffs('boss', 'min') end)
+L1UI.Options.args.auras.args.debuffs.args.boss.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupDebuffs('boss', 'all') end)
+
+L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC = ACH:Group('NamePlates: Enemy NPC Debuffs', nil, 5)
+L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.inline = true
+
+L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupDebuffs('nameplate', 'min') end)
+L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupDebuffs('nameplate', 'all') end)
+
+L1UI.Options.args.blizzard = ACH:Group(format('|cff4beb2c%s|r', 'Blizzard'), nil, 3)
+L1UI.Options.args.blizzard.args.disabledFrames = ACH:Group('Hide Blizzard Frames', nil, 1, nil, function(info) return E.private.L1UI.disabledFrames[info[#info]] end, function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value E:StaticPopup_Show('PRIVATE_RL') end)
+L1UI.Options.args.blizzard.args.disabledFrames.inline = true
+
+L1UI.Options.args.blizzard.args.disabledFrames.args.BossBanner = ACH:Toggle('Boss Banner', 'Hide the Boss Banner', 1, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.BossBanner end, function(info, value) E.private.L1UI.disabledFrames.BossBanner = value E:StaticPopup_Show('PRIVATE_RL') end)
+L1UI.Options.args.blizzard.args.disabledFrames.args.LevelUpDisplay = ACH:Toggle('LevelUp Display', 'Hide the LevelUp Display', 2, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.LevelUpDisplay end, function(info, value) E.private.L1UI.disabledFrames.LevelUpDisplay = value E:StaticPopup_Show('PRIVATE_RL') end)
+L1UI.Options.args.blizzard.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle('Zone Text', 'Hide the Zone Text', 3, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.ZoneTextFrame end, function(info, value) E.private.L1UI.disabledFrames.ZoneTextFrame = value E:StaticPopup_Show('PRIVATE_RL') end)
+L1UI.Options.args.blizzard.args.disabledFrames.args.AlertFrame = ACH:Toggle('Alert Frame', 'Hide the Loot/Alert Frame', 4, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.AlertFrame end, function(info, value) E.private.L1UI.disabledFrames.AlertFrame = value E:StaticPopup_Show('PRIVATE_RL') end)
+
+L1UI.Options.args.chat = ACH:Group(format('|cff4beb2c%s|r', 'Chat'), nil, 4)
+L1UI.Options.args.chat.args.chatSetup = ACH:Group('Setup Chat', nil, 1)
+L1UI.Options.args.chat.args.chatSetup.inline = true
+
+L1UI.Options.args.chat.args.chatSetup.args.chat = ACH:Execute('Setup Chat', nil, 1, function() L1UI:SetupChat() end)
+
+L1UI.Options.args.chat.args.chatDesc = ACH:Group('Description', nil, 2)
+L1UI.Options.args.chat.args.chatDesc.inline = true
+
+L1UI.Options.args.chat.args.chatDesc.args.desc = ACH:Description('Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]', 1, 'medium')
+
+L1UI.Options.args.chat.args.chatVars = ACH:Group('Chat CVars', nil, 3)
+L1UI.Options.args.chat.args.chatVars.inline = true
+
+L1UI.Options.args.chat.args.chatVars.args.desc = ACH:Description('- chatStyle classic\n- whisperMode inline', 1, 'medium')
+
+L1UI.Options.args.cvars = ACH:Group(format('|cff4beb2c%s|r', 'CVars'), nil, 5)
+L1UI.Options.args.cvars.args.setup = ACH:Group('Setup CVars', nil, 1)
+L1UI.Options.args.cvars.args.setup.inline = true
+
+L1UI.Options.args.cvars.args.setup.args.generalVars = ACH:Execute('General CVars', nil, 1, function() L1UI:SetupCVars() end, nil, true)
+L1UI.Options.args.cvars.args.setup.args.nameplateVars = ACH:Execute('NamePlate CVars', nil, 2, function() L1UI:NameplateCVars() end, nil, true)
+
+L1UI.Options.args.cvars.args.generalDesc = ACH:Group('General CVars', nil, 2)
+L1UI.Options.args.cvars.args.generalDesc.inline = true
+
+L1UI.Options.args.cvars.args.generalDesc.args.cvars = ACH:Description('- cameraDistanceMaxZoomFactor 2.6\n- advancedCombatLogging 1\n- rawMouseEnable 1\n- ffxDeath 0\n- ffxGlow 0', 1, 'medium')
+
+L1UI.Options.args.cvars.args.nameplateDesc = ACH:Group('NamePlate CVars', nil, 3)
+L1UI.Options.args.cvars.args.nameplateDesc.inline = true
+
+L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- nameplateLargerScale 1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1', 1, 'medium')
+
+L1UI.Options.args.media = ACH:Group(format('|cff4beb2c%s|r', 'Media'), nil, 6)
+L1UI.Options.args.media.args.defaults = ACH:Group('Fonts, Textures & Skins', nil, 1)
+L1UI.Options.args.media.args.defaults.inline = true
+
+L1UI.Options.args.media.args.defaults.args.private = ACH:Execute('Reset Media', 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.', 1, function() L1UI:SetupPrivate() E:StaggeredUpdateAll(nil, true) end, nil, true)
+
+L1UI.Options.args.profiles = ACH:Group(format('|cff4beb2c%s|r', 'Profiles'), nil, 7)
+L1UI.Options.args.profiles.args.plugins = ACH:Group('ElvUI Plugins', nil, 1)
+L1UI.Options.args.profiles.args.plugins.inline = true
+
+L1UI.Options.args.profiles.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', 'Reset to LuckyoneUI defaults.', 1, function() L1UI:AddonSetupAS() ReloadUI() end, nil, true)
+L1UI.Options.args.profiles.args.plugins.args.pa = ACH:Execute('|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:AddonSetupPA() ReloadUI() end, nil, true)
+L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', 'Reset to LuckyoneUI defaults.', 3, function() L1UI:AddonSetupSLE() ReloadUI() end, nil, true)
+
+L1UI.Options.args.profiles.args.bossmods = ACH:Group('BossMods Profiles', nil, 2)
+L1UI.Options.args.profiles.args.bossmods.inline = true
+
+L1UI.Options.args.profiles.args.bossmods.args.bigwigs = ACH:Execute('BigWigs', 'Reset to LuckyoneUI defaults.', 1, function() L1UI:AddonSetupBW() ReloadUI() end, nil, true)
+L1UI.Options.args.profiles.args.bossmods.args.dbm = ACH:Execute('DBM', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:AddonSetupDBM() ReloadUI() end, nil, true)
+
+L1UI.Options.args.profiles.args.nameplates = ACH:Group('NamePlate Profiles', nil, 3)
+L1UI.Options.args.profiles.args.nameplates.inline = true
+
+L1UI.Options.args.profiles.args.nameplates.args.elvui = ACH:Execute('ElvUI', 'Reset to LuckyoneUI defaults.', 1, function() L1UI:SetupNamePlates('ElvUI') ReloadUI() end, nil, true)
+L1UI.Options.args.profiles.args.nameplates.args.plater = ACH:Execute('Plater', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:SetupNamePlates('Plater') ReloadUI() end, nil, true)
+
+L1UI.Options.args.profiles.args.addons = ACH:Group('Addon Profiles', nil, 4)
+L1UI.Options.args.profiles.args.addons.inline = true
+
+L1UI.Options.args.profiles.args.addons.args.details = ACH:Execute('Details', 'Reset to LuckyoneUI defaults.', 1, function() L1UI:AddonSetupDT() ReloadUI() end, nil, true)
+L1UI.Options.args.profiles.args.addons.args.omnicd = ACH:Execute('OmniCD', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:AddonSetupOCD() ReloadUI() end, nil, true)
+
+L1UI.Options.args.skins = ACH:Group(format('|cff4beb2c%s|r', 'Skins'), nil, 8)
+L1UI.Options.args.skins.args.addons = ACH:Group('AddOn Frames', nil, 1)
+L1UI.Options.args.skins.args.addons.inline = true
+
+L1UI.Options.args.skins.args.addons.args = {}
+
+L1UI.Options.args.skins.args.blizzard = ACH:Group('Blizzard Frames', nil, 2)
+L1UI.Options.args.skins.args.blizzard.inline = true
+
+L1UI.Options.args.skins.args.blizzard.args = {}
+
+L1UI.Options.args.tags = ACH:Group(format('|cff4beb2c%s|r', 'Tags'), nil, 9)
+L1UI.Options.args.tags.args.groups = ACH:Group('Tags', nil, 1)
+L1UI.Options.args.tags.args.groups.inline = true
+
+L1UI.Options.args.tags.args.groups.args.available = ACH:Execute('Available Tags', 'Jump to the Available Tag list.', 1, function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', L1UI.Name) end)
+L1UI.Options.args.tags.args.groups.args.elvui = ACH:Execute('Use ElvUI Tags', nil, 2, function() L1UI:SwapTags('elvui') end, nil, true)
+L1UI.Options.args.tags.args.groups.args.luckyone = ACH:Execute('Use Luckyone Tags', nil, 3, function() L1UI:SwapTags('luckyone') end, nil, true)
+
+L1UI.Options.args.tags.args.elvuiDesc = ACH:Group('ElvUI Tags', nil, 2)
+L1UI.Options.args.tags.args.elvuiDesc.inline = true
+
+L1UI.Options.args.tags.args.elvuiDesc.args.elvui = ACH:Description('- perhp\n- classification', 1, 'medium')
+
+L1UI.Options.args.tags.args.luckyoneDesc = ACH:Group('Luckyone Tags', nil, 3)
+L1UI.Options.args.tags.args.luckyoneDesc.inline = true
+
+L1UI.Options.args.tags.args.luckyoneDesc.args.luckyone = ACH:Description('- luckyone:health:percent\n- luckyone:classification\n- luckyone:healermana:percent', 1, 'medium')
+
+L1UI.Options.args.themes = ACH:Group(format('|cff4beb2c%s|r', 'Themes'), nil, 10)
+L1UI.Options.args.themes.args.raid = ACH:Group('UnitFrames Color Theme', nil, 1)
+L1UI.Options.args.themes.args.raid.inline = true
+
+L1UI.Options.args.themes.args.raid.args.dark = ACH:Execute('Dark', 'Dark Style (Default)', 1, function() L1UI:SetupTheme('dark') end, nil, true)
+L1UI.Options.args.themes.args.raid.args.class = ACH:Execute('Class Color', 'Class Color Style', 2, function() L1UI:SetupTheme('class') end, nil, true)
+
+L1UI.Options.args.unitframes = ACH:Group(format('|cff4beb2c%s|r', 'UnitFrames'), nil, 11)
+L1UI.Options.args.unitframes.args.raid = ACH:Group('Raidframe Style', nil, 1)
+L1UI.Options.args.unitframes.args.raid.inline = true
+
+L1UI.Options.args.unitframes.args.raid.args.vertical = ACH:Execute('Vertical', 'Vertical Style', 1, function() L1UI:RaidFrames('vertical') end, nil, true)
+L1UI.Options.args.unitframes.args.raid.args.block = ACH:Execute('Block', 'Block Style', 2, function() L1UI:RaidFrames('block') end, nil, true)
+
+L1UI.Options.args.unitframes.args.desc = ACH:Group('Note', nil, 2)
+L1UI.Options.args.unitframes.args.desc.inline = true
+
+L1UI.Options.args.unitframes.args.desc.args.raidDesc = ACH:Description('The options above are for the DPS/TANK layout.', 1, 'medium')
+
+L1UI.Options.args.weakauras = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 12)
+L1UI.Options.args.weakauras.args.header1 = ACH:Header('WeakAuras DPS/TANK', 1)
+L1UI.Options.args.weakauras.args.druid = ACH:Input('|cffFF7C0ADruid:|r', nil, 2, nil, 'normal', function() return 'wago.io/luckyoneDruid' end)
+L1UI.Options.args.weakauras.args.priest = ACH:Input('|cffFFFFFFPriest:|r', nil, 3, nil, 'normal', function() return 'wago.io/luckyonePriest' end)
+L1UI.Options.args.weakauras.args.monk = ACH:Input('|cff00FF98Monk:|r', nil, 4, nil, 'normal', function() return 'wago.io/luckyoneMonk' end)
+L1UI.Options.args.weakauras.args.warlock = ACH:Input('|cff8788EEWarlock:|r', nil, 5, nil, 'normal', function() return 'wago.io/luckyoneWarlock' end)
+L1UI.Options.args.weakauras.args.hunter = ACH:Input('|cffAAD372Hunter:|r', nil, 6, nil, 'normal', function() return 'wago.io/luckyoneHunter' end)
+L1UI.Options.args.weakauras.args.rogue = ACH:Input('|cffFFF468Rogue:|r', nil, 7, nil, 'normal', function() return 'wago.io/luckyoneRogue' end)
+L1UI.Options.args.weakauras.args.mage = ACH:Input('|cff3FC7EBMage:|r', nil, 8, nil, 'normal', function() return 'wago.io/luckyoneMage' end)
+L1UI.Options.args.weakauras.args.dh = ACH:Input('|cffA330C9Demon Hunter:|r', nil, 9, nil, 'normal', function() return 'wago.io/luckyoneDH' end)
+L1UI.Options.args.weakauras.args.dk = ACH:Input('|cffC41E3ADeath Knight:|r', nil, 10, nil, 'normal', function() return 'wago.io/luckyoneDK' end)
+L1UI.Options.args.weakauras.args.paladin = ACH:Input('|cffF48CBAPaladin:|r', nil, 11, nil, 'normal', function() return 'wago.io/luckyonePaladin' end)
+L1UI.Options.args.weakauras.args.shaman = ACH:Input('|cff0070DDShaman:|r', nil, 12, nil, 'normal', function() return 'wago.io/luckyoneShaman' end)
+L1UI.Options.args.weakauras.args.warrior = ACH:Input('|cffC69B6DWarrior:|r', nil, 13, nil, 'normal', function() return 'wago.io/luckyoneWarrior' end)
+L1UI.Options.args.weakauras.args.header2 = ACH:Header('General WeakAuras', 14)
+L1UI.Options.args.weakauras.args.keys = ACH:Input('Link !keys', nil, 15, nil, 'normal', function() return 'wago.io/bfakeys' end)
+L1UI.Options.args.weakauras.args.covenant = ACH:Input('Link !covenant', nil, 16, nil, 'normal', function() return 'wago.io/covenant' end)
+L1UI.Options.args.weakauras.args.trinket = ACH:Input('Trinket tracker', nil, 17, nil, 'normal', function() return 'wago.io/Trinket' end)
+L1UI.Options.args.weakauras.args.affixes = ACH:Input('Mythic+ Affixes', nil, 18, nil, 'normal', function() return 'wago.io/affixes' end)
+
+L1UI.Options.args.credits = ACH:Group(format('|cffFF7D0A%s|r', 'Credits'), nil, 13)
+L1UI.Options.args.credits.args.author = ACH:Group('Author', nil, 1)
+L1UI.Options.args.credits.args.author.inline = true
+
+L1UI.Options.args.credits.args.author.args.desc = ACH:Description('', 1, 'medium')
+
+L1UI.Options.args.credits.args.coding = ACH:Group('Coding', nil, 2)
+L1UI.Options.args.credits.args.coding.inline = true
+
+L1UI.Options.args.credits.args.coding.args.desc = ACH:Description('', 1, 'medium')
+
+L1UI.Options.args.credits.args.testers = ACH:Group('Testers', nil, 3)
+L1UI.Options.args.credits.args.testers.inline = true
+
+L1UI.Options.args.credits.args.testers.args.desc = ACH:Description('', 1, 'medium')
+
+L1UI.Options.args.credits.args.supporter = ACH:Group('Supporters', nil, 4)
+L1UI.Options.args.credits.args.supporter.inline = true
+
+L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description('', 1, 'medium')
+
+L1UI.Options.args.links = ACH:Group(format('|cffFF7D0A%s|r', 'Links'), nil, 14)
+L1UI.Options.args.links.args.changelog = ACH:Input('Changelog:', nil, 1, nil, 'full', function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/blob/development/CHANGELOG.md' end)
+L1UI.Options.args.links.args.issues = ACH:Input('Report issues here:', nil, 2, nil, 'full', function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/issues' end)
+L1UI.Options.args.links.args.website = ACH:Input('Addon link:', nil, 3, nil, 'full', function() return 'https://www.tukui.org/addons.php?id=154' end)
+L1UI.Options.args.links.args.discord = ACH:Input('Discord:', nil, 4, nil, 'full', function() return 'https://discord.gg/xRY4bwA' end)
+L1UI.Options.args.links.args.guide = ACH:Input('Wowhead Guide:', nil, 5, nil, 'full', function() return 'https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide' end)
+
+-- Load this on init
+function L1UI:GetOptions()
+
+	-- Add LuckyoneUI version on top of the ElvUI config
 	E.Options.name = E.Options.name..' + '..L1UI.Name..' '..L1UI.Version
 
-	E.Options.args.L1UI = {
-		order = 100,
-		type = 'group',
-		name = L1UI.Name,
-		args = {
-			header1 = {
-				order = 1,
-				type = 'header',
-				name = L1UI.Name..' '..L1UI.Version,
-			},
-			installer = {
-				order = 2,
-				type = 'group',
-				inline = true,
-				name = 'Installer & Update',
-				args = {
-					install = {
-						order = 1,
-						type = 'execute',
-						name = 'Install',
-						desc = '(Re)-Run the installation process.',
-						func = function() E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData) E:ToggleOptionsUI() end,
-					},
-					update1 = {
-						order = 2,
-						type = 'execute',
-						name = 'Update DPS/TANK',
-						desc = 'Update DPS/TANK layout to LuckyoneUI version: '..L1UI.Version,
-						func = function() L1UI:UpdateLayout('dps') end,
-						confirm = true,
-					},
-					update2 = {
-						order = 3,
-						type = 'execute',
-						name = 'Update Healing',
-						desc = 'Update Healing layout to LuckyoneUI version: '..L1UI.Version,
-						func = function() L1UI:UpdateLayout('healer') end,
-						confirm = true,
-					},
-				},
-			},
-			auras = {
-				order = 2,
-				type = 'group',
-				name = format('|cff4beb2c%s|r', 'Auras'),
-				childGroups = 'tab',
-				args = {
-					buffs = {
-						type = 'group',
-						name = '|cFF3296FFBuffs|r',
-						order = 1,
-						args = {
-							player = {
-								order = 1,
-								type = 'group',
-								name = 'Player Frame Buffs',
-								inline = true,
-								args = {
-									min = {
-										order = 1,
-										type = 'execute',
-										name = 'Minimalistic',
-										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupBuffs('player', 'min') end,
-									},
-									all = {
-										order = 2,
-										type = 'execute',
-										name = 'Show All',
-										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupBuffs('player', 'all') end,
-									},
-								},
-							},
-							target = {
-								order = 2,
-								type = 'group',
-								name = 'Target Frame Buffs',
-								inline = true,
-								args = {
-									min = {
-										order = 1,
-										type = 'execute',
-										name = 'Minimalistic',
-										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupBuffs('target', 'min') end,
-									},
-									all = {
-										order = 2,
-										type = 'execute',
-										name = 'Show All',
-										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupBuffs('target', 'all') end,
-									},
-								},
-							},
-							focus = {
-								order = 3,
-								type = 'group',
-								name = 'Focus Frame Buffs',
-								inline = true,
-								args = {
-									min = {
-										order = 1,
-										type = 'execute',
-										name = 'Minimalistic',
-										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupBuffs('focus', 'min') end,
-									},
-									all = {
-										order = 2,
-										type = 'execute',
-										name = 'Show All',
-										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupBuffs('focus', 'all') end,
-									},
-								},
-							},
-							boss = {
-								order = 4,
-								type = 'group',
-								name = 'Boss Frame Buffs',
-								inline = true,
-								args = {
-									min = {
-										order = 1,
-										type = 'execute',
-										name = 'Minimalistic',
-										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupBuffs('boss', 'min') end,
-									},
-									all = {
-										order = 2,
-										type = 'execute',
-										name = 'Show All',
-										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupBuffs('boss', 'all') end,
-									},
-								},
-							},
-							nameplate1 = {
-								order = 5,
-								type = 'group',
-								name = 'NamePlates: Enemy NPC Buffs',
-								inline = true,
-								args = {
-									min = {
-										order = 1,
-										type = 'execute',
-										name = 'Minimalistic',
-										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupBuffs('nameplate', 'min') end,
-									},
-									all = {
-										order = 2,
-										type = 'execute',
-										name = 'Show All',
-										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupBuffs('nameplate', 'all') end,
-									},
-								},
-							},
-						},
-					},
-					debuffs = {
-						type = 'group',
-						name = '|cFFC80000Debuffs|r',
-						order = 2,
-						args = {
-							player = {
-								order = 1,
-								type = 'group',
-								name = 'Player Frame Debuffs',
-								inline = true,
-								args = {
-									min = {
-										order = 1,
-										type = 'execute',
-										name = 'Minimalistic',
-										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupDebuffs('player', 'min') end,
-									},
-									all = {
-										order = 2,
-										type = 'execute',
-										name = 'Show All',
-										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupDebuffs('player', 'all') end,
-									},
-								},
-							},
-							target = {
-								order = 2,
-								type = 'group',
-								name = 'Target Frame Debuffs',
-								inline = true,
-								args = {
-									min = {
-										order = 1,
-										type = 'execute',
-										name = 'Minimalistic',
-										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupDebuffs('target', 'min') end,
-									},
-									all = {
-										order = 2,
-										type = 'execute',
-										name = 'Show All',
-										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupDebuffs('target', 'all') end,
-									},
-								},
-							},
-							focus = {
-								order = 3,
-								type = 'group',
-								name = 'Focus Frame Debuffs',
-								inline = true,
-								args = {
-									min = {
-										order = 1,
-										type = 'execute',
-										name = 'Minimalistic',
-										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupDebuffs('focus', 'min') end,
-									},
-									all = {
-										order = 2,
-										type = 'execute',
-										name = 'Show All',
-										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupDebuffs('focus', 'all') end,
-									},
-								},
-							},
-							boss = {
-								order = 4,
-								type = 'group',
-								name = 'Boss Frame Debuffs',
-								inline = true,
-								args = {
-									min = {
-										order = 1,
-										type = 'execute',
-										name = 'Minimalistic',
-										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupDebuffs('boss', 'min') end,
-									},
-									all = {
-										order = 2,
-										type = 'execute',
-										name = 'Show All',
-										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupDebuffs('boss', 'all') end,
-									},
-								},
-							},
-							nameplate1 = {
-								order = 5,
-								type = 'group',
-								name = 'NamePlates: Enemy NPC Debuffs',
-								inline = true,
-								args = {
-									min = {
-										order = 1,
-										type = 'execute',
-										name = 'Minimalistic',
-										desc = 'Minimalistic. Only important auras.',
-										func = function() L1UI:SetupDebuffs('nameplate', 'min') end,
-									},
-									all = {
-										order = 2,
-										type = 'execute',
-										name = 'Show All',
-										desc = 'Show all auras except blacklisted.',
-										func = function() L1UI:SetupDebuffs('nameplate', 'all') end,
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-			blizzard = {
-				type = 'group',
-				name = format('|cff4beb2c%s|r', 'Blizzard'),
-				order = 3,
-				args = {
-					disabledFrames = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'Hide Blizzard Frames',
-						get = function(info) return E.private.L1UI.disabledFrames[info[#info]] end,
-						set = function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value E:StaticPopup_Show('PRIVATE_RL') end,
-						args = {
-							BossBanner = {
-								order = 1,
-								type = 'toggle',
-								name = 'Boss Banner',
-								desc = 'Hide the Boss Banner',
-								get = function(info) return E.private.L1UI.disabledFrames.BossBanner end,
-								set = function(info, value) E.private.L1UI.disabledFrames.BossBanner = value E:StaticPopup_Show('PRIVATE_RL') end,
-							},
-							LevelUpDisplay = {
-								order = 2,
-								type = 'toggle',
-								name = 'LevelUp Display',
-								desc = 'Hide the LevelUp Display',
-								get = function(info) return E.private.L1UI.disabledFrames.LevelUpDisplay end,
-								set = function(info, value) E.private.L1UI.disabledFrames.LevelUpDisplay = value E:StaticPopup_Show('PRIVATE_RL') end,
-							},
-							ZoneTextFrame = {
-								order = 3,
-								type = 'toggle',
-								name = 'Zone Text',
-								desc = 'Hide the Zone Text',
-								get = function(info) return E.private.L1UI.disabledFrames.ZoneTextFrame end,
-								set = function(info, value) E.private.L1UI.disabledFrames.ZoneTextFrame = value E:StaticPopup_Show('PRIVATE_RL') end,
-							},
-							AlertFrame = {
-								order = 4,
-								type = 'toggle',
-								name = 'Alert Frame',
-								desc = 'Hide the Loot/Alert Frame',
-								get = function(info) return E.private.L1UI.disabledFrames.AlertFrame end,
-								set = function(info, value) E.private.L1UI.disabledFrames.AlertFrame = value E:StaticPopup_Show('PRIVATE_RL') end,
-							},
-						},
-					},
-				},
-			},
-			chat = {
-				type = 'group',
-				name = format('|cff4beb2c%s|r', 'Chat'),
-				order = 4,
-				args = {
-					chatSetup = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'Setup Chat',
-						args = {
-							chat = {
-								order = 1,
-								type = 'execute',
-								name = 'Setup Chat',
-								func = function() L1UI:SetupChat() end,
-								confirm = true,
-							},
-						},
-					},
-					chatDesc = {
-						order = 2,
-						type = 'group',
-						inline = true,
-						name = 'Description',
-						args = {
-							desc = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = 'Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]',
-							},
-						},
-					},
-					chatVars = {
-						order = 3,
-						type = 'group',
-						inline = true,
-						name = 'Chat CVars',
-						args = {
-							desc = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = '- chatStyle classic\n- whisperMode inline',
-							},
-						},
-					},
-				},
-			},
-			cvars = {
-				order = 5,
-				type = 'group',
-				name = format('|cff4beb2c%s|r', 'CVars'),
-				args = {
-					setup = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'Setup CVars',
-						args = {
-							generalVars = {
-								order = 1,
-								type = 'execute',
-								name = 'General CVars',
-								func = function() L1UI:SetupCVars() end,
-								confirm = true,
-							},
-							nameplateVars = {
-								order = 2,
-								type = 'execute',
-								name = 'NamePlate CVars',
-								func = function() L1UI:NameplateCVars() end,
-								confirm = true,
-							},
-						},
-					},
-					generalDesc = {
-						order = 2,
-						type = 'group',
-						inline = true,
-						name = 'General CVars',
-						args = {
-							cvars = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = '- cameraDistanceMaxZoomFactor 2.6\n- advancedCombatLogging 1\n- rawMouseEnable 1\n- ffxDeath 0\n- ffxGlow 0',
-							},
-						},
-					},
-					nameplateDesc = {
-						order = 3,
-						type = 'group',
-						inline = true,
-						name = 'NamePlate CVars',
-						args = {
-							cvars = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = '- nameplateLargerScale 1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1',
-							},
-						},
-					},
-				},
-			},
-			media = {
-				type = 'group',
-				name = format('|cff4beb2c%s|r', 'Media'),
-				order = 6,
-				args = {
-					defaults = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'Fonts, Textures & Skins',
-						args = {
-							private = {
-								order = 1,
-								type = 'execute',
-								name = 'Reset Media',
-								desc = 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.',
-								func = function() L1UI:SetupPrivate() E:StaggeredUpdateAll(nil, true) end,
-								confirm = true,
-							},
-						},
-					},
-				},
-			},
-			profiles = {
-				type = 'group',
-				name = format('|cff4beb2c%s|r', 'Profiles'),
-				order = 7,
-				args = {
-					plugins = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'ElvUI Plugins',
-						args = {
-							addonskins = {
-								order = 1,
-								type = 'execute',
-								name = '|cff16C3F2AddOn|r|cFFFFFFFFSkins|r',
-								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupAS() ReloadUI() end,
-								confirm = true,
-							},
-							projectazilroka = {
-								order = 2,
-								type = 'execute',
-								name = '|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r',
-								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupPA() ReloadUI() end,
-								confirm = true,
-							},
-							sle = {
-								order = 3,
-								type = 'execute',
-								name = '|cff9482c9Shadow & Light|r',
-								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupSLE() ReloadUI() end,
-								confirm = true,
-							},
-						},
-					},
-					bossmods = {
-						order = 2,
-						type = 'group',
-						inline = true,
-						name = 'BossMods Profiles',
-						args = {
-							bigwigs = {
-								order = 1,
-								type = 'execute',
-								name = 'BigWigs',
-								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupBW() ReloadUI() end,
-								confirm = true,
-							},
-							dbm = {
-								order = 2,
-								type = 'execute',
-								name = 'DBM',
-								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupDBM() ReloadUI() end,
-								confirm = true,
-							},
-						},
-					},
-					nameplates = {
-						order = 3,
-						type = 'group',
-						inline = true,
-						name = 'NamePlate Profiles',
-						args = {
-							elvui = {
-								order = 1,
-								type = 'execute',
-								name = 'ElvUI',
-								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:SetupNamePlates('ElvUI') ReloadUI() end,
-								confirm = true,
-							},
-							plater = {
-								order = 2,
-								type = 'execute',
-								name = 'Plater',
-								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:SetupNamePlates('Plater') ReloadUI() end,
-								confirm = true,
-							},
-						},
-					},
-					addons = {
-						order = 4,
-						type = 'group',
-						inline = true,
-						name = 'Addon Profiles',
-						args = {
-							details = {
-								order = 2,
-								type = 'execute',
-								name = 'Details',
-								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupDT() ReloadUI() end,
-								confirm = true,
-							},
-							omnicd = {
-								order = 3,
-								type = 'execute',
-								name = 'OmniCD',
-								desc = 'Reset to LuckyoneUI defaults.',
-								func = function() L1UI:AddonSetupOCD() ReloadUI() end,
-								confirm = true,
-							},
-						},
-					},
-				},
-			},
-			skins = {
-				type = 'group',
-				name = format('|cff4beb2c%s|r', 'Skins'),
-				order = 8,
-				args = {
-					blizzard = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'Blizzard Frames',
-						args = {},
-					},
-					addons = {
-						order = 2,
-						type = 'group',
-						inline = true,
-						name = 'AddOn Frames',
-						args = {},
-					},
-				},
-			},
-			tags = {
-				type = 'group',
-				name = format('|cff4beb2c%s|r', 'Tags'),
-				order = 9,
-				args = {
-					groups = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'Tags',
-						args = {
-							available = {
-								order = 1,
-								type = 'execute',
-								name = 'Available Tags',
-								desc = 'Jump to the Available Tag list.',
-								func = function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', L1UI.Name) end,
-							},
-							elvui = {
-								order = 2,
-								type = 'execute',
-								name = 'Use ElvUI Tags',
-								func = function() L1UI:SwapTags('elvui') end,
-								confirm = true,
-							},
-							luckyone = {
-								order = 3,
-								type = 'execute',
-								name = 'Use Luckyone Tags',
-								func = function() L1UI:SwapTags('luckyone') end,
-								confirm = true,
-							},
-						},
-					},
-					elvuiDesc = {
-						order = 2,
-						type = 'group',
-						inline = true,
-						name = 'ElvUI Tags',
-						args = {
-							elvui = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = '- perhp\n- classification',
-							},
-						},
-					},
-					luckyoneDesc = {
-						order = 3,
-						type = 'group',
-						inline = true,
-						name = 'Luckyone Tags',
-						args = {
-							luckyone = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = '- luckyone:health:percent\n- luckyone:classification\n- luckyone:healermana:percent',
-							},
-						},
-					},
-				},
-			},
-			themes = {
-				type = 'group',
-				name = format('|cff4beb2c%s|r', 'Themes'),
-				order = 10,
-				args = {
-					raid = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'UnitFrames Color Theme',
-						args = {
-							dark = {
-								order = 1,
-								type = 'execute',
-								name = 'Dark',
-								desc = 'Dark Style (Default)',
-								func = function() L1UI:SetupTheme('dark') end,
-								confirm = true,
-							},
-							class = {
-								order = 2,
-								type = 'execute',
-								name = 'Class Color',
-								desc = 'Class Color Style',
-								func = function() L1UI:SetupTheme('class') end,
-								confirm = true,
-							},
-						},
-					},
-				},
-			},
-			unitframes = {
-				type = 'group',
-				name = format('|cff4beb2c%s|r', 'UnitFrames'),
-				order = 11,
-				args = {
-					raid = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'Raidframe Style',
-						args = {
-							vertical = {
-								order = 1,
-								type = 'execute',
-								name = 'Vertical',
-								desc = 'Vertical Style',
-								func = function() L1UI:RaidFrames('vertical') end,
-								confirm = true,
-							},
-							block = {
-								order = 2,
-								type = 'execute',
-								name = 'Block',
-								desc = 'Block Style',
-								func = function() L1UI:RaidFrames('block') end,
-								confirm = true,
-							},
-						},
-					},
-					desc = {
-						order = 2,
-						type = 'group',
-						inline = true,
-						name = 'Note',
-						args = {
-							raidDesc = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = 'The options above are for the DPS/TANK layout.',
-							},
-						},
-					},
-				},
-			},
-			weakauras = {
-				type = 'group',
-				name = format('|cff4beb2c%s|r', 'WeakAuras'),
-				order = 12,
-				args = {
-					header1 = {
-						order = 1,
-						type = 'header',
-						name = 'Class WeakAuras',
-					},
-					class1 = {
-						order = 2,
-						type = 'input',
-						width = 'normal',
-						name = '|cffFF7C0ADruid:|r',
-						get = function() return 'wago.io/luckyoneDruid' end,
-					},
-					class2 = {
-						order = 3,
-						type = 'input',
-						width = 'normal',
-						name = '|cffFFFFFFPriest:|r',
-						get = function() return 'wago.io/luckyonePriest' end,
-					},
-					class3 = {
-						order = 4,
-						type = 'input',
-						width = 'normal',
-						name = '|cff00FF98Monk:|r',
-						get = function() return 'wago.io/luckyoneMonk' end,
-					},
-					class4 = {
-						order = 5,
-						type = 'input',
-						width = 'normal',
-						name = '|cff8788EEWarlock:|r',
-						get = function() return 'wago.io/luckyoneWarlock' end,
-					},
-					class5 = {
-						order = 6,
-						type = 'input',
-						width = 'normal',
-						name = '|cffAAD372Hunter:|r',
-						get = function() return 'wago.io/luckyoneHunter' end,
-					},
-					class6 = {
-						order = 7,
-						type = 'input',
-						width = 'normal',
-						name = '|cffFFF468Rogue:|r',
-						get = function() return 'wago.io/luckyoneRogue' end,
-					},
-					class7 = {
-						order = 8,
-						type = 'input',
-						width = 'normal',
-						name = '|cff3FC7EBMage:|r',
-						get = function() return 'wago.io/luckyoneMage' end,
-					},
-					class8 = {
-						order = 9,
-						type = 'input',
-						width = 'normal',
-						name = '|cffA330C9Demon Hunter:|r',
-						get = function() return 'wago.io/luckyoneDH' end,
-					},
-					class9 = {
-						order = 10,
-						type = 'input',
-						width = 'normal',
-						name = '|cffC41E3ADeath Knight:|r',
-						get = function() return 'wago.io/luckyoneDK' end,
-					},
-					class10 = {
-						order = 11,
-						type = 'input',
-						width = 'normal',
-						name = '|cffF48CBAPaladin:|r',
-						get = function() return 'wago.io/luckyonePaladin' end,
-					},
-					class11 = {
-						order = 12,
-						type = 'input',
-						width = 'normal',
-						name = '|cff0070DDShaman:|r',
-						get = function() return 'wago.io/luckyoneShaman' end,
-					},
-					class12 = {
-						order = 13,
-						type = 'input',
-						width = 'normal',
-						name = '|cffC69B6DWarrior:|r',
-						get = function() return 'wago.io/luckyoneWarrior' end,
-					},
-					header2 = {
-						order = 14,
-						type = 'header',
-						name = 'General WeakAuras',
-					},
-					keys = {
-						order = 15,
-						type = 'input',
-						width = 'normal',
-						name = 'Link !keys',
-						get = function() return 'wago.io/bfakeys' end,
-					},
-					covenant = {
-						order = 16,
-						type = 'input',
-						width = 'normal',
-						name = 'Link !covenant',
-						get = function() return 'wago.io/covenant' end,
-					},
-					trinket = {
-						order = 17,
-						type = 'input',
-						width = 'normal',
-						name = 'Trinket tracker',
-						get = function() return 'wago.io/Trinket' end,
-					},
-					affixes = {
-						order = 18,
-						type = 'input',
-						width = 'normal',
-						name = 'Mythic+ Affixes',
-						get = function() return 'wago.io/affixes' end,
-					},
-				},
-			},
-			credits = {
-				type = 'group',
-				name = format('|cffFF7D0A%s|r', 'Credits'),
-				order = 13,
-				args = {
-					author = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'Author',
-						args = {
-							desc = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = L1UI.AUTHORS_STRING,
-							},
-						},
-					},
-					coding = {
-						order = 2,
-						type = 'group',
-						inline = true,
-						name = 'Coding',
-						args = {
-							desc = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = L1UI.CODING_STRING,
-							},
-						},
-					},
-					testers = {
-						order = 3,
-						type = 'group',
-						inline = true,
-						name = 'Testers',
-						args = {
-							desc = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = L1UI.TESTER_STRING,
-							},
-						},
-					},
-					supporter = {
-						order = 4,
-						type = 'group',
-						inline = true,
-						name = 'Supporters',
-						args = {
-							desc = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = L1UI.SUPPORT_STRING,
-							},
-						},
-					},
-				},
-			},
-			links = {
-				type = 'group',
-				name = format('|cffFF7D0A%s|r', 'Links'),
-				order = 14,
-				args = {
-					changelog = {
-						order = 1,
-						type = 'input',
-						width = 'full',
-						name = 'Changelog:',
-						get = function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/blob/development/CHANGELOG.md' end,
-					},
-					issues = {
-						order = 2,
-						type = 'input',
-						width = 'full',
-						name = 'Report issues here:',
-						get = function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/issues' end,
-					},
-					website = {
-						order = 3,
-						type = 'input',
-						width = 'full',
-						name = 'Addon link:',
-						get = function() return 'https://www.tukui.org/addons.php?id=154' end,
-					},
-					discord = {
-						order = 4,
-						type = 'input',
-						width = 'full',
-						name = 'Discord:',
-						get = function() return 'https://discord.gg/xRY4bwA' end,
-					},
-					guide = {
-						order = 5,
-						type = 'input',
-						width = 'full',
-						name = 'Wowhead Guide:',
-						get = function() return 'https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide' end,
-					},
-				},
-			},
-		},
-	}
-
-	for _, func in pairs(L1UI.Config) do
-		func()
-	end
+	-- LuckyoneUI config
+	E.Options.args.L1UI = L1UI.Options
 end

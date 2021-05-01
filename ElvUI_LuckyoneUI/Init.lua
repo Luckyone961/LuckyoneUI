@@ -21,6 +21,11 @@ L1UI.CreditsList = {}
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
+-- Libs
+L1UI.Libs = {
+	ACH = _G.LibStub('LibAceConfigHelper'),
+}
+
 -- Load the following on login
 function L1UI:PLAYER_ENTERING_WORLD()
 	L1UI:DisabledFrames()
@@ -33,7 +38,7 @@ function L1UI:Initialize()
 		E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData)
 	end
 
-	EP:RegisterPlugin(addon, L1UI.Configtable)
+	EP:RegisterPlugin(addon, L1UI.GetOptions)
 	L1UI:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
 
