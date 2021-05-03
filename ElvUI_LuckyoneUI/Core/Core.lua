@@ -152,7 +152,7 @@ function L1UI:SetupPrivate()
 	E.private["general"]["namefont"] = "Expressway"
 	E.private["general"]["normTex"] = "Minimalist"
 	E.private["general"]["totemBar"] = false
-	E.private["install_complete"] = "12.16"
+	E.private["install_complete"] = "12.24"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 end
 

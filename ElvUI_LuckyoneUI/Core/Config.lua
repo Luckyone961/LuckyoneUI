@@ -81,7 +81,7 @@ L1UI.Options.args.chat.args.chatDesc.inline = true
 L1UI.Options.args.chat.args.chatDesc.args.desc = ACH:Description('Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]', 1, 'medium')
 L1UI.Options.args.chat.args.chatVars = ACH:Group('Chat CVars', nil, 3)
 L1UI.Options.args.chat.args.chatVars.inline = true
-L1UI.Options.args.chat.args.chatVars.args.desc = ACH:Description('- chatStyle classic\n- whisperMode inline', 1, 'medium')
+L1UI.Options.args.chat.args.chatVars.args.desc = ACH:Description('- chatStyle classic\n- whisperMode inline\n- chatClassColorOverride 0\n- colorChatNamesByClass 1', 1, 'medium')
 
 -- CVars
 L1UI.Options.args.cvars = ACH:Group(format('|cff4beb2c%s|r', 'CVars'), nil, 5)
