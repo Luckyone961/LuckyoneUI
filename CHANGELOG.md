@@ -2,6 +2,7 @@
 **Changes:**  
 **New Additions:**  
 **Misc:**  
+Shadow&Light profile update  
 Initial support for WoW Classic & TBC  
 ___
 ### Version 1.24 [24-04-2021]
