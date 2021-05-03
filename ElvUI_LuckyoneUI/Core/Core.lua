@@ -6,7 +6,7 @@ local IsAddOnLoaded = IsAddOnLoaded
 
 -- LuckyoneUI chat print
 function L1UI:Print(msg)
-	print('|cff4beb2cLuckyoneUI|r: '..msg)
+	print(L1UI.Name..': '..msg)
 end
 
 -- Toggle Blizzard Frames
