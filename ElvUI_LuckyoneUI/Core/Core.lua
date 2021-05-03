@@ -139,6 +139,11 @@ function L1UI:NameplateCVars()
 	SetCVar('UnitNameEnemyPlayerName', 1)
 	SetCVar('UnitNameEnemyTotem', 1)
 
+	-- NamePlate CVars for Classic and TBC
+	if not L1UI.Retail then
+		SetCVar('nameplateNotSelectedAlpha', 1)
+	end
+
 	L1UI:Print('NamePlate CVars have been set.')
 end
 
