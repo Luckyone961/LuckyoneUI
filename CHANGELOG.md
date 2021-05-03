@@ -1,9 +1,10 @@
 ### Version 1.25 [ETA: 🍨]
 **Changes:**  
-**New Additions:**  
+Setup Chat will now enable chat class colors  
 **Misc:**  
 Shadow&Light profile update  
 Initial support for WoW Classic & TBC  
+Initial support for Healing WeakAuras  
 ___
 ### Version 1.24 [24-04-2021]
 **Hotfix:**  
