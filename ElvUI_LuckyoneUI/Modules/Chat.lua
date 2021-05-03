@@ -7,6 +7,7 @@ local SetCVar = SetCVar
 
 local FCF_SetWindowName = FCF_SetWindowName
 local FCF_OpenNewWindow = FCF_OpenNewWindow
+local FCFTab_UpdateColors = FCFTab_UpdateColors
 local FCF_ResetChatWindows = FCF_ResetChatWindows
 local FCFDock_SelectWindow = FCFDock_SelectWindow
 local FCF_SetChatWindowFontSize = FCF_SetChatWindowFontSize
