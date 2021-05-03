@@ -9,9 +9,8 @@ function L1UI:GetSLEProfile()
 	E.global["sle"]["advanced"]["general"] = true
 
 	-- Shadow & Light Private DB
-	E.private["sle"]["install_complete"] = "4.18"
+	E.private["sle"]["install_complete"] = "4.21"
 	E.private["sle"]["module"]["blizzmove"]["enable"] = true
-	E.private["sle"]["module"]["screensaver"] = true
 	E.private["sle"]["professions"]["deconButton"]["enable"] = false
 	E.private["sle"]["skins"]["objectiveTracker"]["BGbackdrop"] = false
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
@@ -21,6 +20,33 @@ function L1UI:GetSLEProfile()
 	E.private["sle"]["skins"]["petbattles"]["enable"] = false
 
 	-- Shadow & Light Profile DB
+	E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["enable"] = false
+	E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["enable"] = false
+	E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["styleOptions"] = "blizzard"
+	E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["styleOptions"] = "blizzard"
+	E.db["sle"]["afk"]["defaultGraphics"]["factionLogo"]["enable"] = false
+	E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["styleOptions"] = "blizzard"
+	E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["enable"] = false
+	E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Expressway"
+	E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = -4
+	E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Expressway"
+	E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["font"] = "Expressway"
+	E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["size"] = 24
+	E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["font"] = "Expressway"
+	E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["size"] = 16
+	E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["font"] = "Expressway"
+	E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["size"] = 16
+	E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["font"] = "Expressway"
+	E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["size"] = 16
+	E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["font"] = "Expressway"
+	E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["size"] = 16
+	E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["font"] = "Expressway"
+	E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["enable"] = false
+	E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = "Expressway"
+	E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["size"] = 20
+	E.db["sle"]["afk"]["enable"] = true
+	E.db["sle"]["afk"]["playermodel"]["distance"] = 8
+	E.db["sle"]["afk"]["racialMusic"] = false
 	E.db["sle"]["armory"]["character"]["background"]["overlay"] = false
 	E.db["sle"]["armory"]["character"]["durability"]["display"] = "Hide"
 	E.db["sle"]["armory"]["character"]["durability"]["font"] = "Expressway"
@@ -75,17 +101,6 @@ function L1UI:GetSLEProfile()
 	E.db["sle"]["media"]["fonts"]["zone"]["font"] = "Expressway"
 	E.db["sle"]["media"]["fonts"]["zone"]["size"] = 30
 	E.db["sle"]["raidmarkers"]["enable"] = false
-	E.db["sle"]["screensaver"]["date"]["font"] = "Expressway"
-	E.db["sle"]["screensaver"]["height"] = 120
-	E.db["sle"]["screensaver"]["keydown"] = true
-	E.db["sle"]["screensaver"]["player"]["font"] = "Expressway"
-	E.db["sle"]["screensaver"]["playermodel"]["distance"] = 5
-	E.db["sle"]["screensaver"]["playermodel"]["enable"] = false
-	E.db["sle"]["screensaver"]["subtitle"]["font"] = "Expressway"
-	E.db["sle"]["screensaver"]["tips"]["font"] = "Expressway"
-	E.db["sle"]["screensaver"]["tips"]["size"] = 14
-	E.db["sle"]["screensaver"]["title"]["font"] = "Expressway"
-	E.db["sle"]["screensaver"]["xpack"] = 192
 	E.db["sle"]["skins"]["objectiveTracker"]["classHeader"] = true
 	E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["b"] = 1
 	E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["g"] = 0
