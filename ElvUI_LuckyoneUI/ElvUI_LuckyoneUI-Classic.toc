@@ -1,7 +1,7 @@
-## Interface: 20501
+## Interface: 11307
 ## Author: Luckyone
 ## Version: 1.00
-## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r
+## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cffFF7E40Classic|r
 ## Notes: Luckyone's ElvUI Edit
 ## RequiredDeps: ElvUI
 ## DefaultState: enabled
