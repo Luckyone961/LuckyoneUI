@@ -1,6 +1,10 @@
 ### Version 1.25 [ETA: 🍨]
 **Changes:**  
 Setup Chat will now enable chat class colors  
+**New Additions:**  
+Chat Commands  
+• /luckyoneui config  
+• /luckyoneui install  
 **Misc:**  
 Shadow&Light profile update  
 Initial support for WoW Classic & TBC  
