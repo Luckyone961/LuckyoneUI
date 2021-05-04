@@ -1,6 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
--- DBM Profile
+-- Details Profile
 function L1UI:GetDetailsProfile()
 
 	local key = "Luckyone"
