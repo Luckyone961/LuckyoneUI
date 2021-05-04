@@ -118,7 +118,14 @@ function L1UI:NameplateCVars()
 	SetCVar('UnitNameEnemyMinionName', 1)
 	SetCVar('UnitNameEnemyPetName', 1)
 	SetCVar('UnitNameEnemyPlayerName', 1)
-	SetCVar('UnitNameEnemyTotem', 1)
+
+	if not L1UI.Classic then
+		SetCVar('UnitNameEnemyTotem', 1)
+	end
+
+	if not L1UI.Retail then
+		SetCVar('nameplateNotSelectedAlpha', 1)
+	end
 
 	L1UI:Print('NamePlate CVars have been set.')
 end
@@ -140,7 +147,10 @@ end
 -- E.global
 function L1UI:SetupGlobal()
 
-	E.global["general"]["commandBarSetting"] = "DISABLED"
+	if L1UI.Retail then
+		E.global["general"]["commandBarSetting"] = "DISABLED"
+	end
+
 	E.global["general"]["fadeMapWhenMoving"] = false
 	E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	E.global["general"]["smallerWorldMapScale"] = 0.8

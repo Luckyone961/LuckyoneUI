@@ -27,7 +27,10 @@ end
 
 function L1UI:LoadCommands()
 
-	self:RegisterChatCommand('weekly', 'WeeklyRewards')
-	self:RegisterChatCommand('vault', 'WeeklyRewards')
+	if L1UI.Retail then
+		self:RegisterChatCommand('weekly', 'WeeklyRewards')
+		self:RegisterChatCommand('vault', 'WeeklyRewards')
+	end
+
 	self:RegisterChatCommand('luckyoneui', 'Toggles')
 end

@@ -1,4 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
+if not L1UI.Retail then return end
 
 -- OmniCD Profile
 function L1UI:GetOmniCDProfile()

@@ -5,11 +5,11 @@ local _G = _G
 -- Disabled Blizzard Frames
 function L1UI:DisabledFrames()
 
-	if E.private.L1UI.disabledFrames.BossBanner then
+	if (E.private.L1UI.disabledFrames.BossBanner and L1UI.Retail) then
 		_G.BossBanner:UnregisterAllEvents()
 	end
 
-	if E.private.L1UI.disabledFrames.LevelUpDisplay then
+	if (E.private.L1UI.disabledFrames.LevelUpDisplay and L1UI.Retail) then
 		_G.LevelUpDisplay:UnregisterAllEvents()
 	end
 

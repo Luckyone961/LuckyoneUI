@@ -17,7 +17,7 @@ function L1UI:SetupLayout(layout)
 
 	if IsAddOnLoaded('ProjectAzilroka') then L1UI:GetPAProfile() end
 
-	if IsAddOnLoaded('ElvUI_SLE') then L1UI:GetSLEProfile() end
+	if (IsAddOnLoaded('ElvUI_SLE') and L1UI.Retail) then L1UI:GetSLEProfile() end
 
 	E.db["convertPages"] = true
 

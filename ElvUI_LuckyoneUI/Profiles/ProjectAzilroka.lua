@@ -18,7 +18,11 @@ function L1UI:GetPAProfile()
 	PA.db["Cooldown"]["Enable"] = false
 	PA.db["DragonOverlay"]["Enable"] = false
 	PA.db["EnhancedShadows"]["Enable"] = false
-	PA.db["MasterExperience"]["Enable"] = false
+
+	if L1UI.Retail then
+		PA.db["MasterExperience"]["Enable"] = false
+	end
+
 	PA.db["MouseoverAuras"]["Enable"] = false
 	PA.db["MovableFrames"]["Enable"] = false
 	PA.db["OzCooldowns"]["Enable"] = false

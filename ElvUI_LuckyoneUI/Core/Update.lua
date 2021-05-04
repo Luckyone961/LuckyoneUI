@@ -9,7 +9,7 @@ function L1UI:UpdateLayout(layout)
 	if not E.db.movers then E.db.movers = {} end
 
 	-- Shadow&Light db changes
-	if IsAddOnLoaded('ElvUI_SLE') then L1UI:GetSLEProfile() end
+	if (IsAddOnLoaded('ElvUI_SLE') and L1UI.Retail) then L1UI:GetSLEProfile() end
 
 	if layout == 'dps' then
 		-- DPS/TANK db changes
