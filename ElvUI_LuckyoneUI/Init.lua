@@ -5,7 +5,7 @@ local addon, Engine = ...
 local _G = _G
 
 -- Ace
-local L1UI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0');
+local L1UI = E:NewModule(addon, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0');
 
 Engine[1] = L1UI -- LuckyoneUI
 Engine[2] = E -- ElvUI Engine
@@ -38,7 +38,7 @@ end
 -- Init
 function L1UI:Initialize()
 	if E.private.install_complete and E.private.L1UI.install_version == nil then
-		E:GetModule('PluginInstaller'):Queue(L1UI.InstallerData)
+		E.PluginInstaller:Queue(L1UI.InstallerData)
 	end
 
 	EP:RegisterPlugin(addon, L1UI.GetOptions)
