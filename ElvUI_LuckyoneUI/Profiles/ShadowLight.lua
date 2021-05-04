@@ -45,7 +45,7 @@ function L1UI:GetSLEProfile()
 	E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = "Expressway"
 	E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["size"] = 20
 	E.db["sle"]["afk"]["enable"] = true
-	E.db["sle"]["afk"]["playermodel"]["distance"] = 8
+	E.db["sle"]["afk"]["playermodel"]["distance"] = 6
 	E.db["sle"]["afk"]["racialMusic"] = false
 	E.db["sle"]["armory"]["character"]["background"]["overlay"] = false
 	E.db["sle"]["armory"]["character"]["durability"]["display"] = "Hide"
@@ -77,10 +77,6 @@ function L1UI:GetSLEProfile()
 	E.db["sle"]["armory"]["stats"]["itemLevel"]["font"] = "Expressway"
 	E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "OUTLINE"
 	E.db["sle"]["armory"]["stats"]["itemLevel"]["size"] = 15
-	E.db["sle"]["armory"]["stats"]["List"]["ATTACK_AP"] = true
-	E.db["sle"]["armory"]["stats"]["List"]["ATTACK_DAMAGE"] = false
-	E.db["sle"]["armory"]["stats"]["List"]["BLOCK"] = false
-	E.db["sle"]["armory"]["stats"]["List"]["PARRY"] = false
 	E.db["sle"]["armory"]["stats"]["statFonts"]["font"] = "Expressway"
 	E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "OUTLINE"
 	E.db["sle"]["armory"]["stats"]["statFonts"]["size"] = 11
