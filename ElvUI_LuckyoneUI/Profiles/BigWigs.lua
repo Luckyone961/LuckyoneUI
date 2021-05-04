@@ -8,8 +8,8 @@ function L1UI:GetBigWigsProfile()
 	local main = "Luckyone DPS/TANK"
 	local heal = "Luckyone Healing"
 
-	LoadAddOn("BigWigs")
-	LoadAddOn("BigWigs_Options")
+	LoadAddOn('BigWigs')
+	LoadAddOn('BigWigs_Options')
 
 	BigWigs3DB = {
 		["profileKeys"] = {

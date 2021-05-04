@@ -1,37 +1,11 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local _G = _G
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 
 -- LuckyoneUI chat print
 function L1UI:Print(msg)
 	print(L1UI.Name..': '..msg)
-end
-
--- Toggle Blizzard Frames
-function L1UI:DisabledFrames()
-
-	if E.private.L1UI.disabledFrames.BossBanner then
-		_G.BossBanner:UnregisterAllEvents()
-	end
-
-	if E.private.L1UI.disabledFrames.LevelUpDisplay then
-		_G.LevelUpDisplay:UnregisterAllEvents()
-	end
-
-	if E.private.L1UI.disabledFrames.ZoneTextFrame then
-		_G.ZoneTextFrame:UnregisterAllEvents()
-	end
-
-	if E.private.L1UI.disabledFrames.AlertFrame then
-		_G.AlertFrame:UnregisterAllEvents()
-		E:DisableMover('AlertFrameMover')
-	end
-
-	if (E.private.L1UI.disabledFrames.BossBanner and E.private.L1UI.disabledFrames.LevelUpDisplay) then
-		E:DisableMover('LevelUpBossBannerMover')
-	end
 end
 
 -- Load AddOnSkins Profile
@@ -104,6 +78,13 @@ function L1UI:AddonSetupSLE()
 		L1UI:GetSLEProfile()
 		L1UI:Print('Shadow&Light profile has been set.')
 	end
+end
+
+-- Set UI Scale
+function L1UI:SetupScale()
+
+	E.global["general"]["UIScale"] = 0.71111111111111
+	SetCVar('uiScale', 0.71111111111111)
 end
 
 -- General CVars
@@ -190,11 +171,4 @@ function L1UI:SetupGlobal()
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = "[petbattle] hide;show"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 358
 	end
-end
-
--- Set UI Scale
-function L1UI:SetupScale()
-
-	E.global["general"]["UIScale"] = 0.71111111111111
-	SetCVar('uiScale', 0.71111111111111)
 end
