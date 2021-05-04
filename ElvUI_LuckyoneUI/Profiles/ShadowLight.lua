@@ -3,6 +3,9 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 -- Shadow & Light Profile
 function L1UI:GetSLEProfile()
 
+	-- Shadow & Light version
+	local version = GetAddOnMetadata('ElvUI_SLE', 'Version')
+
 	-- Shadow & Light Global DB
 	E.global["sle"]["advanced"]["confirmed"] = true
 	E.global["sle"]["advanced"]["gameMenu"]["enable"] = false
@@ -20,33 +23,36 @@ function L1UI:GetSLEProfile()
 	E.private["sle"]["skins"]["petbattles"]["enable"] = false
 
 	-- Shadow & Light Profile DB
-	E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["enable"] = false
-	E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["enable"] = false
-	E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["styleOptions"] = "blizzard"
-	E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["styleOptions"] = "blizzard"
-	E.db["sle"]["afk"]["defaultGraphics"]["factionLogo"]["enable"] = false
-	E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["styleOptions"] = "blizzard"
-	E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["enable"] = false
-	E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Expressway"
-	E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = -4
-	E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Expressway"
-	E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["font"] = "Expressway"
-	E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["size"] = 24
-	E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["font"] = "Expressway"
-	E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["size"] = 16
-	E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["font"] = "Expressway"
-	E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["size"] = 16
-	E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["font"] = "Expressway"
-	E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["size"] = 16
-	E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["font"] = "Expressway"
-	E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["size"] = 16
-	E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["font"] = "Expressway"
-	E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["enable"] = false
-	E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = "Expressway"
-	E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["size"] = 20
-	E.db["sle"]["afk"]["enable"] = true
-	E.db["sle"]["afk"]["playermodel"]["distance"] = 6
-	E.db["sle"]["afk"]["racialMusic"] = false
+	if version >= '4.22' then
+		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["enable"] = false
+		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["enable"] = false
+		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["styleOptions"] = "blizzard"
+		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["styleOptions"] = "blizzard"
+		E.db["sle"]["afk"]["defaultGraphics"]["factionLogo"]["enable"] = false
+		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["styleOptions"] = "blizzard"
+		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["enable"] = false
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Expressway"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = -4
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Expressway"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["font"] = "Expressway"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["size"] = 24
+		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["font"] = "Expressway"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["size"] = 16
+		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["font"] = "Expressway"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["size"] = 16
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["font"] = "Expressway"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["size"] = 16
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["font"] = "Expressway"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["size"] = 16
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["font"] = "Expressway"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["enable"] = false
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = "Expressway"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["size"] = 20
+		E.db["sle"]["afk"]["enable"] = true
+		E.db["sle"]["afk"]["playermodel"]["distance"] = 6
+		E.db["sle"]["afk"]["racialMusic"] = false
+	end
+
 	E.db["sle"]["armory"]["character"]["background"]["overlay"] = false
 	E.db["sle"]["armory"]["character"]["durability"]["display"] = "Hide"
 	E.db["sle"]["armory"]["character"]["durability"]["font"] = "Expressway"

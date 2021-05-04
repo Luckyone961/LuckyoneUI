@@ -6,6 +6,11 @@ local _G = _G
 function L1UI:GetPAProfile()
 
 	local PA = _G.ProjectAzilroka
+
+	-- ProjectAzilroka version
+	local version = GetAddOnMetadata('ProjectAzilroka', 'Version')
+
+	-- Create and set a new Profile called Luckyone
 	PA.data:SetProfile('Luckyone')
 
 	-- Module toggles
@@ -20,7 +25,11 @@ function L1UI:GetPAProfile()
 	PA.db["QuestSounds"]["Enable"] = false
 	PA.db["ReputationReward"]["Enable"] = false
 	PA.db["stAddonManager"]["Enable"] = false
-	--PA.db["SunsongRanchFarmer"]["Enable"] = false
+
+	if version >= '1.77' then
+		PA.db["SunsongRanchFarmer"]["Enable"] = false
+	end
+
 	PA.db["TorghastBuffs"]["Enable"] = false
 
 	-- SquareMinimapButtons Setup
