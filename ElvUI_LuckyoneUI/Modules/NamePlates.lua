@@ -11,12 +11,8 @@ function L1UI:SetupNamePlates(addon)
 		-- Make sure to enable ElvUI NamePlates
 		E.private["nameplates"]["enable"] = true
 
-		-- Setup custom StyleFilters for Retail or CVars for Classic & TBC
-		if L1UI.Retail then
-			L1UI:SetupStyleFilters()
-		else
-			L1UI:NameplateCVars()
-		end
+		-- Setup StyleFilters
+		L1UI:SetupStyleFilters()
 
 		E.db["nameplates"]["colors"]["castbarDesaturate"] = false
 		E.db["nameplates"]["colors"]["castColor"]["g"] = 1
@@ -94,9 +90,11 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["yOffset"] = -15
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Expressway"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["pvpindicator"]["size"] = 35
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Expressway"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["size"] = 25
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textPosition"] = "CENTER"
+		if L1UI.Retail then
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Expressway"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["size"] = 25
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textPosition"] = "CENTER"
+		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["size"] = 20
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["xOffset"] = -3
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Expressway"
@@ -200,10 +198,12 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["yOffset"] = -10
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Expressway"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["pvpindicator"]["size"] = 35
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Expressway"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontSize"] = 14
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["size"] = 16
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["textPosition"] = "CENTER"
+		if L1UI.Retail then
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Expressway"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontSize"] = 14
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["size"] = 16
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["textPosition"] = "CENTER"
+		end
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["size"] = 20
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["xOffset"] = -3
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["enable"] = true
