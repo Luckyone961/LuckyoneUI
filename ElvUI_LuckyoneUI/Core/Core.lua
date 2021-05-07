@@ -110,7 +110,7 @@ function L1UI:NameplateCVars()
 	SetCVar('nameplateMotion', 1)
 	SetCVar('nameplateOccludedAlphaMult', 1)
 	SetCVar('nameplateOverlapH', 1)
-	SetCVar('nameplateOverlapV', 1.6)
+	SetCVar('nameplateOverlapV', 1.7)
 	SetCVar('nameplateSelectedScale', 1)
 	SetCVar('nameplateSelfAlpha', 1)
 

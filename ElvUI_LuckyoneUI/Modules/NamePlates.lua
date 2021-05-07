@@ -11,8 +11,12 @@ function L1UI:SetupNamePlates(addon)
 		-- Make sure to enable ElvUI NamePlates
 		E.private["nameplates"]["enable"] = true
 
-		-- Setup custom StyleFilters
-		L1UI:SetupStyleFilters()
+		-- Setup custom StyleFilters for Retail or CVars for Classic & TBC
+		if L1UI.Retail then
+			L1UI:SetupStyleFilters()
+		else
+			L1UI:NameplateCVars()
+		end
 
 		E.db["nameplates"]["colors"]["castbarDesaturate"] = false
 		E.db["nameplates"]["colors"]["castColor"]["g"] = 1
