@@ -47,6 +47,8 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["spacing"] = 0
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["xOffset"] = -1
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = -10
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["castTimeFormat"] = "REMAINING"
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["channelTimeFormat"] = "REMAINING"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["font"] = "Expressway"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontSize"] = 10
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["height"] = 12
@@ -106,6 +108,8 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["spacing"] = 0
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["xOffset"] = -1
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = -10
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["castTimeFormat"] = "REMAINING"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["channelTimeFormat"] = "REMAINING"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["font"] = "Expressway"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["fontSize"] = 10
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["height"] = 12
@@ -273,9 +277,6 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["PLAYER"]["visibility"]["showInCombat"] = false
 		E.db["nameplates"]["visibility"]["enemy"]["guardians"] = true
 		E.db["nameplates"]["visibility"]["enemy"]["minions"] = true
-
-		-- Set NamePlate CVars
-		L1UI:NameplateCVars()
 
 	elseif addon == 'Plater' then
 

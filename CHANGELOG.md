@@ -1,6 +1,7 @@
 ### Version 1.25 [ETA: 🍨]
 **Changes:**  
 Setup Chat will now enable chat class colors  
+ElvUI NamePlate castbars will show time remaining instead of current  
 **New Additions:**  
 Chat Commands  
 • /luckyoneui config  

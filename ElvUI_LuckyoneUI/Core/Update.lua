@@ -8,6 +8,14 @@ function L1UI:UpdateLayout(layout)
 
 	if not E.db.movers then E.db.movers = {} end
 
+	-- NamePlates db changes
+	if E.private.nameplates.enable then
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["castTimeFormat"] = "REMAINING"
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["channelTimeFormat"] = "REMAINING"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["castTimeFormat"] = "REMAINING"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["channelTimeFormat"] = "REMAINING"
+	end
+
 	-- Shadow&Light db changes
 	if (IsAddOnLoaded('ElvUI_SLE') and L1UI.Retail) then L1UI:GetSLEProfile() end
 
