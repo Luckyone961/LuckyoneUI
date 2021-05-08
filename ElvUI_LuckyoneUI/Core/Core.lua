@@ -141,14 +141,12 @@ function L1UI:SetupPrivate()
 	E.private["general"]["normTex"] = "Minimalist"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 
-	if not L1UI.Classic then
-		E.private["general"]["totemBar"] = false
-	end
-
 	if L1UI.Retail then
 		E.private["install_complete"] = "12.24"
+		E.private["general"]["totemBar"] = false
 	elseif L1UI.TBC then
 		E.private["install_complete"] = "0.19"
+		E.private["general"]["totemBar"] = true
 	elseif L1UI.Classic then
 		E.private["install_complete"] = "1.42"
 	end
