@@ -18,23 +18,21 @@ function L1UI:GetPAProfile()
 	PA.db["Cooldown"]["Enable"] = false
 	PA.db["DragonOverlay"]["Enable"] = false
 	PA.db["EnhancedShadows"]["Enable"] = false
-
-	if L1UI.Retail then
-		PA.db["MasterExperience"]["Enable"] = false
-	end
-
 	PA.db["MouseoverAuras"]["Enable"] = false
 	PA.db["MovableFrames"]["Enable"] = false
 	PA.db["OzCooldowns"]["Enable"] = false
 	PA.db["QuestSounds"]["Enable"] = false
-	PA.db["ReputationReward"]["Enable"] = false
 	PA.db["stAddonManager"]["Enable"] = false
+
+	if L1UI.Retail then
+		PA.db["MasterExperience"]["Enable"] = false
+		PA.db["ReputationReward"]["Enable"] = false
+		PA.db["TorghastBuffs"]["Enable"] = false
+	end
 
 	if version >= '1.77' then
 		PA.db["SunsongRanchFarmer"]["Enable"] = false
 	end
-
-	PA.db["TorghastBuffs"]["Enable"] = false
 
 	-- SquareMinimapButtons Setup
 	PA.db["SquareMinimapButtons"]["Backdrop"] = false
