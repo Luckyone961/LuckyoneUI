@@ -2275,7 +2275,7 @@ elseif L1UI.TBC then
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
 		E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"]["enable"] = true
 		E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"][1] = "System"
-		E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"][2] = "Combat"
+		E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"][2] = "Combat Time"
 		E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"][3] = "Durability"
 		E.db["datatexts"]["panels"]["MinimapPanel"]["numPoints"] = 1
 		E.db["datatexts"]["panels"]["MinimapPanel"]["panelTransparency"] = true
@@ -2847,8 +2847,6 @@ elseif L1UI.TBC then
 			E.db["unitframe"]["units"]["party"]["orientation"] = "MIDDLE"
 			E.db["unitframe"]["units"]["party"]["petsGroup"]["anchorPoint"] = "LEFT"
 			E.db["unitframe"]["units"]["party"]["petsGroup"]["height"] = 20
-			E.db["unitframe"]["units"]["party"]["phaseIndicator"]["scale"] = 0.5
-			E.db["unitframe"]["units"]["party"]["phaseIndicator"]["xOffset"] = -50
 			E.db["unitframe"]["units"]["party"]["power"]["enable"] = false
 			E.db["unitframe"]["units"]["party"]["power"]["height"] = 3
 			E.db["unitframe"]["units"]["party"]["power"]["position"] = "BOTTOMRIGHT"
@@ -3385,8 +3383,6 @@ elseif L1UI.TBC then
 			E.db["unitframe"]["units"]["party"]["orientation"] = "MIDDLE"
 			E.db["unitframe"]["units"]["party"]["petsGroup"]["anchorPoint"] = "LEFT"
 			E.db["unitframe"]["units"]["party"]["petsGroup"]["height"] = 20
-			E.db["unitframe"]["units"]["party"]["phaseIndicator"]["scale"] = 0.5
-			E.db["unitframe"]["units"]["party"]["phaseIndicator"]["xOffset"] = -50
 			E.db["unitframe"]["units"]["party"]["power"]["enable"] = false
 			E.db["unitframe"]["units"]["party"]["power"]["height"] = 3
 			E.db["unitframe"]["units"]["party"]["power"]["position"] = "BOTTOMRIGHT"
@@ -3519,8 +3515,6 @@ elseif L1UI.TBC then
 			E.db["unitframe"]["units"]["raid40"]["height"] = 26
 			E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 1
 			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[namecolor][name:veryshort]"
-			E.db["unitframe"]["units"]["raid40"]["phaseIndicator"]["anchorPoint"] = "RIGHT"
-			E.db["unitframe"]["units"]["raid40"]["phaseIndicator"]["scale"] = 0.5
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachTo"] = "LEFT"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["size"] = 14
