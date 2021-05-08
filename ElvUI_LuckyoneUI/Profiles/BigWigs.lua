@@ -5,25 +5,27 @@ local LoadAddOn = LoadAddOn
 -- BigWigs Profiles
 function L1UI:GetBigWigsProfile()
 
-	local main = "Luckyone DPS/TANK"
-	local heal = "Luckyone Healing"
+	local Rmain, Rheal = "Luckyone D/T", "Luckyone H"
+	local Tmain, Theal = "Luckyone TBC D/T", "Luckyone TBC H"
+	local Cmain, Cheal = "Luckyone Classic D/T", "Luckyone Classic H"
 
 	LoadAddOn('BigWigs')
 	LoadAddOn('BigWigs_Options')
 
 	if L1UI.Retail then
+
 		BigWigs3DB = {
 			["profileKeys"] = {
-				[E.mynameRealm] = main,
+				[E.mynameRealm] = Rmain,
 			},
 			["namespaces"] = {
 				["BigWigs_Plugins_Victory"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							["bigwigsMsg"] = true,
 							["blizzMsg"] = false,
 						},
-						[heal] = {
+						[Rheal] = {
 							["bigwigsMsg"] = true,
 							["blizzMsg"] = false,
 						},
@@ -31,7 +33,7 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Sun King's Salvation"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							[326583] = 3130103,
 							[328889] = 3064567,
 							[328479] = 3064567,
@@ -47,7 +49,7 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Artificer Xy'mox"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							[327902] = 3064567,
 							[328437] = 3130103,
 							[340758] = 3130103,
@@ -58,7 +60,7 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Lady Inerva Darkvein"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							["custom_on_stop_timers"] = false,
 							[325769] = 3064567,
 							[332664] = 3130103,
@@ -68,12 +70,12 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_AutoReply"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							["exitCombatOther"] = 3,
 							["disabled"] = false,
 							["modeOther"] = 2,
 						},
-						[heal] = {
+						[Rheal] = {
 							["exitCombatOther"] = 3,
 							["disabled"] = false,
 							["modeOther"] = 2,
@@ -82,7 +84,7 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Hungering Destroyer"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							[334522] = 3130103,
 							[329298] = 3064567,
 							[334266] = 3064567,
@@ -91,7 +93,7 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Shriekwing"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							[342863] = 3064567,
 							[330711] = 3130103,
 							[342074] = 3064567,
@@ -102,7 +104,7 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Countdown"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							["outline"] = "OUTLINE",
 							["fontName"] = "Expressway",
 							["position"] = {
@@ -112,7 +114,7 @@ function L1UI:GetBigWigsProfile()
 								-220, -- [4]
 							},
 						},
-						[heal] = {
+						[Rheal] = {
 							["outline"] = "OUTLINE",
 							["fontName"] = "Expressway",
 							["position"] = {
@@ -126,17 +128,17 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_AltPower"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							["disabled"] = true,
 						},
-						[heal] = {
+						[Rheal] = {
 							["disabled"] = true,
 						},
 					},
 				},
 				["BigWigs_Bosses_The Council of Blood"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							[330959] = 3064039,
 							[327497] = 3064039,
 							[330978] = 3064567,
@@ -150,21 +152,21 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Raid Icons"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							["disabled"] = true,
 						},
-						[heal] = {
+						[Rheal] = {
 							["disabled"] = true,
 						},
 					},
 				},
 				["BigWigs_Plugins_InfoBox"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							["posx"] = 962.8442941480171,
 							["posy"] = 71.71141124165615,
 						},
-						[heal] = {
+						[Rheal] = {
 							["posx"] = 962.8442941480171,
 							["posy"] = 71.71141124165615,
 						},
@@ -172,7 +174,7 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Bars"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							["outline"] = "OUTLINE",
 							["BigWigsAnchor_width"] = 169.0000152587891,
 							["nameplateOffsetY"] = 0,
@@ -194,7 +196,7 @@ function L1UI:GetBigWigsProfile()
 							["interceptKey"] = "SHIFT",
 							["BigWigsEmphasizeAnchor_width"] = 273.0001220703125,
 						},
-						[heal] = {
+						[Rheal] = {
 							["BigWigsEmphasizeAnchor_y"] = 275.9110743893507,
 							["BigWigsAnchor_width"] = 169.0000152587891,
 							["emphasizeRestart"] = false,
@@ -221,7 +223,7 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Stone Legion Generals"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							[334009] = 3064567,
 							[339690] = 3130103,
 							[333387] = 3064567,
@@ -235,7 +237,7 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Proximity"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							["posx"] = 295.8228370242796,
 							["fontName"] = "Expressway",
 							["width"] = 150.0000610351563,
@@ -244,7 +246,7 @@ function L1UI:GetBigWigsProfile()
 							["disabled"] = true,
 							["font"] = "Friz Quadrata TT",
 						},
-						[heal] = {
+						[Rheal] = {
 							["disabled"] = true,
 							["posx"] = 295.8228370242796,
 							["fontName"] = "Expressway",
@@ -257,7 +259,7 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Sludgefist"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							[331209] = 3130103,
 							[335293] = 3064567,
 						},
@@ -265,7 +267,7 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Sire Denathrius"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							[326707] = 3064567,
 							[327796] = 3064567,
 						},
@@ -273,7 +275,7 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Messages"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							["outline"] = "OUTLINE",
 							["fontSize"] = 24,
 							["emphFontName"] = "Expressway",
@@ -295,7 +297,7 @@ function L1UI:GetBigWigsProfile()
 								225, -- [4]
 							},
 						},
-						[heal] = {
+						[Rheal] = {
 							["outline"] = "OUTLINE",
 							["fontSize"] = 24,
 							["emphFontName"] = "Expressway",
@@ -323,11 +325,11 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Pull"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							["endPullSound"] = "None",
 							["voice"] = "enUS: Default (Female)",
 						},
-						[heal] = {
+						[Rheal] = {
 							["voice"] = "enUS: Default (Female)",
 							["endPullSound"] = "None",
 						},
@@ -335,7 +337,7 @@ function L1UI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Huntsman Altimor"] = {
 					["profiles"] = {
-						[main] = {
+						[Rmain] = {
 							[334945] = 3064567,
 							[335114] = 3130103,
 						},
@@ -354,12 +356,12 @@ function L1UI:GetBigWigsProfile()
 				},
 			},
 			["profiles"] = {
-				[heal] = {
+				[Rheal] = {
 					["showZoneMessages"] = false,
 					["fakeDBMVersion"] = true,
 					["flash"] = false,
 				},
-				[main] = {
+				[Rmain] = {
 					["showZoneMessages"] = false,
 					["flash"] = false,
 					["fakeDBMVersion"] = true,
@@ -368,13 +370,15 @@ function L1UI:GetBigWigsProfile()
 				},
 			},
 		}
+
+		BigWigs.db:SetProfile(Rmain)
+
+	elseif L1UI.TBC then
+	elseif L1UI.Classic then
 	end
 
 	BigWigsIconDB = {
 		["hide"] = true,
 	}
-	BigWigsStatsDB = {
-	}
-
-	BigWigs.db:SetProfile(main)
+	BigWigsStatsDB = {}
 end
