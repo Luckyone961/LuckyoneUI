@@ -4220,6 +4220,7 @@ elseif L1UI.TBC then
 			E.db["unitframe"]["units"]["player"]["name"]["yOffset"] = 20
 			E.db["unitframe"]["units"]["player"]["partyIndicator"]["enable"] = false
 			E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] = true
+			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 			E.db["unitframe"]["units"]["player"]["power"]["height"] = 6
 			E.db["unitframe"]["units"]["player"]["power"]["position"] = "LEFT"
 			E.db["unitframe"]["units"]["player"]["power"]["powerPrediction"] = true
@@ -4714,6 +4715,7 @@ elseif L1UI.TBC then
 			E.db["unitframe"]["units"]["player"]["name"]["yOffset"] = 20
 			E.db["unitframe"]["units"]["player"]["partyIndicator"]["enable"] = false
 			E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] = true
+			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 			E.db["unitframe"]["units"]["player"]["power"]["height"] = 6
 			E.db["unitframe"]["units"]["player"]["power"]["position"] = "LEFT"
 			E.db["unitframe"]["units"]["player"]["power"]["powerPrediction"] = true
