@@ -3,15 +3,15 @@
 Support for WoW Classic & TBC  
 Support for Healing WeakAuras (WIP)  
 **Profiles:**  
-Details profile added -classic
-Details profile added -tbc
-Details profile update -retail
-Shadow & Light profile update
+(Classic) Details profile added
+(TBC) Details profile added
+(Retail) Details profile update
+(Retail) Shadow & Light profile update
 **Changes:**  
-Setup Chat will now enable chat class colors  
-ElvUI NamePlate castbars will show time remaining instead of current  
+(All) Setup Chat will now enable chat class colors  
+(All) ElvUI NamePlate castbars will show time remaining instead of current  
 **New Additions:**  
-Chat Commands  
+(All) Chat Commands  
 • /luckyoneui config  
 • /luckyoneui install  
 ___
