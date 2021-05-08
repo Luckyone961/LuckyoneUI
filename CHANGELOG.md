@@ -3,10 +3,12 @@
 Support for WoW Classic & TBC  
 Support for Healing WeakAuras (WIP)  
 **Profiles:**  
-(Classic) Details profile added
-(TBC) Details profile added
-(Retail) Details profile update
-(Retail) Shadow & Light profile update
+(Classic) Details profile added  
+(Classic) Plater profile added  
+(TBC) Details profile added  
+(TBC) Plater profile added  
+(Retail) Details profile update  
+(Retail) Shadow & Light profile update  
 **Changes:**  
 (All) Setup Chat will now enable chat class colors  
 (All) ElvUI NamePlate castbars will show time remaining instead of current  
