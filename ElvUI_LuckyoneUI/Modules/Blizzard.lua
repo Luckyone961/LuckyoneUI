@@ -22,6 +22,7 @@ function L1UI:DisabledFrames()
 		E:DisableMover('AlertFrameMover')
 	end
 
+	-- Hide the ElvUI mover in toggled anchors if both frames are disabled
 	if (E.private.L1UI.disabledFrames.BossBanner and E.private.L1UI.disabledFrames.LevelUpDisplay) then
 		E:DisableMover('LevelUpBossBannerMover')
 	end

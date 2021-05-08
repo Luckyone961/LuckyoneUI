@@ -25,6 +25,8 @@ function L1UI:Toggles(message)
 	end
 end
 
+-- RegisterChatCommand requires AceConsole-3.0
+-- Left slash command Right function or funcref
 function L1UI:LoadCommands()
 
 	if L1UI.Retail then

@@ -134,6 +134,7 @@ if L1UI.Retail then
 		StepTitleButtonWidth = 180,
 		StepTitleTextJustification = 'CENTER',
 	}
+
 elseif L1UI.Classic then
 
 	-- Clasic Installer Table
@@ -232,6 +233,7 @@ elseif L1UI.Classic then
 		StepTitleButtonWidth = 180,
 		StepTitleTextJustification = 'CENTER',
 	}
+
 elseif L1UI.TBC then
 
 	-- TBC Installer Table
@@ -330,4 +332,5 @@ elseif L1UI.TBC then
 		StepTitleButtonWidth = 180,
 		StepTitleTextJustification = 'CENTER',
 	}
+
 end

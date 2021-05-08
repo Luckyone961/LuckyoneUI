@@ -21,10 +21,12 @@ L1UI.CreditsList = {}
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
+-- Check WoW Project ID
 L1UI.Retail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 L1UI.Classic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 L1UI.TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 
+-- Add Libs from ElvUI_LuckyoneUI\Libraries
 L1UI.Libs = {
 	ACH = LibStub('LibAceConfigHelper'),
 }

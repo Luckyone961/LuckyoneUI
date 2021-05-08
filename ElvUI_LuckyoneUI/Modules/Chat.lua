@@ -36,6 +36,7 @@ function L1UI:SetupChat()
 			CH:FCFTab_UpdateColors(CH:GetTab(_G[name]))
 		end
 
+		-- Font size 11 for all tabs
 		FCF_SetChatWindowFontSize(nil, frame, 11)
 
 		if id == 1 then

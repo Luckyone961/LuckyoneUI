@@ -374,11 +374,11 @@ function L1UI:GetBigWigsProfile()
 		BigWigs.db:SetProfile(Rmain)
 
 	elseif L1UI.TBC then
+
 	elseif L1UI.Classic then
+
 	end
 
-	BigWigsIconDB = {
-		["hide"] = true,
-	}
+	BigWigsIconDB = {["hide"] = true}
 	BigWigsStatsDB = {}
 end

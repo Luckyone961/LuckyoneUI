@@ -34,6 +34,7 @@ ElvUF.Tags.Methods['luckyone:health:percent'] = function(unit)
 	return E:GetFormattedText('PERCENT', currentHealth, maxHealth, percent == 100 and 0 or percent < 10 and 2 or 1, nil)
 end
 
+-- Add the following tags only in retail
 if L1UI.Retail then
 	-- Display mana (current) if the unit is flagged healer
 	ElvUF.Tags.Events['luckyone:healermana:current'] = 'UNIT_POWER_FREQUENT UNIT_MAXPOWER'
