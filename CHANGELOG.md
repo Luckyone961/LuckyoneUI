@@ -1,4 +1,12 @@
 ### Version 1.25 [ETA: 🍨]
+**Highlights:**  
+Support for WoW Classic & TBC  
+Support for Healing WeakAuras (WIP)  
+**Profiles:**  
+Details profile added -classic
+Details profile added -tbc
+Details profile update -retail
+Shadow & Light profile update
 **Changes:**  
 Setup Chat will now enable chat class colors  
 ElvUI NamePlate castbars will show time remaining instead of current  
@@ -6,10 +14,6 @@ ElvUI NamePlate castbars will show time remaining instead of current
 Chat Commands  
 • /luckyoneui config  
 • /luckyoneui install  
-**Misc:**  
-Shadow&Light profile update  
-Initial support for WoW Classic & TBC  
-Initial support for Healing WeakAuras  
 ___
 ### Version 1.24 [24-04-2021]
 **Hotfix:**  
