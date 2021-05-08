@@ -3297,7 +3297,9 @@ elseif L1UI.TBC then
 		E.db["general"]["minimap"]["resetZoom"]["time"] = 15
 		E.db["general"]["minimap"]["size"] = 161
 		E.db["general"]["smoothingAmount"] = 0.75
-		E.db["general"]["totems"]["enable"] = false
+		E.db["general"]["totems"]["enable"] = true
+		E.db["general"]["totems"]["growthDirection"] = "HORIZONTAL"
+		E.db["general"]["totems"]["size"] = 32
 		E.db["general"]["valuecolor"]["b"] = 0.99
 		E.db["general"]["valuecolor"]["g"] = 0.99
 		E.db["general"]["valuecolor"]["r"] = 0.99
@@ -3966,7 +3968,7 @@ elseif L1UI.TBC then
 			E.db["movers"]["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,1"
 			E.db["movers"]["TooltipMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135"
 			E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-57"
-			E.db["movers"]["TotemBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,413,1"
+			E.db["movers"]["TotemBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,271,169"
 			E.db["movers"]["UIErrorsFrameMover"] = "TOP,ElvUIParent,TOP,0,-78"
 			E.db["movers"]["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,182"
 			E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
@@ -4483,7 +4485,7 @@ elseif L1UI.TBC then
 			E.db["movers"]["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,1"
 			E.db["movers"]["TooltipMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135"
 			E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-57"
-			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,48,397"
+			E.db["movers"]["TotemBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,271,169"
 			E.db["movers"]["UIErrorsFrameMover"] = "TOP,ElvUIParent,TOP,0,-78"
 			E.db["movers"]["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,182"
 			E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
