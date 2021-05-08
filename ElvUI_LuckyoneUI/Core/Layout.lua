@@ -3609,5 +3609,4 @@ elseif L1UI.TBC then
 
 		L1UI:Print('Layout has been set.')
 	end
-
 end
