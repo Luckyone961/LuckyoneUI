@@ -2022,11 +2022,11 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["bar4"]["backdrop"] = false
 		E.db["actionbar"]["bar4"]["buttons"] = 12
 		E.db["actionbar"]["bar4"]["buttonSize"] = 28
-		E.db["actionbar"]["bar4"]["buttonsPerRow"] = 12
+		E.db["actionbar"]["bar4"]["buttonsPerRow"] = 6
 		E.db["actionbar"]["bar4"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar4"]["countFontOutline"] = "OUTLINE"
 		E.db["actionbar"]["bar4"]["countTextPosition"] = "BOTTOM"
-		E.db["actionbar"]["bar4"]["enabled"] = false
+		E.db["actionbar"]["bar4"]["enabled"] = true
 		E.db["actionbar"]["bar4"]["hotkeyFont"] = "Expressway"
 		E.db["actionbar"]["bar4"]["hotkeyFontOutline"] = "OUTLINE"
 		E.db["actionbar"]["bar4"]["hotkeyTextPosition"] = "TOPLEFT"
@@ -2036,6 +2036,7 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["bar4"]["macrotext"] = true
 		E.db["actionbar"]["bar4"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar4"]["macroTextYOffset"] = 1
+		E.db["actionbar"]["bar4"]["mouseover"] = true
 		E.db["actionbar"]["bar4"]["point"] = "BOTTOMLEFT"
 		E.db["actionbar"]["bar5"]["alpha"] = 0.75
 		E.db["actionbar"]["bar5"]["buttons"] = 12
@@ -2058,11 +2059,11 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["bar6"]["alpha"] = 0.75
 		E.db["actionbar"]["bar6"]["buttons"] = 12
 		E.db["actionbar"]["bar6"]["buttonSize"] = 28
-		E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
+		E.db["actionbar"]["bar6"]["buttonsPerRow"] = 6
 		E.db["actionbar"]["bar6"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar6"]["countFontOutline"] = "OUTLINE"
 		E.db["actionbar"]["bar6"]["countTextPosition"] = "BOTTOM"
-		E.db["actionbar"]["bar6"]["enabled"] = false
+		E.db["actionbar"]["bar6"]["enabled"] = true
 		E.db["actionbar"]["bar6"]["hotkeyFont"] = "Expressway"
 		E.db["actionbar"]["bar6"]["hotkeyFontOutline"] = "OUTLINE"
 		E.db["actionbar"]["bar6"]["hotkeyTextPosition"] = "TOPLEFT"
@@ -2072,6 +2073,7 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["bar6"]["macrotext"] = true
 		E.db["actionbar"]["bar6"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar6"]["macroTextYOffset"] = 1
+		E.db["actionbar"]["bar6"]["mouseover"] = true
 		E.db["actionbar"]["bar7"]["alpha"] = 0.75
 		E.db["actionbar"]["bar7"]["buttonSize"] = 28
 		E.db["actionbar"]["bar7"]["countFont"] = "Expressway"
@@ -2134,10 +2136,6 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["barPet"]["buttonsPerRow"] = 10
 		E.db["actionbar"]["barPet"]["countFont"] = "Expressway"
 		E.db["actionbar"]["barPet"]["countFontOutline"] = "OUTLINE"
-		E.db["actionbar"]["barPet"]["hotkeyFont"] = "Expressway"
-		E.db["actionbar"]["barPet"]["hotkeyFontOutline"] = "OUTLINE"
-		E.db["actionbar"]["barPet"]["hotkeyTextPosition"] = "TOPLEFT"
-		E.db["actionbar"]["barPet"]["hotkeyTextYOffset"] = -1
 		E.db["actionbar"]["barPet"]["point"] = "TOPLEFT"
 		E.db["actionbar"]["cooldown"]["daysIndicator"]["g"] = 0.4
 		E.db["actionbar"]["cooldown"]["daysIndicator"]["r"] = 0.4
@@ -2160,10 +2158,6 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["stanceBar"]["buttonHeight"] = 24
 		E.db["actionbar"]["stanceBar"]["buttonSize"] = 25
 		E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 1
-		E.db["actionbar"]["stanceBar"]["hotkeyFont"] = "Expressway"
-		E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = "OUTLINE"
-		E.db["actionbar"]["stanceBar"]["hotkeyTextPosition"] = "TOPLEFT"
-		E.db["actionbar"]["stanceBar"]["hotkeyTextYOffset"] = -1
 		E.db["actionbar"]["stanceBar"]["mouseover"] = true
 		E.db["actionbar"]["transparent"] = true
 
@@ -2598,9 +2592,9 @@ elseif L1UI.TBC then
 			E.db["movers"]["ElvAB_10"] = "BOTTOM,ElvUIParent,BOTTOM,0,255"
 			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,76"
 			E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,46"
-			E.db["movers"]["ElvAB_4"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,203"
+			E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,-269,1"
 			E.db["movers"]["ElvAB_5"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-343"
-			E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,173"
+			E.db["movers"]["ElvAB_6"] = "BOTTOM,ElvUIParent,BOTTOM,269,1"
 			E.db["movers"]["ElvAB_7"] = "BOTTOM,ElvUIParent,BOTTOM,0,168"
 			E.db["movers"]["ElvAB_8"] = "BOTTOM,ElvUIParent,BOTTOM,0,197"
 			E.db["movers"]["ElvAB_9"] = "BOTTOM,ElvUIParent,BOTTOM,0,226"
@@ -3115,9 +3109,9 @@ elseif L1UI.TBC then
 			E.db["movers"]["ElvAB_10"] = "BOTTOM,ElvUIParent,BOTTOM,0,255"
 			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,76"
 			E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,46"
-			E.db["movers"]["ElvAB_4"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,203"
+			E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,-269,1"
 			E.db["movers"]["ElvAB_5"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-343"
-			E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,174"
+			E.db["movers"]["ElvAB_6"] = "BOTTOM,ElvUIParent,BOTTOM,269,1"
 			E.db["movers"]["ElvAB_7"] = "BOTTOM,ElvUIParent,BOTTOM,0,168"
 			E.db["movers"]["ElvAB_8"] = "BOTTOM,ElvUIParent,BOTTOM,0,197"
 			E.db["movers"]["ElvAB_9"] = "BOTTOM,ElvUIParent,BOTTOM,0,226"
@@ -3161,7 +3155,7 @@ elseif L1UI.TBC then
 			E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-57"
 			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,48,397"
 			E.db["movers"]["UIErrorsFrameMover"] = "TOP,ElvUIParent,TOP,0,-78"
-			E.db["movers"]["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,368"
+			E.db["movers"]["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,182"
 			E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 
 			-- UnitFrames Healing
@@ -3269,30 +3263,6 @@ elseif L1UI.TBC then
 			E.db["unitframe"]["units"]["arena"]["spacing"] = 20
 			E.db["unitframe"]["units"]["arena"]["width"] = 240
 			E.db["unitframe"]["units"]["assist"]["enable"] = false
-			E.db["unitframe"]["units"]["boss"]["buffs"]["anchorPoint"] = "RIGHT"
-			E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Expressway"
-			E.db["unitframe"]["units"]["boss"]["buffs"]["numrows"] = 2
-			E.db["unitframe"]["units"]["boss"]["buffs"]["perrow"] = 2
-			E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI"
-			E.db["unitframe"]["units"]["boss"]["buffs"]["xOffset"] = 1
-			E.db["unitframe"]["units"]["boss"]["buffs"]["yOffset"] = 11
-			E.db["unitframe"]["units"]["boss"]["castbar"]["width"] = 200
-			E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Expressway"
-			E.db["unitframe"]["units"]["boss"]["debuffs"]["countFontSize"] = 14
-			E.db["unitframe"]["units"]["boss"]["debuffs"]["numrows"] = 2
-			E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = "Blacklist,Personal"
-			E.db["unitframe"]["units"]["boss"]["debuffs"]["spacing"] = 0
-			E.db["unitframe"]["units"]["boss"]["debuffs"]["xOffset"] = -1
-			E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = 11
-			E.db["unitframe"]["units"]["boss"]["disableTargetGlow"] = true
-			E.db["unitframe"]["units"]["boss"]["health"]["text_format"] = ""
-			E.db["unitframe"]["units"]["boss"]["health"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["boss"]["height"] = 45
-			E.db["unitframe"]["units"]["boss"]["name"]["text_format"] = ""
-			E.db["unitframe"]["units"]["boss"]["power"]["height"] = 6
-			E.db["unitframe"]["units"]["boss"]["power"]["text_format"] = ""
-			E.db["unitframe"]["units"]["boss"]["spacing"] = 20
-			E.db["unitframe"]["units"]["boss"]["width"] = 200
 			E.db["unitframe"]["units"]["focus"]["aurabar"]["attachTo"] = "FRAME"
 			E.db["unitframe"]["units"]["focus"]["aurabar"]["detachedWidth"] = 270
 			E.db["unitframe"]["units"]["focus"]["aurabar"]["height"] = 17
