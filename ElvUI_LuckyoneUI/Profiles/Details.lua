@@ -1642,6 +1642,7 @@ function L1UI:GetDetailsProfile()
 		}
 
 		_detalhes:ApplyProfile(retail)
+
 	elseif L1UI.TBC then
 
 		_detalhes_global = {
@@ -3058,6 +3059,7 @@ function L1UI:GetDetailsProfile()
 		}
 
 		_detalhes:ApplyProfile(tbc)
+
 	elseif L1UI.Classic then
 
 		_detalhes_global = {
@@ -4631,5 +4633,6 @@ function L1UI:GetDetailsProfile()
 		}
 
 		_detalhes:ApplyProfile(classic)
+
 	end
 end
