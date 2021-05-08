@@ -37,9 +37,7 @@ function L1UI:GetDBMProfile()
 			["SpecialWarningX"] = 0,
 			["WorldBossAlert"] = false,
 			["DontShowPT2"] = false,
-			["MoviesSeen"] = {
-				["909Broken Cliffs"] = true,
-			},
+			["MoviesSeen"] = {},
 			["ShowQueuePop"] = true,
 			["ShowAllVersions"] = true,
 			["DebugMode"] = false,
@@ -359,6 +357,7 @@ function L1UI:GetDBMProfile()
 	}
 
 	if L1UI.Retail then
+
 		DBMCastleNathria_AllSavedVars = {
 			[E.mynameRealm] = {
 				["talent4"] = "Restoration",
@@ -4986,6 +4985,7 @@ function L1UI:GetDBMProfile()
 				},
 			},
 		}
+
 	end
 
 	DBM_MinimapIcon = {
