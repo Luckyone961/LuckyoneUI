@@ -41,12 +41,7 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Alt Power"] = {
-				},
-				["LibDualSpec-1.0"] = {
-					["char"] = {
-					},
-				},
+				["BigWigs_Plugins_Alt Power"] = {},
 				["BigWigs_Bosses_Artificer Xy'mox"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -56,8 +51,7 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Sounds"] = {
-				},
+				["BigWigs_Plugins_Sounds"] = {},
 				["BigWigs_Bosses_Lady Inerva Darkvein"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -100,8 +94,7 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_BossBlock"] = {
-				},
+				["BigWigs_Plugins_BossBlock"] = {},
 				["BigWigs_Plugins_Countdown"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -148,8 +141,7 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Colors"] = {
-				},
+				["BigWigs_Plugins_Colors"] = {},
 				["BigWigs_Plugins_Raid Icons"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -231,10 +223,8 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Super Emphasize"] = {
-				},
-				["BigWigs_Plugins_Wipe"] = {
-				},
+				["BigWigs_Plugins_Super Emphasize"] = {},
+				["BigWigs_Plugins_Wipe"] = {},
 				["BigWigs_Plugins_Proximity"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -321,8 +311,7 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Statistics"] = {
-				},
+				["BigWigs_Plugins_Statistics"] = {},
 				["BigWigs_Plugins_Pull"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -345,15 +334,7 @@ function L1UI:GetBigWigsProfile()
 				},
 			},
 			["global"] = {
-				["watchedMovies"] = {
-					[686] = true,
-					[-1597] = true,
-					[-917] = true,
-					[688] = true,
-					[-909] = true,
-					[-1151] = true,
-					[927] = true,
-				},
+				["watchedMovies"] = {},
 			},
 			["profiles"] = {
 				[Rheal] = {
@@ -366,8 +347,7 @@ function L1UI:GetBigWigsProfile()
 					["flash"] = false,
 					["fakeDBMVersion"] = true,
 				},
-				["Default"] = {
-				},
+				["Default"] = {},
 			},
 		}
 
