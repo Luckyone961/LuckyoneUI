@@ -1,16 +1,12 @@
 ### Version 1.25 [ETA: 🍨]
 **Highlights:**  
-Support for WoW Classic & TBC  
+Support for WoW TBC & Classic  
 Support for Healing WeakAuras (WIP)  
 **Profiles:**  
-(Classic) BigWigs profile added  
-(Classic) Details profile added  
-(Classic) Plater profile added  
-(Classic) DBM profile added  
-(TBC) BigWigs profile added  
-(TBC) Details profile added  
-(TBC) Plater profile added  
-(TBC) DBM profile added  
+(TBC & Classic) BigWigs profile added  
+(TBC & Classic) Details profile added  
+(TBC & Classic) Plater profile added  
+(TBC & Classic) DBM profile added  
 (Retail) BigWigs profile updated  
 (Retail) Details profile updated  
 (Retail) Shadow & Light profile updated  
