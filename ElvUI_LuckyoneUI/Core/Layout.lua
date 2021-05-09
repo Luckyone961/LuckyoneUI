@@ -3574,6 +3574,7 @@ elseif L1UI.TBC then
 		E.db["tooltip"]["healthBar"]["height"] = 4
 		E.db["tooltip"]["healthBar"]["statusPosition"] = "TOP"
 		E.db["tooltip"]["itemCount"] = "NONE"
+		E.db["tooltip"]["itemQualityBorderColor"] = true
 		E.db["tooltip"]["showElvUIUsers"] = true
 		E.db["tooltip"]["smallTextFontSize"] = 11
 		E.db["tooltip"]["textFontSize"] = 11
