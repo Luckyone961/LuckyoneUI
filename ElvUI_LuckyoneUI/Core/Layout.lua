@@ -1948,6 +1948,9 @@ elseif L1UI.Classic then
 		E.db["general"]["backdropfadecolor"]["b"] = 0.058823529411765
 		E.db["general"]["backdropfadecolor"]["g"] = 0.058823529411765
 		E.db["general"]["backdropfadecolor"]["r"] = 0.058823529411765
+		E.db["general"]["bordercolor"]["b"] = 0
+		E.db["general"]["bordercolor"]["g"] = 0
+		E.db["general"]["bordercolor"]["r"] = 0
 		E.db["general"]["bottomPanel"] = false
 		E.db["general"]["durabilityScale"] = 0.5
 		E.db["general"]["enhancedPvpMessages"] = false
