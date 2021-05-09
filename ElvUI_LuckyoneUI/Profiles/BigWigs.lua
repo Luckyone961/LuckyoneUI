@@ -623,6 +623,252 @@ function L1UI:GetBigWigsProfile()
 
 	elseif L1UI.Classic then
 
+		BigWigs3DB = {
+			["profileKeys"] = {
+				[E.mynameRealm] = Cmain,
+			},
+			["namespaces"] = {
+				["BigWigs_Plugins_Victory"] = {
+					["profiles"] = {
+						[Cmain] = {
+							["bigwigsMsg"] = true,
+							["blizzMsg"] = false,
+						},
+						[Cheal] = {
+							["bigwigsMsg"] = true,
+							["blizzMsg"] = false,
+						},
+					},
+				},
+				["BigWigs_Plugins_Alt Power"] = {},
+				["BigWigs_Plugins_Sounds"] = {},
+				["BigWigs_Plugins_AutoReply"] = {
+					["profiles"] = {
+						[Cmain] = {
+							["exitCombatOther"] = 3,
+							["disabled"] = false,
+							["modeOther"] = 2,
+						},
+						[Cheal] = {
+							["exitCombatOther"] = 3,
+							["disabled"] = false,
+							["modeOther"] = 2,
+						},
+					},
+				},
+				["BigWigs_Plugins_BossBlock"] = {},
+				["BigWigs_Plugins_Countdown"] = {
+					["profiles"] = {
+						[Cmain] = {
+							["outline"] = "OUTLINE",
+							["fontName"] = "Expressway",
+							["position"] = {
+								nil, -- [1]
+								nil, -- [2]
+								nil, -- [3]
+								-220, -- [4]
+							},
+						},
+						[Cheal] = {
+							["outline"] = "OUTLINE",
+							["fontName"] = "Expressway",
+							["position"] = {
+								nil, -- [1]
+								nil, -- [2]
+								nil, -- [3]
+								-220, -- [4]
+							},
+						},
+					},
+				},
+				["BigWigs_Plugins_AltPower"] = {
+					["profiles"] = {
+						[Cmain] = {
+							["disabled"] = true,
+						},
+						[Cheal] = {
+							["disabled"] = true,
+						},
+					},
+				},
+				["BigWigs_Plugins_Colors"] = {},
+				["BigWigs_Plugins_Raid Icons"] = {
+					["profiles"] = {
+						[Cmain] = {
+							["disabled"] = true,
+						},
+						[Cheal] = {
+							["disabled"] = true,
+						},
+					},
+				},
+				["BigWigs_Plugins_InfoBox"] = {
+					["profiles"] = {
+						[Cmain] = {
+							["posx"] = 962.8442941480171,
+							["posy"] = 71.71141124165615,
+						},
+						[Cheal] = {
+							["posx"] = 962.8442941480171,
+							["posy"] = 71.71141124165615,
+						},
+					},
+				},
+				["BigWigs_Plugins_Bars"] = {
+					["profiles"] = {
+						[Cmain] = {
+							["outline"] = "OUTLINE",
+							["BigWigsAnchor_width"] = 169.0000152587891,
+							["nameplateOffsetY"] = 0,
+							["BigWigsAnchor_x"] = 449.422189701927,
+							["BigWigsEmphasizeAnchor_height"] = 20.00000190734863,
+							["fontName"] = "Expressway",
+							["BigWigsAnchor_height"] = 18.00000190734863,
+							["visibleBarLimitEmph"] = 5,
+							["visibleBarLimit"] = 5,
+							["BigWigsAnchor_y"] = 226.1337294340228,
+							["spacing"] = 3,
+							["emphasizeTime"] = 6,
+							["barStyle"] = "ElvUI",
+							["texture"] = "Minimalist",
+							["emphasizeRestart"] = false,
+							["fontSizeEmph"] = 12,
+							["BigWigsEmphasizeAnchor_x"] = 593.0668980413066,
+							["BigWigsEmphasizeAnchor_y"] = 205.5110509832684,
+							["interceptKey"] = "SHIFT",
+							["BigWigsEmphasizeAnchor_width"] = 273.0001220703125,
+						},
+						[Cheal] = {
+							["BigWigsEmphasizeAnchor_y"] = 275.9110743893507,
+							["BigWigsAnchor_width"] = 169.0000152587891,
+							["emphasizeRestart"] = false,
+							["nameplateOffsetY"] = 0,
+							["BigWigsEmphasizeAnchor_height"] = 18.99997901916504,
+							["fontName"] = "Expressway",
+							["BigWigsAnchor_height"] = 18.00000190734863,
+							["visibleBarLimitEmph"] = 5,
+							["visibleBarLimit"] = 5,
+							["BigWigsAnchor_y"] = 226.1337728368017,
+							["emphasizeGrowup"] = true,
+							["spacing"] = 3,
+							["emphasizeTime"] = 6,
+							["barStyle"] = "ElvUI",
+							["interceptKey"] = "SHIFT",
+							["texture"] = "Minimalist",
+							["BigWigsEmphasizeAnchor_width"] = 431.9999694824219,
+							["BigWigsEmphasizeAnchor_x"] = 536.1782681915611,
+							["outline"] = "OUTLINE",
+							["BigWigsAnchor_x"] = 399.6442805104744,
+							["fontSizeEmph"] = 12,
+						},
+					},
+				},
+				["BigWigs_Plugins_Super Emphasize"] = {},
+				["BigWigs_Plugins_Wipe"] = {},
+				["BigWigs_Plugins_Proximity"] = {
+					["profiles"] = {
+						[Cmain] = {
+							["posx"] = 295.8228370242796,
+							["fontName"] = "Expressway",
+							["width"] = 150.0000610351563,
+							["posy"] = 86.04485885435679,
+							["height"] = 119.9999694824219,
+							["disabled"] = true,
+							["font"] = "Friz Quadrata TT",
+						},
+						[Cheal] = {
+							["disabled"] = true,
+							["posx"] = 295.8228370242796,
+							["fontName"] = "Expressway",
+							["width"] = 150.0000610351563,
+							["font"] = "Friz Quadrata TT",
+							["height"] = 119.9999694824219,
+							["posy"] = 86.04485885435679,
+						},
+					},
+				},
+				["BigWigs_Plugins_Messages"] = {
+					["profiles"] = {
+						[Cmain] = {
+							["outline"] = "OUTLINE",
+							["fontSize"] = 24,
+							["emphFontName"] = "Expressway",
+							["emphFontSize"] = 34,
+							["fadetime"] = 2.5,
+							["emphPosition"] = {
+								"TOP", -- [1]
+								"TOP", -- [2]
+								nil, -- [3]
+								-120, -- [4]
+							},
+							["fontName"] = "Expressway",
+							["displaytime"] = 3.5,
+							["emphOutline"] = "OUTLINE",
+							["normalPosition"] = {
+								"CENTER", -- [1]
+								"CENTER", -- [2]
+								nil, -- [3]
+								225, -- [4]
+							},
+						},
+						[Cheal] = {
+							["outline"] = "OUTLINE",
+							["fontSize"] = 24,
+							["emphFontName"] = "Expressway",
+							["emphFontSize"] = 34,
+							["fadetime"] = 2.5,
+							["emphPosition"] = {
+								"TOP", -- [1]
+								"TOP", -- [2]
+								nil, -- [3]
+								-120, -- [4]
+							},
+							["fontName"] = "Expressway",
+							["displaytime"] = 3.5,
+							["emphOutline"] = "OUTLINE",
+							["normalPosition"] = {
+								"CENTER", -- [1]
+								"CENTER", -- [2]
+								nil, -- [3]
+								225, -- [4]
+							},
+						},
+					},
+				},
+				["BigWigs_Plugins_Statistics"] = {},
+				["BigWigs_Plugins_Pull"] = {
+					["profiles"] = {
+						[Cmain] = {
+							["endPullSound"] = "None",
+							["voice"] = "enUS: Default (Female)",
+						},
+						[Cheal] = {
+							["voice"] = "enUS: Default (Female)",
+							["endPullSound"] = "None",
+						},
+					},
+				},
+			},
+			["global"] = {
+				["watchedMovies"] = {},
+			},
+			["profiles"] = {
+				[Cheal] = {
+					["showZoneMessages"] = false,
+					["fakeDBMVersion"] = true,
+					["flash"] = false,
+				},
+				[Cmain] = {
+					["showZoneMessages"] = false,
+					["flash"] = false,
+					["fakeDBMVersion"] = true,
+				},
+				["Default"] = {},
+			},
+		}
+
+		BigWigs.db:SetProfile(Cmain)
+
 	end
 
 	BigWigsIconDB = {["hide"] = true}
