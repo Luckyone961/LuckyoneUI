@@ -201,6 +201,17 @@ elseif L1UI.Classic then
 				PluginInstallFrame.Option2:SetText('Plater')
 			end,
 			[7] = function()
+				PluginInstallFrame.SubTitle:SetFormattedText('BossMods')
+				PluginInstallFrame.Desc1:SetText('Choose between DBM and BigWigs.')
+				PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
+				PluginInstallFrame.Option1:Show()
+				PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupBW() end)
+				PluginInstallFrame.Option1:SetText('BigWigs')
+				PluginInstallFrame.Option2:Show()
+				PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:AddonSetupDBM() end)
+				PluginInstallFrame.Option2:SetText('DBM')
+			end,
+			[8] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Details Profile')
 				PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for Details! Damage Meter.')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
@@ -208,7 +219,7 @@ elseif L1UI.Classic then
 				PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupDT() end)
 				PluginInstallFrame.Option1:SetText('Setup Details')
 			end,
-			[8] = function()
+			[9] = function()
 				PluginInstallFrame.SubTitle:SetText('Installation Complete')
 				PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI.')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cHigh|r')
@@ -224,8 +235,9 @@ elseif L1UI.Classic then
 			[4] = 'Chat',
 			[5] = 'CVars',
 			[6] = 'NamePlates',
-			[7] = 'Details',
-			[8] = 'Installation Complete',
+			[7] = 'BossMods',
+			[8] = 'Details',
+			[9] = 'Installation Complete',
 		},
 		StepTitlesColor = {1, 1, 1},
 		StepTitlesColorSelected = {0, 179/255, 1},
@@ -300,6 +312,17 @@ elseif L1UI.TBC then
 				PluginInstallFrame.Option2:SetText('Plater')
 			end,
 			[7] = function()
+				PluginInstallFrame.SubTitle:SetFormattedText('BossMods')
+				PluginInstallFrame.Desc1:SetText('Choose between DBM and BigWigs.')
+				PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
+				PluginInstallFrame.Option1:Show()
+				PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupBW() end)
+				PluginInstallFrame.Option1:SetText('BigWigs')
+				PluginInstallFrame.Option2:Show()
+				PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:AddonSetupDBM() end)
+				PluginInstallFrame.Option2:SetText('DBM')
+			end,
+			[8] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Details Profile')
 				PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for Details! Damage Meter.')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cOptional|r')
@@ -307,7 +330,7 @@ elseif L1UI.TBC then
 				PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:AddonSetupDT() end)
 				PluginInstallFrame.Option1:SetText('Setup Details')
 			end,
-			[8] = function()
+			[9] = function()
 				PluginInstallFrame.SubTitle:SetText('Installation Complete')
 				PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI.')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff4beb2cHigh|r')
@@ -323,8 +346,9 @@ elseif L1UI.TBC then
 			[4] = 'Chat',
 			[5] = 'CVars',
 			[6] = 'NamePlates',
-			[7] = 'Details',
-			[8] = 'Installation Complete',
+			[7] = 'BossMods',
+			[8] = 'Details',
+			[9] = 'Installation Complete',
 		},
 		StepTitlesColor = {1, 1, 1},
 		StepTitlesColorSelected = {0, 179/255, 1},
