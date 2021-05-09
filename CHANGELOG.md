@@ -3,12 +3,15 @@
 Support for WoW Classic & TBC  
 Support for Healing WeakAuras (WIP)  
 **Profiles:**  
+(Classic) BigWigs profile added  
 (Classic) Details profile added  
 (Classic) Plater profile added  
 (Classic) DBM profile added  
+(TBC) BigWigs profile added  
 (TBC) Details profile added  
 (TBC) Plater profile added  
 (TBC) DBM profile added  
+(Retail) BigWigs profile updated  
 (Retail) Details profile updated  
 (Retail) Shadow & Light profile updated  
 **Changes:**  
