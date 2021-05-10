@@ -11,7 +11,7 @@ function L1UI:GetPAProfile()
 	local version = GetAddOnMetadata('ProjectAzilroka', 'Version')
 
 	-- Create and set a new Profile called Luckyone
-	PA.data:SetProfile('Luckyone')
+	PA.data:SetProfile("Luckyone")
 
 	-- Module toggles
 	PA.db["AuraReminder"]["Enable"] = false

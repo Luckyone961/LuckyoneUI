@@ -5,9 +5,7 @@ if not L1UI.Retail then return end
 function L1UI:GetOmniCDProfile()
 
 	OmniCDDB = {
-		["profileKeys"] = {
-			[E.mynameRealm] = "Luckyone DPS/TANK",
-		},
+		["version"] = 2.51,
 		["cooldowns"] = {},
 		["namespaces"] = {},
 		["global"] = {
@@ -15,7 +13,9 @@ function L1UI:GetOmniCDProfile()
 			["oodChk"] = 210206,
 			["disableElvMsg"] = true,
 		},
-		["version"] = 2.51,
+		["profileKeys"] = {
+			[E.mynameRealm] = "Luckyone DPS/TANK",
+		},
 		["profiles"] = {
 			["Luckyone Healing"] = {
 				["General"] = {
