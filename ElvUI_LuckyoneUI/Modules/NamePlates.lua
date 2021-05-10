@@ -17,6 +17,7 @@ function L1UI:SetupNamePlates(addon)
 		if L1UI.Classic then
 			E.db["v11NamePlateReset"] = true
 			E.db["nameplates"]["threat"]["badScale"] = 1
+			E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style2"
 		end
 
 		E.db["nameplates"]["colors"]["castbarDesaturate"] = false
