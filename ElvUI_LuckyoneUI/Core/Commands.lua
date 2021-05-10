@@ -29,10 +29,10 @@ end
 -- Left slash command Right function or funcref
 function L1UI:LoadCommands()
 
+	self:RegisterChatCommand('luckyoneui', 'Toggles')
+
 	if L1UI.Retail then
 		self:RegisterChatCommand('weekly', 'WeeklyRewards')
 		self:RegisterChatCommand('vault', 'WeeklyRewards')
 	end
-
-	self:RegisterChatCommand('luckyoneui', 'Toggles')
 end
