@@ -14,6 +14,11 @@ function L1UI:SetupNamePlates(addon)
 		-- Setup StyleFilters
 		L1UI:SetupStyleFilters()
 
+		if L1UI.Classic then
+			E.db["v11NamePlateReset"] = true
+			E.db["nameplates"]["threat"]["badScale"] = 1
+		end
+
 		E.db["nameplates"]["colors"]["castbarDesaturate"] = false
 		E.db["nameplates"]["colors"]["castColor"]["g"] = 1
 		E.db["nameplates"]["colors"]["castColor"]["r"] = 0.023529411764706

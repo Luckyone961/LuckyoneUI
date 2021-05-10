@@ -2173,6 +2173,7 @@ elseif L1UI.Classic then
 		E.db["bags"]["itemInfoFont"] = "Expressway"
 		E.db["bags"]["itemInfoFontOutline"] = "OUTLINE"
 		E.db["bags"]["itemInfoFontSize"] = 12
+		E.db["bags"]["itemLevel"] = false
 		E.db["bags"]["itemLevelFont"] = "Expressway"
 		E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
 		E.db["bags"]["itemLevelFontSize"] = 12
