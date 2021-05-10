@@ -9,9 +9,6 @@ function L1UI:GetBigWigsProfile()
 	local Tmain, Theal = "Luckyone TBC D/T", "Luckyone TBC H"
 	local Cmain, Cheal = "Luckyone Classic D/T", "Luckyone Classic H"
 
-	LoadAddOn('BigWigs')
-	LoadAddOn('BigWigs_Options')
-
 	if L1UI.Retail then
 
 		BigWigs3DB = {
@@ -34,27 +31,8 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Bosses_Sun King's Salvation"] = {
-					["profiles"] = {
-						[Rmain] = {
-							[325877] = 3130103,
-							[328889] = 3064567,
-							[326583] = 3130103,
-							[328479] = 3064567,
-						},
-					},
-				},
 				["BigWigs_Plugins_Alt Power"] = {},
 				["BigWigs_Plugins_BossBlock"] = {},
-				["BigWigs_Bosses_Artificer Xy'mox"] = {
-					["profiles"] = {
-						[Rmain] = {
-							[327902] = 3064567,
-							[328437] = 3130103,
-							[340758] = 3130103,
-						},
-					},
-				},
 				["BigWigs_Plugins_Sounds"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -69,59 +47,7 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Bosses_N'Zoth, the Corruptor"] = {
-					["profiles"] = {
-						[Rmain] = {
-							["custom_on_repeating_paranoia_say"] = false,
-							[317066] = 966903,
-							[315927] = 3064023,
-							[316711] = 966903,
-						},
-						[Rheal] = {
-							["custom_on_repeating_paranoia_say"] = false,
-							[317066] = 966903,
-							[315927] = 3064023,
-							[316711] = 966903,
-						},
-					},
-				},
-				["BigWigs_Bosses_Lady Inerva Darkvein"] = {
-					["profiles"] = {
-						[Rmain] = {
-							[325769] = 3064567,
-							["custom_on_stop_timers"] = false,
-							[332664] = 3130103,
-							["anima_tracking"] = 0,
-						},
-					},
-				},
 				["BigWigs_Plugins_Statistics"] = {},
-				["BigWigs_Bosses_Hungering Destroyer"] = {
-					["profiles"] = {
-						[Rmain] = {
-							[334522] = 3130103,
-							[329298] = 3064567,
-							[334266] = 3064567,
-						},
-					},
-				},
-				["BigWigs_Bosses_Shriekwing"] = {
-					["profiles"] = {
-						[Rmain] = {
-							[342863] = 3064567,
-							[330711] = 3130103,
-							[342074] = 3064567,
-						},
-					},
-				},
-				["BigWigs_Bosses_Huntsman Altimor"] = {
-					["profiles"] = {
-						[Rmain] = {
-							[334945] = 3064567,
-							[335114] = 3130103,
-						},
-					},
-				},
 				["BigWigs_Plugins_Countdown"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -268,29 +194,7 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Bosses_The Council of Blood"] = {
-					["profiles"] = {
-						[Rmain] = {
-							[331634] = 3064567,
-							[327497] = 3064039,
-							[330978] = 3064567,
-							[330959] = 3064039,
-							[337110] = 3064039,
-							[346800] = 3130103,
-						},
-					},
-				},
 				["BigWigs_Plugins_Super Emphasize"] = {},
-				["BigWigs_Bosses_Stone Legion Generals"] = {
-					["profiles"] = {
-						[Rmain] = {
-							[342985] = 3064567,
-							[333387] = 3064567,
-							[339690] = 3130103,
-							[334009] = 3064567,
-						},
-					},
-				},
 				["BigWigs_Plugins_Messages"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -339,22 +243,6 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Bosses_Sludgefist"] = {
-					["profiles"] = {
-						[Rmain] = {
-							[331209] = 3130103,
-							[335293] = 3064567,
-						},
-					},
-				},
-				["BigWigs_Bosses_Sire Denathrius"] = {
-					["profiles"] = {
-						[Rmain] = {
-							[326707] = 3064567,
-							[327796] = 3064567,
-						},
-					},
-				},
 				["BigWigs_Plugins_Proximity"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -389,9 +277,6 @@ function L1UI:GetBigWigsProfile()
 							["endPullSound"] = "None",
 						},
 					},
-				},
-				["LibDualSpec-1.0"] = {
-					["char"] = {},
 				},
 			},
 			["profileKeys"] = {
