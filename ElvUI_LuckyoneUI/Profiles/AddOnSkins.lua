@@ -1,11 +1,9 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local _G = _G
-
 -- AddOnSkins Profile
 function L1UI:GetASProfile()
 
-	local AS = _G.AddOnSkins
+	local AS = unpack(AddOnSkins)
 
 	AS.data:SetProfile("Luckyone")
 
