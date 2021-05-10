@@ -1,7 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local ReloadUI = ReloadUI
 local IsAddOnLoaded = IsAddOnLoaded
+local ReloadUI = ReloadUI
 
 -- Update Layout Buttons (Ingame Config)
 function L1UI:UpdateLayout(layout)

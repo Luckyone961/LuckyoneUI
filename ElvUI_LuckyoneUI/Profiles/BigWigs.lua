@@ -1,7 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local LoadAddOn = LoadAddOn
-
 -- BigWigs Profiles
 function L1UI:GetBigWigsProfile()
 
@@ -28,6 +26,11 @@ function L1UI:GetBigWigsProfile()
 				},
 			},
 			["namespaces"] = {
+				["BigWigs_Plugins_Alt Power"] = {},
+				["BigWigs_Plugins_BossBlock"] = {},
+				["BigWigs_Plugins_Statistics"] = {},
+				["BigWigs_Plugins_Super Emphasize"] = {},
+				["BigWigs_Plugins_Wipe"] = {},
 				["BigWigs_Plugins_Victory"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -40,8 +43,6 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Alt Power"] = {},
-				["BigWigs_Plugins_BossBlock"] = {},
 				["BigWigs_Plugins_Sounds"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -56,7 +57,6 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Statistics"] = {},
 				["BigWigs_Plugins_Countdown"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -203,7 +203,6 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Super Emphasize"] = {},
 				["BigWigs_Plugins_Messages"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -274,7 +273,6 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Wipe"] = {},
 				["BigWigs_Plugins_Pull"] = {
 					["profiles"] = {
 						[Rmain] = {
@@ -308,7 +306,13 @@ function L1UI:GetBigWigsProfile()
 				},
 			},
 			["namespaces"] = {
+				["BigWigs_Plugins_BossBlock"] = {},
+				["BigWigs_Plugins_Pull"] = {},
+				["BigWigs_Plugins_Sounds"] = {},
+				["BigWigs_Plugins_Statistics"] = {},
+				["BigWigs_Plugins_Super Emphasize"] = {},
 				["BigWigs_Plugins_Victory"] = {},
+				["BigWigs_Plugins_Wipe"] = {},
 				["BigWigs_Plugins_Colors"] = {
 					["profiles"] = {
 						[Theal] = {
@@ -347,7 +351,6 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_BossBlock"] = {},
 				["BigWigs_Plugins_Bars"] = {
 					["profiles"] = {
 						[Theal] = {
@@ -386,9 +389,6 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Wipe"] = {},
-				["BigWigs_Plugins_Super Emphasize"] = {},
-				["BigWigs_Plugins_Sounds"] = {},
 				["BigWigs_Plugins_InfoBox"] = {
 					["profiles"] = {
 						[Theal] = {
@@ -426,7 +426,6 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Statistics"] = {},
 				["BigWigs_Plugins_Messages"] = {
 					["profiles"] = {
 						[Theal] = {
@@ -459,7 +458,6 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Pull"] = {},
 				["BigWigs_Plugins_Countdown"] = {
 					["profiles"] = {
 						[Theal] = {
@@ -493,7 +491,13 @@ function L1UI:GetBigWigsProfile()
 				},
 			},
 			["namespaces"] = {
+				["BigWigs_Plugins_BossBlock"] = {},
+				["BigWigs_Plugins_Pull"] = {},
+				["BigWigs_Plugins_Sounds"] = {},
+				["BigWigs_Plugins_Statistics"] = {},
+				["BigWigs_Plugins_Super Emphasize"] = {},
 				["BigWigs_Plugins_Victory"] = {},
+				["BigWigs_Plugins_Wipe"] = {},
 				["BigWigs_Plugins_Colors"] = {
 					["profiles"] = {
 						[Cheal] = {
@@ -532,7 +536,6 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_BossBlock"] = {},
 				["BigWigs_Plugins_Bars"] = {
 					["profiles"] = {
 						[Cheal] = {
@@ -571,9 +574,6 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Wipe"] = {},
-				["BigWigs_Plugins_Super Emphasize"] = {},
-				["BigWigs_Plugins_Sounds"] = {},
 				["BigWigs_Plugins_InfoBox"] = {
 					["profiles"] = {
 						[Cheal] = {
@@ -611,7 +611,6 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Statistics"] = {},
 				["BigWigs_Plugins_Messages"] = {
 					["profiles"] = {
 						[Cheal] = {
@@ -644,7 +643,6 @@ function L1UI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Plugins_Pull"] = {},
 				["BigWigs_Plugins_Countdown"] = {
 					["profiles"] = {
 						[Cheal] = {
@@ -662,6 +660,5 @@ function L1UI:GetBigWigsProfile()
 		BigWigsIconClassicDB = {["hide"] = true}
 
 		BigWigs.db:SetProfile(Cmain)
-
 	end
 end

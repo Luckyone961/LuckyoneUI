@@ -1,7 +1,8 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
+local LoadAddOn = LoadAddOn
+local SetCVar = SetCVar
 
 -- LuckyoneUI chat print
 function L1UI:Print(msg)
@@ -21,6 +22,7 @@ end
 function L1UI:AddonSetupBW()
 
 	if IsAddOnLoaded('BigWigs') then
+		LoadAddOn('BigWigs_Options')
 		L1UI:GetBigWigsProfile()
 		L1UI:Print('BigWigs profile has been set.')
 	end

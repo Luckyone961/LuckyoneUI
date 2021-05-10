@@ -3,12 +3,12 @@ local ElvUF = E.oUF
 
 local floor = floor
 
-local UnitPower = UnitPower
-local UnitHealth = UnitHealth
-local UnitPowerMax = UnitPowerMax
-local UnitHealthMax = UnitHealthMax
 local UnitClassification = UnitClassification
 local UnitGroupRolesAssigned = UnitGroupRolesAssigned
+local UnitHealth = UnitHealth
+local UnitHealthMax = UnitHealthMax
+local UnitPower = UnitPower
+local UnitPowerMax = UnitPowerMax
 
 -- Display unit classification without 'affix' on minor enemies
 ElvUF.Tags.Events['luckyone:classification'] = 'UNIT_CLASSIFICATION_CHANGED'

@@ -3,18 +3,17 @@ local CH = E:GetModule('Chat')
 
 local _G = _G
 local ipairs = ipairs
-local SetCVar = SetCVar
-
-local FCF_SetWindowName = FCF_SetWindowName
-local FCF_OpenNewWindow = FCF_OpenNewWindow
-local FCFTab_UpdateColors = FCFTab_UpdateColors
-local FCF_ResetChatWindows = FCF_ResetChatWindows
-local FCFDock_SelectWindow = FCFDock_SelectWindow
-local FCF_SetChatWindowFontSize = FCF_SetChatWindowFontSize
 
 local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
-local ChatFrame_RemoveMessageGroup = ChatFrame_RemoveMessageGroup
 local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
+local ChatFrame_RemoveMessageGroup = ChatFrame_RemoveMessageGroup
+local FCF_OpenNewWindow = FCF_OpenNewWindow
+local FCF_ResetChatWindows = FCF_ResetChatWindows
+local FCF_SetChatWindowFontSize = FCF_SetChatWindowFontSize
+local FCF_SetWindowName = FCF_SetWindowName
+local FCFDock_SelectWindow = FCFDock_SelectWindow
+local FCFTab_UpdateColors = FCFTab_UpdateColors
+local SetCVar = SetCVar
 
 -- Chat setup for tabs, windows and channels
 function L1UI:SetupChat()
