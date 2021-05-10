@@ -1,8 +1,8 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local retail = "Luckyone"
-local tbc = "Luckyone TBC"
-local classic = "Luckyone Classic"
+local retail = "Luckyone D/T"
+local tbc = "Luckyone TBC D/T"
+local classic = "Luckyone Classic D/T"
 
 -- DBM Profile
 function L1UI:GetDBMProfile()
