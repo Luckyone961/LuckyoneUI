@@ -15,8 +15,17 @@ function L1UI:GetBigWigsProfile()
 			["profileKeys"] = {
 				[E.mynameRealm] = Rmain,
 			},
-			["global"] = {
-				["watchedMovies"] = {},
+			["profiles"] = {
+				[Rmain] = {
+					["showZoneMessages"] = false,
+					["fakeDBMVersion"] = true,
+					["flash"] = false,
+				},
+				[Rheal] = {
+					["showZoneMessages"] = false,
+					["flash"] = false,
+					["fakeDBMVersion"] = true,
+				},
 			},
 			["namespaces"] = {
 				["BigWigs_Plugins_Victory"] = {
@@ -279,21 +288,6 @@ function L1UI:GetBigWigsProfile()
 					},
 				},
 			},
-			["profileKeys"] = {
-				[E.mynameRealm] = Rmain,
-			},
-			["profiles"] = {
-				[Rmain] = {
-					["showZoneMessages"] = false,
-					["fakeDBMVersion"] = true,
-					["flash"] = false,
-				},
-				[Rheal] = {
-					["showZoneMessages"] = false,
-					["flash"] = false,
-					["fakeDBMVersion"] = true,
-				},
-			},
 		}
 		BigWigsIconDB = {["hide"] = true}
 
@@ -302,10 +296,18 @@ function L1UI:GetBigWigsProfile()
 	elseif L1UI.TBC then
 
 		BigWigsClassicDB = {
-			["namespaces"] = {
-				["profileKeys"] = {
-					[E.mynameRealm] = Tmain,
+			["profileKeys"] = {
+				[E.mynameRealm] = Tmain,
+			},
+			["profiles"] = {
+				[Theal] = {
+					["fakeDBMVersion"] = true,
 				},
+				[Tmain] = {
+					["fakeDBMVersion"] = true,
+				},
+			},
+			["namespaces"] = {
 				["BigWigs_Plugins_Victory"] = {},
 				["BigWigs_Plugins_Colors"] = {
 					["profiles"] = {
@@ -469,14 +471,6 @@ function L1UI:GetBigWigsProfile()
 							["fontName"] = "Expressway",
 						},
 					},
-				},
-			},
-			["profiles"] = {
-				[Theal] = {
-					["fakeDBMVersion"] = true,
-				},
-				[Tmain] = {
-					["fakeDBMVersion"] = true,
 				},
 			},
 		}
@@ -487,10 +481,18 @@ function L1UI:GetBigWigsProfile()
 	elseif L1UI.Classic then
 
 		BigWigsClassicDB = {
-			["namespaces"] = {
-				["profileKeys"] = {
-					[E.mynameRealm] = Cmain,
+			["profileKeys"] = {
+				[E.mynameRealm] = Cmain,
+			},
+			["profiles"] = {
+				[Cheal] = {
+					["fakeDBMVersion"] = true,
 				},
+				[Cmain] = {
+					["fakeDBMVersion"] = true,
+				},
+			},
+			["namespaces"] = {
 				["BigWigs_Plugins_Victory"] = {},
 				["BigWigs_Plugins_Colors"] = {
 					["profiles"] = {
@@ -654,14 +656,6 @@ function L1UI:GetBigWigsProfile()
 							["fontName"] = "Expressway",
 						},
 					},
-				},
-			},
-			["profiles"] = {
-				[Cheal] = {
-					["fakeDBMVersion"] = true,
-				},
-				[Cmain] = {
-					["fakeDBMVersion"] = true,
 				},
 			},
 		}
