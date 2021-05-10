@@ -1,11 +1,11 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local retail = "Luckyone"
+local tbc = "Luckyone TBC"
+local classic = "Luckyone Classic"
+
 -- Details Profile
 function L1UI:GetDetailsProfile()
-
-	local retail = "Luckyone"
-	local tbc = "Luckyone TBC"
-	local classic = "Luckyone Classic"
 
 	if L1UI.Retail then
 

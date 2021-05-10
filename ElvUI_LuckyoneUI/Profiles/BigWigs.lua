@@ -1,11 +1,11 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local Rmain, Rheal = "Luckyone D/T", "Luckyone H"
+local Tmain, Theal = "Luckyone TBC D/T", "Luckyone TBC H"
+local Cmain, Cheal = "Luckyone Classic D/T", "Luckyone Classic H"
+
 -- BigWigs Profiles
 function L1UI:GetBigWigsProfile()
-
-	local Rmain, Rheal = "Luckyone D/T", "Luckyone H"
-	local Tmain, Theal = "Luckyone TBC D/T", "Luckyone TBC H"
-	local Cmain, Cheal = "Luckyone Classic D/T", "Luckyone Classic H"
 
 	if L1UI.Retail then
 

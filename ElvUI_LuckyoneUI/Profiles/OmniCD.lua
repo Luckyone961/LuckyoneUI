@@ -8,14 +8,8 @@ function L1UI:GetOmniCDProfile()
 		["profileKeys"] = {
 			[E.mynameRealm] = "Luckyone DPS/TANK",
 		},
-		["cooldowns"] = {
-		},
-		["namespaces"] = {
-			["LibDualSpec-1.0"] = {
-				["char"] = {
-				},
-			},
-		},
+		["cooldowns"] = {},
+		["namespaces"] = {},
 		["global"] = {
 			["oodVer"] = 2511,
 			["oodChk"] = 210206,

@@ -1,14 +1,11 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local _G = _G
+local PA = _G.ProjectAzilroka
+local version = GetAddOnMetadata('ProjectAzilroka', 'Version')
 
 -- ProjectAzilroka Profile
 function L1UI:GetPAProfile()
-
-	local PA = _G.ProjectAzilroka
-
-	-- ProjectAzilroka version
-	local version = GetAddOnMetadata('ProjectAzilroka', 'Version')
 
 	-- Create and set a new Profile called Luckyone
 	PA.data:SetProfile('Luckyone')
