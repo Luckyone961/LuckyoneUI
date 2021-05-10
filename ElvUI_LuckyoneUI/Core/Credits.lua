@@ -18,6 +18,7 @@ local CODING = {
 local TESTERS = {
 	'|cff00FF96AltBridge|r',
 	'|cff69CCF0Sniefer|r',
+	'|cffABD473Badbrain|r',
 	'|cffABD473Xyf|r',
 	'|cffC41F3BKringel|r',
 	'|cffF58CBAIllusion|r',

@@ -17,6 +17,8 @@ Support for Healing WeakAuras (WIP)
 (All) Chat Commands  
 • /luckyoneui config  
 • /luckyoneui install  
+**Misc:**
+Updated Credits  
 ___
 ### Version 1.24 [24-04-2021]
 **Hotfix:**  
