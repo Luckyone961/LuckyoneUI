@@ -1,17 +1,18 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local _G = _G
-local DBM = _G.DBM
+local retail = "Luckyone"
+local tbc = "Luckyone TBC"
+local classic = "Luckyone Classic"
 
 -- DBM Profile
 function L1UI:GetDBMProfile()
 
 	if L1UI.Retail then
 
-		DBM:CreateProfile("Luckyone")
+		DBM:CreateProfile(retail)
 
 		DBM_AllSavedOptions = {
-			["Luckyone"] = {
+			[retail] = {
 				["DontShowFarWarnings"] = true,
 				["ChosenVoicePack"] = "VEM",
 				["DontShowHudMap2"] = true,
@@ -258,7 +259,7 @@ function L1UI:GetDBMProfile()
 			},
 		}
 		DBT_AllPersistentOptions = {
-			["Luckyone"] = {
+			[retail] = {
 				["DBM"] = {
 					["StartColorPR"] = 1,
 					["Scale"] = 1,
@@ -360,15 +361,16 @@ function L1UI:GetDBMProfile()
 				},
 			},
 		}
+		DBM_MinimapIcon = {["hide"] = true}
 
-		DBM:ApplyProfile("Luckyone")
+		DBM:ApplyProfile(retail)
 
 	elseif L1UI.TBC then
 
-		DBM:CreateProfile("Luckyone TBC")
+		DBM:CreateProfile(tbc)
 
 		DBM_AllSavedOptions = {
-			["Luckyone TBC"] = {
+			[tbc] = {
 				["DontShowFarWarnings"] = true,
 				["ChosenVoicePack"] = "VEM",
 				["DontShowHudMap2"] = true,
@@ -619,7 +621,7 @@ function L1UI:GetDBMProfile()
 			},
 		}
 		DBT_AllPersistentOptions = {
-			["Luckyone TBC"] = {
+			[tbc] = {
 				["DBM"] = {
 					["StartColorPR"] = 1,
 					["Scale"] = 1,
@@ -721,15 +723,16 @@ function L1UI:GetDBMProfile()
 				},
 			},
 		}
+		DBM_MinimapIcon = {["hide"] = true}
 
-		DBM:ApplyProfile("Luckyone TBC")
+		DBM:ApplyProfile(tbc)
 
 	elseif L1UI.Classic then
 
-		DBM:CreateProfile("Luckyone Classic")
+		DBM:CreateProfile(classic)
 
 		DBM_AllSavedOptions = {
-			["Luckyone Classic"] = {
+			[classic] = {
 				["DontShowFarWarnings"] = true,
 				["ChosenVoicePack"] = "VEM",
 				["DontShowHudMap2"] = true,
@@ -980,7 +983,7 @@ function L1UI:GetDBMProfile()
 			},
 		}
 		DBT_AllPersistentOptions = {
-			["Luckyone Classic"] = {
+			[classic] = {
 				["DBM"] = {
 					["StartColorPR"] = 1,
 					["Scale"] = 1,
@@ -1082,10 +1085,9 @@ function L1UI:GetDBMProfile()
 				},
 			},
 		}
+		DBM_MinimapIcon = {["hide"] = true}
 
-		DBM:ApplyProfile("Luckyone Classic")
+		DBM:ApplyProfile(classic)
 
 	end
-
-	DBM_MinimapIcon = {["hide"] = true}
 end

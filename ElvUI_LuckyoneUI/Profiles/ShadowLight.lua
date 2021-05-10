@@ -1,10 +1,11 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 if not L1UI.Retail then return end
 
-local version = GetAddOnMetadata('ElvUI_SLE', 'Version')
-
 -- Shadow & Light Profile
 function L1UI:GetSLEProfile()
+
+	-- Shadow & Light Version
+	local version = GetAddOnMetadata('ElvUI_SLE', 'Version')
 
 	-- Shadow & Light Global DB
 	E.global["sle"]["advanced"]["confirmed"] = true
