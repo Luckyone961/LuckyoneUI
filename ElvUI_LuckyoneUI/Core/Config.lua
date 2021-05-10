@@ -119,22 +119,30 @@ L1UI.Options.args.skins.args.blizzard = ACH:Group('Blizzard Frames', nil, 2)
 L1UI.Options.args.skins.args.blizzard.inline = true
 L1UI.Options.args.skins.args.blizzard.args = {}
 
+-- Tags
+L1UI.Options.args.tags = ACH:Group(format('|cff4beb2c%s|r', 'Tags'), nil, 9)
+L1UI.Options.args.tags.args.groups = ACH:Group('Tags', nil, 1)
+L1UI.Options.args.tags.args.groups.inline = true
+L1UI.Options.args.tags.args.groups.args.available = ACH:Execute('Available Tags', 'Jump to the Available Tag list.', 1, function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', L1UI.Name) end)
+L1UI.Options.args.tags.args.groups.args.elvui = ACH:Execute('Use ElvUI Tags', nil, 2, function() L1UI:SwapTags('elvui') end, nil, true)
+L1UI.Options.args.tags.args.groups.args.luckyone = ACH:Execute('Use Luckyone Tags', nil, 3, function() L1UI:SwapTags('luckyone') end, nil, true)
+L1UI.Options.args.tags.args.elvuiDesc = ACH:Group('ElvUI Tags', nil, 2)
+L1UI.Options.args.tags.args.elvuiDesc.inline = true
+L1UI.Options.args.tags.args.elvuiDesc.args.elvui = ACH:Description('- perhp\n- classification', 1, 'medium')
+L1UI.Options.args.tags.args.luckyoneDesc = ACH:Group('Luckyone Tags', nil, 3)
+L1UI.Options.args.tags.args.luckyoneDesc.inline = true
+if L1UI.Retail then
+	L1UI.Options.args.tags.args.luckyoneDesc.args.luckyone = ACH:Description('- luckyone:health:percent\n- luckyone:classification\n- luckyone:healermana:percent', 1, 'medium')
+else
+	L1UI.Options.args.tags.args.luckyoneDesc.args.luckyone = ACH:Description('- luckyone:health:percent\n- luckyone:classification', 1, 'medium')
+end
+
 -- Themes
 L1UI.Options.args.themes = ACH:Group(format('|cff4beb2c%s|r', 'Themes'), nil, 10)
 L1UI.Options.args.themes.args.raid = ACH:Group('UnitFrames Color Theme', nil, 1)
 L1UI.Options.args.themes.args.raid.inline = true
 L1UI.Options.args.themes.args.raid.args.dark = ACH:Execute('Dark', 'Dark Style (Default)', 1, function() L1UI:SetupTheme('dark') end, nil, true)
 L1UI.Options.args.themes.args.raid.args.class = ACH:Execute('Class Color', 'Class Color Style', 2, function() L1UI:SetupTheme('class') end, nil, true)
-
--- UnitFrames
-L1UI.Options.args.unitframes = ACH:Group(format('|cff4beb2c%s|r', 'UnitFrames'), nil, 11)
-L1UI.Options.args.unitframes.args.raid = ACH:Group('Raidframe Style', nil, 1)
-L1UI.Options.args.unitframes.args.raid.inline = true
-L1UI.Options.args.unitframes.args.raid.args.vertical = ACH:Execute('Vertical', 'Vertical Style', 1, function() L1UI:RaidFrames('vertical') end, nil, true)
-L1UI.Options.args.unitframes.args.raid.args.block = ACH:Execute('Block', 'Block Style', 2, function() L1UI:RaidFrames('block') end, nil, true)
-L1UI.Options.args.unitframes.args.desc = ACH:Group('Note', nil, 2)
-L1UI.Options.args.unitframes.args.desc.inline = true
-L1UI.Options.args.unitframes.args.desc.args.raidDesc = ACH:Description('The options above are for the DPS/TANK layout.', 1, 'medium')
 
 -- Credits
 L1UI.Options.args.credits = ACH:Group(format('|cffFF7D0A%s|r', 'Credits'), nil, 13)
@@ -181,19 +189,15 @@ if L1UI.Retail then
 	L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', 'Reset to LuckyoneUI defaults.', 3, function() L1UI:AddonSetupSLE() ReloadUI() end, nil, true)
 	L1UI.Options.args.profiles.args.addons.args.omnicd = ACH:Execute('OmniCD', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:AddonSetupOCD() ReloadUI() end, nil, true)
 
-	-- Tags
-	L1UI.Options.args.tags = ACH:Group(format('|cff4beb2c%s|r', 'Tags'), nil, 9)
-	L1UI.Options.args.tags.args.groups = ACH:Group('Tags', nil, 1)
-	L1UI.Options.args.tags.args.groups.inline = true
-	L1UI.Options.args.tags.args.groups.args.available = ACH:Execute('Available Tags', 'Jump to the Available Tag list.', 1, function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', L1UI.Name) end)
-	L1UI.Options.args.tags.args.groups.args.elvui = ACH:Execute('Use ElvUI Tags', nil, 2, function() L1UI:SwapTags('elvui') end, nil, true)
-	L1UI.Options.args.tags.args.groups.args.luckyone = ACH:Execute('Use Luckyone Tags', nil, 3, function() L1UI:SwapTags('luckyone') end, nil, true)
-	L1UI.Options.args.tags.args.elvuiDesc = ACH:Group('ElvUI Tags', nil, 2)
-	L1UI.Options.args.tags.args.elvuiDesc.inline = true
-	L1UI.Options.args.tags.args.elvuiDesc.args.elvui = ACH:Description('- perhp\n- classification', 1, 'medium')
-	L1UI.Options.args.tags.args.luckyoneDesc = ACH:Group('Luckyone Tags', nil, 3)
-	L1UI.Options.args.tags.args.luckyoneDesc.inline = true
-	L1UI.Options.args.tags.args.luckyoneDesc.args.luckyone = ACH:Description('- luckyone:health:percent\n- luckyone:classification\n- luckyone:healermana:percent', 1, 'medium')
+	-- UnitFrames
+	L1UI.Options.args.unitframes = ACH:Group(format('|cff4beb2c%s|r', 'UnitFrames'), nil, 11)
+	L1UI.Options.args.unitframes.args.raid = ACH:Group('Raidframe Style', nil, 1)
+	L1UI.Options.args.unitframes.args.raid.inline = true
+	L1UI.Options.args.unitframes.args.raid.args.vertical = ACH:Execute('Vertical', 'Vertical Style', 1, function() L1UI:RaidFrames('vertical') end, nil, true)
+	L1UI.Options.args.unitframes.args.raid.args.block = ACH:Execute('Block', 'Block Style', 2, function() L1UI:RaidFrames('block') end, nil, true)
+	L1UI.Options.args.unitframes.args.desc = ACH:Group('Note', nil, 2)
+	L1UI.Options.args.unitframes.args.desc.inline = true
+	L1UI.Options.args.unitframes.args.desc.args.raidDesc = ACH:Description('The options above are for the DPS/TANK layout.', 1, 'medium')
 
 	-- WeakAuras
 	L1UI.Options.args.weakauras = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 12)
