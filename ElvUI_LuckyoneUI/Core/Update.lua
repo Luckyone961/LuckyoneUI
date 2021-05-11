@@ -9,6 +9,11 @@ function L1UI:UpdateLayout(layout)
 	-- Protect some rare nil errors
 	if not E.db.movers then E.db.movers = {} end
 
+	-- Chat db changes
+	if E.private.chat.enable then
+		E.db["chat"]["tabFontOutline"] = "OUTLINE"
+	end
+
 	-- ElvUI NamePlates db changes
 	if E.private.nameplates.enable then
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["castTimeFormat"] = "REMAINING"

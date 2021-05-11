@@ -12,6 +12,7 @@ Support for Healing WeakAuras (WIP)
 (Retail) Details profile updated  
 (Retail) DBM profile updated  
 **Changes:**  
+(All) Added an Outline to the Chat Tab Font  
 (All) Setup Chat will now enable chat class colors  
 (All) ElvUI NamePlate castbars will show time remaining instead of current  
 **New Additions:**  
