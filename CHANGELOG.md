@@ -7,9 +7,10 @@ Support for Healing WeakAuras (WIP)
 (TBC & Classic) Details profile added  
 (TBC & Classic) Plater profile added  
 (TBC & Classic) DBM profile added  
+(Retail) Shadow & Light profile updated  
 (Retail) BigWigs profile updated  
 (Retail) Details profile updated  
-(Retail) Shadow & Light profile updated  
+(Retail) DBM profile updated  
 **Changes:**  
 (All) Setup Chat will now enable chat class colors  
 (All) ElvUI NamePlate castbars will show time remaining instead of current  
