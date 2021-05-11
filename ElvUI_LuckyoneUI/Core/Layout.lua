@@ -351,7 +351,6 @@ if L1UI.Retail then
 		E.db["chat"]["showHistory"]["SAY"] = false
 		E.db["chat"]["showHistory"]["YELL"] = false
 		E.db["chat"]["tabFont"] = "Expressway"
-		E.db["chat"]["tabFontOutline"] = "OUTLINE"
 		E.db["chat"]["tabFontSize"] = 11
 		E.db["chat"]["tabSelectedTextEnabled"] = false
 		E.db["chat"]["tabSelector"] = "NONE"
@@ -2228,7 +2227,6 @@ elseif L1UI.Classic then
 		E.db["chat"]["panelWidthRight"] = 414
 		E.db["chat"]["separateSizes"] = true
 		E.db["chat"]["tabFont"] = "Expressway"
-		E.db["chat"]["tabFontOutline"] = "OUTLINE"
 		E.db["chat"]["tabFontSize"] = 11
 		E.db["chat"]["tabSelectedTextEnabled"] = false
 		E.db["chat"]["tabSelector"] = "NONE"
@@ -3522,7 +3520,6 @@ elseif L1UI.TBC then
 		E.db["chat"]["panelWidthRight"] = 414
 		E.db["chat"]["separateSizes"] = true
 		E.db["chat"]["tabFont"] = "Expressway"
-		E.db["chat"]["tabFontOutline"] = "OUTLINE"
 		E.db["chat"]["tabFontSize"] = 11
 		E.db["chat"]["tabSelectedTextEnabled"] = false
 		E.db["chat"]["tabSelector"] = "NONE"
