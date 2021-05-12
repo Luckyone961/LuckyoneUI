@@ -20,6 +20,10 @@ function L1UI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style2"
 		end
 
+		if L1UI.TBC then
+			E.db["nameplates"]["loadDistance"] = 41
+		end
+
 		E.db["nameplates"]["colors"]["castbarDesaturate"] = false
 		E.db["nameplates"]["colors"]["castColor"]["g"] = 1
 		E.db["nameplates"]["colors"]["castColor"]["r"] = 0.023529411764706
