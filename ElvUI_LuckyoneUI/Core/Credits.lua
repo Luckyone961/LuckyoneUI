@@ -42,6 +42,7 @@ local SUPPORT = {
 	'|cffe6cc80ShowNoMercy|r',
 	'|cffe6cc80Treelyté|r',
 	'|cffe6cc80Triplebeamdreams|r',
+	'|cffe6cc80Logan|r',
 }
 
 local function SortList(a, b)
