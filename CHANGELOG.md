@@ -19,7 +19,7 @@ Support for WoW TBC & Classic
 (All) Chat Commands  
 • /luckyoneui config  
 • /luckyoneui install  
-**Misc:**
+**Misc:**  
 Updated Credits  
 ___
 ### Version 1.24 [24-04-2021]
