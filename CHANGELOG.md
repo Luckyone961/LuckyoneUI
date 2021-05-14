@@ -1,4 +1,6 @@
-### Version 1.25 [ETA: 🍨]
+### Version 1.26 [ETA: 🍨]
+___
+### Version 1.25 [14-05-2021]
 **Highlights:**  
 Support for WoW TBC & Classic  
 **Profiles:**  
