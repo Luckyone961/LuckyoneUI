@@ -3,28 +3,36 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local LoadAddOn = LoadAddOn
 
-function L1UI:WeeklyReward()
+-- Weekly Rewards Frame chat commands
+function L1UI:WeeklyRewards()
 
-	local List = _G.SlashCmdList
+	LoadAddOn('Blizzard_WeeklyRewards')
+	_G.WeeklyRewardsFrame:Show()
+end
 
-	if not List.WEEKLY then
-		_G.SLASH_WEEKLY1 = '/weekly'
-		List.WEEKLY = function()
-			LoadAddOn("Blizzard_WeeklyRewards")
-			_G.WeeklyRewardsFrame:Show()
-		end
-	end
+-- LuckyoneUI chat commands
+function L1UI:Toggles(message)
 
-	if not List.VAULT then
-		_G.SLASH_VAULT1 = '/vault'
-		List.VAULT = function()
-			LoadAddOn("Blizzard_WeeklyRewards")
-			_G.WeeklyRewardsFrame:Show()
-		end
+	if message == 'install' then
+
+		E.PluginInstaller:Queue(L1UI.InstallerData)
+
+	elseif message == 'config' then
+
+		E:ToggleOptionsUI()
+		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
+
 	end
 end
 
+-- RegisterChatCommand requires AceConsole-3.0
+-- Left slash command Right function or funcref
 function L1UI:LoadCommands()
 
-	L1UI:WeeklyReward()
+	self:RegisterChatCommand('luckyoneui', 'Toggles')
+
+	if L1UI.Retail then
+		self:RegisterChatCommand('weekly', 'WeeklyRewards')
+		self:RegisterChatCommand('vault', 'WeeklyRewards')
+	end
 end

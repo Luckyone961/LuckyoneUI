@@ -1,37 +1,15 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local _G = _G
-local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
+local LoadAddOn = LoadAddOn
+local SetCVar = SetCVar
 
+-- LuckyoneUI chat print
 function L1UI:Print(msg)
-	print('|cff4beb2cLuckyoneUI|r: '..msg)
+	print(L1UI.Name..': '..msg)
 end
 
-function L1UI:DisabledFrames()
-
-	if E.private.L1UI.disabledFrames.BossBanner then
-		_G.BossBanner:UnregisterAllEvents()
-	end
-
-	if E.private.L1UI.disabledFrames.LevelUpDisplay then
-		_G.LevelUpDisplay:UnregisterAllEvents()
-	end
-
-	if E.private.L1UI.disabledFrames.ZoneTextFrame then
-		_G.ZoneTextFrame:UnregisterAllEvents()
-	end
-
-	if E.private.L1UI.disabledFrames.AlertFrame then
-		_G.AlertFrame:UnregisterAllEvents()
-		E:DisableMover('AlertFrameMover')
-	end
-
-	if (E.private.L1UI.disabledFrames.BossBanner and E.private.L1UI.disabledFrames.LevelUpDisplay) then
-		E:DisableMover('LevelUpBossBannerMover')
-	end
-end
-
+-- Load AddOnSkins Profile
 function L1UI:AddonSetupAS()
 
 	if IsAddOnLoaded('AddOnSkins') then
@@ -40,14 +18,17 @@ function L1UI:AddonSetupAS()
 	end
 end
 
+-- Load BigWigs Profile
 function L1UI:AddonSetupBW()
 
 	if IsAddOnLoaded('BigWigs') then
+		LoadAddOn('BigWigs_Options')
 		L1UI:GetBigWigsProfile()
 		L1UI:Print('BigWigs profile has been set.')
 	end
 end
 
+-- Load DBM Profile
 function L1UI:AddonSetupDBM()
 
 	if IsAddOnLoaded('DBM-Core') then
@@ -56,6 +37,7 @@ function L1UI:AddonSetupDBM()
 	end
 end
 
+-- Load Details Profile
 function L1UI:AddonSetupDT()
 
 	if IsAddOnLoaded('Details') then
@@ -64,6 +46,7 @@ function L1UI:AddonSetupDT()
 	end
 end
 
+-- Load OmniCD Profile
 function L1UI:AddonSetupOCD()
 
 	if IsAddOnLoaded('OmniCD') then
@@ -72,6 +55,7 @@ function L1UI:AddonSetupOCD()
 	end
 end
 
+-- Load Plater Profile
 function L1UI:AddonSetupPlater()
 
 	if IsAddOnLoaded('Plater') then
@@ -80,6 +64,7 @@ function L1UI:AddonSetupPlater()
 	end
 end
 
+-- Load ProjectAzilroka Profile
 function L1UI:AddonSetupPA()
 
 	if IsAddOnLoaded('ProjectAzilroka') then
@@ -88,6 +73,7 @@ function L1UI:AddonSetupPA()
 	end
 end
 
+-- Load Shadow&Light Profile
 function L1UI:AddonSetupSLE()
 
 	if IsAddOnLoaded('ElvUI_SLE') then
@@ -96,6 +82,14 @@ function L1UI:AddonSetupSLE()
 	end
 end
 
+-- Set UI Scale
+function L1UI:SetupScale()
+
+	E.global["general"]["UIScale"] = 0.71111111111111
+	SetCVar('uiScale', 0.71111111111111)
+end
+
+-- General CVars
 function L1UI:SetupCVars()
 
 	E:SetupCVars(noDisplayMsg)
@@ -109,6 +103,7 @@ function L1UI:SetupCVars()
 	L1UI:Print('CVars have been set.')
 end
 
+-- NamePlate CVars
 function L1UI:NameplateCVars()
 
 	SetCVar('nameplateLargerScale', 1)
@@ -117,7 +112,7 @@ function L1UI:NameplateCVars()
 	SetCVar('nameplateMotion', 1)
 	SetCVar('nameplateOccludedAlphaMult', 1)
 	SetCVar('nameplateOverlapH', 1)
-	SetCVar('nameplateOverlapV', 1.6)
+	SetCVar('nameplateOverlapV', 1.7)
 	SetCVar('nameplateSelectedScale', 1)
 	SetCVar('nameplateSelfAlpha', 1)
 
@@ -125,11 +120,19 @@ function L1UI:NameplateCVars()
 	SetCVar('UnitNameEnemyMinionName', 1)
 	SetCVar('UnitNameEnemyPetName', 1)
 	SetCVar('UnitNameEnemyPlayerName', 1)
-	SetCVar('UnitNameEnemyTotem', 1)
+
+	if not L1UI.Classic then
+		SetCVar('UnitNameEnemyTotem', 1)
+	end
+
+	if not L1UI.Retail then
+		SetCVar('nameplateNotSelectedAlpha', 1)
+	end
 
 	L1UI:Print('NamePlate CVars have been set.')
 end
 
+-- E.private
 function L1UI:SetupPrivate()
 
 	E.private["general"]["chatBubbleFont"] = "Expressway"
@@ -138,19 +141,32 @@ function L1UI:SetupPrivate()
 	E.private["general"]["glossTex"] = "Minimalist"
 	E.private["general"]["namefont"] = "Expressway"
 	E.private["general"]["normTex"] = "Minimalist"
-	E.private["general"]["totemBar"] = false
-	E.private["install_complete"] = "12.16"
 	E.private["skins"]["parchmentRemoverEnable"] = true
+
+	if L1UI.Retail then
+		E.private["install_complete"] = "12.24"
+		E.private["general"]["totemBar"] = false
+	elseif L1UI.TBC then
+		E.private["install_complete"] = "0.19"
+		E.private["general"]["totemBar"] = true
+	elseif L1UI.Classic then
+		E.private["install_complete"] = "1.42"
+	end
 end
 
+-- E.global
 function L1UI:SetupGlobal()
 
-	E.global["general"]["commandBarSetting"] = "DISABLED"
+	if L1UI.Retail then
+		E.global["general"]["commandBarSetting"] = "DISABLED"
+	end
+
 	E.global["general"]["fadeMapWhenMoving"] = false
 	E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	E.global["general"]["smallerWorldMapScale"] = 0.8
 	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
 
+	-- Luckyone Custom DataText (below ActionBars)
 	do
 		E.DataTexts:BuildPanelFrame("Luckyone_ActionBars_DT")
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["backdrop"] = true
@@ -175,10 +191,4 @@ function L1UI:SetupGlobal()
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = "[petbattle] hide;show"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 358
 	end
-end
-
-function L1UI:SetupScale()
-
-	E.global["general"]["UIScale"] = 0.71111111111111
-	SetCVar('uiScale', 0.71111111111111)
 end

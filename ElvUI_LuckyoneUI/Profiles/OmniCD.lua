@@ -1,27 +1,21 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
+if not L1UI.Retail then return end
 
--- [E.mynameRealm] = "Luckyone DPS/TANK"
-
+-- OmniCD Profile
 function L1UI:GetOmniCDProfile()
 
 	OmniCDDB = {
-		["profileKeys"] = {
-			[E.mynameRealm] = "Luckyone DPS/TANK",
-		},
-		["cooldowns"] = {
-		},
-		["namespaces"] = {
-			["LibDualSpec-1.0"] = {
-				["char"] = {
-				},
-			},
-		},
+		["version"] = 2.51,
+		["cooldowns"] = {},
+		["namespaces"] = {},
 		["global"] = {
 			["oodVer"] = 2511,
 			["oodChk"] = 210206,
 			["disableElvMsg"] = true,
 		},
-		["version"] = 2.51,
+		["profileKeys"] = {
+			[E.mynameRealm] = "Luckyone DPS/TANK",
+		},
 		["profiles"] = {
 			["Luckyone Healing"] = {
 				["General"] = {

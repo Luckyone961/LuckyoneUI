@@ -2,17 +2,51 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- LuckyoneUI Private DB
 
-V.L1UI = {
+if L1UI.Retail then
 
-	install_version = nil,
+	V.L1UI = {
 
-	disabledFrames = {
-		BossBanner = false,
-		LevelUpDisplay = false,
-		ZoneTextFrame = false,
-		AlertFrame = false,
-	},
+		install_version = nil,
 
-	skins = {},
+		disabledFrames = {
+			BossBanner = false,
+			LevelUpDisplay = false,
+			ZoneTextFrame = false,
+			AlertFrame = false,
+		},
 
-}
+		skins = {},
+
+	}
+
+elseif L1UI.Classic then
+
+	V.L1UI = {
+
+		install_version = nil,
+
+		disabledFrames = {
+			ZoneTextFrame = false,
+			AlertFrame = false,
+		},
+
+		skins = {},
+
+	}
+
+elseif L1UI.TBC then
+
+	V.L1UI = {
+
+		install_version = nil,
+
+		disabledFrames = {
+			ZoneTextFrame = false,
+			AlertFrame = false,
+		},
+
+		skins = {},
+
+	}
+
+end

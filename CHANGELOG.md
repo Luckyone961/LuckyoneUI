@@ -1,3 +1,27 @@
+### Version 1.26 [ETA: 🍨]
+___
+### Version 1.25 [14-05-2021]
+**Highlights:**  
+Support for WoW TBC & Classic  
+**Profiles:**  
+(TBC & Classic) BigWigs profile added  
+(TBC & Classic) Details profile added  
+(TBC & Classic) Plater profile added  
+(TBC & Classic) DBM profile added  
+(Retail) Shadow & Light profile updated  
+(Retail) BigWigs profile updated  
+(Retail) Details profile updated  
+(Retail) DBM profile updated  
+**Changes:**  
+(All) Setup Chat will now enable chat class colors  
+(All) ElvUI NamePlate castbars will show time remaining instead of current  
+**New Additions:**  
+(All) Chat Commands  
+• /luckyoneui config  
+• /luckyoneui install  
+**Misc:**
+Updated Credits  
+___
 ### Version 1.24 [24-04-2021]
 **Hotfix:**  
 Layout Installer Hotfix (ProjectAzilroka related)  
