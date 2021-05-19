@@ -1,4 +1,7 @@
 ### Version 1.26 [ETA: 🍨]
+**Changes:**  
+(TBC & Classic) Fixed SwapTags function (Just Rerun it)  
+(TBC & Classic) Removed overlapping font in Bags/Bank  
 ___
 ### Version 1.25 [14-05-2021]
 **Highlights:**  

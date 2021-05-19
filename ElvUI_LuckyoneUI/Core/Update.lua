@@ -24,6 +24,9 @@ elseif L1UI.TBC then
 		-- Protect some rare nil errors
 		if not E.db.movers then E.db.movers = {} end
 
+		-- Bag db changes
+		E.db["bags"]["itemLevel"] = false
+
 		if layout == 'dps' then
 			-- DPS/TANK db changes
 		elseif layout == 'healer' then
@@ -39,6 +42,9 @@ elseif L1UI.Classic then
 
 		-- Protect some rare nil errors
 		if not E.db.movers then E.db.movers = {} end
+
+		-- Bag db changes
+		E.db["bags"]["itemLevel"] = false
 
 		if layout == 'dps' then
 			-- DPS/TANK db changes
