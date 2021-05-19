@@ -257,11 +257,13 @@ function L1UI:SwapTags(group)
 			E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_HP"]["text_format"] = "[luckyone:health:percent]"
 			E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Name"]["text_format"] = "[namecolor][name:last]"
 			E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Power"]["text_format"] = "[powercolor][perpp<%]"
+			E.db["unitframe"]["units"]["party"]["customTexts"]["Luckyone_Name"]["text_format"] = "[namecolor][name:short][ >luckyone:healermana:percent]"
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["Luckyone_HP"]["text_format"] = "[luckyone:health:percent]"
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["Luckyone_Name"]["text_format"] = "[namecolor]Pet"
 		end
 
 		if not L1UI.Retail then
+			E.db["unitframe"]["units"]["party"]["customTexts"]["Luckyone_Name"]["text_format"] = "[namecolor][name:short]"
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["Luckyone_HP"]["text_format"] = "[luckyone:health:percent]"
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["Luckyone_Name"]["text_format"] = "[happiness:color]Pet[ >happiness:full]"
 		end
@@ -289,7 +291,6 @@ function L1UI:SwapTags(group)
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["format"] = "[level]"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["text"]["format"] = "[luckyone:health:percent]"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["format"] = "[level]"
-		E.db["unitframe"]["units"]["party"]["customTexts"]["Luckyone_Name"]["text_format"] = "[namecolor][name:short][ >luckyone:healermana:percent]"
 		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_HP"]["text_format"] = "[health:current:shortvalue] | [luckyone:health:percent]"
 		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Level"]["text_format"] = "[namecolor][level]"
 		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Name"]["text_format"] = "[namecolor][name:veryshort]"
