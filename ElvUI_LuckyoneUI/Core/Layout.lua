@@ -7,6 +7,12 @@ if L1UI.Retail then
 	-- Retail Layouts
 	function L1UI:SetupLayout(layout)
 
+		if layout == 'dps' then
+			E.data:SetProfile('Luckyone D/T')
+		elseif layout == 'healer' then
+			E.data:SetProfile('Luckyone H')
+		end
+
 		if not E.db.movers then E.db.movers = {} end
 
 		L1UI:SetupScale()
@@ -1925,6 +1931,12 @@ elseif L1UI.Classic then
 	-- Classic Layouts
 	function L1UI:SetupLayout(layout)
 
+		if layout == 'dps' then
+			E.data:SetProfile('Luckyone Classic D/T')
+		elseif layout == 'healer' then
+			E.data:SetProfile('Luckyone Classic H')
+		end
+
 		if not E.db.movers then E.db.movers = {} end
 
 		L1UI:SetupScale()
@@ -3218,6 +3230,12 @@ elseif L1UI.TBC then
 
 	-- TBC Layouts
 	function L1UI:SetupLayout(layout)
+
+		if layout == 'dps' then
+			E.data:SetProfile('Luckyone TBC D/T')
+		elseif layout == 'healer' then
+			E.data:SetProfile('Luckyone TBC H')
+		end
 
 		if not E.db.movers then E.db.movers = {} end
 
