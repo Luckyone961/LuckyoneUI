@@ -1952,7 +1952,7 @@ elseif L1UI.Classic then
 		E.db["convertPages"] = true
 
 		-- General
-		E.db["general"]["autoRepair"] = "PLAYER"
+		E.db["general"]["autoRepair"] = true
 		E.db["general"]["backdropcolor"]["b"] = 0.10196078431373
 		E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
 		E.db["general"]["backdropcolor"]["r"] = 0.10196078431373
@@ -3252,7 +3252,7 @@ elseif L1UI.TBC then
 		E.db["convertPages"] = true
 
 		-- General
-		E.db["general"]["autoRepair"] = "PLAYER"
+		E.db["general"]["autoRepair"] = true
 		E.db["general"]["backdropcolor"]["b"] = 0.10196078431373
 		E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
 		E.db["general"]["backdropcolor"]["r"] = 0.10196078431373

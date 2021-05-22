@@ -27,6 +27,9 @@ elseif L1UI.TBC then
 		-- Bag db changes
 		E.db["bags"]["itemLevel"] = false
 
+		-- General db changes
+		E.db["general"]["autoRepair"] = true
+
 		if layout == 'dps' then
 			-- DPS/TANK db changes
 		elseif layout == 'healer' then
@@ -45,6 +48,9 @@ elseif L1UI.Classic then
 
 		-- Bag db changes
 		E.db["bags"]["itemLevel"] = false
+
+		-- General db changes
+		E.db["general"]["autoRepair"] = true
 
 		if layout == 'dps' then
 			-- DPS/TANK db changes
