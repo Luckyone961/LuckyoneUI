@@ -1,30 +1,64 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local IsAddOnLoaded = IsAddOnLoaded
-local ReloadUI = ReloadUI
-
 -- Update Layout Buttons (Ingame Config)
-function L1UI:UpdateLayout(layout)
+if L1UI.Retail then
 
-	-- Protect some rare nil errors
-	if not E.db.movers then E.db.movers = {} end
+	function L1UI:UpdateLayout(layout)
 
-	-- ElvUI NamePlates db changes
-	if E.private.nameplates.enable then
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["castTimeFormat"] = "REMAINING"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["channelTimeFormat"] = "REMAINING"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["castTimeFormat"] = "REMAINING"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["channelTimeFormat"] = "REMAINING"
+		-- Protect some rare nil errors
+		if not E.db.movers then E.db.movers = {} end
+
+		if layout == 'dps' then
+			-- DPS/TANK db changes
+		elseif layout == 'healer' then
+			-- Healing db changes
+		end
+
+		E:StaggeredUpdateAll(nil, true)
 	end
 
-	-- Shadow&Light db changes
-	if (IsAddOnLoaded('ElvUI_SLE') and L1UI.Retail) then L1UI:GetSLEProfile() end
+elseif L1UI.TBC then
 
-	if layout == 'dps' then
-		-- DPS/TANK db changes
-	elseif layout == 'healer' then
-		-- Healing db changes
+	function L1UI:UpdateLayout(layout)
+
+		-- Protect some rare nil errors
+		if not E.db.movers then E.db.movers = {} end
+
+		-- Bag db changes
+		E.db["bags"]["itemLevel"] = false
+
+		-- General db changes
+		E.db["general"]["autoRepair"] = true
+
+		if layout == 'dps' then
+			-- DPS/TANK db changes
+		elseif layout == 'healer' then
+			-- Healing db changes
+		end
+
+		E:StaggeredUpdateAll(nil, true)
 	end
 
-	E:StaggeredUpdateAll(nil, true)
+elseif L1UI.Classic then
+
+	function L1UI:UpdateLayout(layout)
+
+		-- Protect some rare nil errors
+		if not E.db.movers then E.db.movers = {} end
+
+		-- Bag db changes
+		E.db["bags"]["itemLevel"] = false
+
+		-- General db changes
+		E.db["general"]["autoRepair"] = true
+
+		if layout == 'dps' then
+			-- DPS/TANK db changes
+		elseif layout == 'healer' then
+			-- Healing db changes
+		end
+
+		E:StaggeredUpdateAll(nil, true)
+	end
+
 end

@@ -7,6 +7,12 @@ if L1UI.Retail then
 	-- Retail Layouts
 	function L1UI:SetupLayout(layout)
 
+		if layout == 'dps' then
+			E.data:SetProfile('Luckyone D/T')
+		elseif layout == 'healer' then
+			E.data:SetProfile('Luckyone H')
+		end
+
 		if not E.db.movers then E.db.movers = {} end
 
 		L1UI:SetupScale()
@@ -1925,6 +1931,12 @@ elseif L1UI.Classic then
 	-- Classic Layouts
 	function L1UI:SetupLayout(layout)
 
+		if layout == 'dps' then
+			E.data:SetProfile('Luckyone Classic D/T')
+		elseif layout == 'healer' then
+			E.data:SetProfile('Luckyone Classic H')
+		end
+
 		if not E.db.movers then E.db.movers = {} end
 
 		L1UI:SetupScale()
@@ -1940,7 +1952,7 @@ elseif L1UI.Classic then
 		E.db["convertPages"] = true
 
 		-- General
-		E.db["general"]["autoRepair"] = "PLAYER"
+		E.db["general"]["autoRepair"] = true
 		E.db["general"]["backdropcolor"]["b"] = 0.10196078431373
 		E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
 		E.db["general"]["backdropcolor"]["r"] = 0.10196078431373
@@ -3219,6 +3231,12 @@ elseif L1UI.TBC then
 	-- TBC Layouts
 	function L1UI:SetupLayout(layout)
 
+		if layout == 'dps' then
+			E.data:SetProfile('Luckyone TBC D/T')
+		elseif layout == 'healer' then
+			E.data:SetProfile('Luckyone TBC H')
+		end
+
 		if not E.db.movers then E.db.movers = {} end
 
 		L1UI:SetupScale()
@@ -3234,7 +3252,7 @@ elseif L1UI.TBC then
 		E.db["convertPages"] = true
 
 		-- General
-		E.db["general"]["autoRepair"] = "PLAYER"
+		E.db["general"]["autoRepair"] = true
 		E.db["general"]["backdropcolor"]["b"] = 0.10196078431373
 		E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
 		E.db["general"]["backdropcolor"]["r"] = 0.10196078431373
@@ -3467,6 +3485,7 @@ elseif L1UI.TBC then
 		E.db["bags"]["itemInfoFont"] = "Expressway"
 		E.db["bags"]["itemInfoFontOutline"] = "OUTLINE"
 		E.db["bags"]["itemInfoFontSize"] = 12
+		E.db["bags"]["itemLevel"] = false
 		E.db["bags"]["itemLevelFont"] = "Expressway"
 		E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
 		E.db["bags"]["itemLevelFontSize"] = 12
