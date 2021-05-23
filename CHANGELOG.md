@@ -1,7 +1,13 @@
-### Version 1.26 [ETA: 🍨]
-**Changes:**  
-(TBC & Classic) Fixed SwapTags function (Just Rerun it)  
-(TBC & Classic) Removed overlapping font in Bags/Bank  
+### Version 1.27 [ETA: 🍨]
+___
+### Version 1.26 [23-05-2021]
+**All:**  
+Improved installer process to create a fresh profile  
+instead of overriding the existing one  
+**TBC & Classic:**  
+Fixed SwapTags function (Just Rerun it)  
+Removed overlapping font in Bags/Bank  
+Updated for ElvUI TBC 2.05 or later  
 ___
 ### Version 1.25 [14-05-2021]
 **Highlights:**  
