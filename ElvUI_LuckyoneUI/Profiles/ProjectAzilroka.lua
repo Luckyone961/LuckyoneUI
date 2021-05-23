@@ -28,10 +28,10 @@ function L1UI:GetPAProfile()
 		PA.db["MasterExperience"]["Enable"] = false
 		PA.db["ReputationReward"]["Enable"] = false
 		PA.db["TorghastBuffs"]["Enable"] = false
-	end
 
-	if version >= '1.77' then
-		PA.db["SunsongRanchFarmer"]["Enable"] = false
+		if version >= '1.77' then
+			PA.db["SunsongRanchFarmer"]["Enable"] = false
+		end
 	end
 
 	-- SquareMinimapButtons Setup

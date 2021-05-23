@@ -1,3 +1,6 @@
+### Version 1.27 [23-05-2021]
+Layout Installer Hotfix (ProjectAzilroka related)  
+___
 ### Version 1.26 [23-05-2021]
 **All:**  
 Improved installer process to create a fresh profile  
