@@ -8,9 +8,9 @@ if L1UI.Retail then
 	function L1UI:SetupLayout(layout)
 
 		if layout == 'dps' then
-			E.data:SetProfile('Luckyone D/T')
+			E.data:SetProfile(E.mynameRealm)
 		elseif layout == 'healer' then
-			E.data:SetProfile('Luckyone H')
+			E.data:SetProfile(E.mynameRealm)
 		end
 
 		if not E.db.movers then E.db.movers = {} end
@@ -1932,9 +1932,9 @@ elseif L1UI.Classic then
 	function L1UI:SetupLayout(layout)
 
 		if layout == 'dps' then
-			E.data:SetProfile('Luckyone Classic D/T')
+			E.data:SetProfile(E.mynameRealm)
 		elseif layout == 'healer' then
-			E.data:SetProfile('Luckyone Classic H')
+			E.data:SetProfile(E.mynameRealm)
 		end
 
 		if not E.db.movers then E.db.movers = {} end
@@ -3232,9 +3232,9 @@ elseif L1UI.TBC then
 	function L1UI:SetupLayout(layout)
 
 		if layout == 'dps' then
-			E.data:SetProfile('Luckyone TBC D/T')
+			E.data:SetProfile(E.mynameRealm)
 		elseif layout == 'healer' then
-			E.data:SetProfile('Luckyone TBC H')
+			E.data:SetProfile(E.mynameRealm)
 		end
 
 		if not E.db.movers then E.db.movers = {} end
