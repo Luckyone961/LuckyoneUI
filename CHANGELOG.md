@@ -1,5 +1,6 @@
 ### Version 1.28 [ ETA: 🍨 ]
 **All:**  
+Tooltip transparency 80% -> 75%  
 Fixes for the Installer step "Layouts"  
 Fixes for the Installer step "BossMods" (DBM)  
 ___

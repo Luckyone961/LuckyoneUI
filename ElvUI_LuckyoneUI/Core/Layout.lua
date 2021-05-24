@@ -418,6 +418,7 @@ if L1UI.Retail then
 
 		-- Tooltip
 		E.db["tooltip"]["alwaysShowRealm"] = true
+		E.db["tooltip"]["colorAlpha"] = 0.75
 		E.db["tooltip"]["font"] = "Expressway"
 		E.db["tooltip"]["fontOutline"] = "OUTLINE"
 		E.db["tooltip"]["headerFontSize"] = 11
@@ -2289,6 +2290,7 @@ elseif L1UI.Classic then
 
 		-- Tooltip
 		E.db["tooltip"]["alwaysShowRealm"] = true
+		E.db["tooltip"]["colorAlpha"] = 0.75
 		E.db["tooltip"]["font"] = "Expressway"
 		E.db["tooltip"]["fontOutline"] = "OUTLINE"
 		E.db["tooltip"]["headerFontSize"] = 11
@@ -3589,6 +3591,7 @@ elseif L1UI.TBC then
 
 		-- Tooltip
 		E.db["tooltip"]["alwaysShowRealm"] = true
+		E.db["tooltip"]["colorAlpha"] = 0.75
 		E.db["tooltip"]["font"] = "Expressway"
 		E.db["tooltip"]["fontOutline"] = "OUTLINE"
 		E.db["tooltip"]["headerFontSize"] = 11
