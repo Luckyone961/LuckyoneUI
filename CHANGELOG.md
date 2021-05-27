@@ -3,6 +3,8 @@
 Tooltip transparency 80% -> 75%  
 Fixes for the Installer step "Layouts"  
 Fixes for the Installer step "BossMods" (DBM)  
+**TBC:**
+Fixed Details profile for the latest version  
 ___
 ### Version 1.27 [23-05-2021]
 Layout Installer Hotfix (ProjectAzilroka related)  
