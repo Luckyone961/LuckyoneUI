@@ -1,10 +1,14 @@
-### Version 1.28 [ ETA: 🍨 ]
+### Version 1.29 [ ETA: 🍨 ]
+___
+### Version 1.28 [31-05-2021]
 **All:**  
 Tooltip transparency 80% -> 75%  
-Fixes for the Installer step "Layouts"  
-Fixes for the Installer step "BossMods" (DBM)  
-**TBC:**
+Updates for the Installer step "Layouts"  
+Updates for the Installer step "BossMods" (DBM)  
+**TBC:**  
 Fixed Details profile for the latest version  
+**TBC & Classic:**  
+Fixed installer for ElvUI 2.08 or later  
 ___
 ### Version 1.27 [23-05-2021]
 Layout Installer Hotfix (ProjectAzilroka related)  
