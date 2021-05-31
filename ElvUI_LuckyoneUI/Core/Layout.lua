@@ -4054,8 +4054,6 @@ elseif L1UI.TBC then
 			E.db["unitframe"]["units"]["arena"]["power"]["height"] = 6
 			E.db["unitframe"]["units"]["arena"]["power"]["text_format"] = ""
 			E.db["unitframe"]["units"]["arena"]["power"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["arena"]["pvpclassificationindicator"]["size"] = 25
-			E.db["unitframe"]["units"]["arena"]["pvpclassificationindicator"]["xOffset"] = -20
 			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["position"] = "LEFT"
 			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["size"] = 45
 			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["xOffset"] = -1
@@ -4564,8 +4562,6 @@ elseif L1UI.TBC then
 			E.db["unitframe"]["units"]["arena"]["power"]["height"] = 6
 			E.db["unitframe"]["units"]["arena"]["power"]["text_format"] = ""
 			E.db["unitframe"]["units"]["arena"]["power"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["arena"]["pvpclassificationindicator"]["size"] = 25
-			E.db["unitframe"]["units"]["arena"]["pvpclassificationindicator"]["xOffset"] = -20
 			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["position"] = "LEFT"
 			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["size"] = 45
 			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["xOffset"] = -1
