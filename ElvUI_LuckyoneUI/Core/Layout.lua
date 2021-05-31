@@ -8,9 +8,9 @@ if L1UI.Retail then
 	function L1UI:SetupLayout(layout)
 
 		if layout == 'dps' then
-			E.data:SetProfile('Luckyone D/T')
+			E.data:SetProfile(E.mynameRealm)
 		elseif layout == 'healer' then
-			E.data:SetProfile('Luckyone H')
+			E.data:SetProfile(E.mynameRealm)
 		end
 
 		if not E.db.movers then E.db.movers = {} end
@@ -418,6 +418,7 @@ if L1UI.Retail then
 
 		-- Tooltip
 		E.db["tooltip"]["alwaysShowRealm"] = true
+		E.db["tooltip"]["colorAlpha"] = 0.75
 		E.db["tooltip"]["font"] = "Expressway"
 		E.db["tooltip"]["fontOutline"] = "OUTLINE"
 		E.db["tooltip"]["headerFontSize"] = 11
@@ -1932,9 +1933,9 @@ elseif L1UI.Classic then
 	function L1UI:SetupLayout(layout)
 
 		if layout == 'dps' then
-			E.data:SetProfile('Luckyone Classic D/T')
+			E.data:SetProfile(E.mynameRealm)
 		elseif layout == 'healer' then
-			E.data:SetProfile('Luckyone Classic H')
+			E.data:SetProfile(E.mynameRealm)
 		end
 
 		if not E.db.movers then E.db.movers = {} end
@@ -2289,6 +2290,7 @@ elseif L1UI.Classic then
 
 		-- Tooltip
 		E.db["tooltip"]["alwaysShowRealm"] = true
+		E.db["tooltip"]["colorAlpha"] = 0.75
 		E.db["tooltip"]["font"] = "Expressway"
 		E.db["tooltip"]["fontOutline"] = "OUTLINE"
 		E.db["tooltip"]["headerFontSize"] = 11
@@ -3232,9 +3234,9 @@ elseif L1UI.TBC then
 	function L1UI:SetupLayout(layout)
 
 		if layout == 'dps' then
-			E.data:SetProfile('Luckyone TBC D/T')
+			E.data:SetProfile(E.mynameRealm)
 		elseif layout == 'healer' then
-			E.data:SetProfile('Luckyone TBC H')
+			E.data:SetProfile(E.mynameRealm)
 		end
 
 		if not E.db.movers then E.db.movers = {} end
@@ -3589,6 +3591,7 @@ elseif L1UI.TBC then
 
 		-- Tooltip
 		E.db["tooltip"]["alwaysShowRealm"] = true
+		E.db["tooltip"]["colorAlpha"] = 0.75
 		E.db["tooltip"]["font"] = "Expressway"
 		E.db["tooltip"]["fontOutline"] = "OUTLINE"
 		E.db["tooltip"]["headerFontSize"] = 11
@@ -4051,8 +4054,6 @@ elseif L1UI.TBC then
 			E.db["unitframe"]["units"]["arena"]["power"]["height"] = 6
 			E.db["unitframe"]["units"]["arena"]["power"]["text_format"] = ""
 			E.db["unitframe"]["units"]["arena"]["power"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["arena"]["pvpclassificationindicator"]["size"] = 25
-			E.db["unitframe"]["units"]["arena"]["pvpclassificationindicator"]["xOffset"] = -20
 			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["position"] = "LEFT"
 			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["size"] = 45
 			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["xOffset"] = -1
@@ -4561,8 +4562,6 @@ elseif L1UI.TBC then
 			E.db["unitframe"]["units"]["arena"]["power"]["height"] = 6
 			E.db["unitframe"]["units"]["arena"]["power"]["text_format"] = ""
 			E.db["unitframe"]["units"]["arena"]["power"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["arena"]["pvpclassificationindicator"]["size"] = 25
-			E.db["unitframe"]["units"]["arena"]["pvpclassificationindicator"]["xOffset"] = -20
 			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["position"] = "LEFT"
 			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["size"] = 45
 			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["xOffset"] = -1

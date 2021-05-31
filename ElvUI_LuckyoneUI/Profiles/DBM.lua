@@ -1,8 +1,8 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local retail = "Luckyone D/T"
-local tbc = "Luckyone TBC D/T"
-local classic = "Luckyone Classic D/T"
+local retail = "Luckyone"
+local tbc = "Luckyone"
+local classic = "Luckyone"
 
 -- DBM Profile
 function L1UI:GetDBMProfile()
@@ -14,7 +14,6 @@ function L1UI:GetDBMProfile()
 		DBM_AllSavedOptions = {
 			[retail] = {
 				["DontShowFarWarnings"] = true,
-				["ChosenVoicePack"] = "VEM",
 				["DontShowHudMap2"] = true,
 				["AlwaysPlayVoice"] = false,
 				["ShowSWarningsInChat"] = false,
@@ -97,7 +96,6 @@ function L1UI:GetDBMProfile()
 				["SpecialWarningFlashDura1"] = 0.4,
 				["EventSoundDungeonBGM"] = "None",
 				["oRA3AnnounceConsumables"] = false,
-				["CountdownVoice2"] = "VP:VEM",
 				["AutoAcceptGuildInvite"] = false,
 				["EnableWBSharing"] = false,
 				["ArrowPosX"] = 0,
@@ -189,10 +187,8 @@ function L1UI:GetDBMProfile()
 				["DontSetIcons"] = true,
 				["BigBrotherAnnounceToRaid"] = false,
 				["WarningX"] = -0.9999417662620544,
-				["CountdownVoice"] = "VP:VEM",
 				["InfoFrameFontSize"] = 12,
 				["RecordOnlyBosses"] = false,
-				["CountdownVoice3"] = "VP:VEM",
 				["AutoRespond"] = true,
 				["WarningDuration2"] = 1.5,
 				["DisableStatusWhisper"] = false,
@@ -373,7 +369,6 @@ function L1UI:GetDBMProfile()
 		DBM_AllSavedOptions = {
 			[tbc] = {
 				["DontShowFarWarnings"] = true,
-				["ChosenVoicePack"] = "VEM",
 				["DontShowHudMap2"] = true,
 				["AlwaysPlayVoice"] = false,
 				["ShowSWarningsInChat"] = false,
@@ -735,7 +730,6 @@ function L1UI:GetDBMProfile()
 		DBM_AllSavedOptions = {
 			[classic] = {
 				["DontShowFarWarnings"] = true,
-				["ChosenVoicePack"] = "VEM",
 				["DontShowHudMap2"] = true,
 				["AlwaysPlayVoice"] = false,
 				["ShowSWarningsInChat"] = false,

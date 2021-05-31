@@ -8,6 +8,9 @@ if L1UI.Retail then
 		-- Protect some rare nil errors
 		if not E.db.movers then E.db.movers = {} end
 
+		-- Tooltip db changes
+		E.db["tooltip"]["colorAlpha"] = 0.75
+
 		if layout == 'dps' then
 			-- DPS/TANK db changes
 		elseif layout == 'healer' then
@@ -24,11 +27,8 @@ elseif L1UI.TBC then
 		-- Protect some rare nil errors
 		if not E.db.movers then E.db.movers = {} end
 
-		-- Bag db changes
-		E.db["bags"]["itemLevel"] = false
-
-		-- General db changes
-		E.db["general"]["autoRepair"] = true
+		-- Tooltip db changes
+		E.db["tooltip"]["colorAlpha"] = 0.75
 
 		if layout == 'dps' then
 			-- DPS/TANK db changes
@@ -46,11 +46,8 @@ elseif L1UI.Classic then
 		-- Protect some rare nil errors
 		if not E.db.movers then E.db.movers = {} end
 
-		-- Bag db changes
-		E.db["bags"]["itemLevel"] = false
-
-		-- General db changes
-		E.db["general"]["autoRepair"] = true
+		-- Tooltip db changes
+		E.db["tooltip"]["colorAlpha"] = 0.75
 
 		if layout == 'dps' then
 			-- DPS/TANK db changes
