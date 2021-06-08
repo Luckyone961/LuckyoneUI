@@ -1,4 +1,9 @@
-### Version 1.29 [ ETA: 🍨 ]
+### Version 1.30 [ ETA: 🍨 ]
+
+### Version 1.29 [08-06-2021]
+**TBC:**  
+Fixes for NamePlates installer step  
+Updated for ElvUI 2.09  
 ___
 ### Version 1.28 [31-05-2021]
 **All:**  
