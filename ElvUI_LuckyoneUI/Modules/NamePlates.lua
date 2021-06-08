@@ -99,7 +99,6 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["xOffset"] = 1
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["yOffset"] = -15
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Expressway"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["pvpindicator"]["size"] = 35
 		if L1UI.Retail then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Expressway"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["size"] = 25
@@ -161,7 +160,6 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["xOffset"] = 1
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["yOffset"] = -15
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["font"] = "Expressway"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["pvpindicator"]["size"] = 35
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["raidTargetIndicator"]["size"] = 20
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["raidTargetIndicator"]["xOffset"] = -3
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["font"] = "Expressway"
@@ -207,7 +205,6 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "Expressway"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["yOffset"] = -10
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Expressway"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["pvpindicator"]["size"] = 35
 		if L1UI.Retail then
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Expressway"
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontSize"] = 14
@@ -260,7 +257,6 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["yOffset"] = -10
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["nameOnly"] = true
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["power"]["text"]["font"] = "Expressway"
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpindicator"]["size"] = 35
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["raidTargetIndicator"]["size"] = 20
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["raidTargetIndicator"]["xOffset"] = -3
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["enable"] = true
