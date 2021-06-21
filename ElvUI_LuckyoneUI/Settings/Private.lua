@@ -10,7 +10,6 @@ if L1UI.Retail then
 
 		disabledFrames = {
 			BossBanner = false,
-			LevelUpDisplay = false,
 			ZoneTextFrame = false,
 			AlertFrame = false,
 		},
