@@ -1,4 +1,7 @@
 ### Version 1.30 [ ETA: 🍨 ]
+**Retail:**  
+Fixes for patch 9.1 changes  
+Updated for ElvUI 12.25 or later  
 ___
 ### Version 1.29 [08-06-2021]
 **TBC:**  
