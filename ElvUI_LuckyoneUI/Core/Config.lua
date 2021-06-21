@@ -183,7 +183,6 @@ if L1UI.Retail then
 
 	-- Blizzard
 	L1UI.Options.args.blizzard.args.disabledFrames.args.BossBanner = ACH:Toggle('Boss Banner', 'Hide the Boss Banner', 1, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.BossBanner end, function(info, value) E.private.L1UI.disabledFrames.BossBanner = value E:StaticPopup_Show('PRIVATE_RL') end)
-	L1UI.Options.args.blizzard.args.disabledFrames.args.LevelUpDisplay = ACH:Toggle('LevelUp Display', 'Hide the LevelUp Display', 2, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.LevelUpDisplay end, function(info, value) E.private.L1UI.disabledFrames.LevelUpDisplay = value E:StaticPopup_Show('PRIVATE_RL') end)
 
 	-- Profiles
 	L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', 'Reset to LuckyoneUI defaults.', 3, function() L1UI:AddonSetupSLE() ReloadUI() end, nil, true)

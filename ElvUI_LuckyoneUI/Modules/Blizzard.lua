@@ -7,7 +7,7 @@ function L1UI:DisabledFrames()
 
 	if (E.private.L1UI.disabledFrames.BossBanner and L1UI.Retail) then
 		_G.BossBanner:UnregisterAllEvents()
-		E:DisableMover('LevelUpBossBannerMover')
+		E:DisableMover('BossBannerMover')
 	end
 
 	if E.private.L1UI.disabledFrames.ZoneTextFrame then
