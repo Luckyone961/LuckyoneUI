@@ -1,7 +1,15 @@
 ### Version 1.30 [ ETA: 🍨 ]
+**All:**  
+Improved installer process for AddOn profiles  
+• It will no longer override/replace existing profiles  
+• Instead it will add my profiles on top of yours  
+Updated BigWigs profile  
+Updated OmniCD profile  
 **Retail:**  
 Fixes for patch 9.1 changes  
 Updated for ElvUI 12.25 or later  
+**Misc:**  
+Updated Credits  
 ___
 ### Version 1.29 [08-06-2021]
 **TBC:**  
