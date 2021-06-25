@@ -22,7 +22,6 @@ end
 function L1UI:AddonSetupBW()
 
 	if IsAddOnLoaded('BigWigs') then
-		LoadAddOn('BigWigs_Options')
 		L1UI:GetBigWigsProfile()
 		L1UI:Print('BigWigs profile has been set.')
 	end
