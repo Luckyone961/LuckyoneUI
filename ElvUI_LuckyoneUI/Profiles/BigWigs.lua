@@ -1,5 +1,8 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local _G = _G
+local LoadAddOn = LoadAddOn
+
 -- BigWigs Profiles
 function L1UI:GetBigWigsProfile()
 
@@ -8,11 +11,19 @@ function L1UI:GetBigWigsProfile()
 	local Tmain, Theal = "Luckyone TBC D/T", "Luckyone TBC H"
 	local Cmain, Cheal = "Luckyone Classic D/T", "Luckyone Classic H"
 
+	-- This is temporary, but yeah
+	LoadAddOn("BigWigs")
+	LoadAddOn("BigWigs_Options")
+	local this = _G.DEFAULT_CHAT_FRAME:GetName()
+	_G[this]:Clear()
+
 	if L1UI.Retail then
 
 		------------------------------------------------------------------
 		------------------------ Profile Creation ------------------------
 		------------------------------------------------------------------
+		BigWigs3DB["profiles"] = BigWigs3DB["profiles"] or {}
+
 		BigWigs3DB["profiles"][Rmain] = BigWigs3DB["profiles"][Rmain] or {}
 		BigWigs3DB["profiles"][Rmain]["showZoneMessages"] = false
 		BigWigs3DB["profiles"][Rmain]["fakeDBMVersion"] = true
@@ -254,6 +265,8 @@ function L1UI:GetBigWigsProfile()
 		------------------------------------------------------------------
 		------------------------ Profile Creation ------------------------
 		------------------------------------------------------------------
+		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
+
 		BigWigsClassicDB["profiles"][Tmain] = BigWigsClassicDB["profiles"][Tmain] or {}
 		BigWigsClassicDB["profiles"][Tmain]["showZoneMessages"] = false
 		BigWigsClassicDB["profiles"][Tmain]["fakeDBMVersion"] = true
@@ -481,6 +494,8 @@ function L1UI:GetBigWigsProfile()
 		------------------------------------------------------------------
 		------------------------ Profile Creation ------------------------
 		------------------------------------------------------------------
+		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
+
 		BigWigsClassicDB["profiles"][Cmain] = BigWigsClassicDB["profiles"][Cmain] or {}
 		BigWigsClassicDB["profiles"][Cmain]["showZoneMessages"] = false
 		BigWigsClassicDB["profiles"][Cmain]["fakeDBMVersion"] = true
