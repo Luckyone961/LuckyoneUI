@@ -1064,9 +1064,7 @@ function L1UI:GetOmniCDProfile()
 		["scenarioZoneSetting"] = "party",
 	}
 
-	-- Load our DPS/TANK profile by default
-	OmniCDDB["profileKeys"] = {
-		[E.mynameRealm] = Main,
-	}
+	-- Profile Key
+	OmniCDDB["profileKeys"][E.mynameRealm] = Main
 
 end

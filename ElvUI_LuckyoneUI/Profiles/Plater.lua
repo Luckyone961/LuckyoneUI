@@ -3248,10 +3248,8 @@ function L1UI:GetPlaterProfile()
 			["cast_statusbar_use_fade_effects"] = false,
 		}
 
-		-- Load the profile
-		PlaterDB["profileKeys"] = {
-			[E.mynameRealm] = Retail,
-		}
+		-- Profile Key
+		PlaterDB["profileKeys"][E.mynameRealm] = Retail
 
 	elseif L1UI.TBC then
 
@@ -6087,10 +6085,8 @@ function L1UI:GetPlaterProfile()
 			["aura2_x_offset"] = 0,
 		}
 
-		-- Load the profile
-		PlaterDB["profileKeys"] = {
-			[E.mynameRealm] = TBC,
-		}
+		-- Profile Key
+		PlaterDB["profileKeys"][E.mynameRealm] = TBC
 
 	elseif L1UI.Classic then
 
@@ -8925,10 +8921,8 @@ function L1UI:GetPlaterProfile()
 			["aura2_x_offset"] = 0,
 		}
 
-		-- Load the profile
-		PlaterDB["profileKeys"] = {
-			[E.mynameRealm] = Classic,
-		}
+		-- Profile Key
+		PlaterDB["profileKeys"][E.mynameRealm] = Classic
 
 	end
 end
