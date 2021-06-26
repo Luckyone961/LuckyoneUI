@@ -12,7 +12,6 @@ function L1UI:GetBigWigsProfile()
 	local Cmain, Cheal = "Luckyone Classic D/T", "Luckyone Classic H"
 
 	-- This is temporary, but yeah
-	LoadAddOn("BigWigs")
 	LoadAddOn("BigWigs_Options")
 	local this = _G.DEFAULT_CHAT_FRAME:GetName()
 	_G[this]:Clear()
