@@ -11,10 +11,14 @@ function L1UI:GetBigWigsProfile()
 	local Tmain, Theal = "Luckyone TBC D/T", "Luckyone TBC H"
 	local Cmain, Cheal = "Luckyone Classic D/T", "Luckyone Classic H"
 
-	-- This is temporary, but yeah
-	LoadAddOn("BigWigs_Options")
-	local this = _G.DEFAULT_CHAT_FRAME:GetName()
-	_G[this]:Clear()
+	-- TEMPORARY
+	-- Get rid of the chat print on LoadAddOn for now
+	if not IsAddOnLoaded("BigWigs_Options") then
+		local this = _G.DEFAULT_CHAT_FRAME:GetName()
+
+		LoadAddOn("BigWigs_Options")
+		_G[this]:Clear()
+	end
 
 	if L1UI.Retail then
 
