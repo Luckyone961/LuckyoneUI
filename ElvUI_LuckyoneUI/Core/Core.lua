@@ -145,10 +145,10 @@ function L1UI:SetupPrivate()
 		E.private["install_complete"] = "12.24"
 		E.private["general"]["totemBar"] = false
 	elseif L1UI.TBC then
-		E.private["install_complete"] = "0.19"
+		E.private["install_complete"] = "2.10"
 		E.private["general"]["totemBar"] = true
 	elseif L1UI.Classic then
-		E.private["install_complete"] = "1.42"
+		E.private["install_complete"] = "1.43"
 	end
 end
 
