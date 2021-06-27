@@ -4,11 +4,12 @@ Improved installer process for AddOn profiles
 • It will no longer override/replace existing profiles  
 • Instead it will add my profiles to your profile selection  
 Updated BigWigs profile  
-Updated OmniCD profile  
 **Retail:**  
 Fixes for patch 9.1 changes  
+Updated /weekly chat command  
 Updated for ElvUI 12.25 or later  
 Updated for Shadow & Light 4.22 or later  
+Updated OmniCD profile  
 **Misc:**  
 Updated Credits  
 ___
