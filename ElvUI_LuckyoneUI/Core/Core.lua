@@ -1,7 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local IsAddOnLoaded = IsAddOnLoaded
-local LoadAddOn = LoadAddOn
 local SetCVar = SetCVar
 
 -- LuckyoneUI chat print
