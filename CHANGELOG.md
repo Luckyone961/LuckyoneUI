@@ -8,6 +8,7 @@ Updated OmniCD profile
 **Retail:**  
 Fixes for patch 9.1 changes  
 Updated for ElvUI 12.25 or later  
+Updated for Shadow & Light 4.22 or later  
 **Misc:**  
 Updated Credits  
 ___
