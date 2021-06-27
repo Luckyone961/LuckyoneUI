@@ -7,7 +7,12 @@ local LoadAddOn = LoadAddOn
 function L1UI:WeeklyRewards()
 
 	LoadAddOn('Blizzard_WeeklyRewards')
-	_G.WeeklyRewardsFrame:Show()
+
+	if _G.WeeklyRewardsFrame:IsShown() then
+		_G.WeeklyRewardsFrame:Hide()
+	else
+		_G.WeeklyRewardsFrame:Show()
+	end
 end
 
 -- LuckyoneUI chat commands
