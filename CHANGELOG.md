@@ -2,7 +2,7 @@
 **All:**  
 Improved installer process for AddOn profiles  
 • It will no longer override/replace existing profiles  
-• Instead it will add my profiles on top of yours  
+• Instead it will add my profiles to your profile selection  
 Updated BigWigs profile  
 Updated OmniCD profile  
 **Retail:**  
