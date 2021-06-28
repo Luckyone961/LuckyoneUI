@@ -8,10 +8,17 @@ function L1UI:GetDetailsProfile()
 
 	if L1UI.Retail then
 
-		-- Create profile if it doesn't exist yet
-		_detalhes_global["__profiles"][Retail] = _detalhes_global["__profiles"][Retail] or {}
+		-- Create profile db if it doesn't exist yet
+		_detalhes_global["__profiles"] = _detalhes_global["__profiles"] or {}
+
+		-- Clear Cache
+		_detalhes_global["encounter_spell_pool"] = {}
+		_detalhes_global["npcid_pool"] = {}
+		_detalhes_global["spell_pool"] = {}
+		_detalhes_global["spell_school_cache"] = {}
 
 		-- Profile db
+		_detalhes_global["__profiles"][Retail] = _detalhes_global["__profiles"][Retail] or {}
 		_detalhes_global["__profiles"][Retail] = {
 			["show_arena_role_icon"] = false,
 			["capture_real"] = {
@@ -1229,18 +1236,25 @@ function L1UI:GetDetailsProfile()
 		}
 
 		-- General db
-		_detalhes_global["always_use_profile"] = true
-		_detalhes_global["always_use_profile_name"] = Retail
+		_detalhes["always_use_profile"] = true
+		_detalhes["always_use_profile_name"] = Retail
 
-		-- Load the profile
+		-- Apply the profile
 		_detalhes:ApplyProfile(Retail)
 
 	elseif L1UI.TBC then
 
-		-- Create profile if it doesn't exist yet
-		_detalhes_global["__profiles"][TBC] = _detalhes_global["__profiles"][TBC] or {}
+		-- Create profile db if it doesn't exist yet
+		_detalhes_global["__profiles"] = _detalhes_global["__profiles"] or {}
+
+		-- Clear Cache
+		_detalhes_global["encounter_spell_pool"] = {}
+		_detalhes_global["npcid_pool"] = {}
+		_detalhes_global["spell_pool"] = {}
+		_detalhes_global["spell_school_cache"] = {}
 
 		-- Profile db
+		_detalhes_global["__profiles"][TBC] = _detalhes_global["__profiles"][TBC] or {}
 		_detalhes_global["__profiles"][TBC] = {
 			["show_arena_role_icon"] = false,
 			["capture_real"] = {
@@ -2456,18 +2470,25 @@ function L1UI:GetDetailsProfile()
 		}
 
 		-- General db
-		_detalhes_global["always_use_profile"] = true
-		_detalhes_global["always_use_profile_name"] = TBC
+		_detalhes["always_use_profile"] = true
+		_detalhes["always_use_profile_name"] = TBC
 
-		-- Load the profile
+		-- Apply the profile
 		_detalhes:ApplyProfile(TBC)
 
 	elseif L1UI.Classic then
 
-		-- Create profile if it doesn't exist yet
-		_detalhes_global["__profiles"][Classic] = _detalhes_global["__profiles"][Classic] or {}
+		-- Create profile db if it doesn't exist yet
+		_detalhes_global["__profiles"] = _detalhes_global["__profiles"] or {}
+
+		-- Clear Cache
+		_detalhes_global["encounter_spell_pool"] = {}
+		_detalhes_global["npcid_pool"] = {}
+		_detalhes_global["spell_pool"] = {}
+		_detalhes_global["spell_school_cache"] = {}
 
 		-- Profile db
+		_detalhes_global["__profiles"][Classic] = _detalhes_global["__profiles"][Classic] or {}
 		_detalhes_global["__profiles"][Classic] = {
 			["show_arena_role_icon"] = false,
 			["capture_real"] = {
@@ -3678,10 +3699,10 @@ function L1UI:GetDetailsProfile()
 		}
 
 		-- General db
-		_detalhes_global["always_use_profile"] = true
-		_detalhes_global["always_use_profile_name"] = Classic
+		_detalhes["always_use_profile"] = true
+		_detalhes["always_use_profile_name"] = Classic
 
-		-- Load the profile
+		-- Apply the profile
 		_detalhes:ApplyProfile(Classic)
 
 	end
