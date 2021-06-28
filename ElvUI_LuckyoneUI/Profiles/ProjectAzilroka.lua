@@ -4,7 +4,7 @@ local _G = _G
 local GetAddOnMetadata = GetAddOnMetadata
 
 -- ProjectAzilroka Profile
-function L1UI:GetPAProfile()
+function L1UI:Get_ProjectAzilroka_Profile()
 
 	local PA = _G.ProjectAzilroka
 

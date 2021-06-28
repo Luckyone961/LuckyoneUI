@@ -5,7 +5,7 @@ local IsAddOnLoaded = IsAddOnLoaded
 local LoadAddOn = LoadAddOn
 
 -- BigWigs Profiles
-function L1UI:GetBigWigsProfile()
+function L1UI:Get_BigWigs_Profile()
 
 	-- Profile Names
 	local Rmain, Rheal = "Luckyone D/T", "Luckyone H"

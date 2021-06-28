@@ -9,58 +9,58 @@ function L1UI:Print(msg)
 end
 
 -- Load AddOnSkins Profile
-function L1UI:AddonSetupAS()
+function L1UI:Setup_AddOnSkins()
 	if not IsAddOnLoaded('AddOnSkins') then return end
-	L1UI:GetASProfile()
+	L1UI:Get_AddOnSkins_Profile()
 	L1UI:Print('AddOnSkins profile has been set.')
 end
 
 -- Load BigWigs Profile
-function L1UI:AddonSetupBW()
+function L1UI:Setup_BigWigs()
 	if not IsAddOnLoaded('BigWigs') then return end
-	L1UI:GetBigWigsProfile()
+	L1UI:Get_BigWigs_Profile()
 	L1UI:Print('BigWigs profile has been set.')
 end
 
 -- Load DBM Profile
-function L1UI:AddonSetupDBM()
+function L1UI:Setup_DBM()
 	if not IsAddOnLoaded('DBM-Core') then return end
-	L1UI:GetDBMProfile()
+	L1UI:Get_DBM_Profile()
 	L1UI:Print('DBM profile has been set.')
 end
 
 -- Load Details Profile
-function L1UI:AddonSetupDT()
+function L1UI:Setup_Details()
 	if not IsAddOnLoaded('Details') then return end
-	L1UI:GetDetailsProfile()
+	L1UI:Get_Details_Profile()
 	L1UI:Print('Details profile has been set.')
 end
 
 -- Load OmniCD Profile
-function L1UI:AddonSetupOCD()
+function L1UI:Setup_OmniCD()
 	if not IsAddOnLoaded('OmniCD') then return end
-	L1UI:GetOmniCDProfile()
+	L1UI:Get_OmniCD_Profile()
 	L1UI:Print('OmniCD profile has been set.')
 end
 
 -- Load Plater Profile
-function L1UI:AddonSetupPlater()
+function L1UI:Setup_Plater()
 	if not IsAddOnLoaded('Plater') then return end
-	L1UI:GetPlaterProfile()
+	L1UI:Get_Plater_Profile()
 	L1UI:Print('Plater profile has been set.')
 end
 
 -- Load ProjectAzilroka Profile
-function L1UI:AddonSetupPA()
+function L1UI:Setup_ProjectAzilroka()
 	if not IsAddOnLoaded('ProjectAzilroka') then return end
-	L1UI:GetPAProfile()
+	L1UI:Get_ProjectAzilroka_Profile()
 	L1UI:Print('ProjectAzilroka profile has been set.')
 end
 
 -- Load Shadow&Light Profile
-function L1UI:AddonSetupSLE()
+function L1UI:Setup_ShadowAndLight()
 	if not IsAddOnLoaded('ElvUI_SLE') then return end
-	L1UI:GetSLEProfile()
+	L1UI:Get_ShadowAndLight_Profile()
 	L1UI:Print('Shadow&Light profile has been set.')
 end
 

@@ -4,7 +4,7 @@ if not L1UI.Retail then return end
 local GetAddOnMetadata = GetAddOnMetadata
 
 -- Shadow & Light Profile
-function L1UI:GetSLEProfile()
+function L1UI:Get_ShadowAndLight_Profile()
 
 	-- Shadow & Light Version
 	local version = GetAddOnMetadata('ElvUI_SLE', 'Version')

@@ -9,7 +9,7 @@ if L1UI.Retail then
 		if not E.db.movers then E.db.movers = {} end
 
 		-- Updated Shadow & Light for 4.22 screensaver rework and other stuff
-		if IsAddOnLoaded('ElvUI_SLE') then L1UI:GetSLEProfile() end
+		if IsAddOnLoaded('ElvUI_SLE') then L1UI:Get_ShadowAndLight_Profile() end
 
 		if layout == 'dps' then
 			-- DPS/TANK db changes

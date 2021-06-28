@@ -21,11 +21,11 @@ if L1UI.Retail then
 
 		L1UI:SetupPrivate()
 
-		if IsAddOnLoaded('AddOnSkins') then L1UI:GetASProfile() end
+		if IsAddOnLoaded('AddOnSkins') then L1UI:Get_AddOnSkins_Profile() end
 
-		if IsAddOnLoaded('ProjectAzilroka') then L1UI:GetPAProfile() end
+		if IsAddOnLoaded('ProjectAzilroka') then L1UI:Get_ProjectAzilroka_Profile() end
 
-		if IsAddOnLoaded('ElvUI_SLE') then L1UI:GetSLEProfile() end
+		if IsAddOnLoaded('ElvUI_SLE') then L1UI:Get_ShadowAndLight_Profile() end
 
 		E.db["convertPages"] = true
 
@@ -1946,9 +1946,9 @@ elseif L1UI.Classic then
 
 		L1UI:SetupPrivate()
 
-		if IsAddOnLoaded('AddOnSkins') then L1UI:GetASProfile() end
+		if IsAddOnLoaded('AddOnSkins') then L1UI:Get_AddOnSkins_Profile() end
 
-		if IsAddOnLoaded('ProjectAzilroka') then L1UI:GetPAProfile() end
+		if IsAddOnLoaded('ProjectAzilroka') then L1UI:Get_ProjectAzilroka_Profile() end
 
 		E.db["convertPages"] = true
 
@@ -3247,9 +3247,9 @@ elseif L1UI.TBC then
 
 		L1UI:SetupPrivate()
 
-		if IsAddOnLoaded('AddOnSkins') then L1UI:GetASProfile() end
+		if IsAddOnLoaded('AddOnSkins') then L1UI:Get_AddOnSkins_Profile() end
 
-		if IsAddOnLoaded('ProjectAzilroka') then L1UI:GetPAProfile() end
+		if IsAddOnLoaded('ProjectAzilroka') then L1UI:Get_ProjectAzilroka_Profile() end
 
 		E.db["convertPages"] = true
 

@@ -2,7 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 if not L1UI.Retail then return end
 
 -- OmniCD Profile
-function L1UI:GetOmniCDProfile()
+function L1UI:Get_OmniCD_Profile()
 
 	-- Profile Names
 	local Main, Heal = "Luckyone DPS/TANK", "Luckyone Healing"

@@ -1,7 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- Details Profile
-function L1UI:GetDetailsProfile()
+function L1UI:Get_Details_Profile()
 
 	-- Profile Names
 	local Retail, TBC, Classic = "Luckyone", "Luckyone TBC", "Luckyone Classic"
