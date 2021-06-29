@@ -96,19 +96,19 @@ L1UI.Options.args.media.args.defaults.args.private = ACH:Execute('Reset Media', 
 L1UI.Options.args.profiles = ACH:Group(format('|cff4beb2c%s|r', 'Profiles'), nil, 7)
 L1UI.Options.args.profiles.args.plugins = ACH:Group('ElvUI Plugins', nil, 1)
 L1UI.Options.args.profiles.args.plugins.inline = true
-L1UI.Options.args.profiles.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', 'Reset to LuckyoneUI defaults.', 1, function() L1UI:AddonSetupAS() ReloadUI() end, nil, true)
-L1UI.Options.args.profiles.args.plugins.args.pa = ACH:Execute('|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:AddonSetupPA() ReloadUI() end, nil, true)
+L1UI.Options.args.profiles.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', 'Reset to LuckyoneUI defaults.', 1, function() L1UI:Setup_AddOnSkins() ReloadUI() end, nil, true)
+L1UI.Options.args.profiles.args.plugins.args.pa = ACH:Execute('|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:Setup_ProjectAzilroka() ReloadUI() end, nil, true)
 L1UI.Options.args.profiles.args.bossmods = ACH:Group('BossMods Profiles', nil, 2)
 L1UI.Options.args.profiles.args.bossmods.inline = true
-L1UI.Options.args.profiles.args.bossmods.args.bigwigs = ACH:Execute('BigWigs', 'Reset to LuckyoneUI defaults.', 1, function() L1UI:AddonSetupBW() ReloadUI() end, nil, true)
-L1UI.Options.args.profiles.args.bossmods.args.dbm = ACH:Execute('DBM', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:AddonSetupDBM() ReloadUI() end, nil, true)
+L1UI.Options.args.profiles.args.bossmods.args.bigwigs = ACH:Execute('BigWigs', 'Reset to LuckyoneUI defaults.', 1, function() L1UI:Setup_BigWigs() ReloadUI() end, nil, true)
+L1UI.Options.args.profiles.args.bossmods.args.dbm = ACH:Execute('DBM', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:Setup_DBM() ReloadUI() end, nil, true)
 L1UI.Options.args.profiles.args.nameplates = ACH:Group('NamePlate Profiles', nil, 3)
 L1UI.Options.args.profiles.args.nameplates.inline = true
 L1UI.Options.args.profiles.args.nameplates.args.elvui = ACH:Execute('ElvUI', 'Reset to LuckyoneUI defaults.', 1, function() L1UI:SetupNamePlates('ElvUI') ReloadUI() end, nil, true)
 L1UI.Options.args.profiles.args.nameplates.args.plater = ACH:Execute('Plater', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:SetupNamePlates('Plater') ReloadUI() end, nil, true)
 L1UI.Options.args.profiles.args.addons = ACH:Group('Addon Profiles', nil, 4)
 L1UI.Options.args.profiles.args.addons.inline = true
-L1UI.Options.args.profiles.args.addons.args.details = ACH:Execute('Details', 'Reset to LuckyoneUI defaults.', 1, function() L1UI:AddonSetupDT() ReloadUI() end, nil, true)
+L1UI.Options.args.profiles.args.addons.args.details = ACH:Execute('Details', 'Reset to LuckyoneUI defaults.', 1, function() L1UI:Setup_Details() ReloadUI() end, nil, true)
 
 -- Skins
 L1UI.Options.args.skins = ACH:Group(format('|cff4beb2c%s|r', 'Skins'), nil, 8)
@@ -183,11 +183,10 @@ if L1UI.Retail then
 
 	-- Blizzard
 	L1UI.Options.args.blizzard.args.disabledFrames.args.BossBanner = ACH:Toggle('Boss Banner', 'Hide the Boss Banner', 1, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.BossBanner end, function(info, value) E.private.L1UI.disabledFrames.BossBanner = value E:StaticPopup_Show('PRIVATE_RL') end)
-	L1UI.Options.args.blizzard.args.disabledFrames.args.LevelUpDisplay = ACH:Toggle('LevelUp Display', 'Hide the LevelUp Display', 2, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.LevelUpDisplay end, function(info, value) E.private.L1UI.disabledFrames.LevelUpDisplay = value E:StaticPopup_Show('PRIVATE_RL') end)
 
 	-- Profiles
-	L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', 'Reset to LuckyoneUI defaults.', 3, function() L1UI:AddonSetupSLE() ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.addons.args.omnicd = ACH:Execute('OmniCD', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:AddonSetupOCD() ReloadUI() end, nil, true)
+	L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', 'Reset to LuckyoneUI defaults.', 3, function() L1UI:Setup_ShadowAndLight() ReloadUI() end, nil, true)
+	L1UI.Options.args.profiles.args.addons.args.omnicd = ACH:Execute('OmniCD', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:Setup_OmniCD() ReloadUI() end, nil, true)
 
 	-- UnitFrames
 	L1UI.Options.args.unitframes = ACH:Group(format('|cff4beb2c%s|r', 'UnitFrames'), nil, 11)

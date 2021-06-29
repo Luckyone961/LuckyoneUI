@@ -294,7 +294,7 @@ function L1UI:SetupNamePlates(addon)
 		E.private["nameplates"]["enable"] = false
 
 		-- Load Plater profile
-		L1UI:AddonSetupPlater()
+		L1UI:Setup_Plater()
 
 		-- Set NamePlate CVars
 		L1UI:NameplateCVars()

@@ -1,7 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local IsAddOnLoaded = IsAddOnLoaded
-local LoadAddOn = LoadAddOn
 local SetCVar = SetCVar
 
 -- LuckyoneUI chat print
@@ -10,76 +9,59 @@ function L1UI:Print(msg)
 end
 
 -- Load AddOnSkins Profile
-function L1UI:AddonSetupAS()
-
-	if IsAddOnLoaded('AddOnSkins') then
-		L1UI:GetASProfile()
-		L1UI:Print('AddOnSkins profile has been set.')
-	end
+function L1UI:Setup_AddOnSkins()
+	if not IsAddOnLoaded('AddOnSkins') then return end
+	L1UI:Get_AddOnSkins_Profile()
+	L1UI:Print('AddOnSkins profile has been set.')
 end
 
 -- Load BigWigs Profile
-function L1UI:AddonSetupBW()
-
-	if IsAddOnLoaded('BigWigs') then
-		LoadAddOn('BigWigs_Options')
-		L1UI:GetBigWigsProfile()
-		L1UI:Print('BigWigs profile has been set.')
-	end
+function L1UI:Setup_BigWigs()
+	if not IsAddOnLoaded('BigWigs') then return end
+	L1UI:Get_BigWigs_Profile()
+	L1UI:Print('BigWigs profile has been set.')
 end
 
 -- Load DBM Profile
-function L1UI:AddonSetupDBM()
-
-	if IsAddOnLoaded('DBM-Core') then
-		L1UI:GetDBMProfile()
-		L1UI:Print('DBM profile has been set.')
-	end
+function L1UI:Setup_DBM()
+	if not IsAddOnLoaded('DBM-Core') then return end
+	L1UI:Get_DBM_Profile()
+	L1UI:Print('DBM profile has been set.')
 end
 
 -- Load Details Profile
-function L1UI:AddonSetupDT()
-
-	if IsAddOnLoaded('Details') then
-		L1UI:GetDetailsProfile()
-		L1UI:Print('Details profile has been set.')
-	end
+function L1UI:Setup_Details()
+	if not IsAddOnLoaded('Details') then return end
+	L1UI:Get_Details_Profile()
+	L1UI:Print('Details profile has been set.')
 end
 
 -- Load OmniCD Profile
-function L1UI:AddonSetupOCD()
-
-	if IsAddOnLoaded('OmniCD') then
-		L1UI:GetOmniCDProfile()
-		L1UI:Print('OmniCD profile has been set.')
-	end
+function L1UI:Setup_OmniCD()
+	if not IsAddOnLoaded('OmniCD') then return end
+	L1UI:Get_OmniCD_Profile()
+	L1UI:Print('OmniCD profile has been set.')
 end
 
 -- Load Plater Profile
-function L1UI:AddonSetupPlater()
-
-	if IsAddOnLoaded('Plater') then
-		L1UI:GetPlaterProfile()
-		L1UI:Print('Plater profile has been set.')
-	end
+function L1UI:Setup_Plater()
+	if not IsAddOnLoaded('Plater') then return end
+	L1UI:Get_Plater_Profile()
+	L1UI:Print('Plater profile has been set.')
 end
 
 -- Load ProjectAzilroka Profile
-function L1UI:AddonSetupPA()
-
-	if IsAddOnLoaded('ProjectAzilroka') then
-		L1UI:GetPAProfile()
-		L1UI:Print('ProjectAzilroka profile has been set.')
-	end
+function L1UI:Setup_ProjectAzilroka()
+	if not IsAddOnLoaded('ProjectAzilroka') then return end
+	L1UI:Get_ProjectAzilroka_Profile()
+	L1UI:Print('ProjectAzilroka profile has been set.')
 end
 
 -- Load Shadow&Light Profile
-function L1UI:AddonSetupSLE()
-
-	if IsAddOnLoaded('ElvUI_SLE') then
-		L1UI:GetSLEProfile()
-		L1UI:Print('Shadow&Light profile has been set.')
-	end
+function L1UI:Setup_ShadowAndLight()
+	if not IsAddOnLoaded('ElvUI_SLE') then return end
+	L1UI:Get_ShadowAndLight_Profile()
+	L1UI:Print('Shadow&Light profile has been set.')
 end
 
 -- Set UI Scale
@@ -147,10 +129,10 @@ function L1UI:SetupPrivate()
 		E.private["install_complete"] = "12.24"
 		E.private["general"]["totemBar"] = false
 	elseif L1UI.TBC then
-		E.private["install_complete"] = "0.19"
+		E.private["install_complete"] = "2.10"
 		E.private["general"]["totemBar"] = true
 	elseif L1UI.Classic then
-		E.private["install_complete"] = "1.42"
+		E.private["install_complete"] = "1.43"
 	end
 end
 

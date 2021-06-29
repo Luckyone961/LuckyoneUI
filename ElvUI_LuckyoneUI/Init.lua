@@ -3,6 +3,7 @@ local EP = LibStub('LibElvUIPlugin-1.0')
 local addon, Engine = ...
 
 local _G = _G
+local GetAddOnMetadata = GetAddOnMetadata
 
 -- Ace
 local L1UI = E:NewModule(addon, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0');

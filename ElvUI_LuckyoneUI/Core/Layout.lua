@@ -21,11 +21,11 @@ if L1UI.Retail then
 
 		L1UI:SetupPrivate()
 
-		if IsAddOnLoaded('AddOnSkins') then L1UI:GetASProfile() end
+		if IsAddOnLoaded('AddOnSkins') then L1UI:Get_AddOnSkins_Profile() end
 
-		if IsAddOnLoaded('ProjectAzilroka') then L1UI:GetPAProfile() end
+		if IsAddOnLoaded('ProjectAzilroka') then L1UI:Get_ProjectAzilroka_Profile() end
 
-		if IsAddOnLoaded('ElvUI_SLE') then L1UI:GetSLEProfile() end
+		if IsAddOnLoaded('ElvUI_SLE') then L1UI:Get_ShadowAndLight_Profile() end
 
 		E.db["convertPages"] = true
 
@@ -802,7 +802,7 @@ if L1UI.Retail then
 			E.db["movers"]["GMMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-503,-1"
 			E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1"
 			E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1"
-			E.db["movers"]["LevelUpBossBannerMover"] = "TOP,ElvUIParent,TOP,0,-57"
+			E.db["movers"]["BossBannerMover"] = "TOP,ElvUIParent,TOP,0,-57"
 			E.db["movers"]["LootFrameMover"] = "TOP,ElvUIParent,TOP,0,-160"
 			E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-492"
 			E.db["movers"]["MasterExperienceMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,343,-299"
@@ -1408,7 +1408,7 @@ if L1UI.Retail then
 			E.db["movers"]["GMMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-503,-1"
 			E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1"
 			E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1"
-			E.db["movers"]["LevelUpBossBannerMover"] = "TOP,ElvUIParent,TOP,0,-57"
+			E.db["movers"]["BossBannerMover"] = "TOP,ElvUIParent,TOP,0,-57"
 			E.db["movers"]["LootFrameMover"] = "TOP,ElvUIParent,TOP,0,-161"
 			E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-492"
 			E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,174,-1"
@@ -1946,9 +1946,9 @@ elseif L1UI.Classic then
 
 		L1UI:SetupPrivate()
 
-		if IsAddOnLoaded('AddOnSkins') then L1UI:GetASProfile() end
+		if IsAddOnLoaded('AddOnSkins') then L1UI:Get_AddOnSkins_Profile() end
 
-		if IsAddOnLoaded('ProjectAzilroka') then L1UI:GetPAProfile() end
+		if IsAddOnLoaded('ProjectAzilroka') then L1UI:Get_ProjectAzilroka_Profile() end
 
 		E.db["convertPages"] = true
 
@@ -3247,9 +3247,9 @@ elseif L1UI.TBC then
 
 		L1UI:SetupPrivate()
 
-		if IsAddOnLoaded('AddOnSkins') then L1UI:GetASProfile() end
+		if IsAddOnLoaded('AddOnSkins') then L1UI:Get_AddOnSkins_Profile() end
 
-		if IsAddOnLoaded('ProjectAzilroka') then L1UI:GetPAProfile() end
+		if IsAddOnLoaded('ProjectAzilroka') then L1UI:Get_ProjectAzilroka_Profile() end
 
 		E.db["convertPages"] = true
 
