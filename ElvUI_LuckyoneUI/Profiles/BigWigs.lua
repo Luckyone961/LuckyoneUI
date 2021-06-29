@@ -11,7 +11,11 @@ function L1UI:Get_BigWigs_Profile()
 	local Tmain, Theal = "Luckyone TBC D/T", "Luckyone TBC H"
 	local Cmain, Cheal = "Luckyone Classic D/T", "Luckyone Classic H"
 
+	-- Required to add profiles to BigWigs3DB
 	if not IsAddOnLoaded("BigWigs_Core") then LoadAddOn("BigWigs_Core") end
+
+	-- Required to add profiles to Plugins DB
+	if not IsAddOnLoaded("BigWigs_Plugins") then LoadAddOn("BigWigs_Plugins") end
 
 	if L1UI.Retail then
 
