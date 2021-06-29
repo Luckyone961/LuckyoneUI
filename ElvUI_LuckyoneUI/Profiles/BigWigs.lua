@@ -1,6 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local _G = _G
 local IsAddOnLoaded = IsAddOnLoaded
 local LoadAddOn = LoadAddOn
 
@@ -12,14 +11,7 @@ function L1UI:Get_BigWigs_Profile()
 	local Tmain, Theal = "Luckyone TBC D/T", "Luckyone TBC H"
 	local Cmain, Cheal = "Luckyone Classic D/T", "Luckyone Classic H"
 
-	-- TEMPORARY
-	-- Get rid of the chat print on LoadAddOn for now
-	if not IsAddOnLoaded("BigWigs_Options") then
-		local this = _G.DEFAULT_CHAT_FRAME:GetName()
-
-		LoadAddOn("BigWigs_Options")
-		_G[this]:Clear()
-	end
+	if not IsAddOnLoaded("BigWigs_Core") then LoadAddOn("BigWigs_Core") end
 
 	if L1UI.Retail then
 
