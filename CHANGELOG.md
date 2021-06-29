@@ -1,9 +1,12 @@
-### Version 1.30 [ ETA: 🍨 ]
+### Version 1.31 [ ETA: 🍨 ]
+___
+### Version 1.30 [29-06-2021]
 **All:**  
 Improved installer process for AddOn profiles  
 • It will no longer override/replace existing profiles  
 • Instead it will add my profiles to your profile selection  
 Updated BigWigs profile  
+Updated Details profile  
 **Retail:**  
 Fixes for patch 9.1 changes  
 Updated /weekly chat command  
