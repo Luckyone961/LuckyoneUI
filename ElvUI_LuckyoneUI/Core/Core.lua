@@ -191,14 +191,29 @@ end
 function L1UI:Cleanup_Cache(addon, type)
 
 	if addon == 'elvui' then
+
 		if type == 'chat' then
+
 			CH:ResetHistory()
+
 		elseif type == 'editbox' then
+
 			CH:ResetEditboxHistory()
+
 		end
+
 	elseif addon == 'details' then
-		-- __detalhes cache stuff
+
+		_detalhes.encounter_spell_pool = {}
+		_detalhes.npcid_pool = {}
+		_detalhes.spell_pool = {}
+		_detalhes.spell_school_cache = {}
+
 	elseif addon == 'plater' then
-		-- platerDB cache stuff
+
+		PlaterDB.captured_casts = {}
+		PlaterDB.captured_spells = {}
+		PlaterDB.profiles.Luckyone.npc_cache = {}
+
 	end
 end
