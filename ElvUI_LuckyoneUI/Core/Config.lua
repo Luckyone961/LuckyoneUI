@@ -110,6 +110,13 @@ L1UI.Options.args.media.args.defaults.args.private = ACH:Execute('Reset Media', 
 -- Performance
 if L1UI.Retail then
 	L1UI.Options.args.performance = ACH:Group(format('|cff4beb2c%s|r', 'Performance'), nil, 8)
+	L1UI.Options.args.performance.args.desc = ACH:Header(format('|cffFF0000%s|r', 'This will clear AddOn Cache and not wipe your settings'), 1)
+	L1UI.Options.args.performance.args.elvui = ACH:Group('ElvUI', nil, 2)
+	L1UI.Options.args.performance.args.elvui.inline = true
+	L1UI.Options.args.performance.args.details = ACH:Group('Details', nil, 3)
+	L1UI.Options.args.performance.args.details.inline = true
+	L1UI.Options.args.performance.args.plater = ACH:Group('Plater', nil, 4)
+	L1UI.Options.args.performance.args.plater.inline = true
 end
 
 -- Profiles

@@ -1,4 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local CH = E:GetModule('Chat')
 
 local IsAddOnLoaded = IsAddOnLoaded
 local ReloadUI = ReloadUI
@@ -177,9 +178,15 @@ function L1UI:SetupGlobal()
 end
 
 -- Performance config section
-function L1UI:Cleanup_Cache(addon)
-	
-	if addon == 'details' then
+function L1UI:Cleanup_Cache(addon, type)
+
+	if addon == 'elvui' then
+		if type == 'chat' then
+			CH:ResetHistory()
+		elseif type == 'editbox' then
+			CH:ResetEditboxHistory()
+		end
+	elseif addon == 'details' then
 		-- __detalhes cache stuff
 	elseif addon == 'plater' then
 		-- platerDB cache stuff
