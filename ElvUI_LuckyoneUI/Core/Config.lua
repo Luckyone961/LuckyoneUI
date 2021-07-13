@@ -117,10 +117,10 @@ if L1UI.Retail then
 	L1UI.Options.args.performance.args.elvui.args.edit = ACH:Execute('Clear Editbox History', nil, 2, function() L1UI:Cleanup_Cache('elvui', 'editbox') E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.performance.args.details = ACH:Group('Details', nil, 3)
 	L1UI.Options.args.performance.args.details.inline = true
-	L1UI.Options.args.performance.args.details.args.cache = ACH:Execute('Clear Cache', nil, 1, function() L1UI:Cleanup_Cache('details') E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.performance.args.details.args.cache = ACH:Execute('Clear Cache', nil, 1, function() if not IsAddOnLoaded('Details') then return end L1UI:Cleanup_Cache('details') E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.performance.args.plater = ACH:Group('Plater', nil, 4)
 	L1UI.Options.args.performance.args.plater.inline = true
-	L1UI.Options.args.performance.args.plater.args.cache = ACH:Execute('Clear Cache', nil, 1, function() L1UI:Cleanup_Cache('plater') E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.performance.args.plater.args.cache = ACH:Execute('Clear Cache', nil, 1, function() if not IsAddOnLoaded('Plater') then return end L1UI:Cleanup_Cache('plater') E:StaticPopup_Show('L1UI_RL') end)
 end
 
 -- Profiles
