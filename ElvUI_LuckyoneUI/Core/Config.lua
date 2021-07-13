@@ -16,7 +16,7 @@ L1UI.Options.args.installer.args.updateD = ACH:Execute('Update DPS/TANK', 'Updat
 L1UI.Options.args.installer.args.updateH = ACH:Execute('Update Healing', 'Update Healing layout to LuckyoneUI version: '..L1UI.Version, 3, function() L1UI:UpdateLayout('healer') end, nil, true)
 
 -- Auras [Buffs]
-L1UI.Options.args.auras = ACH:Group(format('|cff4beb2c%s|r', 'Auras'), nil, 2, 'tab')
+L1UI.Options.args.auras = ACH:Group(format('|cff4beb2c%s|r', 'Auras'), nil, 3, 'tab')
 L1UI.Options.args.auras.args.buffs = ACH:Group(format('|cff3296ff%s|r', 'Buffs'), nil, 1)
 L1UI.Options.args.auras.args.debuffs = ACH:Group(format('|cffC80000%s|r', 'Debuffs'), nil, 2)
 L1UI.Options.args.auras.args.buffs.args.player = ACH:Group('Player Frame Buffs', nil, 1)
@@ -67,7 +67,7 @@ if L1UI.Retail then
 end
 
 -- Blizzard
-L1UI.Options.args.blizzard = ACH:Group(format('|cff4beb2c%s|r', 'Blizzard'), nil, 3)
+L1UI.Options.args.blizzard = ACH:Group(format('|cff4beb2c%s|r', 'Blizzard'), nil, 4)
 L1UI.Options.args.blizzard.args.disabledFrames = ACH:Group('Hide Blizzard Frames', nil, 1, nil, function(info) return E.private.L1UI.disabledFrames[info[#info]] end, function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value E:StaticPopup_Show('PRIVATE_RL') end)
 L1UI.Options.args.blizzard.args.disabledFrames.inline = true
 L1UI.Options.args.blizzard.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle('Zone Text', 'Hide the Zone Text', 3, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.ZoneTextFrame end, function(info, value) E.private.L1UI.disabledFrames.ZoneTextFrame = value E:StaticPopup_Show('PRIVATE_RL') end)
@@ -77,7 +77,7 @@ if L1UI.Retail then
 end
 
 -- Chat
-L1UI.Options.args.chat = ACH:Group(format('|cff4beb2c%s|r', 'Chat'), nil, 4)
+L1UI.Options.args.chat = ACH:Group(format('|cff4beb2c%s|r', 'Chat'), nil, 5)
 L1UI.Options.args.chat.args.chatSetup = ACH:Group('Setup Chat', nil, 1)
 L1UI.Options.args.chat.args.chatSetup.inline = true
 L1UI.Options.args.chat.args.chatSetup.args.chat = ACH:Execute('Setup Chat', nil, 1, function() L1UI:SetupChat() end)
@@ -89,7 +89,7 @@ L1UI.Options.args.chat.args.chatVars.inline = true
 L1UI.Options.args.chat.args.chatVars.args.desc = ACH:Description('- chatStyle classic\n- whisperMode inline\n- chatClassColorOverride 0\n- colorChatNamesByClass 1', 1, 'medium')
 
 -- CVars
-L1UI.Options.args.cvars = ACH:Group(format('|cff4beb2c%s|r', 'CVars'), nil, 5)
+L1UI.Options.args.cvars = ACH:Group(format('|cff4beb2c%s|r', 'CVars'), nil, 6)
 L1UI.Options.args.cvars.args.setup = ACH:Group('Setup CVars', nil, 1)
 L1UI.Options.args.cvars.args.setup.inline = true
 L1UI.Options.args.cvars.args.setup.args.generalVars = ACH:Execute('General CVars', nil, 1, function() L1UI:SetupCVars() end, nil, true)
@@ -102,13 +102,18 @@ L1UI.Options.args.cvars.args.nameplateDesc.inline = true
 L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- nameplateLargerScale 1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1', 1, 'medium')
 
 -- Media
-L1UI.Options.args.media = ACH:Group(format('|cff4beb2c%s|r', 'Media'), nil, 6)
+L1UI.Options.args.media = ACH:Group(format('|cff4beb2c%s|r', 'Media'), nil, 7)
 L1UI.Options.args.media.args.defaults = ACH:Group('Fonts, Textures & Skins', nil, 1)
 L1UI.Options.args.media.args.defaults.inline = true
 L1UI.Options.args.media.args.defaults.args.private = ACH:Execute('Reset Media', 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.', 1, function() L1UI:SetupPrivate() E:StaggeredUpdateAll(nil, true) end, nil, true)
 
+-- Performance
+if L1UI.Retail then
+	L1UI.Options.args.performance = ACH:Group(format('|cff4beb2c%s|r', 'Performance'), nil, 8)
+end
+
 -- Profiles
-L1UI.Options.args.profiles = ACH:Group(format('|cff4beb2c%s|r', 'Profiles'), nil, 7)
+L1UI.Options.args.profiles = ACH:Group(format('|cff4beb2c%s|r', 'Profiles'), nil, 9)
 L1UI.Options.args.profiles.args.plugins = ACH:Group('ElvUI Plugins', nil, 1)
 L1UI.Options.args.profiles.args.plugins.inline = true
 L1UI.Options.args.profiles.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', 'Reset to LuckyoneUI defaults.', 1, function() L1UI:Setup_AddOnSkins() ReloadUI() end, nil, true)
@@ -130,7 +135,7 @@ if L1UI.Retail then
 end
 
 -- Skins
-L1UI.Options.args.skins = ACH:Group(format('|cff4beb2c%s|r', 'Skins'), nil, 8)
+L1UI.Options.args.skins = ACH:Group(format('|cff4beb2c%s|r', 'Skins'), nil, 10)
 L1UI.Options.args.skins.args.addons = ACH:Group('AddOn Frames', nil, 1)
 L1UI.Options.args.skins.args.addons.inline = true
 L1UI.Options.args.skins.args.addons.args = {}
@@ -139,7 +144,7 @@ L1UI.Options.args.skins.args.blizzard.inline = true
 L1UI.Options.args.skins.args.blizzard.args = {}
 
 -- Tags
-L1UI.Options.args.tags = ACH:Group(format('|cff4beb2c%s|r', 'Tags'), nil, 9)
+L1UI.Options.args.tags = ACH:Group(format('|cff4beb2c%s|r', 'Tags'), nil, 11)
 L1UI.Options.args.tags.args.groups = ACH:Group('Tags', nil, 1)
 L1UI.Options.args.tags.args.groups.inline = true
 L1UI.Options.args.tags.args.groups.args.available = ACH:Execute('Available Tags', 'Jump to the Available Tag list.', 1, function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', L1UI.Name) end)
@@ -157,7 +162,7 @@ else
 end
 
 -- Themes
-L1UI.Options.args.themes = ACH:Group(format('|cff4beb2c%s|r', 'Themes'), nil, 10)
+L1UI.Options.args.themes = ACH:Group(format('|cff4beb2c%s|r', 'Themes'), nil, 12)
 L1UI.Options.args.themes.args.raid = ACH:Group('UnitFrames Color Theme', nil, 1)
 L1UI.Options.args.themes.args.raid.inline = true
 L1UI.Options.args.themes.args.raid.args.dark = ACH:Execute('Dark', 'Dark Style (Default)', 1, function() L1UI:SetupTheme('dark') end, nil, true)
@@ -165,7 +170,7 @@ L1UI.Options.args.themes.args.raid.args.class = ACH:Execute('Class Color', 'Clas
 
 -- UnitFrames
 if L1UI.Retail then
-	L1UI.Options.args.unitframes = ACH:Group(format('|cff4beb2c%s|r', 'UnitFrames'), nil, 11)
+	L1UI.Options.args.unitframes = ACH:Group(format('|cff4beb2c%s|r', 'UnitFrames'), nil, 13)
 	L1UI.Options.args.unitframes.args.raid = ACH:Group('Raidframe Style', nil, 1)
 	L1UI.Options.args.unitframes.args.raid.inline = true
 	L1UI.Options.args.unitframes.args.raid.args.vertical = ACH:Execute('Vertical', 'Vertical Style', 1, function() L1UI:RaidFrames('vertical') end, nil, true)
@@ -177,7 +182,7 @@ end
 
 -- WeakAuras
 if L1UI.Retail then
-	L1UI.Options.args.weakauras = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 12)
+	L1UI.Options.args.weakauras = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 14)
 	L1UI.Options.args.weakauras.args.header1 = ACH:Header('WeakAuras DPS/TANK', 1)
 	L1UI.Options.args.weakauras.args.druid = ACH:Input('|cffFF7C0ADruid:|r', nil, 2, nil, 'normal', function() return 'wago.io/luckyoneDruid' end)
 	L1UI.Options.args.weakauras.args.priest = ACH:Input('|cffFFFFFFPriest:|r', nil, 3, nil, 'normal', function() return 'wago.io/luckyonePriest' end)
@@ -199,7 +204,7 @@ if L1UI.Retail then
 end
 
 -- Credits
-L1UI.Options.args.credits = ACH:Group(format('|cffFF7D0A%s|r', 'Credits'), nil, 13)
+L1UI.Options.args.credits = ACH:Group(format('|cffFF7D0A%s|r', 'Credits'), nil, 15)
 L1UI.Options.args.credits.args.author = ACH:Group('Author', nil, 1)
 L1UI.Options.args.credits.args.author.inline = true
 L1UI.Options.args.credits.args.author.args.desc = ACH:Description(L1UI.AUTHORS_STRING, 1, 'medium')
@@ -214,7 +219,7 @@ L1UI.Options.args.credits.args.supporter.inline = true
 L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description(L1UI.SUPPORT_STRING, 1, 'medium')
 
 -- Links
-L1UI.Options.args.links = ACH:Group(format('|cffFF7D0A%s|r', 'Links'), nil, 14)
+L1UI.Options.args.links = ACH:Group(format('|cffFF7D0A%s|r', 'Links'), nil, 16)
 L1UI.Options.args.links.args.changelog = ACH:Input('Changelog:', nil, 1, nil, 'full', function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/blob/development/CHANGELOG.md' end)
 L1UI.Options.args.links.args.issues = ACH:Input('Report issues here:', nil, 2, nil, 'full', function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/issues' end)
 L1UI.Options.args.links.args.website = ACH:Input('Addon link:', nil, 3, nil, 'full', function() return 'https://www.curseforge.com/wow/addons/elvui_luckyoneui' end)
