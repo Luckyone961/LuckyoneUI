@@ -8,6 +8,7 @@ Added performance config section
 Updated Setup Chat function  
 • Automatically disable textToSpeech and speechToText  
 • Fixed another minor issue  
+Updated default anchor position for Anima Powers  
 ___
 ### Version 1.30 [29-06-2021]
 **All:**  
