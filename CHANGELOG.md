@@ -5,9 +5,9 @@ Added performance config section
 • Functions to clear Plater cache  
 • Shortcut to clear Chat history  
 • Shortcut to clear ElvUI Editbox history  
-Updated Setup Chat function
+Updated Setup Chat function  
 • Automatically disable textToSpeech and speechToText  
-• Fixed another minor issue
+• Fixed another minor issue  
 ___
 ### Version 1.30 [29-06-2021]
 **All:**  
