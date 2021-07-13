@@ -18,6 +18,10 @@ local SetCVar = SetCVar
 -- Chat setup for tabs, windows and channels
 function L1UI:SetupChat()
 
+	-- Disable TTS stuff first
+	SetCVar('speechToText', 0)
+	SetCVar('textToSpeech', 0)
+
 	-- Reset chat to Blizzard defaults
 	FCF_ResetChatWindows()
 
