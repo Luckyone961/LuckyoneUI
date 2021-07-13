@@ -1,6 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local IsAddOnLoaded = IsAddOnLoaded
+local ReloadUI = ReloadUI
 local SetCVar = SetCVar
 
 -- LuckyoneUI chat print
@@ -173,4 +174,16 @@ function L1UI:SetupGlobal()
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = "[petbattle] hide;show"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 358
 	end
+end
+
+-- Performance config section
+function L1UI:Cleanup_Cache(addon)
+	
+	if addon == 'details' then
+		-- __detalhes cache stuff
+	elseif addon == 'plater' then
+		-- platerDB cache stuff
+	end
+
+	ReloadUI()
 end
