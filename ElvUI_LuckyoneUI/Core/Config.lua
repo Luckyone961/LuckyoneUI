@@ -68,12 +68,12 @@ end
 
 -- Blizzard
 L1UI.Options.args.blizzard = ACH:Group(format('|cff4beb2c%s|r', 'Blizzard'), nil, 4)
-L1UI.Options.args.blizzard.args.disabledFrames = ACH:Group('Hide Blizzard Frames', nil, 1, nil, function(info) return E.private.L1UI.disabledFrames[info[#info]] end, function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value E:StaticPopup_Show('PRIVATE_RL') end)
+L1UI.Options.args.blizzard.args.disabledFrames = ACH:Group('Hide Blizzard Frames', nil, 1, nil, function(info) return E.private.L1UI.disabledFrames[info[#info]] end, function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value E:StaticPopup_Show('L1UI_RL') end)
 L1UI.Options.args.blizzard.args.disabledFrames.inline = true
-L1UI.Options.args.blizzard.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle('Zone Text', 'Hide the Zone Text', 3, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.ZoneTextFrame end, function(info, value) E.private.L1UI.disabledFrames.ZoneTextFrame = value E:StaticPopup_Show('PRIVATE_RL') end)
-L1UI.Options.args.blizzard.args.disabledFrames.args.AlertFrame = ACH:Toggle('Alert Frame', 'Hide the Loot/Alert Frame', 4, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.AlertFrame end, function(info, value) E.private.L1UI.disabledFrames.AlertFrame = value E:StaticPopup_Show('PRIVATE_RL') end)
+L1UI.Options.args.blizzard.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle('Zone Text', 'Hide the Zone Text', 3, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.ZoneTextFrame end, function(info, value) E.private.L1UI.disabledFrames.ZoneTextFrame = value E:StaticPopup_Show('L1UI_RL') end)
+L1UI.Options.args.blizzard.args.disabledFrames.args.AlertFrame = ACH:Toggle('Alert Frame', 'Hide the Loot/Alert Frame', 4, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.AlertFrame end, function(info, value) E.private.L1UI.disabledFrames.AlertFrame = value E:StaticPopup_Show('L1UI_RL') end)
 if L1UI.Retail then
-	L1UI.Options.args.blizzard.args.disabledFrames.args.BossBanner = ACH:Toggle('Boss Banner', 'Hide the Boss Banner', 1, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.BossBanner end, function(info, value) E.private.L1UI.disabledFrames.BossBanner = value E:StaticPopup_Show('PRIVATE_RL') end)
+	L1UI.Options.args.blizzard.args.disabledFrames.args.BossBanner = ACH:Toggle('Boss Banner', 'Hide the Boss Banner', 1, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.BossBanner end, function(info, value) E.private.L1UI.disabledFrames.BossBanner = value E:StaticPopup_Show('L1UI_RL') end)
 end
 
 -- Chat
@@ -113,10 +113,14 @@ if L1UI.Retail then
 	L1UI.Options.args.performance.args.desc = ACH:Header(format('|cffFF0000%s|r', 'This will clear AddOn Cache and not wipe your settings'), 1)
 	L1UI.Options.args.performance.args.elvui = ACH:Group('ElvUI', nil, 2)
 	L1UI.Options.args.performance.args.elvui.inline = true
+	L1UI.Options.args.performance.args.elvui.args.chat = ACH:Execute('Clear Chat History', nil, 1, function() L1UI:Cleanup_Cache('elvui', 'chat') E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.performance.args.elvui.args.edit = ACH:Execute('Clear Editbox History', nil, 2, function() L1UI:Cleanup_Cache('elvui', 'editbox') E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.performance.args.details = ACH:Group('Details', nil, 3)
 	L1UI.Options.args.performance.args.details.inline = true
+	L1UI.Options.args.performance.args.details.args.cache = ACH:Execute('Clear Cache', nil, 1, function() L1UI:Cleanup_Cache('details') E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.performance.args.plater = ACH:Group('Plater', nil, 4)
 	L1UI.Options.args.performance.args.plater.inline = true
+	L1UI.Options.args.performance.args.plater.args.cache = ACH:Execute('Clear Cache', nil, 1, function() L1UI:Cleanup_Cache('plater') E:StaticPopup_Show('L1UI_RL') end)
 end
 
 -- Profiles
