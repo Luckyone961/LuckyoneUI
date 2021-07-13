@@ -10,6 +10,16 @@ function L1UI:Print(msg)
 	print(L1UI.Name..': '..msg)
 end
 
+-- LuckyoneUI reload popup
+E.PopupDialogs.L1UI_RL = {
+	text = "Reload required - continue?",
+	button1 = ACCEPT,
+	button2 = CANCEL,
+	OnAccept = ReloadUI,
+	whileDead = 1,
+	hideOnEscape = false,
+}
+
 -- Load AddOnSkins Profile
 function L1UI:Setup_AddOnSkins()
 	if not IsAddOnLoaded('AddOnSkins') then return end
@@ -191,6 +201,4 @@ function L1UI:Cleanup_Cache(addon, type)
 	elseif addon == 'plater' then
 		-- platerDB cache stuff
 	end
-
-	ReloadUI()
 end
