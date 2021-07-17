@@ -1,5 +1,6 @@
 ### Version 1.31 [ ETA: 🍨 ]
 **Retail:**  
+Added optional profile for Gnosis castbars  
 Added performance config section  
 • Functions to clear Details cache  
 • Functions to clear Plater cache  
