@@ -5,10 +5,11 @@ Added performance config section
 • Functions to clear Plater cache  
 • Shortcut to clear Chat history  
 • Shortcut to clear ElvUI Editbox history  
-Updated Setup Chat function  
+Updated default anchor position for Anima Powers  
+Updated OmniCD profile  
+Updated setup chat function  
 • Automatically disable textToSpeech and speechToText  
 • Fixed another minor issue  
-Updated default anchor position for Anima Powers  
 ___
 ### Version 1.30 [29-06-2021]
 **All:**  
