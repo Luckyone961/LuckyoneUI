@@ -3,8 +3,17 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 -- Gnosis Profile
 function L1UI:Get_Gnosis_Profile(layout)
 
+	-- Profile Names
 	local main, healing = "Luckyone DPS/TANK", "Luckyone Healing"
 
+	-- Disable ElvUI castbars if Gnosis is used
+	E.db["unitframe"]["units"]["arena"]["castbar"]["enable"] = false
+	E.db["unitframe"]["units"]["boss"]["castbar"]["enable"] = false
+	E.db["unitframe"]["units"]["focus"]["castbar"]["enable"] = false
+	E.db["unitframe"]["units"]["player"]["castbar"]["enable"] = false
+	E.db["unitframe"]["units"]["target"]["castbar"]["enable"] = false
+
+	-- Add Profile/s from here without overriding the existing ones
 	GnosisConfigs[main] = GnosisConfigs[main] or {}
 
 	GnosisConfigs[main]["maintab"] = GnosisConfigs[main]["maintab"] or {}
