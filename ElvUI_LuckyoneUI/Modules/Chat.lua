@@ -14,23 +14,30 @@ local FCF_SetWindowName = FCF_SetWindowName
 local FCFDock_SelectWindow = FCFDock_SelectWindow
 local FCFTab_UpdateColors = FCFTab_UpdateColors
 local SetCVar = SetCVar
+local VoiceTranscriptionFrame_UpdateVisibility = VoiceTranscriptionFrame_UpdateVisibility
 
 -- Chat setup for tabs, windows and channels
 function L1UI:SetupChat()
 
-	-- Disable TTS stuff first
+	-- CVars 9.1 TTS
 	SetCVar('speechToText', 0)
 	SetCVar('textToSpeech', 0)
+
+	-- CVars General
+	SetCVar('chatStyle', 'classic')
+	SetCVar('whisperMode', 'inline')
+	SetCVar('colorChatNamesByClass', 1)
+	SetCVar('chatClassColorOverride', 0)
 
 	-- Reset chat to Blizzard defaults
 	FCF_ResetChatWindows()
 
-	-- General and Log are always id 1 and 2
-	FCF_OpenNewWindow() -- id 3
-	FCF_OpenNewWindow() -- id 4
-	FCF_OpenNewWindow() -- id 5
+	-- [1] General [2] Log [3] Voice
+	FCF_OpenNewWindow() -- [4] Whisper
+	FCF_OpenNewWindow() -- [5] Guild
+	FCF_OpenNewWindow() -- [6] Party
 
-	-- Rename and color all 5 tabs
+	-- Rename and color all tabs
 	for _, name in ipairs(_G.CHAT_FRAMES) do
 		local frame = _G[name]
 		local id = frame:GetID()
@@ -47,40 +54,36 @@ function L1UI:SetupChat()
 		elseif id == 2 then
 			FCF_SetWindowName(frame, 'Log')
 		elseif id == 3 then
-			FCF_SetWindowName(frame, 'Whisper')
+			VoiceTranscriptionFrame_UpdateVisibility(frame)
 		elseif id == 4 then
-			FCF_SetWindowName(frame, 'Guild')
+			FCF_SetWindowName(frame, 'Whisper')
 		elseif id == 5 then
+			FCF_SetWindowName(frame, 'Guild')
+		elseif id == 6 then
 			FCF_SetWindowName(frame, 'Party')
 		end
 	end
 
 	-- Setup whisper tab
 	local chats = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
-	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame3)
-	for _, k in ipairs(chats) do
-		ChatFrame_AddMessageGroup(_G.ChatFrame3, k)
-	end
-
-	-- Setup Guild tab
-	chats = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame4)
 	for _, k in ipairs(chats) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame4, k)
 	end
 
-	-- Setup Party tab
-	chats = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER' }
+	-- Setup Guild tab
+	chats = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 	for _, k in ipairs(chats) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame5, k)
 	end
 
-	-- Set Chat CVars
-	SetCVar('chatStyle', 'classic')
-	SetCVar('whisperMode', 'inline')
-	SetCVar('colorChatNamesByClass', 1)
-	SetCVar('chatClassColorOverride', 0)
+	-- Setup Party tab
+	chats = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER' }
+	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame6)
+	for _, k in ipairs(chats) do
+		ChatFrame_AddMessageGroup(_G.ChatFrame6, k)
+	end
 
 	-- Jump back to main tab
 	FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
