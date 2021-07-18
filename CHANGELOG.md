@@ -11,6 +11,7 @@ Updated OmniCD profile
 Updated setup chat function  
 • Automatically disable textToSpeech and speechToText  
 • Fixed another minor issue  
+Updated UnitFrames Vertical/Block options  
 ___
 ### Version 1.30 [29-06-2021]
 **All:**  
