@@ -1,7 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local ReloadUI = ReloadUI
-
 -- UnitFrame color themes
 function L1UI:SetupTheme(theme)
 
@@ -111,9 +109,13 @@ function L1UI:RaidFrames(style)
 	
 	elseif style == 'block' then
 
+		-- Mover & Growth
 		E.db["movers"]["ElvUF_RaidMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173"
+		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 0
+		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 1
 		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "RIGHT_DOWN"
 
+		-- Text Format
 		E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["Luckyone_Name"] = {
 			["attachTextTo"] = "Health",
@@ -130,8 +132,6 @@ function L1UI:RaidFrames(style)
 		E.db["unitframe"]["units"]["raid"]["classbar"]["fill"] = "spaced"
 		E.db["unitframe"]["units"]["raid"]["classbar"]["height"] = 6
 		E.db["unitframe"]["units"]["raid"]["debuffs"]["enable"] = false
-		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 0
-		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 1
 		E.db["unitframe"]["units"]["raid"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["height"] = 40
@@ -171,8 +171,6 @@ function L1UI:RaidFrames(style)
 	end
 
 	E:StaggeredUpdateAll(nil, true)
-
-	ReloadUI()
 end
 
 -- Switch between LuckyoneUI and ElvUI text formats
