@@ -47,9 +47,13 @@ function L1UI:RaidFrames(style)
 
 	if style == 'vertical' then
 
+		-- Mover & Growth
 		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-76"
+		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
+		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 6
 		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "DOWN_RIGHT"
 
+		-- Text Format
 		E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["Luckyone_Name"] = {
 			["attachTextTo"] = "Health",
@@ -65,13 +69,7 @@ function L1UI:RaidFrames(style)
 
 		E.db["unitframe"]["units"]["raid"]["classbar"]["fill"] = "spaced"
 		E.db["unitframe"]["units"]["raid"]["classbar"]["height"] = 6
-		E.db["unitframe"]["units"]["raid"]["debuffs"]["countFont"] = "Expressway"
-		E.db["unitframe"]["units"]["raid"]["debuffs"]["desaturate"] = false
-		E.db["unitframe"]["units"]["raid"]["debuffs"]["maxDuration"] = 0
-		E.db["unitframe"]["units"]["raid"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
-		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
-		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 6
-		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "DOWN_RIGHT"
+		E.db["unitframe"]["units"]["raid"]["debuffs"]["enable"] = false
 		E.db["unitframe"]["units"]["raid"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["height"] = 24
@@ -143,11 +141,11 @@ function L1UI:RaidFrames(style)
 		E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["anchorPoint"] = "BOTTOM"
 		E.db["unitframe"]["units"]["raid"]["phaseIndicator"]["scale"] = 0.5
 		E.db["unitframe"]["units"]["raid"]["power"]["enable"] = false
-		E.db["unitframe"]["units"]["raid"]["raidicon"]["attachTo"] = "RIGHT"
+		E.db["unitframe"]["units"]["raid"]["raidicon"]["attachTo"] = "BOTTOM"
 		E.db["unitframe"]["units"]["raid"]["raidicon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["raid"]["raidicon"]["size"] = 12
-		E.db["unitframe"]["units"]["raid"]["raidicon"]["xOffset"] = -15
-		E.db["unitframe"]["units"]["raid"]["raidicon"]["yOffset"] = 0
+		E.db["unitframe"]["units"]["raid"]["raidicon"]["xOffset"] = 0
+		E.db["unitframe"]["units"]["raid"]["raidicon"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["raid"]["rdebuffs"]["font"] = "Expressway"
 		E.db["unitframe"]["units"]["raid"]["rdebuffs"]["fontOutline"] = "OUTLINE"
 		E.db["unitframe"]["units"]["raid"]["rdebuffs"]["size"] = 18
