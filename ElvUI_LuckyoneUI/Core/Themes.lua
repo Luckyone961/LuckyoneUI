@@ -131,10 +131,7 @@ function L1UI:RaidFrames(style)
 
 		E.db["unitframe"]["units"]["raid"]["classbar"]["fill"] = "spaced"
 		E.db["unitframe"]["units"]["raid"]["classbar"]["height"] = 6
-		E.db["unitframe"]["units"]["raid"]["debuffs"]["countFont"] = "Expressway"
-		E.db["unitframe"]["units"]["raid"]["debuffs"]["desaturate"] = false
-		E.db["unitframe"]["units"]["raid"]["debuffs"]["maxDuration"] = 0
-		E.db["unitframe"]["units"]["raid"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
+		E.db["unitframe"]["units"]["raid"]["debuffs"]["enable"] = false
 		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 0
 		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 1
 		E.db["unitframe"]["units"]["raid"]["healPrediction"]["absorbStyle"] = "WRAPPED"
