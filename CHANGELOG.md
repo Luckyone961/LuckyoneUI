@@ -1,4 +1,6 @@
-### Version 1.31 [ ETA: 🍨 ]
+### Version 1.32 [ ETA: 🍨 ]
+___
+### Version 1.31 [19-07-2021]
 **Retail:**  
 Added optional profile for Gnosis castbars  
 Added performance config section  
@@ -11,6 +13,7 @@ Updated OmniCD profile
 Updated setup chat function  
 • Automatically disable textToSpeech and speechToText  
 • Fixed another minor issue  
+• Removed Blizzard Voice tab  
 Updated UnitFrames Vertical/Block options  
 ___
 ### Version 1.30 [29-06-2021]

@@ -8,8 +8,6 @@ if L1UI.Retail then
 		-- Protect some rare nil errors
 		if not E.db.movers then E.db.movers = {} end
 
-		E.db["movers"]["MawBuffsBelowMinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-15,-380"
-
 		if layout == 'dps' then
 			-- DPS/TANK db changes
 		elseif layout == 'healer' then
