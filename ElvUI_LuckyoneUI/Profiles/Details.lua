@@ -12,10 +12,10 @@ function L1UI:Get_Details_Profile()
 		_detalhes_global["__profiles"] = _detalhes_global["__profiles"] or {}
 
 		-- Clear Cache
-		_detalhes_global["encounter_spell_pool"] = {}
-		_detalhes_global["npcid_pool"] = {}
-		_detalhes_global["spell_pool"] = {}
-		_detalhes_global["spell_school_cache"] = {}
+		_detalhes["encounter_spell_pool"] = {}
+		_detalhes["npcid_pool"] = {}
+		_detalhes["spell_pool"] = {}
+		_detalhes["spell_school_cache"] = {}
 
 		-- Profile db
 		_detalhes_global["__profiles"][Retail] = _detalhes_global["__profiles"][Retail] or {}
@@ -1248,10 +1248,10 @@ function L1UI:Get_Details_Profile()
 		_detalhes_global["__profiles"] = _detalhes_global["__profiles"] or {}
 
 		-- Clear Cache
-		_detalhes_global["encounter_spell_pool"] = {}
-		_detalhes_global["npcid_pool"] = {}
-		_detalhes_global["spell_pool"] = {}
-		_detalhes_global["spell_school_cache"] = {}
+		_detalhes["encounter_spell_pool"] = {}
+		_detalhes["npcid_pool"] = {}
+		_detalhes["spell_pool"] = {}
+		_detalhes["spell_school_cache"] = {}
 
 		-- Profile db
 		_detalhes_global["__profiles"][TBC] = _detalhes_global["__profiles"][TBC] or {}
@@ -2482,10 +2482,10 @@ function L1UI:Get_Details_Profile()
 		_detalhes_global["__profiles"] = _detalhes_global["__profiles"] or {}
 
 		-- Clear Cache
-		_detalhes_global["encounter_spell_pool"] = {}
-		_detalhes_global["npcid_pool"] = {}
-		_detalhes_global["spell_pool"] = {}
-		_detalhes_global["spell_school_cache"] = {}
+		_detalhes["encounter_spell_pool"] = {}
+		_detalhes["npcid_pool"] = {}
+		_detalhes["spell_pool"] = {}
+		_detalhes["spell_school_cache"] = {}
 
 		-- Profile db
 		_detalhes_global["__profiles"][Classic] = _detalhes_global["__profiles"][Classic] or {}

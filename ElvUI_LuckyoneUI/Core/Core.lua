@@ -1,12 +1,24 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local CH = E:GetModule('Chat')
 
 local IsAddOnLoaded = IsAddOnLoaded
+local ReloadUI = ReloadUI
 local SetCVar = SetCVar
 
 -- LuckyoneUI chat print
 function L1UI:Print(msg)
 	print(L1UI.Name..': '..msg)
 end
+
+-- LuckyoneUI reload popup
+E.PopupDialogs.L1UI_RL = {
+	text = "Reload required - continue?",
+	button1 = ACCEPT,
+	button2 = CANCEL,
+	OnAccept = ReloadUI,
+	whileDead = 1,
+	hideOnEscape = false,
+}
 
 -- Load AddOnSkins Profile
 function L1UI:Setup_AddOnSkins()
@@ -34,6 +46,13 @@ function L1UI:Setup_Details()
 	if not IsAddOnLoaded('Details') then return end
 	L1UI:Get_Details_Profile()
 	L1UI:Print('Details profile has been set.')
+end
+
+-- Load Gnosis Profile
+function L1UI:Setup_Gnosis()
+	if not IsAddOnLoaded('Gnosis') then return end
+	L1UI:Get_Gnosis_Profile()
+	L1UI:Print('Gnosis profile has been set.')
 end
 
 -- Load OmniCD Profile
@@ -172,5 +191,36 @@ function L1UI:SetupGlobal()
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipYOffset"] = 5
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = "[petbattle] hide;show"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 358
+	end
+end
+
+-- Performance config section
+function L1UI:Cleanup_Cache(addon, type)
+
+	if addon == 'elvui' then
+
+		if type == 'chat' then
+
+			CH:ResetHistory()
+
+		elseif type == 'editbox' then
+
+			CH:ResetEditboxHistory()
+
+		end
+
+	elseif addon == 'details' then
+
+		_detalhes.encounter_spell_pool = {}
+		_detalhes.npcid_pool = {}
+		_detalhes.spell_pool = {}
+		_detalhes.spell_school_cache = {}
+
+	elseif addon == 'plater' then
+
+		PlaterDB.captured_casts = {}
+		PlaterDB.captured_spells = {}
+		PlaterDB.profiles.Luckyone.npc_cache = {}
+
 	end
 end

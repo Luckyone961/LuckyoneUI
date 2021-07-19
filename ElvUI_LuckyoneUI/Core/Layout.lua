@@ -8,9 +8,9 @@ if L1UI.Retail then
 	function L1UI:SetupLayout(layout)
 
 		if layout == 'dps' then
-			E.data:SetProfile(E.mynameRealm)
+			E.data:SetProfile('Luckyone DPS/TANK')
 		elseif layout == 'healer' then
-			E.data:SetProfile(E.mynameRealm)
+			E.data:SetProfile('Luckyone Healing')
 		end
 
 		if not E.db.movers then E.db.movers = {} end
@@ -805,7 +805,7 @@ if L1UI.Retail then
 			E.db["movers"]["BossBannerMover"] = "TOP,ElvUIParent,TOP,0,-57"
 			E.db["movers"]["LootFrameMover"] = "TOP,ElvUIParent,TOP,0,-160"
 			E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-492"
-			E.db["movers"]["MasterExperienceMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,343,-299"
+			E.db["movers"]["MawBuffsBelowMinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-15,-380"
 			E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,157,-1"
 			E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1"
 			E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,0,-78"
@@ -1411,6 +1411,7 @@ if L1UI.Retail then
 			E.db["movers"]["BossBannerMover"] = "TOP,ElvUIParent,TOP,0,-57"
 			E.db["movers"]["LootFrameMover"] = "TOP,ElvUIParent,TOP,0,-161"
 			E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-492"
+			E.db["movers"]["MawBuffsBelowMinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-15,-380"
 			E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,174,-1"
 			E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1"
 			E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,0,-78"
@@ -1933,9 +1934,9 @@ elseif L1UI.Classic then
 	function L1UI:SetupLayout(layout)
 
 		if layout == 'dps' then
-			E.data:SetProfile(E.mynameRealm)
+			E.data:SetProfile('Luckyone DPS/TANK')
 		elseif layout == 'healer' then
-			E.data:SetProfile(E.mynameRealm)
+			E.data:SetProfile('Luckyone Healing')
 		end
 
 		if not E.db.movers then E.db.movers = {} end
@@ -3234,9 +3235,9 @@ elseif L1UI.TBC then
 	function L1UI:SetupLayout(layout)
 
 		if layout == 'dps' then
-			E.data:SetProfile(E.mynameRealm)
+			E.data:SetProfile('Luckyone DPS/TANK')
 		elseif layout == 'healer' then
-			E.data:SetProfile(E.mynameRealm)
+			E.data:SetProfile('Luckyone Healing')
 		end
 
 		if not E.db.movers then E.db.movers = {} end
