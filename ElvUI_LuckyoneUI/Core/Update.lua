@@ -8,6 +8,10 @@ if L1UI.Retail then
 		-- Protect some rare nil errors
 		if not E.db.movers then E.db.movers = {} end
 
+		E.db["tooltip"]["dungeonScore"] = false
+		E.db["tooltip"]["dungeonScoreColor"] = false
+		E.db["tooltip"]["mythicDataEnable"] = false
+
 		if layout == 'dps' then
 			-- DPS/TANK db changes
 		elseif layout == 'healer' then

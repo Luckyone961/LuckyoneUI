@@ -419,6 +419,8 @@ if L1UI.Retail then
 		-- Tooltip
 		E.db["tooltip"]["alwaysShowRealm"] = true
 		E.db["tooltip"]["colorAlpha"] = 0.75
+		E.db["tooltip"]["dungeonScore"] = false
+		E.db["tooltip"]["dungeonScoreColor"] = false
 		E.db["tooltip"]["font"] = "Expressway"
 		E.db["tooltip"]["fontOutline"] = "OUTLINE"
 		E.db["tooltip"]["headerFontSize"] = 11
@@ -427,6 +429,7 @@ if L1UI.Retail then
 		E.db["tooltip"]["healthBar"]["height"] = 4
 		E.db["tooltip"]["healthBar"]["statusPosition"] = "TOP"
 		E.db["tooltip"]["itemCount"] = "NONE"
+		E.db["tooltip"]["mythicDataEnable"] = false
 		E.db["tooltip"]["showElvUIUsers"] = true
 		E.db["tooltip"]["showMount"] = false
 		E.db["tooltip"]["smallTextFontSize"] = 11
