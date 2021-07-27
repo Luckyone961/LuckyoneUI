@@ -1,4 +1,10 @@
 ### Version 1.32 [ ETA: 🍨 ]
+**Retail:**  
+Updated Anchors (Only for initial install, not update)  
+Updated Arena Frames  
+Updated ElvUI NamePlates  
+Updated Stack Counter positions on all NamePlates  
+Updated Stack Counter positions on all UnitFrames  
 ___
 ### Version 1.31 [19-07-2021]
 **Retail:**  
