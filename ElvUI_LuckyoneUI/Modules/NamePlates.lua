@@ -39,12 +39,12 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["cooldown"]["hoursIndicator"]["r"] = 0.4
 		E.db["nameplates"]["cooldown"]["override"] = false
 		E.db["nameplates"]["lowHealthThreshold"] = 0.5
-		E.db["nameplates"]["plateSize"]["enemyHeight"] = 42
-		E.db["nameplates"]["plateSize"]["enemyWidth"] = 192
-		E.db["nameplates"]["plateSize"]["friendlyHeight"] = 42
-		E.db["nameplates"]["plateSize"]["friendlyWidth"] = 192
-		E.db["nameplates"]["plateSize"]["personalHeight"] = 42
-		E.db["nameplates"]["plateSize"]["personalWidth"] = 192
+		E.db["nameplates"]["plateSize"]["enemyHeight"] = 40
+		E.db["nameplates"]["plateSize"]["enemyWidth"] = 175
+		E.db["nameplates"]["plateSize"]["friendlyHeight"] = 40
+		E.db["nameplates"]["plateSize"]["friendlyWidth"] = 175
+		E.db["nameplates"]["plateSize"]["personalHeight"] = 40
+		E.db["nameplates"]["plateSize"]["personalWidth"] = 175
 		E.db["nameplates"]["statusbar"] = "Minimalist"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["anchorPoint"] = "TOPRIGHT"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Expressway"
@@ -56,10 +56,10 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["fontSize"] = 10
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["numAuras"] = 1
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["size"] = 35
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["size"] = 34
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["spacing"] = 0
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["xOffset"] = 35
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = -44
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["xOffset"] = 34
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = -43
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["castTimeFormat"] = "REMAINING"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["channelTimeFormat"] = "REMAINING"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["font"] = "Expressway"
@@ -67,10 +67,10 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["height"] = 12
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetY"] = -1
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconPosition"] = "LEFT"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 35
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 34
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textPosition"] = "ONBAR"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeToHold"] = 2
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["width"] = 192
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["width"] = 175
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["yOffset"] = -16
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countFont"] = "Expressway"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countFontSize"] = 13
@@ -79,17 +79,18 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["font"] = "Expressway"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["fontSize"] = 10
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["numAuras"] = 7
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["size"] = 25
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["size"] = 22
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["xOffset"] = 1
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = -8
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["eliteIcon"]["size"] = 14
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["eliteIcon"]["xOffset"] = 3
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["height"] = 22
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["height"] = 20
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["font"] = "Expressway"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["fontSize"] = 12
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["format"] = "[luckyone:health:percent]"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["parent"] = "Health"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["position"] = "TOPRIGHT"
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["xOffset"] = -1
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["yOffset"] = -15
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Expressway"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
@@ -99,7 +100,7 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["fontSize"] = 12
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[name:last]"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["parent"] = "Health"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["xOffset"] = 1
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["xOffset"] = 2
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["yOffset"] = -15
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Expressway"
 		if L1UI.Retail then
@@ -126,7 +127,7 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["size"] = 35
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["spacing"] = 0
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["xOffset"] = 35
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = -44
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = -43
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["castTimeFormat"] = "REMAINING"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["channelTimeFormat"] = "REMAINING"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["font"] = "Expressway"
@@ -137,7 +138,7 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 35
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["textPosition"] = "ONBAR"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["timeToHold"] = 2
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["width"] = 192
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["width"] = 175
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["yOffset"] = -16
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFont"] = "Expressway"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFontSize"] = 13
@@ -156,7 +157,8 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["format"] = "[luckyone:health:percent]"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["parent"] = "Health"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["position"] = "TOPRIGHT"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["yOffset"] = -15
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["xOffset"] = -1
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["yOffset"] = -16
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["font"] = "Expressway"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["format"] = ""
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["xOffset"] = 3
@@ -165,8 +167,8 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["fontSize"] = 12
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = "[name:last]"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["parent"] = "Health"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["xOffset"] = 1
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["yOffset"] = -15
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["xOffset"] = 2
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["yOffset"] = -16
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["font"] = "Expressway"
 		if L1UI.Retail then
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["pvpindicator"]["size"] = 35
