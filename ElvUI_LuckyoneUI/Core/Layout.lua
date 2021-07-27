@@ -527,7 +527,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][level][classificationcolor][ >luckyone:classification]",
+			["text_format"] = "[namecolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -699,7 +699,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][level][classificationcolor][ >luckyone:classification]",
+			["text_format"] = "[namecolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -2454,7 +2454,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][level][classificationcolor][ >luckyone:classification]",
+			["text_format"] = "[namecolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -3692,7 +3692,7 @@ elseif L1UI.TBC then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][level][classificationcolor][ >luckyone:classification]",
+			["text_format"] = "[namecolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -3864,7 +3864,7 @@ elseif L1UI.TBC then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][level][classificationcolor][ >luckyone:classification]",
+			["text_format"] = "[namecolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
