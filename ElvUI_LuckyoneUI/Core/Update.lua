@@ -8,6 +8,9 @@ if L1UI.Retail then
 		-- Protect some rare nil errors
 		if not E.db.movers then E.db.movers = {} end
 
+		-- Update ElvUI NamePlates
+		if E.private.nameplates.enable then L1UI:SetupNamePlates('ElvUI') end
+
 		-- Tooltip
 		E.db["tooltip"]["dungeonScore"] = false
 		E.db["tooltip"]["dungeonScoreColor"] = false
