@@ -32,7 +32,8 @@ if L1UI.Retail then
 		-- General
 		E.db["general"]["altPowerBar"]["font"] = "Expressway"
 		E.db["general"]["altPowerBar"]["statusBar"] = "Minimalist"
-		E.db["general"]["autoRepair"] = "PLAYER"
+		E.db["general"]["autoAcceptInvite"] = true
+		E.db["general"]["autoRepair"] = "GUILD"
 		E.db["general"]["backdropcolor"]["b"] = 0.10196078431373
 		E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
 		E.db["general"]["backdropcolor"]["r"] = 0.10196078431373
@@ -46,7 +47,6 @@ if L1UI.Retail then
 		E.db["general"]["enhancedPvpMessages"] = false
 		E.db["general"]["font"] = "Expressway"
 		E.db["general"]["fontSize"] = 11
-		E.db["general"]["fontStyle"] = "NONE"
 		E.db["general"]["interruptAnnounce"] = "EMOTE"
 		E.db["general"]["itemLevel"]["itemLevelFont"] = "Expressway"
 		E.db["general"]["itemLevel"]["itemLevelFontSize"] = 11
@@ -68,9 +68,9 @@ if L1UI.Retail then
 		E.db["general"]["talkingHeadFrameBackdrop"] = true
 		E.db["general"]["talkingHeadFrameScale"] = 0.72
 		E.db["general"]["totems"]["enable"] = false
-		E.db["general"]["valuecolor"]["b"] = 0.99
-		E.db["general"]["valuecolor"]["g"] = 0.99
-		E.db["general"]["valuecolor"]["r"] = 0.99
+		E.db["general"]["valuecolor"]["b"] = 0.039215601980686
+		E.db["general"]["valuecolor"]["g"] = 0.48627343773842
+		E.db["general"]["valuecolor"]["r"] = 0.99999779462814
 		E.db["general"]["vehicleSeatIndicatorSize"] = 64
 
 		-- ActionBars
