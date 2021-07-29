@@ -367,31 +367,18 @@ if L1UI.Retail then
 
 		-- DataBars
 		E.db["databars"]["azerite"]["enable"] = false
-		E.db["databars"]["azerite"]["font"] = "Expressway"
-		E.db["databars"]["azerite"]["height"] = 171
-		E.db["databars"]["azerite"]["hideAtMaxLevel"] = false
-		E.db["databars"]["azerite"]["orientation"] = "VERTICAL"
-		E.db["databars"]["azerite"]["width"] = 10
 		E.db["databars"]["experience"]["font"] = "Expressway"
 		E.db["databars"]["experience"]["height"] = 171
 		E.db["databars"]["experience"]["orientation"] = "VERTICAL"
 		E.db["databars"]["experience"]["questCompletedOnly"] = true
 		E.db["databars"]["experience"]["width"] = 10
 		E.db["databars"]["honor"]["enable"] = false
-		E.db["databars"]["honor"]["font"] = "Expressway"
-		E.db["databars"]["honor"]["height"] = 171
-		E.db["databars"]["honor"]["orientation"] = "VERTICAL"
-		E.db["databars"]["honor"]["width"] = 10
 		E.db["databars"]["reputation"]["enable"] = true
 		E.db["databars"]["reputation"]["font"] = "Expressway"
 		E.db["databars"]["reputation"]["height"] = 171
 		E.db["databars"]["reputation"]["orientation"] = "VERTICAL"
 		E.db["databars"]["reputation"]["width"] = 10
 		E.db["databars"]["threat"]["enable"] = false
-		E.db["databars"]["threat"]["font"] = "Expressway"
-		E.db["databars"]["threat"]["height"] = 171
-		E.db["databars"]["threat"]["orientation"] = "VERTICAL"
-		E.db["databars"]["threat"]["width"] = 10
 
 		-- DataTexts
 		E.db["datatexts"]["font"] = "Expressway"
