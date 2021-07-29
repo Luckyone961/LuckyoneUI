@@ -3,6 +3,7 @@
 Updated Anchors (Only for initial install, not update)  
 Updated Arena Frames  
 Updated ElvUI NamePlates  
+Updated UnitFrames Auras (Growth, Spacing)  
 Updated Stack Counter positions on all NamePlates  
 Updated Stack Counter positions on all UnitFrames  
 ___
