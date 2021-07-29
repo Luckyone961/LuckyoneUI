@@ -298,6 +298,7 @@ if L1UI.Retail then
 		E.db["bags"]["itemLevelFont"] = "Expressway"
 		E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
 		E.db["bags"]["itemLevelFontSize"] = 12
+		E.db["bags"]["moneyFormat"] = "BLIZZARD"
 		E.db["bags"]["transparent"] = true
 		E.db["bags"]["vendorGrays"]["enable"] = true
 
