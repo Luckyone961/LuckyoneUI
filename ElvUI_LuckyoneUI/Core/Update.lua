@@ -32,7 +32,6 @@ if L1UI.Retail then
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["sizeOverride"] = 22
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["spacing"] = 0
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["yOffset"] = 11
-		E.db["unitframe"]["units"]["arena"]["disableTargetGlow"] = true
 		E.db["unitframe"]["units"]["arena"]["infoPanel"]["height"] = 16
 
 		-- Boss updates
@@ -45,7 +44,6 @@ if L1UI.Retail then
 		E.db["unitframe"]["units"]["focus"]["buffs"]["countFontSize"] = 13
 		E.db["unitframe"]["units"]["focus"]["buffs"]["countPosition"] = "TOP"
 		E.db["unitframe"]["units"]["focus"]["buffs"]["countYOffset"] = 14
-		E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI"
 		E.db["unitframe"]["units"]["focus"]["debuffs"]["countFontSize"] = 13
 		E.db["unitframe"]["units"]["focus"]["debuffs"]["countPosition"] = "TOP"
 		E.db["unitframe"]["units"]["focus"]["debuffs"]["countYOffset"] = 14
@@ -58,10 +56,6 @@ if L1UI.Retail then
 		E.db["unitframe"]["units"]["player"]["debuffs"]["countFontSize"] = 13
 		E.db["unitframe"]["units"]["player"]["debuffs"]["countPosition"] = "TOP"
 		E.db["unitframe"]["units"]["player"]["debuffs"]["countYOffset"] = 14
-		E.db["unitframe"]["units"]["player"]["raidRoleIcons"]["yOffset"] = 1
-
-		-- Raid updates
-		E.db["unitframe"]["units"]["raid"]["readycheckIcon"]["xOffset"] = 1
 
 		-- Target updates
 		E.db["unitframe"]["units"]["target"]["buffs"]["countFontSize"] = 13
