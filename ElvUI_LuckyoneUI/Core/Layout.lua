@@ -327,14 +327,14 @@ if L1UI.Retail then
 		E.db["auras"]["debuffs"]["timeFontSize"] = 12
 
 		-- Chat
-		E.db["chat"]["editboxHistorySize"] = 30
+		E.db["chat"]["editboxHistorySize"] = 50
 		E.db["chat"]["editBoxPosition"] = "ABOVE_CHAT_INSIDE"
 		E.db["chat"]["fade"] = false
 		E.db["chat"]["fadeTabsNoBackdrop"] = false
 		E.db["chat"]["font"] = "Expressway"
 		E.db["chat"]["fontOutline"] = "OUTLINE"
 		E.db["chat"]["hideChatToggles"] = true
-		E.db["chat"]["historySize"] = 150
+		E.db["chat"]["historySize"] = 200
 		E.db["chat"]["keywords"] = "%MYNAME%"
 		E.db["chat"]["lfgIcons"] = false
 		E.db["chat"]["maxLines"] = 200
@@ -348,15 +348,6 @@ if L1UI.Retail then
 		E.db["chat"]["panelWidth"] = 414
 		E.db["chat"]["panelWidthRight"] = 414
 		E.db["chat"]["separateSizes"] = true
-		E.db["chat"]["showHistory"]["CHANNEL"] = false
-		E.db["chat"]["showHistory"]["EMOTE"] = false
-		E.db["chat"]["showHistory"]["GUILD"] = false
-		E.db["chat"]["showHistory"]["INSTANCE"] = false
-		E.db["chat"]["showHistory"]["OFFICER"] = false
-		E.db["chat"]["showHistory"]["PARTY"] = false
-		E.db["chat"]["showHistory"]["RAID"] = false
-		E.db["chat"]["showHistory"]["SAY"] = false
-		E.db["chat"]["showHistory"]["YELL"] = false
 		E.db["chat"]["tabFont"] = "Expressway"
 		E.db["chat"]["tabFontSize"] = 11
 		E.db["chat"]["tabSelectedTextEnabled"] = false
