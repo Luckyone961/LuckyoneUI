@@ -59,7 +59,9 @@ function L1UI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconPosition"] = "LEFT"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 39
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textPosition"] = "ONBAR"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textXOffset"] = 2
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeToHold"] = 2
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeXOffset"] = -2
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["width"] = 175
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["yOffset"] = -19
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["anchorPoint"] = "TOP"
@@ -78,11 +80,10 @@ function L1UI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["height"] = 20
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["font"] = "Expressway"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["fontSize"] = 12
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["format"] = "[luckyone:health:percent]"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["format"] = "[health:current:shortvalue] || [luckyone:health:percent]"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["parent"] = "Health"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["position"] = "TOPRIGHT"
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["xOffset"] = -1
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["yOffset"] = -15
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["yOffset"] = -16
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Expressway"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = 3
@@ -92,7 +93,7 @@ function L1UI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[name:last]"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["parent"] = "Health"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["xOffset"] = 2
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["yOffset"] = -15
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["yOffset"] = -16
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Expressway"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["pvpindicator"]["size"] = 35
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["enable"] = false
