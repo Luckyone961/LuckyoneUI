@@ -1,11 +1,11 @@
 ### Version 1.32 [ ETA: 🍨 ]
 **Retail:**  
-Updated Anchors (Only for initial install, not update)  
-Updated Arena Frames  
-Updated ElvUI NamePlates  
-Updated UnitFrames Auras (Growth, Spacing)  
-Updated Stack Counter positions on all NamePlates  
-Updated Stack Counter positions on all UnitFrames  
+Updated Buffs and Debuffs for all UnitFrames  
+Updated default Anchors (Only for initial install)  
+Updated NamePlates: ElvUI  
+Updated OmniCD profile  
+Updated UnitFrames: Arena  
+Updated UnitFrames: Party  
 ___
 ### Version 1.31 [19-07-2021]
 **Retail:**  
