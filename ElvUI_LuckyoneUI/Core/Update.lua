@@ -21,7 +21,6 @@ if L1UI.Retail then
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countFontSize"] = 10
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countXOffset"] = 1
 		E.db["unitframe"]["units"]["arena"]["buffs"]["numrows"] = 2
-		E.db["unitframe"]["units"]["arena"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["sizeOverride"] = 22
 		E.db["unitframe"]["units"]["arena"]["buffs"]["xOffset"] = 23
 		E.db["unitframe"]["units"]["arena"]["buffs"]["yOffset"] = -46
@@ -43,7 +42,6 @@ if L1UI.Retail then
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["growthX"] = "LEFT"
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["growthY"] = "DOWN"
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["numrows"] = 2
-		E.db["unitframe"]["units"]["arena"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["sizeOverride"] = 22
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["spacing"] = 0
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["xOffset"] = -69
