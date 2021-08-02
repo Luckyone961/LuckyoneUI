@@ -1252,8 +1252,6 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 1
 			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid31,noexists] hide;show"
 			E.db["unitframe"]["units"]["raid40"]["width"] = 82
-			E.db["unitframe"]["units"]["raidpet"]["health"]["text_format"] = "[perhp<%]"
-			E.db["unitframe"]["units"]["raidpet"]["threatStyle"] = "NONE"
 			E.db["unitframe"]["units"]["tank"]["enable"] = false
 			E.db["unitframe"]["units"]["target"]["aurabar"]["enable"] = false
 			E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Expressway"
@@ -1304,7 +1302,6 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["target"]["phaseIndicator"]["anchorPoint"] = "LEFT"
 			E.db["unitframe"]["units"]["target"]["phaseIndicator"]["scale"] = 0.5
 			E.db["unitframe"]["units"]["target"]["phaseIndicator"]["xOffset"] = 5
-			E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] = true
 			E.db["unitframe"]["units"]["target"]["power"]["detachedWidth"] = 189
 			E.db["unitframe"]["units"]["target"]["power"]["height"] = 6
 			E.db["unitframe"]["units"]["target"]["power"]["position"] = "RIGHT"
@@ -1330,7 +1327,6 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["height"] = 17
 			E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["transparent"] = true
 			E.db["unitframe"]["units"]["targettarget"]["name"]["text_format"] = ""
-			E.db["unitframe"]["units"]["targettarget"]["portrait"]["overlay"] = true
 			E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 6
 			E.db["unitframe"]["units"]["targettarget"]["power"]["powerPrediction"] = true
 			E.db["unitframe"]["units"]["targettarget"]["raidicon"]["attachTo"] = "RIGHT"
@@ -1338,8 +1334,6 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["targettarget"]["raidicon"]["xOffset"] = -2
 			E.db["unitframe"]["units"]["targettarget"]["raidicon"]["yOffset"] = 0
 			E.db["unitframe"]["units"]["targettarget"]["width"] = 80
-			E.db["unitframe"]["units"]["targettargettarget"]["buffs"]["countFont"] = "Expressway"
-			E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Expressway"
 			E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
 
 		elseif layout == 'healer' then
@@ -1840,32 +1834,39 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 1
 			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid31,noexists] hide;show"
 			E.db["unitframe"]["units"]["raid40"]["width"] = 90
-			E.db["unitframe"]["units"]["tank"]["debuffs"]["countFont"] = "Expressway"
-			E.db["unitframe"]["units"]["tank"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
 			E.db["unitframe"]["units"]["tank"]["enable"] = false
-			E.db["unitframe"]["units"]["tank"]["height"] = 24
-			E.db["unitframe"]["units"]["tank"]["rdebuffs"]["enable"] = false
-			E.db["unitframe"]["units"]["tank"]["threatStyle"] = "NONE"
-			E.db["unitframe"]["units"]["tank"]["verticalSpacing"] = 4
-			E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "FRAME"
 			E.db["unitframe"]["units"]["target"]["aurabar"]["enable"] = false
-			E.db["unitframe"]["units"]["target"]["aurabar"]["height"] = 17
-			E.db["unitframe"]["units"]["target"]["aurabar"]["maxBars"] = 15
 			E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Expressway"
+			E.db["unitframe"]["units"]["target"]["buffs"]["countFontSize"] = 13
+			E.db["unitframe"]["units"]["target"]["buffs"]["countPosition"] = "TOP"
+			E.db["unitframe"]["units"]["target"]["buffs"]["countYOffset"] = 14
 			E.db["unitframe"]["units"]["target"]["buffs"]["perrow"] = 2
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI"
 			E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 23
-			E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = 1
+			E.db["unitframe"]["units"]["target"]["castbar"]["customTextFont"]["enable"] = true
+			E.db["unitframe"]["units"]["target"]["castbar"]["customTextFont"]["font"] = "Expressway"
+			E.db["unitframe"]["units"]["target"]["castbar"]["customTextFont"]["fontSize"] = 11
+			E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["enable"] = true
+			E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["font"] = "Expressway"
+			E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["fontSize"] = 11
+			E.db["unitframe"]["units"]["target"]["castbar"]["textColor"]["b"] = 1
+			E.db["unitframe"]["units"]["target"]["castbar"]["textColor"]["g"] = 1
+			E.db["unitframe"]["units"]["target"]["castbar"]["textColor"]["r"] = 1
 			E.db["unitframe"]["units"]["target"]["castbar"]["timeToHold"] = 2
 			E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 190
+			E.db["unitframe"]["units"]["target"]["castbar"]["xOffsetText"] = 2
+			E.db["unitframe"]["units"]["target"]["castbar"]["xOffsetTime"] = -2
 			E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = false
 			E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "TOPLEFT"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["attachTo"] = "FRAME"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Expressway"
+			E.db["unitframe"]["units"]["target"]["debuffs"]["countFontSize"] = 13
+			E.db["unitframe"]["units"]["target"]["debuffs"]["countPosition"] = "TOP"
+			E.db["unitframe"]["units"]["target"]["debuffs"]["countYOffset"] = 14
 			E.db["unitframe"]["units"]["target"]["debuffs"]["desaturate"] = false
+			E.db["unitframe"]["units"]["target"]["debuffs"]["growthX"] = "RIGHT"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["maxDuration"] = 0
 			E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
-			E.db["unitframe"]["units"]["target"]["debuffs"]["yOffset"] = 1
 			E.db["unitframe"]["units"]["target"]["disableMouseoverGlow"] = true
 			E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 			E.db["unitframe"]["units"]["target"]["health"]["position"] = "CENTER"
@@ -1883,7 +1884,6 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["target"]["phaseIndicator"]["anchorPoint"] = "LEFT"
 			E.db["unitframe"]["units"]["target"]["phaseIndicator"]["scale"] = 0.5
 			E.db["unitframe"]["units"]["target"]["phaseIndicator"]["xOffset"] = 5
-			E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] = true
 			E.db["unitframe"]["units"]["target"]["power"]["detachedWidth"] = 189
 			E.db["unitframe"]["units"]["target"]["power"]["height"] = 6
 			E.db["unitframe"]["units"]["target"]["power"]["position"] = "RIGHT"
@@ -1900,6 +1900,7 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["targettarget"]["buffs"]["countFont"] = "Expressway"
 			E.db["unitframe"]["units"]["targettarget"]["debuffs"]["countFont"] = "Expressway"
 			E.db["unitframe"]["units"]["targettarget"]["debuffs"]["enable"] = false
+			E.db["unitframe"]["units"]["targettarget"]["debuffs"]["maxDuration"] = 0
 			E.db["unitframe"]["units"]["targettarget"]["disableMouseoverGlow"] = true
 			E.db["unitframe"]["units"]["targettarget"]["health"]["position"] = "CENTER"
 			E.db["unitframe"]["units"]["targettarget"]["health"]["xOffset"] = 0
@@ -1908,7 +1909,6 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["height"] = 17
 			E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["transparent"] = true
 			E.db["unitframe"]["units"]["targettarget"]["name"]["text_format"] = ""
-			E.db["unitframe"]["units"]["targettarget"]["portrait"]["overlay"] = true
 			E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 6
 			E.db["unitframe"]["units"]["targettarget"]["power"]["powerPrediction"] = true
 			E.db["unitframe"]["units"]["targettarget"]["raidicon"]["attachTo"] = "RIGHT"
@@ -1916,8 +1916,6 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["targettarget"]["raidicon"]["xOffset"] = -2
 			E.db["unitframe"]["units"]["targettarget"]["raidicon"]["yOffset"] = 0
 			E.db["unitframe"]["units"]["targettarget"]["width"] = 80
-			E.db["unitframe"]["units"]["targettargettarget"]["buffs"]["countFont"] = "Expressway"
-			E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Expressway"
 			E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
 		end
 
