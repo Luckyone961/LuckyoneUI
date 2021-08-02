@@ -739,14 +739,14 @@ if L1UI.Retail then
 
 			-- Movers DPS/TANK
 			E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-139"
-			E.db["movers"]["AltPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,159"
+			E.db["movers"]["AltPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,158"
 			E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
 			E.db["movers"]["ArtifactBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,16"
 			E.db["movers"]["AzeriteBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
 			E.db["movers"]["BelowMinimapContainerMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,70,485"
 			E.db["movers"]["BNETMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173"
 			E.db["movers"]["BossBannerMover"] = "TOP,ElvUIParent,TOP,0,-139"
-			E.db["movers"]["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,-168,129"
+			E.db["movers"]["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,-168,128"
 			E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
 			E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-166,-1"
 			E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,153"
@@ -795,7 +795,7 @@ if L1UI.Retail then
 			E.db["movers"]["MirrorTimer2Mover"] = "TOP,ElvUIParent,TOP,0,-97"
 			E.db["movers"]["MirrorTimer3Mover"] = "TOP,ElvUIParent,TOP,0,-116"
 			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-95,-214"
-			E.db["movers"]["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,129"
+			E.db["movers"]["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,128"
 			E.db["movers"]["RaidUtility_Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,405,-1"
 			E.db["movers"]["ReputationBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1"
 			E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1"
@@ -809,10 +809,10 @@ if L1UI.Retail then
 			E.db["movers"]["TorghastBuffsMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-51"
 			E.db["movers"]["TotemBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,413,1"
 			E.db["movers"]["UIErrorsFrameMover"] = "TOP,ElvUIParent,TOP,0,-78"
-			E.db["movers"]["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,183"
+			E.db["movers"]["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,182"
 			E.db["movers"]["VehicleSeatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,1"
 			E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
-			E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,168,129"
+			E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,168,128"
 
 			-- UnitFrames DPS/TANK
 			E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.75
