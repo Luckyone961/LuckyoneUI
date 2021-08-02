@@ -242,7 +242,7 @@ L1UI.Options.args.links.args.guide = ACH:Input('Wowhead Guide:', nil, 5, nil, 'f
 function L1UI:GetOptions()
 
 	-- Add LuckyoneUI version on top of the ElvUI config
-	E.Options.name = E.Options.name..' + '..L1UI.Name..' '..L1UI.Version
+	E.Options.name = format('%s + %s |cff99ff33%.2f|r', E.Options.name, L1UI.Name, L1UI.Version)
 
 	-- LuckyoneUI config
 	E.Options.args.L1UI = L1UI.Options
