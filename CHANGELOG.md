@@ -3,8 +3,8 @@
 IMPORTANT: Requires ElvUI 12.38 or later  
 (Optional) Note:  
 • Improved and cleaned up initial install process and db entries  
-• if you haven't done many big changes, I recommend deleting the profile  
-• and go for a fresh install since I can't add all changes to the update button  
+• if you haven't done many big changes, I recommend to go for a  
+• fresh install since I can't add all changes to the update button  
 Updated Buffs and Debuffs for all UnitFrames  
 Updated default Anchors (Only for initial install)  
 Updated ElvUI Castbars (Font, Font Size, Font Color)  
