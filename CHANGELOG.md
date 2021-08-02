@@ -1,7 +1,12 @@
-### Version 1.32 [ ETA: 🍨 ]
+### Version 1.32 [02-08-2021]
 **Retail:**  
+(Optional) Note:  
+• Improved and cleaned up initial install process and db entries  
+• if you haven't done many big changes, I recommend deleting the profile  
+• and go for a fresh install since I can't add all changes to the update button  
 Updated Buffs and Debuffs for all UnitFrames  
 Updated default Anchors (Only for initial install)  
+Updated ElvUI Castbars (Font, Font Size, Font Color)  
 Updated NamePlates: ElvUI  
 Updated OmniCD profile  
 Updated UnitFrames: Arena  
