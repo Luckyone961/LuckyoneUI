@@ -13,6 +13,8 @@ Updated OmniCD profile
 Updated ProjectAzilroka profile  
 Updated UnitFrames: Arena  
 Updated UnitFrames: Party  
+**TBC & Classic:**  
+Fixed Setup Chat installer step & function  
 ___
 ### Version 1.31 [19-07-2021]
 **Retail:**  
