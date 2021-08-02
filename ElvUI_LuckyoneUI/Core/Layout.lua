@@ -815,7 +815,7 @@ if L1UI.Retail then
 			E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,168,129"
 
 			-- UnitFrames DPS/TANK
-			E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.70037892460823
+			E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.75
 			E.db["unitframe"]["colors"]["castbar_backdrop"]["b"] = 0.058823529411765
 			E.db["unitframe"]["colors"]["castbar_backdrop"]["g"] = 0.058823529411765
 			E.db["unitframe"]["colors"]["castbar_backdrop"]["r"] = 0.058823529411765
