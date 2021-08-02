@@ -137,6 +137,8 @@ function L1UI:SetupPrivate()
 	E.private["general"]["dmgfont"] = "Expressway"
 	E.private["general"]["glossTex"] = "Minimalist"
 	E.private["general"]["namefont"] = "Expressway"
+	E.private["general"]["nameplateFont"] = "Expressway"
+	E.private["general"]["nameplateLargeFont"] = "Expressway"
 	E.private["general"]["normTex"] = "Minimalist"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 
