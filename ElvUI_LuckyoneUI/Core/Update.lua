@@ -48,7 +48,6 @@ if L1UI.Retail then
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["spacing"] = 0
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["xOffset"] = -69
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["yOffset"] = -21
-		E.db["unitframe"]["units"]["arena"]["infoPanel"]["height"] = 16
 
 		-- Boss updates
 		E.db["unitframe"]["units"]["boss"]["buffs"]["anchorPoint"] = "TOPRIGHT"

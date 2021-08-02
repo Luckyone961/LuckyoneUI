@@ -80,7 +80,7 @@ function L1UI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["height"] = 20
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["font"] = "Expressway"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["fontSize"] = 12
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["format"] = "[health:current:shortvalue] || [luckyone:health:percent]"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["format"] = "[luckyone:health:percent]"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["parent"] = "Health"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["position"] = "TOPRIGHT"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["yOffset"] = -16

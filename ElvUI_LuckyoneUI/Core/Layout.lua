@@ -1653,6 +1653,7 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["party"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
 			E.db["unitframe"]["units"]["party"]["debuffs"]["sizeOverride"] = 40
 			E.db["unitframe"]["units"]["party"]["debuffs"]["xOffset"] = 1
+			E.db["unitframe"]["units"]["party"]["debuffs"]["yOffset"] = -1
 			E.db["unitframe"]["units"]["party"]["disableMouseoverGlow"] = true
 			E.db["unitframe"]["units"]["party"]["disableTargetGlow"] = true
 			E.db["unitframe"]["units"]["party"]["healPrediction"]["absorbStyle"] = "WRAPPED"
