@@ -1,4 +1,4 @@
-### Version 1.32 [02-08-2021]
+### Version 1.32 [03-08-2021]
 **Retail:**  
 IMPORTANT: Requires ElvUI 12.38 or later  
 (Optional) Note:  
