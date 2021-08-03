@@ -1,3 +1,6 @@
+### Version 1.33 [🍨]
+**Retail:**  
+___
 ### Version 1.32 [03-08-2021]
 **Retail:**  
 IMPORTANT: Requires ElvUI 12.38 or later  
