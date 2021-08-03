@@ -1,6 +1,8 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local CH = E:GetModule('Chat')
 
 local IsAddOnLoaded = IsAddOnLoaded
+local ReloadUI = ReloadUI
 local SetCVar = SetCVar
 
 -- LuckyoneUI chat print
@@ -8,76 +10,77 @@ function L1UI:Print(msg)
 	print(L1UI.Name..': '..msg)
 end
 
--- Load AddOnSkins Profile
-function L1UI:AddonSetupAS()
+-- LuckyoneUI reload popup
+E.PopupDialogs.L1UI_RL = {
+	text = "Reload required - continue?",
+	button1 = ACCEPT,
+	button2 = CANCEL,
+	OnAccept = ReloadUI,
+	whileDead = 1,
+	hideOnEscape = false,
+}
 
-	if IsAddOnLoaded('AddOnSkins') then
-		L1UI:GetASProfile()
-		L1UI:Print('AddOnSkins profile has been set.')
-	end
+-- Load AddOnSkins Profile
+function L1UI:Setup_AddOnSkins()
+	if not IsAddOnLoaded('AddOnSkins') then return end
+	L1UI:Get_AddOnSkins_Profile()
+	L1UI:Print('AddOnSkins profile has been set.')
 end
 
 -- Load BigWigs Profile
-function L1UI:AddonSetupBW()
-
-	if IsAddOnLoaded('BigWigs') then
-		L1UI:GetBigWigsProfile()
-		L1UI:Print('BigWigs profile has been set.')
-	end
+function L1UI:Setup_BigWigs()
+	if not IsAddOnLoaded('BigWigs') then return end
+	L1UI:Get_BigWigs_Profile()
+	L1UI:Print('BigWigs profile has been set.')
 end
 
 -- Load DBM Profile
-function L1UI:AddonSetupDBM()
-
-	if IsAddOnLoaded('DBM-Core') then
-		L1UI:GetDBMProfile()
-		L1UI:Print('DBM profile has been set.')
-	end
+function L1UI:Setup_DBM()
+	if not IsAddOnLoaded('DBM-Core') then return end
+	L1UI:Get_DBM_Profile()
+	L1UI:Print('DBM profile has been set.')
 end
 
 -- Load Details Profile
-function L1UI:AddonSetupDT()
+function L1UI:Setup_Details()
+	if not IsAddOnLoaded('Details') then return end
+	L1UI:Get_Details_Profile()
+	L1UI:Print('Details profile has been set.')
+end
 
-	if IsAddOnLoaded('Details') then
-		L1UI:GetDetailsProfile()
-		L1UI:Print('Details profile has been set.')
-	end
+-- Load Gnosis Profile
+function L1UI:Setup_Gnosis()
+	if not IsAddOnLoaded('Gnosis') then return end
+	L1UI:Get_Gnosis_Profile()
+	L1UI:Print('Gnosis profile has been set.')
 end
 
 -- Load OmniCD Profile
-function L1UI:AddonSetupOCD()
-
-	if IsAddOnLoaded('OmniCD') then
-		L1UI:GetOmniCDProfile()
-		L1UI:Print('OmniCD profile has been set.')
-	end
+function L1UI:Setup_OmniCD()
+	if not IsAddOnLoaded('OmniCD') then return end
+	L1UI:Get_OmniCD_Profile()
+	L1UI:Print('OmniCD profile has been set.')
 end
 
 -- Load Plater Profile
-function L1UI:AddonSetupPlater()
-
-	if IsAddOnLoaded('Plater') then
-		L1UI:GetPlaterProfile()
-		L1UI:Print('Plater profile has been set.')
-	end
+function L1UI:Setup_Plater()
+	if not IsAddOnLoaded('Plater') then return end
+	L1UI:Get_Plater_Profile()
+	L1UI:Print('Plater profile has been set.')
 end
 
 -- Load ProjectAzilroka Profile
-function L1UI:AddonSetupPA()
-
-	if IsAddOnLoaded('ProjectAzilroka') then
-		L1UI:GetPAProfile()
-		L1UI:Print('ProjectAzilroka profile has been set.')
-	end
+function L1UI:Setup_ProjectAzilroka()
+	if not IsAddOnLoaded('ProjectAzilroka') then return end
+	L1UI:Get_ProjectAzilroka_Profile()
+	L1UI:Print('ProjectAzilroka profile has been set.')
 end
 
 -- Load Shadow&Light Profile
-function L1UI:AddonSetupSLE()
-
-	if IsAddOnLoaded('ElvUI_SLE') then
-		L1UI:GetSLEProfile()
-		L1UI:Print('Shadow&Light profile has been set.')
-	end
+function L1UI:Setup_ShadowAndLight()
+	if not IsAddOnLoaded('ElvUI_SLE') then return end
+	L1UI:Get_ShadowAndLight_Profile()
+	L1UI:Print('Shadow&Light profile has been set.')
 end
 
 -- Set UI Scale
@@ -119,13 +122,9 @@ function L1UI:NameplateCVars()
 	SetCVar('UnitNameEnemyPetName', 1)
 	SetCVar('UnitNameEnemyPlayerName', 1)
 
-	if not L1UI.Classic then
-		SetCVar('UnitNameEnemyTotem', 1)
-	end
+	if not L1UI.Classic then SetCVar('UnitNameEnemyTotem', 1) end
 
-	if not L1UI.Retail then
-		SetCVar('nameplateNotSelectedAlpha', 1)
-	end
+	if not L1UI.Retail then SetCVar('nameplateNotSelectedAlpha', 1) end
 
 	L1UI:Print('NamePlate CVars have been set.')
 end
@@ -138,11 +137,13 @@ function L1UI:SetupPrivate()
 	E.private["general"]["dmgfont"] = "Expressway"
 	E.private["general"]["glossTex"] = "Minimalist"
 	E.private["general"]["namefont"] = "Expressway"
+	E.private["general"]["nameplateFont"] = "Expressway"
+	E.private["general"]["nameplateLargeFont"] = "Expressway"
 	E.private["general"]["normTex"] = "Minimalist"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 
 	if L1UI.Retail then
-		E.private["install_complete"] = "12.24"
+		E.private["install_complete"] = "12.37"
 		E.private["general"]["totemBar"] = false
 	elseif L1UI.TBC then
 		E.private["install_complete"] = "2.10"
@@ -155,17 +156,14 @@ end
 -- E.global
 function L1UI:SetupGlobal()
 
-	if L1UI.Retail then
-		E.global["general"]["commandBarSetting"] = "DISABLED"
-	end
+	if L1UI.Retail then E.global["general"]["commandBarSetting"] = "DISABLED" end
 
 	E.global["general"]["fadeMapWhenMoving"] = false
 	E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	E.global["general"]["smallerWorldMapScale"] = 0.8
 	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
 
-	-- Luckyone Custom DataText (below ActionBars)
-	do
+	do -- Luckyone Custom DataText (below ActionBars)
 		E.DataTexts:BuildPanelFrame("Luckyone_ActionBars_DT")
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["backdrop"] = true
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["border"] = true
@@ -173,7 +171,7 @@ function L1UI:SetupGlobal()
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["enable"] = true
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["font"] = "Expressway"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontOutline"] = "NONE"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontSize"] = 12
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontSize"] = 11
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameLevel"] = 1
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameStrata"] = "LOW"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["growth"] = "HORIZONTAL"
@@ -188,5 +186,36 @@ function L1UI:SetupGlobal()
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipYOffset"] = 5
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = "[petbattle] hide;show"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 358
+	end
+end
+
+-- Performance config section
+function L1UI:Cleanup_Cache(addon, type)
+
+	if addon == 'elvui' then
+
+		if type == 'chat' then
+
+			CH:ResetHistory()
+
+		elseif type == 'editbox' then
+
+			CH:ResetEditboxHistory()
+
+		end
+
+	elseif addon == 'details' then
+
+		_detalhes.encounter_spell_pool = {}
+		_detalhes.npcid_pool = {}
+		_detalhes.spell_pool = {}
+		_detalhes.spell_school_cache = {}
+
+	elseif addon == 'plater' then
+
+		PlaterDB.captured_casts = {}
+		PlaterDB.captured_spells = {}
+		PlaterDB.profiles.Luckyone.npc_cache = {}
+
 	end
 end

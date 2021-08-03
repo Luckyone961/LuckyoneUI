@@ -1,9 +1,10 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local _G = _G
+local GetAddOnMetadata = GetAddOnMetadata
 
 -- ProjectAzilroka Profile
-function L1UI:GetPAProfile()
+function L1UI:Get_ProjectAzilroka_Profile()
 
 	local PA = _G.ProjectAzilroka
 
@@ -24,14 +25,12 @@ function L1UI:GetPAProfile()
 	PA.db["QuestSounds"]["Enable"] = false
 	PA.db["stAddonManager"]["Enable"] = false
 
+	-- Retail only toggles
 	if L1UI.Retail then
 		PA.db["MasterExperience"]["Enable"] = false
 		PA.db["ReputationReward"]["Enable"] = false
+		PA.db["SunsongRanchFarmer"]["Enable"] = false
 		PA.db["TorghastBuffs"]["Enable"] = false
-
-		if version >= '1.77' then
-			PA.db["SunsongRanchFarmer"]["Enable"] = false
-		end
 	end
 
 	-- SquareMinimapButtons Setup
@@ -48,7 +47,6 @@ function L1UI:GetPAProfile()
 	PA.db["EnhancedFriendsList"]["DiffLevel"] = false
 	PA.db["EnhancedFriendsList"]["InfoFontSize"] = 10
 	PA.db["EnhancedFriendsList"]["NameFontSize"] = 11
-	PA.db["EnhancedFriendsList"]["StatusIconPack"] = "Square"
 	PA.db["EnhancedFriendsList"]["Texture"] = "Minimalist"
 
 	-- Movers

@@ -1,24 +1,21 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local _G = _G
+local IsAddOnLoaded = IsAddOnLoaded
 local LoadAddOn = LoadAddOn
 
 -- BigWigs Profiles
-function L1UI:GetBigWigsProfile()
+function L1UI:Get_BigWigs_Profile()
 
 	-- Profile Names
 	local Rmain, Rheal = "Luckyone D/T", "Luckyone H"
 	local Tmain, Theal = "Luckyone TBC D/T", "Luckyone TBC H"
 	local Cmain, Cheal = "Luckyone Classic D/T", "Luckyone Classic H"
 
-	-- TEMPORARY
-	-- Get rid of the chat print on LoadAddOn for now
-	if not IsAddOnLoaded("BigWigs_Options") then
-		local this = _G.DEFAULT_CHAT_FRAME:GetName()
+	-- Required to add profiles to BigWigs3DB
+	if not IsAddOnLoaded("BigWigs_Core") then LoadAddOn("BigWigs_Core") end
 
-		LoadAddOn("BigWigs_Options")
-		_G[this]:Clear()
-	end
+	-- Required to add profiles to Plugins DB
+	if not IsAddOnLoaded("BigWigs_Plugins") then LoadAddOn("BigWigs_Plugins") end
 
 	if L1UI.Retail then
 

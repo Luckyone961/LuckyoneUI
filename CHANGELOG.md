@@ -1,9 +1,44 @@
-### Version 1.30 [ ETA: 🍨 ]
+### Version 1.32 [03-08-2021]
+**Retail:**  
+IMPORTANT: Requires ElvUI 12.38 or later  
+(Optional) Note:  
+• Improved and cleaned up initial install process and db entries  
+• if you haven't done many big changes, I recommend to go for a  
+• fresh install since I can't add all changes to the update button  
+Updated Buffs and Debuffs for all UnitFrames  
+Updated default Anchors (Only for initial install)  
+Updated ElvUI Castbars (Font, Font Size, Font Color)  
+Updated NamePlates: ElvUI  
+Updated OmniCD profile  
+Updated ProjectAzilroka profile  
+Updated UnitFrames: Arena  
+Updated UnitFrames: Party  
+**TBC & Classic:**  
+Fixed Setup Chat installer step & function  
+___
+### Version 1.31 [19-07-2021]
+**Retail:**  
+Added optional profile for Gnosis castbars  
+Added performance config section  
+• Functions to clear Details cache  
+• Functions to clear Plater cache  
+• Shortcut to clear Chat history  
+• Shortcut to clear ElvUI Editbox history  
+Updated default anchor position for Anima Powers  
+Updated OmniCD profile  
+Updated setup chat function  
+• Automatically disable textToSpeech and speechToText  
+• Fixed another minor issue  
+• Removed Blizzard Voice tab  
+Updated UnitFrames Vertical/Block options  
+___
+### Version 1.30 [29-06-2021]
 **All:**  
 Improved installer process for AddOn profiles  
 • It will no longer override/replace existing profiles  
 • Instead it will add my profiles to your profile selection  
 Updated BigWigs profile  
+Updated Details profile  
 **Retail:**  
 Fixes for patch 9.1 changes  
 Updated /weekly chat command  

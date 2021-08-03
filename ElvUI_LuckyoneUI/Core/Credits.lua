@@ -1,6 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local sort = sort
+local pairs = pairs
 local tinsert = table.insert
 local tconcat = table.concat
 

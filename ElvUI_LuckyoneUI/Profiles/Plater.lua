@@ -1,7 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- Plater Profile
-function L1UI:GetPlaterProfile()
+function L1UI:Get_Plater_Profile()
 
 	-- Profile Names
 	local Retail, TBC, Classic = "Luckyone", "Luckyone TBC", "Luckyone Classic"

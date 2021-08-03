@@ -1,7 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- DBM Profile
-function L1UI:GetDBMProfile()
+function L1UI:Get_DBM_Profile()
 
 	-- Profile Names
 	local Retail, TBC, Classic = "Luckyone", "Luckyone", "Luckyone"
