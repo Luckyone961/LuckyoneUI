@@ -880,6 +880,7 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["arena"]["castbar"]["customTimeFont"]["enable"] = true
 			E.db["unitframe"]["units"]["arena"]["castbar"]["customTimeFont"]["font"] = "Expressway"
 			E.db["unitframe"]["units"]["arena"]["castbar"]["customTimeFont"]["fontSize"] = 11
+			E.db["unitframe"]["units"]["arena"]["castbar"]["spark"] = false
 			E.db["unitframe"]["units"]["arena"]["castbar"]["textColor"]["b"] = 1
 			E.db["unitframe"]["units"]["arena"]["castbar"]["textColor"]["g"] = 1
 			E.db["unitframe"]["units"]["arena"]["castbar"]["textColor"]["r"] = 1
@@ -931,6 +932,7 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["boss"]["castbar"]["customTimeFont"]["enable"] = true
 			E.db["unitframe"]["units"]["boss"]["castbar"]["customTimeFont"]["font"] = "Expressway"
 			E.db["unitframe"]["units"]["boss"]["castbar"]["customTimeFont"]["fontSize"] = 11
+			E.db["unitframe"]["units"]["boss"]["castbar"]["spark"] = false
 			E.db["unitframe"]["units"]["boss"]["castbar"]["textColor"]["b"] = 1
 			E.db["unitframe"]["units"]["boss"]["castbar"]["textColor"]["g"] = 1
 			E.db["unitframe"]["units"]["boss"]["castbar"]["textColor"]["r"] = 1
@@ -974,6 +976,7 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["focus"]["castbar"]["customTimeFont"]["enable"] = true
 			E.db["unitframe"]["units"]["focus"]["castbar"]["customTimeFont"]["font"] = "Expressway"
 			E.db["unitframe"]["units"]["focus"]["castbar"]["customTimeFont"]["fontSize"] = 11
+			E.db["unitframe"]["units"]["focus"]["castbar"]["spark"] = false
 			E.db["unitframe"]["units"]["focus"]["castbar"]["textColor"]["b"] = 1
 			E.db["unitframe"]["units"]["focus"]["castbar"]["textColor"]["g"] = 1
 			E.db["unitframe"]["units"]["focus"]["castbar"]["textColor"]["r"] = 1
@@ -1125,6 +1128,7 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontSize"] = 11
 			E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 20
 			E.db["unitframe"]["units"]["player"]["castbar"]["latency"] = false
+			E.db["unitframe"]["units"]["player"]["castbar"]["spark"] = false
 			E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["b"] = 1
 			E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["g"] = 1
 			E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["r"] = 1
@@ -1267,6 +1271,7 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["enable"] = true
 			E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["font"] = "Expressway"
 			E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["fontSize"] = 11
+			E.db["unitframe"]["units"]["target"]["castbar"]["spark"] = false
 			E.db["unitframe"]["units"]["target"]["castbar"]["textColor"]["b"] = 1
 			E.db["unitframe"]["units"]["target"]["castbar"]["textColor"]["g"] = 1
 			E.db["unitframe"]["units"]["target"]["castbar"]["textColor"]["r"] = 1
