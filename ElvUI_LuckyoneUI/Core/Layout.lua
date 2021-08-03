@@ -434,7 +434,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 14,
-			["text_format"] = "[namecolor][name:medium]",
+			["text_format"] = "[classcolor][name:medium]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -470,7 +470,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 14,
-			["text_format"] = "[namecolor][name:last]",
+			["text_format"] = "[classcolor][name:last]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -506,7 +506,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][level]",
+			["text_format"] = "[classcolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -517,7 +517,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:last]",
+			["text_format"] = "[classcolor][name:last]",
 			["xOffset"] = 2,
 			["yOffset"] = 1
 		}
@@ -553,7 +553,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:last]",
+			["text_format"] = "[classcolor][name:last]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -567,7 +567,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 14,
-			["text_format"] = "[namecolor][name]",
+			["text_format"] = "[classcolor][name]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -592,7 +592,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 12,
-			["text_format"] = "[namecolor]Pet",
+			["text_format"] = "[classcolor]Pet",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -617,7 +617,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][level]",
+			["text_format"] = "[classcolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -628,7 +628,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:veryshort]",
+			["text_format"] = "[classcolor][name:veryshort]",
 			["xOffset"] = 2,
 			["yOffset"] = 1
 		}
@@ -653,7 +653,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 14,
-			["text_format"] = "[namecolor][name:medium]",
+			["text_format"] = "[classcolor][name:medium]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -678,7 +678,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][level]",
+			["text_format"] = "[classcolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -689,7 +689,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:last]",
+			["text_format"] = "[classcolor][name:last]",
 			["xOffset"] = 2,
 			["yOffset"] = 1
 		}
@@ -725,7 +725,7 @@ if L1UI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:last]",
+			["text_format"] = "[classcolor][name:last]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -1233,7 +1233,7 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid40"]["height"] = 26
 			E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 1
-			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[namecolor][name:veryshort]"
+			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[classcolor][name:veryshort]"
 			E.db["unitframe"]["units"]["raid40"]["phaseIndicator"]["anchorPoint"] = "RIGHT"
 			E.db["unitframe"]["units"]["raid40"]["phaseIndicator"]["scale"] = 0.5
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachTo"] = "LEFT"
@@ -1818,7 +1818,7 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid40"]["height"] = 26
 			E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 1
-			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[namecolor][name:veryshort]"
+			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[classcolor][name:veryshort]"
 			E.db["unitframe"]["units"]["raid40"]["phaseIndicator"]["anchorPoint"] = "RIGHT"
 			E.db["unitframe"]["units"]["raid40"]["phaseIndicator"]["scale"] = 0.5
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachTo"] = "LEFT"
@@ -2310,7 +2310,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 14,
-			["text_format"] = "[namecolor][name]",
+			["text_format"] = "[classcolor][name]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -2360,7 +2360,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][level]",
+			["text_format"] = "[classcolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -2371,7 +2371,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:veryshort]",
+			["text_format"] = "[classcolor][name:veryshort]",
 			["xOffset"] = 2,
 			["yOffset"] = 1
 		}
@@ -2396,7 +2396,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 14,
-			["text_format"] = "[namecolor][name:medium]",
+			["text_format"] = "[classcolor][name:medium]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -2421,7 +2421,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][level]",
+			["text_format"] = "[classcolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -2432,7 +2432,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:last]",
+			["text_format"] = "[classcolor][name:last]",
 			["xOffset"] = 2,
 			["yOffset"] = 1
 		}
@@ -2468,7 +2468,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:last]",
+			["text_format"] = "[classcolor][name:last]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -2769,7 +2769,7 @@ elseif L1UI.Classic then
 			E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid40"]["height"] = 26
 			E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 1
-			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[namecolor][name:veryshort]"
+			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[classcolor][name:veryshort]"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachTo"] = "LEFT"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["size"] = 14
@@ -3136,7 +3136,7 @@ elseif L1UI.Classic then
 			E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid40"]["height"] = 26
 			E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 1
-			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[namecolor][name:veryshort]"
+			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[classcolor][name:veryshort]"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachTo"] = "LEFT"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["size"] = 14
@@ -3623,7 +3623,7 @@ elseif L1UI.TBC then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 14,
-			["text_format"] = "[namecolor][name:medium]",
+			["text_format"] = "[classcolor][name:medium]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -3659,7 +3659,7 @@ elseif L1UI.TBC then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][level]",
+			["text_format"] = "[classcolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -3670,7 +3670,7 @@ elseif L1UI.TBC then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:last]",
+			["text_format"] = "[classcolor][name:last]",
 			["xOffset"] = 2,
 			["yOffset"] = 1
 		}
@@ -3706,7 +3706,7 @@ elseif L1UI.TBC then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:last]",
+			["text_format"] = "[classcolor][name:last]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -3720,7 +3720,7 @@ elseif L1UI.TBC then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 14,
-			["text_format"] = "[namecolor][name]",
+			["text_format"] = "[classcolor][name]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -3770,7 +3770,7 @@ elseif L1UI.TBC then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][level]",
+			["text_format"] = "[classcolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -3781,7 +3781,7 @@ elseif L1UI.TBC then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:veryshort]",
+			["text_format"] = "[classcolor][name:veryshort]",
 			["xOffset"] = 2,
 			["yOffset"] = 1
 		}
@@ -3806,7 +3806,7 @@ elseif L1UI.TBC then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 14,
-			["text_format"] = "[namecolor][name:medium]",
+			["text_format"] = "[classcolor][name:medium]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -3831,7 +3831,7 @@ elseif L1UI.TBC then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][level]",
+			["text_format"] = "[classcolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -3842,7 +3842,7 @@ elseif L1UI.TBC then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:last]",
+			["text_format"] = "[classcolor][name:last]",
 			["xOffset"] = 2,
 			["yOffset"] = 1
 		}
@@ -3878,7 +3878,7 @@ elseif L1UI.TBC then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:last]",
+			["text_format"] = "[classcolor][name:last]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -4308,7 +4308,7 @@ elseif L1UI.TBC then
 			E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid40"]["height"] = 26
 			E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 1
-			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[namecolor][name:veryshort]"
+			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[classcolor][name:veryshort]"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachTo"] = "LEFT"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["size"] = 14
@@ -4788,7 +4788,7 @@ elseif L1UI.TBC then
 			E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid40"]["height"] = 26
 			E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 1
-			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[namecolor][name:veryshort]"
+			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[classcolor][name:veryshort]"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachTo"] = "LEFT"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["size"] = 14
