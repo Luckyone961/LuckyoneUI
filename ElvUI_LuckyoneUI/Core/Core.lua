@@ -122,13 +122,9 @@ function L1UI:NameplateCVars()
 	SetCVar('UnitNameEnemyPetName', 1)
 	SetCVar('UnitNameEnemyPlayerName', 1)
 
-	if not L1UI.Classic then
-		SetCVar('UnitNameEnemyTotem', 1)
-	end
+	if not L1UI.Classic then SetCVar('UnitNameEnemyTotem', 1) end
 
-	if not L1UI.Retail then
-		SetCVar('nameplateNotSelectedAlpha', 1)
-	end
+	if not L1UI.Retail then SetCVar('nameplateNotSelectedAlpha', 1) end
 
 	L1UI:Print('NamePlate CVars have been set.')
 end
@@ -141,11 +137,13 @@ function L1UI:SetupPrivate()
 	E.private["general"]["dmgfont"] = "Expressway"
 	E.private["general"]["glossTex"] = "Minimalist"
 	E.private["general"]["namefont"] = "Expressway"
+	E.private["general"]["nameplateFont"] = "Expressway"
+	E.private["general"]["nameplateLargeFont"] = "Expressway"
 	E.private["general"]["normTex"] = "Minimalist"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 
 	if L1UI.Retail then
-		E.private["install_complete"] = "12.24"
+		E.private["install_complete"] = "12.37"
 		E.private["general"]["totemBar"] = false
 	elseif L1UI.TBC then
 		E.private["install_complete"] = "2.10"
@@ -158,17 +156,14 @@ end
 -- E.global
 function L1UI:SetupGlobal()
 
-	if L1UI.Retail then
-		E.global["general"]["commandBarSetting"] = "DISABLED"
-	end
+	if L1UI.Retail then E.global["general"]["commandBarSetting"] = "DISABLED" end
 
 	E.global["general"]["fadeMapWhenMoving"] = false
 	E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	E.global["general"]["smallerWorldMapScale"] = 0.8
 	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
 
-	-- Luckyone Custom DataText (below ActionBars)
-	do
+	do -- Luckyone Custom DataText (below ActionBars)
 		E.DataTexts:BuildPanelFrame("Luckyone_ActionBars_DT")
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["backdrop"] = true
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["border"] = true
@@ -176,7 +171,7 @@ function L1UI:SetupGlobal()
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["enable"] = true
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["font"] = "Expressway"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontOutline"] = "NONE"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontSize"] = 12
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontSize"] = 11
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameLevel"] = 1
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameStrata"] = "LOW"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["growth"] = "HORIZONTAL"

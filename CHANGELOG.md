@@ -1,4 +1,20 @@
-### Version 1.32 [ ETA: 🍨 ]
+### Version 1.32 [03-08-2021]
+**Retail:**  
+IMPORTANT: Requires ElvUI 12.38 or later  
+(Optional) Note:  
+• Improved and cleaned up initial install process and db entries  
+• if you haven't done many big changes, I recommend to go for a  
+• fresh install since I can't add all changes to the update button  
+Updated Buffs and Debuffs for all UnitFrames  
+Updated default Anchors (Only for initial install)  
+Updated ElvUI Castbars (Font, Font Size, Font Color)  
+Updated NamePlates: ElvUI  
+Updated OmniCD profile  
+Updated ProjectAzilroka profile  
+Updated UnitFrames: Arena  
+Updated UnitFrames: Party  
+**TBC & Classic:**  
+Fixed Setup Chat installer step & function  
 ___
 ### Version 1.31 [19-07-2021]
 **Retail:**  

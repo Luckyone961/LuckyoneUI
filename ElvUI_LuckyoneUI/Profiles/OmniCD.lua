@@ -71,7 +71,7 @@ function L1UI:Get_OmniCD_Profile()
 						},
 					},
 					["locked"] = true,
-					["paddingY"] = 4,
+					["paddingY"] = 2,
 					["columns"] = 10,
 					["bgColors"] = {
 						["classColor"] = true,
@@ -283,7 +283,7 @@ function L1UI:Get_OmniCD_Profile()
 			},
 			["manualPos"] = {
 				["interruptBar"] = {
-					["y"] = 381.5113373630629,
+					["y"] = 388.6224920491441,
 					["x"] = 320.3553462988748,
 				},
 				["raidCDBar"] = {
