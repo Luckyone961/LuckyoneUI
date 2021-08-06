@@ -1,5 +1,8 @@
-### Version 1.33 [🍨]
+### Version 1.33 [06-08-2021]
 **Retail:**  
+Fixed Tags (Text Format) for ElvUI 12.40  
+Updated ElvUI Castbars (Removed Spark)  
+Updated Shadow&Light Profile  
 ___
 ### Version 1.32 [03-08-2021]
 **Retail:**  
