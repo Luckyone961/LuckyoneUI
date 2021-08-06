@@ -1,7 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
-local CH = E:GetModule('Chat')
-
 if not L1UI.Retail then return end
+local CH = E:GetModule('Chat')
 
 local _G = _G
 local ipairs = ipairs
