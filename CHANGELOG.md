@@ -1,3 +1,8 @@
+### Version 1.34 [11-08-2021]
+**TBC:**  
+Updated for ElvUI 2.11  
+• Fixes [classcolor] "issue" aswell  
+___
 ### Version 1.33 [06-08-2021]
 **Retail:**  
 Fixed Tags (Text Format) for ElvUI 12.40  
