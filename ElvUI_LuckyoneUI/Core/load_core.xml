@@ -5,8 +5,7 @@
 	<Script file='Commands.lua'/>
 	<Script file='Install.lua'/>
 	<Script file='Layout.lua'/>
-	<Script file='Tags-Legacy.lua'/>
-	<Script file='Tags-Retail.lua'/>
+	<Script file='Tags.lua'/>
 	<Script file='Themes.lua'/>
 	<Script file='Update.lua'/>
 </Ui>
