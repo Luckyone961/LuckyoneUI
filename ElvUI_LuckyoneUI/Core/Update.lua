@@ -8,13 +8,6 @@ if L1UI.Retail then
 		-- Protect some rare nil errors
 		if not E.db.movers then E.db.movers = {} end
 
-		-- Remove Castbar spark in this update
-		E.db["unitframe"]["units"]["arena"]["castbar"]["spark"] = false
-		E.db["unitframe"]["units"]["boss"]["castbar"]["spark"] = false
-		E.db["unitframe"]["units"]["focus"]["castbar"]["spark"] = false
-		E.db["unitframe"]["units"]["player"]["castbar"]["spark"] = false
-		E.db["unitframe"]["units"]["target"]["castbar"]["spark"] = false
-
 		if layout == 'dps' then
 			-- DPS/TANK db changes
 		elseif layout == 'healer' then
