@@ -1,5 +1,4 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
-local ElvUF = E.oUF
 
 local floor = floor
 
@@ -11,8 +10,7 @@ local UnitPower = UnitPower
 local UnitPowerMax = UnitPowerMax
 
 -- Display unit classification without 'affix' on minor enemies
-ElvUF.Tags.Events['luckyone:classification'] = 'UNIT_CLASSIFICATION_CHANGED'
-ElvUF.Tags.Methods['luckyone:classification'] = function(unit)
+E:AddTag('luckyone:classification', 'UNIT_CLASSIFICATION_CHANGED', function(unit)
 	local class = UnitClassification(unit)
 	if (class == 'rare') then
 		return 'Rare'
@@ -23,31 +21,28 @@ ElvUF.Tags.Methods['luckyone:classification'] = function(unit)
 	elseif (class == 'worldboss') then
 		return 'Boss'
 	end
-end
+end)
 
 -- Display percentage health: 100% 0 decimals | <100% 1 decimal | <10% 2 decimals
-ElvUF.Tags.Events['luckyone:health:percent'] = 'UNIT_HEALTH UNIT_MAXHEALTH'
-ElvUF.Tags.Methods['luckyone:health:percent'] = function(unit)
+E:AddTag('luckyone:health:percent', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
 	local currentHealth, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
 	local percent = currentHealth / maxHealth * 100
 
 	return E:GetFormattedText('PERCENT', currentHealth, maxHealth, percent == 100 and 0 or percent < 10 and 2 or 1, nil)
-end
+end)
 
--- Add the following tags only in retail
 if L1UI.Retail then
+
 	-- Display mana (current) if the unit is flagged healer
-	ElvUF.Tags.Events['luckyone:healermana:current'] = 'UNIT_POWER_FREQUENT UNIT_MAXPOWER'
-	ElvUF.Tags.Methods['luckyone:healermana:current'] = function(unit)
+	E:AddTag('luckyone:healermana:current', 'UNIT_POWER_FREQUENT UNIT_MAXPOWER', function(unit)
 		local role = UnitGroupRolesAssigned(unit)
 		if (role == 'HEALER') then
 			return UnitPower(unit, Enum.PowerType.Mana)
 		end
-	end
+	end)
 
 	-- Display mana (percent) if the unit is flagged healer
-	ElvUF.Tags.Events['luckyone:healermana:percent'] = 'UNIT_MAXPOWER UNIT_POWER_FREQUENT'
-	ElvUF.Tags.Methods['luckyone:healermana:percent'] = function(unit)
+	E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT', function(unit)
 		local role = UnitGroupRolesAssigned(unit)
 		if (role == 'HEALER') then
 			local powerMax = UnitPowerMax(unit, Enum.PowerType.Mana)
@@ -57,11 +52,13 @@ if L1UI.Retail then
 				return floor(UnitPower(unit, Enum.PowerType.Mana) / powerMax * 100 + .5)
 			end
 		end
-	end
+	end)
 
+	-- Descriptions for (Retail-Only) Available Tags
 	E:AddTagInfo('luckyone:healermana:current', L1UI.Name, "Displays the unit's Mana (Role: Healer)")
 	E:AddTagInfo('luckyone:healermana:percent', L1UI.Name, "Displays the unit's Mana in percent (Role: Healer)")
 end
 
+-- Descriptions for Available Tags
 E:AddTagInfo('luckyone:classification', L1UI.Name, "Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'")
 E:AddTagInfo('luckyone:health:percent', L1UI.Name, "Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%")

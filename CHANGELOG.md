@@ -1,3 +1,16 @@
+### Version 1.35 [ 🍨 ]
+___
+### Version 1.34 [11-08-2021]
+**TBC:**  
+Updated for ElvUI 2.11  
+• Fixes [classcolor] "issue" aswell  
+___
+### Version 1.33 [06-08-2021]
+**Retail:**  
+Fixed Tags (Text Format) for ElvUI 12.40  
+Updated ElvUI Castbars (Removed Spark)  
+Updated Shadow&Light Profile  
+___
 ### Version 1.32 [03-08-2021]
 **Retail:**  
 IMPORTANT: Requires ElvUI 12.38 or later  
