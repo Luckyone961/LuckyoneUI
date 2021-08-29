@@ -21,6 +21,7 @@ function L1UI:Get_ShadowAndLight_Profile()
 	E.private["sle"]["skins"]["petbattles"]["enable"] = false
 
 	-- Shadow & Light Profile DB
+	E.db["sle"]["actionbar"]["vehicle"]["enabled"] = false
 	E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["enable"] = false
 	E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["enable"] = false
 	E.db["sle"]["afk"]["defaultGraphics"]["factionLogo"]["enable"] = false

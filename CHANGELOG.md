@@ -1,4 +1,6 @@
 ### Version 1.35 [ 🍨 ]
+**Retail:**  
+Updated Shadow & Light profile  
 ___
 ### Version 1.34 [11-08-2021]
 **TBC:**  
