@@ -1,4 +1,4 @@
-## Interface: 20501
+## Interface: 20502
 ## Author: Luckyone
 ## Version: 1.34
 ## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cff67f100TBC|r
