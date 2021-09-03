@@ -1,9 +1,12 @@
 ### Version 1.35 [04-09-2021]
 **All:**  
 Removed (unused) Skins section from config  
+**Classic:**  
+Fixed [classcolor] showing in Classic  
 **Retail:**  
 Updated Shadow & Light profile  
 **TBC:**  
+Updated for ElvUI 2.14  
 Updated TOC for 2.5.2  
 ___
 ### Version 1.34 [11-08-2021]
