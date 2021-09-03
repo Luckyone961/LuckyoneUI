@@ -1,6 +1,10 @@
-### Version 1.35 [ 🍨 ]
+### Version 1.35 [04-09-2021]
+**All:**  
+Removed (unused) Skins section from config  
 **Retail:**  
 Updated Shadow & Light profile  
+**TBC:**  
+Updated TOC for 2.5.2  
 ___
 ### Version 1.34 [11-08-2021]
 **TBC:**  
