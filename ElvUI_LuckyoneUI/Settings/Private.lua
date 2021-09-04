@@ -14,8 +14,6 @@ if L1UI.Retail then
 			AlertFrame = false,
 		},
 
-		skins = {},
-
 	}
 
 elseif L1UI.Classic then
@@ -29,8 +27,6 @@ elseif L1UI.Classic then
 			AlertFrame = false,
 		},
 
-		skins = {},
-
 	}
 
 elseif L1UI.TBC then
@@ -43,8 +39,6 @@ elseif L1UI.TBC then
 			ZoneTextFrame = false,
 			AlertFrame = false,
 		},
-
-		skins = {},
 
 	}
 

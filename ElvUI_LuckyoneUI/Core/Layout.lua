@@ -8,9 +8,9 @@ if L1UI.Retail then
 	function L1UI:SetupLayout(layout)
 
 		if layout == 'dps' then
-			E.data:SetProfile('Luckyone DPS/TANK v1.32')
+			E.data:SetProfile('Luckyone DPS/TANK v1.35')
 		elseif layout == 'healer' then
-			E.data:SetProfile('Luckyone Healing v1.32')
+			E.data:SetProfile('Luckyone Healing v1.35')
 		end
 
 		if not E.db.movers then E.db.movers = {} end
@@ -1936,11 +1936,11 @@ elseif L1UI.Classic then
 	function L1UI:SetupLayout(layout)
 
 		if layout == 'dps' then
-			E.data:SetProfile('Luckyone DPS/TANK')
+			E.data:SetProfile('Luckyone DPS/TANK v1.35')
 		elseif layout == 'healer' then
-			E.data:SetProfile('Luckyone Healing')
+			E.data:SetProfile('Luckyone Healing v1.35')
 		end
-
+	
 		if not E.db.movers then E.db.movers = {} end
 
 		L1UI:SetupScale()
@@ -2315,7 +2315,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 14,
-			["text_format"] = "[classcolor][name]",
+			["text_format"] = "[namecolor][name]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -2365,7 +2365,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[classcolor][level]",
+			["text_format"] = "[namecolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -2376,7 +2376,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 12,
-			["text_format"] = "[classcolor][name:veryshort]",
+			["text_format"] = "[namecolor][name:veryshort]",
 			["xOffset"] = 2,
 			["yOffset"] = 1
 		}
@@ -2401,7 +2401,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 14,
-			["text_format"] = "[classcolor][name:medium]",
+			["text_format"] = "[namecolor][name:medium]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -2426,7 +2426,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
-			["text_format"] = "[classcolor][level]",
+			["text_format"] = "[namecolor][level]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -2437,7 +2437,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 12,
-			["text_format"] = "[classcolor][name:last]",
+			["text_format"] = "[namecolor][name:last]",
 			["xOffset"] = 2,
 			["yOffset"] = 1
 		}
@@ -2473,7 +2473,7 @@ elseif L1UI.Classic then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 12,
-			["text_format"] = "[classcolor][name:last]",
+			["text_format"] = "[namecolor][name:last]",
 			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
@@ -2774,7 +2774,7 @@ elseif L1UI.Classic then
 			E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid40"]["height"] = 26
 			E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 1
-			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[classcolor][name:veryshort]"
+			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[namecolor][name:veryshort]"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachTo"] = "LEFT"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["size"] = 14
@@ -3141,7 +3141,7 @@ elseif L1UI.Classic then
 			E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid40"]["height"] = 26
 			E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 1
-			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[classcolor][name:veryshort]"
+			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[namecolor][name:veryshort]"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachTo"] = "LEFT"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["size"] = 14
@@ -3237,9 +3237,9 @@ elseif L1UI.TBC then
 	function L1UI:SetupLayout(layout)
 
 		if layout == 'dps' then
-			E.data:SetProfile('Luckyone DPS/TANK')
+			E.data:SetProfile('Luckyone DPS/TANK v1.35')
 		elseif layout == 'healer' then
-			E.data:SetProfile('Luckyone Healing')
+			E.data:SetProfile('Luckyone Healing v1.35')
 		end
 
 		if not E.db.movers then E.db.movers = {} end
