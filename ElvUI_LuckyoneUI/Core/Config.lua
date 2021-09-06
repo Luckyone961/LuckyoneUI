@@ -143,7 +143,6 @@ L1UI.Options.args.profiles.args.addons.args.details = ACH:Execute('Details', 'Re
 if L1UI.Retail then
 	L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', 'Reset to LuckyoneUI defaults.', 3, function() L1UI:Setup_ShadowAndLight() ReloadUI() end, nil, true)
 	L1UI.Options.args.profiles.args.addons.args.omnicd = ACH:Execute('OmniCD', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:Setup_OmniCD() ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.addons.args.gnosis = ACH:Execute('Gnosis', 'Reset to LuckyoneUI defaults.', 3, function() L1UI:Setup_Gnosis() ReloadUI() end, nil, true)
 end
 
 -- Tags

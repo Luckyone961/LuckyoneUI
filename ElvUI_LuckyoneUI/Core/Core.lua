@@ -48,13 +48,6 @@ function L1UI:Setup_Details()
 	L1UI:Print('Details profile has been set.')
 end
 
--- Load Gnosis Profile
-function L1UI:Setup_Gnosis()
-	if not IsAddOnLoaded('Gnosis') then return end
-	L1UI:Get_Gnosis_Profile()
-	L1UI:Print('Gnosis profile has been set.')
-end
-
 -- Load OmniCD Profile
 function L1UI:Setup_OmniCD()
 	if not IsAddOnLoaded('OmniCD') then return end
