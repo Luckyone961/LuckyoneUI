@@ -515,10 +515,10 @@ if L1UI.Retail then
 			["enable"] = true,
 			["font"] = "Expressway",
 			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "LEFT",
+			["justifyH"] = "CENTER",
 			["size"] = 12,
 			["text_format"] = "[classcolor][name:last]",
-			["xOffset"] = 2,
+			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
 		E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Power"] = {
@@ -526,10 +526,10 @@ if L1UI.Retail then
 			["enable"] = true,
 			["font"] = "Expressway",
 			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "CENTER",
+			["justifyH"] = "LEFT",
 			["size"] = 12,
 			["text_format"] = "[powercolor][perpp<%]",
-			["xOffset"] = 0,
+			["xOffset"] = 1,
 			["yOffset"] = 1
 		}
 
@@ -615,10 +615,10 @@ if L1UI.Retail then
 			["enable"] = true,
 			["font"] = "Expressway",
 			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "RIGHT",
+			["justifyH"] = "LEFT",
 			["size"] = 12,
 			["text_format"] = "[classcolor][level]",
-			["xOffset"] = 0,
+			["xOffset"] = 1,
 			["yOffset"] = 1
 		}
 		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Name"] = {
@@ -626,10 +626,10 @@ if L1UI.Retail then
 			["enable"] = true,
 			["font"] = "Expressway",
 			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "LEFT",
+			["justifyH"] = "CENTER",
 			["size"] = 12,
-			["text_format"] = "[classcolor][name:veryshort]",
-			["xOffset"] = 2,
+			["text_format"] = "[classcolor][name:last]",
+			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
 		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Power"] = {
@@ -637,7 +637,7 @@ if L1UI.Retail then
 			["enable"] = true,
 			["font"] = "Expressway",
 			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "CENTER",
+			["justifyH"] = "RIGHT",
 			["size"] = 12,
 			["text_format"] = "[powercolor][perpp<%]",
 			["xOffset"] = 0,
@@ -687,10 +687,10 @@ if L1UI.Retail then
 			["enable"] = true,
 			["font"] = "Expressway",
 			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "LEFT",
+			["justifyH"] = "CENTER",
 			["size"] = 12,
 			["text_format"] = "[classcolor][name:last]",
-			["xOffset"] = 2,
+			["xOffset"] = 0,
 			["yOffset"] = 1
 		}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Power"] = {
@@ -698,10 +698,10 @@ if L1UI.Retail then
 			["enable"] = true,
 			["font"] = "Expressway",
 			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "CENTER",
+			["justifyH"] = "LEFT",
 			["size"] = 12,
 			["text_format"] = "[powercolor][perpp<%]",
-			["xOffset"] = 0,
+			["xOffset"] = 1,
 			["yOffset"] = 1
 		}
 
