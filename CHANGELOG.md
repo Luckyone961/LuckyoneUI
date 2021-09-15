@@ -1,4 +1,9 @@
 ### Version 1.36 [ETA: 🍨]
+**All:**  
+Updated Custom Texts for Player, Focus & Target  
+• Name is now centered instead of left  
+**Retail:**  
+Updated Shadow & Light Armory mode  
 ___
 ### Version 1.35 [04-09-2021]
 **All:**  
