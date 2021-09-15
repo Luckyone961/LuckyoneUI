@@ -1,5 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local IsAddOnLoaded = IsAddOnLoaded
+
 -- Update Layout Buttons (Ingame Config)
 if L1UI.Retail then
 
@@ -7,6 +9,9 @@ if L1UI.Retail then
 
 		-- Protect some rare nil errors
 		if not E.db.movers then E.db.movers = {} end
+
+		-- Shadow & Light changes
+		if IsAddOnLoaded('ElvUI_SLE') then L1UI:Get_ShadowAndLight_Profile() end
 
 		if layout == 'dps' then
 			-- DPS/TANK db changes
