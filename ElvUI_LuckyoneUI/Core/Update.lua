@@ -13,6 +13,21 @@ if L1UI.Retail then
 		-- Shadow & Light changes
 		if IsAddOnLoaded('ElvUI_SLE') then L1UI:Get_ShadowAndLight_Profile() end
 
+		-- ActionBar changes
+		E.db["actionbar"]["bar1"]["alpha"] = 1
+		E.db["actionbar"]["bar2"]["alpha"] = 1
+		E.db["actionbar"]["bar3"]["alpha"] = 1
+		E.db["actionbar"]["bar4"]["alpha"] = 1
+		E.db["actionbar"]["bar5"]["alpha"] = 1
+		E.db["actionbar"]["bar6"]["alpha"] = 1
+		E.db["actionbar"]["bar7"]["alpha"] = 1
+		E.db["actionbar"]["bar8"]["alpha"] = 1
+		E.db["actionbar"]["bar9"]["alpha"] = 1
+		E.db["actionbar"]["bar10"]["alpha"] = 1
+		E.db["actionbar"]["barPet"]["alpha"] = 1
+		E.db["actionbar"]["extraActionButton"]["alpha"] = 1
+		E.db["actionbar"]["zoneActionButton"]["alpha"] = 1
+
 		-- Custom Text: Focus
 		E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Name"]["justifyH"] = "CENTER"
 		E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Name"]["xOffset"] = 0
@@ -49,6 +64,19 @@ elseif L1UI.TBC then
 		-- Protect some rare nil errors
 		if not E.db.movers then E.db.movers = {} end
 
+		-- ActionBar changes
+		E.db["actionbar"]["bar1"]["alpha"] = 1
+		E.db["actionbar"]["bar2"]["alpha"] = 1
+		E.db["actionbar"]["bar3"]["alpha"] = 1
+		E.db["actionbar"]["bar4"]["alpha"] = 1
+		E.db["actionbar"]["bar5"]["alpha"] = 1
+		E.db["actionbar"]["bar6"]["alpha"] = 1
+		E.db["actionbar"]["bar7"]["alpha"] = 1
+		E.db["actionbar"]["bar8"]["alpha"] = 1
+		E.db["actionbar"]["bar9"]["alpha"] = 1
+		E.db["actionbar"]["bar10"]["alpha"] = 1
+		E.db["actionbar"]["barPet"]["alpha"] = 1
+
 		-- Custom Text: Focus
 		E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Name"]["justifyH"] = "CENTER"
 		E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Name"]["xOffset"] = 0
@@ -84,6 +112,19 @@ elseif L1UI.Classic then
 
 		-- Protect some rare nil errors
 		if not E.db.movers then E.db.movers = {} end
+
+		-- ActionBar changes
+		E.db["actionbar"]["bar1"]["alpha"] = 1
+		E.db["actionbar"]["bar2"]["alpha"] = 1
+		E.db["actionbar"]["bar3"]["alpha"] = 1
+		E.db["actionbar"]["bar4"]["alpha"] = 1
+		E.db["actionbar"]["bar5"]["alpha"] = 1
+		E.db["actionbar"]["bar6"]["alpha"] = 1
+		E.db["actionbar"]["bar7"]["alpha"] = 1
+		E.db["actionbar"]["bar8"]["alpha"] = 1
+		E.db["actionbar"]["bar9"]["alpha"] = 1
+		E.db["actionbar"]["bar10"]["alpha"] = 1
+		E.db["actionbar"]["barPet"]["alpha"] = 1
 
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Level"]["justifyH"] = "LEFT"

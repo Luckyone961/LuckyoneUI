@@ -74,7 +74,7 @@ if L1UI.Retail then
 		E.db["general"]["vehicleSeatIndicatorSize"] = 64
 
 		-- ActionBars
-		E.db["actionbar"]["bar1"]["alpha"] = 0.75
+		E.db["actionbar"]["bar1"]["alpha"] = 1
 		E.db["actionbar"]["bar1"]["buttonSize"] = 28
 		E.db["actionbar"]["bar1"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar1"]["countFontOutline"] = "OUTLINE"
@@ -88,7 +88,7 @@ if L1UI.Retail then
 		E.db["actionbar"]["bar1"]["macrotext"] = true
 		E.db["actionbar"]["bar1"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar1"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar2"]["alpha"] = 0.75
+		E.db["actionbar"]["bar2"]["alpha"] = 1
 		E.db["actionbar"]["bar2"]["buttonSize"] = 28
 		E.db["actionbar"]["bar2"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar2"]["countFontOutline"] = "OUTLINE"
@@ -103,7 +103,7 @@ if L1UI.Retail then
 		E.db["actionbar"]["bar2"]["macrotext"] = true
 		E.db["actionbar"]["bar2"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar2"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar3"]["alpha"] = 0.75
+		E.db["actionbar"]["bar3"]["alpha"] = 1
 		E.db["actionbar"]["bar3"]["buttons"] = 12
 		E.db["actionbar"]["bar3"]["buttonSize"] = 28
 		E.db["actionbar"]["bar3"]["buttonsPerRow"] = 12
@@ -119,7 +119,7 @@ if L1UI.Retail then
 		E.db["actionbar"]["bar3"]["macrotext"] = true
 		E.db["actionbar"]["bar3"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar3"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar4"]["alpha"] = 0.75
+		E.db["actionbar"]["bar4"]["alpha"] = 1
 		E.db["actionbar"]["bar4"]["backdrop"] = false
 		E.db["actionbar"]["bar4"]["buttons"] = 12
 		E.db["actionbar"]["bar4"]["buttonSize"] = 28
@@ -138,7 +138,7 @@ if L1UI.Retail then
 		E.db["actionbar"]["bar4"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar4"]["macroTextYOffset"] = 1
 		E.db["actionbar"]["bar4"]["point"] = "BOTTOMLEFT"
-		E.db["actionbar"]["bar5"]["alpha"] = 0.75
+		E.db["actionbar"]["bar5"]["alpha"] = 1
 		E.db["actionbar"]["bar5"]["buttons"] = 12
 		E.db["actionbar"]["bar5"]["buttonSize"] = 28
 		E.db["actionbar"]["bar5"]["buttonsPerRow"] = 1
@@ -156,7 +156,7 @@ if L1UI.Retail then
 		E.db["actionbar"]["bar5"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar5"]["macroTextYOffset"] = 1
 		E.db["actionbar"]["bar5"]["mouseover"] = true
-		E.db["actionbar"]["bar6"]["alpha"] = 0.75
+		E.db["actionbar"]["bar6"]["alpha"] = 1
 		E.db["actionbar"]["bar6"]["buttons"] = 12
 		E.db["actionbar"]["bar6"]["buttonSize"] = 28
 		E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
@@ -173,7 +173,7 @@ if L1UI.Retail then
 		E.db["actionbar"]["bar6"]["macrotext"] = true
 		E.db["actionbar"]["bar6"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar6"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar7"]["alpha"] = 0.75
+		E.db["actionbar"]["bar7"]["alpha"] = 1
 		E.db["actionbar"]["bar7"]["buttonSize"] = 28
 		E.db["actionbar"]["bar7"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar7"]["countFontOutline"] = "OUTLINE"
@@ -187,7 +187,7 @@ if L1UI.Retail then
 		E.db["actionbar"]["bar7"]["macrotext"] = true
 		E.db["actionbar"]["bar7"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar7"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar8"]["alpha"] = 0.75
+		E.db["actionbar"]["bar8"]["alpha"] = 1
 		E.db["actionbar"]["bar8"]["buttonSize"] = 28
 		E.db["actionbar"]["bar8"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar8"]["countFontOutline"] = "OUTLINE"
@@ -201,7 +201,7 @@ if L1UI.Retail then
 		E.db["actionbar"]["bar8"]["macrotext"] = true
 		E.db["actionbar"]["bar8"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar8"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar9"]["alpha"] = 0.75
+		E.db["actionbar"]["bar9"]["alpha"] = 1
 		E.db["actionbar"]["bar9"]["buttonSize"] = 28
 		E.db["actionbar"]["bar9"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar9"]["countFontOutline"] = "OUTLINE"
@@ -215,7 +215,7 @@ if L1UI.Retail then
 		E.db["actionbar"]["bar9"]["macrotext"] = true
 		E.db["actionbar"]["bar9"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar9"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar10"]["alpha"] = 0.75
+		E.db["actionbar"]["bar10"]["alpha"] = 1
 		E.db["actionbar"]["bar10"]["buttonSize"] = 28
 		E.db["actionbar"]["bar10"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar10"]["countFontOutline"] = "OUTLINE"
@@ -229,7 +229,7 @@ if L1UI.Retail then
 		E.db["actionbar"]["bar10"]["macrotext"] = true
 		E.db["actionbar"]["bar10"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar10"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["barPet"]["alpha"] = 0.75
+		E.db["actionbar"]["barPet"]["alpha"] = 1
 		E.db["actionbar"]["barPet"]["backdrop"] = false
 		E.db["actionbar"]["barPet"]["buttonSize"] = 28
 		E.db["actionbar"]["barPet"]["buttonsPerRow"] = 10
@@ -248,7 +248,7 @@ if L1UI.Retail then
 		E.db["actionbar"]["cooldown"]["override"] = false
 		E.db["actionbar"]["countTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["countTextYOffset"] = 1
-		E.db["actionbar"]["extraActionButton"]["alpha"] = 0.8
+		E.db["actionbar"]["extraActionButton"]["alpha"] = 1
 		E.db["actionbar"]["extraActionButton"]["clean"] = true
 		E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Expressway"
 		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "OUTLINE"
@@ -276,7 +276,7 @@ if L1UI.Retail then
 		E.db["actionbar"]["transparent"] = true
 		E.db["actionbar"]["vehicleExitButton"]["hotkeyFont"] = "Expressway"
 		E.db["actionbar"]["vehicleExitButton"]["hotkeyFontOutline"] = "OUTLINE"
-		E.db["actionbar"]["zoneActionButton"]["alpha"] = 0.8
+		E.db["actionbar"]["zoneActionButton"]["alpha"] = 1
 		E.db["actionbar"]["zoneActionButton"]["clean"] = true
 		E.db["actionbar"]["zoneActionButton"]["scale"] = 0.65
 
@@ -1986,7 +1986,7 @@ elseif L1UI.Classic then
 		E.db["general"]["valuecolor"]["r"] = 0.99
 
 		-- ActionBars
-		E.db["actionbar"]["bar1"]["alpha"] = 0.75
+		E.db["actionbar"]["bar1"]["alpha"] = 1
 		E.db["actionbar"]["bar1"]["buttonSize"] = 28
 		E.db["actionbar"]["bar1"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar1"]["countFontOutline"] = "OUTLINE"
@@ -2000,7 +2000,7 @@ elseif L1UI.Classic then
 		E.db["actionbar"]["bar1"]["macrotext"] = true
 		E.db["actionbar"]["bar1"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar1"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar2"]["alpha"] = 0.75
+		E.db["actionbar"]["bar2"]["alpha"] = 1
 		E.db["actionbar"]["bar2"]["buttonSize"] = 28
 		E.db["actionbar"]["bar2"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar2"]["countFontOutline"] = "OUTLINE"
@@ -2015,7 +2015,7 @@ elseif L1UI.Classic then
 		E.db["actionbar"]["bar2"]["macrotext"] = true
 		E.db["actionbar"]["bar2"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar2"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar3"]["alpha"] = 0.75
+		E.db["actionbar"]["bar3"]["alpha"] = 1
 		E.db["actionbar"]["bar3"]["buttons"] = 12
 		E.db["actionbar"]["bar3"]["buttonSize"] = 28
 		E.db["actionbar"]["bar3"]["buttonsPerRow"] = 12
@@ -2031,7 +2031,7 @@ elseif L1UI.Classic then
 		E.db["actionbar"]["bar3"]["macrotext"] = true
 		E.db["actionbar"]["bar3"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar3"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar4"]["alpha"] = 0.75
+		E.db["actionbar"]["bar4"]["alpha"] = 1
 		E.db["actionbar"]["bar4"]["backdrop"] = false
 		E.db["actionbar"]["bar4"]["buttons"] = 12
 		E.db["actionbar"]["bar4"]["buttonSize"] = 28
@@ -2051,7 +2051,7 @@ elseif L1UI.Classic then
 		E.db["actionbar"]["bar4"]["macroTextYOffset"] = 1
 		E.db["actionbar"]["bar4"]["mouseover"] = true
 		E.db["actionbar"]["bar4"]["point"] = "BOTTOMLEFT"
-		E.db["actionbar"]["bar5"]["alpha"] = 0.75
+		E.db["actionbar"]["bar5"]["alpha"] = 1
 		E.db["actionbar"]["bar5"]["buttons"] = 12
 		E.db["actionbar"]["bar5"]["buttonSize"] = 28
 		E.db["actionbar"]["bar5"]["buttonsPerRow"] = 1
@@ -2069,7 +2069,7 @@ elseif L1UI.Classic then
 		E.db["actionbar"]["bar5"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar5"]["macroTextYOffset"] = 1
 		E.db["actionbar"]["bar5"]["mouseover"] = true
-		E.db["actionbar"]["bar6"]["alpha"] = 0.75
+		E.db["actionbar"]["bar6"]["alpha"] = 1
 		E.db["actionbar"]["bar6"]["buttons"] = 12
 		E.db["actionbar"]["bar6"]["buttonSize"] = 28
 		E.db["actionbar"]["bar6"]["buttonsPerRow"] = 6
@@ -2087,7 +2087,7 @@ elseif L1UI.Classic then
 		E.db["actionbar"]["bar6"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar6"]["macroTextYOffset"] = 1
 		E.db["actionbar"]["bar6"]["mouseover"] = true
-		E.db["actionbar"]["bar7"]["alpha"] = 0.75
+		E.db["actionbar"]["bar7"]["alpha"] = 1
 		E.db["actionbar"]["bar7"]["buttonSize"] = 28
 		E.db["actionbar"]["bar7"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar7"]["countFontOutline"] = "OUTLINE"
@@ -2101,7 +2101,7 @@ elseif L1UI.Classic then
 		E.db["actionbar"]["bar7"]["macrotext"] = true
 		E.db["actionbar"]["bar7"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar7"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar8"]["alpha"] = 0.75
+		E.db["actionbar"]["bar8"]["alpha"] = 1
 		E.db["actionbar"]["bar8"]["buttonSize"] = 28
 		E.db["actionbar"]["bar8"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar8"]["countFontOutline"] = "OUTLINE"
@@ -2115,7 +2115,7 @@ elseif L1UI.Classic then
 		E.db["actionbar"]["bar8"]["macrotext"] = true
 		E.db["actionbar"]["bar8"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar8"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar9"]["alpha"] = 0.75
+		E.db["actionbar"]["bar9"]["alpha"] = 1
 		E.db["actionbar"]["bar9"]["buttonSize"] = 28
 		E.db["actionbar"]["bar9"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar9"]["countFontOutline"] = "OUTLINE"
@@ -2129,7 +2129,7 @@ elseif L1UI.Classic then
 		E.db["actionbar"]["bar9"]["macrotext"] = true
 		E.db["actionbar"]["bar9"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar9"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar10"]["alpha"] = 0.75
+		E.db["actionbar"]["bar10"]["alpha"] = 1
 		E.db["actionbar"]["bar10"]["buttonSize"] = 28
 		E.db["actionbar"]["bar10"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar10"]["countFontOutline"] = "OUTLINE"
@@ -2143,7 +2143,7 @@ elseif L1UI.Classic then
 		E.db["actionbar"]["bar10"]["macrotext"] = true
 		E.db["actionbar"]["bar10"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar10"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["barPet"]["alpha"] = 0.75
+		E.db["actionbar"]["barPet"]["alpha"] = 1
 		E.db["actionbar"]["barPet"]["backdrop"] = false
 		E.db["actionbar"]["barPet"]["buttonSize"] = 28
 		E.db["actionbar"]["barPet"]["buttonsPerRow"] = 10
@@ -3287,7 +3287,7 @@ elseif L1UI.TBC then
 		E.db["general"]["valuecolor"]["r"] = 0.99
 
 		-- ActionBars
-		E.db["actionbar"]["bar1"]["alpha"] = 0.75
+		E.db["actionbar"]["bar1"]["alpha"] = 1
 		E.db["actionbar"]["bar1"]["buttonSize"] = 28
 		E.db["actionbar"]["bar1"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar1"]["countFontOutline"] = "OUTLINE"
@@ -3301,7 +3301,7 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["bar1"]["macrotext"] = true
 		E.db["actionbar"]["bar1"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar1"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar2"]["alpha"] = 0.75
+		E.db["actionbar"]["bar2"]["alpha"] = 1
 		E.db["actionbar"]["bar2"]["buttonSize"] = 28
 		E.db["actionbar"]["bar2"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar2"]["countFontOutline"] = "OUTLINE"
@@ -3316,7 +3316,7 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["bar2"]["macrotext"] = true
 		E.db["actionbar"]["bar2"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar2"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar3"]["alpha"] = 0.75
+		E.db["actionbar"]["bar3"]["alpha"] = 1
 		E.db["actionbar"]["bar3"]["buttons"] = 12
 		E.db["actionbar"]["bar3"]["buttonSize"] = 28
 		E.db["actionbar"]["bar3"]["buttonsPerRow"] = 12
@@ -3332,7 +3332,7 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["bar3"]["macrotext"] = true
 		E.db["actionbar"]["bar3"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar3"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar4"]["alpha"] = 0.75
+		E.db["actionbar"]["bar4"]["alpha"] = 1
 		E.db["actionbar"]["bar4"]["backdrop"] = false
 		E.db["actionbar"]["bar4"]["buttons"] = 12
 		E.db["actionbar"]["bar4"]["buttonSize"] = 28
@@ -3352,7 +3352,7 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["bar4"]["macroTextYOffset"] = 1
 		E.db["actionbar"]["bar4"]["mouseover"] = true
 		E.db["actionbar"]["bar4"]["point"] = "BOTTOMLEFT"
-		E.db["actionbar"]["bar5"]["alpha"] = 0.75
+		E.db["actionbar"]["bar5"]["alpha"] = 1
 		E.db["actionbar"]["bar5"]["buttons"] = 12
 		E.db["actionbar"]["bar5"]["buttonSize"] = 28
 		E.db["actionbar"]["bar5"]["buttonsPerRow"] = 1
@@ -3370,7 +3370,7 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["bar5"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar5"]["macroTextYOffset"] = 1
 		E.db["actionbar"]["bar5"]["mouseover"] = true
-		E.db["actionbar"]["bar6"]["alpha"] = 0.75
+		E.db["actionbar"]["bar6"]["alpha"] = 1
 		E.db["actionbar"]["bar6"]["buttons"] = 12
 		E.db["actionbar"]["bar6"]["buttonSize"] = 28
 		E.db["actionbar"]["bar6"]["buttonsPerRow"] = 6
@@ -3388,7 +3388,7 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["bar6"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar6"]["macroTextYOffset"] = 1
 		E.db["actionbar"]["bar6"]["mouseover"] = true
-		E.db["actionbar"]["bar7"]["alpha"] = 0.75
+		E.db["actionbar"]["bar7"]["alpha"] = 1
 		E.db["actionbar"]["bar7"]["buttonSize"] = 28
 		E.db["actionbar"]["bar7"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar7"]["countFontOutline"] = "OUTLINE"
@@ -3402,7 +3402,7 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["bar7"]["macrotext"] = true
 		E.db["actionbar"]["bar7"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar7"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar8"]["alpha"] = 0.75
+		E.db["actionbar"]["bar8"]["alpha"] = 1
 		E.db["actionbar"]["bar8"]["buttonSize"] = 28
 		E.db["actionbar"]["bar8"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar8"]["countFontOutline"] = "OUTLINE"
@@ -3416,7 +3416,7 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["bar8"]["macrotext"] = true
 		E.db["actionbar"]["bar8"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar8"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar9"]["alpha"] = 0.75
+		E.db["actionbar"]["bar9"]["alpha"] = 1
 		E.db["actionbar"]["bar9"]["buttonSize"] = 28
 		E.db["actionbar"]["bar9"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar9"]["countFontOutline"] = "OUTLINE"
@@ -3430,7 +3430,7 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["bar9"]["macrotext"] = true
 		E.db["actionbar"]["bar9"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar9"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["bar10"]["alpha"] = 0.75
+		E.db["actionbar"]["bar10"]["alpha"] = 1
 		E.db["actionbar"]["bar10"]["buttonSize"] = 28
 		E.db["actionbar"]["bar10"]["countFont"] = "Expressway"
 		E.db["actionbar"]["bar10"]["countFontOutline"] = "OUTLINE"
@@ -3444,7 +3444,7 @@ elseif L1UI.TBC then
 		E.db["actionbar"]["bar10"]["macrotext"] = true
 		E.db["actionbar"]["bar10"]["macroTextPosition"] = "BOTTOM"
 		E.db["actionbar"]["bar10"]["macroTextYOffset"] = 1
-		E.db["actionbar"]["barPet"]["alpha"] = 0.75
+		E.db["actionbar"]["barPet"]["alpha"] = 1
 		E.db["actionbar"]["barPet"]["backdrop"] = false
 		E.db["actionbar"]["barPet"]["buttonSize"] = 28
 		E.db["actionbar"]["barPet"]["buttonsPerRow"] = 10

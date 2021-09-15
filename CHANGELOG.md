@@ -1,5 +1,6 @@
 ### Version 1.36 [ETA: 🍨]
 **All:**  
+Changed ActionBars Alpha to 1 (was 0.75)  
 Updated Custom Texts for Player, Focus & Target  
 • Name is now centered instead of left  
 **Retail:**  
