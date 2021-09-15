@@ -49,6 +49,26 @@ elseif L1UI.TBC then
 		-- Protect some rare nil errors
 		if not E.db.movers then E.db.movers = {} end
 
+		-- Custom Text: Focus
+		E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Name"]["justifyH"] = "CENTER"
+		E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Name"]["xOffset"] = 0
+		E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Power"]["justifyH"] = "LEFT"
+		E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Power"]["xOffset"] = 1
+
+		-- Custom Text: Player
+		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Level"]["justifyH"] = "LEFT"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Level"]["xOffset"] = 1
+		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Name"]["justifyH"] = "CENTER"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name]"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Name"]["xOffset"] = 0
+		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Power"]["justifyH"] = "RIGHT"
+
+		-- Custom Text: Target
+		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Name"]["justifyH"] = "CENTER"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Name"]["xOffset"] = 0
+		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Power"]["justifyH"] = "LEFT"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Power"]["xOffset"] = 1
+
 		if layout == 'dps' then
 			-- DPS/TANK db changes
 		elseif layout == 'healer' then
@@ -64,6 +84,20 @@ elseif L1UI.Classic then
 
 		-- Protect some rare nil errors
 		if not E.db.movers then E.db.movers = {} end
+
+		-- Custom Text: Player
+		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Level"]["justifyH"] = "LEFT"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Level"]["xOffset"] = 1
+		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Name"]["justifyH"] = "CENTER"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Name"]["text_format"] = "[namecolor][name]"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Name"]["xOffset"] = 0
+		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Power"]["justifyH"] = "RIGHT"
+
+		-- Custom Text: Target
+		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Name"]["justifyH"] = "CENTER"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Name"]["xOffset"] = 0
+		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Power"]["justifyH"] = "LEFT"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Power"]["xOffset"] = 1
 
 		if layout == 'dps' then
 			-- DPS/TANK db changes
