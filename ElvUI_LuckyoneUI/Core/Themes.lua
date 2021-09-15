@@ -170,7 +170,7 @@ function L1UI:RaidFrames(style)
 		E.db["unitframe"]["units"]["raid"]["width"] = 82
 	end
 
-	E:StaggeredUpdateAll(nil, true)
+	E:StaggeredUpdateAll()
 end
 
 -- Switch between LuckyoneUI and ElvUI text formats

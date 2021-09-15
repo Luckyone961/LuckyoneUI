@@ -19,7 +19,7 @@ if L1UI.Retail then
 			-- Healing db changes
 		end
 
-		E:StaggeredUpdateAll(nil, true)
+		E:StaggeredUpdateAll()
 	end
 
 elseif L1UI.TBC then

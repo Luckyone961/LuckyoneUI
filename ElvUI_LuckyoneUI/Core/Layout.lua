@@ -1925,7 +1925,7 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
 		end
 
-		E:StaggeredUpdateAll(nil, true)
+		E:StaggeredUpdateAll()
 
 		L1UI:Print('Layout has been set.')
 	end
