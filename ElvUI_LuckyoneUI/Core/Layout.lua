@@ -1393,8 +1393,8 @@ if L1UI.Retail then
 			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,461,320"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,106"
 			E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,542,320"
-			E.db["movers"]["ElvUF_Raid40Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,152"
-			E.db["movers"]["ElvUF_RaidMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,122"
+			E.db["movers"]["ElvUF_Raid40Mover"] = "BOTTOM,UIParent,BOTTOM,0,136"
+			E.db["movers"]["ElvUF_RaidMover"] = "BOTTOM,UIParent,BOTTOM,0,134"
 			E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,301"
 			E.db["movers"]["ElvUF_TargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,320"
 			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-460,320"
@@ -1676,7 +1676,6 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["party"]["disableMouseoverGlow"] = true
 			E.db["unitframe"]["units"]["party"]["disableTargetGlow"] = true
 			E.db["unitframe"]["units"]["party"]["groupBy"] = "GROUP"
-			E.db["unitframe"]["units"]["party"]["growthDirection"] = "RIGHT_DOWN"
 			E.db["unitframe"]["units"]["party"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 			E.db["unitframe"]["units"]["party"]["healPrediction"]["enable"] = true
 			E.db["unitframe"]["units"]["party"]["health"]["position"] = "BOTTOM"
@@ -1804,7 +1803,7 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["raid"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 			E.db["unitframe"]["units"]["raid"]["healPrediction"]["enable"] = true
 			E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
-			E.db["unitframe"]["units"]["raid"]["height"] = 40
+			E.db["unitframe"]["units"]["raid"]["height"] = 38
 			E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 1
 			E.db["unitframe"]["units"]["raid"]["name"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 6
@@ -1838,7 +1837,7 @@ if L1UI.Retail then
 			E.db["unitframe"]["units"]["raid40"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 			E.db["unitframe"]["units"]["raid40"]["healPrediction"]["enable"] = true
 			E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
-			E.db["unitframe"]["units"]["raid40"]["height"] = 26
+			E.db["unitframe"]["units"]["raid40"]["height"] = 28
 			E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 1
 			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[classcolor][name:veryshort]"
 			E.db["unitframe"]["units"]["raid40"]["phaseIndicator"]["anchorPoint"] = "RIGHT"
