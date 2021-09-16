@@ -7,9 +7,6 @@ if L1UI.Retail then
 
 	function L1UI:UpdateLayout(layout)
 
-		-- Protect some rare nil errors
-		if not E.db.movers then E.db.movers = {} end
-
 		-- Shadow & Light changes
 		if IsAddOnLoaded('ElvUI_SLE') then L1UI:Get_ShadowAndLight_Profile() end
 
@@ -61,9 +58,6 @@ elseif L1UI.TBC then
 
 	function L1UI:UpdateLayout(layout)
 
-		-- Protect some rare nil errors
-		if not E.db.movers then E.db.movers = {} end
-
 		-- ActionBar changes
 		E.db["actionbar"]["bar1"]["alpha"] = 1
 		E.db["actionbar"]["bar2"]["alpha"] = 1
@@ -109,9 +103,6 @@ elseif L1UI.TBC then
 elseif L1UI.Classic then
 
 	function L1UI:UpdateLayout(layout)
-
-		-- Protect some rare nil errors
-		if not E.db.movers then E.db.movers = {} end
 
 		-- ActionBar changes
 		E.db["actionbar"]["bar1"]["alpha"] = 1
