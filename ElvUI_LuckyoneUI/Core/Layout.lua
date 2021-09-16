@@ -796,6 +796,7 @@ if L1UI.Retail then
 			E.db["movers"]["MirrorTimer3Mover"] = "TOP,ElvUIParent,TOP,0,-116"
 			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-95,-214"
 			E.db["movers"]["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,128"
+			E.db["movers"]["PlayerChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,182"
 			E.db["movers"]["RaidUtility_Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,405,-1"
 			E.db["movers"]["ReputationBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1"
 			E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1"
