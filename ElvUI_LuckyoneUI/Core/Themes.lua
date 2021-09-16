@@ -124,7 +124,7 @@ function L1UI:RaidFrames(style)
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 12,
-			["text_format"] = "[classcolor][name:short]",
+			["text_format"] = "[classcolor][name:medium]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -234,9 +234,9 @@ function L1UI:SwapTags(group)
 		E.db["unitframe"]["units"]["party"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:short]"
 		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_HP"]["text_format"] = "[health:current:shortvalue] | [perhp<%]"
 		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Level"]["text_format"] = "[classcolor][level]"
-		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:veryshort]"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name]"
 		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Power"]["text_format"] = "[powercolor][perpp<%]"
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:short]"
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:medium]"
 		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_HP"]["text_format"] = "[perhp<%] | [health:current:shortvalue]"
 		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Level"]["text_format"] = "[classcolor][level]"
 		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:last]"
@@ -286,9 +286,9 @@ function L1UI:SwapTags(group)
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["format"] = "[level]"
 		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_HP"]["text_format"] = "[health:current:shortvalue] | [luckyone:health:percent]"
 		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Level"]["text_format"] = "[classcolor][level]"
-		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:veryshort]"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name]"
 		E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_Power"]["text_format"] = "[powercolor][perpp<%]"
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:short]"
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:medium]"
 		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_HP"]["text_format"] = "[luckyone:health:percent] | [health:current:shortvalue]"
 		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Level"]["text_format"] = "[classcolor][level]"
 		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:last]"
