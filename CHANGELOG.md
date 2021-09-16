@@ -1,4 +1,4 @@
-### Version 1.36 [ETA: 🍨]
+### Version 1.36 [16-09-2021]
 **All:**  
 Changed ActionBars Alpha to 1 (was 0.75)  
 Switched from GitLab to GitHub - Updated links  
