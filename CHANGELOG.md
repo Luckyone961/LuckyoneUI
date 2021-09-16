@@ -1,3 +1,17 @@
+### Version 1.36 [16-09-2021]
+**All:**  
+Changed ActionBars Alpha to 1 (was 0.75)  
+Switched from GitLab to GitHub - Updated links  
+Updated Custom Texts for Player, Focus & Target  
+• Name is now centered instead of left  
+**Retail:**  
+Reworked Healing layout (Mostly Party Frames)  
+• This won't be in the update button of my config  
+• I suggest a re-install if you would like to use the new style  
+• Simply re-run the "Layouts" step in my /luckyoneui install  
+Updated OmniCD profile  
+Updated Shadow & Light Armory mode  
+___
 ### Version 1.35 [04-09-2021]
 **All:**  
 Removed (unused) Skins section from config  

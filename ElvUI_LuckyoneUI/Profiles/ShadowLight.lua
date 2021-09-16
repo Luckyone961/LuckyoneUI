@@ -10,7 +10,7 @@ function L1UI:Get_ShadowAndLight_Profile()
 	E.global["sle"]["advanced"]["general"] = true
 
 	-- Shadow & Light Private DB
-	E.private["sle"]["install_complete"] = "4.21"
+	E.private["sle"]["install_complete"] = "4.31"
 	E.private["sle"]["module"]["blizzmove"]["enable"] = true
 	E.private["sle"]["professions"]["deconButton"]["enable"] = false
 	E.private["sle"]["skins"]["objectiveTracker"]["BGbackdrop"] = false
@@ -22,6 +22,7 @@ function L1UI:Get_ShadowAndLight_Profile()
 
 	-- Shadow & Light Profile DB
 	E.db["sle"]["actionbar"]["vehicle"]["enabled"] = false
+	E.db["sle"]["afk"]["chat"]["show"] = false
 	E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["enable"] = false
 	E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["enable"] = false
 	E.db["sle"]["afk"]["defaultGraphics"]["factionLogo"]["enable"] = false
@@ -64,10 +65,10 @@ function L1UI:Get_ShadowAndLight_Profile()
 	E.db["sle"]["armory"]["character"]["durability"]["fontSize"] = 11
 	E.db["sle"]["armory"]["character"]["enable"] = true
 	E.db["sle"]["armory"]["character"]["enchant"]["font"] = "Expressway"
-	E.db["sle"]["armory"]["character"]["enchant"]["fontSize"] = 10
-	E.db["sle"]["armory"]["character"]["enchant"]["yOffset"] = -2
-	E.db["sle"]["armory"]["character"]["gem"]["size"] = 11
+	E.db["sle"]["armory"]["character"]["enchant"]["fontSize"] = 9
+	E.db["sle"]["armory"]["character"]["enchant"]["yOffset"] = -1
 	E.db["sle"]["armory"]["character"]["gem"]["xOffset"] = 4
+	E.db["sle"]["armory"]["character"]["gem"]["yOffset"] = -1
 	E.db["sle"]["armory"]["character"]["gradient"]["quality"] = true
 	E.db["sle"]["armory"]["character"]["ilvl"]["colorType"] = "QUALITY"
 	E.db["sle"]["armory"]["character"]["ilvl"]["font"] = "Expressway"
@@ -75,10 +76,10 @@ function L1UI:Get_ShadowAndLight_Profile()
 	E.db["sle"]["armory"]["inspect"]["background"]["overlay"] = false
 	E.db["sle"]["armory"]["inspect"]["enable"] = true
 	E.db["sle"]["armory"]["inspect"]["enchant"]["font"] = "Expressway"
-	E.db["sle"]["armory"]["inspect"]["enchant"]["fontSize"] = 10
-	E.db["sle"]["armory"]["inspect"]["enchant"]["yOffset"] = -2
-	E.db["sle"]["armory"]["inspect"]["gem"]["size"] = 11
+	E.db["sle"]["armory"]["inspect"]["enchant"]["fontSize"] = 9
+	E.db["sle"]["armory"]["inspect"]["enchant"]["yOffset"] = -1
 	E.db["sle"]["armory"]["inspect"]["gem"]["xOffset"] = 4
+	E.db["sle"]["armory"]["inspect"]["gem"]["yOffset"] = -1
 	E.db["sle"]["armory"]["inspect"]["gradient"]["quality"] = true
 	E.db["sle"]["armory"]["inspect"]["ilvl"]["colorType"] = "QUALITY"
 	E.db["sle"]["armory"]["inspect"]["ilvl"]["font"] = "Expressway"
@@ -88,6 +89,8 @@ function L1UI:Get_ShadowAndLight_Profile()
 	E.db["sle"]["armory"]["stats"]["itemLevel"]["font"] = "Expressway"
 	E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "OUTLINE"
 	E.db["sle"]["armory"]["stats"]["itemLevel"]["size"] = 15
+	E.db["sle"]["armory"]["stats"]["List"]["ATTACK_DAMAGE"] = false
+	E.db["sle"]["armory"]["stats"]["List"]["SPELLPOWER"] = false
 	E.db["sle"]["armory"]["stats"]["statFonts"]["font"] = "Expressway"
 	E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "OUTLINE"
 	E.db["sle"]["armory"]["stats"]["statFonts"]["size"] = 11

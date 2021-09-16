@@ -143,7 +143,6 @@ L1UI.Options.args.profiles.args.addons.args.details = ACH:Execute('Details', 'Re
 if L1UI.Retail then
 	L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', 'Reset to LuckyoneUI defaults.', 3, function() L1UI:Setup_ShadowAndLight() ReloadUI() end, nil, true)
 	L1UI.Options.args.profiles.args.addons.args.omnicd = ACH:Execute('OmniCD', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:Setup_OmniCD() ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.addons.args.gnosis = ACH:Execute('Gnosis', 'Reset to LuckyoneUI defaults.', 3, function() L1UI:Setup_Gnosis() ReloadUI() end, nil, true)
 end
 
 -- Tags
@@ -223,8 +222,8 @@ L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description(L1UI.SUPPOR
 
 -- Links
 L1UI.Options.args.links = ACH:Group(format('|cffFF7D0A%s|r', 'Links'), nil, 15)
-L1UI.Options.args.links.args.changelog = ACH:Input('Changelog:', nil, 1, nil, 'full', function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/blob/development/CHANGELOG.md' end)
-L1UI.Options.args.links.args.issues = ACH:Input('Report issues here:', nil, 2, nil, 'full', function() return 'https://git.tukui.org/Luckyone/luckyoneui/-/issues' end)
+L1UI.Options.args.links.args.changelog = ACH:Input('Changelog:', nil, 1, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/blob/development/CHANGELOG.md' end)
+L1UI.Options.args.links.args.issues = ACH:Input('Report issues here:', nil, 2, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/issues' end)
 L1UI.Options.args.links.args.website = ACH:Input('Addon link:', nil, 3, nil, 'full', function() return 'https://www.curseforge.com/wow/addons/elvui_luckyoneui' end)
 L1UI.Options.args.links.args.discord = ACH:Input('Discord:', nil, 4, nil, 'full', function() return 'https://discord.gg/xRY4bwA' end)
 L1UI.Options.args.links.args.guide = ACH:Input('Wowhead Guide:', nil, 5, nil, 'full', function() return 'https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide' end)
