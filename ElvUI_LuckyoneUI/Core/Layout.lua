@@ -652,7 +652,7 @@ if L1UI.Retail then
 			["font"] = "Expressway",
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
-			["size"] = 14,
+			["size"] = 12,
 			["text_format"] = "[classcolor][name:medium]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
@@ -2418,7 +2418,7 @@ elseif L1UI.Classic then
 			["font"] = "Expressway",
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
-			["size"] = 14,
+			["size"] = 12,
 			["text_format"] = "[namecolor][name:medium]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
@@ -3828,7 +3828,7 @@ elseif L1UI.TBC then
 			["font"] = "Expressway",
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
-			["size"] = 14,
+			["size"] = 12,
 			["text_format"] = "[classcolor][name:medium]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
