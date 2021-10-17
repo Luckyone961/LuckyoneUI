@@ -1,4 +1,8 @@
 ### Version 1.37 [ETA: 🍨]
+**All:**  
+Raidframes font size 14 -> 12 to avoid overlapping  
+**Classic:**  
+Updated TOC for 1.14.0  
 ___
 ### Version 1.36 [16-09-2021]
 **All:**  
