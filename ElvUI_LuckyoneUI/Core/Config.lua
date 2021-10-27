@@ -6,10 +6,13 @@ local ReloadUI = ReloadUI
 
 -- Load this on init
 function L1UI:GetOptions()
+
 	-- Add LuckyoneUI version on top of the ElvUI config
 	E.Options.name = format('%s + %s |cff99ff33%.2f|r', E.Options.name, L1UI.Name, L1UI.Version)
-	
+
+	-- LibAceConfigHelper from ElvUI OptionsUI
 	ACH = E.Libs.ACH
+
 	-- Header
 	L1UI.Options = ACH:Group(L1UI.Name, nil, 100)
 	L1UI.Options.args.header = ACH:Header(L1UI.Name..' '..L1UI.Version, 1)

@@ -6,7 +6,6 @@
 ## RequiredDeps: ElvUI
 ## DefaultState: enabled
 
-Libraries\load_libraries.xml
 Init.lua
 Core\load_core.xml
 Media\load_media.xml
