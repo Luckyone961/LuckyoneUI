@@ -22,11 +22,6 @@ L1UI.CreditsList = {}
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
--- Add Libs from ElvUI_LuckyoneUI\Libraries
-L1UI.Libs = {
-	ACH = LibStub('LibAceConfigHelper'),
-}
-
 -- Load the following on login
 function L1UI:PLAYER_ENTERING_WORLD()
 	L1UI:DisabledFrames()
