@@ -2,7 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local IsAddOnLoaded = IsAddOnLoaded
 
-	-- Layouts
+-- ElvUI Layouts for all WoW versions
 function L1UI:SetupLayout(layout)
 
 	-- Prevent a rare mover error
