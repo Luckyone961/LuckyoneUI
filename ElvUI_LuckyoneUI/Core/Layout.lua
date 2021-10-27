@@ -604,6 +604,11 @@ function L1UI:SetupLayout(layout)
 		["yOffset"] = 1
 	}
 
+	-- Happiness for Classic and TBC
+	if not L1UI.Retail then
+		E.db["unitframe"]["units"]["pet"]["customTexts"]["Luckyone_Name"]["text_format"] = "[happiness:color]Pet[ >happiness:full]"
+	end
+
 	-- Custom Text: Player
 	E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["player"]["customTexts"]["Luckyone_HP"] = {
@@ -874,7 +879,6 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["font"] = "Expressway"
 		E.db["unitframe"]["fontOutline"] = "OUTLINE"
 		E.db["unitframe"]["fontSize"] = 12
-		E.db["unitframe"]["smartRaidFilter"] = false
 		E.db["unitframe"]["statusbar"] = "Minimalist"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["anchorPoint"] = "TOPRIGHT"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Expressway"
