@@ -5,9 +5,6 @@ local IsAddOnLoaded = IsAddOnLoaded
 -- ElvUI Layouts for all WoW versions
 function L1UI:SetupLayout(layout)
 
-	-- Prevent a rare mover error
-	if not E.db.movers then E.db.movers = {} end
-
 	-- Create the profiles and set the name
 	if layout == 'dps' then
 		E.data:SetProfile('Luckyone DPS/TANK v1.36')
@@ -744,6 +741,8 @@ function L1UI:SetupLayout(layout)
 
 	if layout == 'dps' then
 
+		if not E.db.movers then E.db.movers = {} end
+
 		-- Growth Directions DPS/TANK
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "RIGHT_DOWN"
@@ -1368,6 +1367,8 @@ function L1UI:SetupLayout(layout)
 		end
 
 	elseif layout == 'healer' then
+
+		if not E.db.movers then E.db.movers = {} end
 
 		-- Growth Directions Healing
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "RIGHT_DOWN"

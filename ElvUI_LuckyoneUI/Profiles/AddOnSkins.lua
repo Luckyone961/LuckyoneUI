@@ -1,5 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local unpack = unpack
+
 -- AddOnSkins Profile
 function L1UI:Get_AddOnSkins_Profile()
 

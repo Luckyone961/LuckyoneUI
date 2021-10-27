@@ -178,7 +178,7 @@ function L1UI:SetupGlobal()
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipAnchor"] = "ANCHOR_TOP"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipXOffset"] = 0
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipYOffset"] = 5
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = "[petbattle] hide;show"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = E.Retail and "[petbattle] hide;show" or "show"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 358
 	end
 end
