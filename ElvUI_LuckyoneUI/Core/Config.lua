@@ -170,8 +170,8 @@ L1UI.Options.args.themes.args.raid.inline = true
 L1UI.Options.args.themes.args.raid.args.dark = ACH:Execute('Dark', 'Dark Style (Default)', 1, function() L1UI:SetupTheme('dark') end, nil, true)
 L1UI.Options.args.themes.args.raid.args.class = ACH:Execute('Class Color', 'Class Color Style', 2, function() L1UI:SetupTheme('class') end, nil, true)
 
--- UnitFrames
 if L1UI.Retail then
+	-- UnitFrames
 	L1UI.Options.args.unitframes = ACH:Group(format('|cff4beb2c%s|r', 'UnitFrames'), nil, 12)
 	L1UI.Options.args.unitframes.args.raid = ACH:Group('Raidframe Style', nil, 1)
 	L1UI.Options.args.unitframes.args.raid.inline = true
@@ -180,10 +180,7 @@ if L1UI.Retail then
 	L1UI.Options.args.unitframes.args.desc = ACH:Group('Note', nil, 2)
 	L1UI.Options.args.unitframes.args.desc.inline = true
 	L1UI.Options.args.unitframes.args.desc.args.raidDesc = ACH:Description('The options above are for the DPS/TANK layout.', 1, 'medium')
-end
-
--- WeakAuras
-if L1UI.Retail then
+	-- WeakAuras
 	L1UI.Options.args.weakauras = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 13)
 	L1UI.Options.args.weakauras.args.header1 = ACH:Header('WeakAuras DPS/TANK', 1)
 	L1UI.Options.args.weakauras.args.druid = ACH:Input('|cffFF7C0ADruid:|r', nil, 2, nil, 'normal', function() return 'wago.io/luckyoneDruid' end)
