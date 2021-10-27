@@ -48,7 +48,7 @@ function L1UI:SetupBuffs(frame, type)
 		end
 	end
 
-	E:StaggeredUpdateAll(nil, true)
+	E:StaggeredUpdateAll()
 
 	L1UI:Print('Buff filters updated.')
 end
@@ -91,7 +91,7 @@ function L1UI:SetupDebuffs(frame, type)
 		end
 	end
 
-	E:StaggeredUpdateAll(nil, true)
+	E:StaggeredUpdateAll()
 
 	L1UI:Print('Debuff filters updated.')
 end

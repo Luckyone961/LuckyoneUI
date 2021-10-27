@@ -105,7 +105,7 @@ L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- namep
 L1UI.Options.args.media = ACH:Group(format('|cff4beb2c%s|r', 'Media'), nil, 7)
 L1UI.Options.args.media.args.defaults = ACH:Group('Fonts, Textures & Skins', nil, 1)
 L1UI.Options.args.media.args.defaults.inline = true
-L1UI.Options.args.media.args.defaults.args.private = ACH:Execute('Reset Media', 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.', 1, function() L1UI:SetupPrivate() E:StaggeredUpdateAll(nil, true) end, nil, true)
+L1UI.Options.args.media.args.defaults.args.private = ACH:Execute('Reset Media', 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.', 1, function() L1UI:SetupPrivate() E:StaggeredUpdateAll() end, nil, true)
 
 -- Performance
 if L1UI.Retail then

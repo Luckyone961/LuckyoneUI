@@ -387,7 +387,7 @@ function L1UI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = -1
 	E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["scale"] = 1
 
-	E:StaggeredUpdateAll(nil, true)
+	E:StaggeredUpdateAll()
 
 	-- Set NamePlate CVars
 	L1UI:NameplateCVars()

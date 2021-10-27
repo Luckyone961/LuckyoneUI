@@ -33,7 +33,7 @@ function L1UI:SetupTheme(theme)
 
 	end
 
-	E:StaggeredUpdateAll(nil, true)
+	E:StaggeredUpdateAll()
 
 	L1UI:Print('Theme has been set.')
 end
@@ -298,5 +298,5 @@ function L1UI:SwapTags(group)
 
 	end
 
-	E:StaggeredUpdateAll(nil, true)
+	E:StaggeredUpdateAll()
 end

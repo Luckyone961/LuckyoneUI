@@ -24,7 +24,7 @@ elseif L1UI.TBC then
 			-- Healing db changes
 		end
 
-		E:StaggeredUpdateAll(nil, true)
+		E:StaggeredUpdateAll()
 	end
 
 elseif L1UI.Classic then
@@ -37,7 +37,7 @@ elseif L1UI.Classic then
 			-- Healing db changes
 		end
 
-		E:StaggeredUpdateAll(nil, true)
+		E:StaggeredUpdateAll()
 	end
 
 end
