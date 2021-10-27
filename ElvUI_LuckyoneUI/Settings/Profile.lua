@@ -2,15 +2,15 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- LuckyoneUI Profile DB
 
-if L1UI.Retail then
+if E.Retail then
 
 	P.L1UI = {}
 
-elseif L1UI.Classic then
+elseif E.Classic then
 
 	P.L1UI = {}
 
-elseif L1UI.TBC then
+elseif E.TBC then
 
 	P.L1UI = {}
 

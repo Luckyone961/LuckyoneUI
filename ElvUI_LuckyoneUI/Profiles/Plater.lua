@@ -6,7 +6,7 @@ function L1UI:Get_Plater_Profile()
 	-- Profile Names
 	local Retail, TBC, Classic = "Luckyone", "Luckyone TBC", "Luckyone Classic"
 
-	if L1UI.Retail then
+	if E.Retail then
 
 		-- Create profile if it doesn't exist yet
 		PlaterDB["profiles"][Retail] = PlaterDB["profiles"][Retail] or {}
@@ -3251,7 +3251,7 @@ function L1UI:Get_Plater_Profile()
 		-- Profile Key
 		PlaterDB["profileKeys"][E.mynameRealm] = Retail
 
-	elseif L1UI.TBC then
+	elseif E.TBC then
 
 		-- Create profile if it doesn't exist yet
 		PlaterDB["profiles"][TBC] = PlaterDB["profiles"][TBC] or {}
@@ -6088,7 +6088,7 @@ function L1UI:Get_Plater_Profile()
 		-- Profile Key
 		PlaterDB["profileKeys"][E.mynameRealm] = TBC
 
-	elseif L1UI.Classic then
+	elseif E.Classic then
 
 		-- Create profile if it doesn't exist yet
 		PlaterDB["profiles"][Classic] = PlaterDB["profiles"][Classic] or {}

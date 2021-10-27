@@ -17,7 +17,7 @@ function L1UI:Get_BigWigs_Profile()
 	-- Required to add profiles to Plugins DB
 	if not IsAddOnLoaded("BigWigs_Plugins") then LoadAddOn("BigWigs_Plugins") end
 
-	if L1UI.Retail then
+	if E.Retail then
 
 		------------------------------------------------------------------
 		------------------------ Profile Creation ------------------------
@@ -260,7 +260,7 @@ function L1UI:Get_BigWigs_Profile()
 		-- Set the profile
 		BigWigs.db:SetProfile(Rmain)
 
-	elseif L1UI.TBC then
+	elseif E.TBC then
 
 		------------------------------------------------------------------
 		------------------------ Profile Creation ------------------------
@@ -489,7 +489,7 @@ function L1UI:Get_BigWigs_Profile()
 		-- Set the profile
 		BigWigs.db:SetProfile(Tmain)
 
-	elseif L1UI.Classic then
+	elseif E.Classic then
 
 		------------------------------------------------------------------
 		------------------------ Profile Creation ------------------------

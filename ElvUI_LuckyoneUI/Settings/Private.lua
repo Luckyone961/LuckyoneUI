@@ -2,7 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- LuckyoneUI Private DB
 
-if L1UI.Retail then
+if E.Retail then
 
 	V.L1UI = {
 
@@ -16,7 +16,7 @@ if L1UI.Retail then
 
 	}
 
-elseif L1UI.Classic then
+elseif E.Classic then
 
 	V.L1UI = {
 
@@ -29,7 +29,7 @@ elseif L1UI.Classic then
 
 	}
 
-elseif L1UI.TBC then
+elseif E.TBC then
 
 	V.L1UI = {
 

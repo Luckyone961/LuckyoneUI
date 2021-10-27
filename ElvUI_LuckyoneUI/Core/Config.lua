@@ -35,7 +35,7 @@ L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC = ACH:Group('NamePlate
 L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.inline = true
 L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupBuffs('nameplate', 'min') end)
 L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupBuffs('nameplate', 'all') end)
-if L1UI.Retail then
+if E.Retail then
 	L1UI.Options.args.auras.args.buffs.args.boss = ACH:Group('Boss Frame Buffs', nil, 4)
 	L1UI.Options.args.auras.args.buffs.args.boss.inline = true
 	L1UI.Options.args.auras.args.buffs.args.boss.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupBuffs('boss', 'min') end)
@@ -59,7 +59,7 @@ L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC = ACH:Group('NamePla
 L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.inline = true
 L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupDebuffs('nameplate', 'min') end)
 L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupDebuffs('nameplate', 'all') end)
-if L1UI.Retail then
+if E.Retail then
 	L1UI.Options.args.auras.args.debuffs.args.boss = ACH:Group('Boss Frame Debuffs', nil, 4)
 	L1UI.Options.args.auras.args.debuffs.args.boss.inline = true
 	L1UI.Options.args.auras.args.debuffs.args.boss.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupDebuffs('boss', 'min') end)
@@ -72,7 +72,7 @@ L1UI.Options.args.blizzard.args.disabledFrames = ACH:Group('Hide Blizzard Frames
 L1UI.Options.args.blizzard.args.disabledFrames.inline = true
 L1UI.Options.args.blizzard.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle('Zone Text', 'Hide the Zone Text', 3, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.ZoneTextFrame end, function(info, value) E.private.L1UI.disabledFrames.ZoneTextFrame = value E:StaticPopup_Show('L1UI_RL') end)
 L1UI.Options.args.blizzard.args.disabledFrames.args.AlertFrame = ACH:Toggle('Alert Frame', 'Hide the Loot/Alert Frame', 4, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.AlertFrame end, function(info, value) E.private.L1UI.disabledFrames.AlertFrame = value E:StaticPopup_Show('L1UI_RL') end)
-if L1UI.Retail then
+if E.Retail then
 	L1UI.Options.args.blizzard.args.disabledFrames.args.BossBanner = ACH:Toggle('Boss Banner', 'Hide the Boss Banner', 1, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.BossBanner end, function(info, value) E.private.L1UI.disabledFrames.BossBanner = value E:StaticPopup_Show('L1UI_RL') end)
 end
 
@@ -108,7 +108,7 @@ L1UI.Options.args.media.args.defaults.inline = true
 L1UI.Options.args.media.args.defaults.args.private = ACH:Execute('Reset Media', 'Reset Fonts, Textures, Skins to LuckyoneUI defaults.', 1, function() L1UI:SetupPrivate() E:StaggeredUpdateAll() end, nil, true)
 
 -- Performance
-if L1UI.Retail then
+if E.Retail then
 	L1UI.Options.args.performance = ACH:Group(format('|cff4beb2c%s|r', 'Performance'), nil, 8)
 	L1UI.Options.args.performance.args.desc = ACH:Header(format('|cffFF0000%s|r', 'This will clear AddOn Cache and not wipe your settings'), 1)
 	L1UI.Options.args.performance.args.elvui = ACH:Group('ElvUI', nil, 2)
@@ -140,7 +140,7 @@ L1UI.Options.args.profiles.args.nameplates.args.plater = ACH:Execute('Plater', '
 L1UI.Options.args.profiles.args.addons = ACH:Group('Addon Profiles', nil, 4)
 L1UI.Options.args.profiles.args.addons.inline = true
 L1UI.Options.args.profiles.args.addons.args.details = ACH:Execute('Details', 'Reset to LuckyoneUI defaults.', 1, function() L1UI:Setup_Details() ReloadUI() end, nil, true)
-if L1UI.Retail then
+if E.Retail then
 	L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', 'Reset to LuckyoneUI defaults.', 3, function() L1UI:Setup_ShadowAndLight() ReloadUI() end, nil, true)
 	L1UI.Options.args.profiles.args.addons.args.omnicd = ACH:Execute('OmniCD', 'Reset to LuckyoneUI defaults.', 2, function() L1UI:Setup_OmniCD() ReloadUI() end, nil, true)
 end
@@ -157,7 +157,7 @@ L1UI.Options.args.tags.args.elvuiDesc.inline = true
 L1UI.Options.args.tags.args.elvuiDesc.args.elvui = ACH:Description('- perhp\n- classification', 1, 'medium')
 L1UI.Options.args.tags.args.luckyoneDesc = ACH:Group('Luckyone Tags', nil, 3)
 L1UI.Options.args.tags.args.luckyoneDesc.inline = true
-if L1UI.Retail then
+if E.Retail then
 	L1UI.Options.args.tags.args.luckyoneDesc.args.luckyone = ACH:Description('- luckyone:health:percent\n- luckyone:classification\n- luckyone:healermana:percent', 1, 'medium')
 else
 	L1UI.Options.args.tags.args.luckyoneDesc.args.luckyone = ACH:Description('- luckyone:health:percent\n- luckyone:classification', 1, 'medium')
@@ -170,7 +170,7 @@ L1UI.Options.args.themes.args.raid.inline = true
 L1UI.Options.args.themes.args.raid.args.dark = ACH:Execute('Dark', 'Dark Style (Default)', 1, function() L1UI:SetupTheme('dark') end, nil, true)
 L1UI.Options.args.themes.args.raid.args.class = ACH:Execute('Class Color', 'Class Color Style', 2, function() L1UI:SetupTheme('class') end, nil, true)
 
-if L1UI.Retail then
+if E.Retail then
 	-- UnitFrames
 	L1UI.Options.args.unitframes = ACH:Group(format('|cff4beb2c%s|r', 'UnitFrames'), nil, 12)
 	L1UI.Options.args.unitframes.args.raid = ACH:Group('Raidframe Style', nil, 1)

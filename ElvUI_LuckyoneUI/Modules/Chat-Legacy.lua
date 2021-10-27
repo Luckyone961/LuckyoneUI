@@ -1,5 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
-if L1UI.Retail then return end
+if E.Retail then return end
 local CH = E:GetModule('Chat')
 
 local _G = _G

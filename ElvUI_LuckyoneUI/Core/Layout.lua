@@ -31,7 +31,7 @@ function L1UI:SetupLayout(layout)
 	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Get_ProjectAzilroka_Profile() end
 
 	-- Shadow & Light profile
-	if IsAddOnLoaded('ElvUI_SLE') and L1UI.Retail then L1UI:Get_ShadowAndLight_Profile() end
+	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Get_ShadowAndLight_Profile() end
 
 	-- AB conversion
 	E.db["convertPages"] = true
@@ -41,7 +41,7 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["altPowerBar"]["font"] = "Expressway"
 	E.db["general"]["altPowerBar"]["statusBar"] = "Minimalist"
 	E.db["general"]["autoAcceptInvite"] = true
-	E.db["general"]["autoRepair"] = L1UI.Retail and "GUILD" or "PLAYER"
+	E.db["general"]["autoRepair"] = E.Retail and "GUILD" or "PLAYER"
 	E.db["general"]["backdropcolor"]["b"] = 0.10196078431373
 	E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
 	E.db["general"]["backdropcolor"]["r"] = 0.10196078431373
@@ -131,11 +131,11 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["bar4"]["backdrop"] = false
 	E.db["actionbar"]["bar4"]["buttons"] = 12
 	E.db["actionbar"]["bar4"]["buttonSize"] = 28
-	E.db["actionbar"]["bar4"]["buttonsPerRow"] = L1UI.Retail and 12 or 6
+	E.db["actionbar"]["bar4"]["buttonsPerRow"] = E.Retail and 12 or 6
 	E.db["actionbar"]["bar4"]["countFont"] = "Expressway"
 	E.db["actionbar"]["bar4"]["countFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["bar4"]["countTextPosition"] = "BOTTOM"
-	E.db["actionbar"]["bar4"]["enabled"] = L1UI.Retail and false or true
+	E.db["actionbar"]["bar4"]["enabled"] = E.Retail and false or true
 	E.db["actionbar"]["bar4"]["hotkeyFont"] = "Expressway"
 	E.db["actionbar"]["bar4"]["hotkeyFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["bar4"]["hotkeyTextPosition"] = "TOPLEFT"
@@ -145,7 +145,7 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["bar4"]["macrotext"] = true
 	E.db["actionbar"]["bar4"]["macroTextPosition"] = "BOTTOM"
 	E.db["actionbar"]["bar4"]["macroTextYOffset"] = 1
-	E.db["actionbar"]["bar4"]["mouseover"] = L1UI.Retail and false or true
+	E.db["actionbar"]["bar4"]["mouseover"] = E.Retail and false or true
 	E.db["actionbar"]["bar4"]["point"] = "BOTTOMLEFT"
 	E.db["actionbar"]["bar5"]["alpha"] = 1
 	E.db["actionbar"]["bar5"]["buttons"] = 12
@@ -168,11 +168,11 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["bar6"]["alpha"] = 1
 	E.db["actionbar"]["bar6"]["buttons"] = 12
 	E.db["actionbar"]["bar6"]["buttonSize"] = 28
-	E.db["actionbar"]["bar6"]["buttonsPerRow"] = L1UI.Retail and 12 or 6
+	E.db["actionbar"]["bar6"]["buttonsPerRow"] = E.Retail and 12 or 6
 	E.db["actionbar"]["bar6"]["countFont"] = "Expressway"
 	E.db["actionbar"]["bar6"]["countFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["bar6"]["countTextPosition"] = "BOTTOM"
-	E.db["actionbar"]["bar6"]["enabled"] = L1UI.Retail and false or true
+	E.db["actionbar"]["bar6"]["enabled"] = E.Retail and false or true
 	E.db["actionbar"]["bar6"]["hotkeyFont"] = "Expressway"
 	E.db["actionbar"]["bar6"]["hotkeyFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["bar6"]["hotkeyTextPosition"] = "TOPLEFT"
@@ -182,7 +182,7 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["bar6"]["macrotext"] = true
 	E.db["actionbar"]["bar6"]["macroTextPosition"] = "BOTTOM"
 	E.db["actionbar"]["bar6"]["macroTextYOffset"] = 1
-	E.db["actionbar"]["bar6"]["mouseover"] = L1UI.Retail and false or true
+	E.db["actionbar"]["bar6"]["mouseover"] = E.Retail and false or true
 	E.db["actionbar"]["bar7"]["alpha"] = 1
 	E.db["actionbar"]["bar7"]["buttonSize"] = 28
 	E.db["actionbar"]["bar7"]["countFont"] = "Expressway"
@@ -383,7 +383,7 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["experience"]["questCompletedOnly"] = true
 	E.db["databars"]["experience"]["width"] = 10
 	E.db["databars"]["honor"]["enable"] = false
-	E.db["databars"]["petExperience"]["enable"] = not L1UI.Retail and false
+	E.db["databars"]["petExperience"]["enable"] = not E.Retail and false
 	E.db["databars"]["reputation"]["enable"] = true
 	E.db["databars"]["reputation"]["font"] = "Expressway"
 	E.db["databars"]["reputation"]["height"] = 171
@@ -604,7 +604,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 12,
-		["text_format"] = L1UI.Retail and "[classcolor]Pet" or "[happiness:color]Pet[ >happiness:full]",
+		["text_format"] = E.Retail and "[classcolor]Pet" or "[happiness:color]Pet[ >happiness:full]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -770,9 +770,9 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ElvAB_10"] = "BOTTOM,ElvUIParent,BOTTOM,0,255"
 		E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,76"
 		E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,46"
-		E.db["movers"]["ElvAB_4"] = L1UI.Retail and "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,203" or "BOTTOM,ElvUIParent,BOTTOM,-270,1"
+		E.db["movers"]["ElvAB_4"] = E.Retail and "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,203" or "BOTTOM,ElvUIParent,BOTTOM,-270,1"
 		E.db["movers"]["ElvAB_5"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-343"
-		E.db["movers"]["ElvAB_6"] = L1UI.Retail and "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,173" or "BOTTOM,ElvUIParent,BOTTOM,270,1"
+		E.db["movers"]["ElvAB_6"] = E.Retail and "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,173" or "BOTTOM,ElvUIParent,BOTTOM,270,1"
 		E.db["movers"]["ElvAB_7"] = "BOTTOM,ElvUIParent,BOTTOM,0,168"
 		E.db["movers"]["ElvAB_8"] = "BOTTOM,ElvUIParent,BOTTOM,0,197"
 		E.db["movers"]["ElvAB_9"] = "BOTTOM,ElvUIParent,BOTTOM,0,226"

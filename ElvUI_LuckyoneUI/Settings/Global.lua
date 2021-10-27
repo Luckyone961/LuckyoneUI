@@ -2,15 +2,15 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- LuckyoneUI Global DB
 
-if L1UI.Retail then
+if E.Retail then
 
 	G.L1UI = {}
 
-elseif L1UI.Classic then
+elseif E.Classic then
 
 	G.L1UI = {}
 
-elseif L1UI.TBC then
+elseif E.TBC then
 
 	G.L1UI = {}
 

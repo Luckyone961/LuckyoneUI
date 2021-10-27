@@ -176,11 +176,11 @@ end
 -- Switch between LuckyoneUI and ElvUI text formats
 function L1UI:SwapTags(group)
 
-	if L1UI.Retail then
+	if E.Retail then
 		E.db["unitframe"]["units"]["boss"]["customTexts"] = E.db["unitframe"]["units"]["boss"]["customTexts"] or {}
 	end
 
-	if not L1UI.Classic then
+	if not E.Classic then
 		E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["focus"]["customTexts"] = E.db["unitframe"]["units"]["focus"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["focustarget"]["customTexts"] = E.db["unitframe"]["units"]["focustarget"]["customTexts"] or {}
@@ -195,7 +195,7 @@ function L1UI:SwapTags(group)
 
 	if group == 'elvui' then
 
-		if L1UI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_HP"]["text_format"] = "[perhp<%]"
 			E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:last]"
 			E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Power"]["text_format"] = "[powercolor][perpp<%]"
@@ -203,12 +203,12 @@ function L1UI:SwapTags(group)
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor]Pet"
 		end
 
-		if not L1UI.Retail then
+		if not E.Retail then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["Luckyone_HP"]["text_format"] = "[perhp<%]"
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["Luckyone_Name"]["text_format"] = "[happiness:color]Pet[ >happiness:full]"
 		end
 
-		if not L1UI.Classic then
+		if not E.Classic then
 			E.db["unitframe"]["units"]["arena"]["customTexts"]["Luckyone_HP"]["text_format"] = "[perhp<%]"
 			E.db["unitframe"]["units"]["arena"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:medium]"
 			E.db["unitframe"]["units"]["arena"]["customTexts"]["Luckyone_Power"]["text_format"] = "[powercolor][perpp<%]"
@@ -246,7 +246,7 @@ function L1UI:SwapTags(group)
 
 	elseif group == 'luckyone' then
 
-		if L1UI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_HP"]["text_format"] = "[luckyone:health:percent]"
 			E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:last]"
 			E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Power"]["text_format"] = "[powercolor][perpp<%]"
@@ -255,13 +255,13 @@ function L1UI:SwapTags(group)
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor]Pet"
 		end
 
-		if not L1UI.Retail then
+		if not E.Retail then
 			E.db["unitframe"]["units"]["party"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:short]"
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["Luckyone_HP"]["text_format"] = "[luckyone:health:percent]"
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["Luckyone_Name"]["text_format"] = "[happiness:color]Pet[ >happiness:full]"
 		end
 
-		if not L1UI.Classic then
+		if not E.Classic then
 			E.db["unitframe"]["units"]["arena"]["customTexts"]["Luckyone_HP"]["text_format"] = "[luckyone:health:percent]"
 			E.db["unitframe"]["units"]["arena"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:medium]"
 			E.db["unitframe"]["units"]["arena"]["customTexts"]["Luckyone_Power"]["text_format"] = "[powercolor][perpp<%]"
