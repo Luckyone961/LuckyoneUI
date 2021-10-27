@@ -5,26 +5,35 @@ local IsAddOnLoaded = IsAddOnLoaded
 	-- Layouts
 function L1UI:SetupLayout(layout)
 
+	-- Prevent a rare mover error
+	if not E.db.movers then E.db.movers = {} end
+
+	-- Create the profiles and set the name
 	if layout == 'dps' then
 		E.data:SetProfile('Luckyone DPS/TANK v1.36')
 	elseif layout == 'healer' then
 		E.data:SetProfile('Luckyone Healing v1.36')
 	end
 
-	if not E.db.movers then E.db.movers = {} end
-
+	-- ElvUI scale and CVar setup
 	L1UI:SetupScale()
 
+	-- Global DB and custom DataText setup
 	L1UI:SetupGlobal()
 
+	-- Fonts and textures
 	L1UI:SetupPrivate()
 
+	-- AddOnSkins profile
 	if IsAddOnLoaded('AddOnSkins') then L1UI:Get_AddOnSkins_Profile() end
 
+	-- ProjectAzilroka profile
 	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Get_ProjectAzilroka_Profile() end
 
-	if IsAddOnLoaded('ElvUI_SLE') then L1UI:Get_ShadowAndLight_Profile() end
+	-- Shadow & Light profile
+	if IsAddOnLoaded('ElvUI_SLE') and L1UI.Retail then L1UI:Get_ShadowAndLight_Profile() end
 
+	-- AB conversion
 	E.db["convertPages"] = true
 
 	-- General
