@@ -50,5 +50,6 @@ function L1UI:Get_ProjectAzilroka_Profile()
 	PA.db["EnhancedFriendsList"]["Texture"] = "Minimalist"
 
 	-- Movers
+	if not E.db.movers then E.db.movers = {} end
 	E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187"
 end
