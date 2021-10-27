@@ -415,6 +415,7 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["healthBar"]["height"] = 4
 	E.db["tooltip"]["healthBar"]["statusPosition"] = "TOP"
 	E.db["tooltip"]["itemCount"] = "NONE"
+	E.db["tooltip"]["itemQuality"] = true
 	E.db["tooltip"]["mythicDataEnable"] = false
 	E.db["tooltip"]["showElvUIUsers"] = true
 	E.db["tooltip"]["showMount"] = false
@@ -1362,6 +1363,11 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["targettarget"]["width"] = 80
 		E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
 
+		-- Classic and TBC stuff
+		if not E.Retail then
+			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
+		end
+
 	elseif layout == 'healer' then
 
 		-- Growth Directions Healing
@@ -1952,6 +1958,11 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["targettarget"]["raidicon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["targettarget"]["width"] = 80
 		E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
+
+		-- Classic and TBC stuff
+		if not E.Retail then
+			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
+		end
 	end
 
 	E:StaggeredUpdateAll()
