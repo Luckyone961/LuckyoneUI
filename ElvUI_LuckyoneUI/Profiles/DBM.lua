@@ -6,7 +6,7 @@ function L1UI:Get_DBM_Profile()
 	-- Profile Names
 	local Retail, TBC, Classic = "Luckyone", "Luckyone", "Luckyone"
 
-	if L1UI.Retail then
+	if E.Retail then
 
 		DBM:CreateProfile(Retail)
 
@@ -361,7 +361,7 @@ function L1UI:Get_DBM_Profile()
 
 		DBM:ApplyProfile(Retail)
 
-	elseif L1UI.TBC then
+	elseif E.TBC then
 
 		DBM:CreateProfile(TBC)
 
@@ -722,7 +722,7 @@ function L1UI:Get_DBM_Profile()
 
 		DBM:ApplyProfile(TBC)
 
-	elseif L1UI.Classic then
+	elseif E.Classic then
 
 		DBM:CreateProfile(Classic)
 

@@ -9,7 +9,7 @@ local function InstallComplete()
 	ReloadUI()
 end
 
-if L1UI.Retail then
+if E.Retail then
 
 	-- Retail Installer Table
 	L1UI.InstallerData = {
@@ -135,7 +135,7 @@ if L1UI.Retail then
 		StepTitleTextJustification = 'CENTER',
 	}
 
-elseif L1UI.Classic then
+elseif E.Classic then
 
 	-- Clasic Installer Table
 	L1UI.InstallerData = {
@@ -246,7 +246,7 @@ elseif L1UI.Classic then
 		StepTitleTextJustification = 'CENTER',
 	}
 
-elseif L1UI.TBC then
+elseif E.TBC then
 
 	-- TBC Installer Table
 	L1UI.InstallerData = {

@@ -1,5 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
-if not L1UI.Retail then return end
+if not E.Retail then return end
 
 -- Shadow & Light Profile
 function L1UI:Get_ShadowAndLight_Profile()

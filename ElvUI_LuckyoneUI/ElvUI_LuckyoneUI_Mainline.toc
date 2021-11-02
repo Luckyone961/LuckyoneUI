@@ -1,12 +1,11 @@
-## Interface: 90100
+## Interface: 90105
 ## Author: Luckyone
-## Version: 1.36
+## Version: 1.37
 ## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r
 ## Notes: Luckyone's ElvUI Edit
 ## RequiredDeps: ElvUI
 ## DefaultState: enabled
 
-Libraries\load_libraries.xml
 Init.lua
 Core\load_core.xml
 Media\load_media.xml

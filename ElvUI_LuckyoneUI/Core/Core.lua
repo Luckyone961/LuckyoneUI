@@ -115,9 +115,9 @@ function L1UI:NameplateCVars()
 	SetCVar('UnitNameEnemyPetName', 1)
 	SetCVar('UnitNameEnemyPlayerName', 1)
 
-	if not L1UI.Classic then SetCVar('UnitNameEnemyTotem', 1) end
+	if not E.Classic then SetCVar('UnitNameEnemyTotem', 1) end
 
-	if not L1UI.Retail then SetCVar('nameplateNotSelectedAlpha', 1) end
+	if not E.Retail then SetCVar('nameplateNotSelectedAlpha', 1) end
 
 	L1UI:Print('NamePlate CVars have been set.')
 end
@@ -135,21 +135,22 @@ function L1UI:SetupPrivate()
 	E.private["general"]["normTex"] = "Minimalist"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 
-	if L1UI.Retail then
+	if E.Retail then
 		E.private["install_complete"] = "12.44"
 		E.private["general"]["totemBar"] = false
-	elseif L1UI.TBC then
-		E.private["install_complete"] = "2.17"
+	elseif E.TBC then
+		E.private["install_complete"] = "2.18"
 		E.private["general"]["totemBar"] = true
-	elseif L1UI.Classic then
+	elseif E.Classic then
 		E.private["install_complete"] = "1.43"
+		E.private["general"]["totemBar"] = true
 	end
 end
 
 -- E.global
 function L1UI:SetupGlobal()
 
-	if L1UI.Retail then E.global["general"]["commandBarSetting"] = "DISABLED" end
+	if E.Retail then E.global["general"]["commandBarSetting"] = "DISABLED" end
 
 	E.global["general"]["fadeMapWhenMoving"] = false
 	E.global["general"]["mapAlphaWhenMoving"] = 0.35
@@ -177,7 +178,7 @@ function L1UI:SetupGlobal()
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipAnchor"] = "ANCHOR_TOP"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipXOffset"] = 0
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipYOffset"] = 5
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = "[petbattle] hide;show"
+		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = E.Retail and "[petbattle] hide;show" or "show"
 		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 358
 	end
 end

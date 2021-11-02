@@ -26,7 +26,7 @@ function L1UI:Get_ProjectAzilroka_Profile()
 	PA.db["stAddonManager"]["Enable"] = false
 
 	-- Retail only toggles
-	if L1UI.Retail then
+	if E.Retail then
 		PA.db["MasterExperience"]["Enable"] = false
 		PA.db["ReputationReward"]["Enable"] = false
 		PA.db["SunsongRanchFarmer"]["Enable"] = false
@@ -50,5 +50,6 @@ function L1UI:Get_ProjectAzilroka_Profile()
 	PA.db["EnhancedFriendsList"]["Texture"] = "Minimalist"
 
 	-- Movers
+	if not E.db.movers then E.db.movers = {} end
 	E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187"
 end

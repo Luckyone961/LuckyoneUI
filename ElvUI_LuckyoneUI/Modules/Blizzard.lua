@@ -5,7 +5,7 @@ local _G = _G
 -- Disabled Blizzard Frames
 function L1UI:DisabledFrames()
 
-	if (E.private.L1UI.disabledFrames.BossBanner and L1UI.Retail) then
+	if E.private.L1UI.disabledFrames.BossBanner and E.Retail then
 		_G.BossBanner:UnregisterAllEvents()
 		E:DisableMover('BossBannerMover')
 	end

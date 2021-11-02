@@ -1,3 +1,15 @@
+### Version 1.37 [02-11-2021]
+**Classic:**  
+Synced profiles with Retail  
+Updated for ElvUI 1.45 or later  
+Updated TOC for 1.14.0  
+**Retail:**  
+Updated for ElvUI 12.45 or later  
+Updated TOC for 9.1.5  
+**TBC:**  
+Synced profiles with Retail  
+Updated for ElvUI 2.19 or later  
+___
 ### Version 1.36 [16-09-2021]
 **All:**  
 Changed ActionBars Alpha to 1 (was 0.75)  

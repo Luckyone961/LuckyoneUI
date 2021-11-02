@@ -6,7 +6,7 @@ function L1UI:Get_Details_Profile()
 	-- Profile Names
 	local Retail, TBC, Classic = "Luckyone", "Luckyone TBC", "Luckyone Classic"
 
-	if L1UI.Retail then
+	if E.Retail then
 
 		-- Create profile db if it doesn't exist yet
 		_detalhes_global["__profiles"] = _detalhes_global["__profiles"] or {}
@@ -1242,7 +1242,7 @@ function L1UI:Get_Details_Profile()
 		-- Apply the profile
 		_detalhes:ApplyProfile(Retail)
 
-	elseif L1UI.TBC then
+	elseif E.TBC then
 
 		-- Create profile db if it doesn't exist yet
 		_detalhes_global["__profiles"] = _detalhes_global["__profiles"] or {}
@@ -2476,7 +2476,7 @@ function L1UI:Get_Details_Profile()
 		-- Apply the profile
 		_detalhes:ApplyProfile(TBC)
 
-	elseif L1UI.Classic then
+	elseif E.Classic then
 
 		-- Create profile db if it doesn't exist yet
 		_detalhes_global["__profiles"] = _detalhes_global["__profiles"] or {}
