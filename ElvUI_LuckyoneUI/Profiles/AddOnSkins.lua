@@ -11,6 +11,7 @@ function L1UI:Get_AddOnSkins_Profile()
 
 	AS.db["DBMFont"] = "Expressway"
 	AS.db["Shadows"] = false
+	AS.db["SkinDebug"] = true
 
 	AS.db["EmbedBackdrop"] = false
 	AS.db["EmbedBackdropTransparent"] = false
