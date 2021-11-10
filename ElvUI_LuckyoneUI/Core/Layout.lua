@@ -50,8 +50,6 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["bottomPanel"] = false
 	E.db["general"]["durabilityScale"] = 0.5
 	E.db["general"]["enhancedPvpMessages"] = false
-	E.db["general"]["font"] = "Expressway"
-	E.db["general"]["fontSize"] = 11
 	E.db["general"]["interruptAnnounce"] = "EMOTE"
 	E.db["general"]["itemLevel"]["itemLevelFont"] = "Expressway"
 	E.db["general"]["itemLevel"]["itemLevelFontSize"] = 11

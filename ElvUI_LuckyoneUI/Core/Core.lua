@@ -131,8 +131,12 @@ function L1UI:NameplateCVars()
 	L1UI:Print('NamePlate CVars have been set.')
 end
 
--- E.private
+-- E.private & Media
 function L1UI:SetupPrivate()
+
+	E.db["general"]["font"] = "Expressway"
+	E.db["general"]["fontSize"] = 11
+	E.db["general"]["fontStyle"] = "OUTLINE"
 
 	E.private["general"]["chatBubbleFont"] = "Expressway"
 	E.private["general"]["chatBubbleFontOutline"] = "OUTLINE"
