@@ -86,13 +86,20 @@ end
 -- General CVars
 function L1UI:SetupCVars()
 
+	-- Set ElvUI CVars first
 	E:SetupCVars(noDisplayMsg)
 
 	SetCVar('advancedCombatLogging', 1)
-	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('ffxDeath', 0)
 	SetCVar('ffxGlow', 0)
 	SetCVar('rawMouseEnable', 1)
+
+	-- I want those in Classic and TBC
+	if not E.Retail then
+		SetCVar('autoLootDefault', 1)
+		SetCVar('instantQuestText', 1)
+		SetCVar('profanityFilter', 0)
+	end
 
 	L1UI:Print('CVars have been set.')
 end
