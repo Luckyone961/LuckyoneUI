@@ -824,6 +824,12 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,168,128"
 
+		-- Classic and TBC movers
+		if not E.Retail then
+			E.db["movers"]["QuestTimerFrameMover"] = "TOP,ElvUIParent,TOP,0,-1"
+			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-214"
+		end
+
 		-- UnitFrames DPS/TANK
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.75
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["b"] = 0.058823529411765
@@ -1450,6 +1456,12 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,168,128"
 
+		-- Classic and TBC movers
+		if not E.Retail then
+			E.db["movers"]["QuestTimerFrameMover"] = "TOP,ElvUIParent,TOP,0,-1"
+			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-214"
+		end
+
 		-- UnitFrames Healing
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.75
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["b"] = 0.058823529411765
@@ -1957,7 +1969,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["targettarget"]["width"] = 80
 		E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
 
-		-- Classic and TBC stuff
+		-- Classic and TBC db
 		if not E.Retail then
 			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 		end
