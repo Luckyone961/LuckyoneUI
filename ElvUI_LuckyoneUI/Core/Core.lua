@@ -80,8 +80,7 @@ end
 
 -- Set UI Scale
 function L1UI:SetupScale()
-
-	E.global["general"]["UIScale"] = 0.71111111111111
+	E.global.general.UIScale = 0.71111111111111
 	SetCVar('uiScale', 0.71111111111111)
 end
 
@@ -134,65 +133,65 @@ end
 -- E.private & Media
 function L1UI:SetupPrivate()
 
-	E.db["general"]["font"] = "Expressway"
-	E.db["general"]["fontSize"] = 11
-	E.db["general"]["fontStyle"] = "OUTLINE"
+	E.db.general.font = "Expressway"
+	E.db.general.fontSize = 11
+	E.db.general.fontStyle = "OUTLINE"
 
-	E.private["general"]["chatBubbleFont"] = "Expressway"
-	E.private["general"]["chatBubbleFontOutline"] = "OUTLINE"
-	E.private["general"]["dmgfont"] = "Expressway"
-	E.private["general"]["glossTex"] = "Minimalist"
-	E.private["general"]["namefont"] = "Expressway"
-	E.private["general"]["nameplateFont"] = "Expressway"
-	E.private["general"]["nameplateLargeFont"] = "Expressway"
-	E.private["general"]["normTex"] = "Minimalist"
-	E.private["skins"]["parchmentRemoverEnable"] = true
+	E.private.general.chatBubbleFont = "Expressway"
+	E.private.general.chatBubbleFontOutline = "OUTLINE"
+	E.private.general.dmgfont = "Expressway"
+	E.private.general.glossTex = "Minimalist"
+	E.private.general.namefont = "Expressway"
+	E.private.general.nameplateFont = "Expressway"
+	E.private.general.nameplateLargeFont = "Expressway"
+	E.private.general.normTex = "Minimalist"
+	E.private.skins.parchmentRemoverEnable = true
 
 	if E.Retail then
-		E.private["install_complete"] = "12.50"
-		E.private["general"]["totemBar"] = false
+		E.private.install_complete = "12.50"
+		E.private.general.totemBar = false
 	elseif E.TBC then
-		E.private["install_complete"] = "2.22"
-		E.private["general"]["totemBar"] = true
+		E.private.install_complete = "2.22"
+		E.private.general.totemBar = true
 	elseif E.Classic then
-		E.private["install_complete"] = "1.48"
-		E.private["general"]["totemBar"] = true
+		E.private.install_complete = "1.48"
+		E.private.general.totemBar = true
 	end
 end
 
 -- E.global
 function L1UI:SetupGlobal()
 
-	if E.Retail then E.global["general"]["commandBarSetting"] = "DISABLED" end
+	if E.Retail then E.global.general.commandBarSetting = "DISABLED" end
 
-	E.global["general"]["fadeMapWhenMoving"] = false
-	E.global["general"]["mapAlphaWhenMoving"] = 0.35
-	E.global["general"]["smallerWorldMapScale"] = 0.8
-	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
+	E.global.general.fadeMapWhenMoving = false
+	E.global.general.mapAlphaWhenMoving = 0.35
+	E.global.general.smallerWorldMapScale = 0.8
+	E.global.general.WorldMapCoordinates.position = "TOPLEFT"
 
 	do -- Luckyone Custom DataText (below ActionBars)
 		E.DataTexts:BuildPanelFrame("Luckyone_ActionBars_DT")
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["backdrop"] = true
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["border"] = true
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["enable"] = true
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["enable"] = true
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["font"] = "Expressway"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontOutline"] = "NONE"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["fonts"]["fontSize"] = 11
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameLevel"] = 1
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["frameStrata"] = "LOW"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["growth"] = "HORIZONTAL"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["height"] = 13
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["mouseover"] = false
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["name"] = "Luckyone_ActionBars_DT"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["numPoints"] = 3
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["panelTransparency"] = true
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["textJustify"] = "CENTER"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipAnchor"] = "ANCHOR_TOP"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipXOffset"] = 0
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["tooltipYOffset"] = 5
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["visibility"] = E.Retail and "[petbattle] hide;show" or "show"
-		E.global["datatexts"]["customPanels"]["Luckyone_ActionBars_DT"]["width"] = 358
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.backdrop = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.border = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.enable = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.enable = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.font = "Expressway"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontOutline = "NONE"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontSize = 11
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameLevel = 1
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameStrata = "LOW"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.growth = "HORIZONTAL"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.height = 13
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.mouseover = false
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.name = "Luckyone_ActionBars_DT"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.numPoints = 3
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.panelTransparency = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.textJustify = "CENTER"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipAnchor = "ANCHOR_TOP"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipXOffset = 0
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipYOffset = 5
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.visibility = E.Retail and "[petbattle] hide;show" or "show"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 358
 	end
 end
 
