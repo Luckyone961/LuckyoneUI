@@ -1,6 +1,8 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
 
+local print = print
+
 local IsAddOnLoaded = IsAddOnLoaded
 local ReloadUI = ReloadUI
 local SetCVar = SetCVar
@@ -143,13 +145,13 @@ function L1UI:SetupPrivate()
 	E.private["skins"]["parchmentRemoverEnable"] = true
 
 	if E.Retail then
-		E.private["install_complete"] = "12.44"
+		E.private["install_complete"] = "12.50"
 		E.private["general"]["totemBar"] = false
 	elseif E.TBC then
-		E.private["install_complete"] = "2.18"
+		E.private["install_complete"] = "2.22"
 		E.private["general"]["totemBar"] = true
 	elseif E.Classic then
-		E.private["install_complete"] = "1.43"
+		E.private["install_complete"] = "1.48"
 		E.private["general"]["totemBar"] = true
 	end
 end
