@@ -2,12 +2,23 @@
 **All WoW Versions:**  
 Fixed DBM profile and skin  
 • I suggest a DBM profile re-install in my config  
+Updated default fontStyle  
+• This should fix missing outlines on some fonts  
 **Classic:**  
 Fixed initial position for bar 4 and 6 in healing layout  
+Fixed initial position for totemBar in both layouts  
+Updated CVars step in the installer process  
+• Enabled autoLoot by default  
+• Enabled instantQuestText by default  
 **Retail:**  
+Increased durabilityScale from 0.5 to 1  
 Minor update to my AddOnSkins profile  
 **TBC:**  
 Fixed initial position for bar 4 and 6 in healing layout  
+Fixed initial position for totemBar in both layouts  
+Updated CVars step in the installer process  
+• Enabled autoLoot by default  
+• Enabled instantQuestText by default  
 ___
 ### Version 1.37 [02-11-2021]
 **Classic:**  

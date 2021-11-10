@@ -4,6 +4,10 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 function L1UI:UpdateLayout(layout)
 
+	E.db["general"]["durabilityScale"] = 1
+
+	E.db["general"]["fontStyle"] = "OUTLINE"
+
 	if layout == 'dps' then
 		-- DPS/TANK db changes
 	elseif layout == 'healer' then
