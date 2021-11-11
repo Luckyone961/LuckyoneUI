@@ -1125,8 +1125,21 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 2
 		E.db["unitframe"]["units"]["party"]["width"] = 150
 		E.db["unitframe"]["units"]["pet"]["buffIndicator"]["enable"] = false
-		E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
-		E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Dispellable"
+
+		if not E.Retail then
+			E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
+			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontSize"] = 11
+			E.db["unitframe"]["units"]["pet"]["buffs"]["countYOffset"] = 1
+			E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
+			E.db["unitframe"]["units"]["pet"]["buffs"]["maxDuration"] = 0
+			E.db["unitframe"]["units"]["pet"]["buffs"]["numrows"] = 2
+			E.db["unitframe"]["units"]["pet"]["buffs"]["perrow"] = 4
+			E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,Personal,MyPet"
+			E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 20
+			E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
+			E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = -2
+		end
+
 		E.db["unitframe"]["units"]["pet"]["castbar"]["enable"] = false
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
@@ -1751,8 +1764,21 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 1
 		E.db["unitframe"]["units"]["party"]["width"] = 90
 		E.db["unitframe"]["units"]["pet"]["buffIndicator"]["enable"] = false
-		E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
-		E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Dispellable"
+
+		if not E.Retail then
+			E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
+			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontSize"] = 11
+			E.db["unitframe"]["units"]["pet"]["buffs"]["countYOffset"] = 1
+			E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
+			E.db["unitframe"]["units"]["pet"]["buffs"]["maxDuration"] = 0
+			E.db["unitframe"]["units"]["pet"]["buffs"]["numrows"] = 2
+			E.db["unitframe"]["units"]["pet"]["buffs"]["perrow"] = 4
+			E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,Personal,MyPet"
+			E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 20
+			E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
+			E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = -2
+		end
+
 		E.db["unitframe"]["units"]["pet"]["castbar"]["enable"] = false
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
