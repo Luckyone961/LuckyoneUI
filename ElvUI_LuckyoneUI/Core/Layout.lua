@@ -1134,7 +1134,7 @@ function L1UI:SetupLayout(layout)
 			E.db["unitframe"]["units"]["pet"]["buffs"]["maxDuration"] = 0
 			E.db["unitframe"]["units"]["pet"]["buffs"]["numrows"] = 2
 			E.db["unitframe"]["units"]["pet"]["buffs"]["perrow"] = 4
-			E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,Personal,MyPet"
+			E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 20
 			E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
 			E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = -2
@@ -1773,7 +1773,7 @@ function L1UI:SetupLayout(layout)
 			E.db["unitframe"]["units"]["pet"]["buffs"]["maxDuration"] = 0
 			E.db["unitframe"]["units"]["pet"]["buffs"]["numrows"] = 2
 			E.db["unitframe"]["units"]["pet"]["buffs"]["perrow"] = 4
-			E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,Personal,MyPet"
+			E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 20
 			E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
 			E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = -2
