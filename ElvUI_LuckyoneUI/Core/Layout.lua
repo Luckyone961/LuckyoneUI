@@ -376,6 +376,7 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["experience"]["height"] = 171
 	E.db["databars"]["experience"]["orientation"] = "VERTICAL"
 	E.db["databars"]["experience"]["questCompletedOnly"] = true
+	E.db["databars"]["experience"]["showBubbles"] = true
 	E.db["databars"]["experience"]["width"] = 10
 	E.db["databars"]["honor"]["enable"] = false
 	E.db["databars"]["petExperience"]["enable"] = not E.Retail and false
@@ -385,6 +386,16 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["reputation"]["orientation"] = "VERTICAL"
 	E.db["databars"]["reputation"]["width"] = 10
 	E.db["databars"]["threat"]["enable"] = false
+
+	-- Classic and TBC DataBars
+	if not E.Retail then
+		E.db["databars"]["petExperience"]["font"] = "Expressway"
+		E.db["databars"]["petExperience"]["fontSize"] = 12
+		E.db["databars"]["petExperience"]["height"] = 171
+		E.db["databars"]["petExperience"]["orientation"] = "VERTICAL"
+		E.db["databars"]["petExperience"]["showBubbles"] = true
+		E.db["databars"]["petExperience"]["width"] = 10
+	end
 
 	-- DataTexts
 	E.db["datatexts"]["font"] = "Expressway"
@@ -826,6 +837,7 @@ function L1UI:SetupLayout(layout)
 
 		-- Classic and TBC movers
 		if not E.Retail then
+			E.db["movers"]["PetExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
 			E.db["movers"]["QuestTimerFrameMover"] = "TOP,ElvUIParent,TOP,0,-1"
 			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-214"
 		end
@@ -1458,6 +1470,7 @@ function L1UI:SetupLayout(layout)
 
 		-- Classic and TBC movers
 		if not E.Retail then
+			E.db["movers"]["PetExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
 			E.db["movers"]["QuestTimerFrameMover"] = "TOP,ElvUIParent,TOP,0,-1"
 			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-214"
 		end
