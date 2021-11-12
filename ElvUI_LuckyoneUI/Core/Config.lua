@@ -225,3 +225,17 @@ function L1UI:GetOptions()
 	-- LuckyoneUI config
 	E.Options.args.L1UI = L1UI.Options
 end
+
+--[[
+	ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
+	ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
+	ACH:Execute(name, desc, order, func, image, confirm, width, get, set, disabled, hidden)
+	ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
+	ACH:Header(name, order, get, set, hidden)
+	ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
+	ACH:MultiSelect(name, desc, order, values, confirm, width, get, set, disabled, hidden)
+	ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
+	ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
+	ACH:Spacer(order, width, hidden)
+	ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
+]]
