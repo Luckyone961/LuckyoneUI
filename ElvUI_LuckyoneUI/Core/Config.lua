@@ -28,7 +28,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.auras = ACH:Group(format('|cff4beb2c%s|r', 'Auras'), nil, 3, 'tab')
 	L1UI.Options.args.auras.args.buffs = ACH:Group(format('|cff3296ff%s|r', 'Buffs'), nil, 1)
 	L1UI.Options.args.auras.args.debuffs = ACH:Group(format('|cffC80000%s|r', 'Debuffs'), nil, 2)
-	L1UI.Options.args.auras.args.classic = ACH:Group(format('|cffFF7E40%s|r', E.TBC and 'TBC Party Buffs' or E.Classic and 'Classic Party Buffs'), nil, 3, nil, nil, nil, nil, E.Retail)
+	L1UI.Options.args.auras.args.classic = ACH:Group(format('|cffFF7E40%s|r', 'Party Buffs'), nil, 3, nil, nil, nil, nil, E.Retail)
 	L1UI.Options.args.auras.args.buffs.args.player = ACH:Group('Player Frame Buffs', nil, 1)
 	L1UI.Options.args.auras.args.buffs.args.player.inline = true
 	L1UI.Options.args.auras.args.buffs.args.player.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupBuffs('player', 'min') end)
