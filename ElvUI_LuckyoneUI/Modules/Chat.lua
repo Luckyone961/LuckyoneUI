@@ -14,6 +14,7 @@ local FCF_SetChatWindowFontSize = FCF_SetChatWindowFontSize
 local FCF_SetWindowName = FCF_SetWindowName
 local FCFDock_SelectWindow = FCFDock_SelectWindow
 local FCFTab_UpdateColors = FCFTab_UpdateColors
+local GetLocale = GetLocale
 local JoinPermanentChannel = JoinPermanentChannel
 local SetCVar = SetCVar
 local VoiceTranscriptionFrame_UpdateEditBox = VoiceTranscriptionFrame_UpdateEditBox
@@ -38,8 +39,8 @@ function L1UI:SetupChat()
 	-- Reset chat to Blizzard defaults
 	FCF_ResetChatWindows()
 
-	-- Workaround to join localized LFG
-	if not E.Retail then
+	-- Join LFG channel (English client only)
+	if not E.Retail and GetLocale() == 'enUS' then
 		JoinPermanentChannel('LookingForGroup')
 		ChatFrame_AddChannel(_G.ChatFrame1, 'LookingForGroup')
 	end
