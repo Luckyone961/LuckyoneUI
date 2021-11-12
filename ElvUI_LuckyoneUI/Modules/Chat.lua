@@ -4,6 +4,7 @@ local CH = E:GetModule('Chat')
 local _G = _G
 local ipairs = ipairs
 
+local ChatFrame_AddChannel = ChatFrame_AddChannel
 local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
 local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
 local ChatFrame_RemoveMessageGroup = ChatFrame_RemoveMessageGroup
@@ -13,6 +14,7 @@ local FCF_SetChatWindowFontSize = FCF_SetChatWindowFontSize
 local FCF_SetWindowName = FCF_SetWindowName
 local FCFDock_SelectWindow = FCFDock_SelectWindow
 local FCFTab_UpdateColors = FCFTab_UpdateColors
+local JoinPermanentChannel = JoinPermanentChannel
 local SetCVar = SetCVar
 local VoiceTranscriptionFrame_UpdateEditBox = VoiceTranscriptionFrame_UpdateEditBox
 local VoiceTranscriptionFrame_UpdateVisibility = VoiceTranscriptionFrame_UpdateVisibility
@@ -35,6 +37,12 @@ function L1UI:SetupChat()
 
 	-- Reset chat to Blizzard defaults
 	FCF_ResetChatWindows()
+
+	-- Workaround to join localized LFG
+	if not E.Retail then
+		JoinPermanentChannel('LookingForGroup')
+		ChatFrame_AddChannel(_G.ChatFrame1, 'LookingForGroup')
+	end
 
 	-- Open 3 new tabs
 	FCF_OpenNewWindow()
