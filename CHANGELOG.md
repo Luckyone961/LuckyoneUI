@@ -1,19 +1,22 @@
-### Version 1.38 [In Development]
+### Version 1.38 [12-11-2021]
 **All WoW Versions:**  
 Fixed DBM profile and skin  
 • I suggest a DBM profile re-install in my config  
 Updated default fontStyle  
 • This should fix missing outlines on some fonts  
 **Classic:**  
+ElvUI 1.50 or later required  
 Fixed initial position for bar 4 and 6 in healing layout  
 Fixed initial position for totemBar in both layouts  
 Updated CVars step in the installer process  
 • Enabled autoLoot by default  
 • Enabled instantQuestText by default  
 **Retail:**  
+ElvUI 12.52 or later required  
 Increased durabilityScale from 0.5 to 1  
 Minor update to my AddOnSkins profile  
 **TBC:**  
+ElvUI 2.24 or later required  
 Fixed initial position for bar 4 and 6 in healing layout  
 Fixed initial position for totemBar in both layouts  
 Updated CVars step in the installer process  
