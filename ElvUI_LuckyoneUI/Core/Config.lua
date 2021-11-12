@@ -159,15 +159,10 @@ function L1UI:GetOptions()
 	L1UI.Options.args.tags.args.groups = ACH:Group('Tags', nil, 1)
 	L1UI.Options.args.tags.args.groups.inline = true
 	L1UI.Options.args.tags.args.groups.args.available = ACH:Execute('Available Tags', 'Jump to the Available Tag list.', 1, function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', L1UI.Name) end)
-	L1UI.Options.args.tags.args.groups.args.elvui = ACH:Execute('Use ElvUI Tags', nil, 2, function() L1UI:SwapTags('elvui') end, nil, true)
-	L1UI.Options.args.tags.args.groups.args.luckyone = ACH:Execute('Use Luckyone Tags', nil, 3, function() L1UI:SwapTags('luckyone') end, nil, true)
-	L1UI.Options.args.tags.args.elvuiDesc = ACH:Group('ElvUI Tags', nil, 2)
-	L1UI.Options.args.tags.args.elvuiDesc.inline = true
-	L1UI.Options.args.tags.args.elvuiDesc.args.elvui = ACH:Description('- perhp\n- classification', 1, 'medium')
-	L1UI.Options.args.tags.args.luckyoneDesc = ACH:Group('Luckyone Tags', nil, 3)
+	L1UI.Options.args.tags.args.luckyoneDesc = ACH:Group('Luckyone Tags', nil, 2)
 	L1UI.Options.args.tags.args.luckyoneDesc.inline = true
 	if E.Retail then
-		L1UI.Options.args.tags.args.luckyoneDesc.args.luckyone = ACH:Description('- luckyone:health:percent\n- luckyone:classification\n- luckyone:healermana:percent', 1, 'medium')
+		L1UI.Options.args.tags.args.luckyoneDesc.args.luckyone = ACH:Description('- luckyone:health:percent\n- luckyone:classification\n- luckyone:healermana:current\n- luckyone:healermana:percent', 1, 'medium')
 	else
 		L1UI.Options.args.tags.args.luckyoneDesc.args.luckyone = ACH:Description('- luckyone:health:percent\n- luckyone:classification', 1, 'medium')
 	end
