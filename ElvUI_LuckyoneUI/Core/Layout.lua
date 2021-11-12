@@ -7,9 +7,9 @@ function L1UI:SetupLayout(layout)
 
 	-- Create the profiles and set the name
 	if layout == 'dps' then
-		E.data:SetProfile('Luckyone DPS/TANK v1.36')
+		E.data:SetProfile('Luckyone DPS/TANK v1.38')
 	elseif layout == 'healer' then
-		E.data:SetProfile('Luckyone Healing v1.36')
+		E.data:SetProfile('Luckyone Healing v1.38')
 	end
 
 	-- ElvUI scale and CVar setup
@@ -48,10 +48,8 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["backdropfadecolor"]["r"] = 0.058823529411765
 	E.db["general"]["bonusObjectivePosition"] = "AUTO"
 	E.db["general"]["bottomPanel"] = false
-	E.db["general"]["durabilityScale"] = 0.5
+	E.db["general"]["durabilityScale"] = 1
 	E.db["general"]["enhancedPvpMessages"] = false
-	E.db["general"]["font"] = "Expressway"
-	E.db["general"]["fontSize"] = 11
 	E.db["general"]["interruptAnnounce"] = "EMOTE"
 	E.db["general"]["itemLevel"]["itemLevelFont"] = "Expressway"
 	E.db["general"]["itemLevel"]["itemLevelFontSize"] = 11
@@ -378,6 +376,7 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["experience"]["height"] = 171
 	E.db["databars"]["experience"]["orientation"] = "VERTICAL"
 	E.db["databars"]["experience"]["questCompletedOnly"] = true
+	E.db["databars"]["experience"]["showBubbles"] = true
 	E.db["databars"]["experience"]["width"] = 10
 	E.db["databars"]["honor"]["enable"] = false
 	E.db["databars"]["petExperience"]["enable"] = not E.Retail and false
@@ -387,6 +386,16 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["reputation"]["orientation"] = "VERTICAL"
 	E.db["databars"]["reputation"]["width"] = 10
 	E.db["databars"]["threat"]["enable"] = false
+
+	-- Classic and TBC DataBars
+	if not E.Retail then
+		E.db["databars"]["petExperience"]["font"] = "Expressway"
+		E.db["databars"]["petExperience"]["fontSize"] = 12
+		E.db["databars"]["petExperience"]["height"] = 171
+		E.db["databars"]["petExperience"]["orientation"] = "VERTICAL"
+		E.db["databars"]["petExperience"]["showBubbles"] = true
+		E.db["databars"]["petExperience"]["width"] = 10
+	end
 
 	-- DataTexts
 	E.db["datatexts"]["font"] = "Expressway"
@@ -515,7 +524,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "RIGHT",
 		["size"] = 12,
-		["text_format"] = "[classcolor][level]",
+		["text_format"] = E.Retail and "[classcolor][level]" or "[classcolor][level][classificationcolor][ >shortclassification]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -687,7 +696,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "RIGHT",
 		["size"] = 12,
-		["text_format"] = "[classcolor][level]",
+		["text_format"] = E.Retail and "[classcolor][level]" or "[classcolor][level][classificationcolor][ >shortclassification]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -819,12 +828,19 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["TooltipMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135"
 		E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-57"
 		E.db["movers"]["TorghastBuffsMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-51"
-		E.db["movers"]["TotemBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,413,1"
+		E.db["movers"]["TotemBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,428,1"
 		E.db["movers"]["UIErrorsFrameMover"] = "TOP,ElvUIParent,TOP,0,-78"
 		E.db["movers"]["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,182"
 		E.db["movers"]["VehicleSeatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,1"
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,168,128"
+
+		-- Classic and TBC movers
+		if not E.Retail then
+			E.db["movers"]["PetExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
+			E.db["movers"]["QuestTimerFrameMover"] = "TOP,ElvUIParent,TOP,0,-1"
+			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-214"
+		end
 
 		-- UnitFrames DPS/TANK
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.75
@@ -1109,8 +1125,21 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 2
 		E.db["unitframe"]["units"]["party"]["width"] = 150
 		E.db["unitframe"]["units"]["pet"]["buffIndicator"]["enable"] = false
-		E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
-		E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Dispellable"
+
+		if not E.Retail then
+			E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
+			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontSize"] = 11
+			E.db["unitframe"]["units"]["pet"]["buffs"]["countYOffset"] = 1
+			E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
+			E.db["unitframe"]["units"]["pet"]["buffs"]["maxDuration"] = 0
+			E.db["unitframe"]["units"]["pet"]["buffs"]["numrows"] = 2
+			E.db["unitframe"]["units"]["pet"]["buffs"]["perrow"] = 4
+			E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
+			E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 20
+			E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
+			E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = -2
+		end
+
 		E.db["unitframe"]["units"]["pet"]["castbar"]["enable"] = false
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
@@ -1396,9 +1425,9 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ElvAB_10"] = "BOTTOM,ElvUIParent,BOTTOM,0,255"
 		E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,76"
 		E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,46"
-		E.db["movers"]["ElvAB_4"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,203"
+		E.db["movers"]["ElvAB_4"] = E.Retail and "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,203" or "BOTTOM,ElvUIParent,BOTTOM,-270,1"
 		E.db["movers"]["ElvAB_5"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-343"
-		E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,174"
+		E.db["movers"]["ElvAB_6"] = E.Retail and "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,173" or "BOTTOM,ElvUIParent,BOTTOM,270,1"
 		E.db["movers"]["ElvAB_7"] = "BOTTOM,ElvUIParent,BOTTOM,0,168"
 		E.db["movers"]["ElvAB_8"] = "BOTTOM,ElvUIParent,BOTTOM,0,197"
 		E.db["movers"]["ElvAB_9"] = "BOTTOM,ElvUIParent,BOTTOM,0,226"
@@ -1445,12 +1474,19 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,1"
 		E.db["movers"]["TooltipMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135"
 		E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-57"
-		E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,48,397"
+		E.db["movers"]["TotemBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,428,1"
 		E.db["movers"]["UIErrorsFrameMover"] = "TOP,ElvUIParent,TOP,0,-78"
 		E.db["movers"]["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,368"
 		E.db["movers"]["VehicleSeatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,438,1"
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,168,128"
+
+		-- Classic and TBC movers
+		if not E.Retail then
+			E.db["movers"]["PetExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
+			E.db["movers"]["QuestTimerFrameMover"] = "TOP,ElvUIParent,TOP,0,-1"
+			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-214"
+		end
 
 		-- UnitFrames Healing
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.75
@@ -1728,8 +1764,21 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 1
 		E.db["unitframe"]["units"]["party"]["width"] = 90
 		E.db["unitframe"]["units"]["pet"]["buffIndicator"]["enable"] = false
-		E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
-		E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Dispellable"
+
+		if not E.Retail then
+			E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
+			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontSize"] = 11
+			E.db["unitframe"]["units"]["pet"]["buffs"]["countYOffset"] = 1
+			E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
+			E.db["unitframe"]["units"]["pet"]["buffs"]["maxDuration"] = 0
+			E.db["unitframe"]["units"]["pet"]["buffs"]["numrows"] = 2
+			E.db["unitframe"]["units"]["pet"]["buffs"]["perrow"] = 4
+			E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
+			E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 20
+			E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
+			E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = -2
+		end
+
 		E.db["unitframe"]["units"]["pet"]["castbar"]["enable"] = false
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
@@ -1959,7 +2008,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["targettarget"]["width"] = 80
 		E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
 
-		-- Classic and TBC stuff
+		-- Classic and TBC db
 		if not E.Retail then
 			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 		end

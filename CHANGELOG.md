@@ -1,3 +1,28 @@
+### Version 1.38 [12-11-2021]
+**All WoW Versions:**  
+Fixed DBM profile and skin  
+• I suggest a DBM profile re-install in my config  
+Updated default fontStyle  
+• This should fix missing outlines on some fonts  
+**Classic:**  
+ElvUI 1.50 or later required  
+Fixed initial position for bar 4 and 6 in healing layout  
+Fixed initial position for totemBar in both layouts  
+Updated CVars step in the installer process  
+• Enabled autoLoot by default  
+• Enabled instantQuestText by default  
+**Retail:**  
+ElvUI 12.52 or later required  
+Increased durabilityScale from 0.5 to 1  
+Minor update to my AddOnSkins profile  
+**TBC:**  
+ElvUI 2.24 or later required  
+Fixed initial position for bar 4 and 6 in healing layout  
+Fixed initial position for totemBar in both layouts  
+Updated CVars step in the installer process  
+• Enabled autoLoot by default  
+• Enabled instantQuestText by default  
+___
 ### Version 1.37 [02-11-2021]
 **Classic:**  
 Synced profiles with Retail  
@@ -11,7 +36,7 @@ Synced profiles with Retail
 Updated for ElvUI 2.19 or later  
 ___
 ### Version 1.36 [16-09-2021]
-**All:**  
+**All WoW Versions:**  
 Changed ActionBars Alpha to 1 (was 0.75)  
 Switched from GitLab to GitHub - Updated links  
 Updated Custom Texts for Player, Focus & Target  
@@ -25,7 +50,7 @@ Updated OmniCD profile
 Updated Shadow & Light Armory mode  
 ___
 ### Version 1.35 [04-09-2021]
-**All:**  
+**All WoW Versions:**  
 Removed (unused) Skins section from config  
 **Classic:**  
 Fixed [classcolor] showing in Classic  
@@ -81,7 +106,7 @@ Updated setup chat function
 Updated UnitFrames Vertical/Block options  
 ___
 ### Version 1.30 [29-06-2021]
-**All:**  
+**All WoW Versions:**  
 Improved installer process for AddOn profiles  
 • It will no longer override/replace existing profiles  
 • Instead it will add my profiles to your profile selection  
@@ -102,7 +127,7 @@ Fixes for NamePlates installer step
 Updated for ElvUI 2.09  
 ___
 ### Version 1.28 [31-05-2021]
-**All:**  
+**All WoW Versions:**  
 Tooltip transparency 80% -> 75%  
 Updates for the Installer step "Layouts"  
 Updates for the Installer step "BossMods" (DBM)  
@@ -115,7 +140,7 @@ ___
 Layout Installer Hotfix (ProjectAzilroka related)  
 ___
 ### Version 1.26 [23-05-2021]
-**All:**  
+**All WoW Versions:**  
 Improved installer process to create a fresh profile  
 instead of overriding the existing one  
 **TBC & Classic:**  
