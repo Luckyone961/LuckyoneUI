@@ -1072,8 +1072,6 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["focustarget"]["raidicon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["focustarget"]["width"] = 80
 		E.db["unitframe"]["units"]["party"]["buffIndicator"]["size"] = 12
-		E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Expressway"
-		E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 3
 		E.db["unitframe"]["units"]["party"]["classbar"]["fill"] = "spaced"
 		E.db["unitframe"]["units"]["party"]["classbar"]["height"] = 6
 		E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Expressway"
@@ -1716,7 +1714,6 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["focustarget"]["raidicon"]["xOffset"] = -2
 		E.db["unitframe"]["units"]["focustarget"]["raidicon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["focustarget"]["width"] = 80
-		E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 3
 		E.db["unitframe"]["units"]["party"]["classbar"]["fill"] = "spaced"
 		E.db["unitframe"]["units"]["party"]["classbar"]["height"] = 6
 		E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Expressway"

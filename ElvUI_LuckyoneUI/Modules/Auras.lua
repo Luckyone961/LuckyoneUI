@@ -95,3 +95,55 @@ function L1UI:SetupDebuffs(frame, type)
 
 	L1UI:Print('Debuff filters updated.')
 end
+
+-- Auras for Classic and TBC
+function L1UI:LegacyAuras(toggle, layout)
+
+	if toggle == 'on' then
+
+		if layout == 'dps' then
+
+			E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOPLEFT"
+			E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Expressway"
+			E.db["unitframe"]["units"]["party"]["buffs"]["countFontSize"] = 11
+			E.db["unitframe"]["units"]["party"]["buffs"]["countXOffset"] = 1
+			E.db["unitframe"]["units"]["party"]["buffs"]["countYOffset"] = 1
+			E.db["unitframe"]["units"]["party"]["buffs"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["buffs"]["growthX"] = "LEFT"
+			E.db["unitframe"]["units"]["party"]["buffs"]["growthY"] = "DOWN"
+			E.db["unitframe"]["units"]["party"]["buffs"]["maxDuration"] = 0
+			E.db["unitframe"]["units"]["party"]["buffs"]["minDuration"] = 30
+			E.db["unitframe"]["units"]["party"]["buffs"]["numrows"] = 2
+			E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 4
+			E.db["unitframe"]["units"]["party"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal"
+			E.db["unitframe"]["units"]["party"]["buffs"]["sizeOverride"] = 19
+			E.db["unitframe"]["units"]["party"]["buffs"]["spacing"] = 2
+			E.db["unitframe"]["units"]["party"]["buffs"]["xOffset"] = -20
+			E.db["unitframe"]["units"]["party"]["buffs"]["yOffset"] = -18
+
+		elseif layout == 'healing' then
+
+			E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "BOTTOMLEFT"
+			E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Expressway"
+			E.db["unitframe"]["units"]["party"]["buffs"]["countFontSize"] = 11
+			E.db["unitframe"]["units"]["party"]["buffs"]["countXOffset"] = -1
+			E.db["unitframe"]["units"]["party"]["buffs"]["countYOffset"] = 1
+			E.db["unitframe"]["units"]["party"]["buffs"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["buffs"]["maxDuration"] = 0
+			E.db["unitframe"]["units"]["party"]["buffs"]["minDuration"] = 30
+			E.db["unitframe"]["units"]["party"]["buffs"]["numrows"] = 2
+			E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 4
+			E.db["unitframe"]["units"]["party"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal"
+			E.db["unitframe"]["units"]["party"]["buffs"]["sizeOverride"] = 19
+			E.db["unitframe"]["units"]["party"]["buffs"]["yOffset"] = -2
+
+		end
+
+	elseif toggle == 'off' then
+
+		E.db["unitframe"]["units"]["party"]["buffs"]["enable"] = false
+
+	end
+
+	E:StaggeredUpdateAll()
+end
