@@ -123,7 +123,7 @@ function L1UI:GetOptions()
 
 	-- Performance
 	L1UI.Options.args.performance = ACH:Group(format('|cff4beb2c%s|r', 'Performance'), nil, 8, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.performance.args.desc = ACH:Header(format('|cffFF0000%s|r', 'This will clear AddOn Cache and not wipe your settings'), 1)
+	L1UI.Options.args.performance.args.desc = ACH:Header(format('|cffFF0000%s|r', 'This will only clear AddOn Cache and not wipe your settings'), 1)
 	L1UI.Options.args.performance.args.elvui = ACH:Group('ElvUI', nil, 2)
 	L1UI.Options.args.performance.args.elvui.inline = true
 	L1UI.Options.args.performance.args.elvui.args.chat = ACH:Execute('Clear Chat History', nil, 1, function() if not E.private.chat.enable then return end L1UI:Cleanup_Cache('elvui', 'chat') E:StaticPopup_Show('L1UI_RL') end)
