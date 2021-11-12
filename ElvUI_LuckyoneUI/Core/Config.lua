@@ -36,7 +36,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.auras.args.buffs.args.target.inline = true
 	L1UI.Options.args.auras.args.buffs.args.target.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupBuffs('target', 'min') end)
 	L1UI.Options.args.auras.args.buffs.args.target.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupBuffs('target', 'all') end)
-	L1UI.Options.args.auras.args.buffs.args.focus = ACH:Group('Focus Frame Buffs', nil, 3)
+	L1UI.Options.args.auras.args.buffs.args.focus = ACH:Group('Focus Frame Buffs', nil, 3, nil, nil, nil, nil, E.Classic)
 	L1UI.Options.args.auras.args.buffs.args.focus.inline = true
 	L1UI.Options.args.auras.args.buffs.args.focus.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupBuffs('focus', 'min') end)
 	L1UI.Options.args.auras.args.buffs.args.focus.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupBuffs('focus', 'all') end)
@@ -58,7 +58,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.auras.args.debuffs.args.target.inline = true
 	L1UI.Options.args.auras.args.debuffs.args.target.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupDebuffs('target', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.target.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupDebuffs('target', 'all') end)
-	L1UI.Options.args.auras.args.debuffs.args.focus = ACH:Group('Focus Frame Debuffs', nil, 3)
+	L1UI.Options.args.auras.args.debuffs.args.focus = ACH:Group('Focus Frame Debuffs', nil, 3, nil, nil, nil, nil, E.Classic)
 	L1UI.Options.args.auras.args.debuffs.args.focus.inline = true
 	L1UI.Options.args.auras.args.debuffs.args.focus.args.min = ACH:Execute('Minimalistic', 'Minimalistic. Only important auras.', 1, function() L1UI:SetupDebuffs('focus', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.focus.args.all = ACH:Execute('Show All', 'Show all auras except blacklisted.', 2, function() L1UI:SetupDebuffs('focus', 'all') end)
