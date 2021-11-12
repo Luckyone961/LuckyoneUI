@@ -160,10 +160,6 @@ function L1UI:GetOptions()
 	L1UI.Options.args.tags.args.groups = ACH:Group('Tags', nil, 1)
 	L1UI.Options.args.tags.args.groups.inline = true
 	L1UI.Options.args.tags.args.groups.args.available = ACH:Execute('Available Tags', 'Jump to the Available Tag list.', 1, function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', L1UI.Name) end)
-	L1UI.Options.args.tags.args.luckyoneDesc = ACH:Group('Luckyone Tags', nil, 2)
-	L1UI.Options.args.tags.args.luckyoneDesc.inline = true
-	L1UI.Options.args.tags.args.luckyoneDesc.args.luckyone = ACH:Description('- luckyone:health:percent\n- luckyone:classification\n- luckyone:healermana:current\n- luckyone:healermana:percent', 1, 'medium', nil, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.tags.args.luckyoneDesc.args.luckyone = ACH:Description('- luckyone:health:percent\n- luckyone:classification', 1, 'medium', nil, nil, nil, nil, nil, E.Retail)
 
 	-- Themes
 	L1UI.Options.args.themes = ACH:Group(format('|cff4beb2c%s|r', 'Themes'), nil, 11)
