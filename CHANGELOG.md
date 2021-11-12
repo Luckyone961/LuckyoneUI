@@ -1,6 +1,13 @@
 ### Version 1.39 [In Development]
 **All WoW Versions:**  
 Added DBM healing profile to the installer  
+• It will create the profile "Luckyone_H" in /dbm -> Options -> Profiles  
+**Classic:**  
+Added an option for party buffs  
+• /elvui -> LuckyoneUI -> Auras -> Classic Party Buffs  
+**TBC:**  
+Added an option for party buffs  
+• /elvui -> LuckyoneUI -> Auras -> TBC Party Buffs  
 ___
 ### Version 1.38 [12-11-2021]
 **All WoW Versions:**  
