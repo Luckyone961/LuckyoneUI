@@ -1982,6 +1982,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["target"]["raidicon"]["xOffset"] = -2
 		E.db["unitframe"]["units"]["target"]["raidicon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["target"]["raidRoleIcons"]["position"] = "TOPRIGHT"
+		E.db["unitframe"]["units"]["target"]["raidRoleIcons"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["target"]["threatStyle"] = "NONE"
 		E.db["unitframe"]["units"]["target"]["width"] = 190
 		E.db["unitframe"]["units"]["targettarget"]["buffs"]["countFont"] = "Expressway"
