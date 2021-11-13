@@ -11,7 +11,7 @@ function L1UI:SetupNamePlates(addon)
 		-- Make sure to enable ElvUI NamePlates
 		E.private["nameplates"]["enable"] = true
 
-		-- Setup StyleFilters
+		-- Setup StyleFilters (includes Nameplate CVars)
 		L1UI:SetupStyleFilters()
 
 		E.db["nameplates"]["colors"]["castbarDesaturate"] = false

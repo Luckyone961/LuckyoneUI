@@ -39,7 +39,7 @@ function L1UI:SetupChat()
 	-- Reset chat to Blizzard defaults
 	FCF_ResetChatWindows()
 
-	-- Join LFG channel (English client only)
+	-- Join LFG channel in Classic and TBC (English client only)
 	if not E.Retail and GetLocale() == 'enUS' then
 		JoinPermanentChannel('LookingForGroup')
 		ChatFrame_AddChannel(_G.ChatFrame1, 'LookingForGroup')
