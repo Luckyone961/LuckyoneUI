@@ -8,9 +8,14 @@ function L1UI:UpdateLayout(layout)
 	E.db["general"]["fontStyle"] = "OUTLINE"
 
 	if layout == 'dps' then
+
 		-- DPS/TANK db changes
+
 	elseif layout == 'healer' then
+
 		-- Healing db changes
+		E.db["unitframe"]["units"]["target"]["raidRoleIcons"]["yOffset"] = 1
+
 	end
 
 	E:StaggeredUpdateAll()
