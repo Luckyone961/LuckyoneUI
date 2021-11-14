@@ -1,11 +1,17 @@
-### Version 1.39 [In Development]
+### Version 1.39 [14-11-2021]
 **All WoW Versions:**  
 Added DBM healing profile to the installer  
 • It will create the profile "Luckyone_H" in /dbm -> Options -> Profiles  
+Cleaned up files even more, reduced AddOn size and memory usage  
 **Classic:**  
+ElvUI 1.51 or later required  
 Added an option for party buffs  
 • /elvui -> LuckyoneUI -> Auras -> Party Buffs  
+**Retail:**  
+ElvUI 12.54 or later required  
+Fixed a minor pixel issue in healing layout (Target Frame, Leader Indicator)  
 **TBC:**  
+ElvUI 2.25 or later required  
 Added an option for party buffs  
 • /elvui -> LuckyoneUI -> Auras -> Party Buffs  
 ___
