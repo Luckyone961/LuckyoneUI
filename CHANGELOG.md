@@ -1,3 +1,5 @@
+### Version 1.40 [In Development]
+___
 ### Version 1.39 [14-11-2021]
 **All WoW Versions:**  
 Added DBM healing profile to the installer  

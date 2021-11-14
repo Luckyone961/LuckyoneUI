@@ -27,7 +27,6 @@ end)
 E:AddTag('luckyone:health:percent', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
 	local currentHealth, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
 	local percent = currentHealth / maxHealth * 100
-
 	return E:GetFormattedText('PERCENT', currentHealth, maxHealth, percent == 100 and 0 or percent < 10 and 2 or 1, nil)
 end)
 

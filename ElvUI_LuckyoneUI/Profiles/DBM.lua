@@ -9,8 +9,8 @@ function L1UI:Get_DBM_Profile()
 
 	if E.Retail then
 
-		DBM:CreateProfile(Retail)
-		DBM:CreateProfile(Retail_H)
+		DBM:CreateProfile(Retail) -- DPS/TANK
+		DBM:CreateProfile(Retail_H) -- Healing
 
 		DBM_AllSavedOptions[Retail] = DBM_AllSavedOptions[Retail] or {}
 		DBM_AllSavedOptions[Retail_H] = DBM_AllSavedOptions[Retail_H] or {}
@@ -940,8 +940,8 @@ function L1UI:Get_DBM_Profile()
 
 	elseif E.TBC then
 
-		DBM:CreateProfile(TBC)
-		DBM:CreateProfile(TBC_H)
+		DBM:CreateProfile(TBC) -- DPS/TANK
+		DBM:CreateProfile(TBC_H) -- Healing
 
 		DBM_AllSavedOptions[TBC] = DBM_AllSavedOptions[TBC] or {}
 		DBM_AllSavedOptions[TBC_H] = DBM_AllSavedOptions[TBC_H] or {}
@@ -1875,8 +1875,8 @@ function L1UI:Get_DBM_Profile()
 
 	elseif E.Classic then
 
-		DBM:CreateProfile(Classic)
-		DBM:CreateProfile(Classic_H)
+		DBM:CreateProfile(Classic) -- DPS/TANK
+		DBM:CreateProfile(Classic_H) -- Healing
 
 		DBM_AllSavedOptions[Classic] = DBM_AllSavedOptions[Classic] or {}
 		DBM_AllSavedOptions[Classic_H] = DBM_AllSavedOptions[Classic_H] or {}
