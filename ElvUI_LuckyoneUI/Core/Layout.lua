@@ -7,9 +7,9 @@ function L1UI:SetupLayout(layout)
 
 	-- Create the profiles and set the name
 	if layout == 'dps' then
-		E.data:SetProfile('Luckyone DPS/TANK v1.38')
+		E.data:SetProfile('Luckyone DPS/TANK v1.39')
 	elseif layout == 'healer' then
-		E.data:SetProfile('Luckyone Healing v1.38')
+		E.data:SetProfile('Luckyone Healing v1.39')
 	end
 
 	-- ElvUI scale and CVar setup
@@ -1072,8 +1072,6 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["focustarget"]["raidicon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["focustarget"]["width"] = 80
 		E.db["unitframe"]["units"]["party"]["buffIndicator"]["size"] = 12
-		E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Expressway"
-		E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 3
 		E.db["unitframe"]["units"]["party"]["classbar"]["fill"] = "spaced"
 		E.db["unitframe"]["units"]["party"]["classbar"]["height"] = 6
 		E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Expressway"
@@ -1716,7 +1714,6 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["focustarget"]["raidicon"]["xOffset"] = -2
 		E.db["unitframe"]["units"]["focustarget"]["raidicon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["focustarget"]["width"] = 80
-		E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 3
 		E.db["unitframe"]["units"]["party"]["classbar"]["fill"] = "spaced"
 		E.db["unitframe"]["units"]["party"]["classbar"]["height"] = 6
 		E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Expressway"
@@ -1985,6 +1982,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["target"]["raidicon"]["xOffset"] = -2
 		E.db["unitframe"]["units"]["target"]["raidicon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["target"]["raidRoleIcons"]["position"] = "TOPRIGHT"
+		E.db["unitframe"]["units"]["target"]["raidRoleIcons"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["target"]["threatStyle"] = "NONE"
 		E.db["unitframe"]["units"]["target"]["width"] = 190
 		E.db["unitframe"]["units"]["targettarget"]["buffs"]["countFont"] = "Expressway"

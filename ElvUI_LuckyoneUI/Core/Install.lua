@@ -137,7 +137,7 @@ if E.Retail then
 
 elseif E.Classic then
 
-	-- Clasic Installer Table
+	-- Classic Installer Table
 	L1UI.InstallerData = {
 		Title = format('|cff4beb2c%s %s|r', L1UI.Name, 'Installation'),
 		Name = L1UI.Name,

@@ -148,13 +148,13 @@ function L1UI:SetupPrivate()
 	E.private.skins.parchmentRemoverEnable = true
 
 	if E.Retail then
-		E.private.install_complete = "12.50"
+		E.private.install_complete = "12.53"
 		E.private.general.totemBar = false
 	elseif E.TBC then
-		E.private.install_complete = "2.22"
+		E.private.install_complete = "2.24"
 		E.private.general.totemBar = true
 	elseif E.Classic then
-		E.private.install_complete = "1.48"
+		E.private.install_complete = "1.50"
 		E.private.general.totemBar = true
 	end
 end
@@ -162,8 +162,7 @@ end
 -- E.global
 function L1UI:SetupGlobal()
 
-	if E.Retail then E.global.general.commandBarSetting = "DISABLED" end
-
+	E.global.general.commandBarSetting = "DISABLED"
 	E.global.general.fadeMapWhenMoving = false
 	E.global.general.mapAlphaWhenMoving = 0.35
 	E.global.general.smallerWorldMapScale = 0.8
