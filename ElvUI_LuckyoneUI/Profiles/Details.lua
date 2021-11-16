@@ -535,7 +535,7 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							1, -- [4]
 						},
-						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Fonts\\Expressway.ttf",
 						["backdrop"] = {
 							["enabled"] = false,
 							["texture"] = "Details BarBorder 2",
@@ -557,7 +557,7 @@ function L1UI:Get_Details_Profile()
 						},
 						["textL_translit_text"] = false,
 						["texture_custom_file"] = "Interface\\",
-						["texture_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["textR_bracket"] = "(",
 						["font_size"] = 11,
 						["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small",
@@ -577,7 +577,7 @@ function L1UI:Get_Details_Profile()
 						["textR_custom_text"] = "{data1} ({data2}, {data3}%)",
 						["texture"] = "Minimalist",
 						["start_after_icon"] = false,
-						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["textL_class_colors"] = false,
 						["alpha"] = 1,
 						["texture_background"] = "Minimalist",
@@ -755,7 +755,7 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							1, -- [4]
 						},
-						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Fonts\\Expressway.ttf",
 						["backdrop"] = {
 							["enabled"] = false,
 							["texture"] = "Details BarBorder 2",
@@ -777,7 +777,7 @@ function L1UI:Get_Details_Profile()
 						},
 						["textL_translit_text"] = false,
 						["texture_custom_file"] = "Interface\\",
-						["texture_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["textR_bracket"] = "(",
 						["font_size"] = 11,
 						["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small",
@@ -797,7 +797,7 @@ function L1UI:Get_Details_Profile()
 						["textR_custom_text"] = "{data1} ({data2}, {data3}%)",
 						["texture"] = "Minimalist",
 						["start_after_icon"] = false,
-						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["textL_class_colors"] = false,
 						["alpha"] = 1,
 						["texture_background"] = "Minimalist",
@@ -1546,12 +1546,12 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							1, -- [4]
 						},
-						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Fonts\\Expressway.ttf",
 						["textL_custom_text"] = "{data1}. {data3}{data2}",
 						["font_size"] = 11,
 						["textL_translit_text"] = false,
 						["texture_custom_file"] = "Interface\\",
-						["texture_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["height"] = 17,
 						["models"] = {
 							["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
@@ -1593,7 +1593,7 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							0.150228589773178, -- [4]
 						},
-						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["textL_class_colors"] = false,
 						["textR_outline_small_color"] = {
 							0, -- [1]
@@ -1990,12 +1990,12 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							1, -- [4]
 						},
-						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Fonts\\Expressway.ttf",
 						["textL_custom_text"] = "{data1}. {data3}{data2}",
 						["font_size"] = 11,
 						["textL_translit_text"] = false,
 						["texture_custom_file"] = "Interface\\",
-						["texture_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["height"] = 17.16361999511719,
 						["models"] = {
 							["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
@@ -2037,7 +2037,7 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							0.150228589773178, -- [4]
 						},
-						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["textL_class_colors"] = false,
 						["textR_outline_small_color"] = {
 							0, -- [1]
@@ -3025,12 +3025,12 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							1, -- [4]
 						},
-						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Fonts\\Expressway.ttf",
 						["textL_custom_text"] = "{data1}. {data3}{data2}",
 						["font_size"] = 11,
 						["textL_translit_text"] = false,
 						["texture_custom_file"] = "Interface\\",
-						["texture_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["height"] = 17,
 						["models"] = {
 							["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
@@ -3072,7 +3072,7 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							0.150228589773178, -- [4]
 						},
-						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["textR_class_colors"] = false,
 						["textR_outline_small_color"] = {
 							0, -- [1]
@@ -3490,12 +3490,12 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							1, -- [4]
 						},
-						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Fonts\\Expressway.ttf",
 						["textL_custom_text"] = "{data1}. {data3}{data2}",
 						["font_size"] = 11,
 						["textL_translit_text"] = false,
 						["texture_custom_file"] = "Interface\\",
-						["texture_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["height"] = 17.1636199951172,
 						["models"] = {
 							["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
@@ -3537,7 +3537,7 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							0.150228589773178, -- [4]
 						},
-						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["textR_class_colors"] = false,
 						["textR_outline_small_color"] = {
 							0, -- [1]
