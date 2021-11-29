@@ -521,7 +521,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "RIGHT",
 		["size"] = 12,
-		["text_format"] = E.Retail and "[classcolor][level]" or "[classcolor][level][classificationcolor][ >shortclassification]",
+		["text_format"] = E.Retail and "[classcolor][level]" or "[difficultycolor][level][classificationcolor][ >shortclassification]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -693,7 +693,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "RIGHT",
 		["size"] = 12,
-		["text_format"] = E.Retail and "[classcolor][level]" or "[classcolor][level][classificationcolor][ >shortclassification]",
+		["text_format"] = E.Retail and "[classcolor][level]" or "[difficultycolor][level][classificationcolor][ >shortclassification]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
