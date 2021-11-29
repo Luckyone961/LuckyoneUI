@@ -71,9 +71,6 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["talkingHeadFrameBackdrop"] = true
 	E.db["general"]["talkingHeadFrameScale"] = 0.72
 	E.db["general"]["totems"]["enable"] = false
-	E.db["general"]["valuecolor"]["b"] = 0.039215601980686
-	E.db["general"]["valuecolor"]["g"] = 0.48627343773842
-	E.db["general"]["valuecolor"]["r"] = 0.99999779462814
 	E.db["general"]["vehicleSeatIndicatorSize"] = 64
 
 	-- ActionBars
