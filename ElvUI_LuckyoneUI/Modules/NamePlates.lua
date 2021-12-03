@@ -72,7 +72,7 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["fontSize"] = 10
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["numAuras"] = 7
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["size"] = 22
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = -8
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = -9
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["eliteIcon"]["size"] = 14
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["eliteIcon"]["xOffset"] = 3
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["height"] = 20
@@ -137,7 +137,7 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["numAuras"] = 7
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["size"] = 22
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = -8
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = -9
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["height"] = 20
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["font"] = "Expressway"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["fontSize"] = 12
