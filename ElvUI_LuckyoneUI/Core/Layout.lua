@@ -54,6 +54,10 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["itemLevel"]["itemLevelFont"] = "Expressway"
 	E.db["general"]["itemLevel"]["itemLevelFontSize"] = 11
 	E.db["general"]["loginmessage"] = false
+	E.db["general"]["lootRoll"]["height"] = 34
+	E.db["general"]["lootRoll"]["statusBarTexture"] = "Minimalist"
+	E.db["general"]["lootRoll"]["style"] = "fullbar"
+	E.db["general"]["lootRoll"]["width"] = 340
 	E.db["general"]["minimap"]["icons"]["difficulty"]["position"] = "TOPRIGHT"
 	E.db["general"]["minimap"]["icons"]["difficulty"]["scale"] = 0.9
 	E.db["general"]["minimap"]["icons"]["lfgEye"]["position"] = "BOTTOMLEFT"
