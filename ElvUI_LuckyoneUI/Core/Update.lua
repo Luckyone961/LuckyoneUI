@@ -3,8 +3,13 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 -- Update Layout Buttons (Ingame Config)
 function L1UI:UpdateLayout(layout)
 
-	-- Pet debuff changes
+	-- Classic and TBC only
 	if not E.Retail then
+		-- Level color changes
+		E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Level"]["text_format"] = E.Retail and "[classcolor][level]" or "[difficultycolor][level][classificationcolor][ >shortclassification]"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Level"]["text_format"] = E.Retail and "[classcolor][level]" or "[difficultycolor][level][classificationcolor][ >shortclassification]"
+
+		-- Pet debuff changes
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOPLEFT"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
@@ -17,24 +22,16 @@ function L1UI:UpdateLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["spacing"] = 0
 	end
 
-	-- NamePlate changes
-	E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = -9
-	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = -9
-
 	-- LootRoll changes
 	E.db["general"]["lootRoll"]["height"] = 34
 	E.db["general"]["lootRoll"]["statusBarTexture"] = "Minimalist"
 	E.db["general"]["lootRoll"]["style"] = "fullbar"
 	E.db["general"]["lootRoll"]["width"] = 340
 
-	if layout == 'dps' then
-
-		-- DPS/TANK db changes
-
-	elseif layout == 'healer' then
-
-		-- Healing db changes
-
+	-- NamePlate changes
+	if E.private.nameplates.enable then
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = -9
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = -9
 	end
 
 	E:StaggeredUpdateAll()

@@ -13,6 +13,7 @@ ElvUI 12.58 or later required
 **TBC:**  
 Added pet debuffs setup to initial install & update  
 ElvUI 2.31 or later required  
+Focus level will now use difficultycolor  
 Target level will now use difficultycolor  
 ___
 ### Version 1.39 [14-11-2021]
