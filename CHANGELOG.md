@@ -1,4 +1,19 @@
 ### Version 1.40 [In Development]
+**All WoW Versions:**  
+Fixed Details font, font size and font outline  
+Initial setup for new ElvUI LootRoll options  
+Minor pixel perfect edit for NamePlate debuff offset  
+Removed Druid valuecolor from initial install  
+**Classic:**  
+Added pet debuffs setup to initial install & update  
+ElvUI 1.57 or later required  
+Target level will now use difficultycolor  
+**Retail:**  
+ElvUI 12.58 or later required  
+**TBC:**  
+Added pet debuffs setup to initial install & update  
+ElvUI 2.31 or later required  
+Target level will now use difficultycolor  
 ___
 ### Version 1.39 [14-11-2021]
 **All WoW Versions:**  
