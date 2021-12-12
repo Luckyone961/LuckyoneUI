@@ -4,6 +4,11 @@ if not E.Retail then return end
 -- Shadow & Light Profile
 function L1UI:Get_ShadowAndLight_Profile()
 
+	-- Restore defaults
+	E.db.sle = E:CopyTable({}, P.sle)
+	E.global.sle = E:CopyTable({}, G.sle)
+	E.private.sle = E:CopyTable({}, V.sle)
+
 	-- Shadow & Light Global DB
 	E.global["sle"]["advanced"]["confirmed"] = true
 	E.global["sle"]["advanced"]["gameMenu"]["enable"] = false
