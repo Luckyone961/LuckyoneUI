@@ -7,9 +7,9 @@ function L1UI:SetupLayout(layout)
 
 	-- Create the profiles and set the name
 	if layout == 'dps' then
-		E.data:SetProfile('Luckyone DPS/TANK v1.39')
+		E.data:SetProfile('Luckyone DPS/TANK v'..L1UI.Version)
 	elseif layout == 'healer' then
-		E.data:SetProfile('Luckyone Healing v1.39')
+		E.data:SetProfile('Luckyone Healing v'..L1UI.Version)
 	end
 
 	-- ElvUI scale and CVar setup
