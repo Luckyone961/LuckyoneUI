@@ -5,7 +5,6 @@ if not E.Retail then return end
 function L1UI:Get_ShadowAndLight_Profile()
 
 	-- Restore defaults
-	E.db.sle = E:CopyTable({}, P.sle)
 	E.global.sle = E:CopyTable({}, G.sle)
 	E.private.sle = E:CopyTable({}, V.sle)
 
