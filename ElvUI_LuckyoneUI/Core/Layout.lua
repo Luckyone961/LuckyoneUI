@@ -1190,7 +1190,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["g"] = 1
 		E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["r"] = 1
 		E.db["unitframe"]["units"]["player"]["castbar"]["timeToHold"] = 2
-		E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 358
+		E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 359
 		E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetText"] = 2
 		E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetTime"] = -2
 		E.db["unitframe"]["units"]["player"]["classbar"]["enable"] = false
@@ -1840,7 +1840,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["g"] = 1
 		E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["r"] = 1
 		E.db["unitframe"]["units"]["player"]["castbar"]["timeToHold"] = 2
-		E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 358
+		E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 359
 		E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetText"] = 2
 		E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetTime"] = -2
 		E.db["unitframe"]["units"]["player"]["classbar"]["enable"] = false

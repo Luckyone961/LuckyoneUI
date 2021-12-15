@@ -34,5 +34,8 @@ function L1UI:UpdateLayout(layout)
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = -9
 	end
 
+	-- Castbar changes
+	E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 359
+
 	E:StaggeredUpdateAll()
 end
