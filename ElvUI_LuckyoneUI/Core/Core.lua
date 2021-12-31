@@ -149,13 +149,13 @@ function L1UI:SetupPrivate()
 	E.private.skins.parchmentRemoverEnable = true
 
 	if E.Retail then
-		E.private.install_complete = "12.53"
+		E.private.install_complete = "12.58"
 		E.private.general.totemBar = false
 	elseif E.TBC then
-		E.private.install_complete = "2.24"
+		E.private.install_complete = "2.31"
 		E.private.general.totemBar = true
 	elseif E.Classic then
-		E.private.install_complete = "1.50"
+		E.private.install_complete = "1.57"
 		E.private.general.totemBar = true
 	end
 end
