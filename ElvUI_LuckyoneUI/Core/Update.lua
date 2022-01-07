@@ -23,7 +23,8 @@ function L1UI:UpdateLayout(layout)
 	end
 
 	-- LootRoll changes
-	E.db["general"]["lootRoll"]["height"] = 34
+	E.db["general"]["lootRoll"]["buttonSize"] = 22
+	E.db["general"]["lootRoll"]["spacing"] = 3
 	E.db["general"]["lootRoll"]["statusBarTexture"] = "Minimalist"
 	E.db["general"]["lootRoll"]["style"] = "fullbar"
 	E.db["general"]["lootRoll"]["width"] = 340
