@@ -86,9 +86,9 @@ function L1UI:GetOptions()
 	L1UI.Options.args.blizzard = ACH:Group(format('|cff4beb2c%s|r', 'Blizzard'), nil, 4)
 	L1UI.Options.args.blizzard.args.disabledFrames = ACH:Group('Hide Blizzard Frames', nil, 1, nil, function(info) return E.private.L1UI.disabledFrames[info[#info]] end, function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.blizzard.args.disabledFrames.inline = true
+	L1UI.Options.args.blizzard.args.disabledFrames.args.AlertFrame = ACH:Toggle('Alert Frame', 'Hide the Loot/Alert Frame', 1, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.AlertFrame end, function(info, value) E.private.L1UI.disabledFrames.AlertFrame = value E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.blizzard.args.disabledFrames.args.BossBanner = ACH:Toggle('Boss Banner', 'Hide the Boss Banner', 2, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.BossBanner end, function(info, value) E.private.L1UI.disabledFrames.BossBanner = value E:StaticPopup_Show('L1UI_RL') end, nil, not E.Retail)
 	L1UI.Options.args.blizzard.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle('Zone Text', 'Hide the Zone Text', 3, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.ZoneTextFrame end, function(info, value) E.private.L1UI.disabledFrames.ZoneTextFrame = value E:StaticPopup_Show('L1UI_RL') end)
-	L1UI.Options.args.blizzard.args.disabledFrames.args.AlertFrame = ACH:Toggle('Alert Frame', 'Hide the Loot/Alert Frame', 4, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.AlertFrame end, function(info, value) E.private.L1UI.disabledFrames.AlertFrame = value E:StaticPopup_Show('L1UI_RL') end)
-	L1UI.Options.args.blizzard.args.disabledFrames.args.BossBanner = ACH:Toggle('Boss Banner', 'Hide the Boss Banner', 1, nil, nil, nil, function(info) return E.private.L1UI.disabledFrames.BossBanner end, function(info, value) E.private.L1UI.disabledFrames.BossBanner = value E:StaticPopup_Show('L1UI_RL') end, nil, not E.Retail)
 
 	-- Chat
 	L1UI.Options.args.chat = ACH:Group(format('|cff4beb2c%s|r', 'Chat'), nil, 5)
