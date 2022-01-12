@@ -113,7 +113,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.cvars.args.generalDesc.args.cvars = ACH:Description('- advancedCombatLogging 1\n- rawMouseEnable 1\n- ffxDeath 0\n- ffxGlow 0', 1, 'medium')
 	L1UI.Options.args.cvars.args.nameplateDesc = ACH:Group('NamePlate CVars', nil, 3)
 	L1UI.Options.args.cvars.args.nameplateDesc.inline = true
-	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- nameplateLargerScale 1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1', 1, 'medium')
+	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- nameplateLargerScale 1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.7\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1', 1, 'medium')
 
 	-- Media
 	L1UI.Options.args.media = ACH:Group(format('|cff4beb2c%s|r', 'Media'), nil, 7)
