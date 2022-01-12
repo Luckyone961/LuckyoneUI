@@ -6,8 +6,8 @@ function L1UI:UpdateLayout(layout)
 	-- Classic and TBC only
 	if not E.Retail then
 		-- Level color changes
-		E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Level"]["text_format"] = E.Retail and "[classcolor][level]" or "[difficultycolor][level][classificationcolor][ >shortclassification]"
-		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Level"]["text_format"] = E.Retail and "[classcolor][level]" or "[difficultycolor][level][classificationcolor][ >shortclassification]"
+		E.db["unitframe"]["units"]["focus"]["customTexts"]["Luckyone_Level"]["text_format"] = "[difficultycolor][level][classificationcolor][ >shortclassification]"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["Luckyone_Level"]["text_format"] = "[difficultycolor][level][classificationcolor][ >shortclassification]"
 
 		-- Pet debuff changes
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOPLEFT"
@@ -34,9 +34,6 @@ function L1UI:UpdateLayout(layout)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = -9
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = -9
 	end
-
-	-- Castbar changes
-	E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 359
 
 	E:StaggeredUpdateAll()
 end
