@@ -48,6 +48,7 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["backdropfadecolor"]["r"] = 0.058823529411765
 	E.db["general"]["bonusObjectivePosition"] = "AUTO"
 	E.db["general"]["bottomPanel"] = false
+	E.db["general"]["customGlow"]["style"] = "Autocast Shine"
 	E.db["general"]["durabilityScale"] = 1
 	E.db["general"]["enhancedPvpMessages"] = false
 	E.db["general"]["interruptAnnounce"] = "EMOTE"

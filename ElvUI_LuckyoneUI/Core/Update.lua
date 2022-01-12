@@ -35,5 +35,8 @@ function L1UI:UpdateLayout(layout)
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = -9
 	end
 
+	-- New Custom Glow lib
+	E.db["general"]["customGlow"]["style"] = "Autocast Shine"
+
 	E:StaggeredUpdateAll()
 end
