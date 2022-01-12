@@ -49,6 +49,7 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["bonusObjectivePosition"] = "AUTO"
 	E.db["general"]["bottomPanel"] = false
 	E.db["general"]["customGlow"]["style"] = "Autocast Shine"
+	E.db["general"]["customGlow"]["useColor"] = true
 	E.db["general"]["durabilityScale"] = 1
 	E.db["general"]["enhancedPvpMessages"] = false
 	E.db["general"]["interruptAnnounce"] = "EMOTE"

@@ -37,6 +37,7 @@ function L1UI:UpdateLayout(layout)
 
 	-- New Custom Glow lib
 	E.db["general"]["customGlow"]["style"] = "Autocast Shine"
+	E.db["general"]["customGlow"]["useColor"] = true
 
 	E:StaggeredUpdateAll()
 end
