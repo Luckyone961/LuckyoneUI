@@ -31,6 +31,8 @@ function L1UI:UpdateLayout(layout)
 
 	-- NamePlate changes
 	if E.private.nameplates.enable then
+		E.db["nameplates"]["overlapH"] = 1
+		E.db["nameplates"]["overlapV"] = 1.7
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = -9
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = -9
 	end

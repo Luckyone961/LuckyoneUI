@@ -29,6 +29,8 @@ function L1UI:SetupNamePlates(addon)
 		E.db["nameplates"]["cooldown"]["hoursIndicator"]["r"] = 0.4
 		E.db["nameplates"]["cooldown"]["override"] = false
 		E.db["nameplates"]["lowHealthThreshold"] = 0.5
+		E.db["nameplates"]["overlapH"] = 1
+		E.db["nameplates"]["overlapV"] = 1.7
 		E.db["nameplates"]["plateSize"]["enemyHeight"] = 40
 		E.db["nameplates"]["plateSize"]["enemyWidth"] = 175
 		E.db["nameplates"]["plateSize"]["friendlyHeight"] = 40
