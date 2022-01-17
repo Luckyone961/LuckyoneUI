@@ -42,4 +42,6 @@ function L1UI:UpdateLayout(layout)
 	E.db["general"]["customGlow"]["useColor"] = true
 
 	E:StaggeredUpdateAll()
+
+	L1UI:Print('Successfully updated your current layout to LuckyoneUI version '..L1UI.Version)
 end
