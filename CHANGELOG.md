@@ -11,6 +11,7 @@ Target level will now use difficultycolor
 **Retail:**  
 ElvUI 12.59 or later required  
 Custom glow default set to autocast-shine  
+Minor skin tweaks for the Details profile  
 **TBC:**  
 ElvUI 2.32 or later required  
 Added pet debuffs setup to initial install & update  
