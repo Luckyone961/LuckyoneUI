@@ -106,7 +106,7 @@ function L1UI:RaidFrames(style)
 		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 1
 		E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid31,exists] hide;show"
 		E.db["unitframe"]["units"]["raid"]["width"] = 140
-	
+
 	elseif style == 'block' then
 
 		-- Mover & Growth

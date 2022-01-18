@@ -1,5 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
+local LuckyDT
 
 local print = print
 
@@ -148,13 +149,13 @@ function L1UI:SetupPrivate()
 	E.private.skins.parchmentRemoverEnable = true
 
 	if E.Retail then
-		E.private.install_complete = "12.53"
+		E.private.install_complete = "12.58"
 		E.private.general.totemBar = false
 	elseif E.TBC then
-		E.private.install_complete = "2.24"
+		E.private.install_complete = "2.31"
 		E.private.general.totemBar = true
 	elseif E.Classic then
-		E.private.install_complete = "1.50"
+		E.private.install_complete = "1.57"
 		E.private.general.totemBar = true
 	end
 end
@@ -170,27 +171,28 @@ function L1UI:SetupGlobal()
 
 	do -- Luckyone Custom DataText (below ActionBars)
 		E.DataTexts:BuildPanelFrame("Luckyone_ActionBars_DT")
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.backdrop = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.border = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.enable = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.enable = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.font = "Expressway"
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontOutline = "NONE"
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontSize = 11
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameLevel = 1
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameStrata = "LOW"
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.growth = "HORIZONTAL"
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.height = 13
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.mouseover = false
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.name = "Luckyone_ActionBars_DT"
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.numPoints = 3
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.panelTransparency = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.textJustify = "CENTER"
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipAnchor = "ANCHOR_TOP"
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipXOffset = 0
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipYOffset = 5
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.visibility = E.Retail and "[petbattle] hide;show" or "show"
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 358
+		LuckyDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
+		LuckyDT.backdrop = true
+		LuckyDT.border = true
+		LuckyDT.enable = true
+		LuckyDT.fonts.enable = true
+		LuckyDT.fonts.font = "Expressway"
+		LuckyDT.fonts.fontOutline = "NONE"
+		LuckyDT.fonts.fontSize = 11
+		LuckyDT.frameLevel = 1
+		LuckyDT.frameStrata = "LOW"
+		LuckyDT.growth = "HORIZONTAL"
+		LuckyDT.height = 13
+		LuckyDT.mouseover = false
+		LuckyDT.name = "Luckyone_ActionBars_DT"
+		LuckyDT.numPoints = 3
+		LuckyDT.panelTransparency = true
+		LuckyDT.textJustify = "CENTER"
+		LuckyDT.tooltipAnchor = "ANCHOR_TOP"
+		LuckyDT.tooltipXOffset = 0
+		LuckyDT.tooltipYOffset = 5
+		LuckyDT.visibility = E.Retail and "[petbattle] hide;show" or "show"
+		LuckyDT.width = 358
 	end
 end
 

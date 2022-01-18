@@ -48,41 +48,7 @@ function L1UI:Get_Details_Profile()
 			["minimum_overall_combat_time"] = 10,
 			["event_tracker"] = {
 				["enabled"] = false,
-				["font_color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["line_height"] = 16,
-				["line_color"] = {
-					0.1, -- [1]
-					0.1, -- [2]
-					0.1, -- [3]
-					0.3, -- [4]
-				},
-				["font_shadow"] = "NONE",
-				["font_size"] = 10,
-				["font_face"] = "Friz Quadrata TT",
-				["frame"] = {
-					["show_title"] = true,
-					["strata"] = "LOW",
-					["backdrop_color"] = {
-						0.16, -- [1]
-						0.16, -- [2]
-						0.16, -- [3]
-						0.47, -- [4]
-					},
-					["locked"] = false,
-					["height"] = 300,
-					["width"] = 250,
-				},
-				["line_texture"] = "Details Serenity",
-				["options_frame"] = {
-				},
 			},
-			["report_to_who"] = "",
-			["class_specs_coords"] = {},
 			["profile_save_pos"] = true,
 			["tooltip"] = {
 				["header_statusbar"] = {
@@ -108,7 +74,7 @@ function L1UI:Get_Details_Profile()
 				},
 				["tooltip_max_pets"] = 2,
 				["anchor_relative"] = "top",
-				["abbreviation"] = 2,
+				["abbreviation"] = 3,
 				["anchored_to"] = 1,
 				["show_amount"] = false,
 				["header_text_color"] = {
@@ -119,9 +85,9 @@ function L1UI:Get_Details_Profile()
 				},
 				["fontsize"] = 10,
 				["background"] = {
-					0.196, -- [1]
-					0.196, -- [2]
-					0.196, -- [3]
+					0.05882352941176471, -- [1]
+					0.05882352941176471, -- [2]
+					0.05882352941176471, -- [3]
 					0.8, -- [4]
 				},
 				["submenu_wallpaper"] = true,
@@ -132,10 +98,9 @@ function L1UI:Get_Details_Profile()
 					1, -- [3]
 					1, -- [4]
 				},
-				["commands"] = {
-				},
+				["commands"] = {},
 				["tooltip_max_abilities"] = 6,
-				["fontface"] = "Friz Quadrata TT",
+				["fontface"] = "Expressway",
 				["border_color"] = {
 					0, -- [1]
 					0, -- [2]
@@ -147,10 +112,10 @@ function L1UI:Get_Details_Profile()
 					0, -- [1]
 					0, -- [2]
 				},
-				["menus_bg_texture"] = "Interface\\SPELLBOOK\\Spellbook-Page-1",
 				["maximize_method"] = 1,
+				["fontshadow"] = true,
 				["border_size"] = 14,
-				["fontshadow"] = false,
+				["menus_bg_texture"] = "Interface\\SPELLBOOK\\Spellbook-Page-1",
 				["anchor_screen_pos"] = {
 					507.7, -- [1]
 					-350.5, -- [2]
@@ -180,7 +145,8 @@ function L1UI:Get_Details_Profile()
 			["update_speed"] = 0.05000000074505806,
 			["bookmark_text_size"] = 11,
 			["animation_speed_mintravel"] = 0.45,
-			["track_item_level"] = true,
+			["track_item_level"] = false,
+			["fade_speed"] = 0.15,
 			["windows_fade_in"] = {
 				"in", -- [1]
 				0.2, -- [2]
@@ -189,34 +155,6 @@ function L1UI:Get_Details_Profile()
 			["overall_clear_newchallenge"] = false,
 			["current_dps_meter"] = {
 				["enabled"] = false,
-				["font_color"] = {
-					1, -- [1]
-					1, -- [2]
-					1, -- [3]
-					1, -- [4]
-				},
-				["arena_enabled"] = true,
-				["font_shadow"] = "NONE",
-				["font_size"] = 18,
-				["mythic_dungeon_enabled"] = true,
-				["sample_size"] = 5,
-				["font_face"] = "Friz Quadrata TT",
-				["frame"] = {
-					["show_title"] = false,
-					["strata"] = "LOW",
-					["backdrop_color"] = {
-						0, -- [1]
-						0, -- [2]
-						0, -- [3]
-						0.2, -- [4]
-					},
-					["locked"] = false,
-					["height"] = 65,
-					["width"] = 220,
-				},
-				["update_interval"] = 0.3,
-				["options_frame"] = {
-				},
 			},
 			["data_cleanup_logout"] = false,
 			["instances_disable_bar_highlight"] = false,
@@ -227,25 +165,113 @@ function L1UI:Get_Details_Profile()
 			["disable_lock_ungroup_buttons"] = true,
 			["memory_ram"] = 64,
 			["disable_window_groups"] = false,
-			["instances_suppress_trash"] = 0,
 			["time_type_original"] = 2,
+			["instances_suppress_trash"] = 0,
+			["default_bg_alpha"] = 0.5,
 			["options_window"] = {
 				["scale"] = 1,
 			},
 			["animation_speed_maxtravel"] = 3,
-			["default_bg_alpha"] = 0.5,
 			["time_type"] = 2,
+			["death_tooltip_width"] = 350,
 			["font_faces"] = {
 				["menus"] = "Expressway",
 			},
-			["death_tooltip_width"] = 350,
 			["animate_scroll"] = false,
+			["instances_no_libwindow"] = false,
+			["class_icons_small"] = "Interface\\AddOns\\Details\\images\\classes_small",
+			["segments_amount"] = 40,
+			["report_lines"] = 5,
+			["pvp_as_group"] = true,
+			["force_activity_time_pvp"] = true,
+			["skin"] = "Dark Theme",
+			["override_spellids"] = true,
+			["numerical_system"] = 1,
+			["player_details_window"] = {
+				["scale"] = 1,
+				["skin"] = "ElvUI",
+				["bar_texture"] = "Skyline",
+			},
+			["overall_flag"] = 16,
+			["minimum_combat_time"] = 5,
+			["overall_clear_logout"] = false,
+			["font_sizes"] = {
+				["menus"] = 10,
+			},
+			["cloud_capture"] = true,
+			["damage_taken_everything"] = false,
+			["scroll_speed"] = 2,
+			["new_window_size"] = {
+				["height"] = 158,
+				["width"] = 310,
+			},
+			["chat_tab_embed"] = {
+				["enabled"] = false,
+				["y_offset"] = 0,
+				["x_offset"] = 0,
+				["tab_name"] = "",
+				["single_window"] = false,
+			},
+			["deadlog_events"] = 32,
+			["numerical_system_symbols"] = "auto",
+			["close_shields"] = false,
+			["windows_fade_out"] = {
+				"out", -- [1]
+				0.2, -- [2]
+			},
+			["disable_alldisplays_window"] = false,
+			["default_bg_color"] = 0.0941,
+			["hotcorner_topleft"] = {
+				["hide"] = false,
+			},
+			["trash_auto_remove"] = true,
+			["broadcaster_enabled"] = false,
+			["clear_graphic"] = true,
+			["animation_speed_triggertravel"] = 5,
+			["options_group_edit"] = true,
+			["segments_amount_to_save"] = 40,
+			["minimap"] = {
+				["onclick_what_todo"] = 1,
+				["radius"] = 160,
+				["hide"] = true,
+				["minimapPos"] = 220,
+				["text_format"] = 3,
+				["text_type"] = 1,
+			},
+			["instances_amount"] = 3,
+			["max_window_size"] = {
+				["height"] = 450,
+				["width"] = 480,
+			},
+			["segments_auto_erase"] = 2,
+			["only_pvp_frags"] = false,
+			["disable_stretch_button"] = true,
+			["total_abbreviation"] = 2,
+			["deny_score_messages"] = false,
+			["standard_skin"] = false,
+			["segments_panic_mode"] = false,
+			["window_clamp"] = {
+				-8, -- [1]
+				0, -- [2]
+				21, -- [3]
+				-14, -- [4]
+			},
+			["memory_threshold"] = 3,
+			["row_fade_out"] = {
+				"out", -- [1]
+				0.2, -- [2]
+			},
+			["overall_clear_newboss"] = false,
+			["use_scroll"] = false,
+			["use_battleground_server_parser"] = false,
+			["report_schema"] = 1,
+			["clear_ungrouped"] = true,
 			["instances"] = {
 				{
 					["__pos"] = {
 						["normal"] = {
 							["y"] = -461.4999465942383,
-							["x"] = 649.5015869140625,
+							["x"] = 649.5013427734375,
 							["w"] = 205.0004730224609,
 							["h"] = 155.0001068115234,
 						},
@@ -435,7 +461,7 @@ function L1UI:Get_Details_Profile()
 								},
 								["segmentType"] = 2,
 								["textFace"] = "Accidental Presidency",
-								["maxSectionIds"] = 17,
+								["maxSectionIds"] = 18,
 								["textAlign"] = 3,
 								["timeType"] = 1,
 								["textSize"] = 10,
@@ -450,7 +476,7 @@ function L1UI:Get_Details_Profile()
 								},
 								["segmentType"] = 2,
 								["textFace"] = "Accidental Presidency",
-								["maxSectionIds"] = 17,
+								["maxSectionIds"] = 18,
 								["textAlign"] = 1,
 								["timeType"] = 1,
 								["textSize"] = 10,
@@ -465,7 +491,7 @@ function L1UI:Get_Details_Profile()
 								},
 								["segmentType"] = 2,
 								["textFace"] = "Accidental Presidency",
-								["maxSectionIds"] = 17,
+								["maxSectionIds"] = 18,
 								["textAlign"] = 2,
 								["timeType"] = 1,
 								["textSize"] = 10,
@@ -480,7 +506,7 @@ function L1UI:Get_Details_Profile()
 						-27, -- [1]
 						1, -- [2]
 					},
-					["bg_alpha"] = 0,
+					["version"] = 3,
 					["fontstrings_text4_anchor"] = 0,
 					["__locked"] = true,
 					["menu_alpha"] = {
@@ -490,10 +516,7 @@ function L1UI:Get_Details_Profile()
 						["iconstoo"] = true,
 						["onenter"] = 1,
 					},
-					["auto_hide_menu"] = {
-						["left"] = false,
-						["right"] = false,
-					},
+					["switch_damager"] = false,
 					["row_show_animation"] = {
 						["anim"] = "Fade",
 						["options"] = {
@@ -535,7 +558,7 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							1, -- [4]
 						},
-						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Fonts\\Expressway.ttf",
 						["backdrop"] = {
 							["enabled"] = false,
 							["texture"] = "Details BarBorder 2",
@@ -547,6 +570,11 @@ function L1UI:Get_Details_Profile()
 							},
 							["size"] = 10,
 						},
+						["font_size"] = 11,
+						["textL_translit_text"] = false,
+						["texture_custom_file"] = "Interface\\",
+						["texture_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
+						["textR_bracket"] = "(",
 						["models"] = {
 							["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
 							["lower_model"] = "World\\EXPANSION02\\DOODADS\\Coldarra\\COLDARRALOCUS.m2",
@@ -555,12 +583,7 @@ function L1UI:Get_Details_Profile()
 							["lower_alpha"] = 0.1,
 							["upper_enabled"] = false,
 						},
-						["textL_translit_text"] = false,
-						["texture_custom_file"] = "Interface\\",
-						["texture_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
-						["textR_bracket"] = "(",
-						["font_size"] = 11,
-						["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small",
+						["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small_bw",
 						["icon_grayscale"] = false,
 						["textL_custom_text"] = "{data1}. {data3}{data2}",
 						["use_spec_icons"] = true,
@@ -577,11 +600,11 @@ function L1UI:Get_Details_Profile()
 						["textR_custom_text"] = "{data1} ({data2}, {data3}%)",
 						["texture"] = "Minimalist",
 						["start_after_icon"] = false,
-						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
-						["textL_class_colors"] = false,
-						["alpha"] = 1,
+						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["texture_background"] = "Minimalist",
+						["alpha"] = 1,
 						["textR_class_colors"] = false,
+						["textL_class_colors"] = false,
 						["textR_outline_small_color"] = {
 							0, -- [1]
 							0, -- [2]
@@ -609,7 +632,7 @@ function L1UI:Get_Details_Profile()
 					["show_statusbar"] = false,
 					["libwindow"] = {
 						["y"] = 0.9999418258666992,
-						["x"] = -207.998046875,
+						["x"] = -207.9984130859375,
 						["point"] = "BOTTOMRIGHT",
 						["scale"] = 1,
 					},
@@ -621,26 +644,29 @@ function L1UI:Get_Details_Profile()
 							0.07058823529411765, -- [3]
 						},
 					},
-					["backdrop_texture"] = "Details Ground",
+					["backdrop_texture"] = "None",
 					["bars_grow_direction"] = 1,
-					["switch_damager"] = false,
+					["auto_hide_menu"] = {
+						["left"] = false,
+						["right"] = false,
+					},
+					["bg_alpha"] = 0,
 					["switch_tank_in_combat"] = false,
-					["bars_inverted"] = false,
 					["switch_damager_in_combat"] = false,
-					["icon_desaturated"] = false,
+					["bars_inverted"] = false,
 					["bars_sort_direction"] = 1,
 					["auto_current"] = true,
+					["icon_desaturated"] = false,
 					["menu_anchor_down"] = {
 						16, -- [1]
 						-3, -- [2]
 					},
 					["clickthrough_rows"] = false,
-					["version"] = 3,
 					["hide_in_combat"] = false,
 					["posicao"] = {
 						["normal"] = {
 							["y"] = -461.4999465942383,
-							["x"] = 649.5015869140625,
+							["x"] = 649.5013427734375,
 							["w"] = 205.0004730224609,
 							["h"] = 155.0001068115234,
 						},
@@ -655,23 +681,6 @@ function L1UI:Get_Details_Profile()
 					["plugins_grow_direction"] = 1,
 					["wallpaper"] = {
 						["enabled"] = false,
-						["texture"] = "Interface\\AddOns\\Details\\images\\background",
-						["texcoord"] = {
-							0, -- [1]
-							1, -- [2]
-							0, -- [3]
-							0.7, -- [4]
-						},
-						["overlay"] = {
-							1, -- [1]
-							1, -- [2]
-							1, -- [3]
-							1, -- [4]
-						},
-						["anchor"] = "all",
-						["height"] = 114.042518615723,
-						["alpha"] = 0.5,
-						["width"] = 283.000183105469,
 					},
 					["total_bar"] = {
 						["enabled"] = false,
@@ -692,7 +701,7 @@ function L1UI:Get_Details_Profile()
 					["__pos"] = {
 						["normal"] = {
 							["y"] = -461.4999465942383,
-							["x"] = 854.5023193359375,
+							["x"] = 854.501953125,
 							["w"] = 205.0004730224609,
 							["h"] = 155.0001068115234,
 						},
@@ -755,7 +764,7 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							1, -- [4]
 						},
-						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Fonts\\Expressway.ttf",
 						["backdrop"] = {
 							["enabled"] = false,
 							["texture"] = "Details BarBorder 2",
@@ -767,6 +776,11 @@ function L1UI:Get_Details_Profile()
 							},
 							["size"] = 12,
 						},
+						["font_size"] = 11,
+						["textL_translit_text"] = false,
+						["texture_custom_file"] = "Interface\\",
+						["texture_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
+						["textR_bracket"] = "(",
 						["models"] = {
 							["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
 							["lower_model"] = "World\\EXPANSION02\\DOODADS\\Coldarra\\COLDARRALOCUS.m2",
@@ -775,12 +789,7 @@ function L1UI:Get_Details_Profile()
 							["lower_alpha"] = 0.1,
 							["upper_enabled"] = false,
 						},
-						["textL_translit_text"] = false,
-						["texture_custom_file"] = "Interface\\",
-						["texture_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
-						["textR_bracket"] = "(",
-						["font_size"] = 11,
-						["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small",
+						["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small_bw",
 						["icon_grayscale"] = false,
 						["textL_custom_text"] = "{data1}. {data3}{data2}",
 						["use_spec_icons"] = true,
@@ -797,11 +806,11 @@ function L1UI:Get_Details_Profile()
 						["textR_custom_text"] = "{data1} ({data2}, {data3}%)",
 						["texture"] = "Minimalist",
 						["start_after_icon"] = false,
-						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
-						["textL_class_colors"] = false,
-						["alpha"] = 1,
+						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["texture_background"] = "Minimalist",
+						["alpha"] = 1,
 						["textR_class_colors"] = false,
+						["textL_class_colors"] = false,
 						["textR_outline_small_color"] = {
 							0, -- [1]
 							0, -- [2]
@@ -1036,7 +1045,7 @@ function L1UI:Get_Details_Profile()
 					["show_statusbar"] = false,
 					["libwindow"] = {
 						["y"] = 0.9999418258666992,
-						["x"] = -2.99755859375,
+						["x"] = -2.998046875,
 						["point"] = "BOTTOMRIGHT",
 						["scale"] = 1,
 					},
@@ -1048,7 +1057,7 @@ function L1UI:Get_Details_Profile()
 							0.07058823529411765, -- [3]
 						},
 					},
-					["backdrop_texture"] = "Details Ground",
+					["backdrop_texture"] = "None",
 					["menu_anchor_down"] = {
 						16, -- [1]
 						-3, -- [2]
@@ -1089,7 +1098,7 @@ function L1UI:Get_Details_Profile()
 					["posicao"] = {
 						["normal"] = {
 							["y"] = -461.4999465942383,
-							["x"] = 854.5023193359375,
+							["x"] = 854.501953125,
 							["w"] = 205.0004730224609,
 							["h"] = 155.0001068115234,
 						},
@@ -1104,23 +1113,6 @@ function L1UI:Get_Details_Profile()
 					["ignore_mass_showhide"] = false,
 					["wallpaper"] = {
 						["enabled"] = false,
-						["texture"] = "Interface\\AddOns\\Details\\images\\background",
-						["texcoord"] = {
-							0, -- [1]
-							1, -- [2]
-							0, -- [3]
-							0.7, -- [4]
-						},
-						["overlay"] = {
-							1, -- [1]
-							1, -- [2]
-							1, -- [3]
-							1, -- [4]
-						},
-						["anchor"] = "all",
-						["height"] = 155.0001068115234,
-						["alpha"] = 0.5,
-						["width"] = 204.0004730224609,
 					},
 					["total_bar"] = {
 						["enabled"] = false,
@@ -1138,101 +1130,18 @@ function L1UI:Get_Details_Profile()
 					["menu_icons_size"] = 0.850000023841858,
 				}, -- [2]
 			},
-			["segments_amount"] = 40,
-			["report_lines"] = 5,
-			["class_icons_small"] = "Interface\\AddOns\\Details\\images\\classes_small",
-			["pvp_as_group"] = true,
-			["skin"] = "Dark Theme",
-			["override_spellids"] = true,
-			["force_activity_time_pvp"] = true,
-			["numerical_system"] = 1,
-			["player_details_window"] = {
-				["scale"] = 1,
-				["skin"] = "ElvUI",
-				["bar_texture"] = "Skyline",
-			},
-			["new_window_size"] = {
-				["height"] = 158,
-				["width"] = 310,
-			},
-			["overall_clear_logout"] = false,
-			["memory_threshold"] = 3,
-			["cloud_capture"] = true,
-			["damage_taken_everything"] = false,
-			["scroll_speed"] = 2,
-			["font_sizes"] = {
-				["menus"] = 10,
-			},
-			["chat_tab_embed"] = {
-				["enabled"] = false,
-				["y_offset"] = 0,
-				["x_offset"] = 0,
-				["tab_name"] = "",
-				["single_window"] = false,
-			},
-			["deadlog_events"] = 32,
-			["overall_flag"] = 16,
-			["close_shields"] = false,
-			["class_coords"] = {},
-			["numerical_system_symbols"] = "auto",
-			["disable_alldisplays_window"] = false,
-			["standard_skin"] = false,
-			["default_bg_color"] = 0.0941,
-			["total_abbreviation"] = 2,
-			["segments_amount_to_save"] = 40,
-			["clear_graphic"] = true,
-			["class_colors"] = {},
-			["animation_speed_triggertravel"] = 5,
-			["options_group_edit"] = true,
-			["broadcaster_enabled"] = false,
-			["minimap"] = {
-				["onclick_what_todo"] = 1,
-				["radius"] = 160,
-				["hide"] = true,
-				["minimapPos"] = 220,
-				["text_format"] = 3,
-				["text_type"] = 1,
-			},
-			["instances_amount"] = 3,
-			["max_window_size"] = {
-				["height"] = 450,
-				["width"] = 480,
-			},
-			["segments_auto_erase"] = 2,
-			["only_pvp_frags"] = false,
-			["disable_stretch_button"] = true,
-			["trash_auto_remove"] = true,
-			["hotcorner_topleft"] = {
-				["hide"] = false,
-			},
-			["deny_score_messages"] = false,
-			["segments_panic_mode"] = false,
-			["windows_fade_out"] = {
-				"out", -- [1]
-				0.2, -- [2]
-			},
-			["window_clamp"] = {
-				-8, -- [1]
-				0, -- [2]
-				21, -- [3]
-				-14, -- [4]
-			},
-			["row_fade_out"] = {
-				"out", -- [1]
-				0.2, -- [2]
-			},
-			["minimum_combat_time"] = 5,
-			["overall_clear_newboss"] = false,
-			["use_scroll"] = false,
-			["report_schema"] = 1,
-			["use_battleground_server_parser"] = false,
-			["clear_ungrouped"] = true,
 			["disable_reset_button"] = true,
 			["data_broker_text"] = "",
-			["instances_no_libwindow"] = false,
 			["instances_segments_locked"] = true,
-			["deadlog_limit"] = 16,
 			["overall_clear_newtorghast"] = true,
+			["deadlog_limit"] = 16,
+			["death_log_colors"] = {
+				["debuff"] = "purple",
+				["friendlyfire"] = "darkorange",
+				["heal"] = "green",
+				["cooldown"] = "yellow",
+				["damage"] = "red",
+			},
 		}
 
 		-- General db
@@ -1546,12 +1455,12 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							1, -- [4]
 						},
-						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Fonts\\Expressway.ttf",
 						["textL_custom_text"] = "{data1}. {data3}{data2}",
 						["font_size"] = 11,
 						["textL_translit_text"] = false,
 						["texture_custom_file"] = "Interface\\",
-						["texture_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["height"] = 17,
 						["models"] = {
 							["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
@@ -1593,7 +1502,7 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							0.150228589773178, -- [4]
 						},
-						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["textL_class_colors"] = false,
 						["textR_outline_small_color"] = {
 							0, -- [1]
@@ -1990,12 +1899,12 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							1, -- [4]
 						},
-						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Fonts\\Expressway.ttf",
 						["textL_custom_text"] = "{data1}. {data3}{data2}",
 						["font_size"] = 11,
 						["textL_translit_text"] = false,
 						["texture_custom_file"] = "Interface\\",
-						["texture_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["height"] = 17.16361999511719,
 						["models"] = {
 							["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
@@ -2037,7 +1946,7 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							0.150228589773178, -- [4]
 						},
-						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["textL_class_colors"] = false,
 						["textR_outline_small_color"] = {
 							0, -- [1]
@@ -3025,12 +2934,12 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							1, -- [4]
 						},
-						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Fonts\\Expressway.ttf",
 						["textL_custom_text"] = "{data1}. {data3}{data2}",
 						["font_size"] = 11,
 						["textL_translit_text"] = false,
 						["texture_custom_file"] = "Interface\\",
-						["texture_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["height"] = 17,
 						["models"] = {
 							["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
@@ -3072,7 +2981,7 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							0.150228589773178, -- [4]
 						},
-						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["textR_class_colors"] = false,
 						["textR_outline_small_color"] = {
 							0, -- [1]
@@ -3490,12 +3399,12 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							1, -- [4]
 						},
-						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
+						["font_face_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Fonts\\Expressway.ttf",
 						["textL_custom_text"] = "{data1}. {data3}{data2}",
 						["font_size"] = 11,
 						["textL_translit_text"] = false,
 						["texture_custom_file"] = "Interface\\",
-						["texture_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["height"] = 17.1636199951172,
 						["models"] = {
 							["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
@@ -3537,7 +3446,7 @@ function L1UI:Get_Details_Profile()
 							0, -- [3]
 							0.150228589773178, -- [4]
 						},
-						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Media\\Textures\\Minimalist",
+						["texture_background_file"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Minimalist",
 						["textR_class_colors"] = false,
 						["textR_outline_small_color"] = {
 							0, -- [1]

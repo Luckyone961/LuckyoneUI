@@ -1,3 +1,23 @@
+### Version 1.40 [18-01-2022]
+**All WoW Versions:**  
+Fixed Details font, font size and font outline  
+Initial setup for new ElvUI LootRoll options  
+Minor pixel perfect edit for NamePlate debuff offset  
+Removed Druid valuecolor from initial install  
+**Classic:**  
+ElvUI 1.58 or later required  
+Added pet debuffs setup to initial install & update  
+Target level will now use difficultycolor  
+**Retail:**  
+ElvUI 12.59 or later required  
+Custom glow default set to autocast-shine  
+Minor skin tweaks for the Details profile  
+**TBC:**  
+ElvUI 2.32 or later required  
+Added pet debuffs setup to initial install & update  
+Focus level will now use difficultycolor  
+Target level will now use difficultycolor  
+___
 ### Version 1.39 [14-11-2021]
 **All WoW Versions:**  
 Added DBM healing profile to the installer  

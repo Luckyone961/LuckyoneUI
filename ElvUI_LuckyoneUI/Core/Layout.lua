@@ -7,9 +7,9 @@ function L1UI:SetupLayout(layout)
 
 	-- Create the profiles and set the name
 	if layout == 'dps' then
-		E.data:SetProfile('Luckyone DPS/TANK v1.39')
+		E.data:SetProfile('Luckyone DPS/TANK v'..L1UI.Version)
 	elseif layout == 'healer' then
-		E.data:SetProfile('Luckyone Healing v1.39')
+		E.data:SetProfile('Luckyone Healing v'..L1UI.Version)
 	end
 
 	-- ElvUI scale and CVar setup
@@ -48,12 +48,19 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["backdropfadecolor"]["r"] = 0.058823529411765
 	E.db["general"]["bonusObjectivePosition"] = "AUTO"
 	E.db["general"]["bottomPanel"] = false
+	E.db["general"]["customGlow"]["style"] = "Autocast Shine"
+	E.db["general"]["customGlow"]["useColor"] = true
 	E.db["general"]["durabilityScale"] = 1
 	E.db["general"]["enhancedPvpMessages"] = false
 	E.db["general"]["interruptAnnounce"] = "EMOTE"
 	E.db["general"]["itemLevel"]["itemLevelFont"] = "Expressway"
 	E.db["general"]["itemLevel"]["itemLevelFontSize"] = 11
 	E.db["general"]["loginmessage"] = false
+	E.db["general"]["lootRoll"]["buttonSize"] = 22
+	E.db["general"]["lootRoll"]["spacing"] = 3
+	E.db["general"]["lootRoll"]["statusBarTexture"] = "Minimalist"
+	E.db["general"]["lootRoll"]["style"] = "fullbar"
+	E.db["general"]["lootRoll"]["width"] = 340
 	E.db["general"]["minimap"]["icons"]["difficulty"]["position"] = "TOPRIGHT"
 	E.db["general"]["minimap"]["icons"]["difficulty"]["scale"] = 0.9
 	E.db["general"]["minimap"]["icons"]["lfgEye"]["position"] = "BOTTOMLEFT"
@@ -71,9 +78,6 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["talkingHeadFrameBackdrop"] = true
 	E.db["general"]["talkingHeadFrameScale"] = 0.72
 	E.db["general"]["totems"]["enable"] = false
-	E.db["general"]["valuecolor"]["b"] = 0.039215601980686
-	E.db["general"]["valuecolor"]["g"] = 0.48627343773842
-	E.db["general"]["valuecolor"]["r"] = 0.99999779462814
 	E.db["general"]["vehicleSeatIndicatorSize"] = 64
 
 	-- ActionBars
@@ -130,7 +134,7 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["bar4"]["countFont"] = "Expressway"
 	E.db["actionbar"]["bar4"]["countFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["bar4"]["countTextPosition"] = "BOTTOM"
-	E.db["actionbar"]["bar4"]["enabled"] = E.Retail and false or true
+	E.db["actionbar"]["bar4"]["enabled"] = not E.Retail
 	E.db["actionbar"]["bar4"]["hotkeyFont"] = "Expressway"
 	E.db["actionbar"]["bar4"]["hotkeyFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["bar4"]["hotkeyTextPosition"] = "TOPLEFT"
@@ -140,7 +144,7 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["bar4"]["macrotext"] = true
 	E.db["actionbar"]["bar4"]["macroTextPosition"] = "BOTTOM"
 	E.db["actionbar"]["bar4"]["macroTextYOffset"] = 1
-	E.db["actionbar"]["bar4"]["mouseover"] = E.Retail and false or true
+	E.db["actionbar"]["bar4"]["mouseover"] = not E.Retail
 	E.db["actionbar"]["bar4"]["point"] = "BOTTOMLEFT"
 	E.db["actionbar"]["bar5"]["alpha"] = 1
 	E.db["actionbar"]["bar5"]["buttons"] = 12
@@ -167,7 +171,7 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["bar6"]["countFont"] = "Expressway"
 	E.db["actionbar"]["bar6"]["countFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["bar6"]["countTextPosition"] = "BOTTOM"
-	E.db["actionbar"]["bar6"]["enabled"] = E.Retail and false or true
+	E.db["actionbar"]["bar6"]["enabled"] = not E.Retail
 	E.db["actionbar"]["bar6"]["hotkeyFont"] = "Expressway"
 	E.db["actionbar"]["bar6"]["hotkeyFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["bar6"]["hotkeyTextPosition"] = "TOPLEFT"
@@ -177,7 +181,7 @@ function L1UI:SetupLayout(layout)
 	E.db["actionbar"]["bar6"]["macrotext"] = true
 	E.db["actionbar"]["bar6"]["macroTextPosition"] = "BOTTOM"
 	E.db["actionbar"]["bar6"]["macroTextYOffset"] = 1
-	E.db["actionbar"]["bar6"]["mouseover"] = E.Retail and false or true
+	E.db["actionbar"]["bar6"]["mouseover"] = not E.Retail
 	E.db["actionbar"]["bar7"]["alpha"] = 1
 	E.db["actionbar"]["bar7"]["buttonSize"] = 28
 	E.db["actionbar"]["bar7"]["countFont"] = "Expressway"
@@ -524,7 +528,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "RIGHT",
 		["size"] = 12,
-		["text_format"] = E.Retail and "[classcolor][level]" or "[classcolor][level][classificationcolor][ >shortclassification]",
+		["text_format"] = E.Retail and "[classcolor][level]" or "[difficultycolor][level][classificationcolor][ >shortclassification]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -696,7 +700,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "RIGHT",
 		["size"] = 12,
-		["text_format"] = E.Retail and "[classcolor][level]" or "[classcolor][level][classificationcolor][ >shortclassification]",
+		["text_format"] = E.Retail and "[classcolor][level]" or "[difficultycolor][level][classificationcolor][ >shortclassification]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -1125,6 +1129,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["buffIndicator"]["enable"] = false
 
 		if not E.Retail then
+			-- Pet Buffs
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontSize"] = 11
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countYOffset"] = 1
@@ -1136,6 +1141,17 @@ function L1UI:SetupLayout(layout)
 			E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 20
 			E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
 			E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = -2
+			-- Pet Debuffs
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOPLEFT"
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["growthX"] = "RIGHT"
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["maxDuration"] = 0
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["numrows"] = 2
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["perrow"] = 4
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 20
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["spacing"] = 0
 		end
 
 		E.db["unitframe"]["units"]["pet"]["castbar"]["enable"] = false
@@ -1177,7 +1193,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["g"] = 1
 		E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["r"] = 1
 		E.db["unitframe"]["units"]["player"]["castbar"]["timeToHold"] = 2
-		E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 358
+		E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 359
 		E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetText"] = 2
 		E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetTime"] = -2
 		E.db["unitframe"]["units"]["player"]["classbar"]["enable"] = false
@@ -1763,6 +1779,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["buffIndicator"]["enable"] = false
 
 		if not E.Retail then
+			-- Pet Buffs
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontSize"] = 11
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countYOffset"] = 1
@@ -1774,6 +1791,17 @@ function L1UI:SetupLayout(layout)
 			E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 20
 			E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
 			E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = -2
+			-- Pet Debuffs
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOPLEFT"
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["growthX"] = "RIGHT"
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["maxDuration"] = 0
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["numrows"] = 2
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["perrow"] = 4
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 20
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["spacing"] = 0
 		end
 
 		E.db["unitframe"]["units"]["pet"]["castbar"]["enable"] = false
@@ -1815,7 +1843,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["g"] = 1
 		E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["r"] = 1
 		E.db["unitframe"]["units"]["player"]["castbar"]["timeToHold"] = 2
-		E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 358
+		E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 359
 		E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetText"] = 2
 		E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetTime"] = -2
 		E.db["unitframe"]["units"]["player"]["classbar"]["enable"] = false
