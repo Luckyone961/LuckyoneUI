@@ -1,4 +1,4 @@
-### Version 1.40 [In Development]
+### Version 1.40 [18-01-2022]
 **All WoW Versions:**  
 Fixed Details font, font size and font outline  
 Initial setup for new ElvUI LootRoll options  
