@@ -1,3 +1,5 @@
+### Version 1.41 [In Development]
+___
 ### Version 1.40 [18-01-2022]
 **All WoW Versions:**  
 Fixed Details font, font size and font outline  
