@@ -1,7 +1,13 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local next, pairs, strlower = next, pairs, strlower
+
 local _G = _G
+local DisableAddOn, EnableAddOn = DisableAddOn, EnableAddOn
+local GetAddOnInfo, GetNumAddOns = GetAddOnInfo, GetNumAddOns
 local LoadAddOn = LoadAddOn
+local ReloadUI = ReloadUI
+local SetCVar = SetCVar
 
 -- Weekly Rewards Frame chat commands
 function L1UI:WeeklyRewards()
@@ -16,13 +22,13 @@ function L1UI:WeeklyRewards()
 end
 
 -- LuckyoneUI chat commands
-function L1UI:Toggles(message)
+function L1UI:Toggles(msg)
 
-	if message == 'install' then
+	if msg == 'install' then
 
 		E.PluginInstaller:Queue(L1UI.InstallerData)
 
-	elseif message == 'config' then
+	elseif msg == 'config' then
 
 		E:ToggleOptionsUI()
 		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
@@ -49,10 +55,6 @@ function L1UI:DebugMode(msg)
 			SetCVar('scriptProfile', 0)
 			SetCVar('scriptErrors', 0)
 			L1UI:Print('Lua errors off.')
-
-			if E:IsAddOnEnabled('ElvUI_CPU') then
-				DisableAddOn('ElvUI_CPU')
-			end
 		end
 
 		if next(L1UI.DisabledAddOns) then
