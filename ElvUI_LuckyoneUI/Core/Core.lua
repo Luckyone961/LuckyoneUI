@@ -33,13 +33,7 @@ E.PopupDialogs.L1UI_VC = {
 
 -- Version check
 function L1UI:VersionCheck()
-	if E.Retail and E.version < 12.63 then
-		E:StaticPopup_Show('L1UI_VC')
-		L1UI:Print('|cffbf0008Your ElvUI is outdated - please update and reload.|r')
-	elseif E.TBC and E.version < 2.35 then
-		E:StaticPopup_Show('L1UI_VC')
-		L1UI:Print('|cffbf0008Your ElvUI is outdated - please update and reload.|r')
-	elseif E.Classic and E.version < 1.61 then
+	if E.version < (E.Retail and 12.63 or E.TBC and 2.35 or E.Classic and 1.61) then
 		E:StaticPopup_Show('L1UI_VC')
 		L1UI:Print('|cffbf0008Your ElvUI is outdated - please update and reload.|r')
 	end
