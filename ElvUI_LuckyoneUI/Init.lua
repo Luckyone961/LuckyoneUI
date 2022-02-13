@@ -5,7 +5,6 @@ local addon, Engine = ...
 local _G = _G
 local GetAddOnMetadata = GetAddOnMetadata
 
--- Ace
 local L1UI = E:NewModule(addon, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0');
 
 Engine[1] = L1UI -- LuckyoneUI
@@ -22,7 +21,6 @@ L1UI.CreditsList = {}
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
--- Load the following on login
 function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 
 	if initLogin or not ElvDB.LuckyoneDisabledAddOns then
@@ -37,7 +35,6 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	L1UI:LoadCommands()
 end
 
--- Init
 function L1UI:Initialize()
 	if E.private.install_complete and E.private.L1UI.install_version == nil then
 		E.PluginInstaller:Queue(L1UI.InstallerData)
@@ -47,7 +44,6 @@ function L1UI:Initialize()
 	L1UI:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
 
--- Callback
 local function CallbackInitialize()
 	L1UI:Initialize()
 end

@@ -36,12 +36,14 @@ function L1UI:Toggles(msg)
 	end
 end
 
--- Debug mode from ElvUI\Core\General\Commands
+-- LuckyoneUI debug mode
+-- Disables all AddOns except ElvUI, ElvUI OptionsUI and ElvUI LuckyoneUI
+-- ref: ElvUI\Core\General\Commands
 function L1UI:DebugMode(msg)
 
 	local switch = strlower(msg)
 
-	if switch == 'on' or switch == '1' then
+	if switch == 'on' then
 
 		for i = 1, GetNumAddOns() do
 			local name = GetAddOnInfo(i)
@@ -54,9 +56,8 @@ function L1UI:DebugMode(msg)
 		SetCVar('scriptErrors', 1)
 		ReloadUI()
 
-	elseif switch == 'off' or switch == '0' then
+	elseif switch == 'off' then
 
-		SetCVar('scriptProfile', 0)
 		SetCVar('scriptErrors', 0)
 
 		if next(ElvDB.LuckyoneDisabledAddOns) then
@@ -74,7 +75,7 @@ function L1UI:DebugMode(msg)
 end
 
 -- RegisterChatCommand requires AceConsole-3.0
--- Left slash command Right function or funcref
+-- Left slash command right function or funcref
 function L1UI:LoadCommands()
 
 	self:RegisterChatCommand('luckyoneui', 'Toggles')
