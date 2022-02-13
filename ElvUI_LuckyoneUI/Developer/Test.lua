@@ -1,5 +1,5 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
-local M = E:GetModule('Misc')
+--local L1UI, E, L, V, P, G = unpack(select(2, ...))
+--local M = E:GetModule('Misc')
 
 --[[function GetLootRollTimeLeft(rollid)
 	return 20
