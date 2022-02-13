@@ -8,12 +8,12 @@ local IsAddOnLoaded = IsAddOnLoaded
 local ReloadUI = ReloadUI
 local SetCVar = SetCVar
 
--- LuckyoneUI chat print
+-- Chat print
 function L1UI:Print(msg)
 	print(L1UI.Name..': '..msg)
 end
 
--- LuckyoneUI reload popup
+-- Reload popup
 E.PopupDialogs.L1UI_RL = {
 	text = "Reload required - continue?",
 	button1 = ACCEPT,
@@ -22,6 +22,28 @@ E.PopupDialogs.L1UI_RL = {
 	whileDead = 1,
 	hideOnEscape = false,
 }
+
+-- Version check popup
+E.PopupDialogs.L1UI_VC = {
+	text = "Your ElvUI is outdated - please update and reload.",
+	button1 = OKAY,
+	whileDead = 1,
+	hideOnEscape = false,
+}
+
+-- Version check
+function L1UI:VersionCheck()
+	if E.Retail and E.version < 12.63 then
+		E:StaticPopup_Show('L1UI_VC')
+		L1UI:Print('|cffbf0008Your ElvUI is outdated - please update and reload.|r')
+	elseif E.TBC and E.version < 2.35 then
+		E:StaticPopup_Show('L1UI_VC')
+		L1UI:Print('|cffbf0008Your ElvUI is outdated - please update and reload.|r')
+	elseif E.Classic and E.version < 1.61 then
+		E:StaticPopup_Show('L1UI_VC')
+		L1UI:Print('|cffbf0008Your ElvUI is outdated - please update and reload.|r')
+	end
+end
 
 -- Load AddOnSkins Profile
 function L1UI:Setup_AddOnSkins()

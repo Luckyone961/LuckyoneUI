@@ -26,6 +26,7 @@ L1UI.Version = GetAddOnMetadata(addon, 'Version')
 function L1UI:PLAYER_ENTERING_WORLD()
 	L1UI:DisabledFrames()
 	L1UI:LoadCommands()
+	L1UI:VersionCheck()
 end
 
 -- Init
