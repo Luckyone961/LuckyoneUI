@@ -23,7 +23,13 @@ L1UI.Name = '|cff4beb2cLuckyoneUI|r'
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 -- Load the following on login
-function L1UI:PLAYER_ENTERING_WORLD()
+function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
+
+	-- Luckydebug
+	if initLogin or not L1UI.DisabledAddOns then
+		L1UI.DisabledAddOns = {}
+	end
+
 	L1UI:DisabledFrames()
 	L1UI:LoadCommands()
 	L1UI:VersionCheck()
