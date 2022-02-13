@@ -15,7 +15,7 @@ end
 
 -- Reload popup
 E.PopupDialogs.L1UI_RL = {
-	text = "Reload required - continue?",
+	text = 'Reload required - continue?',
 	button1 = ACCEPT,
 	button2 = CANCEL,
 	OnAccept = ReloadUI,
@@ -25,7 +25,7 @@ E.PopupDialogs.L1UI_RL = {
 
 -- Version check popup
 E.PopupDialogs.L1UI_VC = {
-	text = "Your ElvUI is outdated - please update and reload.",
+	text = '|cffbf0008Your ElvUI is outdated - please update and reload.|r',
 	button1 = OKAY,
 	whileDead = 1,
 	hideOnEscape = false,
