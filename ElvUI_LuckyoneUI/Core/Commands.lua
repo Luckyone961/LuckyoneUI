@@ -1,6 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local next, pairs, strlower = next, pairs, strlower
+local next, pairs, strlower, wipe = next, pairs, strlower, wipe
 
 local _G = _G
 local DisableAddOn, EnableAddOn = DisableAddOn, EnableAddOn
@@ -38,33 +38,36 @@ end
 
 -- Debug mode from ElvUI\Core\General\Commands
 function L1UI:DebugMode(msg)
+
 	local switch = strlower(msg)
+
 	if switch == 'on' or switch == '1' then
+
 		for i = 1, GetNumAddOns() do
 			local name = GetAddOnInfo(i)
 			if name ~= 'ElvUI' and name ~= 'ElvUI_OptionsUI' and name ~= 'ElvUI_LuckyoneUI' and E:IsAddOnEnabled(name) then
 				DisableAddOn(name, E.myname)
-				L1UI.DisabledAddOns[name] = i
+				ElvDB.LuckyoneDisabledAddOns[name] = i
 			end
 		end
 
 		SetCVar('scriptErrors', 1)
 		ReloadUI()
-	elseif switch == 'off' or switch == '0' then
-		if switch == 'off' then
-			SetCVar('scriptProfile', 0)
-			SetCVar('scriptErrors', 0)
-			L1UI:Print('Lua errors off.')
-		end
 
-		if next(L1UI.DisabledAddOns) then
-			for name in pairs(L1UI.DisabledAddOns) do
+	elseif switch == 'off' or switch == '0' then
+
+		SetCVar('scriptProfile', 0)
+		SetCVar('scriptErrors', 0)
+
+		if next(ElvDB.LuckyoneDisabledAddOns) then
+			for name in pairs(ElvDB.LuckyoneDisabledAddOns) do
 				EnableAddOn(name, E.myname)
 			end
 
-			wipe(L1UI.DisabledAddOns)
+			wipe(ElvDB.LuckyoneDisabledAddOns)
 			ReloadUI()
 		end
+
 	else
 		L1UI:Print('/luckydebug on - /luckydebug off')
 	end

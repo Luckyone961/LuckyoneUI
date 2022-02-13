@@ -26,8 +26,8 @@ L1UI.Version = GetAddOnMetadata(addon, 'Version')
 function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 
 	-- Luckydebug
-	if initLogin or not L1UI.DisabledAddOns then
-		L1UI.DisabledAddOns = {}
+	if initLogin or not ElvDB.LuckyoneDisabledAddOns then
+		ElvDB.LuckyoneDisabledAddOns = {}
 	end
 
 	L1UI:DisabledFrames()
