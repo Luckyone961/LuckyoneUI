@@ -9,6 +9,12 @@ function L1UI:UpdateLayout(layout)
 		-- Healing db
 	end
 
+	-- Tooltip db changes
+	if E.Retail then
+		E.db["tooltip"]["inspectDataEnable"] = false
+		E.db["tooltip"]["role"] = false
+	end
+
 	E:StaggeredUpdateAll()
 
 	L1UI:Print('Successfully updated your current layout to LuckyoneUI version '..L1UI.Version)

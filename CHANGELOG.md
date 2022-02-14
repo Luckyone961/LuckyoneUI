@@ -1,4 +1,17 @@
 ### Version 1.41 [In Development]
+**All WoW Versions:**  
+Added new chat commands to debug issues in LuckyoneUI  
+• /luckydebug on & /luckydebug off  
+Added versioncheck popup and chat print if ElvUI is outdated  
+• My plugin will always require the most recent ElvUI build  
+**Classic:**  
+ElvUI 1.61 or later required  
+Updated TOC for 1.14.2  
+**Retail:**  
+ElvUI 12.63 or later required  
+Minor tooltip updates for better performance in combat  
+**TBC:**  
+ElvUI 2.35 or later required  
 ___
 ### Version 1.40 [18-01-2022]
 **All WoW Versions:**  
