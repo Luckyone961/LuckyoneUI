@@ -428,6 +428,7 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["healthBar"]["fontSize"] = 11
 	E.db["tooltip"]["healthBar"]["height"] = 4
 	E.db["tooltip"]["healthBar"]["statusPosition"] = "TOP"
+	E.db["tooltip"]["inspectDataEnable"] = false
 	E.db["tooltip"]["itemCount"] = "NONE"
 	E.db["tooltip"]["itemQuality"] = true
 	E.db["tooltip"]["mythicDataEnable"] = false
