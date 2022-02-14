@@ -432,6 +432,7 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["itemCount"] = "NONE"
 	E.db["tooltip"]["itemQuality"] = true
 	E.db["tooltip"]["mythicDataEnable"] = false
+	E.db["tooltip"]["role"] = false
 	E.db["tooltip"]["showElvUIUsers"] = true
 	E.db["tooltip"]["showMount"] = false
 	E.db["tooltip"]["smallTextFontSize"] = 11
