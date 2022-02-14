@@ -419,8 +419,6 @@ function L1UI:SetupLayout(layout)
 	-- Tooltip
 	E.db["tooltip"]["alwaysShowRealm"] = true
 	E.db["tooltip"]["colorAlpha"] = 0.75
-	E.db["tooltip"]["dungeonScore"] = false
-	E.db["tooltip"]["dungeonScoreColor"] = false
 	E.db["tooltip"]["font"] = "Expressway"
 	E.db["tooltip"]["fontOutline"] = "OUTLINE"
 	E.db["tooltip"]["headerFontSize"] = 11
@@ -428,15 +426,18 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["healthBar"]["fontSize"] = 11
 	E.db["tooltip"]["healthBar"]["height"] = 4
 	E.db["tooltip"]["healthBar"]["statusPosition"] = "TOP"
-	E.db["tooltip"]["inspectDataEnable"] = false
 	E.db["tooltip"]["itemCount"] = "NONE"
 	E.db["tooltip"]["itemQuality"] = true
-	E.db["tooltip"]["mythicDataEnable"] = false
-	E.db["tooltip"]["role"] = false
 	E.db["tooltip"]["showElvUIUsers"] = true
 	E.db["tooltip"]["showMount"] = false
 	E.db["tooltip"]["smallTextFontSize"] = 11
 	E.db["tooltip"]["textFontSize"] = 11
+
+	if E.Retail then
+		E.db["tooltip"]["inspectDataEnable"] = false
+		E.db["tooltip"]["mythicDataEnable"] = false
+		E.db["tooltip"]["role"] = false
+	end
 
 	-- Custom Text: Arena
 	E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
