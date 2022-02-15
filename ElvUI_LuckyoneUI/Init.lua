@@ -58,10 +58,7 @@ function L1UI:Initialize()
 		E.PluginInstaller:Queue(L1UI.InstallerData)
 	end
 
-	-- Disable Shadow & Light alpha chat print
-	if toons[name] then
-		ElvDB.ShadowLightAlpha = false
-	end
+	if toons[name] then ElvDB.ShadowLightAlpha = false end
 
 	EP:RegisterPlugin(addon, L1UI.GetOptions)
 	L1UI:RegisterEvent('PLAYER_ENTERING_WORLD')
