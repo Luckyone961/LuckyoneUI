@@ -1,5 +1,7 @@
 ### Version 1.41 [In Development]
 **All WoW Versions:**  
+Added full support for localization in LuckyoneUI  
+• Feel free to translate on GitHub and message me on Discord  
 Added new chat commands to debug issues in LuckyoneUI  
 • /luckydebug on & /luckydebug off  
 Added versioncheck popup and chat print if ElvUI is outdated  
