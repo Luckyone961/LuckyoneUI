@@ -108,5 +108,5 @@ function L1UI:SetupChat()
 	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'WHISPER')
 	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'BN_WHISPER')
 
-	L1UI:Print('Chat setup successful.')
+	L1UI:Print(L["Chat setup successful."])
 end

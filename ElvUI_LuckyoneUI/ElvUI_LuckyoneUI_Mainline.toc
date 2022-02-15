@@ -7,6 +7,8 @@
 ## DefaultState: enabled
 
 Init.lua
+
+Locales\load_locales.xml
 Core\load_core.xml
 Media\load_media.xml
 Modules\load_modules.xml

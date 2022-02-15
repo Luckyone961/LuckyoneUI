@@ -2045,5 +2045,5 @@ function L1UI:SetupLayout(layout)
 
 	E:StaggeredUpdateAll()
 
-	L1UI:Print('Layout has been set.')
+	L1UI:Print(L["Layout has been set."])
 end
