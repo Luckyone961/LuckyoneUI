@@ -1,5 +1,15 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+-- TODO-1
+--[[
+	local _G = _G
+	local _detalhes = _G._detalhes
+	_detalhes:ApplyProfile(profile_name, nosave, is_copy)
+	_detalhes:EraseProfile(profile_name)
+	_detalhes:GetCurrentProfileName() -- return: _detalhes_database.active_profile
+	_detalhes:ImportProfile(profileString, newProfileName)
+]]
+
 -- Details Profile
 function L1UI:Get_Details_Profile()
 
