@@ -6,7 +6,7 @@ local _detalhes = _G._detalhes
 -- Details Profile
 function L1UI:Get_Details_Profile()
 
-	-- Wipe SV Cache
+	-- Wipe *spell_pool, npcid_pool, encounter_spell_pool, spell_school_cache
 	L1UI:Cleanup_Cache('details')
 
 	-- Profile name
@@ -29,6 +29,6 @@ function L1UI:Get_Details_Profile()
 	if _detalhes:GetCurrentProfileName() ~= name then _detalhes:ApplyProfile(name) end
 
 	-- Load on all characters
-	_detalhes["always_use_profile"] = true
-	_detalhes["always_use_profile_name"] = name
+	_detalhes.always_use_profile = true
+	_detalhes.always_use_profile_name = name
 end
