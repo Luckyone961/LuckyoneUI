@@ -14,6 +14,7 @@ Updated TOC for 1.14.2
 **Retail:**  
 ElvUI 12.63 or later required  
 Minor tooltip updates for better performance in combat  
+Updated OmniCD profile  
 Updated TOC for 9.2.0  
 **TBC:**  
 ElvUI 2.35 or later required  
