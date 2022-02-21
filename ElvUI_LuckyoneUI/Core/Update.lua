@@ -15,6 +15,11 @@ function L1UI:UpdateLayout(layout)
 		E.db["tooltip"]["role"] = false
 	end
 
+	-- Backdrop alpha changes
+	E.db["chat"]["panelColor"]["a"] = 0.80
+	E.db["general"]["backdropfadecolor"]["a"] = 0.80
+	E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.80
+
 	E:StaggeredUpdateAll()
 
 	L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "]..L1UI.Version)

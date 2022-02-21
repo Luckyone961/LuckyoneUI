@@ -42,7 +42,7 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["backdropcolor"]["b"] = 0.10196078431373
 	E.db["general"]["backdropcolor"]["g"] = 0.10196078431373
 	E.db["general"]["backdropcolor"]["r"] = 0.10196078431373
-	E.db["general"]["backdropfadecolor"]["a"] = 0.75
+	E.db["general"]["backdropfadecolor"]["a"] = 0.80
 	E.db["general"]["backdropfadecolor"]["b"] = 0.058823529411765
 	E.db["general"]["backdropfadecolor"]["g"] = 0.058823529411765
 	E.db["general"]["backdropfadecolor"]["r"] = 0.058823529411765
@@ -348,7 +348,7 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["lfgIcons"] = false
 	E.db["chat"]["maxLines"] = 200
 	E.db["chat"]["numScrollMessages"] = 2
-	E.db["chat"]["panelColor"]["a"] = 0.7531320899725
+	E.db["chat"]["panelColor"]["a"] = 0.80
 	E.db["chat"]["panelColor"]["b"] = 0.058823529411765
 	E.db["chat"]["panelColor"]["g"] = 0.058823529411765
 	E.db["chat"]["panelColor"]["r"] = 0.058823529411765
@@ -850,7 +850,7 @@ function L1UI:SetupLayout(layout)
 		end
 
 		-- UnitFrames DPS/TANK
-		E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.75
+		E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.80
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["b"] = 0.058823529411765
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["g"] = 0.058823529411765
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["r"] = 0.058823529411765
@@ -1506,7 +1506,7 @@ function L1UI:SetupLayout(layout)
 		end
 
 		-- UnitFrames Healing
-		E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.75
+		E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.80
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["b"] = 0.058823529411765
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["g"] = 0.058823529411765
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["r"] = 0.058823529411765
