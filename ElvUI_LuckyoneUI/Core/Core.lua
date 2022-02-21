@@ -194,7 +194,7 @@ function L1UI:SetupGlobal()
 		LuckyDT.enable = true
 		LuckyDT.fonts.enable = true
 		LuckyDT.fonts.font = "Expressway"
-		LuckyDT.fonts.fontOutline = "NONE"
+		LuckyDT.fonts.fontOutline = "OUTLINE"
 		LuckyDT.fonts.fontSize = 11
 		LuckyDT.frameLevel = 1
 		LuckyDT.frameStrata = "LOW"
