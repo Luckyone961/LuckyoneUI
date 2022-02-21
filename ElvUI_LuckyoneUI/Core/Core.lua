@@ -197,7 +197,7 @@ function L1UI:SetupGlobal()
 		LuckyDT.fonts.fontOutline = "OUTLINE"
 		LuckyDT.fonts.fontSize = 11
 		LuckyDT.frameLevel = 1
-		LuckyDT.frameStrata = "LOW"
+		LuckyDT.frameStrata = "BACKGROUND"
 		LuckyDT.growth = "HORIZONTAL"
 		LuckyDT.height = 13
 		LuckyDT.mouseover = false
