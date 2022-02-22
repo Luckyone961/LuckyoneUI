@@ -35,7 +35,7 @@ function L1UI:SetupTheme(theme)
 
 	E:StaggeredUpdateAll()
 
-	L1UI:Print('Theme has been set.')
+	L1UI:Print(L["Theme has been set."])
 end
 
 -- RaidFrame layouts
@@ -171,4 +171,6 @@ function L1UI:RaidFrames(style)
 	end
 
 	E:StaggeredUpdateAll()
+
+	L1UI:Print(L["Theme has been set."])
 end

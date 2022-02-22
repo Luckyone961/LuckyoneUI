@@ -1,12 +1,14 @@
-## Interface: 11401
+## Interface: 11402
 ## Author: Luckyone
-## Version: 1.40
+## Version: 1.41
 ## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cffFF7E40Classic|r
 ## Notes: Luckyone's ElvUI Edit
 ## RequiredDeps: ElvUI
 ## DefaultState: enabled
 
 Init.lua
+
+Locales\load_locales.xml
 Core\load_core.xml
 Media\load_media.xml
 Modules\load_modules.xml

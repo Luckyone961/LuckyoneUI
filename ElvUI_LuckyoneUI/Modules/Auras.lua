@@ -50,7 +50,7 @@ function L1UI:SetupBuffs(frame, type)
 
 	E:StaggeredUpdateAll()
 
-	L1UI:Print('Buff filters updated.')
+	L1UI:Print(L["Buff filters updated."])
 end
 
 -- Auras config section: Debuffs
@@ -93,7 +93,7 @@ function L1UI:SetupDebuffs(frame, type)
 
 	E:StaggeredUpdateAll()
 
-	L1UI:Print('Debuff filters updated.')
+	L1UI:Print(L["Debuff filters updated."])
 end
 
 -- Auras for Classic and TBC

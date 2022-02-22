@@ -3,19 +3,20 @@ local CH = E:GetModule('Chat')
 local LuckyDT
 
 local print = print
+local format = format
 
 local IsAddOnLoaded = IsAddOnLoaded
 local ReloadUI = ReloadUI
 local SetCVar = SetCVar
 
--- LuckyoneUI chat print
+-- Chat print
 function L1UI:Print(msg)
 	print(L1UI.Name..': '..msg)
 end
 
--- LuckyoneUI reload popup
+-- Reload popup
 E.PopupDialogs.L1UI_RL = {
-	text = "Reload required - continue?",
+	text = L["Reload required - continue?"],
 	button1 = ACCEPT,
 	button2 = CANCEL,
 	OnAccept = ReloadUI,
@@ -23,60 +24,76 @@ E.PopupDialogs.L1UI_RL = {
 	hideOnEscape = false,
 }
 
+-- Version check popup
+E.PopupDialogs.L1UI_VC = {
+	text = format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]),
+	button1 = OKAY,
+	whileDead = 1,
+	hideOnEscape = false,
+}
+
+-- Version check
+function L1UI:VersionCheck()
+	if E.version < L1UI.RequiredVersion then
+		E:StaticPopup_Show('L1UI_VC')
+		L1UI:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
+	end
+end
+
 -- Load AddOnSkins Profile
 function L1UI:Setup_AddOnSkins()
 	if not IsAddOnLoaded('AddOnSkins') then return end
 	L1UI:Get_AddOnSkins_Profile()
-	L1UI:Print('AddOnSkins profile has been set.')
+	L1UI:Print(L["AddOnSkins profile has been set."])
 end
 
 -- Load BigWigs Profile
 function L1UI:Setup_BigWigs()
 	if not IsAddOnLoaded('BigWigs') then return end
 	L1UI:Get_BigWigs_Profile()
-	L1UI:Print('BigWigs profile has been set.')
+	L1UI:Print(L["BigWigs profile has been set."])
 end
 
 -- Load DBM Profile
 function L1UI:Setup_DBM()
 	if not IsAddOnLoaded('DBM-Core') then return end
 	L1UI:Get_DBM_Profile()
-	L1UI:Print('DBM profile has been set.')
+	L1UI:Print(L["DBM profile has been set."])
 end
 
 -- Load Details Profile
 function L1UI:Setup_Details()
 	if not IsAddOnLoaded('Details') then return end
 	L1UI:Get_Details_Profile()
-	L1UI:Print('Details profile has been set.')
+	L1UI:Print(L["Details profile has been set."])
 end
 
 -- Load OmniCD Profile
 function L1UI:Setup_OmniCD()
 	if not IsAddOnLoaded('OmniCD') then return end
 	L1UI:Get_OmniCD_Profile()
-	L1UI:Print('OmniCD profile has been set.')
+	L1UI:Print(L["OmniCD profile has been set."])
 end
 
 -- Load Plater Profile
 function L1UI:Setup_Plater()
 	if not IsAddOnLoaded('Plater') then return end
 	L1UI:Get_Plater_Profile()
-	L1UI:Print('Plater profile has been set.')
+	L1UI:Print(L["Plater profile has been set."])
 end
 
 -- Load ProjectAzilroka Profile
 function L1UI:Setup_ProjectAzilroka()
 	if not IsAddOnLoaded('ProjectAzilroka') then return end
 	L1UI:Get_ProjectAzilroka_Profile()
-	L1UI:Print('ProjectAzilroka profile has been set.')
+	L1UI:Print(L["ProjectAzilroka profile has been set."])
 end
 
 -- Load Shadow&Light Profile
 function L1UI:Setup_ShadowAndLight()
 	if not IsAddOnLoaded('ElvUI_SLE') then return end
 	L1UI:Get_ShadowAndLight_Profile()
-	L1UI:Print('Shadow&Light profile has been set.')
+	L1UI:Print(L["Shadow&Light profile has been set."])
 end
 
 -- Set UI Scale
@@ -103,7 +120,7 @@ function L1UI:SetupCVars()
 		SetCVar('profanityFilter', 0)
 	end
 
-	L1UI:Print('CVars have been set.')
+	L1UI:Print(L["CVars have been set."])
 end
 
 -- NamePlate CVars
@@ -128,7 +145,7 @@ function L1UI:NameplateCVars()
 
 	if not E.Retail then SetCVar('nameplateNotSelectedAlpha', 1) end
 
-	L1UI:Print('NamePlate CVars have been set.')
+	L1UI:Print(L["NamePlate CVars have been set."])
 end
 
 -- E.private & Media
@@ -149,13 +166,13 @@ function L1UI:SetupPrivate()
 	E.private.skins.parchmentRemoverEnable = true
 
 	if E.Retail then
-		E.private.install_complete = "12.58"
+		E.private.install_complete = "12.64"
 		E.private.general.totemBar = false
 	elseif E.TBC then
-		E.private.install_complete = "2.31"
+		E.private.install_complete = "2.36"
 		E.private.general.totemBar = true
 	elseif E.Classic then
-		E.private.install_complete = "1.57"
+		E.private.install_complete = "1.62"
 		E.private.general.totemBar = true
 	end
 end
@@ -170,17 +187,17 @@ function L1UI:SetupGlobal()
 	E.global.general.WorldMapCoordinates.position = "TOPLEFT"
 
 	do -- Luckyone Custom DataText (below ActionBars)
-		E.DataTexts:BuildPanelFrame("Luckyone_ActionBars_DT")
+		E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
 		LuckyDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 		LuckyDT.backdrop = true
 		LuckyDT.border = true
 		LuckyDT.enable = true
 		LuckyDT.fonts.enable = true
 		LuckyDT.fonts.font = "Expressway"
-		LuckyDT.fonts.fontOutline = "NONE"
+		LuckyDT.fonts.fontOutline = "OUTLINE"
 		LuckyDT.fonts.fontSize = 11
 		LuckyDT.frameLevel = 1
-		LuckyDT.frameStrata = "LOW"
+		LuckyDT.frameStrata = "BACKGROUND"
 		LuckyDT.growth = "HORIZONTAL"
 		LuckyDT.height = 13
 		LuckyDT.mouseover = false

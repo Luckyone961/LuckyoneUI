@@ -1,3 +1,24 @@
+### Version 1.41 [22-02-2022]
+**All WoW Versions:**  
+Added full support for localization in LuckyoneUI  
+• Feel free to translate on GitHub and message me on Discord  
+Added new chat commands to debug issues in LuckyoneUI  
+• /luckydebug on & /luckydebug off  
+Added versioncheck popup and chat print if ElvUI is outdated  
+• My plugin will always require the most recent ElvUI build  
+Updated general backdrop alpha slightly  
+• Old value 0.75 new value 0.80  
+**Classic:**  
+ElvUI 1.61 or later required  
+Updated TOC for 1.14.2  
+**Retail:**  
+ElvUI 12.63 or later required  
+Minor tooltip updates for better performance in combat  
+Updated OmniCD profile  
+Updated TOC for 9.2.0  
+**TBC:**  
+ElvUI 2.35 or later required  
+___
 ### Version 1.40 [18-01-2022]
 **All WoW Versions:**  
 Fixed Details font, font size and font outline  

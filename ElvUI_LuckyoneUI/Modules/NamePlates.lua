@@ -394,5 +394,5 @@ function L1UI:SetupStyleFilters()
 	-- Set NamePlate CVars
 	L1UI:NameplateCVars()
 
-	L1UI:Print('NamePlate StyleFilters and CVars have been set.')
+	L1UI:Print(L["NamePlate StyleFilters and CVars have been set."])
 end
