@@ -22,7 +22,7 @@ _G[addon] = Engine;
 L1UI.Config = {}
 L1UI.CreditsList = {}
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = E.Retail and 12.63 or E.TBC and 2.35 or E.Classic and 1.61
+L1UI.RequiredVersion = E.Retail and 12.64 or E.TBC and 2.36 or E.Classic and 1.62
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 local name = format('%s-%s', E.myname, E:ShortenRealm(E.myrealm))
