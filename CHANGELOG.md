@@ -1,3 +1,9 @@
+### Version 1.42 [In Development]
+**All WoW Versions:**  
+**Classic:**  
+**Retail:**  
+**TBC:**  
+___
 ### Version 1.41 [22-02-2022]
 **All WoW Versions:**  
 Added full support for localization in LuckyoneUI  
