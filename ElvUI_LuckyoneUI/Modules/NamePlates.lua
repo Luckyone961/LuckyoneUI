@@ -384,6 +384,9 @@ function L1UI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["actions"]["color"]["healthColor"]["g"] = 0.6078431372549
 		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["actions"]["color"]["healthColor"]["r"] = 0.77647058823529
 		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["actions"]["tags"]["name"] = "[name]"
+		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["triggers"]["names"]["184908"] = true
+		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["triggers"]["names"]["184910"] = true
+		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["triggers"]["names"]["184911"] = true
 		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["triggers"]["names"]["185680"] = true
 		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["triggers"]["names"]["185683"] = true
 		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["triggers"]["names"]["185685"] = true
