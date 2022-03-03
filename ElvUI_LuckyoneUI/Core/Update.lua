@@ -9,18 +9,8 @@ function L1UI:UpdateLayout(layout)
 		-- Healing db
 	end
 
-	-- Tooltip db changes
-	if E.Retail then
-		E.db["tooltip"]["inspectDataEnable"] = false
-		E.db["tooltip"]["role"] = false
-	end
-
-	-- Backdrop alpha changes
-	E.db["chat"]["panelColor"]["a"] = 0.80
-	E.db["general"]["backdropfadecolor"]["a"] = 0.80
-	E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.80
-
 	E:StaggeredUpdateAll()
 
-	L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "]..L1UI.Version)
+	--L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "]..L1UI.Version)
+	L1UI:Print('If you want updated ElvUI NamePlates or Plater for Shadowlands Season 3, please re-apply the NamePlate profile in ElvUI - LuckyoneUI - Profiles - NamePlates')
 end

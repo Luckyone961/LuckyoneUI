@@ -1,3 +1,10 @@
+### Version 1.42 [03-03-2022]
+**Retail:**  
+Added support for Season 3 Encrypted affix  
+• ElvUI NamePlates and Plater are updated to show full relic name  
+• Not included in the Update button, you need to re-apply the NamePlate  
+• profile in ElvUI - LuckyoneUI - Profiles - NamePlates  
+___
 ### Version 1.41 [22-02-2022]
 **All WoW Versions:**  
 Added full support for localization in LuckyoneUI  
