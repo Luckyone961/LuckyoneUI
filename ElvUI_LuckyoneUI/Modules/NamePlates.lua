@@ -285,7 +285,7 @@ function L1UI:SetupStyleFilters()
 	if E.Retail then
 
 		-- Enable all filters from the pairs table and copy default tree options
-		for _, filterName in pairs({'Luckyone_Encrypted', 'Luckyone_HOA', 'Luckyone_MISTS', 'Luckyone_PF', 'Luckyone_NW', 'Luckyone_TOP', 'Luckyone_SD', 'Luckyone_SOA', 'Luckyone_DOS'}) do
+		for _, filterName in pairs({'Luckyone_Encrypted', 'Luckyone_TZ', 'Luckyone_HOA', 'Luckyone_MISTS', 'Luckyone_PF', 'Luckyone_NW', 'Luckyone_TOP', 'Luckyone_SD', 'Luckyone_SOA', 'Luckyone_DOS'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
@@ -377,6 +377,14 @@ function L1UI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["Luckyone_TOP"]["triggers"]["names"]["170850"] = true
 		E.global["nameplates"]["filters"]["Luckyone_TOP"]["triggers"]["names"]["174210"] = true
 		E.global["nameplates"]["filters"]["Luckyone_TOP"]["triggers"]["priority"] = 2
+
+		-- Tazavesh [TZ]
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["179733"] = true
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180433"] = true
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["priority"] = 2
 
 		-- Encrypted Affix Shadowlands Season 3
 		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["actions"]["color"]["health"] = true
