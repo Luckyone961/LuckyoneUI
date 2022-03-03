@@ -1,3 +1,8 @@
+### Version 1.43 [In Development]
+**Retail:**
+Added Luckyone_TZ ElvUI StyleFilter for important Tazavesh Mobs  
+Updated Luckyone_Encrypted ElvUI StyleFilter  
+___
 ### Version 1.42 [03-03-2022]
 **Retail:**  
 Added support for Season 3 Encrypted affix  
