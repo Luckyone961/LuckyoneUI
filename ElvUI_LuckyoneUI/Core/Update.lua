@@ -11,5 +11,6 @@ function L1UI:UpdateLayout(layout)
 
 	E:StaggeredUpdateAll()
 
-	L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "]..L1UI.Version)
+	--L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "]..L1UI.Version)
+	L1UI:Print('If you want updated ElvUI NamePlates or Plater for Shadowlands Season 3, please re-apply the NamePlate profile in ElvUI - LuckyoneUI - Profiles - NamePlates')
 end
