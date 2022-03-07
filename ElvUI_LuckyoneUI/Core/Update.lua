@@ -9,6 +9,11 @@ function L1UI:UpdateLayout(layout)
 		-- Healing db
 	end
 
+	-- Disable alternative power on party, raid, raid40
+	E.db["unitframe"]["units"]["party"]["classbar"]["enable"] = false
+	E.db["unitframe"]["units"]["raid"]["classbar"]["enable"] = false
+	E.db["unitframe"]["units"]["raid40"]["classbar"]["enable"] = false
+
 	E:StaggeredUpdateAll()
 
 	--L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "]..L1UI.Version)
