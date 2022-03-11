@@ -1,4 +1,6 @@
-### Version 1.44 [In Development]
+### Version 1.44 [11-03-2022]
+**All WoW Versions:**  
+Updated Plater profile  
 ___
 ### Version 1.43 [11-03-2022]
 **Retail:**
