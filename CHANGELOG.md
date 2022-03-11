@@ -1,3 +1,5 @@
+### Version 1.44 [In Development]
+___
 ### Version 1.43 [11-03-2022]
 **Retail:**
 Added Luckyone_TZ ElvUI StyleFilter for important Tazavesh targets  
