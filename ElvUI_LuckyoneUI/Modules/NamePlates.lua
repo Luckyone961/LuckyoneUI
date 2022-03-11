@@ -404,10 +404,11 @@ function L1UI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["triggers"]["priority"] = 2
 
 		-- Edited default filters
-		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0.49019607843137
-		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["g"] = 0
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
+		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["g"] = 0
+		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0.49019607843137
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["scale"] = 1
+		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["usePortrait"] = false
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["priority"] = 1
 	end
 
