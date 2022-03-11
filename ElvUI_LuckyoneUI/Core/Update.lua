@@ -9,19 +9,7 @@ function L1UI:UpdateLayout(layout)
 		-- Healing db
 	end
 
-	-- Disable alternative power on party, raid, raid40
-	E.db["unitframe"]["units"]["party"]["classbar"]["enable"] = false
-	E.db["unitframe"]["units"]["raid"]["classbar"]["enable"] = false
-	E.db["unitframe"]["units"]["raid40"]["classbar"]["enable"] = false
-
-	-- NamePlate changes
-	if E.private.nameplates.enable then
-		E.db["nameplates"]["lowHealthThreshold"] = 0
-		L1UI:SetupStyleFilters()
-	end
-
 	E:StaggeredUpdateAll()
 
-	--L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "]..L1UI.Version)
-	L1UI:Print('If you want updated ElvUI NamePlates or Plater for Shadowlands Season 3, please re-apply the NamePlate profile in ElvUI - LuckyoneUI - Profiles - NamePlates')
+	L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "]..L1UI.Version)
 end
