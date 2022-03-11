@@ -592,7 +592,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[classcolor][name]",
+		["text_format"] = "[classcolor][name][ - >luckyone:healermana:percent<%]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -1079,6 +1079,8 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["focustarget"]["raidicon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["focustarget"]["width"] = 80
 		E.db["unitframe"]["units"]["party"]["buffIndicator"]["size"] = 12
+		E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Expressway"
+		E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 3
 		E.db["unitframe"]["units"]["party"]["classbar"]["enable"] = false
 		E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["party"]["debuffs"]["countFontSize"] = 13
@@ -1118,6 +1120,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["party"]["raidicon"]["yOffset"] = 12
 		E.db["unitframe"]["units"]["party"]["raidRoleIcons"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["party"]["rdebuffs"]["enable"] = false
+		E.db["unitframe"]["units"]["party"]["roleIcon"]["enable"] = false
 		E.db["unitframe"]["units"]["party"]["roleIcon"]["position"] = "LEFT"
 		E.db["unitframe"]["units"]["party"]["roleIcon"]["size"] = 16
 		E.db["unitframe"]["units"]["party"]["roleIcon"]["xOffset"] = 0
