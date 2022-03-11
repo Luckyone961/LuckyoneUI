@@ -301,6 +301,7 @@ function L1UI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["names"]["168942"] = true
 		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["names"]["169905"] = true
 		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["names"]["170572"] = true
+		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["names"]["171341"] = true
 		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["names"]["171343"] = true
 		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["priority"] = 2
 
@@ -382,7 +383,9 @@ function L1UI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["health"] = true
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["178141"] = true
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["179733"] = true
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180431"] = true
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180433"] = true
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["priority"] = 2
 
