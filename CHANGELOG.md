@@ -1,7 +1,9 @@
-### Version 1.43 [In Development]
+### Version 1.43 [11-03-2022]
 **Retail:**
-Added Luckyone_TZ ElvUI StyleFilter for important Tazavesh Mobs  
+Added Luckyone_TZ ElvUI StyleFilter for important Tazavesh targets  
+Disabled alternative power on party, raid, raid40  
 Updated Luckyone_Encrypted ElvUI StyleFilter  
+Updated Plater profile  
 ___
 ### Version 1.42 [03-03-2022]
 **Retail:**  
