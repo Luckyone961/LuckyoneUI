@@ -592,7 +592,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[classcolor][name][ - >luckyone:healermana:percent<%]",
+		["text_format"] = E.Retail and "[classcolor][name][ - >luckyone:healermana:percent<%]" or "[classcolor][name]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
