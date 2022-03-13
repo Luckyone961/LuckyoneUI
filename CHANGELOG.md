@@ -1,3 +1,9 @@
+### Version 1.45 [In Development]
+**Classic**  
+Removed bugged healermana text format for party  
+**TBC:**  
+Removed bugged healermana text format for party  
+___
 ### Version 1.44 [11-03-2022]
 **All WoW Versions:**  
 Updated Plater profile  
