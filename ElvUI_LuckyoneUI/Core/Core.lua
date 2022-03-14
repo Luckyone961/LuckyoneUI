@@ -180,6 +180,7 @@ end
 -- E.global
 function L1UI:SetupGlobal()
 
+	E.global.datatexts.settings.Combat.TimeFull = false
 	E.global.general.commandBarSetting = "DISABLED"
 	E.global.general.fadeMapWhenMoving = false
 	E.global.general.mapAlphaWhenMoving = 0.35
