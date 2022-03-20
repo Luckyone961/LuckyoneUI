@@ -9,6 +9,9 @@ function L1UI:UpdateLayout(layout)
 		-- Healing db
 	end
 
+	-- DT Change to MM:SS
+	E.global.datatexts.settings.Combat.TimeFull = false
+
 	E:StaggeredUpdateAll()
 
 	L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "]..L1UI.Version)
