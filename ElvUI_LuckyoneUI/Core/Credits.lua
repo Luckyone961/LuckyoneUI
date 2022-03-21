@@ -39,6 +39,7 @@ local SUPPORT = {
 	'|cffe6cc80Lox|r',
 	'|cffe6cc80Midnatt|r',
 	'|cffe6cc80MonkeyHack|r',
+	'|cffe6cc80Onlyne|r',
 	'|cffe6cc80ShowNoMercy|r',
 	'|cffe6cc80Treelyté|r',
 	'|cffe6cc80Triplebeamdreams|r',
