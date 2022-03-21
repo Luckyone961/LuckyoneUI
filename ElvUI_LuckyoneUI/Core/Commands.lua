@@ -58,8 +58,6 @@ function L1UI:DebugMode(msg)
 
 	elseif switch == 'off' then
 
-		SetCVar('scriptErrors', 0)
-
 		if next(ElvDB.LuckyoneDisabledAddOns) then
 			for name in pairs(ElvDB.LuckyoneDisabledAddOns) do
 				EnableAddOn(name, E.myname)
