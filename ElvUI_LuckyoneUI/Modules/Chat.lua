@@ -30,7 +30,7 @@ function L1UI:SetupChat()
 	SetCVar('colorChatNamesByClass', 1)
 	SetCVar('chatClassColorOverride', 0)
 
-	-- CVars Retail
+	-- CVars Retail + TBC
 	if not E.Classic then
 		SetCVar('speechToText', 0)
 		SetCVar('textToSpeech', 0)
@@ -40,7 +40,7 @@ function L1UI:SetupChat()
 	FCF_ResetChatWindows()
 
 	-- Join LFG channel in Classic and TBC (English client only)
-	if not not E.Classic and GetLocale() == 'enUS' then
+	if not E.Retail and GetLocale() == 'enUS' then
 		JoinPermanentChannel('LookingForGroup')
 		ChatFrame_AddChannel(_G.ChatFrame1, 'LookingForGroup')
 	end
