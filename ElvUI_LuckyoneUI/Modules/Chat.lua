@@ -31,7 +31,7 @@ function L1UI:SetupChat()
 	SetCVar('chatClassColorOverride', 0)
 
 	-- CVars Retail
-	if E.Retail then
+	if not E.Classic then
 		SetCVar('speechToText', 0)
 		SetCVar('textToSpeech', 0)
 	end
@@ -40,7 +40,7 @@ function L1UI:SetupChat()
 	FCF_ResetChatWindows()
 
 	-- Join LFG channel in Classic and TBC (English client only)
-	if not E.Retail and GetLocale() == 'enUS' then
+	if not not E.Classic and GetLocale() == 'enUS' then
 		JoinPermanentChannel('LookingForGroup')
 		ChatFrame_AddChannel(_G.ChatFrame1, 'LookingForGroup')
 	end
@@ -66,38 +66,38 @@ function L1UI:SetupChat()
 			FCF_SetWindowName(frame, 'General')
 		elseif id == 2 then
 			FCF_SetWindowName(frame, 'Log')
-		elseif (E.Retail and id == 3) then
+		elseif (not E.Classic and id == 3) then
 			VoiceTranscriptionFrame_UpdateVisibility(frame)
 			VoiceTranscriptionFrame_UpdateVoiceTab(frame)
 			VoiceTranscriptionFrame_UpdateEditBox(frame)
-		elseif (E.Retail and id == 4) or id == 3 then
+		elseif (not E.Classic and id == 4) or id == 3 then
 			FCF_SetWindowName(frame, 'Whisper')
-		elseif (E.Retail and id == 5) or id == 4 then
+		elseif (not E.Classic and id == 5) or id == 4 then
 			FCF_SetWindowName(frame, 'Guild')
-		elseif (E.Retail and id == 6) or id == 5 then
+		elseif (not E.Classic and id == 6) or id == 5 then
 			FCF_SetWindowName(frame, 'Party')
 		end
 	end
 
 	-- Setup whisper tab
 	local chats = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
-	ChatFrame_RemoveAllMessageGroups(E.Retail and _G.ChatFrame4 or _G.ChatFrame3)
+	ChatFrame_RemoveAllMessageGroups(not E.Classic and _G.ChatFrame4 or _G.ChatFrame3)
 	for _, k in ipairs(chats) do
-		ChatFrame_AddMessageGroup(E.Retail and _G.ChatFrame4 or _G.ChatFrame3, k)
+		ChatFrame_AddMessageGroup(not E.Classic and _G.ChatFrame4 or _G.ChatFrame3, k)
 	end
 
 	-- Setup Guild tab
 	chats = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
-	ChatFrame_RemoveAllMessageGroups(E.Retail and _G.ChatFrame5 or _G.ChatFrame4)
+	ChatFrame_RemoveAllMessageGroups(not E.Classic and _G.ChatFrame5 or _G.ChatFrame4)
 	for _, k in ipairs(chats) do
-		ChatFrame_AddMessageGroup(E.Retail and _G.ChatFrame5 or _G.ChatFrame4, k)
+		ChatFrame_AddMessageGroup(not E.Classic and _G.ChatFrame5 or _G.ChatFrame4, k)
 	end
 
 	-- Setup Party tab
 	chats = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER' }
-	ChatFrame_RemoveAllMessageGroups(E.Retail and _G.ChatFrame6 or _G.ChatFrame5)
+	ChatFrame_RemoveAllMessageGroups(not E.Classic and _G.ChatFrame6 or _G.ChatFrame5)
 	for _, k in ipairs(chats) do
-		ChatFrame_AddMessageGroup(E.Retail and _G.ChatFrame6 or _G.ChatFrame5, k)
+		ChatFrame_AddMessageGroup(not E.Classic and _G.ChatFrame6 or _G.ChatFrame5, k)
 	end
 
 	-- Jump back to main tab
