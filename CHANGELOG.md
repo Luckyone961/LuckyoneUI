@@ -2,6 +2,9 @@
 **All WoW Versions:**  
 Updated credits  
 Updated deDE locales (Credits: Dlarge)  
+**TBC:**  
+Updated chat installer for 2.5.4  
+Updated TOC for 2.5.4  
 ___
 ### Version 1.45 [20-03-2022]
 **All WoW Versions:**  
