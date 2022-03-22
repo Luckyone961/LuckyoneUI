@@ -22,7 +22,7 @@ local TESTERS = {
 	'|cffABD473Xyf|r',
 	'|cffC41F3BKringel|r',
 	'|cffF58CBAIllusion|r',
-	'|cffe6cc80Dlarge|r',
+	'|cffABD473Dlarge|r',
 }
 
 local SUPPORT = {
