@@ -82,7 +82,7 @@ L["Reset Fonts, Textures, Skins to LuckyoneUI defaults."] = "Setze Schriftarten,
 L["Reset Media"] = "Setze Medien zurück"
 L["Reset to LuckyoneUI defaults."] = "Setze zu LuckyoneUI Standard zurück."
 L["Rogue"] = "Schurke"
-L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]"] = "Chat Einrichtung setzt Deine Chat Panels auf die Standardeinstellungen zurück und erstellt benutzerdefinierte Chat Tabs.\n\nLinker Chat: [Allgemein - Log - Flüstern - Gilde - Gruppe ]\n\nRechter Chat: [Keine Tabs - Details! Schadensanzeige ]"
+L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]"] = "Chat Einrichtung setzt Deine Chat Panels auf die Standardeinstellungen zurück und erstellt benutzerdefinierte Chat Tabs.\n\nLinker Chat: [ Allgemein - Log - Flüstern - Gilde - Gruppe ]\n\nRechter Chat: [ Keine Tabs - Details! Schadensanzeige ]"
 L["Setup Chat"] = "Chat Einrichtung"
 L["Setup CVars"] = "CVars Einrichtung"
 L["Shaman"] = "Schamane"
@@ -151,7 +151,7 @@ L["This will setup the chat windows to look like this:\n\nLeft Chat: General - L
 L["WeakAuras Information"] = "WeakAuras Informationen"
 L["Welcome"] = "Willkommen"
 L["You can find WeakAuras for all 12 Classes and some Utility WeakAuras in the LuckyoneUI config."] = "Du kannst WeakAuras für alle 12 Klassen und einige Utility WeakAuras in der LuckyoneUI Konfiguration finden."
-L["You have completed the installation process, please click 'Finished' to reload the UI."] = "Du hast den Installationsvorgang abgeschlossen, bitte klicke auf ‚Fertig‘, um die Benutzeroberfläche neu zu laden."
+L["You have completed the installation process, please click 'Finished' to reload the UI."] = "Du hast den Installationsvorgang abgeschlossen, bitte klicke auf 'Fertig', um die Benutzeroberfläche neu zu laden."
 
 -- Layout.lua locales
 L["Layout has been set."] = "Layout wurde festgelegt."
