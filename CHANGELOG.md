@@ -1,7 +1,12 @@
+### Version 1.46 [In Development]
+**All WoW Versions:**  
+Updated credits  
+Updated deDE locales (Credits: Dlarge)  
+___
 ### Version 1.45 [20-03-2022]
 **All WoW Versions:**  
 Combat timer DataText will now display MM:SS instead of MM:SS:MS  
-**Classic**  
+**Classic:**  
 Removed bugged healermana text format for party  
 **TBC:**  
 Removed bugged healermana text format for party  
