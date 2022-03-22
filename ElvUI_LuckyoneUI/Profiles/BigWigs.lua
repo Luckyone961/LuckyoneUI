@@ -718,4 +718,16 @@ function L1UI:Get_BigWigs_Profile()
 		-- Set the profile
 		BigWigs.db:SetProfile(Cmain)
 	end
+
+	-- Enable auto logging for myself
+	if E.Retail and L1UI.Me then
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Rmain]["combatLog"] = true
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Rheal]["combatLog"] = true
+	elseif E.TBC and L1UI.Me then
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Tmain]["combatLog"] = true
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Theal]["combatLog"] = true
+	elseif E.Classic and L1UI.Me then
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Cmain]["combatLog"] = true
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Cheal]["combatLog"] = true
+	end
 end
