@@ -78,9 +78,9 @@ L["Profiles"] = "Profile"
 L["Raidframe Style"] = "Schlachtzugsfenster Stil"
 L["Re-Run the installation process."] = "Starte den Installatonsprozess neu"
 L["Report issues here:"] = "Melde Fehler hier:"
-L["Reset Fonts, Textures, Skins to AlysiaUI defaults."] = "Setze Schriftarten, Texturen, Skins zum AlysiaUI Standard zurück."
+L["Reset Fonts, Textures, Skins to LuckyoneUI defaults."] = "Setze Schriftarten, Texturen, Skins zum LuckyoneUI Standard zurück."
 L["Reset Media"] = "Setze Medien zurück"
-L["Reset to AlysiaUI defaults."] = "Setze zu AlysiaUI Standard zurück."
+L["Reset to LuckyoneUI defaults."] = "Setze zu LuckyoneUI Standard zurück."
 L["Rogue"] = "Schurke"
 L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]"] = "Chat Einrichtung setzt Deine Chat Panels auf die Standardeinstellungen zurück und erstellt benutzerdefinierte Chat Tabs.\n\nLinker Chat: [Allgemein - Log - Flüstern - Gilde - Gruppe ]\n\nRechter Chat: [Keine Tabs - Details! Schadensanzeige ]"
 L["Setup Chat"] = "Chat Einrichtung"
@@ -98,9 +98,9 @@ L["Themes"] = true
 L["This will only clear AddOn Cache and not wipe your settings"] = "Dadurch wird nur der AddOn Cache gelöscht und nicht Deine Einstellungen."
 L["UnitFrames Color Theme"] = "Einheutenfenster Farb Theme"
 L["UnitFrames"] = "Einheitsfenster"
-L["Update DPS/TANK layout to AlysiaUI version: "] = "Aktualisiere DPS/TANK Layout zur AlysiaUI Version"
+L["Update DPS/TANK layout to LuckyoneUI version: "] = "Aktualisiere DPS/TANK Layout zur LuckyoneUI Version"
 L["Update DPS/TANK Layout"] = "Aktualisiere DPS/TANK Layout"
-L["Update Healing layout to AlysiaUI version: "] = "Aktualisiere Heiler Layout zur AlysiaUI Version"
+L["Update Healing layout to LuckyoneUI version: "] = "Aktualisiere Heiler Layout zur LuckyoneUI Version"
 L["Update Healing Layout"] = "Aktualisiere Heiler Layout"
 L["Vertical Style"] = "Vertikaler Stil"
 L["Vertical"] = "Vertikal"
@@ -150,7 +150,7 @@ L["This installation process will guide you through a few steps and apply settin
 L["This will setup the chat windows to look like this:\n\nLeft Chat: General - Log - Whisper - Guild - Party\n\nRight Chat: Details! Damage Meter"] = "Dadurch werden die Chatfenster so eingerichtet:\n\nLinker Chat: Allgemein - Protokoll - Flüstern - Gilde - Gruppe\n\nRechter Chat: Details! Schadensanzeige"
 L["WeakAuras Information"] = "WeakAuras Informationen"
 L["Welcome"] = "Willkommen"
-L["You can find WeakAuras for all 12 Classes and some Utility WeakAuras in the AlysiaUI config."] = "Du kannst WeakAuras für alle 12 Klassen und einige Utility WeakAuras in der AlysiaUI Konfiguration finden."
+L["You can find WeakAuras for all 12 Classes and some Utility WeakAuras in the LuckyoneUI config."] = "Du kannst WeakAuras für alle 12 Klassen und einige Utility WeakAuras in der LuckyoneUI Konfiguration finden."
 L["You have completed the installation process, please click 'Finished' to reload the UI."] = "Du hast den Installationsvorgang abgeschlossen, bitte klicke auf ‚Fertig‘, um die Benutzeroberfläche neu zu laden."
 
 -- Layout.lua locales
@@ -166,7 +166,7 @@ L["Displays the unit's Mana in percent (Role: Healer)"] = "Zeigt das Mana der Ei
 L["Theme has been set."] = "Theme wurde festgelegt"
 
 -- Update.lua locales
-L["Successfully updated your current layout to AlysiaUI version "] = "Dein aktuelles Layout wurde erfolgreich auf die AlysiaUI Version aktualisiert."
+L["Successfully updated your current layout to LuckyoneUI version "] = "Dein aktuelles Layout wurde erfolgreich auf die LuckyoneUI Version aktualisiert."
 
 -- Auras.lua locales
 L["Buff filters updated."] = "Stärkungszauber Filter aktualisiert"
