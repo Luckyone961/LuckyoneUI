@@ -18,13 +18,7 @@ Engine[5] = P -- ElvUI ProfileDB
 Engine[6] = G -- ElvUI GlobalDB
 _G[addon] = Engine;
 
--- Constants
-L1UI.Config = {}
-L1UI.CreditsList = {}
-L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = E.Retail and 12.71 or E.TBC and 2.36 or E.Classic and 1.62
-L1UI.Version = GetAddOnMetadata(addon, 'Version')
-
+-- My characters
 local name = format('%s-%s', E.myname, E:ShortenRealm(E.myrealm))
 local toons = {
 	['Luckyone-LaughingSkull'] = true,
@@ -40,6 +34,14 @@ local toons = {
 	['Luckyrogue-LaughingSkull'] = true,
 	['Luckypala-LaughingSkull'] = true
 }
+
+-- Constants
+L1UI.Config = {}
+L1UI.CreditsList = {}
+L1UI.Me = toons[name]
+L1UI.Name = '|cff4beb2cLuckyoneUI|r'
+L1UI.RequiredVersion = E.Retail and 12.72 or E.TBC and 2.38 or E.Classic and 1.64
+L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	if initLogin or not ElvDB.LuckyoneDisabledAddOns then
@@ -57,7 +59,7 @@ function L1UI:Initialize()
 		E.PluginInstaller:Queue(L1UI.InstallerData)
 	end
 
-	if toons[name] then ElvDB.ShadowLightAlpha = false end
+	if L1UI.Me then ElvDB.ShadowLightAlpha = false end
 
 	EP:RegisterPlugin(addon, L1UI.GetOptions)
 	L1UI:RegisterEvent('PLAYER_ENTERING_WORLD')

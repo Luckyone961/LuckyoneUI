@@ -22,6 +22,7 @@ local TESTERS = {
 	'|cffABD473Xyf|r',
 	'|cffC41F3BKringel|r',
 	'|cffF58CBAIllusion|r',
+	'|cffABD473Dlarge|r',
 }
 
 local SUPPORT = {
@@ -39,6 +40,7 @@ local SUPPORT = {
 	'|cffe6cc80Lox|r',
 	'|cffe6cc80Midnatt|r',
 	'|cffe6cc80MonkeyHack|r',
+	'|cffe6cc80Onlyne|r',
 	'|cffe6cc80ShowNoMercy|r',
 	'|cffe6cc80Treelyté|r',
 	'|cffe6cc80Triplebeamdreams|r',
