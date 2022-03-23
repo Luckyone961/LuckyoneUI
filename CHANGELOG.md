@@ -1,4 +1,4 @@
-### Version 1.46 [In Development]
+### Version 1.46 [23-03-2022]
 **All WoW Versions:**  
 Updated credits  
 Updated deDE locales (Credits: Dlarge)  
