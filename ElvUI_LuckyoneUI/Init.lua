@@ -40,7 +40,7 @@ L1UI.Config = {}
 L1UI.CreditsList = {}
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = E.Retail and 12.74 or E.TBC and 2.40 or E.Classic and 1.65
+L1UI.RequiredVersion = E.Retail and 12.73 or E.TBC and 2.40 or E.Classic and 1.65
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
