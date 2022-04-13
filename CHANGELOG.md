@@ -1,3 +1,7 @@
+### Version 1.47 [In Development]
+**Retail:**  
+Healermana text in party frames is now colored by default  
+___
 ### Version 1.46 [23-03-2022]
 **All WoW Versions:**  
 Updated credits  
