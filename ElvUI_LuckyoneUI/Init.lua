@@ -21,6 +21,7 @@ _G[addon] = Engine;
 -- My characters
 local name = format('%s-%s', E.myname, E:ShortenRealm(E.myrealm))
 local toons = {
+	-- Retail
 	['Luckyone-LaughingSkull'] = true,
 	['Luckypriest-LaughingSkull'] = true,
 	['Luckymonkas-LaughingSkull'] = true,
@@ -32,7 +33,11 @@ local toons = {
 	['Luckydh-LaughingSkull'] = true,
 	['Luckywl-LaughingSkull'] = true,
 	['Luckyrogue-LaughingSkull'] = true,
-	['Luckypala-LaughingSkull'] = true
+	['Luckypala-LaughingSkull'] = true,
+	-- TBC
+	['Luckyone-Gehennas'] = true,
+	-- Classic Season
+	['Luckyone-Dreadnaught'] = true,
 }
 
 -- Constants
