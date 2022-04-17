@@ -1,6 +1,8 @@
 ### Version 1.47 [In Development]
 **Retail:**  
 Healermana text in party frames is now colored by default  
+OmniCD interrupts will now grow up by default in healing profile  
+System DataText will now display home latency by default  
 ___
 ### Version 1.46 [23-03-2022]
 **All WoW Versions:**  
