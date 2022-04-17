@@ -9,9 +9,6 @@ function L1UI:UpdateLayout(layout)
 		-- Healing db
 	end
 
-	-- Home latency instead of World
-	E.global.datatexts.settings.System.latency = "HOME"
-
 	E:StaggeredUpdateAll()
 
 	L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "]..L1UI.Version)

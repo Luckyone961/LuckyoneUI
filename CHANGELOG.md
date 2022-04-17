@@ -1,3 +1,5 @@
+### Version 1.48 [In Development]
+___
 ### Version 1.47 [17-04-2022]
 **Retail:**  
 Healermana text in party frames is now colored by default  
