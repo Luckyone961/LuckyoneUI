@@ -1134,5 +1134,4 @@ function L1UI:Get_OmniCD_Profile()
 
 	-- Profile Key
 	OmniCDDB["profileKeys"][E.mynameRealm] = Main
-
 end
