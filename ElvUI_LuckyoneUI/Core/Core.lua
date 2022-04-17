@@ -166,13 +166,13 @@ function L1UI:SetupPrivate()
 	E.private.skins.parchmentRemoverEnable = true
 
 	if E.Retail then
-		E.private.install_complete = "12.64"
+		E.private.install_complete = "12.75"
 		E.private.general.totemBar = false
 	elseif E.TBC then
-		E.private.install_complete = "2.36"
+		E.private.install_complete = "2.42"
 		E.private.general.totemBar = true
 	elseif E.Classic then
-		E.private.install_complete = "1.62"
+		E.private.install_complete = "1.67"
 		E.private.general.totemBar = true
 	end
 end
@@ -181,6 +181,7 @@ end
 function L1UI:SetupGlobal()
 
 	E.global.datatexts.settings.Combat.TimeFull = false
+	E.global.datatexts.settings.System.latency = "HOME"
 	E.global.general.commandBarSetting = "DISABLED"
 	E.global.general.fadeMapWhenMoving = false
 	E.global.general.mapAlphaWhenMoving = 0.35

@@ -19,9 +19,7 @@ function L1UI:Get_BigWigs_Profile()
 
 	if E.Retail then
 
-		------------------------------------------------------------------
-		------------------------ Profile Creation ------------------------
-		------------------------------------------------------------------
+		-- Profile Creation
 		BigWigs3DB["profiles"] = BigWigs3DB["profiles"] or {}
 
 		BigWigs3DB["profiles"][Rmain] = BigWigs3DB["profiles"][Rmain] or {}
@@ -35,9 +33,8 @@ function L1UI:Get_BigWigs_Profile()
 		BigWigs3DB["profiles"][Rheal]["flash"] = false
 
 		BigWigsIconDB["hide"] = true
-		------------------------------------------------------------------
-		-------------------------- Profile Data --------------------------
-		------------------------------------------------------------------
+
+		-- Profile Data
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][Rmain] = {
 			["bigwigsMsg"] = true,
@@ -262,9 +259,7 @@ function L1UI:Get_BigWigs_Profile()
 
 	elseif E.TBC then
 
-		------------------------------------------------------------------
-		------------------------ Profile Creation ------------------------
-		------------------------------------------------------------------
+		-- Profile Creation
 		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
 
 		BigWigsClassicDB["profiles"][Tmain] = BigWigsClassicDB["profiles"][Tmain] or {}
@@ -278,9 +273,8 @@ function L1UI:Get_BigWigs_Profile()
 		BigWigsClassicDB["profiles"][Theal]["flash"] = false
 
 		BigWigsIconClassicDB["hide"] = true
-		------------------------------------------------------------------
-		-------------------------- Profile Data --------------------------
-		------------------------------------------------------------------
+
+		-- Profile Data
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][Tmain] = {
 			["bigwigsMsg"] = true,
@@ -491,9 +485,7 @@ function L1UI:Get_BigWigs_Profile()
 
 	elseif E.Classic then
 
-		------------------------------------------------------------------
-		------------------------ Profile Creation ------------------------
-		------------------------------------------------------------------
+		-- Profile Creation
 		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
 
 		BigWigsClassicDB["profiles"][Cmain] = BigWigsClassicDB["profiles"][Cmain] or {}
@@ -507,9 +499,8 @@ function L1UI:Get_BigWigs_Profile()
 		BigWigsClassicDB["profiles"][Cheal]["flash"] = false
 
 		BigWigsIconClassicDB["hide"] = true
-		------------------------------------------------------------------
-		-------------------------- Profile Data --------------------------
-		------------------------------------------------------------------
+
+		-- Profile Data
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][Cmain] = {
 			["bigwigsMsg"] = true,

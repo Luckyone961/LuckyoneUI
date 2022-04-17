@@ -21,6 +21,7 @@ _G[addon] = Engine;
 -- My characters
 local name = format('%s-%s', E.myname, E:ShortenRealm(E.myrealm))
 local toons = {
+	-- Retail
 	['Luckyone-LaughingSkull'] = true,
 	['Luckypriest-LaughingSkull'] = true,
 	['Luckymonkas-LaughingSkull'] = true,
@@ -32,7 +33,11 @@ local toons = {
 	['Luckydh-LaughingSkull'] = true,
 	['Luckywl-LaughingSkull'] = true,
 	['Luckyrogue-LaughingSkull'] = true,
-	['Luckypala-LaughingSkull'] = true
+	['Luckypala-LaughingSkull'] = true,
+	-- TBC
+	['Luckyone-Gehennas'] = true,
+	-- Classic Season
+	['Luckyone-Dreadnaught'] = true,
 }
 
 -- Constants
@@ -40,7 +45,7 @@ L1UI.Config = {}
 L1UI.CreditsList = {}
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = E.Retail and 12.72 or E.TBC and 2.38 or E.Classic and 1.64
+L1UI.RequiredVersion = E.Retail and 12.75 or E.TBC and 2.42 or E.Classic and 1.67
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
