@@ -178,7 +178,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.unitframes.args.desc.inline = true
 	L1UI.Options.args.unitframes.args.desc.args.raidDesc = ACH:Description(L["The options above are for the DPS/TANK layout."], 1, 'medium')
 
-	-- WeakAuras
+	-- WeakAuras Retail
 	L1UI.Options.args.weakauras = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 13, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.weakauras.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
 	L1UI.Options.args.weakauras.args.druid = ACH:Input(format('|cffFF7C0A%s|r', L["Druid"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneDruid' end)
@@ -193,7 +193,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.weakauras.args.paladin = ACH:Input(format('|cffF48CBA%s|r', L["Paladin"]), nil, 11, nil, 'normal', function() return 'wago.io/luckyonePaladin' end)
 	L1UI.Options.args.weakauras.args.shaman = ACH:Input(format('|cff0070DD%s|r', L["Shaman"]), nil, 12, nil, 'normal', function() return 'wago.io/luckyoneShaman' end)
 	L1UI.Options.args.weakauras.args.warrior = ACH:Input(format('|cffC69B6D%s|r', L["Warrior"]), nil, 13, nil, 'normal', function() return 'wago.io/luckyoneWarrior' end)
-	L1UI.Options.args.weakauras.args.header3 = ACH:Header(L["General WeakAuras"], 14)
+	L1UI.Options.args.weakauras.args.header2 = ACH:Header(L["General WeakAuras"], 14)
 	L1UI.Options.args.weakauras.args.keys = ACH:Input('Link Keystones', nil, 15, nil, 'normal', function() return 'wago.io/bfakeys' end)
 	L1UI.Options.args.weakauras.args.covenant = ACH:Input('Link Covenant', nil, 16, nil, 'normal', function() return 'wago.io/covenant' end)
 	L1UI.Options.args.weakauras.args.trinket = ACH:Input('Trinket Tracking', nil, 17, nil, 'normal', function() return 'wago.io/Trinket' end)
@@ -202,10 +202,26 @@ function L1UI:GetOptions()
 	L1UI.Options.args.weakauras.args.swapblaster = ACH:Input('Swapblaster Alert', nil, 20, nil, 'normal', function() return 'wago.io/swapblaster' end)
 	L1UI.Options.args.weakauras.args.groupfinderClasses = ACH:Input('Groupfinder Classes', nil, 21, nil, 'normal', function() return 'wago.io/groupfinderClasses' end)
 	L1UI.Options.args.weakauras.args.groupfinderApptext = ACH:Input('Groupfinder Applicants', nil, 22, nil, 'normal', function() return 'wago.io/appTextHide' end)
-	L1UI.Options.args.weakauras.args.header4 = ACH:Header(L["Note about WeakAuras"], 23)
+	L1UI.Options.args.weakauras.args.header3 = ACH:Header(L["Note about WeakAuras"], 23)
 	L1UI.Options.args.weakauras.args.desc = ACH:Group('', nil, 24)
 	L1UI.Options.args.weakauras.args.desc.inline = true
 	L1UI.Options.args.weakauras.args.desc.args.waDesc = ACH:Description(L["\nAll Class WeakAuras above are for DPS and Tank specializations only.\nThere is currently no plan to support Healers at all.\n\n"], 25, 'medium')
+
+	-- WeakAuras TBC
+	L1UI.Options.args.weakaurasTBC = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 13, nil, nil, nil, nil, not E.TBC)
+	L1UI.Options.args.weakaurasTBC.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
+	L1UI.Options.args.weakaurasTBC.args.hunter = ACH:Input(format('|cffAAD372%s|r', L["Hunter"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneHunterTBC' end)
+	L1UI.Options.args.weakaurasTBC.args.header2 = ACH:Header(L["General WeakAuras"], 3)
+	L1UI.Options.args.weakaurasTBC.args.trinket = ACH:Input('Trinket Tracking', nil, 4, nil, 'normal', function() return 'wago.io/TrinketTBC' end)
+	L1UI.Options.args.weakaurasTBC.args.combat = ACH:Input('Combat Tracking', nil, 5, nil, 'normal', function() return 'wago.io/combatStateTBC' end)
+
+	-- WeakAuras Classic
+	L1UI.Options.args.weakaurasClassic = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 13, nil, nil, nil, nil, not E.Classic)
+	L1UI.Options.args.weakaurasClassic.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
+	L1UI.Options.args.weakaurasClassic.args.hunter = ACH:Input(format('|cffAAD372%s|r', L["Hunter"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneClassicHunter' end)
+	L1UI.Options.args.weakaurasClassic.args.header2 = ACH:Header(L["General WeakAuras"], 3)
+	L1UI.Options.args.weakaurasClassic.args.layer = ACH:Input('Layer Hopping', nil, 4, nil, 'normal', function() return 'wago.io/layerInvite' end)
+	L1UI.Options.args.weakaurasClassic.args.combat = ACH:Input('Combat Tracking', nil, 5, nil, 'normal', function() return 'wago.io/combatStateClassic' end)
 
 	-- Credits
 	L1UI.Options.args.credits = ACH:Group(format('|cffFF7D0A%s|r', L["Credits"]), nil, 14)
