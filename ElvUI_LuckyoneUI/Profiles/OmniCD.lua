@@ -633,6 +633,7 @@ function L1UI:Get_OmniCD_Profile()
 						},
 					},
 					["locked"] = true,
+					["growUpward"] = true,
 					["paddingY"] = 2,
 					["columns"] = 10,
 					["bgColors"] = {
