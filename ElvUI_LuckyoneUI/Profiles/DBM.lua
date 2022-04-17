@@ -2809,7 +2809,4 @@ function L1UI:Get_DBM_Profile()
 		DBM:ApplyProfile(Classic)
 
 	end
-
-	L1UI:Print('Make sure to (re)-enable Deadly Boss Mods Core')
-	L1UI:Print('in AddOnSkins -> Skins.')
 end
