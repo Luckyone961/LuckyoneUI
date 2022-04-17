@@ -3,6 +3,7 @@
 Healermana text in party frames is now colored by default  
 OmniCD interrupts will now grow up by default in healing profile  
 System DataText will now display home latency by default  
+Updated WeakAuras section in /luckyoneui config  
 ___
 ### Version 1.46 [23-03-2022]
 **All WoW Versions:**  
