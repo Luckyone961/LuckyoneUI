@@ -3,6 +3,8 @@
 Set default font for tooltip header to Expressway  
 **Retail:**  
 Removed party mana text format in Healing layout  
+**Classic:**  
+Updated TOC for 1.14.3  
 ___
 ### Version 1.47 [17-04-2022]
 **Retail:**  
