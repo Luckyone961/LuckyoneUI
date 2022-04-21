@@ -169,7 +169,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.themes.args.raid.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() L1UI:SetupTheme('class') end, nil, true)
 
 	-- WeakAuras Retail
-	L1UI.Options.args.weakauras = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 13, nil, nil, nil, nil, not E.Retail)
+	L1UI.Options.args.weakauras = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 12, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.weakauras.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
 	L1UI.Options.args.weakauras.args.druid = ACH:Input(format('|cffFF7C0A%s|r', L["Druid"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneDruid' end)
 	L1UI.Options.args.weakauras.args.priest = ACH:Input(format('|cffFFFFFF%s|r', L["Priest"]), nil, 3, nil, 'normal', function() return 'wago.io/luckyonePriest' end)
@@ -198,7 +198,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.weakauras.args.desc.args.waDesc = ACH:Description(L["\nAll Class WeakAuras above are for DPS and Tank specializations only.\nThere is currently no plan to support Healers at all.\n\n"], 25, 'medium')
 
 	-- WeakAuras TBC
-	L1UI.Options.args.weakaurasTBC = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 13, nil, nil, nil, nil, not E.TBC)
+	L1UI.Options.args.weakaurasTBC = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 12, nil, nil, nil, nil, not E.TBC)
 	L1UI.Options.args.weakaurasTBC.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
 	L1UI.Options.args.weakaurasTBC.args.hunter = ACH:Input(format('|cffAAD372%s|r', L["Hunter"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneHunterTBC' end)
 	L1UI.Options.args.weakaurasTBC.args.header2 = ACH:Header(L["General WeakAuras"], 3)
@@ -206,7 +206,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.weakaurasTBC.args.combat = ACH:Input('Combat Tracking', nil, 5, nil, 'normal', function() return 'wago.io/combatStateTBC' end)
 
 	-- WeakAuras Classic
-	L1UI.Options.args.weakaurasClassic = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 13, nil, nil, nil, nil, not E.Classic)
+	L1UI.Options.args.weakaurasClassic = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 12, nil, nil, nil, nil, not E.Classic)
 	L1UI.Options.args.weakaurasClassic.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
 	L1UI.Options.args.weakaurasClassic.args.hunter = ACH:Input(format('|cffAAD372%s|r', L["Hunter"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneClassicHunter' end)
 	L1UI.Options.args.weakaurasClassic.args.header2 = ACH:Header(L["General WeakAuras"], 3)
@@ -214,7 +214,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.weakaurasClassic.args.combat = ACH:Input('Combat Tracking', nil, 5, nil, 'normal', function() return 'wago.io/combatStateClassic' end)
 
 	-- Credits
-	L1UI.Options.args.credits = ACH:Group(format('|cffFF7D0A%s|r', L["Credits"]), nil, 14)
+	L1UI.Options.args.credits = ACH:Group(format('|cffFF7D0A%s|r', L["Credits"]), nil, 13)
 	L1UI.Options.args.credits.args.author = ACH:Group(L["Author"], nil, 1)
 	L1UI.Options.args.credits.args.author.inline = true
 	L1UI.Options.args.credits.args.author.args.desc = ACH:Description(L1UI.AUTHORS_STRING, 1, 'medium')
@@ -229,7 +229,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description(L1UI.SUPPORT_STRING, 1, 'medium')
 
 	-- Links
-	L1UI.Options.args.links = ACH:Group(format('|cffFF7D0A%s|r', L["Links"]), nil, 15)
+	L1UI.Options.args.links = ACH:Group(format('|cffFF7D0A%s|r', L["Links"]), nil, 14)
 	L1UI.Options.args.links.args.changelog = ACH:Input(L["Changelog:"], nil, 1, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/blob/development/CHANGELOG.md' end)
 	L1UI.Options.args.links.args.issues = ACH:Input(L["Report issues here:"], nil, 2, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/issues' end)
 	L1UI.Options.args.links.args.website = ACH:Input(L["Addon link:"], nil, 3, nil, 'full', function() return 'https://www.curseforge.com/wow/addons/elvui_luckyoneui' end)
