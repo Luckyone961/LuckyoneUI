@@ -168,16 +168,6 @@ function L1UI:GetOptions()
 	L1UI.Options.args.themes.args.raid.args.dark = ACH:Execute(L["Dark"], L["Dark Style (Default)"], 1, function() L1UI:SetupTheme('dark') end, nil, true)
 	L1UI.Options.args.themes.args.raid.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() L1UI:SetupTheme('class') end, nil, true)
 
-	-- UnitFrames
-	L1UI.Options.args.unitframes = ACH:Group(format('|cff4beb2c%s|r', L["UnitFrames"]), nil, 12, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.unitframes.args.raid = ACH:Group(L["Raidframe Style"], nil, 1)
-	L1UI.Options.args.unitframes.args.raid.inline = true
-	L1UI.Options.args.unitframes.args.raid.args.vertical = ACH:Execute(L["Vertical"], L["Vertical Style"], 1, function() L1UI:RaidFrames('vertical') end, nil, true)
-	L1UI.Options.args.unitframes.args.raid.args.block = ACH:Execute(L["Default"], L["Default Style"], 2, function() L1UI:RaidFrames('block') end, nil, true)
-	L1UI.Options.args.unitframes.args.desc = ACH:Group(L["Note"], nil, 2)
-	L1UI.Options.args.unitframes.args.desc.inline = true
-	L1UI.Options.args.unitframes.args.desc.args.raidDesc = ACH:Description(L["The options above are for the DPS/TANK layout."], 1, 'medium')
-
 	-- WeakAuras Retail
 	L1UI.Options.args.weakauras = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 13, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.weakauras.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
