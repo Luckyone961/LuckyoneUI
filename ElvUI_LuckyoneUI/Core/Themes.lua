@@ -17,6 +17,12 @@ function L1UI:SetupTheme(theme)
 		E.db["unitframe"]["colors"]["transparentHealth"] = true
 		E.db["unitframe"]["colors"]["useDeadBackdrop"] = true
 
+		E.db["unitframe"]["units"]["arena"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:medium]"
+		E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:last]"
+		E.db["unitframe"]["units"]["party"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name]"
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name:medium]"
+		E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[classcolor][name:veryshort]"
+
 	elseif theme == 'class' then
 
 		E.db["unitframe"]["colors"]["classbackdrop"] = false
@@ -30,6 +36,12 @@ function L1UI:SetupTheme(theme)
 
 		E.db["unitframe"]["colors"]["transparentHealth"] = true
 		E.db["unitframe"]["colors"]["useDeadBackdrop"] = true
+
+		E.db["unitframe"]["units"]["arena"]["customTexts"]["Luckyone_Name"]["text_format"] = "[name:medium]"
+		E.db["unitframe"]["units"]["boss"]["customTexts"]["Luckyone_Name"]["text_format"] = "[name:last]"
+		E.db["unitframe"]["units"]["party"]["customTexts"]["Luckyone_Name"]["text_format"] = "[name]"
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["Luckyone_Name"]["text_format"] = "[name:medium]"
+		E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[name:veryshort]"
 
 	end
 
