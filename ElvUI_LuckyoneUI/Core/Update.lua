@@ -4,10 +4,19 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 function L1UI:UpdateLayout(layout)
 
 	if layout == 'dps' then
+
 		-- DPS/Tank db
+
 	elseif layout == 'healer' then
-		-- Healing db
+
+		-- Custom Text: Party Healing
+		E.db["unitframe"]["units"]["party"]["customTexts"]["Luckyone_Name"]["text_format"] = "[classcolor][name]"
+
 	end
+
+	-- New tooltip font options
+	E.db["tooltip"]["headerFont"] = "Expressway"
+	E.db["tooltip"]["headerFontOutline"] = "OUTLINE"
 
 	E:StaggeredUpdateAll()
 
