@@ -585,6 +585,20 @@ function L1UI:SetupLayout(layout)
 		["yOffset"] = 1
 	}
 
+	-- Custom Text: Party
+	E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
+	E.db["unitframe"]["units"]["party"]["customTexts"]["Luckyone_Name"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = true,
+		["font"] = "Expressway",
+		["fontOutline"] = "OUTLINE",
+		["justifyH"] = "CENTER",
+		["size"] = 14,
+		["text_format"] = "[classcolor][name]",
+		["xOffset"] = 0,
+		["yOffset"] = 0
+	}
+
 	-- Custom Text: Pet
 	E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 	E.db["unitframe"]["units"]["pet"]["customTexts"]["Luckyone_HP"] = {
@@ -746,20 +760,6 @@ function L1UI:SetupLayout(layout)
 	if layout == 'dps' then
 
 		if not E.db.movers then E.db.movers = {} end
-
-		-- Custom Text: Party DPS/Tank
-		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["Luckyone_Name"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = "Expressway",
-			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 14,
-			["text_format"] = E.Retail and "[classcolor][name][manacolor][ - >luckyone:healermana:percent<%]" or "[classcolor][name]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
 
 		-- Growth Directions DPS/TANK
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "DOWN_RIGHT"
@@ -1417,20 +1417,6 @@ function L1UI:SetupLayout(layout)
 	elseif layout == 'healer' then
 
 		if not E.db.movers then E.db.movers = {} end
-
-		-- Custom Text: Party Healing
-		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["Luckyone_Name"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = "Expressway",
-			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 14,
-			["text_format"] = "[classcolor][name]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
 
 		-- Growth Directions Healing
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "RIGHT_DOWN"
