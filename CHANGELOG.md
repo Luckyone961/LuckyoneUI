@@ -1,5 +1,6 @@
 ### Version 1.48 [In Development]
 **All WoW Versions:**  
+Removed support for vertical RaidFrames theme  
 Set default font for tooltip header to Expressway  
 **Retail:**  
 Removed party mana text format in Healing layout  
