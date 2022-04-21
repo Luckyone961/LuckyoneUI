@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 Removed support for vertical RaidFrames theme  
 Set default font for tooltip header to Expressway  
+Updated the "Class Color" theme for better text colors  
 **Retail:**  
 Removed party mana text format in Healing layout  
 **Classic:**  
