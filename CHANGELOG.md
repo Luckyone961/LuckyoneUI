@@ -1,4 +1,8 @@
 ### Version 1.48 [In Development]
+**All WoW Versions:**  
+Set default font for tooltip header to Expressway  
+**Retail:**  
+Removed party mana text format in Healing layout  
 ___
 ### Version 1.47 [17-04-2022]
 **Retail:**  
