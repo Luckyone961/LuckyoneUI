@@ -22,13 +22,13 @@ function L1UI:SetupLayout(layout)
 	L1UI:SetupPrivate()
 
 	-- AddOnSkins profile
-	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins(noPrint) end
+	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins('noPrint') end
 
 	-- ProjectAzilroka profile
-	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Setup_ProjectAzilroka(noPrint) end
+	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Setup_ProjectAzilroka('noPrint') end
 
 	-- Shadow & Light profile
-	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight(noPrint) end
+	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight('noPrint') end
 
 	-- AB conversion
 	E.db["convertPages"] = true

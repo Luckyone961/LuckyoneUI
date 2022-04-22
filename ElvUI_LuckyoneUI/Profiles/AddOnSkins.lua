@@ -23,5 +23,7 @@ function L1UI:Setup_AddOnSkins(noPrint)
 	AS.db["EmbedSystemDual"] = false
 	AS.db["EmbedSystemMessage"] = false
 
-	if not noPrint then L1UI:Print(L["AddOnSkins profile has been set."]) end
+	if not noPrint then
+		L1UI:Print(L["AddOnSkins profile has been set."])
+	end
 end

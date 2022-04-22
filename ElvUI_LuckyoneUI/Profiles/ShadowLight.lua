@@ -125,5 +125,7 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.db["sle"]["skins"]["objectiveTracker"]["underlineClass"] = true
 	E.db["sle"]["skins"]["talkinghead"]["hide"] = true
 
-	if not noPrint then L1UI:Print(L["Shadow&Light profile has been set."]) end
+	if not noPrint then
+		L1UI:Print(L["Shadow&Light profile has been set."])
+	end
 end
