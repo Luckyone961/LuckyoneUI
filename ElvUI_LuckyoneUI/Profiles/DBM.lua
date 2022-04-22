@@ -936,7 +936,12 @@ function L1UI:Get_DBM_Profile()
 
 		DBM_MinimapIcon["hide"] = true
 
-		DBM:ApplyProfile(Retail)
+		-- Role check and set profile
+		if E.mylevel >= 10 and E.myrole == 'HEALER' then
+			DBM:ApplyProfile(Retail_H)
+		else
+			DBM:ApplyProfile(Retail)
+		end
 
 	elseif E.TBC then
 

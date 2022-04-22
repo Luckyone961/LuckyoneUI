@@ -254,8 +254,12 @@ function L1UI:Get_BigWigs_Profile()
 			["endPullSound"] = "None",
 		}
 
-		-- Set the profile
-		BigWigs.db:SetProfile(Rmain)
+		-- Role check and set profile
+		if E.mylevel >= 10 and E.myrole == 'HEALER' then
+			BigWigs.db:SetProfile(Rheal)
+		else
+			BigWigs.db:SetProfile(Rmain)
+		end
 
 	elseif E.TBC then
 

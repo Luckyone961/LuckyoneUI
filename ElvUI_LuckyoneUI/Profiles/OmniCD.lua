@@ -1132,6 +1132,10 @@ function L1UI:Get_OmniCD_Profile()
 		},
 	}
 
-	-- Profile Key
-	OmniCDDB["profileKeys"][E.mynameRealm] = Main
+	-- Role check and set profile
+	if E.mylevel >= 10 and E.myrole == 'HEALER' then
+		OmniCDDB["profileKeys"][E.mynameRealm] = Heal
+	else
+		OmniCDDB["profileKeys"][E.mynameRealm] = Main
+	end
 end
