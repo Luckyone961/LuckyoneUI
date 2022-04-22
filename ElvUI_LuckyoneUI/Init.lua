@@ -43,6 +43,7 @@ local toons = {
 -- Constants
 L1UI.Config = {}
 L1UI.CreditsList = {}
+L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
 L1UI.RequiredVersion = E.Retail and 12.76 or E.TBC and 2.43 or E.Classic and 1.68
