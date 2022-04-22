@@ -2,9 +2,11 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local _G = _G
 local _detalhes = _G._detalhes
+local IsAddOnLoaded = IsAddOnLoaded
 
 -- Details Profile
-function L1UI:Get_Details_Profile()
+function L1UI:Setup_Details()
+	if not IsAddOnLoaded('Details') then return end
 
 	-- Wipe *spell_pool, npcid_pool, encounter_spell_pool, spell_school_cache
 	L1UI:Cleanup_Cache('details')
@@ -31,4 +33,6 @@ function L1UI:Get_Details_Profile()
 	-- Load on all characters
 	_detalhes.always_use_profile = true
 	_detalhes.always_use_profile_name = name
+
+	L1UI:Print(L["Details profile has been set."])
 end

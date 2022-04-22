@@ -21,8 +21,8 @@ function L1UI:GetOptions()
 	L1UI.Options.args.installer = ACH:Group(L["Installer & Update"], nil, 2)
 	L1UI.Options.args.installer.inline = true
 	L1UI.Options.args.installer.args.install = ACH:Execute(L["Install"], L["Re-Run the installation process."], 1, function() E.PluginInstaller:Queue(L1UI.InstallerData) E:ToggleOptionsUI() end)
-	L1UI.Options.args.installer.args.updateD = ACH:Execute(L["Update DPS/TANK Layout"], L["Update DPS/TANK layout to LuckyoneUI version: "]..L1UI.Version, 2, function() L1UI:UpdateLayout('dps') end, nil, true)
-	L1UI.Options.args.installer.args.updateH = ACH:Execute(L["Update Healing Layout"], L["Update Healing layout to LuckyoneUI version: "]..L1UI.Version, 3, function() L1UI:UpdateLayout('healer') end, nil, true)
+	L1UI.Options.args.installer.args.updateD = ACH:Execute(L["Update DPS/TANK Layout"], L["Update DPS/TANK layout to LuckyoneUI version: "]..L1UI.Version, 2, function() L1UI:UpdateLayout('main') end, nil, true)
+	L1UI.Options.args.installer.args.updateH = ACH:Execute(L["Update Healing Layout"], L["Update Healing layout to LuckyoneUI version: "]..L1UI.Version, 3, function() L1UI:UpdateLayout('healing') end, nil, true)
 
 	-- Auras [Buffs]
 	L1UI.Options.args.auras = ACH:Group(format('|cff4beb2c%s|r', L["Auras"]), nil, 3, 'tab')
@@ -75,7 +75,7 @@ function L1UI:GetOptions()
 	-- Auras [Classic and TBC]
 	L1UI.Options.args.auras.args.classic.args.dps = ACH:Group(L["DPS/TANK Layout"], nil, 1, nil, nil, nil, nil, E.Retail)
 	L1UI.Options.args.auras.args.classic.args.dps.inline = true
-	L1UI.Options.args.auras.args.classic.args.dps.args.on = ACH:Execute(L["Enable Party Buffs"], nil, 1, function() L1UI:LegacyAuras('on', 'dps') end, nil, true)
+	L1UI.Options.args.auras.args.classic.args.dps.args.on = ACH:Execute(L["Enable Party Buffs"], nil, 1, function() L1UI:LegacyAuras('on', 'main') end, nil, true)
 	L1UI.Options.args.auras.args.classic.args.dps.args.off = ACH:Execute(L["Disable Party Buffs"], nil, 2, function() L1UI:LegacyAuras('off') end, nil, true)
 	L1UI.Options.args.auras.args.classic.args.healing = ACH:Group(L["Healing Layout"], nil, 2, nil, nil, nil, nil, E.Retail)
 	L1UI.Options.args.auras.args.classic.args.healing.inline = true

@@ -1,8 +1,11 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 if not E.Retail then return end
 
+local IsAddOnLoaded = IsAddOnLoaded
+
 -- Shadow & Light Profile
-function L1UI:Get_ShadowAndLight_Profile()
+function L1UI:Setup_ShadowAndLight()
+	if not IsAddOnLoaded('ElvUI_SLE') then return end
 
 	-- Restore defaults
 	E.global.sle = E:CopyTable({}, G.sle)
@@ -121,4 +124,6 @@ function L1UI:Get_ShadowAndLight_Profile()
 	E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["r"] = 0.81960784313725
 	E.db["sle"]["skins"]["objectiveTracker"]["underlineClass"] = true
 	E.db["sle"]["skins"]["talkinghead"]["hide"] = true
+
+	L1UI:Print(L["Shadow&Light profile has been set."])
 end

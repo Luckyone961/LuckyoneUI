@@ -1,7 +1,10 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local IsAddOnLoaded = IsAddOnLoaded
+
 -- DBM Profile
-function L1UI:Get_DBM_Profile()
+function L1UI:Setup_DBM(layout)
+	if not IsAddOnLoaded('DBM-Core') then return end
 
 	-- Profile Names
 	local Retail, TBC, Classic = "Luckyone", "Luckyone", "Luckyone"
@@ -937,10 +940,10 @@ function L1UI:Get_DBM_Profile()
 		DBM_MinimapIcon["hide"] = true
 
 		-- Role check and set profile
-		if E.mylevel >= 10 and E.myrole == 'HEALER' then
-			DBM:ApplyProfile(Retail_H)
-		else
+		if layout == 'main' then
 			DBM:ApplyProfile(Retail)
+		elseif layout == 'healing' then
+			DBM:ApplyProfile(Retail_H)
 		end
 
 	elseif E.TBC then
@@ -1876,7 +1879,12 @@ function L1UI:Get_DBM_Profile()
 
 		DBM_MinimapIcon["hide"] = true
 
-		DBM:ApplyProfile(TBC)
+		-- Role check and set profile
+		if layout == 'main' then
+			DBM:ApplyProfile(TBC)
+		elseif layout == 'healing' then
+			DBM:ApplyProfile(TBC_H)
+		end
 
 	elseif E.Classic then
 
@@ -2811,7 +2819,14 @@ function L1UI:Get_DBM_Profile()
 
 		DBM_MinimapIcon["hide"] = true
 
-		DBM:ApplyProfile(Classic)
+		-- Role check and set profile
+		if layout == 'main' then
+			DBM:ApplyProfile(Classic)
+		elseif layout == 'healing' then
+			DBM:ApplyProfile(Classic_H)
+		end
 
 	end
+
+	L1UI:Print(L["DBM profile has been set."])
 end

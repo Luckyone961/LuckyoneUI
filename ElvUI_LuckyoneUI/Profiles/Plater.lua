@@ -1,7 +1,10 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local IsAddOnLoaded = IsAddOnLoaded
+
 -- Plater Profile
-function L1UI:Get_Plater_Profile()
+function L1UI:Setup_Plater()
+	if not IsAddOnLoaded('Plater') then return end
 
 	-- Profile Names
 	local Retail, TBC, Classic = "Luckyone", "Luckyone TBC", "Luckyone Classic"
@@ -1882,4 +1885,6 @@ function L1UI:Get_Plater_Profile()
 		PlaterDB["profileKeys"][E.mynameRealm] = Classic
 
 	end
+
+	L1UI:Print(L["Plater profile has been set."])
 end

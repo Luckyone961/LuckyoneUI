@@ -6,9 +6,9 @@ local IsAddOnLoaded = IsAddOnLoaded
 function L1UI:SetupLayout(layout)
 
 	-- Create the profiles and set the name
-	if layout == 'dps' then
+	if layout == 'main' then
 		E.data:SetProfile('Luckyone DPS/TANK v'..L1UI.Version)
-	elseif layout == 'healer' then
+	elseif layout == 'healing' then
 		E.data:SetProfile('Luckyone Healing v'..L1UI.Version)
 	end
 
@@ -22,13 +22,13 @@ function L1UI:SetupLayout(layout)
 	L1UI:SetupPrivate()
 
 	-- AddOnSkins profile
-	if IsAddOnLoaded('AddOnSkins') then L1UI:Get_AddOnSkins_Profile() end
+	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins() end
 
 	-- ProjectAzilroka profile
-	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Get_ProjectAzilroka_Profile() end
+	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Setup_ProjectAzilroka() end
 
 	-- Shadow & Light profile
-	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Get_ShadowAndLight_Profile() end
+	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight() end
 
 	-- AB conversion
 	E.db["convertPages"] = true
@@ -757,7 +757,7 @@ function L1UI:SetupLayout(layout)
 		["yOffset"] = 1
 	}
 
-	if layout == 'dps' then
+	if layout == 'main' then
 
 		if not E.db.movers then E.db.movers = {} end
 
@@ -1414,7 +1414,7 @@ function L1UI:SetupLayout(layout)
 			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 		end
 
-	elseif layout == 'healer' then
+	elseif layout == 'healing' then
 
 		if not E.db.movers then E.db.movers = {} end
 

@@ -4,7 +4,8 @@ local IsAddOnLoaded = IsAddOnLoaded
 local LoadAddOn = LoadAddOn
 
 -- BigWigs Profiles
-function L1UI:Get_BigWigs_Profile()
+function L1UI:Setup_BigWigs(layout)
+	if not IsAddOnLoaded('BigWigs') then return end
 
 	-- Profile Names
 	local Rmain, Rheal = "Luckyone D/T", "Luckyone H"
@@ -255,10 +256,10 @@ function L1UI:Get_BigWigs_Profile()
 		}
 
 		-- Role check and set profile
-		if E.mylevel >= 10 and E.myrole == 'HEALER' then
-			BigWigs.db:SetProfile(Rheal)
-		else
+		if layout == 'main' then
 			BigWigs.db:SetProfile(Rmain)
+		elseif layout == 'healing' then
+			BigWigs.db:SetProfile(Rheal)
 		end
 
 	elseif E.TBC then
@@ -484,8 +485,12 @@ function L1UI:Get_BigWigs_Profile()
 			["endPullSound"] = "None",
 		}
 
-		-- Set the profile
-		BigWigs.db:SetProfile(Tmain)
+		-- Role check and set profile
+		if layout == 'main' then
+			BigWigs.db:SetProfile(Tmain)
+		elseif layout == 'healing' then
+			BigWigs.db:SetProfile(Theal)
+		end
 
 	elseif E.Classic then
 
@@ -710,8 +715,12 @@ function L1UI:Get_BigWigs_Profile()
 			["endPullSound"] = "None",
 		}
 
-		-- Set the profile
-		BigWigs.db:SetProfile(Cmain)
+		-- Role check and set profile
+		if layout == 'main' then
+			BigWigs.db:SetProfile(Cmain)
+		elseif layout == 'healing' then
+			BigWigs.db:SetProfile(Cheal)
+		end
 	end
 
 	-- Enable auto logging for myself
@@ -725,4 +734,6 @@ function L1UI:Get_BigWigs_Profile()
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Cmain]["combatLog"] = true
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Cheal]["combatLog"] = true
 	end
+
+	L1UI:Print(L["BigWigs profile has been set."])
 end

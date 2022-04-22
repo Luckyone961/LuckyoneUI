@@ -2,7 +2,8 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 if not E.Retail then return end
 
 -- OmniCD Profile
-function L1UI:Get_OmniCD_Profile()
+function L1UI:Setup_OmniCD(layout)
+	if not IsAddOnLoaded('OmniCD') then return end
 
 	-- Profile Names
 	local Main, Heal = "Luckyone DPS/TANK", "Luckyone Healing"
@@ -1133,9 +1134,11 @@ function L1UI:Get_OmniCD_Profile()
 	}
 
 	-- Role check and set profile
-	if E.mylevel >= 10 and E.myrole == 'HEALER' then
-		OmniCDDB["profileKeys"][E.mynameRealm] = Heal
-	else
+	if layout == 'main' then
 		OmniCDDB["profileKeys"][E.mynameRealm] = Main
+	elseif layout == 'healing' then
+		OmniCDDB["profileKeys"][E.mynameRealm] = Heal
 	end
+
+	L1UI:Print(L["OmniCD profile has been set."])
 end

@@ -144,7 +144,6 @@ L["Please click a button below to apply the layout of your choosing."] = "Bitte 
 L["Please click a button below to set the UnitFrames Color Theme."] = "Bitte klicke unten auf eine Schaltfläche, um das Einheitenfenster Farb Theme festzulegen."
 L["Please click the button below to apply Alysias profile for Details! Damage Meter."] = "Bitte klicke auf die Schaltfläche unten, um Alysias Profil für Details! Schadensanzeige anzuwenden."
 L["Setup Details"] = "Details Einrichtung"
-L["Setup OmniCD"] = "OmniCD Einrichtung"
 L["Skip Process"] = "Schritt überspringen"
 L["This installation process will guide you through a few steps and apply settings to your current ElvUI profile."] = "Dieser Installationsprozess führt Dich durch einige Schritte und wendet Einstellungen auf Dein aktuelles ElvUI Profil an."
 L["This will setup the chat windows to look like this:\n\nLeft Chat: General - Log - Whisper - Guild - Party\n\nRight Chat: Details! Damage Meter"] = "Dadurch werden die Chatfenster so eingerichtet:\n\nLinker Chat: Allgemein - Protokoll - Flüstern - Gilde - Gruppe\n\nRechter Chat: Details! Schadensanzeige"

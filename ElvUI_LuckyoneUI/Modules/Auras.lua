@@ -101,7 +101,7 @@ function L1UI:LegacyAuras(toggle, layout)
 
 	if toggle == 'on' then
 
-		if layout == 'dps' then
+		if layout == 'main' then
 
 			E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOPLEFT"
 			E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Expressway"
