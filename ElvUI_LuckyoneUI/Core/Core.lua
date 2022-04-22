@@ -5,7 +5,6 @@ local LuckyDT
 local print = print
 local format = format
 
-local IsAddOnLoaded = IsAddOnLoaded
 local ReloadUI = ReloadUI
 local SetCVar = SetCVar
 
