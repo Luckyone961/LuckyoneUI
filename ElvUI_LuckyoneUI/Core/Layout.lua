@@ -759,12 +759,13 @@ function L1UI:SetupLayout(layout)
 
 	if layout == 'main' then
 
-		if not E.db.movers then E.db.movers = {} end
-
 		-- Growth Directions DPS/TANK
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "RIGHT_DOWN"
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "RIGHT_DOWN"
+
+		-- Protect movers error
+		if not E.db.movers then E.db.movers = {} end
 
 		-- Movers DPS/TANK
 		E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-139"
@@ -1416,12 +1417,13 @@ function L1UI:SetupLayout(layout)
 
 	elseif layout == 'healing' then
 
-		if not E.db.movers then E.db.movers = {} end
-
 		-- Growth Directions Healing
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "RIGHT_DOWN"
 		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "RIGHT_DOWN"
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "RIGHT_DOWN"
+
+		-- Protect movers error
+		if not E.db.movers then E.db.movers = {} end
 
 		-- Movers Healing
 		E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-139"
