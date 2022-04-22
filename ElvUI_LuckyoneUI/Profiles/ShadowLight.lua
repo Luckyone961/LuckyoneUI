@@ -4,7 +4,7 @@ if not E.Retail then return end
 local IsAddOnLoaded = IsAddOnLoaded
 
 -- Shadow & Light Profile
-function L1UI:Setup_ShadowAndLight()
+function L1UI:Setup_ShadowAndLight(noPrint)
 	if not IsAddOnLoaded('ElvUI_SLE') then return end
 
 	-- Restore defaults
@@ -125,5 +125,5 @@ function L1UI:Setup_ShadowAndLight()
 	E.db["sle"]["skins"]["objectiveTracker"]["underlineClass"] = true
 	E.db["sle"]["skins"]["talkinghead"]["hide"] = true
 
-	L1UI:Print(L["Shadow&Light profile has been set."])
+	if not noPrint then L1UI:Print(L["Shadow&Light profile has been set."]) end
 end
