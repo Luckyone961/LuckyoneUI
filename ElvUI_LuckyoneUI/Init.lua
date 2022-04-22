@@ -8,7 +8,7 @@ local format = format
 local _G = _G
 local GetAddOnMetadata = GetAddOnMetadata
 
-local L1UI = E:NewModule(addon, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0');
+local L1UI = E:NewModule(addon, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
 
 Engine[1] = L1UI -- LuckyoneUI
 Engine[2] = E -- ElvUI Engine
@@ -16,7 +16,7 @@ Engine[3] = L -- ElvUI Locales
 Engine[4] = V -- ElvUI PrivateDB
 Engine[5] = P -- ElvUI ProfileDB
 Engine[6] = G -- ElvUI GlobalDB
-_G[addon] = Engine;
+_G[addon] = Engine
 
 -- My characters
 local name = format('%s-%s', E.myname, E:ShortenRealm(E.myrealm))
