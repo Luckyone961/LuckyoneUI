@@ -137,23 +137,32 @@ function L1UI:GetOptions()
 
 	-- Profiles
 	L1UI.Options.args.profiles = ACH:Group(format('|cff4beb2c%s|r', L["Profiles"]), nil, 9)
-	L1UI.Options.args.profiles.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 1)
+	L1UI.Options.args.profiles.args.header1 = ACH:Header(L["Main Profiles"], 1)
+	L1UI.Options.args.profiles.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 2)
 	L1UI.Options.args.profiles.args.plugins.inline = true
-	L1UI.Options.args.profiles.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_AddOnSkins() ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.plugins.args.pa = ACH:Execute('|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_ProjectAzilroka() ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.bossmods = ACH:Group(L["BossMods Profiles"], nil, 2)
+	L1UI.Options.args.profiles.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_AddOnSkins() E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.plugins.args.pa = ACH:Execute('|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_ProjectAzilroka() E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', L["Reset to LuckyoneUI defaults."], 3, function() L1UI:Setup_ShadowAndLight() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
+	L1UI.Options.args.profiles.args.bossmods = ACH:Group(L["BossMods Profiles"], nil, 3)
 	L1UI.Options.args.profiles.args.bossmods.inline = true
-	L1UI.Options.args.profiles.args.bossmods.args.bigwigs = ACH:Execute('BigWigs', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_BigWigs() ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.bossmods.args.dbm = ACH:Execute('DBM', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_DBM() ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.nameplates = ACH:Group(L["NamePlate Profiles"], nil, 3)
+	L1UI.Options.args.profiles.args.bossmods.args.bigwigs = ACH:Execute('BigWigs Main', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_BigWigs('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.bossmods.args.dbm = ACH:Execute('DBM Main', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_DBM('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.nameplates = ACH:Group(L["NamePlate Profiles"], nil, 4)
 	L1UI.Options.args.profiles.args.nameplates.inline = true
-	L1UI.Options.args.profiles.args.nameplates.args.elvui = ACH:Execute('ElvUI', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:SetupNamePlates('ElvUI') ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.nameplates.args.plater = ACH:Execute('Plater', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:SetupNamePlates('Plater') ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.addons = ACH:Group(L["Addon Profiles"], nil, 4)
+	L1UI.Options.args.profiles.args.nameplates.args.elvui = ACH:Execute('ElvUI', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:SetupNamePlates('ElvUI') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.nameplates.args.plater = ACH:Execute('Plater', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:SetupNamePlates('Plater') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.addons = ACH:Group(L["Addon Profiles"], nil, 5)
 	L1UI.Options.args.profiles.args.addons.inline = true
-	L1UI.Options.args.profiles.args.addons.args.details = ACH:Execute('Details', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_Details() ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', L["Reset to LuckyoneUI defaults."], 3, function() L1UI:Setup_ShadowAndLight() ReloadUI() end, nil, true, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.profiles.args.addons.args.omnicd = ACH:Execute('OmniCD', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_OmniCD() ReloadUI() end, nil, true, nil, nil, nil, nil, not E.Retail)
+	L1UI.Options.args.profiles.args.addons.args.details = ACH:Execute('Details', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_Details() E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.addons.args.omnicd = ACH:Execute('OmniCD Main', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_OmniCD('main') E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
+	L1UI.Options.args.profiles.args.header2 = ACH:Header(L["Healing Profiles"], 1)
+	L1UI.Options.args.profiles.args.bossmodsHealing = ACH:Group(L["BossMods Profiles"], nil, 6)
+	L1UI.Options.args.profiles.args.bossmodsHealing.inline = true
+	L1UI.Options.args.profiles.args.bossmodsHealing.args.bigwigs = ACH:Execute('BigWigs Healing', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_BigWigs('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.bossmodsHealing.args.dbm = ACH:Execute('DBM Healing', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_DBM('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.addonsHealing = ACH:Group(L["Addon Profiles"], nil, 7)
+	L1UI.Options.args.profiles.args.addonsHealing.inline = true
+	L1UI.Options.args.profiles.args.addonsHealing.args.omnicd = ACH:Execute('OmniCD Healing', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_OmniCD('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
 
 	-- Tags
 	L1UI.Options.args.tags = ACH:Group(format('|cff4beb2c%s|r', L["Tags"]), nil, 10)
