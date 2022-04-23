@@ -3,8 +3,8 @@
 Removed support for vertical RaidFrames theme  
 Reworked installer steps and added buttons to apply healing profiles  
 Set default font for tooltip header to Expressway  
-Updated the "Class Color" theme for better text colors  
-Updated the installer to check role for addon profiles  
+Updated config section for Profiles  
+Updated the class color theme for better text colors  
 **Retail:**  
 Removed party mana text format in Healing layout  
 **Classic:**  
