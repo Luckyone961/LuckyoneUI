@@ -14,9 +14,11 @@ function L1UI:UpdateLayout(layout)
 
 	end
 
-	-- New tooltip font options
-	E.db["tooltip"]["headerFont"] = "Expressway"
-	E.db["tooltip"]["headerFontOutline"] = "OUTLINE"
+	-- New tooltip font options, currently in ElvUI dev so check version just in case
+	if (E.Retail and E.version >= 12.77) or (E.TBC and E.version >= 2.44) or (E.Classic and E.version >= 1.69) then
+		E.db["tooltip"]["headerFont"] = "Expressway"
+		E.db["tooltip"]["headerFontOutline"] = "OUTLINE"
+	end
 
 	E:StaggeredUpdateAll()
 
