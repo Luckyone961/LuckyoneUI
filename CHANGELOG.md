@@ -1,4 +1,4 @@
-### Version 1.48 [In Development]
+### Version 1.48 [23-04-2022]
 **All WoW Versions:**  
 Removed support for vertical RaidFrames theme  
 Reworked installer steps and added buttons to apply healing profiles  
