@@ -6,9 +6,9 @@ local IsAddOnLoaded = IsAddOnLoaded
 function L1UI:SetupLayout(layout)
 
 	-- Create the profiles and set the name
-	if layout == 'dps' then
+	if layout == 'main' then
 		E.data:SetProfile('Luckyone DPS/TANK v'..L1UI.Version)
-	elseif layout == 'healer' then
+	elseif layout == 'healing' then
 		E.data:SetProfile('Luckyone Healing v'..L1UI.Version)
 	end
 
@@ -22,13 +22,13 @@ function L1UI:SetupLayout(layout)
 	L1UI:SetupPrivate()
 
 	-- AddOnSkins profile
-	if IsAddOnLoaded('AddOnSkins') then L1UI:Get_AddOnSkins_Profile() end
+	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins('noPrint') end
 
 	-- ProjectAzilroka profile
-	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Get_ProjectAzilroka_Profile() end
+	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Setup_ProjectAzilroka('noPrint') end
 
 	-- Shadow & Light profile
-	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Get_ShadowAndLight_Profile() end
+	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight('noPrint') end
 
 	-- AB conversion
 	E.db["convertPages"] = true
@@ -421,6 +421,12 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["colorAlpha"] = 0.75
 	E.db["tooltip"]["font"] = "Expressway"
 	E.db["tooltip"]["fontOutline"] = "OUTLINE"
+
+	if (E.Retail and E.version >= 12.77) or (E.TBC and E.version >= 2.44) or (E.Classic and E.version >= 1.69) then
+		E.db["tooltip"]["headerFont"] = "Expressway"
+		E.db["tooltip"]["headerFontOutline"] = "OUTLINE"
+	end
+
 	E.db["tooltip"]["headerFontSize"] = 11
 	E.db["tooltip"]["healthBar"]["font"] = "Expressway"
 	E.db["tooltip"]["healthBar"]["fontSize"] = 11
@@ -592,7 +598,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = E.Retail and "[classcolor][name][manacolor][ - >luckyone:healermana:percent<%]" or "[classcolor][name]",
+		["text_format"] = "[classcolor][name]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -755,14 +761,15 @@ function L1UI:SetupLayout(layout)
 		["yOffset"] = 1
 	}
 
-	if layout == 'dps' then
-
-		if not E.db.movers then E.db.movers = {} end
+	if layout == 'main' then
 
 		-- Growth Directions DPS/TANK
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "RIGHT_DOWN"
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "RIGHT_DOWN"
+
+		-- Protect movers error
+		if not E.db.movers then E.db.movers = {} end
 
 		-- Movers DPS/TANK
 		E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-139"
@@ -1412,14 +1419,15 @@ function L1UI:SetupLayout(layout)
 			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 		end
 
-	elseif layout == 'healer' then
-
-		if not E.db.movers then E.db.movers = {} end
+	elseif layout == 'healing' then
 
 		-- Growth Directions Healing
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "RIGHT_DOWN"
 		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "RIGHT_DOWN"
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "RIGHT_DOWN"
+
+		-- Protect movers error
+		if not E.db.movers then E.db.movers = {} end
 
 		-- Movers Healing
 		E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-139"

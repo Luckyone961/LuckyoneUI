@@ -1,3 +1,15 @@
+### Version 1.48 [23-04-2022]
+**All WoW Versions:**  
+Removed support for vertical RaidFrames theme  
+Reworked installer steps and added buttons to apply healing profiles  
+Set default font for tooltip header to Expressway  
+Updated config section for Profiles  
+Updated the class color theme for better text colors  
+**Retail:**  
+Removed party mana text format in Healing layout  
+**Classic:**  
+Updated TOC for 1.14.3  
+___
 ### Version 1.47 [17-04-2022]
 **Retail:**  
 Healermana text in party frames is now colored by default  

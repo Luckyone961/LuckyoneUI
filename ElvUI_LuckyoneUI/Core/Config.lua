@@ -2,7 +2,6 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local ACH
 
 local format = format
-local ReloadUI = ReloadUI
 
 -- Load this on init
 function L1UI:GetOptions()
@@ -21,8 +20,8 @@ function L1UI:GetOptions()
 	L1UI.Options.args.installer = ACH:Group(L["Installer & Update"], nil, 2)
 	L1UI.Options.args.installer.inline = true
 	L1UI.Options.args.installer.args.install = ACH:Execute(L["Install"], L["Re-Run the installation process."], 1, function() E.PluginInstaller:Queue(L1UI.InstallerData) E:ToggleOptionsUI() end)
-	L1UI.Options.args.installer.args.updateD = ACH:Execute(L["Update DPS/TANK Layout"], L["Update DPS/TANK layout to LuckyoneUI version: "]..L1UI.Version, 2, function() L1UI:UpdateLayout('dps') end, nil, true)
-	L1UI.Options.args.installer.args.updateH = ACH:Execute(L["Update Healing Layout"], L["Update Healing layout to LuckyoneUI version: "]..L1UI.Version, 3, function() L1UI:UpdateLayout('healer') end, nil, true)
+	L1UI.Options.args.installer.args.updateD = ACH:Execute(L["Update DPS/TANK Layout"], L["Update DPS/TANK layout to LuckyoneUI version: "]..L1UI.Version, 2, function() L1UI:UpdateLayout('main') end, nil, true)
+	L1UI.Options.args.installer.args.updateH = ACH:Execute(L["Update Healing Layout"], L["Update Healing layout to LuckyoneUI version: "]..L1UI.Version, 3, function() L1UI:UpdateLayout('healing') end, nil, true)
 
 	-- Auras [Buffs]
 	L1UI.Options.args.auras = ACH:Group(format('|cff4beb2c%s|r', L["Auras"]), nil, 3, 'tab')
@@ -75,7 +74,7 @@ function L1UI:GetOptions()
 	-- Auras [Classic and TBC]
 	L1UI.Options.args.auras.args.classic.args.dps = ACH:Group(L["DPS/TANK Layout"], nil, 1, nil, nil, nil, nil, E.Retail)
 	L1UI.Options.args.auras.args.classic.args.dps.inline = true
-	L1UI.Options.args.auras.args.classic.args.dps.args.on = ACH:Execute(L["Enable Party Buffs"], nil, 1, function() L1UI:LegacyAuras('on', 'dps') end, nil, true)
+	L1UI.Options.args.auras.args.classic.args.dps.args.on = ACH:Execute(L["Enable Party Buffs"], nil, 1, function() L1UI:LegacyAuras('on', 'main') end, nil, true)
 	L1UI.Options.args.auras.args.classic.args.dps.args.off = ACH:Execute(L["Disable Party Buffs"], nil, 2, function() L1UI:LegacyAuras('off') end, nil, true)
 	L1UI.Options.args.auras.args.classic.args.healing = ACH:Group(L["Healing Layout"], nil, 2, nil, nil, nil, nil, E.Retail)
 	L1UI.Options.args.auras.args.classic.args.healing.inline = true
@@ -137,23 +136,35 @@ function L1UI:GetOptions()
 
 	-- Profiles
 	L1UI.Options.args.profiles = ACH:Group(format('|cff4beb2c%s|r', L["Profiles"]), nil, 9)
-	L1UI.Options.args.profiles.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 1)
+	L1UI.Options.args.profiles.args.header1 = ACH:Header(L["Global Profiles"], 1)
+	L1UI.Options.args.profiles.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 2)
 	L1UI.Options.args.profiles.args.plugins.inline = true
-	L1UI.Options.args.profiles.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_AddOnSkins() ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.plugins.args.pa = ACH:Execute('|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_ProjectAzilroka() ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.bossmods = ACH:Group(L["BossMods Profiles"], nil, 2)
-	L1UI.Options.args.profiles.args.bossmods.inline = true
-	L1UI.Options.args.profiles.args.bossmods.args.bigwigs = ACH:Execute('BigWigs', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_BigWigs() ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.bossmods.args.dbm = ACH:Execute('DBM', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_DBM() ReloadUI() end, nil, true)
+	L1UI.Options.args.profiles.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_AddOnSkins() E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.plugins.args.pa = ACH:Execute('|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_ProjectAzilroka() E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', L["Reset to LuckyoneUI defaults."], 3, function() L1UI:Setup_ShadowAndLight() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.profiles.args.nameplates = ACH:Group(L["NamePlate Profiles"], nil, 3)
 	L1UI.Options.args.profiles.args.nameplates.inline = true
-	L1UI.Options.args.profiles.args.nameplates.args.elvui = ACH:Execute('ElvUI', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:SetupNamePlates('ElvUI') ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.nameplates.args.plater = ACH:Execute('Plater', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:SetupNamePlates('Plater') ReloadUI() end, nil, true)
+	L1UI.Options.args.profiles.args.nameplates.args.elvui = ACH:Execute('ElvUI', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:SetupNamePlates('ElvUI') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.nameplates.args.plater = ACH:Execute('Plater', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:SetupNamePlates('Plater') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.profiles.args.addons = ACH:Group(L["Addon Profiles"], nil, 4)
 	L1UI.Options.args.profiles.args.addons.inline = true
-	L1UI.Options.args.profiles.args.addons.args.details = ACH:Execute('Details', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_Details() ReloadUI() end, nil, true)
-	L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', L["Reset to LuckyoneUI defaults."], 3, function() L1UI:Setup_ShadowAndLight() ReloadUI() end, nil, true, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.profiles.args.addons.args.omnicd = ACH:Execute('OmniCD', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_OmniCD() ReloadUI() end, nil, true, nil, nil, nil, nil, not E.Retail)
+	L1UI.Options.args.profiles.args.addons.args.details = ACH:Execute('Details', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_Details() E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.header2 = ACH:Header(L["DPS/TANK Profiles"], 5)
+	L1UI.Options.args.profiles.args.bossmods = ACH:Group(L["BossMods Profiles"], nil, 6)
+	L1UI.Options.args.profiles.args.bossmods.inline = true
+	L1UI.Options.args.profiles.args.bossmods.args.bigwigs = ACH:Execute('BigWigs DPS/TANK', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_BigWigs('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.bossmods.args.dbm = ACH:Execute('DBM DPS/TANK', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_DBM('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.addonsMain = ACH:Group(L["Addon Profiles"], nil, 7)
+	L1UI.Options.args.profiles.args.addonsMain.inline = true
+	L1UI.Options.args.profiles.args.addonsMain.args.omnicd = ACH:Execute('OmniCD DPS/TANK', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_OmniCD('main') E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
+	L1UI.Options.args.profiles.args.header3 = ACH:Header(L["Healing Profiles"], 8)
+	L1UI.Options.args.profiles.args.bossmodsHealing = ACH:Group(L["BossMods Profiles"], nil, 9)
+	L1UI.Options.args.profiles.args.bossmodsHealing.inline = true
+	L1UI.Options.args.profiles.args.bossmodsHealing.args.bigwigs = ACH:Execute('BigWigs Healing', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_BigWigs('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.bossmodsHealing.args.dbm = ACH:Execute('DBM Healing', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_DBM('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.addonsHealing = ACH:Group(L["Addon Profiles"], nil, 10)
+	L1UI.Options.args.profiles.args.addonsHealing.inline = true
+	L1UI.Options.args.profiles.args.addonsHealing.args.omnicd = ACH:Execute('OmniCD Healing', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_OmniCD('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
 
 	-- Tags
 	L1UI.Options.args.tags = ACH:Group(format('|cff4beb2c%s|r', L["Tags"]), nil, 10)
@@ -168,18 +179,8 @@ function L1UI:GetOptions()
 	L1UI.Options.args.themes.args.raid.args.dark = ACH:Execute(L["Dark"], L["Dark Style (Default)"], 1, function() L1UI:SetupTheme('dark') end, nil, true)
 	L1UI.Options.args.themes.args.raid.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() L1UI:SetupTheme('class') end, nil, true)
 
-	-- UnitFrames
-	L1UI.Options.args.unitframes = ACH:Group(format('|cff4beb2c%s|r', L["UnitFrames"]), nil, 12, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.unitframes.args.raid = ACH:Group(L["Raidframe Style"], nil, 1)
-	L1UI.Options.args.unitframes.args.raid.inline = true
-	L1UI.Options.args.unitframes.args.raid.args.vertical = ACH:Execute(L["Vertical"], L["Vertical Style"], 1, function() L1UI:RaidFrames('vertical') end, nil, true)
-	L1UI.Options.args.unitframes.args.raid.args.block = ACH:Execute(L["Default"], L["Default Style"], 2, function() L1UI:RaidFrames('block') end, nil, true)
-	L1UI.Options.args.unitframes.args.desc = ACH:Group(L["Note"], nil, 2)
-	L1UI.Options.args.unitframes.args.desc.inline = true
-	L1UI.Options.args.unitframes.args.desc.args.raidDesc = ACH:Description(L["The options above are for the DPS/TANK layout."], 1, 'medium')
-
 	-- WeakAuras Retail
-	L1UI.Options.args.weakauras = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 13, nil, nil, nil, nil, not E.Retail)
+	L1UI.Options.args.weakauras = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 12, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.weakauras.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
 	L1UI.Options.args.weakauras.args.druid = ACH:Input(format('|cffFF7C0A%s|r', L["Druid"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneDruid' end)
 	L1UI.Options.args.weakauras.args.priest = ACH:Input(format('|cffFFFFFF%s|r', L["Priest"]), nil, 3, nil, 'normal', function() return 'wago.io/luckyonePriest' end)
@@ -208,7 +209,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.weakauras.args.desc.args.waDesc = ACH:Description(L["\nAll Class WeakAuras above are for DPS and Tank specializations only.\nThere is currently no plan to support Healers at all.\n\n"], 25, 'medium')
 
 	-- WeakAuras TBC
-	L1UI.Options.args.weakaurasTBC = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 13, nil, nil, nil, nil, not E.TBC)
+	L1UI.Options.args.weakaurasTBC = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 12, nil, nil, nil, nil, not E.TBC)
 	L1UI.Options.args.weakaurasTBC.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
 	L1UI.Options.args.weakaurasTBC.args.hunter = ACH:Input(format('|cffAAD372%s|r', L["Hunter"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneHunterTBC' end)
 	L1UI.Options.args.weakaurasTBC.args.header2 = ACH:Header(L["General WeakAuras"], 3)
@@ -216,7 +217,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.weakaurasTBC.args.combat = ACH:Input('Combat Tracking', nil, 5, nil, 'normal', function() return 'wago.io/combatStateTBC' end)
 
 	-- WeakAuras Classic
-	L1UI.Options.args.weakaurasClassic = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 13, nil, nil, nil, nil, not E.Classic)
+	L1UI.Options.args.weakaurasClassic = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 12, nil, nil, nil, nil, not E.Classic)
 	L1UI.Options.args.weakaurasClassic.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
 	L1UI.Options.args.weakaurasClassic.args.hunter = ACH:Input(format('|cffAAD372%s|r', L["Hunter"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneClassicHunter' end)
 	L1UI.Options.args.weakaurasClassic.args.header2 = ACH:Header(L["General WeakAuras"], 3)
@@ -224,7 +225,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.weakaurasClassic.args.combat = ACH:Input('Combat Tracking', nil, 5, nil, 'normal', function() return 'wago.io/combatStateClassic' end)
 
 	-- Credits
-	L1UI.Options.args.credits = ACH:Group(format('|cffFF7D0A%s|r', L["Credits"]), nil, 14)
+	L1UI.Options.args.credits = ACH:Group(format('|cffFF7D0A%s|r', L["Credits"]), nil, 13)
 	L1UI.Options.args.credits.args.author = ACH:Group(L["Author"], nil, 1)
 	L1UI.Options.args.credits.args.author.inline = true
 	L1UI.Options.args.credits.args.author.args.desc = ACH:Description(L1UI.AUTHORS_STRING, 1, 'medium')
@@ -239,7 +240,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description(L1UI.SUPPORT_STRING, 1, 'medium')
 
 	-- Links
-	L1UI.Options.args.links = ACH:Group(format('|cffFF7D0A%s|r', L["Links"]), nil, 15)
+	L1UI.Options.args.links = ACH:Group(format('|cffFF7D0A%s|r', L["Links"]), nil, 14)
 	L1UI.Options.args.links.args.changelog = ACH:Input(L["Changelog:"], nil, 1, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/blob/development/CHANGELOG.md' end)
 	L1UI.Options.args.links.args.issues = ACH:Input(L["Report issues here:"], nil, 2, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/issues' end)
 	L1UI.Options.args.links.args.website = ACH:Input(L["Addon link:"], nil, 3, nil, 'full', function() return 'https://www.curseforge.com/wow/addons/elvui_luckyoneui' end)

@@ -1,9 +1,11 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local IsAddOnLoaded = IsAddOnLoaded
 local unpack = unpack
 
 -- AddOnSkins Profile
-function L1UI:Get_AddOnSkins_Profile()
+function L1UI:Setup_AddOnSkins(noPrint)
+	if not IsAddOnLoaded('AddOnSkins') then return end
 
 	local AS = unpack(AddOnSkins)
 
@@ -20,4 +22,8 @@ function L1UI:Get_AddOnSkins_Profile()
 	AS.db["EmbedSystem"] = false
 	AS.db["EmbedSystemDual"] = false
 	AS.db["EmbedSystemMessage"] = false
+
+	if not noPrint then
+		L1UI:Print(L["AddOnSkins profile has been set."])
+	end
 end

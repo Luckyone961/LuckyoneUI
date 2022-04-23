@@ -5,7 +5,6 @@ local LuckyDT
 local print = print
 local format = format
 
-local IsAddOnLoaded = IsAddOnLoaded
 local ReloadUI = ReloadUI
 local SetCVar = SetCVar
 
@@ -38,62 +37,6 @@ function L1UI:VersionCheck()
 		E:StaticPopup_Show('L1UI_VC')
 		L1UI:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
 	end
-end
-
--- Load AddOnSkins Profile
-function L1UI:Setup_AddOnSkins()
-	if not IsAddOnLoaded('AddOnSkins') then return end
-	L1UI:Get_AddOnSkins_Profile()
-	L1UI:Print(L["AddOnSkins profile has been set."])
-end
-
--- Load BigWigs Profile
-function L1UI:Setup_BigWigs()
-	if not IsAddOnLoaded('BigWigs') then return end
-	L1UI:Get_BigWigs_Profile()
-	L1UI:Print(L["BigWigs profile has been set."])
-end
-
--- Load DBM Profile
-function L1UI:Setup_DBM()
-	if not IsAddOnLoaded('DBM-Core') then return end
-	L1UI:Get_DBM_Profile()
-	L1UI:Print(L["DBM profile has been set."])
-end
-
--- Load Details Profile
-function L1UI:Setup_Details()
-	if not IsAddOnLoaded('Details') then return end
-	L1UI:Get_Details_Profile()
-	L1UI:Print(L["Details profile has been set."])
-end
-
--- Load OmniCD Profile
-function L1UI:Setup_OmniCD()
-	if not IsAddOnLoaded('OmniCD') then return end
-	L1UI:Get_OmniCD_Profile()
-	L1UI:Print(L["OmniCD profile has been set."])
-end
-
--- Load Plater Profile
-function L1UI:Setup_Plater()
-	if not IsAddOnLoaded('Plater') then return end
-	L1UI:Get_Plater_Profile()
-	L1UI:Print(L["Plater profile has been set."])
-end
-
--- Load ProjectAzilroka Profile
-function L1UI:Setup_ProjectAzilroka()
-	if not IsAddOnLoaded('ProjectAzilroka') then return end
-	L1UI:Get_ProjectAzilroka_Profile()
-	L1UI:Print(L["ProjectAzilroka profile has been set."])
-end
-
--- Load Shadow&Light Profile
-function L1UI:Setup_ShadowAndLight()
-	if not IsAddOnLoaded('ElvUI_SLE') then return end
-	L1UI:Get_ShadowAndLight_Profile()
-	L1UI:Print(L["Shadow&Light profile has been set."])
 end
 
 -- Set UI Scale
@@ -166,13 +109,13 @@ function L1UI:SetupPrivate()
 	E.private.skins.parchmentRemoverEnable = true
 
 	if E.Retail then
-		E.private.install_complete = "12.75"
+		E.private.install_complete = "12.76"
 		E.private.general.totemBar = false
 	elseif E.TBC then
-		E.private.install_complete = "2.42"
+		E.private.install_complete = "2.43"
 		E.private.general.totemBar = true
 	elseif E.Classic then
-		E.private.install_complete = "1.67"
+		E.private.install_complete = "1.68"
 		E.private.general.totemBar = true
 	end
 end

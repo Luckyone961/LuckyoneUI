@@ -2,9 +2,11 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local _G = _G
 local GetAddOnMetadata = GetAddOnMetadata
+local IsAddOnLoaded = IsAddOnLoaded
 
 -- ProjectAzilroka Profile
-function L1UI:Get_ProjectAzilroka_Profile()
+function L1UI:Setup_ProjectAzilroka(noPrint)
+	if not IsAddOnLoaded('ProjectAzilroka') then return end
 
 	local PA = _G.ProjectAzilroka
 
@@ -52,4 +54,8 @@ function L1UI:Get_ProjectAzilroka_Profile()
 	-- Movers
 	if not E.db.movers then E.db.movers = {} end
 	E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187"
+
+	if not noPrint then
+		L1UI:Print(L["ProjectAzilroka profile has been set."])
+	end
 end
