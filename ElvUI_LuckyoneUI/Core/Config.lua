@@ -2,7 +2,6 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local ACH
 
 local format = format
-local ReloadUI = ReloadUI
 
 -- Load this on init
 function L1UI:GetOptions()
