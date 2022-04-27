@@ -1,4 +1,6 @@
 ### Version 1.49 [In Development]
+**Classic:**  
+Updated chat installer to hide voice transcription tab  
 ___
 ### Version 1.48 [23-04-2022]
 **All WoW Versions:**  
