@@ -1,3 +1,5 @@
+### Version 1.49 [In Development]
+___
 ### Version 1.48 [23-04-2022]
 **All WoW Versions:**  
 Removed support for vertical RaidFrames theme  
