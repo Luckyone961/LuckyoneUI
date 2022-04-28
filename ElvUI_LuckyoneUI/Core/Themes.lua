@@ -27,11 +27,11 @@ function L1UI:SetupTheme(theme)
 
 		E.db["unitframe"]["colors"]["classbackdrop"] = false
 		E.db["unitframe"]["colors"]["customhealthbackdrop"] = true
+		E.db["unitframe"]["colors"]["healthMultiplier"] = 0
+
 		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0.10196078431373
 		E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0.10196078431373
 		E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0.10196078431373
-		E.db["unitframe"]["colors"]["healthMultiplier"] = 0
-
 		E.db["unitframe"]["colors"]["healthclass"] = true
 
 		E.db["unitframe"]["colors"]["transparentHealth"] = true
