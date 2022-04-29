@@ -48,10 +48,14 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["backdropfadecolor"]["r"] = 0.058823529411765
 	E.db["general"]["bonusObjectivePosition"] = "AUTO"
 	E.db["general"]["bottomPanel"] = false
+	E.db["general"]["customGlow"]["color"]["a"] = 1
+	E.db["general"]["customGlow"]["color"]["g"] = 0.51764705882353
 	E.db["general"]["customGlow"]["style"] = "Autocast Shine"
 	E.db["general"]["customGlow"]["useColor"] = true
-	E.db["general"]["durabilityScale"] = 1
+	E.db["general"]["durabilityScale"] = 0.5
 	E.db["general"]["enhancedPvpMessages"] = false
+	E.db["general"]["font"] = "Expressway"
+	E.db["general"]["fontSize"] = 11
 	E.db["general"]["interruptAnnounce"] = "EMOTE"
 	E.db["general"]["itemLevel"]["itemLevelFont"] = "Expressway"
 	E.db["general"]["itemLevel"]["itemLevelFontSize"] = 11
@@ -76,7 +80,7 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["objectiveFrameHeight"] = 600
 	E.db["general"]["smoothingAmount"] = 0.75
 	E.db["general"]["talkingHeadFrameBackdrop"] = true
-	E.db["general"]["talkingHeadFrameScale"] = 0.72
+	E.db["general"]["talkingHeadFrameScale"] = 0.7
 	E.db["general"]["totems"]["enable"] = false
 	E.db["general"]["vehicleSeatIndicatorSize"] = 64
 
@@ -392,7 +396,6 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["experience"]["showBubbles"] = true
 	E.db["databars"]["experience"]["width"] = 10
 	E.db["databars"]["honor"]["enable"] = false
-	E.db["databars"]["petExperience"]["enable"] = not E.Retail and false
 	E.db["databars"]["reputation"]["enable"] = true
 	E.db["databars"]["reputation"]["font"] = "Expressway"
 	E.db["databars"]["reputation"]["height"] = 171
@@ -400,8 +403,9 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["reputation"]["width"] = 10
 	E.db["databars"]["threat"]["enable"] = false
 
-	-- Classic and TBC DataBars
+	-- DataBars Classic & TBC
 	if not E.Retail then
+		E.db["databars"]["petExperience"]["enable"] = false
 		E.db["databars"]["petExperience"]["font"] = "Expressway"
 		E.db["databars"]["petExperience"]["fontSize"] = 12
 		E.db["databars"]["petExperience"]["height"] = 171
