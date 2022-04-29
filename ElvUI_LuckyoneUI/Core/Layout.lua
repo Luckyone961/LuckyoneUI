@@ -430,24 +430,22 @@ function L1UI:SetupLayout(layout)
 	E.db["tooltip"]["colorAlpha"] = 0.75
 	E.db["tooltip"]["font"] = "Expressway"
 	E.db["tooltip"]["fontOutline"] = "OUTLINE"
-
-	if (E.Retail and E.version >= 12.77) or (E.TBC and E.version >= 2.44) or (E.Classic and E.version >= 1.69) then
-		E.db["tooltip"]["headerFont"] = "Expressway"
-		E.db["tooltip"]["headerFontOutline"] = "OUTLINE"
-	end
-
+	E.db["tooltip"]["headerFont"] = "Expressway"
+	E.db["tooltip"]["headerFontOutline"] = "OUTLINE"
 	E.db["tooltip"]["headerFontSize"] = 11
 	E.db["tooltip"]["healthBar"]["font"] = "Expressway"
 	E.db["tooltip"]["healthBar"]["fontSize"] = 11
 	E.db["tooltip"]["healthBar"]["height"] = 4
-	E.db["tooltip"]["healthBar"]["statusPosition"] = "TOP"
+	E.db["tooltip"]["healthBar"]["statusPosition"] = "DISABLED"
 	E.db["tooltip"]["itemCount"] = "NONE"
 	E.db["tooltip"]["itemQuality"] = true
 	E.db["tooltip"]["showElvUIUsers"] = true
 	E.db["tooltip"]["showMount"] = false
 	E.db["tooltip"]["smallTextFontSize"] = 11
+	E.db["tooltip"]["targetInfo"] = false
 	E.db["tooltip"]["textFontSize"] = 11
 
+	-- Tooltip Retail
 	if E.Retail then
 		E.db["tooltip"]["inspectDataEnable"] = false
 		E.db["tooltip"]["mythicDataEnable"] = false
