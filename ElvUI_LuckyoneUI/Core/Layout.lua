@@ -336,19 +336,20 @@ function L1UI:SetupLayout(layout)
 	E.db["auras"]["debuffs"]["timeFontSize"] = 12
 
 	-- Chat
+	E.db["chat"]["desaturateVoiceIcons"] = false
 	E.db["chat"]["editboxHistorySize"] = 50
 	E.db["chat"]["editBoxPosition"] = "ABOVE_CHAT_INSIDE"
+	E.db["chat"]["enableCombatRepeat"] = false
 	E.db["chat"]["fade"] = false
 	E.db["chat"]["fadeTabsNoBackdrop"] = false
 	E.db["chat"]["font"] = "Expressway"
 	E.db["chat"]["fontOutline"] = "OUTLINE"
 	E.db["chat"]["hideChatToggles"] = true
-	E.db["chat"]["historySize"] = 200
+	E.db["chat"]["historySize"] = 250
 	E.db["chat"]["keywords"] = "%MYNAME%"
 	E.db["chat"]["lfgIcons"] = false
-	E.db["chat"]["maxLines"] = 200
+	E.db["chat"]["maxLines"] = 250
 	E.db["chat"]["numScrollMessages"] = 2
-	E.db["chat"]["panelColor"]["a"] = 0.80
 	E.db["chat"]["panelColor"]["b"] = 0.058823529411765
 	E.db["chat"]["panelColor"]["g"] = 0.058823529411765
 	E.db["chat"]["panelColor"]["r"] = 0.058823529411765
@@ -357,9 +358,17 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["panelWidth"] = 414
 	E.db["chat"]["panelWidthRight"] = 414
 	E.db["chat"]["separateSizes"] = true
+	E.db["chat"]["showHistory"]["CHANNEL"] = false
+	E.db["chat"]["showHistory"]["EMOTE"] = false
+	E.db["chat"]["showHistory"]["GUILD"] = false
+	E.db["chat"]["showHistory"]["INSTANCE"] = false
+	E.db["chat"]["showHistory"]["PARTY"] = false
+	E.db["chat"]["showHistory"]["RAID"] = false
+	E.db["chat"]["showHistory"]["SAY"] = false
+	E.db["chat"]["showHistory"]["YELL"] = false
 	E.db["chat"]["tabFont"] = "Expressway"
-	E.db["chat"]["tabFontSize"] = 11
-	E.db["chat"]["tabSelectedTextEnabled"] = false
+	E.db["chat"]["tabFontOutline"] = "OUTLINE"
+	E.db["chat"]["tabFontSize"] = 10
 	E.db["chat"]["tabSelector"] = "NONE"
 	E.db["chat"]["throttleInterval"] = 0
 
