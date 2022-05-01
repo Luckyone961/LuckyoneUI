@@ -1,4 +1,8 @@
 ### Version 1.49 [In Development]
+**All WoW Versions:**  
+Minor updates for initial Chat install  
+Minor updates for initial DataBars install  
+Minor updates for initial Tooltip install  
 **Classic:**  
 Updated chat installer to hide voice transcription tab  
 ___
