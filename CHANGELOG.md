@@ -3,6 +3,8 @@
 Minor updates for initial Chat install  
 Minor updates for initial DataBars install  
 Minor updates for initial Tooltip install  
+**Retail:**  
+Updated Details profile  
 **Classic:**  
 Updated chat installer to hide voice transcription tab  
 ___
