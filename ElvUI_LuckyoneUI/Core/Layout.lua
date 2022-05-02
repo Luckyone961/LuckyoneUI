@@ -431,7 +431,7 @@ function L1UI:SetupLayout(layout)
 
 	-- Tooltip
 	E.db["tooltip"]["alwaysShowRealm"] = true
-	E.db["tooltip"]["colorAlpha"] = 0.75
+	E.db["tooltip"]["colorAlpha"] = 0.80
 	E.db["tooltip"]["font"] = "Expressway"
 	E.db["tooltip"]["fontOutline"] = "OUTLINE"
 	E.db["tooltip"]["headerFont"] = "Expressway"
