@@ -476,7 +476,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[classcolor][name:medium]",
+		["text_format"] = "[classcolor][name:short]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -559,7 +559,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 12,
-		["text_format"] = "[classcolor][name:last]",
+		["text_format"] = "[classcolor][name:medium]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -595,7 +595,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 12,
-		["text_format"] = "[classcolor][name:last]",
+		["text_format"] = "[classcolor][name:short]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -609,7 +609,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[classcolor][name]",
+		["text_format"] = "[classcolor][name:short]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -695,7 +695,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 12,
-		["text_format"] = "[classcolor][name:medium]",
+		["text_format"] = "[classcolor][name:short]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -731,7 +731,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 12,
-		["text_format"] = "[classcolor][name:last]",
+		["text_format"] = "[classcolor][name:medium]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -767,7 +767,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 12,
-		["text_format"] = "[classcolor][name:last]",
+		["text_format"] = "[classcolor][name:short]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
