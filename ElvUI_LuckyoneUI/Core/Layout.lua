@@ -731,7 +731,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 12,
-		["text_format"] = "[classcolor][name:medium]",
+		["text_format"] = "[classcolor][name:last]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
