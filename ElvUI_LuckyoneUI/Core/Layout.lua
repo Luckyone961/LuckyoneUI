@@ -1180,7 +1180,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["pet"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
-		E.db["unitframe"]["units"]["pet"]["power"]["enable"] = false
+		E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
 		E.db["unitframe"]["units"]["pet"]["power"]["height"] = 6
 		E.db["unitframe"]["units"]["pet"]["power"]["powerPrediction"] = true
 		E.db["unitframe"]["units"]["pet"]["raidicon"]["attachTo"] = "LEFT"
@@ -1821,7 +1821,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["pet"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
-		E.db["unitframe"]["units"]["pet"]["power"]["enable"] = false
+		E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
 		E.db["unitframe"]["units"]["pet"]["power"]["height"] = 6
 		E.db["unitframe"]["units"]["pet"]["power"]["powerPrediction"] = true
 		E.db["unitframe"]["units"]["pet"]["raidicon"]["attachTo"] = "LEFT"
