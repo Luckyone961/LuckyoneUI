@@ -1148,38 +1148,29 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["party"]["threatStyle"] = "NONE"
 		E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 2
 		E.db["unitframe"]["units"]["party"]["width"] = 150
-		E.db["unitframe"]["units"]["pet"]["buffIndicator"]["enable"] = false
-
-		if not E.Retail then
-			-- Pet Buffs
-			E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
-			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontSize"] = 11
-			E.db["unitframe"]["units"]["pet"]["buffs"]["countYOffset"] = 1
-			E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
-			E.db["unitframe"]["units"]["pet"]["buffs"]["maxDuration"] = 0
-			E.db["unitframe"]["units"]["pet"]["buffs"]["numrows"] = 2
-			E.db["unitframe"]["units"]["pet"]["buffs"]["perrow"] = 4
-			E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
-			E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 20
-			E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
-			E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = -2
-			-- Pet Debuffs
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOPLEFT"
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["growthX"] = "RIGHT"
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["maxDuration"] = 0
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["numrows"] = 2
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["perrow"] = 4
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 20
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["spacing"] = 0
-		end
-
+		E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
+		E.db["unitframe"]["units"]["pet"]["buffs"]["countFontSize"] = 11
+		E.db["unitframe"]["units"]["pet"]["buffs"]["countYOffset"] = 1
+		E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
+		E.db["unitframe"]["units"]["pet"]["buffs"]["maxDuration"] = 0
+		E.db["unitframe"]["units"]["pet"]["buffs"]["numrows"] = 2
+		E.db["unitframe"]["units"]["pet"]["buffs"]["perrow"] = 4
+		E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
+		E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 20
+		E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
+		E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = -2
 		E.db["unitframe"]["units"]["pet"]["castbar"]["enable"] = false
-		E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOPLEFT"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["countPosition"] = "TOP"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["countYOffset"] = 13
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["growthX"] = "RIGHT"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["maxDuration"] = 0
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["perrow"] = 4
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 20
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["spacing"] = 0
 		E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["pet"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["pet"]["health"]["position"] = "CENTER"
@@ -1189,6 +1180,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["pet"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
+		E.db["unitframe"]["units"]["pet"]["power"]["enable"] = false
 		E.db["unitframe"]["units"]["pet"]["power"]["height"] = 6
 		E.db["unitframe"]["units"]["pet"]["power"]["powerPrediction"] = true
 		E.db["unitframe"]["units"]["pet"]["raidicon"]["attachTo"] = "LEFT"
