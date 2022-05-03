@@ -1151,7 +1151,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["pet"]["buffs"]["countFontSize"] = 11
 		E.db["unitframe"]["units"]["pet"]["buffs"]["countYOffset"] = 1
-		E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
+		E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = false
 		E.db["unitframe"]["units"]["pet"]["buffs"]["maxDuration"] = 0
 		E.db["unitframe"]["units"]["pet"]["buffs"]["numrows"] = 2
 		E.db["unitframe"]["units"]["pet"]["buffs"]["perrow"] = 4
@@ -1164,13 +1164,20 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countPosition"] = "TOP"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countYOffset"] = 13
-		E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = false
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["growthX"] = "RIGHT"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["maxDuration"] = 0
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["perrow"] = 4
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 20
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["spacing"] = 0
+
+		-- Classic and TBC db
+		if not E.Retail then
+			E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
+		end
+
 		E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["pet"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["pet"]["health"]["position"] = "CENTER"
@@ -1416,7 +1423,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["targettarget"]["width"] = 80
 		E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
 
-		-- Classic and TBC stuff
+		-- Classic and TBC db
 		if not E.Retail then
 			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 		end
