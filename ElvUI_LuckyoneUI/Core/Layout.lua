@@ -48,10 +48,14 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["backdropfadecolor"]["r"] = 0.058823529411765
 	E.db["general"]["bonusObjectivePosition"] = "AUTO"
 	E.db["general"]["bottomPanel"] = false
+	E.db["general"]["customGlow"]["color"]["a"] = 1
+	E.db["general"]["customGlow"]["color"]["g"] = 0.51764705882353
 	E.db["general"]["customGlow"]["style"] = "Autocast Shine"
 	E.db["general"]["customGlow"]["useColor"] = true
-	E.db["general"]["durabilityScale"] = 1
+	E.db["general"]["durabilityScale"] = 0.5
 	E.db["general"]["enhancedPvpMessages"] = false
+	E.db["general"]["font"] = "Expressway"
+	E.db["general"]["fontSize"] = 11
 	E.db["general"]["interruptAnnounce"] = "EMOTE"
 	E.db["general"]["itemLevel"]["itemLevelFont"] = "Expressway"
 	E.db["general"]["itemLevel"]["itemLevelFontSize"] = 11
@@ -76,7 +80,7 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["objectiveFrameHeight"] = 600
 	E.db["general"]["smoothingAmount"] = 0.75
 	E.db["general"]["talkingHeadFrameBackdrop"] = true
-	E.db["general"]["talkingHeadFrameScale"] = 0.72
+	E.db["general"]["talkingHeadFrameScale"] = 0.7
 	E.db["general"]["totems"]["enable"] = false
 	E.db["general"]["vehicleSeatIndicatorSize"] = 64
 
@@ -336,19 +340,20 @@ function L1UI:SetupLayout(layout)
 	E.db["auras"]["debuffs"]["timeFontSize"] = 12
 
 	-- Chat
+	E.db["chat"]["desaturateVoiceIcons"] = false
 	E.db["chat"]["editboxHistorySize"] = 50
 	E.db["chat"]["editBoxPosition"] = "ABOVE_CHAT_INSIDE"
+	E.db["chat"]["enableCombatRepeat"] = false
 	E.db["chat"]["fade"] = false
 	E.db["chat"]["fadeTabsNoBackdrop"] = false
 	E.db["chat"]["font"] = "Expressway"
 	E.db["chat"]["fontOutline"] = "OUTLINE"
 	E.db["chat"]["hideChatToggles"] = true
-	E.db["chat"]["historySize"] = 200
+	E.db["chat"]["historySize"] = 250
 	E.db["chat"]["keywords"] = "%MYNAME%"
 	E.db["chat"]["lfgIcons"] = false
-	E.db["chat"]["maxLines"] = 200
+	E.db["chat"]["maxLines"] = 250
 	E.db["chat"]["numScrollMessages"] = 2
-	E.db["chat"]["panelColor"]["a"] = 0.80
 	E.db["chat"]["panelColor"]["b"] = 0.058823529411765
 	E.db["chat"]["panelColor"]["g"] = 0.058823529411765
 	E.db["chat"]["panelColor"]["r"] = 0.058823529411765
@@ -357,9 +362,17 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["panelWidth"] = 414
 	E.db["chat"]["panelWidthRight"] = 414
 	E.db["chat"]["separateSizes"] = true
+	E.db["chat"]["showHistory"]["CHANNEL"] = false
+	E.db["chat"]["showHistory"]["EMOTE"] = false
+	E.db["chat"]["showHistory"]["GUILD"] = false
+	E.db["chat"]["showHistory"]["INSTANCE"] = false
+	E.db["chat"]["showHistory"]["PARTY"] = false
+	E.db["chat"]["showHistory"]["RAID"] = false
+	E.db["chat"]["showHistory"]["SAY"] = false
+	E.db["chat"]["showHistory"]["YELL"] = false
 	E.db["chat"]["tabFont"] = "Expressway"
-	E.db["chat"]["tabFontSize"] = 11
-	E.db["chat"]["tabSelectedTextEnabled"] = false
+	E.db["chat"]["tabFontOutline"] = "OUTLINE"
+	E.db["chat"]["tabFontSize"] = 10
 	E.db["chat"]["tabSelector"] = "NONE"
 	E.db["chat"]["throttleInterval"] = 0
 
@@ -383,7 +396,6 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["experience"]["showBubbles"] = true
 	E.db["databars"]["experience"]["width"] = 10
 	E.db["databars"]["honor"]["enable"] = false
-	E.db["databars"]["petExperience"]["enable"] = not E.Retail and false
 	E.db["databars"]["reputation"]["enable"] = true
 	E.db["databars"]["reputation"]["font"] = "Expressway"
 	E.db["databars"]["reputation"]["height"] = 171
@@ -391,8 +403,9 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["reputation"]["width"] = 10
 	E.db["databars"]["threat"]["enable"] = false
 
-	-- Classic and TBC DataBars
+	-- DataBars Classic & TBC
 	if not E.Retail then
+		E.db["databars"]["petExperience"]["enable"] = false
 		E.db["databars"]["petExperience"]["font"] = "Expressway"
 		E.db["databars"]["petExperience"]["fontSize"] = 12
 		E.db["databars"]["petExperience"]["height"] = 171
@@ -418,27 +431,25 @@ function L1UI:SetupLayout(layout)
 
 	-- Tooltip
 	E.db["tooltip"]["alwaysShowRealm"] = true
-	E.db["tooltip"]["colorAlpha"] = 0.75
+	E.db["tooltip"]["colorAlpha"] = 0.80
 	E.db["tooltip"]["font"] = "Expressway"
 	E.db["tooltip"]["fontOutline"] = "OUTLINE"
-
-	if (E.Retail and E.version >= 12.77) or (E.TBC and E.version >= 2.44) or (E.Classic and E.version >= 1.69) then
-		E.db["tooltip"]["headerFont"] = "Expressway"
-		E.db["tooltip"]["headerFontOutline"] = "OUTLINE"
-	end
-
+	E.db["tooltip"]["headerFont"] = "Expressway"
+	E.db["tooltip"]["headerFontOutline"] = "OUTLINE"
 	E.db["tooltip"]["headerFontSize"] = 11
 	E.db["tooltip"]["healthBar"]["font"] = "Expressway"
 	E.db["tooltip"]["healthBar"]["fontSize"] = 11
 	E.db["tooltip"]["healthBar"]["height"] = 4
-	E.db["tooltip"]["healthBar"]["statusPosition"] = "TOP"
+	E.db["tooltip"]["healthBar"]["statusPosition"] = "DISABLED"
 	E.db["tooltip"]["itemCount"] = "NONE"
 	E.db["tooltip"]["itemQuality"] = true
 	E.db["tooltip"]["showElvUIUsers"] = true
 	E.db["tooltip"]["showMount"] = false
 	E.db["tooltip"]["smallTextFontSize"] = 11
+	E.db["tooltip"]["targetInfo"] = false
 	E.db["tooltip"]["textFontSize"] = 11
 
+	-- Tooltip Retail
 	if E.Retail then
 		E.db["tooltip"]["inspectDataEnable"] = false
 		E.db["tooltip"]["mythicDataEnable"] = false
@@ -465,7 +476,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[classcolor][name:medium]",
+		["text_format"] = "[classcolor][name:short]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -548,7 +559,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 12,
-		["text_format"] = "[classcolor][name:last]",
+		["text_format"] = "[classcolor][name:medium]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -584,7 +595,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 12,
-		["text_format"] = "[classcolor][name:last]",
+		["text_format"] = "[classcolor][name:short]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -598,7 +609,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 14,
-		["text_format"] = "[classcolor][name]",
+		["text_format"] = "[classcolor][name:short]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -684,7 +695,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 12,
-		["text_format"] = "[classcolor][name:medium]",
+		["text_format"] = "[classcolor][name:short]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
@@ -756,7 +767,7 @@ function L1UI:SetupLayout(layout)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "CENTER",
 		["size"] = 12,
-		["text_format"] = "[classcolor][name:last]",
+		["text_format"] = "[classcolor][name:short]",
 		["xOffset"] = 0,
 		["yOffset"] = 1
 	}
@@ -831,7 +842,6 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-95,-214"
 		E.db["movers"]["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,128"
 		E.db["movers"]["PlayerChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,182"
-		E.db["movers"]["RaidUtility_Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,405,-1"
 		E.db["movers"]["ReputationBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1"
 		E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1"
 		E.db["movers"]["ShiftAB"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-1"
@@ -1138,38 +1148,29 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["party"]["threatStyle"] = "NONE"
 		E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 2
 		E.db["unitframe"]["units"]["party"]["width"] = 150
-		E.db["unitframe"]["units"]["pet"]["buffIndicator"]["enable"] = false
-
-		if not E.Retail then
-			-- Pet Buffs
-			E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
-			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontSize"] = 11
-			E.db["unitframe"]["units"]["pet"]["buffs"]["countYOffset"] = 1
-			E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
-			E.db["unitframe"]["units"]["pet"]["buffs"]["maxDuration"] = 0
-			E.db["unitframe"]["units"]["pet"]["buffs"]["numrows"] = 2
-			E.db["unitframe"]["units"]["pet"]["buffs"]["perrow"] = 4
-			E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
-			E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 20
-			E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
-			E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = -2
-			-- Pet Debuffs
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOPLEFT"
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["growthX"] = "RIGHT"
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["maxDuration"] = 0
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["numrows"] = 2
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["perrow"] = 4
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 20
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["spacing"] = 0
-		end
-
+		E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
+		E.db["unitframe"]["units"]["pet"]["buffs"]["countFontSize"] = 11
+		E.db["unitframe"]["units"]["pet"]["buffs"]["countYOffset"] = 1
+		E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = false
+		E.db["unitframe"]["units"]["pet"]["buffs"]["maxDuration"] = 0
+		E.db["unitframe"]["units"]["pet"]["buffs"]["numrows"] = 2
+		E.db["unitframe"]["units"]["pet"]["buffs"]["perrow"] = 4
+		E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
+		E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 20
+		E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
+		E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = -2
 		E.db["unitframe"]["units"]["pet"]["castbar"]["enable"] = false
-		E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOPLEFT"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["countPosition"] = "TOP"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["countYOffset"] = 13
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = false
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["growthX"] = "RIGHT"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["maxDuration"] = 0
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["perrow"] = 4
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 20
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["spacing"] = 0
 		E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["pet"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["pet"]["health"]["position"] = "CENTER"
@@ -1179,6 +1180,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["pet"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
+		E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
 		E.db["unitframe"]["units"]["pet"]["power"]["height"] = 6
 		E.db["unitframe"]["units"]["pet"]["power"]["powerPrediction"] = true
 		E.db["unitframe"]["units"]["pet"]["raidicon"]["attachTo"] = "LEFT"
@@ -1414,8 +1416,10 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["targettarget"]["width"] = 80
 		E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
 
-		-- Classic and TBC stuff
+		-- Classic and TBC db
 		if not E.Retail then
+			E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
 			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 		end
 
@@ -1487,7 +1491,6 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-86,-214"
 		E.db["movers"]["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,128"
 		E.db["movers"]["PlayerChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,158"
-		E.db["movers"]["RaidUtility_Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,405,-1"
 		E.db["movers"]["ReputationBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1"
 		E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1"
 		E.db["movers"]["ShiftAB"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-1"
@@ -1786,38 +1789,29 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["party"]["threatStyle"] = "NONE"
 		E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 1
 		E.db["unitframe"]["units"]["party"]["width"] = 90
-		E.db["unitframe"]["units"]["pet"]["buffIndicator"]["enable"] = false
-
-		if not E.Retail then
-			-- Pet Buffs
-			E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
-			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontSize"] = 11
-			E.db["unitframe"]["units"]["pet"]["buffs"]["countYOffset"] = 1
-			E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
-			E.db["unitframe"]["units"]["pet"]["buffs"]["maxDuration"] = 0
-			E.db["unitframe"]["units"]["pet"]["buffs"]["numrows"] = 2
-			E.db["unitframe"]["units"]["pet"]["buffs"]["perrow"] = 4
-			E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
-			E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 20
-			E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
-			E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = -2
-			-- Pet Debuffs
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOPLEFT"
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["growthX"] = "RIGHT"
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["maxDuration"] = 0
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["numrows"] = 2
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["perrow"] = 4
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 20
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["spacing"] = 0
-		end
-
+		E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Expressway"
+		E.db["unitframe"]["units"]["pet"]["buffs"]["countFontSize"] = 11
+		E.db["unitframe"]["units"]["pet"]["buffs"]["countYOffset"] = 1
+		E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = false
+		E.db["unitframe"]["units"]["pet"]["buffs"]["maxDuration"] = 0
+		E.db["unitframe"]["units"]["pet"]["buffs"]["numrows"] = 2
+		E.db["unitframe"]["units"]["pet"]["buffs"]["perrow"] = 4
+		E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
+		E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 20
+		E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
+		E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = -2
 		E.db["unitframe"]["units"]["pet"]["castbar"]["enable"] = false
-		E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOPLEFT"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Expressway"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["countPosition"] = "TOP"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["countYOffset"] = 13
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = false
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["growthX"] = "RIGHT"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["maxDuration"] = 0
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["perrow"] = 4
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 20
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["spacing"] = 0
 		E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["pet"]["healPrediction"]["absorbStyle"] = "WRAPPED"
 		E.db["unitframe"]["units"]["pet"]["health"]["position"] = "CENTER"
@@ -1827,6 +1821,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["infoPanel"]["height"] = 17
 		E.db["unitframe"]["units"]["pet"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
+		E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
 		E.db["unitframe"]["units"]["pet"]["power"]["height"] = 6
 		E.db["unitframe"]["units"]["pet"]["power"]["powerPrediction"] = true
 		E.db["unitframe"]["units"]["pet"]["raidicon"]["attachTo"] = "LEFT"
@@ -2044,6 +2039,8 @@ function L1UI:SetupLayout(layout)
 
 		-- Classic and TBC db
 		if not E.Retail then
+			E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
 			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 		end
 	end

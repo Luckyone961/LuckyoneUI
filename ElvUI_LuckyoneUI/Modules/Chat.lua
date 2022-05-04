@@ -30,11 +30,9 @@ function L1UI:SetupChat()
 	SetCVar('colorChatNamesByClass', 1)
 	SetCVar('chatClassColorOverride', 0)
 
-	-- CVars Retail + TBC
-	if not E.Classic then
-		SetCVar('speechToText', 0)
-		SetCVar('textToSpeech', 0)
-	end
+	-- CVars Voice Transcription
+	SetCVar('speechToText', 0)
+	SetCVar('textToSpeech', 0)
 
 	-- Reset chat to Blizzard defaults
 	FCF_ResetChatWindows()
@@ -66,38 +64,38 @@ function L1UI:SetupChat()
 			FCF_SetWindowName(frame, 'General')
 		elseif id == 2 then
 			FCF_SetWindowName(frame, 'Log')
-		elseif (not E.Classic and id == 3) then
+		elseif id == 3 then
 			VoiceTranscriptionFrame_UpdateVisibility(frame)
 			VoiceTranscriptionFrame_UpdateVoiceTab(frame)
 			VoiceTranscriptionFrame_UpdateEditBox(frame)
-		elseif (not E.Classic and id == 4) or id == 3 then
+		elseif id == 4 then
 			FCF_SetWindowName(frame, 'Whisper')
-		elseif (not E.Classic and id == 5) or id == 4 then
+		elseif id == 5 then
 			FCF_SetWindowName(frame, 'Guild')
-		elseif (not E.Classic and id == 6) or id == 5 then
+		elseif id == 6 then
 			FCF_SetWindowName(frame, 'Party')
 		end
 	end
 
 	-- Setup whisper tab
 	local chats = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
-	ChatFrame_RemoveAllMessageGroups(not E.Classic and _G.ChatFrame4 or _G.ChatFrame3)
+	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame4)
 	for _, k in ipairs(chats) do
-		ChatFrame_AddMessageGroup(not E.Classic and _G.ChatFrame4 or _G.ChatFrame3, k)
+		ChatFrame_AddMessageGroup(_G.ChatFrame4, k)
 	end
 
 	-- Setup Guild tab
 	chats = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
-	ChatFrame_RemoveAllMessageGroups(not E.Classic and _G.ChatFrame5 or _G.ChatFrame4)
+	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 	for _, k in ipairs(chats) do
-		ChatFrame_AddMessageGroup(not E.Classic and _G.ChatFrame5 or _G.ChatFrame4, k)
+		ChatFrame_AddMessageGroup(_G.ChatFrame5, k)
 	end
 
 	-- Setup Party tab
 	chats = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER' }
-	ChatFrame_RemoveAllMessageGroups(not E.Classic and _G.ChatFrame6 or _G.ChatFrame5)
+	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame6)
 	for _, k in ipairs(chats) do
-		ChatFrame_AddMessageGroup(not E.Classic and _G.ChatFrame6 or _G.ChatFrame5, k)
+		ChatFrame_AddMessageGroup(_G.ChatFrame6, k)
 	end
 
 	-- Jump back to main tab

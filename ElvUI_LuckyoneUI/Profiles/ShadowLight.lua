@@ -17,7 +17,7 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.global["sle"]["advanced"]["general"] = true
 
 	-- Shadow & Light Private DB
-	E.private["sle"]["install_complete"] = "4.36"
+	E.private["sle"]["install_complete"] = "4.38"
 	E.private["sle"]["module"]["blizzmove"]["enable"] = true
 	E.private["sle"]["professions"]["deconButton"]["enable"] = false
 	E.private["sle"]["skins"]["objectiveTracker"]["BGbackdrop"] = false
