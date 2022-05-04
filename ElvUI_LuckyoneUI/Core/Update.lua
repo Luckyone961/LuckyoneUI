@@ -5,6 +5,7 @@ function L1UI:UpdateLayout(layout)
 
 	E:StaggeredUpdateAll()
 
+	E.db["tooltip"]["colorAlpha"] = 0.80
 	E.db["tooltip"]["headerFont"] = "Expressway"
 	E.db["tooltip"]["headerFontOutline"] = "OUTLINE"
 	E.db["tooltip"]["headerFontSize"] = 11

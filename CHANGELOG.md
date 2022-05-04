@@ -3,10 +3,14 @@
 Minor updates for initial Chat install  
 Minor updates for initial DataBars install  
 Minor updates for initial Tooltip install  
+Updated default tooltip alpha from 75% to 80%  
 **Retail:**  
 Updated Details profile  
 **Classic:**  
 Updated chat installer to hide voice transcription tab  
+Updated pet frame for fresh installs  
+**TBC:**  
+Updated pet frame for fresh installs  
 ___
 ### Version 1.48 [23-04-2022]
 **All WoW Versions:**  
