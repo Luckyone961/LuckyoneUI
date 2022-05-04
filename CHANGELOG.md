@@ -1,4 +1,4 @@
-### Version 1.49 [In Development]
+### Version 1.49 [05-05-2022]
 **All WoW Versions:**  
 Minor updates for initial Chat install  
 Minor updates for initial DataBars install  
