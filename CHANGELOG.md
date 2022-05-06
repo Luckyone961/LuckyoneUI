@@ -1,3 +1,5 @@
+### Version 1.50 [In Development]
+___
 ### Version 1.49 [05-05-2022]
 **All WoW Versions:**  
 Minor updates for initial Chat install  
