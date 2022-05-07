@@ -46,7 +46,7 @@ L1UI.CreditsList = {}
 L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = E.Retail and 12.77 or E.TBC and 2.44 or E.Classic and 1.69
+L1UI.RequiredVersion = E.Retail and 12.78 or E.TBC and 2.45 or E.Classic and 1.70
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
