@@ -5,6 +5,7 @@ local LuckyDT
 local print = print
 local format = format
 
+local IsAddOnLoaded = IsAddOnLoaded
 local ReloadUI = ReloadUI
 local SetCVar = SetCVar
 
@@ -174,6 +175,7 @@ function L1UI:Cleanup_Cache(addon, type)
 		end
 
 	elseif addon == 'details' then
+		if not IsAddOnLoaded('Details') then return end
 
 		_detalhes.encounter_spell_pool = {}
 		_detalhes.npcid_pool = {}
@@ -181,18 +183,21 @@ function L1UI:Cleanup_Cache(addon, type)
 		_detalhes.spell_school_cache = {}
 
 	elseif addon == 'plater' then
+		if not IsAddOnLoaded('Plater') then return end
 
 		PlaterDB.captured_casts = {}
 		PlaterDB.captured_spells = {}
 		PlaterDB.profiles.Luckyone.npc_cache = {}
 
 	elseif addon == 'rc' then
+		if not IsAddOnLoaded('RCLootCouncil') then return end
 
 		RCLootCouncilDB.global.cache = {}
 		RCLootCouncilDB.global.log = {}
 		RCLootCouncilDB.global.verTestCandidates = {}
 
 	elseif addon == 'mrt' then
+		if not IsAddOnLoaded('MRT') then return end
 
 		VMRT.Encounter.list = {}
 		VMRT.Encounter.names = {}
