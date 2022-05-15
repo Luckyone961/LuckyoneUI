@@ -186,5 +186,18 @@ function L1UI:Cleanup_Cache(addon, type)
 		PlaterDB.captured_spells = {}
 		PlaterDB.profiles.Luckyone.npc_cache = {}
 
+	elseif addon == 'rc' then
+
+		RCLootCouncilDB.global.cache = {}
+		RCLootCouncilDB.global.log = {}
+		RCLootCouncilDB.global.verTestCandidates = {}
+
+	elseif addon == 'mrt' then
+
+		VMRT.Encounter.list = {}
+		VMRT.Encounter.names = {}
+		VMRT.ExCD2.gnGUIDs = {}
+		VMRT.Inspect.Soulbinds = {}
+
 	end
 end

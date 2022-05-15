@@ -133,6 +133,12 @@ function L1UI:GetOptions()
 	L1UI.Options.args.performance.args.plater = ACH:Group('Plater', nil, 4)
 	L1UI.Options.args.performance.args.plater.inline = true
 	L1UI.Options.args.performance.args.plater.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() if not IsAddOnLoaded('Plater') then return end L1UI:Cleanup_Cache('plater') E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.performance.args.rcLoot = ACH:Group('RCLootCouncil', nil, 5)
+	L1UI.Options.args.performance.args.rcLoot.inline = true
+	L1UI.Options.args.performance.args.rcLoot.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() if not IsAddOnLoaded('RCLootCouncil') then return end L1UI:Cleanup_Cache('rc') E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.performance.args.mrt = ACH:Group('Method Raid Tools', nil, 6)
+	L1UI.Options.args.performance.args.mrt.inline = true
+	L1UI.Options.args.performance.args.mrt.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() if not IsAddOnLoaded('MRT') then return end L1UI:Cleanup_Cache('mrt') E:StaticPopup_Show('L1UI_RL') end)
 
 	-- Profiles
 	L1UI.Options.args.profiles = ACH:Group(format('|cff4beb2c%s|r', L["Profiles"]), nil, 9)
