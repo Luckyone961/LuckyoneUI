@@ -1,4 +1,8 @@
 ### Version 1.50 [In Development]
+**All WoW Versions:**  
+Added RCLootCouncil and MRT to performance config section  
+**Retail:**  
+Updated !keys wago URL from /bfakeys to /keystones  
 ___
 ### Version 1.49 [05-05-2022]
 **All WoW Versions:**  
