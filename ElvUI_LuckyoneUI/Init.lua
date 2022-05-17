@@ -61,9 +61,8 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 end
 
 function L1UI:Initialize()
-	if E.private.L1UI.install_version ~= nil then
-		E.db.L1UI.install_version = E.private.L1UI.install_version
-	end
+
+	L1UI:ConvertDB()
 
 	if E.private.install_complete and E.db.L1UI.install_version == nil then
 		E.PluginInstaller:Queue(L1UI.InstallerData)
