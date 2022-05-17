@@ -5,7 +5,7 @@ local ReloadUI = ReloadUI
 
 -- Set install version to current LuckyoneUI version
 local function InstallComplete()
-	E.private.L1UI.install_version = L1UI.Version
+	E.db.L1UI.install_version = L1UI.Version
 	ReloadUI()
 end
 
