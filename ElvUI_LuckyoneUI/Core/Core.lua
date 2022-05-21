@@ -57,6 +57,7 @@ end
 -- General CVars
 function L1UI:SetupCVars()
 
+	-- Core CVars
 	SetCVar('advancedCombatLogging', 1)
 	SetCVar('alwaysShowActionBars', 1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
@@ -72,14 +73,14 @@ function L1UI:SetupCVars()
 	SetCVar('threatWarning', 3)
 	SetCVar('UberTooltips', 1)
 
-	-- Classic and TBC
+	-- Classic and TBC CVars
 	if not E.Retail then
 		SetCVar('autoLootDefault', 1)
 		SetCVar('instantQuestText', 1)
 		SetCVar('profanityFilter', 0)
 	end
 
-	-- Only for myself
+	-- My CVars
 	if L1UI.Me then
 		SetCVar('doNotFlashLowHealthWarning', 1)
 		SetCVar('floatingCombatTextCombatDamage', 0)
