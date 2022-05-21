@@ -2,9 +2,9 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
 local LuckyDT
 
-local print = print
-local format = format
+local format, print = format, print
 
+local _G = _G
 local IsAddOnLoaded = IsAddOnLoaded
 local ReloadUI = ReloadUI
 local SetCVar = SetCVar
@@ -57,20 +57,46 @@ end
 -- General CVars
 function L1UI:SetupCVars()
 
-	-- Set ElvUI CVars first
-	E:SetupCVars(noDisplayMsg)
-
 	SetCVar('advancedCombatLogging', 1)
+	SetCVar('alwaysShowActionBars', 1)
+	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('ffxDeath', 0)
 	SetCVar('ffxGlow', 0)
+	SetCVar('ffxNether', 0)
+	SetCVar('fstack_preferParentKeys', 0)
+	SetCVar('lockActionBars', 1)
 	SetCVar('rawMouseEnable', 1)
+	SetCVar('screenshotQuality', 10)
+	SetCVar('showNPETutorials', 0)
+	SetCVar('showTutorials', 0)
+	SetCVar('threatWarning', 3)
+	SetCVar('UberTooltips', 1)
 
-	-- I want those in Classic and TBC
+	-- Classic and TBC
 	if not E.Retail then
 		SetCVar('autoLootDefault', 1)
 		SetCVar('instantQuestText', 1)
 		SetCVar('profanityFilter', 0)
 	end
+
+	-- Only for myself
+	if L1UI.Me then
+		SetCVar('doNotFlashLowHealthWarning', 1)
+		SetCVar('floatingCombatTextCombatDamage', 0)
+		SetCVar('floatingCombatTextCombatHealing', 0)
+		SetCVar('maxFPS', 144)
+		SetCVar('maxFPSBk', 60)
+		SetCVar('maxFPSLoading', 30)
+		SetCVar('RAIDweatherDensity', 0)
+		SetCVar('showToastOffline', 0)
+		SetCVar('showToastOnline', 0)
+		SetCVar('showToastWindow', 0)
+		SetCVar('SpellQueueWindow', 180)
+		SetCVar('weatherDensity', 0)
+	end
+
+	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:SetValue('SHIFT')
+	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:RefreshValue()
 
 	L1UI:Print(L["CVars have been set."])
 end
@@ -79,14 +105,18 @@ end
 function L1UI:NameplateCVars()
 
 	SetCVar('nameplateLargerScale', 1)
+	SetCVar('nameplateLargeTopInset', -1)
 	SetCVar('nameplateMinAlpha', 1)
 	SetCVar('nameplateMinScale', 1)
 	SetCVar('nameplateMotion', 1)
 	SetCVar('nameplateOccludedAlphaMult', 1)
-	SetCVar('nameplateOverlapH', 1)
-	SetCVar('nameplateOverlapV', 1.7)
+	SetCVar('nameplateOtherBottomInset', -1)
+	SetCVar('nameplateOtherTopInset', -1)
+	SetCVar('nameplateOverlapH', 1.1)
+	SetCVar('nameplateOverlapV', 1.8)
 	SetCVar('nameplateSelectedScale', 1)
 	SetCVar('nameplateSelfAlpha', 1)
+	SetCVar('nameplateSelfTopInset', -1)
 
 	SetCVar('UnitNameEnemyGuardianName', 1)
 	SetCVar('UnitNameEnemyMinionName', 1)
