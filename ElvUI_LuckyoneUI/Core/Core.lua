@@ -88,6 +88,7 @@ function L1UI:SetupCVars()
 		SetCVar('maxFPS', 144)
 		SetCVar('maxFPSBk', 60)
 		SetCVar('maxFPSLoading', 30)
+		SetCVar('nameplateShowOnlyNames', 1)
 		SetCVar('RAIDweatherDensity', 0)
 		SetCVar('showToastOffline', 0)
 		SetCVar('showToastOnline', 0)
@@ -180,7 +181,7 @@ function L1UI:SetupGlobal()
 		LuckyDT.fonts.enable = true
 		LuckyDT.fonts.font = "Expressway"
 		LuckyDT.fonts.fontOutline = "OUTLINE"
-		LuckyDT.fonts.fontSize = 10
+		LuckyDT.fonts.fontSize = 11
 		LuckyDT.frameLevel = 1
 		LuckyDT.frameStrata = "BACKGROUND"
 		LuckyDT.growth = "HORIZONTAL"
