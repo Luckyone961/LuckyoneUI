@@ -135,6 +135,7 @@ L["Color Theme"] = true
 L["Details Profile"] = true
 L["DPS/TANK"] = true
 L["Finished"] = true
+L["Full list of all changed CVars can be found in /luckyoneui config -> CVars."] = true
 L["Importance: |cff4beb2cHigh|r"] = true
 L["Importance: |cff4beb2cOptional|r"] = true
 L["Installation Complete"] = true
