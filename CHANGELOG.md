@@ -1,6 +1,8 @@
 ### Version 1.50 [In Development]
 **All WoW Versions:**  
 Added RCLootCouncil and MRT to performance config section  
+Changed installer pop-up behaviour to show per-profile instead of per-character  
+Updated CVars and NamePlate CVars. Full list available in the CVars config section  
 **Retail:**  
 Updated !keys wago URL from /bfakeys to /keystones  
 ___
