@@ -24,11 +24,13 @@ local VoiceTranscriptionFrame_UpdateVoiceTab = VoiceTranscriptionFrame_UpdateVoi
 -- Chat setup for tabs, windows and channels
 function L1UI:SetupChat()
 
-	-- CVars General
-	SetCVar('chatStyle', 'classic')
-	SetCVar('whisperMode', 'inline')
-	SetCVar('colorChatNamesByClass', 1)
+	-- CVars Chat
 	SetCVar('chatClassColorOverride', 0)
+	SetCVar('chatMouseScroll', 1)
+	SetCVar('chatStyle', 'classic')
+	SetCVar('colorChatNamesByClass', 1)
+	SetCVar('whisperMode', 'inline')
+	SetCVar('wholeChatWindowClickable', 0)
 
 	-- CVars Voice Transcription
 	SetCVar('speechToText', 0)
