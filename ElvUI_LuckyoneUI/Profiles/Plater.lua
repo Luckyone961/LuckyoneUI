@@ -282,7 +282,6 @@ function L1UI:Setup_Plater()
 					},
 				}, -- [3]
 			},
-			["url"] = "https://wago.io/LuckyonePlater/16",
 			["target_shady_enabled"] = false,
 			["aura2_y_offset"] = 5,
 			["cast_statusbar_color_nointerrupt"] = {
@@ -849,7 +848,6 @@ function L1UI:Setup_Plater()
 		-- Profile db
 		PlaterDB["profiles"][TBC] = {
 			["script_data"] = {},
-			["url"] = "https://wago.io/LuckyonePlater/16",
 			["target_shady_enabled"] = false,
 			["aura2_y_offset"] = 5,
 			["cast_statusbar_color_nointerrupt"] = {
@@ -1370,7 +1368,6 @@ function L1UI:Setup_Plater()
 
 		PlaterDB["profiles"][Classic] = {
 			["script_data"] = {},
-			["url"] = "https://wago.io/LuckyonePlater/16",
 			["target_shady_enabled"] = false,
 			["aura2_y_offset"] = 5,
 			["cast_statusbar_color_nointerrupt"] = {
