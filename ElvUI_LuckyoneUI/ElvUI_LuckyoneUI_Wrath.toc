@@ -1,0 +1,17 @@
+## Interface: 30400
+## Author: Luckyone
+## Version: 1.49
+## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cff7bdfffWrath|r
+## Notes: Luckyone's ElvUI Edit
+## RequiredDeps: ElvUI
+## DefaultState: enabled
+
+Init.lua
+
+Locales\load_locales.xml
+Core\load_core.xml
+Media\load_media.xml
+Modules\load_modules.xml
+Profiles\load_profiles.xml
+Settings\load_settings.xml
+Developer\load_developer.xml
