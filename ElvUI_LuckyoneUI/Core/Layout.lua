@@ -49,7 +49,9 @@ function L1UI:SetupLayout(layout)
 	E.db["general"]["bonusObjectivePosition"] = "AUTO"
 	E.db["general"]["bottomPanel"] = false
 	E.db["general"]["customGlow"]["color"]["a"] = 1
-	E.db["general"]["customGlow"]["color"]["g"] = 0.51764705882353
+	E.db["general"]["customGlow"]["color"]["b"] = 1
+	E.db["general"]["customGlow"]["color"]["g"] = 1
+	E.db["general"]["customGlow"]["color"]["r"] = 1
 	E.db["general"]["customGlow"]["style"] = "Autocast Shine"
 	E.db["general"]["customGlow"]["useColor"] = true
 	E.db["general"]["durabilityScale"] = 0.5

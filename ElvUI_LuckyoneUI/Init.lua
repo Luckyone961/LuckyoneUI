@@ -34,6 +34,8 @@ local toons = {
 	['Luckywl-LaughingSkull'] = true,
 	['Luckyrogue-LaughingSkull'] = true,
 	['Luckypala-LaughingSkull'] = true,
+	-- Retail PTR
+	['Luckyone-Nobundo'] = true,
 	-- TBC
 	['Luckyone-Gehennas'] = true,
 	-- Classic Season
