@@ -1,4 +1,4 @@
-### Version 1.50 [In Development]
+### Version 1.50 [31-05-2022]
 **All WoW Versions:**  
 Added RCLootCouncil and MRT to performance config section  
 Changed installer pop-up behaviour to show per-profile instead of per-character  
