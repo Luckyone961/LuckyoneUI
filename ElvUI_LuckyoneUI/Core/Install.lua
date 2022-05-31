@@ -5,7 +5,7 @@ local ReloadUI = ReloadUI
 
 -- Set install version to current LuckyoneUI version
 local function InstallComplete()
-	E.private.L1UI.install_version = L1UI.Version
+	E.db.L1UI.install_version = L1UI.Version
 	ReloadUI()
 end
 
@@ -55,7 +55,7 @@ L1UI.InstallerData = {
 		end,
 		[5] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText(L["CVars"])
-			PluginInstallFrame.Desc1:SetText('cameraDistanceMaxZoomFactor 2.6\nadvancedCombatLogging 1\nrawMouseEnable 1\nffxDeath 0\nffxGlow 0')
+			PluginInstallFrame.Desc1:SetText(L["Full list of all changed CVars can be found in /luckyoneui config -> CVars."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupCVars() end)

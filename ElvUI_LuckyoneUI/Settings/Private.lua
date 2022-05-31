@@ -4,12 +4,10 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 V.L1UI = {
 
-	install_version = nil,
-
 	disabledFrames = {
+		AlertFrame = false,
 		BossBanner = E.Retail and false or nil,
 		ZoneTextFrame = false,
-		AlertFrame = false,
 	},
 
 }

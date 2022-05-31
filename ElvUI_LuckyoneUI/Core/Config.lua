@@ -109,10 +109,10 @@ function L1UI:GetOptions()
 	L1UI.Options.args.cvars.args.setup.args.nameplateVars = ACH:Execute(L["NamePlate CVars"], nil, 2, function() L1UI:NameplateCVars() end, nil, true)
 	L1UI.Options.args.cvars.args.generalDesc = ACH:Group(L["General CVars"], nil, 2)
 	L1UI.Options.args.cvars.args.generalDesc.inline = true
-	L1UI.Options.args.cvars.args.generalDesc.args.cvars = ACH:Description('- advancedCombatLogging 1\n- rawMouseEnable 1\n- ffxDeath 0\n- ffxGlow 0', 1, 'medium')
+	L1UI.Options.args.cvars.args.generalDesc.args.cvars = ACH:Description('- advancedCombatLogging 1\n- alwaysShowActionBars 1\n- cameraDistanceMaxZoomFactor 2.6\n- ffxDeath 0\n- ffxGlow 0\n- ffxNether 0\n- fstack_preferParentKeys 0\n- lockActionBars 1\n- rawMouseEnable 1\n- screenshotQuality 10\n- showNPETutorials 0\n- showTutorials 0\n- threatWarning 3\n- UberTooltips 1', 1, 'medium')
 	L1UI.Options.args.cvars.args.nameplateDesc = ACH:Group(L["NamePlate CVars"], nil, 3)
 	L1UI.Options.args.cvars.args.nameplateDesc.inline = true
-	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- nameplateLargerScale 1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.7\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1', 1, 'medium')
+	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- nameplateLargerScale 1\n- nameplateLargeTopInset -1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOtherBottomInset -1\n- nameplateOtherTopInset -1\n- nameplateOverlapH 1.1\n- nameplateOverlapV 1.8\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateSelfTopInset -1', 1, 'medium')
 
 	-- Media
 	L1UI.Options.args.media = ACH:Group(format('|cff4beb2c%s|r', L["Media"]), nil, 7)
@@ -129,10 +129,16 @@ function L1UI:GetOptions()
 	L1UI.Options.args.performance.args.elvui.args.edit = ACH:Execute(L["Clear Editbox History"], nil, 2, function() if not E.private.chat.enable then return end L1UI:Cleanup_Cache('elvui', 'editbox') E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.performance.args.details = ACH:Group('Details', nil, 3)
 	L1UI.Options.args.performance.args.details.inline = true
-	L1UI.Options.args.performance.args.details.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() if not IsAddOnLoaded('Details') then return end L1UI:Cleanup_Cache('details') E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.performance.args.details.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() L1UI:Cleanup_Cache('details') E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.performance.args.plater = ACH:Group('Plater', nil, 4)
 	L1UI.Options.args.performance.args.plater.inline = true
-	L1UI.Options.args.performance.args.plater.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() if not IsAddOnLoaded('Plater') then return end L1UI:Cleanup_Cache('plater') E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.performance.args.plater.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() L1UI:Cleanup_Cache('plater') E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.performance.args.rcLoot = ACH:Group('RCLootCouncil', nil, 5)
+	L1UI.Options.args.performance.args.rcLoot.inline = true
+	L1UI.Options.args.performance.args.rcLoot.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() L1UI:Cleanup_Cache('rc') E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.performance.args.mrt = ACH:Group('Method Raid Tools', nil, 6)
+	L1UI.Options.args.performance.args.mrt.inline = true
+	L1UI.Options.args.performance.args.mrt.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() L1UI:Cleanup_Cache('mrt') E:StaticPopup_Show('L1UI_RL') end)
 
 	-- Profiles
 	L1UI.Options.args.profiles = ACH:Group(format('|cff4beb2c%s|r', L["Profiles"]), nil, 9)
@@ -195,7 +201,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.weakauras.args.shaman = ACH:Input(format('|cff0070DD%s|r', L["Shaman"]), nil, 12, nil, 'normal', function() return 'wago.io/luckyoneShaman' end)
 	L1UI.Options.args.weakauras.args.warrior = ACH:Input(format('|cffC69B6D%s|r', L["Warrior"]), nil, 13, nil, 'normal', function() return 'wago.io/luckyoneWarrior' end)
 	L1UI.Options.args.weakauras.args.header2 = ACH:Header(L["General WeakAuras"], 14)
-	L1UI.Options.args.weakauras.args.keys = ACH:Input('Link Keystones', nil, 15, nil, 'normal', function() return 'wago.io/bfakeys' end)
+	L1UI.Options.args.weakauras.args.keys = ACH:Input('Link Keystones', nil, 15, nil, 'normal', function() return 'wago.io/keystones' end)
 	L1UI.Options.args.weakauras.args.covenant = ACH:Input('Link Covenant', nil, 16, nil, 'normal', function() return 'wago.io/covenant' end)
 	L1UI.Options.args.weakauras.args.trinket = ACH:Input('Trinket Tracking', nil, 17, nil, 'normal', function() return 'wago.io/Trinket' end)
 	L1UI.Options.args.weakauras.args.affixes = ACH:Input('Mythic+ Affixes', nil, 18, nil, 'normal', function() return 'wago.io/affixes' end)

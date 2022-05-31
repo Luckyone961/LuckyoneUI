@@ -1,3 +1,14 @@
+### Version 1.50 [31-05-2022]
+**All WoW Versions:**  
+Added RCLootCouncil and MRT to performance config section  
+Changed installer pop-up behaviour to show per-profile instead of per-character  
+Updated CustomGlow color in ElvUI to match the WeakAura packs  
+Updated CVars and NamePlate CVars. Full list available in the CVars config section  
+**Retail:**  
+Added "Shadowlands" suffix to the AddOn name  
+Updated !keys wago URL from /bfakeys to /keystones  
+Updated TOC for 9.2.5  
+___
 ### Version 1.49 [05-05-2022]
 **All WoW Versions:**  
 Minor updates for initial Chat install  

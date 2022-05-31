@@ -135,6 +135,7 @@ L["Color Theme"] = "Farb Theme"
 L["Details Profile"] = "Details Profil"
 L["DPS/TANK"] = true
 L["Finished"] = "Fertig"
+L["Full list of all changed CVars can be found in /luckyoneui config -> CVars."] = "Eine Liste aller geänderten CVars findet ihr unter /luckyoneui config -> CVars."
 L["Importance: |cff00c0faHigh|r"] = "Bedeutung: |cff00c0faHoch|r"
 L["Importance: |cff00c0faOptional|r"] = "Bedeutung: |cff00c0faOptional|r"
 L["Installation Complete"] = "Installation Vollständig"

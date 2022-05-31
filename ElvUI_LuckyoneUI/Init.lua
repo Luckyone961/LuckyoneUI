@@ -34,6 +34,8 @@ local toons = {
 	['Luckywl-LaughingSkull'] = true,
 	['Luckyrogue-LaughingSkull'] = true,
 	['Luckypala-LaughingSkull'] = true,
+	-- Retail PTR
+	['Luckyone-Nobundo'] = true,
 	-- TBC
 	['Luckyone-Gehennas'] = true,
 	-- Classic Season
@@ -46,7 +48,7 @@ L1UI.CreditsList = {}
 L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = E.Retail and 12.77 or E.TBC and 2.44 or E.Classic and 1.69
+L1UI.RequiredVersion = E.Retail and 12.80 or E.TBC and 2.47 or E.Classic and 1.72
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
@@ -61,7 +63,10 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 end
 
 function L1UI:Initialize()
-	if E.private.install_complete and E.private.L1UI.install_version == nil then
+
+	L1UI:ConvertDB()
+
+	if E.private.install_complete and E.db.L1UI.install_version == nil then
 		E.PluginInstaller:Queue(L1UI.InstallerData)
 	end
 
