@@ -1,3 +1,5 @@
+### Version 1.51 [In Development]
+___
 ### Version 1.50 [31-05-2022]
 **All WoW Versions:**  
 Added RCLootCouncil and MRT to performance config section  
