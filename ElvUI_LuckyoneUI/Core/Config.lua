@@ -2,10 +2,6 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local ACH
 
 local format = format
-local tonumber = tonumber
-
-local GetCVar = GetCVar
-local SetCVar = SetCVar
 
 -- Load this on init
 function L1UI:GetOptions()
@@ -92,9 +88,6 @@ function L1UI:GetOptions()
 	L1UI.Options.args.blizzard.args.disabledFrames.args.AlertFrame = ACH:Toggle(L["Alert Frame"], L["Hide the Loot/Alert Frame"], 1)
 	L1UI.Options.args.blizzard.args.disabledFrames.args.BossBanner = ACH:Toggle(L["Boss Banner"], L["Hide the Boss Banner"], 2, nil, nil, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.blizzard.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle(L["Zone Text"], L["Hide the Zone Text"], 3)
-	L1UI.Options.args.blizzard.args.consoleVars = ACH:Group(L["Console Variables"], nil, 2, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.blizzard.args.consoleVars.inline = true
-	L1UI.Options.args.blizzard.args.consoleVars.args.fov = ACH:Range(L["Field of View"], nil, 1, { min = 50, max = 120, step = 1 }, nil, function() return tonumber(GetCVar('camerafov')) end, function(_, value) SetCVar('camerafov', value) end)
 
 	-- Chat
 	L1UI.Options.args.chat = ACH:Group(format('|cff4beb2c%s|r', L["Chat"]), nil, 5)
