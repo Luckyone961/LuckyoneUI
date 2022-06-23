@@ -1,4 +1,6 @@
 ### Version 1.51 [In Development]
+**Retail:**  
+Added slider to change Field of View in /luckyoneui config -> Blizzard section  
 ___
 ### Version 1.50 [31-05-2022]
 **All WoW Versions:**  
