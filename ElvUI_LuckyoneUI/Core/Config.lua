@@ -220,13 +220,13 @@ function L1UI:GetOptions()
 	L1UI.Options.args.weakauras.args.desc.inline = true
 	L1UI.Options.args.weakauras.args.desc.args.waDesc = ACH:Description(L["\nAll Class WeakAuras above are for DPS and Tank specializations only.\nThere is currently no plan to support Healers at all.\n\n"], 24, 'medium')
 
-	-- WeakAuras TBC
-	L1UI.Options.args.weakaurasTBC = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 12, nil, nil, nil, nil, not E.TBC)
-	L1UI.Options.args.weakaurasTBC.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
-	L1UI.Options.args.weakaurasTBC.args.hunter = ACH:Input(format('|cffAAD372%s|r', L["Hunter"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneHunterTBC' end)
-	L1UI.Options.args.weakaurasTBC.args.header2 = ACH:Header(L["General WeakAuras"], 3)
-	L1UI.Options.args.weakaurasTBC.args.trinket = ACH:Input('Trinket Tracking', nil, 4, nil, 'normal', function() return 'wago.io/TrinketTBC' end)
-	L1UI.Options.args.weakaurasTBC.args.combat = ACH:Input('Combat Tracking', nil, 5, nil, 'normal', function() return 'wago.io/combatStateTBC' end)
+	-- WeakAuras Wrath
+	L1UI.Options.args.weakaurasWrath = ACH:Group(format('|cff4beb2c%s|r', 'WeakAuras'), nil, 12, nil, nil, nil, nil, not E.Wrath)
+	L1UI.Options.args.weakaurasWrath.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
+	L1UI.Options.args.weakaurasWrath.args.hunter = ACH:Input(format('|cffAAD372%s|r', L["Hunter"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneHunterWrath' end)
+	L1UI.Options.args.weakaurasWrath.args.header2 = ACH:Header(L["General WeakAuras"], 3)
+	L1UI.Options.args.weakaurasWrath.args.trinket = ACH:Input('Trinket Tracking', nil, 4, nil, 'normal', function() return 'wago.io/TrinketWrath' end)
+	L1UI.Options.args.weakaurasWrath.args.combat = ACH:Input('Combat Tracking', nil, 5, nil, 'normal', function() return 'wago.io/combatStateWrath' end)
 
 	-- Credits
 	L1UI.Options.args.credits = ACH:Group(format('|cffFF7D0A%s|r', L["Credits"]), nil, 13)
