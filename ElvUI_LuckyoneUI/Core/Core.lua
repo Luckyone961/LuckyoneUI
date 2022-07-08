@@ -60,12 +60,14 @@ function L1UI:SetupCVars()
 	-- Core CVars
 	SetCVar('advancedCombatLogging', 1)
 	SetCVar('alwaysShowActionBars', 1)
+	SetCVar('autoLootDefault', 1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('ffxDeath', 0)
 	SetCVar('ffxGlow', 0)
 	SetCVar('ffxNether', 0)
 	SetCVar('fstack_preferParentKeys', 0)
 	SetCVar('lockActionBars', 1)
+	SetCVar('profanityFilter', 0)
 	SetCVar('rawMouseEnable', 1)
 	SetCVar('screenshotQuality', 10)
 	SetCVar('showNPETutorials', 0)
@@ -73,15 +75,14 @@ function L1UI:SetupCVars()
 	SetCVar('threatWarning', 3)
 	SetCVar('UberTooltips', 1)
 
-	-- Classic and TBC CVars
+	-- Classic, TBC, Wrath
 	if not E.Retail then
-		SetCVar('autoLootDefault', 1)
 		SetCVar('instantQuestText', 1)
-		SetCVar('profanityFilter', 0)
 	end
 
 	-- My CVars
 	if L1UI.Me then
+		SetCVar('disableServerNagle', 0)
 		SetCVar('doNotFlashLowHealthWarning', 1)
 		SetCVar('floatingCombatTextCombatDamage', 0)
 		SetCVar('floatingCombatTextCombatHealing', 0)
@@ -94,6 +95,7 @@ function L1UI:SetupCVars()
 		SetCVar('showToastOnline', 0)
 		SetCVar('showToastWindow', 0)
 		SetCVar('SpellQueueWindow', 180)
+		SetCVar('useIPv6', 0)
 		SetCVar('weatherDensity', 0)
 	end
 
