@@ -1,6 +1,12 @@
 ### Version 1.51 [In Development]
+**All WoW Versions:**  
+Fixed an error for the chat button of the performance section  
+Removed /covenant WeakAura link  
+Updated CVars  
 **Retail:**  
 Added slider to change Field of View in /luckyoneui config -> Blizzard section  
+**TBC:**  
+Removed WeakAuras section, will be updated for Wrath Classic  
 ___
 ### Version 1.50 [31-05-2022]
 **All WoW Versions:**  
