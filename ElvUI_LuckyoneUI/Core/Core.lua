@@ -205,15 +205,12 @@ end
 function L1UI:Cleanup_Cache(addon, type)
 
 	if addon == 'elvui' then
+		if not E.private.chat.enable then return end
 
 		if type == 'chat' then
-
 			CH:ResetHistory()
-
 		elseif type == 'editbox' then
-
 			CH:ResetEditboxHistory()
-
 		end
 
 	elseif addon == 'details' then
