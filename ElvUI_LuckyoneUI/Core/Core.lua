@@ -227,7 +227,7 @@ function L1UI:Cleanup_Cache(addon, type)
 
 		PlaterDB.captured_casts = {}
 		PlaterDB.captured_spells = {}
-		PlaterDB.profiles.Luckyone.npc_cache = {}
+		if PlaterDB.profiles.Luckyone then PlaterDB.profiles.Luckyone.npc_cache = {} end
 
 	elseif addon == 'rc' and IsAddOnLoaded('RCLootCouncil') then
 
