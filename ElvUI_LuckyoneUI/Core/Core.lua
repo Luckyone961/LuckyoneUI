@@ -207,8 +207,7 @@ end
 -- Performance config section
 function L1UI:Cleanup_Cache(addon, type)
 
-	if addon == 'elvui' then
-		if not E.private.chat.enable then return end
+	if addon == 'elvui' and E.private.chat.enable then
 
 		if type == 'chat' then
 			CH:ResetHistory()
@@ -216,30 +215,26 @@ function L1UI:Cleanup_Cache(addon, type)
 			CH:ResetEditboxHistory()
 		end
 
-	elseif addon == 'details' then
-		if not IsAddOnLoaded('Details') then return end
+	elseif addon == 'details' and IsAddOnLoaded('Details') then
 
 		_detalhes.encounter_spell_pool = {}
 		_detalhes.npcid_pool = {}
 		_detalhes.spell_pool = {}
 		_detalhes.spell_school_cache = {}
 
-	elseif addon == 'plater' then
-		if not IsAddOnLoaded('Plater') then return end
+	elseif addon == 'plater' and IsAddOnLoaded('Plater') then
 
 		PlaterDB.captured_casts = {}
 		PlaterDB.captured_spells = {}
 		PlaterDB.profiles.Luckyone.npc_cache = {}
 
-	elseif addon == 'rc' then
-		if not IsAddOnLoaded('RCLootCouncil') then return end
+	elseif addon == 'rc' and IsAddOnLoaded('RCLootCouncil') then
 
 		RCLootCouncilDB.global.cache = {}
 		RCLootCouncilDB.global.log = {}
 		RCLootCouncilDB.global.verTestCandidates = {}
 
-	elseif addon == 'mrt' then
-		if not IsAddOnLoaded('MRT') then return end
+	elseif addon == 'mrt' and IsAddOnLoaded('MRT') then
 
 		VMRT.Encounter.list = {}
 		VMRT.Encounter.names = {}
