@@ -78,11 +78,11 @@ function L1UI:GetOptions()
 	-- Auras [Classic and TBC]
 	L1UI.Options.args.auras.args.classic.args.dps = ACH:Group(L["DPS/TANK Layout"], nil, 1, nil, nil, nil, nil, E.Retail)
 	L1UI.Options.args.auras.args.classic.args.dps.inline = true
-	L1UI.Options.args.auras.args.classic.args.dps.args.on = ACH:Execute(L["Enable Party Buffs"], nil, 1, function() L1UI:LegacyAuras('on', 'main') end, nil, true)
+	L1UI.Options.args.auras.args.classic.args.dps.args.on = ACH:Execute(L["Enable Party Buffs"], nil, 1, function() L1UI:LegacyAuras('main') end, nil, true)
 	L1UI.Options.args.auras.args.classic.args.dps.args.off = ACH:Execute(L["Disable Party Buffs"], nil, 2, function() L1UI:LegacyAuras('off') end, nil, true)
 	L1UI.Options.args.auras.args.classic.args.healing = ACH:Group(L["Healing Layout"], nil, 2, nil, nil, nil, nil, E.Retail)
 	L1UI.Options.args.auras.args.classic.args.healing.inline = true
-	L1UI.Options.args.auras.args.classic.args.healing.args.on = ACH:Execute(L["Enable Party Buffs"], nil, 1, function() L1UI:LegacyAuras('on', 'healing') end, nil, true)
+	L1UI.Options.args.auras.args.classic.args.healing.args.on = ACH:Execute(L["Enable Party Buffs"], nil, 1, function() L1UI:LegacyAuras('healing') end, nil, true)
 	L1UI.Options.args.auras.args.classic.args.healing.args.off = ACH:Execute(L["Disable Party Buffs"], nil, 2, function() L1UI:LegacyAuras('off') end, nil, true)
 
 	-- Blizzard
