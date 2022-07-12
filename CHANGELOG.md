@@ -4,6 +4,7 @@ Fixed an error for the chat button of the performance section
 Removed /covenant WeakAura link  
 Removed Kufam and Teko fonts from SharedMedia  
 Updated Core CVars  
+Updated performance section of the config  
 **Wrath Classic:**  
 Added initial support for Wrath Classic Beta  
 Added BigWigs profile  
@@ -13,6 +14,7 @@ Added ElvUI layouts
 Added Plater profile  
 **Retail:**  
 Added slider to change Field of View in /luckyoneui config -> Blizzard section  
+Updated Details profile  
 **TBC:**  
 Removed TBC WeakAuras section, will be converted to Wrath Classic  
 ___
