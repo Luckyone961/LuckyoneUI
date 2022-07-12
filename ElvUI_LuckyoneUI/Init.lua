@@ -34,11 +34,14 @@ local toons = {
 	['Luckywl-LaughingSkull'] = true,
 	['Luckyrogue-LaughingSkull'] = true,
 	['Luckypala-LaughingSkull'] = true,
-	-- Retail PTR
+	-- Public Test Realm
 	['Luckyone-Nobundo'] = true,
-	-- TBC
+	-- Wrath Classic
 	['Luckyone-Gehennas'] = true,
-	-- Classic Season
+	['Luckyd-Golemagg'] = true,
+	['Luckyp-Golemagg'] = true,
+	['Luckysh-Golemagg'] = true,
+	-- Season of Mastery
 	['Luckyone-Dreadnaught'] = true,
 }
 

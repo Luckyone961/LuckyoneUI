@@ -96,7 +96,7 @@ function L1UI:SetupDebuffs(frame, type)
 	L1UI:Print(L["Debuff filters updated."])
 end
 
--- Auras for Classic and TBC
+-- Auras for Wrath | TBC | Classic
 function L1UI:LegacyAuras(arg)
 
 	if arg == 'main' then

@@ -75,7 +75,7 @@ function L1UI:SetupCVars()
 	SetCVar('threatWarning', 3)
 	SetCVar('UberTooltips', 1)
 
-	-- Classic, TBC, Wrath
+	-- Wrath | TBC | Classic
 	if not E.Retail then
 		SetCVar('instantQuestText', 1)
 	end

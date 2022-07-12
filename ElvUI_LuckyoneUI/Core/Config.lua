@@ -75,7 +75,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.auras.args.debuffs.args.boss.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:SetupDebuffs('boss', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:SetupDebuffs('boss', 'all') end)
 
-	-- Auras [Classic and TBC]
+	-- Auras [Wrath | TBC | Classic]
 	L1UI.Options.args.auras.args.classic.args.dps = ACH:Group(L["DPS/TANK Layout"], nil, 1, nil, nil, nil, nil, E.Retail)
 	L1UI.Options.args.auras.args.classic.args.dps.inline = true
 	L1UI.Options.args.auras.args.classic.args.dps.args.on = ACH:Execute(L["Enable Party Buffs"], nil, 1, function() L1UI:LegacyAuras('main') end, nil, true)
