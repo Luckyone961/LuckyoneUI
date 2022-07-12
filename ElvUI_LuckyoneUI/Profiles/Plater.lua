@@ -1881,6 +1881,527 @@ function L1UI:Setup_Plater()
 		-- Profile Key
 		PlaterDB["profileKeys"][E.mynameRealm] = Classic
 
+	elseif E.Wrath then
+
+		-- Create profile if it doesn't exist yet
+		PlaterDB["profiles"][Wrath] = PlaterDB["profiles"][Wrath] or {}
+
+		-- Profile db
+		PlaterDB["profiles"][Wrath] = {
+			["script_data"] = {},
+			["target_shady_enabled"] = false,
+			["aura2_y_offset"] = 5,
+			["cast_statusbar_color_nointerrupt"] = {
+				1, -- [1]
+				0, -- [2]
+				0.007843137254902, -- [3]
+				0.96000000089407, -- [4]
+			},
+			["indicator_worldboss"] = false,
+			["aura_width2"] = 16,
+			["aura_show_crowdcontrol"] = true,
+			["extra_icon_timer_outline"] = "OUTLINE",
+			["extra_icon_anchor"] = {
+				["x"] = -3,
+			},
+			["extra_icon_wide_icon"] = false,
+			["range_check_alpha"] = 1,
+			["semver"] = "3.2.0",
+			["use_name_translit"] = true,
+			["extra_icon_show_purge"] = true,
+			["spell_animations"] = false,
+			["aura_consolidate"] = true,
+			["extra_icon_width"] = 26,
+			["health_statusbar_texture"] = "Minimalist",
+			["hook_auto_imported"] = {
+				["Reorder Nameplate"] = 4,
+				["Dont Have Aura"] = 1,
+				["Players Targetting Amount"] = 4,
+				["Color Automation"] = 1,
+				["Extra Border"] = 2,
+				["Cast Bar Icon Config"] = 2,
+				["Attacking Specific Unit"] = 2,
+				["Combo Points"] = 6,
+				["Hide Neutral Units"] = 1,
+				["Target Color"] = 3,
+				["Execute Range"] = 1,
+				["Aura Reorder"] = 3,
+			},
+			["aura_frame1_anchor"] = {
+				["y"] = 2,
+			},
+			["indicator_rare"] = false,
+			["extra_icon_stack_font"] = "Expressway",
+			["cast_statusbar_bgtexture"] = "Minimalist",
+			["aura2_x_offset"] = 0,
+			["target_indicator"] = "NONE",
+			["aura_show_buff_by_the_unit"] = false,
+			["saved_cvars"] = {
+				["ShowClassColorInNameplate"] = "1",
+				["nameplateOverlapV"] = "1.7",
+				["nameplateLargeTopInset"] = "-1",
+				["nameplateShowEnemyMinus"] = "1",
+				["nameplateMotionSpeed"] = "0.05",
+				["NamePlateClassificationScale"] = "1",
+				["nameplateShowFriendlyTotems"] = "0",
+				["nameplateShowEnemyMinions"] = "1",
+				["nameplateShowFriendlyPets"] = "0",
+				["nameplateShowFriendlyNPCs"] = "1",
+				["nameplateSelectedScale"] = "1",
+				["nameplateTargetRadialPosition"] = "0",
+				["nameplateResourceOnTarget"] = "0",
+				["nameplateSelectedAlpha"] = "1",
+				["nameplateMinScale"] = "1",
+				["nameplateShowAll"] = "1",
+				["nameplateMaxDistance"] = "100",
+				["nameplateShowFriendlyMinions"] = "0",
+				["nameplatePersonalHideDelaySeconds"] = "0.2",
+				["ShowNamePlateLoseAggroFlash"] = "1",
+				["nameplateTargetBehindMaxDistance"] = "30",
+				["nameplateShowFriendlyGuardians"] = "0",
+				["NamePlateHorizontalScale"] = "1",
+				["nameplateShowFriends"] = "0",
+				["nameplateShowEnemies"] = "1",
+				["nameplateOtherTopInset"] = "-1",
+				["NamePlateVerticalScale"] = "1",
+			},
+			["login_counter"] = 2028,
+			["extra_icon_caster_name"] = false,
+			["click_space_friendly"] = {
+				148, -- [1]
+			},
+			["bossmod_aura_height"] = 30,
+			["aura_stack_font"] = "Expressway",
+			["hide_friendly_castbars"] = true,
+			["OptionsPanelDB"] = {
+				["PlaterOptionsPanelFrame"] = {
+					["scale"] = 1,
+				},
+			},
+			["auras_per_row_amount"] = 6,
+			["target_highlight_texture"] = "Interface\\AddOns\\Plater\\images\\selection_indicator2",
+			["plate_config"] = {
+				["player"] = {
+					["spellpercent_text_font"] = "Expressway",
+					["power_percent_text_font"] = "Expressway",
+					["spellname_text_font"] = "Expressway",
+					["percent_text_font"] = "Expressway",
+				},
+				["friendlyplayer"] = {
+					["spellpercent_text_font"] = "Expressway",
+					["actorname_use_class_color"] = true,
+					["cast"] = {
+						140, -- [1]
+						12, -- [2]
+					},
+					["spellname_text_outline"] = "OUTLINE",
+					["level_text_font"] = "Expressway",
+					["actorname_text_font"] = "Expressway",
+					["actorname_use_guild_color"] = false,
+					["cast_incombat"] = {
+						140, -- [1]
+					},
+					["spellname_text_font"] = "Expressway",
+					["level_text_outline"] = "OUTLINE",
+					["percent_text_font"] = "Expressway",
+					["health_incombat"] = {
+						140, -- [1]
+						16, -- [2]
+					},
+					["health"] = {
+						140, -- [1]
+						16, -- [2]
+					},
+				},
+				["friendlynpc"] = {
+					["spellpercent_text_font"] = "Expressway",
+					["cast"] = {
+						140, -- [1]
+						12, -- [2]
+					},
+					["big_actortitle_text_size"] = 9,
+					["spellname_text_outline"] = "OUTLINE",
+					["level_text_font"] = "Expressway",
+					["actorname_text_font"] = "Expressway",
+					["all_names"] = false,
+					["actorname_text_outline"] = "OUTLINE",
+					["big_actortitle_text_font"] = "Expressway",
+					["cast_incombat"] = {
+						140, -- [1]
+					},
+					["health_incombat"] = {
+						140, -- [1]
+					},
+					["spellname_text_font"] = "Expressway",
+					["big_actorname_text_font"] = "Expressway",
+					["level_text_outline"] = "OUTLINE",
+					["percent_text_font"] = "Expressway",
+					["relevance_state"] = 3,
+					["health"] = {
+						140, -- [1]
+						16, -- [2]
+					},
+				},
+				["enemynpc"] = {
+					["spellpercent_text_font"] = "Expressway",
+					["cast"] = {
+						140, -- [1]
+						12, -- [2]
+					},
+					["spellpercent_text_anchor"] = {
+						["y"] = 0.29999542236328,
+						["x"] = -1,
+					},
+					["level_text_font"] = "Expressway",
+					["actorname_text_font"] = "Expressway",
+					["actorname_text_outline"] = "OUTLINE",
+					["actorname_text_spacing"] = 8,
+					["big_actortitle_text_font"] = "Expressway",
+					["spellpercent_text_size"] = 9,
+					["cast_incombat"] = {
+						140, -- [1]
+						12, -- [2]
+					},
+					["spellname_text_anchor"] = {
+						["y"] = 0.29999542236328,
+						["x"] = 1,
+						["side"] = 10,
+					},
+					["percent_text_anchor"] = {
+						["y"] = 0.5,
+						["side"] = 11,
+					},
+					["spellname_text_font"] = "Expressway",
+					["big_actorname_text_font"] = "Expressway",
+					["level_text_outline"] = "OUTLINE",
+					["actorname_text_anchor"] = {
+						["y"] = 0.29999542236328,
+						["x"] = 1,
+						["side"] = 10,
+					},
+					["percent_text_font"] = "Expressway",
+					["spellname_text_size"] = 9,
+					["health"] = {
+						140, -- [1]
+						16, -- [2]
+					},
+					["actorname_text_size"] = 9,
+					["percent_show_health"] = false,
+					["health_incombat"] = {
+						140, -- [1]
+					},
+					["level_text_enabled"] = false,
+				},
+				["global_health_width"] = 140,
+				["enemyplayer"] = {
+					["big_actorname_text_size"] = 10,
+					["spellpercent_text_font"] = "Expressway",
+					["level_text_size"] = 8,
+					["cast"] = {
+						140, -- [1]
+						12, -- [2]
+					},
+					["spellpercent_text_anchor"] = {
+						["y"] = 0.29999542236328,
+						["x"] = -1,
+					},
+					["spellname_text_outline"] = "OUTLINE",
+					["level_text_font"] = "Expressway",
+					["actorname_text_font"] = "Expressway",
+					["all_names"] = true,
+					["actorname_text_outline"] = "OUTLINE",
+					["actorname_text_spacing"] = 8,
+					["quest_color_enemy"] = {
+						1, -- [1]
+						0.369, -- [2]
+						0, -- [3]
+						1, -- [4]
+					},
+					["big_actortitle_text_font"] = "Expressway",
+					["spellpercent_text_size"] = 9,
+					["cast_incombat"] = {
+						140, -- [1]
+					},
+					["spellname_text_anchor"] = {
+						["y"] = 0.29999542236328,
+						["x"] = 1.5,
+						["side"] = 10,
+					},
+					["percent_text_anchor"] = {
+						["y"] = 0.5,
+						["side"] = 11,
+					},
+					["spellname_text_font"] = "Expressway",
+					["quest_color_neutral"] = {
+						1, -- [1]
+						0.65, -- [2]
+						0, -- [3]
+						1, -- [4]
+					},
+					["actorname_text_size"] = 9,
+					["big_actorname_text_font"] = "Expressway",
+					["level_text_outline"] = "OUTLINE",
+					["big_actortitle_text_size"] = 10,
+					["actorname_text_anchor"] = {
+						["y"] = 0.29999542236328,
+						["x"] = 1,
+						["side"] = 10,
+					},
+					["percent_text_font"] = "Expressway",
+					["quest_enabled"] = true,
+					["quest_color_enabled"] = true,
+					["health_incombat"] = {
+						140, -- [1]
+					},
+					["health"] = {
+						140, -- [1]
+						16, -- [2]
+					},
+					["percent_show_health"] = false,
+					["spellname_text_size"] = 9,
+					["level_text_enabled"] = false,
+				},
+				["global_health_height"] = 16,
+			},
+			["aura_y_offset"] = 2,
+			["cast_statusbar_bgcolor"] = {
+				0.058823529411765, -- [1]
+				0.058823529411765, -- [2]
+				0.058823529411765, -- [3]
+				0.80000001192093, -- [4]
+			},
+			["cast_statusbar_use_fade_effects"] = false,
+			["resources_settings"] = {
+				["chr"] = {
+					["Player-1598-0BD22701"] = "ComboPoints",
+				},
+			},
+			["indicator_scale"] = 1.1000000238419,
+			["castbar_icon_size"] = "same as castbar plus healthbar",
+			["hook_data"] = {
+				{
+					["Enabled"] = true,
+					["Revision"] = 91,
+					["Options"] = {
+					},
+					["LastHookEdited"] = "Nameplate Updated",
+					["Author"] = "Luckyone-Laughing Skull",
+					["OptionsValues"] = {
+					},
+					["Desc"] = "",
+					["Hooks"] = {
+						["Nameplate Updated"] = "function(self, unitId, unitFrame, envTable)\n    \n    local unitName = UnitName(unitId)\n    \n    -- Show First Name [Whitelist table]\n    local firstName = {\n        [3527] = true, -- Healing Stream Totem\n        [2630] = true, -- Earthbind Totem\n        [61245] = true, -- Capacitor Totem\n        [5925] = true, -- Grounding Totem\n        [105451] = true, -- Counterstrike Totem\n        [105427] = true, -- Skyfury Totem\n        [97369] = true, -- Liquid Magma Totem\n    }\n    \n    -- Show Full Name [Whitelist table]\n    local fullName = {\n        [185685] = true, -- Urh Relic\n        [185680] = true, -- Vy Relic\n        [185683] = true, -- Wo Relic\n    }\n    \n    if (unitName) then\n        local a , b, c, d, e, f = strsplit(' ', unitName, 5)\n        \n        if firstName [unitFrame.namePlateNpcId] then\n            unitFrame.healthBar.unitName:SetText(a)\n        elseif fullName[unitFrame.namePlateNpcId] then\n            unitFrame.healthBar.unitName:SetText(unitName)\n        else\n            unitFrame.healthBar.unitName:SetText(f or e or d or c or b or a)\n        end\n    end\nend",
+					},
+					["Prio"] = 1,
+					["Time"] = 1647036963,
+					["LoadConditions"] = {
+						["talent"] = {
+						},
+						["group"] = {
+						},
+						["class"] = {
+						},
+						["map_ids"] = {
+						},
+						["role"] = {
+						},
+						["pvptalent"] = {
+						},
+						["spec"] = {
+						},
+						["race"] = {
+						},
+						["encounter_ids"] = {
+						},
+						["affix"] = {
+						},
+					},
+					["HooksTemp"] = {
+					},
+					["Name"] = "LuckyoneUI - Name",
+					["Icon"] = 4067922,
+					["PlaterCore"] = 1,
+				}, -- [1]
+				{
+					["Enabled"] = true,
+					["Revision"] = 44,
+					["Options"] = {
+					},
+					["LastHookEdited"] = "Cast Update",
+					["Author"] = "Luckyone-Laughing Skull",
+					["OptionsValues"] = {
+					},
+					["Desc"] = "",
+					["Hooks"] = {
+						["Nameplate Removed"] = "function(self, unitId, unitFrame, envTable)\n    envTable.UpdateBorder(unitFrame, false)\nend",
+						["Cast Update"] = "function(self, unitId, unitFrame, envTable)\n    envTable.UpdateIconPosition(unitFrame)\nend",
+						["Cast Start"] = "function(self, unitId, unitFrame, envTable)\n    envTable.UpdateIconPosition(unitFrame)\n    envTable.UpdateBorder(unitFrame, true)\nend",
+						["Constructor"] = "function(self, unitId, unitFrame, envTable)\n    \n    envTable.ShowIcon = Plater.db.profile.castbar_icon_show\n    envTable.IconAnchor = \"left\"\n    envTable.IconSizeOffset = 0\n    \n    envTable.ShowShield = false\n    envTable.ShieldTexture = [[Interface\\GROUPFRAME\\UI-GROUP-MAINTANKICON]]\n    envTable.ShieldDesaturated = true\n    envTable.ShieldColor = {1, 1, 1 ,1}\n    envTable.ShieldSize = {10, 12}\n    \n    function envTable.UpdateIconPosition (unitFrame)\n        local castBar = unitFrame.castBar\n        local icon = castBar.Icon\n        local shield = castBar.BorderShield\n        \n        if (envTable.ShowIcon) then\n            icon:ClearAllPoints()\n            \n            if (envTable.IconAnchor == \"left\") then\n                icon:SetPoint (\"topright\", unitFrame.healthBar, \"topleft\", 0, envTable.IconSizeOffset)\n                icon:SetPoint (\"bottomright\", unitFrame.castBar, \"bottomleft\", 0, 0)    \n                \n            elseif (envTable.IconAnchor == \"right\") then\n                icon:SetPoint (\"topleft\", unitFrame.healthBar, \"topright\", 0, envTable.IconSizeOffset)\n                icon:SetPoint (\"bottomleft\", unitFrame.castBar, \"bottomright\", 0, 0)\n                \n            end\n            \n            icon:SetWidth (icon:GetHeight())\n            icon:Show()\n            \n        else\n            icon:Hide()\n            \n        end\n        \n        if (envTable.ShowShield and not castBar.canInterrupt) then\n            shield:Show()\n            shield:SetAlpha (1)\n            shield:SetTexCoord (0, 1, 0, 1)\n            shield:SetVertexColor (1, 1, 1, 1)\n            \n            shield:SetTexture (envTable.ShieldTexture)\n            shield:SetDesaturated (envTable.ShieldDesaturated)\n            \n            if (not envTable.ShieldDesaturated) then\n                shield:SetVertexColor (DetailsFramework:ParseColors (envTable.ShieldColor))\n            end\n            \n            shield:SetSize (unpack (envTable.ShieldSize))\n            \n            shield:ClearAllPoints()\n            shield:SetPoint (\"center\", castBar, \"left\", 0, 0)\n        else\n            shield:Hide()\n        end\n    end\n    \n    function envTable.UpdateBorder (unitFrame, casting)\n        local healthBar = unitFrame.healthBar\n        local castBar = unitFrame.castBar\n        if casting then\n            if envTable.ShowIcon and castBar.Icon:IsShown() then\n                if envTable.IconAnchor == \"left\" then\n                    healthBar.border:SetPoint(\"TOPLEFT\", castBar.Icon, \"TOPLEFT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMRIGHT\", castBar, \"BOTTOMRIGHT\", 0, 0)\n                elseif envTable.IconAnchor == \"right\" then\n                    healthBar.border:SetPoint(\"TOPRIGHT\", castBar.Icon, \"TOPRIGHT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMLEFT\", castBar, \"BOTTOMLEFT\", 0, 0) \n                end\n            else\n                if envTable.IconAnchor == \"left\" then\n                    healthBar.border:SetPoint(\"TOPLEFT\", healthBar, \"TOPLEFT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMRIGHT\", castBar, \"BOTTOMRIGHT\", 0, 0)\n                elseif envTable.IconAnchor == \"right\" then\n                    healthBar.border:SetPoint(\"TOPRIGHT\", healthBar, \"TOPRIGHT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMLEFT\", castBar, \"BOTTOMLEFT\", 0, 0) \n                end\n            end\n        else\n            if envTable.IconAnchor == \"left\" then\n                healthBar.border:SetPoint(\"TOPLEFT\", healthBar, \"TOPLEFT\", 0, 0)\n                healthBar.border:SetPoint(\"BOTTOMRIGHT\", healthBar, \"BOTTOMRIGHT\", 0, 0)\n            elseif envTable.IconAnchor == \"right\" then\n                healthBar.border:SetPoint(\"TOPRIGHT\", healthBar, \"TOPRIGHT\", 0, 0)\n                healthBar.border:SetPoint(\"BOTTOMLEFT\", healthBar, \"BOTTOMLEFT\", 0, 0) \n            end\n        end\n    end\n    if not unitFrame.castBar.borderChangeHooked then\n        hooksecurefunc(unitFrame.castBar, \"Hide\", function() envTable.UpdateBorder(unitFrame, false) end)\n        unitFrame.castBar.borderChangeHooked = true\n    end\nend",
+					},
+					["Prio"] = 1,
+					["Time"] = 1647037225,
+					["LoadConditions"] = {
+						["talent"] = {
+						},
+						["group"] = {
+						},
+						["class"] = {
+						},
+						["map_ids"] = {
+						},
+						["role"] = {
+						},
+						["pvptalent"] = {
+						},
+						["spec"] = {
+						},
+						["race"] = {
+						},
+						["encounter_ids"] = {
+						},
+						["affix"] = {
+						},
+					},
+					["HooksTemp"] = {
+					},
+					["Name"] = "LuckyoneUI - Castbar",
+					["Icon"] = 4067925,
+					["PlaterCore"] = 1,
+				}, -- [2]
+			},
+			["extra_icon_caster_outline"] = "OUTLINE",
+			["auras_per_row_amount2"] = 6,
+			["aura_width"] = 16,
+			["health_statusbar_bgcolor"] = {
+				0.058823529411765, -- [1]
+				0.058823529411765, -- [2]
+				0.058823529411765, -- [3]
+				0.80000001192093, -- [4]
+			},
+			["quick_hide"] = true,
+			["target_highlight_color"] = {
+				nil, -- [1]
+				1, -- [2]
+			},
+			["extra_icon_stack_outline"] = "OUTLINE",
+			["click_space"] = {
+				148, -- [1]
+			},
+			["castbar_target_font"] = "Expressway",
+			["cast_statusbar_spark_texture"] = "Interface\\AddOns\\Plater\\images\\spark8",
+			["aura_x_offset"] = 0,
+			["first_run3"] = true,
+			["ui_parent_scale_tune"] = 1.406249965948519,
+			["health_statusbar_bgtexture"] = "Minimalist",
+			["indicator_raidmark_anchor"] = {
+				["x"] = 3,
+			},
+			["aura_show_enrage"] = true,
+			["aura_tracker"] = {
+				["buff_tracked"] = {
+					["321402"] = true,
+					["322773"] = true,
+					["333241"] = true,
+					["327416"] = true,
+					["322433"] = true,
+					["333737"] = true,
+					["321754"] = true,
+					["343470"] = true,
+					["331510"] = true,
+					["343558"] = true,
+					["327808"] = true,
+					["178658"] = true,
+					["317936"] = true,
+					["326892"] = true,
+					["336451"] = true,
+					["344739"] = true,
+					["333227"] = true,
+					["343502"] = true,
+					["326450"] = true,
+					["209859"] = true,
+					["336499"] = true,
+					["340880"] = true,
+					["330545"] = true,
+					["340873"] = true,
+					["226510"] = true,
+				},
+				["debuff_banned"] = {
+					["342938"] = true,
+				},
+				["buff_banned"] = {
+					["206150"] = true,
+					["333553"] = true,
+					["61574"] = true,
+					["61573"] = true,
+				},
+			},
+			["extra_icon_caster_font"] = "Expressway",
+			["cast_statusbar_color"] = {
+				0.023529411764706, -- [1]
+				1, -- [2]
+				nil, -- [3]
+				0.96000000089407, -- [4]
+			},
+			["update_throttle"] = 0.099999994039536,
+			["bossmod_cooldown_text_size"] = 15,
+			["indicator_extra_raidmark"] = false,
+			["extra_icon_timer_font"] = "Expressway",
+			["health_selection_overlay"] = "Minimalist",
+			["health_cutoff"] = false,
+			["target_highlight_alpha"] = 1,
+			["cast_statusbar_color_interrupted"] = {
+				0.30196078431373, -- [1]
+				0.30196078431373, -- [2]
+				0.30196078431373, -- [3]
+			},
+			["indicator_raidmark_scale"] = 0.84999996423721,
+			["target_highlight_height"] = 12,
+			["health_cutoff_upper"] = false,
+			["version"] = 13,
+			["use_ui_parent"] = true,
+			["indicator_elite"] = false,
+			["indicator_spec"] = false,
+			["patch_version"] = 18,
+			["range_check_in_range_or_target_alpha"] = 1,
+			["aura_timer_text_size"] = 10,
+			["number_region_first_run"] = true,
+			["castbar_target_anchor"] = {
+				["side"] = 4,
+			},
+			["script_auto_imported"] = {
+				["Cast - Important Target [P]"] = 1,
+				["Aura - Buff Alert"] = 13,
+				["Cast - Very Important"] = 12,
+				["Explosion Affix M+"] = 11,
+				["Aura - Debuff Alert"] = 11,
+				["Cast - Castbar is Timer [P]"] = 2,
+				["Cast - Ultra Important"] = 11,
+				["Cast - Big Alert"] = 12,
+				["Cast - Small Alert"] = 11,
+				["Spiteful Affix"] = 3,
+				["Unit - Show Energy"] = 11,
+				["Unit - Main Target"] = 11,
+				["Aura - Blink Time Left"] = 13,
+				["Unit - Important"] = 11,
+				["Countdown"] = 11,
+				["Unit - Health Markers"] = 12,
+				["Cast - Frontal Cone"] = 11,
+				["Fixate"] = 11,
+				["Cast - Tank Interrupt"] = 12,
+				["Auto Set Skull"] = 11,
+				["Cast - Alert + Timer [P]"] = 2,
+				["Fixate On You"] = 11,
+			},
+			["cast_statusbar_texture"] = "Minimalist",
+			["indicator_faction"] = false,
+			["indicator_pet"] = false,
+			["aura_timer_text_font"] = "Expressway",
+			["bossmod_aura_width"] = 30,
+		}
+
+		-- Profile Key
+		PlaterDB["profileKeys"][E.mynameRealm] = Wrath
+
 	end
 
 	L1UI:Print(L["Plater profile has been set."])
