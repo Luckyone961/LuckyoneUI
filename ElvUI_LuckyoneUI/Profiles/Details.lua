@@ -8,7 +8,7 @@ local IsAddOnLoaded = IsAddOnLoaded
 function L1UI:Setup_Details()
 	if not IsAddOnLoaded('Details') then return end
 
-	-- Wipe *spell_pool, npcid_pool, encounter_spell_pool, spell_school_cache
+	-- Wipe boss_mods_timers, encounter_spell_pool, npcid_pool, spell_pool, spell_school_cache
 	L1UI:Cleanup_Cache('details')
 
 	-- Profile name

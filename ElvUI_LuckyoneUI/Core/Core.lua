@@ -217,6 +217,7 @@ function L1UI:Cleanup_Cache(addon, type)
 
 	elseif addon == 'details' and IsAddOnLoaded('Details') then
 
+		_detalhes.boss_mods_timers = {}
 		_detalhes.encounter_spell_pool = {}
 		_detalhes.npcid_pool = {}
 		_detalhes.spell_pool = {}
