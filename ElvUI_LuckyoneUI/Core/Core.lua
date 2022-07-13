@@ -232,6 +232,7 @@ function L1UI:Cleanup_Cache(addon, type)
 	elseif addon == 'rc' and IsAddOnLoaded('RCLootCouncil') then
 
 		RCLootCouncilDB.global.cache = {}
+		RCLootCouncilDB.global.errors = {}
 		RCLootCouncilDB.global.log = {}
 		RCLootCouncilDB.global.verTestCandidates = {}
 
