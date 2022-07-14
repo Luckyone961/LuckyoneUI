@@ -2,7 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local _G = _G
 
--- Disabled Blizzard Frames
+-- Disabled Blizzard Frames (Loading on init)
 function L1UI:DisabledFrames()
 
 	if E.private.L1UI.disabledFrames.AlertFrame then

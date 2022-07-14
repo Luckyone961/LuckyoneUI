@@ -405,7 +405,7 @@ function L1UI:SetupLayout(layout)
 	E.db["databars"]["reputation"]["width"] = 10
 	E.db["databars"]["threat"]["enable"] = false
 
-	-- DataBars Classic & TBC
+	-- DataBars Wrath | TBC | Classic
 	if not E.Retail then
 		E.db["databars"]["petExperience"]["enable"] = false
 		E.db["databars"]["petExperience"]["font"] = "Expressway"
@@ -861,7 +861,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,168,128"
 
-		-- Classic and TBC movers
+		-- Wrath | TBC | Classic movers
 		if not E.Retail then
 			E.db["movers"]["PetExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
 			E.db["movers"]["QuestTimerFrameMover"] = "TOP,ElvUIParent,TOP,0,-1"
@@ -1418,7 +1418,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["targettarget"]["width"] = 80
 		E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
 
-		-- Classic and TBC db
+		-- Wrath | TBC | Classic db
 		if not E.Retail then
 			E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
 			E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
@@ -1511,7 +1511,7 @@ function L1UI:SetupLayout(layout)
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,168,128"
 
-		-- Classic and TBC movers
+		-- Wrath | TBC | Classic movers
 		if not E.Retail then
 			E.db["movers"]["PetExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
 			E.db["movers"]["QuestTimerFrameMover"] = "TOP,ElvUIParent,TOP,0,-1"
@@ -2039,7 +2039,7 @@ function L1UI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["targettarget"]["width"] = 80
 		E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
 
-		-- Classic and TBC db
+		-- Wrath | TBC | Classic db
 		if not E.Retail then
 			E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
 			E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
