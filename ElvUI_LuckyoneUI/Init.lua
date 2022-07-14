@@ -34,11 +34,14 @@ local toons = {
 	['Luckywl-LaughingSkull'] = true,
 	['Luckyrogue-LaughingSkull'] = true,
 	['Luckypala-LaughingSkull'] = true,
-	-- Retail PTR
+	-- Public Test Realm
 	['Luckyone-Nobundo'] = true,
-	-- TBC
+	-- Wrath Classic
 	['Luckyone-Gehennas'] = true,
-	-- Classic Season
+	['Luckyd-Golemagg'] = true,
+	['Luckyp-Golemagg'] = true,
+	['Luckysh-Golemagg'] = true,
+	-- Season of Mastery
 	['Luckyone-Dreadnaught'] = true,
 }
 
@@ -48,7 +51,7 @@ L1UI.CreditsList = {}
 L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = E.Retail and 12.80 or E.TBC and 2.47 or E.Classic and 1.72
+L1UI.RequiredVersion = E.Retail and 12.81 or E.TBC and 2.48 or E.Classic and 1.73 or E.Wrath and 0.01
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)

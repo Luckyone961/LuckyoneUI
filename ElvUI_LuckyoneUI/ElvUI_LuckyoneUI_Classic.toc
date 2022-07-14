@@ -1,6 +1,6 @@
 ## Interface: 11403
 ## Author: Luckyone
-## Version: 1.50
+## Version: 1.51
 ## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cffFF7E40Classic|r
 ## Notes: Luckyone's ElvUI Edit
 ## RequiredDeps: ElvUI
@@ -14,4 +14,3 @@ Media\load_media.xml
 Modules\load_modules.xml
 Profiles\load_profiles.xml
 Settings\load_settings.xml
-Developer\load_developer.xml

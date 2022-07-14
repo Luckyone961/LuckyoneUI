@@ -11,6 +11,7 @@ function L1UI:Setup_BigWigs(layout)
 	local Rmain, Rheal = "Luckyone D/T", "Luckyone H"
 	local Tmain, Theal = "Luckyone TBC D/T", "Luckyone TBC H"
 	local Cmain, Cheal = "Luckyone Classic D/T", "Luckyone Classic H"
+	local Wmain, Wheal = "Luckyone Wrath D/T", "Luckyone Wrath H"
 
 	-- Required to add profiles to BigWigs3DB
 	if not IsAddOnLoaded("BigWigs_Core") then LoadAddOn("BigWigs_Core") end
@@ -721,6 +722,235 @@ function L1UI:Setup_BigWigs(layout)
 		elseif layout == 'healing' then
 			BigWigs.db:SetProfile(Cheal)
 		end
+	elseif E.Wrath then
+
+		-- Profile Creation
+		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
+
+		BigWigsClassicDB["profiles"][Wmain] = BigWigsClassicDB["profiles"][Wmain] or {}
+		BigWigsClassicDB["profiles"][Wmain]["showZoneMessages"] = false
+		BigWigsClassicDB["profiles"][Wmain]["fakeDBMVersion"] = true
+		BigWigsClassicDB["profiles"][Wmain]["flash"] = false
+
+		BigWigsClassicDB["profiles"][Wheal] = BigWigsClassicDB["profiles"][Wheal] or {}
+		BigWigsClassicDB["profiles"][Wheal]["showZoneMessages"] = false
+		BigWigsClassicDB["profiles"][Wheal]["fakeDBMVersion"] = true
+		BigWigsClassicDB["profiles"][Wheal]["flash"] = false
+
+		BigWigsIconClassicDB["hide"] = true
+
+		-- Profile Data
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] or {}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][Wmain] = {
+			["bigwigsMsg"] = true,
+			["blizzMsg"] = false,
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][Wheal] = {
+			["bigwigsMsg"] = true,
+			["blizzMsg"] = false,
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"] or {}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][Wmain] = {
+			["media"] = {
+				["underyou"] = "None",
+			},
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][Wheal] = {
+			["media"] = {
+				["underyou"] = "None",
+			},
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] or {}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][Wmain] = {
+			["outline"] = "OUTLINE",
+			["fontName"] = "Expressway",
+			["position"] = {
+				nil, -- [1]
+				nil, -- [2]
+				nil, -- [3]
+				-220, -- [4]
+			},
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][Wheal] = {
+			["outline"] = "OUTLINE",
+			["fontName"] = "Expressway",
+			["position"] = {
+				nil, -- [1]
+				nil, -- [2]
+				nil, -- [3]
+				-220, -- [4]
+			},
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] or {}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][Wmain] = {
+			["exitCombatOther"] = 3,
+			["disabled"] = false,
+			["modeOther"] = 2,
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][Wheal] = {
+			["exitCombatOther"] = 3,
+			["disabled"] = false,
+			["modeOther"] = 2,
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] or {}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][Wmain] = {
+			["barBackground"] = {
+				["BigWigs_Plugins_Colors"] = {
+					["default"] = {
+						0.05882352941176471, -- [1]
+						0.05882352941176471, -- [2]
+						0.05882352941176471, -- [3]
+						0.2000000476837158, -- [4]
+					},
+				},
+			},
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][Wheal] = {
+			["barBackground"] = {
+				["BigWigs_Plugins_Colors"] = {
+					["default"] = {
+						0.05882352941176471, -- [1]
+						0.05882352941176471, -- [2]
+						0.05882352941176471, -- [3]
+						0.25, -- [4]
+					},
+				},
+			},
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"] or {}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][Wmain] = {
+			["disabled"] = true,
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][Wheal] = {
+			["disabled"] = true,
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] or {}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][Wmain] = {
+			["posx"] = 962.845249009151,
+			["posy"] = 71.8225277808051,
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][Wheal] = {
+			["posx"] = 962.845249009151,
+			["posy"] = 71.8225277808051,
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] or {}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][Wmain] = {
+			["outline"] = "OUTLINE",
+			["BigWigsEmphasizeAnchor_height"] = 21.9999656677246,
+			["BigWigsEmphasizeAnchor_x"] = 590.933564656316,
+			["BigWigsAnchor_width"] = 167,
+			["BigWigsAnchor_y"] = 226.133186899287,
+			["fontName"] = "Expressway",
+			["BigWigsAnchor_height"] = 19.9999866485596,
+			["visibleBarLimit"] = 8,
+			["barStyle"] = "ElvUI",
+			["BigWigsAnchor_x"] = 450.844021333578,
+			["spacing"] = 3,
+			["BigWigsEmphasizeAnchor_y"] = 226.13344731596,
+			["visibleBarLimitEmph"] = 8,
+			["BigWigsEmphasizeAnchor_width"] = 281.000061035156,
+			["texture"] = "Minimalist",
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][Wheal] = {
+			["outline"] = "OUTLINE",
+			["BigWigsAnchor_width"] = 167,
+			["BigWigsEmphasizeAnchor_height"] = 21.9999656677246,
+			["fontName"] = "Expressway",
+			["BigWigsAnchor_height"] = 19.9999866485596,
+			["visibleBarLimitEmph"] = 8,
+			["visibleBarLimit"] = 8,
+			["BigWigsAnchor_y"] = 226.133186899287,
+			["spacing"] = 3,
+			["BigWigsEmphasizeAnchor_y"] = 212.622162266571,
+			["texture"] = "Minimalist",
+			["barStyle"] = "ElvUI",
+			["BigWigsAnchor_x"] = 401.066155544904,
+			["BigWigsEmphasizeAnchor_x"] = 861.867295175143,
+			["BigWigsEmphasizeAnchor_width"] = 245.999984741211,
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] or {}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][Wmain] = {
+			["outline"] = "OUTLINE",
+			["fontSize"] = 24,
+			["emphFontName"] = "Expressway",
+			["emphFontSize"] = 34,
+			["emphPosition"] = {
+				"TOP", -- [1]
+				"TOP", -- [2]
+				nil, -- [3]
+				-120, -- [4]
+			},
+			["fontName"] = "Expressway",
+			["displaytime"] = 3.5,
+			["emphOutline"] = "OUTLINE",
+			["fadetime"] = 2.5,
+			["normalPosition"] = {
+				"CENTER", -- [1]
+				"CENTER", -- [2]
+				nil, -- [3]
+				225, -- [4]
+			},
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][Wheal] = {
+			["outline"] = "OUTLINE",
+			["fontSize"] = 24,
+			["emphFontName"] = "Expressway",
+			["emphFontSize"] = 34,
+			["fadetime"] = 2.5,
+			["emphPosition"] = {
+				"TOP", -- [1]
+				"TOP", -- [2]
+				nil, -- [3]
+				-120, -- [4]
+			},
+			["fontName"] = "Expressway",
+			["displaytime"] = 3.5,
+			["emphOutline"] = "OUTLINE",
+			["normalPosition"] = {
+				"CENTER", -- [1]
+				"CENTER", -- [2]
+				nil, -- [3]
+				225, -- [4]
+			},
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] or {}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][Wmain] = {
+			["objects"] = {
+				["ability"] = false,
+				["sound"] = false,
+			},
+			["posy"] = 86.0440613282958,
+			["height"] = 120.000007629395,
+			["posx"] = 295.821448135357,
+			["fontName"] = "Expressway",
+			["width"] = 139.999984741211,
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][Wheal] = {
+			["objects"] = {
+				["ability"] = false,
+				["sound"] = false,
+			},
+			["fontName"] = "Expressway",
+			["width"] = 139.999984741211,
+			["posy"] = 86.0440613282958,
+			["posx"] = 295.821448135357,
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"] or {}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Wmain] = {
+			["voice"] = "enUS: Default (Female)",
+			["endPullSound"] = "None",
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Wheal] = {
+			["voice"] = "enUS: Default (Female)",
+			["endPullSound"] = "None",
+		}
+
+		-- Role check and set profile
+		if layout == 'main' then
+			BigWigs.db:SetProfile(Wmain)
+		elseif layout == 'healing' then
+			BigWigs.db:SetProfile(Wheal)
+		end
 	end
 
 	-- Enable auto logging for myself
@@ -733,6 +963,9 @@ function L1UI:Setup_BigWigs(layout)
 	elseif E.Classic and L1UI.Me then
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Cmain]["combatLog"] = true
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Cheal]["combatLog"] = true
+	elseif E.Wrath and L1UI.Me then
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Wmain]["combatLog"] = true
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Wheal]["combatLog"] = true
 	end
 
 	L1UI:Print(L["BigWigs profile has been set."])

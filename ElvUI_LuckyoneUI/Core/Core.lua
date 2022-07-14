@@ -60,12 +60,14 @@ function L1UI:SetupCVars()
 	-- Core CVars
 	SetCVar('advancedCombatLogging', 1)
 	SetCVar('alwaysShowActionBars', 1)
+	SetCVar('autoLootDefault', 1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('ffxDeath', 0)
 	SetCVar('ffxGlow', 0)
 	SetCVar('ffxNether', 0)
 	SetCVar('fstack_preferParentKeys', 0)
 	SetCVar('lockActionBars', 1)
+	SetCVar('profanityFilter', 0)
 	SetCVar('rawMouseEnable', 1)
 	SetCVar('screenshotQuality', 10)
 	SetCVar('showNPETutorials', 0)
@@ -73,15 +75,14 @@ function L1UI:SetupCVars()
 	SetCVar('threatWarning', 3)
 	SetCVar('UberTooltips', 1)
 
-	-- Classic and TBC CVars
+	-- Wrath | TBC | Classic
 	if not E.Retail then
-		SetCVar('autoLootDefault', 1)
 		SetCVar('instantQuestText', 1)
-		SetCVar('profanityFilter', 0)
 	end
 
 	-- My CVars
 	if L1UI.Me then
+		SetCVar('disableServerNagle', 0)
 		SetCVar('doNotFlashLowHealthWarning', 1)
 		SetCVar('floatingCombatTextCombatDamage', 0)
 		SetCVar('floatingCombatTextCombatHealing', 0)
@@ -94,6 +95,7 @@ function L1UI:SetupCVars()
 		SetCVar('showToastOnline', 0)
 		SetCVar('showToastWindow', 0)
 		SetCVar('SpellQueueWindow', 180)
+		SetCVar('useIPv6', 0)
 		SetCVar('weatherDensity', 0)
 	end
 
@@ -150,13 +152,16 @@ function L1UI:SetupPrivate()
 	E.private.skins.parchmentRemoverEnable = true
 
 	if E.Retail then
-		E.private.install_complete = "12.79"
+		E.private.install_complete = "12.81"
 		E.private.general.totemBar = false
 	elseif E.TBC then
-		E.private.install_complete = "2.46"
+		E.private.install_complete = "2.48"
 		E.private.general.totemBar = true
 	elseif E.Classic then
-		E.private.install_complete = "1.71"
+		E.private.install_complete = "1.73"
+		E.private.general.totemBar = true
+	elseif E.Wrath then
+		E.private.install_complete = "0.01"
 		E.private.general.totemBar = true
 	end
 end
@@ -202,42 +207,36 @@ end
 -- Performance config section
 function L1UI:Cleanup_Cache(addon, type)
 
-	if addon == 'elvui' then
+	if addon == 'elvui' and E.private.chat.enable then
 
 		if type == 'chat' then
-
 			CH:ResetHistory()
-
 		elseif type == 'editbox' then
-
 			CH:ResetEditboxHistory()
-
 		end
 
-	elseif addon == 'details' then
-		if not IsAddOnLoaded('Details') then return end
+	elseif addon == 'details' and IsAddOnLoaded('Details') then
 
+		_detalhes.boss_mods_timers = {}
 		_detalhes.encounter_spell_pool = {}
 		_detalhes.npcid_pool = {}
 		_detalhes.spell_pool = {}
 		_detalhes.spell_school_cache = {}
 
-	elseif addon == 'plater' then
-		if not IsAddOnLoaded('Plater') then return end
+	elseif addon == 'plater' and IsAddOnLoaded('Plater') then
 
 		PlaterDB.captured_casts = {}
 		PlaterDB.captured_spells = {}
-		PlaterDB.profiles.Luckyone.npc_cache = {}
+		if PlaterDB.profiles.Luckyone then PlaterDB.profiles.Luckyone.npc_cache = {} end
 
-	elseif addon == 'rc' then
-		if not IsAddOnLoaded('RCLootCouncil') then return end
+	elseif addon == 'rc' and IsAddOnLoaded('RCLootCouncil') then
 
 		RCLootCouncilDB.global.cache = {}
+		RCLootCouncilDB.global.errors = {}
 		RCLootCouncilDB.global.log = {}
 		RCLootCouncilDB.global.verTestCandidates = {}
 
-	elseif addon == 'mrt' then
-		if not IsAddOnLoaded('MRT') then return end
+	elseif addon == 'mrt' and IsAddOnLoaded('MRT') then
 
 		VMRT.Encounter.list = {}
 		VMRT.Encounter.names = {}

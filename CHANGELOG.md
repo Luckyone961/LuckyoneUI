@@ -1,3 +1,24 @@
+### Version 1.51 [14-07-2022]
+**All WoW Versions:**  
+Fixed an error for the chat button of the performance section  
+Removed /covenant WeakAura link  
+Removed Kufam and Teko fonts from SharedMedia  
+Updated Core CVars  
+Updated performance section of the config  
+**Wrath Classic:**  
+Added initial support for Wrath Classic Beta  
+• Note: ElvUI for Wrath Classic Beta is not yet available  
+Added BigWigs profile  
+Added DBM profile  
+Added Details profile  
+Added ElvUI layouts  
+Added Plater profile  
+**Retail:**  
+Added slider to change Field of View in /luckyoneui config -> Blizzard section  
+Updated Details profile  
+**TBC:**  
+Removed TBC WeakAuras section, will be converted to Wrath Classic  
+___
 ### Version 1.50 [31-05-2022]
 **All WoW Versions:**  
 Added RCLootCouncil and MRT to performance config section  
