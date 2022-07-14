@@ -1,3 +1,5 @@
+### Version 1.52 [In Development]
+___
 ### Version 1.51 [14-07-2022]
 **All WoW Versions:**  
 Fixed an error for the chat button of the performance section  
