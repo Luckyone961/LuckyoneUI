@@ -46,6 +46,7 @@ L["DPS/TANK Profiles"] = true
 L["Druid"] = true
 L["ElvUI Plugins"] = true
 L["Enable Party Buffs"] = true
+L["Evoker"] = true
 L["Field of View"] = true
 L["Focus Frame Buffs"] = true
 L["Focus Frame Debuffs"] = true

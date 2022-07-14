@@ -46,6 +46,7 @@ L["DPS/TANK Profiles"] = "DPS/TANK Profile"
 L["Druid"] = "Druide"
 L["ElvUI Plugins"] = true
 L["Enable Party Buffs"] = "Aktiviere Gruppen Stärkungszauber"
+L["Evoker"] = true
 L["Field of View"] = true
 L["Focus Frame Buffs"] = "Fokusfenster Stärkungszauber"
 L["Focus Frame Debuffs"] = "Fokusfenster Schwächungszauber"
