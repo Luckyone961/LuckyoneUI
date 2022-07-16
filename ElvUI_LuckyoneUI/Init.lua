@@ -74,7 +74,9 @@ function L1UI:Initialize()
 		E.PluginInstaller:Queue(L1UI.InstallerData)
 	end
 
-	if L1UI.Me then ElvDB.ShadowLightAlpha = false end
+	if L1UI.Me and E.Retail then
+		ElvDB.ShadowLightAlpha = false
+	end
 
 	EP:RegisterPlugin(addon, L1UI.GetOptions)
 	L1UI:RegisterEvent('PLAYER_ENTERING_WORLD')
