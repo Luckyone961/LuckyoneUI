@@ -953,20 +953,5 @@ function L1UI:Setup_BigWigs(layout)
 		end
 	end
 
-	-- Enable auto logging for myself
-	if E.Retail and L1UI.Me then
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Rmain]["combatLog"] = true
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Rheal]["combatLog"] = true
-	elseif E.TBC and L1UI.Me then
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Tmain]["combatLog"] = true
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Theal]["combatLog"] = true
-	elseif E.Classic and L1UI.Me then
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Cmain]["combatLog"] = true
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Cheal]["combatLog"] = true
-	elseif E.Wrath and L1UI.Me then
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Wmain]["combatLog"] = true
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Wheal]["combatLog"] = true
-	end
-
 	L1UI:Print(L["BigWigs profile has been set."])
 end

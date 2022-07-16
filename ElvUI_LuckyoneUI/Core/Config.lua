@@ -1,11 +1,9 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local ACH
 
-local format = format
-local tonumber = tonumber
+local format, tonumber = format, tonumber
 
-local GetCVar = GetCVar
-local SetCVar = SetCVar
+local GetCVar, SetCVar = GetCVar, SetCVar
 
 -- Load this on init
 function L1UI:GetOptions()
@@ -248,7 +246,6 @@ function L1UI:GetOptions()
 	L1UI.Options.args.links.args.discord = ACH:Input('Discord:', nil, 4, nil, 'full', function() return 'https://discord.gg/xRY4bwA' end)
 	L1UI.Options.args.links.args.guide = ACH:Input(L["Wowhead Guide:"], nil, 5, nil, 'full', function() return 'https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide' end)
 
-	-- LuckyoneUI config
 	E.Options.args.L1UI = L1UI.Options
 end
 

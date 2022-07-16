@@ -161,7 +161,7 @@ function L1UI:SetupPrivate()
 		E.private.install_complete = "1.73"
 		E.private.general.totemBar = true
 	elseif E.Wrath then
-		E.private.install_complete = "0.01"
+		E.private.install_complete = "0.02"
 		E.private.general.totemBar = true
 	end
 end
@@ -177,7 +177,7 @@ function L1UI:SetupGlobal()
 	E.global.general.smallerWorldMapScale = 0.8
 	E.global.general.WorldMapCoordinates.position = "TOPLEFT"
 
-	do -- Luckyone Custom DataText (below ActionBars)
+	do -- LuckyoneUI Custom DataText (below ActionBars)
 		E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
 		LuckyDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 		LuckyDT.backdrop = true
@@ -206,42 +206,31 @@ end
 
 -- Performance config section
 function L1UI:Cleanup_Cache(addon, type)
-
 	if addon == 'elvui' and E.private.chat.enable then
-
 		if type == 'chat' then
 			CH:ResetHistory()
 		elseif type == 'editbox' then
 			CH:ResetEditboxHistory()
 		end
-
 	elseif addon == 'details' and IsAddOnLoaded('Details') then
-
 		_detalhes.boss_mods_timers = {}
 		_detalhes.encounter_spell_pool = {}
 		_detalhes.npcid_pool = {}
 		_detalhes.spell_pool = {}
 		_detalhes.spell_school_cache = {}
-
 	elseif addon == 'plater' and IsAddOnLoaded('Plater') then
-
 		PlaterDB.captured_casts = {}
 		PlaterDB.captured_spells = {}
 		if PlaterDB.profiles.Luckyone then PlaterDB.profiles.Luckyone.npc_cache = {} end
-
 	elseif addon == 'rc' and IsAddOnLoaded('RCLootCouncil') then
-
 		RCLootCouncilDB.global.cache = {}
 		RCLootCouncilDB.global.errors = {}
 		RCLootCouncilDB.global.log = {}
 		RCLootCouncilDB.global.verTestCandidates = {}
-
 	elseif addon == 'mrt' and IsAddOnLoaded('MRT') then
-
 		VMRT.Encounter.list = {}
 		VMRT.Encounter.names = {}
 		VMRT.ExCD2.gnGUIDs = {}
 		VMRT.Inspect.Soulbinds = {}
-
 	end
 end
