@@ -75,7 +75,6 @@ L["NamePlate Profiles"] = "Namensplaketten Profile"
 L["NamePlates: Enemy NPC Buffs"] = "Namensplaketten: Feindliche NPC Stärkungszauber"
 L["NamePlates: Enemy NPC Debuffs"] = "Namensplaketten: Feindliche NPC Schwächungszauber"
 L["Note"] = "Notiz"
-L["Note about WeakAuras"] = "Notiz zu WeakAuren"
 L["Paladin"] = true
 L["Party Buffs"] = "Gruppenstärkungszauber"
 L["Performance"] = "Leistung"
