@@ -1,34 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local IsAddOnLoaded = IsAddOnLoaded
-
--- ElvUI Layouts for all WoW versions
-function L1UI:SetupLayout(layout)
-
-	-- Create the profiles and set the name
-	if layout == 'main' then
-		E.data:SetProfile('Luckyone DPS/TANK v'..L1UI.Version)
-	elseif layout == 'healing' then
-		E.data:SetProfile('Luckyone Healing v'..L1UI.Version)
-	end
-
-	-- ElvUI scale and CVar setup
-	L1UI:SetupScale()
-
-	-- Global DB and custom DataText setup
-	L1UI:SetupGlobal()
-
-	-- Fonts and textures
-	L1UI:SetupPrivate()
-
-	-- AddOnSkins profile
-	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins('noPrint') end
-
-	-- ProjectAzilroka profile
-	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Setup_ProjectAzilroka('noPrint') end
-
-	-- Shadow & Light profile
-	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight('noPrint') end
+-- ElvUI layouts version 1
+function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 
 	-- AB conversion
 	E.db["convertPages"] = true
@@ -343,7 +316,7 @@ function L1UI:SetupLayout(layout)
 
 	-- Chat
 	E.db["chat"]["desaturateVoiceIcons"] = false
-	E.db["chat"]["editboxHistorySize"] = 50
+	E.db["chat"]["editboxHistorySize"] = 5
 	E.db["chat"]["editBoxPosition"] = "ABOVE_CHAT_INSIDE"
 	E.db["chat"]["enableCombatRepeat"] = false
 	E.db["chat"]["fade"] = false
@@ -351,10 +324,10 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["font"] = "Expressway"
 	E.db["chat"]["fontOutline"] = "OUTLINE"
 	E.db["chat"]["hideChatToggles"] = true
-	E.db["chat"]["historySize"] = 250
+	E.db["chat"]["historySize"] = 200
 	E.db["chat"]["keywords"] = "%MYNAME%"
 	E.db["chat"]["lfgIcons"] = false
-	E.db["chat"]["maxLines"] = 250
+	E.db["chat"]["maxLines"] = 500
 	E.db["chat"]["numScrollMessages"] = 2
 	E.db["chat"]["panelColor"]["b"] = 0.058823529411765
 	E.db["chat"]["panelColor"]["g"] = 0.058823529411765
@@ -2046,8 +2019,4 @@ function L1UI:SetupLayout(layout)
 			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 		end
 	end
-
-	E:StaggeredUpdateAll()
-
-	L1UI:Print(L["Layout has been set."])
 end

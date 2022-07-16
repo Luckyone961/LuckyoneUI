@@ -1,8 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local pairs, sort = pairs, sort
-local tinsert = table.insert
-local tconcat = table.concat
+local tconcat, tinsert = table.concat, table.insert
 
 local AUTHORS = {
 	'|cffFF7D0ALuckyone|r (EU) - LaughingSkull',

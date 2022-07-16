@@ -50,7 +50,6 @@ function L1UI:SetupChat()
 	FCF_OpenNewWindow()
 	FCF_OpenNewWindow()
 
-	-- Rename and color all tabs
 	for _, name in ipairs(_G.CHAT_FRAMES) do
 		local frame = _G[name]
 		local id = frame:GetID()
@@ -62,6 +61,7 @@ function L1UI:SetupChat()
 		-- Font size 11 for all tabs
 		FCF_SetChatWindowFontSize(nil, frame, 11)
 
+		-- Tab names
 		if id == 1 then
 			FCF_SetWindowName(frame, 'General')
 		elseif id == 2 then
@@ -79,21 +79,21 @@ function L1UI:SetupChat()
 		end
 	end
 
-	-- Setup whisper tab
+	-- Whisper tab
 	local chats = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame4)
 	for _, k in ipairs(chats) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame4, k)
 	end
 
-	-- Setup Guild tab
+	-- Guild tab
 	chats = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 	for _, k in ipairs(chats) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame5, k)
 	end
 
-	-- Setup Party tab
+	-- Party tab
 	chats = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame6)
 	for _, k in ipairs(chats) do
@@ -103,7 +103,7 @@ function L1UI:SetupChat()
 	-- Jump back to main tab
 	FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
 
-	-- Remove Whispers from main tab
+	-- Remove whispers from main tab
 	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'IGNORED')
 	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'WHISPER')
 	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, 'BN_WHISPER')
