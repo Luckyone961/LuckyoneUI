@@ -10,7 +10,6 @@ if not L then return end
 L["Addon link:"] = true
 L["Addon Profiles"] = "Addon Profile"
 L["Alert Frame"] = "Alarmfenster"
-L["\nAll Class WeakAuras above are for DPS and Tank specializations only.\nThere is currently no plan to support Healers at all.\n\n"] = "\nAlle Klassen WeakAuren sind für DPS und Tanks.\nEs gibt zur Zeit keine Pläne Heiler zu unterstützen.\n\n"
 L["Auras"] = "Auren"
 L["Author"] = true
 L["Available Tags"] = "Verfügbare Tags"

@@ -10,7 +10,6 @@ if not L then return end
 L["Addon link:"] = true
 L["Addon Profiles"] = true
 L["Alert Frame"] = true
-L["\nAll Class WeakAuras above are for DPS and Tank specializations only.\nThere is currently no plan to support Healers at all.\n\n"] = true
 L["Auras"] = true
 L["Author"] = true
 L["Available Tags"] = true
