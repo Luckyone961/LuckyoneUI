@@ -343,7 +343,7 @@ function L1UI:SetupLayout(layout)
 
 	-- Chat
 	E.db["chat"]["desaturateVoiceIcons"] = false
-	E.db["chat"]["editboxHistorySize"] = 50
+	E.db["chat"]["editboxHistorySize"] = 5
 	E.db["chat"]["editBoxPosition"] = "ABOVE_CHAT_INSIDE"
 	E.db["chat"]["enableCombatRepeat"] = false
 	E.db["chat"]["fade"] = false
@@ -351,10 +351,10 @@ function L1UI:SetupLayout(layout)
 	E.db["chat"]["font"] = "Expressway"
 	E.db["chat"]["fontOutline"] = "OUTLINE"
 	E.db["chat"]["hideChatToggles"] = true
-	E.db["chat"]["historySize"] = 250
+	E.db["chat"]["historySize"] = 200
 	E.db["chat"]["keywords"] = "%MYNAME%"
 	E.db["chat"]["lfgIcons"] = false
-	E.db["chat"]["maxLines"] = 250
+	E.db["chat"]["maxLines"] = 500
 	E.db["chat"]["numScrollMessages"] = 2
 	E.db["chat"]["panelColor"]["b"] = 0.058823529411765
 	E.db["chat"]["panelColor"]["g"] = 0.058823529411765
