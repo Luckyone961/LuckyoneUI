@@ -1,4 +1,8 @@
 ### Version 1.52 [In Development]
+**All WoW Versions:**  
+Minor updates for the initial Chat install  
+Removed AlphaEcho, Dreamwood, Meteora from SharedMedia  
+Reworked some sections of the config  
 ___
 ### Version 1.51 [14-07-2022]
 **All WoW Versions:**  
