@@ -40,14 +40,6 @@ function L1UI:VersionCheck()
 	end
 end
 
--- DB conversion
-function L1UI:ConvertDB()
-	if E.private.L1UI.install_version ~= nil then
-		E.db.L1UI.install_version = E.private.L1UI.install_version
-		E.private.L1UI.install_version = nil
-	end
-end
-
 -- Set UI Scale
 function L1UI:SetupScale()
 	E.global.general.UIScale = 0.71111111111111

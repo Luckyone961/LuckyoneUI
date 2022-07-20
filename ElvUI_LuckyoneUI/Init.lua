@@ -68,8 +68,6 @@ end
 
 function L1UI:Initialize()
 
-	L1UI:ConvertDB()
-
 	if E.private.install_complete and E.db.L1UI.install_version == nil then
 		E.PluginInstaller:Queue(L1UI.InstallerData)
 	end
