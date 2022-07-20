@@ -223,8 +223,16 @@ function L1UI:GetOptions()
 	L1UI.Options.args.weakaurasWrath.args.trinket = ACH:Input('Trinket Tracking', nil, 4, nil, 'normal', function() return 'wago.io/TrinketWrath' end)
 	L1UI.Options.args.weakaurasWrath.args.combat = ACH:Input('Combat Tracking', nil, 5, nil, 'normal', function() return 'wago.io/combatStateWrath' end)
 
+	-- Archive
+	L1UI.Options.args.archive = ACH:Group(format('|cfd9b9b9b%s|r', L["Archive"]), nil, 13)
+	L1UI.Options.args.archive.args.desc = ACH:Header(format('|cffFF0000%s|r', L["Archive of the LuckyoneUI ElvUI layouts (Shadowlands) (1.0)"]), 1)
+	L1UI.Options.args.archive.args.profiles = ACH:Group('LuckyoneUI 1.0', nil, 2)
+	L1UI.Options.args.archive.args.profiles.inline = true
+	L1UI.Options.args.archive.args.profiles.args.main = ACH:Execute(L["DPS/TANK"], nil, 1, function() L1UI:Layout_v1('main') end, nil, true)
+	L1UI.Options.args.archive.args.profiles.args.healing = ACH:Execute(L["Healing"], nil, 2, function() L1UI:Layout_v1('healing') end, nil, true)
+
 	-- Credits
-	L1UI.Options.args.credits = ACH:Group(format('|cffFF7D0A%s|r', L["Credits"]), nil, 13)
+	L1UI.Options.args.credits = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 14)
 	L1UI.Options.args.credits.args.author = ACH:Group(L["Author"], nil, 1)
 	L1UI.Options.args.credits.args.author.inline = true
 	L1UI.Options.args.credits.args.author.args.desc = ACH:Description(L1UI.AUTHORS_STRING, 1, 'medium')
@@ -239,7 +247,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description(L1UI.SUPPORT_STRING, 1, 'medium')
 
 	-- Links
-	L1UI.Options.args.links = ACH:Group(format('|cffFF7D0A%s|r', L["Links"]), nil, 14)
+	L1UI.Options.args.links = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 15)
 	L1UI.Options.args.links.args.changelog = ACH:Input(L["Changelog:"], nil, 1, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/blob/development/CHANGELOG.md' end)
 	L1UI.Options.args.links.args.issues = ACH:Input(L["Report issues here:"], nil, 2, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/issues' end)
 	L1UI.Options.args.links.args.website = ACH:Input(L["Addon link:"], nil, 3, nil, 'full', function() return 'https://www.curseforge.com/wow/addons/elvui_luckyoneui' end)

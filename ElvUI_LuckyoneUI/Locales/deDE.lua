@@ -10,6 +10,8 @@ if not L then return end
 L["Addon link:"] = true
 L["Addon Profiles"] = "Addon Profile"
 L["Alert Frame"] = "Alarmfenster"
+L["Archive of the LuckyoneUI ElvUI layouts (Shadowlands) (1.0)"] = true
+L["Archive"] = true
 L["Auras"] = "Auren"
 L["Author"] = true
 L["Available Tags"] = "Verfügbare Tags"

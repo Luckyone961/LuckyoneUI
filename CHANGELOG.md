@@ -1,5 +1,6 @@
 ### Version 1.52 [In Development]
 **All WoW Versions:**  
+Added archive section to the config for the Shadowlands layouts  
 Minor updates for the initial Chat install  
 Removed AlphaEcho, Dreamwood, Meteora from SharedMedia  
 Reworked some sections of the config  
