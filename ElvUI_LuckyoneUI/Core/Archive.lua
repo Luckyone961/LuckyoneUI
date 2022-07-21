@@ -393,7 +393,6 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 	E.db["datatexts"]["font"] = "Expressway"
 	E.db["datatexts"]["fontOutline"] = "OUTLINE"
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] = false
-	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"]["enable"] = true
 	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"][1] = "System"
 	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"][2] = "Combat"
@@ -402,7 +401,6 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 	E.db["datatexts"]["panels"]["MinimapPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["MinimapPanel"][1] = "Time"
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["enable"] = false
-	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
 
 	-- Tooltip
 	E.db["tooltip"]["alwaysShowRealm"] = true
