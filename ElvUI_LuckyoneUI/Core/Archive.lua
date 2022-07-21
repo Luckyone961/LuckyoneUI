@@ -745,12 +745,64 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 		["yOffset"] = 1
 	}
 
-	-- Wrath | TBC | Classic db
+	-- Wrath | TBC | Classic UnitFrames db
 	if not E.Retail then
 		E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
 		E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 	end
+
+	-- Shared UnitFrames db
+	E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.80
+	E.db["unitframe"]["colors"]["castbar_backdrop"]["b"] = 0.058823529411765
+	E.db["unitframe"]["colors"]["castbar_backdrop"]["g"] = 0.058823529411765
+	E.db["unitframe"]["colors"]["castbar_backdrop"]["r"] = 0.058823529411765
+	E.db["unitframe"]["colors"]["castColor"]["b"] = 0
+	E.db["unitframe"]["colors"]["castColor"]["g"] = 1
+	E.db["unitframe"]["colors"]["castColor"]["r"] = 0.023529411764706
+	E.db["unitframe"]["colors"]["castInterruptedColor"]["b"] = 0.30196078431373
+	E.db["unitframe"]["colors"]["castInterruptedColor"]["g"] = 0.30196078431373
+	E.db["unitframe"]["colors"]["castInterruptedColor"]["r"] = 0.30196078431373
+	E.db["unitframe"]["colors"]["castNoInterrupt"]["b"] = 0.007843137254902
+	E.db["unitframe"]["colors"]["castNoInterrupt"]["g"] = 0
+	E.db["unitframe"]["colors"]["castNoInterrupt"]["r"] = 1
+	E.db["unitframe"]["colors"]["colorhealthbyvalue"] = false
+	E.db["unitframe"]["colors"]["customcastbarbackdrop"] = true
+	E.db["unitframe"]["colors"]["customhealthbackdrop"] = true
+	E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["texture"] = "Minimalist"
+	E.db["unitframe"]["colors"]["healPrediction"]["overabsorbs"]["b"] = 1
+	E.db["unitframe"]["colors"]["healPrediction"]["overabsorbs"]["r"] = 0
+	E.db["unitframe"]["colors"]["health_backdrop_dead"]["b"] = 0.098039215686275
+	E.db["unitframe"]["colors"]["health_backdrop_dead"]["g"] = 0.12549019607843
+	E.db["unitframe"]["colors"]["health_backdrop_dead"]["r"] = 0.61176470588235
+	E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0.61176470588235
+	E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0.56862745098039
+	E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0.54901960784314
+	E.db["unitframe"]["colors"]["health"]["b"] = 0.058823529411765
+	E.db["unitframe"]["colors"]["health"]["g"] = 0.058823529411765
+	E.db["unitframe"]["colors"]["health"]["r"] = 0.058823529411765
+	E.db["unitframe"]["colors"]["healthMultiplier"] = 0.75
+	E.db["unitframe"]["colors"]["power_backdrop"]["b"] = 0.50196078431373
+	E.db["unitframe"]["colors"]["power_backdrop"]["g"] = 0.50196078431373
+	E.db["unitframe"]["colors"]["power_backdrop"]["r"] = 0.50196078431373
+	E.db["unitframe"]["colors"]["tapped"]["b"] = 0.61176470588235
+	E.db["unitframe"]["colors"]["tapped"]["g"] = 0.56862745098039
+	E.db["unitframe"]["colors"]["tapped"]["r"] = 0.54901960784314
+	E.db["unitframe"]["colors"]["transparentAurabars"] = true
+	E.db["unitframe"]["colors"]["transparentHealth"] = true
+	E.db["unitframe"]["colors"]["transparentPower"] = true
+	E.db["unitframe"]["colors"]["useDeadBackdrop"] = true
+	E.db["unitframe"]["cooldown"]["daysIndicator"]["g"] = 0.4
+	E.db["unitframe"]["cooldown"]["daysIndicator"]["r"] = 0.4
+	E.db["unitframe"]["cooldown"]["expireIndicator"]["b"] = 0
+	E.db["unitframe"]["cooldown"]["expireIndicator"]["g"] = 0
+	E.db["unitframe"]["cooldown"]["hoursIndicator"]["r"] = 0.4
+	E.db["unitframe"]["cooldown"]["override"] = false
+	E.db["unitframe"]["cooldown"]["threshold"] = 4
+	E.db["unitframe"]["font"] = "Expressway"
+	E.db["unitframe"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["fontSize"] = 12
+	E.db["unitframe"]["statusbar"] = "Minimalist"
 
 	if layout == 'main' then
 
@@ -846,58 +898,6 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 
 		-- UnitFrames DPS/TANK
-		E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.80
-		E.db["unitframe"]["colors"]["castbar_backdrop"]["b"] = 0.058823529411765
-		E.db["unitframe"]["colors"]["castbar_backdrop"]["g"] = 0.058823529411765
-		E.db["unitframe"]["colors"]["castbar_backdrop"]["r"] = 0.058823529411765
-		E.db["unitframe"]["colors"]["castColor"]["b"] = 0
-		E.db["unitframe"]["colors"]["castColor"]["g"] = 1
-		E.db["unitframe"]["colors"]["castColor"]["r"] = 0.023529411764706
-		E.db["unitframe"]["colors"]["castInterruptedColor"]["b"] = 0.30196078431373
-		E.db["unitframe"]["colors"]["castInterruptedColor"]["g"] = 0.30196078431373
-		E.db["unitframe"]["colors"]["castInterruptedColor"]["r"] = 0.30196078431373
-		E.db["unitframe"]["colors"]["castNoInterrupt"]["b"] = 0.007843137254902
-		E.db["unitframe"]["colors"]["castNoInterrupt"]["g"] = 0
-		E.db["unitframe"]["colors"]["castNoInterrupt"]["r"] = 1
-		E.db["unitframe"]["colors"]["colorhealthbyvalue"] = false
-		E.db["unitframe"]["colors"]["customcastbarbackdrop"] = true
-		E.db["unitframe"]["colors"]["customhealthbackdrop"] = true
-		E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["texture"] = "Minimalist"
-		E.db["unitframe"]["colors"]["healPrediction"]["overabsorbs"]["b"] = 1
-		E.db["unitframe"]["colors"]["healPrediction"]["overabsorbs"]["r"] = 0
-		E.db["unitframe"]["colors"]["health_backdrop_dead"]["b"] = 0.098039215686275
-		E.db["unitframe"]["colors"]["health_backdrop_dead"]["g"] = 0.12549019607843
-		E.db["unitframe"]["colors"]["health_backdrop_dead"]["r"] = 0.61176470588235
-		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0.61176470588235
-		E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0.56862745098039
-		E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0.54901960784314
-		E.db["unitframe"]["colors"]["health"]["b"] = 0.058823529411765
-		E.db["unitframe"]["colors"]["health"]["g"] = 0.058823529411765
-		E.db["unitframe"]["colors"]["health"]["r"] = 0.058823529411765
-		E.db["unitframe"]["colors"]["healthMultiplier"] = 0.75
-		E.db["unitframe"]["colors"]["power_backdrop"]["b"] = 0.50196078431373
-		E.db["unitframe"]["colors"]["power_backdrop"]["g"] = 0.50196078431373
-		E.db["unitframe"]["colors"]["power_backdrop"]["r"] = 0.50196078431373
-		E.db["unitframe"]["colors"]["selection"][0]["b"] = 0.17254901960784
-		E.db["unitframe"]["colors"]["selection"][0]["g"] = 0.17254901960784
-		E.db["unitframe"]["colors"]["tapped"]["b"] = 0.61176470588235
-		E.db["unitframe"]["colors"]["tapped"]["g"] = 0.56862745098039
-		E.db["unitframe"]["colors"]["tapped"]["r"] = 0.54901960784314
-		E.db["unitframe"]["colors"]["transparentAurabars"] = true
-		E.db["unitframe"]["colors"]["transparentHealth"] = true
-		E.db["unitframe"]["colors"]["transparentPower"] = true
-		E.db["unitframe"]["colors"]["useDeadBackdrop"] = true
-		E.db["unitframe"]["cooldown"]["daysIndicator"]["g"] = 0.4
-		E.db["unitframe"]["cooldown"]["daysIndicator"]["r"] = 0.4
-		E.db["unitframe"]["cooldown"]["expireIndicator"]["b"] = 0
-		E.db["unitframe"]["cooldown"]["expireIndicator"]["g"] = 0
-		E.db["unitframe"]["cooldown"]["hoursIndicator"]["r"] = 0.4
-		E.db["unitframe"]["cooldown"]["override"] = false
-		E.db["unitframe"]["cooldown"]["threshold"] = 4
-		E.db["unitframe"]["font"] = "Expressway"
-		E.db["unitframe"]["fontOutline"] = "OUTLINE"
-		E.db["unitframe"]["fontSize"] = 12
-		E.db["unitframe"]["statusbar"] = "Minimalist"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["anchorPoint"] = "TOPRIGHT"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countFontSize"] = 10
@@ -1486,58 +1486,6 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 
 		-- UnitFrames Healing
-		E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.80
-		E.db["unitframe"]["colors"]["castbar_backdrop"]["b"] = 0.058823529411765
-		E.db["unitframe"]["colors"]["castbar_backdrop"]["g"] = 0.058823529411765
-		E.db["unitframe"]["colors"]["castbar_backdrop"]["r"] = 0.058823529411765
-		E.db["unitframe"]["colors"]["castColor"]["b"] = 0
-		E.db["unitframe"]["colors"]["castColor"]["g"] = 1
-		E.db["unitframe"]["colors"]["castColor"]["r"] = 0.023529411764706
-		E.db["unitframe"]["colors"]["castInterruptedColor"]["b"] = 0.30196078431373
-		E.db["unitframe"]["colors"]["castInterruptedColor"]["g"] = 0.30196078431373
-		E.db["unitframe"]["colors"]["castInterruptedColor"]["r"] = 0.30196078431373
-		E.db["unitframe"]["colors"]["castNoInterrupt"]["b"] = 0.007843137254902
-		E.db["unitframe"]["colors"]["castNoInterrupt"]["g"] = 0
-		E.db["unitframe"]["colors"]["castNoInterrupt"]["r"] = 1
-		E.db["unitframe"]["colors"]["colorhealthbyvalue"] = false
-		E.db["unitframe"]["colors"]["customcastbarbackdrop"] = true
-		E.db["unitframe"]["colors"]["customhealthbackdrop"] = true
-		E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["texture"] = "Minimalist"
-		E.db["unitframe"]["colors"]["healPrediction"]["overabsorbs"]["b"] = 1
-		E.db["unitframe"]["colors"]["healPrediction"]["overabsorbs"]["r"] = 0
-		E.db["unitframe"]["colors"]["health_backdrop_dead"]["b"] = 0.61176470588235
-		E.db["unitframe"]["colors"]["health_backdrop_dead"]["g"] = 0.56862745098039
-		E.db["unitframe"]["colors"]["health_backdrop_dead"]["r"] = 0.54901960784314
-		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0.61176470588235
-		E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0.56862745098039
-		E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0.54901960784314
-		E.db["unitframe"]["colors"]["health"]["b"] = 0.058823529411765
-		E.db["unitframe"]["colors"]["health"]["g"] = 0.058823529411765
-		E.db["unitframe"]["colors"]["health"]["r"] = 0.058823529411765
-		E.db["unitframe"]["colors"]["healthMultiplier"] = 0.75
-		E.db["unitframe"]["colors"]["power_backdrop"]["b"] = 0.50196078431373
-		E.db["unitframe"]["colors"]["power_backdrop"]["g"] = 0.50196078431373
-		E.db["unitframe"]["colors"]["power_backdrop"]["r"] = 0.50196078431373
-		E.db["unitframe"]["colors"]["selection"][0]["b"] = 0.17254901960784
-		E.db["unitframe"]["colors"]["selection"][0]["g"] = 0.17254901960784
-		E.db["unitframe"]["colors"]["tapped"]["b"] = 0.61176470588235
-		E.db["unitframe"]["colors"]["tapped"]["g"] = 0.56862745098039
-		E.db["unitframe"]["colors"]["tapped"]["r"] = 0.54901960784314
-		E.db["unitframe"]["colors"]["transparentAurabars"] = true
-		E.db["unitframe"]["colors"]["transparentHealth"] = true
-		E.db["unitframe"]["colors"]["transparentPower"] = true
-		E.db["unitframe"]["colors"]["useDeadBackdrop"] = true
-		E.db["unitframe"]["cooldown"]["daysIndicator"]["g"] = 0.4
-		E.db["unitframe"]["cooldown"]["daysIndicator"]["r"] = 0.4
-		E.db["unitframe"]["cooldown"]["expireIndicator"]["b"] = 0
-		E.db["unitframe"]["cooldown"]["expireIndicator"]["g"] = 0
-		E.db["unitframe"]["cooldown"]["hoursIndicator"]["r"] = 0.4
-		E.db["unitframe"]["cooldown"]["override"] = false
-		E.db["unitframe"]["cooldown"]["threshold"] = 4
-		E.db["unitframe"]["font"] = "Expressway"
-		E.db["unitframe"]["fontOutline"] = "OUTLINE"
-		E.db["unitframe"]["fontSize"] = 12
-		E.db["unitframe"]["statusbar"] = "Minimalist"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["anchorPoint"] = "TOPRIGHT"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Expressway"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countFontSize"] = 10
