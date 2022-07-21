@@ -40,14 +40,6 @@ function L1UI:VersionCheck()
 	end
 end
 
--- DB conversion
-function L1UI:ConvertDB()
-	if E.private.L1UI.install_version ~= nil then
-		E.db.L1UI.install_version = E.private.L1UI.install_version
-		E.private.L1UI.install_version = nil
-	end
-end
-
 -- Set UI Scale
 function L1UI:SetupScale()
 	E.global.general.UIScale = 0.71111111111111
@@ -159,7 +151,7 @@ function L1UI:SetupPrivate()
 		E.private.install_complete = "1.73"
 		E.private.general.totemBar = true
 	elseif E.Wrath then
-		E.private.install_complete = "0.02"
+		E.private.install_complete = "0.03"
 		E.private.general.totemBar = true
 	end
 end
