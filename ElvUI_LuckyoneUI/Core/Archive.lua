@@ -1171,6 +1171,10 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 	E.db["unitframe"]["units"]["targettarget"]["raidicon"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["targettarget"]["width"] = 80
 
+	-- Growth Directions shared
+	E.db["unitframe"]["units"]["raid"]["growthDirection"] = "RIGHT_DOWN"
+	E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "RIGHT_DOWN"
+
 	-- Protect movers error
 	if not E.db.movers then E.db.movers = {} end
 
@@ -1221,33 +1225,29 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 	E.db["movers"]["UIErrorsFrameMover"] = "TOP,ElvUIParent,TOP,0,-78"
 	E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
 
-	-- Growth Directions shared
-	E.db["unitframe"]["units"]["raid"]["growthDirection"] = "RIGHT_DOWN"
-	E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "RIGHT_DOWN"
+	if E.Retail then
+		E.db["movers"]["AltPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,158"
+		E.db["movers"]["ArtifactBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,16"
+		E.db["movers"]["AzeriteBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
+		E.db["movers"]["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,-168,128"
+		E.db["movers"]["DigSiteProgressBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,157"
+		E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1"
+		E.db["movers"]["MawBuffsBelowMinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-15,-380"
+		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-95,-214"
+		E.db["movers"]["PlayerChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,182"
+		E.db["movers"]["TalkingHeadFrameMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,173"
+		E.db["movers"]["TorghastBuffsMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-51"
+		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,168,128"
+	else
+		E.db["movers"]["PetExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
+		E.db["movers"]["QuestTimerFrameMover"] = "TOP,ElvUIParent,TOP,0,-1"
+		E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-214"
+	end
 
 	if layout == 'main' then
 
 		-- Growth Directions DPS/TANK
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "DOWN_RIGHT"
-
-		if E.Retail then
-			E.db["movers"]["AltPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,158"
-			E.db["movers"]["ArtifactBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,16"
-			E.db["movers"]["AzeriteBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
-			E.db["movers"]["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,-168,128"
-			E.db["movers"]["DigSiteProgressBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,157"
-			E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1"
-			E.db["movers"]["MawBuffsBelowMinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-15,-380"
-			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-95,-214"
-			E.db["movers"]["PlayerChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,182"
-			E.db["movers"]["TalkingHeadFrameMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,173"
-			E.db["movers"]["TorghastBuffsMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-51"
-			E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,168,128"
-		else
-			E.db["movers"]["PetExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
-			E.db["movers"]["QuestTimerFrameMover"] = "TOP,ElvUIParent,TOP,0,-1"
-			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-214"
-		end
 
 		-- Movers DPS/TANK
 		E.db["movers"]["ElvUF_AssistMover"] = "TOPLEFT,ElvUIParent,BOTTOMLEFT,0,1048"
@@ -1266,6 +1266,11 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 		E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,157,-1"
 		E.db["movers"]["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,182"
 		E.db["movers"]["VehicleSeatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,1"
+
+		if E.Retail then
+			E.db["movers"]["AltPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,158"
+			E.db["movers"]["PlayerChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,182"
+		end
 
 		-- UnitFrames DPS/TANK
 		E.db["unitframe"]["units"]["party"]["buffIndicator"]["size"] = 12
@@ -1410,25 +1415,6 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 		-- Growth Directions Healing
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "RIGHT_DOWN"
 
-		if E.Retail then
-			E.db["movers"]["AltPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,368"
-			E.db["movers"]["ArtifactBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,16"
-			E.db["movers"]["AzeriteBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
-			E.db["movers"]["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,-168,128"
-			E.db["movers"]["DigSiteProgressBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,157"
-			E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1"
-			E.db["movers"]["MawBuffsBelowMinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-15,-380"
-			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-86,-214"
-			E.db["movers"]["PlayerChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,158"
-			E.db["movers"]["TalkingHeadFrameMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,174"
-			E.db["movers"]["TorghastBuffsMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-51"
-			E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,168,128"
-		else
-			E.db["movers"]["PetExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
-			E.db["movers"]["QuestTimerFrameMover"] = "TOP,ElvUIParent,TOP,0,-1"
-			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-214"
-		end
-
 		-- Movers Healing
 		E.db["movers"]["ElvUF_AssistMover"] = "TOPLEFT,ElvUIParent,BOTTOMLEFT,0,1048"
 		E.db["movers"]["ElvUF_FocusMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,470"
@@ -1445,6 +1431,11 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 		E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,174,-1"
 		E.db["movers"]["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,368"
 		E.db["movers"]["VehicleSeatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,438,1"
+
+		if E.Retail then
+			E.db["movers"]["AltPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,368"
+			E.db["movers"]["PlayerChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,158"
+		end
 
 		-- UnitFrames Healing
 		E.db["unitframe"]["units"]["party"]["classbar"]["enable"] = false
