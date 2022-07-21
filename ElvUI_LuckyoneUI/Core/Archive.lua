@@ -1393,7 +1393,6 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 		E.db["unitframe"]["units"]["targettarget"]["raidicon"]["xOffset"] = -2
 		E.db["unitframe"]["units"]["targettarget"]["raidicon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["targettarget"]["width"] = 80
-		E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
 
 	elseif layout == 'healing' then
 
@@ -2005,6 +2004,5 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 		E.db["unitframe"]["units"]["targettarget"]["raidicon"]["xOffset"] = -2
 		E.db["unitframe"]["units"]["targettarget"]["raidicon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["targettarget"]["width"] = 80
-		E.db["unitframe"]["units"]["targettargettarget"]["disableMouseoverGlow"] = true
 	end
 end
