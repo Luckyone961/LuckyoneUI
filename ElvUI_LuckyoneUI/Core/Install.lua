@@ -108,12 +108,14 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_OmniCD('healing') end)
 			PluginInstallFrame.Option2:SetText('OmniCD Healing')
 		end,
+		--[[
 		[E.Retail and 10] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText(L["WeakAuras Information"])
 			PluginInstallFrame.Desc1:SetText(L["You can find WeakAuras for all 12 Classes and some Utility WeakAuras in the LuckyoneUI config."])
 			PluginInstallFrame.Desc2:SetText('\nElvUI Options -> LuckyoneUI -> WeakAuras')
 		end,
-		[E.Retail and 11 or 9] = function()
+		]]
+		[E.Retail and 10 or 9] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Installation Complete"])
 			PluginInstallFrame.Desc1:SetText(L["You have completed the installation process, please click 'Finished' to reload the UI."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cHigh|r"])
@@ -132,8 +134,8 @@ L1UI.InstallerData = {
 		[7] = L["BossMods"],
 		[8] = 'Details',
 		[E.Retail and 9] = 'OmniCD',
-		[E.Retail and 10] = 'WeakAuras',
-		[E.Retail and 11 or 9] = L["Installation Complete"],
+		--[E.Retail and 10] = 'WeakAuras',
+		[E.Retail and 10 or 9] = L["Installation Complete"],
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0, 179/255, 1},

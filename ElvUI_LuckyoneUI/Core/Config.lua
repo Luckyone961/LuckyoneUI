@@ -141,7 +141,7 @@ function L1UI:GetOptions()
 	L1UI.Options.args.profiles.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 2)
 	L1UI.Options.args.profiles.args.plugins.inline = true
 	L1UI.Options.args.profiles.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_AddOnSkins() E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.profiles.args.plugins.args.pa = ACH:Execute('|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_ProjectAzilroka() E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.plugins.args.pa = ACH:Execute('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_ProjectAzilroka() E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', L["Reset to LuckyoneUI defaults."], 3, function() L1UI:Setup_ShadowAndLight() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.profiles.args.nameplates = ACH:Group(L["NamePlate Profiles"], nil, 3)
 	L1UI.Options.args.profiles.args.nameplates.inline = true
@@ -182,6 +182,7 @@ function L1UI:GetOptions()
 
 	-- WeakAuras Retail
 	L1UI.Options.args.weakauras = ACH:Group('WeakAuras', nil, 12, nil, nil, nil, nil, not E.Retail)
+	--[[
 	L1UI.Options.args.weakauras.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
 	L1UI.Options.args.weakauras.args.druid = ACH:Input(format('|cffFF7C0A%s|r', L["Druid"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneDruid' end)
 	L1UI.Options.args.weakauras.args.priest = ACH:Input(format('|cffFFFFFF%s|r', L["Priest"]), nil, 3, nil, 'normal', function() return 'wago.io/luckyonePriest' end)
@@ -195,7 +196,8 @@ function L1UI:GetOptions()
 	L1UI.Options.args.weakauras.args.paladin = ACH:Input(format('|cffF48CBA%s|r', L["Paladin"]), nil, 11, nil, 'normal', function() return 'wago.io/luckyonePaladin' end)
 	L1UI.Options.args.weakauras.args.shaman = ACH:Input(format('|cff0070DD%s|r', L["Shaman"]), nil, 12, nil, 'normal', function() return 'wago.io/luckyoneShaman' end)
 	L1UI.Options.args.weakauras.args.warrior = ACH:Input(format('|cffC69B6D%s|r', L["Warrior"]), nil, 13, nil, 'normal', function() return 'wago.io/luckyoneWarrior' end)
-	--L1UI.Options.args.weakauras.args.evoker = ACH:Input(format('|cff33937F%s|r', L["Evoker"]), nil, 14, nil, 'normal', function() return '' end)
+	L1UI.Options.args.weakauras.args.evoker = ACH:Input(format('|cff33937F%s|r', L["Evoker"]), nil, 14, nil, 'normal', function() return '' end)
+	]]
 	L1UI.Options.args.weakauras.args.header2 = ACH:Header(L["General WeakAuras"], 15)
 	L1UI.Options.args.weakauras.args.keys = ACH:Input('Link Keystones', nil, 16, nil, 'normal', function() return 'wago.io/keystones' end)
 	L1UI.Options.args.weakauras.args.trinket = ACH:Input('Trinket Tracking', nil, 17, nil, 'normal', function() return 'wago.io/Trinket' end)
