@@ -75,7 +75,6 @@ L["NamePlates: Enemy NPC Buffs"] = "Namensplaketten: Feindliche NPC Stärkungsza
 L["NamePlates: Enemy NPC Debuffs"] = "Namensplaketten: Feindliche NPC Schwächungszauber"
 L["Note"] = "Notiz"
 L["Paladin"] = true
-L["Party Buffs"] = "Gruppenstärkungszauber"
 L["Performance"] = "Leistung"
 L["Player Frame Buffs"] = "Spielerfenster Stärkungszauber"
 L["Player Frame Debuffs"] = "Spielerfenster Schwächungszauber"

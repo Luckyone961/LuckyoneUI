@@ -75,7 +75,6 @@ L["NamePlates: Enemy NPC Buffs"] = true
 L["NamePlates: Enemy NPC Debuffs"] = true
 L["Note"] = true
 L["Paladin"] = true
-L["Party Buffs"] = true
 L["Performance"] = true
 L["Player Frame Buffs"] = true
 L["Player Frame Debuffs"] = true
