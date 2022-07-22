@@ -144,7 +144,7 @@ function L1UI:SetupPrivate()
 		E.private.install_complete = "1.73"
 		E.private.general.totemBar = true
 	elseif E.Wrath then
-		E.private.install_complete = "0.04"
+		E.private.install_complete = "0.06"
 		E.private.general.totemBar = true
 	end
 end
