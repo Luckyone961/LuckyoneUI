@@ -12,9 +12,6 @@ function L1UI:SetupLayout(layout)
 		E.data:SetProfile('Luckyone Healing v'..L1UI.Version)
 	end
 
-	-- ElvUI scale and CVar setup
-	L1UI:SetupScale()
-
 	-- Global DB and custom DataText setup
 	L1UI:SetupGlobal()
 

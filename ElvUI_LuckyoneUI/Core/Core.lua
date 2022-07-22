@@ -1,6 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
-local LuckyDT
 
 local format, print = format, print
 
@@ -38,12 +37,6 @@ function L1UI:VersionCheck()
 		E:StaticPopup_Show('L1UI_VC')
 		L1UI:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
 	end
-end
-
--- Set UI Scale
-function L1UI:SetupScale()
-	E.global.general.UIScale = 0.71111111111111
-	SetCVar('uiScale', 0.71111111111111)
 end
 
 -- General CVars
@@ -151,13 +144,16 @@ function L1UI:SetupPrivate()
 		E.private.install_complete = "1.73"
 		E.private.general.totemBar = true
 	elseif E.Wrath then
-		E.private.install_complete = "0.03"
+		E.private.install_complete = "0.06"
 		E.private.general.totemBar = true
 	end
 end
 
--- E.global
+-- E.global & Custom DataText
 function L1UI:SetupGlobal()
+
+	SetCVar('uiScale', 0.71111111111111)
+	E.global.general.UIScale = 0.71111111111111
 
 	E.global.datatexts.settings.Combat.TimeFull = false
 	E.global.datatexts.settings.System.latency = "HOME"
@@ -167,30 +163,29 @@ function L1UI:SetupGlobal()
 	E.global.general.smallerWorldMapScale = 0.8
 	E.global.general.WorldMapCoordinates.position = "TOPLEFT"
 
-	do -- LuckyoneUI Custom DataText (below ActionBars)
+	do
 		E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
-		LuckyDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
-		LuckyDT.backdrop = true
-		LuckyDT.border = true
-		LuckyDT.enable = true
-		LuckyDT.fonts.enable = true
-		LuckyDT.fonts.font = "Expressway"
-		LuckyDT.fonts.fontOutline = "OUTLINE"
-		LuckyDT.fonts.fontSize = 11
-		LuckyDT.frameLevel = 1
-		LuckyDT.frameStrata = "BACKGROUND"
-		LuckyDT.growth = "HORIZONTAL"
-		LuckyDT.height = 13
-		LuckyDT.mouseover = false
-		LuckyDT.name = "Luckyone_ActionBars_DT"
-		LuckyDT.numPoints = 3
-		LuckyDT.panelTransparency = true
-		LuckyDT.textJustify = "CENTER"
-		LuckyDT.tooltipAnchor = "ANCHOR_TOP"
-		LuckyDT.tooltipXOffset = 0
-		LuckyDT.tooltipYOffset = 5
-		LuckyDT.visibility = E.Retail and "[petbattle] hide;show" or "show"
-		LuckyDT.width = 358
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.backdrop = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.border = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.enable = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.enable = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.font = "Expressway"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontOutline = "OUTLINE"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontSize = 11
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameLevel = 1
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameStrata = "BACKGROUND"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.growth = "HORIZONTAL"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.height = 13
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.mouseover = false
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.name = "Luckyone_ActionBars_DT"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.numPoints = 3
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.panelTransparency = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.textJustify = "CENTER"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipAnchor = "ANCHOR_TOP"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipXOffset = 0
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipYOffset = 5
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.visibility = E.Retail and "[petbattle] hide;show" or "show"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 358
 	end
 end
 
