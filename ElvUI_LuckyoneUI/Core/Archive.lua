@@ -753,13 +753,6 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 		["yOffset"] = 1
 	}
 
-	-- Wrath | TBC | Classic UnitFrames db
-	if not E.Retail then
-		E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
-		E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
-		E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
-	end
-
 	-- Shared UnitFrames db
 	E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.80
 	E.db["unitframe"]["colors"]["castbar_backdrop"]["b"] = 0.058823529411765
@@ -1170,6 +1163,13 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 	E.db["unitframe"]["units"]["targettarget"]["raidicon"]["xOffset"] = -2
 	E.db["unitframe"]["units"]["targettarget"]["raidicon"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["targettarget"]["width"] = 80
+
+	-- Wrath | TBC | Classic UnitFrames db
+	if not E.Retail then
+		E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
+		E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = false
+	end
 
 	-- Growth Directions shared
 	E.db["unitframe"]["units"]["raid"]["growthDirection"] = "RIGHT_DOWN"
