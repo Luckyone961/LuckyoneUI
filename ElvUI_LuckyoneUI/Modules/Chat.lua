@@ -22,7 +22,7 @@ local VoiceTranscriptionFrame_UpdateVisibility = VoiceTranscriptionFrame_UpdateV
 local VoiceTranscriptionFrame_UpdateVoiceTab = VoiceTranscriptionFrame_UpdateVoiceTab
 
 -- Chat setup for tabs, windows and channels
-function L1UI:SetupChat()
+function L1UI:Setup_Chat()
 
 	-- CVars Chat
 	SetCVar('chatClassColorOverride', 0)

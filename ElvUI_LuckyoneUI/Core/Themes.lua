@@ -1,7 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- UnitFrame color themes
-function L1UI:SetupTheme(theme)
+function L1UI:Setup_Theme(theme)
 
 	if theme == 'dark' then
 

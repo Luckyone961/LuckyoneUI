@@ -40,7 +40,7 @@ function L1UI:VersionCheck()
 end
 
 -- General CVars
-function L1UI:SetupCVars()
+function L1UI:Setup_CVars()
 
 	-- Core CVars
 	SetCVar('advancedCombatLogging', 1)
@@ -179,7 +179,7 @@ function L1UI:SetupGlobal()
 end
 
 -- ElvUI Layouts setup
-function L1UI:SetupLayout(layout)
+function L1UI:Setup_Layout(layout)
 
 	-- Create a fresh profile in ElvUI
 	if layout == 'main' then

@@ -4,7 +4,7 @@ local pairs = pairs
 local SetCVar = SetCVar
 
 -- NamePlate Setup for ElvUI and Plater (addon arg 'ElvUI' and 'Plater' available)
-function L1UI:SetupNamePlates(addon)
+function L1UI:Setup_NamePlates(addon)
 
 	if addon == 'ElvUI' then
 
