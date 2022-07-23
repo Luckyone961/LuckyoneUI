@@ -178,6 +178,43 @@ function L1UI:SetupGlobal()
 	end
 end
 
+-- ElvUI Layouts setup
+function L1UI:SetupLayout(layout)
+
+	-- Create a fresh profile in ElvUI
+	if layout == 'main' then
+		E.data:SetProfile('Luckyone DPS/TANK v'..L1UI.Version)
+	elseif layout == 'healing' then
+		E.data:SetProfile('Luckyone Healing v'..L1UI.Version)
+	end
+
+	-- E.global & Custom DataText
+	L1UI:SetupGlobal()
+
+	-- E.private & Media
+	L1UI:SetupPrivate()
+
+	-- AddOnSkins profile
+	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins('noPrint') end
+
+	-- ProjectAzilroka profile
+	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Setup_ProjectAzilroka('noPrint') end
+
+	-- Shadow & Light profile
+	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight('noPrint') end
+
+	-- E.db & movers
+	if layout == 'main' then
+		L1UI:Layout_Shadowlands('main')
+	elseif layout == 'healing' then
+		L1UI:Layout_Shadowlands('healing')
+	end
+
+	E:StaggeredUpdateAll()
+
+	L1UI:Print(L["Layout has been set."])
+end
+
 -- Performance config section
 function L1UI:Cleanup_Cache(addon, type)
 	if addon == 'elvui' and E.private.chat.enable then

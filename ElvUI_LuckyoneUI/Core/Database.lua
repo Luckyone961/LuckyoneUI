@@ -1,7 +1,10 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
--- ElvUI layouts version 1
-function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
+-- Dragonflight Layout
+function L1UI:Layout_Dragonflight(layout) end
+
+-- Shadowlands Layout
+function L1UI:Layout_Shadowlands(layout) -- args 'main' & 'healing'
 
 	-- AB conversion
 	E.db["convertPages"] = true

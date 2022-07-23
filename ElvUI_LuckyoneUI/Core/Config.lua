@@ -211,8 +211,8 @@ function L1UI:GetOptions()
 	L1UI.Options.args.archive.args.desc = ACH:Header(format('|cffFF0000%s|r', L["Archive of the LuckyoneUI ElvUI layouts (Shadowlands) (1.0)"]), 1)
 	L1UI.Options.args.archive.args.profiles = ACH:Group('LuckyoneUI 1.0', nil, 2)
 	L1UI.Options.args.archive.args.profiles.inline = true
-	L1UI.Options.args.archive.args.profiles.args.main = ACH:Execute(L["DPS/TANK"], nil, 1, function() L1UI:Layout_v1('main') end, nil, true)
-	L1UI.Options.args.archive.args.profiles.args.healing = ACH:Execute(L["Healing"], nil, 2, function() L1UI:Layout_v1('healing') end, nil, true)
+	L1UI.Options.args.archive.args.profiles.args.main = ACH:Execute(L["DPS/TANK"], nil, 1, function() L1UI:Layout_Shadowlands('main') end, nil, true)
+	L1UI.Options.args.archive.args.profiles.args.healing = ACH:Execute(L["Healing"], nil, 2, function() L1UI:Layout_Shadowlands('healing') end, nil, true)
 
 	-- Credits
 	L1UI.Options.args.credits = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 14)

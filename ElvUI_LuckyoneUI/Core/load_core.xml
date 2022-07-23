@@ -1,11 +1,10 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file='Archive.lua'/>
 	<Script file='Credits.lua'/>
 	<Script file='Core.lua'/>
 	<Script file='Config.lua'/>
 	<Script file='Commands.lua'/>
+	<Script file='Database.lua'/>
 	<Script file='Install.lua'/>
-	<Script file='Layouts.lua'/>
 	<Script file='Tags.lua'/>
 	<Script file='Themes.lua'/>
 	<Script file='Update.lua'/>
