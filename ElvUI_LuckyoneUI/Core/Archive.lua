@@ -56,10 +56,14 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 		E.db["general"]["bonusObjectivePosition"] = "AUTO"
 		E.db["general"]["itemLevel"]["itemLevelFont"] = "Expressway"
 		E.db["general"]["itemLevel"]["itemLevelFontSize"] = 11
-		E.db["general"]["objectiveFrameAutoHide"] = false
-		E.db["general"]["objectiveFrameHeight"] = 600
 		E.db["general"]["talkingHeadFrameBackdrop"] = true
 		E.db["general"]["talkingHeadFrameScale"] = 0.7
+	end
+
+	-- General Wrath and Retail
+	if E.Retail or E.Wrath then
+		E.db["general"]["objectiveFrameAutoHide"] = false
+		E.db["general"]["objectiveFrameHeight"] = 600
 	end
 
 	-- ActionBars Shared
