@@ -134,19 +134,8 @@ function L1UI:SetupPrivate()
 	E.private.general.normTex = "Minimalist"
 	E.private.skins.parchmentRemoverEnable = true
 
-	if E.Retail then
-		E.private.install_complete = "12.81"
-		E.private.general.totemBar = false
-	elseif E.TBC then
-		E.private.install_complete = "2.48"
-		E.private.general.totemBar = true
-	elseif E.Classic then
-		E.private.install_complete = "1.73"
-		E.private.general.totemBar = true
-	elseif E.Wrath then
-		E.private.install_complete = "0.09"
-		E.private.general.totemBar = true
-	end
+	E.private.general.totemBar = E.Retail and false or true
+	E.private.install_complete = E.Retail and "12.81" or E.TBC and "2.48" or E.Classic and "1.73" or E.Wrath and "0.09"
 end
 
 -- E.global & Custom DataText
