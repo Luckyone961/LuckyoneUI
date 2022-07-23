@@ -1238,10 +1238,13 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 		E.db["movers"]["TalkingHeadFrameMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,173"
 		E.db["movers"]["TorghastBuffsMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-51"
 		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,168,128"
+	elseif E.Wrath then
+		E.db["movers"]["PetExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
+		E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-130,-215"
 	else
 		E.db["movers"]["PetExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
 		E.db["movers"]["QuestTimerFrameMover"] = "TOP,ElvUIParent,TOP,0,-1"
-		E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-214"
+		E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-215"
 	end
 
 	if layout == 'main' then
