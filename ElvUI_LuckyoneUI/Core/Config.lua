@@ -206,14 +206,6 @@ function L1UI:GetOptions()
 	L1UI.Options.args.weakauras.args.groupfinderClasses = ACH:Input('Groupfinder Classes', nil, 21, nil, 'normal', function() return 'wago.io/groupfinderClasses' end)
 	L1UI.Options.args.weakauras.args.groupfinderApptext = ACH:Input('Groupfinder Applicants', nil, 22, nil, 'normal', function() return 'wago.io/appTextHide' end)
 
-	-- WeakAuras Wrath
-	L1UI.Options.args.weakaurasWrath = ACH:Group('WeakAuras', nil, 12, nil, nil, nil, nil, not E.Wrath)
-	L1UI.Options.args.weakaurasWrath.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
-	L1UI.Options.args.weakaurasWrath.args.hunter = ACH:Input(format('|cffAAD372%s|r', L["Hunter"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneHunterWrath' end)
-	L1UI.Options.args.weakaurasWrath.args.header2 = ACH:Header(L["General WeakAuras"], 3)
-	L1UI.Options.args.weakaurasWrath.args.trinket = ACH:Input('Trinket Tracking', nil, 4, nil, 'normal', function() return 'wago.io/TrinketWrath' end)
-	L1UI.Options.args.weakaurasWrath.args.combat = ACH:Input('Combat Tracking', nil, 5, nil, 'normal', function() return 'wago.io/combatStateWrath' end)
-
 	-- Archive
 	L1UI.Options.args.archive = ACH:Group(format('|cfd9b9b9b%s|r', L["Archive"]), nil, 13)
 	L1UI.Options.args.archive.args.desc = ACH:Header(format('|cffFF0000%s|r', L["Archive of the LuckyoneUI ElvUI layouts (Shadowlands) (1.0)"]), 1)
