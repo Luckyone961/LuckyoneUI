@@ -1,9 +1,13 @@
 ### Version 1.52 [In Development]
 **All WoW Versions:**  
-Added archive section to the config for the Shadowlands layouts  
-Minor updates for the initial Chat install  
+Added archive section to the config for Shadowlands layouts  
+Minor updates for the initial chat install  
 Removed AlphaEcho, Dreamwood, Meteora from SharedMedia  
+Removed the ClassAuras Wago links for upcoming Dragonflight rework  
 Reworked some sections of the config  
+**Wrath Classic:**  
+Full support for beta servers  
+Hunter WeakAura uploaded to wago  
 ___
 ### Version 1.51 [14-07-2022]
 **All WoW Versions:**  
