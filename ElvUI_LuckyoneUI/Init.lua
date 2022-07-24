@@ -60,7 +60,9 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 		ElvDB.LuckyoneDisabledAddOns = {}
 	end
 
-	if initLogin or isReload then L1UI:VersionCheck() end
+	if initLogin or isReload then
+		L1UI:VersionCheck()
+	end
 
 	L1UI:DisabledFrames()
 	L1UI:LoadCommands()
