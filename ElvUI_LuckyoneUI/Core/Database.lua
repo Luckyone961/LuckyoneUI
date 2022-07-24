@@ -407,6 +407,7 @@ function L1UI:Layout_Shadowlands(layout) -- args 'main' & 'healing'
 	-- DataTexts
 	E.db["datatexts"]["font"] = "Expressway"
 	E.db["datatexts"]["fontOutline"] = "OUTLINE"
+	E.db["datatexts"]["fontSize"] = 13
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] = false
 	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"]["enable"] = true
 	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"][1] = "System"
