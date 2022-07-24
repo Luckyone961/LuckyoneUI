@@ -1,4 +1,4 @@
-### Version 1.52 [In Development]
+### Version 1.52 [24-07-2022]
 **All WoW Versions:**  
 Added archive section to the config for Shadowlands layouts  
 Minor updates for the initial chat install  
