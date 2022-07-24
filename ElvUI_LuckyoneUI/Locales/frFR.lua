@@ -7,7 +7,7 @@ if not L then return end
 ]]
 
 -- Config.lua locales
-L["Addon link:"] = true
+L["Addon Download:"] = true
 L["Addon Profiles"] = true
 L["Alert Frame"] = true
 L["Archive of the LuckyoneUI ElvUI layouts (Shadowlands)"] = true

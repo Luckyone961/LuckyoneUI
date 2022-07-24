@@ -231,10 +231,10 @@ function L1UI:GetOptions()
 
 	-- Links
 	L1UI.Options.args.links = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 15)
-	L1UI.Options.args.links.args.changelog = ACH:Input(L["Changelog:"], nil, 1, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/blob/development/CHANGELOG.md' end)
-	L1UI.Options.args.links.args.issues = ACH:Input(L["Report issues here:"], nil, 2, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/issues' end)
-	L1UI.Options.args.links.args.website = ACH:Input(L["Addon link:"], nil, 3, nil, 'full', function() return 'https://www.curseforge.com/wow/addons/elvui_luckyoneui' end)
-	L1UI.Options.args.links.args.discord = ACH:Input('Discord:', nil, 4, nil, 'full', function() return 'https://discord.gg/xRY4bwA' end)
+	L1UI.Options.args.links.args.website = ACH:Input(L["Addon Download:"], nil, 1, nil, 'full', function() return 'https://www.curseforge.com/wow/addons/elvui_luckyoneui' end)
+	L1UI.Options.args.links.args.changelog = ACH:Input(L["Changelog:"], nil, 2, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/blob/development/CHANGELOG.md' end)
+	L1UI.Options.args.links.args.discord = ACH:Input('Discord:', nil, 3, nil, 'full', function() return 'https://discord.gg/xRY4bwA' end)
+	L1UI.Options.args.links.args.issues = ACH:Input(L["Report issues here:"], nil, 4, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/issues' end)
 	L1UI.Options.args.links.args.guide = ACH:Input(L["Wowhead Guide:"], nil, 5, nil, 'full', function() return 'https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide' end)
 
 	E.Options.args.L1UI = L1UI.Options
