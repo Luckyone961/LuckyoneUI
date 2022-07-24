@@ -7,10 +7,11 @@ if not L then return end
 ]]
 
 -- Config.lua locales
-L["Addon link:"] = true
+L["Addon Download:"] = true
 L["Addon Profiles"] = true
 L["Alert Frame"] = true
-L["\nAll Class WeakAuras above are for DPS and Tank specializations only.\nThere is currently no plan to support Healers at all.\n\n"] = true
+L["Archive of the LuckyoneUI ElvUI layouts (Shadowlands)"] = true
+L["Archive"] = true
 L["Auras"] = true
 L["Author"] = true
 L["Available Tags"] = true
@@ -40,12 +41,11 @@ L["Default Style"] = true
 L["Default"] = true
 L["Demon Hunter"] = true
 L["Description"] = true
-L["Disable Party Buffs"] = true
 L["DPS/TANK Layout"] = true
 L["DPS/TANK Profiles"] = true
 L["Druid"] = true
 L["ElvUI Plugins"] = true
-L["Enable Party Buffs"] = true
+L["Evoker"] = true
 L["Field of View"] = true
 L["Focus Frame Buffs"] = true
 L["Focus Frame Debuffs"] = true
@@ -74,9 +74,7 @@ L["NamePlate Profiles"] = true
 L["NamePlates: Enemy NPC Buffs"] = true
 L["NamePlates: Enemy NPC Debuffs"] = true
 L["Note"] = true
-L["Note about WeakAuras"] = true
 L["Paladin"] = true
-L["Party Buffs"] = true
 L["Performance"] = true
 L["Player Frame Buffs"] = true
 L["Player Frame Debuffs"] = true

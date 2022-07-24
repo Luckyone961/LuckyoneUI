@@ -28,10 +28,10 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Please click a button below to apply the layout of your choosing."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cHigh|r"])
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupLayout('main') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_Layout('main') end)
 			PluginInstallFrame.Option1:SetText(L["DPS/TANK"])
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:SetupLayout('healing') end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_Layout('healing') end)
 			PluginInstallFrame.Option2:SetText(L["Healing"])
 		end,
 		[3] = function()
@@ -39,10 +39,10 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Please click a button below to set the UnitFrames Color Theme."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupTheme('dark') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_Theme('dark') end)
 			PluginInstallFrame.Option1:SetText(L["Dark"])
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:SetupTheme('class') end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_Theme('class') end)
 			PluginInstallFrame.Option2:SetText(L["Class Color"])
 		end,
 		[4] = function()
@@ -50,7 +50,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["This will setup the chat windows to look like this:\n\nLeft Chat: General - Log - Whisper - Guild - Party\n\nRight Chat: Details! Damage Meter"])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupChat() end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_Chat() end)
 			PluginInstallFrame.Option1:SetText(L["Setup Chat"])
 		end,
 		[5] = function()
@@ -58,7 +58,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Full list of all changed CVars can be found in /luckyoneui config -> CVars."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupCVars() end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_CVars() end)
 			PluginInstallFrame.Option1:SetText(L["Setup CVars"])
 		end,
 		[6] = function()
@@ -66,10 +66,10 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Choose between ElvUI NamePlates and Plater NamePlates."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cHigh|r"])
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:SetupNamePlates('ElvUI') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_NamePlates('ElvUI') end)
 			PluginInstallFrame.Option1:SetText('ElvUI')
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:SetupNamePlates('Plater') end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_NamePlates('Plater') end)
 			PluginInstallFrame.Option2:SetText('Plater')
 		end,
 		[7] = function()
@@ -108,12 +108,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_OmniCD('healing') end)
 			PluginInstallFrame.Option2:SetText('OmniCD Healing')
 		end,
-		[E.Retail and 10] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText(L["WeakAuras Information"])
-			PluginInstallFrame.Desc1:SetText(L["You can find WeakAuras for all 12 Classes and some Utility WeakAuras in the LuckyoneUI config."])
-			PluginInstallFrame.Desc2:SetText('\nElvUI Options -> LuckyoneUI -> WeakAuras')
-		end,
-		[E.Retail and 11 or 9] = function()
+		[E.Retail and 10 or 9] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Installation Complete"])
 			PluginInstallFrame.Desc1:SetText(L["You have completed the installation process, please click 'Finished' to reload the UI."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cHigh|r"])
@@ -132,8 +127,7 @@ L1UI.InstallerData = {
 		[7] = L["BossMods"],
 		[8] = 'Details',
 		[E.Retail and 9] = 'OmniCD',
-		[E.Retail and 10] = 'WeakAuras',
-		[E.Retail and 11 or 9] = L["Installation Complete"],
+		[E.Retail and 10 or 9] = L["Installation Complete"],
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0, 179/255, 1},

@@ -7,10 +7,11 @@ if not L then return end
 ]]
 
 -- Config.lua locales
-L["Addon link:"] = true
+L["Addon Download:"] = true
 L["Addon Profiles"] = "Addon Profile"
 L["Alert Frame"] = "Alarmfenster"
-L["\nAll Class WeakAuras above are for DPS and Tank specializations only.\nThere is currently no plan to support Healers at all.\n\n"] = "\nAlle Klassen WeakAuren sind für DPS und Tanks.\nEs gibt zur Zeit keine Pläne Heiler zu unterstützen.\n\n"
+L["Archive of the LuckyoneUI ElvUI layouts (Shadowlands)"] = true
+L["Archive"] = true
 L["Auras"] = "Auren"
 L["Author"] = true
 L["Available Tags"] = "Verfügbare Tags"
@@ -40,12 +41,11 @@ L["Default Style"] = "Standard Stil"
 L["Default"] = "Standard"
 L["Demon Hunter"] = "Demonenjäger"
 L["Description"] = "Beschreibung"
-L["Disable Party Buffs"] = "Deaktiviere Gruppen Stärkungszauber"
 L["DPS/TANK Layout"] = true
 L["DPS/TANK Profiles"] = "DPS/TANK Profile"
 L["Druid"] = "Druide"
 L["ElvUI Plugins"] = true
-L["Enable Party Buffs"] = "Aktiviere Gruppen Stärkungszauber"
+L["Evoker"] = true
 L["Field of View"] = true
 L["Focus Frame Buffs"] = "Fokusfenster Stärkungszauber"
 L["Focus Frame Debuffs"] = "Fokusfenster Schwächungszauber"
@@ -74,9 +74,7 @@ L["NamePlate Profiles"] = "Namensplaketten Profile"
 L["NamePlates: Enemy NPC Buffs"] = "Namensplaketten: Feindliche NPC Stärkungszauber"
 L["NamePlates: Enemy NPC Debuffs"] = "Namensplaketten: Feindliche NPC Schwächungszauber"
 L["Note"] = "Notiz"
-L["Note about WeakAuras"] = "Notiz zu WeakAuren"
 L["Paladin"] = true
-L["Party Buffs"] = "Gruppenstärkungszauber"
 L["Performance"] = "Leistung"
 L["Player Frame Buffs"] = "Spielerfenster Stärkungszauber"
 L["Player Frame Debuffs"] = "Spielerfenster Schwächungszauber"

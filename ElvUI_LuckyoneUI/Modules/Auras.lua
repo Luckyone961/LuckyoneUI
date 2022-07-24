@@ -1,7 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- Auras config section: Buffs
-function L1UI:SetupBuffs(frame, type)
+function L1UI:Setup_Buffs(frame, type)
 
 	local all = "Blacklist,Personal,nonPersonal"
 	local min = "Blacklist,Dispellable,RaidBuffsElvUI"
@@ -54,7 +54,7 @@ function L1UI:SetupBuffs(frame, type)
 end
 
 -- Auras config section: Debuffs
-function L1UI:SetupDebuffs(frame, type)
+function L1UI:Setup_Debuffs(frame, type)
 
 	local all = "Blacklist,Personal,nonPersonal"
 	local min = "Blacklist,Personal,CCDebuffs"
@@ -94,52 +94,4 @@ function L1UI:SetupDebuffs(frame, type)
 	E:StaggeredUpdateAll()
 
 	L1UI:Print(L["Debuff filters updated."])
-end
-
--- Auras for Wrath | TBC | Classic
-function L1UI:LegacyAuras(arg)
-
-	if arg == 'main' then
-
-		E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOPLEFT"
-		E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Expressway"
-		E.db["unitframe"]["units"]["party"]["buffs"]["countFontSize"] = 11
-		E.db["unitframe"]["units"]["party"]["buffs"]["countXOffset"] = 1
-		E.db["unitframe"]["units"]["party"]["buffs"]["countYOffset"] = 1
-		E.db["unitframe"]["units"]["party"]["buffs"]["enable"] = true
-		E.db["unitframe"]["units"]["party"]["buffs"]["growthX"] = "LEFT"
-		E.db["unitframe"]["units"]["party"]["buffs"]["growthY"] = "DOWN"
-		E.db["unitframe"]["units"]["party"]["buffs"]["maxDuration"] = 0
-		E.db["unitframe"]["units"]["party"]["buffs"]["minDuration"] = 30
-		E.db["unitframe"]["units"]["party"]["buffs"]["numrows"] = 2
-		E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 4
-		E.db["unitframe"]["units"]["party"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal"
-		E.db["unitframe"]["units"]["party"]["buffs"]["sizeOverride"] = 19
-		E.db["unitframe"]["units"]["party"]["buffs"]["spacing"] = 2
-		E.db["unitframe"]["units"]["party"]["buffs"]["xOffset"] = -20
-		E.db["unitframe"]["units"]["party"]["buffs"]["yOffset"] = -18
-
-	elseif arg == 'healing' then
-
-		E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "BOTTOMLEFT"
-		E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Expressway"
-		E.db["unitframe"]["units"]["party"]["buffs"]["countFontSize"] = 11
-		E.db["unitframe"]["units"]["party"]["buffs"]["countXOffset"] = -1
-		E.db["unitframe"]["units"]["party"]["buffs"]["countYOffset"] = 1
-		E.db["unitframe"]["units"]["party"]["buffs"]["enable"] = true
-		E.db["unitframe"]["units"]["party"]["buffs"]["maxDuration"] = 0
-		E.db["unitframe"]["units"]["party"]["buffs"]["minDuration"] = 30
-		E.db["unitframe"]["units"]["party"]["buffs"]["numrows"] = 2
-		E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 4
-		E.db["unitframe"]["units"]["party"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal"
-		E.db["unitframe"]["units"]["party"]["buffs"]["sizeOverride"] = 19
-		E.db["unitframe"]["units"]["party"]["buffs"]["yOffset"] = -2
-
-	elseif arg == 'off' then
-
-		E.db["unitframe"]["units"]["party"]["buffs"]["enable"] = false
-
-	end
-
-	E:StaggeredUpdateAll()
 end

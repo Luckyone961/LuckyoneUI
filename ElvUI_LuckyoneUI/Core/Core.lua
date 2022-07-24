@@ -1,6 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
-local LuckyDT
 
 local format, print = format, print
 
@@ -40,22 +39,8 @@ function L1UI:VersionCheck()
 	end
 end
 
--- DB conversion
-function L1UI:ConvertDB()
-	if E.private.L1UI.install_version ~= nil then
-		E.db.L1UI.install_version = E.private.L1UI.install_version
-		E.private.L1UI.install_version = nil
-	end
-end
-
--- Set UI Scale
-function L1UI:SetupScale()
-	E.global.general.UIScale = 0.71111111111111
-	SetCVar('uiScale', 0.71111111111111)
-end
-
 -- General CVars
-function L1UI:SetupCVars()
+function L1UI:Setup_CVars()
 
 	-- Core CVars
 	SetCVar('advancedCombatLogging', 1)
@@ -86,8 +71,6 @@ function L1UI:SetupCVars()
 		SetCVar('doNotFlashLowHealthWarning', 1)
 		SetCVar('floatingCombatTextCombatDamage', 0)
 		SetCVar('floatingCombatTextCombatHealing', 0)
-		SetCVar('maxFPS', 144)
-		SetCVar('maxFPSBk', 60)
 		SetCVar('maxFPSLoading', 30)
 		SetCVar('nameplateShowOnlyNames', 1)
 		SetCVar('RAIDweatherDensity', 0)
@@ -151,23 +134,15 @@ function L1UI:SetupPrivate()
 	E.private.general.normTex = "Minimalist"
 	E.private.skins.parchmentRemoverEnable = true
 
-	if E.Retail then
-		E.private.install_complete = "12.81"
-		E.private.general.totemBar = false
-	elseif E.TBC then
-		E.private.install_complete = "2.48"
-		E.private.general.totemBar = true
-	elseif E.Classic then
-		E.private.install_complete = "1.73"
-		E.private.general.totemBar = true
-	elseif E.Wrath then
-		E.private.install_complete = "0.01"
-		E.private.general.totemBar = true
-	end
+	E.private.general.totemBar = E.Retail and false or true
+	E.private.install_complete = E.Retail and "12.81" or E.TBC and "2.48" or E.Classic and "1.73" or E.Wrath and "0.10"
 end
 
--- E.global
+-- E.global & Custom DataText
 function L1UI:SetupGlobal()
+
+	SetCVar('uiScale', 0.71111111111111)
+	E.global.general.UIScale = 0.71111111111111
 
 	E.global.datatexts.settings.Combat.TimeFull = false
 	E.global.datatexts.settings.System.latency = "HOME"
@@ -177,71 +152,96 @@ function L1UI:SetupGlobal()
 	E.global.general.smallerWorldMapScale = 0.8
 	E.global.general.WorldMapCoordinates.position = "TOPLEFT"
 
-	do -- Luckyone Custom DataText (below ActionBars)
+	do
 		E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
-		LuckyDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
-		LuckyDT.backdrop = true
-		LuckyDT.border = true
-		LuckyDT.enable = true
-		LuckyDT.fonts.enable = true
-		LuckyDT.fonts.font = "Expressway"
-		LuckyDT.fonts.fontOutline = "OUTLINE"
-		LuckyDT.fonts.fontSize = 11
-		LuckyDT.frameLevel = 1
-		LuckyDT.frameStrata = "BACKGROUND"
-		LuckyDT.growth = "HORIZONTAL"
-		LuckyDT.height = 13
-		LuckyDT.mouseover = false
-		LuckyDT.name = "Luckyone_ActionBars_DT"
-		LuckyDT.numPoints = 3
-		LuckyDT.panelTransparency = true
-		LuckyDT.textJustify = "CENTER"
-		LuckyDT.tooltipAnchor = "ANCHOR_TOP"
-		LuckyDT.tooltipXOffset = 0
-		LuckyDT.tooltipYOffset = 5
-		LuckyDT.visibility = E.Retail and "[petbattle] hide;show" or "show"
-		LuckyDT.width = 358
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.backdrop = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.border = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.enable = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.enable = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.font = "Expressway"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontOutline = "OUTLINE"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontSize = 11
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameLevel = 1
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameStrata = "BACKGROUND"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.growth = "HORIZONTAL"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.height = 13
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.mouseover = false
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.name = "Luckyone_ActionBars_DT"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.numPoints = 3
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.panelTransparency = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.textJustify = "CENTER"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipAnchor = "ANCHOR_TOP"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipXOffset = 0
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipYOffset = 5
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.visibility = E.Retail and "[petbattle] hide;show" or "show"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 358
 	end
+end
+
+-- ElvUI Layouts setup
+function L1UI:Setup_Layout(layout)
+
+	-- Create a fresh profile in ElvUI
+	if layout == 'main' then
+		E.data:SetProfile('Luckyone DPS/TANK v'..L1UI.Version)
+	elseif layout == 'healing' then
+		E.data:SetProfile('Luckyone Healing v'..L1UI.Version)
+	end
+
+	-- E.global & Custom DataText
+	L1UI:SetupGlobal()
+
+	-- E.private & Media
+	L1UI:SetupPrivate()
+
+	-- AddOnSkins profile
+	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins('noPrint') end
+
+	-- ProjectAzilroka profile
+	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Setup_ProjectAzilroka('noPrint') end
+
+	-- Shadow & Light profile
+	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight('noPrint') end
+
+	-- E.db & movers
+	if layout == 'main' then
+		L1UI:Layout_Shadowlands('main')
+	elseif layout == 'healing' then
+		L1UI:Layout_Shadowlands('healing')
+	end
+
+	E:StaggeredUpdateAll()
+
+	L1UI:Print(L["Layout has been set."])
 end
 
 -- Performance config section
 function L1UI:Cleanup_Cache(addon, type)
-
 	if addon == 'elvui' and E.private.chat.enable then
-
 		if type == 'chat' then
 			CH:ResetHistory()
 		elseif type == 'editbox' then
 			CH:ResetEditboxHistory()
 		end
-
 	elseif addon == 'details' and IsAddOnLoaded('Details') then
-
 		_detalhes.boss_mods_timers = {}
 		_detalhes.encounter_spell_pool = {}
 		_detalhes.npcid_pool = {}
 		_detalhes.spell_pool = {}
 		_detalhes.spell_school_cache = {}
-
 	elseif addon == 'plater' and IsAddOnLoaded('Plater') then
-
 		PlaterDB.captured_casts = {}
 		PlaterDB.captured_spells = {}
 		if PlaterDB.profiles.Luckyone then PlaterDB.profiles.Luckyone.npc_cache = {} end
-
 	elseif addon == 'rc' and IsAddOnLoaded('RCLootCouncil') then
-
 		RCLootCouncilDB.global.cache = {}
 		RCLootCouncilDB.global.errors = {}
 		RCLootCouncilDB.global.log = {}
 		RCLootCouncilDB.global.verTestCandidates = {}
-
 	elseif addon == 'mrt' and IsAddOnLoaded('MRT') then
-
 		VMRT.Encounter.list = {}
 		VMRT.Encounter.names = {}
 		VMRT.ExCD2.gnGUIDs = {}
 		VMRT.Inspect.Soulbinds = {}
-
 	end
 end
