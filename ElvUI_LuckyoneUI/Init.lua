@@ -78,7 +78,7 @@ function L1UI:Initialize()
 		ElvDB.ShadowLightAlpha = false
 	end
 
-	EP:RegisterPlugin(addon, L1UI.GetOptions)
+	EP:RegisterPlugin(addon, L1UI.Config)
 	L1UI:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
 
