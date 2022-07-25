@@ -60,7 +60,6 @@ L["Hide the Loot/Alert Frame"] = true
 L["Hide the Zone Text"] = true
 L["Hunter"] = true
 L["Install"] = true
-L["Jump to the Available Tag list."] = true
 L["Links"] = true
 L["Mage"] = true
 L["Media"] = true

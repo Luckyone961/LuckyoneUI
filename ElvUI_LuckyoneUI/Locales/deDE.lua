@@ -60,7 +60,6 @@ L["Hide the Loot/Alert Frame"] = "Verstecke das Beute-/Alarm Fenster"
 L["Hide the Zone Text"] = "Verstecke  den Zonentext"
 L["Hunter"] = "Jäger"
 L["Install"] = "Installieren"
-L["Jump to the Available Tag list."] = "Zur Liste der verfügbaren Tags springen."
 L["Links"] = true
 L["Mage"] = "Magier"
 L["Media"] = "Medien"

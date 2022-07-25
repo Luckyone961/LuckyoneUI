@@ -61,12 +61,13 @@ function L1UI:Config()
 	L1UI.Options.args.updateMain = ACH:Execute(L["Update DPS/TANK Layout"], L["Update DPS/TANK layout to LuckyoneUI version: "]..L1UI.Version, 2, function() L1UI:UpdateLayout('main') end, nil, true)
 	L1UI.Options.args.updateHealing = ACH:Execute(L["Update Healing Layout"], L["Update Healing layout to LuckyoneUI version: "]..L1UI.Version, 3, function() L1UI:UpdateLayout('healing') end, nil, true)
 
+	-- Spacer
 	L1UI.Options.args.header = ACH:Spacer(4, 'full')
 
 	-- Auras [Buffs]
 	L1UI.Options.args.auras = ACH:Group(L["Auras"], nil, 5, 'tab')
-	L1UI.Options.args.auras.args.buffs = ACH:Group(format('|cff3296ff%s|r', L["Buffs"]), nil, 1)
-	L1UI.Options.args.auras.args.debuffs = ACH:Group(format('|cffC80000%s|r', L["Debuffs"]), nil, 2)
+	L1UI.Options.args.auras.args.desc = ACH:Header(L["Auras"], 1)
+	L1UI.Options.args.auras.args.buffs = ACH:Group(format('|cff3296ff%s|r', L["Buffs"]), nil, 2)
 	L1UI.Options.args.auras.args.buffs.args.player = ACH:Group(L["Player Frame Buffs"], nil, 1)
 	L1UI.Options.args.auras.args.buffs.args.player.inline = true
 	L1UI.Options.args.auras.args.buffs.args.player.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Buffs('player', 'min') end)
@@ -79,16 +80,17 @@ function L1UI:Config()
 	L1UI.Options.args.auras.args.buffs.args.focus.inline = true
 	L1UI.Options.args.auras.args.buffs.args.focus.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Buffs('focus', 'min') end)
 	L1UI.Options.args.auras.args.buffs.args.focus.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Buffs('focus', 'all') end)
-	L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC = ACH:Group(L["NamePlates: Enemy NPC Buffs"], nil, 5)
-	L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.inline = true
-	L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Buffs('nameplate', 'min') end)
-	L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Buffs('nameplate', 'all') end)
 	L1UI.Options.args.auras.args.buffs.args.boss = ACH:Group(L["Boss Frame Buffs"], nil, 4, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.auras.args.buffs.args.boss.inline = true
 	L1UI.Options.args.auras.args.buffs.args.boss.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Buffs('boss', 'min') end)
 	L1UI.Options.args.auras.args.buffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Buffs('boss', 'all') end)
+	L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC = ACH:Group(L["NamePlates: Enemy NPC Buffs"], nil, 5)
+	L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.inline = true
+	L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Buffs('nameplate', 'min') end)
+	L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Buffs('nameplate', 'all') end)
 
 	-- Auras [Debuffs]
+	L1UI.Options.args.auras.args.debuffs = ACH:Group(format('|cffC80000%s|r', L["Debuffs"]), nil, 3)
 	L1UI.Options.args.auras.args.debuffs.args.player = ACH:Group(L["Player Frame Debuffs"], nil, 1)
 	L1UI.Options.args.auras.args.debuffs.args.player.inline = true
 	L1UI.Options.args.auras.args.debuffs.args.player.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Debuffs('player', 'min') end)
@@ -101,56 +103,63 @@ function L1UI:Config()
 	L1UI.Options.args.auras.args.debuffs.args.focus.inline = true
 	L1UI.Options.args.auras.args.debuffs.args.focus.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Debuffs('focus', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.focus.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Debuffs('focus', 'all') end)
-	L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC = ACH:Group(L["NamePlates: Enemy NPC Debuffs"], nil, 5)
-	L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.inline = true
-	L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Debuffs('nameplate', 'min') end)
-	L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Debuffs('nameplate', 'all') end)
 	L1UI.Options.args.auras.args.debuffs.args.boss = ACH:Group(L["Boss Frame Debuffs"], nil, 4, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.auras.args.debuffs.args.boss.inline = true
 	L1UI.Options.args.auras.args.debuffs.args.boss.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Debuffs('boss', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Debuffs('boss', 'all') end)
+	L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC = ACH:Group(L["NamePlates: Enemy NPC Debuffs"], nil, 5)
+	L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.inline = true
+	L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Debuffs('nameplate', 'min') end)
+	L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Debuffs('nameplate', 'all') end)
 
 	-- Blizzard
 	L1UI.Options.args.blizzard = ACH:Group(L["Blizzard"], nil, 6)
-	L1UI.Options.args.blizzard.args.disabledFrames = ACH:Group(L["Hide Blizzard Frames"], nil, 1, nil, function(info) return E.private.L1UI.disabledFrames[info[#info]] end, function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.blizzard.args.desc = ACH:Header(L["Blizzard"], 1)
+	L1UI.Options.args.blizzard.args.disabledFrames = ACH:Group(L["Hide Blizzard Frames"], nil, 2, nil, function(info) return E.private.L1UI.disabledFrames[info[#info]] end, function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.blizzard.args.disabledFrames.inline = true
 	L1UI.Options.args.blizzard.args.disabledFrames.args.AlertFrame = ACH:Toggle(L["Alert Frame"], L["Hide the Loot/Alert Frame"], 1)
 	L1UI.Options.args.blizzard.args.disabledFrames.args.BossBanner = ACH:Toggle(L["Boss Banner"], L["Hide the Boss Banner"], 2, nil, nil, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.blizzard.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle(L["Zone Text"], L["Hide the Zone Text"], 3)
-	L1UI.Options.args.blizzard.args.consoleVars = ACH:Group(L["Console Variables"], nil, 2, nil, nil, nil, nil, not E.Retail)
+	L1UI.Options.args.blizzard.args.consoleVars = ACH:Group(L["Console Variables"], nil, 3, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.blizzard.args.consoleVars.inline = true
 	L1UI.Options.args.blizzard.args.consoleVars.args.fov = ACH:Range(L["Field of View"], nil, 1, { min = 50, max = 90, step = 1 }, nil, function() return tonumber(GetCVar('camerafov')) end, function(_, value) SetCVar('camerafov', value) end)
 
 	-- Chat
 	L1UI.Options.args.chat = ACH:Group(L["Chat"], nil, 7)
-	L1UI.Options.args.chat.args.chatSetup = ACH:Group(L["Setup Chat"], nil, 1)
+	L1UI.Options.args.chat.args.desc = ACH:Header(L["Chat"], 1)
+	L1UI.Options.args.chat.args.chatSetup = ACH:Group(L["Setup Chat"], nil, 2)
 	L1UI.Options.args.chat.args.chatSetup.inline = true
 	L1UI.Options.args.chat.args.chatSetup.args.chat = ACH:Execute(L["Setup Chat"], nil, 1, function() L1UI:Setup_Chat() end)
-	L1UI.Options.args.chat.args.chatDesc = ACH:Group(L["Description"], nil, 2)
+	L1UI.Options.args.chat.args.chatDesc = ACH:Group(L["Description"], nil, 3)
 	L1UI.Options.args.chat.args.chatDesc.inline = true
 	L1UI.Options.args.chat.args.chatDesc.args.desc = ACH:Description(L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]"], 1, 'medium')
-	L1UI.Options.args.chat.args.chatVars = ACH:Group(L["Chat CVars"], nil, 3)
+	L1UI.Options.args.chat.args.chatVars = ACH:Group(L["Chat CVars"], nil, 4)
 	L1UI.Options.args.chat.args.chatVars.inline = true
 	L1UI.Options.args.chat.args.chatVars.args.desc = ACH:Description('- chatStyle classic\n- whisperMode inline\n- chatClassColorOverride 0\n- colorChatNamesByClass 1', 1, 'medium')
 
 	-- CVars
 	L1UI.Options.args.cvars = ACH:Group(L["Console Variables"], nil, 8)
-	L1UI.Options.args.cvars.args.setup = ACH:Group(L["Setup CVars"], nil, 1)
+	L1UI.Options.args.cvars.args.desc = ACH:Header(L["Console Variables"], 1)
+	L1UI.Options.args.cvars.args.setup = ACH:Group(L["Setup CVars"], nil, 2)
 	L1UI.Options.args.cvars.args.setup.inline = true
 	L1UI.Options.args.cvars.args.setup.args.generalVars = ACH:Execute(L["General CVars"], nil, 1, function() L1UI:Setup_CVars() end, nil, true)
 	L1UI.Options.args.cvars.args.setup.args.nameplateVars = ACH:Execute(L["NamePlate CVars"], nil, 2, function() L1UI:NameplateCVars() end, nil, true)
-	L1UI.Options.args.cvars.args.generalDesc = ACH:Group(L["General CVars"], nil, 2)
+	L1UI.Options.args.cvars.args.generalDesc = ACH:Group(L["General CVars"], nil, 3)
 	L1UI.Options.args.cvars.args.generalDesc.inline = true
 	L1UI.Options.args.cvars.args.generalDesc.args.cvars = ACH:Description('- advancedCombatLogging 1\n- alwaysShowActionBars 1\n- cameraDistanceMaxZoomFactor 2.6\n- ffxDeath 0\n- ffxGlow 0\n- ffxNether 0\n- fstack_preferParentKeys 0\n- lockActionBars 1\n- rawMouseEnable 1\n- screenshotQuality 10\n- showNPETutorials 0\n- showTutorials 0\n- threatWarning 3\n- UberTooltips 1', 1, 'medium')
-	L1UI.Options.args.cvars.args.nameplateDesc = ACH:Group(L["NamePlate CVars"], nil, 3)
+	L1UI.Options.args.cvars.args.nameplateDesc = ACH:Group(L["NamePlate CVars"], nil, 4)
 	L1UI.Options.args.cvars.args.nameplateDesc.inline = true
 	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- nameplateLargerScale 1\n- nameplateLargeTopInset -1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOtherBottomInset -1\n- nameplateOtherTopInset -1\n- nameplateOverlapH 1.1\n- nameplateOverlapV 1.8\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateSelfTopInset -1', 1, 'medium')
 
 	-- Media
 	L1UI.Options.args.media = ACH:Group(L["Media"], nil, 9)
-	L1UI.Options.args.media.args.defaults = ACH:Group(L["Fonts, Textures & Skins"], nil, 1)
+	L1UI.Options.args.media.args.header = ACH:Header(L["Media"], 1)
+	L1UI.Options.args.media.args.defaults = ACH:Group(L["Fonts, Textures & Skins"], nil, 2)
 	L1UI.Options.args.media.args.defaults.inline = true
 	L1UI.Options.args.media.args.defaults.args.private = ACH:Execute(L["Reset Media"], L["Reset Fonts, Textures, Skins to LuckyoneUI defaults."], 1, function() L1UI:SetupPrivate() E:StaggeredUpdateAll() end, nil, true)
+	L1UI.Options.args.media.args.defaultsDesc = ACH:Group(L["Fonts, Textures & Skins"], nil, 3)
+	L1UI.Options.args.media.args.defaultsDesc.inline = true
+	L1UI.Options.args.media.args.defaultsDesc.args.cvars = ACH:Description('- Expressway\n- Outline\n\n- Minimalist', 1, 'medium')
 
 	-- Performance
 	L1UI.Options.args.performance = ACH:Group(L["Performance"], nil, 10, nil, nil, nil, nil, not E.Retail)
@@ -206,13 +215,17 @@ function L1UI:Config()
 
 	-- Tags
 	L1UI.Options.args.tags = ACH:Group(L["Tags"], nil, 12)
-	L1UI.Options.args.tags.args.groups = ACH:Group(L["Tags"], nil, 1)
-	L1UI.Options.args.tags.args.groups.inline = true
-	L1UI.Options.args.tags.args.groups.args.available = ACH:Execute(L["Available Tags"], L["Jump to the Available Tag list."], 1, function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', L1UI.Name) end)
+	L1UI.Options.args.tags.args.header = ACH:Header(L["Available Tags"], 1)
+	L1UI.Options.args.tags.args.spacer = ACH:Spacer(2, 'full')
+	L1UI.Options.args.tags.args.tag1 = ACH:Input(L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"], nil, 3, nil, 'full', function() return '[luckyone:health:percent]' end, nil, nil)
+	L1UI.Options.args.tags.args.tag2 = ACH:Input(L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"], nil, 4, nil, 'full', function() return '[luckyone:classification]' end, nil, nil)
+	L1UI.Options.args.tags.args.tag3 = ACH:Input(L["Displays the unit's Mana (Role: Healer)"], nil, 5, nil, 'full', function() return '[luckyone:healermana:current]' end, nil, nil, not E.Retail)
+	L1UI.Options.args.tags.args.tag4 = ACH:Input(L["Displays the unit's Mana in percent (Role: Healer)"], nil, 6, nil, 'full', function() return '[luckyone:healermana:percent]' end, nil, nil, not E.Retail)
 
 	-- Themes
 	L1UI.Options.args.themes = ACH:Group(L["Themes"], nil, 13)
-	L1UI.Options.args.themes.args.raid = ACH:Group(L["UnitFrames Color Theme"], nil, 1)
+	L1UI.Options.args.themes.args.header = ACH:Header(L["Themes"], 1)
+	L1UI.Options.args.themes.args.raid = ACH:Group(L["UnitFrames Color Theme"], nil, 2)
 	L1UI.Options.args.themes.args.raid.inline = true
 	L1UI.Options.args.themes.args.raid.args.dark = ACH:Execute(L["Dark"], L["Dark Style (Default)"], 1, function() L1UI:Setup_Theme('dark') end, nil, true)
 	L1UI.Options.args.themes.args.raid.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() L1UI:Setup_Theme('class') end, nil, true)
@@ -237,26 +250,29 @@ function L1UI:Config()
 
 	-- Credits
 	L1UI.Options.args.credits = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 16)
-	L1UI.Options.args.credits.args.author = ACH:Group(L["Author"], nil, 1)
+	L1UI.Options.args.credits.args.header = ACH:Header(L["Credits"], 1)
+	L1UI.Options.args.credits.args.author = ACH:Group(L["Author"], nil, 2)
 	L1UI.Options.args.credits.args.author.inline = true
 	L1UI.Options.args.credits.args.author.args.desc = ACH:Description(L1UI.AUTHOR_STRING, 1, 'medium')
-	L1UI.Options.args.credits.args.coding = ACH:Group(L["Coding"], nil, 2)
+	L1UI.Options.args.credits.args.coding = ACH:Group(L["Coding"], nil, 3)
 	L1UI.Options.args.credits.args.coding.inline = true
 	L1UI.Options.args.credits.args.coding.args.desc = ACH:Description(L1UI.CODING_STRING, 1, 'medium')
-	L1UI.Options.args.credits.args.testers = ACH:Group(L["Testers and Translation"], nil, 3)
+	L1UI.Options.args.credits.args.testers = ACH:Group(L["Testers and Translation"], nil, 4)
 	L1UI.Options.args.credits.args.testers.inline = true
 	L1UI.Options.args.credits.args.testers.args.desc = ACH:Description(L1UI.TESTER_STRING, 1, 'medium')
-	L1UI.Options.args.credits.args.supporter = ACH:Group(L["Supporters"], nil, 4)
+	L1UI.Options.args.credits.args.supporter = ACH:Group(L["Supporters"], nil, 5)
 	L1UI.Options.args.credits.args.supporter.inline = true
 	L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description(L1UI.SUPPORT_STRING, 1, 'medium')
 
 	-- Links
 	L1UI.Options.args.links = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 17)
-	L1UI.Options.args.links.args.website = ACH:Input(L["Addon Download:"], nil, 1, nil, 'full', function() return 'https://www.curseforge.com/wow/addons/elvui_luckyoneui' end)
-	L1UI.Options.args.links.args.changelog = ACH:Input(L["Changelog:"], nil, 2, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/blob/development/CHANGELOG.md' end)
-	L1UI.Options.args.links.args.discord = ACH:Input('Discord:', nil, 3, nil, 'full', function() return 'https://discord.gg/xRY4bwA' end)
-	L1UI.Options.args.links.args.issues = ACH:Input(L["Report issues here:"], nil, 4, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/issues' end)
-	L1UI.Options.args.links.args.guide = ACH:Input(L["Wowhead Guide:"], nil, 5, nil, 'full', function() return 'https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide' end)
+	L1UI.Options.args.links.args.header = ACH:Header(L["Links"], 1)
+	L1UI.Options.args.links.args.spacer = ACH:Spacer(2, 'full')
+	L1UI.Options.args.links.args.website = ACH:Input(L["Addon Download:"], nil, 3, nil, 'full', function() return 'https://www.curseforge.com/wow/addons/elvui_luckyoneui' end)
+	L1UI.Options.args.links.args.changelog = ACH:Input(L["Changelog:"], nil, 4, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/blob/development/CHANGELOG.md' end)
+	L1UI.Options.args.links.args.discord = ACH:Input('Discord:', nil, 5, nil, 'full', function() return 'https://discord.gg/xRY4bwA' end)
+	L1UI.Options.args.links.args.issues = ACH:Input(L["Report issues here:"], nil, 6, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/issues' end)
+	L1UI.Options.args.links.args.guide = ACH:Input(L["Wowhead Guide:"], nil, 7, nil, 'full', function() return 'https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide' end)
 
 	E.Options.args.L1UI = L1UI.Options
 end
