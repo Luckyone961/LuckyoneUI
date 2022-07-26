@@ -9,11 +9,8 @@ local GetCVar = GetCVar
 local SetCVar = SetCVar
 
 local AUTHOR = { '|cffFF7D0ALuckyone|r (EU) - LaughingSkull' }
-
 local CODING = { '|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|r', '|cffFF7D0AMerathilis|r' }
-
 local TESTERS = { '|cff00FF96AltBridge|r', '|cff69CCF0Sniefer|r', '|cffABD473Badbrain|r', '|cffABD473Xyf|r', '|cffC41F3BKringel|r', '|cffF58CBAIllusion|r', '|cffABD473Dlarge|r' }
-
 local SUPPORT = { '|cffe6cc80Calmcacil|r', '|cffe6cc80DaPaKnat|r', '|cffe6cc80Debeleus|r', '|cffe6cc80DevinDog|r', '|cffe6cc80Dukes|r', '|cffe6cc80Fooseq|r', '|cffe6cc80Garbar|r', '|cffe6cc80Kenneth|r', '|cffe6cc80Liam|r', '|cffe6cc80Littlesack|r', '|cffe6cc80Lox|r', '|cffe6cc80Midnatt|r', '|cffe6cc80MonkeyHack|r', '|cffe6cc80Onlyne|r', '|cffe6cc80ShowNoMercy|r', '|cffe6cc80Treelyté|r', '|cffe6cc80Triplebeamdreams|r', '|cffe6cc80Logan|r' }
 
 local function SortList(a, b)
@@ -154,16 +151,16 @@ function L1UI:Config()
 	-- Media
 	L1UI.Options.args.media = ACH:Group(L["Media"], nil, 9)
 	L1UI.Options.args.media.args.header = ACH:Header(L["Media"], 1)
-	L1UI.Options.args.media.args.defaults = ACH:Group(L["Fonts, Textures & Skins"], nil, 2)
+	L1UI.Options.args.media.args.defaults = ACH:Group(L["Fonts and Textures"], nil, 2)
 	L1UI.Options.args.media.args.defaults.inline = true
 	L1UI.Options.args.media.args.defaults.args.private = ACH:Execute(L["Reset Media"], L["Reset Fonts, Textures, Skins to LuckyoneUI defaults."], 1, function() L1UI:SetupPrivate() E:StaggeredUpdateAll() end, nil, true)
-	L1UI.Options.args.media.args.defaultsDesc = ACH:Group(L["Fonts, Textures & Skins"], nil, 3)
+	L1UI.Options.args.media.args.defaultsDesc = ACH:Group(L["Fonts and Textures"], nil, 3)
 	L1UI.Options.args.media.args.defaultsDesc.inline = true
-	L1UI.Options.args.media.args.defaultsDesc.args.cvars = ACH:Description('- Expressway\n- Outline\n\n- Minimalist', 1, 'medium')
+	L1UI.Options.args.media.args.defaultsDesc.args.cvars = ACH:Description('- Expressway\n- Outline\n- Minimalist', 1, 'medium')
 
 	-- Performance
 	L1UI.Options.args.performance = ACH:Group(L["Performance"], nil, 10, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.performance.args.desc = ACH:Header(L["This will only clear AddOn Cache and not wipe your settings"], 1)
+	L1UI.Options.args.performance.args.desc = ACH:Header(L["Performance"], 1)
 	L1UI.Options.args.performance.args.elvui = ACH:Group('ElvUI', nil, 2)
 	L1UI.Options.args.performance.args.elvui.inline = true
 	L1UI.Options.args.performance.args.elvui.args.chat = ACH:Execute(L["Clear Chat History"], nil, 1, function() if not E.private.chat.enable then return end L1UI:Cleanup_Cache('elvui', 'chat') end)
@@ -183,7 +180,7 @@ function L1UI:Config()
 
 	-- Profiles
 	L1UI.Options.args.profiles = ACH:Group(L["Profiles"], nil, 11)
-	L1UI.Options.args.profiles.args.header1 = ACH:Header(L["Global Profiles"], 1)
+	L1UI.Options.args.profiles.args.header1 = ACH:Header(L["Profiles"], 1)
 	L1UI.Options.args.profiles.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 2)
 	L1UI.Options.args.profiles.args.plugins.inline = true
 	L1UI.Options.args.profiles.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_AddOnSkins() E:StaticPopup_Show('L1UI_RL') end, nil, true)
@@ -215,7 +212,7 @@ function L1UI:Config()
 
 	-- Tags
 	L1UI.Options.args.tags = ACH:Group(L["Tags"], nil, 12)
-	L1UI.Options.args.tags.args.header = ACH:Header(L["Available Tags"], 1)
+	L1UI.Options.args.tags.args.header = ACH:Header(L["Tags"], 1)
 	L1UI.Options.args.tags.args.spacer = ACH:Spacer(2, 'full')
 	L1UI.Options.args.tags.args.tag1 = ACH:Input(L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"], nil, 3, nil, 'full', function() return '[luckyone:health:percent]' end, nil, nil)
 	L1UI.Options.args.tags.args.tag2 = ACH:Input(L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"], nil, 4, nil, 'full', function() return '[luckyone:classification]' end, nil, nil)
@@ -230,8 +227,22 @@ function L1UI:Config()
 	L1UI.Options.args.themes.args.raid.args.dark = ACH:Execute(L["Dark"], L["Dark Style (Default)"], 1, function() L1UI:Setup_Theme('dark') end, nil, true)
 	L1UI.Options.args.themes.args.raid.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() L1UI:Setup_Theme('class') end, nil, true)
 
-	-- WeakAuras Retail
+	-- WeakAuras
 	L1UI.Options.args.weakauras = ACH:Group('WeakAuras', nil, 14, nil, nil, nil, nil, not E.Retail)
+	-- L1UI.Options.args.weakauras.args.header1 = ACH:Header('WeakAuras', 1)
+	-- L1UI.Options.args.weakauras.args.druid = ACH:Input(format('|cffFF7C0A%s|r', L["Druid"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneDruid' end)
+	-- L1UI.Options.args.weakauras.args.priest = ACH:Input(format('|cffFFFFFF%s|r', L["Priest"]), nil, 3, nil, 'normal', function() return 'wago.io/luckyonePriest' end)
+	-- L1UI.Options.args.weakauras.args.monk = ACH:Input(format('|cff00FF98%s|r', L["Monk"]), nil, 4, nil, 'normal', function() return 'wago.io/luckyoneMonk' end)
+	-- L1UI.Options.args.weakauras.args.warlock = ACH:Input(format('|cff8788EE%s|r', L["Warlock"]), nil, 5, nil, 'normal', function() return 'wago.io/luckyoneWarlock' end)
+	-- L1UI.Options.args.weakauras.args.hunter = ACH:Input(format('|cffAAD372%s|r', L["Hunter"]), nil, 6, nil, 'normal', function() return 'wago.io/luckyoneHunter' end)
+	-- L1UI.Options.args.weakauras.args.rogue = ACH:Input(format('|cffFFF468%s|r', L["Rogue"]), nil, 7, nil, 'normal', function() return 'wago.io/luckyoneRogue' end)
+	-- L1UI.Options.args.weakauras.args.mage = ACH:Input(format('|cff3FC7EB%s|r', L["Mage"]), nil, 8, nil, 'normal', function() return 'wago.io/luckyoneMage' end)
+	-- L1UI.Options.args.weakauras.args.dh = ACH:Input(format('|cffA330C9%s|r', L["Demon Hunter"]), nil, 9, nil, 'normal', function() return 'wago.io/luckyoneDH' end)
+	-- L1UI.Options.args.weakauras.args.dk = ACH:Input(format('|cffC41E3A%s|r', L["Death Knight"]), nil, 10, nil, 'normal', function() return 'wago.io/luckyoneDK' end)
+	-- L1UI.Options.args.weakauras.args.paladin = ACH:Input(format('|cffF48CBA%s|r', L["Paladin"]), nil, 11, nil, 'normal', function() return 'wago.io/luckyonePaladin' end)
+	-- L1UI.Options.args.weakauras.args.shaman = ACH:Input(format('|cff0070DD%s|r', L["Shaman"]), nil, 12, nil, 'normal', function() return 'wago.io/luckyoneShaman' end)
+	-- L1UI.Options.args.weakauras.args.warrior = ACH:Input(format('|cffC69B6D%s|r', L["Warrior"]), nil, 13, nil, 'normal', function() return 'wago.io/luckyoneWarrior' end)
+	-- L1UI.Options.args.weakauras.args.evoker = ACH:Input(format('|cff33937F%s|r', L["Evoker"]), nil, 14, nil, 'normal', function() return '' end)
 	L1UI.Options.args.weakauras.args.header2 = ACH:Header(L["General WeakAuras"], 15)
 	L1UI.Options.args.weakauras.args.keys = ACH:Input('Link Keystones', nil, 16, nil, 'normal', function() return 'wago.io/keystones' end)
 	L1UI.Options.args.weakauras.args.trinket = ACH:Input('Trinket Tracking', nil, 17, nil, 'normal', function() return 'wago.io/Trinket' end)
@@ -242,7 +253,7 @@ function L1UI:Config()
 
 	-- Archive
 	L1UI.Options.args.archive = ACH:Group(format('|cfd9b9b9b%s|r', L["Archive"]), nil, 15)
-	L1UI.Options.args.archive.args.desc = ACH:Header(L["Archive of the LuckyoneUI ElvUI layouts (Shadowlands)"], 1)
+	L1UI.Options.args.archive.args.desc = ACH:Header(L["Archive"], 1)
 	L1UI.Options.args.archive.args.profiles = ACH:Group('LuckyoneUI Shadowlands', nil, 2)
 	L1UI.Options.args.archive.args.profiles.inline = true
 	L1UI.Options.args.archive.args.profiles.args.main = ACH:Execute(L["DPS/TANK"], nil, 1, function() L1UI:Layout_Shadowlands('main') end, nil, true)
@@ -276,23 +287,6 @@ function L1UI:Config()
 
 	E.Options.args.L1UI = L1UI.Options
 end
-
---[[
-	L1UI.Options.args.weakauras.args.header1 = ACH:Header(L["WeakAuras DPS/TANK"], 1)
-	L1UI.Options.args.weakauras.args.druid = ACH:Input(format('|cffFF7C0A%s|r', L["Druid"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneDruid' end)
-	L1UI.Options.args.weakauras.args.priest = ACH:Input(format('|cffFFFFFF%s|r', L["Priest"]), nil, 3, nil, 'normal', function() return 'wago.io/luckyonePriest' end)
-	L1UI.Options.args.weakauras.args.monk = ACH:Input(format('|cff00FF98%s|r', L["Monk"]), nil, 4, nil, 'normal', function() return 'wago.io/luckyoneMonk' end)
-	L1UI.Options.args.weakauras.args.warlock = ACH:Input(format('|cff8788EE%s|r', L["Warlock"]), nil, 5, nil, 'normal', function() return 'wago.io/luckyoneWarlock' end)
-	L1UI.Options.args.weakauras.args.hunter = ACH:Input(format('|cffAAD372%s|r', L["Hunter"]), nil, 6, nil, 'normal', function() return 'wago.io/luckyoneHunter' end)
-	L1UI.Options.args.weakauras.args.rogue = ACH:Input(format('|cffFFF468%s|r', L["Rogue"]), nil, 7, nil, 'normal', function() return 'wago.io/luckyoneRogue' end)
-	L1UI.Options.args.weakauras.args.mage = ACH:Input(format('|cff3FC7EB%s|r', L["Mage"]), nil, 8, nil, 'normal', function() return 'wago.io/luckyoneMage' end)
-	L1UI.Options.args.weakauras.args.dh = ACH:Input(format('|cffA330C9%s|r', L["Demon Hunter"]), nil, 9, nil, 'normal', function() return 'wago.io/luckyoneDH' end)
-	L1UI.Options.args.weakauras.args.dk = ACH:Input(format('|cffC41E3A%s|r', L["Death Knight"]), nil, 10, nil, 'normal', function() return 'wago.io/luckyoneDK' end)
-	L1UI.Options.args.weakauras.args.paladin = ACH:Input(format('|cffF48CBA%s|r', L["Paladin"]), nil, 11, nil, 'normal', function() return 'wago.io/luckyonePaladin' end)
-	L1UI.Options.args.weakauras.args.shaman = ACH:Input(format('|cff0070DD%s|r', L["Shaman"]), nil, 12, nil, 'normal', function() return 'wago.io/luckyoneShaman' end)
-	L1UI.Options.args.weakauras.args.warrior = ACH:Input(format('|cffC69B6D%s|r', L["Warrior"]), nil, 13, nil, 'normal', function() return 'wago.io/luckyoneWarrior' end)
-	L1UI.Options.args.weakauras.args.evoker = ACH:Input(format('|cff33937F%s|r', L["Evoker"]), nil, 14, nil, 'normal', function() return '' end)
-]]
 
 --[[
 	ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
