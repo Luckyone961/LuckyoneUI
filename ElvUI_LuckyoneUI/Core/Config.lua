@@ -5,21 +5,20 @@ local pairs, sort = pairs, sort
 local format, tonumber = format, tonumber
 local tconcat, tinsert = table.concat, table.insert
 
-local GetCVar = GetCVar
-local SetCVar = SetCVar
+local GetCVar, SetCVar = GetCVar, SetCVar
 
 local AUTHOR = { '|cffFF7D0ALuckyone|r (EU) - LaughingSkull' }
 local CODING = { '|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|r', '|cffFF7D0AMerathilis|r' }
-local TESTERS = { '|cff00FF96AltBridge|r', '|cff69CCF0Sniefer|r', '|cffABD473Badbrain|r', '|cffABD473Xyf|r', '|cffC41F3BKringel|r', '|cffF58CBAIllusion|r', '|cffABD473Dlarge|r' }
 local SUPPORT = { '|cffe6cc80Calmcacil|r', '|cffe6cc80DaPaKnat|r', '|cffe6cc80Debeleus|r', '|cffe6cc80DevinDog|r', '|cffe6cc80Dukes|r', '|cffe6cc80Fooseq|r', '|cffe6cc80Garbar|r', '|cffe6cc80Kenneth|r', '|cffe6cc80Liam|r', '|cffe6cc80Littlesack|r', '|cffe6cc80Lox|r', '|cffe6cc80Midnatt|r', '|cffe6cc80MonkeyHack|r', '|cffe6cc80Onlyne|r', '|cffe6cc80ShowNoMercy|r', '|cffe6cc80Treelyté|r', '|cffe6cc80Triplebeamdreams|r', '|cffe6cc80Logan|r' }
+local TESTERS = { '|cff00FF96AltBridge|r', '|cff69CCF0Sniefer|r', '|cffABD473Badbrain|r', '|cffABD473Xyf|r', '|cffC41F3BKringel|r', '|cffF58CBAIllusion|r', '|cffABD473Dlarge|r' }
 
 local function SortList(a, b)
 	return E:StripString(a) < E:StripString(b)
 end
 
 sort(CODING, SortList)
-sort(TESTERS, SortList)
 sort(SUPPORT, SortList)
+sort(TESTERS, SortList)
 
 for _, name in pairs(AUTHOR) do
 	tinsert(L1UI.CreditsList, name)
@@ -227,7 +226,7 @@ function L1UI:Config()
 	L1UI.Options.args.themes.args.raid.args.dark = ACH:Execute(L["Dark"], L["Dark Style (Default)"], 1, function() L1UI:Setup_Theme('dark') end, nil, true)
 	L1UI.Options.args.themes.args.raid.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() L1UI:Setup_Theme('class') end, nil, true)
 
-	-- WeakAuras
+	-- WeakAuras Retail
 	L1UI.Options.args.weakauras = ACH:Group('WeakAuras', nil, 14, nil, nil, nil, nil, not E.Retail)
 	-- L1UI.Options.args.weakauras.args.header1 = ACH:Header('WeakAuras', 1)
 	-- L1UI.Options.args.weakauras.args.druid = ACH:Input(format('|cffFF7C0A%s|r', L["Druid"]), nil, 2, nil, 'normal', function() return 'wago.io/luckyoneDruid' end)
@@ -250,6 +249,11 @@ function L1UI:Config()
 	L1UI.Options.args.weakauras.args.swapblaster = ACH:Input('Swapblaster Alert', nil, 19, nil, 'normal', function() return 'wago.io/swapblaster' end)
 	L1UI.Options.args.weakauras.args.groupfinderClasses = ACH:Input('Groupfinder Classes', nil, 20, nil, 'normal', function() return 'wago.io/groupfinderClasses' end)
 	L1UI.Options.args.weakauras.args.groupfinderApptext = ACH:Input('Groupfinder Applicants', nil, 21, nil, 'normal', function() return 'wago.io/appTextHide' end)
+
+	-- WeakAuras Wrath
+	L1UI.Options.args.weakaurasWrath = ACH:Group('WeakAuras', nil, 14, nil, nil, nil, nil, not E.Wrath)
+	L1UI.Options.args.weakaurasWrath.args.header1 = ACH:Header('WeakAuras', 1)
+	L1UI.Options.args.weakaurasWrath.args.hunter = ACH:Input(format('|cffAAD372%s|r', L["Hunter"]), nil, 2, nil, 'full', function() return 'https://wago.io/luckyoneHunterWrath' end)
 
 	-- Archive
 	L1UI.Options.args.archive = ACH:Group(format('|cfd9b9b9b%s|r', L["Archive"]), nil, 15)
