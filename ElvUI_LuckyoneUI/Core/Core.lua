@@ -40,7 +40,7 @@ function L1UI:VersionCheck()
 end
 
 -- General CVars
-function L1UI:SetupCVars()
+function L1UI:Setup_CVars()
 
 	-- Core CVars
 	SetCVar('advancedCombatLogging', 1)
@@ -118,7 +118,7 @@ function L1UI:NameplateCVars()
 end
 
 -- E.private & Media
-function L1UI:SetupPrivate()
+function L1UI:Setup_PrivateDB()
 
 	E.db.general.font = "Expressway"
 	E.db.general.fontSize = 11
@@ -134,23 +134,12 @@ function L1UI:SetupPrivate()
 	E.private.general.normTex = "Minimalist"
 	E.private.skins.parchmentRemoverEnable = true
 
-	if E.Retail then
-		E.private.install_complete = "12.81"
-		E.private.general.totemBar = false
-	elseif E.TBC then
-		E.private.install_complete = "2.48"
-		E.private.general.totemBar = true
-	elseif E.Classic then
-		E.private.install_complete = "1.73"
-		E.private.general.totemBar = true
-	elseif E.Wrath then
-		E.private.install_complete = "0.09"
-		E.private.general.totemBar = true
-	end
+	E.private.general.totemBar = E.Retail and false or true
+	E.private.install_complete = E.Retail and "12.81" or E.TBC and "2.48" or E.Classic and "1.73" or E.Wrath and "0.12"
 end
 
 -- E.global & Custom DataText
-function L1UI:SetupGlobal()
+function L1UI:Setup_GlobalDB()
 
 	SetCVar('uiScale', 0.71111111111111)
 	E.global.general.UIScale = 0.71111111111111
@@ -187,6 +176,43 @@ function L1UI:SetupGlobal()
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.visibility = E.Retail and "[petbattle] hide;show" or "show"
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 358
 	end
+end
+
+-- ElvUI Layouts setup
+function L1UI:Setup_Layout(layout)
+
+	-- Create a fresh profile in ElvUI
+	if layout == 'main' then
+		E.data:SetProfile('Luckyone DPS/TANK v'..L1UI.Version)
+	elseif layout == 'healing' then
+		E.data:SetProfile('Luckyone Healing v'..L1UI.Version)
+	end
+
+	-- E.global & Custom DataText
+	L1UI:Setup_GlobalDB()
+
+	-- E.private & Media
+	L1UI:Setup_PrivateDB()
+
+	-- AddOnSkins profile
+	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins('noPrint') end
+
+	-- ProjectAzilroka profile
+	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Setup_ProjectAzilroka('noPrint') end
+
+	-- Shadow & Light profile
+	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight('noPrint') end
+
+	-- E.db & movers
+	if layout == 'main' then
+		L1UI:Layout_Shadowlands('main')
+	elseif layout == 'healing' then
+		L1UI:Layout_Shadowlands('healing')
+	end
+
+	E:StaggeredUpdateAll()
+
+	L1UI:Print(L["Layout has been set."])
 end
 
 -- Performance config section

@@ -7,7 +7,7 @@ function L1UI:Setup_Plater()
 	if not IsAddOnLoaded('Plater') then return end
 
 	-- Profile Names
-	local Retail, TBC, Classic = "Luckyone", "Luckyone TBC", "Luckyone Classic"
+	local Retail, TBC, Classic, Wrath = "Luckyone", "Luckyone TBC", "Luckyone Classic", "Luckyone Wrath"
 
 	if E.Retail then
 

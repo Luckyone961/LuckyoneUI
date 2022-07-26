@@ -1,7 +1,10 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
--- ElvUI layouts version 1
-function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
+-- Dragonflight Layout
+function L1UI:Layout_Dragonflight(layout) end
+
+-- Shadowlands Layout
+function L1UI:Layout_Shadowlands(layout) -- args 'main' & 'healing'
 
 	-- AB conversion
 	E.db["convertPages"] = true
@@ -56,10 +59,14 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 		E.db["general"]["bonusObjectivePosition"] = "AUTO"
 		E.db["general"]["itemLevel"]["itemLevelFont"] = "Expressway"
 		E.db["general"]["itemLevel"]["itemLevelFontSize"] = 11
-		E.db["general"]["objectiveFrameAutoHide"] = false
-		E.db["general"]["objectiveFrameHeight"] = 600
 		E.db["general"]["talkingHeadFrameBackdrop"] = true
 		E.db["general"]["talkingHeadFrameScale"] = 0.7
+	end
+
+	-- General Wrath and Retail
+	if E.Retail or E.Wrath then
+		E.db["general"]["objectiveFrameAutoHide"] = false
+		E.db["general"]["objectiveFrameHeight"] = 600
 	end
 
 	-- ActionBars Shared
@@ -300,26 +307,42 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 	-- Auras
 	E.db["auras"]["buffs"]["countFont"] = "Expressway"
 	E.db["auras"]["buffs"]["countFontOutline"] = "OUTLINE"
-	E.db["auras"]["buffs"]["countFontSize"] = 14
+	E.db["auras"]["buffs"]["countFontSize"] = 12
+	E.db["auras"]["buffs"]["countXOffset"] = -5
+	E.db["auras"]["buffs"]["countYOffset"] = 7
 	E.db["auras"]["buffs"]["horizontalSpacing"] = 2
+	E.db["auras"]["buffs"]["seperateOwn"] = 0
 	E.db["auras"]["buffs"]["size"] = 26
 	E.db["auras"]["buffs"]["timeFont"] = "Expressway"
 	E.db["auras"]["buffs"]["timeFontOutline"] = "OUTLINE"
-	E.db["auras"]["buffs"]["timeFontSize"] = 12
+	E.db["auras"]["buffs"]["timeFontSize"] = 11
+	E.db["auras"]["cooldown"]["checkSeconds"] = true
 	E.db["auras"]["cooldown"]["daysIndicator"]["g"] = 0.4
 	E.db["auras"]["cooldown"]["daysIndicator"]["r"] = 0.4
 	E.db["auras"]["cooldown"]["expireIndicator"]["b"] = 0
 	E.db["auras"]["cooldown"]["expireIndicator"]["g"] = 0
+	E.db["auras"]["cooldown"]["hhmmColor"]["b"] = 1
+	E.db["auras"]["cooldown"]["hhmmColor"]["g"] = 1
+	E.db["auras"]["cooldown"]["hhmmColor"]["r"] = 0.4
+	E.db["auras"]["cooldown"]["hhmmThreshold"] = 1440
 	E.db["auras"]["cooldown"]["hoursIndicator"]["r"] = 0.4
+	E.db["auras"]["cooldown"]["mmssColor"]["b"] = 1
+	E.db["auras"]["cooldown"]["mmssColor"]["g"] = 1
+	E.db["auras"]["cooldown"]["mmssColor"]["r"] = 1
+	E.db["auras"]["cooldown"]["override"] = true
+	E.db["auras"]["cooldown"]["threshold"] = -1
 	E.db["auras"]["debuffs"]["countFont"] = "Expressway"
 	E.db["auras"]["debuffs"]["countFontOutline"] = "OUTLINE"
-	E.db["auras"]["debuffs"]["countFontSize"] = 14
+	E.db["auras"]["debuffs"]["countFontSize"] = 12
+	E.db["auras"]["debuffs"]["countXOffset"] = -5
+	E.db["auras"]["debuffs"]["countYOffset"] = 7
 	E.db["auras"]["debuffs"]["horizontalSpacing"] = 2
 	E.db["auras"]["debuffs"]["maxWraps"] = 2
+	E.db["auras"]["debuffs"]["seperateOwn"] = 0
 	E.db["auras"]["debuffs"]["size"] = 26
 	E.db["auras"]["debuffs"]["timeFont"] = "Expressway"
 	E.db["auras"]["debuffs"]["timeFontOutline"] = "OUTLINE"
-	E.db["auras"]["debuffs"]["timeFontSize"] = 12
+	E.db["auras"]["debuffs"]["timeFontSize"] = 11
 
 	-- Chat
 	E.db["chat"]["desaturateVoiceIcons"] = false
@@ -400,6 +423,7 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 	-- DataTexts
 	E.db["datatexts"]["font"] = "Expressway"
 	E.db["datatexts"]["fontOutline"] = "OUTLINE"
+	E.db["datatexts"]["fontSize"] = 13
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] = false
 	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"]["enable"] = true
 	E.db["datatexts"]["panels"]["Luckyone_ActionBars_DT"][1] = "System"
@@ -1179,14 +1203,11 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 	if not E.db.movers then E.db.movers = {} end
 
 	-- Shared movers
-	E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-139"
+	E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-135"
 	E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
-	E.db["movers"]["BelowMinimapContainerMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,70,485"
 	E.db["movers"]["BNETMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173"
 	E.db["movers"]["BossBannerMover"] = "TOP,ElvUIParent,TOP,0,-139"
-	E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
 	E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-166,-1"
-	E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,153"
 	E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-166,-128"
 	E.db["movers"]["DTPanelLuckyone_ActionBars_DTMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,1"
 	E.db["movers"]["DurabilityFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-214"
@@ -1202,12 +1223,10 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 	E.db["movers"]["ElvAB_10"] = "BOTTOM,ElvUIParent,BOTTOM,0,255"
 	E.db["movers"]["ElvUIBagMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,173"
 	E.db["movers"]["ElvUIBankMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173"
-	E.db["movers"]["EventToastMover"] = "TOP,ElvUIParent,TOP,0,-139"
 	E.db["movers"]["ExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,1"
 	E.db["movers"]["GMMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-503,-1"
 	E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1"
-	E.db["movers"]["LootFrameMover"] = "TOP,ElvUIParent,TOP,0,-160"
-	E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-492"
+	E.db["movers"]["LootFrameMover"] = "TOP,ElvUIParent,TOP,0,-156"
 	E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1"
 	E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,0,-78"
 	E.db["movers"]["MirrorTimer2Mover"] = "TOP,ElvUIParent,TOP,0,-97"
@@ -1217,21 +1236,23 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 	E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1"
 	E.db["movers"]["ShiftAB"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-1"
 	E.db["movers"]["SocialMenuMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,196"
-	E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,242,348"
 	E.db["movers"]["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,1"
 	E.db["movers"]["TooltipMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135"
 	E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-57"
 	E.db["movers"]["TotemBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,428,1"
-	E.db["movers"]["UIErrorsFrameMover"] = "TOP,ElvUIParent,TOP,0,-78"
-	E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-30"
+	E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-27"
 
 	if E.Retail then
 		E.db["movers"]["AltPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,158"
 		E.db["movers"]["ArtifactBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,16"
 		E.db["movers"]["AzeriteBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
+		E.db["movers"]["BelowMinimapContainerMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,70,485"
 		E.db["movers"]["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,-168,128"
+		E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235"
 		E.db["movers"]["DigSiteProgressBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,157"
+		E.db["movers"]["EventToastMover"] = "TOP,ElvUIParent,TOP,0,-139"
 		E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1"
+		E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-492"
 		E.db["movers"]["MawBuffsBelowMinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-15,-380"
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-95,-214"
 		E.db["movers"]["PlayerChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,182"
@@ -1239,9 +1260,11 @@ function L1UI:Layout_v1(layout) -- args 'main' & 'healing'
 		E.db["movers"]["TorghastBuffsMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-51"
 		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,168,128"
 	elseif E.Wrath then
+		E.db["movers"]["BelowMinimapContainerMover"] = "TOP,UIParent,TOP,0,-26"
+		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-100,-215"
 		E.db["movers"]["PetExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
-		E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-130,-215"
 	else
+		E.db["movers"]["BelowMinimapContainerMover"] = "TOP,UIParent,TOP,0,-26"
 		E.db["movers"]["PetExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1"
 		E.db["movers"]["QuestTimerFrameMover"] = "TOP,ElvUIParent,TOP,0,-1"
 		E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-215"
