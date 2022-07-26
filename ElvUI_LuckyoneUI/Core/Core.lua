@@ -118,7 +118,7 @@ function L1UI:NameplateCVars()
 end
 
 -- E.private & Media
-function L1UI:SetupPrivate()
+function L1UI:Setup_PrivateDB()
 
 	E.db.general.font = "Expressway"
 	E.db.general.fontSize = 11
@@ -139,7 +139,7 @@ function L1UI:SetupPrivate()
 end
 
 -- E.global & Custom DataText
-function L1UI:SetupGlobal()
+function L1UI:Setup_GlobalDB()
 
 	SetCVar('uiScale', 0.71111111111111)
 	E.global.general.UIScale = 0.71111111111111
@@ -189,10 +189,10 @@ function L1UI:Setup_Layout(layout)
 	end
 
 	-- E.global & Custom DataText
-	L1UI:SetupGlobal()
+	L1UI:Setup_GlobalDB()
 
 	-- E.private & Media
-	L1UI:SetupPrivate()
+	L1UI:Setup_PrivateDB()
 
 	-- AddOnSkins profile
 	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins('noPrint') end
