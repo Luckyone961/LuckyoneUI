@@ -1,6 +1,7 @@
 ### Version 1.53 [In Development]
 **All WoW Versions:**  
 More updates for the Archive and Database  
+Reworked the configuration tab slightly  
 **Wrath Classic:**  
 Fixed an error in the Plater installer step  
 ___
