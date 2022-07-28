@@ -65,6 +65,12 @@ function L1UI:Setup_CVars()
 		SetCVar('instantQuestText', 1)
 	end
 
+	-- Wrath CVars
+	if E.Wrath then
+		SetCVar('equipmentManager', 1)
+		SetCVar('previewTalents', 1)
+	end
+
 	-- My CVars
 	if L1UI.Me then
 		SetCVar('disableServerNagle', 0)
