@@ -253,13 +253,6 @@ function L1UI:Setup_BigWigs(layout)
 			["endPullSound"] = "None",
 		}
 
-		-- Role check and set profile
-		if layout == 'main' then
-			BigWigs.db:SetProfile(name)
-		elseif layout == 'healing' then
-			BigWigs.db:SetProfile(name_healing)
-		end
-
 	elseif E.TBC then
 
 		-- Profile creation
@@ -482,13 +475,6 @@ function L1UI:Setup_BigWigs(layout)
 			["voice"] = "enUS: Default (Female)",
 			["endPullSound"] = "None",
 		}
-
-		-- Role check and set profile
-		if layout == 'main' then
-			BigWigs.db:SetProfile(name)
-		elseif layout == 'healing' then
-			BigWigs.db:SetProfile(name_healing)
-		end
 
 	elseif E.Classic then
 
@@ -713,12 +699,6 @@ function L1UI:Setup_BigWigs(layout)
 			["endPullSound"] = "None",
 		}
 
-		-- Role check and set profile
-		if layout == 'main' then
-			BigWigs.db:SetProfile(name)
-		elseif layout == 'healing' then
-			BigWigs.db:SetProfile(name_healing)
-		end
 	elseif E.Wrath then
 
 		-- Profile creation
@@ -942,12 +922,13 @@ function L1UI:Setup_BigWigs(layout)
 			["endPullSound"] = "None",
 		}
 
-		-- Role check and set profile
-		if layout == 'main' then
-			BigWigs.db:SetProfile(name)
-		elseif layout == 'healing' then
-			BigWigs.db:SetProfile(name_healing)
-		end
+	end
+
+	-- Role check and set profile
+	if layout == 'main' then
+		BigWigs.db:SetProfile(name)
+	elseif layout == 'healing' then
+		BigWigs.db:SetProfile(name_healing)
 	end
 
 	L1UI:Print(L["BigWigs profile has been set."])

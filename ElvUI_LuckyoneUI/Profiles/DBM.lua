@@ -9,10 +9,11 @@ function L1UI:Setup_DBM(layout)
 	-- Profile names
 	local name, name_healing = "Luckyone", "Luckyone_Healing"
 
-	if E.Retail then
+	-- Create the profiles
+	DBM:CreateProfile(name) -- DPS/TANK
+	DBM:CreateProfile(name_healing) -- Healing
 
-		DBM:CreateProfile(name) -- DPS/TANK
-		DBM:CreateProfile(name_healing) -- Healing
+	if E.Retail then
 
 		DBM_AllSavedOptions[name] = DBM_AllSavedOptions[name] or {}
 		DBM_AllSavedOptions[name_healing] = DBM_AllSavedOptions[name_healing] or {}
@@ -937,9 +938,6 @@ function L1UI:Setup_DBM(layout)
 		}
 
 	elseif E.TBC then
-
-		DBM:CreateProfile(name) -- DPS/TANK
-		DBM:CreateProfile(name_healing) -- Healing
 
 		DBM_AllSavedOptions[name] = DBM_AllSavedOptions[name] or {}
 		DBM_AllSavedOptions[name_healing] = DBM_AllSavedOptions[name_healing] or {}
@@ -1869,9 +1867,6 @@ function L1UI:Setup_DBM(layout)
 
 	elseif E.Classic then
 
-		DBM:CreateProfile(name) -- DPS/TANK
-		DBM:CreateProfile(name_healing) -- Healing
-
 		DBM_AllSavedOptions[name] = DBM_AllSavedOptions[name] or {}
 		DBM_AllSavedOptions[name_healing] = DBM_AllSavedOptions[name_healing] or {}
 		DBM_AllSavedOptions[name] = {
@@ -2799,9 +2794,6 @@ function L1UI:Setup_DBM(layout)
 		}
 
 	elseif E.Wrath then
-
-		DBM:CreateProfile(name) -- DPS/TANK
-		DBM:CreateProfile(name_healing) -- Healing
 
 		DBM_AllSavedOptions[name] = DBM_AllSavedOptions[name] or {}
 		DBM_AllSavedOptions[name_healing] = DBM_AllSavedOptions[name_healing] or {}
