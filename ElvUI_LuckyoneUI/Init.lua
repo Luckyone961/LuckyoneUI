@@ -60,23 +60,18 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 		ElvDB.LuckyoneDisabledAddOns = {}
 	end
 
-	if initLogin or isReload then
-		L1UI:VersionCheck()
-	end
+	if initLogin or isReload then L1UI:VersionCheck() end
 
 	L1UI:DisabledFrames()
 	L1UI:LoadCommands()
 end
 
 function L1UI:Initialize()
-
 	if E.private.install_complete and E.db.L1UI.install_version == nil then
 		E.PluginInstaller:Queue(L1UI.InstallerData)
 	end
 
-	if L1UI.Me and E.Retail then
-		ElvDB.ShadowLightAlpha = false
-	end
+	if L1UI.Me and E.Retail then ElvDB.ShadowLightAlpha = false end
 
 	EP:RegisterPlugin(addon, L1UI.Config)
 	L1UI:RegisterEvent('PLAYER_ENTERING_WORLD')
