@@ -3,13 +3,13 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local IsAddOnLoaded = IsAddOnLoaded
 
--- ProjectAzilroka Profile
+-- ProjectAzilroka profile
 function L1UI:Setup_ProjectAzilroka(noPrint)
 	if not IsAddOnLoaded('ProjectAzilroka') then return end
 
 	local PA = _G.ProjectAzilroka
 
-	-- Create and set a new Profile called Luckyone
+	-- Create and set a new profile called Luckyone
 	PA.data:SetProfile('Luckyone')
 
 	-- Module toggles
@@ -31,7 +31,7 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 		PA.db.TorghastBuffs.Enable = false
 	end
 
-	-- SquareMinimapButtons Setup
+	-- SquareMinimapButtons setup
 	PA.db.SquareMinimapButtons.Backdrop = false
 	PA.db.SquareMinimapButtons.BarMouseOver = false
 	PA.db.SquareMinimapButtons.ButtonSpacing = -1
@@ -41,7 +41,7 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	PA.db.SquareMinimapButtons.MoveTracker = false
 	PA.db.SquareMinimapButtons.Shadows = false
 
-	-- Friendlist Setup
+	-- Friendlist setup
 	PA.db.EnhancedFriendsList.DiffLevel = false
 	PA.db.EnhancedFriendsList.InfoFontSize = 10
 	PA.db.EnhancedFriendsList.NameFontSize = 11
