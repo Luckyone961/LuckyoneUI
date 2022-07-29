@@ -2,20 +2,20 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local IsAddOnLoaded = IsAddOnLoaded
 
--- Plater Profile
+-- Plater profile
 function L1UI:Setup_Plater()
 	if not IsAddOnLoaded('Plater') then return end
 
-	-- Profile Names
-	local Retail, TBC, Classic, Wrath = "Luckyone", "Luckyone TBC", "Luckyone Classic", "Luckyone Wrath"
+	-- Profile name
+	local name = "Luckyone"
 
 	if E.Retail then
 
 		-- Create profile if it doesn't exist yet
-		PlaterDB["profiles"][Retail] = PlaterDB["profiles"][Retail] or {}
+		PlaterDB["profiles"][name] = PlaterDB["profiles"][name] or {}
 
 		-- Profile db
-		PlaterDB["profiles"][Retail] = {
+		PlaterDB["profiles"][name] = {
 			["script_data"] = {
 				{
 					["ConstructorCode"] = "function (self, unitId, unitFrame, envTable, scriptTable)\n    \n    --settings\n    envTable.NameplateSizeOffset = scriptTable.config.castBarHeight\n    envTable.ShowArrow = scriptTable.config.showArrow\n    envTable.ArrowAlpha = scriptTable.config.arrowAlpha\n    envTable.HealthBarColor = scriptTable.config.healthBarColor\n    \n    --creates the spark to show the cast progress inside the health bar\n    envTable.overlaySpark = envTable.overlaySpark or Plater:CreateImage (unitFrame.healthBar)\n    envTable.overlaySpark:SetBlendMode (\"ADD\")\n    envTable.overlaySpark.width = 16\n    envTable.overlaySpark.height = 36\n    envTable.overlaySpark.alpha = .9\n    envTable.overlaySpark.texture = [[Interface\\AddOns\\Plater\\images\\spark3]]\n    \n    envTable.topArrow = envTable.topArrow or Plater:CreateImage (unitFrame.healthBar)\n    envTable.topArrow:SetBlendMode (\"ADD\")\n    envTable.topArrow.width = scriptTable.config.arrowWidth\n    envTable.topArrow.height = scriptTable.config.arrowHeight\n    envTable.topArrow.alpha = envTable.ArrowAlpha\n    envTable.topArrow.texture = [[Interface\\BUTTONS\\Arrow-Down-Up]]\n    \n    --scale animation\n    envTable.smallScaleAnimation = envTable.smallScaleAnimation or Plater:CreateAnimationHub (unitFrame.healthBar)\n    Plater:CreateAnimation (envTable.smallScaleAnimation, \"SCALE\", 1, 0.075, 1, 1, 1.08, 1.08)\n    Plater:CreateAnimation (envTable.smallScaleAnimation, \"SCALE\", 2, 0.075, 1, 1, 0.95, 0.95)    \n    --envTable.smallScaleAnimation:Play() --envTable.smallScaleAnimation:Stop()\n    \nend\n\n\n\n\n\n\n\n",
@@ -837,16 +837,16 @@ function L1UI:Setup_Plater()
 			["bossmod_aura_width"] = 30,
 		}
 
-		-- Profile Key
-		PlaterDB["profileKeys"][E.mynameRealm] = Retail
+		-- Profile key
+		PlaterDB["profileKeys"][E.mynameRealm] = name
 
 	elseif E.TBC then
 
 		-- Create profile if it doesn't exist yet
-		PlaterDB["profiles"][TBC] = PlaterDB["profiles"][TBC] or {}
+		PlaterDB["profiles"][name] = PlaterDB["profiles"][name] or {}
 
 		-- Profile db
-		PlaterDB["profiles"][TBC] = {
+		PlaterDB["profiles"][name] = {
 			["script_data"] = {},
 			["target_shady_enabled"] = false,
 			["aura2_y_offset"] = 5,
@@ -1383,15 +1383,15 @@ function L1UI:Setup_Plater()
 			["health_cutoff_upper"] = false,
 		}
 
-		-- Profile Key
-		PlaterDB["profileKeys"][E.mynameRealm] = TBC
+		-- Profile key
+		PlaterDB["profileKeys"][E.mynameRealm] = name
 
 	elseif E.Classic then
 
 		-- Create profile if it doesn't exist yet
-		PlaterDB["profiles"][Classic] = PlaterDB["profiles"][Classic] or {}
+		PlaterDB["profiles"][name] = PlaterDB["profiles"][name] or {}
 
-		PlaterDB["profiles"][Classic] = {
+		PlaterDB["profiles"][name] = {
 			["script_data"] = {},
 			["target_shady_enabled"] = false,
 			["aura2_y_offset"] = 5,
@@ -1903,16 +1903,16 @@ function L1UI:Setup_Plater()
 			["bossmod_aura_width"] = 30,
 		}
 
-		-- Profile Key
-		PlaterDB["profileKeys"][E.mynameRealm] = Classic
+		-- Profile key
+		PlaterDB["profileKeys"][E.mynameRealm] = name
 
 	elseif E.Wrath then
 
 		-- Create profile if it doesn't exist yet
-		PlaterDB["profiles"][Wrath] = PlaterDB["profiles"][Wrath] or {}
+		PlaterDB["profiles"][name] = PlaterDB["profiles"][name] or {}
 
 		-- Profile db
-		PlaterDB["profiles"][Wrath] = {
+		PlaterDB["profiles"][name] = {
 			["script_data"] = {},
 			["target_shady_enabled"] = false,
 			["aura2_y_offset"] = 5,
@@ -2449,10 +2449,13 @@ function L1UI:Setup_Plater()
 			["health_cutoff_upper"] = false,
 		}
 
-		-- Profile Key
-		PlaterDB["profileKeys"][E.mynameRealm] = Wrath
+		-- Profile key
+		PlaterDB["profileKeys"][E.mynameRealm] = name
 
 	end
+
+	-- Wipe captured_casts, captured_spells and npc_cache
+	L1UI:Cleanup_Cache('plater')
 
 	L1UI:Print(L["Plater profile has been set."])
 end
