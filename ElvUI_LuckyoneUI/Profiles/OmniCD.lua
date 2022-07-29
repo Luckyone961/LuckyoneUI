@@ -1,23 +1,25 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 if not E.Retail then return end
 
--- OmniCD Profile
+local IsAddOnLoaded = IsAddOnLoaded
+
+-- OmniCD profile
 function L1UI:Setup_OmniCD(layout)
 	if not IsAddOnLoaded('OmniCD') then return end
 
-	-- Profile Names
-	local Main, Heal = "Luckyone DPS/TANK", "Luckyone Healing"
+	-- Profile names
+	local name, name_healing = "Luckyone DPS/TANK", "Luckyone Healing"
 
 	-- Global stuff
 	OmniCDDB["cooldowns"] = {}
 	OmniCDDB["global"]["disableElvMsg"] = true
 
 	-- Create profiles if they don't exist
-	OmniCDDB["profiles"][Main] = OmniCDDB["profiles"][Main] or {}
-	OmniCDDB["profiles"][Heal] = OmniCDDB["profiles"][Heal] or {}
+	OmniCDDB["profiles"][name] = OmniCDDB["profiles"][name] or {}
+	OmniCDDB["profiles"][name_healing] = OmniCDDB["profiles"][name_healing] or {}
 
 	-- DPS/TANK
-	OmniCDDB["profiles"][Main]["General"] = {
+	OmniCDDB["profiles"][name]["General"] = {
 		["fonts"] = {
 			["statusBar"] = {
 				["font"] = "Expressway",
@@ -48,7 +50,7 @@ function L1UI:Setup_OmniCD(layout)
 			},
 		},
 	}
-	OmniCDDB["profiles"][Main]["Party"] = {
+	OmniCDDB["profiles"][name]["Party"] = {
 		["noneZoneSetting"] = "party",
 		["scenarioZoneSetting"] = "party",
 		["visibility"] = {
@@ -570,7 +572,7 @@ function L1UI:Setup_OmniCD(layout)
 	}
 
 	-- Healing
-	OmniCDDB["profiles"][Heal]["General"] = {
+	OmniCDDB["profiles"][name_healing]["General"] = {
 		["fonts"] = {
 			["statusBar"] = {
 				["font"] = "Expressway",
@@ -601,7 +603,7 @@ function L1UI:Setup_OmniCD(layout)
 			},
 		},
 	}
-	OmniCDDB["profiles"][Heal]["Party"] = {
+	OmniCDDB["profiles"][name_healing]["Party"] = {
 		["noneZoneSetting"] = "party",
 		["scenarioZoneSetting"] = "party",
 		["visibility"] = {
@@ -1135,9 +1137,9 @@ function L1UI:Setup_OmniCD(layout)
 
 	-- Role check and set profile
 	if layout == 'main' then
-		OmniCDDB["profileKeys"][E.mynameRealm] = Main
+		OmniCDDB["profileKeys"][E.mynameRealm] = name
 	elseif layout == 'healing' then
-		OmniCDDB["profileKeys"][E.mynameRealm] = Heal
+		OmniCDDB["profileKeys"][E.mynameRealm] = name_healing
 	end
 
 	L1UI:Print(L["OmniCD profile has been set."])
