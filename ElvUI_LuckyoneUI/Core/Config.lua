@@ -254,6 +254,7 @@ function L1UI:Config()
 	L1UI.Options.args.weakaurasWrath = ACH:Group('WeakAuras', nil, 14, nil, nil, nil, nil, not E.Wrath)
 	L1UI.Options.args.weakaurasWrath.args.header1 = ACH:Header('WeakAuras', 1)
 	L1UI.Options.args.weakaurasWrath.args.hunter = ACH:Input(format('|cffAAD372%s|r', L["Hunter"]), nil, 2, nil, 'full', function() return 'https://wago.io/luckyoneHunterWrath' end)
+	L1UI.Options.args.weakaurasWrath.args.druid = ACH:Input(format('|cffFF7C0A%s|r', L["Druid"]), nil, 3, nil, 'full', function() return 'https://wago.io/luckyoneDruidWrath' end)
 
 	-- Archive
 	L1UI.Options.args.archive = ACH:Group(format('|cfd9b9b9b%s|r', L["Archive"]), nil, 15)
