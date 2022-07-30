@@ -1,6 +1,7 @@
 ### Version 1.53 [In Development]
 **All WoW Versions:**  
 More updates for the archive and database  
+Reduced lag for the Setup Layout part of the initial installer  
 Reworked the configuration panel slightly  
 **Wrath Classic:**  
 Added Moonkin WeakAuras pack to the config  
