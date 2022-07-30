@@ -913,6 +913,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db["unitframe"]["units"]["focus"]["castbar"]["textColor"]["g"] = 1
 		E.db["unitframe"]["units"]["focus"]["castbar"]["textColor"]["r"] = 1
 		E.db["unitframe"]["units"]["focus"]["castbar"]["timeToHold"] = 2
+		E.db["unitframe"]["units"]["focus"]["castbar"]["width"] = 191
 		E.db["unitframe"]["units"]["focus"]["castbar"]["xOffsetText"] = 2
 		E.db["unitframe"]["units"]["focus"]["castbar"]["xOffsetTime"] = -2
 		E.db["unitframe"]["units"]["focus"]["CombatIcon"]["enable"] = false
@@ -1092,7 +1093,7 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db["unitframe"]["units"]["target"]["castbar"]["textColor"]["g"] = 1
 	E.db["unitframe"]["units"]["target"]["castbar"]["textColor"]["r"] = 1
 	E.db["unitframe"]["units"]["target"]["castbar"]["timeToHold"] = 2
-	E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 190
+	E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 191
 	E.db["unitframe"]["units"]["target"]["castbar"]["xOffsetText"] = 2
 	E.db["unitframe"]["units"]["target"]["castbar"]["xOffsetTime"] = -2
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = false
