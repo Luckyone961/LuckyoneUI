@@ -138,7 +138,7 @@ function L1UI:Setup_PrivateDB()
 	E.private.general.nameplateFont = 'Expressway'
 	E.private.general.nameplateLargeFont = 'Expressway'
 	E.private.general.normTex = 'Minimalist'
-	E.private.general.totemBar = E.Retail and false or true
+	E.private.general.totemBar = not E.Retail
 
 	E.private.install_complete = E.version
 	E.private.skins.parchmentRemoverEnable = true
