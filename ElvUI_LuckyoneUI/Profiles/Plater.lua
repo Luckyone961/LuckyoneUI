@@ -2,20 +2,20 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local IsAddOnLoaded = IsAddOnLoaded
 
--- Plater Profile
+-- Plater profile
 function L1UI:Setup_Plater()
 	if not IsAddOnLoaded('Plater') then return end
 
-	-- Profile Names
-	local Retail, TBC, Classic = "Luckyone", "Luckyone TBC", "Luckyone Classic"
+	-- Profile name
+	local name = "Luckyone"
 
 	if E.Retail then
 
 		-- Create profile if it doesn't exist yet
-		PlaterDB["profiles"][Retail] = PlaterDB["profiles"][Retail] or {}
+		PlaterDB["profiles"][name] = PlaterDB["profiles"][name] or {}
 
 		-- Profile db
-		PlaterDB["profiles"][Retail] = {
+		PlaterDB["profiles"][name] = {
 			["script_data"] = {
 				{
 					["ConstructorCode"] = "function (self, unitId, unitFrame, envTable, scriptTable)\n    \n    --settings\n    envTable.NameplateSizeOffset = scriptTable.config.castBarHeight\n    envTable.ShowArrow = scriptTable.config.showArrow\n    envTable.ArrowAlpha = scriptTable.config.arrowAlpha\n    envTable.HealthBarColor = scriptTable.config.healthBarColor\n    \n    --creates the spark to show the cast progress inside the health bar\n    envTable.overlaySpark = envTable.overlaySpark or Plater:CreateImage (unitFrame.healthBar)\n    envTable.overlaySpark:SetBlendMode (\"ADD\")\n    envTable.overlaySpark.width = 16\n    envTable.overlaySpark.height = 36\n    envTable.overlaySpark.alpha = .9\n    envTable.overlaySpark.texture = [[Interface\\AddOns\\Plater\\images\\spark3]]\n    \n    envTable.topArrow = envTable.topArrow or Plater:CreateImage (unitFrame.healthBar)\n    envTable.topArrow:SetBlendMode (\"ADD\")\n    envTable.topArrow.width = scriptTable.config.arrowWidth\n    envTable.topArrow.height = scriptTable.config.arrowHeight\n    envTable.topArrow.alpha = envTable.ArrowAlpha\n    envTable.topArrow.texture = [[Interface\\BUTTONS\\Arrow-Down-Up]]\n    \n    --scale animation\n    envTable.smallScaleAnimation = envTable.smallScaleAnimation or Plater:CreateAnimationHub (unitFrame.healthBar)\n    Plater:CreateAnimation (envTable.smallScaleAnimation, \"SCALE\", 1, 0.075, 1, 1, 1.08, 1.08)\n    Plater:CreateAnimation (envTable.smallScaleAnimation, \"SCALE\", 2, 0.075, 1, 1, 0.95, 0.95)    \n    --envTable.smallScaleAnimation:Play() --envTable.smallScaleAnimation:Stop()\n    \nend\n\n\n\n\n\n\n\n",
@@ -837,16 +837,16 @@ function L1UI:Setup_Plater()
 			["bossmod_aura_width"] = 30,
 		}
 
-		-- Profile Key
-		PlaterDB["profileKeys"][E.mynameRealm] = Retail
+		-- Profile key
+		PlaterDB["profileKeys"][E.mynameRealm] = name
 
 	elseif E.TBC then
 
 		-- Create profile if it doesn't exist yet
-		PlaterDB["profiles"][TBC] = PlaterDB["profiles"][TBC] or {}
+		PlaterDB["profiles"][name] = PlaterDB["profiles"][name] or {}
 
 		-- Profile db
-		PlaterDB["profiles"][TBC] = {
+		PlaterDB["profiles"][name] = {
 			["script_data"] = {},
 			["target_shady_enabled"] = false,
 			["aura2_y_offset"] = 5,
@@ -1129,10 +1129,11 @@ function L1UI:Setup_Plater()
 				0.058823529411765, -- [3]
 				0.80000001192093, -- [4]
 			},
-			["cast_statusbar_use_fade_effects"] = false,
+			["bossmod_aura_width"] = 30,
 			["resources_settings"] = {
 				["chr"] = {
 					["Player-1598-0BD22701"] = "ComboPoints",
+					["Player-4465-02F8C200"] = "ComboPoints",
 				},
 			},
 			["indicator_scale"] = 1.1000000238419,
@@ -1140,7 +1141,7 @@ function L1UI:Setup_Plater()
 			["hook_data"] = {
 				{
 					["Enabled"] = true,
-					["Revision"] = 91,
+					["Revision"] = 93,
 					["Options"] = {
 					},
 					["LastHookEdited"] = "Nameplate Updated",
@@ -1152,7 +1153,7 @@ function L1UI:Setup_Plater()
 						["Nameplate Updated"] = "function(self, unitId, unitFrame, envTable)\n    \n    local unitName = UnitName(unitId)\n    \n    -- Show First Name [Whitelist table]\n    local firstName = {\n        [3527] = true, -- Healing Stream Totem\n        [2630] = true, -- Earthbind Totem\n        [61245] = true, -- Capacitor Totem\n        [5925] = true, -- Grounding Totem\n        [105451] = true, -- Counterstrike Totem\n        [105427] = true, -- Skyfury Totem\n        [97369] = true, -- Liquid Magma Totem\n    }\n    \n    -- Show Full Name [Whitelist table]\n    local fullName = {\n        [185685] = true, -- Urh Relic\n        [185680] = true, -- Vy Relic\n        [185683] = true, -- Wo Relic\n    }\n    \n    if (unitName) then\n        local a , b, c, d, e, f = strsplit(' ', unitName, 5)\n        \n        if firstName [unitFrame.namePlateNpcId] then\n            unitFrame.healthBar.unitName:SetText(a)\n        elseif fullName[unitFrame.namePlateNpcId] then\n            unitFrame.healthBar.unitName:SetText(unitName)\n        else\n            unitFrame.healthBar.unitName:SetText(f or e or d or c or b or a)\n        end\n    end\nend",
 					},
 					["Prio"] = 1,
-					["Time"] = 1647036963,
+					["Name"] = "LuckyoneUI - Name",
 					["LoadConditions"] = {
 						["talent"] = {
 						},
@@ -1176,17 +1177,18 @@ function L1UI:Setup_Plater()
 						},
 					},
 					["HooksTemp"] = {
+						["Nameplate Updated"] = "function(self, unitId, unitFrame, envTable)\n    \n    local unitName = UnitName(unitId)\n    \n    -- Show First Name [Whitelist table]\n    local firstName = {\n        [3527] = true, -- Healing Stream Totem\n        [2630] = true, -- Earthbind Totem\n        [61245] = true, -- Capacitor Totem\n        [5925] = true, -- Grounding Totem\n        [105451] = true, -- Counterstrike Totem\n        [105427] = true, -- Skyfury Totem\n        [97369] = true, -- Liquid Magma Totem\n    }\n    \n    -- Show Full Name [Whitelist table]\n    local fullName = {\n        [185685] = true, -- Urh Relic\n        [185680] = true, -- Vy Relic\n        [185683] = true, -- Wo Relic\n    }\n    \n    if (unitName) then\n        local a , b, c, d, e, f = strsplit(' ', unitName, 5)\n        \n        if firstName [unitFrame.namePlateNpcId] then\n            unitFrame.healthBar.unitName:SetText(a)\n        elseif fullName[unitFrame.namePlateNpcId] then\n            unitFrame.healthBar.unitName:SetText(unitName)\n        else\n            unitFrame.healthBar.unitName:SetText(f or e or d or c or b or a)\n        end\n    end\nend",
 					},
-					["Name"] = "LuckyoneUI - Name",
-					["Icon"] = 4067922,
+					["Time"] = 1659126832,
+					["Icon"] = 136047,
 					["PlaterCore"] = 1,
 				}, -- [1]
 				{
 					["Enabled"] = true,
-					["Revision"] = 44,
+					["Revision"] = 45,
 					["Options"] = {
 					},
-					["LastHookEdited"] = "Cast Update",
+					["LastHookEdited"] = "Constructor",
 					["Author"] = "Luckyone-Laughing Skull",
 					["OptionsValues"] = {
 					},
@@ -1198,7 +1200,7 @@ function L1UI:Setup_Plater()
 						["Constructor"] = "function(self, unitId, unitFrame, envTable)\n    \n    envTable.ShowIcon = Plater.db.profile.castbar_icon_show\n    envTable.IconAnchor = \"left\"\n    envTable.IconSizeOffset = 0\n    \n    envTable.ShowShield = false\n    envTable.ShieldTexture = [[Interface\\GROUPFRAME\\UI-GROUP-MAINTANKICON]]\n    envTable.ShieldDesaturated = true\n    envTable.ShieldColor = {1, 1, 1 ,1}\n    envTable.ShieldSize = {10, 12}\n    \n    function envTable.UpdateIconPosition (unitFrame)\n        local castBar = unitFrame.castBar\n        local icon = castBar.Icon\n        local shield = castBar.BorderShield\n        \n        if (envTable.ShowIcon) then\n            icon:ClearAllPoints()\n            \n            if (envTable.IconAnchor == \"left\") then\n                icon:SetPoint (\"topright\", unitFrame.healthBar, \"topleft\", 0, envTable.IconSizeOffset)\n                icon:SetPoint (\"bottomright\", unitFrame.castBar, \"bottomleft\", 0, 0)    \n                \n            elseif (envTable.IconAnchor == \"right\") then\n                icon:SetPoint (\"topleft\", unitFrame.healthBar, \"topright\", 0, envTable.IconSizeOffset)\n                icon:SetPoint (\"bottomleft\", unitFrame.castBar, \"bottomright\", 0, 0)\n                \n            end\n            \n            icon:SetWidth (icon:GetHeight())\n            icon:Show()\n            \n        else\n            icon:Hide()\n            \n        end\n        \n        if (envTable.ShowShield and not castBar.canInterrupt) then\n            shield:Show()\n            shield:SetAlpha (1)\n            shield:SetTexCoord (0, 1, 0, 1)\n            shield:SetVertexColor (1, 1, 1, 1)\n            \n            shield:SetTexture (envTable.ShieldTexture)\n            shield:SetDesaturated (envTable.ShieldDesaturated)\n            \n            if (not envTable.ShieldDesaturated) then\n                shield:SetVertexColor (DetailsFramework:ParseColors (envTable.ShieldColor))\n            end\n            \n            shield:SetSize (unpack (envTable.ShieldSize))\n            \n            shield:ClearAllPoints()\n            shield:SetPoint (\"center\", castBar, \"left\", 0, 0)\n        else\n            shield:Hide()\n        end\n    end\n    \n    function envTable.UpdateBorder (unitFrame, casting)\n        local healthBar = unitFrame.healthBar\n        local castBar = unitFrame.castBar\n        if casting then\n            if envTable.ShowIcon and castBar.Icon:IsShown() then\n                if envTable.IconAnchor == \"left\" then\n                    healthBar.border:SetPoint(\"TOPLEFT\", castBar.Icon, \"TOPLEFT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMRIGHT\", castBar, \"BOTTOMRIGHT\", 0, 0)\n                elseif envTable.IconAnchor == \"right\" then\n                    healthBar.border:SetPoint(\"TOPRIGHT\", castBar.Icon, \"TOPRIGHT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMLEFT\", castBar, \"BOTTOMLEFT\", 0, 0) \n                end\n            else\n                if envTable.IconAnchor == \"left\" then\n                    healthBar.border:SetPoint(\"TOPLEFT\", healthBar, \"TOPLEFT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMRIGHT\", castBar, \"BOTTOMRIGHT\", 0, 0)\n                elseif envTable.IconAnchor == \"right\" then\n                    healthBar.border:SetPoint(\"TOPRIGHT\", healthBar, \"TOPRIGHT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMLEFT\", castBar, \"BOTTOMLEFT\", 0, 0) \n                end\n            end\n        else\n            if envTable.IconAnchor == \"left\" then\n                healthBar.border:SetPoint(\"TOPLEFT\", healthBar, \"TOPLEFT\", 0, 0)\n                healthBar.border:SetPoint(\"BOTTOMRIGHT\", healthBar, \"BOTTOMRIGHT\", 0, 0)\n            elseif envTable.IconAnchor == \"right\" then\n                healthBar.border:SetPoint(\"TOPRIGHT\", healthBar, \"TOPRIGHT\", 0, 0)\n                healthBar.border:SetPoint(\"BOTTOMLEFT\", healthBar, \"BOTTOMLEFT\", 0, 0) \n            end\n        end\n    end\n    if not unitFrame.castBar.borderChangeHooked then\n        hooksecurefunc(unitFrame.castBar, \"Hide\", function() envTable.UpdateBorder(unitFrame, false) end)\n        unitFrame.castBar.borderChangeHooked = true\n    end\nend",
 					},
 					["Prio"] = 1,
-					["Time"] = 1647037225,
+					["Name"] = "LuckyoneUI - Castbar",
 					["LoadConditions"] = {
 						["talent"] = {
 						},
@@ -1222,9 +1224,13 @@ function L1UI:Setup_Plater()
 						},
 					},
 					["HooksTemp"] = {
+						["Nameplate Removed"] = "function(self, unitId, unitFrame, envTable)\n    envTable.UpdateBorder(unitFrame, false)\nend",
+						["Cast Start"] = "function(self, unitId, unitFrame, envTable)\n    envTable.UpdateIconPosition(unitFrame)\n    envTable.UpdateBorder(unitFrame, true)\nend",
+						["Cast Update"] = "function(self, unitId, unitFrame, envTable)\n    envTable.UpdateIconPosition(unitFrame)\nend",
+						["Constructor"] = "function(self, unitId, unitFrame, envTable)\n    \n    envTable.ShowIcon = Plater.db.profile.castbar_icon_show\n    envTable.IconAnchor = \"left\"\n    envTable.IconSizeOffset = 0\n    \n    envTable.ShowShield = false\n    envTable.ShieldTexture = [[Interface\\GROUPFRAME\\UI-GROUP-MAINTANKICON]]\n    envTable.ShieldDesaturated = true\n    envTable.ShieldColor = {1, 1, 1 ,1}\n    envTable.ShieldSize = {10, 12}\n    \n    function envTable.UpdateIconPosition (unitFrame)\n        local castBar = unitFrame.castBar\n        local icon = castBar.Icon\n        local shield = castBar.BorderShield\n        \n        if (envTable.ShowIcon) then\n            icon:ClearAllPoints()\n            \n            if (envTable.IconAnchor == \"left\") then\n                icon:SetPoint (\"topright\", unitFrame.healthBar, \"topleft\", 0, envTable.IconSizeOffset)\n                icon:SetPoint (\"bottomright\", unitFrame.castBar, \"bottomleft\", 0, 0)    \n                \n            elseif (envTable.IconAnchor == \"right\") then\n                icon:SetPoint (\"topleft\", unitFrame.healthBar, \"topright\", 0, envTable.IconSizeOffset)\n                icon:SetPoint (\"bottomleft\", unitFrame.castBar, \"bottomright\", 0, 0)\n                \n            end\n            \n            icon:SetWidth (icon:GetHeight())\n            icon:Show()\n            \n        else\n            icon:Hide()\n            \n        end\n        \n        if (envTable.ShowShield and not castBar.canInterrupt) then\n            shield:Show()\n            shield:SetAlpha (1)\n            shield:SetTexCoord (0, 1, 0, 1)\n            shield:SetVertexColor (1, 1, 1, 1)\n            \n            shield:SetTexture (envTable.ShieldTexture)\n            shield:SetDesaturated (envTable.ShieldDesaturated)\n            \n            if (not envTable.ShieldDesaturated) then\n                shield:SetVertexColor (DetailsFramework:ParseColors (envTable.ShieldColor))\n            end\n            \n            shield:SetSize (unpack (envTable.ShieldSize))\n            \n            shield:ClearAllPoints()\n            shield:SetPoint (\"center\", castBar, \"left\", 0, 0)\n        else\n            shield:Hide()\n        end\n    end\n    \n    function envTable.UpdateBorder (unitFrame, casting)\n        local healthBar = unitFrame.healthBar\n        local castBar = unitFrame.castBar\n        if casting then\n            if envTable.ShowIcon and castBar.Icon:IsShown() then\n                if envTable.IconAnchor == \"left\" then\n                    healthBar.border:SetPoint(\"TOPLEFT\", castBar.Icon, \"TOPLEFT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMRIGHT\", castBar, \"BOTTOMRIGHT\", 0, 0)\n                elseif envTable.IconAnchor == \"right\" then\n                    healthBar.border:SetPoint(\"TOPRIGHT\", castBar.Icon, \"TOPRIGHT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMLEFT\", castBar, \"BOTTOMLEFT\", 0, 0) \n                end\n            else\n                if envTable.IconAnchor == \"left\" then\n                    healthBar.border:SetPoint(\"TOPLEFT\", healthBar, \"TOPLEFT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMRIGHT\", castBar, \"BOTTOMRIGHT\", 0, 0)\n                elseif envTable.IconAnchor == \"right\" then\n                    healthBar.border:SetPoint(\"TOPRIGHT\", healthBar, \"TOPRIGHT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMLEFT\", castBar, \"BOTTOMLEFT\", 0, 0) \n                end\n            end\n        else\n            if envTable.IconAnchor == \"left\" then\n                healthBar.border:SetPoint(\"TOPLEFT\", healthBar, \"TOPLEFT\", 0, 0)\n                healthBar.border:SetPoint(\"BOTTOMRIGHT\", healthBar, \"BOTTOMRIGHT\", 0, 0)\n            elseif envTable.IconAnchor == \"right\" then\n                healthBar.border:SetPoint(\"TOPRIGHT\", healthBar, \"TOPRIGHT\", 0, 0)\n                healthBar.border:SetPoint(\"BOTTOMLEFT\", healthBar, \"BOTTOMLEFT\", 0, 0) \n            end\n        end\n    end\n    if not unitFrame.castBar.borderChangeHooked then\n        hooksecurefunc(unitFrame.castBar, \"Hide\", function() envTable.UpdateBorder(unitFrame, false) end)\n        unitFrame.castBar.borderChangeHooked = true\n    end\nend",
 					},
-					["Name"] = "LuckyoneUI - Castbar",
-					["Icon"] = 4067925,
+					["Time"] = 1659126814,
+					["Icon"] = 136048,
 					["PlaterCore"] = 1,
 				}, -- [2]
 			},
@@ -1249,7 +1255,6 @@ function L1UI:Setup_Plater()
 			["castbar_target_font"] = "Expressway",
 			["cast_statusbar_spark_texture"] = "Interface\\AddOns\\Plater\\images\\spark8",
 			["aura_x_offset"] = 0,
-			["first_run3"] = true,
 			["ui_parent_scale_tune"] = 1.406249965948519,
 			["health_statusbar_bgtexture"] = "Minimalist",
 			["indicator_raidmark_anchor"] = {
@@ -1303,27 +1308,45 @@ function L1UI:Setup_Plater()
 			},
 			["update_throttle"] = 0.099999994039536,
 			["bossmod_cooldown_text_size"] = 15,
+			["patch_version"] = 19,
 			["indicator_extra_raidmark"] = false,
+			["indicator_raidmark_scale"] = 0.84999996423721,
 			["extra_icon_timer_font"] = "Expressway",
-			["health_selection_overlay"] = "Minimalist",
-			["health_cutoff"] = false,
 			["target_highlight_alpha"] = 1,
+			["target_shady_alpha"] = 1,
+			["ghost_auras"] = {
+				["auras"] = {
+					["PRIEST"] = {
+						[3] = {
+							[589] = true,
+							[34914] = true,
+						},
+					},
+					["WARLOCK"] = {
+						{
+							[172] = true,
+							[980] = true,
+						}, -- [1]
+					},
+				},
+			},
+			["target_highlight_height"] = 12,
+			["version"] = 13,
+			["health_selection_overlay"] = "Minimalist",
+			["use_ui_parent"] = true,
+			["indicator_elite"] = false,
+			["cast_statusbar_use_fade_effects"] = false,
+			["indicator_spec"] = false,
 			["cast_statusbar_color_interrupted"] = {
 				0.30196078431373, -- [1]
 				0.30196078431373, -- [2]
 				0.30196078431373, -- [3]
 			},
-			["indicator_raidmark_scale"] = 0.84999996423721,
-			["target_highlight_height"] = 12,
-			["health_cutoff_upper"] = false,
-			["version"] = 13,
-			["use_ui_parent"] = true,
-			["indicator_elite"] = false,
-			["indicator_spec"] = false,
-			["patch_version"] = 18,
 			["range_check_in_range_or_target_alpha"] = 1,
 			["aura_timer_text_size"] = 10,
 			["number_region_first_run"] = true,
+			["script_data_trash"] = {},
+			["health_cutoff"] = false,
 			["castbar_target_anchor"] = {
 				["side"] = 4,
 			},
@@ -1337,8 +1360,9 @@ function L1UI:Setup_Plater()
 				["Cast - Ultra Important"] = 11,
 				["Cast - Big Alert"] = 12,
 				["Cast - Small Alert"] = 11,
-				["Spiteful Affix"] = 3,
 				["Unit - Show Energy"] = 11,
+				["Spiteful Affix"] = 3,
+				["Relics 9.2 M Dungeons"] = 2,
 				["Unit - Main Target"] = 11,
 				["Aura - Blink Time Left"] = 13,
 				["Unit - Important"] = 11,
@@ -1353,20 +1377,21 @@ function L1UI:Setup_Plater()
 			},
 			["cast_statusbar_texture"] = "Minimalist",
 			["indicator_faction"] = false,
+			["first_run3"] = true,
 			["indicator_pet"] = false,
 			["aura_timer_text_font"] = "Expressway",
-			["bossmod_aura_width"] = 30,
+			["health_cutoff_upper"] = false,
 		}
 
-		-- Profile Key
-		PlaterDB["profileKeys"][E.mynameRealm] = TBC
+		-- Profile key
+		PlaterDB["profileKeys"][E.mynameRealm] = name
 
 	elseif E.Classic then
 
 		-- Create profile if it doesn't exist yet
-		PlaterDB["profiles"][Classic] = PlaterDB["profiles"][Classic] or {}
+		PlaterDB["profiles"][name] = PlaterDB["profiles"][name] or {}
 
-		PlaterDB["profiles"][Classic] = {
+		PlaterDB["profiles"][name] = {
 			["script_data"] = {},
 			["target_shady_enabled"] = false,
 			["aura2_y_offset"] = 5,
@@ -1878,16 +1903,16 @@ function L1UI:Setup_Plater()
 			["bossmod_aura_width"] = 30,
 		}
 
-		-- Profile Key
-		PlaterDB["profileKeys"][E.mynameRealm] = Classic
+		-- Profile key
+		PlaterDB["profileKeys"][E.mynameRealm] = name
 
 	elseif E.Wrath then
 
 		-- Create profile if it doesn't exist yet
-		PlaterDB["profiles"][Wrath] = PlaterDB["profiles"][Wrath] or {}
+		PlaterDB["profiles"][name] = PlaterDB["profiles"][name] or {}
 
 		-- Profile db
-		PlaterDB["profiles"][Wrath] = {
+		PlaterDB["profiles"][name] = {
 			["script_data"] = {},
 			["target_shady_enabled"] = false,
 			["aura2_y_offset"] = 5,
@@ -2170,10 +2195,11 @@ function L1UI:Setup_Plater()
 				0.058823529411765, -- [3]
 				0.80000001192093, -- [4]
 			},
-			["cast_statusbar_use_fade_effects"] = false,
+			["bossmod_aura_width"] = 30,
 			["resources_settings"] = {
 				["chr"] = {
 					["Player-1598-0BD22701"] = "ComboPoints",
+					["Player-4465-02F8C200"] = "ComboPoints",
 				},
 			},
 			["indicator_scale"] = 1.1000000238419,
@@ -2181,7 +2207,7 @@ function L1UI:Setup_Plater()
 			["hook_data"] = {
 				{
 					["Enabled"] = true,
-					["Revision"] = 91,
+					["Revision"] = 93,
 					["Options"] = {
 					},
 					["LastHookEdited"] = "Nameplate Updated",
@@ -2193,7 +2219,7 @@ function L1UI:Setup_Plater()
 						["Nameplate Updated"] = "function(self, unitId, unitFrame, envTable)\n    \n    local unitName = UnitName(unitId)\n    \n    -- Show First Name [Whitelist table]\n    local firstName = {\n        [3527] = true, -- Healing Stream Totem\n        [2630] = true, -- Earthbind Totem\n        [61245] = true, -- Capacitor Totem\n        [5925] = true, -- Grounding Totem\n        [105451] = true, -- Counterstrike Totem\n        [105427] = true, -- Skyfury Totem\n        [97369] = true, -- Liquid Magma Totem\n    }\n    \n    -- Show Full Name [Whitelist table]\n    local fullName = {\n        [185685] = true, -- Urh Relic\n        [185680] = true, -- Vy Relic\n        [185683] = true, -- Wo Relic\n    }\n    \n    if (unitName) then\n        local a , b, c, d, e, f = strsplit(' ', unitName, 5)\n        \n        if firstName [unitFrame.namePlateNpcId] then\n            unitFrame.healthBar.unitName:SetText(a)\n        elseif fullName[unitFrame.namePlateNpcId] then\n            unitFrame.healthBar.unitName:SetText(unitName)\n        else\n            unitFrame.healthBar.unitName:SetText(f or e or d or c or b or a)\n        end\n    end\nend",
 					},
 					["Prio"] = 1,
-					["Time"] = 1647036963,
+					["Name"] = "LuckyoneUI - Name",
 					["LoadConditions"] = {
 						["talent"] = {
 						},
@@ -2217,17 +2243,18 @@ function L1UI:Setup_Plater()
 						},
 					},
 					["HooksTemp"] = {
+						["Nameplate Updated"] = "function(self, unitId, unitFrame, envTable)\n    \n    local unitName = UnitName(unitId)\n    \n    -- Show First Name [Whitelist table]\n    local firstName = {\n        [3527] = true, -- Healing Stream Totem\n        [2630] = true, -- Earthbind Totem\n        [61245] = true, -- Capacitor Totem\n        [5925] = true, -- Grounding Totem\n        [105451] = true, -- Counterstrike Totem\n        [105427] = true, -- Skyfury Totem\n        [97369] = true, -- Liquid Magma Totem\n    }\n    \n    -- Show Full Name [Whitelist table]\n    local fullName = {\n        [185685] = true, -- Urh Relic\n        [185680] = true, -- Vy Relic\n        [185683] = true, -- Wo Relic\n    }\n    \n    if (unitName) then\n        local a , b, c, d, e, f = strsplit(' ', unitName, 5)\n        \n        if firstName [unitFrame.namePlateNpcId] then\n            unitFrame.healthBar.unitName:SetText(a)\n        elseif fullName[unitFrame.namePlateNpcId] then\n            unitFrame.healthBar.unitName:SetText(unitName)\n        else\n            unitFrame.healthBar.unitName:SetText(f or e or d or c or b or a)\n        end\n    end\nend",
 					},
-					["Name"] = "LuckyoneUI - Name",
-					["Icon"] = 4067922,
+					["Time"] = 1659126832,
+					["Icon"] = 136047,
 					["PlaterCore"] = 1,
 				}, -- [1]
 				{
 					["Enabled"] = true,
-					["Revision"] = 44,
+					["Revision"] = 45,
 					["Options"] = {
 					},
-					["LastHookEdited"] = "Cast Update",
+					["LastHookEdited"] = "Constructor",
 					["Author"] = "Luckyone-Laughing Skull",
 					["OptionsValues"] = {
 					},
@@ -2239,7 +2266,7 @@ function L1UI:Setup_Plater()
 						["Constructor"] = "function(self, unitId, unitFrame, envTable)\n    \n    envTable.ShowIcon = Plater.db.profile.castbar_icon_show\n    envTable.IconAnchor = \"left\"\n    envTable.IconSizeOffset = 0\n    \n    envTable.ShowShield = false\n    envTable.ShieldTexture = [[Interface\\GROUPFRAME\\UI-GROUP-MAINTANKICON]]\n    envTable.ShieldDesaturated = true\n    envTable.ShieldColor = {1, 1, 1 ,1}\n    envTable.ShieldSize = {10, 12}\n    \n    function envTable.UpdateIconPosition (unitFrame)\n        local castBar = unitFrame.castBar\n        local icon = castBar.Icon\n        local shield = castBar.BorderShield\n        \n        if (envTable.ShowIcon) then\n            icon:ClearAllPoints()\n            \n            if (envTable.IconAnchor == \"left\") then\n                icon:SetPoint (\"topright\", unitFrame.healthBar, \"topleft\", 0, envTable.IconSizeOffset)\n                icon:SetPoint (\"bottomright\", unitFrame.castBar, \"bottomleft\", 0, 0)    \n                \n            elseif (envTable.IconAnchor == \"right\") then\n                icon:SetPoint (\"topleft\", unitFrame.healthBar, \"topright\", 0, envTable.IconSizeOffset)\n                icon:SetPoint (\"bottomleft\", unitFrame.castBar, \"bottomright\", 0, 0)\n                \n            end\n            \n            icon:SetWidth (icon:GetHeight())\n            icon:Show()\n            \n        else\n            icon:Hide()\n            \n        end\n        \n        if (envTable.ShowShield and not castBar.canInterrupt) then\n            shield:Show()\n            shield:SetAlpha (1)\n            shield:SetTexCoord (0, 1, 0, 1)\n            shield:SetVertexColor (1, 1, 1, 1)\n            \n            shield:SetTexture (envTable.ShieldTexture)\n            shield:SetDesaturated (envTable.ShieldDesaturated)\n            \n            if (not envTable.ShieldDesaturated) then\n                shield:SetVertexColor (DetailsFramework:ParseColors (envTable.ShieldColor))\n            end\n            \n            shield:SetSize (unpack (envTable.ShieldSize))\n            \n            shield:ClearAllPoints()\n            shield:SetPoint (\"center\", castBar, \"left\", 0, 0)\n        else\n            shield:Hide()\n        end\n    end\n    \n    function envTable.UpdateBorder (unitFrame, casting)\n        local healthBar = unitFrame.healthBar\n        local castBar = unitFrame.castBar\n        if casting then\n            if envTable.ShowIcon and castBar.Icon:IsShown() then\n                if envTable.IconAnchor == \"left\" then\n                    healthBar.border:SetPoint(\"TOPLEFT\", castBar.Icon, \"TOPLEFT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMRIGHT\", castBar, \"BOTTOMRIGHT\", 0, 0)\n                elseif envTable.IconAnchor == \"right\" then\n                    healthBar.border:SetPoint(\"TOPRIGHT\", castBar.Icon, \"TOPRIGHT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMLEFT\", castBar, \"BOTTOMLEFT\", 0, 0) \n                end\n            else\n                if envTable.IconAnchor == \"left\" then\n                    healthBar.border:SetPoint(\"TOPLEFT\", healthBar, \"TOPLEFT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMRIGHT\", castBar, \"BOTTOMRIGHT\", 0, 0)\n                elseif envTable.IconAnchor == \"right\" then\n                    healthBar.border:SetPoint(\"TOPRIGHT\", healthBar, \"TOPRIGHT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMLEFT\", castBar, \"BOTTOMLEFT\", 0, 0) \n                end\n            end\n        else\n            if envTable.IconAnchor == \"left\" then\n                healthBar.border:SetPoint(\"TOPLEFT\", healthBar, \"TOPLEFT\", 0, 0)\n                healthBar.border:SetPoint(\"BOTTOMRIGHT\", healthBar, \"BOTTOMRIGHT\", 0, 0)\n            elseif envTable.IconAnchor == \"right\" then\n                healthBar.border:SetPoint(\"TOPRIGHT\", healthBar, \"TOPRIGHT\", 0, 0)\n                healthBar.border:SetPoint(\"BOTTOMLEFT\", healthBar, \"BOTTOMLEFT\", 0, 0) \n            end\n        end\n    end\n    if not unitFrame.castBar.borderChangeHooked then\n        hooksecurefunc(unitFrame.castBar, \"Hide\", function() envTable.UpdateBorder(unitFrame, false) end)\n        unitFrame.castBar.borderChangeHooked = true\n    end\nend",
 					},
 					["Prio"] = 1,
-					["Time"] = 1647037225,
+					["Name"] = "LuckyoneUI - Castbar",
 					["LoadConditions"] = {
 						["talent"] = {
 						},
@@ -2263,9 +2290,13 @@ function L1UI:Setup_Plater()
 						},
 					},
 					["HooksTemp"] = {
+						["Nameplate Removed"] = "function(self, unitId, unitFrame, envTable)\n    envTable.UpdateBorder(unitFrame, false)\nend",
+						["Cast Start"] = "function(self, unitId, unitFrame, envTable)\n    envTable.UpdateIconPosition(unitFrame)\n    envTable.UpdateBorder(unitFrame, true)\nend",
+						["Cast Update"] = "function(self, unitId, unitFrame, envTable)\n    envTable.UpdateIconPosition(unitFrame)\nend",
+						["Constructor"] = "function(self, unitId, unitFrame, envTable)\n    \n    envTable.ShowIcon = Plater.db.profile.castbar_icon_show\n    envTable.IconAnchor = \"left\"\n    envTable.IconSizeOffset = 0\n    \n    envTable.ShowShield = false\n    envTable.ShieldTexture = [[Interface\\GROUPFRAME\\UI-GROUP-MAINTANKICON]]\n    envTable.ShieldDesaturated = true\n    envTable.ShieldColor = {1, 1, 1 ,1}\n    envTable.ShieldSize = {10, 12}\n    \n    function envTable.UpdateIconPosition (unitFrame)\n        local castBar = unitFrame.castBar\n        local icon = castBar.Icon\n        local shield = castBar.BorderShield\n        \n        if (envTable.ShowIcon) then\n            icon:ClearAllPoints()\n            \n            if (envTable.IconAnchor == \"left\") then\n                icon:SetPoint (\"topright\", unitFrame.healthBar, \"topleft\", 0, envTable.IconSizeOffset)\n                icon:SetPoint (\"bottomright\", unitFrame.castBar, \"bottomleft\", 0, 0)    \n                \n            elseif (envTable.IconAnchor == \"right\") then\n                icon:SetPoint (\"topleft\", unitFrame.healthBar, \"topright\", 0, envTable.IconSizeOffset)\n                icon:SetPoint (\"bottomleft\", unitFrame.castBar, \"bottomright\", 0, 0)\n                \n            end\n            \n            icon:SetWidth (icon:GetHeight())\n            icon:Show()\n            \n        else\n            icon:Hide()\n            \n        end\n        \n        if (envTable.ShowShield and not castBar.canInterrupt) then\n            shield:Show()\n            shield:SetAlpha (1)\n            shield:SetTexCoord (0, 1, 0, 1)\n            shield:SetVertexColor (1, 1, 1, 1)\n            \n            shield:SetTexture (envTable.ShieldTexture)\n            shield:SetDesaturated (envTable.ShieldDesaturated)\n            \n            if (not envTable.ShieldDesaturated) then\n                shield:SetVertexColor (DetailsFramework:ParseColors (envTable.ShieldColor))\n            end\n            \n            shield:SetSize (unpack (envTable.ShieldSize))\n            \n            shield:ClearAllPoints()\n            shield:SetPoint (\"center\", castBar, \"left\", 0, 0)\n        else\n            shield:Hide()\n        end\n    end\n    \n    function envTable.UpdateBorder (unitFrame, casting)\n        local healthBar = unitFrame.healthBar\n        local castBar = unitFrame.castBar\n        if casting then\n            if envTable.ShowIcon and castBar.Icon:IsShown() then\n                if envTable.IconAnchor == \"left\" then\n                    healthBar.border:SetPoint(\"TOPLEFT\", castBar.Icon, \"TOPLEFT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMRIGHT\", castBar, \"BOTTOMRIGHT\", 0, 0)\n                elseif envTable.IconAnchor == \"right\" then\n                    healthBar.border:SetPoint(\"TOPRIGHT\", castBar.Icon, \"TOPRIGHT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMLEFT\", castBar, \"BOTTOMLEFT\", 0, 0) \n                end\n            else\n                if envTable.IconAnchor == \"left\" then\n                    healthBar.border:SetPoint(\"TOPLEFT\", healthBar, \"TOPLEFT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMRIGHT\", castBar, \"BOTTOMRIGHT\", 0, 0)\n                elseif envTable.IconAnchor == \"right\" then\n                    healthBar.border:SetPoint(\"TOPRIGHT\", healthBar, \"TOPRIGHT\", 0, 0)\n                    healthBar.border:SetPoint(\"BOTTOMLEFT\", castBar, \"BOTTOMLEFT\", 0, 0) \n                end\n            end\n        else\n            if envTable.IconAnchor == \"left\" then\n                healthBar.border:SetPoint(\"TOPLEFT\", healthBar, \"TOPLEFT\", 0, 0)\n                healthBar.border:SetPoint(\"BOTTOMRIGHT\", healthBar, \"BOTTOMRIGHT\", 0, 0)\n            elseif envTable.IconAnchor == \"right\" then\n                healthBar.border:SetPoint(\"TOPRIGHT\", healthBar, \"TOPRIGHT\", 0, 0)\n                healthBar.border:SetPoint(\"BOTTOMLEFT\", healthBar, \"BOTTOMLEFT\", 0, 0) \n            end\n        end\n    end\n    if not unitFrame.castBar.borderChangeHooked then\n        hooksecurefunc(unitFrame.castBar, \"Hide\", function() envTable.UpdateBorder(unitFrame, false) end)\n        unitFrame.castBar.borderChangeHooked = true\n    end\nend",
 					},
-					["Name"] = "LuckyoneUI - Castbar",
-					["Icon"] = 4067925,
+					["Time"] = 1659126814,
+					["Icon"] = 136048,
 					["PlaterCore"] = 1,
 				}, -- [2]
 			},
@@ -2290,7 +2321,6 @@ function L1UI:Setup_Plater()
 			["castbar_target_font"] = "Expressway",
 			["cast_statusbar_spark_texture"] = "Interface\\AddOns\\Plater\\images\\spark8",
 			["aura_x_offset"] = 0,
-			["first_run3"] = true,
 			["ui_parent_scale_tune"] = 1.406249965948519,
 			["health_statusbar_bgtexture"] = "Minimalist",
 			["indicator_raidmark_anchor"] = {
@@ -2344,27 +2374,45 @@ function L1UI:Setup_Plater()
 			},
 			["update_throttle"] = 0.099999994039536,
 			["bossmod_cooldown_text_size"] = 15,
+			["patch_version"] = 19,
 			["indicator_extra_raidmark"] = false,
+			["indicator_raidmark_scale"] = 0.84999996423721,
 			["extra_icon_timer_font"] = "Expressway",
-			["health_selection_overlay"] = "Minimalist",
-			["health_cutoff"] = false,
 			["target_highlight_alpha"] = 1,
+			["target_shady_alpha"] = 1,
+			["ghost_auras"] = {
+				["auras"] = {
+					["PRIEST"] = {
+						[3] = {
+							[589] = true,
+							[34914] = true,
+						},
+					},
+					["WARLOCK"] = {
+						{
+							[172] = true,
+							[980] = true,
+						}, -- [1]
+					},
+				},
+			},
+			["target_highlight_height"] = 12,
+			["version"] = 13,
+			["health_selection_overlay"] = "Minimalist",
+			["use_ui_parent"] = true,
+			["indicator_elite"] = false,
+			["cast_statusbar_use_fade_effects"] = false,
+			["indicator_spec"] = false,
 			["cast_statusbar_color_interrupted"] = {
 				0.30196078431373, -- [1]
 				0.30196078431373, -- [2]
 				0.30196078431373, -- [3]
 			},
-			["indicator_raidmark_scale"] = 0.84999996423721,
-			["target_highlight_height"] = 12,
-			["health_cutoff_upper"] = false,
-			["version"] = 13,
-			["use_ui_parent"] = true,
-			["indicator_elite"] = false,
-			["indicator_spec"] = false,
-			["patch_version"] = 18,
 			["range_check_in_range_or_target_alpha"] = 1,
 			["aura_timer_text_size"] = 10,
 			["number_region_first_run"] = true,
+			["script_data_trash"] = {},
+			["health_cutoff"] = false,
 			["castbar_target_anchor"] = {
 				["side"] = 4,
 			},
@@ -2378,8 +2426,9 @@ function L1UI:Setup_Plater()
 				["Cast - Ultra Important"] = 11,
 				["Cast - Big Alert"] = 12,
 				["Cast - Small Alert"] = 11,
-				["Spiteful Affix"] = 3,
 				["Unit - Show Energy"] = 11,
+				["Spiteful Affix"] = 3,
+				["Relics 9.2 M Dungeons"] = 2,
 				["Unit - Main Target"] = 11,
 				["Aura - Blink Time Left"] = 13,
 				["Unit - Important"] = 11,
@@ -2394,15 +2443,19 @@ function L1UI:Setup_Plater()
 			},
 			["cast_statusbar_texture"] = "Minimalist",
 			["indicator_faction"] = false,
+			["first_run3"] = true,
 			["indicator_pet"] = false,
 			["aura_timer_text_font"] = "Expressway",
-			["bossmod_aura_width"] = 30,
+			["health_cutoff_upper"] = false,
 		}
 
-		-- Profile Key
-		PlaterDB["profileKeys"][E.mynameRealm] = Wrath
+		-- Profile key
+		PlaterDB["profileKeys"][E.mynameRealm] = name
 
 	end
+
+	-- Wipe captured_casts, captured_spells and npc_cache
+	L1UI:Cleanup_Cache('plater')
 
 	L1UI:Print(L["Plater profile has been set."])
 end

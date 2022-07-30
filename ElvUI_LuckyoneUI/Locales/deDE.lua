@@ -1,20 +1,16 @@
 local L = ElvUI[1].Libs.ACL:NewLocale('ElvUI', 'deDE')
 if not L then return end
 
---[[
-	Please contact me on Discord if you contributed to the translation of LuckyoneUI.
-	I will verify your Pull Request on GitHub and add you to the AddOn credits.
-]]
+-- Please contact me on Discord if you contributed to the translation of LuckyoneUI
+-- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
 -- Config.lua locales
 L["Addon Download:"] = true
 L["Addon Profiles"] = "Addon Profile"
 L["Alert Frame"] = "Alarmfenster"
-L["Archive of the LuckyoneUI ElvUI layouts (Shadowlands)"] = true
 L["Archive"] = true
 L["Auras"] = "Auren"
 L["Author"] = true
-L["Available Tags"] = "Verfügbare Tags"
 L["Blizzard"] = true
 L["Boss Banner"] = true
 L["Boss Frame Buffs"] = "Bossfenster Stärkungszauber"
@@ -32,7 +28,6 @@ L["Clear Editbox History"] = "Lösche Editbox Verlauf"
 L["Coding"] = true
 L["Console Variables"] = true
 L["Credits"] = true
-L["CVars"] = true
 L["Dark Style (Default)"] = "Dunkler Stil (Standart)"
 L["Dark"] = "Dunkel"
 L["Death Knight"] = "Todesritter"
@@ -49,10 +44,9 @@ L["Evoker"] = true
 L["Field of View"] = true
 L["Focus Frame Buffs"] = "Fokusfenster Stärkungszauber"
 L["Focus Frame Debuffs"] = "Fokusfenster Schwächungszauber"
-L["Fonts, Textures & Skins"] = "Schriftarten, Texturen & Skins"
+L["Fonts and Textures"] = "Schriftarten und Texturen"
 L["General CVars"] = "Allgemeine CVars"
 L["General WeakAuras"] = "Allgemeine WeakAuras"
-L["Global Profiles"] = true
 L["Healing Layout"] = "Heiler Layout"
 L["Healing Profiles"] = "Heiler Profile"
 L["Hide Blizzard Frames"] = "Verstecke Blizzard Fenster"
@@ -61,8 +55,6 @@ L["Hide the Loot/Alert Frame"] = "Verstecke das Beute-/Alarm Fenster"
 L["Hide the Zone Text"] = "Verstecke  den Zonentext"
 L["Hunter"] = "Jäger"
 L["Install"] = "Installieren"
-L["Installer & Update"] = true
-L["Jump to the Available Tag list."] = "Zur Liste der verfügbaren Tags springen."
 L["Links"] = true
 L["Mage"] = "Magier"
 L["Media"] = "Medien"
@@ -100,7 +92,6 @@ L["Target Frame Debuffs"] = "Zielfenster Schwächungszauber"
 L["Testers and Translation"] = "Tester und Übersetzer"
 L["The options above are for the DPS/TANK layout."] = "Die obigen Optionen gelten für das DPS/TANK-Layout."
 L["Themes"] = true
-L["This will only clear AddOn Cache and not wipe your settings"] = "Dadurch wird nur der AddOn Cache gelöscht und nicht Deine Einstellungen."
 L["UnitFrames Color Theme"] = "Einheutenfenster Farb Theme"
 L["UnitFrames"] = "Einheitsfenster"
 L["Update DPS/TANK layout to LuckyoneUI version: "] = "Aktualisiere DPS/TANK Layout zur LuckyoneUI Version"
@@ -109,7 +100,6 @@ L["Update Healing layout to LuckyoneUI version: "] = "Aktualisiere Heiler Layout
 L["Update Healing Layout"] = "Aktualisiere Heiler Layout"
 L["Warlock"] = "Hexenmeister"
 L["Warrior"] = "Krieger"
-L["WeakAuras DPS/TANK"] = true
 L["Wowhead Guide:"] = true
 L["Zone Text"] = "Zonentext"
 

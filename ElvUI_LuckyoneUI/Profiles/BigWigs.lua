@@ -3,15 +3,12 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local IsAddOnLoaded = IsAddOnLoaded
 local LoadAddOn = LoadAddOn
 
--- BigWigs Profiles
+-- BigWigs profiles
 function L1UI:Setup_BigWigs(layout)
 	if not IsAddOnLoaded('BigWigs') then return end
 
-	-- Profile Names
-	local Rmain, Rheal = "Luckyone D/T", "Luckyone H"
-	local Tmain, Theal = "Luckyone TBC D/T", "Luckyone TBC H"
-	local Cmain, Cheal = "Luckyone Classic D/T", "Luckyone Classic H"
-	local Wmain, Wheal = "Luckyone Wrath D/T", "Luckyone Wrath H"
+	-- Profile names
+	local name, name_healing = "Luckyone DPS/TANK", "Luckyone Healing"
 
 	-- Required to add profiles to BigWigs3DB
 	if not IsAddOnLoaded("BigWigs_Core") then LoadAddOn("BigWigs_Core") end
@@ -21,44 +18,44 @@ function L1UI:Setup_BigWigs(layout)
 
 	if E.Retail then
 
-		-- Profile Creation
+		-- Profile creation
 		BigWigs3DB["profiles"] = BigWigs3DB["profiles"] or {}
 
-		BigWigs3DB["profiles"][Rmain] = BigWigs3DB["profiles"][Rmain] or {}
-		BigWigs3DB["profiles"][Rmain]["showZoneMessages"] = false
-		BigWigs3DB["profiles"][Rmain]["fakeDBMVersion"] = true
-		BigWigs3DB["profiles"][Rmain]["flash"] = false
+		BigWigs3DB["profiles"][name] = BigWigs3DB["profiles"][name] or {}
+		BigWigs3DB["profiles"][name]["showZoneMessages"] = false
+		BigWigs3DB["profiles"][name]["fakeDBMVersion"] = true
+		BigWigs3DB["profiles"][name]["flash"] = false
 
-		BigWigs3DB["profiles"][Rheal] = BigWigs3DB["profiles"][Rheal] or {}
-		BigWigs3DB["profiles"][Rheal]["showZoneMessages"] = false
-		BigWigs3DB["profiles"][Rheal]["fakeDBMVersion"] = true
-		BigWigs3DB["profiles"][Rheal]["flash"] = false
+		BigWigs3DB["profiles"][name_healing] = BigWigs3DB["profiles"][name_healing] or {}
+		BigWigs3DB["profiles"][name_healing]["showZoneMessages"] = false
+		BigWigs3DB["profiles"][name_healing]["fakeDBMVersion"] = true
+		BigWigs3DB["profiles"][name_healing]["flash"] = false
 
 		BigWigsIconDB["hide"] = true
 
-		-- Profile Data
+		-- Profile data
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] or {}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][Rmain] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][name] = {
 			["bigwigsMsg"] = true,
 			["blizzMsg"] = false,
 		}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][Rheal] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][name_healing] = {
 			["bigwigsMsg"] = true,
 			["blizzMsg"] = false,
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"] or {}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][Rmain] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][name] = {
 			["media"] = {
 				["underyou"] = "None",
 			},
 		}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][Rheal] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][name_healing] = {
 			["media"] = {
 				["underyou"] = "None",
 			},
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] or {}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][Rmain] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][name] = {
 			["outline"] = "OUTLINE",
 			["fontName"] = "Expressway",
 			["position"] = {
@@ -68,7 +65,7 @@ function L1UI:Setup_BigWigs(layout)
 				-220, -- [4]
 			},
 		}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][Rheal] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][name_healing] = {
 			["outline"] = "OUTLINE",
 			["fontName"] = "Expressway",
 			["position"] = {
@@ -79,25 +76,25 @@ function L1UI:Setup_BigWigs(layout)
 			},
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"] or {}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"][Rmain] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"][name] = {
 			["disabled"] = true,
 		}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"][Rheal] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"][name_healing] = {
 			["disabled"] = true,
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] or {}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][Rmain] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][name] = {
 			["exitCombatOther"] = 3,
 			["disabled"] = false,
 			["modeOther"] = 2,
 		}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][Rheal] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][name_healing] = {
 			["exitCombatOther"] = 3,
 			["disabled"] = false,
 			["modeOther"] = 2,
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] or {}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][Rmain] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][name] = {
 			["barBackground"] = {
 				["BigWigs_Plugins_Colors"] = {
 					["default"] = {
@@ -109,7 +106,7 @@ function L1UI:Setup_BigWigs(layout)
 				},
 			},
 		}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][Rheal] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][name_healing] = {
 			["barBackground"] = {
 				["BigWigs_Plugins_Colors"] = {
 					["default"] = {
@@ -122,23 +119,23 @@ function L1UI:Setup_BigWigs(layout)
 			},
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"] or {}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][Rmain] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name] = {
 			["disabled"] = true,
 		}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][Rheal] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name_healing] = {
 			["disabled"] = true,
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] or {}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][Rmain] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][name] = {
 			["posx"] = 962.8442941480171,
 			["posy"] = 71.71141124165615,
 		}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][Rheal] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][name_healing] = {
 			["posx"] = 962.8442941480171,
 			["posy"] = 71.71141124165615,
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] or {}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][Rmain] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][name] = {
 			["BigWigsEmphasizeAnchor_y"] = 205.5110509832684,
 			["BigWigsAnchor_width"] = 169.0000152587891,
 			["nameplateOffsetY"] = 0,
@@ -160,7 +157,7 @@ function L1UI:Setup_BigWigs(layout)
 			["emphasizeRestart"] = false,
 			["fontSizeEmph"] = 12,
 		}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][Rheal] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][name_healing] = {
 			["BigWigsEmphasizeAnchor_y"] = 212.6220103568448,
 			["BigWigsAnchor_width"] = 169.0000152587891,
 			["emphasizeRestart"] = false,
@@ -183,7 +180,7 @@ function L1UI:Setup_BigWigs(layout)
 			["fontSizeEmph"] = 12,
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] or {}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][Rmain] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][name] = {
 			["outline"] = "OUTLINE",
 			["fontSize"] = 24,
 			["emphFontName"] = "Expressway",
@@ -205,7 +202,7 @@ function L1UI:Setup_BigWigs(layout)
 				225, -- [4]
 			},
 		}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][Rheal] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][name_healing] = {
 			["outline"] = "OUTLINE",
 			["fontSize"] = 24,
 			["emphFontName"] = "Expressway",
@@ -228,7 +225,7 @@ function L1UI:Setup_BigWigs(layout)
 			},
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] or {}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][Rmain] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][name] = {
 			["disabled"] = true,
 			["posx"] = 295.8228370242796,
 			["fontName"] = "Expressway",
@@ -237,7 +234,7 @@ function L1UI:Setup_BigWigs(layout)
 			["height"] = 119.9999694824219,
 			["posy"] = 86.04485885435679,
 		}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][Rheal] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][name_healing] = {
 			["disabled"] = true,
 			["posx"] = 295.8228370242796,
 			["fontName"] = "Expressway",
@@ -247,62 +244,55 @@ function L1UI:Setup_BigWigs(layout)
 			["posy"] = 86.04485885435679,
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"] or {}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Rmain] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][name] = {
 			["voice"] = "enUS: Default (Female)",
 			["endPullSound"] = "None",
 		}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Rheal] = {
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][name_healing] = {
 			["voice"] = "enUS: Default (Female)",
 			["endPullSound"] = "None",
 		}
-
-		-- Role check and set profile
-		if layout == 'main' then
-			BigWigs.db:SetProfile(Rmain)
-		elseif layout == 'healing' then
-			BigWigs.db:SetProfile(Rheal)
-		end
 
 	elseif E.TBC then
 
-		-- Profile Creation
+		-- Profile creation
 		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
 
-		BigWigsClassicDB["profiles"][Tmain] = BigWigsClassicDB["profiles"][Tmain] or {}
-		BigWigsClassicDB["profiles"][Tmain]["showZoneMessages"] = false
-		BigWigsClassicDB["profiles"][Tmain]["fakeDBMVersion"] = true
-		BigWigsClassicDB["profiles"][Tmain]["flash"] = false
+		BigWigsClassicDB["profiles"][name] = BigWigsClassicDB["profiles"][name] or {}
+		BigWigsClassicDB["profiles"][name]["showZoneMessages"] = false
+		BigWigsClassicDB["profiles"][name]["fakeDBMVersion"] = true
+		BigWigsClassicDB["profiles"][name]["flash"] = false
 
-		BigWigsClassicDB["profiles"][Theal] = BigWigsClassicDB["profiles"][Theal] or {}
-		BigWigsClassicDB["profiles"][Theal]["showZoneMessages"] = false
-		BigWigsClassicDB["profiles"][Theal]["fakeDBMVersion"] = true
-		BigWigsClassicDB["profiles"][Theal]["flash"] = false
+		BigWigsClassicDB["profiles"][name_healing] = BigWigsClassicDB["profiles"][name_healing] or {}
+		BigWigsClassicDB["profiles"][name_healing]["showZoneMessages"] = false
+		BigWigsClassicDB["profiles"][name_healing]["fakeDBMVersion"] = true
+		BigWigsClassicDB["profiles"][name_healing]["flash"] = false
 
 		BigWigsIconClassicDB["hide"] = true
 
-		-- Profile Data
+		-- Profile data
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][Tmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][name] = {
 			["bigwigsMsg"] = true,
 			["blizzMsg"] = false,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][Theal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][name_healing] = {
 			["bigwigsMsg"] = true,
 			["blizzMsg"] = false,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][Tmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][name] = {
 			["media"] = {
 				["underyou"] = "None",
 			},
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][Theal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][name_healing] = {
 			["media"] = {
 				["underyou"] = "None",
 			},
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][Tmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][name] = {
 			["outline"] = "OUTLINE",
 			["fontName"] = "Expressway",
 			["position"] = {
@@ -312,7 +302,7 @@ function L1UI:Setup_BigWigs(layout)
 				-220, -- [4]
 			},
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][Theal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][name_healing] = {
 			["outline"] = "OUTLINE",
 			["fontName"] = "Expressway",
 			["position"] = {
@@ -323,18 +313,18 @@ function L1UI:Setup_BigWigs(layout)
 			},
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][Tmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][name] = {
 			["exitCombatOther"] = 3,
 			["disabled"] = false,
 			["modeOther"] = 2,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][Theal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][name_healing] = {
 			["exitCombatOther"] = 3,
 			["disabled"] = false,
 			["modeOther"] = 2,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][Tmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][name] = {
 			["barBackground"] = {
 				["BigWigs_Plugins_Colors"] = {
 					["default"] = {
@@ -346,7 +336,7 @@ function L1UI:Setup_BigWigs(layout)
 				},
 			},
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][Theal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][name_healing] = {
 			["barBackground"] = {
 				["BigWigs_Plugins_Colors"] = {
 					["default"] = {
@@ -359,23 +349,23 @@ function L1UI:Setup_BigWigs(layout)
 			},
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][Tmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name] = {
 			["disabled"] = true,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][Theal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name_healing] = {
 			["disabled"] = true,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][Tmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][name] = {
 			["posx"] = 962.845249009151,
 			["posy"] = 71.8225277808051,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][Theal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][name_healing] = {
 			["posx"] = 962.845249009151,
 			["posy"] = 71.8225277808051,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][Tmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][name] = {
 			["outline"] = "OUTLINE",
 			["BigWigsEmphasizeAnchor_height"] = 21.9999656677246,
 			["BigWigsEmphasizeAnchor_x"] = 590.933564656316,
@@ -392,7 +382,7 @@ function L1UI:Setup_BigWigs(layout)
 			["BigWigsEmphasizeAnchor_width"] = 281.000061035156,
 			["texture"] = "Minimalist",
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][Theal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][name_healing] = {
 			["outline"] = "OUTLINE",
 			["BigWigsAnchor_width"] = 167,
 			["BigWigsEmphasizeAnchor_height"] = 21.9999656677246,
@@ -410,7 +400,7 @@ function L1UI:Setup_BigWigs(layout)
 			["BigWigsEmphasizeAnchor_width"] = 245.999984741211,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][Tmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][name] = {
 			["outline"] = "OUTLINE",
 			["fontSize"] = 24,
 			["emphFontName"] = "Expressway",
@@ -432,7 +422,7 @@ function L1UI:Setup_BigWigs(layout)
 				225, -- [4]
 			},
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][Theal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][name_healing] = {
 			["outline"] = "OUTLINE",
 			["fontSize"] = 24,
 			["emphFontName"] = "Expressway",
@@ -455,7 +445,7 @@ function L1UI:Setup_BigWigs(layout)
 			},
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][Tmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][name] = {
 			["objects"] = {
 				["ability"] = false,
 				["sound"] = false,
@@ -466,7 +456,7 @@ function L1UI:Setup_BigWigs(layout)
 			["fontName"] = "Expressway",
 			["width"] = 139.999984741211,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][Theal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][name_healing] = {
 			["objects"] = {
 				["ability"] = false,
 				["sound"] = false,
@@ -477,62 +467,55 @@ function L1UI:Setup_BigWigs(layout)
 			["posx"] = 295.821448135357,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Tmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][name] = {
 			["voice"] = "enUS: Default (Female)",
 			["endPullSound"] = "None",
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Theal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][name_healing] = {
 			["voice"] = "enUS: Default (Female)",
 			["endPullSound"] = "None",
 		}
-
-		-- Role check and set profile
-		if layout == 'main' then
-			BigWigs.db:SetProfile(Tmain)
-		elseif layout == 'healing' then
-			BigWigs.db:SetProfile(Theal)
-		end
 
 	elseif E.Classic then
 
-		-- Profile Creation
+		-- Profile creation
 		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
 
-		BigWigsClassicDB["profiles"][Cmain] = BigWigsClassicDB["profiles"][Cmain] or {}
-		BigWigsClassicDB["profiles"][Cmain]["showZoneMessages"] = false
-		BigWigsClassicDB["profiles"][Cmain]["fakeDBMVersion"] = true
-		BigWigsClassicDB["profiles"][Cmain]["flash"] = false
+		BigWigsClassicDB["profiles"][name] = BigWigsClassicDB["profiles"][name] or {}
+		BigWigsClassicDB["profiles"][name]["showZoneMessages"] = false
+		BigWigsClassicDB["profiles"][name]["fakeDBMVersion"] = true
+		BigWigsClassicDB["profiles"][name]["flash"] = false
 
-		BigWigsClassicDB["profiles"][Cheal] = BigWigsClassicDB["profiles"][Cheal] or {}
-		BigWigsClassicDB["profiles"][Cheal]["showZoneMessages"] = false
-		BigWigsClassicDB["profiles"][Cheal]["fakeDBMVersion"] = true
-		BigWigsClassicDB["profiles"][Cheal]["flash"] = false
+		BigWigsClassicDB["profiles"][name_healing] = BigWigsClassicDB["profiles"][name_healing] or {}
+		BigWigsClassicDB["profiles"][name_healing]["showZoneMessages"] = false
+		BigWigsClassicDB["profiles"][name_healing]["fakeDBMVersion"] = true
+		BigWigsClassicDB["profiles"][name_healing]["flash"] = false
 
 		BigWigsIconClassicDB["hide"] = true
 
-		-- Profile Data
+		-- Profile data
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][Cmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][name] = {
 			["bigwigsMsg"] = true,
 			["blizzMsg"] = false,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][Cheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][name_healing] = {
 			["bigwigsMsg"] = true,
 			["blizzMsg"] = false,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][Cmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][name] = {
 			["media"] = {
 				["underyou"] = "None",
 			},
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][Cheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][name_healing] = {
 			["media"] = {
 				["underyou"] = "None",
 			},
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][Cmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][name] = {
 			["outline"] = "OUTLINE",
 			["fontName"] = "Expressway",
 			["position"] = {
@@ -542,7 +525,7 @@ function L1UI:Setup_BigWigs(layout)
 				-220, -- [4]
 			},
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][Cheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][name_healing] = {
 			["outline"] = "OUTLINE",
 			["fontName"] = "Expressway",
 			["position"] = {
@@ -553,18 +536,18 @@ function L1UI:Setup_BigWigs(layout)
 			},
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][Cmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][name] = {
 			["exitCombatOther"] = 3,
 			["disabled"] = false,
 			["modeOther"] = 2,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][Cheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][name_healing] = {
 			["exitCombatOther"] = 3,
 			["disabled"] = false,
 			["modeOther"] = 2,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][Cmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][name] = {
 			["barBackground"] = {
 				["BigWigs_Plugins_Colors"] = {
 					["default"] = {
@@ -576,7 +559,7 @@ function L1UI:Setup_BigWigs(layout)
 				},
 			},
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][Cheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][name_healing] = {
 			["barBackground"] = {
 				["BigWigs_Plugins_Colors"] = {
 					["default"] = {
@@ -589,23 +572,23 @@ function L1UI:Setup_BigWigs(layout)
 			},
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][Cmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name] = {
 			["disabled"] = true,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][Cheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name_healing] = {
 			["disabled"] = true,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][Cmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][name] = {
 			["posx"] = 962.845249009151,
 			["posy"] = 71.8225277808051,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][Cheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][name_healing] = {
 			["posx"] = 962.845249009151,
 			["posy"] = 71.8225277808051,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][Cmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][name] = {
 			["outline"] = "OUTLINE",
 			["BigWigsEmphasizeAnchor_height"] = 21.9999656677246,
 			["BigWigsEmphasizeAnchor_x"] = 590.933564656316,
@@ -622,7 +605,7 @@ function L1UI:Setup_BigWigs(layout)
 			["BigWigsEmphasizeAnchor_width"] = 281.000061035156,
 			["texture"] = "Minimalist",
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][Cheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][name_healing] = {
 			["outline"] = "OUTLINE",
 			["BigWigsAnchor_width"] = 167,
 			["BigWigsEmphasizeAnchor_height"] = 21.9999656677246,
@@ -640,7 +623,7 @@ function L1UI:Setup_BigWigs(layout)
 			["BigWigsEmphasizeAnchor_width"] = 245.999984741211,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][Cmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][name] = {
 			["outline"] = "OUTLINE",
 			["fontSize"] = 24,
 			["emphFontName"] = "Expressway",
@@ -662,7 +645,7 @@ function L1UI:Setup_BigWigs(layout)
 				225, -- [4]
 			},
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][Cheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][name_healing] = {
 			["outline"] = "OUTLINE",
 			["fontSize"] = 24,
 			["emphFontName"] = "Expressway",
@@ -685,7 +668,7 @@ function L1UI:Setup_BigWigs(layout)
 			},
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][Cmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][name] = {
 			["objects"] = {
 				["ability"] = false,
 				["sound"] = false,
@@ -696,7 +679,7 @@ function L1UI:Setup_BigWigs(layout)
 			["fontName"] = "Expressway",
 			["width"] = 139.999984741211,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][Cheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][name_healing] = {
 			["objects"] = {
 				["ability"] = false,
 				["sound"] = false,
@@ -707,61 +690,55 @@ function L1UI:Setup_BigWigs(layout)
 			["posx"] = 295.821448135357,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Cmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][name] = {
 			["voice"] = "enUS: Default (Female)",
 			["endPullSound"] = "None",
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Cheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][name_healing] = {
 			["voice"] = "enUS: Default (Female)",
 			["endPullSound"] = "None",
 		}
 
-		-- Role check and set profile
-		if layout == 'main' then
-			BigWigs.db:SetProfile(Cmain)
-		elseif layout == 'healing' then
-			BigWigs.db:SetProfile(Cheal)
-		end
 	elseif E.Wrath then
 
-		-- Profile Creation
+		-- Profile creation
 		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
 
-		BigWigsClassicDB["profiles"][Wmain] = BigWigsClassicDB["profiles"][Wmain] or {}
-		BigWigsClassicDB["profiles"][Wmain]["showZoneMessages"] = false
-		BigWigsClassicDB["profiles"][Wmain]["fakeDBMVersion"] = true
-		BigWigsClassicDB["profiles"][Wmain]["flash"] = false
+		BigWigsClassicDB["profiles"][name] = BigWigsClassicDB["profiles"][name] or {}
+		BigWigsClassicDB["profiles"][name]["showZoneMessages"] = false
+		BigWigsClassicDB["profiles"][name]["fakeDBMVersion"] = true
+		BigWigsClassicDB["profiles"][name]["flash"] = false
 
-		BigWigsClassicDB["profiles"][Wheal] = BigWigsClassicDB["profiles"][Wheal] or {}
-		BigWigsClassicDB["profiles"][Wheal]["showZoneMessages"] = false
-		BigWigsClassicDB["profiles"][Wheal]["fakeDBMVersion"] = true
-		BigWigsClassicDB["profiles"][Wheal]["flash"] = false
+		BigWigsClassicDB["profiles"][name_healing] = BigWigsClassicDB["profiles"][name_healing] or {}
+		BigWigsClassicDB["profiles"][name_healing]["showZoneMessages"] = false
+		BigWigsClassicDB["profiles"][name_healing]["fakeDBMVersion"] = true
+		BigWigsClassicDB["profiles"][name_healing]["flash"] = false
 
 		BigWigsIconClassicDB["hide"] = true
 
-		-- Profile Data
+		-- Profile data
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][Wmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][name] = {
 			["bigwigsMsg"] = true,
 			["blizzMsg"] = false,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][Wheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][name_healing] = {
 			["bigwigsMsg"] = true,
 			["blizzMsg"] = false,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][Wmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][name] = {
 			["media"] = {
 				["underyou"] = "None",
 			},
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][Wheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Sounds"]["profiles"][name_healing] = {
 			["media"] = {
 				["underyou"] = "None",
 			},
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][Wmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][name] = {
 			["outline"] = "OUTLINE",
 			["fontName"] = "Expressway",
 			["position"] = {
@@ -771,7 +748,7 @@ function L1UI:Setup_BigWigs(layout)
 				-220, -- [4]
 			},
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][Wheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][name_healing] = {
 			["outline"] = "OUTLINE",
 			["fontName"] = "Expressway",
 			["position"] = {
@@ -782,18 +759,18 @@ function L1UI:Setup_BigWigs(layout)
 			},
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][Wmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][name] = {
 			["exitCombatOther"] = 3,
 			["disabled"] = false,
 			["modeOther"] = 2,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][Wheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][name_healing] = {
 			["exitCombatOther"] = 3,
 			["disabled"] = false,
 			["modeOther"] = 2,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][Wmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][name] = {
 			["barBackground"] = {
 				["BigWigs_Plugins_Colors"] = {
 					["default"] = {
@@ -805,7 +782,7 @@ function L1UI:Setup_BigWigs(layout)
 				},
 			},
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][Wheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][name_healing] = {
 			["barBackground"] = {
 				["BigWigs_Plugins_Colors"] = {
 					["default"] = {
@@ -818,23 +795,23 @@ function L1UI:Setup_BigWigs(layout)
 			},
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][Wmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name] = {
 			["disabled"] = true,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][Wheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name_healing] = {
 			["disabled"] = true,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][Wmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][name] = {
 			["posx"] = 962.845249009151,
 			["posy"] = 71.8225277808051,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][Wheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"][name_healing] = {
 			["posx"] = 962.845249009151,
 			["posy"] = 71.8225277808051,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][Wmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][name] = {
 			["outline"] = "OUTLINE",
 			["BigWigsEmphasizeAnchor_height"] = 21.9999656677246,
 			["BigWigsEmphasizeAnchor_x"] = 590.933564656316,
@@ -851,7 +828,7 @@ function L1UI:Setup_BigWigs(layout)
 			["BigWigsEmphasizeAnchor_width"] = 281.000061035156,
 			["texture"] = "Minimalist",
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][Wheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][name_healing] = {
 			["outline"] = "OUTLINE",
 			["BigWigsAnchor_width"] = 167,
 			["BigWigsEmphasizeAnchor_height"] = 21.9999656677246,
@@ -869,7 +846,7 @@ function L1UI:Setup_BigWigs(layout)
 			["BigWigsEmphasizeAnchor_width"] = 245.999984741211,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][Wmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][name] = {
 			["outline"] = "OUTLINE",
 			["fontSize"] = 24,
 			["emphFontName"] = "Expressway",
@@ -891,7 +868,7 @@ function L1UI:Setup_BigWigs(layout)
 				225, -- [4]
 			},
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][Wheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][name_healing] = {
 			["outline"] = "OUTLINE",
 			["fontSize"] = 24,
 			["emphFontName"] = "Expressway",
@@ -914,7 +891,7 @@ function L1UI:Setup_BigWigs(layout)
 			},
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][Wmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][name] = {
 			["objects"] = {
 				["ability"] = false,
 				["sound"] = false,
@@ -925,7 +902,7 @@ function L1UI:Setup_BigWigs(layout)
 			["fontName"] = "Expressway",
 			["width"] = 139.999984741211,
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][Wheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][name_healing] = {
 			["objects"] = {
 				["ability"] = false,
 				["sound"] = false,
@@ -936,21 +913,22 @@ function L1UI:Setup_BigWigs(layout)
 			["posx"] = 295.821448135357,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Wmain] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][name] = {
 			["voice"] = "enUS: Default (Female)",
 			["endPullSound"] = "None",
 		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][Wheal] = {
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"][name_healing] = {
 			["voice"] = "enUS: Default (Female)",
 			["endPullSound"] = "None",
 		}
 
-		-- Role check and set profile
-		if layout == 'main' then
-			BigWigs.db:SetProfile(Wmain)
-		elseif layout == 'healing' then
-			BigWigs.db:SetProfile(Wheal)
-		end
+	end
+
+	-- Role check and set profile
+	if layout == 'main' then
+		BigWigs.db:SetProfile(name)
+	elseif layout == 'healing' then
+		BigWigs.db:SetProfile(name_healing)
 	end
 
 	L1UI:Print(L["BigWigs profile has been set."])

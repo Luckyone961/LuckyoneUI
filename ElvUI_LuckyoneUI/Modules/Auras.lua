@@ -48,7 +48,11 @@ function L1UI:Setup_Buffs(frame, type)
 		end
 	end
 
-	E:StaggeredUpdateAll()
+	if frame == 'nameplate' and NP.Initialized then
+		E:UpdateNamePlates(true)
+	else
+		E:UpdateUnitFrames()
+	end
 
 	L1UI:Print(L["Buff filters updated."])
 end
@@ -91,7 +95,11 @@ function L1UI:Setup_Debuffs(frame, type)
 		end
 	end
 
-	E:StaggeredUpdateAll()
+	if frame == 'nameplate' and NP.Initialized then
+		E:UpdateNamePlates(true)
+	else
+		E:UpdateUnitFrames()
+	end
 
 	L1UI:Print(L["Debuff filters updated."])
 end

@@ -60,9 +60,15 @@ function L1UI:Setup_CVars()
 	SetCVar('threatWarning', 3)
 	SetCVar('UberTooltips', 1)
 
-	-- Wrath | TBC | Classic
+	-- Wrath | TBC | Classic CVars
 	if not E.Retail then
 		SetCVar('instantQuestText', 1)
+	end
+
+	-- Wrath CVars
+	if E.Wrath then
+		SetCVar('equipmentManager', 1)
+		SetCVar('previewTalents', 1)
 	end
 
 	-- My CVars
@@ -118,39 +124,39 @@ function L1UI:NameplateCVars()
 end
 
 -- E.private & Media
-function L1UI:SetupPrivate()
+function L1UI:Setup_PrivateDB()
 
-	E.db.general.font = "Expressway"
+	E.db.general.font = 'Expressway'
 	E.db.general.fontSize = 11
-	E.db.general.fontStyle = "OUTLINE"
+	E.db.general.fontStyle = 'OUTLINE'
 
-	E.private.general.chatBubbleFont = "Expressway"
-	E.private.general.chatBubbleFontOutline = "OUTLINE"
-	E.private.general.dmgfont = "Expressway"
-	E.private.general.glossTex = "Minimalist"
-	E.private.general.namefont = "Expressway"
-	E.private.general.nameplateFont = "Expressway"
-	E.private.general.nameplateLargeFont = "Expressway"
-	E.private.general.normTex = "Minimalist"
-	E.private.skins.parchmentRemoverEnable = true
-
+	E.private.general.chatBubbleFont = 'Expressway'
+	E.private.general.chatBubbleFontOutline = 'OUTLINE'
+	E.private.general.dmgfont = 'Expressway'
+	E.private.general.glossTex = 'Minimalist'
+	E.private.general.namefont = 'Expressway'
+	E.private.general.nameplateFont = 'Expressway'
+	E.private.general.nameplateLargeFont = 'Expressway'
+	E.private.general.normTex = 'Minimalist'
 	E.private.general.totemBar = E.Retail and false or true
-	E.private.install_complete = E.Retail and "12.81" or E.TBC and "2.48" or E.Classic and "1.73" or E.Wrath and "0.10"
+
+	E.private.install_complete = E.version
+	E.private.skins.parchmentRemoverEnable = true
 end
 
 -- E.global & Custom DataText
-function L1UI:SetupGlobal()
+function L1UI:Setup_GlobalDB()
 
 	SetCVar('uiScale', 0.71111111111111)
 	E.global.general.UIScale = 0.71111111111111
 
 	E.global.datatexts.settings.Combat.TimeFull = false
-	E.global.datatexts.settings.System.latency = "HOME"
-	E.global.general.commandBarSetting = "DISABLED"
+	E.global.datatexts.settings.System.latency = 'HOME'
+	E.global.general.commandBarSetting = 'DISABLED'
 	E.global.general.fadeMapWhenMoving = false
 	E.global.general.mapAlphaWhenMoving = 0.35
 	E.global.general.smallerWorldMapScale = 0.8
-	E.global.general.WorldMapCoordinates.position = "TOPLEFT"
+	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
 	do
 		E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
@@ -158,22 +164,22 @@ function L1UI:SetupGlobal()
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.border = true
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.enable = true
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.enable = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.font = "Expressway"
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontOutline = "OUTLINE"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.font = 'Expressway'
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontOutline = 'OUTLINE'
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontSize = 11
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameLevel = 1
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameStrata = "BACKGROUND"
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.growth = "HORIZONTAL"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameStrata = 'BACKGROUND'
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.growth = 'HORIZONTAL'
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.height = 13
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.mouseover = false
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.name = "Luckyone_ActionBars_DT"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.name = 'Luckyone_ActionBars_DT'
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.numPoints = 3
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.panelTransparency = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.textJustify = "CENTER"
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipAnchor = "ANCHOR_TOP"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.textJustify = 'CENTER'
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipAnchor = 'ANCHOR_TOP'
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipXOffset = 0
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipYOffset = 5
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.visibility = E.Retail and "[petbattle] hide;show" or "show"
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 358
 	end
 end
@@ -189,10 +195,17 @@ function L1UI:Setup_Layout(layout)
 	end
 
 	-- E.global & Custom DataText
-	L1UI:SetupGlobal()
+	L1UI:Setup_GlobalDB()
 
 	-- E.private & Media
-	L1UI:SetupPrivate()
+	L1UI:Setup_PrivateDB()
+
+	-- E.db & Movers
+	if layout == 'main' then
+		L1UI:Layout_Shadowlands('main')
+	elseif layout == 'healing' then
+		L1UI:Layout_Shadowlands('healing')
+	end
 
 	-- AddOnSkins profile
 	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins('noPrint') end
@@ -203,13 +216,7 @@ function L1UI:Setup_Layout(layout)
 	-- Shadow & Light profile
 	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight('noPrint') end
 
-	-- E.db & movers
-	if layout == 'main' then
-		L1UI:Layout_Shadowlands('main')
-	elseif layout == 'healing' then
-		L1UI:Layout_Shadowlands('healing')
-	end
-
+	-- Push the update
 	E:StaggeredUpdateAll()
 
 	L1UI:Print(L["Layout has been set."])

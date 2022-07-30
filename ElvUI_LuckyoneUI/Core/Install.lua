@@ -9,7 +9,7 @@ local function InstallComplete()
 	ReloadUI()
 end
 
--- Installer Table
+-- Installer table
 L1UI.InstallerData = {
 	Title = format('|cff4beb2c%s %s|r', L1UI.Name, L["Installation"]),
 	Name = L1UI.Name,
@@ -54,7 +54,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetText(L["Setup Chat"])
 		end,
 		[5] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText(L["CVars"])
+			PluginInstallFrame.SubTitle:SetFormattedText(L["Console Variables"])
 			PluginInstallFrame.Desc1:SetText(L["Full list of all changed CVars can be found in /luckyoneui config -> CVars."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
@@ -122,7 +122,7 @@ L1UI.InstallerData = {
 		[2] = L["Layouts"],
 		[3] = L["Color Theme"],
 		[4] = L["Chat"],
-		[5] = L["CVars"],
+		[5] = L["Console Variables"],
 		[6] = L["NamePlates"],
 		[7] = L["BossMods"],
 		[8] = 'Details',

@@ -1,3 +1,13 @@
+### Version 1.53 [30-07-2022]
+**All WoW Versions:**  
+More updates for the archive and database  
+Reworked the configuration panel slightly  
+**Wrath Classic:**  
+Added Moonkin WeakAuras pack to the config  
+CVars installer step will now enable the Equipment Manager  
+CVars installer step will now enable Talent Preview mode  
+Fixed an error in the Plater installer step  
+___
 ### Version 1.52 [24-07-2022]
 **All WoW Versions:**  
 Added archive section to the config for Shadowlands layouts  

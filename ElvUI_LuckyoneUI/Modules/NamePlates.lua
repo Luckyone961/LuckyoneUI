@@ -1,4 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local NP = E:GetModule('NamePlates')
 
 local pairs = pairs
 local SetCVar = SetCVar
@@ -266,7 +267,8 @@ function L1UI:Setup_NamePlates(addon)
 		E.db["nameplates"]["visibility"]["enemy"]["guardians"] = true
 		E.db["nameplates"]["visibility"]["enemy"]["minions"] = true
 
-		E:StaggeredUpdateAll()
+		-- Update the module so we don't require a ReloadUI
+		if NP.Initialized then E:UpdateNamePlates(true) end
 
 	elseif addon == 'Plater' then
 
