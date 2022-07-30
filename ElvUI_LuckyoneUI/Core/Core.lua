@@ -200,6 +200,13 @@ function L1UI:Setup_Layout(layout)
 	-- E.private & Media
 	L1UI:Setup_PrivateDB()
 
+	-- E.db & Movers
+	if layout == 'main' then
+		L1UI:Layout_Shadowlands('main')
+	elseif layout == 'healing' then
+		L1UI:Layout_Shadowlands('healing')
+	end
+
 	-- AddOnSkins profile
 	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins('noPrint') end
 
@@ -208,13 +215,6 @@ function L1UI:Setup_Layout(layout)
 
 	-- Shadow & Light profile
 	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight('noPrint') end
-
-	-- E.db & movers
-	if layout == 'main' then
-		L1UI:Layout_Shadowlands('main')
-	elseif layout == 'healing' then
-		L1UI:Layout_Shadowlands('healing')
-	end
 
 	-- Push the update
 	E:StaggeredUpdateAll()
