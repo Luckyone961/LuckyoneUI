@@ -286,11 +286,6 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db["bags"]["bagWidth"] = 414
 	E.db["bags"]["bankWidth"] = 414
 	E.db["bags"]["clearSearchOnClose"] = true
-	E.db["bags"]["cooldown"]["daysIndicator"]["g"] = 0.4
-	E.db["bags"]["cooldown"]["daysIndicator"]["r"] = 0.4
-	E.db["bags"]["cooldown"]["expireIndicator"]["b"] = 0
-	E.db["bags"]["cooldown"]["expireIndicator"]["g"] = 0
-	E.db["bags"]["cooldown"]["hoursIndicator"]["r"] = 0.4
 	E.db["bags"]["countFont"] = "Expressway"
 	E.db["bags"]["countFontOutline"] = "OUTLINE"
 	E.db["bags"]["countFontSize"] = 12
@@ -315,11 +310,6 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db["auras"]["buffs"]["timeFont"] = "Expressway"
 	E.db["auras"]["buffs"]["timeFontOutline"] = "OUTLINE"
 	E.db["auras"]["buffs"]["timeFontSize"] = 11
-	E.db["auras"]["cooldown"]["daysIndicator"]["g"] = 0.4
-	E.db["auras"]["cooldown"]["daysIndicator"]["r"] = 0.4
-	E.db["auras"]["cooldown"]["expireIndicator"]["b"] = 0
-	E.db["auras"]["cooldown"]["expireIndicator"]["g"] = 0
-	E.db["auras"]["cooldown"]["hoursIndicator"]["r"] = 0.4
 	E.db["auras"]["debuffs"]["countFont"] = "Expressway"
 	E.db["auras"]["debuffs"]["countFontOutline"] = "OUTLINE"
 	E.db["auras"]["debuffs"]["countFontSize"] = 12
