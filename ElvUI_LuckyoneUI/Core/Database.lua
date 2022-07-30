@@ -29,8 +29,6 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db["general"]["customGlow"]["useColor"] = true
 	E.db["general"]["durabilityScale"] = 0.5
 	E.db["general"]["enhancedPvpMessages"] = false
-	E.db["general"]["font"] = "Expressway"
-	E.db["general"]["fontSize"] = 11
 	E.db["general"]["interruptAnnounce"] = "EMOTE"
 	E.db["general"]["loginmessage"] = false
 	E.db["general"]["lootRoll"]["buttonSize"] = 22
