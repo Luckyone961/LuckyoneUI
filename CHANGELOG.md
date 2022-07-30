@@ -1,4 +1,4 @@
-### Version 1.53 [In Development]
+### Version 1.53 [30-07-2022]
 **All WoW Versions:**  
 More updates for the archive and database  
 Reworked the configuration panel slightly  
