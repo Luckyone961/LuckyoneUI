@@ -1411,6 +1411,7 @@ function L1UI:Layout_Shadowlands(layout)
 
 		-- Movers Healing
 		E.db["movers"]["ElvUF_AssistMover"] = "TOPLEFT,ElvUIParent,BOTTOMLEFT,0,1048"
+		E.db["movers"]["ElvUF_FocusCastbarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,451"
 		E.db["movers"]["ElvUF_FocusMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,470"
 		E.db["movers"]["ElvUF_FocusTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-460,470"
 		E.db["movers"]["ElvUF_PartyMover"] = "BOTTOM,UIParent,BOTTOM,0,320"
