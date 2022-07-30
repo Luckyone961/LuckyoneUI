@@ -216,13 +216,8 @@ function L1UI:Setup_Layout(layout)
 		L1UI:Layout_Shadowlands('healing')
 	end
 
-	-- Less lag than StaggeredUpdateAll
-	E:UpdateActionBars(true)
-	E:UpdateLayout(true)
-	E:UpdateMediaItems(true)
-	E:UpdateMinimap(true)
-	E:UpdateMoverPositions()
-	E:UpdateUnitFrames()
+	-- Push the update
+	E:StaggeredUpdateAll()
 
 	L1UI:Print(L["Layout has been set."])
 end
