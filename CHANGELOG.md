@@ -1,3 +1,7 @@
+### Version 1.54 [In Development]
+**Retail:**  
+Updated Details profile  
+___
 ### Version 1.53 [30-07-2022]
 **All WoW Versions:**  
 More updates for the archive and database  
