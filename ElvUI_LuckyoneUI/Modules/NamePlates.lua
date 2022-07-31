@@ -289,100 +289,11 @@ function L1UI:Setup_StyleFilters()
 	if E.Retail then
 
 		-- Enable all filters from the pairs table and copy default tree options
-		for _, filterName in pairs({'Luckyone_Encrypted', 'Luckyone_TZ', 'Luckyone_HOA', 'Luckyone_MISTS', 'Luckyone_PF', 'Luckyone_NW', 'Luckyone_TOP', 'Luckyone_SD', 'Luckyone_SOA', 'Luckyone_DOS'}) do
+		for _, filterName in pairs({'Luckyone_Encrypted', 'Luckyone_TZ'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 		end
-
-		-- De Other Side [DOS]
-		E.global["nameplates"]["filters"]["Luckyone_DOS"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["Luckyone_DOS"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		E.global["nameplates"]["filters"]["Luckyone_DOS"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["names"]["164857"] = true -- Spriggan Mendbender
-		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["names"]["167965"] = true -- Lubricator
-		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["names"]["168934"] = true -- Enraged Spirit
-		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["names"]["168942"] = true -- Death Speaker
-		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["names"]["169905"] = true -- Risen Warlord
-		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["names"]["170572"] = true -- Atal'ai Hoodoo Hexxer
-		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["names"]["171341"] = true -- Bladebeak Hatchling
-		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["names"]["171343"] = true -- Bladebeak Matriarch
-		E.global["nameplates"]["filters"]["Luckyone_DOS"]["triggers"]["priority"] = 2
-
-		-- Halls of Atonement [HOA]
-		E.global["nameplates"]["filters"]["Luckyone_HOA"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["Luckyone_HOA"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		E.global["nameplates"]["filters"]["Luckyone_HOA"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplates"]["filters"]["Luckyone_HOA"]["triggers"]["names"]["164562"] = true -- Depraved Houndmaster
-		E.global["nameplates"]["filters"]["Luckyone_HOA"]["triggers"]["names"]["165529"] = true -- Depraved Collector
-		E.global["nameplates"]["filters"]["Luckyone_HOA"]["triggers"]["names"]["167612"] = true -- Stoneborn Reaver
-		E.global["nameplates"]["filters"]["Luckyone_HOA"]["triggers"]["names"]["167892"] = true -- Tormented Soul
-		E.global["nameplates"]["filters"]["Luckyone_HOA"]["triggers"]["priority"] = 2
-
-		-- Mists of Tirna Scithe [MISTS]
-		E.global["nameplates"]["filters"]["Luckyone_MISTS"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["Luckyone_MISTS"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		E.global["nameplates"]["filters"]["Luckyone_MISTS"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplates"]["filters"]["Luckyone_MISTS"]["triggers"]["names"]["164804"] = true -- Droman Oulfarran
-		E.global["nameplates"]["filters"]["Luckyone_MISTS"]["triggers"]["names"]["164921"] = true -- Drust Harvester
-		E.global["nameplates"]["filters"]["Luckyone_MISTS"]["triggers"]["names"]["166299"] = true -- Mistveil Tender
-		E.global["nameplates"]["filters"]["Luckyone_MISTS"]["triggers"]["names"]["167111"] = true -- Spinemaw Staghorn
-		E.global["nameplates"]["filters"]["Luckyone_MISTS"]["triggers"]["priority"] = 2
-
-		-- The Necrotic Wake [NW]
-		E.global["nameplates"]["filters"]["Luckyone_NW"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["Luckyone_NW"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		E.global["nameplates"]["filters"]["Luckyone_NW"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplates"]["filters"]["Luckyone_NW"]["triggers"]["names"]["163618"] = true -- Zolramus Necromancer
-		E.global["nameplates"]["filters"]["Luckyone_NW"]["triggers"]["names"]["165824"] = true -- Nar'zudah
-		E.global["nameplates"]["filters"]["Luckyone_NW"]["triggers"]["names"]["165872"] = true -- Flesh Crafter
-		E.global["nameplates"]["filters"]["Luckyone_NW"]["triggers"]["names"]["166302"] = true -- Corpse Harvester
-		E.global["nameplates"]["filters"]["Luckyone_NW"]["triggers"]["names"]["173016"] = true -- Corpse Collector
-		E.global["nameplates"]["filters"]["Luckyone_NW"]["triggers"]["priority"] = 2
-
-		-- Plaguefall [PF]
-		E.global["nameplates"]["filters"]["Luckyone_PF"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["Luckyone_PF"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		E.global["nameplates"]["filters"]["Luckyone_PF"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplates"]["filters"]["Luckyone_PF"]["triggers"]["names"]["163882"] = true -- Decaying Flesh Giant
-		E.global["nameplates"]["filters"]["Luckyone_PF"]["triggers"]["names"]["163894"] = true -- Blighted Spinebreaker
-		E.global["nameplates"]["filters"]["Luckyone_PF"]["triggers"]["names"]["164737"] = true -- Brood Ambusher
-		E.global["nameplates"]["filters"]["Luckyone_PF"]["triggers"]["names"]["168572"] = true -- Fungi Stormer
-		E.global["nameplates"]["filters"]["Luckyone_PF"]["triggers"]["names"]["168627"] = true -- Plaguebinder
-		E.global["nameplates"]["filters"]["Luckyone_PF"]["triggers"]["names"]["169861"] = true -- Ickor Bileflesh
-		E.global["nameplates"]["filters"]["Luckyone_PF"]["triggers"]["priority"] = 2
-
-		-- Sanguine Depths [SD]
-		E.global["nameplates"]["filters"]["Luckyone_SD"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["Luckyone_SD"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		E.global["nameplates"]["filters"]["Luckyone_SD"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplates"]["filters"]["Luckyone_SD"]["triggers"]["names"]["162038"] = true -- Regal Mistdancer
-		E.global["nameplates"]["filters"]["Luckyone_SD"]["triggers"]["names"]["162040"] = true -- Grand Overseer
-		E.global["nameplates"]["filters"]["Luckyone_SD"]["triggers"]["names"]["162057"] = true -- Chamber Sentinel
-		E.global["nameplates"]["filters"]["Luckyone_SD"]["triggers"]["names"]["171376"] = true -- Head Custodian Javlin
-		E.global["nameplates"]["filters"]["Luckyone_SD"]["triggers"]["names"]["171799"] = true -- Depths Warden
-		E.global["nameplates"]["filters"]["Luckyone_SD"]["triggers"]["priority"] = 2
-
-		-- Spires of Ascension [SOA]
-		E.global["nameplates"]["filters"]["Luckyone_SOA"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["Luckyone_SOA"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		E.global["nameplates"]["filters"]["Luckyone_SOA"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplates"]["filters"]["Luckyone_SOA"]["triggers"]["names"]["163459"] = true -- Forsworn Mender
-		E.global["nameplates"]["filters"]["Luckyone_SOA"]["triggers"]["names"]["163520"] = true -- Forsworn Squad-Leader
-		E.global["nameplates"]["filters"]["Luckyone_SOA"]["triggers"]["names"]["168318"] = true -- Forsworn Goliath
-		E.global["nameplates"]["filters"]["Luckyone_SOA"]["triggers"]["names"]["168681"] = true -- Forsworn Helion
-		E.global["nameplates"]["filters"]["Luckyone_SOA"]["triggers"]["priority"] = 2
-
-		-- Theater of Pain [TOP]
-		E.global["nameplates"]["filters"]["Luckyone_TOP"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["Luckyone_TOP"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		E.global["nameplates"]["filters"]["Luckyone_TOP"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplates"]["filters"]["Luckyone_TOP"]["triggers"]["names"]["164451"]= true -- Dessia the Decapitator
-		E.global["nameplates"]["filters"]["Luckyone_TOP"]["triggers"]["names"]["160495"] = true -- Maniacal Soulbinder
-		E.global["nameplates"]["filters"]["Luckyone_TOP"]["triggers"]["names"]["164506"] = true -- Ancient Captain
-		E.global["nameplates"]["filters"]["Luckyone_TOP"]["triggers"]["names"]["170850"] = true -- Raging Bloodhorn
-		E.global["nameplates"]["filters"]["Luckyone_TOP"]["triggers"]["names"]["174210"] = true -- Blighted Sludge-Spewer
-		E.global["nameplates"]["filters"]["Luckyone_TOP"]["triggers"]["priority"] = 2
 
 		-- Tazavesh [TZ]
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["health"] = true
@@ -393,20 +304,6 @@ function L1UI:Setup_StyleFilters()
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180431"] = true -- Focused Ritualist
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180433"] = true -- Wandering Pulsar
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["priority"] = 2
-
-		-- Encrypted Affix Shadowlands Season 3
-		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["actions"]["color"]["healthColor"]["b"] = 0.42745098039216
-		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["actions"]["color"]["healthColor"]["g"] = 0.6078431372549
-		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["actions"]["color"]["healthColor"]["r"] = 0.77647058823529
-		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["actions"]["tags"]["name"] = "[name]"
-		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["triggers"]["names"]["184908"] = true -- Vy Interceptor
-		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["triggers"]["names"]["184910"] = true -- Wo Drifter
-		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["triggers"]["names"]["184911"] = true -- Urh Dismantler
-		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["triggers"]["names"]["185680"] = true -- Vy Relic
-		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["triggers"]["names"]["185683"] = true -- Wo Relic
-		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["triggers"]["names"]["185685"] = true -- Urh Relic
-		E.global["nameplates"]["filters"]["Luckyone_Encrypted"]["triggers"]["priority"] = 2
 
 		-- Edited default filters
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
