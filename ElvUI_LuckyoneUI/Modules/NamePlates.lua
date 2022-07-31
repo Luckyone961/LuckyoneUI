@@ -287,9 +287,8 @@ end
 function L1UI:Setup_StyleFilters()
 
 	if E.Retail then
-
 		-- Enable all filters from the pairs table and copy default tree options
-		for _, filterName in pairs({'Luckyone_Encrypted', 'Luckyone_TZ'}) do
+		for _, filterName in pairs({'Luckyone_Encrypted', 'Luckyone_TZ', 'Luckyone_WORK', 'Luckyone_YARD'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
@@ -304,6 +303,29 @@ function L1UI:Setup_StyleFilters()
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180431"] = true -- Focused Ritualist
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180433"] = true -- Wandering Pulsar
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["priority"] = 2
+
+		-- Mechagon Workshop [WORK]
+		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["health"] = true
+		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["144293"] = true -- Waste Processing Unit
+		E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["144294"] = true -- Mechagon Tinkerer
+		E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["151325"] = true -- Alarm o Bot
+		E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["151657"] = true -- Bomb Tonk
+		E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["priority"] = 2
+
+		-- Mechagon Junkyard [YARD]
+		E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["health"] = true
+		E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150146"] = true -- Scrapbone Shaman
+		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150160"] = true -- Scrapbone Bully
+		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150168"] = true -- Toxic Monstrosity
+		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150250"] = true -- Pistonhead Blaster
+		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150251"] = true -- Pistonhead Mechanic
+		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150292"] = true -- Mechagon Cavalry
+		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150297"] = true -- Mechagon Renormalizer
+		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["priority"] = 2
 
 		-- Edited default filters
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
