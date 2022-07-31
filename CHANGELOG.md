@@ -1,6 +1,9 @@
 ### Version 1.54 [In Development]
+**All WoW Versions:**  
+Minor tweaks for the initial ElvUI layout installer steps  
 **Retail:**  
 Updated Details profile  
+Updated ElvUI StyleFilters for Season 4  
 ___
 ### Version 1.53 [30-07-2022]
 **All WoW Versions:**  

@@ -285,6 +285,7 @@ end
 
 -- Custom StyleFilters for all Shadowlands Dungeons
 function L1UI:Setup_StyleFilters()
+	if not E.private.nameplates.enable then return end
 
 	if E.Retail then
 
