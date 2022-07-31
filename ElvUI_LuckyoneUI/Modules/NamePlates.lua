@@ -288,21 +288,52 @@ function L1UI:Setup_StyleFilters()
 
 	if E.Retail then
 
-		for _, filterName in pairs({'Luckyone_Encrypted', 'Luckyone_TZ', 'Luckyone_WORK', 'Luckyone_YARD'}) do
+		-- {'Luckyone_DEPOT', 'Luckyone_DOCKS', 'Luckyone_LOWER', 'Luckyone_UPPER', 'Luckyone_WORK', 'Luckyone_YARD', 'Luckyone_TZ'}
+		for _, filterName in pairs({'Luckyone_WORK', 'Luckyone_YARD', 'Luckyone_TZ'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 		end
 
-		-- Tazavesh [TZ]
-		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["178141"] = true -- Murkbrine Scalebinder
-		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["179733"] = true -- Invigorating Fish Stick
-		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180431"] = true -- Focused Ritualist
-		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180433"] = true -- Wandering Pulsar
-		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["priority"] = 2
+		-- Grimrail Depot [DEPOT]
+		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["health"] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["r"] = 0
+		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["priority"] = 2
+
+		-- Iron Docks [DOCKS]
+		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["health"] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["r"] = 0
+		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["priority"] = 2
+
+		-- Karazhan Lower [LOWER]
+		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["health"] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["healthColor"]["r"] = 0
+		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["priority"] = 2
+
+		-- Karazhan Upper [UPPER]
+		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["health"] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["r"] = 0
+		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"][""] = true
+		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["priority"] = 2
 
 		-- Mechagon Workshop [WORK]
 		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["health"] = true
@@ -326,6 +357,16 @@ function L1UI:Setup_StyleFilters()
 		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150292"] = true -- Mechagon Cavalry
 		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150297"] = true -- Mechagon Renormalizer
 		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["priority"] = 2
+
+		-- Tazavesh [TZ]
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["178141"] = true -- Murkbrine Scalebinder
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["179733"] = true -- Invigorating Fish Stick
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180431"] = true -- Focused Ritualist
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180433"] = true -- Wandering Pulsar
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["priority"] = 2
 
 		-- Edited default filters
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
