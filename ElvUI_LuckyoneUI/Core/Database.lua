@@ -1138,10 +1138,7 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db["unitframe"]["units"]["target"]["raidRoleIcons"]["yOffset"] = 1
 	E.db["unitframe"]["units"]["target"]["threatStyle"] = "NONE"
 	E.db["unitframe"]["units"]["target"]["width"] = 190
-	E.db["unitframe"]["units"]["targettarget"]["buffs"]["countFont"] = "Expressway"
-	E.db["unitframe"]["units"]["targettarget"]["debuffs"]["countFont"] = "Expressway"
 	E.db["unitframe"]["units"]["targettarget"]["debuffs"]["enable"] = false
-	E.db["unitframe"]["units"]["targettarget"]["debuffs"]["maxDuration"] = 0
 	E.db["unitframe"]["units"]["targettarget"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["targettarget"]["health"]["position"] = "CENTER"
 	E.db["unitframe"]["units"]["targettarget"]["health"]["xOffset"] = 0
@@ -1301,10 +1298,6 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db["unitframe"]["units"]["party"]["phaseIndicator"]["scale"] = 0.5
 		E.db["unitframe"]["units"]["party"]["phaseIndicator"]["xOffset"] = -50
 		E.db["unitframe"]["units"]["party"]["power"]["enable"] = false
-		E.db["unitframe"]["units"]["party"]["power"]["height"] = 3
-		E.db["unitframe"]["units"]["party"]["power"]["position"] = "BOTTOMRIGHT"
-		E.db["unitframe"]["units"]["party"]["power"]["text_format"] = ""
-		E.db["unitframe"]["units"]["party"]["power"]["yOffset"] = 2
 		E.db["unitframe"]["units"]["party"]["raidicon"]["attachTo"] = "CENTER"
 		E.db["unitframe"]["units"]["party"]["raidicon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["party"]["raidicon"]["size"] = 14
@@ -1434,13 +1427,7 @@ function L1UI:Layout_Shadowlands(layout)
 
 		-- UnitFrames Healing
 		E.db["unitframe"]["units"]["party"]["classbar"]["enable"] = false
-		E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Expressway"
-		E.db["unitframe"]["units"]["party"]["debuffs"]["desaturate"] = false
 		E.db["unitframe"]["units"]["party"]["debuffs"]["enable"] = false
-		E.db["unitframe"]["units"]["party"]["debuffs"]["maxDuration"] = 0
-		E.db["unitframe"]["units"]["party"]["debuffs"]["perrow"] = 3
-		E.db["unitframe"]["units"]["party"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
-		E.db["unitframe"]["units"]["party"]["debuffs"]["sizeOverride"] = 0
 		E.db["unitframe"]["units"]["party"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["party"]["disableTargetGlow"] = true
 		E.db["unitframe"]["units"]["party"]["groupBy"] = "GROUP"
