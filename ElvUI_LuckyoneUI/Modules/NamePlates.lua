@@ -283,7 +283,7 @@ function L1UI:Setup_NamePlates(addon)
 	end
 end
 
--- Custom StyleFilters for all Shadowlands Dungeons
+-- Custom StyleFilters for all current Dungeons
 function L1UI:Setup_StyleFilters()
 	if not E.private.nameplates.enable then return end
 
