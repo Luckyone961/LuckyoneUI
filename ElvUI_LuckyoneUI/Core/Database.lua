@@ -40,7 +40,6 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db["general"]["minimap"]["locationFontSize"] = 13
 	E.db["general"]["minimap"]["locationText"] = "SHOW"
 	E.db["general"]["minimap"]["size"] = 161
-	E.db["general"]["totems"]["enable"] = false
 
 	-- General Retail
 	if E.Retail then
