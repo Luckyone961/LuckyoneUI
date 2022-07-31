@@ -287,7 +287,7 @@ end
 function L1UI:Setup_StyleFilters()
 
 	if E.Retail then
-		-- Enable all filters from the pairs table and copy default tree options
+
 		for _, filterName in pairs({'Luckyone_Encrypted', 'Luckyone_TZ', 'Luckyone_WORK', 'Luckyone_YARD'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
