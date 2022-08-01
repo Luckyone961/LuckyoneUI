@@ -126,6 +126,12 @@ end
 -- E.private & Media
 function L1UI:Setup_PrivateDB()
 
+	if L1UI.Me then
+		E.private.general.chatBubbles = 'disabled'
+		E.private.L1UI.disabledFrames.AlertFrame = true
+		E.private.L1UI.disabledFrames.BossBanner = true
+	end
+
 	E.db.general.font = 'Expressway'
 	E.db.general.fontSize = 11
 	E.db.general.fontStyle = 'OUTLINE'
