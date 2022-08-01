@@ -289,8 +289,8 @@ function L1UI:Setup_StyleFilters()
 
 	if E.Retail then
 
-		-- {'Luckyone_DEPOT', 'Luckyone_DOCKS', 'Luckyone_LOWER', 'Luckyone_UPPER', 'Luckyone_WORK', 'Luckyone_YARD', 'Luckyone_TZ'}
-		for _, filterName in pairs({'Luckyone_WORK', 'Luckyone_YARD', 'Luckyone_TZ'}) do
+		-- {'Luckyone_DEPOT', 'Luckyone_DOCKS', 'Luckyone_LOWER'}
+		for _, filterName in pairs({'Luckyone_UPPER', 'Luckyone_WORK', 'Luckyone_YARD', 'Luckyone_TZ'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
@@ -327,14 +327,15 @@ function L1UI:Setup_StyleFilters()
 		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["priority"] = 2
 
 		-- Karazhan Upper [UPPER]
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["health"] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["r"] = 0
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["priority"] = 2
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["health"] = true
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["114338"] = true -- Mana Confluence
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["114249"] = true -- Volatile Energy
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["115757"] = true -- Wrathguard Flamebringer
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["115418"] = true -- Spider
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["115488"] = true -- Infused Pyromancer
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["priority"] = 2
 
 		-- Mechagon Workshop [WORK]
 		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["health"] = true
