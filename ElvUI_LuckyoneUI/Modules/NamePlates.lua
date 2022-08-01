@@ -369,7 +369,7 @@ function L1UI:Setup_StyleFilters()
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180433"] = true -- Wandering Pulsar
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["priority"] = 2
 
-		-- Edited default filters
+		-- Edited version of ElvUI_Explosives
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["g"] = 0
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0.49019607843137
@@ -378,6 +378,7 @@ function L1UI:Setup_StyleFilters()
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["priority"] = 1
 	end
 
+	-- Disable alpha fading and scaling for ElvUI_Target and ElvUI_NonTarget
 	E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = -1
 	E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["scale"] = 1
 
