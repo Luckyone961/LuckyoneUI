@@ -5,7 +5,8 @@ Minor tweaks for the initial ElvUI layout installer steps
 Updated performance section with chat prints and Clear All button  
 **Retail:**  
 Updated Details profile  
-Updated ElvUI StyleFilters for Season 4  
+Updated ElvUI StyleFilters for Season 4 Dungeons  
+Updated Plater colors mod for Season 4 Dungeons  
 ___
 ### Version 1.53 [30-07-2022]
 **All WoW Versions:**  
