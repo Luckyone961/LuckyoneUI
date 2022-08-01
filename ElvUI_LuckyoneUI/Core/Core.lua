@@ -74,6 +74,7 @@ function L1UI:Setup_CVars()
 	-- My CVars
 	if L1UI.Me then
 		SetCVar('disableServerNagle', 0)
+		SetCVar('displaySpellActivationOverlays', 0)
 		SetCVar('doNotFlashLowHealthWarning', 1)
 		SetCVar('floatingCombatTextCombatDamage', 0)
 		SetCVar('floatingCombatTextCombatHealing', 0)
