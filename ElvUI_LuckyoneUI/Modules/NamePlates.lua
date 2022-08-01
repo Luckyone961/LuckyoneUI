@@ -289,22 +289,23 @@ function L1UI:Setup_StyleFilters()
 
 	if E.Retail then
 
-		-- {'Luckyone_DEPOT', 'Luckyone_DOCKS'}
-		for _, filterName in pairs({'Luckyone_LOWER', 'Luckyone_UPPER', 'Luckyone_WORK', 'Luckyone_YARD', 'Luckyone_TZ'}) do
+		-- {'Luckyone_DOCKS'}
+		for _, filterName in pairs({'Luckyone_DEPOT', 'Luckyone_LOWER', 'Luckyone_UPPER', 'Luckyone_WORK', 'Luckyone_YARD', 'Luckyone_TZ'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 		end
 
 		-- Grimrail Depot [DEPOT]
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["health"] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["r"] = 0
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["priority"] = 2
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["health"] = true
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["81236"] = true -- Grimrail Technician
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["81407"] = true -- Grimrail Bombardier
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["80937"] = true -- Grom'kar Gunner
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["88163"] = true -- Grom'kar Cinderseer
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["82597"] = true -- Grom'kar Captain
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["priority"] = 2
 
 		-- Iron Docks [DOCKS]
 		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["health"] = true
