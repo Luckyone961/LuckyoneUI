@@ -80,23 +80,23 @@ function L1UI:Setup_Chat()
 	end
 
 	-- Whisper tab
-	local chats = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
+	local whisper = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame4)
-	for _, k in ipairs(chats) do
+	for _, k in ipairs(whisper) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame4, k)
 	end
 
 	-- Guild tab
-	chats = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
+	local guild = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
-	for _, k in ipairs(chats) do
+	for _, k in ipairs(guild) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame5, k)
 	end
 
 	-- Party tab
-	chats = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER' }
+	local party = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame6)
-	for _, k in ipairs(chats) do
+	for _, k in ipairs(party) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame6, k)
 	end
 
