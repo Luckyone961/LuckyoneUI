@@ -2,22 +2,22 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local IsAddOnLoaded = IsAddOnLoaded
 
--- DBM Profile
+-- DBM profile
 function L1UI:Setup_DBM(layout)
 	if not IsAddOnLoaded('DBM-Core') then return end
 
-	-- Profile Names
-	local Retail, TBC, Classic, Wrath = "Luckyone", "Luckyone", "Luckyone", "Luckyone"
-	local Retail_H, TBC_H, Classic_H, Wrath_H = "Luckyone_H", "Luckyone_H", "Luckyone_H", "Luckyone_H"
+	-- Profile names
+	local name, name_healing = "Luckyone", "Luckyone_Healing"
+
+	-- Create the profiles
+	DBM:CreateProfile(name) -- DPS/TANK
+	DBM:CreateProfile(name_healing) -- Healing
 
 	if E.Retail then
 
-		DBM:CreateProfile(Retail) -- DPS/TANK
-		DBM:CreateProfile(Retail_H) -- Healing
-
-		DBM_AllSavedOptions[Retail] = DBM_AllSavedOptions[Retail] or {}
-		DBM_AllSavedOptions[Retail_H] = DBM_AllSavedOptions[Retail_H] or {}
-		DBM_AllSavedOptions[Retail] = {
+		DBM_AllSavedOptions[name] = DBM_AllSavedOptions[name] or {}
+		DBM_AllSavedOptions[name_healing] = DBM_AllSavedOptions[name_healing] or {}
+		DBM_AllSavedOptions[name] = {
 			["DontShowFarWarnings"] = true,
 			["SpecialWarningFlashAlph2"] = 0.3,
 			["DontShowHudMap2"] = true,
@@ -271,7 +271,7 @@ function L1UI:Setup_DBM(layout)
 			["SpecialWarningPoint"] = "TOP",
 			["HelpMessageVersion"] = 3,
 		}
-		DBM_AllSavedOptions[Retail_H] = {
+		DBM_AllSavedOptions[name_healing] = {
 			["DontShowFarWarnings"] = true,
 			["SpecialWarningFlashAlph2"] = 0.3,
 			["DontShowHudMap2"] = true,
@@ -526,9 +526,9 @@ function L1UI:Setup_DBM(layout)
 			["HelpMessageVersion"] = 3,
 		}
 
-		DBT_AllPersistentOptions[Retail] = DBT_AllPersistentOptions[Retail] or {}
-		DBT_AllPersistentOptions[Retail_H] = DBT_AllPersistentOptions[Retail_H] or {}
-		DBT_AllPersistentOptions[Retail] = {
+		DBT_AllPersistentOptions[name] = DBT_AllPersistentOptions[name] or {}
+		DBT_AllPersistentOptions[name_healing] = DBT_AllPersistentOptions[name_healing] or {}
+		DBT_AllPersistentOptions[name] = {
 			["DBM"] = {
 				["StartColorPR"] = 1,
 				["Scale"] = 1,
@@ -732,7 +732,7 @@ function L1UI:Setup_DBM(layout)
 				["HugeHeight"] = 22,
 			},
 		}
-		DBT_AllPersistentOptions[Retail_H] = {
+		DBT_AllPersistentOptions[name_healing] = {
 			["DBM"] = {
 				["StartColorPR"] = 1,
 				["Scale"] = 1,
@@ -937,23 +937,11 @@ function L1UI:Setup_DBM(layout)
 			},
 		}
 
-		DBM_MinimapIcon["hide"] = true
-
-		-- Role check and set profile
-		if layout == 'main' then
-			DBM:ApplyProfile(Retail)
-		elseif layout == 'healing' then
-			DBM:ApplyProfile(Retail_H)
-		end
-
 	elseif E.TBC then
 
-		DBM:CreateProfile(TBC) -- DPS/TANK
-		DBM:CreateProfile(TBC_H) -- Healing
-
-		DBM_AllSavedOptions[TBC] = DBM_AllSavedOptions[TBC] or {}
-		DBM_AllSavedOptions[TBC_H] = DBM_AllSavedOptions[TBC_H] or {}
-		DBM_AllSavedOptions[TBC] = {
+		DBM_AllSavedOptions[name] = DBM_AllSavedOptions[name] or {}
+		DBM_AllSavedOptions[name_healing] = DBM_AllSavedOptions[name_healing] or {}
+		DBM_AllSavedOptions[name] = {
 			["DontShowFarWarnings"] = true,
 			["SpecialWarningFlashAlph2"] = 0.3,
 			["DontShowHudMap2"] = true,
@@ -1209,7 +1197,7 @@ function L1UI:Setup_DBM(layout)
 			["UseNameplateHandoff"] = true,
 			["HelpMessageVersion"] = 3,
 		}
-		DBM_AllSavedOptions[TBC_H] = {
+		DBM_AllSavedOptions[name_healing] = {
 			["DontShowFarWarnings"] = true,
 			["SpecialWarningFlashAlph2"] = 0.3,
 			["DontShowHudMap2"] = true,
@@ -1466,9 +1454,9 @@ function L1UI:Setup_DBM(layout)
 			["HelpMessageVersion"] = 3,
 		}
 
-		DBT_AllPersistentOptions[TBC] = DBT_AllPersistentOptions[TBC] or {}
-		DBT_AllPersistentOptions[TBC_H] = DBT_AllPersistentOptions[TBC_H] or {}
-		DBT_AllPersistentOptions[TBC] = {
+		DBT_AllPersistentOptions[name] = DBT_AllPersistentOptions[name] or {}
+		DBT_AllPersistentOptions[name_healing] = DBT_AllPersistentOptions[name_healing] or {}
+		DBT_AllPersistentOptions[name] = {
 			["DBM"] = {
 				["StartColorPR"] = 1,
 				["Scale"] = 1,
@@ -1672,7 +1660,7 @@ function L1UI:Setup_DBM(layout)
 				["HugeHeight"] = 22,
 			},
 		}
-		DBT_AllPersistentOptions[TBC_H] = {
+		DBT_AllPersistentOptions[name_healing] = {
 			["DBM"] = {
 				["StartColorPR"] = 1,
 				["Scale"] = 1,
@@ -1877,23 +1865,11 @@ function L1UI:Setup_DBM(layout)
 			},
 		}
 
-		DBM_MinimapIcon["hide"] = true
-
-		-- Role check and set profile
-		if layout == 'main' then
-			DBM:ApplyProfile(TBC)
-		elseif layout == 'healing' then
-			DBM:ApplyProfile(TBC_H)
-		end
-
 	elseif E.Classic then
 
-		DBM:CreateProfile(Classic) -- DPS/TANK
-		DBM:CreateProfile(Classic_H) -- Healing
-
-		DBM_AllSavedOptions[Classic] = DBM_AllSavedOptions[Classic] or {}
-		DBM_AllSavedOptions[Classic_H] = DBM_AllSavedOptions[Classic_H] or {}
-		DBM_AllSavedOptions[Classic] = {
+		DBM_AllSavedOptions[name] = DBM_AllSavedOptions[name] or {}
+		DBM_AllSavedOptions[name_healing] = DBM_AllSavedOptions[name_healing] or {}
+		DBM_AllSavedOptions[name] = {
 			["DontShowFarWarnings"] = true,
 			["SpecialWarningFlashAlph2"] = 0.3,
 			["DontShowHudMap2"] = true,
@@ -2149,7 +2125,7 @@ function L1UI:Setup_DBM(layout)
 			["ForumsMessageShown"] = false,
 			["HelpMessageVersion"] = 3,
 		}
-		DBM_AllSavedOptions[Classic_H] = {
+		DBM_AllSavedOptions[name_healing] = {
 			["DontShowFarWarnings"] = true,
 			["SpecialWarningFlashAlph2"] = 0.3,
 			["DontShowHudMap2"] = true,
@@ -2406,9 +2382,9 @@ function L1UI:Setup_DBM(layout)
 			["HelpMessageVersion"] = 3,
 		}
 
-		DBT_AllPersistentOptions[Classic] = DBT_AllPersistentOptions[Classic] or {}
-		DBT_AllPersistentOptions[Classic_H] = DBT_AllPersistentOptions[Classic_H] or {}
-		DBT_AllPersistentOptions[Classic] = {
+		DBT_AllPersistentOptions[name] = DBT_AllPersistentOptions[name] or {}
+		DBT_AllPersistentOptions[name_healing] = DBT_AllPersistentOptions[name_healing] or {}
+		DBT_AllPersistentOptions[name] = {
 			["DBM"] = {
 				["StartColorPR"] = 1,
 				["Scale"] = 1,
@@ -2612,7 +2588,7 @@ function L1UI:Setup_DBM(layout)
 				["StartColorR"] = 1,
 			},
 		}
-		DBT_AllPersistentOptions[Classic_H] = {
+		DBT_AllPersistentOptions[name_healing] = {
 			["DBM"] = {
 				["StartColorPR"] = 1,
 				["Scale"] = 1,
@@ -2817,23 +2793,11 @@ function L1UI:Setup_DBM(layout)
 			},
 		}
 
-		DBM_MinimapIcon["hide"] = true
-
-		-- Role check and set profile
-		if layout == 'main' then
-			DBM:ApplyProfile(Classic)
-		elseif layout == 'healing' then
-			DBM:ApplyProfile(Classic_H)
-		end
-
 	elseif E.Wrath then
 
-		DBM:CreateProfile(Wrath) -- DPS/TANK
-		DBM:CreateProfile(Wrath_H) -- Healing
-
-		DBM_AllSavedOptions[Wrath] = DBM_AllSavedOptions[Wrath] or {}
-		DBM_AllSavedOptions[Wrath_H] = DBM_AllSavedOptions[Wrath_H] or {}
-		DBM_AllSavedOptions[Wrath] = {
+		DBM_AllSavedOptions[name] = DBM_AllSavedOptions[name] or {}
+		DBM_AllSavedOptions[name_healing] = DBM_AllSavedOptions[name_healing] or {}
+		DBM_AllSavedOptions[name] = {
 			["DontShowFarWarnings"] = true,
 			["SpecialWarningFlashAlph2"] = 0.3,
 			["DontShowHudMap2"] = true,
@@ -3089,7 +3053,7 @@ function L1UI:Setup_DBM(layout)
 			["UseNameplateHandoff"] = true,
 			["HelpMessageVersion"] = 3,
 		}
-		DBM_AllSavedOptions[Wrath_H] = {
+		DBM_AllSavedOptions[name_healing] = {
 			["DontShowFarWarnings"] = true,
 			["SpecialWarningFlashAlph2"] = 0.3,
 			["DontShowHudMap2"] = true,
@@ -3346,9 +3310,9 @@ function L1UI:Setup_DBM(layout)
 			["HelpMessageVersion"] = 3,
 		}
 
-		DBT_AllPersistentOptions[Wrath] = DBT_AllPersistentOptions[Wrath] or {}
-		DBT_AllPersistentOptions[Wrath_H] = DBT_AllPersistentOptions[Wrath_H] or {}
-		DBT_AllPersistentOptions[Wrath] = {
+		DBT_AllPersistentOptions[name] = DBT_AllPersistentOptions[name] or {}
+		DBT_AllPersistentOptions[name_healing] = DBT_AllPersistentOptions[name_healing] or {}
+		DBT_AllPersistentOptions[name] = {
 			["DBM"] = {
 				["StartColorPR"] = 1,
 				["Scale"] = 1,
@@ -3552,7 +3516,7 @@ function L1UI:Setup_DBM(layout)
 				["HugeHeight"] = 22,
 			},
 		}
-		DBT_AllPersistentOptions[Wrath_H] = {
+		DBT_AllPersistentOptions[name_healing] = {
 			["DBM"] = {
 				["StartColorPR"] = 1,
 				["Scale"] = 1,
@@ -3757,14 +3721,13 @@ function L1UI:Setup_DBM(layout)
 			},
 		}
 
-		DBM_MinimapIcon["hide"] = true
+	end
 
-		-- Role check and set profile
-		if layout == 'main' then
-			DBM:ApplyProfile(Wrath)
-		elseif layout == 'healing' then
-			DBM:ApplyProfile(Wrath_H)
-		end
+	-- Role check and set profile
+	if layout == 'main' then
+		DBM:ApplyProfile(name)
+	elseif layout == 'healing' then
+		DBM:ApplyProfile(name_healing)
 	end
 
 	L1UI:Print(L["DBM profile has been set."])

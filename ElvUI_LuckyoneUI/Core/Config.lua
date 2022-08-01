@@ -152,7 +152,7 @@ function L1UI:Config()
 	L1UI.Options.args.media.args.header = ACH:Header(L["Media"], 1)
 	L1UI.Options.args.media.args.defaults = ACH:Group(L["Fonts and Textures"], nil, 2)
 	L1UI.Options.args.media.args.defaults.inline = true
-	L1UI.Options.args.media.args.defaults.args.private = ACH:Execute(L["Reset Media"], L["Reset Fonts, Textures, Skins to LuckyoneUI defaults."], 1, function() L1UI:Setup_PrivateDB() E:StaggeredUpdateAll() end, nil, true)
+	L1UI.Options.args.media.args.defaults.args.private = ACH:Execute(L["Reset Media"], L["Reset Fonts, Textures, Skins to LuckyoneUI defaults."], 1, function() L1UI:Setup_PrivateDB() E:UpdateMediaItems(true) end, nil, true)
 	L1UI.Options.args.media.args.defaultsDesc = ACH:Group(L["Fonts and Textures"], nil, 3)
 	L1UI.Options.args.media.args.defaultsDesc.inline = true
 	L1UI.Options.args.media.args.defaultsDesc.args.cvars = ACH:Description('- Expressway\n- Outline\n- Minimalist', 1, 'medium')
@@ -187,8 +187,9 @@ function L1UI:Config()
 	L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', L["Reset to LuckyoneUI defaults."], 3, function() L1UI:Setup_ShadowAndLight() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.profiles.args.nameplates = ACH:Group(L["NamePlate Profiles"], nil, 3)
 	L1UI.Options.args.profiles.args.nameplates.inline = true
-	L1UI.Options.args.profiles.args.nameplates.args.elvui = ACH:Execute('ElvUI', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_NamePlates('ElvUI') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.profiles.args.nameplates.args.plater = ACH:Execute('Plater', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_NamePlates('Plater') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.nameplates.args.plater = ACH:Execute('Plater', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_NamePlates('Plater') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.nameplates.args.elvui = ACH:Execute('ElvUI', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_NamePlates('ElvUI') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.nameplates.args.styleFilters = ACH:Execute('ElvUI StyleFilters', L["Reset to LuckyoneUI defaults."], 3, function() L1UI:Setup_StyleFilters() E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.profiles.args.addons = ACH:Group(L["Addon Profiles"], nil, 4)
 	L1UI.Options.args.profiles.args.addons.inline = true
 	L1UI.Options.args.profiles.args.addons.args.details = ACH:Execute('Details', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_Details() E:StaticPopup_Show('L1UI_RL') end, nil, true)
@@ -254,14 +255,15 @@ function L1UI:Config()
 	L1UI.Options.args.weakaurasWrath = ACH:Group('WeakAuras', nil, 14, nil, nil, nil, nil, not E.Wrath)
 	L1UI.Options.args.weakaurasWrath.args.header1 = ACH:Header('WeakAuras', 1)
 	L1UI.Options.args.weakaurasWrath.args.hunter = ACH:Input(format('|cffAAD372%s|r', L["Hunter"]), nil, 2, nil, 'full', function() return 'https://wago.io/luckyoneHunterWrath' end)
+	L1UI.Options.args.weakaurasWrath.args.druid = ACH:Input(format('|cffFF7C0A%s|r', L["Druid"]), nil, 3, nil, 'full', function() return 'https://wago.io/luckyoneDruidWrath' end)
 
 	-- Archive
 	L1UI.Options.args.archive = ACH:Group(format('|cfd9b9b9b%s|r', L["Archive"]), nil, 15)
 	L1UI.Options.args.archive.args.desc = ACH:Header(L["Archive"], 1)
 	L1UI.Options.args.archive.args.profiles = ACH:Group('LuckyoneUI Shadowlands', nil, 2)
 	L1UI.Options.args.archive.args.profiles.inline = true
-	L1UI.Options.args.archive.args.profiles.args.main = ACH:Execute(L["DPS/TANK"], nil, 1, function() L1UI:Layout_Shadowlands('main') end, nil, true)
-	L1UI.Options.args.archive.args.profiles.args.healing = ACH:Execute(L["Healing"], nil, 2, function() L1UI:Layout_Shadowlands('healing') end, nil, true)
+	L1UI.Options.args.archive.args.profiles.args.main = ACH:Execute(L["DPS/TANK"], nil, 1, function() L1UI:Layout_Shadowlands('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.archive.args.profiles.args.healing = ACH:Execute(L["Healing"], nil, 2, function() L1UI:Layout_Shadowlands('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 
 	-- Credits
 	L1UI.Options.args.credits = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 16)

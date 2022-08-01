@@ -45,7 +45,8 @@ function L1UI:Setup_Theme(theme)
 
 	end
 
-	E:StaggeredUpdateAll()
+	E:UpdateMediaItems(true)
+	E:UpdateUnitFrames()
 
 	L1UI:Print(L["Theme has been set."])
 end

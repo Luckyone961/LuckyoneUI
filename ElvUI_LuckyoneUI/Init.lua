@@ -52,7 +52,7 @@ L1UI.DefaultFont = "Expressway"
 L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = E.Retail and 12.81 or E.TBC and 2.48 or E.Classic and 1.73 or E.Wrath and 0.17
+L1UI.RequiredVersion = E.Retail and 12.81 or E.TBC and 2.48 or E.Classic and 1.73 or E.Wrath and 0.19
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
@@ -60,23 +60,18 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 		ElvDB.LuckyoneDisabledAddOns = {}
 	end
 
-	if initLogin or isReload then
-		L1UI:VersionCheck()
-	end
+	if initLogin or isReload then L1UI:VersionCheck() end
 
 	L1UI:DisabledFrames()
 	L1UI:LoadCommands()
 end
 
 function L1UI:Initialize()
-
 	if E.private.install_complete and E.db.L1UI.install_version == nil then
 		E.PluginInstaller:Queue(L1UI.InstallerData)
 	end
 
-	if L1UI.Me and E.Retail then
-		ElvDB.ShadowLightAlpha = false
-	end
+	if L1UI.Me and E.Retail then ElvDB.ShadowLightAlpha = false end
 
 	EP:RegisterPlugin(addon, L1UI.Config)
 	L1UI:RegisterEvent('PLAYER_ENTERING_WORLD')

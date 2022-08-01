@@ -1,10 +1,8 @@
 local L = ElvUI[1].Libs.ACL:NewLocale('ElvUI', 'deDE')
 if not L then return end
 
---[[
-	Please contact me on Discord if you contributed to the translation of LuckyoneUI.
-	I will verify your Pull Request on GitHub and add you to the AddOn credits.
-]]
+-- Please contact me on Discord if you contributed to the translation of LuckyoneUI
+-- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
 -- Config.lua locales
 L["Addon Download:"] = true
