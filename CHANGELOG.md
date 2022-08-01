@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 Added stAddonManager setup to the ProjectAzilroka profile  
 Minor tweaks for the initial ElvUI layout installer steps  
+Updated performance section with chat prints and Clear All button  
 **Retail:**  
 Updated Details profile  
 Updated ElvUI StyleFilters for Season 4  

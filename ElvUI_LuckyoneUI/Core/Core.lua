@@ -227,8 +227,10 @@ function L1UI:Cleanup_Cache(addon, type)
 	if addon == 'elvui' and E.private.chat.enable then
 		if type == 'chat' then
 			CH:ResetHistory()
+			L1UI:Print(L["Cleared ElvUI Chat History."])
 		elseif type == 'editbox' then
 			CH:ResetEditboxHistory()
+			L1UI:Print(L["Cleared ElvUI Editbox History."])
 		end
 	elseif addon == 'details' and IsAddOnLoaded('Details') then
 		_detalhes.boss_mods_timers = {}
@@ -236,19 +238,23 @@ function L1UI:Cleanup_Cache(addon, type)
 		_detalhes.npcid_pool = {}
 		_detalhes.spell_pool = {}
 		_detalhes.spell_school_cache = {}
+		L1UI:Print(L["Cleared Details Cache."])
 	elseif addon == 'plater' and IsAddOnLoaded('Plater') then
 		PlaterDB.captured_casts = {}
 		PlaterDB.captured_spells = {}
 		if PlaterDB.profiles.Luckyone then PlaterDB.profiles.Luckyone.npc_cache = {} end
+		L1UI:Print(L["Cleared Plater Cache."])
 	elseif addon == 'rc' and IsAddOnLoaded('RCLootCouncil') then
 		RCLootCouncilDB.global.cache = {}
 		RCLootCouncilDB.global.errors = {}
 		RCLootCouncilDB.global.log = {}
 		RCLootCouncilDB.global.verTestCandidates = {}
+		L1UI:Print(L["Cleared RCLootCouncil Cache."])
 	elseif addon == 'mrt' and IsAddOnLoaded('MRT') then
 		VMRT.Encounter.list = {}
 		VMRT.Encounter.names = {}
 		VMRT.ExCD2.gnGUIDs = {}
 		VMRT.Inspect.Soulbinds = {}
+		L1UI:Print(L["Cleared Method Raid Tools Cache."])
 	end
 end

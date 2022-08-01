@@ -162,8 +162,8 @@ function L1UI:Config()
 	L1UI.Options.args.performance.args.desc = ACH:Header(L["Performance"], 1)
 	L1UI.Options.args.performance.args.elvui = ACH:Group('ElvUI', nil, 2)
 	L1UI.Options.args.performance.args.elvui.inline = true
-	L1UI.Options.args.performance.args.elvui.args.chat = ACH:Execute(L["Clear Chat History"], nil, 1, function() if not E.private.chat.enable then return end L1UI:Cleanup_Cache('elvui', 'chat') end)
-	L1UI.Options.args.performance.args.elvui.args.edit = ACH:Execute(L["Clear Editbox History"], nil, 2, function() if not E.private.chat.enable then return end L1UI:Cleanup_Cache('elvui', 'editbox') end)
+	L1UI.Options.args.performance.args.elvui.args.chat = ACH:Execute(L["Clear Chat History"], nil, 1, function() L1UI:Cleanup_Cache('elvui', 'chat') end)
+	L1UI.Options.args.performance.args.elvui.args.edit = ACH:Execute(L["Clear Editbox History"], nil, 2, function() L1UI:Cleanup_Cache('elvui', 'editbox') end)
 	L1UI.Options.args.performance.args.details = ACH:Group('Details', nil, 3)
 	L1UI.Options.args.performance.args.details.inline = true
 	L1UI.Options.args.performance.args.details.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() L1UI:Cleanup_Cache('details') end)
@@ -176,6 +176,10 @@ function L1UI:Config()
 	L1UI.Options.args.performance.args.mrt = ACH:Group('Method Raid Tools', nil, 6)
 	L1UI.Options.args.performance.args.mrt.inline = true
 	L1UI.Options.args.performance.args.mrt.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() L1UI:Cleanup_Cache('mrt') end)
+	L1UI.Options.args.performance.args.descAll = ACH:Header('', 7)
+	L1UI.Options.args.performance.args.all = ACH:Group(L["Clear Cache for all AddOns listed above"], nil, 8)
+	L1UI.Options.args.performance.args.all.inline = true
+	L1UI.Options.args.performance.args.all.args.cache = ACH:Execute(format('|cff3296ff%s|r', L["Clear All"]), nil, 1, function() L1UI:Cleanup_Cache('details') L1UI:Cleanup_Cache('plater') L1UI:Cleanup_Cache('rc') L1UI:Cleanup_Cache('mrt') end)
 
 	-- Profiles
 	L1UI.Options.args.profiles = ACH:Group(L["Profiles"], nil, 11)
