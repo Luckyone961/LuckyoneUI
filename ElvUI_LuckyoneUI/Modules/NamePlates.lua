@@ -289,8 +289,7 @@ function L1UI:Setup_StyleFilters()
 
 	if E.Retail then
 
-		-- {'Luckyone_DOCKS'}
-		for _, filterName in pairs({'Luckyone_DEPOT', 'Luckyone_LOWER', 'Luckyone_UPPER', 'Luckyone_WORK', 'Luckyone_YARD', 'Luckyone_TZ'}) do
+		for _, filterName in pairs({'Luckyone_DEPOT', 'Luckyone_DOCKS', 'Luckyone_LOWER', 'Luckyone_UPPER', 'Luckyone_WORK', 'Luckyone_YARD', 'Luckyone_TZ'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
@@ -308,14 +307,15 @@ function L1UI:Setup_StyleFilters()
 		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["priority"] = 2
 
 		-- Iron Docks [DOCKS]
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["health"] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["r"] = 0
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["priority"] = 2
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["health"] = true
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["81603"] = true -- Champion Druna
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["83025"] = true -- Grom'kar Battlemaster
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["86526"] = true -- Grom'kar Chainmaster
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["83026"] = true -- Siegemaster Olugar
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["84028"] = true -- Siegemaster Rokra
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["priority"] = 2
 
 		-- Karazhan Lower [LOWER]
 		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["health"] = true
