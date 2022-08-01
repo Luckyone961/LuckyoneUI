@@ -431,310 +431,50 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.unitframe.units.targettarget.customTexts = E.db.unitframe.units.targettarget.customTexts or {}
 
 	-- Custom Text: Arena
-	E.db.unitframe.units.arena.customTexts.Luckyone_HP = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'LEFT',
-		size = 14,
-		text_format = '[luckyone:health:percent]',
-		xOffset = 1,
-		yOffset = 0
-	}
-	E.db.unitframe.units.arena.customTexts.Luckyone_Name = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 14,
-		text_format = '[classcolor][name:short]',
-		xOffset = 0,
-		yOffset = 0
-	}
-	E.db.unitframe.units.arena.customTexts.Luckyone_Power = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'RIGHT',
-		size = 14,
-		text_format = '[powercolor][perpp<%]',
-		xOffset = 0,
-		yOffset = 0
-	}
+	E.db.unitframe.units.arena.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent]', xOffset = 1, yOffset = 0 }
+	E.db.unitframe.units.arena.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.arena.customTexts.Luckyone_Power = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 0 }
 
 	-- Custom Text: Boss
-	E.db.unitframe.units.boss.customTexts.Luckyone_HP = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'LEFT',
-		size = 14,
-		text_format = '[luckyone:health:percent]',
-		xOffset = 1,
-		yOffset = 0
-	}
-	E.db.unitframe.units.boss.customTexts.Luckyone_Name = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 14,
-		text_format = '[classcolor][name:last]',
-		xOffset = 0,
-		yOffset = 0
-	}
-	E.db.unitframe.units.boss.customTexts.Luckyone_Power = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'RIGHT',
-		size = 14,
-		text_format = '[powercolor][perpp<%]',
-		xOffset = 0,
-		yOffset = 0
-	}
+	E.db.unitframe.units.boss.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent]', xOffset = 1, yOffset = 0 }
+	E.db.unitframe.units.boss.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:last]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.boss.customTexts.Luckyone_Power = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 0 }
 
 	-- Custom Text: Focus
-	E.db.unitframe.units.focus.customTexts.Luckyone_HP = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 14,
-		text_format = '[luckyone:health:percent] | [health:current:shortvalue]',
-		xOffset = 0,
-		yOffset = 0
-	}
-	E.db.unitframe.units.focus.customTexts.Luckyone_Level = {
-		attachTextTo = 'InfoPanel',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'RIGHT',
-		size = 12,
-		text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]',
-		xOffset = 0,
-		yOffset = 1
-	}
-	E.db.unitframe.units.focus.customTexts.Luckyone_Name = {
-		attachTextTo = 'InfoPanel',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 12,
-		text_format = '[classcolor][name:medium]',
-		xOffset = 0,
-		yOffset = 1
-	}
-	E.db.unitframe.units.focus.customTexts.Luckyone_Power = {
-		attachTextTo = 'InfoPanel',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'LEFT',
-		size = 12,
-		text_format = '[powercolor][perpp<%]',
-		xOffset = 1,
-		yOffset = 1
-	}
+	E.db.unitframe.units.focus.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:medium]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 1, yOffset = 1 }
 
 	-- Custom Text: Focus Target
-	E.db.unitframe.units.focustarget.customTexts.Luckyone_HP = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 14,
-		text_format = '[luckyone:health:percent]',
-		xOffset = 0,
-		yOffset = 0
-	}
-	E.db.unitframe.units.focustarget.customTexts.Luckyone_Name = {
-		attachTextTo = 'InfoPanel',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 12,
-		text_format = '[classcolor][name:short]',
-		xOffset = 0,
-		yOffset = 1
-	}
+	E.db.unitframe.units.focustarget.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.focustarget.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 1 }
 
 	-- Custom Text: Party
-	E.db.unitframe.units.party.customTexts.Luckyone_Name = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 14,
-		text_format = '[classcolor][name:short]',
-		xOffset = 0,
-		yOffset = 0
-	}
+	E.db.unitframe.units.party.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
 
 	-- Custom Text: Pet
-	E.db.unitframe.units.pet.customTexts.Luckyone_HP = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 14,
-		text_format = '[luckyone:health:percent]',
-		xOffset = 0,
-		yOffset = 0
-	}
-	E.db.unitframe.units.pet.customTexts.Luckyone_Name = {
-		attachTextTo = 'InfoPanel',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 12,
-		text_format = E.Retail and '[classcolor]Pet' or '[happiness:color]Pet[ >happiness:full]',
-		xOffset = 0,
-		yOffset = 1
-	}
+	E.db.unitframe.units.pet.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.pet.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = E.Retail and '[classcolor]Pet' or '[happiness:color]Pet[ >happiness:full]', xOffset = 0, yOffset = 1 }
 
 	-- Custom Text: Player
-	E.db.unitframe.units.player.customTexts.Luckyone_HP = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 14,
-		text_format = '[health:current:shortvalue] | [luckyone:health:percent]',
-		xOffset = 0,
-		yOffset = 0
-	}
-	E.db.unitframe.units.player.customTexts.Luckyone_Level = {
-		attachTextTo = 'InfoPanel',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'LEFT',
-		size = 12,
-		text_format = '[classcolor][level]',
-		xOffset = 1,
-		yOffset = 1
-	}
-	E.db.unitframe.units.player.customTexts.Luckyone_Name = {
-		attachTextTo = 'InfoPanel',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 12,
-		text_format = '[classcolor][name]',
-		xOffset = 0,
-		yOffset = 1
-	}
-	E.db.unitframe.units.player.customTexts.Luckyone_Power = {
-		attachTextTo = 'InfoPanel',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'RIGHT',
-		size = 12,
-		text_format = '[powercolor][perpp<%]',
-		xOffset = 0,
-		yOffset = 1
-	}
+	E.db.unitframe.units.player.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[health:current:shortvalue] | [luckyone:health:percent]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.player.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[classcolor][level]', xOffset = 1, yOffset = 1 }
+	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.player.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 1 }
 
 	-- Custom Text: Raid
-	E.db.unitframe.units.raid.customTexts.Luckyone_Name = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 12,
-		text_format = '[classcolor][name:short]',
-		xOffset = 0,
-		yOffset = 0
-	}
+	E.db.unitframe.units.raid.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
 
 	-- Custom Text: Target
-	E.db.unitframe.units.target.customTexts.Luckyone_HP = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 14,
-		text_format = '[luckyone:health:percent] | [health:current:shortvalue]',
-		xOffset = 0,
-		yOffset = 0
-	}
-	E.db.unitframe.units.target.customTexts.Luckyone_Level = {
-		attachTextTo = 'InfoPanel',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'RIGHT',
-		size = 12,
-		text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]',
-		xOffset = 0,
-		yOffset = 1
-	}
-	E.db.unitframe.units.target.customTexts.Luckyone_Name = {
-		attachTextTo = 'InfoPanel',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 12,
-		text_format = '[classcolor][name:last]',
-		xOffset = 0,
-		yOffset = 1
-	}
-	E.db.unitframe.units.target.customTexts.Luckyone_Power = {
-		attachTextTo = 'InfoPanel',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'LEFT',
-		size = 12,
-		text_format = '[powercolor][perpp<%]',
-		xOffset = 1,
-		yOffset = 1
-	}
+	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.target.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:last]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.target.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 1, yOffset = 1 }
 
 	-- Custom Text: TargetTarget
-	E.db.unitframe.units.targettarget.customTexts.Luckyone_HP = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 14,
-		text_format = '[luckyone:health:percent]',
-		xOffset = 0,
-		yOffset = 0
-	}
-	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = {
-		attachTextTo = 'InfoPanel',
-		enable = true,
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		justifyH = 'CENTER',
-		size = 12,
-		text_format = '[classcolor][name:short]',
-		xOffset = 0,
-		yOffset = 1
-	}
+	E.db.unitframe.units.targettarget.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 1 }
 
 	-- Shared UnitFrames db
 	E.db.unitframe.colors.castbar_backdrop.a = 0.80
