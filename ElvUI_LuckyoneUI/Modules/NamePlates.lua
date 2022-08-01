@@ -17,17 +17,12 @@ function L1UI:Setup_NamePlates(addon)
 
 		E.db["nameplates"]["colors"]["castbarDesaturate"] = false
 		E.db["nameplates"]["colors"]["castColor"]["g"] = 1
-		E.db["nameplates"]["colors"]["castColor"]["r"] = 0.023529411764706
-		E.db["nameplates"]["colors"]["castNoInterruptColor"]["b"] = 0.007843137254902
+		E.db["nameplates"]["colors"]["castColor"]["r"] = 0.02
+		E.db["nameplates"]["colors"]["castNoInterruptColor"]["b"] = 0
 		E.db["nameplates"]["colors"]["castNoInterruptColor"]["g"] = 0
 		E.db["nameplates"]["colors"]["castNoInterruptColor"]["r"] = 1
-		E.db["nameplates"]["colors"]["glowColor"]["b"] = 0.054901960784314
+		E.db["nameplates"]["colors"]["glowColor"]["b"] = 0.05
 		E.db["nameplates"]["colors"]["glowColor"]["r"] = 0
-		E.db["nameplates"]["cooldown"]["daysIndicator"]["g"] = 0.4
-		E.db["nameplates"]["cooldown"]["daysIndicator"]["r"] = 0.4
-		E.db["nameplates"]["cooldown"]["expireIndicator"]["b"] = 0
-		E.db["nameplates"]["cooldown"]["expireIndicator"]["g"] = 0
-		E.db["nameplates"]["cooldown"]["hoursIndicator"]["r"] = 0.4
 		E.db["nameplates"]["cooldown"]["override"] = false
 		E.db["nameplates"]["lowHealthThreshold"] = 0
 		E.db["nameplates"]["overlapH"] = 1
@@ -297,7 +292,7 @@ function L1UI:Setup_StyleFilters()
 
 		-- Grimrail Depot [DEPOT]
 		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["health"] = true
-		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["g"] = 0.75
 		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["r"] = 0
 		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["81236"] = true -- Grimrail Technician
 		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["81407"] = true -- Grimrail Bombardier
@@ -308,7 +303,7 @@ function L1UI:Setup_StyleFilters()
 
 		-- Iron Docks [DOCKS]
 		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["health"] = true
-		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["g"] = 0.75
 		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["r"] = 0
 		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["81603"] = true -- Champion Druna
 		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["83025"] = true -- Grom'kar Battlemaster
@@ -319,7 +314,7 @@ function L1UI:Setup_StyleFilters()
 
 		-- Karazhan Lower [LOWER]
 		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["health"] = true
-		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["healthColor"]["g"] = 0.75
 		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["healthColor"]["r"] = 0
 		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"]["114584"] = true -- Phantom Crew
 		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"]["114628"] = true -- Skeletal Waiter
@@ -328,7 +323,7 @@ function L1UI:Setup_StyleFilters()
 
 		-- Karazhan Upper [UPPER]
 		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["health"] = true
-		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["g"] = 0.75
 		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["r"] = 0
 		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["114338"] = true -- Mana Confluence
 		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["114249"] = true -- Volatile Energy
@@ -339,7 +334,7 @@ function L1UI:Setup_StyleFilters()
 
 		-- Mechagon Workshop [WORK]
 		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["health"] = true
-		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["g"] = 0.75
 		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["r"] = 0
 		E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["144293"] = true -- Waste Processing Unit
 		E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["144294"] = true -- Mechagon Tinkerer
@@ -349,7 +344,7 @@ function L1UI:Setup_StyleFilters()
 
 		-- Mechagon Junkyard [YARD]
 		E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["health"] = true
-		E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["g"] = 0.75
 		E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["r"] = 0
 		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150146"] = true -- Scrapbone Shaman
 		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150160"] = true -- Scrapbone Bully
@@ -362,7 +357,7 @@ function L1UI:Setup_StyleFilters()
 
 		-- Tazavesh [TZ]
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["healthColor"]["g"] = 0.75
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["healthColor"]["r"] = 0
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["178141"] = true -- Murkbrine Scalebinder
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["179733"] = true -- Invigorating Fish Stick
@@ -373,7 +368,7 @@ function L1UI:Setup_StyleFilters()
 		-- Edited version of ElvUI_Explosives
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["g"] = 0
-		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0.49019607843137
+		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0.49
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["scale"] = 1
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["usePortrait"] = false
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["priority"] = 1
