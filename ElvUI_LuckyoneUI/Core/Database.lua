@@ -509,6 +509,9 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.unitframe.colors.power_backdrop.b = 0.50196078431373
 	E.db.unitframe.colors.power_backdrop.g = 0.50196078431373
 	E.db.unitframe.colors.power_backdrop.r = 0.50196078431373
+	E.db.unitframe.colors.power.LUNAR_POWER.b = 0.90196078431373
+	E.db.unitframe.colors.power.LUNAR_POWER.g = 0.52156862745098
+	E.db.unitframe.colors.power.LUNAR_POWER.r = 0.30196078431373
 	E.db.unitframe.colors.tapped.b = 0.61176470588235
 	E.db.unitframe.colors.tapped.g = 0.56862745098039
 	E.db.unitframe.colors.tapped.r = 0.54901960784314
