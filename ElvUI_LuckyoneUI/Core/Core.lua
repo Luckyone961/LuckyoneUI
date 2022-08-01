@@ -258,3 +258,25 @@ function L1UI:Cleanup_Cache(addon, type)
 		L1UI:Print(L["Cleared Method Raid Tools Cache."])
 	end
 end
+
+----------------------------------------------------------------------
+------------------------------- Events -------------------------------
+----------------------------------------------------------------------
+
+function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
+	if initLogin or not ElvDB.LuckyoneDisabledAddOns then
+		ElvDB.LuckyoneDisabledAddOns = {}
+	end
+
+	if initLogin or isReload then
+		L1UI:VersionCheck()
+	end
+
+	L1UI:DisabledFrames()
+	L1UI:LoadCommands()
+end
+
+-- This is called in L1UI:Initialize()
+function L1UI:RegisterEvents()
+	L1UI:RegisterEvent('PLAYER_ENTERING_WORLD')
+end
