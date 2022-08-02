@@ -17,17 +17,12 @@ function L1UI:Setup_NamePlates(addon)
 
 		E.db["nameplates"]["colors"]["castbarDesaturate"] = false
 		E.db["nameplates"]["colors"]["castColor"]["g"] = 1
-		E.db["nameplates"]["colors"]["castColor"]["r"] = 0.023529411764706
-		E.db["nameplates"]["colors"]["castNoInterruptColor"]["b"] = 0.007843137254902
+		E.db["nameplates"]["colors"]["castColor"]["r"] = 0.02
+		E.db["nameplates"]["colors"]["castNoInterruptColor"]["b"] = 0
 		E.db["nameplates"]["colors"]["castNoInterruptColor"]["g"] = 0
 		E.db["nameplates"]["colors"]["castNoInterruptColor"]["r"] = 1
-		E.db["nameplates"]["colors"]["glowColor"]["b"] = 0.054901960784314
+		E.db["nameplates"]["colors"]["glowColor"]["b"] = 0.05
 		E.db["nameplates"]["colors"]["glowColor"]["r"] = 0
-		E.db["nameplates"]["cooldown"]["daysIndicator"]["g"] = 0.4
-		E.db["nameplates"]["cooldown"]["daysIndicator"]["r"] = 0.4
-		E.db["nameplates"]["cooldown"]["expireIndicator"]["b"] = 0
-		E.db["nameplates"]["cooldown"]["expireIndicator"]["g"] = 0
-		E.db["nameplates"]["cooldown"]["hoursIndicator"]["r"] = 0.4
 		E.db["nameplates"]["cooldown"]["override"] = false
 		E.db["nameplates"]["lowHealthThreshold"] = 0
 		E.db["nameplates"]["overlapH"] = 1
@@ -289,56 +284,57 @@ function L1UI:Setup_StyleFilters()
 
 	if E.Retail then
 
-		-- {'Luckyone_DEPOT', 'Luckyone_DOCKS', 'Luckyone_LOWER', 'Luckyone_UPPER', 'Luckyone_WORK', 'Luckyone_YARD', 'Luckyone_TZ'}
-		for _, filterName in pairs({'Luckyone_WORK', 'Luckyone_YARD', 'Luckyone_TZ'}) do
+		for _, filterName in pairs({'Luckyone_DEPOT', 'Luckyone_DOCKS', 'Luckyone_LOWER', 'Luckyone_UPPER', 'Luckyone_WORK', 'Luckyone_YARD', 'Luckyone_TZ'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 		end
 
 		-- Grimrail Depot [DEPOT]
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["health"] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["r"] = 0
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["priority"] = 2
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["health"] = true
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["g"] = 0.75
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["81236"] = true -- Grimrail Technician
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["81407"] = true -- Grimrail Bombardier
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["80937"] = true -- Grom'kar Gunner
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["88163"] = true -- Grom'kar Cinderseer
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["82597"] = true -- Grom'kar Captain
+		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["priority"] = 2
 
 		-- Iron Docks [DOCKS]
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["health"] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["r"] = 0
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["priority"] = 2
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["health"] = true
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["g"] = 0.75
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["81603"] = true -- Champion Druna
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["83025"] = true -- Grom'kar Battlemaster
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["86526"] = true -- Grom'kar Chainmaster
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["83026"] = true -- Siegemaster Olugar
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["84028"] = true -- Siegemaster Rokra
+		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["priority"] = 2
 
 		-- Karazhan Lower [LOWER]
-		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["health"] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["healthColor"]["r"] = 0
-		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["priority"] = 2
+		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["health"] = true
+		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["healthColor"]["g"] = 0.75
+		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"]["114584"] = true -- Phantom Crew
+		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"]["114628"] = true -- Skeletal Waiter
+		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"]["114802"] = true -- Spectral Journeyman
+		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["priority"] = 2
 
 		-- Karazhan Upper [UPPER]
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["health"] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["r"] = 0
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"][""] = true
-		-- E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["priority"] = 2
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["health"] = true
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["g"] = 0.75
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["114338"] = true -- Mana Confluence
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["114249"] = true -- Volatile Energy
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["115757"] = true -- Wrathguard Flamebringer
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["115418"] = true -- Spider
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["115488"] = true -- Infused Pyromancer
+		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["priority"] = 2
 
 		-- Mechagon Workshop [WORK]
 		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["health"] = true
-		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["g"] = 0.75
 		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["r"] = 0
 		E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["144293"] = true -- Waste Processing Unit
 		E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["144294"] = true -- Mechagon Tinkerer
@@ -348,7 +344,7 @@ function L1UI:Setup_StyleFilters()
 
 		-- Mechagon Junkyard [YARD]
 		E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["health"] = true
-		E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["g"] = 0.75
 		E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["r"] = 0
 		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150146"] = true -- Scrapbone Shaman
 		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150160"] = true -- Scrapbone Bully
@@ -361,7 +357,7 @@ function L1UI:Setup_StyleFilters()
 
 		-- Tazavesh [TZ]
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["healthColor"]["g"] = 0.75686274509804
+		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["healthColor"]["g"] = 0.75
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["healthColor"]["r"] = 0
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["178141"] = true -- Murkbrine Scalebinder
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["179733"] = true -- Invigorating Fish Stick
@@ -369,15 +365,16 @@ function L1UI:Setup_StyleFilters()
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180433"] = true -- Wandering Pulsar
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["priority"] = 2
 
-		-- Edited default filters
+		-- Edited version of ElvUI_Explosives
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["g"] = 0
-		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0.49019607843137
+		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0.49
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["scale"] = 1
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["usePortrait"] = false
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["priority"] = 1
 	end
 
+	-- Disable alpha fading and scaling for ElvUI_Target and ElvUI_NonTarget
 	E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = -1
 	E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["scale"] = 1
 

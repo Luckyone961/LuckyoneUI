@@ -21,7 +21,6 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	PA.db.MovableFrames.Enable = false
 	PA.db.OzCooldowns.Enable = false
 	PA.db.QuestSounds.Enable = false
-	PA.db.stAddonManager.Enable = false
 
 	-- Retail only toggles
 	if E.Retail then
@@ -30,6 +29,12 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 		PA.db.SunsongRanchFarmer.Enable = false
 		PA.db.TorghastBuffs.Enable = false
 	end
+
+	-- Friendlist setup
+	PA.db.EnhancedFriendsList.DiffLevel = false
+	PA.db.EnhancedFriendsList.InfoFontSize = 10
+	PA.db.EnhancedFriendsList.NameFontSize = 11
+	PA.db.EnhancedFriendsList.Texture = 'Minimalist'
 
 	-- SquareMinimapButtons setup
 	PA.db.SquareMinimapButtons.Backdrop = false
@@ -41,11 +46,14 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	PA.db.SquareMinimapButtons.MoveTracker = false
 	PA.db.SquareMinimapButtons.Shadows = false
 
-	-- Friendlist setup
-	PA.db.EnhancedFriendsList.DiffLevel = false
-	PA.db.EnhancedFriendsList.InfoFontSize = 10
-	PA.db.EnhancedFriendsList.NameFontSize = 11
-	PA.db.EnhancedFriendsList.Texture = 'Minimalist'
+	-- stAddonManager setup
+	PA.db.stAddonManager.CheckTexture = 'Minimalist'
+	PA.db.stAddonManager.ClassColor = true
+	PA.db.stAddonManager.EnableRequiredAddons = false
+	PA.db.stAddonManager.Font = 'Expressway'
+	PA.db.stAddonManager.FontSize = 12
+	PA.db.stAddonManager.FrameWidth = 720
+	PA.db.stAddonManager.NumAddOns = 18
 
 	-- Movers
 	if not E.db.movers then E.db.movers = {} end
