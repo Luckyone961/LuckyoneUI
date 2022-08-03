@@ -6,7 +6,7 @@ V.L1UI = {
 
 	disabledFrames = {
 		AlertFrame = false,
-		BossBanner = E.Retail and false or nil,
+		BossBanner = false,
 		ZoneTextFrame = false,
 	},
 
