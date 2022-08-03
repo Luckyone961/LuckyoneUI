@@ -1,4 +1,8 @@
-### Version 1.54 [In Development]
+### Version 1.55 [03-08-2022]
+**Retail:**  
+Hotfixed broken ElvUI NamePlates installer step  
+___
+### Version 1.54 [03-08-2022]
 **All WoW Versions:**  
 Added stAddonManager setup to the ProjectAzilroka profile  
 Minor tweaks for the initial ElvUI layout installer steps  
