@@ -291,69 +291,69 @@ function L1UI:Setup_StyleFilters()
 		end
 
 		-- Grimrail Depot [DEPOT]
-		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["health"] = true
-		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["g"] = 0.75
-		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["81236"] = true -- Grimrail Technician
-		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["81407"] = true -- Grimrail Bombardier
-		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["80937"] = true -- Grom'kar Gunner
-		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["88163"] = true -- Grom'kar Cinderseer
-		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["82597"] = true -- Grom'kar Captain
-		E.global["nameplate"]["filters"]["Luckyone_DEPOT"]["triggers"]["priority"] = 2
+		E.global["nameplates"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["g"] = 0.75
+		E.global["nameplates"]["filters"]["Luckyone_DEPOT"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplates"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["81236"] = true -- Grimrail Technician
+		E.global["nameplates"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["81407"] = true -- Grimrail Bombardier
+		E.global["nameplates"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["80937"] = true -- Grom'kar Gunner
+		E.global["nameplates"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["88163"] = true -- Grom'kar Cinderseer
+		E.global["nameplates"]["filters"]["Luckyone_DEPOT"]["triggers"]["names"]["82597"] = true -- Grom'kar Captain
+		E.global["nameplates"]["filters"]["Luckyone_DEPOT"]["triggers"]["priority"] = 2
 
 		-- Iron Docks [DOCKS]
-		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["health"] = true
-		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["g"] = 0.75
-		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["81603"] = true -- Champion Druna
-		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["83025"] = true -- Grom'kar Battlemaster
-		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["86526"] = true -- Grom'kar Chainmaster
-		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["83026"] = true -- Siegemaster Olugar
-		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["84028"] = true -- Siegemaster Rokra
-		E.global["nameplate"]["filters"]["Luckyone_DOCKS"]["triggers"]["priority"] = 2
+		E.global["nameplates"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["g"] = 0.75
+		E.global["nameplates"]["filters"]["Luckyone_DOCKS"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplates"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["81603"] = true -- Champion Druna
+		E.global["nameplates"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["83025"] = true -- Grom'kar Battlemaster
+		E.global["nameplates"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["86526"] = true -- Grom'kar Chainmaster
+		E.global["nameplates"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["83026"] = true -- Siegemaster Olugar
+		E.global["nameplates"]["filters"]["Luckyone_DOCKS"]["triggers"]["names"]["84028"] = true -- Siegemaster Rokra
+		E.global["nameplates"]["filters"]["Luckyone_DOCKS"]["triggers"]["priority"] = 2
 
 		-- Karazhan Lower [LOWER]
-		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["health"] = true
-		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["healthColor"]["g"] = 0.75
-		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"]["114584"] = true -- Phantom Crew
-		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"]["114628"] = true -- Skeletal Waiter
-		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["names"]["114802"] = true -- Spectral Journeyman
-		E.global["nameplate"]["filters"]["Luckyone_LOWER"]["triggers"]["priority"] = 2
+		E.global["nameplates"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["healthColor"]["g"] = 0.75
+		E.global["nameplates"]["filters"]["Luckyone_LOWER"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplates"]["filters"]["Luckyone_LOWER"]["triggers"]["names"]["114584"] = true -- Phantom Crew
+		E.global["nameplates"]["filters"]["Luckyone_LOWER"]["triggers"]["names"]["114628"] = true -- Skeletal Waiter
+		E.global["nameplates"]["filters"]["Luckyone_LOWER"]["triggers"]["names"]["114802"] = true -- Spectral Journeyman
+		E.global["nameplates"]["filters"]["Luckyone_LOWER"]["triggers"]["priority"] = 2
 
 		-- Karazhan Upper [UPPER]
-		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["health"] = true
-		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["g"] = 0.75
-		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["114338"] = true -- Mana Confluence
-		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["114249"] = true -- Volatile Energy
-		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["115757"] = true -- Wrathguard Flamebringer
-		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["115418"] = true -- Spider
-		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["115488"] = true -- Infused Pyromancer
-		E.global["nameplate"]["filters"]["Luckyone_UPPER"]["triggers"]["priority"] = 2
+		E.global["nameplates"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["g"] = 0.75
+		E.global["nameplates"]["filters"]["Luckyone_UPPER"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplates"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["114338"] = true -- Mana Confluence
+		E.global["nameplates"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["114249"] = true -- Volatile Energy
+		E.global["nameplates"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["115757"] = true -- Wrathguard Flamebringer
+		E.global["nameplates"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["115418"] = true -- Spider
+		E.global["nameplates"]["filters"]["Luckyone_UPPER"]["triggers"]["names"]["115488"] = true -- Infused Pyromancer
+		E.global["nameplates"]["filters"]["Luckyone_UPPER"]["triggers"]["priority"] = 2
 
 		-- Mechagon Workshop [WORK]
-		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["health"] = true
-		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["g"] = 0.75
-		E.global["nameplate"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["144293"] = true -- Waste Processing Unit
-		E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["144294"] = true -- Mechagon Tinkerer
-		E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["151325"] = true -- Alarm o Bot
-		E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["151657"] = true -- Bomb Tonk
-		E.global["nameplate"]["filters"]["Luckyone_WORK"]["triggers"]["priority"] = 2
+		E.global["nameplates"]["filters"]["Luckyone_WORK"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["g"] = 0.75
+		E.global["nameplates"]["filters"]["Luckyone_WORK"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplates"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["144293"] = true -- Waste Processing Unit
+		E.global["nameplates"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["144294"] = true -- Mechagon Tinkerer
+		E.global["nameplates"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["151325"] = true -- Alarm o Bot
+		E.global["nameplates"]["filters"]["Luckyone_WORK"]["triggers"]["names"]["151657"] = true -- Bomb Tonk
+		E.global["nameplates"]["filters"]["Luckyone_WORK"]["triggers"]["priority"] = 2
 
 		-- Mechagon Junkyard [YARD]
-		E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["health"] = true
-		E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["g"] = 0.75
-		E.global["nameplate"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150146"] = true -- Scrapbone Shaman
-		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150160"] = true -- Scrapbone Bully
-		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150168"] = true -- Toxic Monstrosity
-		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150250"] = true -- Pistonhead Blaster
-		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150251"] = true -- Pistonhead Mechanic
-		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150292"] = true -- Mechagon Cavalry
-		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150297"] = true -- Mechagon Renormalizer
-		E.global["nameplate"]["filters"]["Luckyone_YARD"]["triggers"]["priority"] = 2
+		E.global["nameplates"]["filters"]["Luckyone_YARD"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["g"] = 0.75
+		E.global["nameplates"]["filters"]["Luckyone_YARD"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplates"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150146"] = true -- Scrapbone Shaman
+		E.global["nameplates"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150160"] = true -- Scrapbone Bully
+		E.global["nameplates"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150168"] = true -- Toxic Monstrosity
+		E.global["nameplates"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150250"] = true -- Pistonhead Blaster
+		E.global["nameplates"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150251"] = true -- Pistonhead Mechanic
+		E.global["nameplates"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150292"] = true -- Mechagon Cavalry
+		E.global["nameplates"]["filters"]["Luckyone_YARD"]["triggers"]["names"]["150297"] = true -- Mechagon Renormalizer
+		E.global["nameplates"]["filters"]["Luckyone_YARD"]["triggers"]["priority"] = 2
 
 		-- Tazavesh [TZ]
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["actions"]["color"]["health"] = true
