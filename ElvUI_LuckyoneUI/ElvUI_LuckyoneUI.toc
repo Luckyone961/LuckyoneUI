@@ -1,6 +1,6 @@
 ## Interface: 90205
 ## Author: Luckyone
-## Version: 1.53
+## Version: 1.54
 ## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r
 ## Notes: Luckyone's ElvUI Edit
 ## RequiredDeps: ElvUI
