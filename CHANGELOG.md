@@ -1,4 +1,4 @@
-### Version 1.54 [In Development]
+### Version 1.54 [03-08-2022]
 **All WoW Versions:**  
 Added stAddonManager setup to the ProjectAzilroka profile  
 Minor tweaks for the initial ElvUI layout installer steps  
