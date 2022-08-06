@@ -284,7 +284,7 @@ function L1UI:Setup_StyleFilters()
 
 	if E.Retail then
 
-		for _, filterName in pairs({'Luckyone_DEPOT', 'Luckyone_DOCKS', 'Luckyone_LOWER', 'Luckyone_UPPER', 'Luckyone_WORK', 'Luckyone_YARD', 'Luckyone_TZ'}) do
+		for _, filterName in pairs({'Luckyone_DEPOT', 'Luckyone_DOCKS', 'Luckyone_LOWER', 'Luckyone_UPPER', 'Luckyone_WORK', 'Luckyone_YARD', 'Luckyone_TZ', 'Luckyone_Shrouded'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
@@ -364,6 +364,17 @@ function L1UI:Setup_StyleFilters()
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180431"] = true -- Focused Ritualist
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["names"]["180433"] = true -- Wandering Pulsar
 		E.global["nameplates"]["filters"]["Luckyone_TZ"]["triggers"]["priority"] = 2
+
+		-- Shrouded [Affix]
+		E.global["nameplates"]["filters"]["Luckyone_Shrouded"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["Luckyone_Shrouded"]["actions"]["color"]["healthColor"]["b"] = 0.42
+		E.global["nameplates"]["filters"]["Luckyone_Shrouded"]["actions"]["color"]["healthColor"]["g"] = 0.60
+		E.global["nameplates"]["filters"]["Luckyone_Shrouded"]["actions"]["color"]["healthColor"]["r"] = 0.77
+		E.global["nameplates"]["filters"]["Luckyone_Shrouded"]["actions"]["tags"]["name"] = "[name]"
+		E.global["nameplates"]["filters"]["Luckyone_Shrouded"]["triggers"]["names"]["189878"] = true -- Nathrezim Infiltrator
+		E.global["nameplates"]["filters"]["Luckyone_Shrouded"]["triggers"]["names"]["190174"] = true -- Hypnosis Bat
+		E.global["nameplates"]["filters"]["Luckyone_Shrouded"]["triggers"]["names"]["190128"] = true -- Zul'gamux
+		E.global["nameplates"]["filters"]["Luckyone_Shrouded"]["triggers"]["priority"] = 2
 
 		-- Edited version of ElvUI_Explosives
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
