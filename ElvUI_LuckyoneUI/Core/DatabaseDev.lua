@@ -1,7 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
--- Shadowlands layout
-function L1UI:Layout_Shadowlands(layout)
+-- Dragonflight layout
+function L1UI:Layout_Dragonflight(layout)
 
 	-- AB conversion
 	E.db.convertPages = true
@@ -258,10 +258,10 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.actionbar.extraActionButton.hotkeyFontOutline = 'OUTLINE'
 		E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOPLEFT'
 		E.db.actionbar.extraActionButton.hotkeyTextYOffset = -1
-		E.db.actionbar.extraActionButton.scale = 0.65
+		E.db.actionbar.extraActionButton.scale = 1
 		E.db.actionbar.zoneActionButton.alpha = 1
 		E.db.actionbar.zoneActionButton.clean = true
-		E.db.actionbar.zoneActionButton.scale = 0.65
+		E.db.actionbar.zoneActionButton.scale = 1
 	end
 
 	-- Bags
@@ -427,16 +427,6 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.unitframe.units.target.customTexts = E.db.unitframe.units.target.customTexts or {}
 	E.db.unitframe.units.targettarget.customTexts = E.db.unitframe.units.targettarget.customTexts or {}
 
-	-- Custom Text: Arena
-	E.db.unitframe.units.arena.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent]', xOffset = 1, yOffset = 0 }
-	E.db.unitframe.units.arena.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.arena.customTexts.Luckyone_Power = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 0 }
-
-	-- Custom Text: Boss
-	E.db.unitframe.units.boss.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent]', xOffset = 1, yOffset = 0 }
-	E.db.unitframe.units.boss.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:last]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.boss.customTexts.Luckyone_Power = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 0 }
-
 	-- Custom Text: Focus
 	E.db.unitframe.units.focus.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
 	E.db.unitframe.units.focus.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
@@ -524,30 +514,30 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.unitframe.statusbar = 'Minimalist'
 
 	if not E.Classic then
-		E.db.unitframe.units.arena.buffs.anchorPoint = 'TOPRIGHT'
+		E.db.unitframe.units.arena.buffs.anchorPoint = 'RIGHT'
 		E.db.unitframe.units.arena.buffs.countFont = 'Expressway'
 		E.db.unitframe.units.arena.buffs.countFontSize = 10
 		E.db.unitframe.units.arena.buffs.countXOffset = 1
+		E.db.unitframe.units.arena.buffs.growthY = 'DOWN'
 		E.db.unitframe.units.arena.buffs.maxDuration = 0
-		E.db.unitframe.units.arena.buffs.numrows = 2
+		E.db.unitframe.units.arena.buffs.perrow = 2
 		E.db.unitframe.units.arena.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
-		E.db.unitframe.units.arena.buffs.sizeOverride = 22
-		E.db.unitframe.units.arena.buffs.xOffset = 23
-		E.db.unitframe.units.arena.buffs.yOffset = -46
+		E.db.unitframe.units.arena.buffs.sizeOverride = 30
+		E.db.unitframe.units.arena.buffs.xOffset = 1
+		E.db.unitframe.units.arena.buffs.yOffset = 2
 		E.db.unitframe.units.arena.castbar.customTextFont.enable = true
 		E.db.unitframe.units.arena.castbar.customTextFont.font = 'Expressway'
-		E.db.unitframe.units.arena.castbar.customTextFont.fontSize = 11
 		E.db.unitframe.units.arena.castbar.customTimeFont.enable = true
 		E.db.unitframe.units.arena.castbar.customTimeFont.font = 'Expressway'
-		E.db.unitframe.units.arena.castbar.customTimeFont.fontSize = 11
+		E.db.unitframe.units.arena.castbar.height = 12
+		E.db.unitframe.units.arena.castbar.overlayOnFrame = 'Health'
 		E.db.unitframe.units.arena.castbar.spark = false
 		E.db.unitframe.units.arena.castbar.textColor.b = 1
 		E.db.unitframe.units.arena.castbar.textColor.g = 1
 		E.db.unitframe.units.arena.castbar.textColor.r = 1
-		E.db.unitframe.units.arena.castbar.width = 240
+		E.db.unitframe.units.arena.castbar.width = 190
 		E.db.unitframe.units.arena.castbar.xOffsetText = 2
 		E.db.unitframe.units.arena.castbar.xOffsetTime = -2
-		E.db.unitframe.units.arena.debuffs.anchorPoint = 'TOPLEFT'
 		E.db.unitframe.units.arena.debuffs.countFont = 'Expressway'
 		E.db.unitframe.units.arena.debuffs.countFontSize = 10
 		E.db.unitframe.units.arena.debuffs.countXOffset = 1
@@ -555,75 +545,79 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.unitframe.units.arena.debuffs.growthX = 'LEFT'
 		E.db.unitframe.units.arena.debuffs.growthY = 'DOWN'
 		E.db.unitframe.units.arena.debuffs.maxDuration = 0
-		E.db.unitframe.units.arena.debuffs.numrows = 2
 		E.db.unitframe.units.arena.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
-		E.db.unitframe.units.arena.debuffs.sizeOverride = 22
-		E.db.unitframe.units.arena.debuffs.spacing = 0
-		E.db.unitframe.units.arena.debuffs.xOffset = -69
-		E.db.unitframe.units.arena.debuffs.yOffset = -21
+		E.db.unitframe.units.arena.debuffs.sizeOverride = 30
+		E.db.unitframe.units.arena.debuffs.xOffset = -1
+		E.db.unitframe.units.arena.debuffs.yOffset = 2
 		E.db.unitframe.units.arena.disableTargetGlow = true
-		E.db.unitframe.units.arena.healPrediction.absorbStyle = 'WRAPPED'
-		E.db.unitframe.units.arena.health.text_format = ''
-		E.db.unitframe.units.arena.health.xOffset = 0
-		E.db.unitframe.units.arena.height = 45
+		E.db.unitframe.units.arena.healPrediction.enable = false
+		E.db.unitframe.units.arena.health.text_format = '[luckyone:health:percent]'
+		E.db.unitframe.units.arena.health.xOffset = 1
+		E.db.unitframe.units.arena.height = 32
 		E.db.unitframe.units.arena.infoPanel.height = 16
-		E.db.unitframe.units.arena.name.text_format = ''
-		E.db.unitframe.units.arena.power.height = 6
-		E.db.unitframe.units.arena.power.text_format = ''
-		E.db.unitframe.units.arena.pvpclassificationindicator.size = 25
-		E.db.unitframe.units.arena.pvpclassificationindicator.xOffset = -20
+		E.db.unitframe.units.arena.name.text_format = '[classcolor][name:last]'
+		E.db.unitframe.units.arena.power.height = 5
+		E.db.unitframe.units.arena.power.text_format = '[powercolor][perpp<%]'
+		E.db.unitframe.units.arena.power.width = 'spaced'
+		E.db.unitframe.units.arena.power.xOffset = 0
+		E.db.unitframe.units.arena.pvpclassificationindicator.size = 24
+		E.db.unitframe.units.arena.pvpclassificationindicator.xOffset = -40
+		E.db.unitframe.units.arena.pvpSpecIcon = false
+		E.db.unitframe.units.arena.pvpTrinket.enable = false
 		E.db.unitframe.units.arena.pvpTrinket.position = 'LEFT'
 		E.db.unitframe.units.arena.pvpTrinket.size = 45
 		E.db.unitframe.units.arena.pvpTrinket.xOffset = -1
-		E.db.unitframe.units.arena.spacing = 20
-		E.db.unitframe.units.arena.width = 240
+		E.db.unitframe.units.arena.spacing = 10
+		E.db.unitframe.units.arena.width = 190
 	end
 
 	E.db.unitframe.units.assist.enable = false
 
 	if E.Retail or E.Wrath then
-		E.db.unitframe.units.boss.buffs.anchorPoint = 'TOPRIGHT'
+		E.db.unitframe.units.boss.buffIndicator.enable = false
+		E.db.unitframe.units.boss.buffs.anchorPoint = 'RIGHT'
 		E.db.unitframe.units.boss.buffs.countFont = 'Expressway'
 		E.db.unitframe.units.boss.buffs.countFontSize = 10
 		E.db.unitframe.units.boss.buffs.countXOffset = 1
 		E.db.unitframe.units.boss.buffs.growthY = 'DOWN'
-		E.db.unitframe.units.boss.buffs.numrows = 2
+		E.db.unitframe.units.boss.buffs.perrow = 2
 		E.db.unitframe.units.boss.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
-		E.db.unitframe.units.boss.buffs.xOffset = 23
-		E.db.unitframe.units.boss.buffs.yOffset = -21
+		E.db.unitframe.units.boss.buffs.sizeOverride = 30
+		E.db.unitframe.units.boss.buffs.xOffset = 1
+		E.db.unitframe.units.boss.buffs.yOffset = 2
 		E.db.unitframe.units.boss.castbar.customTextFont.enable = true
 		E.db.unitframe.units.boss.castbar.customTextFont.font = 'Expressway'
-		E.db.unitframe.units.boss.castbar.customTextFont.fontSize = 11
 		E.db.unitframe.units.boss.castbar.customTimeFont.enable = true
 		E.db.unitframe.units.boss.castbar.customTimeFont.font = 'Expressway'
-		E.db.unitframe.units.boss.castbar.customTimeFont.fontSize = 11
+		E.db.unitframe.units.boss.castbar.height = 12
+		E.db.unitframe.units.boss.castbar.overlayOnFrame = 'Health'
 		E.db.unitframe.units.boss.castbar.spark = false
 		E.db.unitframe.units.boss.castbar.textColor.b = 1
 		E.db.unitframe.units.boss.castbar.textColor.g = 1
 		E.db.unitframe.units.boss.castbar.textColor.r = 1
-		E.db.unitframe.units.boss.castbar.width = 200
+		E.db.unitframe.units.boss.castbar.width = 190
 		E.db.unitframe.units.boss.castbar.xOffsetText = 2
 		E.db.unitframe.units.boss.castbar.xOffsetTime = -2
-		E.db.unitframe.units.boss.debuffs.anchorPoint = 'TOPLEFT'
 		E.db.unitframe.units.boss.debuffs.countFont = 'Expressway'
 		E.db.unitframe.units.boss.debuffs.countFontSize = 10
 		E.db.unitframe.units.boss.debuffs.countXOffset = 1
 		E.db.unitframe.units.boss.debuffs.growthX = 'LEFT'
 		E.db.unitframe.units.boss.debuffs.growthY = 'DOWN'
-		E.db.unitframe.units.boss.debuffs.numrows = 2
 		E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
-		E.db.unitframe.units.boss.debuffs.spacing = 0
-		E.db.unitframe.units.boss.debuffs.xOffset = -23
-		E.db.unitframe.units.boss.debuffs.yOffset = -21
+		E.db.unitframe.units.boss.debuffs.sizeOverride = 30
+		E.db.unitframe.units.boss.debuffs.xOffset = -1
+		E.db.unitframe.units.boss.debuffs.yOffset = 2
 		E.db.unitframe.units.boss.disableTargetGlow = true
-		E.db.unitframe.units.boss.health.text_format = ''
-		E.db.unitframe.units.boss.health.xOffset = 0
-		E.db.unitframe.units.boss.height = 45
-		E.db.unitframe.units.boss.name.text_format = ''
-		E.db.unitframe.units.boss.power.height = 6
-		E.db.unitframe.units.boss.power.text_format = ''
-		E.db.unitframe.units.boss.spacing = 20
-		E.db.unitframe.units.boss.width = 200
+		E.db.unitframe.units.boss.health.text_format = '[luckyone:health:percent]'
+		E.db.unitframe.units.boss.health.xOffset = 1
+		E.db.unitframe.units.boss.height = 32
+		E.db.unitframe.units.boss.name.text_format = '[classcolor][name:last]'
+		E.db.unitframe.units.boss.power.height = 5
+		E.db.unitframe.units.boss.power.text_format = '[powercolor][perpp<%]'
+		E.db.unitframe.units.boss.power.width = 'spaced'
+		E.db.unitframe.units.boss.power.xOffset = 0
+		E.db.unitframe.units.boss.spacing = 10
+		E.db.unitframe.units.boss.width = 190
 	end
 
 	if not E.Classic then
@@ -942,7 +936,6 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.movers.ThreatBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,1'
 	E.db.movers.TooltipMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-57'
-	E.db.movers.TotemBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,428,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-27'
 
 	if E.Retail then
@@ -950,7 +943,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.movers.ArtifactBarMover = 'BOTTOM,ElvUIParent,BOTTOM,1,16'
 		E.db.movers.AzeriteBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
 		E.db.movers.BelowMinimapContainerMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,70,485'
-		E.db.movers.BossButton = 'BOTTOM,ElvUIParent,BOTTOM,-168,128'
+		E.db.movers.BossButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,119'
 		E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235'
 		E.db.movers.DigSiteProgressBarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,157'
 		E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-139'
@@ -961,7 +954,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,182'
 		E.db.movers.TalkingHeadFrameMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,173'
 		E.db.movers.TorghastBuffsMover = 'TOPLEFT,ElvUIParent,TOPLEFT,4,-51'
-		E.db.movers.ZoneAbility = 'BOTTOM,ElvUIParent,BOTTOM,168,128'
+		E.db.movers.ZoneAbility = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,66'
 	elseif E.Wrath then
 		E.db.movers.BelowMinimapContainerMover = 'TOP,UIParent,TOP,0,-26'
 		E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-100,-215'
@@ -994,7 +987,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-530,320'
 		E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,157,-1'
 		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,182'
-		E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,1'
+		E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
 
 		if E.Retail then
 			E.db.movers.AltPowerBarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,158'
