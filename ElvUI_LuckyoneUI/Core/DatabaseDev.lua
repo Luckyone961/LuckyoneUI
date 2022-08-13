@@ -396,25 +396,27 @@ function L1UI:Layout_Dragonflight(layout)
 	-- Auras
 	E.db.auras.buffs.countFont = 'Expressway'
 	E.db.auras.buffs.countFontOutline = 'OUTLINE'
-	E.db.auras.buffs.countFontSize = 12
+	E.db.auras.buffs.countFontSize = 11
 	E.db.auras.buffs.countYOffset = 2
-	E.db.auras.buffs.horizontalSpacing = 2
+	E.db.auras.buffs.fadeThreshold = -1
+	E.db.auras.buffs.horizontalSpacing = 1
 	E.db.auras.buffs.seperateOwn = 0
-	E.db.auras.buffs.size = 26
+	E.db.auras.buffs.size = 22
 	E.db.auras.buffs.timeFont = 'Expressway'
 	E.db.auras.buffs.timeFontOutline = 'OUTLINE'
-	E.db.auras.buffs.timeFontSize = 11
+	E.db.auras.buffs.verticalSpacing = 14
 	E.db.auras.debuffs.countFont = 'Expressway'
 	E.db.auras.debuffs.countFontOutline = 'OUTLINE'
-	E.db.auras.debuffs.countFontSize = 12
+	E.db.auras.debuffs.countFontSize = 11
 	E.db.auras.debuffs.countYOffset = 2
-	E.db.auras.debuffs.horizontalSpacing = 2
+	E.db.auras.debuffs.fadeThreshold = -1
+	E.db.auras.debuffs.horizontalSpacing = 1
 	E.db.auras.debuffs.maxWraps = 2
 	E.db.auras.debuffs.seperateOwn = 0
-	E.db.auras.debuffs.size = 26
+	E.db.auras.debuffs.size = 22
 	E.db.auras.debuffs.timeFont = 'Expressway'
 	E.db.auras.debuffs.timeFontOutline = 'OUTLINE'
-	E.db.auras.debuffs.timeFontSize = 11
+	E.db.auras.debuffs.verticalSpacing = 14
 
 	-- Chat
 	E.db.chat.desaturateVoiceIcons = false
