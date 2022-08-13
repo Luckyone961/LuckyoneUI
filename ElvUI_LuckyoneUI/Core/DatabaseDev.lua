@@ -17,6 +17,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 	local ABDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 	local MMDT = E.global.datatexts.customPanels.Luckyone_MiniMap_DT
+
 	do
 		E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
 		ABDT.backdrop = true
@@ -40,7 +41,6 @@ function L1UI:Layout_Dragonflight(layout)
 		ABDT.tooltipYOffset = 5
 		ABDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
 		ABDT.width = 323
-
 		E.DataTexts:BuildPanelFrame('Luckyone_MiniMap_DT')
 		MMDT.backdrop = false
 		MMDT.border = false
