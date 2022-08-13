@@ -196,22 +196,38 @@ function L1UI:Setup_Layout(layout)
 
 	-- Create a fresh profile in ElvUI
 	if layout == 'main' then
-		E.data:SetProfile('Luckyone DPS/TANK v'..L1UI.Version)
+		if L1UI.Me then
+			E.data:SetProfile('Luckyone Main')
+		else
+			E.data:SetProfile('Luckyone DPS/TANK v'..L1UI.Version)
+		end
 	elseif layout == 'healing' then
-		E.data:SetProfile('Luckyone Healing v'..L1UI.Version)
+		if L1UI.Me then
+			E.data:SetProfile('Luckyone Healing')
+		else
+			E.data:SetProfile('Luckyone Healing v'..L1UI.Version)
+		end
 	end
 
 	-- E.global & Custom DataText
-	L1UI:Setup_GlobalDB()
+	if not L1UI.Me then L1UI:Setup_GlobalDB() end
 
 	-- E.private & Media
-	L1UI:Setup_PrivateDB()
+	if not L1UI.Me then L1UI:Setup_PrivateDB() end
 
 	-- E.db & Movers
 	if layout == 'main' then
-		L1UI:Layout_Shadowlands('main')
+		if L1UI.Me then
+			L1UI:Layout_Dragonflight('main')
+		else
+			L1UI:Layout_Shadowlands('main')
+		end
 	elseif layout == 'healing' then
-		L1UI:Layout_Shadowlands('healing')
+		if L1UI.Me then
+			L1UI:Layout_Dragonflight('healing')
+		else
+			L1UI:Layout_Shadowlands('healing')
+		end
 	end
 
 	-- AddOnSkins profile
