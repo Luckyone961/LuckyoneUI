@@ -58,8 +58,8 @@ function L1UI:Layout_Dragonflight(layout)
 		MMDT.panelTransparency = true
 		MMDT.textJustify = 'CENTER'
 		MMDT.tooltipAnchor = 'ANCHOR_BOTTOMLEFT'
-		MMDT.tooltipXOffset = -10
-		MMDT.tooltipYOffset = -10
+		MMDT.tooltipXOffset = -6
+		MMDT.tooltipYOffset = -7
 		MMDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
 		MMDT.width = 152
 	end
