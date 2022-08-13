@@ -432,11 +432,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.arena.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
 	E.db.unitframe.units.arena.customTexts.Luckyone_Power = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 0 }
 
-	-- Custom Text: Boss
-	E.db.unitframe.units.boss.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent]', xOffset = 1, yOffset = 0 }
-	E.db.unitframe.units.boss.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:last]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.boss.customTexts.Luckyone_Power = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 0 }
-
 	-- Custom Text: Focus
 	E.db.unitframe.units.focus.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
 	E.db.unitframe.units.focus.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
@@ -582,48 +577,49 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.assist.enable = false
 
 	if E.Retail or E.Wrath then
-		E.db.unitframe.units.boss.buffs.anchorPoint = 'TOPRIGHT'
+		E.db.unitframe.units.boss.buffIndicator.enable = false
+		E.db.unitframe.units.boss.buffs.anchorPoint = 'RIGHT'
 		E.db.unitframe.units.boss.buffs.countFont = 'Expressway'
 		E.db.unitframe.units.boss.buffs.countFontSize = 10
 		E.db.unitframe.units.boss.buffs.countXOffset = 1
 		E.db.unitframe.units.boss.buffs.growthY = 'DOWN'
-		E.db.unitframe.units.boss.buffs.numrows = 2
 		E.db.unitframe.units.boss.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
-		E.db.unitframe.units.boss.buffs.xOffset = 23
-		E.db.unitframe.units.boss.buffs.yOffset = -21
+		E.db.unitframe.units.boss.buffs.sizeOverride = 30
+		E.db.unitframe.units.boss.buffs.xOffset = 1
+		E.db.unitframe.units.boss.buffs.yOffset = 2
 		E.db.unitframe.units.boss.castbar.customTextFont.enable = true
 		E.db.unitframe.units.boss.castbar.customTextFont.font = 'Expressway'
-		E.db.unitframe.units.boss.castbar.customTextFont.fontSize = 11
 		E.db.unitframe.units.boss.castbar.customTimeFont.enable = true
 		E.db.unitframe.units.boss.castbar.customTimeFont.font = 'Expressway'
-		E.db.unitframe.units.boss.castbar.customTimeFont.fontSize = 11
+		E.db.unitframe.units.boss.castbar.height = 12
+		E.db.unitframe.units.boss.castbar.overlayOnFrame = 'Health'
 		E.db.unitframe.units.boss.castbar.spark = false
 		E.db.unitframe.units.boss.castbar.textColor.b = 1
 		E.db.unitframe.units.boss.castbar.textColor.g = 1
 		E.db.unitframe.units.boss.castbar.textColor.r = 1
-		E.db.unitframe.units.boss.castbar.width = 200
+		E.db.unitframe.units.boss.castbar.width = 190
 		E.db.unitframe.units.boss.castbar.xOffsetText = 2
 		E.db.unitframe.units.boss.castbar.xOffsetTime = -2
-		E.db.unitframe.units.boss.debuffs.anchorPoint = 'TOPLEFT'
 		E.db.unitframe.units.boss.debuffs.countFont = 'Expressway'
 		E.db.unitframe.units.boss.debuffs.countFontSize = 10
 		E.db.unitframe.units.boss.debuffs.countXOffset = 1
 		E.db.unitframe.units.boss.debuffs.growthX = 'LEFT'
 		E.db.unitframe.units.boss.debuffs.growthY = 'DOWN'
-		E.db.unitframe.units.boss.debuffs.numrows = 2
 		E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
-		E.db.unitframe.units.boss.debuffs.spacing = 0
-		E.db.unitframe.units.boss.debuffs.xOffset = -23
-		E.db.unitframe.units.boss.debuffs.yOffset = -21
+		E.db.unitframe.units.boss.debuffs.sizeOverride = 30
+		E.db.unitframe.units.boss.debuffs.xOffset = -1
+		E.db.unitframe.units.boss.debuffs.yOffset = 2
 		E.db.unitframe.units.boss.disableTargetGlow = true
-		E.db.unitframe.units.boss.health.text_format = ''
-		E.db.unitframe.units.boss.health.xOffset = 0
-		E.db.unitframe.units.boss.height = 45
-		E.db.unitframe.units.boss.name.text_format = ''
-		E.db.unitframe.units.boss.power.height = 6
-		E.db.unitframe.units.boss.power.text_format = ''
-		E.db.unitframe.units.boss.spacing = 20
-		E.db.unitframe.units.boss.width = 200
+		E.db.unitframe.units.boss.health.text_format = '[luckyone:health:percent]'
+		E.db.unitframe.units.boss.health.xOffset = 1
+		E.db.unitframe.units.boss.height = 32
+		E.db.unitframe.units.boss.name.text_format = '[classcolor][name:last]'
+		E.db.unitframe.units.boss.power.height = 5
+		E.db.unitframe.units.boss.power.text_format = '[powercolor][perpp<%]'
+		E.db.unitframe.units.boss.power.width = 'spaced'
+		E.db.unitframe.units.boss.power.xOffset = 0
+		E.db.unitframe.units.boss.spacing = 10
+		E.db.unitframe.units.boss.width = 190
 	end
 
 	if not E.Classic then
