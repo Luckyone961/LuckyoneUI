@@ -3,6 +3,71 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 -- Dragonflight layout
 function L1UI:Layout_Dragonflight(layout)
 
+	-- Temporary stuff
+	------------------------------------------------------------------------------------------------------------------------------------
+
+	SetCVar('uiScale', 0.71111111111111)
+	E.global.general.UIScale = 0.71111111111111
+
+	E.global.datatexts.settings.Combat.TimeFull = false
+	E.global.datatexts.settings.System.latency = 'HOME'
+	E.global.general.commandBarSetting = 'DISABLED'
+	E.global.general.fadeMapWhenMoving = false
+	E.global.general.mapAlphaWhenMoving = 0.35
+	E.global.general.smallerWorldMapScale = 0.8
+	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
+
+	do
+		E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.backdrop = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.border = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.enable = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.enable = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.font = 'Expressway'
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontOutline = 'OUTLINE'
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontSize = 11
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameLevel = 1
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameStrata = 'BACKGROUND'
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.growth = 'HORIZONTAL'
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.height = 12
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.mouseover = false
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.name = 'Luckyone_ActionBars_DT'
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.numPoints = 3
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.panelTransparency = true
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.textJustify = 'CENTER'
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipAnchor = 'ANCHOR_TOP'
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipXOffset = 0
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipYOffset = 5
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 323
+	end
+
+	-- Temporary 2
+	if L1UI.Me then
+		E.private.general.chatBubbles = 'disabled'
+		E.private.L1UI.disabledFrames.AlertFrame = true
+		E.private.L1UI.disabledFrames.BossBanner = true
+	end
+
+	E.db.general.font = 'Expressway'
+	E.db.general.fontSize = 11
+	E.db.general.fontStyle = 'OUTLINE'
+
+	E.private.general.chatBubbleFont = 'Expressway'
+	E.private.general.chatBubbleFontOutline = 'OUTLINE'
+	E.private.general.dmgfont = 'Expressway'
+	E.private.general.glossTex = 'Minimalist'
+	E.private.general.namefont = 'Expressway'
+	E.private.general.nameplateFont = 'Expressway'
+	E.private.general.nameplateLargeFont = 'Expressway'
+	E.private.general.normTex = 'Minimalist'
+	E.private.general.totemBar = false
+
+	E.private.install_complete = E.version
+	E.private.skins.parchmentRemoverEnable = true
+
+	------------------------------------------------------------------------------------------------------------------------------------
+
 	-- AB conversion
 	E.db.convertPages = true
 
@@ -57,171 +122,196 @@ function L1UI:Layout_Dragonflight(layout)
 	end
 
 	-- ActionBars Shared
-	E.db.actionbar.bar1.alpha = 1
-	E.db.actionbar.bar1.buttonSize = 28
+	E.db.actionbar.bar1.buttonSize = 26
+	E.db.actionbar.bar1.buttonSpacing = 1
 	E.db.actionbar.bar1.countFont = 'Expressway'
 	E.db.actionbar.bar1.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar1.countFontSize = 9
 	E.db.actionbar.bar1.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar1.hotkeyFont = 'Expressway'
 	E.db.actionbar.bar1.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar1.hotkeyFontSize = 9
 	E.db.actionbar.bar1.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar1.hotkeyTextYOffset = -1
 	E.db.actionbar.bar1.macroFont = 'Expressway'
 	E.db.actionbar.bar1.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar1.macroFontSize = 9
 	E.db.actionbar.bar1.macrotext = true
 	E.db.actionbar.bar1.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar1.macroTextYOffset = 1
-	E.db.actionbar.bar2.alpha = 1
-	E.db.actionbar.bar2.buttonSize = 28
+	E.db.actionbar.bar2.buttonSize = 26
+	E.db.actionbar.bar2.buttonSpacing = 1
 	E.db.actionbar.bar2.countFont = 'Expressway'
 	E.db.actionbar.bar2.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar2.countFontSize = 9
 	E.db.actionbar.bar2.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar2.enabled = true
 	E.db.actionbar.bar2.hotkeyFont = 'Expressway'
 	E.db.actionbar.bar2.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar2.hotkeyFontSize = 9
 	E.db.actionbar.bar2.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar2.hotkeyTextYOffset = -1
 	E.db.actionbar.bar2.macroFont = 'Expressway'
 	E.db.actionbar.bar2.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar2.macroFontSize = 9
 	E.db.actionbar.bar2.macrotext = true
 	E.db.actionbar.bar2.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar2.macroTextYOffset = 1
-	E.db.actionbar.bar3.alpha = 1
 	E.db.actionbar.bar3.buttons = 12
-	E.db.actionbar.bar3.buttonSize = 28
+	E.db.actionbar.bar3.buttonSize = 26
+	E.db.actionbar.bar3.buttonSpacing = 1
 	E.db.actionbar.bar3.buttonsPerRow = 12
 	E.db.actionbar.bar3.countFont = 'Expressway'
 	E.db.actionbar.bar3.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar3.countFontSize = 9
 	E.db.actionbar.bar3.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar3.hotkeyFont = 'Expressway'
 	E.db.actionbar.bar3.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar3.hotkeyFontSize = 9
 	E.db.actionbar.bar3.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar3.hotkeyTextYOffset = -1
 	E.db.actionbar.bar3.macroFont = 'Expressway'
 	E.db.actionbar.bar3.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar3.macroFontSize = 9
 	E.db.actionbar.bar3.macrotext = true
 	E.db.actionbar.bar3.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar3.macroTextYOffset = 1
-	E.db.actionbar.bar4.alpha = 1
 	E.db.actionbar.bar4.backdrop = false
-	E.db.actionbar.bar4.buttons = 12
-	E.db.actionbar.bar4.buttonSize = 28
-	E.db.actionbar.bar4.buttonsPerRow = E.Retail and 12 or 6
+	E.db.actionbar.bar4.buttonSize = 26
+	E.db.actionbar.bar4.buttonSpacing = 1
+	E.db.actionbar.bar4.buttonsPerRow = 12
 	E.db.actionbar.bar4.countFont = 'Expressway'
 	E.db.actionbar.bar4.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar4.countFontSize = 9
 	E.db.actionbar.bar4.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar4.enabled = not E.Retail
 	E.db.actionbar.bar4.hotkeyFont = 'Expressway'
 	E.db.actionbar.bar4.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar4.hotkeyFontSize = 9
 	E.db.actionbar.bar4.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar4.hotkeyTextYOffset = -1
 	E.db.actionbar.bar4.macroFont = 'Expressway'
 	E.db.actionbar.bar4.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar4.macroFontSize = 9
 	E.db.actionbar.bar4.macrotext = true
 	E.db.actionbar.bar4.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar4.macroTextYOffset = 1
-	E.db.actionbar.bar4.mouseover = not E.Retail
 	E.db.actionbar.bar4.point = 'BOTTOMLEFT'
-	E.db.actionbar.bar5.alpha = 1
 	E.db.actionbar.bar5.buttons = 12
-	E.db.actionbar.bar5.buttonSize = 28
+	E.db.actionbar.bar5.buttonSize = 26
+	E.db.actionbar.bar5.buttonSpacing = 1
 	E.db.actionbar.bar5.buttonsPerRow = 1
 	E.db.actionbar.bar5.countFont = 'Expressway'
 	E.db.actionbar.bar5.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar5.countFontSize = 9
 	E.db.actionbar.bar5.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar5.enabled = true
 	E.db.actionbar.bar5.hotkeyFont = 'Expressway'
 	E.db.actionbar.bar5.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar5.hotkeyFontSize = 9
 	E.db.actionbar.bar5.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar5.hotkeyTextYOffset = -1
 	E.db.actionbar.bar5.macroFont = 'Expressway'
 	E.db.actionbar.bar5.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar5.macroFontSize = 9
 	E.db.actionbar.bar5.macrotext = true
 	E.db.actionbar.bar5.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar5.macroTextYOffset = 1
 	E.db.actionbar.bar5.mouseover = true
-	E.db.actionbar.bar6.alpha = 1
-	E.db.actionbar.bar6.buttons = 12
-	E.db.actionbar.bar6.buttonSize = 28
-	E.db.actionbar.bar6.buttonsPerRow = E.Retail and 12 or 6
+	E.db.actionbar.bar6.buttonSize = 26
+	E.db.actionbar.bar6.buttonSpacing = 1
 	E.db.actionbar.bar6.countFont = 'Expressway'
 	E.db.actionbar.bar6.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar6.countFontSize = 9
 	E.db.actionbar.bar6.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar6.enabled = not E.Retail
+	E.db.actionbar.bar6.enabled = true
 	E.db.actionbar.bar6.hotkeyFont = 'Expressway'
 	E.db.actionbar.bar6.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar6.hotkeyFontSize = 9
 	E.db.actionbar.bar6.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar6.hotkeyTextYOffset = -1
 	E.db.actionbar.bar6.macroFont = 'Expressway'
 	E.db.actionbar.bar6.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar6.macroFontSize = 9
 	E.db.actionbar.bar6.macrotext = true
 	E.db.actionbar.bar6.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar6.macroTextYOffset = 1
-	E.db.actionbar.bar6.mouseover = not E.Retail
-	E.db.actionbar.bar7.alpha = 1
-	E.db.actionbar.bar7.buttonSize = 28
+	E.db.actionbar.bar7.buttonSize = 26
+	E.db.actionbar.bar7.buttonSpacing = 1
 	E.db.actionbar.bar7.countFont = 'Expressway'
 	E.db.actionbar.bar7.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar7.countFontSize = 9
 	E.db.actionbar.bar7.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar7.hotkeyFont = 'Expressway'
 	E.db.actionbar.bar7.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar7.hotkeyFontSize = 9
 	E.db.actionbar.bar7.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar7.hotkeyTextYOffset = -1
 	E.db.actionbar.bar7.macroFont = 'Expressway'
 	E.db.actionbar.bar7.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar7.macroFontSize = 9
 	E.db.actionbar.bar7.macrotext = true
 	E.db.actionbar.bar7.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar7.macroTextYOffset = 1
-	E.db.actionbar.bar8.alpha = 1
-	E.db.actionbar.bar8.buttonSize = 28
+	E.db.actionbar.bar8.buttonSize = 26
+	E.db.actionbar.bar8.buttonSpacing = 1
 	E.db.actionbar.bar8.countFont = 'Expressway'
 	E.db.actionbar.bar8.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar8.countFontSize = 9
 	E.db.actionbar.bar8.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar8.hotkeyFont = 'Expressway'
 	E.db.actionbar.bar8.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar8.hotkeyFontSize = 9
 	E.db.actionbar.bar8.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar8.hotkeyTextYOffset = -1
 	E.db.actionbar.bar8.macroFont = 'Expressway'
 	E.db.actionbar.bar8.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar8.macroFontSize = 9
 	E.db.actionbar.bar8.macrotext = true
 	E.db.actionbar.bar8.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar8.macroTextYOffset = 1
-	E.db.actionbar.bar9.alpha = 1
-	E.db.actionbar.bar9.buttonSize = 28
+	E.db.actionbar.bar9.buttonSize = 26
+	E.db.actionbar.bar9.buttonSpacing = 1
 	E.db.actionbar.bar9.countFont = 'Expressway'
 	E.db.actionbar.bar9.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar9.countFontSize = 9
 	E.db.actionbar.bar9.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar9.hotkeyFont = 'Expressway'
 	E.db.actionbar.bar9.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar9.hotkeyFontSize = 9
 	E.db.actionbar.bar9.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar9.hotkeyTextYOffset = -1
 	E.db.actionbar.bar9.macroFont = 'Expressway'
 	E.db.actionbar.bar9.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar9.macroFontSize = 9
 	E.db.actionbar.bar9.macrotext = true
 	E.db.actionbar.bar9.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar9.macroTextYOffset = 1
-	E.db.actionbar.bar10.alpha = 1
-	E.db.actionbar.bar10.buttonSize = 28
+	E.db.actionbar.bar10.buttonSize = 26
+	E.db.actionbar.bar10.buttonSpacing = 1
 	E.db.actionbar.bar10.countFont = 'Expressway'
 	E.db.actionbar.bar10.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar10.countFontSize = 9
 	E.db.actionbar.bar10.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar10.hotkeyFont = 'Expressway'
 	E.db.actionbar.bar10.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar10.hotkeyFontSize = 9
 	E.db.actionbar.bar10.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar10.hotkeyTextYOffset = -1
 	E.db.actionbar.bar10.macroFont = 'Expressway'
 	E.db.actionbar.bar10.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar10.macroFontSize = 9
 	E.db.actionbar.bar10.macrotext = true
 	E.db.actionbar.bar10.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar10.macroTextYOffset = 1
-	E.db.actionbar.barPet.alpha = 1
 	E.db.actionbar.barPet.backdrop = false
-	E.db.actionbar.barPet.buttonSize = 28
+	E.db.actionbar.barPet.buttonSize = 26
+	E.db.actionbar.barPet.buttonSpacing = 1
 	E.db.actionbar.barPet.buttonsPerRow = 10
 	E.db.actionbar.barPet.countFont = 'Expressway'
 	E.db.actionbar.barPet.countFontOutline = 'OUTLINE'
+	E.db.actionbar.barPet.countFontSize = 9
 	E.db.actionbar.barPet.hotkeyFont = 'Expressway'
 	E.db.actionbar.barPet.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.barPet.hotkeyFontSize = 9
 	E.db.actionbar.barPet.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.barPet.hotkeyTextYOffset = -1
 	E.db.actionbar.barPet.point = 'TOPLEFT'
@@ -908,16 +998,17 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-166,-128'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DurabilityFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-214'
-	E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-	E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,76'
-	E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,46'
-	E.db.movers.ElvAB_4 = E.Retail and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,203' or 'BOTTOM,ElvUIParent,BOTTOM,-270,1'
+	E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
+	E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,68'
+	E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,41'
+	E.db.movers.ElvAB_4 = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,200'
 	E.db.movers.ElvAB_5 = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-343'
-	E.db.movers.ElvAB_6 = E.Retail and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,173' or 'BOTTOM,ElvUIParent,BOTTOM,270,1'
+	E.db.movers.ElvAB_6 = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,173'
 	E.db.movers.ElvAB_7 = 'BOTTOM,ElvUIParent,BOTTOM,0,168'
 	E.db.movers.ElvAB_8 = 'BOTTOM,ElvUIParent,BOTTOM,0,197'
 	E.db.movers.ElvAB_9 = 'BOTTOM,ElvUIParent,BOTTOM,0,226'
 	E.db.movers.ElvAB_10 = 'BOTTOM,ElvUIParent,BOTTOM,0,255'
+	E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,-1,95'
 	E.db.movers.ElvUIBagMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,173'
 	E.db.movers.ElvUIBankMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
 	E.db.movers.ExperienceBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,1'
@@ -928,7 +1019,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.MirrorTimer1Mover = 'TOP,ElvUIParent,TOP,0,-78'
 	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-97'
 	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-116'
-	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,128'
+	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,114'
 	E.db.movers.ReputationBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
@@ -937,9 +1028,11 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.TooltipMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-57'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-27'
+	E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,164'
+	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
 
 	if E.Retail then
-		E.db.movers.AltPowerBarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,158'
+		E.db.movers.AltPowerBarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,141'
 		E.db.movers.ArtifactBarMover = 'BOTTOM,ElvUIParent,BOTTOM,1,16'
 		E.db.movers.AzeriteBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
 		E.db.movers.BelowMinimapContainerMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,70,485'
@@ -951,9 +1044,10 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.LossControlMover = 'TOP,ElvUIParent,TOP,0,-492'
 		E.db.movers.MawBuffsBelowMinimapMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-15,-380'
 		E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,UIParent,TOPRIGHT,-95,-214'
-		E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,182'
+		E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
 		E.db.movers.TalkingHeadFrameMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,173'
 		E.db.movers.TorghastBuffsMover = 'TOPLEFT,ElvUIParent,TOPLEFT,4,-51'
+		E.db.movers.TorghastChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
 		E.db.movers.ZoneAbility = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,66'
 	elseif E.Wrath then
 		E.db.movers.BelowMinimapContainerMover = 'TOP,UIParent,TOP,0,-26'
@@ -978,7 +1072,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_FocusTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-530,470'
 		E.db.movers.ElvUF_PartyMover = 'TOPLEFT,ElvUIParent,TOPLEFT,450,-323'
 		E.db.movers.ElvUF_PetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,531,320'
-		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,106'
 		E.db.movers.ElvUF_PlayerMover = 'BOTTOM,ElvUIParent,BOTTOM,-253,320'
 		E.db.movers.ElvUF_Raid40Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
 		E.db.movers.ElvUF_RaidMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
@@ -986,13 +1079,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,253,320'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-530,320'
 		E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,157,-1'
-		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,182'
-		E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
-
-		if E.Retail then
-			E.db.movers.AltPowerBarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,158'
-			E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,182'
-		end
 
 		-- UnitFrames DPS/TANK
 		E.db.unitframe.units.party.buffIndicator.size = 12
@@ -1138,7 +1224,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_FocusTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-460,470'
 		E.db.movers.ElvUF_PartyMover = 'BOTTOM,UIParent,BOTTOM,0,320'
 		E.db.movers.ElvUF_PetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,461,320'
-		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,106'
 		E.db.movers.ElvUF_PlayerMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,542,320'
 		E.db.movers.ElvUF_Raid40Mover = 'BOTTOM,UIParent,BOTTOM,0,136'
 		E.db.movers.ElvUF_RaidMover = 'BOTTOM,UIParent,BOTTOM,0,134'
@@ -1146,13 +1231,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_TargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,320'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-460,320'
 		E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,174,-1'
-		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,368'
-		E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,438,1'
-
-		if E.Retail then
-			E.db.movers.AltPowerBarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,368'
-			E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,158'
-		end
 
 		-- UnitFrames Healing
 		E.db.unitframe.units.party.classbar.enable = false
