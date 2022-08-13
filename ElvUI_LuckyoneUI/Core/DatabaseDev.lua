@@ -1146,10 +1146,10 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.phaseIndicator.scale = 0.5
 		E.db.unitframe.units.party.phaseIndicator.xOffset = 2
 		E.db.unitframe.units.party.power.enable = false
-		E.db.unitframe.units.party.raidicon.attachTo = 'CENTER'
-		E.db.unitframe.units.party.raidicon.attachToObject = 'Health'
+		E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.party.raidicon.size = 14
-		E.db.unitframe.units.party.raidicon.yOffset = 12
+		E.db.unitframe.units.party.raidicon.xOffset = -3
+		E.db.unitframe.units.party.raidicon.yOffset = 0
 		E.db.unitframe.units.party.raidRoleIcons.yOffset = 1
 		E.db.unitframe.units.party.rdebuffs.enable = false
 		E.db.unitframe.units.party.readycheckIcon.position = 'RIGHT'
