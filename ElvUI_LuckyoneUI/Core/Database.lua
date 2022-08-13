@@ -258,10 +258,10 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.extraActionButton.hotkeyFontOutline = 'OUTLINE'
 		E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOPLEFT'
 		E.db.actionbar.extraActionButton.hotkeyTextYOffset = -1
-		E.db.actionbar.extraActionButton.scale = 0.65
+		E.db.actionbar.extraActionButton.scale = 1
 		E.db.actionbar.zoneActionButton.alpha = 1
 		E.db.actionbar.zoneActionButton.clean = true
-		E.db.actionbar.zoneActionButton.scale = 0.65
+		E.db.actionbar.zoneActionButton.scale = 1
 	end
 
 	-- Bags
@@ -943,7 +943,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ArtifactBarMover = 'BOTTOM,ElvUIParent,BOTTOM,1,16'
 		E.db.movers.AzeriteBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
 		E.db.movers.BelowMinimapContainerMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,70,485'
-		E.db.movers.BossButton = 'BOTTOM,ElvUIParent,BOTTOM,-168,128'
+		E.db.movers.BossButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,119'
 		E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235'
 		E.db.movers.DigSiteProgressBarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,157'
 		E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-139'
@@ -954,7 +954,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,182'
 		E.db.movers.TalkingHeadFrameMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,173'
 		E.db.movers.TorghastBuffsMover = 'TOPLEFT,ElvUIParent,TOPLEFT,4,-51'
-		E.db.movers.ZoneAbility = 'BOTTOM,ElvUIParent,BOTTOM,168,128'
+		E.db.movers.ZoneAbility = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,66'
 	elseif E.Wrath then
 		E.db.movers.BelowMinimapContainerMover = 'TOP,UIParent,TOP,0,-26'
 		E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-100,-215'
@@ -987,7 +987,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-530,320'
 		E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,157,-1'
 		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,182'
-		E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,1'
+		E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
 
 		if E.Retail then
 			E.db.movers.AltPowerBarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,158'
