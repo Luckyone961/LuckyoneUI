@@ -533,8 +533,6 @@ function L1UI:Layout_Dragonflight(layout)
 	end
 
 	-- Custom Texts: Creation
-	E.db.unitframe.units.arena.customTexts = E.db.unitframe.units.arena.customTexts or {}
-	E.db.unitframe.units.boss.customTexts = E.db.unitframe.units.boss.customTexts or {}
 	E.db.unitframe.units.focus.customTexts = E.db.unitframe.units.focus.customTexts or {}
 	E.db.unitframe.units.focustarget.customTexts = E.db.unitframe.units.focustarget.customTexts or {}
 	E.db.unitframe.units.party.customTexts = E.db.unitframe.units.party.customTexts or {}
@@ -630,6 +628,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.fontSize = 12
 	E.db.unitframe.statusbar = 'Minimalist'
 
+	-- MA / MT
+	E.db.unitframe.units.assist.enable = false
+	E.db.unitframe.units.tank.enable = false
+
 	if not E.Classic then
 		E.db.unitframe.units.arena.buffs.anchorPoint = 'RIGHT'
 		E.db.unitframe.units.arena.buffs.countFont = 'Expressway'
@@ -666,6 +668,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.arena.debuffs.sizeOverride = 30
 		E.db.unitframe.units.arena.debuffs.xOffset = -1
 		E.db.unitframe.units.arena.debuffs.yOffset = 2
+		E.db.unitframe.units.arena.disableMouseoverGlow = true
 		E.db.unitframe.units.arena.disableTargetGlow = true
 		E.db.unitframe.units.arena.healPrediction.enable = false
 		E.db.unitframe.units.arena.health.text_format = '[luckyone:health:percent]'
@@ -687,8 +690,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.arena.spacing = 10
 		E.db.unitframe.units.arena.width = 190
 	end
-
-	E.db.unitframe.units.assist.enable = false
 
 	if E.Retail or E.Wrath then
 		E.db.unitframe.units.boss.buffIndicator.enable = false
@@ -724,6 +725,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.boss.debuffs.sizeOverride = 30
 		E.db.unitframe.units.boss.debuffs.xOffset = -1
 		E.db.unitframe.units.boss.debuffs.yOffset = 2
+		E.db.unitframe.units.boss.disableMouseoverGlow = true
 		E.db.unitframe.units.boss.disableTargetGlow = true
 		E.db.unitframe.units.boss.health.text_format = '[luckyone:health:percent]'
 		E.db.unitframe.units.boss.health.xOffset = 1
@@ -862,6 +864,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.pet.raidicon.yOffset = 0
 	E.db.unitframe.units.pet.threatStyle = 'NONE'
 	E.db.unitframe.units.pet.width = 80
+
 	E.db.unitframe.units.player.aurabar.enable = false
 	E.db.unitframe.units.player.buffs.attachTo = 'FRAME'
 	E.db.unitframe.units.player.buffs.countFont = 'Expressway'
@@ -920,7 +923,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.player.RestIcon.enable = false
 	E.db.unitframe.units.player.threatStyle = 'NONE'
 	E.db.unitframe.units.player.width = 190
-	E.db.unitframe.units.tank.enable = false
+
 	E.db.unitframe.units.target.aurabar.enable = false
 	E.db.unitframe.units.target.buffs.countFont = 'Expressway'
 	E.db.unitframe.units.target.buffs.countFontSize = 13
@@ -985,6 +988,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.target.raidRoleIcons.yOffset = 1
 	E.db.unitframe.units.target.threatStyle = 'NONE'
 	E.db.unitframe.units.target.width = 190
+
 	E.db.unitframe.units.targettarget.debuffs.enable = false
 	E.db.unitframe.units.targettarget.disableMouseoverGlow = true
 	E.db.unitframe.units.targettarget.health.position = 'CENTER'
@@ -1119,7 +1123,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.debuffs.maxDuration = 0
 		E.db.unitframe.units.party.debuffs.perrow = 2
 		E.db.unitframe.units.party.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
-		E.db.unitframe.units.party.debuffs.sizeOverride = 40
+		E.db.unitframe.units.party.debuffs.sizeOverride = 32
 		E.db.unitframe.units.party.debuffs.xOffset = 1
 		E.db.unitframe.units.party.debuffs.yOffset = -1
 		E.db.unitframe.units.party.disableMouseoverGlow = true
@@ -1130,7 +1134,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.health.text_format = ''
 		E.db.unitframe.units.party.health.xOffset = 0
 		E.db.unitframe.units.party.health.yOffset = 2
-		E.db.unitframe.units.party.height = 40
+		E.db.unitframe.units.party.height = 32
 		E.db.unitframe.units.party.horizontalSpacing = 1
 		E.db.unitframe.units.party.infoPanel.height = 17
 		E.db.unitframe.units.party.name.attachTextTo = 'Frame'
@@ -1138,8 +1142,9 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.orientation = 'MIDDLE'
 		E.db.unitframe.units.party.petsGroup.anchorPoint = 'LEFT'
 		E.db.unitframe.units.party.petsGroup.height = 20
+		E.db.unitframe.units.party.phaseIndicator.anchorPoint = 'LEFT'
 		E.db.unitframe.units.party.phaseIndicator.scale = 0.5
-		E.db.unitframe.units.party.phaseIndicator.xOffset = -50
+		E.db.unitframe.units.party.phaseIndicator.xOffset = 2
 		E.db.unitframe.units.party.power.enable = false
 		E.db.unitframe.units.party.raidicon.attachTo = 'CENTER'
 		E.db.unitframe.units.party.raidicon.attachToObject = 'Health'
@@ -1147,17 +1152,18 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.raidicon.yOffset = 12
 		E.db.unitframe.units.party.raidRoleIcons.yOffset = 1
 		E.db.unitframe.units.party.rdebuffs.enable = false
+		E.db.unitframe.units.party.readycheckIcon.position = 'RIGHT'
+		E.db.unitframe.units.party.readycheckIcon.xOffset = -2
+		E.db.unitframe.units.party.readycheckIcon.yOffset = 0
 		E.db.unitframe.units.party.roleIcon.enable = false
-		E.db.unitframe.units.party.roleIcon.position = 'LEFT'
-		E.db.unitframe.units.party.roleIcon.size = 16
-		E.db.unitframe.units.party.roleIcon.xOffset = 0
-		E.db.unitframe.units.party.roleIcon.yOffset = 0
-		E.db.unitframe.units.party.summonIcon.size = 25
-		E.db.unitframe.units.party.summonIcon.xOffset = 50
+		E.db.unitframe.units.party.summonIcon.attachTo = 'RIGHT'
+		E.db.unitframe.units.party.summonIcon.size = 24
+		E.db.unitframe.units.party.summonIcon.xOffset = -2
 		E.db.unitframe.units.party.targetsGroup.height = 10
 		E.db.unitframe.units.party.threatStyle = 'NONE'
-		E.db.unitframe.units.party.verticalSpacing = 2
-		E.db.unitframe.units.party.width = 150
+		E.db.unitframe.units.party.verticalSpacing = 1
+		E.db.unitframe.units.party.width = 190
+
 		E.db.unitframe.units.raid.classbar.enable = false
 		E.db.unitframe.units.raid.debuffs.anchorPoint = 'BOTTOM'
 		E.db.unitframe.units.raid.debuffs.countFont = 'Expressway'
@@ -1207,6 +1213,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid.verticalSpacing = 1
 		E.db.unitframe.units.raid.visibility = '[@raid6,noexists][@raid31,exists] hide;show'
 		E.db.unitframe.units.raid.width = 82
+
 		E.db.unitframe.units.raid40.classbar.enable = false
 		E.db.unitframe.units.raid40.debuffs.countFont = 'Expressway'
 		E.db.unitframe.units.raid40.debuffs.desaturate = false
@@ -1298,6 +1305,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.threatStyle = 'NONE'
 		E.db.unitframe.units.party.verticalSpacing = 1
 		E.db.unitframe.units.party.width = 90
+
 		E.db.unitframe.units.raid.classbar.enable = false
 		E.db.unitframe.units.raid.debuffs.countFont = 'Expressway'
 		E.db.unitframe.units.raid.debuffs.desaturate = false
@@ -1331,6 +1339,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid.verticalSpacing = 1
 		E.db.unitframe.units.raid.visibility = '[@raid6,noexists][@raid31,exists] hide;show'
 		E.db.unitframe.units.raid.width = 90
+
 		E.db.unitframe.units.raid40.classbar.enable = false
 		E.db.unitframe.units.raid40.debuffs.countFont = 'Expressway'
 		E.db.unitframe.units.raid40.debuffs.desaturate = false
