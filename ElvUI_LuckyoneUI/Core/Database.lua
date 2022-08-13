@@ -427,11 +427,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.target.customTexts = E.db.unitframe.units.target.customTexts or {}
 	E.db.unitframe.units.targettarget.customTexts = E.db.unitframe.units.targettarget.customTexts or {}
 
-	-- Custom Text: Arena
-	E.db.unitframe.units.arena.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent]', xOffset = 1, yOffset = 0 }
-	E.db.unitframe.units.arena.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.arena.customTexts.Luckyone_Power = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 0 }
-
 	-- Custom Text: Focus
 	E.db.unitframe.units.focus.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
 	E.db.unitframe.units.focus.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
@@ -519,30 +514,29 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.statusbar = 'Minimalist'
 
 	if not E.Classic then
-		E.db.unitframe.units.arena.buffs.anchorPoint = 'TOPRIGHT'
+		E.db.unitframe.units.arena.buffs.anchorPoint = 'RIGHT'
 		E.db.unitframe.units.arena.buffs.countFont = 'Expressway'
 		E.db.unitframe.units.arena.buffs.countFontSize = 10
 		E.db.unitframe.units.arena.buffs.countXOffset = 1
+		E.db.unitframe.units.arena.buffs.growthY = 'DOWN'
 		E.db.unitframe.units.arena.buffs.maxDuration = 0
-		E.db.unitframe.units.arena.buffs.numrows = 2
 		E.db.unitframe.units.arena.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
-		E.db.unitframe.units.arena.buffs.sizeOverride = 22
-		E.db.unitframe.units.arena.buffs.xOffset = 23
-		E.db.unitframe.units.arena.buffs.yOffset = -46
+		E.db.unitframe.units.arena.buffs.sizeOverride = 30
+		E.db.unitframe.units.arena.buffs.xOffset = 1
+		E.db.unitframe.units.arena.buffs.yOffset = 2
 		E.db.unitframe.units.arena.castbar.customTextFont.enable = true
 		E.db.unitframe.units.arena.castbar.customTextFont.font = 'Expressway'
-		E.db.unitframe.units.arena.castbar.customTextFont.fontSize = 11
 		E.db.unitframe.units.arena.castbar.customTimeFont.enable = true
 		E.db.unitframe.units.arena.castbar.customTimeFont.font = 'Expressway'
-		E.db.unitframe.units.arena.castbar.customTimeFont.fontSize = 11
+		E.db.unitframe.units.arena.castbar.height = 12
+		E.db.unitframe.units.arena.castbar.overlayOnFrame = 'Health'
 		E.db.unitframe.units.arena.castbar.spark = false
 		E.db.unitframe.units.arena.castbar.textColor.b = 1
 		E.db.unitframe.units.arena.castbar.textColor.g = 1
 		E.db.unitframe.units.arena.castbar.textColor.r = 1
-		E.db.unitframe.units.arena.castbar.width = 240
+		E.db.unitframe.units.arena.castbar.width = 190
 		E.db.unitframe.units.arena.castbar.xOffsetText = 2
 		E.db.unitframe.units.arena.castbar.xOffsetTime = -2
-		E.db.unitframe.units.arena.debuffs.anchorPoint = 'TOPLEFT'
 		E.db.unitframe.units.arena.debuffs.countFont = 'Expressway'
 		E.db.unitframe.units.arena.debuffs.countFontSize = 10
 		E.db.unitframe.units.arena.debuffs.countXOffset = 1
@@ -550,28 +544,30 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.arena.debuffs.growthX = 'LEFT'
 		E.db.unitframe.units.arena.debuffs.growthY = 'DOWN'
 		E.db.unitframe.units.arena.debuffs.maxDuration = 0
-		E.db.unitframe.units.arena.debuffs.numrows = 2
 		E.db.unitframe.units.arena.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
-		E.db.unitframe.units.arena.debuffs.sizeOverride = 22
-		E.db.unitframe.units.arena.debuffs.spacing = 0
-		E.db.unitframe.units.arena.debuffs.xOffset = -69
-		E.db.unitframe.units.arena.debuffs.yOffset = -21
+		E.db.unitframe.units.arena.debuffs.sizeOverride = 30
+		E.db.unitframe.units.arena.debuffs.xOffset = -1
+		E.db.unitframe.units.arena.debuffs.yOffset = 2
 		E.db.unitframe.units.arena.disableTargetGlow = true
-		E.db.unitframe.units.arena.healPrediction.absorbStyle = 'WRAPPED'
-		E.db.unitframe.units.arena.health.text_format = ''
-		E.db.unitframe.units.arena.health.xOffset = 0
-		E.db.unitframe.units.arena.height = 45
+		E.db.unitframe.units.arena.healPrediction.enable = false
+		E.db.unitframe.units.arena.health.text_format = '[luckyone:health:percent]'
+		E.db.unitframe.units.arena.health.xOffset = 1
+		E.db.unitframe.units.arena.height = 32
 		E.db.unitframe.units.arena.infoPanel.height = 16
-		E.db.unitframe.units.arena.name.text_format = ''
-		E.db.unitframe.units.arena.power.height = 6
-		E.db.unitframe.units.arena.power.text_format = ''
-		E.db.unitframe.units.arena.pvpclassificationindicator.size = 25
-		E.db.unitframe.units.arena.pvpclassificationindicator.xOffset = -20
+		E.db.unitframe.units.arena.name.text_format = '[classcolor][name:last]'
+		E.db.unitframe.units.arena.power.height = 5
+		E.db.unitframe.units.arena.power.text_format = '[powercolor][perpp<%]'
+		E.db.unitframe.units.arena.power.width = 'spaced'
+		E.db.unitframe.units.arena.power.xOffset = 0
+		E.db.unitframe.units.arena.pvpSpecIcon = false
+		E.db.unitframe.units.arena.pvpTrinket.enable = false
 		E.db.unitframe.units.arena.pvpTrinket.position = 'LEFT'
 		E.db.unitframe.units.arena.pvpTrinket.size = 45
 		E.db.unitframe.units.arena.pvpTrinket.xOffset = -1
-		E.db.unitframe.units.arena.spacing = 20
-		E.db.unitframe.units.arena.width = 240
+		E.db.unitframe.units.arena.pvpclassificationindicator.size = 25
+		E.db.unitframe.units.arena.pvpclassificationindicator.xOffset = -20
+		E.db.unitframe.units.arena.spacing = 10
+		E.db.unitframe.units.arena.width = 190
 	end
 
 	E.db.unitframe.units.assist.enable = false
