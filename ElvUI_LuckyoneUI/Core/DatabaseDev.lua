@@ -382,16 +382,21 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.bags.clearSearchOnClose = true
 	E.db.bags.countFont = 'Expressway'
 	E.db.bags.countFontOutline = 'OUTLINE'
-	E.db.bags.countFontSize = 12
+	E.db.bags.countFontSize = 11
 	E.db.bags.itemInfoFont = 'Expressway'
 	E.db.bags.itemInfoFontOutline = 'OUTLINE'
-	E.db.bags.itemInfoFontSize = 12
+	E.db.bags.itemInfoFontSize = 11
 	E.db.bags.itemLevelFont = 'Expressway'
 	E.db.bags.itemLevelFontOutline = 'OUTLINE'
-	E.db.bags.itemLevelFontSize = 12
+	E.db.bags.itemLevelFontSize = 11
 	E.db.bags.moneyFormat = 'BLIZZARD'
 	E.db.bags.transparent = true
 	E.db.bags.vendorGrays.enable = true
+
+	if E.Retail then
+		E.db.bags.autoToggle.guildBank = true
+		E.db.bags.autoToggle.soulBind = false
+	end
 
 	-- Auras
 	E.db.auras.buffs.countFont = 'Expressway'
