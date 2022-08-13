@@ -520,6 +520,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.arena.buffs.countXOffset = 1
 		E.db.unitframe.units.arena.buffs.growthY = 'DOWN'
 		E.db.unitframe.units.arena.buffs.maxDuration = 0
+		E.db.unitframe.units.arena.buffs.perrow = 2
 		E.db.unitframe.units.arena.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
 		E.db.unitframe.units.arena.buffs.sizeOverride = 30
 		E.db.unitframe.units.arena.buffs.xOffset = 1
@@ -559,13 +560,13 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.arena.power.text_format = '[powercolor][perpp<%]'
 		E.db.unitframe.units.arena.power.width = 'spaced'
 		E.db.unitframe.units.arena.power.xOffset = 0
+		E.db.unitframe.units.arena.pvpclassificationindicator.size = 24
+		E.db.unitframe.units.arena.pvpclassificationindicator.xOffset = -40
 		E.db.unitframe.units.arena.pvpSpecIcon = false
 		E.db.unitframe.units.arena.pvpTrinket.enable = false
 		E.db.unitframe.units.arena.pvpTrinket.position = 'LEFT'
 		E.db.unitframe.units.arena.pvpTrinket.size = 45
 		E.db.unitframe.units.arena.pvpTrinket.xOffset = -1
-		E.db.unitframe.units.arena.pvpclassificationindicator.size = 24
-		E.db.unitframe.units.arena.pvpclassificationindicator.xOffset = -40
 		E.db.unitframe.units.arena.spacing = 10
 		E.db.unitframe.units.arena.width = 190
 	end
@@ -579,6 +580,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.boss.buffs.countFontSize = 10
 		E.db.unitframe.units.boss.buffs.countXOffset = 1
 		E.db.unitframe.units.boss.buffs.growthY = 'DOWN'
+		E.db.unitframe.units.boss.buffs.perrow = 2
 		E.db.unitframe.units.boss.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
 		E.db.unitframe.units.boss.buffs.sizeOverride = 30
 		E.db.unitframe.units.boss.buffs.xOffset = 1
