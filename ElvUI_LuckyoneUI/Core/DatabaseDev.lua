@@ -356,7 +356,9 @@ function L1UI:Layout_Dragonflight(layout)
 	end
 
 	-- Bags
+	E.db.bags.bagSize = 30
 	E.db.bags.bagWidth = 414
+	E.db.bags.bankSize = 30
 	E.db.bags.bankWidth = 414
 	E.db.bags.clearSearchOnClose = true
 	E.db.bags.countFont = 'Expressway'
