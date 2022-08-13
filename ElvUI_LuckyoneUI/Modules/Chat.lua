@@ -59,7 +59,7 @@ function L1UI:Setup_Chat()
 		end
 
 		-- Font size 11 for all tabs
-		FCF_SetChatWindowFontSize(nil, frame, 11)
+		FCF_SetChatWindowFontSize(nil, frame, 10)
 
 		-- Tab names
 		if id == 1 then

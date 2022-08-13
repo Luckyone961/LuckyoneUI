@@ -17,29 +17,30 @@ function L1UI:Layout_Dragonflight(layout)
 	E.global.general.smallerWorldMapScale = 0.8
 	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
+	local DT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 	do
 		E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.backdrop = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.border = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.enable = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.enable = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.font = 'Expressway'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontOutline = 'OUTLINE'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontSize = 11
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameLevel = 1
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameStrata = 'BACKGROUND'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.growth = 'HORIZONTAL'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.height = 12
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.mouseover = false
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.name = 'Luckyone_ActionBars_DT'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.numPoints = 3
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.panelTransparency = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.textJustify = 'CENTER'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipAnchor = 'ANCHOR_TOP'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipXOffset = 0
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipYOffset = 5
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 323
+		DT.backdrop = true
+		DT.border = true
+		DT.enable = true
+		DT.fonts.enable = true
+		DT.fonts.font = 'Expressway'
+		DT.fonts.fontOutline = 'OUTLINE'
+		DT.fonts.fontSize = 11
+		DT.frameLevel = 1
+		DT.frameStrata = 'BACKGROUND'
+		DT.growth = 'HORIZONTAL'
+		DT.height = 12
+		DT.mouseover = false
+		DT.name = 'Luckyone_ActionBars_DT'
+		DT.numPoints = 3
+		DT.panelTransparency = true
+		DT.textJustify = 'CENTER'
+		DT.tooltipAnchor = 'ANCHOR_TOP'
+		DT.tooltipXOffset = 0
+		DT.tooltipYOffset = 5
+		DT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
+		DT.width = 323
 	end
 
 	-- Temporary 2
@@ -409,14 +410,13 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.chat.lfgIcons = false
 	E.db.chat.maxLines = 500
 	E.db.chat.numScrollMessages = 2
-	E.db.chat.panelColor.b = 0.05
-	E.db.chat.panelColor.g = 0.05
-	E.db.chat.panelColor.r = 0.05
-	E.db.chat.panelHeight = 171
+	E.db.chat.panelColor.b = 0.058
+	E.db.chat.panelColor.g = 0.058
+	E.db.chat.panelColor.r = 0.058
+	E.db.chat.panelHeight = 138
 	E.db.chat.panelHeightRight = 171
 	E.db.chat.panelWidth = 414
 	E.db.chat.panelWidthRight = 414
-	E.db.chat.separateSizes = true
 	E.db.chat.showHistory.CHANNEL = false
 	E.db.chat.showHistory.EMOTE = false
 	E.db.chat.showHistory.GUILD = false
@@ -444,14 +444,14 @@ function L1UI:Layout_Dragonflight(layout)
 
 	-- DataBars Shared
 	E.db.databars.experience.font = 'Expressway'
-	E.db.databars.experience.height = 171
+	E.db.databars.experience.height = 138
 	E.db.databars.experience.orientation = 'VERTICAL'
 	E.db.databars.experience.questCompletedOnly = true
 	E.db.databars.experience.showBubbles = true
 	E.db.databars.experience.width = 10
 	E.db.databars.reputation.enable = true
 	E.db.databars.reputation.font = 'Expressway'
-	E.db.databars.reputation.height = 171
+	E.db.databars.reputation.height = 138
 	E.db.databars.reputation.orientation = 'VERTICAL'
 	E.db.databars.reputation.width = 10
 	E.db.databars.threat.enable = false
@@ -992,7 +992,7 @@ function L1UI:Layout_Dragonflight(layout)
 	-- Shared movers
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-135'
 	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235'
-	E.db.movers.BNETMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
+	E.db.movers.BNETMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-139'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-166,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-166,-128'
@@ -1002,7 +1002,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,68'
 	E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,41'
 	E.db.movers.ElvAB_4 = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,200'
-	E.db.movers.ElvAB_5 = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-343'
+	E.db.movers.ElvAB_5 = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-370'
 	E.db.movers.ElvAB_6 = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,173'
 	E.db.movers.ElvAB_7 = 'BOTTOM,ElvUIParent,BOTTOM,0,168'
 	E.db.movers.ElvAB_8 = 'BOTTOM,ElvUIParent,BOTTOM,0,197'
@@ -1010,8 +1010,8 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.ElvAB_10 = 'BOTTOM,ElvUIParent,BOTTOM,0,255'
 	E.db.movers.ElvUF_AssistMover = 'TOPLEFT,ElvUIParent,BOTTOMLEFT,0,1048'
 	E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,-1,95'
-	E.db.movers.ElvUIBagMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,173'
-	E.db.movers.ElvUIBankMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
+	E.db.movers.ElvUIBagMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,140'
+	E.db.movers.ElvUIBankMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 	E.db.movers.ExperienceBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,1'
 	E.db.movers.GMMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-503,-1'
 	E.db.movers.LeftChatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1'
@@ -1027,7 +1027,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
 	E.db.movers.SocialMenuMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,196'
 	E.db.movers.ThreatBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,1'
-	E.db.movers.TooltipMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135'
+	E.db.movers.TooltipMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,102'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-57'
 	E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,164'
 	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
@@ -1047,7 +1047,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.MawBuffsBelowMinimapMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-15,-380'
 		E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,UIParent,TOPRIGHT,-95,-214'
 		E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
-		E.db.movers.TalkingHeadFrameMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,173'
+		E.db.movers.TalkingHeadFrameMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,140'
 		E.db.movers.TorghastBuffsMover = 'TOPLEFT,ElvUIParent,TOPLEFT,4,-51'
 		E.db.movers.TorghastChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
 		E.db.movers.ZoneAbility = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,66'
@@ -1074,8 +1074,8 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_PartyMover = 'TOPLEFT,ElvUIParent,TOPLEFT,450,-323'
 		E.db.movers.ElvUF_PetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,531,320'
 		E.db.movers.ElvUF_PlayerMover = 'BOTTOM,ElvUIParent,BOTTOM,-253,320'
-		E.db.movers.ElvUF_Raid40Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
-		E.db.movers.ElvUF_RaidMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
+		E.db.movers.ElvUF_Raid40Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
+		E.db.movers.ElvUF_RaidMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,253,301'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,253,320'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-530,320'
