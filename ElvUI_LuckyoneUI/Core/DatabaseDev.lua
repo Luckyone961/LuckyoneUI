@@ -3,9 +3,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 -- Dragonflight layout
 function L1UI:Layout_Dragonflight(layout)
 
-	-- Temporary stuff
-	------------------------------------------------------------------------------------------------------------------------------------
-
+	-- Temporary 1
 	SetCVar('uiScale', 0.71111111111111)
 	E.global.general.UIScale = 0.71111111111111
 
@@ -17,30 +15,53 @@ function L1UI:Layout_Dragonflight(layout)
 	E.global.general.smallerWorldMapScale = 0.8
 	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
-	local DT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
+	local ABDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
+	local MMDT = E.global.datatexts.customPanels.Luckyone_MiniMap_DT
 	do
 		E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
-		DT.backdrop = true
-		DT.border = true
-		DT.enable = true
-		DT.fonts.enable = true
-		DT.fonts.font = 'Expressway'
-		DT.fonts.fontOutline = 'OUTLINE'
-		DT.fonts.fontSize = 11
-		DT.frameLevel = 1
-		DT.frameStrata = 'BACKGROUND'
-		DT.growth = 'HORIZONTAL'
-		DT.height = 12
-		DT.mouseover = false
-		DT.name = 'Luckyone_ActionBars_DT'
-		DT.numPoints = 3
-		DT.panelTransparency = true
-		DT.textJustify = 'CENTER'
-		DT.tooltipAnchor = 'ANCHOR_TOP'
-		DT.tooltipXOffset = 0
-		DT.tooltipYOffset = 5
-		DT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
-		DT.width = 323
+		ABDT.backdrop = true
+		ABDT.border = true
+		ABDT.enable = true
+		ABDT.fonts.enable = true
+		ABDT.fonts.font = 'Expressway'
+		ABDT.fonts.fontOutline = 'OUTLINE'
+		ABDT.fonts.fontSize = 11
+		ABDT.frameLevel = 1
+		ABDT.frameStrata = 'BACKGROUND'
+		ABDT.growth = 'HORIZONTAL'
+		ABDT.height = 12
+		ABDT.mouseover = false
+		ABDT.name = 'Luckyone_ActionBars_DT'
+		ABDT.numPoints = 3
+		ABDT.panelTransparency = true
+		ABDT.textJustify = 'CENTER'
+		ABDT.tooltipAnchor = 'ANCHOR_TOP'
+		ABDT.tooltipXOffset = 0
+		ABDT.tooltipYOffset = 5
+		ABDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
+		ABDT.width = 323
+
+		E.DataTexts:BuildPanelFrame('Luckyone_MiniMap_DT')
+		MMDT.backdrop = false
+		MMDT.border = false
+		MMDT.fonts.enable = true
+		MMDT.fonts.font = 'Expressway'
+		MMDT.fonts.fontOutline = 'OUTLINE'
+		MMDT.fonts.fontSize = 13
+		MMDT.frameLevel = 1
+		MMDT.frameStrata = 'MEDIUM'
+		MMDT.growth = 'HORIZONTAL'
+		MMDT.height = 12
+		MMDT.mouseover = false
+		MMDT.name = 'Luckyone_MiniMap_DT'
+		MMDT.numPoints = 1
+		MMDT.panelTransparency = true
+		MMDT.textJustify = 'CENTER'
+		MMDT.tooltipAnchor = 'ANCHOR_BOTTOMLEFT'
+		MMDT.tooltipXOffset = -10
+		MMDT.tooltipYOffset = -10
+		MMDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
+		MMDT.width = 152
 	end
 
 	-- Temporary 2
@@ -66,8 +87,6 @@ function L1UI:Layout_Dragonflight(layout)
 
 	E.private.install_complete = E.version
 	E.private.skins.parchmentRemoverEnable = true
-
-	------------------------------------------------------------------------------------------------------------------------------------
 
 	-- AB conversion
 	E.db.convertPages = true
@@ -100,9 +119,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.lootRoll.style = 'fullbar'
 	E.db.general.lootRoll.width = 340
 	E.db.general.minimap.locationFont = 'Expressway'
-	E.db.general.minimap.locationFontSize = 13
+	E.db.general.minimap.locationFontSize = 11
 	E.db.general.minimap.locationText = 'SHOW'
-	E.db.general.minimap.size = 161
+	E.db.general.minimap.size = 152
 
 	-- General Retail
 	if E.Retail then
@@ -466,19 +485,18 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.databars.petExperience.enable = false
 	end
 
-	-- DataTexts
-	E.db.datatexts.font = 'Expressway'
-	E.db.datatexts.fontOutline = 'OUTLINE'
-	E.db.datatexts.fontSize = 13
+	-- DataTexts default
+	E.db.datatexts.panels.MinimapPanel.enable = false
 	E.db.datatexts.panels.LeftChatDataPanel.enable = false
+	E.db.datatexts.panels.RightChatDataPanel.enable = false
+
+	-- DataTexts custom
 	E.db.datatexts.panels.Luckyone_ActionBars_DT.enable = true
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[1] = 'System'
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[2] = 'Combat'
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[3] = 'Durability'
-	E.db.datatexts.panels.MinimapPanel.numPoints = 1
-	E.db.datatexts.panels.MinimapPanel.panelTransparency = true
-	E.db.datatexts.panels.MinimapPanel[1] = 'Time'
-	E.db.datatexts.panels.RightChatDataPanel.enable = false
+	E.db.datatexts.panels.Luckyone_MiniMap_DT.enable = true
+	E.db.datatexts.panels.Luckyone_MiniMap_DT[1] = 'Time'
 
 	-- Tooltip Shared
 	E.db.tooltip.alwaysShowRealm = true
@@ -999,6 +1017,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-166,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-166,-128'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
+	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-140'
 	E.db.movers.DurabilityFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-214'
 	E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 	E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,68'
