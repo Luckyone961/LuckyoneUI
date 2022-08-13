@@ -564,8 +564,8 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.arena.pvpTrinket.position = 'LEFT'
 		E.db.unitframe.units.arena.pvpTrinket.size = 45
 		E.db.unitframe.units.arena.pvpTrinket.xOffset = -1
-		E.db.unitframe.units.arena.pvpclassificationindicator.size = 25
-		E.db.unitframe.units.arena.pvpclassificationindicator.xOffset = -20
+		E.db.unitframe.units.arena.pvpclassificationindicator.size = 24
+		E.db.unitframe.units.arena.pvpclassificationindicator.xOffset = -40
 		E.db.unitframe.units.arena.spacing = 10
 		E.db.unitframe.units.arena.width = 190
 	end
