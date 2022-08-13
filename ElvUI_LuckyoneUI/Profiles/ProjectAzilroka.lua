@@ -58,6 +58,7 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	-- Movers
 	if not E.db.movers then E.db.movers = {} end
 	E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187'
+	-- E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,0,-156'
 
 	if not noPrint then
 		L1UI:Print(L["ProjectAzilroka profile has been set."])
