@@ -317,7 +317,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.cooldown.override = false
 	E.db.actionbar.countTextPosition = 'BOTTOM'
 	E.db.actionbar.countTextYOffset = 1
-	E.db.actionbar.flyoutSize = 28
+	E.db.actionbar.flyoutSize = 26
 	E.db.actionbar.font = 'Expressway'
 	E.db.actionbar.fontOutline = 'OUTLINE'
 	E.db.actionbar.hotkeyTextPosition = 'TOPLEFT'
