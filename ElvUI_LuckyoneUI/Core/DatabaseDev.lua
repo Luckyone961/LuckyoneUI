@@ -3,7 +3,6 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 -- Dragonflight layout
 function L1UI:Layout_Dragonflight(layout)
 
-	-- Temporary 1
 	SetCVar('uiScale', 0.71111111111111)
 	E.global.general.UIScale = 0.71111111111111
 
@@ -15,78 +14,53 @@ function L1UI:Layout_Dragonflight(layout)
 	E.global.general.smallerWorldMapScale = 0.8
 	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
-	local ABDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
-	local MMDT = E.global.datatexts.customPanels.Luckyone_MiniMap_DT
+	E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
+	E.DataTexts:BuildPanelFrame('Luckyone_MiniMap_DT')
 
-	do
-		E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
-		ABDT.backdrop = true
-		ABDT.border = true
-		ABDT.enable = true
-		ABDT.fonts.enable = true
-		ABDT.fonts.font = 'Expressway'
-		ABDT.fonts.fontOutline = 'OUTLINE'
-		ABDT.fonts.fontSize = 11
-		ABDT.frameLevel = 1
-		ABDT.frameStrata = 'BACKGROUND'
-		ABDT.growth = 'HORIZONTAL'
-		ABDT.height = 12
-		ABDT.mouseover = false
-		ABDT.name = 'Luckyone_ActionBars_DT'
-		ABDT.numPoints = 3
-		ABDT.panelTransparency = true
-		ABDT.textJustify = 'CENTER'
-		ABDT.tooltipAnchor = 'ANCHOR_TOP'
-		ABDT.tooltipXOffset = 0
-		ABDT.tooltipYOffset = 5
-		ABDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
-		ABDT.width = 323
-		E.DataTexts:BuildPanelFrame('Luckyone_MiniMap_DT')
-		MMDT.backdrop = false
-		MMDT.border = false
-		MMDT.fonts.enable = true
-		MMDT.fonts.font = 'Expressway'
-		MMDT.fonts.fontOutline = 'OUTLINE'
-		MMDT.fonts.fontSize = 13
-		MMDT.frameLevel = 1
-		MMDT.frameStrata = 'MEDIUM'
-		MMDT.growth = 'HORIZONTAL'
-		MMDT.height = 12
-		MMDT.mouseover = false
-		MMDT.name = 'Luckyone_MiniMap_DT'
-		MMDT.numPoints = 1
-		MMDT.panelTransparency = true
-		MMDT.textJustify = 'CENTER'
-		MMDT.tooltipAnchor = 'ANCHOR_BOTTOMLEFT'
-		MMDT.tooltipXOffset = -6
-		MMDT.tooltipYOffset = -7
-		MMDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
-		MMDT.width = 152
-	end
+	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
+	local MiniMapDT = E.global.datatexts.customPanels.Luckyone_MiniMap_DT
 
-	-- Temporary 2
-	if L1UI.Me then
-		E.private.general.chatBubbles = 'disabled'
-		E.private.L1UI.disabledFrames.AlertFrame = true
-		E.private.L1UI.disabledFrames.BossBanner = true
-	end
-
-	E.db.general.font = 'Expressway'
-	E.db.general.fontSize = 11
-	E.db.general.fontStyle = 'OUTLINE'
-
-	E.private.general.chatBubbleFont = 'Expressway'
-	E.private.general.chatBubbleFontOutline = 'OUTLINE'
-	E.private.general.dmgfont = 'Expressway'
-	E.private.general.glossTex = 'Minimalist'
-	E.private.general.namefont = 'Expressway'
-	E.private.general.nameplateFont = 'Expressway'
-	E.private.general.nameplateLargeFont = 'Expressway'
-	E.private.general.normTex = 'Minimalist'
-	E.private.general.totemBar = false
-
-	E.private.install_complete = E.version
-	E.private.skins.parchmentRemoverEnable = true
+	ActionBarsDT.backdrop = true
+	ActionBarsDT.border = true
+	ActionBarsDT.enable = true
+	ActionBarsDT.fonts.enable = true
+	ActionBarsDT.fonts.font = 'Expressway'
+	ActionBarsDT.fonts.fontOutline = 'OUTLINE'
+	ActionBarsDT.fonts.fontSize = 11
+	ActionBarsDT.frameLevel = 1
+	ActionBarsDT.frameStrata = 'BACKGROUND'
+	ActionBarsDT.growth = 'HORIZONTAL'
+	ActionBarsDT.height = 12
+	ActionBarsDT.mouseover = false
+	ActionBarsDT.name = 'Luckyone_ActionBars_DT'
+	ActionBarsDT.numPoints = 3
+	ActionBarsDT.panelTransparency = true
+	ActionBarsDT.textJustify = 'CENTER'
+	ActionBarsDT.tooltipAnchor = 'ANCHOR_TOP'
+	ActionBarsDT.tooltipXOffset = 0
+	ActionBarsDT.tooltipYOffset = 5
+	ActionBarsDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
+	ActionBarsDT.width = 323
+	MiniMapDT.backdrop = false
+	MiniMapDT.border = false
+	MiniMapDT.fonts.enable = true
+	MiniMapDT.fonts.font = 'Expressway'
+	MiniMapDT.fonts.fontOutline = 'OUTLINE'
+	MiniMapDT.fonts.fontSize = 13
+	MiniMapDT.frameLevel = 1
+	MiniMapDT.frameStrata = 'MEDIUM'
+	MiniMapDT.growth = 'HORIZONTAL'
+	MiniMapDT.height = 12
+	MiniMapDT.mouseover = false
+	MiniMapDT.name = 'Luckyone_MiniMap_DT'
+	MiniMapDT.numPoints = 1
+	MiniMapDT.panelTransparency = true
+	MiniMapDT.textJustify = 'CENTER'
+	MiniMapDT.tooltipAnchor = 'ANCHOR_BOTTOMLEFT'
+	MiniMapDT.tooltipXOffset = -6
+	MiniMapDT.tooltipYOffset = -7
+	MiniMapDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
+	MiniMapDT.width = 152
 
 	-- AB conversion
 	E.db.convertPages = true
@@ -197,6 +171,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar3.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar3.macroTextYOffset = 1
 	E.db.actionbar.bar4.backdrop = false
+	E.db.actionbar.bar4.buttons = 12
 	E.db.actionbar.bar4.buttonSize = 26
 	E.db.actionbar.bar4.buttonSpacing = 1
 	E.db.actionbar.bar4.buttonsPerRow = 12
@@ -204,6 +179,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar4.countFontOutline = 'OUTLINE'
 	E.db.actionbar.bar4.countFontSize = 9
 	E.db.actionbar.bar4.countTextPosition = 'BOTTOM'
+	E.db.actionbar.bar4.enabled = false
 	E.db.actionbar.bar4.hotkeyFont = 'Expressway'
 	E.db.actionbar.bar4.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar4.hotkeyFontSize = 9
@@ -224,6 +200,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar5.countFontOutline = 'OUTLINE'
 	E.db.actionbar.bar5.countFontSize = 9
 	E.db.actionbar.bar5.countTextPosition = 'BOTTOM'
+	E.db.actionbar.bar5.enabled = true
 	E.db.actionbar.bar5.hotkeyFont = 'Expressway'
 	E.db.actionbar.bar5.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar5.hotkeyFontSize = 9
@@ -236,13 +213,15 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar5.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar5.macroTextYOffset = 1
 	E.db.actionbar.bar5.mouseover = true
+	E.db.actionbar.bar6.buttons = 12
 	E.db.actionbar.bar6.buttonSize = 26
 	E.db.actionbar.bar6.buttonSpacing = 1
+	E.db.actionbar.bar6.buttonsPerRow = 12
 	E.db.actionbar.bar6.countFont = 'Expressway'
 	E.db.actionbar.bar6.countFontOutline = 'OUTLINE'
 	E.db.actionbar.bar6.countFontSize = 9
 	E.db.actionbar.bar6.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar6.enabled = true
+	E.db.actionbar.bar6.enabled = false
 	E.db.actionbar.bar6.hotkeyFont = 'Expressway'
 	E.db.actionbar.bar6.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar6.hotkeyFontSize = 9
@@ -872,14 +851,14 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.player.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.player.castbar.customTimeFont.font = 'Expressway'
 	E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 11
-	E.db.unitframe.units.player.castbar.height = 20
+	E.db.unitframe.units.player.castbar.height = 18
 	E.db.unitframe.units.player.castbar.latency = false
 	E.db.unitframe.units.player.castbar.spark = false
 	E.db.unitframe.units.player.castbar.textColor.b = 1
 	E.db.unitframe.units.player.castbar.textColor.g = 1
 	E.db.unitframe.units.player.castbar.textColor.r = 1
 	E.db.unitframe.units.player.castbar.timeToHold = 2
-	E.db.unitframe.units.player.castbar.width = 359
+	E.db.unitframe.units.player.castbar.width = 324
 	E.db.unitframe.units.player.castbar.xOffsetText = 2
 	E.db.unitframe.units.player.castbar.xOffsetTime = -2
 	E.db.unitframe.units.player.classbar.enable = false
@@ -1079,7 +1058,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.BelowMinimapContainerMover = 'TOP,UIParent,TOP,0,-26'
 		E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-100,-215'
 		E.db.movers.PetExperienceBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
-	else
+	else -- Classic & TBC
 		E.db.movers.BelowMinimapContainerMover = 'TOP,UIParent,TOP,0,-26'
 		E.db.movers.PetExperienceBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
 		E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-1'
@@ -1104,7 +1083,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,253,320'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-530,320'
 
-		-- UnitFrames DPS/TANK
+		-- Party DPS/TANK
 		E.db.unitframe.units.party.buffIndicator.size = 12
 		E.db.unitframe.units.party.buffs.countFont = 'Expressway'
 		E.db.unitframe.units.party.buffs.perrow = 3
@@ -1156,6 +1135,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.verticalSpacing = 1
 		E.db.unitframe.units.party.width = 190
 
+		-- Raid DPS/TANK
 		E.db.unitframe.units.raid.buffIndicator.enable = false
 		E.db.unitframe.units.raid.classbar.enable = false
 		E.db.unitframe.units.raid.debuffs.anchorPoint = 'BOTTOM'
@@ -1215,6 +1195,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid.visibility = '[@raid6,noexists][@raid31,exists] hide;show'
 		E.db.unitframe.units.raid.width = 82
 
+		-- Raid40 DPS/TANK
 		E.db.unitframe.units.raid40.classbar.enable = false
 		E.db.unitframe.units.raid40.debuffs.countFont = 'Expressway'
 		E.db.unitframe.units.raid40.debuffs.desaturate = false
@@ -1266,7 +1247,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_TargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,320'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-460,320'
 
-		-- UnitFrames Healing
+		-- Party Healing
 		E.db.unitframe.units.party.classbar.enable = false
 		E.db.unitframe.units.party.debuffs.enable = false
 		E.db.unitframe.units.party.disableMouseoverGlow = true
@@ -1307,6 +1288,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.verticalSpacing = 1
 		E.db.unitframe.units.party.width = 90
 
+		-- Raid Healing
 		E.db.unitframe.units.raid.classbar.enable = false
 		E.db.unitframe.units.raid.debuffs.countFont = 'Expressway'
 		E.db.unitframe.units.raid.debuffs.desaturate = false
@@ -1341,6 +1323,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid.visibility = '[@raid6,noexists][@raid31,exists] hide;show'
 		E.db.unitframe.units.raid.width = 90
 
+		-- Raid40 Healing
 		E.db.unitframe.units.raid40.classbar.enable = false
 		E.db.unitframe.units.raid40.debuffs.countFont = 'Expressway'
 		E.db.unitframe.units.raid40.debuffs.desaturate = false

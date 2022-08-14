@@ -213,7 +213,7 @@ function L1UI:Setup_Layout(layout)
 	if not L1UI.Me then L1UI:Setup_GlobalDB() end
 
 	-- E.private & Media
-	if not L1UI.Me then L1UI:Setup_PrivateDB() end
+	L1UI:Setup_PrivateDB()
 
 	-- E.db & Movers
 	if layout == 'main' then
@@ -231,13 +231,13 @@ function L1UI:Setup_Layout(layout)
 	end
 
 	-- AddOnSkins profile
-	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins('noPrint') end
+	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins(true) end
 
 	-- ProjectAzilroka profile
-	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Setup_ProjectAzilroka('noPrint') end
+	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Setup_ProjectAzilroka(true) end
 
 	-- Shadow & Light profile
-	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight('noPrint') end
+	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight(true) end
 
 	-- Push the update
 	E:StaggeredUpdateAll()
