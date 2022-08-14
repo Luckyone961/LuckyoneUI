@@ -24,7 +24,7 @@ function L1UI:Layout_Dragonflight(layout)
 	ActionBarsDT.border = true
 	ActionBarsDT.enable = true
 	ActionBarsDT.fonts.enable = true
-	ActionBarsDT.fonts.font = 'Expressway'
+	ActionBarsDT.fonts.font = L1UI.DefaultFont
 	ActionBarsDT.fonts.fontOutline = 'OUTLINE'
 	ActionBarsDT.fonts.fontSize = 11
 	ActionBarsDT.frameLevel = 1
@@ -44,7 +44,7 @@ function L1UI:Layout_Dragonflight(layout)
 	MiniMapDT.backdrop = false
 	MiniMapDT.border = false
 	MiniMapDT.fonts.enable = true
-	MiniMapDT.fonts.font = 'Expressway'
+	MiniMapDT.fonts.font = L1UI.DefaultFont
 	MiniMapDT.fonts.fontOutline = 'OUTLINE'
 	MiniMapDT.fonts.fontSize = 13
 	MiniMapDT.frameLevel = 1
@@ -92,17 +92,17 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.lootRoll.statusBarTexture = 'Minimalist'
 	E.db.general.lootRoll.style = 'fullbar'
 	E.db.general.lootRoll.width = 340
-	E.db.general.minimap.locationFont = 'Expressway'
+	E.db.general.minimap.locationFont = L1UI.DefaultFont
 	E.db.general.minimap.locationFontSize = 11
 	E.db.general.minimap.locationText = 'SHOW'
 	E.db.general.minimap.size = 153
 
 	-- General Retail
 	if E.Retail then
-		E.db.general.altPowerBar.font = 'Expressway'
+		E.db.general.altPowerBar.font = L1UI.DefaultFont
 		E.db.general.altPowerBar.statusBar = 'Minimalist'
 		E.db.general.bonusObjectivePosition = 'AUTO'
-		E.db.general.itemLevel.itemLevelFont = 'Expressway'
+		E.db.general.itemLevel.itemLevelFont = L1UI.DefaultFont
 		E.db.general.itemLevel.itemLevelFontSize = 11
 		E.db.general.talkingHeadFrameBackdrop = true
 		E.db.general.talkingHeadFrameScale = 0.7
@@ -118,16 +118,16 @@ function L1UI:Layout_Dragonflight(layout)
 	-- ActionBars Shared
 	E.db.actionbar.bar1.buttonSize = 26
 	E.db.actionbar.bar1.buttonSpacing = 1
-	E.db.actionbar.bar1.countFont = 'Expressway'
+	E.db.actionbar.bar1.countFont = L1UI.DefaultFont
 	E.db.actionbar.bar1.countFontOutline = 'OUTLINE'
 	E.db.actionbar.bar1.countFontSize = 9
 	E.db.actionbar.bar1.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar1.hotkeyFont = 'Expressway'
+	E.db.actionbar.bar1.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar1.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar1.hotkeyFontSize = 9
 	E.db.actionbar.bar1.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar1.hotkeyTextYOffset = -1
-	E.db.actionbar.bar1.macroFont = 'Expressway'
+	E.db.actionbar.bar1.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar1.macroFontOutline = 'OUTLINE'
 	E.db.actionbar.bar1.macroFontSize = 9
 	E.db.actionbar.bar1.macrotext = true
@@ -135,17 +135,17 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar1.macroTextYOffset = 1
 	E.db.actionbar.bar2.buttonSize = 26
 	E.db.actionbar.bar2.buttonSpacing = 1
-	E.db.actionbar.bar2.countFont = 'Expressway'
+	E.db.actionbar.bar2.countFont = L1UI.DefaultFont
 	E.db.actionbar.bar2.countFontOutline = 'OUTLINE'
 	E.db.actionbar.bar2.countFontSize = 9
 	E.db.actionbar.bar2.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar2.enabled = true
-	E.db.actionbar.bar2.hotkeyFont = 'Expressway'
+	E.db.actionbar.bar2.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar2.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar2.hotkeyFontSize = 9
 	E.db.actionbar.bar2.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar2.hotkeyTextYOffset = -1
-	E.db.actionbar.bar2.macroFont = 'Expressway'
+	E.db.actionbar.bar2.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar2.macroFontOutline = 'OUTLINE'
 	E.db.actionbar.bar2.macroFontSize = 9
 	E.db.actionbar.bar2.macrotext = true
@@ -155,16 +155,16 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar3.buttonSize = 26
 	E.db.actionbar.bar3.buttonSpacing = 1
 	E.db.actionbar.bar3.buttonsPerRow = 12
-	E.db.actionbar.bar3.countFont = 'Expressway'
+	E.db.actionbar.bar3.countFont = L1UI.DefaultFont
 	E.db.actionbar.bar3.countFontOutline = 'OUTLINE'
 	E.db.actionbar.bar3.countFontSize = 9
 	E.db.actionbar.bar3.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar3.hotkeyFont = 'Expressway'
+	E.db.actionbar.bar3.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar3.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar3.hotkeyFontSize = 9
 	E.db.actionbar.bar3.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar3.hotkeyTextYOffset = -1
-	E.db.actionbar.bar3.macroFont = 'Expressway'
+	E.db.actionbar.bar3.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar3.macroFontOutline = 'OUTLINE'
 	E.db.actionbar.bar3.macroFontSize = 9
 	E.db.actionbar.bar3.macrotext = true
@@ -175,17 +175,17 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar4.buttonSize = 26
 	E.db.actionbar.bar4.buttonSpacing = 1
 	E.db.actionbar.bar4.buttonsPerRow = 12
-	E.db.actionbar.bar4.countFont = 'Expressway'
+	E.db.actionbar.bar4.countFont = L1UI.DefaultFont
 	E.db.actionbar.bar4.countFontOutline = 'OUTLINE'
 	E.db.actionbar.bar4.countFontSize = 9
 	E.db.actionbar.bar4.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar4.enabled = false
-	E.db.actionbar.bar4.hotkeyFont = 'Expressway'
+	E.db.actionbar.bar4.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar4.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar4.hotkeyFontSize = 9
 	E.db.actionbar.bar4.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar4.hotkeyTextYOffset = -1
-	E.db.actionbar.bar4.macroFont = 'Expressway'
+	E.db.actionbar.bar4.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar4.macroFontOutline = 'OUTLINE'
 	E.db.actionbar.bar4.macroFontSize = 9
 	E.db.actionbar.bar4.macrotext = true
@@ -196,17 +196,17 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar5.buttonSize = 26
 	E.db.actionbar.bar5.buttonSpacing = 1
 	E.db.actionbar.bar5.buttonsPerRow = 1
-	E.db.actionbar.bar5.countFont = 'Expressway'
+	E.db.actionbar.bar5.countFont = L1UI.DefaultFont
 	E.db.actionbar.bar5.countFontOutline = 'OUTLINE'
 	E.db.actionbar.bar5.countFontSize = 9
 	E.db.actionbar.bar5.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar5.enabled = true
-	E.db.actionbar.bar5.hotkeyFont = 'Expressway'
+	E.db.actionbar.bar5.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar5.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar5.hotkeyFontSize = 9
 	E.db.actionbar.bar5.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar5.hotkeyTextYOffset = -1
-	E.db.actionbar.bar5.macroFont = 'Expressway'
+	E.db.actionbar.bar5.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar5.macroFontOutline = 'OUTLINE'
 	E.db.actionbar.bar5.macroFontSize = 9
 	E.db.actionbar.bar5.macrotext = true
@@ -217,17 +217,17 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar6.buttonSize = 26
 	E.db.actionbar.bar6.buttonSpacing = 1
 	E.db.actionbar.bar6.buttonsPerRow = 12
-	E.db.actionbar.bar6.countFont = 'Expressway'
+	E.db.actionbar.bar6.countFont = L1UI.DefaultFont
 	E.db.actionbar.bar6.countFontOutline = 'OUTLINE'
 	E.db.actionbar.bar6.countFontSize = 9
 	E.db.actionbar.bar6.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar6.enabled = false
-	E.db.actionbar.bar6.hotkeyFont = 'Expressway'
+	E.db.actionbar.bar6.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar6.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar6.hotkeyFontSize = 9
 	E.db.actionbar.bar6.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar6.hotkeyTextYOffset = -1
-	E.db.actionbar.bar6.macroFont = 'Expressway'
+	E.db.actionbar.bar6.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar6.macroFontOutline = 'OUTLINE'
 	E.db.actionbar.bar6.macroFontSize = 9
 	E.db.actionbar.bar6.macrotext = true
@@ -235,16 +235,16 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar6.macroTextYOffset = 1
 	E.db.actionbar.bar7.buttonSize = 26
 	E.db.actionbar.bar7.buttonSpacing = 1
-	E.db.actionbar.bar7.countFont = 'Expressway'
+	E.db.actionbar.bar7.countFont = L1UI.DefaultFont
 	E.db.actionbar.bar7.countFontOutline = 'OUTLINE'
 	E.db.actionbar.bar7.countFontSize = 9
 	E.db.actionbar.bar7.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar7.hotkeyFont = 'Expressway'
+	E.db.actionbar.bar7.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar7.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar7.hotkeyFontSize = 9
 	E.db.actionbar.bar7.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar7.hotkeyTextYOffset = -1
-	E.db.actionbar.bar7.macroFont = 'Expressway'
+	E.db.actionbar.bar7.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar7.macroFontOutline = 'OUTLINE'
 	E.db.actionbar.bar7.macroFontSize = 9
 	E.db.actionbar.bar7.macrotext = true
@@ -252,16 +252,16 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar7.macroTextYOffset = 1
 	E.db.actionbar.bar8.buttonSize = 26
 	E.db.actionbar.bar8.buttonSpacing = 1
-	E.db.actionbar.bar8.countFont = 'Expressway'
+	E.db.actionbar.bar8.countFont = L1UI.DefaultFont
 	E.db.actionbar.bar8.countFontOutline = 'OUTLINE'
 	E.db.actionbar.bar8.countFontSize = 9
 	E.db.actionbar.bar8.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar8.hotkeyFont = 'Expressway'
+	E.db.actionbar.bar8.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar8.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar8.hotkeyFontSize = 9
 	E.db.actionbar.bar8.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar8.hotkeyTextYOffset = -1
-	E.db.actionbar.bar8.macroFont = 'Expressway'
+	E.db.actionbar.bar8.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar8.macroFontOutline = 'OUTLINE'
 	E.db.actionbar.bar8.macroFontSize = 9
 	E.db.actionbar.bar8.macrotext = true
@@ -269,16 +269,16 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar8.macroTextYOffset = 1
 	E.db.actionbar.bar9.buttonSize = 26
 	E.db.actionbar.bar9.buttonSpacing = 1
-	E.db.actionbar.bar9.countFont = 'Expressway'
+	E.db.actionbar.bar9.countFont = L1UI.DefaultFont
 	E.db.actionbar.bar9.countFontOutline = 'OUTLINE'
 	E.db.actionbar.bar9.countFontSize = 9
 	E.db.actionbar.bar9.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar9.hotkeyFont = 'Expressway'
+	E.db.actionbar.bar9.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar9.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar9.hotkeyFontSize = 9
 	E.db.actionbar.bar9.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar9.hotkeyTextYOffset = -1
-	E.db.actionbar.bar9.macroFont = 'Expressway'
+	E.db.actionbar.bar9.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar9.macroFontOutline = 'OUTLINE'
 	E.db.actionbar.bar9.macroFontSize = 9
 	E.db.actionbar.bar9.macrotext = true
@@ -286,16 +286,16 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar9.macroTextYOffset = 1
 	E.db.actionbar.bar10.buttonSize = 26
 	E.db.actionbar.bar10.buttonSpacing = 1
-	E.db.actionbar.bar10.countFont = 'Expressway'
+	E.db.actionbar.bar10.countFont = L1UI.DefaultFont
 	E.db.actionbar.bar10.countFontOutline = 'OUTLINE'
 	E.db.actionbar.bar10.countFontSize = 9
 	E.db.actionbar.bar10.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar10.hotkeyFont = 'Expressway'
+	E.db.actionbar.bar10.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar10.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar10.hotkeyFontSize = 9
 	E.db.actionbar.bar10.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar10.hotkeyTextYOffset = -1
-	E.db.actionbar.bar10.macroFont = 'Expressway'
+	E.db.actionbar.bar10.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar10.macroFontOutline = 'OUTLINE'
 	E.db.actionbar.bar10.macroFontSize = 9
 	E.db.actionbar.bar10.macrotext = true
@@ -305,10 +305,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.barPet.buttonSize = 26
 	E.db.actionbar.barPet.buttonSpacing = 1
 	E.db.actionbar.barPet.buttonsPerRow = 10
-	E.db.actionbar.barPet.countFont = 'Expressway'
+	E.db.actionbar.barPet.countFont = L1UI.DefaultFont
 	E.db.actionbar.barPet.countFontOutline = 'OUTLINE'
 	E.db.actionbar.barPet.countFontSize = 9
-	E.db.actionbar.barPet.hotkeyFont = 'Expressway'
+	E.db.actionbar.barPet.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.barPet.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.barPet.hotkeyFontSize = 9
 	E.db.actionbar.barPet.hotkeyTextPosition = 'TOPLEFT'
@@ -318,7 +318,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.countTextPosition = 'BOTTOM'
 	E.db.actionbar.countTextYOffset = 1
 	E.db.actionbar.flyoutSize = 26
-	E.db.actionbar.font = 'Expressway'
+	E.db.actionbar.font = L1UI.DefaultFont
 	E.db.actionbar.fontOutline = 'OUTLINE'
 	E.db.actionbar.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.macroTextPosition = 'BOTTOM'
@@ -330,20 +330,20 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.stanceBar.buttonHeight = 24
 	E.db.actionbar.stanceBar.buttonSize = 25
 	E.db.actionbar.stanceBar.buttonSpacing = 1
-	E.db.actionbar.stanceBar.hotkeyFont = 'Expressway'
+	E.db.actionbar.stanceBar.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.stanceBar.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.stanceBar.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.stanceBar.hotkeyTextYOffset = -1
 	E.db.actionbar.stanceBar.mouseover = true
 	E.db.actionbar.transparent = true
-	E.db.actionbar.vehicleExitButton.hotkeyFont = 'Expressway'
+	E.db.actionbar.vehicleExitButton.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.vehicleExitButton.hotkeyFontOutline = 'OUTLINE'
 
 	-- ActionBars Retail
 	if E.Retail then
 		E.db.actionbar.extraActionButton.alpha = 1
 		E.db.actionbar.extraActionButton.clean = true
-		E.db.actionbar.extraActionButton.hotkeyFont = 'Expressway'
+		E.db.actionbar.extraActionButton.hotkeyFont = L1UI.DefaultFont
 		E.db.actionbar.extraActionButton.hotkeyFontOutline = 'OUTLINE'
 		E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOPLEFT'
 		E.db.actionbar.extraActionButton.hotkeyTextYOffset = -1
@@ -359,13 +359,13 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.bags.bankSize = 30
 	E.db.bags.bankWidth = 414
 	E.db.bags.clearSearchOnClose = true
-	E.db.bags.countFont = 'Expressway'
+	E.db.bags.countFont = L1UI.DefaultFont
 	E.db.bags.countFontOutline = 'OUTLINE'
 	E.db.bags.countFontSize = 11
-	E.db.bags.itemInfoFont = 'Expressway'
+	E.db.bags.itemInfoFont = L1UI.DefaultFont
 	E.db.bags.itemInfoFontOutline = 'OUTLINE'
 	E.db.bags.itemInfoFontSize = 11
-	E.db.bags.itemLevelFont = 'Expressway'
+	E.db.bags.itemLevelFont = L1UI.DefaultFont
 	E.db.bags.itemLevelFontOutline = 'OUTLINE'
 	E.db.bags.itemLevelFontSize = 11
 	E.db.bags.moneyFormat = 'BLIZZARD'
@@ -378,7 +378,7 @@ function L1UI:Layout_Dragonflight(layout)
 	end
 
 	-- Auras
-	E.db.auras.buffs.countFont = 'Expressway'
+	E.db.auras.buffs.countFont = L1UI.DefaultFont
 	E.db.auras.buffs.countFontOutline = 'OUTLINE'
 	E.db.auras.buffs.countFontSize = 11
 	E.db.auras.buffs.countYOffset = 2
@@ -386,10 +386,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.auras.buffs.horizontalSpacing = 1
 	E.db.auras.buffs.seperateOwn = 0
 	E.db.auras.buffs.size = 22
-	E.db.auras.buffs.timeFont = 'Expressway'
+	E.db.auras.buffs.timeFont = L1UI.DefaultFont
 	E.db.auras.buffs.timeFontOutline = 'OUTLINE'
 	E.db.auras.buffs.verticalSpacing = 14
-	E.db.auras.debuffs.countFont = 'Expressway'
+	E.db.auras.debuffs.countFont = L1UI.DefaultFont
 	E.db.auras.debuffs.countFontOutline = 'OUTLINE'
 	E.db.auras.debuffs.countFontSize = 11
 	E.db.auras.debuffs.countYOffset = 2
@@ -398,7 +398,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.auras.debuffs.maxWraps = 2
 	E.db.auras.debuffs.seperateOwn = 0
 	E.db.auras.debuffs.size = 22
-	E.db.auras.debuffs.timeFont = 'Expressway'
+	E.db.auras.debuffs.timeFont = L1UI.DefaultFont
 	E.db.auras.debuffs.timeFontOutline = 'OUTLINE'
 	E.db.auras.debuffs.verticalSpacing = 14
 
@@ -409,7 +409,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.chat.enableCombatRepeat = false
 	E.db.chat.fade = false
 	E.db.chat.fadeTabsNoBackdrop = false
-	E.db.chat.font = 'Expressway'
+	E.db.chat.font = L1UI.DefaultFont
 	E.db.chat.fontOutline = 'OUTLINE'
 	E.db.chat.hideChatToggles = true
 	E.db.chat.historySize = 200
@@ -432,7 +432,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.chat.showHistory.RAID = false
 	E.db.chat.showHistory.SAY = false
 	E.db.chat.showHistory.YELL = false
-	E.db.chat.tabFont = 'Expressway'
+	E.db.chat.tabFont = L1UI.DefaultFont
 	E.db.chat.tabFontOutline = 'OUTLINE'
 	E.db.chat.tabFontSize = 10
 	E.db.chat.tabSelector = 'NONE'
@@ -443,21 +443,21 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.cooldown.daysIndicator.r = 0.4
 	E.db.cooldown.expireIndicator.b = 0
 	E.db.cooldown.expireIndicator.g = 0
-	E.db.cooldown.fonts.font = 'Expressway'
+	E.db.cooldown.fonts.font = L1UI.DefaultFont
 	E.db.cooldown.fonts.fontSize = 12
 	E.db.cooldown.hoursIndicator.r = 0.4
 	E.db.cooldown.secondsColor.b = 1
 	E.db.cooldown.threshold = 5
 
 	-- DataBars Shared
-	E.db.databars.experience.font = 'Expressway'
+	E.db.databars.experience.font = L1UI.DefaultFont
 	E.db.databars.experience.height = 138
 	E.db.databars.experience.orientation = 'VERTICAL'
 	E.db.databars.experience.questCompletedOnly = true
 	E.db.databars.experience.showBubbles = true
 	E.db.databars.experience.width = 10
 	E.db.databars.reputation.enable = true
-	E.db.databars.reputation.font = 'Expressway'
+	E.db.databars.reputation.font = L1UI.DefaultFont
 	E.db.databars.reputation.height = 138
 	E.db.databars.reputation.orientation = 'VERTICAL'
 	E.db.databars.reputation.width = 10
@@ -487,12 +487,12 @@ function L1UI:Layout_Dragonflight(layout)
 	-- Tooltip Shared
 	E.db.tooltip.alwaysShowRealm = true
 	E.db.tooltip.colorAlpha = 0.80
-	E.db.tooltip.font = 'Expressway'
+	E.db.tooltip.font = L1UI.DefaultFont
 	E.db.tooltip.fontOutline = 'OUTLINE'
-	E.db.tooltip.headerFont = 'Expressway'
+	E.db.tooltip.headerFont = L1UI.DefaultFont
 	E.db.tooltip.headerFontOutline = 'OUTLINE'
 	E.db.tooltip.headerFontSize = 11
-	E.db.tooltip.healthBar.font = 'Expressway'
+	E.db.tooltip.healthBar.font = L1UI.DefaultFont
 	E.db.tooltip.healthBar.fontSize = 11
 	E.db.tooltip.healthBar.height = 4
 	E.db.tooltip.healthBar.statusPosition = 'DISABLED'
@@ -521,37 +521,37 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.targettarget.customTexts = E.db.unitframe.units.targettarget.customTexts or {}
 
 	-- Custom Text: Focus
-	E.db.unitframe.units.focus.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.focus.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.focus.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:medium]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.focus.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 1, yOffset = 1 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:medium]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 1, yOffset = 1 }
 
 	-- Custom Text: Focus Target
-	E.db.unitframe.units.focustarget.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.focustarget.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.focustarget.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.focustarget.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 1 }
 
 	-- Custom Text: Party
-	E.db.unitframe.units.party.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.party.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
 
 	-- Custom Text: Pet
-	E.db.unitframe.units.pet.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.pet.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = E.Retail and '[classcolor]Pet' or '[happiness:color]Pet[ >happiness:full]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.pet.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.pet.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = E.Retail and '[classcolor]Pet' or '[happiness:color]Pet[ >happiness:full]', xOffset = 0, yOffset = 1 }
 
 	-- Custom Text: Player
-	E.db.unitframe.units.player.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[health:current:shortvalue] | [luckyone:health:percent]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[classcolor][level]', xOffset = 1, yOffset = 1 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.player.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[health:current:shortvalue] | [luckyone:health:percent]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.player.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[classcolor][level]', xOffset = 1, yOffset = 1 }
+	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.player.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 1 }
 
 	-- Custom Text: Target
-	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:last]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 1, yOffset = 1 }
+	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.target.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:last]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.target.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 1, yOffset = 1 }
 
 	-- Custom Text: TargetTarget
-	E.db.unitframe.units.targettarget.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.targettarget.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 1 }
 
 	-- Shared UnitFrames db
 	E.db.unitframe.colors.castbar_backdrop.a = 0.80
@@ -598,7 +598,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.colors.useDeadBackdrop = true
 	E.db.unitframe.cooldown.override = false
 	E.db.unitframe.cooldown.threshold = 4
-	E.db.unitframe.font = 'Expressway'
+	E.db.unitframe.font = L1UI.DefaultFont
 	E.db.unitframe.fontOutline = 'OUTLINE'
 	E.db.unitframe.fontSize = 12
 	E.db.unitframe.statusbar = 'Minimalist'
@@ -610,7 +610,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 	if not E.Classic then
 		E.db.unitframe.units.arena.buffs.anchorPoint = 'RIGHT'
-		E.db.unitframe.units.arena.buffs.countFont = 'Expressway'
+		E.db.unitframe.units.arena.buffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.arena.buffs.countFontSize = 10
 		E.db.unitframe.units.arena.buffs.countXOffset = 1
 		E.db.unitframe.units.arena.buffs.growthY = 'DOWN'
@@ -621,9 +621,9 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.arena.buffs.xOffset = 1
 		E.db.unitframe.units.arena.buffs.yOffset = 2
 		E.db.unitframe.units.arena.castbar.customTextFont.enable = true
-		E.db.unitframe.units.arena.castbar.customTextFont.font = 'Expressway'
+		E.db.unitframe.units.arena.castbar.customTextFont.font = L1UI.DefaultFont
 		E.db.unitframe.units.arena.castbar.customTimeFont.enable = true
-		E.db.unitframe.units.arena.castbar.customTimeFont.font = 'Expressway'
+		E.db.unitframe.units.arena.castbar.customTimeFont.font = L1UI.DefaultFont
 		E.db.unitframe.units.arena.castbar.height = 12
 		E.db.unitframe.units.arena.castbar.overlayOnFrame = 'Health'
 		E.db.unitframe.units.arena.castbar.spark = false
@@ -633,7 +633,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.arena.castbar.width = 190
 		E.db.unitframe.units.arena.castbar.xOffsetText = 2
 		E.db.unitframe.units.arena.castbar.xOffsetTime = -2
-		E.db.unitframe.units.arena.debuffs.countFont = 'Expressway'
+		E.db.unitframe.units.arena.debuffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.arena.debuffs.countFontSize = 10
 		E.db.unitframe.units.arena.debuffs.countXOffset = 1
 		E.db.unitframe.units.arena.debuffs.desaturate = true
@@ -670,7 +670,7 @@ function L1UI:Layout_Dragonflight(layout)
 	if E.Retail or E.Wrath then
 		E.db.unitframe.units.boss.buffIndicator.enable = false
 		E.db.unitframe.units.boss.buffs.anchorPoint = 'RIGHT'
-		E.db.unitframe.units.boss.buffs.countFont = 'Expressway'
+		E.db.unitframe.units.boss.buffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.boss.buffs.countFontSize = 10
 		E.db.unitframe.units.boss.buffs.countXOffset = 1
 		E.db.unitframe.units.boss.buffs.growthY = 'DOWN'
@@ -680,9 +680,9 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.boss.buffs.xOffset = 1
 		E.db.unitframe.units.boss.buffs.yOffset = 2
 		E.db.unitframe.units.boss.castbar.customTextFont.enable = true
-		E.db.unitframe.units.boss.castbar.customTextFont.font = 'Expressway'
+		E.db.unitframe.units.boss.castbar.customTextFont.font = L1UI.DefaultFont
 		E.db.unitframe.units.boss.castbar.customTimeFont.enable = true
-		E.db.unitframe.units.boss.castbar.customTimeFont.font = 'Expressway'
+		E.db.unitframe.units.boss.castbar.customTimeFont.font = L1UI.DefaultFont
 		E.db.unitframe.units.boss.castbar.height = 12
 		E.db.unitframe.units.boss.castbar.overlayOnFrame = 'Health'
 		E.db.unitframe.units.boss.castbar.spark = false
@@ -692,7 +692,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.boss.castbar.width = 190
 		E.db.unitframe.units.boss.castbar.xOffsetText = 2
 		E.db.unitframe.units.boss.castbar.xOffsetTime = -2
-		E.db.unitframe.units.boss.debuffs.countFont = 'Expressway'
+		E.db.unitframe.units.boss.debuffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.boss.debuffs.countFontSize = 10
 		E.db.unitframe.units.boss.debuffs.countXOffset = 1
 		E.db.unitframe.units.boss.debuffs.growthX = 'LEFT'
@@ -717,7 +717,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 	if not E.Classic then
 		E.db.unitframe.units.focus.buffs.anchorPoint = 'TOPRIGHT'
-		E.db.unitframe.units.focus.buffs.countFont = 'Expressway'
+		E.db.unitframe.units.focus.buffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.focus.buffs.countFontSize = 13
 		E.db.unitframe.units.focus.buffs.countPosition = 'TOP'
 		E.db.unitframe.units.focus.buffs.countYOffset = 14
@@ -728,10 +728,10 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.focus.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
 		E.db.unitframe.units.focus.buffs.sizeOverride = 23
 		E.db.unitframe.units.focus.castbar.customTextFont.enable = true
-		E.db.unitframe.units.focus.castbar.customTextFont.font = 'Expressway'
+		E.db.unitframe.units.focus.castbar.customTextFont.font = L1UI.DefaultFont
 		E.db.unitframe.units.focus.castbar.customTextFont.fontSize = 11
 		E.db.unitframe.units.focus.castbar.customTimeFont.enable = true
-		E.db.unitframe.units.focus.castbar.customTimeFont.font = 'Expressway'
+		E.db.unitframe.units.focus.castbar.customTimeFont.font = L1UI.DefaultFont
 		E.db.unitframe.units.focus.castbar.customTimeFont.fontSize = 11
 		E.db.unitframe.units.focus.castbar.spark = false
 		E.db.unitframe.units.focus.castbar.textColor.b = 1
@@ -743,7 +743,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.focus.castbar.xOffsetTime = -2
 		E.db.unitframe.units.focus.CombatIcon.enable = false
 		E.db.unitframe.units.focus.debuffs.anchorPoint = 'TOPLEFT'
-		E.db.unitframe.units.focus.debuffs.countFont = 'Expressway'
+		E.db.unitframe.units.focus.debuffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.focus.debuffs.countFontSize = 13
 		E.db.unitframe.units.focus.debuffs.countPosition = 'TOP'
 		E.db.unitframe.units.focus.debuffs.countYOffset = 14
@@ -775,10 +775,10 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.focus.raidicon.xOffset = -2
 		E.db.unitframe.units.focus.raidicon.yOffset = 0
 		E.db.unitframe.units.focus.threatStyle = 'NONE'
-		E.db.unitframe.units.focustarget.buffs.countFont = 'Expressway'
+		E.db.unitframe.units.focustarget.buffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.focustarget.buffs.priority = 'Blacklist,Personal,PlayerBuffs,Dispellable'
 		E.db.unitframe.units.focustarget.debuffs.attachTo = 'BUFFS'
-		E.db.unitframe.units.focustarget.debuffs.countFont = 'Expressway'
+		E.db.unitframe.units.focustarget.debuffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.focustarget.debuffs.maxDuration = 0
 		E.db.unitframe.units.focustarget.disableMouseoverGlow = true
 		E.db.unitframe.units.focustarget.disableTargetGlow = true
@@ -799,7 +799,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.focustarget.width = 80
 	end
 
-	E.db.unitframe.units.pet.buffs.countFont = 'Expressway'
+	E.db.unitframe.units.pet.buffs.countFont = L1UI.DefaultFont
 	E.db.unitframe.units.pet.buffs.countFontSize = 11
 	E.db.unitframe.units.pet.buffs.countYOffset = 1
 	E.db.unitframe.units.pet.buffs.enable = false
@@ -812,7 +812,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.pet.buffs.yOffset = -2
 	E.db.unitframe.units.pet.castbar.enable = false
 	E.db.unitframe.units.pet.debuffs.anchorPoint = 'TOPLEFT'
-	E.db.unitframe.units.pet.debuffs.countFont = 'Expressway'
+	E.db.unitframe.units.pet.debuffs.countFont = L1UI.DefaultFont
 	E.db.unitframe.units.pet.debuffs.countPosition = 'TOP'
 	E.db.unitframe.units.pet.debuffs.countYOffset = 13
 	E.db.unitframe.units.pet.debuffs.enable = false
@@ -843,14 +843,14 @@ function L1UI:Layout_Dragonflight(layout)
 
 	E.db.unitframe.units.player.aurabar.enable = false
 	E.db.unitframe.units.player.buffs.attachTo = 'FRAME'
-	E.db.unitframe.units.player.buffs.countFont = 'Expressway'
+	E.db.unitframe.units.player.buffs.countFont = L1UI.DefaultFont
 	E.db.unitframe.units.player.buffs.priority = 'Blacklist,Personal,nonPersonal'
 	E.db.unitframe.units.player.buffs.yOffset = 1
 	E.db.unitframe.units.player.castbar.customTextFont.enable = true
-	E.db.unitframe.units.player.castbar.customTextFont.font = 'Expressway'
+	E.db.unitframe.units.player.castbar.customTextFont.font = L1UI.DefaultFont
 	E.db.unitframe.units.player.castbar.customTextFont.fontSize = 11
 	E.db.unitframe.units.player.castbar.customTimeFont.enable = true
-	E.db.unitframe.units.player.castbar.customTimeFont.font = 'Expressway'
+	E.db.unitframe.units.player.castbar.customTimeFont.font = L1UI.DefaultFont
 	E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 11
 	E.db.unitframe.units.player.castbar.height = 18
 	E.db.unitframe.units.player.castbar.latency = false
@@ -865,7 +865,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.player.classbar.enable = false
 	E.db.unitframe.units.player.CombatIcon.enable = false
 	E.db.unitframe.units.player.debuffs.anchorPoint = 'TOPRIGHT'
-	E.db.unitframe.units.player.debuffs.countFont = 'Expressway'
+	E.db.unitframe.units.player.debuffs.countFont = L1UI.DefaultFont
 	E.db.unitframe.units.player.debuffs.countFontSize = 13
 	E.db.unitframe.units.player.debuffs.countPosition = 'TOP'
 	E.db.unitframe.units.player.debuffs.countYOffset = 14
@@ -901,7 +901,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.player.width = 190
 
 	E.db.unitframe.units.target.aurabar.enable = false
-	E.db.unitframe.units.target.buffs.countFont = 'Expressway'
+	E.db.unitframe.units.target.buffs.countFont = L1UI.DefaultFont
 	E.db.unitframe.units.target.buffs.countFontSize = 13
 	E.db.unitframe.units.target.buffs.countPosition = 'TOP'
 	E.db.unitframe.units.target.buffs.countYOffset = 14
@@ -909,10 +909,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.target.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.target.buffs.sizeOverride = 23
 	E.db.unitframe.units.target.castbar.customTextFont.enable = true
-	E.db.unitframe.units.target.castbar.customTextFont.font = 'Expressway'
+	E.db.unitframe.units.target.castbar.customTextFont.font = L1UI.DefaultFont
 	E.db.unitframe.units.target.castbar.customTextFont.fontSize = 11
 	E.db.unitframe.units.target.castbar.customTimeFont.enable = true
-	E.db.unitframe.units.target.castbar.customTimeFont.font = 'Expressway'
+	E.db.unitframe.units.target.castbar.customTimeFont.font = L1UI.DefaultFont
 	E.db.unitframe.units.target.castbar.customTimeFont.fontSize = 11
 	E.db.unitframe.units.target.castbar.spark = false
 	E.db.unitframe.units.target.castbar.textColor.b = 1
@@ -925,7 +925,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.target.CombatIcon.enable = false
 	E.db.unitframe.units.target.debuffs.anchorPoint = 'TOPLEFT'
 	E.db.unitframe.units.target.debuffs.attachTo = 'FRAME'
-	E.db.unitframe.units.target.debuffs.countFont = 'Expressway'
+	E.db.unitframe.units.target.debuffs.countFont = L1UI.DefaultFont
 	E.db.unitframe.units.target.debuffs.countFontSize = 13
 	E.db.unitframe.units.target.debuffs.countPosition = 'TOP'
 	E.db.unitframe.units.target.debuffs.countYOffset = 14
@@ -1086,10 +1086,10 @@ function L1UI:Layout_Dragonflight(layout)
 
 		-- Party DPS/TANK
 		E.db.unitframe.units.party.buffIndicator.size = 12
-		E.db.unitframe.units.party.buffs.countFont = 'Expressway'
+		E.db.unitframe.units.party.buffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.party.buffs.perrow = 3
 		E.db.unitframe.units.party.classbar.enable = false
-		E.db.unitframe.units.party.debuffs.countFont = 'Expressway'
+		E.db.unitframe.units.party.debuffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.party.debuffs.countFontSize = 13
 		E.db.unitframe.units.party.debuffs.countXOffset = 1
 		E.db.unitframe.units.party.debuffs.maxDuration = 0
@@ -1140,7 +1140,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid.buffIndicator.enable = false
 		E.db.unitframe.units.raid.classbar.enable = false
 		E.db.unitframe.units.raid.debuffs.anchorPoint = 'BOTTOM'
-		E.db.unitframe.units.raid.debuffs.countFont = 'Expressway'
+		E.db.unitframe.units.raid.debuffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.raid.debuffs.countFontSize = 14
 		E.db.unitframe.units.raid.debuffs.desaturate = false
 		E.db.unitframe.units.raid.debuffs.maxDuration = 0
@@ -1171,7 +1171,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid.raidicon.xOffset = 1
 		E.db.unitframe.units.raid.raidicon.yOffset = 1
 		E.db.unitframe.units.raid.raidRoleIcons.yOffset = 1
-		E.db.unitframe.units.raid.rdebuffs.font = 'Expressway'
+		E.db.unitframe.units.raid.rdebuffs.font = L1UI.DefaultFont
 		E.db.unitframe.units.raid.rdebuffs.fontOutline = 'OUTLINE'
 		E.db.unitframe.units.raid.rdebuffs.fontSize = 9
 		E.db.unitframe.units.raid.rdebuffs.size = 14
@@ -1198,7 +1198,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 		-- Raid40 DPS/TANK
 		E.db.unitframe.units.raid40.classbar.enable = false
-		E.db.unitframe.units.raid40.debuffs.countFont = 'Expressway'
+		E.db.unitframe.units.raid40.debuffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.raid40.debuffs.desaturate = false
 		E.db.unitframe.units.raid40.debuffs.maxDuration = 0
 		E.db.unitframe.units.raid40.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
@@ -1219,7 +1219,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid40.raidicon.yOffset = 0
 		E.db.unitframe.units.raid40.raidRoleIcons.yOffset = 1
 		E.db.unitframe.units.raid40.rdebuffs.enable = true
-		E.db.unitframe.units.raid40.rdebuffs.font = 'Expressway'
+		E.db.unitframe.units.raid40.rdebuffs.font = L1UI.DefaultFont
 		E.db.unitframe.units.raid40.rdebuffs.fontOutline = 'OUTLINE'
 		E.db.unitframe.units.raid40.rdebuffs.size = 18
 		E.db.unitframe.units.raid40.rdebuffs.stack.position = 'CENTER'
@@ -1276,7 +1276,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.raidicon.size = 12
 		E.db.unitframe.units.party.raidicon.yOffset = 0
 		E.db.unitframe.units.party.raidRoleIcons.yOffset = 1
-		E.db.unitframe.units.party.rdebuffs.font = 'Expressway'
+		E.db.unitframe.units.party.rdebuffs.font = L1UI.DefaultFont
 		E.db.unitframe.units.party.rdebuffs.fontOutline = 'OUTLINE'
 		E.db.unitframe.units.party.rdebuffs.size = 18
 		E.db.unitframe.units.party.roleIcon.damager = false
@@ -1291,7 +1291,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 		-- Raid Healing
 		E.db.unitframe.units.raid.classbar.enable = false
-		E.db.unitframe.units.raid.debuffs.countFont = 'Expressway'
+		E.db.unitframe.units.raid.debuffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.raid.debuffs.desaturate = false
 		E.db.unitframe.units.raid.debuffs.maxDuration = 0
 		E.db.unitframe.units.raid.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
@@ -1311,7 +1311,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid.raidicon.size = 12
 		E.db.unitframe.units.raid.raidicon.yOffset = 0
 		E.db.unitframe.units.raid.raidRoleIcons.yOffset = 1
-		E.db.unitframe.units.raid.rdebuffs.font = 'Expressway'
+		E.db.unitframe.units.raid.rdebuffs.font = L1UI.DefaultFont
 		E.db.unitframe.units.raid.rdebuffs.fontOutline = 'OUTLINE'
 		E.db.unitframe.units.raid.rdebuffs.size = 18
 		E.db.unitframe.units.raid.roleIcon.damager = false
@@ -1326,7 +1326,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 		-- Raid40 Healing
 		E.db.unitframe.units.raid40.classbar.enable = false
-		E.db.unitframe.units.raid40.debuffs.countFont = 'Expressway'
+		E.db.unitframe.units.raid40.debuffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.raid40.debuffs.desaturate = false
 		E.db.unitframe.units.raid40.debuffs.maxDuration = 0
 		E.db.unitframe.units.raid40.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
@@ -1347,7 +1347,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid40.raidicon.yOffset = 0
 		E.db.unitframe.units.raid40.raidRoleIcons.yOffset = 1
 		E.db.unitframe.units.raid40.rdebuffs.enable = true
-		E.db.unitframe.units.raid40.rdebuffs.font = 'Expressway'
+		E.db.unitframe.units.raid40.rdebuffs.font = L1UI.DefaultFont
 		E.db.unitframe.units.raid40.rdebuffs.fontOutline = 'OUTLINE'
 		E.db.unitframe.units.raid40.rdebuffs.size = 18
 		E.db.unitframe.units.raid40.summonIcon.attachTo = 'LEFT'
