@@ -602,6 +602,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.fontOutline = 'OUTLINE'
 	E.db.unitframe.fontSize = 12
 	E.db.unitframe.statusbar = 'Minimalist'
+	E.db.unitframe.smartRaidFilter = false
 
 	-- MA / MT
 	E.db.unitframe.units.assist.enable = false
