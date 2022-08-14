@@ -538,7 +538,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.party.customTexts = E.db.unitframe.units.party.customTexts or {}
 	E.db.unitframe.units.pet.customTexts = E.db.unitframe.units.pet.customTexts or {}
 	E.db.unitframe.units.player.customTexts = E.db.unitframe.units.player.customTexts or {}
-	E.db.unitframe.units.raid.customTexts = E.db.unitframe.units.raid.customTexts or {}
 	E.db.unitframe.units.target.customTexts = E.db.unitframe.units.target.customTexts or {}
 	E.db.unitframe.units.targettarget.customTexts = E.db.unitframe.units.targettarget.customTexts or {}
 
@@ -564,9 +563,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.player.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[classcolor][level]', xOffset = 1, yOffset = 1 }
 	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name]', xOffset = 0, yOffset = 1 }
 	E.db.unitframe.units.player.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 1 }
-
-	-- Custom Text: Raid
-	E.db.unitframe.units.raid.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
 
 	-- Custom Text: Target
 	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
