@@ -88,6 +88,7 @@ function L1UI:Setup_NamePlates(addon)
 		E.db.nameplates.units.ENEMY_NPC.health.text.parent = 'Health'
 		E.db.nameplates.units.ENEMY_NPC.health.text.position = 'TOPRIGHT'
 		E.db.nameplates.units.ENEMY_NPC.health.text.yOffset = -16
+		E.db.nameplates.units.ENEMY_NPC.level.enable = false
 		E.db.nameplates.units.ENEMY_NPC.name.font = L1UI.DefaultFont
 		E.db.nameplates.units.ENEMY_NPC.name.fontSize = 12
 		E.db.nameplates.units.ENEMY_NPC.name.format = '[name:last]'
@@ -147,6 +148,7 @@ function L1UI:Setup_NamePlates(addon)
 		E.db.nameplates.units.ENEMY_PLAYER.health.text.parent = 'Health'
 		E.db.nameplates.units.ENEMY_PLAYER.health.text.position = 'TOPRIGHT'
 		E.db.nameplates.units.ENEMY_PLAYER.health.text.yOffset = -16
+		E.db.nameplates.units.ENEMY_PLAYER.level.enable = false
 		E.db.nameplates.units.ENEMY_PLAYER.name.font = L1UI.DefaultFont
 		E.db.nameplates.units.ENEMY_PLAYER.name.fontSize = 12
 		E.db.nameplates.units.ENEMY_PLAYER.name.format = '[name:last]'
