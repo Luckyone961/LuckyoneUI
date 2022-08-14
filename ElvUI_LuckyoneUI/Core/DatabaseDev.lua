@@ -26,7 +26,7 @@ function L1UI:Layout_Dragonflight(layout)
 	ActionBarsDT.fonts.enable = true
 	ActionBarsDT.fonts.font = L1UI.DefaultFont
 	ActionBarsDT.fonts.fontOutline = 'OUTLINE'
-	ActionBarsDT.fonts.fontSize = 11
+	ActionBarsDT.fonts.fontSize = 10
 	ActionBarsDT.frameLevel = 1
 	ActionBarsDT.frameStrata = 'BACKGROUND'
 	ActionBarsDT.growth = 'HORIZONTAL'
