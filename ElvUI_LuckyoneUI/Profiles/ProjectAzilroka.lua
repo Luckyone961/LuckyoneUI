@@ -39,9 +39,17 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	-- SquareMinimapButtons setup
 	PA.db.SquareMinimapButtons.Backdrop = false
 	PA.db.SquareMinimapButtons.BarMouseOver = false
-	PA.db.SquareMinimapButtons.ButtonSpacing = -1
+	if L1UI.Me then
+		PA.db.SquareMinimapButtons.ButtonSpacing = 1
+	else
+		PA.db.SquareMinimapButtons.ButtonSpacing = -1
+	end
 	PA.db.SquareMinimapButtons.ButtonsPerRow = 6
-	PA.db.SquareMinimapButtons.IconSize = 28
+	if L1UI.Me then
+		PA.db.SquareMinimapButtons.IconSize = 25
+	else
+		PA.db.SquareMinimapButtons.IconSize = 28
+	end
 	PA.db.SquareMinimapButtons.MoveQueue = false
 	PA.db.SquareMinimapButtons.MoveTracker = false
 	PA.db.SquareMinimapButtons.Shadows = false
@@ -57,11 +65,12 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 
 	-- Movers
 	if not E.db.movers then E.db.movers = {} end
-	E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187'
 
-	-- PA.db.SquareMinimapButtons.ButtonSpacing = 1
-	-- PA.db.SquareMinimapButtons.IconSize = 25
-	-- E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,0,-156'
+	if L1UI.Me then
+		E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,0,-156'
+	else
+		E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187'
+	end
 
 	if not noPrint then
 		L1UI:Print(L["ProjectAzilroka profile has been set."])
