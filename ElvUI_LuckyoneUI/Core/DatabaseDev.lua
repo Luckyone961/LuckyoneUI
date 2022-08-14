@@ -438,9 +438,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.chat.lfgIcons = false
 	E.db.chat.maxLines = 500
 	E.db.chat.numScrollMessages = 2
-	E.db.chat.panelColor.b = 0.058
-	E.db.chat.panelColor.g = 0.058
-	E.db.chat.panelColor.r = 0.058
+	E.db.chat.panelColor.b = 0.05
+	E.db.chat.panelColor.g = 0.05
+	E.db.chat.panelColor.r = 0.05
 	E.db.chat.panelHeight = 138
 	E.db.chat.panelHeightRight = 171
 	E.db.chat.panelWidth = 414
@@ -1032,10 +1032,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.ElvAB_4 = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,200'
 	E.db.movers.ElvAB_5 = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-370'
 	E.db.movers.ElvAB_6 = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,173'
-	E.db.movers.ElvAB_7 = 'BOTTOM,ElvUIParent,BOTTOM,0,168'
-	E.db.movers.ElvAB_8 = 'BOTTOM,ElvUIParent,BOTTOM,0,197'
-	E.db.movers.ElvAB_9 = 'BOTTOM,ElvUIParent,BOTTOM,0,226'
-	E.db.movers.ElvAB_10 = 'BOTTOM,ElvUIParent,BOTTOM,0,255'
+	E.db.movers.ElvAB_7 = 'BOTTOM,ElvUIParent,BOTTOM,0,183'
+	E.db.movers.ElvAB_8 = 'BOTTOM,ElvUIParent,BOTTOM,0,210'
+	E.db.movers.ElvAB_9 = 'BOTTOM,ElvUIParent,BOTTOM,0,237'
+	E.db.movers.ElvAB_10 = 'BOTTOM,ElvUIParent,BOTTOM,0,264'
 	E.db.movers.ElvUF_AssistMover = 'TOPLEFT,ElvUIParent,BOTTOMLEFT,0,1048'
 	E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,-1,95'
 	E.db.movers.ElvUIBagMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,140'
@@ -1054,8 +1054,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.ReputationBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
-	E.db.movers.SocialMenuMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,196'
-	E.db.movers.ThreatBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,1'
 	E.db.movers.TooltipMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,102'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-18'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
@@ -1065,13 +1063,11 @@ function L1UI:Layout_Dragonflight(layout)
 
 	if E.Retail then
 		E.db.movers.AltPowerBarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,141'
-		E.db.movers.ArtifactBarMover = 'BOTTOM,ElvUIParent,BOTTOM,1,16'
 		E.db.movers.BelowMinimapContainerMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,70,485'
 		E.db.movers.BossButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,119'
 		E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-243,-183'
 		E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-117'
-		E.db.movers.HonorBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1'
-		E.db.movers.LossControlMover = 'TOP,ElvUIParent,TOP,0,-492'
+		E.db.movers.LossControlMover = 'TOP,ElvUIParent,TOP,0,-490'
 		E.db.movers.MawBuffsBelowMinimapMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-48'
 		E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184'
 		E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
