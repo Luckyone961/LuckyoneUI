@@ -30,8 +30,6 @@ function L1UI:Toggles(msg)
 end
 
 -- LuckyoneUI debug mode
--- Disables all AddOns except ElvUI, ElvUI OptionsUI and ElvUI LuckyoneUI
--- ref: ElvUI\Core\General\Commands
 function L1UI:DebugMode(msg)
 	local switch = strlower(msg)
 	if switch == 'on' then
@@ -57,8 +55,7 @@ function L1UI:DebugMode(msg)
 	end
 end
 
--- RegisterChatCommand requires AceConsole-3.0
--- Left slash command right function or funcref
+-- Register all commands
 function L1UI:LoadCommands()
 	self:RegisterChatCommand('luckyoneui', 'Toggles')
 	self:RegisterChatCommand('luckydebug', 'DebugMode')

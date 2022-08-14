@@ -3,6 +3,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 -- Dragonflight layout
 function L1UI:Layout_Dragonflight(layout)
 
+	-- Temporary E.global & Custom DataText
 	SetCVar('uiScale', 0.71111111111111)
 	E.global.general.UIScale = 0.71111111111111
 
@@ -18,8 +19,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.DataTexts:BuildPanelFrame('Luckyone_MiniMap_DT')
 
 	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
-	local MiniMapDT = E.global.datatexts.customPanels.Luckyone_MiniMap_DT
-
 	ActionBarsDT.backdrop = true
 	ActionBarsDT.border = true
 	ActionBarsDT.enable = true
@@ -41,6 +40,8 @@ function L1UI:Layout_Dragonflight(layout)
 	ActionBarsDT.tooltipYOffset = 5
 	ActionBarsDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
 	ActionBarsDT.width = 323
+
+	local MiniMapDT = E.global.datatexts.customPanels.Luckyone_MiniMap_DT
 	MiniMapDT.backdrop = false
 	MiniMapDT.border = false
 	MiniMapDT.fonts.enable = true
