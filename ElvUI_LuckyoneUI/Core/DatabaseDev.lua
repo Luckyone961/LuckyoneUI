@@ -773,6 +773,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.focus.power.xOffset = -2
 		E.db.unitframe.units.focus.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.focus.raidicon.attachToObject = 'Health'
+		E.db.unitframe.units.focus.raidicon.size = 16
 		E.db.unitframe.units.focus.raidicon.xOffset = -2
 		E.db.unitframe.units.focus.raidicon.yOffset = 0
 		E.db.unitframe.units.focus.threatStyle = 'NONE'
@@ -795,6 +796,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.focustarget.power.powerPrediction = true
 		E.db.unitframe.units.focustarget.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.focustarget.raidicon.attachToObject = 'Health'
+		E.db.unitframe.units.focustarget.raidicon.size = 16
 		E.db.unitframe.units.focustarget.raidicon.xOffset = -2
 		E.db.unitframe.units.focustarget.raidicon.yOffset = 0
 		E.db.unitframe.units.focustarget.width = 80
@@ -837,6 +839,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.pet.power.powerPrediction = true
 	E.db.unitframe.units.pet.raidicon.attachTo = 'LEFT'
 	E.db.unitframe.units.pet.raidicon.attachToObject = 'Health'
+	E.db.unitframe.units.pet.raidicon.size = 16
 	E.db.unitframe.units.pet.raidicon.xOffset = 2
 	E.db.unitframe.units.pet.raidicon.yOffset = 0
 	E.db.unitframe.units.pet.threatStyle = 'NONE'
@@ -894,6 +897,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.player.pvpIcon.scale = 0.85
 	E.db.unitframe.units.player.raidicon.attachTo = 'LEFT'
 	E.db.unitframe.units.player.raidicon.attachToObject = 'Health'
+	E.db.unitframe.units.player.raidicon.size = 16
 	E.db.unitframe.units.player.raidicon.xOffset = 2
 	E.db.unitframe.units.player.raidicon.yOffset = 0
 	E.db.unitframe.units.player.raidRoleIcons.yOffset = 1
@@ -959,6 +963,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.target.power.xOffset = -2
 	E.db.unitframe.units.target.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.target.raidicon.attachToObject = 'Health'
+	E.db.unitframe.units.target.raidicon.size = 16
 	E.db.unitframe.units.target.raidicon.xOffset = -2
 	E.db.unitframe.units.target.raidicon.yOffset = 0
 	E.db.unitframe.units.target.raidRoleIcons.position = 'TOPRIGHT'
@@ -979,6 +984,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.targettarget.power.powerPrediction = true
 	E.db.unitframe.units.targettarget.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.targettarget.raidicon.attachToObject = 'Health'
+	E.db.unitframe.units.targettarget.raidicon.size = 16
 	E.db.unitframe.units.targettarget.raidicon.xOffset = -2
 	E.db.unitframe.units.targettarget.raidicon.yOffset = 0
 	E.db.unitframe.units.targettarget.width = 80
