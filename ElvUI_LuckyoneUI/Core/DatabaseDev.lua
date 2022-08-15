@@ -561,16 +561,12 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[classcolor][name:last]', xOffset = -3, yOffset = 1}
 
 	-- Shared UF media
-	E.db.unitframe.colors.castbar_backdrop.a = 0.80
 	E.db.unitframe.colors.castbar_backdrop.b = 0.05
 	E.db.unitframe.colors.castbar_backdrop.g = 0.05
 	E.db.unitframe.colors.castbar_backdrop.r = 0.05
 	E.db.unitframe.colors.castColor.b = 0
 	E.db.unitframe.colors.castColor.g = 1
 	E.db.unitframe.colors.castColor.r = 0.02
-	E.db.unitframe.colors.castInterruptedColor.b = 0.30
-	E.db.unitframe.colors.castInterruptedColor.g = 0.30
-	E.db.unitframe.colors.castInterruptedColor.r = 0.30
 	E.db.unitframe.colors.castNoInterrupt.b = 0
 	E.db.unitframe.colors.castNoInterrupt.g = 0
 	E.db.unitframe.colors.castNoInterrupt.r = 1
@@ -590,26 +586,18 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.colors.health.g = 0.05
 	E.db.unitframe.colors.health.r = 0.05
 	E.db.unitframe.colors.healthMultiplier = 0.75
-	E.db.unitframe.colors.power_backdrop.b = 0.50
-	E.db.unitframe.colors.power_backdrop.g = 0.50
-	E.db.unitframe.colors.power_backdrop.r = 0.50
-	E.db.unitframe.colors.power.LUNAR_POWER.b = 0.90
+	E.db.unitframe.colors.power.LUNAR_POWER.b = 0.9
 	E.db.unitframe.colors.power.LUNAR_POWER.g = 0.52
-	E.db.unitframe.colors.power.LUNAR_POWER.r = 0.30
-	E.db.unitframe.colors.tapped.b = 0.61
+	E.db.unitframe.colors.power.LUNAR_POWER.r = 0.3
 	E.db.unitframe.colors.tapped.g = 0.56
 	E.db.unitframe.colors.tapped.r = 0.54
-	E.db.unitframe.colors.transparentAurabars = true
-	E.db.unitframe.colors.transparentHealth = true
-	E.db.unitframe.colors.transparentPower = true
 	E.db.unitframe.colors.useDeadBackdrop = true
 	E.db.unitframe.cooldown.override = false
-	E.db.unitframe.cooldown.threshold = 4
 	E.db.unitframe.font = L1UI.DefaultFont
 	E.db.unitframe.fontOutline = 'OUTLINE'
 	E.db.unitframe.fontSize = 12
-	E.db.unitframe.statusbar = 'Minimalist'
 	E.db.unitframe.smartRaidFilter = false
+	E.db.unitframe.statusbar = 'Minimalist'
 
 	-- Shared MA/MT
 	E.db.unitframe.units.assist.enable = false
