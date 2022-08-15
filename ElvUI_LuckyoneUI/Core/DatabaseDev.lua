@@ -517,47 +517,19 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.tooltip.role = false
 	end
 
-	-- Custom Texts: Creation
-	E.db.unitframe.units.focus.customTexts = E.db.unitframe.units.focus.customTexts or {}
-	E.db.unitframe.units.focustarget.customTexts = E.db.unitframe.units.focustarget.customTexts or {}
-	E.db.unitframe.units.party.customTexts = E.db.unitframe.units.party.customTexts or {}
-	E.db.unitframe.units.pet.customTexts = E.db.unitframe.units.pet.customTexts or {}
-	E.db.unitframe.units.player.customTexts = E.db.unitframe.units.player.customTexts or {}
-	E.db.unitframe.units.target.customTexts = E.db.unitframe.units.target.customTexts or {}
-	E.db.unitframe.units.targettarget.customTexts = E.db.unitframe.units.targettarget.customTexts or {}
-
-	-- Custom Text: Focus
-	E.db.unitframe.units.focus.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.focus.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.focus.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:medium]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.focus.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 1, yOffset = 1 }
-
-	-- Custom Text: Focus Target
-	E.db.unitframe.units.focustarget.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.focustarget.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 1 }
-
-	-- Custom Text: Party
-	E.db.unitframe.units.party.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
-
-	-- Custom Text: Pet
-	E.db.unitframe.units.pet.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.pet.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = E.Retail and '[classcolor]Pet' or '[happiness:color]Pet[ >happiness:full]', xOffset = 0, yOffset = 1 }
-
-	-- Custom Text: Player
-	E.db.unitframe.units.player.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[health:current:shortvalue] | [luckyone:health:percent]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[classcolor][level]', xOffset = 1, yOffset = 1 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 1 }
-
-	-- Custom Text: Target
-	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:last]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 1, yOffset = 1 }
-
-	-- Custom Text: TargetTarget
-	E.db.unitframe.units.targettarget.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 1 }
+	-- Custom Texts for all UnitFrames
+	E.db.unitframe.units.arena.customTexts = E.db.unitframe.units.arena.customTexts or {}
+	E.db.unitframe.units.arena.customTexts.Luckyone_Power = {
+		attachTextTo = 'Frame',
+		enable = true,
+		font = L1UI.DefaultFont,
+		fontOutline = 'OUTLINE',
+		justifyH = 'RIGHT',
+		size = 12,
+		text_format = '[powercolor][perpp<%]',
+		xOffset = -1,
+		yOffset = 0
+	}
 
 	-- Shared UF media
 	E.db.unitframe.colors.castbar_backdrop.a = 0.80
@@ -632,7 +604,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.arena.castbar.customTimeFont.enable = true
 		E.db.unitframe.units.arena.castbar.customTimeFont.font = L1UI.DefaultFont
 		E.db.unitframe.units.arena.castbar.height = 12
-		E.db.unitframe.units.arena.castbar.overlayOnFrame = 'Health'
+		E.db.unitframe.units.arena.castbar.iconAttachedTo = 'Castbar'
 		E.db.unitframe.units.arena.castbar.spark = false
 		E.db.unitframe.units.arena.castbar.textColor.b = 1
 		E.db.unitframe.units.arena.castbar.textColor.g = 1
@@ -654,13 +626,14 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.arena.disableMouseoverGlow = true
 		E.db.unitframe.units.arena.disableTargetGlow = true
 		E.db.unitframe.units.arena.healPrediction.enable = false
+		E.db.unitframe.units.arena.health.attachTextTo = 'Frame'
 		E.db.unitframe.units.arena.health.text_format = '[luckyone:health:percent]'
-		E.db.unitframe.units.arena.health.xOffset = 1
 		E.db.unitframe.units.arena.height = 32
 		E.db.unitframe.units.arena.infoPanel.height = 16
+		E.db.unitframe.units.arena.name.attachTextTo = 'Frame'
 		E.db.unitframe.units.arena.name.text_format = '[classcolor][name:last]'
+		E.db.unitframe.units.arena.power.enable = false
 		E.db.unitframe.units.arena.power.height = 3
-		E.db.unitframe.units.arena.power.text_format = '[powercolor][perpp<%]'
 		E.db.unitframe.units.arena.power.width = 'inset'
 		E.db.unitframe.units.arena.power.xOffset = 0
 		E.db.unitframe.units.arena.pvpclassificationindicator.size = 24
@@ -670,7 +643,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.arena.pvpTrinket.position = 'LEFT'
 		E.db.unitframe.units.arena.pvpTrinket.size = 45
 		E.db.unitframe.units.arena.pvpTrinket.xOffset = -1
-		E.db.unitframe.units.arena.spacing = 10
+		E.db.unitframe.units.arena.spacing = 14
 		E.db.unitframe.units.arena.width = 190
 
 		-- Shared Focus
