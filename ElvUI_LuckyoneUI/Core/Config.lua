@@ -80,10 +80,6 @@ function L1UI:Config()
 	L1UI.Options.args.auras.args.buffs.args.boss.inline = true
 	L1UI.Options.args.auras.args.buffs.args.boss.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Buffs('boss', 'min') end)
 	L1UI.Options.args.auras.args.buffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Buffs('boss', 'all') end)
-	L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC = ACH:Group(L["NamePlates: Enemy NPC Buffs"], nil, 5)
-	L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.inline = true
-	L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Buffs('nameplate', 'min') end)
-	L1UI.Options.args.auras.args.buffs.args.nameplateEnemyNPC.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Buffs('nameplate', 'all') end)
 
 	-- Auras [Debuffs]
 	L1UI.Options.args.auras.args.debuffs = ACH:Group(format('|cffC80000%s|r', L["Debuffs"]), nil, 3)
@@ -103,10 +99,6 @@ function L1UI:Config()
 	L1UI.Options.args.auras.args.debuffs.args.boss.inline = true
 	L1UI.Options.args.auras.args.debuffs.args.boss.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Debuffs('boss', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Debuffs('boss', 'all') end)
-	L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC = ACH:Group(L["NamePlates: Enemy NPC Debuffs"], nil, 5)
-	L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.inline = true
-	L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Debuffs('nameplate', 'min') end)
-	L1UI.Options.args.auras.args.debuffs.args.nameplateEnemyNPC.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Debuffs('nameplate', 'all') end)
 
 	-- Blizzard
 	L1UI.Options.args.blizzard = ACH:Group(L["Blizzard"], nil, 6)
