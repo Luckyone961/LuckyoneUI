@@ -32,10 +32,8 @@ function L1UI:Setup_Buffs(frame, type)
 		end
 	elseif frame == 'boss' then
 		if type == 'all' then
-			E.db.unitframe.units.boss.buffs.perrow = 8
 			E.db.unitframe.units.boss.buffs.priority = all
 		else
-			E.db.unitframe.units.boss.buffs.perrow = 3
 			E.db.unitframe.units.boss.buffs.priority = min
 		end
 	end
