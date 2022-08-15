@@ -12,7 +12,7 @@ function L1UI:Setup_AddOnSkins(noPrint)
 	-- Create and set a new profile called Luckyone
 	AS.data:SetProfile('Luckyone')
 
-	AS.db.DBMFont = 'Expressway'
+	AS.db.DBMFont = L1UI.DefaultFont
 	AS.db.Shadows = false
 	AS.db.SkinDebug = true
 
