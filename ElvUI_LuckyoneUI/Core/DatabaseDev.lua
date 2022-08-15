@@ -445,7 +445,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.chat.tabSelector = 'NONE'
 	E.db.chat.throttleInterval = 0
 
-	-- Cooldown Text
+	-- Cooldown
 	E.db.cooldown.daysIndicator.g = 0.4
 	E.db.cooldown.daysIndicator.r = 0.4
 	E.db.cooldown.expireIndicator.b = 0
@@ -478,11 +478,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.databars.petExperience.enable = false
 	end
 
-	-- DataTexts default
-	E.db.datatexts.panels.MinimapPanel.enable = false
-	E.db.datatexts.panels.LeftChatDataPanel.enable = false
-	E.db.datatexts.panels.RightChatDataPanel.enable = false
-
 	-- DataTexts custom
 	E.db.datatexts.panels.Luckyone_ActionBars_DT.enable = true
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[1] = 'System'
@@ -490,6 +485,11 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[3] = 'Durability'
 	E.db.datatexts.panels.Luckyone_MiniMap_DT.enable = true
 	E.db.datatexts.panels.Luckyone_MiniMap_DT[1] = 'Time'
+
+	-- DataTexts default
+	E.db.datatexts.panels.MinimapPanel.enable = false
+	E.db.datatexts.panels.LeftChatDataPanel.enable = false
+	E.db.datatexts.panels.RightChatDataPanel.enable = false
 
 	-- Tooltip shared
 	E.db.tooltip.alwaysShowRealm = true
@@ -562,9 +562,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.tank.enable = false
 
 	if not E.Classic then
+
 		-- Shared Arena
 		E.db.unitframe.units.arena.customTexts = E.db.unitframe.units.arena.customTexts or {}
-
 		E.db.unitframe.units.arena.customTexts.Luckyone_Power = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = -1, yOffset = 0}
 
 		E.db.unitframe.units.arena.buffs.anchorPoint = 'RIGHT'
@@ -625,7 +625,6 @@ function L1UI:Layout_Dragonflight(layout)
 		-- Shared Focus
 		E.db.unitframe.units.focus.customTexts = E.db.unitframe.units.focus.customTexts or {}
 		E.db.unitframe.units.focustarget.customTexts = E.db.unitframe.units.focustarget.customTexts or {}
-
 		E.db.unitframe.units.focus.customTexts.Luckyone_HP = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0}
 		E.db.unitframe.units.focus.customTexts.Luckyone_Name = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[classcolor][name:last]', xOffset = -3, yOffset = 0}
 		E.db.unitframe.units.focustarget.customTexts.Luckyone_HP = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 1}
@@ -688,6 +687,7 @@ function L1UI:Layout_Dragonflight(layout)
 	end
 
 	if E.Retail or E.Wrath then
+
 		-- Shared Boss
 		E.db.unitframe.units.boss.customTexts = E.db.unitframe.units.boss.customTexts or {}
 		E.db.unitframe.units.boss.customTexts.Luckyone_Power = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = -1, yOffset = 0}
@@ -743,31 +743,11 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.pet.customTexts.Luckyone_HP = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[health:current:shortvalue] • [luckyone:health:percent]', xOffset = -3, yOffset = 1}
 	E.db.unitframe.units.pet.customTexts.Luckyone_Name = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[classcolor][name]', xOffset = 3, yOffset = 1}
 
-	E.db.unitframe.units.pet.buffs.countFont = L1UI.DefaultFont
-	E.db.unitframe.units.pet.buffs.countFontSize = 11
-	E.db.unitframe.units.pet.buffs.countYOffset = 1
-	E.db.unitframe.units.pet.buffs.maxDuration = 0
-	E.db.unitframe.units.pet.buffs.numrows = 2
-	E.db.unitframe.units.pet.buffs.perrow = 4
-	E.db.unitframe.units.pet.buffs.priority = 'Blacklist,blockNoDuration,Personal,MyPet'
-	E.db.unitframe.units.pet.buffs.sizeOverride = 20
-	E.db.unitframe.units.pet.buffs.spacing = 0
-	E.db.unitframe.units.pet.buffs.yOffset = -2
+	E.db.unitframe.units.pet.buffs.enable = false
 	E.db.unitframe.units.pet.castbar.enable = false
-	E.db.unitframe.units.pet.debuffs.anchorPoint = 'TOPLEFT'
-	E.db.unitframe.units.pet.debuffs.countFont = L1UI.DefaultFont
-	E.db.unitframe.units.pet.debuffs.countPosition = 'TOP'
-	E.db.unitframe.units.pet.debuffs.countYOffset = 13
-	E.db.unitframe.units.pet.debuffs.growthX = 'RIGHT'
-	E.db.unitframe.units.pet.debuffs.maxDuration = 0
-	E.db.unitframe.units.pet.debuffs.perrow = 4
-	E.db.unitframe.units.pet.debuffs.priority = 'Blacklist,Personal,nonPersonal'
-	E.db.unitframe.units.pet.debuffs.sizeOverride = 20
-	E.db.unitframe.units.pet.debuffs.spacing = 0
+	E.db.unitframe.units.pet.debuffs.enable = false
 	E.db.unitframe.units.pet.disableMouseoverGlow = true
 	E.db.unitframe.units.pet.healPrediction.absorbStyle = 'WRAPPED'
-	E.db.unitframe.units.pet.health.position = 'CENTER'
-	E.db.unitframe.units.pet.health.xOffset = 0
 	E.db.unitframe.units.pet.height = 20
 	E.db.unitframe.units.pet.name.text_format = ''
 	E.db.unitframe.units.pet.power.enable = false
@@ -777,7 +757,6 @@ function L1UI:Layout_Dragonflight(layout)
 
 	-- Shared Player
 	E.db.unitframe.units.player.customTexts = E.db.unitframe.units.player.customTexts or {}
-
 	E.db.unitframe.units.player.customTexts.Luckyone_HP = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[health:current:shortvalue] • [luckyone:health:percent]', xOffset = -2, yOffset = 0}
 	E.db.unitframe.units.player.customTexts.Luckyone_Name = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[classcolor][name]', xOffset = 5, yOffset = 0}
 
@@ -828,7 +807,6 @@ function L1UI:Layout_Dragonflight(layout)
 	-- Shared Target
 	E.db.unitframe.units.target.customTexts = E.db.unitframe.units.target.customTexts or {}
 	E.db.unitframe.units.targettarget.customTexts = E.db.unitframe.units.targettarget.customTexts or {}
-
 	E.db.unitframe.units.target.customTexts.Luckyone_HP = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0}
 	E.db.unitframe.units.target.customTexts.Luckyone_Name = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[classcolor][name:last]', xOffset = -3, yOffset = 0}
 	E.db.unitframe.units.targettarget.customTexts.Luckyone_HP = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 1}
@@ -892,8 +870,6 @@ function L1UI:Layout_Dragonflight(layout)
 
 	-- UnitFrames nonRetail
 	if not E.Retail then
-		E.db.unitframe.units.pet.buffs.enable = true
-		E.db.unitframe.units.pet.debuffs.enable = true
 		E.db.unitframe.units.player.power.EnergyManaRegen = false
 	end
 
@@ -964,10 +940,8 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.BelowMinimapContainerMover = 'TOP,UIParent,TOP,0,-26'
 		E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-250,-240'
 		E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-100,-215'
-		E.db.movers.PetExperienceBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
 	else -- Classic & TBC
 		E.db.movers.BelowMinimapContainerMover = 'TOP,UIParent,TOP,0,-26'
-		E.db.movers.PetExperienceBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
 		E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-1'
 		E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-215'
 	end
@@ -993,7 +967,6 @@ function L1UI:Layout_Dragonflight(layout)
 
 		-- Main Party
 		E.db.unitframe.units.party.customTexts = E.db.unitframe.units.party.customTexts or {}
-
 		E.db.unitframe.units.party.customTexts.Luckyone_Name = {attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0}
 
 		E.db.unitframe.units.party.buffIndicator.size = 12
