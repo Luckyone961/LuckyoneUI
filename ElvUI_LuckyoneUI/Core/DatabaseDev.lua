@@ -520,6 +520,9 @@ function L1UI:Layout_Dragonflight(layout)
 	-- Custom Texts: Creation
 	E.db.unitframe.units.arena.customTexts = E.db.unitframe.units.arena.customTexts or {}
 	E.db.unitframe.units.boss.customTexts = E.db.unitframe.units.boss.customTexts or {}
+	E.db.unitframe.units.party.customTexts = E.db.unitframe.units.party.customTexts or {}
+	E.db.unitframe.units.pet.customTexts = E.db.unitframe.units.pet.customTexts or {}
+	E.db.unitframe.units.player.customTexts = E.db.unitframe.units.player.customTexts or {}
 	E.db.unitframe.units.target.customTexts = E.db.unitframe.units.target.customTexts or {}
 	E.db.unitframe.units.targettarget.customTexts = E.db.unitframe.units.targettarget.customTexts or {}
 
@@ -528,6 +531,17 @@ function L1UI:Layout_Dragonflight(layout)
 
 	-- Custom Texts: Boss
 	E.db.unitframe.units.boss.customTexts.Luckyone_Power = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = -1, yOffset = 0}
+
+	-- Custom Texts: Party
+	E.db.unitframe.units.party.customTexts.Luckyone_Name = {attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0}
+
+	-- Custom Texts: Pet
+	E.db.unitframe.units.pet.customTexts.Luckyone_HP = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[health:current:shortvalue] • [luckyone:health:percent]', xOffset = -3, yOffset = 1}
+	E.db.unitframe.units.pet.customTexts.Luckyone_Name = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[classcolor][name]', xOffset = 3, yOffset = 1}
+
+	-- Custom Texts: Player
+	E.db.unitframe.units.player.customTexts.Luckyone_HP = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[health:current:shortvalue] • [luckyone:health:percent]', xOffset = -2, yOffset = 0}
+	E.db.unitframe.units.player.customTexts.Luckyone_Name = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[classcolor][name]', xOffset = 5, yOffset = 0}
 
 	-- Custom Texts: Target
 	E.db.unitframe.units.target.customTexts.Luckyone_HP = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0}
@@ -786,7 +800,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.pet.buffs.countFont = L1UI.DefaultFont
 	E.db.unitframe.units.pet.buffs.countFontSize = 11
 	E.db.unitframe.units.pet.buffs.countYOffset = 1
-	E.db.unitframe.units.pet.buffs.enable = false
 	E.db.unitframe.units.pet.buffs.maxDuration = 0
 	E.db.unitframe.units.pet.buffs.numrows = 2
 	E.db.unitframe.units.pet.buffs.perrow = 4
@@ -799,7 +812,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.pet.debuffs.countFont = L1UI.DefaultFont
 	E.db.unitframe.units.pet.debuffs.countPosition = 'TOP'
 	E.db.unitframe.units.pet.debuffs.countYOffset = 13
-	E.db.unitframe.units.pet.debuffs.enable = false
 	E.db.unitframe.units.pet.debuffs.growthX = 'RIGHT'
 	E.db.unitframe.units.pet.debuffs.maxDuration = 0
 	E.db.unitframe.units.pet.debuffs.perrow = 4
@@ -810,26 +822,18 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.pet.healPrediction.absorbStyle = 'WRAPPED'
 	E.db.unitframe.units.pet.health.position = 'CENTER'
 	E.db.unitframe.units.pet.health.xOffset = 0
-	E.db.unitframe.units.pet.height = 30
-	E.db.unitframe.units.pet.infoPanel.enable = true
-	E.db.unitframe.units.pet.infoPanel.height = 17
-	E.db.unitframe.units.pet.infoPanel.transparent = true
+	E.db.unitframe.units.pet.height = 20
 	E.db.unitframe.units.pet.name.text_format = ''
-	E.db.unitframe.units.pet.power.enable = true
-	E.db.unitframe.units.pet.power.height = 6
-	E.db.unitframe.units.pet.power.powerPrediction = true
-	E.db.unitframe.units.pet.raidicon.attachTo = 'LEFT'
-	E.db.unitframe.units.pet.raidicon.attachToObject = 'Health'
-	E.db.unitframe.units.pet.raidicon.size = 16
-	E.db.unitframe.units.pet.raidicon.xOffset = 2
-	E.db.unitframe.units.pet.raidicon.yOffset = 0
+	E.db.unitframe.units.pet.power.enable = false
+	E.db.unitframe.units.pet.raidicon.enable = false
 	E.db.unitframe.units.pet.threatStyle = 'NONE'
-	E.db.unitframe.units.pet.width = 80
+	E.db.unitframe.units.pet.width = 240
 
 	-- Shared Player
 	E.db.unitframe.units.player.aurabar.enable = false
 	E.db.unitframe.units.player.buffs.attachTo = 'FRAME'
 	E.db.unitframe.units.player.buffs.countFont = L1UI.DefaultFont
+	E.db.unitframe.units.player.buffs.perrow = 10
 	E.db.unitframe.units.player.buffs.priority = 'Blacklist,Personal,nonPersonal'
 	E.db.unitframe.units.player.buffs.yOffset = 1
 	E.db.unitframe.units.player.castbar.customTextFont.enable = true
@@ -838,54 +842,37 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.player.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.player.castbar.customTimeFont.font = L1UI.DefaultFont
 	E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 11
-	E.db.unitframe.units.player.castbar.height = 18
 	E.db.unitframe.units.player.castbar.latency = false
 	E.db.unitframe.units.player.castbar.spark = false
 	E.db.unitframe.units.player.castbar.textColor.b = 1
 	E.db.unitframe.units.player.castbar.textColor.g = 1
 	E.db.unitframe.units.player.castbar.textColor.r = 1
 	E.db.unitframe.units.player.castbar.timeToHold = 2
-	E.db.unitframe.units.player.castbar.width = 324
+	E.db.unitframe.units.player.castbar.width = 241
 	E.db.unitframe.units.player.castbar.xOffsetText = 2
 	E.db.unitframe.units.player.castbar.xOffsetTime = -2
 	E.db.unitframe.units.player.classbar.enable = false
 	E.db.unitframe.units.player.CombatIcon.enable = false
 	E.db.unitframe.units.player.debuffs.anchorPoint = 'TOPRIGHT'
 	E.db.unitframe.units.player.debuffs.countFont = L1UI.DefaultFont
-	E.db.unitframe.units.player.debuffs.countFontSize = 13
 	E.db.unitframe.units.player.debuffs.countPosition = 'TOP'
 	E.db.unitframe.units.player.debuffs.countYOffset = 14
 	E.db.unitframe.units.player.debuffs.desaturate = false
 	E.db.unitframe.units.player.debuffs.growthX = 'LEFT'
+	E.db.unitframe.units.player.debuffs.perrow = 10
 	E.db.unitframe.units.player.disableMouseoverGlow = true
 	E.db.unitframe.units.player.healPrediction.absorbStyle = 'WRAPPED'
-	E.db.unitframe.units.player.health.position = 'CENTER'
 	E.db.unitframe.units.player.health.text_format = ''
-	E.db.unitframe.units.player.health.xOffset = 0
-	E.db.unitframe.units.player.height = 30
-	E.db.unitframe.units.player.infoPanel.enable = true
-	E.db.unitframe.units.player.infoPanel.height = 17
-	E.db.unitframe.units.player.infoPanel.transparent = true
-	E.db.unitframe.units.player.name.position = 'TOPRIGHT'
-	E.db.unitframe.units.player.name.yOffset = 20
+	E.db.unitframe.units.player.height = 40
 	E.db.unitframe.units.player.partyIndicator.enable = false
-	E.db.unitframe.units.player.power.height = 6
-	E.db.unitframe.units.player.power.position = 'LEFT'
-	E.db.unitframe.units.player.power.powerPrediction = true
-	E.db.unitframe.units.player.power.text_format = ''
-	E.db.unitframe.units.player.power.xOffset = 2
-	E.db.unitframe.units.player.pvp.position = 'CENTER'
+	E.db.unitframe.units.player.power.enable = false
 	E.db.unitframe.units.player.pvp.text_format = ''
 	E.db.unitframe.units.player.pvpIcon.scale = 0.85
-	E.db.unitframe.units.player.raidicon.attachTo = 'LEFT'
-	E.db.unitframe.units.player.raidicon.attachToObject = 'Health'
-	E.db.unitframe.units.player.raidicon.size = 16
-	E.db.unitframe.units.player.raidicon.xOffset = 2
-	E.db.unitframe.units.player.raidicon.yOffset = 0
+	E.db.unitframe.units.player.raidicon.enable = false
 	E.db.unitframe.units.player.raidRoleIcons.yOffset = 1
 	E.db.unitframe.units.player.RestIcon.enable = false
 	E.db.unitframe.units.player.threatStyle = 'NONE'
-	E.db.unitframe.units.player.width = 190
+	E.db.unitframe.units.player.width = 240
 
 	-- Shared Target
 	E.db.unitframe.units.target.aurabar.enable = false
@@ -1066,18 +1053,12 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.disableTargetGlow = true
 		E.db.unitframe.units.party.healPrediction.absorbStyle = 'WRAPPED'
 		E.db.unitframe.units.party.healPrediction.enable = true
-		E.db.unitframe.units.party.health.position = 'BOTTOM'
 		E.db.unitframe.units.party.health.text_format = ''
-		E.db.unitframe.units.party.health.xOffset = 0
-		E.db.unitframe.units.party.health.yOffset = 2
 		E.db.unitframe.units.party.height = 32
 		E.db.unitframe.units.party.horizontalSpacing = 1
 		E.db.unitframe.units.party.infoPanel.height = 17
-		E.db.unitframe.units.party.name.attachTextTo = 'Frame'
 		E.db.unitframe.units.party.name.text_format = ''
 		E.db.unitframe.units.party.orientation = 'MIDDLE'
-		E.db.unitframe.units.party.petsGroup.anchorPoint = 'LEFT'
-		E.db.unitframe.units.party.petsGroup.height = 20
 		E.db.unitframe.units.party.phaseIndicator.anchorPoint = 'LEFT'
 		E.db.unitframe.units.party.phaseIndicator.scale = 0.5
 		E.db.unitframe.units.party.phaseIndicator.xOffset = 2
