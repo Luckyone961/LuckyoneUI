@@ -1219,7 +1219,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid40.disableTargetGlow = true
 		E.db.unitframe.units.raid40.healPrediction.absorbStyle = 'WRAPPED'
 		E.db.unitframe.units.raid40.health.text_format = ''
-		E.db.unitframe.units.raid40.height = 26
+		E.db.unitframe.units.raid40.height = 24
 		E.db.unitframe.units.raid40.horizontalSpacing = 1
 		E.db.unitframe.units.raid40.name.text_format = '[classcolor][name:veryshort]'
 		E.db.unitframe.units.raid40.phaseIndicator.anchorPoint = 'BOTTOMRIGHT'
