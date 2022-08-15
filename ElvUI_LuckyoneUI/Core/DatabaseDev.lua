@@ -311,9 +311,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.barPet.countFontSize = 9
 	E.db.actionbar.barPet.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.barPet.hotkeyFontOutline = 'OUTLINE'
-	E.db.actionbar.barPet.hotkeyFontSize = 9
+	E.db.actionbar.barPet.hotkeyFontSize = 8
 	E.db.actionbar.barPet.hotkeyTextPosition = 'TOPLEFT'
-	E.db.actionbar.barPet.hotkeyTextYOffset = -1
+	E.db.actionbar.barPet.hotkeyTextYOffset = 0
 	E.db.actionbar.barPet.point = 'TOPLEFT'
 	E.db.actionbar.cooldown.override = false
 	E.db.actionbar.countTextPosition = 'BOTTOM'
