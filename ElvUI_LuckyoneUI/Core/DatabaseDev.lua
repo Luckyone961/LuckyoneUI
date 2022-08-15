@@ -1165,6 +1165,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid.numGroups = 4
 		E.db.unitframe.units.raid.phaseIndicator.anchorPoint = 'BOTTOMRIGHT'
 		E.db.unitframe.units.raid.phaseIndicator.scale = 0.5
+		E.db.unitframe.units.raid.phaseIndicator.xOffset = 1
 		E.db.unitframe.units.raid.power.enable = false
 		E.db.unitframe.units.raid.pvpclassificationindicator.size = 18
 		E.db.unitframe.units.raid.raidicon.attachTo = 'TOPRIGHT'
@@ -1172,6 +1173,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid.raidicon.size = 12
 		E.db.unitframe.units.raid.raidicon.xOffset = 1
 		E.db.unitframe.units.raid.raidicon.yOffset = 1
+		E.db.unitframe.units.raid.raidRoleIcons.scale = 0.8
 		E.db.unitframe.units.raid.raidRoleIcons.yOffset = 1
 		E.db.unitframe.units.raid.rdebuffs.font = L1UI.DefaultFont
 		E.db.unitframe.units.raid.rdebuffs.fontOutline = 'OUTLINE'
