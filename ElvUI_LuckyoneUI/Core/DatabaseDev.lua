@@ -93,6 +93,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.lootRoll.statusBarTexture = 'Minimalist'
 	E.db.general.lootRoll.style = 'fullbar'
 	E.db.general.lootRoll.width = 340
+	E.db.general.minimap.icons.difficulty.scale = 0.7
+	E.db.general.minimap.icons.difficulty.xOffset = 1
+	E.db.general.minimap.icons.difficulty.yOffset = 1
 	E.db.general.minimap.locationFont = L1UI.DefaultFont
 	E.db.general.minimap.locationFontSize = 11
 	E.db.general.minimap.locationText = 'SHOW'
