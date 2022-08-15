@@ -520,6 +520,7 @@ function L1UI:Layout_Dragonflight(layout)
 	-- Custom Texts for all UnitFrames
 	E.db.unitframe.units.arena.customTexts = E.db.unitframe.units.arena.customTexts or {}
 	E.db.unitframe.units.boss.customTexts = E.db.unitframe.units.boss.customTexts or {}
+	E.db.unitframe.units.targettarget.customTexts = E.db.unitframe.units.targettarget.customTexts or {}
 
 	E.db.unitframe.units.arena.customTexts.Luckyone_Power = {
 		attachTextTo = 'Frame',
@@ -543,6 +544,30 @@ function L1UI:Layout_Dragonflight(layout)
 		text_format = '[powercolor][perpp<%]',
 		xOffset = -1,
 		yOffset = 0
+	}
+
+	E.db.unitframe.units.targettarget.customTexts.Luckyone_HP = {
+		attachTextTo = 'Frame',
+		enable = true,
+		font = L1UI.DefaultFont,
+		fontOutline = 'OUTLINE',
+		justifyH = 'LEFT',
+		size = 12,
+		text_format = '[luckyone:health:percent] • [health:current:shortvalue]',
+		xOffset = 3,
+		yOffset = 1
+	}
+
+	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = {
+		attachTextTo = 'Frame',
+		enable = true,
+		font = L1UI.DefaultFont,
+		fontOutline = 'OUTLINE',
+		justifyH = 'RIGHT',
+		size = 12,
+		text_format = '[classcolor][name:last]',
+		xOffset = -3,
+		yOffset = 1
 	}
 
 	-- Shared UF media
@@ -965,19 +990,11 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.targettarget.disableMouseoverGlow = true
 	E.db.unitframe.units.targettarget.health.position = 'CENTER'
 	E.db.unitframe.units.targettarget.health.xOffset = 0
-	E.db.unitframe.units.targettarget.height = 30
-	E.db.unitframe.units.targettarget.infoPanel.enable = true
-	E.db.unitframe.units.targettarget.infoPanel.height = 17
-	E.db.unitframe.units.targettarget.infoPanel.transparent = true
+	E.db.unitframe.units.targettarget.height = 20
 	E.db.unitframe.units.targettarget.name.text_format = ''
-	E.db.unitframe.units.targettarget.power.height = 6
-	E.db.unitframe.units.targettarget.power.powerPrediction = true
-	E.db.unitframe.units.targettarget.raidicon.attachTo = 'RIGHT'
-	E.db.unitframe.units.targettarget.raidicon.attachToObject = 'Health'
-	E.db.unitframe.units.targettarget.raidicon.size = 16
-	E.db.unitframe.units.targettarget.raidicon.xOffset = -2
-	E.db.unitframe.units.targettarget.raidicon.yOffset = 0
-	E.db.unitframe.units.targettarget.width = 80
+	E.db.unitframe.units.targettarget.power.enable = false
+	E.db.unitframe.units.targettarget.raidicon.enable = false
+	E.db.unitframe.units.targettarget.width = 240
 
 	-- UnitFrames nonRetail
 	if not E.Retail then
@@ -1080,7 +1097,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_RaidMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,253,301'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,253,320'
-		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-530,320'
+		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,278,260'
 
 		-- Main Party
 		E.db.unitframe.units.party.buffIndicator.size = 12
