@@ -1123,6 +1123,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid.horizontalSpacing = 1
 		E.db.unitframe.units.raid.name.attachTextTo = 'Frame'
 		E.db.unitframe.units.raid.name.position = 'TOP'
+		E.db.unitframe.units.raid.name.text_format = '[classcolor][name:veryshort]'
 		E.db.unitframe.units.raid.name.yOffset = -1
 		E.db.unitframe.units.raid.numGroups = 4
 		E.db.unitframe.units.raid.phaseIndicator.anchorPoint = 'BOTTOMRIGHT'
