@@ -66,7 +66,7 @@ function L1UI:Layout_Dragonflight(layout)
 	-- AB conversion
 	E.db.convertPages = true
 
-	-- General Shared
+	-- General shared
 	E.db.general.afkChat = false
 	E.db.general.autoAcceptInvite = true
 	E.db.general.autoRepair = E.Retail and 'GUILD' or 'PLAYER'
@@ -119,7 +119,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.general.objectiveFrameHeight = 600
 	end
 
-	-- ActionBars Shared
+	-- ActionBars shared
 	E.db.actionbar.bar1.buttonSize = 26
 	E.db.actionbar.bar1.buttonSpacing = 1
 	E.db.actionbar.bar1.countFont = L1UI.DefaultFont
@@ -455,7 +455,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.cooldown.secondsColor.b = 1
 	E.db.cooldown.threshold = 5
 
-	-- DataBars Shared
+	-- DataBars shared
 	E.db.databars.experience.font = L1UI.DefaultFont
 	E.db.databars.experience.height = 138
 	E.db.databars.experience.orientation = 'VERTICAL'
@@ -469,7 +469,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.databars.reputation.width = 10
 	E.db.databars.threat.enable = false
 
-	-- DataBars Wrath | TBC | Classic
+	-- DataBars nonRetail
 	if E.Retail then
 		E.db.databars.azerite.enable = false
 		E.db.databars.honor.enable = false
@@ -490,7 +490,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.datatexts.panels.Luckyone_MiniMap_DT.enable = true
 	E.db.datatexts.panels.Luckyone_MiniMap_DT[1] = 'Time'
 
-	-- Tooltip Shared
+	-- Tooltip shared
 	E.db.tooltip.alwaysShowRealm = true
 	E.db.tooltip.colorAlpha = 0.80
 	E.db.tooltip.font = L1UI.DefaultFont
@@ -559,7 +559,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.targettarget.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
 	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 1 }
 
-	-- Shared UnitFrames db
+	-- Shared UF media
 	E.db.unitframe.colors.castbar_backdrop.a = 0.80
 	E.db.unitframe.colors.castbar_backdrop.b = 0.05
 	E.db.unitframe.colors.castbar_backdrop.g = 0.05
@@ -610,11 +610,12 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.statusbar = 'Minimalist'
 	E.db.unitframe.smartRaidFilter = false
 
-	-- MA / MT
+	-- Shared MA/MT
 	E.db.unitframe.units.assist.enable = false
 	E.db.unitframe.units.tank.enable = false
 
 	if not E.Classic then
+		-- Shared Arena
 		E.db.unitframe.units.arena.buffs.anchorPoint = 'RIGHT'
 		E.db.unitframe.units.arena.buffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.arena.buffs.countFontSize = 10
@@ -671,57 +672,8 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.arena.pvpTrinket.xOffset = -1
 		E.db.unitframe.units.arena.spacing = 10
 		E.db.unitframe.units.arena.width = 190
-	end
 
-	if E.Retail or E.Wrath then
-		E.db.unitframe.units.boss.buffIndicator.enable = false
-		E.db.unitframe.units.boss.buffs.anchorPoint = 'RIGHT'
-		E.db.unitframe.units.boss.buffs.countFont = L1UI.DefaultFont
-		E.db.unitframe.units.boss.buffs.countFontSize = 10
-		E.db.unitframe.units.boss.buffs.countXOffset = 1
-		E.db.unitframe.units.boss.buffs.growthY = 'DOWN'
-		E.db.unitframe.units.boss.buffs.perrow = 2
-		E.db.unitframe.units.boss.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
-		E.db.unitframe.units.boss.buffs.sizeOverride = 32
-		E.db.unitframe.units.boss.buffs.xOffset = 1
-		E.db.unitframe.units.boss.buffs.yOffset = 1
-		E.db.unitframe.units.boss.castbar.customTextFont.enable = true
-		E.db.unitframe.units.boss.castbar.customTextFont.font = L1UI.DefaultFont
-		E.db.unitframe.units.boss.castbar.customTimeFont.enable = true
-		E.db.unitframe.units.boss.castbar.customTimeFont.font = L1UI.DefaultFont
-		E.db.unitframe.units.boss.castbar.height = 12
-		E.db.unitframe.units.boss.castbar.overlayOnFrame = 'Health'
-		E.db.unitframe.units.boss.castbar.spark = false
-		E.db.unitframe.units.boss.castbar.textColor.b = 1
-		E.db.unitframe.units.boss.castbar.textColor.g = 1
-		E.db.unitframe.units.boss.castbar.textColor.r = 1
-		E.db.unitframe.units.boss.castbar.width = 190
-		E.db.unitframe.units.boss.castbar.xOffsetText = 2
-		E.db.unitframe.units.boss.castbar.xOffsetTime = -2
-		E.db.unitframe.units.boss.debuffs.countFont = L1UI.DefaultFont
-		E.db.unitframe.units.boss.debuffs.countFontSize = 10
-		E.db.unitframe.units.boss.debuffs.countXOffset = 1
-		E.db.unitframe.units.boss.debuffs.growthX = 'LEFT'
-		E.db.unitframe.units.boss.debuffs.growthY = 'DOWN'
-		E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
-		E.db.unitframe.units.boss.debuffs.sizeOverride = 32
-		E.db.unitframe.units.boss.debuffs.xOffset = -1
-		E.db.unitframe.units.boss.debuffs.yOffset = 1
-		E.db.unitframe.units.boss.disableMouseoverGlow = true
-		E.db.unitframe.units.boss.disableTargetGlow = true
-		E.db.unitframe.units.boss.health.text_format = '[luckyone:health:percent]'
-		E.db.unitframe.units.boss.health.xOffset = 1
-		E.db.unitframe.units.boss.height = 32
-		E.db.unitframe.units.boss.name.text_format = '[classcolor][name:last]'
-		E.db.unitframe.units.boss.power.height = 3
-		E.db.unitframe.units.boss.power.text_format = '[powercolor][perpp<%]'
-		E.db.unitframe.units.boss.power.width = 'inset'
-		E.db.unitframe.units.boss.power.xOffset = 0
-		E.db.unitframe.units.boss.spacing = 10
-		E.db.unitframe.units.boss.width = 190
-	end
-
-	if not E.Classic then
+		-- Shared Focus
 		E.db.unitframe.units.focus.buffs.anchorPoint = 'TOPRIGHT'
 		E.db.unitframe.units.focus.buffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.focus.buffs.countFontSize = 13
@@ -807,6 +759,56 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.focustarget.width = 80
 	end
 
+	if E.Retail or E.Wrath then
+		-- Shared Boss
+		E.db.unitframe.units.boss.buffIndicator.enable = false
+		E.db.unitframe.units.boss.buffs.anchorPoint = 'RIGHT'
+		E.db.unitframe.units.boss.buffs.countFont = L1UI.DefaultFont
+		E.db.unitframe.units.boss.buffs.countFontSize = 10
+		E.db.unitframe.units.boss.buffs.countXOffset = 1
+		E.db.unitframe.units.boss.buffs.growthY = 'DOWN'
+		E.db.unitframe.units.boss.buffs.perrow = 2
+		E.db.unitframe.units.boss.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+		E.db.unitframe.units.boss.buffs.sizeOverride = 32
+		E.db.unitframe.units.boss.buffs.xOffset = 1
+		E.db.unitframe.units.boss.buffs.yOffset = 1
+		E.db.unitframe.units.boss.castbar.customTextFont.enable = true
+		E.db.unitframe.units.boss.castbar.customTextFont.font = L1UI.DefaultFont
+		E.db.unitframe.units.boss.castbar.customTimeFont.enable = true
+		E.db.unitframe.units.boss.castbar.customTimeFont.font = L1UI.DefaultFont
+		E.db.unitframe.units.boss.castbar.height = 12
+		E.db.unitframe.units.boss.castbar.overlayOnFrame = 'Health'
+		E.db.unitframe.units.boss.castbar.spark = false
+		E.db.unitframe.units.boss.castbar.textColor.b = 1
+		E.db.unitframe.units.boss.castbar.textColor.g = 1
+		E.db.unitframe.units.boss.castbar.textColor.r = 1
+		E.db.unitframe.units.boss.castbar.width = 190
+		E.db.unitframe.units.boss.castbar.xOffsetText = 2
+		E.db.unitframe.units.boss.castbar.xOffsetTime = -2
+		E.db.unitframe.units.boss.debuffs.countFont = L1UI.DefaultFont
+		E.db.unitframe.units.boss.debuffs.countFontSize = 10
+		E.db.unitframe.units.boss.debuffs.countXOffset = 1
+		E.db.unitframe.units.boss.debuffs.growthX = 'LEFT'
+		E.db.unitframe.units.boss.debuffs.growthY = 'DOWN'
+		E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
+		E.db.unitframe.units.boss.debuffs.sizeOverride = 32
+		E.db.unitframe.units.boss.debuffs.xOffset = -1
+		E.db.unitframe.units.boss.debuffs.yOffset = 1
+		E.db.unitframe.units.boss.disableMouseoverGlow = true
+		E.db.unitframe.units.boss.disableTargetGlow = true
+		E.db.unitframe.units.boss.health.text_format = '[luckyone:health:percent]'
+		E.db.unitframe.units.boss.health.xOffset = 1
+		E.db.unitframe.units.boss.height = 32
+		E.db.unitframe.units.boss.name.text_format = '[classcolor][name:last]'
+		E.db.unitframe.units.boss.power.height = 3
+		E.db.unitframe.units.boss.power.text_format = '[powercolor][perpp<%]'
+		E.db.unitframe.units.boss.power.width = 'inset'
+		E.db.unitframe.units.boss.power.xOffset = 0
+		E.db.unitframe.units.boss.spacing = 10
+		E.db.unitframe.units.boss.width = 190
+	end
+
+	-- Shared Pet
 	E.db.unitframe.units.pet.buffs.countFont = L1UI.DefaultFont
 	E.db.unitframe.units.pet.buffs.countFontSize = 11
 	E.db.unitframe.units.pet.buffs.countYOffset = 1
@@ -850,6 +852,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.pet.threatStyle = 'NONE'
 	E.db.unitframe.units.pet.width = 80
 
+	-- Shared Player
 	E.db.unitframe.units.player.aurabar.enable = false
 	E.db.unitframe.units.player.buffs.attachTo = 'FRAME'
 	E.db.unitframe.units.player.buffs.countFont = L1UI.DefaultFont
@@ -910,6 +913,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.player.threatStyle = 'NONE'
 	E.db.unitframe.units.player.width = 190
 
+	-- Shared Target
 	E.db.unitframe.units.target.aurabar.enable = false
 	E.db.unitframe.units.target.buffs.countFont = L1UI.DefaultFont
 	E.db.unitframe.units.target.buffs.countFontSize = 13
@@ -975,7 +979,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.target.raidRoleIcons.yOffset = 1
 	E.db.unitframe.units.target.threatStyle = 'NONE'
 	E.db.unitframe.units.target.width = 190
-
 	E.db.unitframe.units.targettarget.debuffs.enable = false
 	E.db.unitframe.units.targettarget.disableMouseoverGlow = true
 	E.db.unitframe.units.targettarget.health.position = 'CENTER'
@@ -994,14 +997,14 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.targettarget.raidicon.yOffset = 0
 	E.db.unitframe.units.targettarget.width = 80
 
-	-- Wrath | TBC | Classic UnitFrames db
+	-- UnitFrames nonRetail
 	if not E.Retail then
 		E.db.unitframe.units.pet.buffs.enable = true
 		E.db.unitframe.units.pet.debuffs.enable = true
 		E.db.unitframe.units.player.power.EnergyManaRegen = false
 	end
 
-	-- Growth Directions shared
+	-- Shared growth directions
 	E.db.unitframe.units.raid.growthDirection = 'RIGHT_DOWN'
 	E.db.unitframe.units.raid40.growthDirection = 'RIGHT_DOWN'
 
@@ -1081,10 +1084,10 @@ function L1UI:Layout_Dragonflight(layout)
 
 	if layout == 'main' then
 
-		-- Growth Directions DPS/TANK
+		-- Main growth directions
 		E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
 
-		-- Movers DPS/TANK
+		-- Main movers
 		E.db.movers.ElvUF_FocusCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,253,431'
 		E.db.movers.ElvUF_FocusMover = 'BOTTOM,ElvUIParent,BOTTOM,253,450'
 		E.db.movers.ElvUF_FocusTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-530,450'
@@ -1097,7 +1100,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,253,320'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-530,320'
 
-		-- Party DPS/TANK
+		-- Main Party
 		E.db.unitframe.units.party.buffIndicator.size = 12
 		E.db.unitframe.units.party.buffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.party.buffs.perrow = 3
@@ -1149,7 +1152,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.verticalSpacing = 1
 		E.db.unitframe.units.party.width = 190
 
-		-- Raid DPS/TANK
+		-- Main Raid
 		E.db.unitframe.units.raid.buffIndicator.enable = false
 		E.db.unitframe.units.raid.classbar.enable = false
 		E.db.unitframe.units.raid.debuffs.anchorPoint = 'BOTTOM'
@@ -1211,7 +1214,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid.visibility = '[@raid6,noexists][@raid31,exists] hide;show'
 		E.db.unitframe.units.raid.width = 82
 
-		-- Raid40 DPS/TANK
+		-- Main Raid40
 		E.db.unitframe.units.raid40.buffIndicator.enable = false
 		E.db.unitframe.units.raid40.classbar.enable = false
 		E.db.unitframe.units.raid40.debuffs.countFont = L1UI.DefaultFont
@@ -1266,10 +1269,10 @@ function L1UI:Layout_Dragonflight(layout)
 
 	elseif layout == 'healing' then
 
-		-- Growth Directions Healing
+		-- Healing growth directions
 		E.db.unitframe.units.party.growthDirection = 'RIGHT_DOWN'
 
-		-- Movers Healing
+		-- Healing movers
 		E.db.movers.ElvUF_FocusCastbarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,451'
 		E.db.movers.ElvUF_FocusMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,470'
 		E.db.movers.ElvUF_FocusTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-460,470'
@@ -1282,7 +1285,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_TargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,320'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-460,320'
 
-		-- Party Healing
+		-- Healing Party
 		E.db.unitframe.units.party.classbar.enable = false
 		E.db.unitframe.units.party.debuffs.enable = false
 		E.db.unitframe.units.party.disableMouseoverGlow = true
@@ -1323,7 +1326,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.verticalSpacing = 1
 		E.db.unitframe.units.party.width = 90
 
-		-- Raid Healing
+		-- Healing Raid
 		E.db.unitframe.units.raid.classbar.enable = false
 		E.db.unitframe.units.raid.debuffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.raid.debuffs.desaturate = false
@@ -1358,7 +1361,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid.visibility = '[@raid6,noexists][@raid31,exists] hide;show'
 		E.db.unitframe.units.raid.width = 90
 
-		-- Raid40 Healing
+		-- Healing Raid40
 		E.db.unitframe.units.raid40.classbar.enable = false
 		E.db.unitframe.units.raid40.debuffs.countFont = L1UI.DefaultFont
 		E.db.unitframe.units.raid40.debuffs.desaturate = false
