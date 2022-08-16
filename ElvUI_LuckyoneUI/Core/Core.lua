@@ -106,8 +106,8 @@ function L1UI:NameplateCVars()
 	SetCVar('nameplateOccludedAlphaMult', 1)
 	SetCVar('nameplateOtherBottomInset', -1)
 	SetCVar('nameplateOtherTopInset', -1)
-	SetCVar('nameplateOverlapH', 1.1)
-	SetCVar('nameplateOverlapV', 1.8)
+	SetCVar('nameplateOverlapH', 1)
+	SetCVar('nameplateOverlapV', 1.4)
 	SetCVar('nameplateSelectedScale', 1)
 	SetCVar('nameplateSelfAlpha', 1)
 	SetCVar('nameplateSelfTopInset', -1)
@@ -127,12 +127,6 @@ end
 -- E.private & Media
 function L1UI:Setup_PrivateDB()
 
-	if L1UI.Me then
-		E.private.general.chatBubbles = 'disabled'
-		E.private.L1UI.disabledFrames.AlertFrame = true
-		E.private.L1UI.disabledFrames.BossBanner = true
-	end
-
 	E.db.general.font = 'Expressway'
 	E.db.general.fontSize = 11
 	E.db.general.fontStyle = 'OUTLINE'
@@ -149,6 +143,12 @@ function L1UI:Setup_PrivateDB()
 
 	E.private.install_complete = E.version
 	E.private.skins.parchmentRemoverEnable = true
+
+	if L1UI.Me then
+		E.private.general.chatBubbles = 'disabled'
+		E.private.L1UI.disabledFrames.AlertFrame = true
+		E.private.L1UI.disabledFrames.BossBanner = true
+	end
 end
 
 -- E.global & Custom DataText
@@ -165,30 +165,30 @@ function L1UI:Setup_GlobalDB()
 	E.global.general.smallerWorldMapScale = 0.8
 	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
-	do
-		E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.backdrop = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.border = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.enable = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.enable = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.font = 'Expressway'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontOutline = 'OUTLINE'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.fonts.fontSize = 11
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameLevel = 1
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.frameStrata = 'BACKGROUND'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.growth = 'HORIZONTAL'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.height = 13
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.mouseover = false
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.name = 'Luckyone_ActionBars_DT'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.numPoints = 3
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.panelTransparency = true
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.textJustify = 'CENTER'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipAnchor = 'ANCHOR_TOP'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipXOffset = 0
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.tooltipYOffset = 5
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 358
-	end
+	E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
+
+	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
+	ActionBarsDT.backdrop = true
+	ActionBarsDT.border = true
+	ActionBarsDT.enable = true
+	ActionBarsDT.fonts.enable = true
+	ActionBarsDT.fonts.font = 'Expressway'
+	ActionBarsDT.fonts.fontOutline = 'OUTLINE'
+	ActionBarsDT.fonts.fontSize = 11
+	ActionBarsDT.frameLevel = 1
+	ActionBarsDT.frameStrata = 'BACKGROUND'
+	ActionBarsDT.growth = 'HORIZONTAL'
+	ActionBarsDT.height = 13
+	ActionBarsDT.mouseover = false
+	ActionBarsDT.name = 'Luckyone_ActionBars_DT'
+	ActionBarsDT.numPoints = 3
+	ActionBarsDT.panelTransparency = true
+	ActionBarsDT.textJustify = 'CENTER'
+	ActionBarsDT.tooltipAnchor = 'ANCHOR_TOP'
+	ActionBarsDT.tooltipXOffset = 0
+	ActionBarsDT.tooltipYOffset = 5
+	ActionBarsDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
+	ActionBarsDT.width = 358
 end
 
 -- ElvUI Layouts setup
@@ -213,7 +213,7 @@ function L1UI:Setup_Layout(layout)
 	if not L1UI.Me then L1UI:Setup_GlobalDB() end
 
 	-- E.private & Media
-	if not L1UI.Me then L1UI:Setup_PrivateDB() end
+	L1UI:Setup_PrivateDB()
 
 	-- E.db & Movers
 	if layout == 'main' then
@@ -231,13 +231,13 @@ function L1UI:Setup_Layout(layout)
 	end
 
 	-- AddOnSkins profile
-	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins('noPrint') end
+	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins(true) end
 
 	-- ProjectAzilroka profile
-	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Setup_ProjectAzilroka('noPrint') end
+	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Setup_ProjectAzilroka(true) end
 
 	-- Shadow & Light profile
-	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight('noPrint') end
+	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight(true) end
 
 	-- Push the update
 	E:StaggeredUpdateAll()

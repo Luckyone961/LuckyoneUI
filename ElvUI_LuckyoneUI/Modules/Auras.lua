@@ -8,51 +8,31 @@ function L1UI:Setup_Buffs(frame, type)
 
 	if frame == 'player' then
 		if type == 'all' then
-			E.db["unitframe"]["units"]["player"]["buffs"]["perrow"] = 8
-			E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = all
+			E.db.unitframe.units.player.buffs.priority = all
 		else
-			E.db["unitframe"]["units"]["player"]["buffs"]["perrow"] = 2
-			E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = min
+			E.db.unitframe.units.player.buffs.priority = min
 		end
 	elseif frame == 'target' then
 		if type == 'all' then
-			E.db["unitframe"]["units"]["target"]["buffs"]["perrow"] = 8
-			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = all
+			E.db.unitframe.units.target.buffs.priority = all
 		else
-			E.db["unitframe"]["units"]["target"]["buffs"]["perrow"] = 2
-			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = min
+			E.db.unitframe.units.target.buffs.priority = min
 		end
 	elseif frame == 'focus' then
 		if type == 'all' then
-			E.db["unitframe"]["units"]["focus"]["buffs"]["perrow"] = 8
-			E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = all
+			E.db.unitframe.units.focus.buffs.priority = all
 		else
-			E.db["unitframe"]["units"]["focus"]["buffs"]["perrow"] = 2
-			E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = min
+			E.db.unitframe.units.focus.buffs.priority = min
 		end
 	elseif frame == 'boss' then
 		if type == 'all' then
-			E.db["unitframe"]["units"]["boss"]["buffs"]["perrow"] = 8
-			E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = all
+			E.db.unitframe.units.boss.buffs.priority = all
 		else
-			E.db["unitframe"]["units"]["boss"]["buffs"]["perrow"] = 3
-			E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = min
-		end
-	elseif frame == 'nameplate' then
-		if type == 'all' then
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["numAuras"] = 8
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = all
-		else
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["numAuras"] = 2
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = min
+			E.db.unitframe.units.boss.buffs.priority = min
 		end
 	end
 
-	if frame == 'nameplate' and NP.Initialized then
-		E:UpdateNamePlates(true)
-	else
-		E:UpdateUnitFrames()
-	end
+	E:UpdateUnitFrames()
 
 	L1UI:Print(L["Buff filters updated."])
 end
@@ -65,41 +45,31 @@ function L1UI:Setup_Debuffs(frame, type)
 
 	if frame == 'player' then
 		if type == 'all' then
-			E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = all
+			E.db.unitframe.units.player.debuffs.priority = all
 		else
-			E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = min
+			E.db.unitframe.units.player.debuffs.priority = min
 		end
 	elseif frame == 'target' then
 		if type == 'all' then
-			E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = all
+			E.db.unitframe.units.target.debuffs.priority = all
 		else
-			E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = min
+			E.db.unitframe.units.target.debuffs.priority = min
 		end
 	elseif frame == 'focus' then
 		if type == 'all' then
-			E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = all
+			E.db.unitframe.units.focus.debuffs.priority = all
 		else
-			E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = min
+			E.db.unitframe.units.focus.debuffs.priority = min
 		end
 	elseif frame == 'boss' then
 		if type == 'all' then
-			E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = all
+			E.db.unitframe.units.boss.debuffs.priority = all
 		else
-			E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = min
-		end
-	elseif frame == 'nameplate' then
-		if type == 'all' then
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = all
-		else
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = min
+			E.db.unitframe.units.boss.debuffs.priority = min
 		end
 	end
 
-	if frame == 'nameplate' and NP.Initialized then
-		E:UpdateNamePlates(true)
-	else
-		E:UpdateUnitFrames()
-	end
+	E:UpdateUnitFrames()
 
 	L1UI:Print(L["Debuff filters updated."])
 end
