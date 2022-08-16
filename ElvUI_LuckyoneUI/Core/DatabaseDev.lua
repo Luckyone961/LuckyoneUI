@@ -70,9 +70,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.afkChat = false
 	E.db.general.autoAcceptInvite = true
 	E.db.general.autoRepair = E.Retail and 'GUILD' or 'PLAYER'
-	E.db.general.backdropcolor.b = 0.10
-	E.db.general.backdropcolor.g = 0.10
-	E.db.general.backdropcolor.r = 0.10
+	E.db.general.backdropcolor.b = 0.13
+	E.db.general.backdropcolor.g = 0.13
+	E.db.general.backdropcolor.r = 0.13
 	E.db.general.backdropfadecolor.a = 1
 	E.db.general.backdropfadecolor.b = 0.05
 	E.db.general.backdropfadecolor.g = 0.05
