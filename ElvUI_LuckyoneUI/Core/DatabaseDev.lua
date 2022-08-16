@@ -68,7 +68,7 @@ function L1UI:Layout_Dragonflight(layout)
 	-- AB conversion
 	E.db.convertPages = true
 
-	-- General shared
+	-- General
 	E.db.general.afkChat = false
 	E.db.general.altPowerBar.font = L1UI.DefaultFont
 	E.db.general.altPowerBar.statusBar = 'Minimalist'
@@ -113,7 +113,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.talkingHeadFrameScale = 0.7
 	E.db.general.vehicleSeatIndicatorSize = 64
 
-	-- ActionBars shared
+	-- ActionBars
 	E.db.actionbar.bar1.buttonSize = 26
 	E.db.actionbar.bar1.buttonSpacing = 1
 	E.db.actionbar.bar1.countFont = L1UI.DefaultFont
@@ -430,7 +430,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.chat.tabSelector = 'NONE'
 	E.db.chat.throttleInterval = 0
 
-	-- Cooldown
+	-- Cooldown Text
 	E.db.cooldown.daysIndicator.g = 0.4
 	E.db.cooldown.daysIndicator.r = 0.4
 	E.db.cooldown.expireIndicator.b = 0
@@ -441,7 +441,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.cooldown.secondsColor.b = 1
 	E.db.cooldown.threshold = 5
 
-	-- DataBars shared
+	-- DataBars
 	E.db.databars.azerite.enable = false
 	E.db.databars.experience.font = L1UI.DefaultFont
 	E.db.databars.experience.height = 138
@@ -471,7 +471,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.datatexts.panels.LeftChatDataPanel.enable = false
 	E.db.datatexts.panels.RightChatDataPanel.enable = false
 
-	-- Tooltip shared
+	-- Tooltip
 	E.db.tooltip.alwaysShowRealm = true
 	E.db.tooltip.colorAlpha = 0.9
 	E.db.tooltip.font = L1UI.DefaultFont
