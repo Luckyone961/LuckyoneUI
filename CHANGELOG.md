@@ -1,6 +1,7 @@
 ### Version 1.56 [In Development]
 **All WoW Versions:**  
 Removed DBM profiles and support  
+Updated ElvUI NamePlates  
 **Retail:**  
 Added ElvUI StyleFilter for shrouded affix mobs  
 Updated TOC for 9.2.7  
