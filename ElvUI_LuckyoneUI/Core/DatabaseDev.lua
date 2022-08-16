@@ -73,7 +73,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.backdropcolor.b = 0.10
 	E.db.general.backdropcolor.g = 0.10
 	E.db.general.backdropcolor.r = 0.10
-	E.db.general.backdropfadecolor.a = 0.80
+	E.db.general.backdropfadecolor.a = 1
 	E.db.general.backdropfadecolor.b = 0.05
 	E.db.general.backdropfadecolor.g = 0.05
 	E.db.general.backdropfadecolor.r = 0.05
@@ -937,7 +937,7 @@ function L1UI:Layout_Dragonflight(layout)
 		-- Main movers
 		E.db.movers.ElvUF_FocusCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,278,391'
 		E.db.movers.ElvUF_FocusMover = 'BOTTOM,ElvUIParent,BOTTOM,278,410'
-		E.db.movers.ElvUF_PartyMover = 'TOPLEFT,ElvUIParent,TOPLEFT,450,-323'
+		E.db.movers.ElvUF_PartyMover = 'TOPLEFT,ElvUIParent,TOPLEFT,360,-360'
 		E.db.movers.ElvUF_PetMover = 'BOTTOM,UIParent,BOTTOM,0,122'
 		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,-278,281'
 		E.db.movers.ElvUF_PlayerMover = 'BOTTOM,ElvUIParent,BOTTOM,-278,300'
