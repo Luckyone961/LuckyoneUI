@@ -73,7 +73,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.backdropcolor.b = 0.13
 	E.db.general.backdropcolor.g = 0.13
 	E.db.general.backdropcolor.r = 0.13
-	E.db.general.backdropfadecolor.a = 1
+	E.db.general.backdropfadecolor.a = 0.9
 	E.db.general.backdropfadecolor.b = 0.05
 	E.db.general.backdropfadecolor.g = 0.05
 	E.db.general.backdropfadecolor.r = 0.05
@@ -423,7 +423,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.chat.lfgIcons = false
 	E.db.chat.maxLines = 500
 	E.db.chat.numScrollMessages = 2
-	E.db.chat.panelColor.a = 1
+	E.db.chat.panelColor.a = 0.9
 	E.db.chat.panelColor.b = 0.05
 	E.db.chat.panelColor.g = 0.05
 	E.db.chat.panelColor.r = 0.05
@@ -491,7 +491,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 	-- Tooltip shared
 	E.db.tooltip.alwaysShowRealm = true
-	E.db.tooltip.colorAlpha = 1
+	E.db.tooltip.colorAlpha = 0.9
 	E.db.tooltip.font = L1UI.DefaultFont
 	E.db.tooltip.fontOutline = 'OUTLINE'
 	E.db.tooltip.headerFont = L1UI.DefaultFont
