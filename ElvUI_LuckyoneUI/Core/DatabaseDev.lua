@@ -598,7 +598,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.arena.debuffs.maxDuration = 0
 		E.db.unitframe.units.arena.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
 		E.db.unitframe.units.arena.debuffs.sizeOverride = 32
-		E.db.unitframe.units.arena.debuffs.xOffset = -1
+		E.db.unitframe.units.arena.debuffs.xOffset = -34
 		E.db.unitframe.units.arena.debuffs.yOffset = 1
 		E.db.unitframe.units.arena.disableMouseoverGlow = true
 		E.db.unitframe.units.arena.disableTargetGlow = true
@@ -613,9 +613,8 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.arena.pvpclassificationindicator.size = 24
 		E.db.unitframe.units.arena.pvpclassificationindicator.xOffset = -40
 		E.db.unitframe.units.arena.pvpSpecIcon = false
-		E.db.unitframe.units.arena.pvpTrinket.enable = false
 		E.db.unitframe.units.arena.pvpTrinket.position = 'LEFT'
-		E.db.unitframe.units.arena.pvpTrinket.size = 45
+		E.db.unitframe.units.arena.pvpTrinket.size = 32
 		E.db.unitframe.units.arena.pvpTrinket.xOffset = -1
 		E.db.unitframe.units.arena.spacing = 14
 		E.db.unitframe.units.arena.width = 190
@@ -860,7 +859,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-178'
 	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,UIParent,TOPRIGHT,-243,-240'
-	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,UIParent,TOPRIGHT,-80,-208'
+	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,UIParent,TOPRIGHT,-80,-207'
 	E.db.movers.BNETMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-199'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-1'
