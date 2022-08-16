@@ -493,7 +493,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 	-- Tooltip shared
 	E.db.tooltip.alwaysShowRealm = true
-	E.db.tooltip.colorAlpha = 0.80
+	E.db.tooltip.colorAlpha = 1
 	E.db.tooltip.font = L1UI.DefaultFont
 	E.db.tooltip.fontOutline = 'OUTLINE'
 	E.db.tooltip.headerFont = L1UI.DefaultFont
