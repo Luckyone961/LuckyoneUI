@@ -428,9 +428,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.chat.panelColor.g = 0.05
 	E.db.chat.panelColor.r = 0.05
 	E.db.chat.panelHeight = 138
-	E.db.chat.panelHeightRight = 171
 	E.db.chat.panelWidth = 414
-	E.db.chat.panelWidthRight = 414
 	E.db.chat.showHistory.CHANNEL = false
 	E.db.chat.showHistory.EMOTE = false
 	E.db.chat.showHistory.GUILD = false
@@ -518,7 +516,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.tooltip.role = false
 	end
 
-	-- Shared UF media
+	-- Shared UnitFrames media
 	E.db.unitframe.colors.castbar_backdrop.b = 0.05
 	E.db.unitframe.colors.castbar_backdrop.g = 0.05
 	E.db.unitframe.colors.castbar_backdrop.r = 0.05
@@ -854,9 +852,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.targettarget.width = 278
 
 	-- UnitFrames nonRetail
-	if not E.Retail then
-		E.db.unitframe.units.player.power.EnergyManaRegen = false
-	end
+	if not E.Retail then E.db.unitframe.units.player.power.EnergyManaRegen = false end
 
 	-- Shared growth directions
 	E.db.unitframe.units.raid.growthDirection = 'RIGHT_DOWN'

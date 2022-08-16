@@ -29,6 +29,7 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 
 	-- Shadow & Light Profile DB
 	E.db.sle.actionbar.vehicle.enabled = false
+
 	E.db.sle.afk.chat.show = false
 	E.db.sle.afk.defaultGraphics.classCrest.enable = false
 	E.db.sle.afk.defaultGraphics.elvuiLogo.enable = false
@@ -66,6 +67,7 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.db.sle.afk.enable = true
 	E.db.sle.afk.playermodel.distance = 6
 	E.db.sle.afk.playermodel.enable = false
+
 	E.db.sle.armory.character.background.overlay = false
 	E.db.sle.armory.character.durability.display = 'Hide'
 	E.db.sle.armory.character.durability.font = 'Expressway'
@@ -101,6 +103,7 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.db.sle.armory.stats.statFonts.font = 'Expressway'
 	E.db.sle.armory.stats.statFonts.outline = 'OUTLINE'
 	E.db.sle.armory.stats.statFonts.size = 11
+
 	E.db.sle.media.fonts.gossip.font = 'Expressway'
 	E.db.sle.media.fonts.gossip.size = 11
 	E.db.sle.media.fonts.mail.font = 'Expressway'
@@ -117,7 +120,9 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.db.sle.media.fonts.subzone.size = 24
 	E.db.sle.media.fonts.zone.font = 'Expressway'
 	E.db.sle.media.fonts.zone.size = 30
+
 	E.db.sle.raidmarkers.enable = false
+
 	E.db.sle.skins.objectiveTracker.classHeader = true
 	E.db.sle.skins.objectiveTracker.colorHeader.b = 1
 	E.db.sle.skins.objectiveTracker.colorHeader.g = 0

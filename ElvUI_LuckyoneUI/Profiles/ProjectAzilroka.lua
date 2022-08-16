@@ -40,13 +40,13 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	PA.db.SquareMinimapButtons.Backdrop = false
 	PA.db.SquareMinimapButtons.BarMouseOver = false
 	if L1UI.Me then
-		PA.db.SquareMinimapButtons.ButtonSpacing = 1
+		PA.db.SquareMinimapButtons.ButtonSpacing = 1 -- Dragonflight Layout
 	else
 		PA.db.SquareMinimapButtons.ButtonSpacing = -1
 	end
 	PA.db.SquareMinimapButtons.ButtonsPerRow = 6
 	if L1UI.Me then
-		PA.db.SquareMinimapButtons.IconSize = 25
+		PA.db.SquareMinimapButtons.IconSize = 25 -- Dragonflight Layout
 	else
 		PA.db.SquareMinimapButtons.IconSize = 28
 	end
@@ -64,10 +64,10 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	PA.db.stAddonManager.NumAddOns = 18
 
 	-- Movers
-	if not E.db.movers then E.db.movers = {} end
+	E.db.movers = E.db.movers or {}
 
 	if L1UI.Me then
-		E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,0,-156'
+		E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,0,-156' -- Dragonflight Layout
 	else
 		E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187'
 	end
