@@ -21,8 +21,8 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.private.sle.module.blizzmove.enable = true
 	E.private.sle.professions.deconButton.enable = false
 	E.private.sle.skins.objectiveTracker.BGbackdrop = false
-	E.private.sle.skins.objectiveTracker.color.g = 0.41960784313725
-	E.private.sle.skins.objectiveTracker.color.r = 0.25882352941176
+	E.private.sle.skins.objectiveTracker.color.g = 0.41
+	E.private.sle.skins.objectiveTracker.color.r = 0.25
 	E.private.sle.skins.objectiveTracker.texture = 'Minimalist'
 	E.private.sle.skins.objectiveTracker.underlineHeight = 2
 	E.private.sle.skins.petbattles.enable = false
@@ -126,7 +126,7 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.db.sle.skins.objectiveTracker.classHeader = true
 	E.db.sle.skins.objectiveTracker.colorHeader.b = 1
 	E.db.sle.skins.objectiveTracker.colorHeader.g = 0
-	E.db.sle.skins.objectiveTracker.colorHeader.r = 0.81960784313725
+	E.db.sle.skins.objectiveTracker.colorHeader.r = 0.81
 	E.db.sle.skins.objectiveTracker.underlineClass = true
 	E.db.sle.skins.talkinghead.hide = true
 
