@@ -10,13 +10,13 @@ function L1UI:Setup_OmniCD(layout)
 	-- Profile names
 	local name, name_healing = "Luckyone DPS/TANK", "Luckyone Healing"
 
-	-- Global stuff
-	OmniCDDB["cooldowns"] = {}
-	OmniCDDB["global"]["disableElvMsg"] = true
+	-- Global db
+	OmniCDDB.cooldowns = {}
+	OmniCDDB.global.disableElvMsg = true
 
-	-- Create profiles if they don't exist
-	OmniCDDB["profiles"][name] = OmniCDDB["profiles"][name] or {}
-	OmniCDDB["profiles"][name_healing] = OmniCDDB["profiles"][name_healing] or {}
+	-- Profile creation
+	OmniCDDB.profiles.name = OmniCDDB.profiles.name or {}
+	OmniCDDB.profiles.name_healing = OmniCDDB.profiles.name_healing or {}
 
 	-- DPS/TANK
 	OmniCDDB["profiles"][name]["General"] = {

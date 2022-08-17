@@ -86,19 +86,20 @@ function L1UI:Setup_NamePlates(addon)
 		E.db.nameplates.units.ENEMY_NPC.health.text.font = L1UI.DefaultFont
 		E.db.nameplates.units.ENEMY_NPC.health.text.format = '[luckyone:health:percent]'
 		E.db.nameplates.units.ENEMY_NPC.health.text.position = 'TOPRIGHT'
-		E.db.nameplates.units.ENEMY_NPC.health.text.yOffset = -24
+		E.db.nameplates.units.ENEMY_NPC.health.text.yOffset = -23
 		E.db.nameplates.units.ENEMY_NPC.level.enable = false
 		E.db.nameplates.units.ENEMY_NPC.name.font = L1UI.DefaultFont
 		E.db.nameplates.units.ENEMY_NPC.name.format = '[name:last]'
 		E.db.nameplates.units.ENEMY_NPC.name.xOffset = 1
-		E.db.nameplates.units.ENEMY_NPC.name.yOffset = -24
+		E.db.nameplates.units.ENEMY_NPC.name.yOffset = -23
 		E.db.nameplates.units.ENEMY_NPC.pvpindicator.size = 35
 		E.db.nameplates.units.ENEMY_NPC.questIcon.enable = false
 		E.db.nameplates.units.ENEMY_NPC.questIcon.font = L1UI.DefaultFont
 		E.db.nameplates.units.ENEMY_NPC.questIcon.size = 25
 		E.db.nameplates.units.ENEMY_NPC.questIcon.textPosition = 'CENTER'
-		E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.size = 18
+		E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.size = 20
 		E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = -2
+		E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
 
 		-- Enemy Player
 		E.db.nameplates.units.ENEMY_PLAYER.buffs.anchorPoint = 'TOPRIGHT'
@@ -145,17 +146,18 @@ function L1UI:Setup_NamePlates(addon)
 		E.db.nameplates.units.ENEMY_PLAYER.health.text.font = L1UI.DefaultFont
 		E.db.nameplates.units.ENEMY_PLAYER.health.text.format = '[luckyone:health:percent]'
 		E.db.nameplates.units.ENEMY_PLAYER.health.text.position = 'TOPRIGHT'
-		E.db.nameplates.units.ENEMY_PLAYER.health.text.yOffset = -24
+		E.db.nameplates.units.ENEMY_PLAYER.health.text.yOffset = -23
 		E.db.nameplates.units.ENEMY_PLAYER.level.enable = false
 		E.db.nameplates.units.ENEMY_PLAYER.level.format = '[difficultycolor][level][shortclassification]'
 		E.db.nameplates.units.ENEMY_PLAYER.markHealers = false
 		E.db.nameplates.units.ENEMY_PLAYER.name.font = L1UI.DefaultFont
 		E.db.nameplates.units.ENEMY_PLAYER.name.format = '[name:last]'
 		E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 1
-		E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -24
+		E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -23
 		E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
-		E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.size = 18
+		E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.size = 20
 		E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.xOffset = -2
+		E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.yOffset = 1
 
 		-- Friendly NPC
 		E.db.nameplates.units.FRIENDLY_NPC.health.text.format = '[luckyone:health:percent]'
