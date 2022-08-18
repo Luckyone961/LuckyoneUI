@@ -554,9 +554,11 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.arena.buffs.yOffset = 1
 	E.db.unitframe.units.arena.castbar.customTextFont.enable = true
 	E.db.unitframe.units.arena.castbar.customTextFont.font = L1UI.DefaultFont
+	E.db.unitframe.units.arena.castbar.customTextFont.fontSize = 9
 	E.db.unitframe.units.arena.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.arena.castbar.customTimeFont.font = L1UI.DefaultFont
-	E.db.unitframe.units.arena.castbar.height = 12
+	E.db.unitframe.units.arena.castbar.customTimeFont.fontSize = 9
+	E.db.unitframe.units.arena.castbar.height = 14
 	E.db.unitframe.units.arena.castbar.iconAttachedTo = 'Castbar'
 	E.db.unitframe.units.arena.castbar.spark = false
 	E.db.unitframe.units.arena.castbar.textColor.b = 1
@@ -592,7 +594,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.arena.pvpTrinket.position = 'LEFT'
 	E.db.unitframe.units.arena.pvpTrinket.size = 32
 	E.db.unitframe.units.arena.pvpTrinket.xOffset = -1
-	E.db.unitframe.units.arena.spacing = 14
+	E.db.unitframe.units.arena.spacing = 16
 	E.db.unitframe.units.arena.width = 190
 
 	-- Shared Focus
