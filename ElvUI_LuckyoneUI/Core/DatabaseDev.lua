@@ -664,9 +664,11 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.boss.buffs.yOffset = 1
 	E.db.unitframe.units.boss.castbar.customTextFont.enable = true
 	E.db.unitframe.units.boss.castbar.customTextFont.font = L1UI.DefaultFont
+	E.db.unitframe.units.boss.castbar.customTextFont.fontSize = 9
 	E.db.unitframe.units.boss.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.boss.castbar.customTimeFont.font = L1UI.DefaultFont
-	E.db.unitframe.units.boss.castbar.height = 12
+	E.db.unitframe.units.boss.castbar.customTimeFont.fontSize = 9
+	E.db.unitframe.units.boss.castbar.height = 14
 	E.db.unitframe.units.boss.castbar.iconAttachedTo = 'Castbar'
 	E.db.unitframe.units.boss.castbar.spark = false
 	E.db.unitframe.units.boss.castbar.textColor.b = 1
@@ -692,7 +694,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.boss.name.attachTextTo = 'Frame'
 	E.db.unitframe.units.boss.name.text_format = '[classcolor][name:last]'
 	E.db.unitframe.units.boss.power.enable = false
-	E.db.unitframe.units.boss.spacing = 14
+	E.db.unitframe.units.boss.spacing = 16
 	E.db.unitframe.units.boss.width = 190
 
 	-- Shared Pet
