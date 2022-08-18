@@ -1048,8 +1048,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 		-- Main Party
 		E.db.unitframe.units.party.debuffs.countFont = L1UI.DefaultFont
-		E.db.unitframe.units.party.debuffs.countFontSize = 13
-		E.db.unitframe.units.party.debuffs.countXOffset = 1
+		E.db.unitframe.units.party.debuffs.countXOffset = 2
 		E.db.unitframe.units.party.debuffs.enable = true
 		E.db.unitframe.units.party.debuffs.maxDuration = 0
 		E.db.unitframe.units.party.debuffs.perrow = 2
