@@ -19,19 +19,19 @@ function L1UI:Setup_BigWigs(layout)
 	if E.Retail then
 
 		-- Profile creation
-		BigWigs3DB.profiles = BigWigs3DB.profiles or {}
+		BigWigs3DB["profiles"] = BigWigs3DB["profiles"] or {}
 
-		BigWigs3DB.profiles.name = BigWigs3DB.profiles.name or {}
-		BigWigs3DB.profiles.name.showZoneMessages = false
-		BigWigs3DB.profiles.name.fakeDBMVersion = true
-		BigWigs3DB.profiles.name.flash = false
+		BigWigs3DB["profiles"][name] = BigWigs3DB["profiles"][name] or {}
+		BigWigs3DB["profiles"][name]["showZoneMessages"] = false
+		BigWigs3DB["profiles"][name]["fakeDBMVersion"] = true
+		BigWigs3DB["profiles"][name]["flash"] = false
 
-		BigWigs3DB.profiles.name_healing = BigWigs3DB.profiles.name_healing or {}
-		BigWigs3DB.profiles.name_healing.showZoneMessages = false
-		BigWigs3DB.profiles.name_healing.fakeDBMVersion = true
-		BigWigs3DB.profiles.name_healing.flash = false
+		BigWigs3DB["profiles"][name_healing] = BigWigs3DB["profiles"][name_healing] or {}
+		BigWigs3DB["profiles"][name_healing]["showZoneMessages"] = false
+		BigWigs3DB["profiles"][name_healing]["fakeDBMVersion"] = true
+		BigWigs3DB["profiles"][name_healing]["flash"] = false
 
-		BigWigsIconDB.hide = true
+		BigWigsIconDB["hide"] = true
 
 		-- Profile data
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"] or {}
@@ -295,19 +295,19 @@ function L1UI:Setup_BigWigs(layout)
 	elseif E.TBC then
 
 		-- Profile creation
-		BigWigsClassicDB.profiles = BigWigsClassicDB.profiles or {}
+		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
 
-		BigWigsClassicDB.profiles.name = BigWigsClassicDB.profiles.name or {}
-		BigWigsClassicDB.profiles.name.showZoneMessages = false
-		BigWigsClassicDB.profiles.name.fakeDBMVersion = true
-		BigWigsClassicDB.profiles.name.flash = false
-	
-		BigWigsClassicDB.profiles.name_healing = BigWigsClassicDB.profiles.name_healing or {}
-		BigWigsClassicDB.profiles.name_healing.showZoneMessages = false
-		BigWigsClassicDB.profiles.name_healing.fakeDBMVersion = true
-		BigWigsClassicDB.profiles.name_healing.flash = false
-	
-		BigWigsIconClassicDB.hide = true
+		BigWigsClassicDB["profiles"][name] = BigWigsClassicDB["profiles"][name] or {}
+		BigWigsClassicDB["profiles"][name]["showZoneMessages"] = false
+		BigWigsClassicDB["profiles"][name]["fakeDBMVersion"] = true
+		BigWigsClassicDB["profiles"][name]["flash"] = false
+
+		BigWigsClassicDB["profiles"][name_healing] = BigWigsClassicDB["profiles"][name_healing] or {}
+		BigWigsClassicDB["profiles"][name_healing]["showZoneMessages"] = false
+		BigWigsClassicDB["profiles"][name_healing]["fakeDBMVersion"] = true
+		BigWigsClassicDB["profiles"][name_healing]["flash"] = false
+
+		BigWigsIconClassicDB["hide"] = true
 
 		-- Profile data
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] or {}
@@ -563,19 +563,19 @@ function L1UI:Setup_BigWigs(layout)
 	elseif E.Classic then
 
 		-- Profile creation
-		BigWigsClassicDB.profiles = BigWigsClassicDB.profiles or {}
+		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
 
-		BigWigsClassicDB.profiles.name = BigWigsClassicDB.profiles.name or {}
-		BigWigsClassicDB.profiles.name.showZoneMessages = false
-		BigWigsClassicDB.profiles.name.fakeDBMVersion = true
-		BigWigsClassicDB.profiles.name.flash = false
-	
-		BigWigsClassicDB.profiles.name_healing = BigWigsClassicDB.profiles.name_healing or {}
-		BigWigsClassicDB.profiles.name_healing.showZoneMessages = false
-		BigWigsClassicDB.profiles.name_healing.fakeDBMVersion = true
-		BigWigsClassicDB.profiles.name_healing.flash = false
-	
-		BigWigsIconClassicDB.hide = true
+		BigWigsClassicDB["profiles"][name] = BigWigsClassicDB["profiles"][name] or {}
+		BigWigsClassicDB["profiles"][name]["showZoneMessages"] = false
+		BigWigsClassicDB["profiles"][name]["fakeDBMVersion"] = true
+		BigWigsClassicDB["profiles"][name]["flash"] = false
+
+		BigWigsClassicDB["profiles"][name_healing] = BigWigsClassicDB["profiles"][name_healing] or {}
+		BigWigsClassicDB["profiles"][name_healing]["showZoneMessages"] = false
+		BigWigsClassicDB["profiles"][name_healing]["fakeDBMVersion"] = true
+		BigWigsClassicDB["profiles"][name_healing]["flash"] = false
+
+		BigWigsIconClassicDB["hide"] = true
 
 		-- Profile data
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] or {}
@@ -831,19 +831,19 @@ function L1UI:Setup_BigWigs(layout)
 	elseif E.Wrath then
 
 		-- Profile creation
-		BigWigsClassicDB.profiles = BigWigsClassicDB.profiles or {}
+		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
 
-		BigWigsClassicDB.profiles.name = BigWigsClassicDB.profiles.name or {}
-		BigWigsClassicDB.profiles.name.showZoneMessages = false
-		BigWigsClassicDB.profiles.name.fakeDBMVersion = true
-		BigWigsClassicDB.profiles.name.flash = false
-	
-		BigWigsClassicDB.profiles.name_healing = BigWigsClassicDB.profiles.name_healing or {}
-		BigWigsClassicDB.profiles.name_healing.showZoneMessages = false
-		BigWigsClassicDB.profiles.name_healing.fakeDBMVersion = true
-		BigWigsClassicDB.profiles.name_healing.flash = false
-	
-		BigWigsIconClassicDB.hide = true
+		BigWigsClassicDB["profiles"][name] = BigWigsClassicDB["profiles"][name] or {}
+		BigWigsClassicDB["profiles"][name]["showZoneMessages"] = false
+		BigWigsClassicDB["profiles"][name]["fakeDBMVersion"] = true
+		BigWigsClassicDB["profiles"][name]["flash"] = false
+
+		BigWigsClassicDB["profiles"][name_healing] = BigWigsClassicDB["profiles"][name_healing] or {}
+		BigWigsClassicDB["profiles"][name_healing]["showZoneMessages"] = false
+		BigWigsClassicDB["profiles"][name_healing]["fakeDBMVersion"] = true
+		BigWigsClassicDB["profiles"][name_healing]["flash"] = false
+
+		BigWigsIconClassicDB["hide"] = true
 
 		-- Profile data
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] or {}
