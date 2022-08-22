@@ -692,7 +692,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.player.health.text_format = ''
 	E.db.unitframe.units.player.height = 40
 	E.db.unitframe.units.player.partyIndicator.enable = false
-	E.db.unitframe.units.player.power.enable = false
+	E.db.unitframe.units.player.power.height = 5
+	E.db.unitframe.units.player.power.text_format = ''
+	E.db.unitframe.units.player.power.width = 'inset'
 	E.db.unitframe.units.player.pvp.text_format = ''
 	E.db.unitframe.units.player.pvpIcon.scale = 0.85
 	E.db.unitframe.units.player.raidicon.enable = false
@@ -983,6 +985,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,143'
 
 		-- Main Misc
+		E.db.unitframe.units.player.power.enable = false
 		E.db.unitframe.units.targettarget.enable = true
 
 		-- Main Party
@@ -1032,6 +1035,14 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,383,140'
 
 		-- Healing Misc
+		E.db.unitframe.colors.custompowerbackdrop = true
+		E.db.unitframe.colors.power.MANA.b = 0.97
+		E.db.unitframe.colors.power.MANA.g = 1
+		E.db.unitframe.colors.power.MANA.r = 0
+		E.db.unitframe.colors.power_backdrop.b = 0.05
+		E.db.unitframe.colors.power_backdrop.g = 0.05
+		E.db.unitframe.colors.power_backdrop.r = 0.05
+		E.db.unitframe.units.player.power.enable = true
 		E.db.unitframe.units.targettarget.enable = false
 
 		-- Healing Party
