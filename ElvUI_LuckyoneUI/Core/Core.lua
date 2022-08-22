@@ -133,11 +133,11 @@ function L1UI:Setup_PrivateDB()
 	E.private.general.chatBubbleFont = L1UI.DefaultFont
 	E.private.general.chatBubbleFontOutline = 'OUTLINE'
 	E.private.general.dmgfont = L1UI.DefaultFont
-	E.private.general.glossTex = 'Minimalist'
+	E.private.general.glossTex = L1UI.DefaultTexture
 	E.private.general.namefont = L1UI.DefaultFont
 	E.private.general.nameplateFont = L1UI.DefaultFont
 	E.private.general.nameplateLargeFont = L1UI.DefaultFont
-	E.private.general.normTex = 'Minimalist'
+	E.private.general.normTex = L1UI.DefaultTexture
 	E.private.general.totemBar = false
 
 	E.private.install_complete = E.version

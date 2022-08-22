@@ -34,7 +34,7 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	PA.db.EnhancedFriendsList.DiffLevel = false
 	PA.db.EnhancedFriendsList.InfoFontSize = 10
 	PA.db.EnhancedFriendsList.NameFontSize = 11
-	PA.db.EnhancedFriendsList.Texture = 'Minimalist'
+	PA.db.EnhancedFriendsList.Texture = L1UI.DefaultTexture
 
 	-- SquareMinimapButtons setup
 	PA.db.SquareMinimapButtons.Backdrop = false
@@ -47,7 +47,7 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	PA.db.SquareMinimapButtons.Shadows = false
 
 	-- stAddonManager setup
-	PA.db.stAddonManager.CheckTexture = 'Minimalist'
+	PA.db.stAddonManager.CheckTexture = L1UI.DefaultTexture
 	PA.db.stAddonManager.ClassColor = true
 	PA.db.stAddonManager.EnableRequiredAddons = false
 	PA.db.stAddonManager.Font = L1UI.DefaultFont

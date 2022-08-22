@@ -49,6 +49,7 @@ local toons = {
 L1UI.Config = {}
 L1UI.CreditsList = {}
 L1UI.DefaultFont = 'Expressway'
+L1UI.DefaultTexture = 'Minimalist'
 L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'

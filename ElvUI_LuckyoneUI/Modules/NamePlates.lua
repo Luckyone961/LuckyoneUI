@@ -34,7 +34,7 @@ function L1UI:Setup_NamePlates(addon)
 		E.db.nameplates.plateSize.friendlyWidth = 190
 		E.db.nameplates.plateSize.personalHeight = 36
 		E.db.nameplates.plateSize.personalWidth = 190
-		E.db.nameplates.statusbar = 'Minimalist'
+		E.db.nameplates.statusbar = L1UI.DefaultTexture
 
 		-- NamePlates misc
 		E.db.nameplates.units.PLAYER.enable = false

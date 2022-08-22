@@ -9,7 +9,7 @@ function L1UI:Layout_Dragonflight(layout)
 	-- General
 	E.db.general.afkChat = false
 	E.db.general.altPowerBar.font = L1UI.DefaultFont
-	E.db.general.altPowerBar.statusBar = 'Minimalist'
+	E.db.general.altPowerBar.statusBar = L1UI.DefaultTexture
 	E.db.general.autoAcceptInvite = true
 	E.db.general.autoRepair = E.Retail and 'GUILD' or 'PLAYER'
 	E.db.general.backdropcolor.b = 0.13
@@ -35,7 +35,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.loginmessage = false
 	E.db.general.lootRoll.buttonSize = 22
 	E.db.general.lootRoll.spacing = 3
-	E.db.general.lootRoll.statusBarTexture = 'Minimalist'
+	E.db.general.lootRoll.statusBarTexture = L1UI.DefaultTexture
 	E.db.general.lootRoll.style = 'fullbar'
 	E.db.general.lootRoll.width = 340
 	E.db.general.minimap.icons.difficulty.scale = 0.7
@@ -445,7 +445,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.colors.colorhealthbyvalue = false
 	E.db.unitframe.colors.customcastbarbackdrop = true
 	E.db.unitframe.colors.customhealthbackdrop = true
-	E.db.unitframe.colors.frameGlow.mouseoverGlow.texture = 'Minimalist'
+	E.db.unitframe.colors.frameGlow.mouseoverGlow.texture = L1UI.DefaultTexture
 	E.db.unitframe.colors.healPrediction.overabsorbs.b = 1
 	E.db.unitframe.colors.healPrediction.overabsorbs.r = 0
 	E.db.unitframe.colors.health_backdrop_dead.b = 0.14
@@ -472,7 +472,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.fontOutline = 'OUTLINE'
 	E.db.unitframe.fontSize = 12
 	E.db.unitframe.smartRaidFilter = false
-	E.db.unitframe.statusbar = 'Minimalist'
+	E.db.unitframe.statusbar = L1UI.DefaultTexture
 
 	-- Shared MA/MT
 	E.db.unitframe.units.assist.enable = false
@@ -985,7 +985,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,278,281'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,278,300'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,252'
-		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,143'
+		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,144'
 
 		-- Main Misc
 		E.db.unitframe.units.player.power.enable = false
@@ -1089,7 +1089,7 @@ function L1UI:Layout_Shadowlands(layout)
 	-- General
 	E.db.general.afkChat = false
 	E.db.general.altPowerBar.font = L1UI.DefaultFont
-	E.db.general.altPowerBar.statusBar = 'Minimalist'
+	E.db.general.altPowerBar.statusBar = L1UI.DefaultTexture
 	E.db.general.autoAcceptInvite = true
 	E.db.general.autoRepair = E.Retail and 'GUILD' or 'PLAYER'
 	E.db.general.backdropcolor.b = 0.10
@@ -1115,7 +1115,7 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.general.loginmessage = false
 	E.db.general.lootRoll.buttonSize = 22
 	E.db.general.lootRoll.spacing = 3
-	E.db.general.lootRoll.statusBarTexture = 'Minimalist'
+	E.db.general.lootRoll.statusBarTexture = L1UI.DefaultTexture
 	E.db.general.lootRoll.style = 'fullbar'
 	E.db.general.lootRoll.width = 340
 	E.db.general.minimap.locationFont = L1UI.DefaultFont
@@ -1549,7 +1549,7 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.unitframe.colors.colorhealthbyvalue = false
 	E.db.unitframe.colors.customcastbarbackdrop = true
 	E.db.unitframe.colors.customhealthbackdrop = true
-	E.db.unitframe.colors.frameGlow.mouseoverGlow.texture = 'Minimalist'
+	E.db.unitframe.colors.frameGlow.mouseoverGlow.texture = L1UI.DefaultTexture
 	E.db.unitframe.colors.healPrediction.overabsorbs.b = 1
 	E.db.unitframe.colors.healPrediction.overabsorbs.r = 0
 	E.db.unitframe.colors.health_backdrop_dead.b = 0.09
@@ -1580,7 +1580,7 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.unitframe.font = L1UI.DefaultFont
 	E.db.unitframe.fontOutline = 'OUTLINE'
 	E.db.unitframe.fontSize = 12
-	E.db.unitframe.statusbar = 'Minimalist'
+	E.db.unitframe.statusbar = L1UI.DefaultTexture
 
 	-- Shared Arena
 	E.db.unitframe.units.arena.buffs.anchorPoint = 'TOPRIGHT'
