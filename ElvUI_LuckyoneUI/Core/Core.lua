@@ -216,6 +216,11 @@ end
 -- ElvUI Layouts setup
 function L1UI:Setup_Layout(layout)
 
+	-- Disable LibDualSpec to set the profile
+	if E.Retail or E.Wrath then
+		ElvDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm]["enabled"] = false
+	end
+
 	-- Create a fresh profile in ElvUI
 	if layout == 'main' then
 		E.data:SetProfile(L1UI.Me and 'Luckyone Main' or 'Luckyone Main '..L1UI.Version)

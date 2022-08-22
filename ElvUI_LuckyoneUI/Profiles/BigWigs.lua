@@ -19,6 +19,9 @@ function L1UI:Setup_BigWigs(layout)
 
 	if E.Retail then
 
+		-- Disable LibDualSpec to set the profile
+		BigWigs3DB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm]["enabled"] = false
+
 		-- Profile creation
 		BigWigs3DB["profiles"] = BigWigs3DB["profiles"] or {}
 
@@ -1099,7 +1102,7 @@ function L1UI:Setup_BigWigs(layout)
 
 	end
 
-	-- Role check and set profile
+	-- Set profile
 	if layout == 'main' then
 		BigWigs.db:SetProfile(name)
 	elseif layout == 'healing' then

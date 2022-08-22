@@ -11,6 +11,9 @@ function L1UI:Setup_OmniCD(layout)
 	local name = L1UI.Me and 'Luckyone Main' or 'Luckyone Main '..L1UI.Version
 	local name_healing = L1UI.Me and 'Luckyone Healing' or 'Luckyone Healing '..L1UI.Version
 
+	-- Disable LibDualSpec to set the profile
+	OmniCDDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm]["enabled"] = false
+
 	-- Global db
 	OmniCDDB["cooldowns"] = {}
 	OmniCDDB["global"]["disableElvMsg"] = true
@@ -19,7 +22,7 @@ function L1UI:Setup_OmniCD(layout)
 	OmniCDDB["profiles"][name] = OmniCDDB["profiles"][name] or {}
 	OmniCDDB["profiles"][name_healing] = OmniCDDB["profiles"][name_healing] or {}
 
-	-- Main
+	-- Main profile
 	OmniCDDB["profiles"][name]["General"] = {
 		["fonts"] = {
 			["statusBar"] = {
@@ -576,7 +579,7 @@ function L1UI:Setup_OmniCD(layout)
 		},
 	}
 
-	-- Healing
+	-- Healing profile
 	OmniCDDB["profiles"][name_healing]["General"] = {
 		["fonts"] = {
 			["statusBar"] = {
@@ -1143,7 +1146,7 @@ function L1UI:Setup_OmniCD(layout)
 		},
 	}
 
-	-- Role check and set profile
+	-- Set profile
 	if layout == 'main' then
 		OmniCDDB["profileKeys"][E.mynameRealm] = name
 	elseif layout == 'healing' then
