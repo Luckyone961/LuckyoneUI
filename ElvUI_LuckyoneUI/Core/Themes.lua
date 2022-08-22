@@ -31,9 +31,9 @@ function L1UI:Setup_Theme(theme)
 
 		E.db.unitframe.colors.classbackdrop = true
 		E.db.unitframe.colors.customhealthbackdrop = true
-		E.db.unitframe.colors.health_backdrop.b = 0.61
-		E.db.unitframe.colors.health_backdrop.g = 0.56
-		E.db.unitframe.colors.health_backdrop.r = 0.54
+		E.db.unitframe.colors.health_backdrop.b = 0.05
+		E.db.unitframe.colors.health_backdrop.g = 0.05
+		E.db.unitframe.colors.health_backdrop.r = 0.05
 		E.db.unitframe.colors.healthclass = true
 		E.db.unitframe.colors.useDeadBackdrop = true
 
