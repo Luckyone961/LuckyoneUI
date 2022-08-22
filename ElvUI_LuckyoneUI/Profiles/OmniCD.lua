@@ -19,7 +19,7 @@ function L1UI:Setup_OmniCD(layout)
 	OmniCDDB["profiles"][name_healing] = OmniCDDB["profiles"][name_healing] or {}
 
 	-- DPS/TANK
-	OmniCDDB.profiles[name].General = {
+	OmniCDDB["profiles"][name]["General"] = {
 		["fonts"] = {
 			["statusBar"] = {
 				["font"] = "Expressway",
@@ -50,7 +50,7 @@ function L1UI:Setup_OmniCD(layout)
 			},
 		},
 	}
-	OmniCDDB.profiles[name].Party = {
+	OmniCDDB["profiles"][name]["Party"] = {
 		["noneZoneSetting"] = "party",
 		["scenarioZoneSetting"] = "party",
 		["visibility"] = {
@@ -576,7 +576,7 @@ function L1UI:Setup_OmniCD(layout)
 	}
 
 	-- Healing
-	OmniCDDB.profiles[name_healing].General = {
+	OmniCDDB["profiles"][name_healing]["General"] = {
 		["fonts"] = {
 			["statusBar"] = {
 				["font"] = "Expressway",
@@ -607,7 +607,7 @@ function L1UI:Setup_OmniCD(layout)
 			},
 		},
 	}
-	OmniCDDB.profiles[name_healing].Party = {
+	OmniCDDB["profiles"][name_healing]["Party"] = {
 		["noneZoneSetting"] = "party",
 		["scenarioZoneSetting"] = "party",
 		["visibility"] = {
