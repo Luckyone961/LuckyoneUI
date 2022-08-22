@@ -23,17 +23,17 @@ local name = format('%s-%s', E.myname, E:ShortenRealm(E.myrealm))
 local toons = {
 	-- Retail
 	['Luckyone-LaughingSkull'] = true,
-	['Luckypriest-LaughingSkull'] = true,
-	['Luckymonkas-LaughingSkull'] = true,
+	['Luckydh-LaughingSkull'] = true,
 	['Luckydk-LaughingSkull'] = true,
 	['Luckyhunter-LaughingSkull'] = true,
-	['Unluckyone-LaughingSkull'] = true,
-	['Notlucky-LaughingSkull'] = true,
 	['Luckymage-LaughingSkull'] = true,
-	['Luckydh-LaughingSkull'] = true,
-	['Luckywl-LaughingSkull'] = true,
-	['Luckyrogue-LaughingSkull'] = true,
+	['Luckymonkas-LaughingSkull'] = true,
 	['Luckypala-LaughingSkull'] = true,
+	['Luckypriest-LaughingSkull'] = true,
+	['Luckyrogue-LaughingSkull'] = true,
+	['Luckywl-LaughingSkull'] = true,
+	['Notlucky-LaughingSkull'] = true,
+	['Unluckyone-LaughingSkull'] = true,
 	-- Public Test Realm
 	['Luckyone-Nobundo'] = true,
 	-- Wrath Classic
