@@ -22,7 +22,7 @@ function L1UI:Setup_NamePlates(addon)
 		E.db.nameplates.colors.castNoInterruptColor.b = 0
 		E.db.nameplates.colors.castNoInterruptColor.g = 0
 		E.db.nameplates.colors.castNoInterruptColor.r = 1
-		E.db.nameplates.colors.glowColor.b = 0.05
+		E.db.nameplates.colors.glowColor.g = 0.96
 		E.db.nameplates.colors.glowColor.r = 0
 		E.db.nameplates.cooldown.override = false
 		E.db.nameplates.lowHealthThreshold = 0
@@ -177,6 +177,11 @@ function L1UI:Setup_NamePlates(addon)
 		E.db.nameplates.units.FRIENDLY_PLAYER.raidTargetIndicator.size = 20
 		E.db.nameplates.units.FRIENDLY_PLAYER.title.enable = true
 		E.db.nameplates.units.FRIENDLY_PLAYER.title.font = L1UI.DefaultFont
+
+		-- Target indicator
+		E.db.nameplates.units.TARGET.arrowScale = 0.7
+		E.db.nameplates.units.TARGET.arrowSpacing = 10
+		E.db.nameplates.units.TARGET.glowStyle = 'style8'
 
 		-- Update the module so we don't require a ReloadUI
 		if NP.Initialized then E:UpdateNamePlates(true) end
