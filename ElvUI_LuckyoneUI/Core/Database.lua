@@ -448,9 +448,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.colors.frameGlow.mouseoverGlow.texture = 'Minimalist'
 	E.db.unitframe.colors.healPrediction.overabsorbs.b = 1
 	E.db.unitframe.colors.healPrediction.overabsorbs.r = 0
-	E.db.unitframe.colors.health_backdrop_dead.b = 0.09
-	E.db.unitframe.colors.health_backdrop_dead.g = 0.12
-	E.db.unitframe.colors.health_backdrop_dead.r = 0.61
+	E.db.unitframe.colors.health_backdrop_dead.b = 0.14
+	E.db.unitframe.colors.health_backdrop_dead.g = 0.20
+	E.db.unitframe.colors.health_backdrop_dead.r = 1
 	E.db.unitframe.colors.health_backdrop.b = 0.61
 	E.db.unitframe.colors.health_backdrop.g = 0.56
 	E.db.unitframe.colors.health_backdrop.r = 0.54
