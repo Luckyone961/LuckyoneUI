@@ -60,11 +60,6 @@ function L1UI:Setup_CVars()
 	SetCVar('threatWarning', 3)
 	SetCVar('UberTooltips', 1)
 
-	-- Wrath | TBC | Classic CVars
-	if not E.Retail then
-		SetCVar('instantQuestText', 1)
-	end
-
 	-- Wrath CVars
 	if E.Wrath then
 		SetCVar('equipmentManager', 1)
@@ -127,17 +122,17 @@ end
 -- E.private & Media
 function L1UI:Setup_PrivateDB()
 
-	E.db.general.font = 'Expressway'
+	E.db.general.font = L1UI.DefaultFont
 	E.db.general.fontSize = 11
 	E.db.general.fontStyle = 'OUTLINE'
 
-	E.private.general.chatBubbleFont = 'Expressway'
+	E.private.general.chatBubbleFont = L1UI.DefaultFont
 	E.private.general.chatBubbleFontOutline = 'OUTLINE'
-	E.private.general.dmgfont = 'Expressway'
+	E.private.general.dmgfont = L1UI.DefaultFont
 	E.private.general.glossTex = 'Minimalist'
-	E.private.general.namefont = 'Expressway'
-	E.private.general.nameplateFont = 'Expressway'
-	E.private.general.nameplateLargeFont = 'Expressway'
+	E.private.general.namefont = L1UI.DefaultFont
+	E.private.general.nameplateFont = L1UI.DefaultFont
+	E.private.general.nameplateLargeFont = L1UI.DefaultFont
 	E.private.general.normTex = 'Minimalist'
 	E.private.general.totemBar = false
 

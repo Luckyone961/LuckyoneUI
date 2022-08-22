@@ -896,9 +896,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid40.verticalSpacing = 1
 	E.db.unitframe.units.raid40.visibility = '[@raid31,noexists] hide;show'
 
-	-- Shared movers
+	-- Protect movers error
 	E.db.movers = E.db.movers or {}
 
+	-- Shared movers
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-178'
 	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,UIParent,TOPRIGHT,-243,-240'
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,UIParent,TOPRIGHT,-80,-207'

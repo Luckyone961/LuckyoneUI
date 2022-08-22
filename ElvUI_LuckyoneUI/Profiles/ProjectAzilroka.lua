@@ -39,17 +39,9 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	-- SquareMinimapButtons setup
 	PA.db.SquareMinimapButtons.Backdrop = false
 	PA.db.SquareMinimapButtons.BarMouseOver = false
-	if L1UI.Me then
-		PA.db.SquareMinimapButtons.ButtonSpacing = 1 -- Dragonflight Layout
-	else
-		PA.db.SquareMinimapButtons.ButtonSpacing = -1
-	end
+	PA.db.SquareMinimapButtons.ButtonSpacing = 1
 	PA.db.SquareMinimapButtons.ButtonsPerRow = 6
-	if L1UI.Me then
-		PA.db.SquareMinimapButtons.IconSize = 25 -- Dragonflight Layout
-	else
-		PA.db.SquareMinimapButtons.IconSize = 28
-	end
+	PA.db.SquareMinimapButtons.IconSize = 25
 	PA.db.SquareMinimapButtons.MoveQueue = false
 	PA.db.SquareMinimapButtons.MoveTracker = false
 	PA.db.SquareMinimapButtons.Shadows = false
@@ -63,14 +55,11 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	PA.db.stAddonManager.FrameWidth = 720
 	PA.db.stAddonManager.NumAddOns = 18
 
-	-- Movers
+	-- Protect movers error
 	E.db.movers = E.db.movers or {}
 
-	if L1UI.Me then
-		E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,0,-156' -- Dragonflight Layout
-	else
-		E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187'
-	end
+	-- Movers
+	E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,0,-156'
 
 	if not noPrint then
 		L1UI:Print(L["ProjectAzilroka profile has been set."])
