@@ -112,9 +112,13 @@ function L1UI:NameplateCVars()
 	SetCVar('UnitNameEnemyPetName', 1)
 	SetCVar('UnitNameEnemyPlayerName', 1)
 
-	if not E.Classic then SetCVar('UnitNameEnemyTotem', 1) end
+	if not E.Classic then
+		SetCVar('UnitNameEnemyTotem', 1)
+	end
 
-	if not E.Retail then SetCVar('nameplateNotSelectedAlpha', 1) end
+	if not E.Retail then
+		SetCVar('nameplateNotSelectedAlpha', 1)
+	end
 
 	L1UI:Print(L["NamePlate CVars have been set."])
 end
@@ -273,7 +277,6 @@ function L1UI:Cleanup_Cache(addon, type)
 	elseif addon == 'plater' and IsAddOnLoaded('Plater') then
 		PlaterDB.captured_casts = {}
 		PlaterDB.captured_spells = {}
-		if PlaterDB.profiles.Luckyone then PlaterDB.profiles.Luckyone.npc_cache = {} end
 		L1UI:Print(L["Cleared Plater Cache."])
 	elseif addon == 'rc' and IsAddOnLoaded('RCLootCouncil') then
 		RCLootCouncilDB.global.cache = {}

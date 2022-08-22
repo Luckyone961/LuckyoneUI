@@ -3320,7 +3320,7 @@ function L1UI:Setup_Plater()
 
 	end
 
-	-- Wipe captured_casts, captured_spells and npc_cache
+	-- Wipe captured_casts and captured_spells
 	L1UI:Cleanup_Cache('plater')
 
 	L1UI:Print(L["Plater profile has been set."])
