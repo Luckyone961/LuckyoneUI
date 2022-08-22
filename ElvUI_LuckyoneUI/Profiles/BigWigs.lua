@@ -310,14 +310,6 @@ function L1UI:Setup_BigWigs(layout)
 		BigWigsIconClassicDB.hide = true
 
 		-- Profile data
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"][name] = {
-			["disabled"] = true,
-		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"][name_healing] = {
-			["disabled"] = true,
-		}
-
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][name] = {
 			["exitCombatOther"] = 3,
@@ -586,14 +578,6 @@ function L1UI:Setup_BigWigs(layout)
 		BigWigsIconClassicDB.hide = true
 
 		-- Profile data
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"][name] = {
-			["disabled"] = true,
-		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"][name_healing] = {
-			["disabled"] = true,
-		}
-
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][name] = {
 			["exitCombatOther"] = 3,
@@ -862,14 +846,6 @@ function L1UI:Setup_BigWigs(layout)
 		BigWigsIconClassicDB.hide = true
 
 		-- Profile data
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"][name] = {
-			["disabled"] = true,
-		}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"][name_healing] = {
-			["disabled"] = true,
-		}
-
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][name] = {
 			["exitCombatOther"] = 3,
