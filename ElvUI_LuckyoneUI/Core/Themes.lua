@@ -27,6 +27,10 @@ function L1UI:Setup_Theme(theme)
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = '[classcolor][name:last]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[classcolor][name:last]'
 
+		if not E.Retail then
+			E.db.unitframe.units.pet.health.colorHappiness = false
+		end
+
 	elseif theme == 'class' then
 
 		E.db.unitframe.colors.classbackdrop = true
@@ -41,12 +45,16 @@ function L1UI:Setup_Theme(theme)
 		E.db.unitframe.units.boss.name.text_format = '[name:last]'
 		E.db.unitframe.units.focus.customTexts.Luckyone_Name.text_format = '[name:last]'
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[name:short]'
-		E.db.unitframe.units.pet.customTexts.Luckyone_Name.text_format = E.Retail and '[name]' or '[happiness:color][name][ >happiness:full]'
+		E.db.unitframe.units.pet.customTexts.Luckyone_Name.text_format = E.Retail and '[name]' or '[name][ >happiness:full]'
 		E.db.unitframe.units.player.customTexts.Luckyone_Name.text_format = '[name]'
 		E.db.unitframe.units.raid.name.text_format = '[name:veryshort]'
 		E.db.unitframe.units.raid40.name.text_format = '[name:veryshort]'
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = '[name:last]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[name:last]'
+
+		if not E.Retail then
+			E.db.unitframe.units.pet.health.colorHappiness = true
+		end
 
 	end
 
