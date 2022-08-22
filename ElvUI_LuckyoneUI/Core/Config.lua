@@ -54,7 +54,7 @@ function L1UI:Config()
 
 	-- Installer & Update
 	L1UI.Options.args.installer = ACH:Execute(L["Install"], L["Re-Run the installation process."], 1, function() E.PluginInstaller:Queue(L1UI.InstallerData) E:ToggleOptionsUI() end)
-	L1UI.Options.args.updateMain = ACH:Execute(L["Update DPS/TANK Layout"], L["Update DPS/TANK layout to LuckyoneUI version: "]..L1UI.Version, 2, function() L1UI:UpdateLayout('main') end, nil, true)
+	L1UI.Options.args.updateMain = ACH:Execute(L["Update Main Layout"], L["Update Main layout to LuckyoneUI version: "]..L1UI.Version, 2, function() L1UI:UpdateLayout('main') end, nil, true)
 	L1UI.Options.args.updateHealing = ACH:Execute(L["Update Healing Layout"], L["Update Healing layout to LuckyoneUI version: "]..L1UI.Version, 3, function() L1UI:UpdateLayout('healing') end, nil, true)
 
 	-- Spacer
@@ -189,14 +189,14 @@ function L1UI:Config()
 	L1UI.Options.args.profiles.args.addons = ACH:Group(L["Addon Profiles"], nil, 4)
 	L1UI.Options.args.profiles.args.addons.inline = true
 	L1UI.Options.args.profiles.args.addons.args.details = ACH:Execute('Details', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_Details() E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.profiles.args.header2 = ACH:Header(L["DPS/TANK Profiles"], 5)
+	L1UI.Options.args.profiles.args.header2 = ACH:Header(L["Profiles for DPS & Tanks"], 5)
 	L1UI.Options.args.profiles.args.bossmods = ACH:Group(L["BossMods Profiles"], nil, 6)
 	L1UI.Options.args.profiles.args.bossmods.inline = true
-	L1UI.Options.args.profiles.args.bossmods.args.bigwigs = ACH:Execute('BigWigs DPS/TANK', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_BigWigs('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.bossmods.args.bigwigs = ACH:Execute('BigWigs Main', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_BigWigs('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.profiles.args.addonsMain = ACH:Group(L["Addon Profiles"], nil, 7, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.profiles.args.addonsMain.inline = true
-	L1UI.Options.args.profiles.args.addonsMain.args.omnicd = ACH:Execute('OmniCD DPS/TANK', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_OmniCD('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.profiles.args.header3 = ACH:Header(L["Healing Profiles"], 8)
+	L1UI.Options.args.profiles.args.addonsMain.args.omnicd = ACH:Execute('OmniCD Main', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_OmniCD('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.header3 = ACH:Header(L["Profiles for Healing"], 8)
 	L1UI.Options.args.profiles.args.bossmodsHealing = ACH:Group(L["BossMods Profiles"], nil, 9)
 	L1UI.Options.args.profiles.args.bossmodsHealing.inline = true
 	L1UI.Options.args.profiles.args.bossmodsHealing.args.bigwigs = ACH:Execute('BigWigs Healing', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_BigWigs('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
@@ -256,7 +256,7 @@ function L1UI:Config()
 	L1UI.Options.args.archive.args.desc = ACH:Header(L["Archive"], 1)
 	L1UI.Options.args.archive.args.profiles = ACH:Group('LuckyoneUI Shadowlands', nil, 2)
 	L1UI.Options.args.archive.args.profiles.inline = true
-	L1UI.Options.args.archive.args.profiles.args.main = ACH:Execute(L["DPS/TANK"], nil, 1, function() L1UI:Layout_Shadowlands('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.archive.args.profiles.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() L1UI:Layout_Shadowlands('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.archive.args.profiles.args.healing = ACH:Execute(L["Healing"], nil, 2, function() L1UI:Layout_Shadowlands('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 
 	-- Credits

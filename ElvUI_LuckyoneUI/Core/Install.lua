@@ -29,7 +29,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cHigh|r"])
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_Layout('main') end)
-			PluginInstallFrame.Option1:SetText(L["DPS/TANK"])
+			PluginInstallFrame.Option1:SetText(L["DPS & Tanks"])
 			PluginInstallFrame.Option2:Show()
 			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_Layout('healing') end)
 			PluginInstallFrame.Option2:SetText(L["Healing"])

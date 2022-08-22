@@ -218,9 +218,9 @@ function L1UI:Setup_Layout(layout)
 
 	-- Create a fresh profile in ElvUI
 	if layout == 'main' then
-		E.data:SetProfile(L1UI.Me and 'Luckyone Main' or 'Luckyone DPS/TANK v'..L1UI.Version)
+		E.data:SetProfile(L1UI.Me and 'Luckyone Main' or 'Luckyone Main '..L1UI.Version)
 	elseif layout == 'healing' then
-		E.data:SetProfile(L1UI.Me and 'Luckyone Healing' or 'Luckyone Healing v'..L1UI.Version)
+		E.data:SetProfile(L1UI.Me and 'Luckyone Healing' or 'Luckyone Healing '..L1UI.Version)
 	end
 
 	-- E.global & Custom DataText

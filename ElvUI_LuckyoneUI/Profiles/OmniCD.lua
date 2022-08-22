@@ -8,7 +8,8 @@ function L1UI:Setup_OmniCD(layout)
 	if not IsAddOnLoaded('OmniCD') then return end
 
 	-- Profile names
-	local name, name_healing = 'Luckyone DPS/TANK v2', 'Luckyone Healing v2'
+	local name = L1UI.Me and 'Luckyone Main' or 'Luckyone Main '..L1UI.Version
+	local name_healing = L1UI.Me and 'Luckyone Healing' or 'Luckyone Healing '..L1UI.Version
 
 	-- Global db
 	OmniCDDB["cooldowns"] = {}
@@ -18,7 +19,7 @@ function L1UI:Setup_OmniCD(layout)
 	OmniCDDB["profiles"][name] = OmniCDDB["profiles"][name] or {}
 	OmniCDDB["profiles"][name_healing] = OmniCDDB["profiles"][name_healing] or {}
 
-	-- DPS/TANK
+	-- Main
 	OmniCDDB["profiles"][name]["General"] = {
 		["fonts"] = {
 			["statusBar"] = {
