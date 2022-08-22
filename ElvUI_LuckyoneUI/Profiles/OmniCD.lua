@@ -8,7 +8,7 @@ function L1UI:Setup_OmniCD(layout)
 	if not IsAddOnLoaded('OmniCD') then return end
 
 	-- Profile names
-	local name, name_healing = "Luckyone DPS/TANK", "Luckyone Healing"
+	local name, name_healing = 'Luckyone DPS/TANK', 'Luckyone Healing'
 
 	-- Global db
 	OmniCDDB.cooldowns = {}
@@ -19,7 +19,7 @@ function L1UI:Setup_OmniCD(layout)
 	OmniCDDB.profiles.name_healing = OmniCDDB.profiles.name_healing or {}
 
 	-- DPS/TANK
-	OmniCDDB["profiles"][name]["General"] = {
+	OmniCDDB.profiles.name.General = {
 		["fonts"] = {
 			["statusBar"] = {
 				["font"] = "Expressway",
@@ -50,7 +50,7 @@ function L1UI:Setup_OmniCD(layout)
 			},
 		},
 	}
-	OmniCDDB["profiles"][name]["Party"] = {
+	OmniCDDB.profiles.name.Party = {
 		["noneZoneSetting"] = "party",
 		["scenarioZoneSetting"] = "party",
 		["visibility"] = {
@@ -576,7 +576,7 @@ function L1UI:Setup_OmniCD(layout)
 	}
 
 	-- Healing
-	OmniCDDB["profiles"][name_healing]["General"] = {
+	OmniCDDB.profiles.name_healing.General = {
 		["fonts"] = {
 			["statusBar"] = {
 				["font"] = "Expressway",
@@ -607,7 +607,7 @@ function L1UI:Setup_OmniCD(layout)
 			},
 		},
 	}
-	OmniCDDB["profiles"][name_healing]["Party"] = {
+	OmniCDDB.profiles.name_healing.Party = {
 		["noneZoneSetting"] = "party",
 		["scenarioZoneSetting"] = "party",
 		["visibility"] = {
@@ -1144,9 +1144,9 @@ function L1UI:Setup_OmniCD(layout)
 
 	-- Role check and set profile
 	if layout == 'main' then
-		OmniCDDB["profileKeys"][E.mynameRealm] = name
+		OmniCDDB.profileKeys.E.mynameRealm = name
 	elseif layout == 'healing' then
-		OmniCDDB["profileKeys"][E.mynameRealm] = name_healing
+		OmniCDDB.profileKeys.E.mynameRealm = name_healing
 	end
 
 	L1UI:Print(L["OmniCD profile has been set."])
