@@ -10,7 +10,7 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	local PA = _G.ProjectAzilroka
 
 	-- Create and set a new profile called Luckyone
-	PA.data:SetProfile('Luckyone')
+	PA.data:SetProfile('Luckyone v2')
 
 	-- Module toggles
 	PA.db.AuraReminder.Enable = false

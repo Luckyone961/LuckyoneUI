@@ -8,7 +8,7 @@ function L1UI:Setup_OmniCD(layout)
 	if not IsAddOnLoaded('OmniCD') then return end
 
 	-- Profile names
-	local name, name_healing = 'Luckyone DPS/TANK', 'Luckyone Healing'
+	local name, name_healing = 'Luckyone DPS/TANK v2', 'Luckyone Healing v2'
 
 	-- Global db
 	OmniCDDB["cooldowns"] = {}

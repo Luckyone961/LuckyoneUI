@@ -8,7 +8,7 @@ function L1UI:Setup_BigWigs(layout)
 	if not IsAddOnLoaded('BigWigs') then return end
 
 	-- Profile names
-	local name, name_healing = 'Luckyone DPS/TANK', 'Luckyone Healing'
+	local name, name_healing = 'Luckyone DPS/TANK v2', 'Luckyone Healing v2'
 
 	-- Required to add profiles to BigWigs3DB
 	if not IsAddOnLoaded('BigWigs_Core') then LoadAddOn('BigWigs_Core') end

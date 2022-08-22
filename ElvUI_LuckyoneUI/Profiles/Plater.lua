@@ -7,7 +7,7 @@ function L1UI:Setup_Plater()
 	if not IsAddOnLoaded('Plater') then return end
 
 	-- Profile name
-	local name = 'Luckyone'
+	local name = 'Luckyone v2'
 
 	if E.Retail then
 
