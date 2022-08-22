@@ -461,6 +461,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.colors.power.LUNAR_POWER.b = 0.9
 	E.db.unitframe.colors.power.LUNAR_POWER.g = 0.52
 	E.db.unitframe.colors.power.LUNAR_POWER.r = 0.3
+	E.db.unitframe.colors.power.MANA.b = 0.97
+	E.db.unitframe.colors.power.MANA.g = 1
+	E.db.unitframe.colors.power.MANA.r = 0
 	E.db.unitframe.colors.tapped.g = 0.56
 	E.db.unitframe.colors.tapped.r = 0.54
 	E.db.unitframe.colors.useDeadBackdrop = true
@@ -502,7 +505,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.arena.castbar.textColor.b = 1
 	E.db.unitframe.units.arena.castbar.textColor.g = 1
 	E.db.unitframe.units.arena.castbar.textColor.r = 1
-	E.db.unitframe.units.arena.castbar.width = 190
+	E.db.unitframe.units.arena.castbar.width = 191
 	E.db.unitframe.units.arena.castbar.xOffsetText = 2
 	E.db.unitframe.units.arena.castbar.xOffsetTime = -2
 	E.db.unitframe.units.arena.debuffs.countFont = L1UI.DefaultFont
@@ -612,7 +615,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.boss.castbar.textColor.b = 1
 	E.db.unitframe.units.boss.castbar.textColor.g = 1
 	E.db.unitframe.units.boss.castbar.textColor.r = 1
-	E.db.unitframe.units.boss.castbar.width = 190
+	E.db.unitframe.units.boss.castbar.width = 191
 	E.db.unitframe.units.boss.castbar.xOffsetText = 2
 	E.db.unitframe.units.boss.castbar.xOffsetTime = -2
 	E.db.unitframe.units.boss.debuffs.countFont = L1UI.DefaultFont
@@ -1036,9 +1039,6 @@ function L1UI:Layout_Dragonflight(layout)
 
 		-- Healing Misc
 		E.db.unitframe.colors.custompowerbackdrop = true
-		E.db.unitframe.colors.power.MANA.b = 0.97
-		E.db.unitframe.colors.power.MANA.g = 1
-		E.db.unitframe.colors.power.MANA.r = 0
 		E.db.unitframe.colors.power_backdrop.b = 0.05
 		E.db.unitframe.colors.power_backdrop.g = 0.05
 		E.db.unitframe.colors.power_backdrop.r = 0.05
