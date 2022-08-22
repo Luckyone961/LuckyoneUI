@@ -1,10 +1,17 @@
-### Version 1.56 [In Development]
+### Version 2.00 [In Development]
+**Highlights:**  
+Introducing the first draft of LuckyoneUI v2 which will be updated  
+and maintained throughout Dragonflight. This includes reworks for both  
+ElvUI layouts, all AddOn profiles and (maybe) WeakAuras in the future  
 **All WoW Versions:**  
 Removed DBM profiles and support  
-Updated ElvUI NamePlates  
+Removed LuckyoneUI v1 from the installer. A copy of the "old" layouts  
+is available in the /luckyoneui config -> Archive section  
 **Retail:**  
-Added ElvUI StyleFilter for shrouded affix mobs  
+Added optional ElvUI StyleFilter for the Shrouded affix enemies  
 Updated TOC for 9.2.7  
+**Wrath Classic:**  
+Updated and ready for the pre-patch  
 ___
 ### Version 1.55 [03-08-2022]
 **Retail:**  
