@@ -50,7 +50,7 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	PA.db.stAddonManager.CheckTexture = 'Minimalist'
 	PA.db.stAddonManager.ClassColor = true
 	PA.db.stAddonManager.EnableRequiredAddons = false
-	PA.db.stAddonManager.Font = 'Expressway'
+	PA.db.stAddonManager.Font = L1UI.DefaultFont
 	PA.db.stAddonManager.FontSize = 12
 	PA.db.stAddonManager.FrameWidth = 720
 	PA.db.stAddonManager.NumAddOns = 18
