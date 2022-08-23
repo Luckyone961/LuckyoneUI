@@ -196,7 +196,7 @@ function L1UI:Setup_GlobalDB()
 	MiniMapDT.fonts.enable = true
 	MiniMapDT.fonts.font = L1UI.DefaultFont
 	MiniMapDT.fonts.fontOutline = 'OUTLINE'
-	MiniMapDT.fonts.fontSize = 13
+	MiniMapDT.fonts.fontSize = 14
 	MiniMapDT.frameLevel = 1
 	MiniMapDT.frameStrata = 'MEDIUM'
 	MiniMapDT.growth = 'HORIZONTAL'
