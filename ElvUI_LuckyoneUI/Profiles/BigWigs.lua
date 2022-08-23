@@ -20,6 +20,7 @@ function L1UI:Setup_BigWigs(layout)
 	if E.Retail then
 
 		-- Disable LibDualSpec to set the profile
+		BigWigs3DB["namespaces"]["LibDualSpec-1.0"] = BigWigs3DB["namespaces"]["LibDualSpec-1.0"] or {}
 		BigWigs3DB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm]["enabled"] = false
 
 		-- Profile creation

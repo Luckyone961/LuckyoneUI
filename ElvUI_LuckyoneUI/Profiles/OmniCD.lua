@@ -12,6 +12,7 @@ function L1UI:Setup_OmniCD(layout)
 	local name_healing = L1UI.Me and 'Luckyone Healing' or 'Luckyone Healing '..L1UI.Version
 
 	-- Disable LibDualSpec to set the profile
+	OmniCDDB["namespaces"]["LibDualSpec-1.0"] = OmniCDDB["namespaces"]["LibDualSpec-1.0"] or {}
 	OmniCDDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm]["enabled"] = false
 
 	-- Global db
