@@ -27,7 +27,7 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.private.sle.skins.objectiveTracker.BGbackdrop = false
 	E.private.sle.skins.objectiveTracker.color.g = 0.41
 	E.private.sle.skins.objectiveTracker.color.r = 0.25
-	E.private.sle.skins.objectiveTracker.texture = 'Minimalist'
+	E.private.sle.skins.objectiveTracker.texture = L1UI.DefaultTexture
 	E.private.sle.skins.objectiveTracker.underlineHeight = 2
 	E.private.sle.skins.petbattles.enable = false
 

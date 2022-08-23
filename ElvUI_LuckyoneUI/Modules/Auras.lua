@@ -3,8 +3,8 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 -- Auras config section: Buffs
 function L1UI:Setup_Buffs(frame, type)
 
-	local all = "Blacklist,Personal,nonPersonal"
-	local min = "Blacklist,Dispellable,RaidBuffsElvUI"
+	local all = 'Blacklist,Personal,nonPersonal'
+	local min = 'Blacklist,Dispellable,RaidBuffsElvUI'
 
 	if frame == 'player' then
 		if type == 'all' then
@@ -40,8 +40,8 @@ end
 -- Auras config section: Debuffs
 function L1UI:Setup_Debuffs(frame, type)
 
-	local all = "Blacklist,Personal,nonPersonal"
-	local min = "Blacklist,Personal,CCDebuffs"
+	local all = 'Blacklist,Personal,nonPersonal'
+	local min = 'Blacklist,Personal,CCDebuffs'
 
 	if frame == 'player' then
 		if type == 'all' then

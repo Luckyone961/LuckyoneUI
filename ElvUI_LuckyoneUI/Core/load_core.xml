@@ -3,7 +3,6 @@
 	<Script file='Config.lua'/>
 	<Script file='Core.lua'/>
 	<Script file='Database.lua'/>
-	<Script file='DatabaseDev.lua'/>
 	<Script file='Install.lua'/>
 	<Script file='Tags.lua'/>
 	<Script file='Themes.lua'/>

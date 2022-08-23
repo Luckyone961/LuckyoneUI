@@ -60,11 +60,6 @@ function L1UI:Setup_CVars()
 	SetCVar('threatWarning', 3)
 	SetCVar('UberTooltips', 1)
 
-	-- Wrath | TBC | Classic CVars
-	if not E.Retail then
-		SetCVar('instantQuestText', 1)
-	end
-
 	-- Wrath CVars
 	if E.Wrath then
 		SetCVar('equipmentManager', 1)
@@ -117,9 +112,13 @@ function L1UI:NameplateCVars()
 	SetCVar('UnitNameEnemyPetName', 1)
 	SetCVar('UnitNameEnemyPlayerName', 1)
 
-	if not E.Classic then SetCVar('UnitNameEnemyTotem', 1) end
+	if not E.Classic then
+		SetCVar('UnitNameEnemyTotem', 1)
+	end
 
-	if not E.Retail then SetCVar('nameplateNotSelectedAlpha', 1) end
+	if not E.Retail then
+		SetCVar('nameplateNotSelectedAlpha', 1)
+	end
 
 	L1UI:Print(L["NamePlate CVars have been set."])
 end
@@ -127,18 +126,18 @@ end
 -- E.private & Media
 function L1UI:Setup_PrivateDB()
 
-	E.db.general.font = 'Expressway'
+	E.db.general.font = L1UI.DefaultFont
 	E.db.general.fontSize = 11
 	E.db.general.fontStyle = 'OUTLINE'
 
-	E.private.general.chatBubbleFont = 'Expressway'
+	E.private.general.chatBubbleFont = L1UI.DefaultFont
 	E.private.general.chatBubbleFontOutline = 'OUTLINE'
-	E.private.general.dmgfont = 'Expressway'
-	E.private.general.glossTex = 'Minimalist'
-	E.private.general.namefont = 'Expressway'
-	E.private.general.nameplateFont = 'Expressway'
-	E.private.general.nameplateLargeFont = 'Expressway'
-	E.private.general.normTex = 'Minimalist'
+	E.private.general.dmgfont = L1UI.DefaultFont
+	E.private.general.glossTex = L1UI.DefaultTexture
+	E.private.general.namefont = L1UI.DefaultFont
+	E.private.general.nameplateFont = L1UI.DefaultFont
+	E.private.general.nameplateLargeFont = L1UI.DefaultFont
+	E.private.general.normTex = L1UI.DefaultTexture
 	E.private.general.totemBar = false
 
 	E.private.install_complete = E.version
@@ -166,78 +165,97 @@ function L1UI:Setup_GlobalDB()
 	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
 	E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
+	E.DataTexts:BuildPanelFrame('Luckyone_MiniMap_DT')
 
 	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 	ActionBarsDT.backdrop = true
 	ActionBarsDT.border = true
 	ActionBarsDT.enable = true
 	ActionBarsDT.fonts.enable = true
-	ActionBarsDT.fonts.font = 'Expressway'
+	ActionBarsDT.fonts.font = L1UI.DefaultFont
 	ActionBarsDT.fonts.fontOutline = 'OUTLINE'
-	ActionBarsDT.fonts.fontSize = 11
+	ActionBarsDT.fonts.fontSize = 10
 	ActionBarsDT.frameLevel = 1
 	ActionBarsDT.frameStrata = 'BACKGROUND'
 	ActionBarsDT.growth = 'HORIZONTAL'
-	ActionBarsDT.height = 13
+	ActionBarsDT.height = 12
 	ActionBarsDT.mouseover = false
 	ActionBarsDT.name = 'Luckyone_ActionBars_DT'
 	ActionBarsDT.numPoints = 3
-	ActionBarsDT.panelTransparency = true
+	ActionBarsDT.panelTransparency = false
 	ActionBarsDT.textJustify = 'CENTER'
 	ActionBarsDT.tooltipAnchor = 'ANCHOR_TOP'
 	ActionBarsDT.tooltipXOffset = 0
 	ActionBarsDT.tooltipYOffset = 5
 	ActionBarsDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
-	ActionBarsDT.width = 358
+	ActionBarsDT.width = 323
+
+	local MiniMapDT = E.global.datatexts.customPanels.Luckyone_MiniMap_DT
+	MiniMapDT.backdrop = false
+	MiniMapDT.border = false
+	MiniMapDT.fonts.enable = true
+	MiniMapDT.fonts.font = L1UI.DefaultFont
+	MiniMapDT.fonts.fontOutline = 'OUTLINE'
+	MiniMapDT.fonts.fontSize = 14
+	MiniMapDT.frameLevel = 1
+	MiniMapDT.frameStrata = 'MEDIUM'
+	MiniMapDT.growth = 'HORIZONTAL'
+	MiniMapDT.height = 12
+	MiniMapDT.mouseover = false
+	MiniMapDT.name = 'Luckyone_MiniMap_DT'
+	MiniMapDT.numPoints = 1
+	MiniMapDT.panelTransparency = true
+	MiniMapDT.textJustify = 'CENTER'
+	MiniMapDT.tooltipAnchor = 'ANCHOR_BOTTOMLEFT'
+	MiniMapDT.tooltipXOffset = -6
+	MiniMapDT.tooltipYOffset = -7
+	MiniMapDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
+	MiniMapDT.width = 152
 end
 
 -- ElvUI Layouts setup
 function L1UI:Setup_Layout(layout)
 
+	-- Disable LibDualSpec to set the profile
+	if E.Retail or E.Wrath then
+		ElvDB["namespaces"]["LibDualSpec-1.0"] = ElvDB["namespaces"]["LibDualSpec-1.0"] or {}
+		ElvDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm]["enabled"] = false
+	end
+
 	-- Create a fresh profile in ElvUI
 	if layout == 'main' then
-		if L1UI.Me then
-			E.data:SetProfile('Luckyone Main')
-		else
-			E.data:SetProfile('Luckyone DPS/TANK v'..L1UI.Version)
-		end
+		E.data:SetProfile(L1UI.Me and 'Luckyone Main' or 'Luckyone Main '..L1UI.Version)
 	elseif layout == 'healing' then
-		if L1UI.Me then
-			E.data:SetProfile('Luckyone Healing')
-		else
-			E.data:SetProfile('Luckyone Healing v'..L1UI.Version)
-		end
+		E.data:SetProfile(L1UI.Me and 'Luckyone Healing' or 'Luckyone Healing '..L1UI.Version)
 	end
 
 	-- E.global & Custom DataText
-	if not L1UI.Me then L1UI:Setup_GlobalDB() end
+	L1UI:Setup_GlobalDB()
 
 	-- E.private & Media
 	L1UI:Setup_PrivateDB()
 
 	-- E.db & Movers
 	if layout == 'main' then
-		if L1UI.Me then
-			L1UI:Layout_Dragonflight('main')
-		else
-			L1UI:Layout_Shadowlands('main')
-		end
+		L1UI:Layout_Dragonflight('main')
 	elseif layout == 'healing' then
-		if L1UI.Me then
-			L1UI:Layout_Dragonflight('healing')
-		else
-			L1UI:Layout_Shadowlands('healing')
-		end
+		L1UI:Layout_Dragonflight('healing')
 	end
 
 	-- AddOnSkins profile
-	if IsAddOnLoaded('AddOnSkins') then L1UI:Setup_AddOnSkins(true) end
+	if IsAddOnLoaded('AddOnSkins') then
+		L1UI:Setup_AddOnSkins(true)
+	end
 
 	-- ProjectAzilroka profile
-	if IsAddOnLoaded('ProjectAzilroka') then L1UI:Setup_ProjectAzilroka(true) end
+	if IsAddOnLoaded('ProjectAzilroka') then
+		L1UI:Setup_ProjectAzilroka(true)
+	end
 
 	-- Shadow & Light profile
-	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then L1UI:Setup_ShadowAndLight(true) end
+	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then
+		L1UI:Setup_ShadowAndLight(true)
+	end
 
 	-- Push the update
 	E:StaggeredUpdateAll()
@@ -265,7 +283,6 @@ function L1UI:Cleanup_Cache(addon, type)
 	elseif addon == 'plater' and IsAddOnLoaded('Plater') then
 		PlaterDB.captured_casts = {}
 		PlaterDB.captured_spells = {}
-		if PlaterDB.profiles.Luckyone then PlaterDB.profiles.Luckyone.npc_cache = {} end
 		L1UI:Print(L["Cleared Plater Cache."])
 	elseif addon == 'rc' and IsAddOnLoaded('RCLootCouncil') then
 		RCLootCouncilDB.global.cache = {}
@@ -274,8 +291,6 @@ function L1UI:Cleanup_Cache(addon, type)
 		RCLootCouncilDB.global.verTestCandidates = {}
 		L1UI:Print(L["Cleared RCLootCouncil Cache."])
 	elseif addon == 'mrt' and IsAddOnLoaded('MRT') then
-		VMRT.Encounter.list = {}
-		VMRT.Encounter.names = {}
 		VMRT.ExCD2.gnGUIDs = {}
 		VMRT.Inspect.Soulbinds = {}
 		L1UI:Print(L["Cleared Method Raid Tools Cache."])
