@@ -5,6 +5,7 @@
 **Main Layout:**
 ***
 ![LuckyoneUI DPS & Tanks](https://i.imgur.com/8rZTbuC.jpg)  
+***
 **Healing Layout:**
 ***
 ![LuckyoneUI Healing](https://i.imgur.com/bJlcS8C.jpg)
