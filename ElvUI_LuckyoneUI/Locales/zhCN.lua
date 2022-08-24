@@ -100,6 +100,7 @@ L["Update Healing Layout"] = true
 L["Update Main layout to LuckyoneUI version: "] = true
 L["Update Main Layout"] = true
 L["Warlock"] = true
+L["WarpDeplete profile has been set."] = true
 L["Warrior"] = true
 L["Wowhead Guide:"] = true
 L["Zone Text"] = true
