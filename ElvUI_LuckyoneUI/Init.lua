@@ -23,17 +23,17 @@ local name = format('%s-%s', E.myname, E:ShortenRealm(E.myrealm))
 local toons = {
 	-- Retail
 	['Luckyone-LaughingSkull'] = true,
-	['Luckypriest-LaughingSkull'] = true,
-	['Luckymonkas-LaughingSkull'] = true,
+	['Luckydh-LaughingSkull'] = true,
 	['Luckydk-LaughingSkull'] = true,
 	['Luckyhunter-LaughingSkull'] = true,
-	['Unluckyone-LaughingSkull'] = true,
-	['Notlucky-LaughingSkull'] = true,
 	['Luckymage-LaughingSkull'] = true,
-	['Luckydh-LaughingSkull'] = true,
-	['Luckywl-LaughingSkull'] = true,
-	['Luckyrogue-LaughingSkull'] = true,
+	['Luckymonkas-LaughingSkull'] = true,
 	['Luckypala-LaughingSkull'] = true,
+	['Luckypriest-LaughingSkull'] = true,
+	['Luckyrogue-LaughingSkull'] = true,
+	['Luckywl-LaughingSkull'] = true,
+	['Notlucky-LaughingSkull'] = true,
+	['Unluckyone-LaughingSkull'] = true,
 	-- Public Test Realm
 	['Luckyone-Nobundo'] = true,
 	-- Wrath Classic
@@ -48,11 +48,12 @@ local toons = {
 -- Constants
 L1UI.Config = {}
 L1UI.CreditsList = {}
-L1UI.DefaultFont = "Expressway"
+L1UI.DefaultFont = 'Expressway'
+L1UI.DefaultTexture = 'Minimalist'
 L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = E.Retail and 12.81 or E.TBC and 2.48 or E.Classic and 1.73 or E.Wrath and 0.20
+L1UI.RequiredVersion = E.Retail and 12.83 or E.TBC and 2.48 or E.Classic and 1.73 or E.Wrath and 0.22
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:Initialize()

@@ -10,7 +10,7 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	local PA = _G.ProjectAzilroka
 
 	-- Create and set a new profile called Luckyone
-	PA.data:SetProfile('Luckyone')
+	PA.data:SetProfile(L1UI.Me and 'Luckyone' or 'Luckyone '..L1UI.Version)
 
 	-- Module toggles
 	PA.db.AuraReminder.Enable = false
@@ -34,30 +34,32 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	PA.db.EnhancedFriendsList.DiffLevel = false
 	PA.db.EnhancedFriendsList.InfoFontSize = 10
 	PA.db.EnhancedFriendsList.NameFontSize = 11
-	PA.db.EnhancedFriendsList.Texture = 'Minimalist'
+	PA.db.EnhancedFriendsList.Texture = L1UI.DefaultTexture
 
 	-- SquareMinimapButtons setup
 	PA.db.SquareMinimapButtons.Backdrop = false
 	PA.db.SquareMinimapButtons.BarMouseOver = false
-	PA.db.SquareMinimapButtons.ButtonSpacing = -1
+	PA.db.SquareMinimapButtons.ButtonSpacing = 1
 	PA.db.SquareMinimapButtons.ButtonsPerRow = 6
-	PA.db.SquareMinimapButtons.IconSize = 28
+	PA.db.SquareMinimapButtons.IconSize = 25
 	PA.db.SquareMinimapButtons.MoveQueue = false
 	PA.db.SquareMinimapButtons.MoveTracker = false
 	PA.db.SquareMinimapButtons.Shadows = false
 
 	-- stAddonManager setup
-	PA.db.stAddonManager.CheckTexture = 'Minimalist'
+	PA.db.stAddonManager.CheckTexture = L1UI.DefaultTexture
 	PA.db.stAddonManager.ClassColor = true
 	PA.db.stAddonManager.EnableRequiredAddons = false
-	PA.db.stAddonManager.Font = 'Expressway'
+	PA.db.stAddonManager.Font = L1UI.DefaultFont
 	PA.db.stAddonManager.FontSize = 12
 	PA.db.stAddonManager.FrameWidth = 720
 	PA.db.stAddonManager.NumAddOns = 18
 
+	-- Protect movers error
+	E.db.movers = E.db.movers or {}
+
 	-- Movers
-	if not E.db.movers then E.db.movers = {} end
-	E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-187'
+	E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,0,-156'
 
 	if not noPrint then
 		L1UI:Print(L["ProjectAzilroka profile has been set."])

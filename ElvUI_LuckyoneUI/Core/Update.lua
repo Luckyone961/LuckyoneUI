@@ -1,6 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
--- Ingame config buttons "Update DPS/TANK" & "Update Healing"
+-- Ingame config buttons 'Update Main' & 'Update Healing'
 function L1UI:UpdateLayout(layout)
 
 	E.db.L1UI.install_version = L1UI.Version
