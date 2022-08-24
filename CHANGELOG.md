@@ -1,6 +1,8 @@
 ### Version 2.01 [In Development]
 **All WoW Versions:**  
 DBM profiles are back and updated for LuckyoneUI v2  
+**Retail:**  
+Added profile for WarpDeplete (Mythic Plus Timer AddOn)  
 ___
 ### Version 2.00 [24-08-2022]
 **Highlights:**  

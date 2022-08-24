@@ -7,4 +7,5 @@
 	<Script file='Plater.lua'/>
 	<Script file='ProjectAzilroka.lua'/>
 	<Script file='ShadowLight.lua'/>
+	<Script file='WarpDeplete.lua'/>
 </Ui>

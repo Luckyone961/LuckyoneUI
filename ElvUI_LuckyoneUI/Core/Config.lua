@@ -189,6 +189,7 @@ function L1UI:Config()
 	L1UI.Options.args.profiles.args.addons = ACH:Group(L["Addon Profiles"], nil, 4)
 	L1UI.Options.args.profiles.args.addons.inline = true
 	L1UI.Options.args.profiles.args.addons.args.details = ACH:Execute('Details', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_Details() E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_WarpDeplete() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.profiles.args.header2 = ACH:Header(L["Profiles for DPS & Tanks"], 5)
 	L1UI.Options.args.profiles.args.bossmods = ACH:Group(L["BossMods Profiles"], nil, 6)
 	L1UI.Options.args.profiles.args.bossmods.inline = true
