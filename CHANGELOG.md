@@ -1,8 +1,9 @@
-### Version 2.00 [In Development]
+### Version 2.00 [24-08-2022]
 **Highlights:**  
 Introducing the first draft of LuckyoneUI v2 which will be updated  
 and maintained throughout Dragonflight. This includes reworks for both  
 ElvUI layouts, all AddOn profiles and (maybe) WeakAuras in the future  
+More information will be available in the Discord announcement  
 **All WoW Versions:**  
 Removed DBM profiles and support  
 Removed LuckyoneUI v1 from the installer. A copy of the "old" layouts  
