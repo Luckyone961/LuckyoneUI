@@ -1,3 +1,7 @@
+### Version 2.01 [In Development]
+**All WoW Versions:**  
+DBM profiles are back and updated for LuckyoneUI v2  
+___
 ### Version 2.00 [24-08-2022]
 **Highlights:**  
 Introducing the first draft of LuckyoneUI v2 which will be updated  
