@@ -12,7 +12,6 @@ function L1UI:Setup_AddOnSkins(noPrint)
 	-- Create and set a new profile
 	AS.data:SetProfile(L1UI.Me and 'Luckyone' or 'Luckyone '..L1UI.Version)
 
-	AS.db.DBMFont = L1UI.DefaultFont
 	AS.db.Shadows = false
 	AS.db.SkinDebug = true
 
