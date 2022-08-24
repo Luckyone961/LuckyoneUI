@@ -74,7 +74,7 @@ L1UI.InstallerData = {
 		end,
 		[7] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText(L["BossMods"])
-			PluginInstallFrame.Desc1:SetText(L["BossMods"])
+			PluginInstallFrame.Desc1:SetText(L["Choose between DBM and BigWigs."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_BigWigs('main') end)
@@ -82,6 +82,12 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:Show()
 			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_BigWigs('healing') end)
 			PluginInstallFrame.Option2:SetText('BigWigs Healing')
+			PluginInstallFrame.Option3:Show()
+			PluginInstallFrame.Option3:SetScript('OnClick', function() L1UI:Setup_DBM('main') end)
+			PluginInstallFrame.Option3:SetText('DBM')
+			PluginInstallFrame.Option4:Show()
+			PluginInstallFrame.Option4:SetScript('OnClick', function() L1UI:Setup_DBM('healing') end)
+			PluginInstallFrame.Option4:SetText('DBM Healing')
 		end,
 		[8] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText(L["Details Profile"])

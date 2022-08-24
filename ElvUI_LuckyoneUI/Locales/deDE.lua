@@ -114,6 +114,7 @@ L["Cleared Method Raid Tools Cache."] = "Method Raid Tools Cache wurde geleert."
 L["Cleared Plater Cache."] = "Plater Cache wurde geleert."
 L["Cleared RCLootCouncil Cache."] = "RCLootCouncil Cache wurde geleert."
 L["CVars have been set."] = "CVars wurde festgelegt."
+L["DBM profile has been set."] = "DBM Profil wurde festgelegt."
 L["Details profile has been set."] = "Details Profil wurde festgelegt."
 L["NamePlate CVars have been set."] = "Namensplaketten CVars wurden festgelegt."
 L["OmniCD profile has been set."] = "OmniCD Profil wurde festgelegt."
@@ -125,6 +126,7 @@ L["Your ElvUI is outdated - please update and reload."] = "Deine ElvUI Version i
 
 -- Install.lua locales
 L["BossMods"] = true
+L["Choose between DBM and BigWigs."] = "Wähle zwischen DBM und BigWigs."
 L["Choose between ElvUI NamePlates and Plater NamePlates."] = "Wähle zwischen ElvUI Namensplaketten und Plater Namensplaketten."
 L["Color Theme"] = "Farb Theme"
 L["Details Profile"] = "Details Profil"
