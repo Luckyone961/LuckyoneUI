@@ -99,7 +99,7 @@ L1UI.InstallerData = {
 		end,
 		[E.Retail and 9] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText(L["OmniCD Profile"])
-			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for OmniCD Party CDs.')
+			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for OmniCD Party CDs."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_OmniCD('main') end)

@@ -145,6 +145,7 @@ L["OmniCD Profile"] = true
 L["Please click a button below to apply the layout of your choosing."] = true
 L["Please click a button below to set the UnitFrames Color Theme."] = true
 L["Please click the button below to apply Luckyones profile for Details! Damage Meter."] = true
+L["Please click the button below to apply Luckyones profile for OmniCD Party CDs."] = true
 L["Setup Details"] = true
 L["Skip Process"] = true
 L["This installation process will guide you through a few steps and apply settings to your current ElvUI profile."] = true
