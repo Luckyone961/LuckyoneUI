@@ -3,6 +3,7 @@
 DBM profiles are back and updated for LuckyoneUI v2  
 **Retail:**  
 Added profile for WarpDeplete (Mythic Plus Timer AddOn)  
+Updated raid icon position and size for boss frames  
 ___
 ### Version 2.00 [24-08-2022]
 **Highlights:**  

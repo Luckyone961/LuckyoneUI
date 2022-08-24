@@ -635,6 +635,8 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.boss.name.attachTextTo = 'Frame'
 	E.db.unitframe.units.boss.name.text_format = '[classcolor][name:last]'
 	E.db.unitframe.units.boss.power.enable = false
+	E.db.unitframe.units.boss.raidicon.size = 10
+	E.db.unitframe.units.boss.raidicon.yOffset = -1
 	E.db.unitframe.units.boss.spacing = 16
 	E.db.unitframe.units.boss.width = 190
 
