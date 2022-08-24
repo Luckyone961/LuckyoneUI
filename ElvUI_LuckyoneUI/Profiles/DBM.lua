@@ -11,8 +11,8 @@ function L1UI:Setup_DBM(layout)
 	local name_healing = L1UI.Me and 'Luckyone Healing' or 'Luckyone Healing '..L1UI.Version
 
 	-- Create the profiles
-	DBM:CreateProfile(name) -- DPS/TANK
-	DBM:CreateProfile(name_healing) -- Healing
+	DBM:CreateProfile(name)
+	DBM:CreateProfile(name_healing)
 
 	if E.Retail then
 
