@@ -4,6 +4,7 @@ DBM profiles are back and updated for LuckyoneUI v2
 Updated Locales for enUS and deDE  
 **Retail:**  
 Added profile for WarpDeplete (Mythic Plus Timer AddOn)  
+Updated OmniCD spells list  
 Updated raid icon position and size for boss frames  
 WeakAuras section has returned but only cosmetic updates to fit in LuckyoneUI v2  
 ___
