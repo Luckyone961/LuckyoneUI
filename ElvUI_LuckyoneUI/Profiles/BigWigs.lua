@@ -40,8 +40,12 @@ function L1UI:Setup_BigWigs(layout)
 
 		-- Profile data
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"] or {}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"][name]["disabled"] = true
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"][name_healing]["disabled"] = true
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"][name] = {
+			["disabled"] = true,
+		}
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"][name_healing] = {
+			["disabled"] = true,
+		}
 
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"][name] = {
@@ -276,8 +280,12 @@ function L1UI:Setup_BigWigs(layout)
 		}
 
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"] or {}
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name]["disabled"] = true
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name_healing]["disabled"] = true
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name] = {
+			["disabled"] = true,
+		}
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name_healing] = {
+			["disabled"] = true,
+		}
 
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][name] = {
@@ -540,8 +548,12 @@ function L1UI:Setup_BigWigs(layout)
 		}
 
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"] or {}
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name]["disabled"] = true
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name_healing]["disabled"] = true
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name] = {
+			["disabled"] = true,
+		}
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Raid Icons"]["profiles"][name_healing] = {
+			["disabled"] = true,
+		}
 
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"][name] = {
