@@ -9,10 +9,10 @@ function L1UI:Setup_Plater()
 	-- Profile name
 	local name = L1UI.Me and 'Luckyone' or 'Luckyone '..L1UI.Version
 
-	if E.Retail then
+	-- Profile creation
+	PlaterDB["profiles"][name] = PlaterDB["profiles"][name] or {}
 
-		-- Profile creation
-		PlaterDB["profiles"][name] = PlaterDB["profiles"][name] or {}
+	if E.Retail then
 
 		-- Profile db
 		PlaterDB["profiles"][name] = {
@@ -996,13 +996,7 @@ function L1UI:Setup_Plater()
 			},
 		}
 
-		-- Profile key
-		PlaterDB["profileKeys"][E.mynameRealm] = name
-
 	elseif E.TBC then
-
-		-- Profile creation
-		PlaterDB["profiles"][name] = PlaterDB["profiles"][name] or {}
 
 		-- Profile db
 		PlaterDB["profiles"][name] = {
@@ -1768,15 +1762,9 @@ function L1UI:Setup_Plater()
 				0.30, -- [3]
 			},
 		}
-
-		-- Profile key
-		PlaterDB["profileKeys"][E.mynameRealm] = name
 
 	elseif E.Classic then
 
-		-- Profile creation
-		PlaterDB["profiles"][name] = PlaterDB["profiles"][name] or {}
-
 		-- Profile db
 		PlaterDB["profiles"][name] = {
 			["aura_alpha"] = 1,
@@ -2541,15 +2529,9 @@ function L1UI:Setup_Plater()
 				0.30, -- [3]
 			},
 		}
-
-		-- Profile key
-		PlaterDB["profileKeys"][E.mynameRealm] = name
 
 	elseif E.Wrath then
 
-		-- Profile creation
-		PlaterDB["profiles"][name] = PlaterDB["profiles"][name] or {}
-
 		-- Profile db
 		PlaterDB["profiles"][name] = {
 			["aura_alpha"] = 1,
@@ -3315,10 +3297,10 @@ function L1UI:Setup_Plater()
 			},
 		}
 
-		-- Profile key
-		PlaterDB["profileKeys"][E.mynameRealm] = name
-
 	end
+
+	-- Profile key
+	PlaterDB["profileKeys"][E.mynameRealm] = name
 
 	L1UI:Print(L["Plater profile has been set."])
 end
