@@ -24,8 +24,9 @@ function L1UI:Setup_OmniCD(layout)
 	for _, profile in pairs({name, name_healing}) do
 		-- Profile creation
 		OmniCDDB["profiles"][profile] = {}
-		-- General db
 		OmniCDDB["profiles"][profile]["General"] = {}
+		OmniCDDB["profiles"][profile]["Party"] = {}
+		-- General db
 		OmniCDDB["profiles"][profile]["General"]["fonts"] = {
 			["statusBar"] = {
 				["font"] = "Expressway",
@@ -56,7 +57,6 @@ function L1UI:Setup_OmniCD(layout)
 			},
 		}
 		-- Party db
-		OmniCDDB["profiles"][profile]["Party"] = {}
 		OmniCDDB["profiles"][profile]["Party"]["noneZoneSetting"] = "party"
 		OmniCDDB["profiles"][profile]["Party"]["scenarioZoneSetting"] = "party"
 		OmniCDDB["profiles"][profile]["Party"]["visibility"] = {
