@@ -158,6 +158,7 @@ function L1UI:Setup_GlobalDB()
 
 	E.global.datatexts.settings.Combat.TimeFull = false
 	E.global.datatexts.settings.System.latency = 'HOME'
+	E.global.datatexts.settings.Time.time24 = true
 	E.global.general.commandBarSetting = 'DISABLED'
 	E.global.general.fadeMapWhenMoving = false
 	E.global.general.mapAlphaWhenMoving = 0.35
