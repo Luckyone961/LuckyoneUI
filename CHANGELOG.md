@@ -1,6 +1,7 @@
 ### Version 2.01 [In Development]
 **All WoW Versions:**  
 DBM profiles are back and updated for LuckyoneUI v2  
+Updated Locales for enUS and deDE  
 **Retail:**  
 Added profile for WarpDeplete (Mythic Plus Timer AddOn)  
 Updated raid icon position and size for boss frames  
