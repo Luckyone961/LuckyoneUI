@@ -24,9 +24,9 @@ function L1UI:Setup_OmniCD(layout)
 	-- Shared db
 	for _, profile in pairs({name, name_healing}) do
 		-- Profile creation
-		OmniCDDB["profiles"][profile] = {}
-		OmniCDDB["profiles"][profile]["General"] = {}
-		OmniCDDB["profiles"][profile]["Party"] = {}
+		OmniCDDB["profiles"][profile] = OmniCDDB["profiles"][profile] or {}
+		OmniCDDB["profiles"][profile]["General"] = OmniCDDB["profiles"][profile]["General"] or {}
+		OmniCDDB["profiles"][profile]["Party"] = OmniCDDB["profiles"][profile]["Party"] or {}
 		-- General db
 		OmniCDDB["profiles"][profile]["General"]["fonts"] = {
 			["statusBar"] = {
@@ -69,7 +69,6 @@ function L1UI:Setup_OmniCD(layout)
 	-- Main profile
 	OmniCDDB["profiles"][name]["Party"] = {
 		["party"] = {
-			["spells"] = {},
 			["extraBars"] = {
 				["interruptBar"] = {
 					["scale"] = 0.6000000000000001,
@@ -151,7 +150,6 @@ function L1UI:Setup_OmniCD(layout)
 			},
 		},
 		["arena"] = {
-			["spells"] = {},
 			["extraBars"] = {
 				["interruptBar"] = {
 					["scale"] = 0.6000000000000001,
@@ -239,7 +237,6 @@ function L1UI:Setup_OmniCD(layout)
 	-- Healing profile
 	OmniCDDB["profiles"][name_healing]["Party"] = {
 		["party"] = {
-			["spells"] = {},
 			["extraBars"] = {
 				["interruptBar"] = {
 					["columns"] = 10,
@@ -326,7 +323,6 @@ function L1UI:Setup_OmniCD(layout)
 			},
 		},
 		["arena"] = {
-			["spells"] = {},
 			["extraBars"] = {
 				["interruptBar"] = {
 					["enabled"] = true,
@@ -419,6 +415,7 @@ function L1UI:Setup_OmniCD(layout)
 	-- Add spell IDs
 	for _, profile in pairs({name, name_healing}) do
 		for _, frame in pairs({"party", "arena"}) do
+			OmniCDDB["profiles"][profile]["Party"][frame]["spells"] = OmniCDDB["profiles"][profile]["Party"][frame]["spells"] or {}
 			OmniCDDB["profiles"][profile]["Party"][frame]["spells"] = {
 				["10060"] = true,
 				["102342"] = false,
