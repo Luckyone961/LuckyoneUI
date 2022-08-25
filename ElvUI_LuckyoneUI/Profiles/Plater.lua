@@ -12,9 +12,9 @@ function L1UI:Setup_Plater()
 	-- Profile creation
 	PlaterDB["profiles"][name] = PlaterDB["profiles"][name] or {}
 
+	-- Profile data
 	if E.Retail then
 
-		-- Profile db
 		PlaterDB["profiles"][name] = {
 			["aura_alpha"] = 1,
 			["aura_consolidate"] = true,
@@ -998,7 +998,6 @@ function L1UI:Setup_Plater()
 
 	elseif E.TBC then
 
-		-- Profile db
 		PlaterDB["profiles"][name] = {
 			["aura_alpha"] = 1,
 			["aura_consolidate"] = true,
@@ -1765,7 +1764,6 @@ function L1UI:Setup_Plater()
 
 	elseif E.Classic then
 
-		-- Profile db
 		PlaterDB["profiles"][name] = {
 			["aura_alpha"] = 1,
 			["aura_consolidate"] = true,
@@ -2532,7 +2530,6 @@ function L1UI:Setup_Plater()
 
 	elseif E.Wrath then
 
-		-- Profile db
 		PlaterDB["profiles"][name] = {
 			["aura_alpha"] = 1,
 			["aura_consolidate"] = true,
