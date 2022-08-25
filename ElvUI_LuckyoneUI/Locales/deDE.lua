@@ -51,7 +51,7 @@ L["Healing Layout"] = "Heiler Layout"
 L["Hide Blizzard Frames"] = "Verstecke Blizzard Fenster"
 L["Hide the Boss Banner"] = "Verstecke das Bossbanner"
 L["Hide the Loot/Alert Frame"] = "Verstecke das Beute-/Alarm Fenster"
-L["Hide the Zone Text"] = "Verstecke  den Zonentext"
+L["Hide the Zone Text"] = "Verstecke den Zonentext"
 L["Hunter"] = "Jäger"
 L["Install"] = "Installieren"
 L["Links"] = true
@@ -123,7 +123,7 @@ L["Plater profile has been set."] = "Plater Profil wurde festgelegt."
 L["ProjectAzilroka profile has been set."] = "ProjectAzilroka Profil wurde festgelegt."
 L["Reload required - continue?"] = "UI neustarten nötig - Fortfahren?"
 L["Shadow&Light profile has been set."] = "Shadow&Light Profil wurde festgelegt."
-L["Your ElvUI is outdated - please update and reload."] = "Deine ElvUI Version ist veraltet - bitte aktualisiere und lade UI neu."
+L["Your ElvUI is outdated - please update and reload."] = "Deine ElvUI Version ist veraltet - bitte aktualisieren und dann /reload."
 
 -- Install.lua locales
 L["BossMods"] = true
@@ -155,14 +155,13 @@ L["This will setup the chat windows to look like this:\n\nLeft Chat: General - L
 L["WarpDeplete Profile"] = "WarpDeplete Profil"
 L["WeakAuras Information"] = "WeakAuras Informationen"
 L["Welcome"] = "Willkommen"
-L["You can find WeakAuras for all 12 Classes and some Utility WeakAuras in the LuckyoneUI config."] = "Du kannst WeakAuras für alle 12 Klassen und einige Utility WeakAuras in der LuckyoneUI Konfiguration finden."
 L["You have completed the installation process, please click 'Finished' to reload the UI."] = "Du hast den Installationsvorgang abgeschlossen, bitte klicke auf 'Fertig', um die Benutzeroberfläche neu zu laden."
 
 -- Layout.lua locales
 L["Layout has been set."] = "Layout wurde festgelegt."
 
 -- Tags.lua locales
-L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"] = "Zeigt die prozentuale Gesundheit mit 1 Dezimalstelle unter 100 %, 2 Dezimalstellen unter 10 % an und blendet Dezimalstellen bei 100 % aus."
+L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"] = "Zeigt die prozentuale Gesundheit mit 1 Dezimalstelle unter 100%, 2 Dezimalstellen unter 10% an und blendet Dezimalstellen bei 100% aus."
 L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"] = "Zeigt die Klassifizierung der Einheit an (z. B. 'Elite' und 'Selten'), aber ohne 'Affix'"
 L["Displays the unit's Mana (Role: Healer)"] = "Zeigt das Mana der Einheit an (Rolle: Heiler)"
 L["Displays the unit's Mana in percent (Role: Healer)"] = "Zeigt das Mana der Einheit in Prozent an (Rolle: Heiler)"

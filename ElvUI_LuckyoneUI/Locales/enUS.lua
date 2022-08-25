@@ -155,7 +155,6 @@ L["This will setup the chat windows to look like this:\n\nLeft Chat: General - L
 L["WarpDeplete Profile"] = true
 L["WeakAuras Information"] = true
 L["Welcome"] = true
-L["You can find WeakAuras for all 12 Classes and some Utility WeakAuras in the LuckyoneUI config."] = true
 L["You have completed the installation process, please click 'Finished' to reload the UI."] = true
 
 -- Layout.lua locales
