@@ -635,6 +635,8 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.boss.name.attachTextTo = 'Frame'
 	E.db.unitframe.units.boss.name.text_format = '[classcolor][name:last]'
 	E.db.unitframe.units.boss.power.enable = false
+	E.db.unitframe.units.boss.raidicon.size = 10
+	E.db.unitframe.units.boss.raidicon.yOffset = -1
 	E.db.unitframe.units.boss.spacing = 16
 	E.db.unitframe.units.boss.width = 190
 
@@ -913,7 +915,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-110'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
-	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-140'
+	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-46,-141'
 	E.db.movers.DurabilityFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-184'
 	E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 	E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,68'
@@ -1004,6 +1006,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.height = 32
 		E.db.unitframe.units.party.rdebuffs.enable = false
 		E.db.unitframe.units.party.roleIcon.enable = false
+		E.db.unitframe.units.party.showPlayer = false
 		E.db.unitframe.units.party.width = 190
 
 		-- Main Raid

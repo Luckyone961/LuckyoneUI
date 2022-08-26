@@ -1,3 +1,16 @@
+### Version 2.01 [26-08-2022]
+**All WoW Versions:**  
+DBM profiles are back and updated for LuckyoneUI v2  
+Updated buttons have returned to the config panel  
+Updated Locales for enUS and deDE  
+Updated MiniMap custom DataText to not block mouse events for Minimap icons  
+**Retail:**  
+Added profile for WarpDeplete (Mythic Plus Timer AddOn)  
+Disabled player frame in party for the main layout  
+Updated OmniCD spells list  
+Updated raid icon position and size for boss frames  
+WeakAuras section has returned but only cosmetic updates to fit in LuckyoneUI v2  
+___
 ### Version 2.00 [24-08-2022]
 **Highlights:**  
 Introducing the first draft of LuckyoneUI v2 which will be updated  
