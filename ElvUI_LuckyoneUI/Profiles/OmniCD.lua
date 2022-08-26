@@ -71,20 +71,20 @@ function L1UI:Setup_OmniCD(layout)
 		["party"] = {
 			["extraBars"] = {
 				["interruptBar"] = {
-					["scale"] = 0.6000000000000001,
+					["scale"] = 0.6,
 					["statusBarWidth"] = 280,
 					["barColors"] = {
 						["classColor"] = false,
 						["inactiveColor"] = {
 							["a"] = 1,
-							["r"] = 0.05098039215686274,
-							["g"] = 0.05098039215686274,
-							["b"] = 0.05098039215686274,
+							["r"] = 0.05,
+							["g"] = 0.05,
+							["b"] = 0.05,
 						},
 						["activeColor"] = {
-							["b"] = 0.05882352941176471,
-							["g"] = 0.05882352941176471,
-							["r"] = 0.05882352941176471,
+							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
 						},
 						["useClassColor"] = {
 							["inactive"] = false,
@@ -102,9 +102,9 @@ function L1UI:Setup_OmniCD(layout)
 						},
 						["activeColor"] = {
 							["a"] = 1,
-							["b"] = 0.05098039215686274,
-							["g"] = 0.05098039215686274,
-							["r"] = 0.05098039215686274,
+							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
 						},
 					},
 					["textColors"] = {
@@ -123,7 +123,7 @@ function L1UI:Setup_OmniCD(layout)
 			},
 			["icons"] = {
 				["counterScale"] = 0.9,
-				["scale"] = 0.9000000000000001,
+				["scale"] = 0.9,
 				["showTooltip"] = true,
 				["chargeScale"] = 0.9,
 			},
@@ -144,28 +144,28 @@ function L1UI:Setup_OmniCD(layout)
 					["x"] = 682.3111276328564,
 				},
 				["interruptBar"] = {
-					["y"] = 394.3113376730071,
-					["x"] = 256.3552579435964,
+					["y"] = 417.7780917134624,
+					["x"] = 256.3552796449858,
 				},
 			},
 		},
 		["arena"] = {
 			["extraBars"] = {
 				["interruptBar"] = {
-					["scale"] = 0.6000000000000001,
+					["scale"] = 0.6,
 					["statusBarWidth"] = 280,
 					["barColors"] = {
 						["classColor"] = false,
 						["inactiveColor"] = {
 							["a"] = 1,
-							["b"] = 0.05098039215686274,
-							["g"] = 0.05098039215686274,
-							["r"] = 0.05098039215686274,
+							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
 						},
 						["activeColor"] = {
-							["r"] = 0.05882352941176471,
-							["g"] = 0.05882352941176471,
-							["b"] = 0.05882352941176471,
+							["r"] = 0.05,
+							["g"] = 0.05,
+							["b"] = 0.05,
 						},
 						["useClassColor"] = {
 							["inactive"] = false,
@@ -184,9 +184,9 @@ function L1UI:Setup_OmniCD(layout)
 						},
 						["activeColor"] = {
 							["a"] = 1,
-							["r"] = 0.05098039215686274,
-							["g"] = 0.05098039215686274,
-							["b"] = 0.05098039215686274,
+							["r"] = 0.05,
+							["g"] = 0.05,
+							["b"] = 0.05,
 						},
 					},
 					["textColors"] = {
@@ -202,8 +202,8 @@ function L1UI:Setup_OmniCD(layout)
 			},
 			["manualPos"] = {
 				["interruptBar"] = {
-					["y"] = 394.3113376730071,
-					["x"] = 256.3552579435964,
+					["y"] = 417.7780917134624,
+					["x"] = 256.3552796449858,
 				},
 				["raidCDBar"] = {
 					["y"] = 384.3555214597109,
@@ -213,7 +213,7 @@ function L1UI:Setup_OmniCD(layout)
 			["icons"] = {
 				["counterScale"] = 0.9,
 				["chargeScale"] = 0.9,
-				["scale"] = 0.9000000000000001,
+				["scale"] = 0.9,
 				["showTooltip"] = true,
 			},
 			["position"] = {
@@ -250,19 +250,19 @@ function L1UI:Setup_OmniCD(layout)
 							["active"] = false,
 						},
 						["activeColor"] = {
-							["b"] = 0.05882352941176471,
-							["g"] = 0.05882352941176471,
-							["r"] = 0.05882352941176471,
+							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
 						},
 						["inactiveColor"] = {
 							["a"] = 1,
-							["r"] = 0.05098039215686274,
-							["g"] = 0.05098039215686274,
-							["b"] = 0.05098039215686274,
+							["r"] = 0.05,
+							["g"] = 0.05,
+							["b"] = 0.05,
 						},
 					},
 					["growUpward"] = true,
-					["scale"] = 0.6000000000000001,
+					["scale"] = 0.6,
 					["locked"] = true,
 					["textColors"] = {
 						["classColor"] = true,
@@ -276,9 +276,9 @@ function L1UI:Setup_OmniCD(layout)
 						["classColor"] = true,
 						["activeColor"] = {
 							["a"] = 1,
-							["b"] = 0.05098039215686274,
-							["g"] = 0.05098039215686274,
-							["r"] = 0.05098039215686274,
+							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
 						},
 						["useClassColor"] = {
 							["active"] = true,
@@ -313,7 +313,7 @@ function L1UI:Setup_OmniCD(layout)
 				["showPlayer"] = true,
 			},
 			["icons"] = {
-				["scale"] = 0.8300000000000001,
+				["scale"] = 0.83,
 				["counterScale"] = 0.8,
 				["chargeScale"] = 0.8,
 				["showTooltip"] = true,
@@ -337,15 +337,15 @@ function L1UI:Setup_OmniCD(layout)
 							["active"] = false,
 						},
 						["activeColor"] = {
-							["r"] = 0.05882352941176471,
-							["g"] = 0.05882352941176471,
-							["b"] = 0.05882352941176471,
+							["r"] = 0.05,
+							["g"] = 0.05,
+							["b"] = 0.05,
 						},
 						["inactiveColor"] = {
 							["a"] = 1,
-							["b"] = 0.05098039215686274,
-							["g"] = 0.05098039215686274,
-							["r"] = 0.05098039215686274,
+							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
 						},
 					},
 					["growUpward"] = true,
@@ -362,15 +362,15 @@ function L1UI:Setup_OmniCD(layout)
 						["classColor"] = true,
 						["activeColor"] = {
 							["a"] = 1,
-							["r"] = 0.05098039215686274,
-							["g"] = 0.05098039215686274,
-							["b"] = 0.05098039215686274,
+							["r"] = 0.05,
+							["g"] = 0.05,
+							["b"] = 0.05,
 						},
 						["useClassColor"] = {
 							["active"] = true,
 						},
 					},
-					["scale"] = 0.6000000000000001,
+					["scale"] = 0.6,
 					["paddingY"] = 2,
 				},
 			},
@@ -400,7 +400,7 @@ function L1UI:Setup_OmniCD(layout)
 				},
 			},
 			["icons"] = {
-				["scale"] = 0.8300000000000001,
+				["scale"] = 0.83,
 				["counterScale"] = 0.8,
 				["chargeScale"] = 0.8,
 				["showTooltip"] = true,
