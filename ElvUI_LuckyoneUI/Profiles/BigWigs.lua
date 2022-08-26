@@ -1,9 +1,8 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local pairs = pairs
-
 local IsAddOnLoaded = IsAddOnLoaded
 local LoadAddOn = LoadAddOn
+local pairs = pairs
 
 -- BigWigs profiles
 function L1UI:Setup_BigWigs(layout)

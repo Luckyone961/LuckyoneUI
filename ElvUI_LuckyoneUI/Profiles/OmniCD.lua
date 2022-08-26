@@ -1,9 +1,8 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 if not E.Retail then return end
 
-local pairs = pairs
-
 local IsAddOnLoaded = IsAddOnLoaded
+local pairs = pairs
 
 -- OmniCD profile
 function L1UI:Setup_OmniCD(layout)

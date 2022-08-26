@@ -1,8 +1,7 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local pairs = pairs
-
 local IsAddOnLoaded = IsAddOnLoaded
+local pairs = pairs
 
 -- DBM profile
 function L1UI:Setup_DBM(layout)
