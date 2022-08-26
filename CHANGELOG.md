@@ -1,7 +1,9 @@
-### Version 2.01 [In Development]
+### Version 2.01 [26-08-2022]
 **All WoW Versions:**  
 DBM profiles are back and updated for LuckyoneUI v2  
+Updated buttons have returned to the config panel  
 Updated Locales for enUS and deDE  
+Updated MiniMap custom DataText to not block mouse events for Minimap icons  
 **Retail:**  
 Added profile for WarpDeplete (Mythic Plus Timer AddOn)  
 Disabled player frame in party for the main layout  
