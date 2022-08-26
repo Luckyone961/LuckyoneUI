@@ -207,10 +207,10 @@ function L1UI:Setup_GlobalDB()
 	MiniMapDT.panelTransparency = true
 	MiniMapDT.textJustify = 'CENTER'
 	MiniMapDT.tooltipAnchor = 'ANCHOR_BOTTOMLEFT'
-	MiniMapDT.tooltipXOffset = -6
-	MiniMapDT.tooltipYOffset = -7
+	MiniMapDT.tooltipXOffset = -30
+	MiniMapDT.tooltipYOffset = -6
 	MiniMapDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
-	MiniMapDT.width = 152
+	MiniMapDT.width = 60
 end
 
 -- ElvUI Layouts setup
