@@ -1006,6 +1006,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.height = 32
 		E.db.unitframe.units.party.rdebuffs.enable = false
 		E.db.unitframe.units.party.roleIcon.enable = false
+		E.db.unitframe.units.party.showPlayer = false
 		E.db.unitframe.units.party.width = 190
 
 		-- Main Raid
