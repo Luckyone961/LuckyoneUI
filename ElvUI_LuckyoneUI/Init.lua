@@ -24,6 +24,7 @@ local toons = {
 	['Luckyone-LaughingSkull'] = true,
 	['Luckydh-LaughingSkull'] = true,
 	['Luckydk-LaughingSkull'] = true,
+	['Luckydruid-LaughingSkull'] = true,
 	['Luckyhunter-LaughingSkull'] = true,
 	['Luckymage-LaughingSkull'] = true,
 	['Luckymonkas-LaughingSkull'] = true,
