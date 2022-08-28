@@ -74,7 +74,7 @@ L1UI.InstallerData = {
 		end,
 		[7] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText(L["BossMods"])
-			PluginInstallFrame.Desc1:SetText(L["BossMods"])
+			PluginInstallFrame.Desc1:SetText(L["Choose between DBM and BigWigs."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_BigWigs('main') end)
@@ -82,6 +82,12 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:Show()
 			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_BigWigs('healing') end)
 			PluginInstallFrame.Option2:SetText('BigWigs Healing')
+			PluginInstallFrame.Option3:Show()
+			PluginInstallFrame.Option3:SetScript('OnClick', function() L1UI:Setup_DBM('main') end)
+			PluginInstallFrame.Option3:SetText('DBM')
+			PluginInstallFrame.Option4:Show()
+			PluginInstallFrame.Option4:SetScript('OnClick', function() L1UI:Setup_DBM('healing') end)
+			PluginInstallFrame.Option4:SetText('DBM Healing')
 		end,
 		[8] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText(L["Details Profile"])
@@ -93,7 +99,7 @@ L1UI.InstallerData = {
 		end,
 		[E.Retail and 9] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText(L["OmniCD Profile"])
-			PluginInstallFrame.Desc1:SetText('Please click the button below to apply Luckyones profile for OmniCD Party CDs.')
+			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for OmniCD Party CDs."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_OmniCD('main') end)
@@ -102,7 +108,15 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_OmniCD('healing') end)
 			PluginInstallFrame.Option2:SetText('OmniCD Healing')
 		end,
-		[E.Retail and 10 or 9] = function()
+		[E.Retail and 10] = function()
+			PluginInstallFrame.SubTitle:SetFormattedText(L["WarpDeplete Profile"])
+			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for WarpDeplete."])
+			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_OmniCD('main') end)
+			PluginInstallFrame.Option1:SetText(L["Setup WarpDeplete"])
+		end,
+		[E.Retail and 11 or 9] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Installation Complete"])
 			PluginInstallFrame.Desc1:SetText(L["You have completed the installation process, please click 'Finished' to reload the UI."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cHigh|r"])
@@ -121,7 +135,8 @@ L1UI.InstallerData = {
 		[7] = L["BossMods"],
 		[8] = 'Details',
 		[E.Retail and 9] = 'OmniCD',
-		[E.Retail and 10 or 9] = L["Installation Complete"],
+		[E.Retail and 10] = 'WarpDeplete',
+		[E.Retail and 11 or 9] = L["Installation Complete"],
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0, 179/255, 1},

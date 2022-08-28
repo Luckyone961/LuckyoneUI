@@ -36,8 +36,5 @@ function L1UI:Setup_Details()
 	_detalhes.always_use_profile = true
 	_detalhes.always_use_profile_name = name
 
-	-- Wipe boss_mods_timers, encounter_spell_pool, npcid_pool, spell_pool, spell_school_cache
-	L1UI:Cleanup_Cache('details')
-
 	L1UI:Print(L["Details profile has been set."])
 end

@@ -1,9 +1,8 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
 
-local format, print = format, print
-
 local _G = _G
+local format, print = format, print
 local IsAddOnLoaded = IsAddOnLoaded
 local ReloadUI = ReloadUI
 local SetCVar = SetCVar
@@ -158,6 +157,7 @@ function L1UI:Setup_GlobalDB()
 
 	E.global.datatexts.settings.Combat.TimeFull = false
 	E.global.datatexts.settings.System.latency = 'HOME'
+	E.global.datatexts.settings.Time.time24 = true
 	E.global.general.commandBarSetting = 'DISABLED'
 	E.global.general.fadeMapWhenMoving = false
 	E.global.general.mapAlphaWhenMoving = 0.35
@@ -182,7 +182,7 @@ function L1UI:Setup_GlobalDB()
 	ActionBarsDT.mouseover = false
 	ActionBarsDT.name = 'Luckyone_ActionBars_DT'
 	ActionBarsDT.numPoints = 3
-	ActionBarsDT.panelTransparency = false
+	ActionBarsDT.panelTransparency = true
 	ActionBarsDT.textJustify = 'CENTER'
 	ActionBarsDT.tooltipAnchor = 'ANCHOR_TOP'
 	ActionBarsDT.tooltipXOffset = 0
@@ -207,10 +207,10 @@ function L1UI:Setup_GlobalDB()
 	MiniMapDT.panelTransparency = true
 	MiniMapDT.textJustify = 'CENTER'
 	MiniMapDT.tooltipAnchor = 'ANCHOR_BOTTOMLEFT'
-	MiniMapDT.tooltipXOffset = -6
-	MiniMapDT.tooltipYOffset = -7
+	MiniMapDT.tooltipXOffset = -30
+	MiniMapDT.tooltipYOffset = -6
 	MiniMapDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
-	MiniMapDT.width = 152
+	MiniMapDT.width = 60
 end
 
 -- ElvUI Layouts setup

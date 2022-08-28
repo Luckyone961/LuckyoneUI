@@ -9,10 +9,10 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 
 	local PA = _G.ProjectAzilroka
 
-	-- Create and set a new profile called Luckyone
+	-- Profile creation
 	PA.data:SetProfile(L1UI.Me and 'Luckyone' or 'Luckyone '..L1UI.Version)
 
-	-- Module toggles
+	-- General modules
 	PA.db.AuraReminder.Enable = false
 	PA.db.Cooldown.Enable = false
 	PA.db.DragonOverlay.Enable = false
@@ -22,7 +22,7 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	PA.db.OzCooldowns.Enable = false
 	PA.db.QuestSounds.Enable = false
 
-	-- Retail only toggles
+	-- Retail modules
 	if E.Retail then
 		PA.db.MasterExperience.Enable = false
 		PA.db.ReputationReward.Enable = false

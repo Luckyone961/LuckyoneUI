@@ -100,6 +100,7 @@ L["Update Healing Layout"] = true
 L["Update Main layout to LuckyoneUI version: "] = true
 L["Update Main Layout"] = true
 L["Warlock"] = true
+L["WarpDeplete profile has been set."] = true
 L["Warrior"] = true
 L["Wowhead Guide:"] = true
 L["Zone Text"] = true
@@ -114,6 +115,7 @@ L["Cleared Method Raid Tools Cache."] = true
 L["Cleared Plater Cache."] = true
 L["Cleared RCLootCouncil Cache."] = true
 L["CVars have been set."] = true
+L["DBM profile has been set."] = true
 L["Details profile has been set."] = true
 L["NamePlate CVars have been set."] = true
 L["OmniCD profile has been set."] = true
@@ -125,6 +127,7 @@ L["Your ElvUI is outdated - please update and reload."] = true
 
 -- Install.lua locales
 L["BossMods"] = true
+L["Choose between DBM and BigWigs."] = true
 L["Choose between ElvUI NamePlates and Plater NamePlates."] = true
 L["Color Theme"] = true
 L["Details Profile"] = true
@@ -142,13 +145,16 @@ L["OmniCD Profile"] = true
 L["Please click a button below to apply the layout of your choosing."] = true
 L["Please click a button below to set the UnitFrames Color Theme."] = true
 L["Please click the button below to apply Luckyones profile for Details! Damage Meter."] = true
+L["Please click the button below to apply Luckyones profile for OmniCD Party CDs."] = true
+L["Please click the button below to apply Luckyones profile for WarpDeplete."] = true
 L["Setup Details"] = true
+L["Setup WarpDeplete"] = true
 L["Skip Process"] = true
 L["This installation process will guide you through a few steps and apply settings to your current ElvUI profile."] = true
 L["This will setup the chat windows to look like this:\n\nLeft Chat: General - Log - Whisper - Guild - Party\n\nRight Chat: Details! Damage Meter"] = true
+L["WarpDeplete Profile"] = true
 L["WeakAuras Information"] = true
 L["Welcome"] = true
-L["You can find WeakAuras for all 12 Classes and some Utility WeakAuras in the LuckyoneUI config."] = true
 L["You have completed the installation process, please click 'Finished' to reload the UI."] = true
 
 -- Layout.lua locales

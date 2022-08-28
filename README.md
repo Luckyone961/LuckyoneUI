@@ -2,4 +2,10 @@
 ***
 [![Discord](https://img.shields.io/discord/713882063169781870?label=Discord)](https://discord.gg/xRY4bwA) [![Patreon](https://img.shields.io/badge/Support-Patreon-orange)](https://www.patreon.com/luckyone) [![Donate](https://img.shields.io/badge/Support-Donate-blue)](https://streamlabs.com/luckyone1996/tip)
 ***
-![LuckyoneUI DPS & Tanks](https://i.imgur.com/QTW6PXB.jpg)
+**Main Layout:**
+***
+![LuckyoneUI DPS & Tanks](https://i.imgur.com/8rZTbuC.jpg)  
+***
+**Healing Layout:**
+***
+![LuckyoneUI Healing](https://i.imgur.com/bJlcS8C.jpg)
