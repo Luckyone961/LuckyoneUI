@@ -182,7 +182,7 @@ function L1UI:Setup_GlobalDB()
 	ActionBarsDT.mouseover = false
 	ActionBarsDT.name = 'Luckyone_ActionBars_DT'
 	ActionBarsDT.numPoints = 3
-	ActionBarsDT.panelTransparency = false
+	ActionBarsDT.panelTransparency = true
 	ActionBarsDT.textJustify = 'CENTER'
 	ActionBarsDT.tooltipAnchor = 'ANCHOR_TOP'
 	ActionBarsDT.tooltipXOffset = 0

@@ -27,11 +27,9 @@ function L1UI:Setup_Theme(theme)
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = '[classcolor][name:last]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[classcolor][name:last]'
 
-		--[[
 		if not E.Retail then
 			E.db.unitframe.units.pet.health.colorHappiness = false
 		end
-		]]
 
 	elseif theme == 'class' then
 
@@ -54,11 +52,9 @@ function L1UI:Setup_Theme(theme)
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = '[name:last]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[name:last]'
 
-		--[[
 		if not E.Retail then
 			E.db.unitframe.units.pet.health.colorHappiness = true
 		end
-		]]
 
 	end
 
