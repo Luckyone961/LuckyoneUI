@@ -41,6 +41,8 @@ local toons = {
 	['Luckyd-Golemagg'] = true,
 	['Luckyp-Golemagg'] = true,
 	['Luckysh-Golemagg'] = true,
+	['Luckyone-Thekal'] = true,
+	['Luckyone-Giantstalker'] = true,
 	-- Season of Mastery
 	['Luckyone-Dreadnaught'] = true,
 }
