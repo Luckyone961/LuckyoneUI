@@ -1,4 +1,10 @@
-### Version 2.02 [In Development]
+### Version 2.02 [30-08-2022]
+**All WoW Versions:**  
+Adjusted position of TopCenterContainerMover slightly  
+Minor color tweaks for the custom ActionBars DataText  
+**Wrath Classic:**  
+Some more fixes for pre patch release  
+Updated color themes to account for 'Color by Happiness' option  
 ___
 ### Version 2.01 [26-08-2022]
 **All WoW Versions:**  
