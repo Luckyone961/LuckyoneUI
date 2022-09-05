@@ -1,4 +1,6 @@
 ### Version 2.03 [In Development]
+**All WoW Versions:**  
+UnitFrames are slightly transparent again  
 ___
 ### Version 2.02 [30-08-2022]
 **All WoW Versions:**  
