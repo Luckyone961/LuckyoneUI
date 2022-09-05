@@ -466,6 +466,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.colors.power.MANA.r = 0
 	E.db.unitframe.colors.tapped.g = 0.56
 	E.db.unitframe.colors.tapped.r = 0.54
+	E.db.unitframe.colors.transparentHealth = true
 	E.db.unitframe.colors.useDeadBackdrop = true
 	E.db.unitframe.cooldown.override = false
 	E.db.unitframe.font = L1UI.DefaultFont
