@@ -472,7 +472,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.font = L1UI.DefaultFont
 	E.db.unitframe.fontOutline = 'OUTLINE'
 	E.db.unitframe.fontSize = 12
-	E.db.unitframe.smartRaidFilter = false
 	E.db.unitframe.statusbar = L1UI.DefaultTexture
 
 	-- Shared MA/MT
