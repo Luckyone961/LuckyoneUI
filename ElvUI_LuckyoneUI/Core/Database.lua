@@ -377,6 +377,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.cooldown.fonts.fontSize = 12
 	E.db.cooldown.hoursIndicator.r = 0.4
 	E.db.cooldown.secondsColor.b = 1
+	E.db.cooldown.targetAura = false
 	E.db.cooldown.threshold = 5
 
 	-- DataBars
@@ -1421,6 +1422,7 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.cooldown.fonts.fontSize = 12
 	E.db.cooldown.hoursIndicator.r = 0.4
 	E.db.cooldown.secondsColor.b = 1
+	E.db.cooldown.targetAura = false
 	E.db.cooldown.threshold = 5
 
 	-- DataBars
