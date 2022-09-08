@@ -855,12 +855,12 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid1.summonIcon.size = 18
 	E.db.unitframe.units.raid1.threatStyle = 'NONE'
 	E.db.unitframe.units.raid1.verticalSpacing = 1
-	E.db.unitframe.units.raid1.visibility = '[@raid6,noexists][@raid21,exists] hide;show'
+	E.db.unitframe.units.raid1.visibility = E.Retail and '[@raid6,noexists][@raid21,exists] hide;show' or '[@raid6,noexists][@raid11,exists] hide;show'
 
 	-- Shared Raid2
 	E:CopyTable(E.db.unitframe.units.raid2, E.db.unitframe.units.raid1)
 	E.db.unitframe.units.raid2.numGroups = 6
-	E.db.unitframe.units.raid2.visibility = '[@raid21,noexists][@raid31,exists] hide;show'
+	E.db.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
 
 	-- Shared Raid3
 	E.db.unitframe.units.raid3.classbar.enable = false
@@ -908,7 +908,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.summonIcon.size = 18
 	E.db.unitframe.units.raid3.threatStyle = 'NONE'
 	E.db.unitframe.units.raid3.verticalSpacing = 1
-	E.db.unitframe.units.raid3.visibility = '[@raid31,noexists] hide;show'
+	E.db.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
 
 	-- Protect movers error
 	E.db.movers = E.db.movers or {}
@@ -2192,13 +2192,13 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.unitframe.units.raid1.summonIcon.size = 25
 		E.db.unitframe.units.raid1.threatStyle = 'NONE'
 		E.db.unitframe.units.raid1.verticalSpacing = 1
-		E.db.unitframe.units.raid1.visibility = '[@raid6,noexists][@raid21,exists] hide;show'
+		E.db.unitframe.units.raid1.visibility = E.Retail and '[@raid6,noexists][@raid21,exists] hide;show' or '[@raid6,noexists][@raid11,exists] hide;show'
 		E.db.unitframe.units.raid1.width = 82
 
 		-- Main Raid2
 		E:CopyTable(E.db.unitframe.units.raid2, E.db.unitframe.units.raid1)
 		E.db.unitframe.units.raid2.numGroups = 6
-		E.db.unitframe.units.raid2.visibility = '[@raid21,noexists][@raid31,exists] hide;show'
+		E.db.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
 
 		-- Main Raid3
 		E.db.unitframe.units.raid3.classbar.enable = false
@@ -2231,7 +2231,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.unitframe.units.raid3.summonIcon.attachTo = 'LEFT'
 		E.db.unitframe.units.raid3.threatStyle = 'NONE'
 		E.db.unitframe.units.raid3.verticalSpacing = 1
-		E.db.unitframe.units.raid3.visibility = '[@raid31,noexists] hide;show'
+		E.db.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
 		E.db.unitframe.units.raid3.width = 82
 
 	elseif layout == 'healing' then
@@ -2336,13 +2336,13 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.unitframe.units.raid1.summonIcon.size = 22
 		E.db.unitframe.units.raid1.threatStyle = 'NONE'
 		E.db.unitframe.units.raid1.verticalSpacing = 1
-		E.db.unitframe.units.raid1.visibility = '[@raid6,noexists][@raid21,exists] hide;show'
+		E.db.unitframe.units.raid1.visibility = E.Retail and '[@raid6,noexists][@raid21,exists] hide;show' or '[@raid6,noexists][@raid11,exists] hide;show'
 		E.db.unitframe.units.raid1.width = 90
 
 		-- Healing Raid2
 		E:CopyTable(E.db.unitframe.units.raid2, E.db.unitframe.units.raid1)
 		E.db.unitframe.units.raid2.numGroups = 6
-		E.db.unitframe.units.raid2.visibility = '[@raid21,noexists][@raid31,exists] hide;show'
+		E.db.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
 
 		-- Healing Raid3
 		E.db.unitframe.units.raid3.classbar.enable = false
@@ -2373,7 +2373,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.unitframe.units.raid3.summonIcon.attachTo = 'LEFT'
 		E.db.unitframe.units.raid3.threatStyle = 'NONE'
 		E.db.unitframe.units.raid3.verticalSpacing = 1
-		E.db.unitframe.units.raid3.visibility = '[@raid31,noexists] hide;show'
+		E.db.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
 		E.db.unitframe.units.raid3.width = 90
 	end
 end
