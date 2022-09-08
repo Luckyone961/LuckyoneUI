@@ -721,7 +721,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.target.buffs.countPosition = 'TOP'
 	E.db.unitframe.units.target.buffs.countYOffset = 14
 	E.db.unitframe.units.target.buffs.perrow = 10
-	E.db.unitframe.units.target.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.target.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs'
 	E.db.unitframe.units.target.castbar.customTextFont.enable = true
 	E.db.unitframe.units.target.castbar.customTextFont.font = L1UI.DefaultFont
 	E.db.unitframe.units.target.castbar.customTextFont.fontSize = 11

@@ -111,7 +111,7 @@ function L1UI:Setup_NamePlates(addon)
 		E.db.nameplates.units.ENEMY_PLAYER.buffs.fontSize = 10
 		E.db.nameplates.units.ENEMY_PLAYER.buffs.maxDuration = 0
 		E.db.nameplates.units.ENEMY_PLAYER.buffs.numAuras = 3
-		E.db.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+		E.db.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs'
 		E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 20
 		E.db.nameplates.units.ENEMY_PLAYER.buffs.spacing = 0
 		E.db.nameplates.units.ENEMY_PLAYER.buffs.xOffset = 22
