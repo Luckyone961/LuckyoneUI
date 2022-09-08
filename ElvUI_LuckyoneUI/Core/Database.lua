@@ -821,7 +821,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid1.name.position = 'TOP'
 	E.db.unitframe.units.raid1.name.text_format = '[classcolor][name:veryshort]'
 	E.db.unitframe.units.raid1.name.yOffset = -1
-	E.db.unitframe.units.raid1.numGroups = 4
+	E.db.unitframe.units.raid1.numGroups = E.Retail and 4 or 5
 	E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'BOTTOMRIGHT'
 	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid1.phaseIndicator.xOffset = 1
@@ -2165,7 +2165,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.unitframe.units.raid1.name.attachTextTo = 'Frame'
 		E.db.unitframe.units.raid1.name.position = 'LEFT'
 		E.db.unitframe.units.raid1.name.text_format = ''
-		E.db.unitframe.units.raid1.numGroups = 4
+		E.db.unitframe.units.raid1.numGroups = E.Retail and 4 or 5
 		E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'BOTTOM'
 		E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
 		E.db.unitframe.units.raid1.power.enable = false
