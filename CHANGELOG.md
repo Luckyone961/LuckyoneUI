@@ -1,6 +1,7 @@
 ### Version 2.03 [In Development]
 **All WoW Versions:**  
 UnitFrames are slightly transparent again  
+Updates for the new all-in-one ElvUI v12.85  
 ___
 ### Version 2.02 [30-08-2022]
 **All WoW Versions:**  

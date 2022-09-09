@@ -377,6 +377,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.cooldown.fonts.fontSize = 12
 	E.db.cooldown.hoursIndicator.r = 0.4
 	E.db.cooldown.secondsColor.b = 1
+	E.db.cooldown.targetAura = false
 	E.db.cooldown.threshold = 5
 
 	-- DataBars
@@ -659,7 +660,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 	-- Shared Player
 	E.db.unitframe.units.player.customTexts = E.db.unitframe.units.player.customTexts or {}
-	E.db.unitframe.units.player.customTexts.Luckyone_HP = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[health:current:shortvalue] • [luckyone:health:percent]', xOffset = -2, yOffset = 0}
+	E.db.unitframe.units.player.customTexts.Luckyone_HP = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '', xOffset = -2, yOffset = 0}
 	E.db.unitframe.units.player.customTexts.Luckyone_Name = {attachTextTo = 'Frame', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[classcolor][name]', xOffset = 5, yOffset = 0}
 
 	E.db.unitframe.units.player.aurabar.enable = false
@@ -720,7 +721,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.target.buffs.countPosition = 'TOP'
 	E.db.unitframe.units.target.buffs.countYOffset = 14
 	E.db.unitframe.units.target.buffs.perrow = 10
-	E.db.unitframe.units.target.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.target.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs'
 	E.db.unitframe.units.target.castbar.customTextFont.enable = true
 	E.db.unitframe.units.target.castbar.customTextFont.font = L1UI.DefaultFont
 	E.db.unitframe.units.target.castbar.customTextFont.fontSize = 11
@@ -768,13 +769,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.targettarget.raidicon.enable = false
 	E.db.unitframe.units.targettarget.width = 278
 
-	-- Shared growth directions
-	E.db.unitframe.units.raid.growthDirection = 'RIGHT_DOWN'
-	E.db.unitframe.units.raid40.growthDirection = 'RIGHT_DOWN'
-
 	-- Shared Party
 	E.db.unitframe.units.party.customTexts = E.db.unitframe.units.party.customTexts or {}
-	E.db.unitframe.units.party.customTexts.Luckyone_Name = {attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0}
+	E.db.unitframe.units.party.customTexts.Luckyone_Name = {attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '', xOffset = 0, yOffset = 0}
 
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.disableMouseoverGlow = true
@@ -805,103 +802,113 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.party.threatStyle = 'NONE'
 	E.db.unitframe.units.party.verticalSpacing = 1
 
-	-- Shared Raid
-	E.db.unitframe.units.raid.classbar.enable = false
-	E.db.unitframe.units.raid.disableMouseoverGlow = true
-	E.db.unitframe.units.raid.disableTargetGlow = true
-	E.db.unitframe.units.raid.healPrediction.absorbStyle = 'WRAPPED'
-	E.db.unitframe.units.raid.healPrediction.enable = true
-	E.db.unitframe.units.raid.health.text_format = '[healthcolor][luckyone:health:percent]'
-	E.db.unitframe.units.raid.health.xOffset = 0
-	E.db.unitframe.units.raid.health.yOffset = 1
-	E.db.unitframe.units.raid.horizontalSpacing = 1
-	E.db.unitframe.units.raid.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.raid.name.position = 'TOP'
-	E.db.unitframe.units.raid.name.text_format = '[classcolor][name:veryshort]'
-	E.db.unitframe.units.raid.name.yOffset = -1
-	E.db.unitframe.units.raid.numGroups = 4
-	E.db.unitframe.units.raid.phaseIndicator.anchorPoint = 'BOTTOMRIGHT'
-	E.db.unitframe.units.raid.phaseIndicator.scale = 0.5
-	E.db.unitframe.units.raid.phaseIndicator.xOffset = 1
-	E.db.unitframe.units.raid.power.enable = false
-	E.db.unitframe.units.raid.pvpclassificationindicator.size = 18
-	E.db.unitframe.units.raid.raidicon.attachTo = 'TOPRIGHT'
-	E.db.unitframe.units.raid.raidicon.attachToObject = 'Health'
-	E.db.unitframe.units.raid.raidicon.size = 12
-	E.db.unitframe.units.raid.raidicon.xOffset = 1
-	E.db.unitframe.units.raid.raidicon.yOffset = 1
-	E.db.unitframe.units.raid.raidRoleIcons.scale = 0.8
-	E.db.unitframe.units.raid.raidRoleIcons.yOffset = 1
-	E.db.unitframe.units.raid.rdebuffs.font = L1UI.DefaultFont
-	E.db.unitframe.units.raid.rdebuffs.fontOutline = 'OUTLINE'
-	E.db.unitframe.units.raid.rdebuffs.fontSize = 9
-	E.db.unitframe.units.raid.rdebuffs.size = 14
-	E.db.unitframe.units.raid.rdebuffs.stack.position = 'CENTER'
-	E.db.unitframe.units.raid.rdebuffs.stack.xOffset = 1
-	E.db.unitframe.units.raid.rdebuffs.stack.yOffset = 0
-	E.db.unitframe.units.raid.rdebuffs.yOffset = 1
-	E.db.unitframe.units.raid.readycheckIcon.attachTo = 'Frame'
-	E.db.unitframe.units.raid.readycheckIcon.position = 'CENTER'
-	E.db.unitframe.units.raid.readycheckIcon.yOffset = 0
-	E.db.unitframe.units.raid.resurrectIcon.size = 18
-	E.db.unitframe.units.raid.roleIcon.attachTo = 'Frame'
-	E.db.unitframe.units.raid.roleIcon.damager = false
-	E.db.unitframe.units.raid.roleIcon.position = 'BOTTOMLEFT'
-	E.db.unitframe.units.raid.roleIcon.size = 12
-	E.db.unitframe.units.raid.roleIcon.xOffset = 0
-	E.db.unitframe.units.raid.roleIcon.yOffset = 0
-	E.db.unitframe.units.raid.summonIcon.size = 18
-	E.db.unitframe.units.raid.threatStyle = 'NONE'
-	E.db.unitframe.units.raid.verticalSpacing = 1
-	E.db.unitframe.units.raid.visibility = '[@raid6,noexists][@raid31,exists] hide;show'
+	-- Shared growth directions
+	E.db.unitframe.units.raid1.growthDirection = 'RIGHT_DOWN'
+	E.db.unitframe.units.raid2.growthDirection = 'RIGHT_DOWN'
+	E.db.unitframe.units.raid3.growthDirection = 'RIGHT_DOWN'
 
-	-- Shared Raid40
-	E.db.unitframe.units.raid40.classbar.enable = false
-	E.db.unitframe.units.raid40.debuffs.countFont = L1UI.DefaultFont
-	E.db.unitframe.units.raid40.debuffs.desaturate = false
-	E.db.unitframe.units.raid40.debuffs.maxDuration = 0
-	E.db.unitframe.units.raid40.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
-	E.db.unitframe.units.raid40.disableMouseoverGlow = true
-	E.db.unitframe.units.raid40.disableTargetGlow = true
-	E.db.unitframe.units.raid40.healPrediction.absorbStyle = 'WRAPPED'
-	E.db.unitframe.units.raid40.health.text_format = ''
-	E.db.unitframe.units.raid40.horizontalSpacing = 1
-	E.db.unitframe.units.raid40.name.text_format = '[classcolor][name:veryshort]'
-	E.db.unitframe.units.raid40.phaseIndicator.anchorPoint = 'BOTTOMRIGHT'
-	E.db.unitframe.units.raid40.phaseIndicator.scale = 0.5
-	E.db.unitframe.units.raid40.phaseIndicator.xOffset = 1
-	E.db.unitframe.units.raid40.pvpclassificationindicator.size = 18
-	E.db.unitframe.units.raid40.raidicon.attachTo = 'TOPRIGHT'
-	E.db.unitframe.units.raid40.raidicon.attachToObject = 'Health'
-	E.db.unitframe.units.raid40.raidicon.size = 12
-	E.db.unitframe.units.raid40.raidicon.xOffset = 1
-	E.db.unitframe.units.raid40.raidicon.yOffset = 1
-	E.db.unitframe.units.raid40.raidRoleIcons.scale = 0.8
-	E.db.unitframe.units.raid40.raidRoleIcons.yOffset = 1
-	E.db.unitframe.units.raid40.rdebuffs.enable = true
-	E.db.unitframe.units.raid40.rdebuffs.font = L1UI.DefaultFont
-	E.db.unitframe.units.raid40.rdebuffs.fontOutline = 'OUTLINE'
-	E.db.unitframe.units.raid40.rdebuffs.fontSize = 9
-	E.db.unitframe.units.raid40.rdebuffs.size = 14
-	E.db.unitframe.units.raid40.rdebuffs.stack.position = 'CENTER'
-	E.db.unitframe.units.raid40.rdebuffs.stack.yOffset = 0
-	E.db.unitframe.units.raid40.readycheckIcon.position = 'TOPRIGHT'
-	E.db.unitframe.units.raid40.readycheckIcon.xOffset = -1
-	E.db.unitframe.units.raid40.readycheckIcon.yOffset = 0
-	E.db.unitframe.units.raid40.resurrectIcon.attachTo = 'LEFT'
-	E.db.unitframe.units.raid40.resurrectIcon.size = 18
-	E.db.unitframe.units.raid40.roleIcon.attachTo = 'Frame'
-	E.db.unitframe.units.raid40.roleIcon.damager = false
-	E.db.unitframe.units.raid40.roleIcon.enable = true
-	E.db.unitframe.units.raid40.roleIcon.position = 'BOTTOMLEFT'
-	E.db.unitframe.units.raid40.roleIcon.size = 12
-	E.db.unitframe.units.raid40.roleIcon.xOffset = 0
-	E.db.unitframe.units.raid40.roleIcon.yOffset = 0
-	E.db.unitframe.units.raid40.summonIcon.attachTo = 'LEFT'
-	E.db.unitframe.units.raid40.summonIcon.size = 18
-	E.db.unitframe.units.raid40.threatStyle = 'NONE'
-	E.db.unitframe.units.raid40.verticalSpacing = 1
-	E.db.unitframe.units.raid40.visibility = '[@raid31,noexists] hide;show'
+	-- Shared Raid1
+	E.db.unitframe.units.raid1.classbar.enable = false
+	E.db.unitframe.units.raid1.disableMouseoverGlow = true
+	E.db.unitframe.units.raid1.disableTargetGlow = true
+	E.db.unitframe.units.raid1.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.raid1.healPrediction.enable = true
+	E.db.unitframe.units.raid1.health.text_format = '[healthcolor][luckyone:health:percent]'
+	E.db.unitframe.units.raid1.health.xOffset = 0
+	E.db.unitframe.units.raid1.health.yOffset = 1
+	E.db.unitframe.units.raid1.horizontalSpacing = 1
+	E.db.unitframe.units.raid1.name.attachTextTo = 'Frame'
+	E.db.unitframe.units.raid1.name.position = 'TOP'
+	E.db.unitframe.units.raid1.name.text_format = '[classcolor][name:veryshort]'
+	E.db.unitframe.units.raid1.name.yOffset = -1
+	E.db.unitframe.units.raid1.numGroups = E.Retail and 4 or 5
+	E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'BOTTOMRIGHT'
+	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
+	E.db.unitframe.units.raid1.phaseIndicator.xOffset = 1
+	E.db.unitframe.units.raid1.power.enable = false
+	E.db.unitframe.units.raid1.pvpclassificationindicator.size = 18
+	E.db.unitframe.units.raid1.raidicon.attachTo = 'TOPRIGHT'
+	E.db.unitframe.units.raid1.raidicon.attachToObject = 'Health'
+	E.db.unitframe.units.raid1.raidicon.size = 12
+	E.db.unitframe.units.raid1.raidicon.xOffset = 1
+	E.db.unitframe.units.raid1.raidicon.yOffset = 1
+	E.db.unitframe.units.raid1.raidRoleIcons.scale = 0.8
+	E.db.unitframe.units.raid1.raidRoleIcons.yOffset = 1
+	E.db.unitframe.units.raid1.rdebuffs.font = L1UI.DefaultFont
+	E.db.unitframe.units.raid1.rdebuffs.fontOutline = 'OUTLINE'
+	E.db.unitframe.units.raid1.rdebuffs.fontSize = 9
+	E.db.unitframe.units.raid1.rdebuffs.size = 14
+	E.db.unitframe.units.raid1.rdebuffs.stack.position = 'CENTER'
+	E.db.unitframe.units.raid1.rdebuffs.stack.xOffset = 1
+	E.db.unitframe.units.raid1.rdebuffs.stack.yOffset = 0
+	E.db.unitframe.units.raid1.rdebuffs.yOffset = 1
+	E.db.unitframe.units.raid1.readycheckIcon.attachTo = 'Frame'
+	E.db.unitframe.units.raid1.readycheckIcon.position = 'CENTER'
+	E.db.unitframe.units.raid1.readycheckIcon.yOffset = 0
+	E.db.unitframe.units.raid1.resurrectIcon.size = 18
+	E.db.unitframe.units.raid1.roleIcon.attachTo = 'Frame'
+	E.db.unitframe.units.raid1.roleIcon.damager = false
+	E.db.unitframe.units.raid1.roleIcon.position = 'BOTTOMLEFT'
+	E.db.unitframe.units.raid1.roleIcon.size = 12
+	E.db.unitframe.units.raid1.roleIcon.xOffset = 0
+	E.db.unitframe.units.raid1.roleIcon.yOffset = 0
+	E.db.unitframe.units.raid1.summonIcon.size = 18
+	E.db.unitframe.units.raid1.threatStyle = 'NONE'
+	E.db.unitframe.units.raid1.verticalSpacing = 1
+	E.db.unitframe.units.raid1.visibility = E.Retail and '[@raid6,noexists][@raid21,exists] hide;show' or '[@raid6,noexists][@raid11,exists] hide;show'
+
+	-- Shared Raid2
+	E:CopyTable(E.db.unitframe.units.raid2, E.db.unitframe.units.raid1)
+	E.db.unitframe.units.raid2.numGroups = 6
+	E.db.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
+
+	-- Shared Raid3
+	E.db.unitframe.units.raid3.classbar.enable = false
+	E.db.unitframe.units.raid3.debuffs.countFont = L1UI.DefaultFont
+	E.db.unitframe.units.raid3.debuffs.desaturate = false
+	E.db.unitframe.units.raid3.debuffs.maxDuration = 0
+	E.db.unitframe.units.raid3.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
+	E.db.unitframe.units.raid3.disableMouseoverGlow = true
+	E.db.unitframe.units.raid3.disableTargetGlow = true
+	E.db.unitframe.units.raid3.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.raid3.health.text_format = ''
+	E.db.unitframe.units.raid3.horizontalSpacing = 1
+	E.db.unitframe.units.raid3.name.text_format = '[classcolor][name:veryshort]'
+	E.db.unitframe.units.raid3.phaseIndicator.anchorPoint = 'BOTTOMRIGHT'
+	E.db.unitframe.units.raid3.phaseIndicator.scale = 0.5
+	E.db.unitframe.units.raid3.phaseIndicator.xOffset = 1
+	E.db.unitframe.units.raid3.pvpclassificationindicator.size = 18
+	E.db.unitframe.units.raid3.raidicon.attachTo = 'TOPRIGHT'
+	E.db.unitframe.units.raid3.raidicon.attachToObject = 'Health'
+	E.db.unitframe.units.raid3.raidicon.size = 12
+	E.db.unitframe.units.raid3.raidicon.xOffset = 1
+	E.db.unitframe.units.raid3.raidicon.yOffset = 1
+	E.db.unitframe.units.raid3.raidRoleIcons.scale = 0.8
+	E.db.unitframe.units.raid3.raidRoleIcons.yOffset = 1
+	E.db.unitframe.units.raid3.rdebuffs.enable = true
+	E.db.unitframe.units.raid3.rdebuffs.font = L1UI.DefaultFont
+	E.db.unitframe.units.raid3.rdebuffs.fontOutline = 'OUTLINE'
+	E.db.unitframe.units.raid3.rdebuffs.fontSize = 9
+	E.db.unitframe.units.raid3.rdebuffs.size = 14
+	E.db.unitframe.units.raid3.rdebuffs.stack.position = 'CENTER'
+	E.db.unitframe.units.raid3.rdebuffs.stack.yOffset = 0
+	E.db.unitframe.units.raid3.readycheckIcon.position = 'TOPRIGHT'
+	E.db.unitframe.units.raid3.readycheckIcon.xOffset = -1
+	E.db.unitframe.units.raid3.readycheckIcon.yOffset = 0
+	E.db.unitframe.units.raid3.resurrectIcon.attachTo = 'LEFT'
+	E.db.unitframe.units.raid3.resurrectIcon.size = 18
+	E.db.unitframe.units.raid3.roleIcon.attachTo = 'Frame'
+	E.db.unitframe.units.raid3.roleIcon.damager = false
+	E.db.unitframe.units.raid3.roleIcon.enable = true
+	E.db.unitframe.units.raid3.roleIcon.position = 'BOTTOMLEFT'
+	E.db.unitframe.units.raid3.roleIcon.size = 12
+	E.db.unitframe.units.raid3.roleIcon.xOffset = 0
+	E.db.unitframe.units.raid3.roleIcon.yOffset = 0
+	E.db.unitframe.units.raid3.summonIcon.attachTo = 'LEFT'
+	E.db.unitframe.units.raid3.summonIcon.size = 18
+	E.db.unitframe.units.raid3.threatStyle = 'NONE'
+	E.db.unitframe.units.raid3.verticalSpacing = 1
+	E.db.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
 
 	-- Protect movers error
 	E.db.movers = E.db.movers or {}
@@ -912,6 +919,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,UIParent,TOPRIGHT,-80,-207'
 	E.db.movers.BNETMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-199'
+	E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-243,-240'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-110'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
@@ -952,7 +960,6 @@ function L1UI:Layout_Dragonflight(layout)
 	if E.Retail then
 		E.db.movers.AltPowerBarMover = 'TOP,UIParent,TOP,0,-18'
 		E.db.movers.BossButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,119'
-		E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-243,-240'
 		E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-117'
 		E.db.movers.LossControlMover = 'TOP,ElvUIParent,TOP,0,-490'
 		E.db.movers.MawBuffsBelowMinimapMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-28'
@@ -982,12 +989,17 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_PetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,141'
 		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,-1,95'
 		E.db.movers.ElvUF_PlayerMover = 'BOTTOM,ElvUIParent,BOTTOM,-278,300'
-		E.db.movers.ElvUF_Raid40Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
-		E.db.movers.ElvUF_RaidMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
+		E.db.movers.ElvUF_Raid1Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
+		E.db.movers.ElvUF_Raid2Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
+		E.db.movers.ElvUF_Raid3Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,278,281'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,278,300'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,252'
 		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,162'
+
+		-- Main Custom Texts
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[classcolor][name:short]'
+		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[health:current:shortvalue] • [luckyone:health:percent]'
 
 		-- Main Misc
 		E.db.unitframe.units.player.power.enable = false
@@ -1009,17 +1021,23 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.showPlayer = false
 		E.db.unitframe.units.party.width = 190
 
-		-- Main Raid
-		E.db.unitframe.units.raid.buffIndicator.enable = false
-		E.db.unitframe.units.raid.height = 38
-		E.db.unitframe.units.raid.rdebuffs.xOffset = 33
-		E.db.unitframe.units.raid.width = 82
+		-- Main Raid1
+		E.db.unitframe.units.raid1.buffIndicator.enable = false
+		E.db.unitframe.units.raid1.height = 38
+		E.db.unitframe.units.raid1.rdebuffs.xOffset = 33
+		E.db.unitframe.units.raid1.width = 82
 
-		-- Main Raid40
-		E.db.unitframe.units.raid40.buffIndicator.enable = false
-		E.db.unitframe.units.raid40.height = 24
-		E.db.unitframe.units.raid40.rdebuffs.xOffset = 33
-		E.db.unitframe.units.raid40.width = 82
+		-- Main Raid2
+		E.db.unitframe.units.raid2.buffIndicator.enable = false
+		E.db.unitframe.units.raid2.height = 38
+		E.db.unitframe.units.raid2.rdebuffs.xOffset = 33
+		E.db.unitframe.units.raid2.width = 82
+
+		-- Main Raid3
+		E.db.unitframe.units.raid3.buffIndicator.enable = false
+		E.db.unitframe.units.raid3.height = 24
+		E.db.unitframe.units.raid3.rdebuffs.xOffset = 33
+		E.db.unitframe.units.raid3.width = 82
 
 	elseif layout == 'healing' then
 
@@ -1033,12 +1051,17 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_PetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,141'
 		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,-1,95'
 		E.db.movers.ElvUF_PlayerMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,482,300'
-		E.db.movers.ElvUF_Raid40Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,149'
-		E.db.movers.ElvUF_RaidMover = 'BOTTOM,ElvUIParent,BOTTOM,0,177'
+		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,177'
+		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,UIParent,BOTTOM,0,95'
+		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,149'
 		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-482,281'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-482,300'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-202,320'
-		E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,383,140'
+		E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,382,141'
+
+		-- Healing Custom Texts
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[classcolor][name:short]'
+		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[manacolor][perpp<%]|r • [health:current:shortvalue] • [luckyone:health:percent]'
 
 		-- Healing Misc
 		E.db.unitframe.colors.custompowerbackdrop = true
@@ -1069,17 +1092,23 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.roleIcon.yOffset = 0
 		E.db.unitframe.units.party.width = 94
 
-		-- Healing Raid
-		E.db.unitframe.units.raid.buffIndicator.enable = true
-		E.db.unitframe.units.raid.height = 40
-		E.db.unitframe.units.raid.rdebuffs.xOffset = 39
-		E.db.unitframe.units.raid.width = 94
+		-- Healing Raid1
+		E.db.unitframe.units.raid1.buffIndicator.enable = true
+		E.db.unitframe.units.raid1.height = 40
+		E.db.unitframe.units.raid1.rdebuffs.xOffset = 39
+		E.db.unitframe.units.raid1.width = 94
 
-		-- Healing Raid40
-		E.db.unitframe.units.raid40.buffIndicator.enable = true
-		E.db.unitframe.units.raid40.height = 23
-		E.db.unitframe.units.raid40.rdebuffs.xOffset = 39
-		E.db.unitframe.units.raid40.width = 94
+		-- Healing Raid2
+		E.db.unitframe.units.raid2.buffIndicator.enable = true
+		E.db.unitframe.units.raid2.height = 40
+		E.db.unitframe.units.raid2.rdebuffs.xOffset = 39
+		E.db.unitframe.units.raid2.width = 94
+
+		-- Healing Raid3
+		E.db.unitframe.units.raid3.buffIndicator.enable = true
+		E.db.unitframe.units.raid3.height = 23
+		E.db.unitframe.units.raid3.rdebuffs.xOffset = 39
+		E.db.unitframe.units.raid3.width = 94
 	end
 end
 
@@ -1421,6 +1450,7 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.cooldown.fonts.fontSize = 12
 	E.db.cooldown.hoursIndicator.r = 0.4
 	E.db.cooldown.secondsColor.b = 1
+	E.db.cooldown.targetAura = false
 	E.db.cooldown.threshold = 5
 
 	-- DataBars
@@ -1485,7 +1515,8 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.unitframe.units.party.customTexts = E.db.unitframe.units.party.customTexts or {}
 	E.db.unitframe.units.pet.customTexts = E.db.unitframe.units.pet.customTexts or {}
 	E.db.unitframe.units.player.customTexts = E.db.unitframe.units.player.customTexts or {}
-	E.db.unitframe.units.raid.customTexts = E.db.unitframe.units.raid.customTexts or {}
+	E.db.unitframe.units.raid1.customTexts = E.db.unitframe.units.raid1.customTexts or {}
+	E.db.unitframe.units.raid2.customTexts = E.db.unitframe.units.raid2.customTexts or {}
 	E.db.unitframe.units.target.customTexts = E.db.unitframe.units.target.customTexts or {}
 	E.db.unitframe.units.targettarget.customTexts = E.db.unitframe.units.targettarget.customTexts or {}
 
@@ -1522,8 +1553,11 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name]', xOffset = 0, yOffset = 1 }
 	E.db.unitframe.units.player.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 1 }
 
-	-- Custom Text: Raid
-	E.db.unitframe.units.raid.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
+	-- Custom Text: Raid1
+	E.db.unitframe.units.raid1.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
+
+	-- Custom Text: Raid2
+	E.db.unitframe.units.raid2.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
 
 	-- Custom Text: Target
 	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
@@ -1955,8 +1989,9 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.unitframe.units.targettarget.width = 80
 
 	-- Growth Directions shared
-	E.db.unitframe.units.raid.growthDirection = 'RIGHT_DOWN'
-	E.db.unitframe.units.raid40.growthDirection = 'RIGHT_DOWN'
+	E.db.unitframe.units.raid1.growthDirection = 'RIGHT_DOWN'
+	E.db.unitframe.units.raid2.growthDirection = 'RIGHT_DOWN'
+	E.db.unitframe.units.raid3.growthDirection = 'RIGHT_DOWN'
 
 	-- Protect movers error
 	E.db.movers = E.db.movers or {}
@@ -2043,8 +2078,9 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.movers.ElvUF_PetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,531,320'
 		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,106'
 		E.db.movers.ElvUF_PlayerMover = 'BOTTOM,ElvUIParent,BOTTOM,-253,320'
-		E.db.movers.ElvUF_Raid40Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
-		E.db.movers.ElvUF_RaidMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
+		E.db.movers.ElvUF_Raid1Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
+		E.db.movers.ElvUF_Raid2Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
+		E.db.movers.ElvUF_Raid3Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
 		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,253,301'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,253,320'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-530,320'
@@ -2108,90 +2144,95 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.unitframe.units.party.verticalSpacing = 2
 		E.db.unitframe.units.party.width = 150
 
-		-- Main Raid
-		E.db.unitframe.units.raid.classbar.enable = false
-		E.db.unitframe.units.raid.debuffs.anchorPoint = 'BOTTOM'
-		E.db.unitframe.units.raid.debuffs.countFont = L1UI.DefaultFont
-		E.db.unitframe.units.raid.debuffs.countFontSize = 14
-		E.db.unitframe.units.raid.debuffs.desaturate = false
-		E.db.unitframe.units.raid.debuffs.maxDuration = 0
-		E.db.unitframe.units.raid.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
-		E.db.unitframe.units.raid.debuffs.sizeOverride = 16
-		E.db.unitframe.units.raid.debuffs.spacing = 0
-		E.db.unitframe.units.raid.debuffs.yOffset = 16
-		E.db.unitframe.units.raid.disableMouseoverGlow = true
-		E.db.unitframe.units.raid.disableTargetGlow = true
-		E.db.unitframe.units.raid.healPrediction.absorbStyle = 'WRAPPED'
-		E.db.unitframe.units.raid.healPrediction.enable = true
-		E.db.unitframe.units.raid.health.text_format = ''
-		E.db.unitframe.units.raid.height = 40
-		E.db.unitframe.units.raid.horizontalSpacing = 1
-		E.db.unitframe.units.raid.name.attachTextTo = 'Frame'
-		E.db.unitframe.units.raid.name.position = 'LEFT'
-		E.db.unitframe.units.raid.name.text_format = ''
-		E.db.unitframe.units.raid.numGroups = 4
-		E.db.unitframe.units.raid.phaseIndicator.anchorPoint = 'BOTTOM'
-		E.db.unitframe.units.raid.phaseIndicator.scale = 0.5
-		E.db.unitframe.units.raid.power.enable = false
-		E.db.unitframe.units.raid.raidicon.attachTo = 'BOTTOM'
-		E.db.unitframe.units.raid.raidicon.attachToObject = 'Health'
-		E.db.unitframe.units.raid.raidicon.size = 12
-		E.db.unitframe.units.raid.raidicon.yOffset = 1
-		E.db.unitframe.units.raid.raidRoleIcons.yOffset = 1
-		E.db.unitframe.units.raid.rdebuffs.font = L1UI.DefaultFont
-		E.db.unitframe.units.raid.rdebuffs.fontOutline = 'OUTLINE'
-		E.db.unitframe.units.raid.rdebuffs.size = 18
-		E.db.unitframe.units.raid.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.raid.rdebuffs.stack.yOffset = 0
-		E.db.unitframe.units.raid.readycheckIcon.attachTo = 'Frame'
-		E.db.unitframe.units.raid.readycheckIcon.xOffset = 1
-		E.db.unitframe.units.raid.resurrectIcon.size = 25
-		E.db.unitframe.units.raid.roleIcon.attachTo = 'Frame'
-		E.db.unitframe.units.raid.roleIcon.damager = false
-		E.db.unitframe.units.raid.roleIcon.position = 'TOP'
-		E.db.unitframe.units.raid.roleIcon.size = 12
-		E.db.unitframe.units.raid.roleIcon.xOffset = 0
-		E.db.unitframe.units.raid.roleIcon.yOffset = 0
-		E.db.unitframe.units.raid.summonIcon.attachTo = 'BOTTOM'
-		E.db.unitframe.units.raid.summonIcon.size = 25
-		E.db.unitframe.units.raid.threatStyle = 'NONE'
-		E.db.unitframe.units.raid.verticalSpacing = 1
-		E.db.unitframe.units.raid.visibility = '[@raid6,noexists][@raid31,exists] hide;show'
-		E.db.unitframe.units.raid.width = 82
+		-- Main Raid1
+		E.db.unitframe.units.raid1.classbar.enable = false
+		E.db.unitframe.units.raid1.debuffs.anchorPoint = 'BOTTOM'
+		E.db.unitframe.units.raid1.debuffs.countFont = L1UI.DefaultFont
+		E.db.unitframe.units.raid1.debuffs.countFontSize = 14
+		E.db.unitframe.units.raid1.debuffs.desaturate = false
+		E.db.unitframe.units.raid1.debuffs.maxDuration = 0
+		E.db.unitframe.units.raid1.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
+		E.db.unitframe.units.raid1.debuffs.sizeOverride = 16
+		E.db.unitframe.units.raid1.debuffs.spacing = 0
+		E.db.unitframe.units.raid1.debuffs.yOffset = 16
+		E.db.unitframe.units.raid1.disableMouseoverGlow = true
+		E.db.unitframe.units.raid1.disableTargetGlow = true
+		E.db.unitframe.units.raid1.healPrediction.absorbStyle = 'WRAPPED'
+		E.db.unitframe.units.raid1.healPrediction.enable = true
+		E.db.unitframe.units.raid1.health.text_format = ''
+		E.db.unitframe.units.raid1.height = 40
+		E.db.unitframe.units.raid1.horizontalSpacing = 1
+		E.db.unitframe.units.raid1.name.attachTextTo = 'Frame'
+		E.db.unitframe.units.raid1.name.position = 'LEFT'
+		E.db.unitframe.units.raid1.name.text_format = ''
+		E.db.unitframe.units.raid1.numGroups = E.Retail and 4 or 5
+		E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'BOTTOM'
+		E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
+		E.db.unitframe.units.raid1.power.enable = false
+		E.db.unitframe.units.raid1.raidicon.attachTo = 'BOTTOM'
+		E.db.unitframe.units.raid1.raidicon.attachToObject = 'Health'
+		E.db.unitframe.units.raid1.raidicon.size = 12
+		E.db.unitframe.units.raid1.raidicon.yOffset = 1
+		E.db.unitframe.units.raid1.raidRoleIcons.yOffset = 1
+		E.db.unitframe.units.raid1.rdebuffs.font = L1UI.DefaultFont
+		E.db.unitframe.units.raid1.rdebuffs.fontOutline = 'OUTLINE'
+		E.db.unitframe.units.raid1.rdebuffs.size = 18
+		E.db.unitframe.units.raid1.rdebuffs.stack.position = 'CENTER'
+		E.db.unitframe.units.raid1.rdebuffs.stack.yOffset = 0
+		E.db.unitframe.units.raid1.readycheckIcon.attachTo = 'Frame'
+		E.db.unitframe.units.raid1.readycheckIcon.xOffset = 1
+		E.db.unitframe.units.raid1.resurrectIcon.size = 25
+		E.db.unitframe.units.raid1.roleIcon.attachTo = 'Frame'
+		E.db.unitframe.units.raid1.roleIcon.damager = false
+		E.db.unitframe.units.raid1.roleIcon.position = 'TOP'
+		E.db.unitframe.units.raid1.roleIcon.size = 12
+		E.db.unitframe.units.raid1.roleIcon.xOffset = 0
+		E.db.unitframe.units.raid1.roleIcon.yOffset = 0
+		E.db.unitframe.units.raid1.summonIcon.attachTo = 'BOTTOM'
+		E.db.unitframe.units.raid1.summonIcon.size = 25
+		E.db.unitframe.units.raid1.threatStyle = 'NONE'
+		E.db.unitframe.units.raid1.verticalSpacing = 1
+		E.db.unitframe.units.raid1.visibility = E.Retail and '[@raid6,noexists][@raid21,exists] hide;show' or '[@raid6,noexists][@raid11,exists] hide;show'
+		E.db.unitframe.units.raid1.width = 82
 
-		-- Main Raid40
-		E.db.unitframe.units.raid40.classbar.enable = false
-		E.db.unitframe.units.raid40.debuffs.countFont = L1UI.DefaultFont
-		E.db.unitframe.units.raid40.debuffs.desaturate = false
-		E.db.unitframe.units.raid40.debuffs.maxDuration = 0
-		E.db.unitframe.units.raid40.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
-		E.db.unitframe.units.raid40.disableMouseoverGlow = true
-		E.db.unitframe.units.raid40.disableTargetGlow = true
-		E.db.unitframe.units.raid40.healPrediction.absorbStyle = 'WRAPPED'
-		E.db.unitframe.units.raid40.healPrediction.enable = true
-		E.db.unitframe.units.raid40.health.text_format = ''
-		E.db.unitframe.units.raid40.height = 26
-		E.db.unitframe.units.raid40.horizontalSpacing = 1
-		E.db.unitframe.units.raid40.name.text_format = '[classcolor][name:veryshort]'
-		E.db.unitframe.units.raid40.phaseIndicator.anchorPoint = 'RIGHT'
-		E.db.unitframe.units.raid40.phaseIndicator.scale = 0.5
-		E.db.unitframe.units.raid40.raidicon.attachTo = 'LEFT'
-		E.db.unitframe.units.raid40.raidicon.attachToObject = 'Health'
-		E.db.unitframe.units.raid40.raidicon.size = 14
-		E.db.unitframe.units.raid40.raidicon.xOffset = 2
-		E.db.unitframe.units.raid40.raidicon.yOffset = 0
-		E.db.unitframe.units.raid40.raidRoleIcons.yOffset = 1
-		E.db.unitframe.units.raid40.rdebuffs.enable = true
-		E.db.unitframe.units.raid40.rdebuffs.font = L1UI.DefaultFont
-		E.db.unitframe.units.raid40.rdebuffs.fontOutline = 'OUTLINE'
-		E.db.unitframe.units.raid40.rdebuffs.size = 18
-		E.db.unitframe.units.raid40.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.raid40.rdebuffs.stack.yOffset = 0
-		E.db.unitframe.units.raid40.summonIcon.attachTo = 'LEFT'
-		E.db.unitframe.units.raid40.threatStyle = 'NONE'
-		E.db.unitframe.units.raid40.verticalSpacing = 1
-		E.db.unitframe.units.raid40.visibility = '[@raid31,noexists] hide;show'
-		E.db.unitframe.units.raid40.width = 82
+		-- Main Raid2
+		E:CopyTable(E.db.unitframe.units.raid2, E.db.unitframe.units.raid1)
+		E.db.unitframe.units.raid2.numGroups = 6
+		E.db.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
+
+		-- Main Raid3
+		E.db.unitframe.units.raid3.classbar.enable = false
+		E.db.unitframe.units.raid3.debuffs.countFont = L1UI.DefaultFont
+		E.db.unitframe.units.raid3.debuffs.desaturate = false
+		E.db.unitframe.units.raid3.debuffs.maxDuration = 0
+		E.db.unitframe.units.raid3.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
+		E.db.unitframe.units.raid3.disableMouseoverGlow = true
+		E.db.unitframe.units.raid3.disableTargetGlow = true
+		E.db.unitframe.units.raid3.healPrediction.absorbStyle = 'WRAPPED'
+		E.db.unitframe.units.raid3.healPrediction.enable = true
+		E.db.unitframe.units.raid3.health.text_format = ''
+		E.db.unitframe.units.raid3.height = 26
+		E.db.unitframe.units.raid3.horizontalSpacing = 1
+		E.db.unitframe.units.raid3.name.text_format = '[classcolor][name:veryshort]'
+		E.db.unitframe.units.raid3.phaseIndicator.anchorPoint = 'RIGHT'
+		E.db.unitframe.units.raid3.phaseIndicator.scale = 0.5
+		E.db.unitframe.units.raid3.raidicon.attachTo = 'LEFT'
+		E.db.unitframe.units.raid3.raidicon.attachToObject = 'Health'
+		E.db.unitframe.units.raid3.raidicon.size = 14
+		E.db.unitframe.units.raid3.raidicon.xOffset = 2
+		E.db.unitframe.units.raid3.raidicon.yOffset = 0
+		E.db.unitframe.units.raid3.raidRoleIcons.yOffset = 1
+		E.db.unitframe.units.raid3.rdebuffs.enable = true
+		E.db.unitframe.units.raid3.rdebuffs.font = L1UI.DefaultFont
+		E.db.unitframe.units.raid3.rdebuffs.fontOutline = 'OUTLINE'
+		E.db.unitframe.units.raid3.rdebuffs.size = 18
+		E.db.unitframe.units.raid3.rdebuffs.stack.position = 'CENTER'
+		E.db.unitframe.units.raid3.rdebuffs.stack.yOffset = 0
+		E.db.unitframe.units.raid3.summonIcon.attachTo = 'LEFT'
+		E.db.unitframe.units.raid3.threatStyle = 'NONE'
+		E.db.unitframe.units.raid3.verticalSpacing = 1
+		E.db.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
+		E.db.unitframe.units.raid3.width = 82
 
 	elseif layout == 'healing' then
 
@@ -2207,8 +2248,9 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.movers.ElvUF_PetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,461,320'
 		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,106'
 		E.db.movers.ElvUF_PlayerMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,542,320'
-		E.db.movers.ElvUF_Raid40Mover = 'BOTTOM,UIParent,BOTTOM,0,136'
-		E.db.movers.ElvUF_RaidMover = 'BOTTOM,UIParent,BOTTOM,0,134'
+		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,UIParent,BOTTOM,0,134'
+		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,UIParent,BOTTOM,0,134'
+		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,UIParent,BOTTOM,0,136'
 		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,301'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,320'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-460,320'
@@ -2263,70 +2305,75 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.unitframe.units.party.width = 90
 
 		-- Healing Raid
-		E.db.unitframe.units.raid.classbar.enable = false
-		E.db.unitframe.units.raid.debuffs.countFont = L1UI.DefaultFont
-		E.db.unitframe.units.raid.debuffs.desaturate = false
-		E.db.unitframe.units.raid.debuffs.maxDuration = 0
-		E.db.unitframe.units.raid.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
-		E.db.unitframe.units.raid.disableMouseoverGlow = true
-		E.db.unitframe.units.raid.disableTargetGlow = true
-		E.db.unitframe.units.raid.healPrediction.absorbStyle = 'WRAPPED'
-		E.db.unitframe.units.raid.healPrediction.enable = true
-		E.db.unitframe.units.raid.health.text_format = ''
-		E.db.unitframe.units.raid.height = 38
-		E.db.unitframe.units.raid.horizontalSpacing = 1
-		E.db.unitframe.units.raid.name.text_format = ''
-		E.db.unitframe.units.raid.numGroups = 6
-		E.db.unitframe.units.raid.phaseIndicator.anchorPoint = 'LEFT'
-		E.db.unitframe.units.raid.phaseIndicator.scale = 0.5
-		E.db.unitframe.units.raid.power.enable = false
-		E.db.unitframe.units.raid.raidicon.attachTo = 'BOTTOM'
-		E.db.unitframe.units.raid.raidicon.size = 12
-		E.db.unitframe.units.raid.raidicon.yOffset = 0
-		E.db.unitframe.units.raid.raidRoleIcons.yOffset = 1
-		E.db.unitframe.units.raid.rdebuffs.font = L1UI.DefaultFont
-		E.db.unitframe.units.raid.rdebuffs.fontOutline = 'OUTLINE'
-		E.db.unitframe.units.raid.rdebuffs.size = 18
-		E.db.unitframe.units.raid.roleIcon.damager = false
-		E.db.unitframe.units.raid.roleIcon.position = 'TOP'
-		E.db.unitframe.units.raid.roleIcon.size = 12
-		E.db.unitframe.units.raid.summonIcon.attachTo = 'LEFT'
-		E.db.unitframe.units.raid.summonIcon.size = 22
-		E.db.unitframe.units.raid.threatStyle = 'NONE'
-		E.db.unitframe.units.raid.verticalSpacing = 1
-		E.db.unitframe.units.raid.visibility = '[@raid6,noexists][@raid31,exists] hide;show'
-		E.db.unitframe.units.raid.width = 90
+		E.db.unitframe.units.raid1.classbar.enable = false
+		E.db.unitframe.units.raid1.debuffs.countFont = L1UI.DefaultFont
+		E.db.unitframe.units.raid1.debuffs.desaturate = false
+		E.db.unitframe.units.raid1.debuffs.maxDuration = 0
+		E.db.unitframe.units.raid1.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
+		E.db.unitframe.units.raid1.disableMouseoverGlow = true
+		E.db.unitframe.units.raid1.disableTargetGlow = true
+		E.db.unitframe.units.raid1.healPrediction.absorbStyle = 'WRAPPED'
+		E.db.unitframe.units.raid1.healPrediction.enable = true
+		E.db.unitframe.units.raid1.health.text_format = ''
+		E.db.unitframe.units.raid1.height = 38
+		E.db.unitframe.units.raid1.horizontalSpacing = 1
+		E.db.unitframe.units.raid1.name.text_format = ''
+		E.db.unitframe.units.raid1.numGroups = 6
+		E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'LEFT'
+		E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
+		E.db.unitframe.units.raid1.power.enable = false
+		E.db.unitframe.units.raid1.raidicon.attachTo = 'BOTTOM'
+		E.db.unitframe.units.raid1.raidicon.size = 12
+		E.db.unitframe.units.raid1.raidicon.yOffset = 0
+		E.db.unitframe.units.raid1.raidRoleIcons.yOffset = 1
+		E.db.unitframe.units.raid1.rdebuffs.font = L1UI.DefaultFont
+		E.db.unitframe.units.raid1.rdebuffs.fontOutline = 'OUTLINE'
+		E.db.unitframe.units.raid1.rdebuffs.size = 18
+		E.db.unitframe.units.raid1.roleIcon.damager = false
+		E.db.unitframe.units.raid1.roleIcon.position = 'TOP'
+		E.db.unitframe.units.raid1.roleIcon.size = 12
+		E.db.unitframe.units.raid1.summonIcon.attachTo = 'LEFT'
+		E.db.unitframe.units.raid1.summonIcon.size = 22
+		E.db.unitframe.units.raid1.threatStyle = 'NONE'
+		E.db.unitframe.units.raid1.verticalSpacing = 1
+		E.db.unitframe.units.raid1.visibility = E.Retail and '[@raid6,noexists][@raid21,exists] hide;show' or '[@raid6,noexists][@raid11,exists] hide;show'
+		E.db.unitframe.units.raid1.width = 90
 
-		-- Healing Raid40
-		E.db.unitframe.units.raid40.classbar.enable = false
-		E.db.unitframe.units.raid40.debuffs.countFont = L1UI.DefaultFont
-		E.db.unitframe.units.raid40.debuffs.desaturate = false
-		E.db.unitframe.units.raid40.debuffs.maxDuration = 0
-		E.db.unitframe.units.raid40.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
-		E.db.unitframe.units.raid40.disableMouseoverGlow = true
-		E.db.unitframe.units.raid40.disableTargetGlow = true
-		E.db.unitframe.units.raid40.healPrediction.absorbStyle = 'WRAPPED'
-		E.db.unitframe.units.raid40.healPrediction.enable = true
-		E.db.unitframe.units.raid40.health.text_format = ''
-		E.db.unitframe.units.raid40.height = 28
-		E.db.unitframe.units.raid40.horizontalSpacing = 1
-		E.db.unitframe.units.raid40.name.text_format = '[classcolor][name:veryshort]'
-		E.db.unitframe.units.raid40.phaseIndicator.anchorPoint = 'RIGHT'
-		E.db.unitframe.units.raid40.phaseIndicator.scale = 0.5
-		E.db.unitframe.units.raid40.raidicon.attachTo = 'LEFT'
-		E.db.unitframe.units.raid40.raidicon.attachToObject = 'Health'
-		E.db.unitframe.units.raid40.raidicon.size = 14
-		E.db.unitframe.units.raid40.raidicon.xOffset = 2
-		E.db.unitframe.units.raid40.raidicon.yOffset = 0
-		E.db.unitframe.units.raid40.raidRoleIcons.yOffset = 1
-		E.db.unitframe.units.raid40.rdebuffs.enable = true
-		E.db.unitframe.units.raid40.rdebuffs.font = L1UI.DefaultFont
-		E.db.unitframe.units.raid40.rdebuffs.fontOutline = 'OUTLINE'
-		E.db.unitframe.units.raid40.rdebuffs.size = 18
-		E.db.unitframe.units.raid40.summonIcon.attachTo = 'LEFT'
-		E.db.unitframe.units.raid40.threatStyle = 'NONE'
-		E.db.unitframe.units.raid40.verticalSpacing = 1
-		E.db.unitframe.units.raid40.visibility = '[@raid31,noexists] hide;show'
-		E.db.unitframe.units.raid40.width = 90
+		-- Healing Raid2
+		E:CopyTable(E.db.unitframe.units.raid2, E.db.unitframe.units.raid1)
+		E.db.unitframe.units.raid2.numGroups = 6
+		E.db.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
+
+		-- Healing Raid3
+		E.db.unitframe.units.raid3.classbar.enable = false
+		E.db.unitframe.units.raid3.debuffs.countFont = L1UI.DefaultFont
+		E.db.unitframe.units.raid3.debuffs.desaturate = false
+		E.db.unitframe.units.raid3.debuffs.maxDuration = 0
+		E.db.unitframe.units.raid3.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
+		E.db.unitframe.units.raid3.disableMouseoverGlow = true
+		E.db.unitframe.units.raid3.disableTargetGlow = true
+		E.db.unitframe.units.raid3.healPrediction.absorbStyle = 'WRAPPED'
+		E.db.unitframe.units.raid3.healPrediction.enable = true
+		E.db.unitframe.units.raid3.health.text_format = ''
+		E.db.unitframe.units.raid3.height = 28
+		E.db.unitframe.units.raid3.horizontalSpacing = 1
+		E.db.unitframe.units.raid3.name.text_format = '[classcolor][name:veryshort]'
+		E.db.unitframe.units.raid3.phaseIndicator.anchorPoint = 'RIGHT'
+		E.db.unitframe.units.raid3.phaseIndicator.scale = 0.5
+		E.db.unitframe.units.raid3.raidicon.attachTo = 'LEFT'
+		E.db.unitframe.units.raid3.raidicon.attachToObject = 'Health'
+		E.db.unitframe.units.raid3.raidicon.size = 14
+		E.db.unitframe.units.raid3.raidicon.xOffset = 2
+		E.db.unitframe.units.raid3.raidicon.yOffset = 0
+		E.db.unitframe.units.raid3.raidRoleIcons.yOffset = 1
+		E.db.unitframe.units.raid3.rdebuffs.enable = true
+		E.db.unitframe.units.raid3.rdebuffs.font = L1UI.DefaultFont
+		E.db.unitframe.units.raid3.rdebuffs.fontOutline = 'OUTLINE'
+		E.db.unitframe.units.raid3.rdebuffs.size = 18
+		E.db.unitframe.units.raid3.summonIcon.attachTo = 'LEFT'
+		E.db.unitframe.units.raid3.threatStyle = 'NONE'
+		E.db.unitframe.units.raid3.verticalSpacing = 1
+		E.db.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
+		E.db.unitframe.units.raid3.width = 90
 	end
 end

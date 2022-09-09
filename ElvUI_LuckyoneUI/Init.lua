@@ -21,30 +21,28 @@ _G[addon] = Engine
 local name = format('%s-%s', E.myname, E:ShortenRealm(E.myrealm))
 local toons = {
 	-- Retail
-	['Luckyone-LaughingSkull'] = true,
-	['Luckydh-LaughingSkull'] = true,
-	['Luckydk-LaughingSkull'] = true,
-	['Luckydruid-LaughingSkull'] = true,
-	['Luckyhunter-LaughingSkull'] = true,
-	['Luckymage-LaughingSkull'] = true,
-	['Luckymonkas-LaughingSkull'] = true,
-	['Luckypala-LaughingSkull'] = true,
-	['Luckypriest-LaughingSkull'] = true,
-	['Luckyrogue-LaughingSkull'] = true,
-	['Luckywl-LaughingSkull'] = true,
-	['Notlucky-LaughingSkull'] = true,
-	['Unluckyone-LaughingSkull'] = true,
-	-- Public Test Realm
-	['Luckyone-Nobundo'] = true,
-	-- Wrath Classic
-	['Luckyone-Gehennas'] = true,
-	['Luckyd-Golemagg'] = true,
-	['Luckyp-Golemagg'] = true,
-	['Luckysh-Golemagg'] = true,
-	['Luckyone-Thekal'] = true,
-	['Luckyone-Giantstalker'] = true,
-	-- Season of Mastery
-	['Luckyone-Dreadnaught'] = true,
+	['Luckyone-LaughingSkull'] = true, -- Druid H
+	['Luckydruid-LaughingSkull'] = true, -- Druid A
+	['Luckypriest-LaughingSkull'] = true, -- Priest
+	['Luckymonkas-LaughingSkull'] = true, -- Monk
+	['Luckyhunter-LaughingSkull'] = true, -- Hunter
+	['Luckydh-LaughingSkull'] = true, -- DH
+	['Luckymage-LaughingSkull'] = true, -- Mage
+	['Luckypala-LaughingSkull'] = true, -- Paladin
+	['Luckyrogue-LaughingSkull'] = true, -- Rogue
+	['Luckywl-LaughingSkull'] = true, -- Warlock
+	['Luckydk-LaughingSkull'] = true, -- DK
+	['Notlucky-LaughingSkull'] = true, -- Warrior
+	['Unluckyone-LaughingSkull'] = true, -- Shaman
+	-- Wrath Classic Horde
+	['Luckyone-Gehennas'] = true, -- Hunter
+	['Luckyd-Golemagg'] = true, -- Druid
+	['Luckyp-Golemagg'] = true, -- Priest
+	['Luckysh-Golemagg'] = true, -- Shaman
+	-- Wrath Classic Alliance
+	['Luckyone-Everlook'] = true, -- Druid
+	['Luckypriest-Everlook'] = true, -- Priest
+	['Luckydk-Everlook'] = true, -- DK
 }
 
 -- Constants
