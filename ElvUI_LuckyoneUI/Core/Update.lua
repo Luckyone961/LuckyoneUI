@@ -17,6 +17,11 @@ function L1UI:UpdateLayout(layout)
 	E.db.unitframe.units.raid2.numGroups = E.Retail and 6 or 5
 	E.db.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
 
+	-- ElvUI NamePlate updates
+	if E.private.nameplates.enable then
+		E.db.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs'
+	end
+
 	-- Bump install version
 	E.db.L1UI.install_version = L1UI.Version
 
