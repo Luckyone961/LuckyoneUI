@@ -821,7 +821,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid1.name.position = 'TOP'
 	E.db.unitframe.units.raid1.name.text_format = '[classcolor][name:veryshort]'
 	E.db.unitframe.units.raid1.name.yOffset = -1
-	E.db.unitframe.units.raid1.numGroups = E.Retail and 4 or 5
+	E.db.unitframe.units.raid1.numGroups = E.Retail and 4 or 2
 	E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'BOTTOMRIGHT'
 	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid1.phaseIndicator.xOffset = 1
@@ -859,7 +859,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 	-- Shared Raid2
 	E:CopyTable(E.db.unitframe.units.raid2, E.db.unitframe.units.raid1)
-	E.db.unitframe.units.raid2.numGroups = 6
+	E.db.unitframe.units.raid2.numGroups = E.Retail and 6 or 5
 	E.db.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
 
 	-- Shared Raid3
