@@ -774,6 +774,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.party.customTexts.Luckyone_Name = {attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '', xOffset = 0, yOffset = 0}
 
 	E.db.unitframe.units.party.classbar.enable = false
+	E.db.unitframe.units.party.CombatIcon.enable = false
 	E.db.unitframe.units.party.disableMouseoverGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.healPrediction.absorbStyle = 'WRAPPED'
