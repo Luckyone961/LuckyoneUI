@@ -1,3 +1,6 @@
+### Version 2.04 [12-09-2022]
+**All WoW Versions:**  
+Hotfixes for new all-in-one ElvUI v12.85  
 ### Version 2.03 [12-09-2022]
 **All WoW Versions:**  
 This ElvUI release adds RaidFrame reworks:  

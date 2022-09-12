@@ -22,8 +22,9 @@ function L1UI:Setup_Theme(theme)
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[classcolor][name:short]'
 		E.db.unitframe.units.pet.customTexts.Luckyone_Name.text_format = E.Retail and '[classcolor][name]' or '[happiness:color][name][ >happiness:full]'
 		E.db.unitframe.units.player.customTexts.Luckyone_Name.text_format = '[classcolor][name]'
-		E.db.unitframe.units.raid.name.text_format = '[classcolor][name:veryshort]'
-		E.db.unitframe.units.raid40.name.text_format = '[classcolor][name:veryshort]'
+		E.db.unitframe.units.raid1.name.text_format = '[classcolor][name:veryshort]'
+		E.db.unitframe.units.raid2.name.text_format = '[classcolor][name:veryshort]'
+		E.db.unitframe.units.raid3.name.text_format = '[classcolor][name:veryshort]'
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = '[classcolor][name:last]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[classcolor][name:last]'
 
@@ -47,8 +48,9 @@ function L1UI:Setup_Theme(theme)
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[name:short]'
 		E.db.unitframe.units.pet.customTexts.Luckyone_Name.text_format = E.Retail and '[name]' or '[name][ >happiness:full]'
 		E.db.unitframe.units.player.customTexts.Luckyone_Name.text_format = '[name]'
-		E.db.unitframe.units.raid.name.text_format = '[name:veryshort]'
-		E.db.unitframe.units.raid40.name.text_format = '[name:veryshort]'
+		E.db.unitframe.units.raid1.name.text_format = '[name:veryshort]'
+		E.db.unitframe.units.raid2.name.text_format = '[name:veryshort]'
+		E.db.unitframe.units.raid3.name.text_format = '[name:veryshort]'
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = '[name:last]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[name:last]'
 
