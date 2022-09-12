@@ -21,28 +21,28 @@ _G[addon] = Engine
 local name = format('%s-%s', E.myname, E:ShortenRealm(E.myrealm))
 local toons = {
 	-- Retail
-	['Luckyone-LaughingSkull'] = true,
-	['Luckydh-LaughingSkull'] = true,
-	['Luckydk-LaughingSkull'] = true,
-	['Luckydruid-LaughingSkull'] = true,
-	['Luckyhunter-LaughingSkull'] = true,
-	['Luckymage-LaughingSkull'] = true,
-	['Luckymonkas-LaughingSkull'] = true,
-	['Luckypala-LaughingSkull'] = true,
-	['Luckypriest-LaughingSkull'] = true,
-	['Luckyrogue-LaughingSkull'] = true,
-	['Luckywl-LaughingSkull'] = true,
-	['Notlucky-LaughingSkull'] = true,
-	['Unluckyone-LaughingSkull'] = true,
-	-- Public Test Realm
-	['Luckyone-Nobundo'] = true,
-	-- Wrath Classic
-	['Luckyone-Gehennas'] = true,
-	['Luckyd-Golemagg'] = true,
-	['Luckyp-Golemagg'] = true,
-	['Luckysh-Golemagg'] = true,
-	-- Season of Mastery
-	['Luckyone-Dreadnaught'] = true,
+	['Luckyone-LaughingSkull'] = true, -- Druid H
+	['Luckydruid-LaughingSkull'] = true, -- Druid A
+	['Luckypriest-LaughingSkull'] = true, -- Priest
+	['Luckymonkas-LaughingSkull'] = true, -- Monk
+	['Luckyhunter-LaughingSkull'] = true, -- Hunter
+	['Luckydh-LaughingSkull'] = true, -- DH
+	['Luckymage-LaughingSkull'] = true, -- Mage
+	['Luckypala-LaughingSkull'] = true, -- Paladin
+	['Luckyrogue-LaughingSkull'] = true, -- Rogue
+	['Luckywl-LaughingSkull'] = true, -- Warlock
+	['Luckydk-LaughingSkull'] = true, -- DK
+	['Notlucky-LaughingSkull'] = true, -- Warrior
+	['Unluckyone-LaughingSkull'] = true, -- Shaman
+	-- Wrath Classic Horde
+	['Luckyone-Gehennas'] = true, -- Hunter
+	['Luckyd-Golemagg'] = true, -- Druid
+	['Luckyp-Golemagg'] = true, -- Priest
+	['Luckysh-Golemagg'] = true, -- Shaman
+	-- Wrath Classic Alliance
+	['Luckyone-Everlook'] = true, -- Druid
+	['Luckypriest-Everlook'] = true, -- Priest
+	['Luckydk-Everlook'] = true, -- DK
 }
 
 -- Constants
@@ -53,7 +53,7 @@ L1UI.DefaultTexture = 'Minimalist'
 L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = E.Retail and 12.83 or E.TBC and 2.48 or E.Classic and 1.73 or E.Wrath and 3.00
+L1UI.RequiredVersion = 12.85
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:Initialize()
