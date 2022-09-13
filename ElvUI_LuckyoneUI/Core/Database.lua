@@ -774,6 +774,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.party.customTexts.Luckyone_Name = {attachTextTo = 'Health', enable = true, font = L1UI.DefaultFont, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '', xOffset = 0, yOffset = 0}
 
 	E.db.unitframe.units.party.classbar.enable = false
+	E.db.unitframe.units.party.CombatIcon.enable = false
 	E.db.unitframe.units.party.disableMouseoverGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.healPrediction.absorbStyle = 'WRAPPED'
@@ -1051,8 +1052,8 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_PetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,141'
 		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,-1,95'
 		E.db.movers.ElvUF_PlayerMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,482,300'
-		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,177'
-		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,UIParent,BOTTOM,0,95'
+		E.db.movers.ElvUF_Raid1Mover = E.Retail and 'BOTTOM,ElvUIParent,BOTTOM,0,177' or 'BOTTOM,UIParent,BOTTOM,0,259'
+		E.db.movers.ElvUF_Raid2Mover = E.Retail and 'BOTTOM,UIParent,BOTTOM,0,95' or 'BOTTOM,UIParent,BOTTOM,0,136'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,149'
 		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-482,281'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-482,300'

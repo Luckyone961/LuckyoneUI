@@ -1,7 +1,21 @@
-### Version 2.03 [In Development]
+### Version 2.05 [In Development]
+
+___
+### Version 2.04 [12-09-2022]
 **All WoW Versions:**  
-UnitFrames are slightly transparent again  
+Hotfixes for new all-in-one ElvUI v12.85  
+___
+### Version 2.03 [12-09-2022]
+**All WoW Versions:**  
+This ElvUI release adds RaidFrame reworks:  
+• I highly recommend using my ingame update button  
+• Raid and Raid40 are gone and replaced with Raid1, Raid2, Raid3  
+Updated NamePlate filters for Enemy Players (added TurtleBuffs)  
+Updated numGroups for raid to default to 5 now (was 4)  
+Updated UnitFrames to be slightly transparent again  
 Updates for the new all-in-one ElvUI v12.85  
+**Wrath Classic:**  
+Minor adjustments for initial layout install  
 ___
 ### Version 2.02 [30-08-2022]
 **All WoW Versions:**  

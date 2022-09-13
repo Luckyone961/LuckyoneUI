@@ -53,7 +53,7 @@ L1UI.DefaultTexture = 'Minimalist'
 L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = E.Retail and 12.83 or E.TBC and 2.48 or E.Classic and 1.73 or E.Wrath and 3.00
+L1UI.RequiredVersion = 12.85
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:Initialize()
