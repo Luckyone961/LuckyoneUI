@@ -651,6 +651,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.pet.debuffs.enable = false
 	E.db.unitframe.units.pet.disableMouseoverGlow = true
 	E.db.unitframe.units.pet.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.pet.health.colorHappiness = false
 	E.db.unitframe.units.pet.height = 20
 	E.db.unitframe.units.pet.name.text_format = ''
 	E.db.unitframe.units.pet.power.enable = false
