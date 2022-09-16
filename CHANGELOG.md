@@ -1,5 +1,8 @@
 ### Version 2.05 [In Development]
-
+**All WoW Versions:**  
+Fixed Raid frame positions for initial install (Healing layout)  
+**Wrath Classic:**  
+Minor tweaks for initial install (Pet frame color)  
 ___
 ### Version 2.04 [12-09-2022]
 **All WoW Versions:**  
