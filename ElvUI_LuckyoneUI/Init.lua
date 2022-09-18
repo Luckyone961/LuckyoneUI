@@ -44,6 +44,7 @@ local toons = {
 	["Luckyone-Everlook"] = true, -- Druid
 	["Luckypriest-Everlook"] = true, -- Priest
 	["Luckydk-Everlook"] = true, -- DK
+	["Luckyone-Giantstalker"] = true, -- Paladin
 }
 
 -- Constants
