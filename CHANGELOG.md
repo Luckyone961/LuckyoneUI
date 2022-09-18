@@ -1,5 +1,6 @@
 ### Version 2.05 [In Development]
 **All WoW Versions:**  
+Fixed installer for the latest ElvUI totemTracker changes  
 Fixed Raid frame positions for initial install (Healing layout)  
 **Wrath Classic:**  
 Minor tweaks for initial install (Pet frame color)  
