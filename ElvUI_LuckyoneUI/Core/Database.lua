@@ -2035,7 +2035,6 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.movers.ThreatBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,1'
 	E.db.movers.TooltipMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-57'
-	E.db.movers.TotemBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,428,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-27'
 
 	if E.Retail then
