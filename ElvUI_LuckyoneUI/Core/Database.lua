@@ -1095,15 +1095,13 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.width = 94
 
 		-- Healing Party Pets [nonRetail only]
-		if not E.Retail then
-			E.db.unitframe.units.party.petsGroup.anchorPoint = 'BOTTOM'
-			E.db.unitframe.units.party.petsGroup.enable = true
-			E.db.unitframe.units.party.petsGroup.healPrediction.enable = true
-			E.db.unitframe.units.party.petsGroup.threatStyle = 'NONE'
-			E.db.unitframe.units.party.petsGroup.width = 94
-			E.db.unitframe.units.party.petsGroup.xOffset = 0
-			E.db.unitframe.units.party.petsGroup.yOffset = -1
-		end
+		E.db.unitframe.units.party.petsGroup.anchorPoint = 'BOTTOM'
+		E.db.unitframe.units.party.petsGroup.enable = not E.Retail
+		E.db.unitframe.units.party.petsGroup.healPrediction.enable = true
+		E.db.unitframe.units.party.petsGroup.threatStyle = 'NONE'
+		E.db.unitframe.units.party.petsGroup.width = 94
+		E.db.unitframe.units.party.petsGroup.xOffset = 0
+		E.db.unitframe.units.party.petsGroup.yOffset = -1
 
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.enable = true
