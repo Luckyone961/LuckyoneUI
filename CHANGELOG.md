@@ -1,3 +1,5 @@
+### Version 2.06 [In Development]
+___
 ### Version 2.05 [19-09-2022]
 **All WoW Versions:**  
 Fixed installer for the latest ElvUI totemTracker changes  
