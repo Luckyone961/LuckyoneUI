@@ -137,7 +137,7 @@ function L1UI:Setup_PrivateDB()
 	E.private.general.nameplateFont = L1UI.DefaultFont
 	E.private.general.nameplateLargeFont = L1UI.DefaultFont
 	E.private.general.normTex = L1UI.DefaultTexture
-	E.private.general.totemBar = false
+	E.private.general.totemTracker = false
 
 	E.private.install_complete = E.version
 	E.private.skins.parchmentRemoverEnable = true

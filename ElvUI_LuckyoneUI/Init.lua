@@ -21,28 +21,30 @@ _G[addon] = Engine
 local name = format('%s-%s', E.myname, E:ShortenRealm(E.myrealm))
 local toons = {
 	-- Retail
-	['Luckyone-LaughingSkull'] = true, -- Druid H
-	['Luckydruid-LaughingSkull'] = true, -- Druid A
-	['Luckypriest-LaughingSkull'] = true, -- Priest
-	['Luckymonkas-LaughingSkull'] = true, -- Monk
-	['Luckyhunter-LaughingSkull'] = true, -- Hunter
-	['Luckydh-LaughingSkull'] = true, -- DH
-	['Luckymage-LaughingSkull'] = true, -- Mage
-	['Luckypala-LaughingSkull'] = true, -- Paladin
-	['Luckyrogue-LaughingSkull'] = true, -- Rogue
-	['Luckywl-LaughingSkull'] = true, -- Warlock
-	['Luckydk-LaughingSkull'] = true, -- DK
-	['Notlucky-LaughingSkull'] = true, -- Warrior
-	['Unluckyone-LaughingSkull'] = true, -- Shaman
+	["Luckyone-LaughingSkull"] = true, -- Druid H
+	["Luckydruid-LaughingSkull"] = true, -- Druid A
+	["Luckypriest-LaughingSkull"] = true, -- Priest
+	["Luckymonkas-LaughingSkull"] = true, -- Monk
+	["Luckyhunter-LaughingSkull"] = true, -- Hunter
+	["Luckydh-LaughingSkull"] = true, -- DH
+	["Luckymage-LaughingSkull"] = true, -- Mage
+	["Luckypala-LaughingSkull"] = true, -- Paladin
+	["Luckyrogue-LaughingSkull"] = true, -- Rogue
+	["Luckywl-LaughingSkull"] = true, -- Warlock
+	["Luckydk-LaughingSkull"] = true, -- DK
+	["Notlucky-LaughingSkull"] = true, -- Warrior
+	["Unluckyone-LaughingSkull"] = true, -- Shaman
 	-- Wrath Classic Horde
-	['Luckyone-Gehennas'] = true, -- Hunter
-	['Luckyd-Golemagg'] = true, -- Druid
-	['Luckyp-Golemagg'] = true, -- Priest
-	['Luckysh-Golemagg'] = true, -- Shaman
+	["Luckyone-Gehennas"] = true, -- Hunter
+	["Luckyd-Golemagg"] = true, -- Druid
+	["Luckyp-Golemagg"] = true, -- Priest
+	["Luckysh-Golemagg"] = true, -- Shaman
+	["Luckyone-Jin'do"] = true, -- Shaman
 	-- Wrath Classic Alliance
-	['Luckyone-Everlook'] = true, -- Druid
-	['Luckypriest-Everlook'] = true, -- Priest
-	['Luckydk-Everlook'] = true, -- DK
+	["Luckyone-Everlook"] = true, -- Druid
+	["Luckypriest-Everlook"] = true, -- Priest
+	["Luckydk-Everlook"] = true, -- DK
+	["Luckyone-Giantstalker"] = true, -- Paladin
 }
 
 -- Constants
@@ -53,7 +55,7 @@ L1UI.DefaultTexture = 'Minimalist'
 L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = 12.85
+L1UI.RequiredVersion = 12.89
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:Initialize()

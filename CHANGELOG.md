@@ -1,6 +1,14 @@
+### Version 2.05 [19-09-2022]
+**All WoW Versions:**  
+Fixed installer for the latest ElvUI totemTracker changes  
+Fixed Raid frame positions for initial install (Healing layout)  
+**Wrath Classic:**  
+Minor tweaks for initial install (Pet frame color)  
+___
 ### Version 2.04 [12-09-2022]
 **All WoW Versions:**  
 Hotfixes for new all-in-one ElvUI v12.85  
+___
 ### Version 2.03 [12-09-2022]
 **All WoW Versions:**  
 This ElvUI release adds RaidFrame reworks:  
