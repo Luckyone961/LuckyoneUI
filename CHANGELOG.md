@@ -1,4 +1,6 @@
 ### Version 2.06 [In Development]
+**Wrath Classic:**  
+Added party pets setup for the healing layout on initial install  
 ___
 ### Version 2.05 [19-09-2022]
 **All WoW Versions:**  
