@@ -113,7 +113,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for WarpDeplete."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_OmniCD('main') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_WarpDeplete() end)
 			PluginInstallFrame.Option1:SetText(L["Setup WarpDeplete"])
 		end,
 		[E.Retail and 11 or 9] = function()

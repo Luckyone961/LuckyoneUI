@@ -1,4 +1,6 @@
 ### Version 2.06 [In Development]
+**Retail:**  
+Fixed WarpDeplete installer step  
 **Wrath Classic:**  
 Added party pets setup for the healing layout on initial install  
 ___
