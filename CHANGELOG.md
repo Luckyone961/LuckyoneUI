@@ -1,5 +1,12 @@
-### Version 2.05 [In Development]
+### Version 2.06 [In Development]
+**Retail:**  
+Fixed WarpDeplete installer step  
+**Wrath Classic:**  
+Added party pets setup for the healing layout on initial install  
+___
+### Version 2.05 [19-09-2022]
 **All WoW Versions:**  
+Fixed installer for the latest ElvUI totemTracker changes  
 Fixed Raid frame positions for initial install (Healing layout)  
 **Wrath Classic:**  
 Minor tweaks for initial install (Pet frame color)  
