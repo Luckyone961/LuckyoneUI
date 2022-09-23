@@ -1070,7 +1070,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.colors.power_backdrop.b = 0.05
 		E.db.unitframe.colors.power_backdrop.g = 0.05
 		E.db.unitframe.colors.power_backdrop.r = 0.05
-		E.db.unitframe.units.player.power.enable = true
+		E.db.unitframe.units.player.power.enable = false
 		E.db.unitframe.units.targettarget.enable = false
 
 		-- Healing Party
