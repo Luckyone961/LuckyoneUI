@@ -14,6 +14,10 @@ function L1UI:UpdateLayout(layout)
 		E.db.unitframe.units.party.petsGroup.yOffset = -1
 	end
 
+	-- Tooltip updates
+	E.db.tooltip.healthBar.height = 2
+	E.db.tooltip.healthBar.statusPosition = 'TOP'
+
 	-- Bump install version
 	E.db.L1UI.install_version = L1UI.Version
 
