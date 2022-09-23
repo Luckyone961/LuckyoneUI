@@ -1,4 +1,7 @@
 ### Version 2.06 [In Development]
+**All WoW Versions:**  
+Enabled health information in tooltip by default  
+Updated supporter credits list  
 **Retail:**  
 Fixed WarpDeplete installer step  
 **Wrath Classic:**  
