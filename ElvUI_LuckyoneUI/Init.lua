@@ -36,6 +36,7 @@ local toons = {
 	["Unluckyone-LaughingSkull"] = true, -- Shaman
 	-- Wrath Classic Horde
 	["Luckyone-Gehennas"] = true, -- Hunter
+	["Luckygrip-Gehennas"] = true, -- DK
 	["Luckyd-Golemagg"] = true, -- Druid
 	["Luckyp-Golemagg"] = true, -- Priest
 	["Luckysh-Golemagg"] = true, -- Shaman
