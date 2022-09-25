@@ -420,8 +420,8 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.tooltip.headerFontSize = 11
 	E.db.tooltip.healthBar.font = L1UI.DefaultFont
 	E.db.tooltip.healthBar.fontSize = 11
-	E.db.tooltip.healthBar.height = 4
-	E.db.tooltip.healthBar.statusPosition = 'DISABLED'
+	E.db.tooltip.healthBar.height = 2
+	E.db.tooltip.healthBar.statusPosition = 'TOP'
 	E.db.tooltip.inspectDataEnable = false
 	E.db.tooltip.itemCount = 'NONE'
 	E.db.tooltip.itemQuality = true
@@ -1070,7 +1070,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.colors.power_backdrop.b = 0.05
 		E.db.unitframe.colors.power_backdrop.g = 0.05
 		E.db.unitframe.colors.power_backdrop.r = 0.05
-		E.db.unitframe.units.player.power.enable = true
+		E.db.unitframe.units.player.power.enable = false
 		E.db.unitframe.units.targettarget.enable = false
 
 		-- Healing Party
