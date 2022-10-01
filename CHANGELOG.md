@@ -1,7 +1,9 @@
 ### Version 2.06 [In Development]
 **All WoW Versions:**  
 Enabled health information in tooltip by default  
+Full russian localization (Credits: Hollicsh)  
 Updated supporter credits list  
+Updated localization (Credits: Hollicsh)  
 **Retail:**  
 Fixed WarpDeplete installer step  
 **Wrath Classic:**  
