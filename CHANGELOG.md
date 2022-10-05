@@ -1,7 +1,8 @@
-### Version 2.06 [In Development]
+### Version 2.06 [05-10-2022]
 **All WoW Versions:**  
 Enabled health information in tooltip by default  
 Full russian localization (Credits: Hollicsh)  
+Healing layout will be using mana text instead of bar by default now  
 Updated supporter credits list  
 Updated localization (Credits: Hollicsh)  
 **Retail:**  
