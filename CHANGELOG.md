@@ -1,3 +1,7 @@
+### Version 2.07 [In Development]
+**Wrath Classic:**  
+Added WeakAuras for Shadow Priest  
+___
 ### Version 2.06 [05-10-2022]
 **All WoW Versions:**  
 Enabled health information in tooltip by default  
