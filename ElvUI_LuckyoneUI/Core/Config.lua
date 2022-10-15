@@ -50,7 +50,7 @@ function L1UI:Config()
 	ACH = E.Libs.ACH
 
 	-- Header
-	L1UI.Options = ACH:Group(L1UI.Name, nil, 100)
+	L1UI.Options = ACH:Group(L1UI.Name, nil, 20)
 
 	-- Installer & Update
 	L1UI.Options.args.installer = ACH:Execute(L["Install"], L["Re-Run the installation process."], 1, function() E.PluginInstaller:Queue(L1UI.InstallerData) E:ToggleOptionsUI() end)
@@ -225,8 +225,8 @@ function L1UI:Config()
 	L1UI.Options.args.themes.args.raid.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() L1UI:Setup_Theme('class') end, nil, true)
 
 	-- WeakAuras Retail
-	--[[
 	L1UI.Options.args.weakauras = ACH:Group('WeakAuras', nil, 14, nil, nil, nil, nil, not E.Retail)
+	--[[
 	L1UI.Options.args.weakauras.args.header1 = ACH:Header('WeakAuras', 1)
 	L1UI.Options.args.weakauras.args.druid = ACH:Input(format('|cffFF7C0A%s|r', L["Druid"]), nil, 2, nil, 'normal', function() return 'wago.io/LuckyoneUI-Druid' end)
 	L1UI.Options.args.weakauras.args.priest = ACH:Input(format('|cffFFFFFF%s|r', L["Priest"]), nil, 3, nil, 'normal', function() return 'wago.io/LuckyoneUI-Priest' end)
