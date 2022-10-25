@@ -1,4 +1,4 @@
-## Interface: 90207
+## Interface: 100000
 ## Author: Luckyone
 ## Version: 2.06
 ## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r
