@@ -1,4 +1,6 @@
-### Version 2.07 [In Development]
+### Version 2.07 [25-10-2022]
+**All WoW Versions:**  
+ElvUI 12.92 or later is now required  
 **Retail:**  
 Updated installer for Dragonflight pre patch  
 Updated TOC for 10.0  
