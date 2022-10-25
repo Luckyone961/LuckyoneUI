@@ -35,12 +35,6 @@ local toons = {
 	["Luckyevoker-LaughingSkull"] = true, -- Evoker
 	["Notlucky-LaughingSkull"] = true, -- Warrior
 	["Unluckyone-LaughingSkull"] = true, -- Shaman
-	-- Wrath Classic Horde
-	["Luckyone-Gehennas"] = true, -- Hunter
-	["Luckygrip-Gehennas"] = true, -- DK
-	["Luckyd-Golemagg"] = true, -- Druid
-	["Luckyp-Golemagg"] = true, -- Priest
-	["Luckysh-Golemagg"] = true, -- Shaman
 	-- Wrath Classic Alliance
 	["Luckyone-Everlook"] = true, -- Druid
 	["Luckypriest-Everlook"] = true, -- Priest
@@ -48,7 +42,13 @@ local toons = {
 	["Luckyhunter-Everlook"] = true, -- Hunter
 	["Luckydk-Everlook"] = true, -- DK
 	["Luckykek-Everlook"] = true, -- Shaman
-	["Luckyone-Giantstalker"] = true -- Paladin
+	["Luckyone-Giantstalker"] = true, -- Paladin
+	-- Wrath Classic Horde
+	["Luckyone-Gehennas"] = true, -- Hunter
+	["Luckygrip-Gehennas"] = true, -- DK
+	["Luckyd-Golemagg"] = true, -- Druid
+	["Luckyp-Golemagg"] = true, -- Priest
+	["Luckysh-Golemagg"] = true -- Shaman
 }
 
 -- Constants
