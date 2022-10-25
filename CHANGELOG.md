@@ -1,4 +1,9 @@
 ### Version 2.07 [In Development]
+**Retail:**  
+Updated installer for Dragonflight pre patch  
+Updated TOC for 10.0  
+WeakAuras are now hidden from config and not updated for Dragonflight  
+• Some of them will return in the following weeks but not all of them  
 **Wrath Classic:**  
 Added WeakAuras for Shadow Priest  
 ___
