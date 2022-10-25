@@ -21,8 +21,8 @@ _G[addon] = Engine
 local name = format('%s-%s', E.myname, E:ShortenRealm(E.myrealm))
 local toons = {
 	-- Retail
-	["Luckyone-LaughingSkull"] = true, -- Druid H
-	["Luckydruid-LaughingSkull"] = true, -- Druid A
+	["Luckyone-LaughingSkull"] = true, -- Druid Horde
+	["Luckydruid-LaughingSkull"] = true, -- Druid Alliance
 	["Luckypriest-LaughingSkull"] = true, -- Priest
 	["Luckymonkas-LaughingSkull"] = true, -- Monk
 	["Luckyhunter-LaughingSkull"] = true, -- Hunter
@@ -32,6 +32,7 @@ local toons = {
 	["Luckyrogue-LaughingSkull"] = true, -- Rogue
 	["Luckywl-LaughingSkull"] = true, -- Warlock
 	["Luckydk-LaughingSkull"] = true, -- DK
+	["Luckyevoker-LaughingSkull"] = true, -- Evoker
 	["Notlucky-LaughingSkull"] = true, -- Warrior
 	["Unluckyone-LaughingSkull"] = true, -- Shaman
 	-- Wrath Classic Horde
@@ -40,14 +41,14 @@ local toons = {
 	["Luckyd-Golemagg"] = true, -- Druid
 	["Luckyp-Golemagg"] = true, -- Priest
 	["Luckysh-Golemagg"] = true, -- Shaman
-	["Luckyone-Jin'do"] = true, -- Shaman
 	-- Wrath Classic Alliance
 	["Luckyone-Everlook"] = true, -- Druid
 	["Luckypriest-Everlook"] = true, -- Priest
 	["Luckyrogue-Everlook"] = true, -- Rogue
+	["Luckyhunter-Everlook"] = true, -- Hunter
 	["Luckydk-Everlook"] = true, -- DK
 	["Luckykek-Everlook"] = true, -- Shaman
-	["Luckyone-Giantstalker"] = true, -- Paladin
+	["Luckyone-Giantstalker"] = true -- Paladin
 }
 
 -- Constants
