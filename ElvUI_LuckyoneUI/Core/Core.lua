@@ -82,9 +82,6 @@ function L1UI:Setup_CVars()
 		SetCVar('weatherDensity', 0)
 	end
 
-	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:SetValue('SHIFT')
-	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:RefreshValue()
-
 	L1UI:Print(L["CVars have been set."])
 end
 

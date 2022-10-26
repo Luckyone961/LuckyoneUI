@@ -1,3 +1,14 @@
+### Version 2.07 [26-10-2022]
+**All WoW Versions:**  
+ElvUI 12.92 or later is now required  
+**Retail:**  
+Updated installer for Dragonflight pre patch  
+Updated TOC for 10.0  
+WeakAuras are now hidden from config and not updated for Dragonflight  
+• Some of them will return in the following weeks but not all of them  
+**Wrath Classic:**  
+Added WeakAuras for Shadow Priest  
+___
 ### Version 2.06 [05-10-2022]
 **All WoW Versions:**  
 Enabled health information in tooltip by default  
