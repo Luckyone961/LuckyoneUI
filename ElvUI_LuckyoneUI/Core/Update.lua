@@ -3,6 +3,13 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 -- Ingame config buttons 'Update Main' & 'Update Healing'
 function L1UI:UpdateLayout(layout)
 
+	-- Minimap updates
+	local MiniMapDT = E.global.datatexts.customPanels.Luckyone_MiniMap_DT
+
+	if MiniMapDT then
+		MiniMapDT.frameStrata = 'HIGH'
+	end
+
 	-- ActionBar updates
 	E.db.actionbar.bar13.buttonSize = 26
 	E.db.actionbar.bar13.buttonSpacing = 1
