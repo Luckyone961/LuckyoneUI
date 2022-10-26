@@ -1,4 +1,4 @@
-### Version 2.07 [25-10-2022]
+### Version 2.07 [26-10-2022]
 **All WoW Versions:**  
 ElvUI 12.92 or later is now required  
 **Retail:**  
