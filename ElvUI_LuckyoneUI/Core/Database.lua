@@ -38,6 +38,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.lootRoll.statusBarTexture = L1UI.DefaultTexture
 	E.db.general.lootRoll.style = 'fullbar'
 	E.db.general.lootRoll.width = 340
+	E.db.general.minimap.icons.classHall.scale = 0.6
 	E.db.general.minimap.icons.difficulty.scale = 0.7
 	E.db.general.minimap.icons.difficulty.xOffset = 1
 	E.db.general.minimap.icons.difficulty.yOffset = 1
