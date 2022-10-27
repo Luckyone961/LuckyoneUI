@@ -6,6 +6,7 @@ local addon, Engine = ...
 local _G = _G
 local format = format
 local GetAddOnMetadata = GetAddOnMetadata
+local SetCVar = SetCVar
 
 local L1UI = E:NewModule(addon, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
 
@@ -69,6 +70,7 @@ function L1UI:Initialize()
 
 	if L1UI.Me and E.Retail then
 		ElvDB.ShadowLightAlpha = false
+		SetCVar('ActionButtonUseKeyDown', 1)
 	end
 
 	EP:RegisterPlugin(addon, L1UI.Config)
