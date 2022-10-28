@@ -1,4 +1,20 @@
-### Version 2.07 [In Development]
+### Version 2.08 [In Development]
+**All WoW Versions:**  
+ElvUI 12.93 or later is now required  
+**Retail:**  
+Added updated WeakAuras for the following specs  
+• Balance Druid  
+Fixed Minimap DataText frame strata (Clock was hidden behind the Minimap)  
+Updated default fonts and text positions for ActionBars 13, 14, 15  
+___
+### Version 2.07 [26-10-2022]
+**All WoW Versions:**  
+ElvUI 12.92 or later is now required  
+**Retail:**  
+Updated installer for Dragonflight pre patch  
+Updated TOC for 10.0  
+WeakAuras are now hidden from config and not updated for Dragonflight  
+• Some of them will return in the following weeks but not all of them  
 **Wrath Classic:**  
 Added WeakAuras for Shadow Priest  
 ___
