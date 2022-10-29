@@ -1,6 +1,7 @@
 ### Version 2.08 [In Development]
 **All WoW Versions:**  
-ElvUI 12.93 or later is now required  
+ElvUI 12.97 or later is now required  
+Updated BigWigs profile for both layouts  
 **Retail:**  
 Added updated WeakAuras for the following specs  
 • Balance Druid  
