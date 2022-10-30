@@ -70,7 +70,6 @@ function L1UI:Initialize()
 
 	if L1UI.Me and E.Retail then
 		ElvDB.ShadowLightAlpha = false
-		SetCVar('ActionButtonUseKeyDown', 1)
 	end
 
 	EP:RegisterPlugin(addon, L1UI.Config)
