@@ -1,3 +1,18 @@
+### Version 2.08 [31-10-2022]
+**All WoW Versions:**  
+Added LICENSE.txt  
+ElvUI 12.99 or later is now required  
+Updated BigWigs profile for both layouts  
+• Emphasized bars will no longer move to their own anchor  
+• Tweaked visible bar limit and time left until emphasized  
+**Retail:**  
+Added back the WeakAuras wago links to the config  
+• Note: They are still under heavy development and mostly broken  
+Fixed Minimap DataText frame strata (Clock was hidden behind the Minimap)  
+Removed ElvUI NamePlate StyleFilters for Shadowlands dungeons  
+• There will be StyleFilters for Dragonflight season 1 in a future update  
+Updated default fonts and text positions for ActionBars 13, 14, 15  
+___
 ### Version 2.07 [26-10-2022]
 **All WoW Versions:**  
 ElvUI 12.92 or later is now required  

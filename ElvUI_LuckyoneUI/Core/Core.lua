@@ -80,6 +80,9 @@ function L1UI:Setup_CVars()
 		SetCVar('SpellQueueWindow', 180)
 		SetCVar('useIPv6', 0)
 		SetCVar('weatherDensity', 0)
+		if E.Retail then
+			SetCVar('GxAllowCachelessShaderMode', 0)
+		end
 	end
 
 	L1UI:Print(L["CVars have been set."])
@@ -129,6 +132,7 @@ function L1UI:Setup_PrivateDB()
 	E.private.general.chatBubbleFontOutline = 'OUTLINE'
 	E.private.general.dmgfont = L1UI.DefaultFont
 	E.private.general.glossTex = L1UI.DefaultTexture
+	E.private.general.minimap.hideTracking = true
 	E.private.general.namefont = L1UI.DefaultFont
 	E.private.general.nameplateFont = L1UI.DefaultFont
 	E.private.general.nameplateLargeFont = L1UI.DefaultFont
@@ -194,7 +198,7 @@ function L1UI:Setup_GlobalDB()
 	MiniMapDT.fonts.fontOutline = 'OUTLINE'
 	MiniMapDT.fonts.fontSize = 14
 	MiniMapDT.frameLevel = 1
-	MiniMapDT.frameStrata = 'MEDIUM'
+	MiniMapDT.frameStrata = 'HIGH'
 	MiniMapDT.growth = 'HORIZONTAL'
 	MiniMapDT.height = 12
 	MiniMapDT.mouseover = false
