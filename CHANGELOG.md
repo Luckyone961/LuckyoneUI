@@ -1,10 +1,13 @@
 ### Version 2.08 [In Development]
 **All WoW Versions:**  
-ElvUI 12.97 or later is now required  
+Added LICENSE.txt  
+ElvUI 12.98 or later is now required  
 Updated BigWigs profile for both layouts  
+• Emphasized bars will no longer move to their own anchor  
+• Tweaked visible bar limit and time left until emphasized  
 **Retail:**  
-Added updated WeakAuras for the following specs  
-• Balance Druid  
+Added back the WeakAuras wago links to the config  
+• Note: They are still under heavy development and mostly broken  
 Fixed Minimap DataText frame strata (Clock was hidden behind the Minimap)  
 Updated default fonts and text positions for ActionBars 13, 14, 15  
 ___
