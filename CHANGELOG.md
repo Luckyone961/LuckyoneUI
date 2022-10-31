@@ -1,7 +1,7 @@
-### Version 2.08 [In Development]
+### Version 2.08 [31-10-2022]
 **All WoW Versions:**  
 Added LICENSE.txt  
-ElvUI 12.98 or later is now required  
+ElvUI 12.99 or later is now required  
 Updated BigWigs profile for both layouts  
 • Emphasized bars will no longer move to their own anchor  
 • Tweaked visible bar limit and time left until emphasized  
