@@ -9,6 +9,8 @@ Updated BigWigs profile for both layouts
 Added back the WeakAuras wago links to the config  
 • Note: They are still under heavy development and mostly broken  
 Fixed Minimap DataText frame strata (Clock was hidden behind the Minimap)  
+Removed ElvUI NamePlate StyleFilters for Shadowlands dungeons  
+• There will be StyleFilters for Dragonflight season 1 in a future update  
 Updated default fonts and text positions for ActionBars 13, 14, 15  
 ___
 ### Version 2.07 [26-10-2022]
