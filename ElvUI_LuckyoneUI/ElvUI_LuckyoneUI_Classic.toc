@@ -1,6 +1,6 @@
 ## Interface: 11403
 ## Author: Luckyone
-## Version: 2.08
+## Version: 2.09
 ## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cffFF7E40Classic|r
 ## Notes: Luckyone's ElvUI Edit
 ## RequiredDeps: ElvUI

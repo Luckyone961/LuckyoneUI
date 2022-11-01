@@ -1,3 +1,7 @@
+### Version 2.09 [01-11-2022]
+**Wrath Classic:**  
+Hotfixed broken installer process  
+___
 ### Version 2.08 [31-10-2022]
 **All WoW Versions:**  
 Added LICENSE.txt  
