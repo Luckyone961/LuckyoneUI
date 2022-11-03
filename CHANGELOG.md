@@ -1,3 +1,7 @@
+### Version 2.10 [In Development]
+**Retail:**  
+Updated wago links in the config page  
+___
 ### Version 2.09 [01-11-2022]
 **Wrath Classic:**  
 Hotfixed broken installer process  
