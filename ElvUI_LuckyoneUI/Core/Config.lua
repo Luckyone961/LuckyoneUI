@@ -247,6 +247,7 @@ function L1UI:Config()
 	L1UI.Options.args.weakauras.args.swapblaster = ACH:Input(L["Swapblaster Alert"], nil, 19, nil, 'normal', function() return 'wago.io/swapblaster' end)
 	L1UI.Options.args.weakauras.args.groupfinderClasses = ACH:Input(L["Groupfinder Classes"], nil, 20, nil, 'normal', function() return 'wago.io/groupfinderClasses' end)
 	L1UI.Options.args.weakauras.args.groupfinderApptext = ACH:Input(L["Groupfinder Applicants"], nil, 21, nil, 'normal', function() return 'wago.io/appTextHide' end)
+	L1UI.Options.args.weakauras.args.innervate = ACH:Input('Better InnervateMe', nil, 22, nil, 'normal', function() return 'wago.io/betterInnervate' end)
 
 	-- WeakAuras Wrath
 	L1UI.Options.args.weakaurasWrath = ACH:Group('WeakAuras', nil, 14, nil, nil, nil, nil, not E.Wrath)
