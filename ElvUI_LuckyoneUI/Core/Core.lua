@@ -146,6 +146,7 @@ function L1UI:Setup_PrivateDB()
 		E.private.general.chatBubbles = 'disabled'
 		E.private.L1UI.disabledFrames.AlertFrame = true
 		E.private.L1UI.disabledFrames.BossBanner = true
+		E.private.L1UI.qualityOfLife.easyDelete = true
 	end
 end
 
