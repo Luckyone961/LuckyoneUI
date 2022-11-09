@@ -3,6 +3,7 @@ local CH = E:GetModule('Chat')
 
 local format, print = format, print
 local IsAddOnLoaded = IsAddOnLoaded
+local hooksecurefunc = hooksecurefunc
 local ReloadUI = ReloadUI
 local SetCVar = SetCVar
 
@@ -296,6 +297,15 @@ function L1UI:Cleanup_Cache(addon, type)
 	end
 end
 
+-- Easy delete
+function L1UI:EasyDelete()
+	if not E.private.L1UI.qualityOfLife.easyDelete then return end
+
+	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', function(frame)
+		frame.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)
+	end)
+end
+
 ----------------------------------------------------------------------
 ------------------------------- Events -------------------------------
 ----------------------------------------------------------------------
@@ -310,6 +320,7 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	end
 
 	L1UI:DisabledFrames()
+	L1UI:EasyDelete()
 	L1UI:LoadCommands()
 end
 

@@ -10,4 +10,8 @@ V.L1UI = {
 		ZoneTextFrame = false,
 	},
 
+	qualityOfLife = {
+		easyDelete = false,
+	},
+
 }

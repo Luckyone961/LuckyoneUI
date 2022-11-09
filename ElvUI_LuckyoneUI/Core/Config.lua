@@ -111,6 +111,9 @@ function L1UI:Config()
 	L1UI.Options.args.blizzard.args.consoleVars = ACH:Group(L["Console Variables"], nil, 3, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.blizzard.args.consoleVars.inline = true
 	L1UI.Options.args.blizzard.args.consoleVars.args.fov = ACH:Range(L["Field of View"], nil, 1, { min = 50, max = 90, step = 1 }, nil, function() return tonumber(GetCVar('camerafov')) end, function(_, value) SetCVar('camerafov', value) end)
+	L1UI.Options.args.blizzard.args.qualityOfLife = ACH:Group(L["Quality of Life"], nil, 4, nil, function(info) return E.private.L1UI.qualityOfLife[info[#info]] end, function(info, value) E.private.L1UI.qualityOfLife[info[#info]] = value E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.blizzard.args.qualityOfLife.inline = true
+	L1UI.Options.args.blizzard.args.qualityOfLife.args.easyDelete = ACH:Toggle(L["Easy Delete"], L["Automatically fill out the confirmation text to delete items."], 1)
 
 	-- Chat
 	L1UI.Options.args.chat = ACH:Group(L["Chat"], nil, 7)

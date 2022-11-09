@@ -1,4 +1,7 @@
 ### Version 2.10 [In Development]
+**All WoW Versions:**  
+Added new option to the Blizzard section of the config: EasyDelete  
+• If enabled, confirmation text to delete items will be auto-filled based on client language  
 **Retail:**  
 Updated wago links in the config page  
 ___
