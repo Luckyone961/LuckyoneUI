@@ -3,6 +3,7 @@
 Added new option to the Blizzard section of the config: EasyDelete  
 • If enabled, confirmation text to delete items will be auto-filled based on client language  
 **Retail:**  
+Removed Field of View option because Blizzard added it to the default UI options  
 Updated wago links in the config page  
 ___
 ### Version 2.09 [01-11-2022]
