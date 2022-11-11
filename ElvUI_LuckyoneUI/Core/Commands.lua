@@ -29,13 +29,20 @@ function L1UI:Toggles(msg)
 	end
 end
 
+local AddOns = {
+	ElvUI = true,
+	ElvUI_Libraries = true,
+	ElvUI_LuckyoneUI = true,
+	ElvUI_Options = true
+}
+
 -- LuckyoneUI debug mode
 function L1UI:DebugMode(msg)
 	local switch = strlower(msg)
 	if switch == 'on' then
 		for i = 1, GetNumAddOns() do
 			local name = GetAddOnInfo(i)
-			if name ~= 'ElvUI' and name ~= 'ElvUI_OptionsUI' and name ~= 'ElvUI_LuckyoneUI' and E:IsAddOnEnabled(name) then
+			if not AddOns[name] and E:IsAddOnEnabled(name) then
 				DisableAddOn(name, E.myname)
 				ElvDB.LuckyoneDisabledAddOns[name] = i
 			end
