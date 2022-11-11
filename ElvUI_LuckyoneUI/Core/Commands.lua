@@ -24,7 +24,7 @@ function L1UI:Toggles(msg)
 	if msg == 'install' then
 		E.PluginInstaller:Queue(L1UI.InstallerData)
 	elseif msg == 'config' then
-		E:ToggleOptionsUI()
+		E:ToggleOptions()
 		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
 	end
 end
