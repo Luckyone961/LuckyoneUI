@@ -1,9 +1,9 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
 
-local _G = _G
 local format, print = format, print
 local IsAddOnLoaded = IsAddOnLoaded
+local hooksecurefunc = hooksecurefunc
 local ReloadUI = ReloadUI
 local SetCVar = SetCVar
 
@@ -146,6 +146,7 @@ function L1UI:Setup_PrivateDB()
 		E.private.general.chatBubbles = 'disabled'
 		E.private.L1UI.disabledFrames.AlertFrame = true
 		E.private.L1UI.disabledFrames.BossBanner = true
+		E.private.L1UI.qualityOfLife.easyDelete = true
 	end
 end
 
@@ -297,6 +298,15 @@ function L1UI:Cleanup_Cache(addon, type)
 	end
 end
 
+-- Easy delete
+function L1UI:EasyDelete()
+	if not E.private.L1UI.qualityOfLife.easyDelete then return end
+
+	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', function(frame)
+		frame.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)
+	end)
+end
+
 ----------------------------------------------------------------------
 ------------------------------- Events -------------------------------
 ----------------------------------------------------------------------
@@ -311,6 +321,7 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	end
 
 	L1UI:DisabledFrames()
+	L1UI:EasyDelete()
 	L1UI:LoadCommands()
 end
 
