@@ -1,8 +1,9 @@
-### Version 2.10 [In Development]
+### Version 2.10 [11-11-2022]
 **All WoW Versions:**  
 Added new option to the Blizzard section of the config: EasyDelete  
 • If enabled, confirmation text to delete items will be auto-filled based on client language  
-ElvUI 13.00 or later is now required  
+ElvUI 13.01 or later is now required  
+Luckydebug command has been updated for the latest ElvUI folder changes  
 Updated LICENSE  
 **Retail:**  
 Removed Field of View option because Blizzard added it to the default UI options  
