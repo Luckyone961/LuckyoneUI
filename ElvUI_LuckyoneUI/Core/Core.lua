@@ -302,8 +302,15 @@ end
 function L1UI:EasyDelete()
 	if not E.private.L1UI.qualityOfLife.easyDelete then return end
 
+	-- Higher quality than green
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', function(frame)
 		frame.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)
+	end)
+
+	-- Quests and Quest starters
+	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', function(frame)
+		frame.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)
+		L1UI:Print("DELETE_GOOD_QUEST_ITEM triggered")
 	end)
 end
 
