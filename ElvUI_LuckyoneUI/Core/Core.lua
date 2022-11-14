@@ -66,9 +66,12 @@ function L1UI:Setup_CVars()
 
 	-- My CVars
 	if L1UI.Me then
+		SetCVar('blockChannelInvites', 1)
+		SetCVar('CameraReduceUnexpectedMovement', 1)
 		SetCVar('disableServerNagle', 0)
 		SetCVar('displaySpellActivationOverlays', 0)
 		SetCVar('doNotFlashLowHealthWarning', 1)
+		SetCVar('empowerTapControls', 1)
 		SetCVar('floatingCombatTextCombatDamage', 0)
 		SetCVar('floatingCombatTextCombatHealing', 0)
 		SetCVar('maxFPSLoading', 30)
