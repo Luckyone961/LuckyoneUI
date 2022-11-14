@@ -47,6 +47,9 @@ local toons = {
 	["Luckykek-Everlook"]			= true, -- [Alliance] Shaman
 	["Luckyone-Giantstalker"]		= true, -- [Alliance] Paladin
 	-- Testing
+	["Luckyone-Koranos"]			= true, -- [Beta] Druid
+	["Kekleox-Tyrhold"]				= true, -- [Beta] Evoker
+	["Luckyevoker-Valdrakken"]		= true, -- [Beta] Evoker
 	["Luckyone-Valdrakken"]			= true, -- [Beta] Druid
 	["Luckyone-Nobundo"]			= true, -- [PTR] Druid
 }
