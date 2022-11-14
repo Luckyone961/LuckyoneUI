@@ -83,9 +83,7 @@ function L1UI:Setup_CVars()
 		SetCVar('SpellQueueWindow', 180)
 		SetCVar('useIPv6', 0)
 		SetCVar('weatherDensity', 0)
-		if E.Retail then
-			SetCVar('GxAllowCachelessShaderMode', 0)
-		end
+		SetCVar('GxAllowCachelessShaderMode', 0)
 	end
 
 	L1UI:Print(L["CVars have been set."])
