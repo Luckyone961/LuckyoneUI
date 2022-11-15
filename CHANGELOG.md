@@ -1,4 +1,4 @@
-### Version 2.11 [In Development]
+### Version 2.11 [15-11-2022]
 **All WoW Versions:**  
 ElvUI 13.02 or later is now required  
 Support for pre patch phase 2  
