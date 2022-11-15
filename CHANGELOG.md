@@ -4,6 +4,7 @@ ElvUI 13.02 or later is now required
 Support for pre patch phase 2  
 Updated the new EasyDelete option to support Quest icons and Quest starters as well  
 **Retail:**  
+Updated details profile  
 Updated some more class WeakAuras on wago  
 • Make sure to grab the new BetterInnervate aura as well if you are a Druid  
 ___
