@@ -66,9 +66,12 @@ function L1UI:Setup_CVars()
 
 	-- My CVars
 	if L1UI.Me then
+		SetCVar('blockChannelInvites', 1)
+		SetCVar('CameraReduceUnexpectedMovement', 1)
 		SetCVar('disableServerNagle', 0)
 		SetCVar('displaySpellActivationOverlays', 0)
 		SetCVar('doNotFlashLowHealthWarning', 1)
+		SetCVar('empowerTapControls', 1)
 		SetCVar('floatingCombatTextCombatDamage', 0)
 		SetCVar('floatingCombatTextCombatHealing', 0)
 		SetCVar('maxFPSLoading', 30)
@@ -80,9 +83,7 @@ function L1UI:Setup_CVars()
 		SetCVar('SpellQueueWindow', 180)
 		SetCVar('useIPv6', 0)
 		SetCVar('weatherDensity', 0)
-		if E.Retail then
-			SetCVar('GxAllowCachelessShaderMode', 0)
-		end
+		SetCVar('GxAllowCachelessShaderMode', 0)
 	end
 
 	L1UI:Print(L["CVars have been set."])
@@ -302,7 +303,13 @@ end
 function L1UI:EasyDelete()
 	if not E.private.L1UI.qualityOfLife.easyDelete then return end
 
+	-- Higher quality than green
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', function(frame)
+		frame.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)
+	end)
+
+	-- Quests and Quest starters
+	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', function(frame)
 		frame.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)
 	end)
 end
