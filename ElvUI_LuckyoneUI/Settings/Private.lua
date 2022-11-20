@@ -14,4 +14,8 @@ V.L1UI = {
 		easyDelete = false,
 	},
 
+	skins = {
+		BugSack = true,
+	},
+
 }
