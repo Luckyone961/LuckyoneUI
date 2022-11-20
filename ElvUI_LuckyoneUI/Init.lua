@@ -22,34 +22,36 @@ _G[addon] = Engine
 local name = format('%s-%s', E.myname, E:ShortenRealm(E.myrealm))
 local toons = {
 	-- Retail
-	["Luckyone-LaughingSkull"] = true, -- Druid Horde
-	["Luckydruid-LaughingSkull"] = true, -- Druid Alliance
-	["Luckypriest-LaughingSkull"] = true, -- Priest
-	["Luckymonkas-LaughingSkull"] = true, -- Monk
-	["Luckyhunter-LaughingSkull"] = true, -- Hunter
-	["Luckydh-LaughingSkull"] = true, -- DH
-	["Luckymage-LaughingSkull"] = true, -- Mage
-	["Luckypala-LaughingSkull"] = true, -- Paladin
-	["Luckyrogue-LaughingSkull"] = true, -- Rogue
-	["Luckywl-LaughingSkull"] = true, -- Warlock
-	["Luckydk-LaughingSkull"] = true, -- DK
-	["Luckyevoker-LaughingSkull"] = true, -- Evoker
-	["Notlucky-LaughingSkull"] = true, -- Warrior
-	["Unluckyone-LaughingSkull"] = true, -- Shaman
-	-- Wrath Classic Alliance
-	["Luckyone-Everlook"] = true, -- Druid
-	["Luckypriest-Everlook"] = true, -- Priest
-	["Luckyrogue-Everlook"] = true, -- Rogue
-	["Luckyhunter-Everlook"] = true, -- Hunter
-	["Luckydk-Everlook"] = true, -- DK
-	["Luckykek-Everlook"] = true, -- Shaman
-	["Luckyone-Giantstalker"] = true, -- Paladin
-	-- Wrath Classic Horde
-	["Luckyone-Gehennas"] = true, -- Hunter
-	["Luckygrip-Gehennas"] = true, -- DK
-	["Luckyd-Golemagg"] = true, -- Druid
-	["Luckyp-Golemagg"] = true, -- Priest
-	["Luckysh-Golemagg"] = true -- Shaman
+	["Luckyone-LaughingSkull"]		= true, -- [Horde] Druid
+	["Luckypriest-LaughingSkull"]	= true, -- [Horde] Priest
+	["Luckymonkas-LaughingSkull"]	= true, -- [Horde] Monk
+	["Luckyhunter-LaughingSkull"]	= true, -- [Horde] Hunter
+	["Luckydh-LaughingSkull"]		= true, -- [Horde] DH
+	["Luckymage-LaughingSkull"]		= true, -- [Horde] Mage
+	["Luckypala-LaughingSkull"]		= true, -- [Horde] Paladin
+	["Luckyrogue-LaughingSkull"]	= true, -- [Horde] Rogue
+	["Luckywl-LaughingSkull"]		= true, -- [Horde] Warlock
+	["Luckydk-LaughingSkull"]		= true, -- [Horde] DK
+	["Luckyevoker-LaughingSkull"]	= true, -- [Horde] Evoker
+	["Notlucky-LaughingSkull"]		= true, -- [Horde] Warrior
+	["Unluckyone-LaughingSkull"]	= true, -- [Horde] Shaman
+	["Luckydruid-LaughingSkull"]	= true, -- [Alliance] Druid
+	-- Wrath Classic
+	["Luckyone-Gehennas"]			= true, -- [Horde] Hunter
+	["Luckygrip-Gehennas"]			= true, -- [Horde] DK
+	["Luckyone-Everlook"]			= true, -- [Alliance] Druid
+	["Luckypriest-Everlook"]		= true, -- [Alliance] Priest
+	["Luckyrogue-Everlook"]			= true, -- [Alliance] Rogue
+	["Luckyhunter-Everlook"]		= true, -- [Alliance] Hunter
+	["Luckydk-Everlook"]			= true, -- [Alliance] DK
+	["Luckykek-Everlook"]			= true, -- [Alliance] Shaman
+	["Luckyone-Giantstalker"]		= true, -- [Alliance] Paladin
+	-- Testing
+	["Luckyone-Koranos"]			= true, -- [Beta] Druid
+	["Kekleox-Tyrhold"]				= true, -- [Beta] Evoker
+	["Luckyevoker-Valdrakken"]		= true, -- [Beta] Evoker
+	["Luckyone-Valdrakken"]			= true, -- [Beta] Druid
+	["Luckyone-Nobundo"]			= true, -- [PTR] Druid
 }
 
 -- Constants
@@ -60,7 +62,7 @@ L1UI.DefaultTexture = 'Minimalist'
 L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = 12.95
+L1UI.RequiredVersion = 13.04
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:Initialize()
@@ -70,7 +72,6 @@ function L1UI:Initialize()
 
 	if L1UI.Me and E.Retail then
 		ElvDB.ShadowLightAlpha = false
-		SetCVar('ActionButtonUseKeyDown', 1)
 	end
 
 	EP:RegisterPlugin(addon, L1UI.Config)

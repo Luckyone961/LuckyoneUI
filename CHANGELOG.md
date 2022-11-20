@@ -1,10 +1,43 @@
-### Version 2.08 [In Development]
+### Version 2.12 [In Development]
+___
+### Version 2.11 [15-11-2022]
 **All WoW Versions:**  
-ElvUI 12.93 or later is now required  
+ElvUI 13.02 or later is now required  
+Support for pre patch phase 2  
+Updated the new EasyDelete option to support Quest icons and Quest starters as well  
 **Retail:**  
-Added updated WeakAuras for the following specs  
-• Balance Druid  
+Updated details profile  
+Updated some more class WeakAuras on wago  
+• Make sure to grab the new BetterInnervate aura as well if you are a Druid  
+___
+### Version 2.10 [11-11-2022]
+**All WoW Versions:**  
+Added new option to the Blizzard section of the config: EasyDelete  
+• If enabled, confirmation text to delete items will be auto-filled based on client language  
+ElvUI 13.01 or later is now required  
+Luckydebug command has been updated for the latest ElvUI folder changes  
+Updated LICENSE  
+**Retail:**  
+Removed Field of View option because Blizzard added it to the default UI options  
+Updated wago links in the config page  
+___
+### Version 2.09 [01-11-2022]
+**Wrath Classic:**  
+Hotfixed broken installer process  
+___
+### Version 2.08 [31-10-2022]
+**All WoW Versions:**  
+Added LICENSE.txt  
+ElvUI 12.99 or later is now required  
+Updated BigWigs profile for both layouts  
+• Emphasized bars will no longer move to their own anchor  
+• Tweaked visible bar limit and time left until emphasized  
+**Retail:**  
+Added back the WeakAuras wago links to the config  
+• Note: They are still under heavy development and mostly broken  
 Fixed Minimap DataText frame strata (Clock was hidden behind the Minimap)  
+Removed ElvUI NamePlate StyleFilters for Shadowlands dungeons  
+• There will be StyleFilters for Dragonflight season 1 in a future update  
 Updated default fonts and text positions for ActionBars 13, 14, 15  
 ___
 ### Version 2.07 [26-10-2022]

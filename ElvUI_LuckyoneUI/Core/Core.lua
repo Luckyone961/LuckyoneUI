@@ -1,9 +1,9 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
 
-local _G = _G
 local format, print = format, print
 local IsAddOnLoaded = IsAddOnLoaded
+local hooksecurefunc = hooksecurefunc
 local ReloadUI = ReloadUI
 local SetCVar = SetCVar
 
@@ -66,9 +66,12 @@ function L1UI:Setup_CVars()
 
 	-- My CVars
 	if L1UI.Me then
+		SetCVar('blockChannelInvites', 1)
+		SetCVar('CameraReduceUnexpectedMovement', 1)
 		SetCVar('disableServerNagle', 0)
 		SetCVar('displaySpellActivationOverlays', 0)
 		SetCVar('doNotFlashLowHealthWarning', 1)
+		SetCVar('empowerTapControls', 1)
 		SetCVar('floatingCombatTextCombatDamage', 0)
 		SetCVar('floatingCombatTextCombatHealing', 0)
 		SetCVar('maxFPSLoading', 30)
@@ -80,9 +83,7 @@ function L1UI:Setup_CVars()
 		SetCVar('SpellQueueWindow', 180)
 		SetCVar('useIPv6', 0)
 		SetCVar('weatherDensity', 0)
-		if E.Retail then
-			SetCVar('GxAllowCachelessShaderMode', 0)
-		end
+		SetCVar('GxAllowCachelessShaderMode', 0)
 	end
 
 	L1UI:Print(L["CVars have been set."])
@@ -146,6 +147,7 @@ function L1UI:Setup_PrivateDB()
 		E.private.general.chatBubbles = 'disabled'
 		E.private.L1UI.disabledFrames.AlertFrame = true
 		E.private.L1UI.disabledFrames.BossBanner = true
+		E.private.L1UI.qualityOfLife.easyDelete = true
 	end
 end
 
@@ -297,6 +299,21 @@ function L1UI:Cleanup_Cache(addon, type)
 	end
 end
 
+-- Easy delete
+function L1UI:EasyDelete()
+	if not E.private.L1UI.qualityOfLife.easyDelete then return end
+
+	-- Higher quality than green
+	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', function(frame)
+		frame.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)
+	end)
+
+	-- Quests and Quest starters
+	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', function(frame)
+		frame.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)
+	end)
+end
+
 ----------------------------------------------------------------------
 ------------------------------- Events -------------------------------
 ----------------------------------------------------------------------
@@ -311,6 +328,7 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	end
 
 	L1UI:DisabledFrames()
+	L1UI:EasyDelete()
 	L1UI:LoadCommands()
 end
 

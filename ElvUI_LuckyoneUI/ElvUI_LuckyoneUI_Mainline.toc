@@ -1,6 +1,6 @@
-## Interface: 100000
+## Interface: 100002
 ## Author: Luckyone
-## Version: 2.07
+## Version: 2.11
 ## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r
 ## Notes: Luckyone's ElvUI Edit
 ## RequiredDeps: ElvUI

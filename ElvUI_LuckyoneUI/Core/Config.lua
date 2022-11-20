@@ -53,7 +53,7 @@ function L1UI:Config()
 	L1UI.Options = ACH:Group(L1UI.Name, nil, 20)
 
 	-- Installer & Update
-	L1UI.Options.args.installer = ACH:Execute(L["Install"], L["Re-Run the installation process."], 1, function() E.PluginInstaller:Queue(L1UI.InstallerData) E:ToggleOptionsUI() end)
+	L1UI.Options.args.installer = ACH:Execute(L["Install"], L["Re-Run the installation process."], 1, function() E.PluginInstaller:Queue(L1UI.InstallerData) E:ToggleOptions() end)
 	L1UI.Options.args.updateMain = ACH:Execute(L["Update Main Layout"], L["Update Main layout to LuckyoneUI version: "]..L1UI.Version, 2, function() L1UI:UpdateLayout('main') end, nil, true)
 	L1UI.Options.args.updateHealing = ACH:Execute(L["Update Healing Layout"], L["Update Healing layout to LuckyoneUI version: "]..L1UI.Version, 3, function() L1UI:UpdateLayout('healing') end, nil, true)
 
@@ -108,9 +108,11 @@ function L1UI:Config()
 	L1UI.Options.args.blizzard.args.disabledFrames.args.AlertFrame = ACH:Toggle(L["Alert Frame"], L["Hide the Loot/Alert Frame"], 1)
 	L1UI.Options.args.blizzard.args.disabledFrames.args.BossBanner = ACH:Toggle(L["Boss Banner"], L["Hide the Boss Banner"], 2, nil, nil, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.blizzard.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle(L["Zone Text"], L["Hide the Zone Text"], 3)
-	L1UI.Options.args.blizzard.args.consoleVars = ACH:Group(L["Console Variables"], nil, 3, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.blizzard.args.consoleVars.inline = true
-	L1UI.Options.args.blizzard.args.consoleVars.args.fov = ACH:Range(L["Field of View"], nil, 1, { min = 50, max = 90, step = 1 }, nil, function() return tonumber(GetCVar('camerafov')) end, function(_, value) SetCVar('camerafov', value) end)
+	-- L1UI.Options.args.blizzard.args.consoleVars = ACH:Group(L["Console Variables"], nil, 3, nil, nil, nil, nil, not E.Retail)
+	-- L1UI.Options.args.blizzard.args.consoleVars.inline = true
+	L1UI.Options.args.blizzard.args.qualityOfLife = ACH:Group(L["Quality of Life"], nil, 3, nil, function(info) return E.private.L1UI.qualityOfLife[info[#info]] end, function(info, value) E.private.L1UI.qualityOfLife[info[#info]] = value E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.blizzard.args.qualityOfLife.inline = true
+	L1UI.Options.args.blizzard.args.qualityOfLife.args.easyDelete = ACH:Toggle(L["Easy Delete"], L["Automatically fill out the confirmation text to delete items."], 1)
 
 	-- Chat
 	L1UI.Options.args.chat = ACH:Group(L["Chat"], nil, 7)
@@ -226,7 +228,6 @@ function L1UI:Config()
 
 	-- WeakAuras Retail
 	L1UI.Options.args.weakauras = ACH:Group('WeakAuras', nil, 14, nil, nil, nil, nil, not E.Retail)
-	--[[
 	L1UI.Options.args.weakauras.args.header1 = ACH:Header('WeakAuras', 1)
 	L1UI.Options.args.weakauras.args.druid = ACH:Input(format('|cffFF7C0A%s|r', L["Druid"]), nil, 2, nil, 'normal', function() return 'wago.io/LuckyoneUI-Druid' end)
 	L1UI.Options.args.weakauras.args.priest = ACH:Input(format('|cffFFFFFF%s|r', L["Priest"]), nil, 3, nil, 'normal', function() return 'wago.io/LuckyoneUI-Priest' end)
@@ -240,8 +241,7 @@ function L1UI:Config()
 	L1UI.Options.args.weakauras.args.paladin = ACH:Input(format('|cffF48CBA%s|r', L["Paladin"]), nil, 11, nil, 'normal', function() return 'wago.io/LuckyoneUI-Paladin' end)
 	L1UI.Options.args.weakauras.args.shaman = ACH:Input(format('|cff0070DD%s|r', L["Shaman"]), nil, 12, nil, 'normal', function() return 'wago.io/LuckyoneUI-Shaman' end)
 	L1UI.Options.args.weakauras.args.warrior = ACH:Input(format('|cffC69B6D%s|r', L["Warrior"]), nil, 13, nil, 'normal', function() return 'wago.io/LuckyoneUI-Warrior' end)
-	L1UI.Options.args.weakauras.args.evoker = ACH:Input(format('|cff33937F%s|r', L["Evoker"]), nil, 14, nil, 'normal', function() return '' end)
-	]]
+	L1UI.Options.args.weakauras.args.evoker = ACH:Input(format('|cff33937F%s|r', L["Evoker"]), nil, 14, nil, 'normal', function() return 'wago.io/LuckyoneUI-Evoker' end)
 	L1UI.Options.args.weakauras.args.header2 = ACH:Header(L["General WeakAuras"], 15)
 	L1UI.Options.args.weakauras.args.keys = ACH:Input(L["Link Keystones"], nil, 16, nil, 'normal', function() return 'wago.io/keystones' end)
 	L1UI.Options.args.weakauras.args.trinket = ACH:Input(L["Trinket Tracking"], nil, 17, nil, 'normal', function() return 'wago.io/Trinket' end)
@@ -249,6 +249,7 @@ function L1UI:Config()
 	L1UI.Options.args.weakauras.args.swapblaster = ACH:Input(L["Swapblaster Alert"], nil, 19, nil, 'normal', function() return 'wago.io/swapblaster' end)
 	L1UI.Options.args.weakauras.args.groupfinderClasses = ACH:Input(L["Groupfinder Classes"], nil, 20, nil, 'normal', function() return 'wago.io/groupfinderClasses' end)
 	L1UI.Options.args.weakauras.args.groupfinderApptext = ACH:Input(L["Groupfinder Applicants"], nil, 21, nil, 'normal', function() return 'wago.io/appTextHide' end)
+	L1UI.Options.args.weakauras.args.innervate = ACH:Input('Better InnervateMe', nil, 22, nil, 'normal', function() return 'wago.io/betterInnervate' end)
 
 	-- WeakAuras Wrath
 	L1UI.Options.args.weakaurasWrath = ACH:Group('WeakAuras', nil, 14, nil, nil, nil, nil, not E.Wrath)
