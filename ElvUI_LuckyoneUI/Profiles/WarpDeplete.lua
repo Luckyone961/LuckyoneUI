@@ -39,7 +39,6 @@ function L1UI:Setup_WarpDeplete()
 		["objectivesFont"] = L1UI.DefaultFont,
 		["objectivesFontSize"] = 11,
 		["showDeathsTooltip"] = false,
-		["showPrideGlow"] = false,
 		["timerFont"] = L1UI.DefaultFont,
 		["timerFontSize"] = 22,
 	}
