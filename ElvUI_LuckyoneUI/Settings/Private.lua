@@ -15,7 +15,7 @@ V.L1UI = {
 	},
 
 	skins = {
-		BugSack = true,
+		BugSack = false,
 	},
 
 }
