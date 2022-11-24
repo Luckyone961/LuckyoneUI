@@ -363,6 +363,14 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.bags.itemLevelFontOutline = 'OUTLINE'
 	E.db.bags.itemLevelFontSize = 11
 	E.db.bags.moneyFormat = 'BLIZZARD'
+
+	if E.Retail then
+		E.db.bags.specialtyColors = false
+		E.db.bags.split.bag5 = true
+		E.db.bags.split.bagSpacing = 1
+		E.db.bags.split.player = true
+	end
+
 	E.db.bags.transparent = true
 	E.db.bags.vendorGrays.enable = true
 
