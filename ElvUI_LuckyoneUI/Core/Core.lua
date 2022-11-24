@@ -2,7 +2,6 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
 
 local format, print = format, print
-local IsAddOnLoaded = IsAddOnLoaded
 local hooksecurefunc = hooksecurefunc
 local ReloadUI = ReloadUI
 local SetCVar = SetCVar
@@ -245,17 +244,17 @@ function L1UI:Setup_Layout(layout)
 	end
 
 	-- AddOnSkins profile
-	if IsAddOnLoaded('AddOnSkins') then
+	if E:IsAddOnEnabled('AddOnSkins') then
 		L1UI:Setup_AddOnSkins(true)
 	end
 
 	-- ProjectAzilroka profile
-	if IsAddOnLoaded('ProjectAzilroka') then
+	if E:IsAddOnEnabled('ProjectAzilroka') then
 		L1UI:Setup_ProjectAzilroka(true)
 	end
 
 	-- Shadow & Light profile
-	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then
+	if E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then
 		L1UI:Setup_ShadowAndLight(true)
 	end
 
@@ -275,24 +274,24 @@ function L1UI:Cleanup_Cache(addon, type)
 			CH:ResetEditboxHistory()
 			L1UI:Print(L["Cleared ElvUI Editbox History."])
 		end
-	elseif addon == 'details' and IsAddOnLoaded('Details') then
+	elseif addon == 'details' and E:IsAddOnEnabled('Details') then
 		_detalhes.boss_mods_timers = {}
 		_detalhes.encounter_spell_pool = {}
 		_detalhes.npcid_pool = {}
 		_detalhes.spell_pool = {}
 		_detalhes.spell_school_cache = {}
 		L1UI:Print(L["Cleared Details Cache."])
-	elseif addon == 'plater' and IsAddOnLoaded('Plater') then
+	elseif addon == 'plater' and E:IsAddOnEnabled('Plater') then
 		PlaterDB.captured_casts = {}
 		PlaterDB.captured_spells = {}
 		L1UI:Print(L["Cleared Plater Cache."])
-	elseif addon == 'rc' and IsAddOnLoaded('RCLootCouncil') then
+	elseif addon == 'rc' and E:IsAddOnEnabled('RCLootCouncil') then
 		RCLootCouncilDB.global.cache = {}
 		RCLootCouncilDB.global.errors = {}
 		RCLootCouncilDB.global.log = {}
 		RCLootCouncilDB.global.verTestCandidates = {}
 		L1UI:Print(L["Cleared RCLootCouncil Cache."])
-	elseif addon == 'mrt' and IsAddOnLoaded('MRT') then
+	elseif addon == 'mrt' and E:IsAddOnEnabled('MRT') then
 		VMRT.ExCD2.gnGUIDs = {}
 		VMRT.Inspect.Soulbinds = {}
 		L1UI:Print(L["Cleared Method Raid Tools Cache."])

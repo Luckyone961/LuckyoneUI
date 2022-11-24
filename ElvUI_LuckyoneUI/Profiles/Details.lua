@@ -1,12 +1,10 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local _G = _G
-local _detalhes = _G._detalhes
-local IsAddOnLoaded = IsAddOnLoaded
 
 -- Details profile
 function L1UI:Setup_Details()
-	if not IsAddOnLoaded('Details') then return end
+	if not E:IsAddOnEnabled('Details') then return end
 
 	-- Profile name
 	local name = L1UI.Me and 'Luckyone' or 'Luckyone '..L1UI.Version
