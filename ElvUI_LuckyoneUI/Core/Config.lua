@@ -173,7 +173,7 @@ function L1UI:Config()
 	L1UI.Options.args.performance.args.descAll = ACH:Header('', 7)
 	L1UI.Options.args.performance.args.all = ACH:Group(L["Clear Cache for all AddOns listed above"], nil, 8)
 	L1UI.Options.args.performance.args.all.inline = true
-	L1UI.Options.args.performance.args.all.args.cache = ACH:Execute(format('|cff3296ff%s|r', L["Clear All"]), nil, 1, function() L1UI:Cleanup_Cache('details') L1UI:Cleanup_Cache('plater') L1UI:Cleanup_Cache('rc') L1UI:Cleanup_Cache('mrt') end)
+	L1UI.Options.args.performance.args.all.args.cache = ACH:Execute(format('|cff3296ff%s|r', L["Clear All"]), nil, 1, function() L1UI:Cleanup_Cache('details') L1UI:Cleanup_Cache('plater') L1UI:Cleanup_Cache('rc') L1UI:Cleanup_Cache('mrt') E:StaticPopup_Show('L1UI_RL') end)
 
 	-- Profiles
 	L1UI.Options.args.profiles = ACH:Group(L["Profiles"], nil, 11)
