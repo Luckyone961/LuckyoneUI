@@ -1,9 +1,10 @@
 ### Version 2.12 [In Development]
 **All WoW Versions:**  
-Added initial Skins section in /luckyoneui config  
-• LuckyoneUI skin for the BugSack AddOn has been added  
+Added a skins section in /luckyoneui config  
+• The first custom skin is for the BugSack AddOn  
 **Retail:**  
-Updated WarpDeplete profile for the new version  
+Updated Details profile  
+Updated WarpDeplete profile  
 ___
 ### Version 2.11 [15-11-2022]
 **All WoW Versions:**  
