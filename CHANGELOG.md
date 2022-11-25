@@ -3,6 +3,7 @@
 Added a skins section in /luckyoneui config  
 • The first custom skin is for the BugSack AddOn  
 **Retail:**  
+Added profile for Quartz (Alternative Castbar AddOn)  
 Updated Details profile  
 Updated WarpDeplete profile  
 ___
