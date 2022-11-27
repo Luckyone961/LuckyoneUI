@@ -1018,7 +1018,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-79'
 	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-98'
 	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,114'
-	E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-39'
+	E.db.movers.PowerBarContainerMover = 'BOTTOM,UIParent,BOTTOM,0,163'
 	E.db.movers.ReputationBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
