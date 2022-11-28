@@ -1,3 +1,13 @@
+### Version 2.12 [28-11-2022]
+**All WoW Versions:**  
+Added a skins section in /luckyoneui config  
+• The first custom skin is for the BugSack AddOn  
+**Retail:**  
+Added profile for Quartz (Alternative Castbar AddOn)  
+Updated default position for Dragonriding power widget  
+Updated Details profile  
+Updated WarpDeplete profile  
+___
 ### Version 2.11 [15-11-2022]
 **All WoW Versions:**  
 ElvUI 13.02 or later is now required  

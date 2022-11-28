@@ -1,11 +1,9 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 if not E.Retail then return end
 
-local IsAddOnLoaded = IsAddOnLoaded
-
 -- WarpDeplete Profile
 function L1UI:Setup_WarpDeplete()
-	if not IsAddOnLoaded('WarpDeplete') then return end
+	if not E:IsAddOnEnabled('WarpDeplete') then return end
 
 	-- Profile name
 	local name = L1UI.Me and 'Luckyone' or 'Luckyone '..L1UI.Version
@@ -39,7 +37,6 @@ function L1UI:Setup_WarpDeplete()
 		["objectivesFont"] = L1UI.DefaultFont,
 		["objectivesFontSize"] = 11,
 		["showDeathsTooltip"] = false,
-		["showPrideGlow"] = false,
 		["timerFont"] = L1UI.DefaultFont,
 		["timerFontSize"] = 22,
 	}

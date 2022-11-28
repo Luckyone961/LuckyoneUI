@@ -21,12 +21,14 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.backdropfadecolor.r = 0.05
 	E.db.general.bonusObjectivePosition = 'AUTO'
 	E.db.general.bottomPanel = false
-	-- E.db.general.customGlow.color.a = 1
-	-- E.db.general.customGlow.color.b = 1
-	-- E.db.general.customGlow.color.g = 1
-	-- E.db.general.customGlow.color.r = 1
-	-- E.db.general.customGlow.style = 'Autocast Shine'
-	-- E.db.general.customGlow.useColor = true
+	--[[
+	E.db.general.customGlow.color.a = 1
+	E.db.general.customGlow.color.b = 1
+	E.db.general.customGlow.color.g = 1
+	E.db.general.customGlow.color.r = 1
+	E.db.general.customGlow.style = 'Autocast Shine'
+	E.db.general.customGlow.useColor = true
+	]]
 	E.db.general.durabilityScale = 0.5
 	E.db.general.enhancedPvpMessages = false
 	E.db.general.interruptAnnounce = 'EMOTE'
@@ -361,6 +363,14 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.bags.itemLevelFontOutline = 'OUTLINE'
 	E.db.bags.itemLevelFontSize = 11
 	E.db.bags.moneyFormat = 'BLIZZARD'
+
+	if E.Retail then
+		E.db.bags.specialtyColors = false
+		E.db.bags.split.bag5 = true
+		E.db.bags.split.bagSpacing = 1
+		E.db.bags.split.player = true
+	end
+
 	E.db.bags.transparent = true
 	E.db.bags.vendorGrays.enable = true
 
@@ -1008,7 +1018,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-79'
 	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-98'
 	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,114'
-	E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-39'
+	E.db.movers.PowerBarContainerMover = 'BOTTOM,UIParent,BOTTOM,0,163'
 	E.db.movers.ReputationBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
@@ -1203,12 +1213,14 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.general.backdropfadecolor.r = 0.05
 	E.db.general.bonusObjectivePosition = 'AUTO'
 	E.db.general.bottomPanel = false
-	-- E.db.general.customGlow.color.a = 1
-	-- E.db.general.customGlow.color.b = 1
-	-- E.db.general.customGlow.color.g = 1
-	-- E.db.general.customGlow.color.r = 1
-	-- E.db.general.customGlow.style = 'Autocast Shine'
-	-- E.db.general.customGlow.useColor = true
+	--[[
+	E.db.general.customGlow.color.a = 1
+	E.db.general.customGlow.color.b = 1
+	E.db.general.customGlow.color.g = 1
+	E.db.general.customGlow.color.r = 1
+	E.db.general.customGlow.style = 'Autocast Shine'
+	E.db.general.customGlow.useColor = true
+	]]
 	E.db.general.durabilityScale = 0.5
 	E.db.general.enhancedPvpMessages = false
 	E.db.general.interruptAnnounce = 'EMOTE'

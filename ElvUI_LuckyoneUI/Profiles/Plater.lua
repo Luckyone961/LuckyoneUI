@@ -1,10 +1,8 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local IsAddOnLoaded = IsAddOnLoaded
-
 -- Plater profile
 function L1UI:Setup_Plater()
-	if not IsAddOnLoaded('Plater') then return end
+	if not E:IsAddOnEnabled('Plater') then return end
 
 	-- Profile name
 	local name = L1UI.Me and 'Luckyone' or 'Luckyone '..L1UI.Version
