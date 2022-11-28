@@ -1,4 +1,4 @@
-### Version 2.12 [In Development]
+### Version 2.12 [28-11-2022]
 **All WoW Versions:**  
 Added a skins section in /luckyoneui config  
 • The first custom skin is for the BugSack AddOn  
