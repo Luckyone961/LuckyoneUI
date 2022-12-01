@@ -119,6 +119,15 @@ function L1UI:Setup_OmniCD(layout)
 					},
 					["textColors"] = {
 						["classColor"] = true,
+						["inactiveColor"] = {
+							["a"] = 1,
+						},
+						["rechargeColor"] = {
+							["a"] = 1,
+						},
+						["activeColor"] = {
+							["a"] = 1,
+						},
 						["useClassColor"] = {
 							["inactive"] = true,
 							["recharge"] = true,
@@ -213,6 +222,15 @@ function L1UI:Setup_OmniCD(layout)
 					},
 					["textColors"] = {
 						["classColor"] = true,
+						["inactiveColor"] = {
+							["a"] = 1,
+						},
+						["rechargeColor"] = {
+							["a"] = 1,
+						},
+						["activeColor"] = {
+							["a"] = 1,
+						},
 						["useClassColor"] = {
 							["inactive"] = true,
 							["recharge"] = true,
@@ -295,6 +313,15 @@ function L1UI:Setup_OmniCD(layout)
 					["locked"] = true,
 					["textColors"] = {
 						["classColor"] = true,
+						["inactiveColor"] = {
+							["a"] = 1,
+						},
+						["rechargeColor"] = {
+							["a"] = 1,
+						},
+						["activeColor"] = {
+							["a"] = 1,
+						},
 						["useClassColor"] = {
 							["inactive"] = true,
 							["recharge"] = true,
@@ -392,6 +419,15 @@ function L1UI:Setup_OmniCD(layout)
 					["growUpward"] = true,
 					["textColors"] = {
 						["classColor"] = true,
+						["inactiveColor"] = {
+							["a"] = 1,
+						},
+						["rechargeColor"] = {
+							["a"] = 1,
+						},
+						["activeColor"] = {
+							["a"] = 1,
+						},
 						["useClassColor"] = {
 							["inactive"] = true,
 							["recharge"] = true,
