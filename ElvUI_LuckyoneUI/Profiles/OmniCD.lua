@@ -68,7 +68,7 @@ function L1UI:Setup_OmniCD(layout)
 	OmniCDDB["profiles"][name]["Party"] = {
 		["party"] = {
 			["extraBars"] = {
-				["interruptBar"] = {
+				["raidBar0"] = {
 					["scale"] = 0.6,
 					["statusBarWidth"] = 280,
 					["barColors"] = {
@@ -157,20 +157,10 @@ function L1UI:Setup_OmniCD(layout)
 			["general"] = {
 				["showPlayer"] = true,
 			},
-			["manualPos"] = {
-				["raidCDBar"] = {
-					["y"] = 384.3555214597109,
-					["x"] = 682.3111276328564,
-				},
-				["interruptBar"] = {
-					["y"] = 417.7780917134624,
-					["x"] = 256.3552796449858,
-				},
-			},
 		},
 		["arena"] = {
 			["extraBars"] = {
-				["interruptBar"] = {
+				["raidBar0"] = {
 					["scale"] = 0.6,
 					["statusBarWidth"] = 280,
 					["barColors"] = {
@@ -238,16 +228,6 @@ function L1UI:Setup_OmniCD(layout)
 						},
 					},
 					["hideSpark"] = true,
-				},
-			},
-			["manualPos"] = {
-				["interruptBar"] = {
-					["y"] = 417.7780917134624,
-					["x"] = 256.3552796449858,
-				},
-				["raidCDBar"] = {
-					["y"] = 384.3555214597109,
-					["x"] = 682.3111276328564,
 				},
 			},
 			["icons"] = {
@@ -278,7 +258,7 @@ function L1UI:Setup_OmniCD(layout)
 	OmniCDDB["profiles"][name_healing]["Party"] = {
 		["party"] = {
 			["extraBars"] = {
-				["interruptBar"] = {
+				["raidBar0"] = {
 					["columns"] = 10,
 					["hideSpark"] = true,
 					["statusBarWidth"] = 363,
@@ -348,16 +328,6 @@ function L1UI:Setup_OmniCD(layout)
 					["paddingY"] = 2,
 				},
 			},
-			["manualPos"] = {
-				["interruptBar"] = {
-					["y"] = 285.5115303509865,
-					["x"] = 343.1108807040528,
-				},
-				["raidCDBar"] = {
-					["y"] = 384.3555214597109,
-					["x"] = 682.3111276328564,
-				},
-			},
 			["position"] = {
 				["attachMore"] = "LEFT",
 				["columns"] = 3,
@@ -385,7 +355,7 @@ function L1UI:Setup_OmniCD(layout)
 		},
 		["arena"] = {
 			["extraBars"] = {
-				["interruptBar"] = {
+				["raidBar0"] = {
 					["enabled"] = true,
 					["columns"] = 10,
 					["hideSpark"] = true,
@@ -470,16 +440,6 @@ function L1UI:Setup_OmniCD(layout)
 				["offsetY"] = 44,
 				["anchorMore"] = "LEFT",
 				["paddingY"] = 2,
-			},
-			["manualPos"] = {
-				["raidCDBar"] = {
-					["y"] = 384.3555214597109,
-					["x"] = 682.3111276328564,
-				},
-				["interruptBar"] = {
-					["y"] = 285.5115303509865,
-					["x"] = 343.1108807040528,
-				},
 			},
 			["icons"] = {
 				["scale"] = 0.83,
