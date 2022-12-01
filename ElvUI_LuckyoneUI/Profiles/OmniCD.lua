@@ -102,14 +102,19 @@ function L1UI:Setup_OmniCD(layout)
 					["columns"] = 10,
 					["bgColors"] = {
 						["classColor"] = true,
+						["rechargeColor"] = {
+							["b"] = 0.61,
+							["g"] = 0.56,
+							["r"] = 0.54,
+						},
 						["useClassColor"] = {
-							["active"] = true,
+							["recharge"] = false,
 						},
 						["activeColor"] = {
-							["a"] = 1,
-							["b"] = 0.05,
-							["g"] = 0.05,
-							["r"] = 0.05,
+							["a"] = 0.9,
+							["b"] = 0.61,
+							["g"] = 0.56,
+							["r"] = 0.54,
 						},
 					},
 					["textColors"] = {
@@ -191,14 +196,19 @@ function L1UI:Setup_OmniCD(layout)
 					["columns"] = 10,
 					["bgColors"] = {
 						["classColor"] = true,
+						["rechargeColor"] = {
+							["b"] = 0.61,
+							["g"] = 0.56,
+							["r"] = 0.54,
+						},
 						["useClassColor"] = {
-							["active"] = true,
+							["recharge"] = false,
 						},
 						["activeColor"] = {
-							["a"] = 1,
-							["r"] = 0.05,
-							["g"] = 0.05,
-							["b"] = 0.05,
+							["a"] = 0.9,
+							["b"] = 0.61,
+							["g"] = 0.56,
+							["r"] = 0.54,
 						},
 					},
 					["textColors"] = {
@@ -293,14 +303,19 @@ function L1UI:Setup_OmniCD(layout)
 					},
 					["bgColors"] = {
 						["classColor"] = true,
-						["activeColor"] = {
-							["a"] = 1,
-							["b"] = 0.05,
-							["g"] = 0.05,
-							["r"] = 0.05,
+						["rechargeColor"] = {
+							["b"] = 0.61,
+							["g"] = 0.56,
+							["r"] = 0.54,
 						},
 						["useClassColor"] = {
-							["active"] = true,
+							["recharge"] = false,
+						},
+						["activeColor"] = {
+							["a"] = 0.9,
+							["b"] = 0.61,
+							["g"] = 0.56,
+							["r"] = 0.54,
 						},
 					},
 					["paddingY"] = 2,
@@ -386,14 +401,19 @@ function L1UI:Setup_OmniCD(layout)
 					["locked"] = true,
 					["bgColors"] = {
 						["classColor"] = true,
-						["activeColor"] = {
-							["a"] = 1,
-							["r"] = 0.05,
-							["g"] = 0.05,
-							["b"] = 0.05,
+						["rechargeColor"] = {
+							["b"] = 0.61,
+							["g"] = 0.56,
+							["r"] = 0.54,
 						},
 						["useClassColor"] = {
-							["active"] = true,
+							["recharge"] = false,
+						},
+						["activeColor"] = {
+							["a"] = 0.9,
+							["b"] = 0.61,
+							["g"] = 0.56,
+							["r"] = 0.54,
 						},
 					},
 					["scale"] = 0.6,
