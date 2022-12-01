@@ -74,12 +74,19 @@ function L1UI:Setup_OmniCD(layout)
 					["barColors"] = {
 						["classColor"] = false,
 						["inactiveColor"] = {
-							["a"] = 1,
+							["a"] = 0.9,
 							["r"] = 0.05,
 							["g"] = 0.05,
 							["b"] = 0.05,
 						},
+						["rechargeColor"] = {
+							["a"] = 0.9,
+							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
+						},
 						["activeColor"] = {
+							["a"] = 0.9,
 							["b"] = 0.05,
 							["g"] = 0.05,
 							["r"] = 0.05,
@@ -155,15 +162,22 @@ function L1UI:Setup_OmniCD(layout)
 					["barColors"] = {
 						["classColor"] = false,
 						["inactiveColor"] = {
-							["a"] = 1,
+							["a"] = 0.9,
+							["r"] = 0.05,
+							["g"] = 0.05,
+							["b"] = 0.05,
+						},
+						["rechargeColor"] = {
+							["a"] = 0.9,
 							["b"] = 0.05,
 							["g"] = 0.05,
 							["r"] = 0.05,
 						},
 						["activeColor"] = {
-							["r"] = 0.05,
-							["g"] = 0.05,
+							["a"] = 0.9,
 							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
 						},
 						["useClassColor"] = {
 							["inactive"] = false,
@@ -242,21 +256,28 @@ function L1UI:Setup_OmniCD(layout)
 					["statusBarWidth"] = 363,
 					["barColors"] = {
 						["classColor"] = false,
+						["inactiveColor"] = {
+							["a"] = 0.9,
+							["r"] = 0.05,
+							["g"] = 0.05,
+							["b"] = 0.05,
+						},
+						["rechargeColor"] = {
+							["a"] = 0.9,
+							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
+						},
+						["activeColor"] = {
+							["a"] = 0.9,
+							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
+						},
 						["useClassColor"] = {
 							["inactive"] = false,
 							["recharge"] = false,
 							["active"] = false,
-						},
-						["activeColor"] = {
-							["b"] = 0.05,
-							["g"] = 0.05,
-							["r"] = 0.05,
-						},
-						["inactiveColor"] = {
-							["a"] = 1,
-							["r"] = 0.05,
-							["g"] = 0.05,
-							["b"] = 0.05,
 						},
 					},
 					["growUpward"] = true,
@@ -329,21 +350,28 @@ function L1UI:Setup_OmniCD(layout)
 					["statusBarWidth"] = 363,
 					["barColors"] = {
 						["classColor"] = false,
+						["inactiveColor"] = {
+							["a"] = 0.9,
+							["r"] = 0.05,
+							["g"] = 0.05,
+							["b"] = 0.05,
+						},
+						["rechargeColor"] = {
+							["a"] = 0.9,
+							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
+						},
+						["activeColor"] = {
+							["a"] = 0.9,
+							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
+						},
 						["useClassColor"] = {
 							["inactive"] = false,
 							["recharge"] = false,
 							["active"] = false,
-						},
-						["activeColor"] = {
-							["r"] = 0.05,
-							["g"] = 0.05,
-							["b"] = 0.05,
-						},
-						["inactiveColor"] = {
-							["a"] = 1,
-							["b"] = 0.05,
-							["g"] = 0.05,
-							["r"] = 0.05,
 						},
 					},
 					["growUpward"] = true,
