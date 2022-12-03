@@ -12,8 +12,8 @@ function L1UI:Setup_OmniCD(layout)
 	local name_healing = L1UI.Me and 'Luckyone Healing' or 'Luckyone Healing '..L1UI.Version
 
 	-- Disable LibDualSpec to set the profile
-	OmniCDDB["namespaces"]["LibDualSpec-1.0"] = OmniCDDB["namespaces"]["LibDualSpec-1.0"] or {}
-	OmniCDDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm]["enabled"] = false
+	-- OmniCDDB["namespaces"]["LibDualSpec-1.0"] = OmniCDDB["namespaces"]["LibDualSpec-1.0"] or {}
+	-- OmniCDDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm]["enabled"] = false
 
 	-- Global db
 	OmniCDDB["cooldowns"] = {}
@@ -69,27 +69,26 @@ function L1UI:Setup_OmniCD(layout)
 		["party"] = {
 			["extraBars"] = {
 				["raidBar0"] = {
-					["scale"] = 0.6,
+					["hideSpark"] = true,
 					["statusBarWidth"] = 280,
 					["barColors"] = {
 						["classColor"] = false,
 						["inactiveColor"] = {
-							["a"] = 0.9,
-							["r"] = 0.05,
-							["g"] = 0.05,
+							["a"] = 0.90,
 							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
 						},
 						["rechargeColor"] = {
-							["a"] = 0.9,
-							["b"] = 0.05,
-							["g"] = 0.05,
+							["a"] = 0.90,
 							["r"] = 0.05,
+							["g"] = 0.05,
+							["b"] = 0.05,
 						},
 						["activeColor"] = {
-							["a"] = 0.9,
-							["b"] = 0.05,
-							["g"] = 0.05,
 							["r"] = 0.05,
+							["g"] = 0.05,
+							["b"] = 0.05,
 						},
 						["useClassColor"] = {
 							["inactive"] = false,
@@ -99,22 +98,28 @@ function L1UI:Setup_OmniCD(layout)
 					},
 					["locked"] = true,
 					["paddingY"] = 1,
+					["manualPos"] = {
+						["raidBar0"] = {
+							["y"] = 417.7780917134624,
+							["x"] = 256.3552796449858,
+						},
+					},
 					["columns"] = 10,
 					["bgColors"] = {
 						["classColor"] = true,
 						["rechargeColor"] = {
-							["b"] = 0.61,
-							["g"] = 0.56,
 							["r"] = 0.54,
+							["g"] = 0.56,
+							["b"] = 0.61,
+						},
+						["activeColor"] = {
+							["a"] = 1,
+							["r"] = 0.54,
+							["g"] = 0.56,
+							["b"] = 0.61,
 						},
 						["useClassColor"] = {
 							["recharge"] = false,
-						},
-						["activeColor"] = {
-							["a"] = 0.9,
-							["b"] = 0.61,
-							["g"] = 0.56,
-							["r"] = 0.54,
 						},
 					},
 					["textColors"] = {
@@ -134,7 +139,8 @@ function L1UI:Setup_OmniCD(layout)
 							["active"] = true,
 						},
 					},
-					["hideSpark"] = true,
+					["showInterruptedSpell"] = false,
+					["scale"] = 0.6000000000000001,
 				},
 			},
 			["highlight"] = {
@@ -161,27 +167,26 @@ function L1UI:Setup_OmniCD(layout)
 		["arena"] = {
 			["extraBars"] = {
 				["raidBar0"] = {
-					["scale"] = 0.6,
+					["hideSpark"] = true,
 					["statusBarWidth"] = 280,
 					["barColors"] = {
 						["classColor"] = false,
 						["inactiveColor"] = {
-							["a"] = 0.9,
-							["r"] = 0.05,
-							["g"] = 0.05,
+							["a"] = 0.90,
 							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
 						},
 						["rechargeColor"] = {
-							["a"] = 0.9,
-							["b"] = 0.05,
-							["g"] = 0.05,
+							["a"] = 0.90,
 							["r"] = 0.05,
+							["g"] = 0.05,
+							["b"] = 0.05,
 						},
 						["activeColor"] = {
-							["a"] = 0.9,
-							["b"] = 0.05,
-							["g"] = 0.05,
 							["r"] = 0.05,
+							["g"] = 0.05,
+							["b"] = 0.05,
 						},
 						["useClassColor"] = {
 							["inactive"] = false,
@@ -191,23 +196,28 @@ function L1UI:Setup_OmniCD(layout)
 					},
 					["locked"] = true,
 					["paddingY"] = 1,
-					["enabled"] = true,
+					["manualPos"] = {
+						["raidBar0"] = {
+							["y"] = 417.7780917134624,
+							["x"] = 256.3552796449858,
+						},
+					},
 					["columns"] = 10,
 					["bgColors"] = {
 						["classColor"] = true,
 						["rechargeColor"] = {
-							["b"] = 0.61,
-							["g"] = 0.56,
 							["r"] = 0.54,
+							["g"] = 0.56,
+							["b"] = 0.61,
+						},
+						["activeColor"] = {
+							["a"] = 1,
+							["r"] = 0.54,
+							["g"] = 0.56,
+							["b"] = 0.61,
 						},
 						["useClassColor"] = {
 							["recharge"] = false,
-						},
-						["activeColor"] = {
-							["a"] = 0.9,
-							["b"] = 0.61,
-							["g"] = 0.56,
-							["r"] = 0.54,
 						},
 					},
 					["textColors"] = {
@@ -227,14 +237,18 @@ function L1UI:Setup_OmniCD(layout)
 							["active"] = true,
 						},
 					},
-					["hideSpark"] = true,
+					["showInterruptedSpell"] = false,
+					["scale"] = 0.6000000000000001,
 				},
+			},
+			["highlight"] = {
+				["glowType"] = "actionBar",
 			},
 			["icons"] = {
 				["counterScale"] = 0.9,
-				["chargeScale"] = 0.9,
 				["scale"] = 0.9,
 				["showTooltip"] = true,
+				["chargeScale"] = 0.9,
 			},
 			["position"] = {
 				["paddingX"] = 1,
@@ -244,12 +258,8 @@ function L1UI:Setup_OmniCD(layout)
 				["anchor"] = "TOPRIGHT",
 				["paddingY"] = 1,
 			},
-			["highlight"] = {
-				["glowType"] = "actionBar",
-			},
 			["general"] = {
 				["showPlayer"] = true,
-				["zoneSelected"] = "party",
 			},
 		},
 	}
@@ -260,24 +270,28 @@ function L1UI:Setup_OmniCD(layout)
 			["extraBars"] = {
 				["raidBar0"] = {
 					["columns"] = 10,
+					["growUpward"] = true,
 					["hideSpark"] = true,
+					["locked"] = true,
+					["paddingY"] = 2,
+					["scale"] = 0.6000000000000001,
 					["statusBarWidth"] = 363,
+					["manualPos"] = {
+						["raidBar0"] = {
+							["y"] = 285.5115303509865,
+							["x"] = 343.1108807040528,
+						},
+					},
 					["barColors"] = {
 						["classColor"] = false,
 						["inactiveColor"] = {
-							["a"] = 0.9,
+							["a"] = 0.90,
 							["r"] = 0.05,
 							["g"] = 0.05,
 							["b"] = 0.05,
 						},
 						["rechargeColor"] = {
-							["a"] = 0.9,
-							["b"] = 0.05,
-							["g"] = 0.05,
-							["r"] = 0.05,
-						},
-						["activeColor"] = {
-							["a"] = 0.9,
+							["a"] = 0.90,
 							["b"] = 0.05,
 							["g"] = 0.05,
 							["r"] = 0.05,
@@ -287,25 +301,10 @@ function L1UI:Setup_OmniCD(layout)
 							["recharge"] = false,
 							["active"] = false,
 						},
-					},
-					["growUpward"] = true,
-					["scale"] = 0.6,
-					["locked"] = true,
-					["textColors"] = {
-						["classColor"] = true,
-						["inactiveColor"] = {
-							["a"] = 1,
-						},
-						["rechargeColor"] = {
-							["a"] = 1,
-						},
 						["activeColor"] = {
-							["a"] = 1,
-						},
-						["useClassColor"] = {
-							["inactive"] = true,
-							["recharge"] = true,
-							["active"] = true,
+							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
 						},
 					},
 					["bgColors"] = {
@@ -315,33 +314,28 @@ function L1UI:Setup_OmniCD(layout)
 							["g"] = 0.56,
 							["r"] = 0.54,
 						},
-						["useClassColor"] = {
-							["recharge"] = false,
-						},
 						["activeColor"] = {
-							["a"] = 0.9,
+							["a"] = 1,
 							["b"] = 0.61,
 							["g"] = 0.56,
 							["r"] = 0.54,
 						},
+						["useClassColor"] = {
+							["recharge"] = false,
+						},
 					},
-					["paddingY"] = 2,
+					["textColors"] = {
+						["classColor"] = true,
+						["useClassColor"] = {
+							["inactive"] = true,
+							["recharge"] = true,
+							["active"] = true,
+						},
+					},
 				},
 			},
-			["position"] = {
-				["attachMore"] = "LEFT",
-				["columns"] = 3,
-				["paddingX"] = 2,
-				["attach"] = "LEFT",
-				["preset"] = "manual",
-				["offsetX"] = 0,
-				["anchor"] = "LEFT",
-				["offsetY"] = 44,
-				["anchorMore"] = "LEFT",
-				["paddingY"] = 2,
-			},
-			["general"] = {
-				["showPlayer"] = true,
+			["highlight"] = {
+				["glowType"] = "actionBar",
 			},
 			["icons"] = {
 				["scale"] = 0.83,
@@ -349,33 +343,48 @@ function L1UI:Setup_OmniCD(layout)
 				["chargeScale"] = 0.8,
 				["showTooltip"] = true,
 			},
-			["highlight"] = {
-				["glowType"] = "actionBar",
+			["position"] = {
+				["offsetX"] = 0,
+				["anchor"] = "LEFT",
+				["paddingY"] = 2,
+				["attachMore"] = "LEFT",
+				["columns"] = 3,
+				["paddingX"] = 2,
+				["attach"] = "LEFT",
+				["preset"] = "manual",
+				["offsetY"] = 37,
+				["anchorMore"] = "LEFT",
+			},
+			["general"] = {
+				["showPlayer"] = true,
 			},
 		},
 		["arena"] = {
 			["extraBars"] = {
 				["raidBar0"] = {
-					["enabled"] = true,
 					["columns"] = 10,
+					["growUpward"] = true,
 					["hideSpark"] = true,
+					["locked"] = true,
+					["paddingY"] = 2,
+					["scale"] = 0.6000000000000001,
 					["statusBarWidth"] = 363,
+					["manualPos"] = {
+						["raidBar0"] = {
+							["y"] = 285.5115303509865,
+							["x"] = 343.1108807040528,
+						},
+					},
 					["barColors"] = {
 						["classColor"] = false,
 						["inactiveColor"] = {
-							["a"] = 0.9,
+							["a"] = 0.90,
 							["r"] = 0.05,
 							["g"] = 0.05,
 							["b"] = 0.05,
 						},
 						["rechargeColor"] = {
-							["a"] = 0.9,
-							["b"] = 0.05,
-							["g"] = 0.05,
-							["r"] = 0.05,
-						},
-						["activeColor"] = {
-							["a"] = 0.9,
+							["a"] = 0.90,
 							["b"] = 0.05,
 							["g"] = 0.05,
 							["r"] = 0.05,
@@ -385,26 +394,12 @@ function L1UI:Setup_OmniCD(layout)
 							["recharge"] = false,
 							["active"] = false,
 						},
-					},
-					["growUpward"] = true,
-					["textColors"] = {
-						["classColor"] = true,
-						["inactiveColor"] = {
-							["a"] = 1,
-						},
-						["rechargeColor"] = {
-							["a"] = 1,
-						},
 						["activeColor"] = {
-							["a"] = 1,
-						},
-						["useClassColor"] = {
-							["inactive"] = true,
-							["recharge"] = true,
-							["active"] = true,
+							["b"] = 0.05,
+							["g"] = 0.05,
+							["r"] = 0.05,
 						},
 					},
-					["locked"] = true,
 					["bgColors"] = {
 						["classColor"] = true,
 						["rechargeColor"] = {
@@ -412,34 +407,28 @@ function L1UI:Setup_OmniCD(layout)
 							["g"] = 0.56,
 							["r"] = 0.54,
 						},
-						["useClassColor"] = {
-							["recharge"] = false,
-						},
 						["activeColor"] = {
-							["a"] = 0.9,
+							["a"] = 1,
 							["b"] = 0.61,
 							["g"] = 0.56,
 							["r"] = 0.54,
 						},
+						["useClassColor"] = {
+							["recharge"] = false,
+						},
 					},
-					["scale"] = 0.6,
-					["paddingY"] = 2,
+					["textColors"] = {
+						["classColor"] = true,
+						["useClassColor"] = {
+							["inactive"] = true,
+							["recharge"] = true,
+							["active"] = true,
+						},
+					},
 				},
 			},
 			["highlight"] = {
 				["glowType"] = "actionBar",
-			},
-			["position"] = {
-				["attachMore"] = "LEFT",
-				["columns"] = 3,
-				["paddingX"] = 2,
-				["attach"] = "LEFT",
-				["preset"] = "manual",
-				["offsetX"] = 0,
-				["anchor"] = "LEFT",
-				["offsetY"] = 44,
-				["anchorMore"] = "LEFT",
-				["paddingY"] = 2,
 			},
 			["icons"] = {
 				["scale"] = 0.83,
@@ -447,8 +436,19 @@ function L1UI:Setup_OmniCD(layout)
 				["chargeScale"] = 0.8,
 				["showTooltip"] = true,
 			},
+			["position"] = {
+				["offsetX"] = 0,
+				["anchor"] = "LEFT",
+				["paddingY"] = 2,
+				["attachMore"] = "LEFT",
+				["columns"] = 3,
+				["paddingX"] = 2,
+				["attach"] = "LEFT",
+				["preset"] = "manual",
+				["offsetY"] = 37,
+				["anchorMore"] = "LEFT",
+			},
 			["general"] = {
-				["zoneSelected"] = "party",
 				["showPlayer"] = true,
 			},
 		},

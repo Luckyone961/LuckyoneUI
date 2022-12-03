@@ -1,3 +1,7 @@
+### Version 2.13 [03-12-2022]
+**Retail:**  
+Updated OmniCD profiles for Dragonflight  
+___
 ### Version 2.12 [28-11-2022]
 **All WoW Versions:**  
 Added a skins section in /luckyoneui config  
