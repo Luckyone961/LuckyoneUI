@@ -1,4 +1,4 @@
-### Version 2.13 [03-12-2022]
+### Version 2.13 [In Development]
 **Retail:**  
 Updated OmniCD profiles for Dragonflight  
 **Wrath Classic:**  
