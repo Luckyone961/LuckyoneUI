@@ -1,6 +1,8 @@
 ### Version 2.13 [03-12-2022]
 **Retail:**  
 Updated OmniCD profiles for Dragonflight  
+**Wrath Classic:**  
+Added support for the Quartz profile  
 ___
 ### Version 2.12 [28-11-2022]
 **All WoW Versions:**  
