@@ -5,8 +5,6 @@ local pairs, sort = pairs, sort
 local format, tonumber = format, tonumber
 local tconcat, tinsert = table.concat, table.insert
 
-local GetCVar, SetCVar = GetCVar, SetCVar
-
 local AUTHOR = {'|cffFF7D0ALuckyone|r (EU) - LaughingSkull'}
 local CODING = {'|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|r', '|cffFF7D0AMerathilis|r'}
 local SUPPORT = {'|cffe6cc80Calmcacil|r', '|cffe6cc80DaPaKnat|r', '|cffe6cc80Debeleus|r', '|cffe6cc80DevinDog|r', '|cffe6cc80Dukes|r', '|cffe6cc80Fooseq|r', '|cffe6cc80Garbar|r', '|cffe6cc80Kenneth|r', '|cffe6cc80Liam|r', '|cffe6cc80Littlesack|r', '|cffe6cc80Lox|r', '|cffe6cc80Midnatt|r', '|cffe6cc80MonkeyHack|r', '|cffe6cc80Onlyne|r', '|cffe6cc80ShowNoMercy|r', '|cffe6cc80Treelyté|r', '|cffe6cc80Triplebeamdreams|r', '|cffe6cc80Tykk|r', '|cffe6cc80Logan|r'}

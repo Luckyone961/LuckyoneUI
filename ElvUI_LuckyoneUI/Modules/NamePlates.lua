@@ -2,7 +2,6 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local NP = E:GetModule('NamePlates')
 
 local pairs = pairs
-local SetCVar = SetCVar
 
 -- NamePlate Setup for ElvUI and Plater
 function L1UI:Setup_NamePlates()
