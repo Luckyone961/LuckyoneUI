@@ -1,4 +1,4 @@
-### Version 2.13 [In Development]
+### Version 2.13 [05-12-2022]
 **Retail:**  
 Added ElvUI StyleFilters for Season 1 Dungeons  
 • They can be loaded in /luckyoneui config -> Profiles  
