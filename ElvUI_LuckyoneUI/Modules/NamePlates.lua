@@ -205,7 +205,6 @@ function L1UI:Setup_StyleFilters()
 
 	if E.Retail then
 
-		--[[
 		for _, filterName in pairs({'Luckyone_RLP', 'Luckyone_AA', 'Luckyone_NO', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_SBG', 'Luckyone_TOJS'}) do
 			E.global.nameplates.filters[filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
@@ -216,58 +215,89 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_RLP.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_RLP.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_RLP.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_RLP.triggers.names[''] = true -- Name
+		E.global.nameplates.filters.Luckyone_RLP.triggers.names['187897'] = true -- Defier Draghar
+		E.global.nameplates.filters.Luckyone_RLP.triggers.names['188244'] = true -- Primal Juggernaut
+		E.global.nameplates.filters.Luckyone_RLP.triggers.names['195119'] = true -- Primalist Shockcaster
+		E.global.nameplates.filters.Luckyone_RLP.triggers.names['197698'] = true -- Thunderhead
+		E.global.nameplates.filters.Luckyone_RLP.triggers.names['198047'] = true -- Tempest Channeler
+		E.global.nameplates.filters.Luckyone_RLP.triggers.names['197535'] = true -- High Channeler Ryvati
 		E.global.nameplates.filters.Luckyone_RLP.triggers.priority = 2
 
 		-- Algeth’ar Academy [AA]
 		E.global.nameplates.filters.Luckyone_AA.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_AA.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_AA.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_AA.triggers.names[''] = true -- Name
+		E.global.nameplates.filters.Luckyone_AA.triggers.names['196576'] = true -- Spellbound Scepter
+		E.global.nameplates.filters.Luckyone_AA.triggers.names['196671'] = true -- Arcane Ravager
+		E.global.nameplates.filters.Luckyone_AA.triggers.names['197219'] = true -- Vile Lasher
+		E.global.nameplates.filters.Luckyone_AA.triggers.names['196203'] = true -- Ethereal Restorer
+		E.global.nameplates.filters.Luckyone_AA.triggers.names['192680'] = true -- Guardian Sentry
+		E.global.nameplates.filters.Luckyone_AA.triggers.names['192333'] = true -- Alpha Eagle
 		E.global.nameplates.filters.Luckyone_AA.triggers.priority = 2
 
 		-- Nokhud Offensive [NO]
 		E.global.nameplates.filters.Luckyone_NO.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_NO.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_NO.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_NO.triggers.names[''] = true -- Name
+		E.global.nameplates.filters.Luckyone_NO.triggers.names['192800'] = true -- Nokhud Lancemaster
+		E.global.nameplates.filters.Luckyone_NO.triggers.names['195696'] = true -- Primalist Thunderbeast
+		E.global.nameplates.filters.Luckyone_NO.triggers.names['194897'] = true -- Stormsurge Totem
+		E.global.nameplates.filters.Luckyone_NO.triggers.names['195927'] = true -- Soulharvester Galtmaa
+		E.global.nameplates.filters.Luckyone_NO.triggers.names['195928'] = true -- Soulharvester Duuren
+		E.global.nameplates.filters.Luckyone_NO.triggers.names['195930'] = true -- Soulharvester Mandakh
+		E.global.nameplates.filters.Luckyone_NO.triggers.names['195929'] = true -- Soulharvester Tumen
+		E.global.nameplates.filters.Luckyone_NO.triggers.names['193462'] = true -- Batak
 		E.global.nameplates.filters.Luckyone_NO.triggers.priority = 2
 
 		-- Azure Vault [AV]
 		E.global.nameplates.filters.Luckyone_AV.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_AV.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_AV.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_AV.triggers.names[''] = true -- Name
+		E.global.nameplates.filters.Luckyone_AV.triggers.names['187159'] = true -- Shrieking Whelp
+		E.global.nameplates.filters.Luckyone_AV.triggers.names['187155'] = true -- Rune Seal Keeper
+		E.global.nameplates.filters.Luckyone_AV.triggers.names['196117'] = true -- Crystal Thrasher
+		E.global.nameplates.filters.Luckyone_AV.triggers.names['191739'] = true -- Scalebane Lieutenant
+		E.global.nameplates.filters.Luckyone_AV.triggers.names['187240'] = true -- Drakonid Breaker
 		E.global.nameplates.filters.Luckyone_AV.triggers.priority = 2
 
 		-- Court of Stars [COS]
 		E.global.nameplates.filters.Luckyone_COS.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_COS.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_COS.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_COS.triggers.names[''] = true -- Name
+		E.global.nameplates.filters.Luckyone_COS.triggers.names['104251'] = true -- Duskwatch Sentry
+		E.global.nameplates.filters.Luckyone_COS.triggers.names['105715'] = true -- Watchful Inquisitor
+		E.global.nameplates.filters.Luckyone_COS.triggers.names['104278'] = true -- Felbound Enforcer
+		E.global.nameplates.filters.Luckyone_COS.triggers.names['105704'] = true -- Arcane Manifestation
 		E.global.nameplates.filters.Luckyone_COS.triggers.priority = 2
 
 		-- Halls of Valor [HOV]
 		E.global.nameplates.filters.Luckyone_HOV.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_HOV.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_HOV.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_HOV.triggers.names[''] = true -- Name
+		E.global.nameplates.filters.Luckyone_HOV.triggers.names['97068'] = true -- Storm Drake
+		E.global.nameplates.filters.Luckyone_HOV.triggers.names['95834'] = true -- Valarjar Mystic
+		E.global.nameplates.filters.Luckyone_HOV.triggers.names['96574'] = true -- Stormforged Sentinel
 		E.global.nameplates.filters.Luckyone_HOV.triggers.priority = 2
 
 		-- Shadowmoon Burial Grounds [SBG]
 		E.global.nameplates.filters.Luckyone_SBG.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_SBG.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_SBG.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_SBG.triggers.names[''] = true -- Name
+		E.global.nameplates.filters.Luckyone_SBG.triggers.names['75713'] = true -- Shadowmoon Bone-Mender
+		E.global.nameplates.filters.Luckyone_SBG.triggers.names['75652'] = true -- Void Spawn
 		E.global.nameplates.filters.Luckyone_SBG.triggers.priority = 2
 
 		-- Temple of the Jade Serpent [TOJS]
 		E.global.nameplates.filters.Luckyone_TOJS.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_TOJS.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_TOJS.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_TOJS.triggers.names[''] = true -- Name
+		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['200126'] = true -- Fallen Waterspeaker
+		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59546'] = true -- The Talking Fish
+		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59553'] = true -- The Songbird Queen
+		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59552'] = true -- The Crybaby Hozen
+		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['200137'] = true -- Depraved Mistweaver
+		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['57109'] = true -- Minion of Doubt
 		E.global.nameplates.filters.Luckyone_TOJS.triggers.priority = 2
-		]]
 
 		-- Edited version of ElvUI_Explosives
 		E.global.nameplates.filters.ElvUI_Explosives.actions.color.healthColor.b = 1
