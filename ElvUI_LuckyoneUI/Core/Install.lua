@@ -58,7 +58,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Full list of all changed CVars can be found in /luckyoneui config -> CVars."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_CVars() end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_CVars() L1UI:NameplateCVars() end)
 			PluginInstallFrame.Option1:SetText(L["Setup CVars"])
 		end,
 		[6] = function()
@@ -66,10 +66,10 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Choose between ElvUI NamePlates and Plater NamePlates."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cHigh|r"])
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_NamePlates('ElvUI') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_NamePlates() end)
 			PluginInstallFrame.Option1:SetText('ElvUI')
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_NamePlates('Plater') end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Plater') end)
 			PluginInstallFrame.Option2:SetText('Plater')
 		end,
 		[7] = function()

@@ -1,3 +1,9 @@
+### Version 2.14 [In Development]
+**All WoW Versions:**  
+Plater profile is now completely handled on wago  
+• Installer and config will spawn a popup with the current import string  
+• This method is better for profile and companion updates  
+___
 ### Version 2.13 [05-12-2022]
 **Retail:**  
 Added ElvUI StyleFilters for Season 1 Dungeons  

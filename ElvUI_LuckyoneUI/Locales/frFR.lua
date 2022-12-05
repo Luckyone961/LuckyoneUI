@@ -123,7 +123,6 @@ L["DBM profile has been set."] = true
 L["Details profile has been set."] = true
 L["NamePlate CVars have been set."] = true
 L["OmniCD profile has been set."] = true
-L["Plater profile has been set."] = true
 L["ProjectAzilroka profile has been set."] = true
 L["Quartz profile has been set."] = true
 L["Reload required - continue?"] = true
