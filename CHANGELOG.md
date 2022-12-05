@@ -1,6 +1,9 @@
 ### Version 2.13 [In Development]
 **Retail:**  
+Added ElvUI StyleFilters for Season 1 Dungeons  
+• They can be loaded in /luckyoneui config -> Profiles  
 Updated OmniCD profiles for Dragonflight  
+• Install it in /luckyoneui config -> Profiles  
 **Wrath Classic:**  
 Added support for the Quartz profile  
 ___
