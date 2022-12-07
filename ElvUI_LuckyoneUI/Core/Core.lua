@@ -106,6 +106,7 @@ function L1UI:Setup_CVars()
 
 	-- My CVars
 	if L1UI.Me then
+		SetCVar('AutoPushSpellToActionBar', 0)
 		SetCVar('blockChannelInvites', 1)
 		SetCVar('CameraReduceUnexpectedMovement', 1)
 		SetCVar('disableServerNagle', 0)
