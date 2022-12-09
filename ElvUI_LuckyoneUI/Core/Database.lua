@@ -354,13 +354,18 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.bags.countFont = L1UI.DefaultFont
 	E.db.bags.countFontOutline = 'OUTLINE'
 	E.db.bags.countFontSize = 11
+	E.db.bags.currencyFormat = 'ICON_TEXT'
 	E.db.bags.itemInfoFont = L1UI.DefaultFont
 	E.db.bags.itemInfoFontOutline = 'OUTLINE'
 	E.db.bags.itemInfoFontSize = 11
 	E.db.bags.itemLevelFont = L1UI.DefaultFont
 	E.db.bags.itemLevelFontOutline = 'OUTLINE'
 	E.db.bags.itemLevelFontSize = 11
-	E.db.bags.moneyFormat = 'BLIZZARD'
+	E.db.bags.moneyFormat = 'FULL'
+	E.db.bags.specialtyColors = false
+	E.db.bags.upgradeIcon = false
+	E.db.bags.vendorGrays.enable = true
+	E.db.bags.vendorGrays.interval = 0.1
 
 	if E.Retail then
 		E.db.bags.specialtyColors = false
