@@ -4,6 +4,8 @@ Plater profile is now completely handled on wago
 • Installer and config will spawn a popup with the current import string  
 • This method is better for profile and companion updates  
 • Updated color mod for Season 1 Dungeons as well  
+**Retail:**  
+Minor updates for OmniCD  
 ___
 ### Version 2.13 [05-12-2022]
 **Retail:**  
