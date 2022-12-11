@@ -14,6 +14,12 @@ local CODING = {'|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|r
 local SUPPORT = {'|cffe6cc80Calmcacil|r', '|cffe6cc80DaPaKnat|r', '|cffe6cc80Debeleus|r', '|cffe6cc80DevinDog|r', '|cffe6cc80Dukes|r', '|cffe6cc80Fooseq|r', '|cffe6cc80Garbar|r', '|cffe6cc80Kenneth|r', '|cffe6cc80Liam|r', '|cffe6cc80Littlesack|r', '|cffe6cc80Lox|r', '|cffe6cc80Midnatt|r', '|cffe6cc80MonkeyHack|r', '|cffe6cc80Onlyne|r', '|cffe6cc80ShowNoMercy|r', '|cffe6cc80Treelyté|r', '|cffe6cc80Triplebeamdreams|r', '|cffe6cc80Tykk|r', '|cffe6cc80Logan|r'}
 local TESTERS = {'|cff00FF96AltBridge|r', '|cff69CCF0Sniefer|r', '|cffABD473Badbrain|r', '|cffABD473Xyf|r', '|cffC41F3BKringel|r', '|cffF58CBAIllusion|r', '|cffABD473Dlarge|r', '|cffe6cc80Hollicsh|r'}
 
+local function CheckRaid()
+	if tonumber(GetCVar('RAIDsettingsEnabled')) == 0 then
+		return true
+	end
+end
+
 local function SortList(a, b)
 	return E:StripString(a) < E:StripString(b)
 end
@@ -44,12 +50,6 @@ L1UI.SUPPORT_STRING = tconcat(SUPPORT, '|n')
 
 -- LuckyoneUI config panel
 function L1UI:Config()
-
-	local checkRaid = function()
-		if tonumber(GetCVar('RAIDsettingsEnabled')) == 0 then
-			return true
-		end
-	end
 
 	-- Add LuckyoneUI version on top of the ElvUI config
 	E.Options.name = format('%s + %s |cff99ff33%.2f|r', E.Options.name, L1UI.Name, L1UI.Version)
@@ -157,15 +157,20 @@ function L1UI:Config()
 	L1UI.Options.args.graphics.args.toggles.args.GxAllowCachelessShaderMode = ACH:Toggle('CachelessShaderMode', 'Default: off | Suggestion: off', 2, nil, nil, nil, function() return GetCVarBool('GxAllowCachelessShaderMode') end, function(_, value) SetCVar('GxAllowCachelessShaderMode', value and 1 or 0) end)
 	L1UI.Options.args.graphics.args.sliders = ACH:Group(L["Raids / Battlegrounds / Dungeons"], nil, 4)
 	L1UI.Options.args.graphics.args.sliders.inline = true
-	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsSpellDensity = ACH:Range('RAID SpellDensity', 'Default: 4 | Suggestion: 0', 1, { min = 0, max = 5, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsSpellDensity')) end, function(_, value) SetCVar('raidGraphicsSpellDensity', value) end, checkRaid)
-	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsComputeEffects = ACH:Range('RAID ComputeEffects', 'Default: 2 | Suggestion: 0', 2, { min = 0, max = 4, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsComputeEffects')) end, function(_, value) SetCVar('raidGraphicsComputeEffects', value) end, checkRaid)
-	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsSSAO = ACH:Range('RAID SSAO', 'Default: 3 | Suggestion: 0', 3, { min = 0, max = 4, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsSSAO')) end, function(_, value) SetCVar('raidGraphicsSSAO', value) end, checkRaid)
+	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsSpellDensity = ACH:Range('RAID SpellDensity', 'Default: 4 | Suggestion: 0', 1, { min = 0, max = 5, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsSpellDensity')) end, function(_, value) SetCVar('raidGraphicsSpellDensity', value) end, CheckRaid)
+	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsComputeEffects = ACH:Range('RAID ComputeEffects', 'Default: 2 | Suggestion: 0', 2, { min = 0, max = 4, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsComputeEffects')) end, function(_, value) SetCVar('raidGraphicsComputeEffects', value) end, CheckRaid)
+	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsSSAO = ACH:Range('RAID SSAO', 'Default: 3 | Suggestion: 0', 3, { min = 0, max = 4, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsSSAO')) end, function(_, value) SetCVar('raidGraphicsSSAO', value) end, CheckRaid)
 	L1UI.Options.args.graphics.args.sliders.args.RAIDweatherDensity = ACH:Range('RAID weatherDensity', 'Default: 2 | Suggestion: 0', 99, { min = 0, max = 2, step = 1 }, nil, function() return tonumber(GetCVar('RAIDweatherDensity')) end, function(_, value) SetCVar('RAIDweatherDensity', value) end)
 	L1UI.Options.args.graphics.args.cosmetic = ACH:Group(L["Cosmetic"], nil, 5)
 	L1UI.Options.args.graphics.args.cosmetic.inline = true
 	L1UI.Options.args.graphics.args.cosmetic.args.ffxDeath = ACH:Toggle('ffx Death', 'Default: on | Suggestion: off', 1, nil, nil, nil, function() return GetCVarBool('ffxDeath') end, function(_, value) SetCVar('ffxDeath', value and 1 or 0) end)
 	L1UI.Options.args.graphics.args.cosmetic.args.ffxGlow = ACH:Toggle('ffx Glow', 'Default: on | Suggestion: off', 2, nil, nil, nil, function() return GetCVarBool('ffxGlow') end, function(_, value) SetCVar('ffxGlow', value and 1 or 0) end)
 	L1UI.Options.args.graphics.args.cosmetic.args.ffxNether = ACH:Toggle('ffx Nether', 'Default: on | Suggestion: off', 3, nil, nil, nil, function() return GetCVarBool('ffxNether') end, function(_, value) SetCVar('ffxNether', value and 1 or 0) end)
+	L1UI.Options.args.graphics.args.cosmetic.args.raidGraphicsOutlineMode = ACH:Range('RAID OutlineMode', 'Default: 1 | Suggestion: 2', 4, { min = 0, max = 2, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsOutlineMode')) end, function(_, value) SetCVar('raidGraphicsOutlineMode', value) end, CheckRaid)
+	L1UI.Options.args.graphics.args.gx = ACH:Group(L["Restart Graphics Engine"], nil, 6)
+	L1UI.Options.args.graphics.args.gx.inline = true
+	L1UI.Options.args.graphics.args.gx.args.gxRestart = ACH:Execute(format('|cff3296ff%s|r', L["Restart Graphics Engine"]), nil, 1, function() RestartGx() end, nil, true)
+	L1UI.Options.args.graphics.args.gx.args.desc = ACH:Description(L["This will restart your Games Graphics Engine and is only required,\nif you've touched the CachelessShaderMode option above."], 2, 'medium')
 
 	-- Media
 	L1UI.Options.args.media = ACH:Group(L["Media"], nil, 10)
