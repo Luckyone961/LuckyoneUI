@@ -5,6 +5,10 @@ local pairs, sort = pairs, sort
 local format, tonumber = format, tonumber
 local tconcat, tinsert = table.concat, table.insert
 
+local GetCVar = GetCVar
+local GetCVarBool = GetCVarBool
+local SetCVar = SetCVar
+
 local AUTHOR = {'|cffFF7D0ALuckyone|r (EU) - LaughingSkull'}
 local CODING = {'|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|r', '|cffFF7D0AMerathilis|r'}
 local SUPPORT = {'|cffe6cc80Calmcacil|r', '|cffe6cc80DaPaKnat|r', '|cffe6cc80Debeleus|r', '|cffe6cc80DevinDog|r', '|cffe6cc80Dukes|r', '|cffe6cc80Fooseq|r', '|cffe6cc80Garbar|r', '|cffe6cc80Kenneth|r', '|cffe6cc80Liam|r', '|cffe6cc80Littlesack|r', '|cffe6cc80Lox|r', '|cffe6cc80Midnatt|r', '|cffe6cc80MonkeyHack|r', '|cffe6cc80Onlyne|r', '|cffe6cc80ShowNoMercy|r', '|cffe6cc80Treelyté|r', '|cffe6cc80Triplebeamdreams|r', '|cffe6cc80Tykk|r', '|cffe6cc80Logan|r'}
@@ -56,10 +60,10 @@ function L1UI:Config()
 	L1UI.Options.args.updateHealing = ACH:Execute(L["Update Healing Layout"], L["Update Healing layout to LuckyoneUI version: "]..L1UI.Version, 3, function() L1UI:UpdateLayout('healing') end, nil, true)
 
 	-- Spacer
-	L1UI.Options.args.header = ACH:Spacer(5, 'full')
+	L1UI.Options.args.header = ACH:Spacer(4, 'full')
 
 	-- Auras [Buffs]
-	L1UI.Options.args.auras = ACH:Group(L["Auras"], nil, 6, 'tab')
+	L1UI.Options.args.auras = ACH:Group(L["Auras"], nil, 5, 'tab')
 	L1UI.Options.args.auras.args.desc = ACH:Header(L["Auras"], 1)
 	L1UI.Options.args.auras.args.buffs = ACH:Group(format('|cff3296ff%s|r', L["Buffs"]), nil, 2)
 	L1UI.Options.args.auras.args.buffs.args.player = ACH:Group(L["Player Frame Buffs"], nil, 1)
@@ -99,7 +103,7 @@ function L1UI:Config()
 	L1UI.Options.args.auras.args.debuffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Debuffs('boss', 'all') end)
 
 	-- Blizzard
-	L1UI.Options.args.blizzard = ACH:Group(L["Blizzard"], nil, 7)
+	L1UI.Options.args.blizzard = ACH:Group(L["Blizzard"], nil, 6)
 	L1UI.Options.args.blizzard.args.desc = ACH:Header(L["Blizzard"], 1)
 	L1UI.Options.args.blizzard.args.disabledFrames = ACH:Group(L["Hide Blizzard Frames"], nil, 2, nil, function(info) return E.private.L1UI.disabledFrames[info[#info]] end, function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.blizzard.args.disabledFrames.inline = true
@@ -111,7 +115,7 @@ function L1UI:Config()
 	L1UI.Options.args.blizzard.args.qualityOfLife.args.easyDelete = ACH:Toggle(L["Easy Delete"], L["Automatically fill out the confirmation text to delete items."], 1)
 
 	-- Chat
-	L1UI.Options.args.chat = ACH:Group(L["Chat"], nil, 8)
+	L1UI.Options.args.chat = ACH:Group(L["Chat"], nil, 7)
 	L1UI.Options.args.chat.args.desc = ACH:Header(L["Chat"], 1)
 	L1UI.Options.args.chat.args.chatSetup = ACH:Group(L["Setup Chat"], nil, 2)
 	L1UI.Options.args.chat.args.chatSetup.inline = true
@@ -124,7 +128,7 @@ function L1UI:Config()
 	L1UI.Options.args.chat.args.chatVars.args.desc = ACH:Description('- chatClassColorOverride 0\n- chatMouseScroll 1\n- chatStyle classic\n- colorChatNamesByClass 1\n- whisperMode inline\n- wholeChatWindowClickable 0', 1, 'medium')
 
 	-- CVars
-	L1UI.Options.args.cvars = ACH:Group(L["Console Variables"], nil, 9)
+	L1UI.Options.args.cvars = ACH:Group(L["Console Variables"], nil, 8)
 	L1UI.Options.args.cvars.args.desc = ACH:Header(L["Console Variables"], 1)
 	L1UI.Options.args.cvars.args.setup = ACH:Group(L["Setup CVars"], nil, 2)
 	L1UI.Options.args.cvars.args.setup.inline = true
@@ -136,6 +140,17 @@ function L1UI:Config()
 	L1UI.Options.args.cvars.args.nameplateDesc = ACH:Group(L["NamePlate CVars"], nil, 4)
 	L1UI.Options.args.cvars.args.nameplateDesc.inline = true
 	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- nameplateLargerScale 1\n- nameplateLargeTopInset -1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOtherBottomInset -1\n- nameplateOtherTopInset -1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateSelfTopInset -1', 1, 'medium')
+
+	-- Graphics
+	L1UI.Options.args.graphics = ACH:Group(L["Graphics"], nil, 9, nil, nil, nil, nil, not E.Retail)
+	L1UI.Options.args.graphics.args.desc = ACH:Header(L["Graphics"], 1)
+	L1UI.Options.args.graphics.args.toggles = ACH:Group(L["Toggles"], nil, 2)
+	L1UI.Options.args.graphics.args.toggles.inline = true
+	L1UI.Options.args.graphics.args.toggles.args.ResampleAlwaysSharpen = ACH:Toggle('ResampleAlwaysSharpen', 'Default: off | Suggestion: on', 1, nil, nil, nil, function() return GetCVarBool('ResampleAlwaysSharpen') end, function(_, value) SetCVar('ResampleAlwaysSharpen', value and 1 or 0) end)
+	L1UI.Options.args.graphics.args.toggles.args.GxAllowCachelessShaderMode = ACH:Toggle('GxAllowCachelessShaderMode', 'Default: off | Suggestion: off', 2, nil, nil, nil, function() return GetCVarBool('GxAllowCachelessShaderMode') end, function(_, value) SetCVar('GxAllowCachelessShaderMode', value and 1 or 0) end)
+	L1UI.Options.args.graphics.args.sliders = ACH:Group(L["Sliders"], nil, 3)
+	L1UI.Options.args.graphics.args.sliders.inline = true
+	L1UI.Options.args.graphics.args.sliders.args.name = ACH:Range('RAIDweatherDensity', 'Default: 2 | Suggestion: 0', 1, { min = 0, max = 2, step = 1 }, nil, function() return tonumber(GetCVar('RAIDweatherDensity')) end, function(_, value) SetCVar('RAIDweatherDensity', value) end)
 
 	-- Media
 	L1UI.Options.args.media = ACH:Group(L["Media"], nil, 10)

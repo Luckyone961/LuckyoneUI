@@ -5,6 +5,9 @@ Plater profile is now completely handled on wago
 • This method is better for profile and companion updates  
 • Updated color mod for Season 1 Dungeons as well  
 **Retail:**  
+Added new config section: Graphics  
+• The purpose of this section is to configure 'hidden' Blizzard settings  
+• I will put default values and recommendations in the mouseover tooltip for each  
 Minor updates for OmniCD  
 ___
 ### Version 2.13 [05-12-2022]
