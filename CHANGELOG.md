@@ -6,9 +6,11 @@ Plater profile is now completely handled on wago
 • Updated color mod for Season 1 Dungeons as well  
 **Retail:**  
 Added new config section: Graphics  
-• The purpose of this section is to configure 'hidden' Blizzard settings  
-• I will put default values and recommendations in the mouseover tooltip for each  
+• One section to configure settings with major performance impact  
+• Another section to configure cosmetic console variables  
+• Default values and suggestions in mouseover tooltips  
 Minor updates for OmniCD  
+• Added back initial DualSpec support for install  
 ___
 ### Version 2.13 [05-12-2022]
 **Retail:**  
