@@ -69,6 +69,7 @@ L["DPS & Tanks"] = "Урон и Танк"
 L["Druid"] = "Друид"
 L["Easy Delete"] = true
 L["ElvUI Plugins"] = "Плагины ElvUI"
+L["Enable Raid Graphics profile"] = true
 L["Evoker"] = "Пробудитель"
 L["Field of View"] = "Поле зрения"
 L["Finished"] = "Готово"

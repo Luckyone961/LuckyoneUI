@@ -141,16 +141,26 @@ function L1UI:Config()
 	L1UI.Options.args.cvars.args.nameplateDesc.inline = true
 	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- nameplateLargerScale 1\n- nameplateLargeTopInset -1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOtherBottomInset -1\n- nameplateOtherTopInset -1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateSelfTopInset -1', 1, 'medium')
 
+	local checkRaid = function()
+		if tonumber(GetCVar('RAIDsettingsEnabled')) == 0 then
+			return true
+		end
+	end
+
 	-- Graphics
 	L1UI.Options.args.graphics = ACH:Group(L["Graphics"], nil, 9, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.graphics.args.desc = ACH:Header(L["Graphics"], 1)
-	L1UI.Options.args.graphics.args.toggles = ACH:Group(L["Toggles"], nil, 2)
+	L1UI.Options.args.graphics.args.enableRaid = ACH:Toggle(L["Enable Raid Graphics profile"], nil, 2, nil, nil, nil, function() return GetCVarBool('RAIDsettingsEnabled') end, function(_, value) SetCVar('RAIDsettingsEnabled', value and 1 or 0) end)
+	L1UI.Options.args.graphics.args.toggles = ACH:Group(L["Toggles"], nil, 3)
 	L1UI.Options.args.graphics.args.toggles.inline = true
 	L1UI.Options.args.graphics.args.toggles.args.ResampleAlwaysSharpen = ACH:Toggle('ResampleAlwaysSharpen', 'Default: off | Suggestion: on', 1, nil, nil, nil, function() return GetCVarBool('ResampleAlwaysSharpen') end, function(_, value) SetCVar('ResampleAlwaysSharpen', value and 1 or 0) end)
-	L1UI.Options.args.graphics.args.toggles.args.GxAllowCachelessShaderMode = ACH:Toggle('GxAllowCachelessShaderMode', 'Default: off | Suggestion: off', 2, nil, nil, nil, function() return GetCVarBool('GxAllowCachelessShaderMode') end, function(_, value) SetCVar('GxAllowCachelessShaderMode', value and 1 or 0) end)
-	L1UI.Options.args.graphics.args.sliders = ACH:Group(L["Sliders"], nil, 3)
+	L1UI.Options.args.graphics.args.toggles.args.GxAllowCachelessShaderMode = ACH:Toggle('CachelessShaderMode', 'Default: off | Suggestion: off', 2, nil, nil, nil, function() return GetCVarBool('GxAllowCachelessShaderMode') end, function(_, value) SetCVar('GxAllowCachelessShaderMode', value and 1 or 0) end)
+	L1UI.Options.args.graphics.args.sliders = ACH:Group(L["Sliders"], nil, 4)
 	L1UI.Options.args.graphics.args.sliders.inline = true
-	L1UI.Options.args.graphics.args.sliders.args.name = ACH:Range('RAIDweatherDensity', 'Default: 2 | Suggestion: 0', 1, { min = 0, max = 2, step = 1 }, nil, function() return tonumber(GetCVar('RAIDweatherDensity')) end, function(_, value) SetCVar('RAIDweatherDensity', value) end)
+	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsSpellDensity = ACH:Range('RAID SpellDensity', 'Default: 4 | Suggestion: 0', 1, { min = 0, max = 5, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsSpellDensity')) end, function(_, value) SetCVar('raidGraphicsSpellDensity', value) end, checkRaid)
+	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsComputeEffects = ACH:Range('RAID ComputeEffects', 'Default: 2 | Suggestion: 0', 2, { min = 0, max = 4, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsComputeEffects')) end, function(_, value) SetCVar('raidGraphicsComputeEffects', value) end, checkRaid)
+	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsSSAO = ACH:Range('RAID SSAO', 'Default: 3 | Suggestion: 0', 3, { min = 0, max = 4, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsSSAO')) end, function(_, value) SetCVar('raidGraphicsSSAO', value) end, checkRaid)
+	L1UI.Options.args.graphics.args.sliders.args.RAIDweatherDensity = ACH:Range('RAID weatherDensity', 'Default: 2 | Suggestion: 0', 99, { min = 0, max = 2, step = 1 }, nil, function() return tonumber(GetCVar('RAIDweatherDensity')) end, function(_, value) SetCVar('RAIDweatherDensity', value) end)
 
 	-- Media
 	L1UI.Options.args.media = ACH:Group(L["Media"], nil, 10)

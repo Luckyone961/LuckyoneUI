@@ -69,6 +69,7 @@ L["DPS & Tanks"] = true
 L["Druid"] = true
 L["Easy Delete"] = true
 L["ElvUI Plugins"] = true
+L["Enable Raid Graphics profile"] = true
 L["Evoker"] = true
 L["Field of View"] = true
 L["Finished"] = true
