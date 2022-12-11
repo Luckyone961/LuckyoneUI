@@ -5,8 +5,7 @@ local pairs, sort = pairs, sort
 local format, tonumber = format, tonumber
 local tconcat, tinsert = table.concat, table.insert
 
-local GetCVar = GetCVar
-local GetCVarBool = GetCVarBool
+local GetCVar, GetCVarBool = GetCVar, GetCVarBool
 local SetCVar = SetCVar
 
 local AUTHOR = {'|cffFF7D0ALuckyone|r (EU) - LaughingSkull'}
@@ -160,6 +159,9 @@ function L1UI:Config()
 	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsSpellDensity = ACH:Range('RAID SpellDensity', 'Default: 4 | Suggestion: 0', 1, { min = 0, max = 5, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsSpellDensity')) end, function(_, value) SetCVar('raidGraphicsSpellDensity', value) end, CheckRaid)
 	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsComputeEffects = ACH:Range('RAID ComputeEffects', 'Default: 2 | Suggestion: 0', 2, { min = 0, max = 4, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsComputeEffects')) end, function(_, value) SetCVar('raidGraphicsComputeEffects', value) end, CheckRaid)
 	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsSSAO = ACH:Range('RAID SSAO', 'Default: 3 | Suggestion: 0', 3, { min = 0, max = 4, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsSSAO')) end, function(_, value) SetCVar('raidGraphicsSSAO', value) end, CheckRaid)
+	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsEnvironmentDetail = ACH:Range('RAID EnvironmentDetail', 'Default: 5 | Suggestion: 0', 4, { min = 0, max = 9, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsEnvironmentDetail')) end, function(_, value) SetCVar('raidGraphicsEnvironmentDetail', value) end, CheckRaid)
+	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsGroundClutter = ACH:Range('RAID GroundClutter', 'Default: 5 | Suggestion: 0', 5, { min = 0, max = 9, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsGroundClutter')) end, function(_, value) SetCVar('raidGraphicsGroundClutter', value) end, CheckRaid)
+	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsViewDistance = ACH:Range('RAID ViewDistance', 'Default: 5 | Suggestion: 0', 6, { min = 0, max = 9, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsViewDistance')) end, function(_, value) SetCVar('raidGraphicsViewDistance', value) end, CheckRaid)
 	L1UI.Options.args.graphics.args.sliders.args.RAIDweatherDensity = ACH:Range('RAID weatherDensity', 'Default: 2 | Suggestion: 0', 99, { min = 0, max = 2, step = 1 }, nil, function() return tonumber(GetCVar('RAIDweatherDensity')) end, function(_, value) SetCVar('RAIDweatherDensity', value) end)
 	L1UI.Options.args.graphics.args.cosmetic = ACH:Group(L["Cosmetic"], nil, 5)
 	L1UI.Options.args.graphics.args.cosmetic.inline = true
