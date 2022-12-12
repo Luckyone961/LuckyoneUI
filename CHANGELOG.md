@@ -1,4 +1,4 @@
-### Version 2.14 [In Development]
+### Version 2.14 [12-12-2022]
 **All WoW Versions:**  
 Plater profile is now completely handled on wago  
 • Installer and config will spawn a popup with the current import string  
