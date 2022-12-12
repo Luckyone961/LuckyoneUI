@@ -21,14 +21,12 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.backdropfadecolor.r = 0.05
 	E.db.general.bonusObjectivePosition = 'AUTO'
 	E.db.general.bottomPanel = false
-	--[[
 	E.db.general.customGlow.color.a = 1
 	E.db.general.customGlow.color.b = 1
 	E.db.general.customGlow.color.g = 1
 	E.db.general.customGlow.color.r = 1
 	E.db.general.customGlow.style = 'Autocast Shine'
 	E.db.general.customGlow.useColor = true
-	]]
 	E.db.general.durabilityScale = 0.5
 	E.db.general.enhancedPvpMessages = false
 	E.db.general.interruptAnnounce = 'EMOTE'
@@ -356,13 +354,18 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.bags.countFont = L1UI.DefaultFont
 	E.db.bags.countFontOutline = 'OUTLINE'
 	E.db.bags.countFontSize = 11
+	E.db.bags.currencyFormat = 'ICON_TEXT'
 	E.db.bags.itemInfoFont = L1UI.DefaultFont
 	E.db.bags.itemInfoFontOutline = 'OUTLINE'
 	E.db.bags.itemInfoFontSize = 11
 	E.db.bags.itemLevelFont = L1UI.DefaultFont
 	E.db.bags.itemLevelFontOutline = 'OUTLINE'
 	E.db.bags.itemLevelFontSize = 11
-	E.db.bags.moneyFormat = 'BLIZZARD'
+	E.db.bags.moneyFormat = 'FULL'
+	E.db.bags.specialtyColors = false
+	E.db.bags.upgradeIcon = false
+	E.db.bags.vendorGrays.enable = true
+	E.db.bags.vendorGrays.interval = 0.1
 
 	if E.Retail then
 		E.db.bags.specialtyColors = false
@@ -1213,14 +1216,12 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.general.backdropfadecolor.r = 0.05
 	E.db.general.bonusObjectivePosition = 'AUTO'
 	E.db.general.bottomPanel = false
-	--[[
 	E.db.general.customGlow.color.a = 1
 	E.db.general.customGlow.color.b = 1
 	E.db.general.customGlow.color.g = 1
 	E.db.general.customGlow.color.r = 1
 	E.db.general.customGlow.style = 'Autocast Shine'
 	E.db.general.customGlow.useColor = true
-	]]
 	E.db.general.durabilityScale = 0.5
 	E.db.general.enhancedPvpMessages = false
 	E.db.general.interruptAnnounce = 'EMOTE'
@@ -1557,10 +1558,6 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.datatexts.fontOutline = 'OUTLINE'
 	E.db.datatexts.fontSize = 13
 	E.db.datatexts.panels.LeftChatDataPanel.enable = false
-	E.db.datatexts.panels.Luckyone_ActionBars_DT.enable = true
-	E.db.datatexts.panels.Luckyone_ActionBars_DT[1] = 'System'
-	E.db.datatexts.panels.Luckyone_ActionBars_DT[2] = 'Combat'
-	E.db.datatexts.panels.Luckyone_ActionBars_DT[3] = 'Durability'
 	E.db.datatexts.panels.MinimapPanel.numPoints = 1
 	E.db.datatexts.panels.MinimapPanel.panelTransparency = true
 	E.db.datatexts.panels.MinimapPanel[1] = 'Time'

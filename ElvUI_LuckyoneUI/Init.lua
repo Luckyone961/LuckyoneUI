@@ -6,7 +6,6 @@ local addon, Engine = ...
 local _G = _G
 local format = format
 local GetAddOnMetadata = GetAddOnMetadata
-local SetCVar = SetCVar
 
 local L1UI = E:NewModule(addon, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
 

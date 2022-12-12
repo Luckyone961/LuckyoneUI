@@ -1,7 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local _G = _G
-
 -- Details profile
 function L1UI:Setup_Details()
 	if not E:IsAddOnEnabled('Details') then return end

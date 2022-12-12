@@ -1,3 +1,19 @@
+### Version 2.14 [12-12-2022]
+**All WoW Versions:**  
+Plater profile is now completely handled on wago  
+• Installer and config will spawn a popup with the current import string  
+• This method is better for profile and companion updates  
+• Updated color mod for Season 1 Dungeons as well  
+Updated layout installer and added back custom glow preset  
+Updated WeakAuras config section  
+**Retail:**  
+Added new config section: Graphics  
+• Options for Raids/Battlegrounds/Dungeons and hidden settings  
+• Options for cosmetic console variables like ffx effects  
+• Default values and suggestions in mouseover tooltips  
+Minor updates for OmniCD  
+• Added back initial DualSpec support for install  
+___
 ### Version 2.13 [05-12-2022]
 **Retail:**  
 Added ElvUI StyleFilters for Season 1 Dungeons  
