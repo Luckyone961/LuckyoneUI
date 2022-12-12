@@ -1558,10 +1558,6 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.datatexts.fontOutline = 'OUTLINE'
 	E.db.datatexts.fontSize = 13
 	E.db.datatexts.panels.LeftChatDataPanel.enable = false
-	E.db.datatexts.panels.Luckyone_ActionBars_DT.enable = true
-	E.db.datatexts.panels.Luckyone_ActionBars_DT[1] = 'System'
-	E.db.datatexts.panels.Luckyone_ActionBars_DT[2] = 'Combat'
-	E.db.datatexts.panels.Luckyone_ActionBars_DT[3] = 'Durability'
 	E.db.datatexts.panels.MinimapPanel.numPoints = 1
 	E.db.datatexts.panels.MinimapPanel.panelTransparency = true
 	E.db.datatexts.panels.MinimapPanel[1] = 'Time'

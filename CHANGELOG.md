@@ -4,6 +4,8 @@ Plater profile is now completely handled on wago
 • Installer and config will spawn a popup with the current import string  
 • This method is better for profile and companion updates  
 • Updated color mod for Season 1 Dungeons as well  
+Updated layout installer and added back custom glow preset  
+Updated WeakAuras config section  
 **Retail:**  
 Added new config section: Graphics  
 • Options for Raids/Battlegrounds/Dungeons and hidden settings  
