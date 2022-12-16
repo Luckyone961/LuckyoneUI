@@ -3,4 +3,5 @@
 	<Script file='Blizzard.lua'/>
 	<Script file='Chat.lua'/>
 	<Script file='NamePlates.lua'/>
+	<Script file='Skins.lua'/>
 </Ui>

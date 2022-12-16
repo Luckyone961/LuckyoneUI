@@ -1,11 +1,10 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local IsAddOnLoaded = IsAddOnLoaded
 local pairs = pairs
 
 -- DBM profile
 function L1UI:Setup_DBM(layout)
-	if not IsAddOnLoaded('DBM-Core') then return end
+	if not E:IsAddOnEnabled('DBM-Core') then return end
 
 	-- Profile names
 	local name = L1UI.Me and 'Luckyone-Main' or 'Luckyone-Main-'..L1UI.Version

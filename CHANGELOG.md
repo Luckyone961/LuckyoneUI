@@ -1,4 +1,37 @@
-### Version 2.12 [In Development]
+### Version 2.14 [12-12-2022]
+**All WoW Versions:**  
+Plater profile is now completely handled on wago  
+• Installer and config will spawn a popup with the current import string  
+• This method is better for profile and companion updates  
+• Updated color mod for Season 1 Dungeons as well  
+Updated layout installer and added back custom glow preset  
+Updated WeakAuras config section  
+**Retail:**  
+Added new config section: Graphics  
+• Options for Raids/Battlegrounds/Dungeons and hidden settings  
+• Options for cosmetic console variables like ffx effects  
+• Default values and suggestions in mouseover tooltips  
+Minor updates for OmniCD  
+• Added back initial DualSpec support for install  
+___
+### Version 2.13 [05-12-2022]
+**Retail:**  
+Added ElvUI StyleFilters for Season 1 Dungeons  
+• They can be loaded in /luckyoneui config -> Profiles  
+Updated OmniCD profiles for Dragonflight  
+• Install it in /luckyoneui config -> Profiles  
+**Wrath Classic:**  
+Added support for the Quartz profile  
+___
+### Version 2.12 [28-11-2022]
+**All WoW Versions:**  
+Added a skins section in /luckyoneui config  
+• The first custom skin is for the BugSack AddOn  
+**Retail:**  
+Added profile for Quartz (Alternative Castbar AddOn)  
+Updated default position for Dragonriding power widget  
+Updated Details profile  
+Updated WarpDeplete profile  
 ___
 ### Version 2.11 [15-11-2022]
 **All WoW Versions:**  

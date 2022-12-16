@@ -2,7 +2,6 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
 
 local format, print = format, print
-local IsAddOnLoaded = IsAddOnLoaded
 local hooksecurefunc = hooksecurefunc
 local ReloadUI = ReloadUI
 local SetCVar = SetCVar
@@ -27,6 +26,47 @@ E.PopupDialogs.L1UI_VC = {
 	text = format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]),
 	whileDead = 1,
 	hideOnEscape = false,
+}
+
+-- Editbox popup from ElvUI\Core\General\StaticPopups.lua:78
+-- Slightly modified for title text and additional chat print
+E.PopupDialogs.L1UI_EDITBOX = {
+	text = L1UI.Name,
+	button1 = OKAY,
+	hasEditBox = 1,
+	OnShow = function(self, data)
+		self.editBox:SetAutoFocus(false)
+		self.editBox.width = self.editBox:GetWidth()
+		self.editBox:Width(280)
+		self.editBox:AddHistoryLine('text')
+		self.editBox.temptxt = data
+		self.editBox:SetText(data)
+		self.editBox:HighlightText()
+		self.editBox:SetJustifyH('CENTER')
+		L1UI:Print(data)
+	end,
+	OnHide = function(self)
+		self.editBox:Width(self.editBox.width or 50)
+		self.editBox.width = nil
+		self.temptxt = nil
+	end,
+	EditBoxOnEnterPressed = function(self)
+		self:GetParent():Hide()
+	end,
+	EditBoxOnEscapePressed = function(self)
+		self:GetParent():Hide()
+	end,
+	EditBoxOnTextChanged = function(self)
+		if self:GetText() ~= self.temptxt then
+			self:SetText(self.temptxt)
+		end
+		self:HighlightText()
+		self:ClearFocus()
+	end,
+	OnAccept = E.noop,
+	whileDead = 1,
+	preferredIndex = 3,
+	hideOnEscape = 1,
 }
 
 -- Version check
@@ -66,6 +106,7 @@ function L1UI:Setup_CVars()
 
 	-- My CVars
 	if L1UI.Me then
+		SetCVar('AutoPushSpellToActionBar', 0)
 		SetCVar('blockChannelInvites', 1)
 		SetCVar('CameraReduceUnexpectedMovement', 1)
 		SetCVar('disableServerNagle', 0)
@@ -141,6 +182,8 @@ function L1UI:Setup_PrivateDB()
 	E.private.general.totemTracker = false
 
 	E.private.install_complete = E.version
+
+	E.private.nameplates.enable = false
 	E.private.skins.parchmentRemoverEnable = true
 
 	if L1UI.Me then
@@ -148,6 +191,7 @@ function L1UI:Setup_PrivateDB()
 		E.private.L1UI.disabledFrames.AlertFrame = true
 		E.private.L1UI.disabledFrames.BossBanner = true
 		E.private.L1UI.qualityOfLife.easyDelete = true
+		E.private.L1UI.skins.BugSack = true
 	end
 end
 
@@ -245,17 +289,17 @@ function L1UI:Setup_Layout(layout)
 	end
 
 	-- AddOnSkins profile
-	if IsAddOnLoaded('AddOnSkins') then
+	if E:IsAddOnEnabled('AddOnSkins') then
 		L1UI:Setup_AddOnSkins(true)
 	end
 
 	-- ProjectAzilroka profile
-	if IsAddOnLoaded('ProjectAzilroka') then
+	if E:IsAddOnEnabled('ProjectAzilroka') then
 		L1UI:Setup_ProjectAzilroka(true)
 	end
 
 	-- Shadow & Light profile
-	if IsAddOnLoaded('ElvUI_SLE') and E.Retail then
+	if E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then
 		L1UI:Setup_ShadowAndLight(true)
 	end
 
@@ -275,24 +319,24 @@ function L1UI:Cleanup_Cache(addon, type)
 			CH:ResetEditboxHistory()
 			L1UI:Print(L["Cleared ElvUI Editbox History."])
 		end
-	elseif addon == 'details' and IsAddOnLoaded('Details') then
+	elseif addon == 'details' and E:IsAddOnEnabled('Details') then
 		_detalhes.boss_mods_timers = {}
 		_detalhes.encounter_spell_pool = {}
 		_detalhes.npcid_pool = {}
 		_detalhes.spell_pool = {}
 		_detalhes.spell_school_cache = {}
 		L1UI:Print(L["Cleared Details Cache."])
-	elseif addon == 'plater' and IsAddOnLoaded('Plater') then
+	elseif addon == 'plater' and E:IsAddOnEnabled('Plater') then
 		PlaterDB.captured_casts = {}
 		PlaterDB.captured_spells = {}
 		L1UI:Print(L["Cleared Plater Cache."])
-	elseif addon == 'rc' and IsAddOnLoaded('RCLootCouncil') then
+	elseif addon == 'rc' and E:IsAddOnEnabled('RCLootCouncil') then
 		RCLootCouncilDB.global.cache = {}
 		RCLootCouncilDB.global.errors = {}
 		RCLootCouncilDB.global.log = {}
 		RCLootCouncilDB.global.verTestCandidates = {}
 		L1UI:Print(L["Cleared RCLootCouncil Cache."])
-	elseif addon == 'mrt' and IsAddOnLoaded('MRT') then
+	elseif addon == 'mrt' and E:IsAddOnEnabled('MRT') then
 		VMRT.ExCD2.gnGUIDs = {}
 		VMRT.Inspect.Soulbinds = {}
 		L1UI:Print(L["Cleared Method Raid Tools Cache."])

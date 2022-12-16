@@ -2,11 +2,10 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 if not E.Retail then return end
 
 local GetAddOnMetadata = GetAddOnMetadata
-local IsAddOnLoaded = IsAddOnLoaded
 
 -- Shadow & Light profile
 function L1UI:Setup_ShadowAndLight(noPrint)
-	if not IsAddOnLoaded('ElvUI_SLE') then return end
+	if not E:IsAddOnEnabled('ElvUI_SLE') then return end
 
 	-- Get version
 	local version = GetAddOnMetadata('ElvUI_SLE', 'Version')

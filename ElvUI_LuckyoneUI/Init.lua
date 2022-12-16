@@ -6,7 +6,6 @@ local addon, Engine = ...
 local _G = _G
 local format = format
 local GetAddOnMetadata = GetAddOnMetadata
-local SetCVar = SetCVar
 
 local L1UI = E:NewModule(addon, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
 
@@ -46,12 +45,6 @@ local toons = {
 	["Luckydk-Everlook"]			= true, -- [Alliance] DK
 	["Luckykek-Everlook"]			= true, -- [Alliance] Shaman
 	["Luckyone-Giantstalker"]		= true, -- [Alliance] Paladin
-	-- Testing
-	["Luckyone-Koranos"]			= true, -- [Beta] Druid
-	["Kekleox-Tyrhold"]				= true, -- [Beta] Evoker
-	["Luckyevoker-Valdrakken"]		= true, -- [Beta] Evoker
-	["Luckyone-Valdrakken"]			= true, -- [Beta] Druid
-	["Luckyone-Nobundo"]			= true, -- [PTR] Druid
 }
 
 -- Constants
@@ -62,7 +55,7 @@ L1UI.DefaultTexture = 'Minimalist'
 L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = 13.04
+L1UI.RequiredVersion = 13.10
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:Initialize()

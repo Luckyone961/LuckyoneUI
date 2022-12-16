@@ -1,11 +1,10 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
-local IsAddOnLoaded = IsAddOnLoaded
 local unpack = unpack
 
 -- AddOnSkins Profile
 function L1UI:Setup_AddOnSkins(noPrint)
-	if not IsAddOnLoaded('AddOnSkins') then return end
+	if not E:IsAddOnEnabled('AddOnSkins') then return end
 
 	local AS = unpack(AddOnSkins)
 

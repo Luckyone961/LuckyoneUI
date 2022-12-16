@@ -1,11 +1,10 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 local _G = _G
-local IsAddOnLoaded = IsAddOnLoaded
 
 -- ProjectAzilroka profile
 function L1UI:Setup_ProjectAzilroka(noPrint)
-	if not IsAddOnLoaded('ProjectAzilroka') then return end
+	if not E:IsAddOnEnabled('ProjectAzilroka') then return end
 
 	local PA = _G.ProjectAzilroka
 
