@@ -1,6 +1,6 @@
 ### Version 2.15 [In Development]
-**All WoW Versions:**  
 **Retail:**  
+Updated some Season 1 Dungeon StyleFilters  
 ___
 ### Version 2.14 [12-12-2022]
 **All WoW Versions:**  
