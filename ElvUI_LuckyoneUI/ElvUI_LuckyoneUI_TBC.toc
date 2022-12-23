@@ -1,6 +1,6 @@
 ## Interface: 20504
 ## Author: Luckyone
-## Version: 2.14
+## Version: 2.15
 ## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cff67f100TBC|r
 ## Notes: Luckyone's ElvUI Edit
 ## RequiredDeps: ElvUI

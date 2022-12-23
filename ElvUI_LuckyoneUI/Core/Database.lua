@@ -986,11 +986,11 @@ function L1UI:Layout_Dragonflight(layout)
 
 	-- Shared movers
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-178'
-	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,UIParent,TOPRIGHT,-243,-240'
+	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,UIParent,TOPRIGHT,-330,-240'
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,UIParent,TOPRIGHT,-80,-207'
 	E.db.movers.BNETMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-199'
-	E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-243,-240'
+	E.db.movers.BossHeaderMover = 'TOPRIGHT,UIParent,TOPRIGHT,-330,-240'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-110'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
