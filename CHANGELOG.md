@@ -1,8 +1,9 @@
 ### Version 2.15 [In Development]
 **Retail:**  
-Updated default position for Arena and Boss frames  
-Updated some Season 1 Dungeon StyleFilters  
-Updated WarpDeplete profile slightly  
+Updated default position for Arena and Boss frames (To not overlap WarpDeplete & Quests)  
+Updated some Season 1 Dungeon StyleFilters (NO + AV)  
+Updated Shadow&Light profile slightly (AFK)  
+Updated WarpDeplete profile slightly (Width)  
 ___
 ### Version 2.14 [12-12-2022]
 **All WoW Versions:**  
