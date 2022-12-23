@@ -1,4 +1,4 @@
-### Version 2.15 [In Development]
+### Version 2.15 [23-12-2022]
 **Retail:**  
 Added Tier set 2p and 4p auras to the Moonkin WeakAura pack  
 Updated default position for Arena and Boss frames (To not overlap WarpDeplete & Quests)  
