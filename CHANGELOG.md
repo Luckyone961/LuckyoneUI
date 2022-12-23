@@ -2,6 +2,7 @@
 **Retail:**  
 Updated default position for Arena and Boss frames (To not overlap WarpDeplete & Quests)  
 Updated some Season 1 Dungeon StyleFilters (NO + AV)  
+Updated Details profile (Less updates per second + Font fixes)  
 Updated Shadow&Light profile slightly (AFK)  
 Updated WarpDeplete profile slightly (Width)  
 ___
