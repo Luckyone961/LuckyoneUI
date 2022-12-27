@@ -1,3 +1,7 @@
+### Version 2.16 [In Development]
+**All WoW Versions:**  
+Updated party frames for DPS & Tanks (Role Icon, Summon Icon, Raid Icon)  
+___
 ### Version 2.15 [23-12-2022]
 **Retail:**  
 Added Tier set 2p and 4p auras to the Moonkin WeakAura pack  
