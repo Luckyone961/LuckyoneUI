@@ -1067,7 +1067,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,278,281'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,278,300'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,252'
-		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,162'
+		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,185'
 
 		-- Main Custom Texts
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[classcolor][name:short]||r[manacolor][ - >luckyone:healermana:percent<%]'

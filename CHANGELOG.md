@@ -3,6 +3,7 @@
 Updated party frames for DPS & Tanks  
 • Added percentage healer mana text by default  
 • Adjusted Raid Icon, Summon Icon, Role Icon, Phase Indicator  
+Updated vehicle leave button default position to not overlap with power widget  
 ___
 ### Version 2.15 [23-12-2022]
 **Retail:**  
