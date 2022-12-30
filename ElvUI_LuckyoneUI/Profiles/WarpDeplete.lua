@@ -20,7 +20,7 @@ function L1UI:Setup_WarpDeplete()
 		["bar3Font"] = L1UI.DefaultFont,
 		["bar3FontSize"] = 11,
 		["bar3Texture"] = L1UI.DefaultTexture,
-		["barWidth"] = 240,
+		["barWidth"] = 244,
 		["deathsFont"] = L1UI.DefaultFont,
 		["deathsFontSize"] = 11,
 		["forcesFont"] = L1UI.DefaultFont,

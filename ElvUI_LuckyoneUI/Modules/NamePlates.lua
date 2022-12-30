@@ -228,7 +228,6 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_NO.actions.color.healthColor.r = 0
 		E.global.nameplates.filters.Luckyone_NO.triggers.names['192800'] = true -- Nokhud Lancemaster
 		E.global.nameplates.filters.Luckyone_NO.triggers.names['195696'] = true -- Primalist Thunderbeast
-		E.global.nameplates.filters.Luckyone_NO.triggers.names['194897'] = true -- Stormsurge Totem
 		E.global.nameplates.filters.Luckyone_NO.triggers.names['195927'] = true -- Soulharvester Galtmaa
 		E.global.nameplates.filters.Luckyone_NO.triggers.names['195928'] = true -- Soulharvester Duuren
 		E.global.nameplates.filters.Luckyone_NO.triggers.names['195930'] = true -- Soulharvester Mandakh
@@ -242,7 +241,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_AV.actions.color.healthColor.r = 0
 		E.global.nameplates.filters.Luckyone_AV.triggers.names['187159'] = true -- Shrieking Whelp
 		E.global.nameplates.filters.Luckyone_AV.triggers.names['187155'] = true -- Rune Seal Keeper
-		E.global.nameplates.filters.Luckyone_AV.triggers.names['196117'] = true -- Crystal Thrasher
+		E.global.nameplates.filters.Luckyone_AV.triggers.names['196116'] = true -- Crystal Fury
 		E.global.nameplates.filters.Luckyone_AV.triggers.names['191739'] = true -- Scalebane Lieutenant
 		E.global.nameplates.filters.Luckyone_AV.triggers.names['187240'] = true -- Drakonid Breaker
 		E.global.nameplates.filters.Luckyone_AV.triggers.priority = 2
@@ -272,6 +271,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_SBG.actions.color.healthColor.r = 0
 		E.global.nameplates.filters.Luckyone_SBG.triggers.names['75713'] = true -- Shadowmoon Bone-Mender
 		E.global.nameplates.filters.Luckyone_SBG.triggers.names['75652'] = true -- Void Spawn
+		E.global.nameplates.filters.Luckyone_SBG.triggers.names['75979'] = true -- Exhumed Spirit
 		E.global.nameplates.filters.Luckyone_SBG.triggers.priority = 2
 
 		-- Temple of the Jade Serpent [TOJS]
@@ -282,8 +282,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59546'] = true -- The Talking Fish
 		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59553'] = true -- The Songbird Queen
 		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59552'] = true -- The Crybaby Hozen
-		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['200137'] = true -- Depraved Mistweaver
-		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['57109'] = true -- Minion of Doubt
+		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59555'] = true -- Haunting Sha
 		E.global.nameplates.filters.Luckyone_TOJS.triggers.priority = 2
 
 		-- Edited version of ElvUI_Explosives

@@ -1,3 +1,22 @@
+### Version 2.16 [In Development]
+**All WoW Versions:**  
+Updated party frames for DPS & Tanks  
+• Adjusted Raid Icon, Summon Icon, Role Icon, Phase Indicator  
+Updated vehicle leave button default position to not overlap with power widget  
+**Retail:**  
+Updated party frames for DPS & Tanks  
+• Added percentage healer mana text by default  
+Updated some Season 1 Dungeon StyleFilters (TOJS & SBG)  
+___
+### Version 2.15 [23-12-2022]
+**Retail:**  
+Added Tier set 2p and 4p auras to the Moonkin WeakAura pack  
+Updated default position for Arena and Boss frames (To not overlap WarpDeplete & Quests)  
+Updated some Season 1 Dungeon StyleFilters (NO + AV)  
+Updated Details profile (Less updates per second + Font fixes)  
+Updated Shadow&Light profile slightly (AFK)  
+Updated WarpDeplete profile slightly (Width)  
+___
 ### Version 2.14 [12-12-2022]
 **All WoW Versions:**  
 Plater profile is now completely handled on wago  
