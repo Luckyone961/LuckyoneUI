@@ -271,6 +271,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_SBG.actions.color.healthColor.r = 0
 		E.global.nameplates.filters.Luckyone_SBG.triggers.names['75713'] = true -- Shadowmoon Bone-Mender
 		E.global.nameplates.filters.Luckyone_SBG.triggers.names['75652'] = true -- Void Spawn
+		E.global.nameplates.filters.Luckyone_SBG.triggers.names['75979'] = true -- Exhumed Spirit
 		E.global.nameplates.filters.Luckyone_SBG.triggers.priority = 2
 
 		-- Temple of the Jade Serpent [TOJS]
@@ -281,8 +282,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59546'] = true -- The Talking Fish
 		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59553'] = true -- The Songbird Queen
 		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59552'] = true -- The Crybaby Hozen
-		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['200137'] = true -- Depraved Mistweaver
-		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['57109'] = true -- Minion of Doubt
+		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59555'] = true -- Haunting Sha
 		E.global.nameplates.filters.Luckyone_TOJS.triggers.priority = 2
 
 		-- Edited version of ElvUI_Explosives
