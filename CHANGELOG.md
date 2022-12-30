@@ -1,9 +1,12 @@
 ### Version 2.16 [In Development]
 **All WoW Versions:**  
 Updated party frames for DPS & Tanks  
-• Added percentage healer mana text by default  
 • Adjusted Raid Icon, Summon Icon, Role Icon, Phase Indicator  
 Updated vehicle leave button default position to not overlap with power widget  
+**Retail:**  
+Updated party frames for DPS & Tanks  
+• Added percentage healer mana text by default  
+Updated some Season 1 Dungeon StyleFilters (TOJS & SBG)  
 ___
 ### Version 2.15 [23-12-2022]
 **Retail:**  
