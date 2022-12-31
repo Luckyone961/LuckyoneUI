@@ -845,6 +845,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.CombatIcon.enable = false
+	E.db.unitframe.units.party.disableFocusGlow = true
 	E.db.unitframe.units.party.disableMouseoverGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.healPrediction.absorbStyle = 'WRAPPED'
@@ -878,6 +879,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 	-- Shared Raid1
 	E.db.unitframe.units.raid1.classbar.enable = false
+	E.db.unitframe.units.raid1.disableFocusGlow = true
 	E.db.unitframe.units.raid1.disableMouseoverGlow = true
 	E.db.unitframe.units.raid1.disableTargetGlow = true
 	E.db.unitframe.units.raid1.healPrediction.absorbStyle = 'WRAPPED'
@@ -937,6 +939,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.debuffs.desaturate = false
 	E.db.unitframe.units.raid3.debuffs.maxDuration = 0
 	E.db.unitframe.units.raid3.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
+	E.db.unitframe.units.raid3.disableFocusGlow = true
 	E.db.unitframe.units.raid3.disableMouseoverGlow = true
 	E.db.unitframe.units.raid3.disableTargetGlow = true
 	E.db.unitframe.units.raid3.healPrediction.absorbStyle = 'WRAPPED'
