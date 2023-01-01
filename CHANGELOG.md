@@ -1,6 +1,7 @@
 ### Version 2.16 [In Development]
 **All WoW Versions:**  
 Disabled focus glow for all UnitFrames by default  
+Updated CVars to include correct nameplate horizontal + vertical scale  
 Updated party frames for DPS & Tanks  
 • Adjusted Raid Icon, Summon Icon, Role Icon, Phase Indicator  
 Updated vehicle leave button default position to not overlap with power widget  
