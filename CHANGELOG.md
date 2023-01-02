@@ -1,4 +1,4 @@
-### Version 2.16 [In Development]
+### Version 2.16 [02-01-2023]
 **All WoW Versions:**  
 Disabled focus glow for all UnitFrames by default  
 Updated CVars to include correct nameplate horizontal + vertical scale  
