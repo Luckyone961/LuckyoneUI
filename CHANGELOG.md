@@ -1,3 +1,7 @@
+### Version 2.17 [In Development]
+**Retail:**  
+Added wago link to my Dragonriding WeakAura edit in /luckyoneui config  
+___
 ### Version 2.16 [02-01-2023]
 **All WoW Versions:**  
 Disabled focus glow for all UnitFrames by default  
