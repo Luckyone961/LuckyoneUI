@@ -240,6 +240,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar10.macroTextYOffset = 1
 
 	if E.Retail then
+		-- Player Bars
 		E.db.actionbar.bar13.buttonSize = 26
 		E.db.actionbar.bar13.buttonSpacing = 1
 		E.db.actionbar.bar13.countFont = L1UI.DefaultFont
@@ -291,6 +292,8 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.bar15.macroTextPosition = 'BOTTOM'
 		E.db.actionbar.bar15.macroTextYOffset = 1
 		E.db.actionbar.bar15.macrotext = true
+		-- Micro Bar
+		E.db.actionbar.microbar.useIcons = false
 	end
 
 	E.db.actionbar.barPet.backdrop = false
