@@ -1,4 +1,6 @@
 ### Version 2.17 [In Development]
+**All WoW Versions:**  
+Optimized filter priority for enemy player buffs in ElvUI NamePlates  
 **Retail:**  
 Added wago link to my Dragonriding WeakAura edit in /luckyoneui config  
 ___
