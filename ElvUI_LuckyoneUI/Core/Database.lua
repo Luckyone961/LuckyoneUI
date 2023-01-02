@@ -845,6 +845,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.CombatIcon.enable = false
+	E.db.unitframe.units.party.disableFocusGlow = true
 	E.db.unitframe.units.party.disableMouseoverGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.healPrediction.absorbStyle = 'WRAPPED'
@@ -855,7 +856,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.party.orientation = 'MIDDLE'
 	E.db.unitframe.units.party.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.party.phaseIndicator.scale = 0.5
-	E.db.unitframe.units.party.phaseIndicator.xOffset = 2
 	E.db.unitframe.units.party.power.enable = false
 	E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.party.raidicon.size = 14
@@ -866,10 +866,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.party.readycheckIcon.position = 'RIGHT'
 	E.db.unitframe.units.party.readycheckIcon.xOffset = -2
 	E.db.unitframe.units.party.readycheckIcon.yOffset = 0
-	E.db.unitframe.units.party.roleIcon.enable = false
+	E.db.unitframe.units.party.roleIcon.enable = true
 	E.db.unitframe.units.party.summonIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.party.summonIcon.size = 24
-	E.db.unitframe.units.party.summonIcon.xOffset = -2
 	E.db.unitframe.units.party.threatStyle = 'NONE'
 	E.db.unitframe.units.party.verticalSpacing = 1
 
@@ -880,6 +879,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 	-- Shared Raid1
 	E.db.unitframe.units.raid1.classbar.enable = false
+	E.db.unitframe.units.raid1.disableFocusGlow = true
 	E.db.unitframe.units.raid1.disableMouseoverGlow = true
 	E.db.unitframe.units.raid1.disableTargetGlow = true
 	E.db.unitframe.units.raid1.healPrediction.absorbStyle = 'WRAPPED'
@@ -939,6 +939,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.debuffs.desaturate = false
 	E.db.unitframe.units.raid3.debuffs.maxDuration = 0
 	E.db.unitframe.units.raid3.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
+	E.db.unitframe.units.raid3.disableFocusGlow = true
 	E.db.unitframe.units.raid3.disableMouseoverGlow = true
 	E.db.unitframe.units.raid3.disableTargetGlow = true
 	E.db.unitframe.units.raid3.healPrediction.absorbStyle = 'WRAPPED'
@@ -1069,10 +1070,10 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,278,281'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,278,300'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,252'
-		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,162'
+		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,185'
 
 		-- Main Custom Texts
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[classcolor][name:short]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[classcolor][name:short]||r[manacolor][ - >luckyone:healermana:percent<%]'
 		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[health:current:shortvalue] • [luckyone:health:percent]'
 
 		-- Main Misc
@@ -1090,9 +1091,13 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.debuffs.xOffset = 1
 		E.db.unitframe.units.party.debuffs.yOffset = -1
 		E.db.unitframe.units.party.height = 32
+		E.db.unitframe.units.party.phaseIndicator.xOffset = 15
 		E.db.unitframe.units.party.rdebuffs.enable = false
-		E.db.unitframe.units.party.roleIcon.enable = false
+		E.db.unitframe.units.party.roleIcon.position = 'LEFT'
+		E.db.unitframe.units.party.roleIcon.size = 11
+		E.db.unitframe.units.party.roleIcon.xOffset = 0
 		E.db.unitframe.units.party.showPlayer = false
+		E.db.unitframe.units.party.summonIcon.xOffset = -15
 		E.db.unitframe.units.party.width = 190
 
 		-- Main Raid1
@@ -1148,6 +1153,7 @@ function L1UI:Layout_Dragonflight(layout)
 		-- Healing Party
 		E.db.unitframe.units.party.debuffs.enable = false
 		E.db.unitframe.units.party.height = 40
+		E.db.unitframe.units.party.phaseIndicator.xOffset = 2
 		E.db.unitframe.units.party.rdebuffs.enable = true
 		E.db.unitframe.units.party.rdebuffs.font = L1UI.DefaultFont
 		E.db.unitframe.units.party.rdebuffs.fontOutline = 'OUTLINE'
@@ -1159,11 +1165,11 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.rdebuffs.yOffset = 1
 		E.db.unitframe.units.party.roleIcon.attachTo = 'Frame'
 		E.db.unitframe.units.party.roleIcon.damager = false
-		E.db.unitframe.units.party.roleIcon.enable = true
 		E.db.unitframe.units.party.roleIcon.position = 'TOP'
 		E.db.unitframe.units.party.roleIcon.size = 12
 		E.db.unitframe.units.party.roleIcon.xOffset = 0
 		E.db.unitframe.units.party.roleIcon.yOffset = 0
+		E.db.unitframe.units.party.summonIcon.xOffset = -2
 		E.db.unitframe.units.party.width = 94
 
 		-- Healing Party Pets [nonRetail only]

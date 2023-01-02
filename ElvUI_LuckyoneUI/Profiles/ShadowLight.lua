@@ -36,10 +36,8 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.db.sle.afk.chat.show = false
 	E.db.sle.afk.defaultGraphics.classCrest.enable = false
 	E.db.sle.afk.defaultGraphics.elvuiLogo.enable = false
-	E.db.sle.afk.defaultGraphics.exPack.styleOptions = 'releaf-flat'
-	E.db.sle.afk.defaultGraphics.factionCrest.styleOptions = 'releaf-flat'
 	E.db.sle.afk.defaultGraphics.factionLogo.enable = false
-	E.db.sle.afk.defaultGraphics.raceCrest.styleOptions = 'releaf-flat'
+	E.db.sle.afk.defaultGraphics.raceCrest.enable = false
 	E.db.sle.afk.defaultGraphics.slLogo.enable = false
 	E.db.sle.afk.defaultTexts.SL_AFKMessage.anchorPoint = 'CENTER'
 	E.db.sle.afk.defaultTexts.SL_AFKMessage.attachTo = 'SL_BottomPanel'

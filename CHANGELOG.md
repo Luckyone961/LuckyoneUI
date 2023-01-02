@@ -1,3 +1,15 @@
+### Version 2.16 [02-01-2023]
+**All WoW Versions:**  
+Disabled focus glow for all UnitFrames by default  
+Updated CVars to include correct nameplate horizontal + vertical scale  
+Updated party frames for DPS & Tanks  
+• Adjusted Raid Icon, Summon Icon, Role Icon, Phase Indicator  
+Updated vehicle leave button default position to not overlap with power widget  
+**Retail:**  
+Updated party frames for DPS & Tanks  
+• Added percentage healer mana text by default  
+Updated some Season 1 Dungeon StyleFilters (TOJS & SBG)  
+___
 ### Version 2.15 [23-12-2022]
 **Retail:**  
 Added Tier set 2p and 4p auras to the Moonkin WeakAura pack  
