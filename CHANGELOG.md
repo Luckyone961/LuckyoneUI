@@ -3,7 +3,7 @@
 Optimized filter priority for enemy player buffs in ElvUI NamePlates  
 **Retail:**  
 Added wago link to my Dragonriding WeakAura edit in /luckyoneui config  
-Disabled "use icons" for ElvUI micro bar by default  
+Disabled "use icons" option for ElvUI micro bar by default  
 ___
 ### Version 2.16 [02-01-2023]
 **All WoW Versions:**  
