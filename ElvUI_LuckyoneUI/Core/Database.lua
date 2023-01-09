@@ -240,6 +240,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar10.macroTextYOffset = 1
 
 	if E.Retail then
+		-- Player Bars
 		E.db.actionbar.bar13.buttonSize = 26
 		E.db.actionbar.bar13.buttonSpacing = 1
 		E.db.actionbar.bar13.countFont = L1UI.DefaultFont
@@ -291,6 +292,8 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.bar15.macroTextPosition = 'BOTTOM'
 		E.db.actionbar.bar15.macroTextYOffset = 1
 		E.db.actionbar.bar15.macrotext = true
+		-- Micro Bar
+		E.db.actionbar.microbar.useIcons = false
 	end
 
 	E.db.actionbar.barPet.backdrop = false
@@ -389,6 +392,8 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.auras.buffs.timeFont = L1UI.DefaultFont
 	E.db.auras.buffs.timeFontOutline = 'OUTLINE'
 	E.db.auras.buffs.verticalSpacing = 14
+	E.db.auras.cooldown.checkSeconds = true
+	E.db.auras.cooldown.hhmmThreshold = 120
 	E.db.auras.debuffs.countFont = L1UI.DefaultFont
 	E.db.auras.debuffs.countFontOutline = 'OUTLINE'
 	E.db.auras.debuffs.countFontSize = 11
@@ -443,8 +448,14 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.cooldown.expireIndicator.b = 0
 	E.db.cooldown.expireIndicator.g = 0
 	E.db.cooldown.fonts.font = L1UI.DefaultFont
-	E.db.cooldown.fonts.fontSize = 12
+	E.db.cooldown.fonts.fontSize = 16
+	E.db.cooldown.hhmmColor.b = 1
+	E.db.cooldown.hhmmColor.g = 1
+	E.db.cooldown.hhmmColor.r = 0.4
 	E.db.cooldown.hoursIndicator.r = 0.4
+	E.db.cooldown.mmssColor.b = 1
+	E.db.cooldown.mmssColor.g = 1
+	E.db.cooldown.mmssColor.r = 1
 	E.db.cooldown.secondsColor.b = 1
 	E.db.cooldown.targetAura = false
 	E.db.cooldown.threshold = 5
@@ -1007,9 +1018,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.ElvAB_8 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-483'
 	E.db.movers.ElvAB_9 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-456'
 	E.db.movers.ElvAB_10 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-429'
-	E.db.movers.ElvAB_13 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-402'
-	E.db.movers.ElvAB_14 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-375'
-	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-348'
 	E.db.movers.ElvUIBagMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,140'
 	E.db.movers.ElvUIBankMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 	E.db.movers.ExperienceBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,1'
@@ -1035,6 +1043,9 @@ function L1UI:Layout_Dragonflight(layout)
 	if E.Retail then
 		E.db.movers.AltPowerBarMover = 'TOP,UIParent,TOP,0,-18'
 		E.db.movers.BossButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,119'
+		E.db.movers.ElvAB_13 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-402'
+		E.db.movers.ElvAB_14 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-375'
+		E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-348'
 		E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-117'
 		E.db.movers.LossControlMover = 'TOP,ElvUIParent,TOP,0,-490'
 		E.db.movers.MawBuffsBelowMinimapMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-28'

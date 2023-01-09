@@ -1,3 +1,13 @@
+### Version 2.17 [09-01-2023]
+**All WoW Versions:**  
+Optimized filter priority for enemy player buffs in ElvUI NamePlates  
+Updated Buffs and Debuffs at Minimap (HH:MM threshold and cd text colors)  
+**Retail:**  
+Added wago link to my Dragonriding WeakAura edit in /luckyoneui config  
+Disabled "use icons" option for ElvUI micro bar by default  
+**Wrath Classic:**  
+Fixed minor issue in the layout installer step  
+___
 ### Version 2.16 [02-01-2023]
 **All WoW Versions:**  
 Disabled focus glow for all UnitFrames by default  
