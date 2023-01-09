@@ -1,4 +1,4 @@
-### Version 2.17 [In Development]
+### Version 2.17 [09-01-2023]
 **All WoW Versions:**  
 Optimized filter priority for enemy player buffs in ElvUI NamePlates  
 Updated Buffs and Debuffs at Minimap (HH:MM threshold and cd text colors)  
