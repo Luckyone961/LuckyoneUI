@@ -3,6 +3,18 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 -- Ingame config buttons 'Update Main' & 'Update Healing'
 function L1UI:UpdateLayout(layout)
 
+	-- Auras db updates
+	E.db.auras.cooldown.checkSeconds = true
+	E.db.auras.cooldown.hhmmThreshold = 120
+
+	-- Cooldown Text db updates
+	E.db.cooldown.hhmmColor.b = 1
+	E.db.cooldown.hhmmColor.g = 1
+	E.db.cooldown.hhmmColor.r = 0.4
+	E.db.cooldown.mmssColor.b = 1
+	E.db.cooldown.mmssColor.g = 1
+	E.db.cooldown.mmssColor.r = 1
+
 	-- ActionBar db updates
 	E.db.actionbar.microbar.useIcons = false
 
