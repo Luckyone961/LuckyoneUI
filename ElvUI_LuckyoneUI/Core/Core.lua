@@ -133,6 +133,7 @@ end
 -- NamePlate CVars
 function L1UI:NameplateCVars()
 
+	SetCVar('NamePlateHorizontalScale', 1)
 	SetCVar('nameplateLargerScale', 1)
 	SetCVar('nameplateLargeTopInset', -1)
 	SetCVar('nameplateMinAlpha', 1)
@@ -146,6 +147,7 @@ function L1UI:NameplateCVars()
 	SetCVar('nameplateSelectedScale', 1)
 	SetCVar('nameplateSelfAlpha', 1)
 	SetCVar('nameplateSelfTopInset', -1)
+	SetCVar('NamePlateVerticalScale', 1)
 
 	SetCVar('UnitNameEnemyGuardianName', 1)
 	SetCVar('UnitNameEnemyMinionName', 1)
