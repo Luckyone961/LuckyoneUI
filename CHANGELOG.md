@@ -1,3 +1,5 @@
+### Version 2.18 [In Development]
+___
 ### Version 2.17 [09-01-2023]
 **All WoW Versions:**  
 Optimized filter priority for enemy player buffs in ElvUI NamePlates  
