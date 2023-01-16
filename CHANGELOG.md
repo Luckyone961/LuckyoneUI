@@ -6,6 +6,8 @@ The NamePlates style remains similar, however the following has changed:
 • Debuffs moved to the left and also grow to the left  
 • Spacing between plates has been reduced slightly  
 • Target mark moved to the center  
+**Retail:**  
+Updated some Season 1 Dungeon StyleFilters (TOJS)  
 **Wrath Classic:**  
 Minor fixes for Phase 2  
 Updated TOC for 3.4.1  

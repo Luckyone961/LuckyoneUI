@@ -291,7 +291,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['200126'] = true -- Fallen Waterspeaker
 		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59546'] = true -- The Talking Fish
 		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59553'] = true -- The Songbird Queen
-		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59552'] = true -- The Crybaby Hozen
+		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59545'] = true -- The Golden Beetle
 		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59555'] = true -- Haunting Sha
 		E.global.nameplates.filters.Luckyone_TOJS.triggers.priority = 2
 
