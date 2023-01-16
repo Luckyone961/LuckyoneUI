@@ -1,4 +1,13 @@
 ### Version 2.18 [In Development]
+**All Wow Versions:**  
+NamePlates "Rework" for ElvUI and Plater  
+The NamePlates style remains similar, however the following has changed:  
+• Castbar icon is smaller and moved to the bottom  
+• Debuffs moved to the left and also grow to the left  
+• Spacing between plates has been reduced slightly  
+**Wrath Classic:**  
+Minor fixes for Phase 2  
+Updated TOC for 3.4.1  
 ___
 ### Version 2.17 [09-01-2023]
 **All WoW Versions:**  
