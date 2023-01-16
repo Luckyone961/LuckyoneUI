@@ -8,6 +8,7 @@ The NamePlates style remains similar, however the following has changed:
 • Target mark moved to the center  
 **Retail:**  
 Updated some Season 1 Dungeon StyleFilters (TOJS)  
+Updated WarpDeplete profile slightly (Minor pixel perfect fix)  
 **Wrath Classic:**  
 Minor fixes for Phase 2  
 Updated TOC for 3.4.1  
