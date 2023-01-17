@@ -52,7 +52,7 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_NPC.buffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_NPC.buffs.numAuras = 4
 	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
-	E.db.nameplates.units.ENEMY_NPC.buffs.size = 22
+	E.db.nameplates.units.ENEMY_NPC.buffs.size = 20
 	E.db.nameplates.units.ENEMY_NPC.buffs.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.buffs.yOffset = -1
 	E.db.nameplates.units.ENEMY_NPC.castbar.castTimeFormat = 'REMAINING'
@@ -69,7 +69,7 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeXOffset = -1
 	E.db.nameplates.units.ENEMY_NPC.castbar.width = 177
 	E.db.nameplates.units.ENEMY_NPC.castbar.xOffset = 6
-	E.db.nameplates.units.ENEMY_NPC.castbar.yOffset = -17
+	E.db.nameplates.units.ENEMY_NPC.castbar.yOffset = -16
 	E.db.nameplates.units.ENEMY_NPC.debuffs.anchorPoint = 'LEFT'
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countFont = L1UI.DefaultFont
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countFontSize = 12
@@ -79,12 +79,12 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_NPC.debuffs.font = L1UI.DefaultFont
 	E.db.nameplates.units.ENEMY_NPC.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_NPC.debuffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_NPC.debuffs.size = 22
+	E.db.nameplates.units.ENEMY_NPC.debuffs.size = 20
 	E.db.nameplates.units.ENEMY_NPC.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_NPC.debuffs.yOffset = -1
 	E.db.nameplates.units.ENEMY_NPC.eliteIcon.size = 14
 	E.db.nameplates.units.ENEMY_NPC.eliteIcon.xOffset = 3
-	E.db.nameplates.units.ENEMY_NPC.health.height = 20
+	E.db.nameplates.units.ENEMY_NPC.health.height = 18
 	E.db.nameplates.units.ENEMY_NPC.health.text.font = L1UI.DefaultFont
 	E.db.nameplates.units.ENEMY_NPC.health.text.format = '[luckyone:health:percent]'
 	E.db.nameplates.units.ENEMY_NPC.health.text.position = 'TOPRIGHT'
@@ -116,7 +116,7 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.maxDuration = 0
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.numAuras = 4
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Blacklist,Dispellable,TurtleBuffs'
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 22
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 20
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.yOffset = -1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.castTimeFormat = 'REMAINING'
@@ -133,7 +133,7 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeXOffset = -1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.width = 177
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.xOffset = 6
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.yOffset = -17
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.yOffset = -16
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.anchorPoint = 'LEFT'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFont = L1UI.DefaultFont
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFontSize = 12
@@ -144,10 +144,10 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.numAuras = 4
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.size = 22
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.size = 20
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = -1
-	E.db.nameplates.units.ENEMY_PLAYER.health.height = 20
+	E.db.nameplates.units.ENEMY_PLAYER.health.height = 18
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.font = L1UI.DefaultFont
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.format = '[luckyone:health:percent]'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.position = 'TOPRIGHT'
@@ -202,7 +202,19 @@ function L1UI:Setup_StyleFilters()
 
 	if E.Retail then
 
-		for _, filterName in pairs({'Luckyone_VOTI', 'Luckyone_RLP', 'Luckyone_AA', 'Luckyone_NO', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_SBG', 'Luckyone_TOJS'}) do
+		-- Wipe old filters
+		if E.global.nameplates.filters.Luckyone_RLP then E.global.nameplates.filters.Luckyone_RLP = nil end
+		if E.global.nameplates.filters.Luckyone_AA then E.global.nameplates.filters.Luckyone_AA = nil end
+		if E.global.nameplates.filters.Luckyone_NO then E.global.nameplates.filters.Luckyone_NO = nil end
+		if E.global.nameplates.filters.Luckyone_AV then E.global.nameplates.filters.Luckyone_AV = nil end
+		if E.global.nameplates.filters.Luckyone_COS then E.global.nameplates.filters.Luckyone_COS = nil end
+		if E.global.nameplates.filters.Luckyone_HOV then E.global.nameplates.filters.Luckyone_HOV = nil end
+		if E.global.nameplates.filters.Luckyone_SBG then E.global.nameplates.filters.Luckyone_SBG = nil end
+		if E.global.nameplates.filters.Luckyone_TOJS then E.global.nameplates.filters.Luckyone_TOJS = nil end
+		if E.global.nameplates.filters.Luckyone_TJS then E.global.nameplates.filters.Luckyone_TJS = nil end
+		if E.global.nameplates.filters.Luckyone_VOTI then E.global.nameplates.filters.Luckyone_VOTI = nil end
+
+		for _, filterName in pairs({'Luckyone_VOTI', 'Luckyone_RLP', 'Luckyone_AA', 'Luckyone_NO', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_SBG', 'Luckyone_TJS'}) do
 			E.global.nameplates.filters[filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
 			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
@@ -212,6 +224,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_VOTI.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_VOTI.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_VOTI.actions.color.healthColor.r = 0
+		E.global.nameplates.filters.Luckyone_VOTI.triggers.instanceType['raid'] = true
 		E.global.nameplates.filters.Luckyone_VOTI.triggers.names['191222'] = true -- Juvenile Frost Proto-Dragon
 		E.global.nameplates.filters.Luckyone_VOTI.triggers.names['199547'] = true -- Frostforged Zealot
 		E.global.nameplates.filters.Luckyone_VOTI.triggers.priority = 2
@@ -220,6 +233,9 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_RLP.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_RLP.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_RLP.actions.color.healthColor.r = 0
+		E.global.nameplates.filters.Luckyone_RLP.triggers.instanceDifficulty.dungeon['mythic'] = true
+		E.global.nameplates.filters.Luckyone_RLP.triggers.instanceDifficulty.dungeon['mythic+'] = true
+		E.global.nameplates.filters.Luckyone_RLP.triggers.instanceType['party'] = true
 		E.global.nameplates.filters.Luckyone_RLP.triggers.names['187897'] = true -- Defier Draghar
 		E.global.nameplates.filters.Luckyone_RLP.triggers.names['188244'] = true -- Primal Juggernaut
 		E.global.nameplates.filters.Luckyone_RLP.triggers.names['195119'] = true -- Primalist Shockcaster
@@ -232,6 +248,9 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_AA.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_AA.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_AA.actions.color.healthColor.r = 0
+		E.global.nameplates.filters.Luckyone_AA.triggers.instanceDifficulty.dungeon['mythic'] = true
+		E.global.nameplates.filters.Luckyone_AA.triggers.instanceDifficulty.dungeon['mythic+'] = true
+		E.global.nameplates.filters.Luckyone_AA.triggers.instanceType['party'] = true
 		E.global.nameplates.filters.Luckyone_AA.triggers.names['196576'] = true -- Spellbound Scepter
 		E.global.nameplates.filters.Luckyone_AA.triggers.names['196671'] = true -- Arcane Ravager
 		E.global.nameplates.filters.Luckyone_AA.triggers.names['197219'] = true -- Vile Lasher
@@ -244,6 +263,9 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_NO.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_NO.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_NO.actions.color.healthColor.r = 0
+		E.global.nameplates.filters.Luckyone_NO.triggers.instanceDifficulty.dungeon['mythic'] = true
+		E.global.nameplates.filters.Luckyone_NO.triggers.instanceDifficulty.dungeon['mythic+'] = true
+		E.global.nameplates.filters.Luckyone_NO.triggers.instanceType['party'] = true
 		E.global.nameplates.filters.Luckyone_NO.triggers.names['192800'] = true -- Nokhud Lancemaster
 		E.global.nameplates.filters.Luckyone_NO.triggers.names['195696'] = true -- Primalist Thunderbeast
 		E.global.nameplates.filters.Luckyone_NO.triggers.names['195927'] = true -- Soulharvester Galtmaa
@@ -257,6 +279,9 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_AV.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_AV.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_AV.actions.color.healthColor.r = 0
+		E.global.nameplates.filters.Luckyone_AV.triggers.instanceDifficulty.dungeon['mythic'] = true
+		E.global.nameplates.filters.Luckyone_AV.triggers.instanceDifficulty.dungeon['mythic+'] = true
+		E.global.nameplates.filters.Luckyone_AV.triggers.instanceType['party'] = true
 		E.global.nameplates.filters.Luckyone_AV.triggers.names['187159'] = true -- Shrieking Whelp
 		E.global.nameplates.filters.Luckyone_AV.triggers.names['187155'] = true -- Rune Seal Keeper
 		E.global.nameplates.filters.Luckyone_AV.triggers.names['196116'] = true -- Crystal Fury
@@ -268,6 +293,9 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_COS.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_COS.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_COS.actions.color.healthColor.r = 0
+		E.global.nameplates.filters.Luckyone_COS.triggers.instanceDifficulty.dungeon['mythic'] = true
+		E.global.nameplates.filters.Luckyone_COS.triggers.instanceDifficulty.dungeon['mythic+'] = true
+		E.global.nameplates.filters.Luckyone_COS.triggers.instanceType['party'] = true
 		E.global.nameplates.filters.Luckyone_COS.triggers.names['104251'] = true -- Duskwatch Sentry
 		E.global.nameplates.filters.Luckyone_COS.triggers.names['105715'] = true -- Watchful Inquisitor
 		E.global.nameplates.filters.Luckyone_COS.triggers.names['104278'] = true -- Felbound Enforcer
@@ -278,6 +306,9 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_HOV.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_HOV.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_HOV.actions.color.healthColor.r = 0
+		E.global.nameplates.filters.Luckyone_HOV.triggers.instanceDifficulty.dungeon['mythic'] = true
+		E.global.nameplates.filters.Luckyone_HOV.triggers.instanceDifficulty.dungeon['mythic+'] = true
+		E.global.nameplates.filters.Luckyone_HOV.triggers.instanceType['party'] = true
 		E.global.nameplates.filters.Luckyone_HOV.triggers.names['97068'] = true -- Storm Drake
 		E.global.nameplates.filters.Luckyone_HOV.triggers.names['95834'] = true -- Valarjar Mystic
 		E.global.nameplates.filters.Luckyone_HOV.triggers.names['96574'] = true -- Stormforged Sentinel
@@ -287,21 +318,27 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_SBG.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_SBG.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_SBG.actions.color.healthColor.r = 0
+		E.global.nameplates.filters.Luckyone_SBG.triggers.instanceDifficulty.dungeon['mythic'] = true
+		E.global.nameplates.filters.Luckyone_SBG.triggers.instanceDifficulty.dungeon['mythic+'] = true
+		E.global.nameplates.filters.Luckyone_SBG.triggers.instanceType['party'] = true
 		E.global.nameplates.filters.Luckyone_SBG.triggers.names['75713'] = true -- Shadowmoon Bone-Mender
 		E.global.nameplates.filters.Luckyone_SBG.triggers.names['75652'] = true -- Void Spawn
 		E.global.nameplates.filters.Luckyone_SBG.triggers.names['75979'] = true -- Exhumed Spirit
 		E.global.nameplates.filters.Luckyone_SBG.triggers.priority = 2
 
-		-- Temple of the Jade Serpent [TOJS]
-		E.global.nameplates.filters.Luckyone_TOJS.actions.color.health = true
-		E.global.nameplates.filters.Luckyone_TOJS.actions.color.healthColor.g = 0.75
-		E.global.nameplates.filters.Luckyone_TOJS.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['200126'] = true -- Fallen Waterspeaker
-		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59546'] = true -- The Talking Fish
-		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59553'] = true -- The Songbird Queen
-		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59545'] = true -- The Golden Beetle
-		E.global.nameplates.filters.Luckyone_TOJS.triggers.names['59555'] = true -- Haunting Sha
-		E.global.nameplates.filters.Luckyone_TOJS.triggers.priority = 2
+		-- Temple of the Jade Serpent [TJS]
+		E.global.nameplates.filters.Luckyone_TJS.actions.color.health = true
+		E.global.nameplates.filters.Luckyone_TJS.actions.color.healthColor.g = 0.75
+		E.global.nameplates.filters.Luckyone_TJS.actions.color.healthColor.r = 0
+		E.global.nameplates.filters.Luckyone_TJS.triggers.instanceDifficulty.dungeon['mythic'] = true
+		E.global.nameplates.filters.Luckyone_TJS.triggers.instanceDifficulty.dungeon['mythic+'] = true
+		E.global.nameplates.filters.Luckyone_TJS.triggers.instanceType['party'] = true
+		E.global.nameplates.filters.Luckyone_TJS.triggers.names['200126'] = true -- Fallen Waterspeaker
+		E.global.nameplates.filters.Luckyone_TJS.triggers.names['59546'] = true -- The Talking Fish
+		E.global.nameplates.filters.Luckyone_TJS.triggers.names['59553'] = true -- The Songbird Queen
+		E.global.nameplates.filters.Luckyone_TJS.triggers.names['59545'] = true -- The Golden Beetle
+		E.global.nameplates.filters.Luckyone_TJS.triggers.names['59555'] = true -- Haunting Sha
+		E.global.nameplates.filters.Luckyone_TJS.triggers.priority = 2
 
 		-- Edited version of ElvUI_Explosives
 		E.global.nameplates.filters.ElvUI_Explosives.actions.color.healthColor.b = 1
