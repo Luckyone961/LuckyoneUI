@@ -53,7 +53,6 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.skins.addons.omniCDIcon = false
 	E.private.WT.skins.addons.omniCDStatusBar = false
 	E.private.WT.skins.addons.premadeGroupsFilter = false
-	E.private.WT.skins.addons.raiderIO = false
 	E.private.WT.skins.addons.rematch = false
 	E.private.WT.skins.addons.simulationcraft = false
 	E.private.WT.skins.addons.tinyInspect = false
