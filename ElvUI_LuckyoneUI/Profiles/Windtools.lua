@@ -60,7 +60,6 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.skins.addons.tomCats = false
 	E.private.WT.skins.addons.warpDeplete = false
 	E.private.WT.skins.addons.weakAuras = false
-	E.private.WT.skins.addons.weakAurasOptions = false
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.name = L1UI.DefaultFont
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.size = 12
 	E.private.WT.skins.blizzard.enable = false
@@ -99,6 +98,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.combat.combatAlert.animation = false
 	E.db.WT.combat.combatAlert.enterText = '+Combat'
 	E.db.WT.combat.combatAlert.leaveText = '-Combat'
+	E.db.WT.combat.combatAlert.speed = 0.5
 	E.db.WT.combat.quickKeystone.enable = false
 	E.db.WT.combat.raidMarkers.enable = false
 	E.db.WT.item.alreadyKnown.enable = false
@@ -131,6 +131,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.social.friendList.infoFont.size = 10
 	E.db.WT.social.friendList.nameFont.size = 11
 	E.db.WT.social.friendList.textures.factionIcon = true
+	E.db.WT.social.friendList.useClientColor = false
 	E.db.WT.social.smartTab.enable = false
 	E.db.WT.tooltips.groupInfo.enable = false
 
