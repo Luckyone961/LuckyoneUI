@@ -7,6 +7,8 @@ The NamePlates style remains similar, however the following has changed:
 • Spacing between plates has been reduced slightly  
 • Target mark moved to the center  
 **Retail:**  
+Added Vault of the Incarnates StyleFilter (VOTI)  
+• Includes important Broodkeeper Mythic and Raszageth Mythic adds  
 Updated some Season 1 Dungeon StyleFilters (TOJS)  
 Updated WarpDeplete profile slightly (Minor pixel perfect fix)  
 **Wrath Classic:**  

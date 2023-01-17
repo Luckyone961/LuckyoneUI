@@ -202,11 +202,19 @@ function L1UI:Setup_StyleFilters()
 
 	if E.Retail then
 
-		for _, filterName in pairs({'Luckyone_RLP', 'Luckyone_AA', 'Luckyone_NO', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_SBG', 'Luckyone_TOJS'}) do
+		for _, filterName in pairs({'Luckyone_VOTI', 'Luckyone_RLP', 'Luckyone_AA', 'Luckyone_NO', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_SBG', 'Luckyone_TOJS'}) do
 			E.global.nameplates.filters[filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
 			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
 		end
+
+		-- Vault of the Incarnates [VOTI]
+		E.global.nameplates.filters.Luckyone_VOTI.actions.color.health = true
+		E.global.nameplates.filters.Luckyone_VOTI.actions.color.healthColor.g = 0.75
+		E.global.nameplates.filters.Luckyone_VOTI.actions.color.healthColor.r = 0
+		E.global.nameplates.filters.Luckyone_VOTI.triggers.names['191222'] = true -- Juvenile Frost Proto-Dragon
+		E.global.nameplates.filters.Luckyone_VOTI.triggers.names['199547'] = true -- Frostforged Zealot
+		E.global.nameplates.filters.Luckyone_VOTI.triggers.priority = 2
 
 		-- Ruby Life Pools [RLP]
 		E.global.nameplates.filters.Luckyone_RLP.actions.color.health = true
