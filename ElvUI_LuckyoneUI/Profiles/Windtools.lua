@@ -116,6 +116,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.maps.eventTracker.spacing = 20
 	E.db.WT.maps.eventTracker.yOffset = 0
 	E.db.WT.maps.whoClicked.enable = false
+	E.db.WT.misc.disableTalkingHead = true
 	E.db.WT.misc.gameBar.enable = false
 	E.db.WT.quest.paragonReputation.toast.sound = false
 	E.db.WT.quest.switchButtons.enable = false
