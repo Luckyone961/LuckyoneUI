@@ -179,6 +179,7 @@ L["WarpDeplete Profile"] = true
 L["Warrior"] = true
 L["WeakAuras Information"] = true
 L["Welcome"] = true
+L["WindTools profile has been set."] = true
 L["Wowhead Guide:"] = true
 L["You have completed the installation process, please click 'Finished' to reload the UI."] = true
 L["Your ElvUI is outdated - please update and reload."] = true

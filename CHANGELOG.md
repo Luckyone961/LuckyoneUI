@@ -7,6 +7,9 @@ The NamePlates style remains similar, however the following has changed:
 • Spacing between plates has been reduced slightly  
 • Target mark moved to the center  
 **Retail:**  
+Added profile for ElvUI WindTools plugin in /luckyoneui config  
+• I disabled most features by default to keep it clean and minimalistic  
+• You can also disable ProjectAzilroka if you decide to use WindTools instead  
 Added Vault of the Incarnates StyleFilter (VOTI)  
 • Includes important Broodkeeper Mythic and Raszageth Mythic adds  
 Updated some Season 1 Dungeon StyleFilters (TOJS)  
