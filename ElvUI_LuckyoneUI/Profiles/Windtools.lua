@@ -60,6 +60,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.skins.addons.tomCats = false
 	E.private.WT.skins.addons.warpDeplete = false
 	E.private.WT.skins.addons.weakAuras = false
+	E.private.WT.skins.addons.weakAurasOptions = false
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.name = L1UI.DefaultFont
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.size = 12
 	E.private.WT.skins.blizzard.enable = false
@@ -109,8 +110,11 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.item.itemLevel.enable = false
 	E.db.WT.item.trade.enable = false
 	E.db.WT.maps.eventTracker.communityFeast.alert = false
+	E.db.WT.maps.eventTracker.height = 30
 	E.db.WT.maps.eventTracker.iskaaranFishingNet.alert = false
 	E.db.WT.maps.eventTracker.siegeOnDragonbaneKeep.alert = false
+	E.db.WT.maps.eventTracker.spacing = 20
+	E.db.WT.maps.eventTracker.yOffset = 0
 	E.db.WT.maps.whoClicked.enable = false
 	E.db.WT.misc.gameBar.enable = false
 	E.db.WT.quest.paragonReputation.toast.sound = false
