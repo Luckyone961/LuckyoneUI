@@ -30,10 +30,8 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.maps.worldMap.reveal.enable = false
 	E.private.WT.maps.worldMap.scale.enable = false
 	E.private.WT.misc.guildNewsItemLevel = false
-	E.private.WT.misc.lfgList.icon.border = true
-	E.private.WT.misc.lfgList.icon.pack = 'SPEC'
+	E.private.WT.misc.lfgList.icon.pack = 'LYNUI'
 	E.private.WT.misc.lfgList.icon.size = 14
-	E.private.WT.misc.lfgList.line.enable = false
 	E.private.WT.misc.lfgList.line.height = 4
 	E.private.WT.misc.lfgList.line.tex = L1UI.DefaultTexture
 	E.private.WT.misc.pauseToSlash = false
