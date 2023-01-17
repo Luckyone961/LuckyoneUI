@@ -173,6 +173,7 @@ L["WarpDeplete Profile"] = "WarpDeplete Profil"
 L["Warrior"] = "Krieger"
 L["WeakAuras Information"] = "WeakAuras Informationen"
 L["Welcome"] = "Willkommen"
+L["WindTools profile has been set."] = true
 L["Wowhead Guide:"] = true
 L["You have completed the installation process, please click 'Finished' to reload the UI."] = "Du hast den Installationsvorgang abgeschlossen, bitte klicke auf 'Fertig', um die Benutzeroberfläche neu zu laden."
 L["Your ElvUI is outdated - please update and reload."] = "Deine ElvUI Version ist veraltet - bitte aktualisieren und dann /reload."

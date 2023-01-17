@@ -1,3 +1,23 @@
+### Version 2.18 [17-01-2023]
+**All Wow Versions:**  
+NamePlates "Rework" for ElvUI and Plater  
+The NamePlates style remains similar, however the following has changed:  
+• Castbar icon is smaller and moved to the bottom  
+• Debuffs moved to the left and also grow to the left  
+• Spacing between plates has been reduced slightly  
+• Target mark moved to the center  
+**Retail:**  
+Added profile for ElvUI WindTools plugin in /luckyoneui config  
+• I disabled most features by default to keep it clean and minimalistic  
+• You can also disable ProjectAzilroka if you decide to use WindTools instead  
+Added Vault of the Incarnates StyleFilter (VOTI)  
+• Includes important Broodkeeper Mythic and Raszageth Mythic adds  
+Updated some Season 1 Dungeon StyleFilters (TOJS)  
+Updated WarpDeplete profile slightly (Minor pixel perfect fix)  
+**Wrath Classic:**  
+Minor fixes for Phase 2  
+Updated TOC for 3.4.1  
+___
 ### Version 2.17 [09-01-2023]
 **All WoW Versions:**  
 Optimized filter priority for enemy player buffs in ElvUI NamePlates  

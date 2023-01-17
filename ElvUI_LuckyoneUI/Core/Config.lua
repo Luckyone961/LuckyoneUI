@@ -216,6 +216,7 @@ function L1UI:Config()
 	L1UI.Options.args.profiles.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_AddOnSkins() E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.profiles.args.plugins.args.pa = ACH:Execute('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r', L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_ProjectAzilroka() E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.profiles.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', L["Reset to LuckyoneUI defaults."], 3, function() L1UI:Setup_ShadowAndLight() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
+	L1UI.Options.args.profiles.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', L["Reset to LuckyoneUI defaults."], 4, function() L1UI:Setup_WindTools() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.profiles.args.nameplates = ACH:Group(L["NamePlate Profiles"], nil, 3)
 	L1UI.Options.args.profiles.args.nameplates.inline = true
 	L1UI.Options.args.profiles.args.nameplates.args.plater = ACH:Execute('Plater', L["Reset to LuckyoneUI defaults."], 1, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Plater') end)
