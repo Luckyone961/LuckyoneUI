@@ -1,5 +1,6 @@
 ### Version 2.19 [In Development]
 **Retail:**  
+Fixed error in Core.lua while running the installer process  
 Updated some Season 1 Dungeon StyleFilters (AA)  
 Updated WindTools profile  
 ___

@@ -267,6 +267,8 @@ function L1UI:Setup_Layout(layout)
 	-- Disable LibDualSpec to set the profile
 	if E.Retail or E.Wrath then
 		ElvDB["namespaces"]["LibDualSpec-1.0"] = ElvDB["namespaces"]["LibDualSpec-1.0"] or {}
+		ElvDB["namespaces"]["LibDualSpec-1.0"]["char"] = ElvDB["namespaces"]["LibDualSpec-1.0"]["char"] or {}
+		ElvDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm] = ElvDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm] or {}
 		ElvDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm]["enabled"] = false
 	end
 
