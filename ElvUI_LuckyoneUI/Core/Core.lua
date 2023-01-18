@@ -305,6 +305,11 @@ function L1UI:Setup_Layout(layout)
 		L1UI:Setup_ShadowAndLight(true)
 	end
 
+	-- WindTools profile
+	if E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then
+		L1UI:Setup_WindTools(true)
+	end
+
 	-- Push the update
 	E:StaggeredUpdateAll()
 

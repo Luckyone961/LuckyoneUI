@@ -48,13 +48,11 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.skins.addons.immersion = false
 	E.private.WT.skins.addons.meetingStone = false
 	E.private.WT.skins.addons.myslot = false
-	E.private.WT.skins.addons.mythicDungeonTools = false
 	E.private.WT.skins.addons.omniCD = false
 	E.private.WT.skins.addons.omniCDIcon = false
 	E.private.WT.skins.addons.omniCDStatusBar = false
 	E.private.WT.skins.addons.premadeGroupsFilter = false
 	E.private.WT.skins.addons.rematch = false
-	E.private.WT.skins.addons.simulationcraft = false
 	E.private.WT.skins.addons.tinyInspect = false
 	E.private.WT.skins.addons.tldrMissions = false
 	E.private.WT.skins.addons.tomCats = false
@@ -115,7 +113,10 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.maps.eventTracker.siegeOnDragonbaneKeep.alert = false
 	E.db.WT.maps.eventTracker.spacing = 20
 	E.db.WT.maps.eventTracker.yOffset = 0
-	E.db.WT.maps.whoClicked.enable = false
+	E.db.WT.maps.whoClicked.font.size = 12
+	E.db.WT.maps.whoClicked.onlyOnCombat = false
+	E.db.WT.maps.whoClicked.stayTime = 2
+	E.db.WT.maps.whoClicked.yOffset = 19
 	E.db.WT.misc.disableTalkingHead = true
 	E.db.WT.misc.gameBar.enable = false
 	E.db.WT.quest.paragonReputation.toast.sound = false
