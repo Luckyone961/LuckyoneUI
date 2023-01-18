@@ -1,6 +1,7 @@
 ### Version 2.19 [In Development]
-**Retail:**  
+**All Wow Versions:**  
 Fixed error in Core.lua while running the installer process  
+**Retail:**  
 Updated some Season 1 Dungeon StyleFilters (AA)  
 Updated WindTools profile  
 ___
