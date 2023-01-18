@@ -1,4 +1,7 @@
 ### Version 2.19 [In Development]
+**Retail:**  
+Updated some Season 1 Dungeon StyleFilters (AA)  
+Updated WindTools profile  
 ___
 ### Version 2.18 [17-01-2023]
 **All Wow Versions:**  
