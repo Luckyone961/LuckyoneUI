@@ -498,6 +498,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.datatexts.panels.Luckyone_MiniMap_DT[1] = 'Time'
 
 	-- DataTexts default
+	E.db.datatexts.font = L1UI.DefaultFont
+	E.db.datatexts.fontOutline = 'OUTLINE'
+	E.db.datatexts.fontSize = 11
 	E.db.datatexts.panels.MinimapPanel.enable = false
 	E.db.datatexts.panels.LeftChatDataPanel.enable = false
 	E.db.datatexts.panels.RightChatDataPanel.enable = false
