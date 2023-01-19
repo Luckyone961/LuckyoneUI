@@ -139,6 +139,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.social.chatText.enable = false
 	E.db.WT.social.contextMenu.enable = false
 	E.db.WT.social.emote.enable = false
+	E.db.WT.social.filter.enable = false
 	E.db.WT.social.friendList.hideMaxLevel = false
 	E.db.WT.social.friendList.infoFont.size = 10
 	E.db.WT.social.friendList.nameFont.size = 11
