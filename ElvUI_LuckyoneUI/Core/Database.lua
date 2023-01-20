@@ -252,6 +252,20 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar10.macroTextYOffset = 1
 
 	if E.Retail then
+		-- Profession Quality
+		E.db.actionbar.bar1.professionQuality.enable = false
+		E.db.actionbar.bar2.professionQuality.enable = false
+		E.db.actionbar.bar3.professionQuality.enable = false
+		E.db.actionbar.bar4.professionQuality.enable = false
+		E.db.actionbar.bar5.professionQuality.enable = false
+		E.db.actionbar.bar6.professionQuality.enable = false
+		E.db.actionbar.bar7.professionQuality.enable = false
+		E.db.actionbar.bar8.professionQuality.enable = false
+		E.db.actionbar.bar9.professionQuality.enable = false
+		E.db.actionbar.bar10.professionQuality.enable = false
+		E.db.actionbar.bar13.professionQuality.enable = false
+		E.db.actionbar.bar14.professionQuality.enable = false
+		E.db.actionbar.bar15.professionQuality.enable = false
 		-- Player Bars
 		E.db.actionbar.bar13.buttonSize = 26
 		E.db.actionbar.bar13.buttonSpacing = 1

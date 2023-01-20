@@ -45,6 +45,8 @@ local toons = {
 	["Luckydk-Everlook"]			= true, -- [Alliance] DK
 	["Luckykek-Everlook"]			= true, -- [Alliance] Shaman
 	["Luckyone-Giantstalker"]		= true, -- [Alliance] Paladin
+	-- Testing
+	["Luckyone-Nobundo"]			= true, -- Retail PTR
 }
 
 -- Constants
