@@ -1099,7 +1099,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,185'
 
 		-- Main Custom Texts
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[classcolor][name:short]||r[manacolor][ - >luckyone:healermana:percent<%]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = E.Retail and '[classcolor][name:short]||r[manacolor][ - >luckyone:healermana:percent<%]' or '[classcolor][name:short]'
 		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[health:current:shortvalue] • [luckyone:health:percent]'
 
 		-- Main Misc

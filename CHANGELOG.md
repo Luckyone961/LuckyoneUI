@@ -1,9 +1,13 @@
 ### Version 2.19 [In Development]
 **All Wow Versions:**  
 Fixed error in Core.lua while running the installer process  
+Increased default font size for Time DataText from 14 to 15  
+Updated default positions for most minimap icons (Mail, Difficulty, LFG)  
 **Retail:**  
 Updated some Season 1 Dungeon StyleFilters (AA)  
 Updated WindTools profile  
+**Wrath:**  
+Fixes for party custom text on initial installer  
 ___
 ### Version 2.18 [17-01-2023]
 **All Wow Versions:**  
