@@ -134,7 +134,12 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.quest.turnIn.selectReward = false
 	E.db.WT.skins.vignetting.enable = false
 	E.db.WT.social.chatBar.enable = false
-	E.db.WT.social.chatLink.enable = false
+	E.db.WT.social.chatLink.armorCategory = false
+	E.db.WT.social.chatLink.icon = false
+	E.db.WT.social.chatLink.level = false
+	E.db.WT.social.chatLink.numbericalQualityTier = true
+	E.db.WT.social.chatLink.translateItem = false
+	E.db.WT.social.chatLink.weaponCategory = false
 	E.db.WT.social.chatText.enable = false
 	E.db.WT.social.contextMenu.enable = false
 	E.db.WT.social.emote.enable = false
