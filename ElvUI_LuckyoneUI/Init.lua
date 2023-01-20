@@ -63,7 +63,7 @@ function L1UI:Initialize()
 		E.PluginInstaller:Queue(L1UI.InstallerData)
 	end
 
-	if L1UI.Me and E.Retail then
+	if L1UI.Me and E:IsAddOnEnabled('ElvUI_SLE') then
 		ElvDB.ShadowLightAlpha = false
 	end
 
