@@ -1,11 +1,10 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
-if not E.Retail then return end
 
 local pairs = pairs
 
 -- OmniCD profile
 function L1UI:Setup_OmniCD(layout)
-	if not E:IsAddOnEnabled('OmniCD') then return end
+	if not E:IsAddOnEnabled('OmniCD') and E.Retail then return end
 
 	-- Profile names
 	local name = L1UI.Me and 'Luckyone Main' or 'Luckyone Main '..L1UI.Version
