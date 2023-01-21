@@ -14,6 +14,11 @@ function L1UI:Setup_WindTools(noPrint)
 		PA.db.SquareMinimapButtons.Enable = false
 	end
 
+	-- Fix for garrison icon not moving to MinimapButtonBar
+	E.db.general.minimap.icons.classHall.scale = 1
+	E.db.general.minimap.icons.classHall.xOffset = 0
+	E.db.general.minimap.icons.classHall.yOffset = 0
+
 	-- Global db
 	E.global.WT.core.loginMessage = false
 	E.global.WT.core.noDuplicatedParty = true
@@ -22,6 +27,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.maps.minimapButtons.backdrop = false
 	E.private.WT.maps.minimapButtons.backdropSpacing = 0
 	E.private.WT.maps.minimapButtons.buttonSize = 23
+	E.private.WT.maps.minimapButtons.expansionLandingPage = true
 	E.private.WT.maps.minimapButtons.spacing = 3
 	E.private.WT.maps.superTracker.enable = false
 	E.private.WT.maps.superTracker.waypointParse.enable = false
