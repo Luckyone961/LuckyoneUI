@@ -318,8 +318,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.bar15.macroTextPosition = 'BOTTOM'
 		E.db.actionbar.bar15.macroTextYOffset = 1
 		E.db.actionbar.bar15.macrotext = true
-		-- Micro Bar
-		E.db.actionbar.microbar.useIcons = false
 	end
 
 	E.db.actionbar.barPet.backdrop = false
@@ -355,6 +353,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.microbar.buttonSpacing = 1
 	E.db.actionbar.microbar.enabled = true
 	E.db.actionbar.microbar.mouseover = true
+	E.db.actionbar.microbar.useIcons = false
 	E.db.actionbar.stanceBar.buttonHeight = 24
 	E.db.actionbar.stanceBar.buttonSize = 26
 	E.db.actionbar.stanceBar.buttonSpacing = 1
