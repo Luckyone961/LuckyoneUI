@@ -39,11 +39,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.lootRoll.style = 'fullbar'
 	E.db.general.lootRoll.width = 340
 	E.db.general.minimap.icons.challengeMode.scale = 0.75
-	E.db.general.minimap.icons.challengeMode.xOffset = 12
-	E.db.general.minimap.icons.challengeMode.yOffset = -5
+	E.db.general.minimap.icons.challengeMode.xOffset = 3
+	E.db.general.minimap.icons.challengeMode.yOffset = -1
 	E.db.general.minimap.icons.classHall.scale = 0.5
-	E.db.general.minimap.icons.classHall.xOffset = -2
-	E.db.general.minimap.icons.classHall.yOffset = -54
 	E.db.general.minimap.icons.difficulty.scale = 0.75
 	E.db.general.minimap.icons.difficulty.xOffset = 12
 	E.db.general.minimap.icons.difficulty.yOffset = -5
