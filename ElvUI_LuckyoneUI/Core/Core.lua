@@ -244,7 +244,7 @@ function L1UI:Setup_GlobalDB()
 	MiniMapDT.fonts.enable = true
 	MiniMapDT.fonts.font = L1UI.DefaultFont
 	MiniMapDT.fonts.fontOutline = 'OUTLINE'
-	MiniMapDT.fonts.fontSize = 14
+	MiniMapDT.fonts.fontSize = 15
 	MiniMapDT.frameLevel = 1
 	MiniMapDT.frameStrata = 'HIGH'
 	MiniMapDT.growth = 'HORIZONTAL'
@@ -267,6 +267,8 @@ function L1UI:Setup_Layout(layout)
 	-- Disable LibDualSpec to set the profile
 	if E.Retail or E.Wrath then
 		ElvDB["namespaces"]["LibDualSpec-1.0"] = ElvDB["namespaces"]["LibDualSpec-1.0"] or {}
+		ElvDB["namespaces"]["LibDualSpec-1.0"]["char"] = ElvDB["namespaces"]["LibDualSpec-1.0"]["char"] or {}
+		ElvDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm] = ElvDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm] or {}
 		ElvDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm]["enabled"] = false
 	end
 
@@ -303,6 +305,11 @@ function L1UI:Setup_Layout(layout)
 	-- Shadow & Light profile
 	if E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then
 		L1UI:Setup_ShadowAndLight(true)
+	end
+
+	-- WindTools profile
+	if E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then
+		L1UI:Setup_WindTools(true)
 	end
 
 	-- Push the update

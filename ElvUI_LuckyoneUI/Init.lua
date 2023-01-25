@@ -45,6 +45,8 @@ local toons = {
 	["Luckydk-Everlook"]			= true, -- [Alliance] DK
 	["Luckykek-Everlook"]			= true, -- [Alliance] Shaman
 	["Luckyone-Giantstalker"]		= true, -- [Alliance] Paladin
+	-- Testing
+	["Luckyone-Nobundo"]			= true, -- Retail PTR
 }
 
 -- Constants
@@ -55,7 +57,7 @@ L1UI.DefaultTexture = 'Minimalist'
 L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = 13.17
+L1UI.RequiredVersion = 13.23
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:Initialize()
@@ -63,7 +65,7 @@ function L1UI:Initialize()
 		E.PluginInstaller:Queue(L1UI.InstallerData)
 	end
 
-	if L1UI.Me and E.Retail then
+	if L1UI.Me and E:IsAddOnEnabled('ElvUI_SLE') then
 		ElvDB.ShadowLightAlpha = false
 	end
 

@@ -1,11 +1,10 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
-if not E.Retail then return end
 
 local _G = _G
 
 -- WindTools profile
 function L1UI:Setup_WindTools(noPrint)
-	if not E:IsAddOnEnabled('ElvUI_WindTools') then return end
+	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then return end
 
 	-- Don't overlap with ProjectAzilroka
 	if E:IsAddOnEnabled('ProjectAzilroka') then
@@ -15,6 +14,11 @@ function L1UI:Setup_WindTools(noPrint)
 		PA.db.SquareMinimapButtons.Enable = false
 	end
 
+	-- Fix for garrison icon not moving to MinimapButtonBar
+	E.db.general.minimap.icons.classHall.scale = 1
+	E.db.general.minimap.icons.classHall.xOffset = 0
+	E.db.general.minimap.icons.classHall.yOffset = 0
+
 	-- Global db
 	E.global.WT.core.loginMessage = false
 	E.global.WT.core.noDuplicatedParty = true
@@ -23,6 +27,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.maps.minimapButtons.backdrop = false
 	E.private.WT.maps.minimapButtons.backdropSpacing = 0
 	E.private.WT.maps.minimapButtons.buttonSize = 23
+	E.private.WT.maps.minimapButtons.expansionLandingPage = true
 	E.private.WT.maps.minimapButtons.spacing = 3
 	E.private.WT.maps.superTracker.enable = false
 	E.private.WT.maps.superTracker.waypointParse.enable = false
@@ -34,11 +39,14 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.misc.lfgList.icon.size = 14
 	E.private.WT.misc.lfgList.line.height = 4
 	E.private.WT.misc.lfgList.line.tex = L1UI.DefaultTexture
+	E.private.WT.misc.lfgList.rightPanel.enable = false
+	E.private.WT.misc.moveSpeed = true
 	E.private.WT.misc.pauseToSlash = false
 	E.private.WT.misc.tags = false
 	E.private.WT.quest.objectiveTracker.cosmeticBar.border = 'ONEPIXEL'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.color.mode = 'CLASS'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = L1UI.DefaultTexture
+	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 228
 	E.private.WT.quest.objectiveTracker.titleColor.classColor = true
 	E.private.WT.skins.addons.adiBags = false
 	E.private.WT.skins.addons.angryKeystones = false
@@ -48,13 +56,11 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.skins.addons.immersion = false
 	E.private.WT.skins.addons.meetingStone = false
 	E.private.WT.skins.addons.myslot = false
-	E.private.WT.skins.addons.mythicDungeonTools = false
 	E.private.WT.skins.addons.omniCD = false
 	E.private.WT.skins.addons.omniCDIcon = false
 	E.private.WT.skins.addons.omniCDStatusBar = false
 	E.private.WT.skins.addons.premadeGroupsFilter = false
 	E.private.WT.skins.addons.rematch = false
-	E.private.WT.skins.addons.simulationcraft = false
 	E.private.WT.skins.addons.tinyInspect = false
 	E.private.WT.skins.addons.tldrMissions = false
 	E.private.WT.skins.addons.tomCats = false
@@ -68,14 +74,23 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.skins.rollResult.name = L1UI.DefaultFont
 	E.private.WT.skins.shadow = false
 	E.private.WT.skins.weakAurasShadow = false
+	E.private.WT.skins.widgets.button.backdrop.classColor = true
 	E.private.WT.skins.widgets.button.backdrop.texture = L1UI.DefaultTexture
+	E.private.WT.skins.widgets.button.selected.backdropClassColor = true
+	E.private.WT.skins.widgets.button.selected.borderClassColor = true
 	E.private.WT.skins.widgets.checkBox.classColor = true
 	E.private.WT.skins.widgets.checkBox.texture = L1UI.DefaultTexture
 	E.private.WT.skins.widgets.slider.classColor = true
 	E.private.WT.skins.widgets.slider.texture = L1UI.DefaultTexture
+	E.private.WT.skins.widgets.tab.backdrop.classColor = true
 	E.private.WT.skins.widgets.tab.backdrop.texture = L1UI.DefaultTexture
+	E.private.WT.skins.widgets.tab.selected.backdropClassColor = true
+	E.private.WT.skins.widgets.tab.selected.borderClassColor = true
 	E.private.WT.skins.widgets.tab.selected.texture = L1UI.DefaultTexture
+	E.private.WT.skins.widgets.treeGroupButton.backdrop.classColor = true
 	E.private.WT.skins.widgets.treeGroupButton.backdrop.texture = L1UI.DefaultTexture
+	E.private.WT.skins.widgets.treeGroupButton.selected.backdropClassColor = true
+	E.private.WT.skins.widgets.treeGroupButton.selected.borderClassColor = true
 	E.private.WT.skins.widgets.treeGroupButton.selected.texture = L1UI.DefaultTexture
 	E.private.WT.tooltips.factionIcon = false
 	E.private.WT.tooltips.icon = false
@@ -115,7 +130,10 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.maps.eventTracker.siegeOnDragonbaneKeep.alert = false
 	E.db.WT.maps.eventTracker.spacing = 20
 	E.db.WT.maps.eventTracker.yOffset = 0
-	E.db.WT.maps.whoClicked.enable = false
+	E.db.WT.maps.whoClicked.font.size = 12
+	E.db.WT.maps.whoClicked.onlyOnCombat = false
+	E.db.WT.maps.whoClicked.stayTime = 2
+	E.db.WT.maps.whoClicked.yOffset = 19
 	E.db.WT.misc.disableTalkingHead = true
 	E.db.WT.misc.gameBar.enable = false
 	E.db.WT.quest.paragonReputation.toast.sound = false
@@ -123,10 +141,16 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.quest.turnIn.selectReward = false
 	E.db.WT.skins.vignetting.enable = false
 	E.db.WT.social.chatBar.enable = false
-	E.db.WT.social.chatLink.enable = false
+	E.db.WT.social.chatLink.armorCategory = false
+	E.db.WT.social.chatLink.icon = false
+	E.db.WT.social.chatLink.level = false
+	E.db.WT.social.chatLink.numbericalQualityTier = true
+	E.db.WT.social.chatLink.translateItem = false
+	E.db.WT.social.chatLink.weaponCategory = false
 	E.db.WT.social.chatText.enable = false
 	E.db.WT.social.contextMenu.enable = false
 	E.db.WT.social.emote.enable = false
+	E.db.WT.social.filter.enable = false
 	E.db.WT.social.friendList.hideMaxLevel = false
 	E.db.WT.social.friendList.infoFont.size = 10
 	E.db.WT.social.friendList.nameFont.size = 11

@@ -38,13 +38,23 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.lootRoll.statusBarTexture = L1UI.DefaultTexture
 	E.db.general.lootRoll.style = 'fullbar'
 	E.db.general.lootRoll.width = 340
-	E.db.general.minimap.icons.classHall.scale = 0.6
-	E.db.general.minimap.icons.difficulty.scale = 0.7
-	E.db.general.minimap.icons.difficulty.xOffset = 1
-	E.db.general.minimap.icons.difficulty.yOffset = 1
-	E.db.general.minimap.locationFont = L1UI.DefaultFont
+	E.db.general.minimap.icons.challengeMode.scale = 0.75
+	E.db.general.minimap.icons.challengeMode.xOffset = 3
+	E.db.general.minimap.icons.challengeMode.yOffset = -1
+	E.db.general.minimap.icons.classHall.scale = 0.5
+	E.db.general.minimap.icons.difficulty.scale = 0.75
+	E.db.general.minimap.icons.difficulty.xOffset = 12
+	E.db.general.minimap.icons.difficulty.yOffset = -5
+	E.db.general.minimap.icons.lfgEye.scale = 0.5
+	E.db.general.minimap.icons.lfgEye.xOffset = 0
+	E.db.general.minimap.icons.lfgEye.yOffset = 0
+	E.db.general.minimap.icons.mail.texture = 'Mail1'
+	E.db.general.minimap.icons.mail.xOffset = -2
+	E.db.general.minimap.icons.mail.yOffset = 2
+	E.db.general.minimap.icons.queueStatus.xOffset = 0
+	E.db.general.minimap.icons.queueStatus.yOffset = 0
 	E.db.general.minimap.locationFontSize = 11
-	E.db.general.minimap.locationText = 'SHOW'
+	E.db.general.minimap.locationText = 'HIDE'
 	E.db.general.minimap.size = 153
 	E.db.general.objectiveFrameAutoHide = false
 	E.db.general.objectiveFrameHeight = 600
@@ -240,6 +250,20 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar10.macroTextYOffset = 1
 
 	if E.Retail then
+		-- Profession Quality
+		E.db.actionbar.bar1.professionQuality.enable = false
+		E.db.actionbar.bar2.professionQuality.enable = false
+		E.db.actionbar.bar3.professionQuality.enable = false
+		E.db.actionbar.bar4.professionQuality.enable = false
+		E.db.actionbar.bar5.professionQuality.enable = false
+		E.db.actionbar.bar6.professionQuality.enable = false
+		E.db.actionbar.bar7.professionQuality.enable = false
+		E.db.actionbar.bar8.professionQuality.enable = false
+		E.db.actionbar.bar9.professionQuality.enable = false
+		E.db.actionbar.bar10.professionQuality.enable = false
+		E.db.actionbar.bar13.professionQuality.enable = false
+		E.db.actionbar.bar14.professionQuality.enable = false
+		E.db.actionbar.bar15.professionQuality.enable = false
 		-- Player Bars
 		E.db.actionbar.bar13.buttonSize = 26
 		E.db.actionbar.bar13.buttonSpacing = 1
@@ -292,8 +316,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.bar15.macroTextPosition = 'BOTTOM'
 		E.db.actionbar.bar15.macroTextYOffset = 1
 		E.db.actionbar.bar15.macrotext = true
-		-- Micro Bar
-		E.db.actionbar.microbar.useIcons = false
 	end
 
 	E.db.actionbar.barPet.backdrop = false
@@ -329,6 +351,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.microbar.buttonSpacing = 1
 	E.db.actionbar.microbar.enabled = true
 	E.db.actionbar.microbar.mouseover = true
+	E.db.actionbar.microbar.useIcons = false
 	E.db.actionbar.stanceBar.buttonHeight = 24
 	E.db.actionbar.stanceBar.buttonSize = 26
 	E.db.actionbar.stanceBar.buttonSpacing = 1
@@ -486,6 +509,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.datatexts.panels.Luckyone_MiniMap_DT[1] = 'Time'
 
 	-- DataTexts default
+	E.db.datatexts.font = L1UI.DefaultFont
+	E.db.datatexts.fontOutline = 'OUTLINE'
+	E.db.datatexts.fontSize = 11
 	E.db.datatexts.panels.MinimapPanel.enable = false
 	E.db.datatexts.panels.LeftChatDataPanel.enable = false
 	E.db.datatexts.panels.RightChatDataPanel.enable = false
@@ -1084,7 +1110,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,185'
 
 		-- Main Custom Texts
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[classcolor][name:short]||r[manacolor][ - >luckyone:healermana:percent<%]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = E.Retail and '[classcolor][name:short]||r[manacolor][ - >luckyone:healermana:percent<%]' or '[classcolor][name:short]'
 		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[health:current:shortvalue] • [luckyone:health:percent]'
 
 		-- Main Misc

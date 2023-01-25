@@ -254,6 +254,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_AA.triggers.names['196576'] = true -- Spellbound Scepter
 		E.global.nameplates.filters.Luckyone_AA.triggers.names['196671'] = true -- Arcane Ravager
 		E.global.nameplates.filters.Luckyone_AA.triggers.names['197219'] = true -- Vile Lasher
+		E.global.nameplates.filters.Luckyone_AA.triggers.names['196548'] = true -- Ancient Branch
 		E.global.nameplates.filters.Luckyone_AA.triggers.names['196203'] = true -- Ethereal Restorer
 		E.global.nameplates.filters.Luckyone_AA.triggers.names['192680'] = true -- Guardian Sentry
 		E.global.nameplates.filters.Luckyone_AA.triggers.names['192333'] = true -- Alpha Eagle

@@ -1,3 +1,16 @@
+### Version 2.19 [25-01-2023]
+**All Wow Versions:**  
+Fixed error in Core.lua while running the installer process  
+Increased default font size for Time DataText from 14 to 15  
+Updated default positions for most minimap icons (Mail, Difficulty, LFG)  
+Updated russian localization (Credits: Hollicsh)  
+**Retail:**  
+Disabled profession quality on ActionBars by default  
+Updated some Season 1 Dungeon StyleFilters (AA)  
+Updated WindTools profile  
+**Wrath:**  
+Fixes for party custom text on initial installer  
+___
 ### Version 2.18 [17-01-2023]
 **All Wow Versions:**  
 NamePlates "Rework" for ElvUI and Plater  
