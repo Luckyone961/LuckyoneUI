@@ -1,4 +1,4 @@
-### Version 2.19 [In Development]
+### Version 2.19 [25-01-2023]
 **All Wow Versions:**  
 Fixed error in Core.lua while running the installer process  
 Increased default font size for Time DataText from 14 to 15  
