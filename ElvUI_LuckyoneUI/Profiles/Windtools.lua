@@ -39,6 +39,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.misc.lfgList.icon.size = 14
 	E.private.WT.misc.lfgList.line.height = 4
 	E.private.WT.misc.lfgList.line.tex = L1UI.DefaultTexture
+	E.private.WT.misc.lfgList.rightPanel.enable = false
 	E.private.WT.misc.moveSpeed = true
 	E.private.WT.misc.pauseToSlash = false
 	E.private.WT.misc.tags = false
