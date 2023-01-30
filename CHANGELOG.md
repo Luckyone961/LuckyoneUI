@@ -1,5 +1,6 @@
 ### Version 2.20 [In Development]
 **All WoW Versions:**
+Enabled raid icon for focus and target by default  
 Updated BigWigs profile (Text positions only)  
 **Retail:**  
 Updated WindTools profile (Minimap, LFG, Misc)  
