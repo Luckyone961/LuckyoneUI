@@ -157,6 +157,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.social.friendList.infoFont.size = 10
 	E.db.WT.social.friendList.nameFont.size = 11
 	E.db.WT.social.friendList.textures.factionIcon = true
+	E.db.WT.social.friendList.textures.status = 'default'
 	E.db.WT.social.friendList.useClientColor = false
 	E.db.WT.social.smartTab.enable = false
 	E.db.WT.tooltips.groupInfo.enable = false
