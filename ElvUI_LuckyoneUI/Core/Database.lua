@@ -25,7 +25,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.customGlow.color.b = 1
 	E.db.general.customGlow.color.g = 1
 	E.db.general.customGlow.color.r = 1
-	E.db.general.customGlow.style = 'Autocast Shine'
 	E.db.general.customGlow.useColor = true
 	E.db.general.durabilityScale = 0.5
 	E.db.general.enhancedPvpMessages = false

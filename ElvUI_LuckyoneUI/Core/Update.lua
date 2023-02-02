@@ -4,16 +4,13 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 function L1UI:UpdateLayout(layout)
 
 	-- UnitFrame updates
-	if layout == 'main' then
-		-- Focus
-		E.db.unitframe.units.focus.raidicon.attachTo = 'CENTER'
-		E.db.unitframe.units.focus.raidicon.enable = true
-		E.db.unitframe.units.focus.raidicon.yOffset = 0
-		-- Target
-		E.db.unitframe.units.target.raidicon.attachTo = 'CENTER'
-		E.db.unitframe.units.target.raidicon.enable = true
-		E.db.unitframe.units.target.raidicon.yOffset = 0
-	end
+	E.db.unitframe.units.focus.raidicon.attachTo = 'CENTER'
+	E.db.unitframe.units.focus.raidicon.enable = true
+	E.db.unitframe.units.focus.raidicon.yOffset = 0
+
+	E.db.unitframe.units.target.raidicon.attachTo = 'CENTER'
+	E.db.unitframe.units.target.raidicon.enable = true
+	E.db.unitframe.units.target.raidicon.yOffset = 0
 
 	-- Bump install version
 	E.db.L1UI.install_version = L1UI.Version
