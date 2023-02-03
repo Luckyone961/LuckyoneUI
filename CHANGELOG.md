@@ -3,6 +3,7 @@
 Enabled raid icon for focus and target by default  
 Updated BigWigs profile (Text positions only)  
 **Retail:**  
+Added a bunch of general WeakAuras to the config section  
 Updated Details profile (Update frequency, DPS brackets)  
 Updated WindTools profile (Minimap, LFG, Misc)  
 ___

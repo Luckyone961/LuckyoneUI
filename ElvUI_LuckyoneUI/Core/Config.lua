@@ -294,6 +294,8 @@ function L1UI:Config()
 	L1UI.Options.args.weakauras.args.groupfinderApptext = ACH:Execute('Groupfinder Applicants', nil, 21, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/appTextHide') end)
 	L1UI.Options.args.weakauras.args.innervate = ACH:Execute('Better InnervateMe', nil, 22, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/betterInnervate') end)
 	L1UI.Options.args.weakauras.args.dragonriding = ACH:Execute('Dragonriding HUD', nil, 23, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Dragonriding') end)
+	L1UI.Options.args.weakauras.args.handleFriendlyNP = ACH:Execute('Handle Friendly NP', nil, 24, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/handleFriendlyNamePlates') end)
+	L1UI.Options.args.weakauras.args.handleNameplateFont = ACH:Execute('Handle NP Font', nil, 25, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/handleNamePlatesFont') end)
 
 	-- WeakAuras Wrath
 	L1UI.Options.args.weakaurasWrath = ACH:Group('WeakAuras', nil, 16, nil, nil, nil, nil, not E.Wrath)
