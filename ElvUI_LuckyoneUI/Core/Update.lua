@@ -12,6 +12,11 @@ function L1UI:UpdateLayout(layout)
 	E.db.unitframe.units.target.raidicon.enable = true
 	E.db.unitframe.units.target.raidicon.yOffset = 0
 
+	-- WindTools updates
+	if E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then
+		L1UI:Setup_WindTools(true)
+	end
+
 	-- Bump install version
 	E.db.L1UI.install_version = L1UI.Version
 
