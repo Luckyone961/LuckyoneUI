@@ -1,6 +1,7 @@
-### Version 2.20 [In Development]
+### Version 2.20 [03-02-2023]
 **All WoW Versions:**
 Enabled raid icon for focus and target by default  
+Custom glow for initial installer is back to ElvUI default (was Autocast Shine)  
 Updated BigWigs profile (Text positions only)  
 **Retail:**  
 Added some more general WeakAuras to the config section  
