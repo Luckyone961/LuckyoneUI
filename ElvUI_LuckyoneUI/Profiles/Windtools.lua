@@ -28,6 +28,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.maps.minimapButtons.backdropSpacing = 0
 	E.private.WT.maps.minimapButtons.buttonSize = 23
 	E.private.WT.maps.minimapButtons.expansionLandingPage = true
+	E.private.WT.maps.minimapButtons.inverseDirection = true
 	E.private.WT.maps.minimapButtons.spacing = 3
 	E.private.WT.maps.superTracker.enable = false
 	E.private.WT.maps.superTracker.waypointParse.enable = false
@@ -39,6 +40,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.misc.lfgList.icon.size = 14
 	E.private.WT.misc.lfgList.line.height = 4
 	E.private.WT.misc.lfgList.line.tex = L1UI.DefaultTexture
+	E.private.WT.misc.lfgList.partyKeystone.enable = false
 	E.private.WT.misc.lfgList.rightPanel.enable = false
 	E.private.WT.misc.moveSpeed = true
 	E.private.WT.misc.pauseToSlash = false
@@ -155,6 +157,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.social.friendList.infoFont.size = 10
 	E.db.WT.social.friendList.nameFont.size = 11
 	E.db.WT.social.friendList.textures.factionIcon = true
+	E.db.WT.social.friendList.textures.status = 'default'
 	E.db.WT.social.friendList.useClientColor = false
 	E.db.WT.social.smartTab.enable = false
 	E.db.WT.tooltips.groupInfo.enable = false

@@ -25,7 +25,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.customGlow.color.b = 1
 	E.db.general.customGlow.color.g = 1
 	E.db.general.customGlow.color.r = 1
-	E.db.general.customGlow.style = 'Autocast Shine'
 	E.db.general.customGlow.useColor = true
 	E.db.general.durabilityScale = 0.5
 	E.db.general.enhancedPvpMessages = false
@@ -690,7 +689,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.focus.name.text_format = ''
 	E.db.unitframe.units.focus.orientation = 'LEFT'
 	E.db.unitframe.units.focus.power.enable = false
-	E.db.unitframe.units.focus.raidicon.enable = false
+	E.db.unitframe.units.focus.raidicon.attachTo = 'CENTER'
+	E.db.unitframe.units.focus.raidicon.enable = true
+	E.db.unitframe.units.focus.raidicon.yOffset = 0
 	E.db.unitframe.units.focus.threatStyle = 'NONE'
 	E.db.unitframe.units.focus.width = 240
 	E.db.unitframe.units.focustarget.enable = false
@@ -863,7 +864,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.target.orientation = 'LEFT'
 	E.db.unitframe.units.target.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.target.power.enable = false
-	E.db.unitframe.units.target.raidicon.enable = false
+	E.db.unitframe.units.target.raidicon.attachTo = 'CENTER'
+	E.db.unitframe.units.target.raidicon.enable = true
+	E.db.unitframe.units.target.raidicon.yOffset = 0
 	E.db.unitframe.units.target.raidRoleIcons.position = 'TOPRIGHT'
 	E.db.unitframe.units.target.raidRoleIcons.yOffset = 1
 	E.db.unitframe.units.target.threatStyle = 'NONE'

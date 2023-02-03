@@ -157,7 +157,7 @@ function L1UI:Setup_BigWigs(layout)
 			nil, -- [1]
 			nil, -- [2]
 			nil, -- [3]
-			-380, -- [4]
+			-385, -- [4]
 		},
 	}
 	DB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"][name_healing] = {
@@ -194,14 +194,14 @@ function L1UI:Setup_BigWigs(layout)
 			"TOP", -- [1]
 			"TOP", -- [2]
 			nil, -- [3]
-			-300, -- [4]
+			-465, -- [4]
 		},
 		["fontName"] = "Expressway",
 		["normalPosition"] = {
 			"CENTER", -- [1]
 			"CENTER", -- [2]
 			nil, -- [3]
-			250, -- [4]
+			-15, -- [4]
 		},
 	}
 	DB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][name_healing] = {

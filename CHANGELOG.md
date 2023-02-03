@@ -1,18 +1,30 @@
-### Version 2.19 [25-01-2023]
-**All Wow Versions:**  
-Fixed error in Core.lua while running the installer process  
-Increased default font size for Time DataText from 14 to 15  
-Updated default positions for most minimap icons (Mail, Difficulty, LFG)  
-Updated russian localization (Credits: Hollicsh)  
+### Version 2.20 [03-02-2023]
+**All WoW Versions:**
+Enabled raid icon for focus and target by default  
+Custom glow for initial installer is back to ElvUI default (was Autocast Shine)  
+Updated BigWigs profile (Text positions only)  
 **Retail:**  
-Disabled profession quality on ActionBars by default  
-Updated some Season 1 Dungeon StyleFilters (AA)  
-Updated WindTools profile  
-**Wrath:**  
-Fixes for party custom text on initial installer  
+Added some more general WeakAuras to the config section  
+Added edit mode import string to Blizzard config section  
+• This will position Chat, Talking Head, Quest Tracker correctly  
+Updated Details profile (Update frequency, DPS brackets)  
+Updated WindTools profile (Minimap, LFG, Misc)  
+___
+### Version 2.19 [25-01-2023]
+**All WoW Versions:**
+Fixed error in Core.lua while running the installer process
+Increased default font size for Time DataText from 14 to 15
+Updated default positions for most minimap icons (Mail, Difficulty, LFG)
+Updated russian localization (Credits: Hollicsh)
+**Retail:**
+Disabled profession quality on ActionBars by default
+Updated some Season 1 Dungeon StyleFilters (AA)
+Updated WindTools profile
+**Wrath Classic:**
+Fixes for party custom text on initial installer
 ___
 ### Version 2.18 [17-01-2023]
-**All Wow Versions:**  
+**All WoW Versions:**  
 NamePlates "Rework" for ElvUI and Plater  
 The NamePlates style remains similar, however the following has changed:  
 • Castbar icon is smaller and moved to the bottom  
