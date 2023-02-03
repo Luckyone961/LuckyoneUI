@@ -3,6 +3,7 @@
 Enabled raid icon for focus and target by default  
 Updated BigWigs profile (Text positions only)  
 **Retail:**  
+Updated Details profile (Update frequency, DPS brackets)  
 Updated WindTools profile (Minimap, LFG, Misc)  
 ___
 ### Version 2.19 [25-01-2023]
