@@ -3,7 +3,9 @@
 Enabled raid icon for focus and target by default  
 Updated BigWigs profile (Text positions only)  
 **Retail:**  
-Added a bunch of general WeakAuras to the config section  
+Added some more general WeakAuras to the config section  
+Added edit mode import string to Blizzard config section  
+• This will position Chat, Talking Head, Quest Tracker correctly  
 Updated Details profile (Update frequency, DPS brackets)  
 Updated WindTools profile (Minimap, LFG, Misc)  
 ___

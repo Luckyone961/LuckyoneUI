@@ -118,6 +118,9 @@ function L1UI:Config()
 	L1UI.Options.args.blizzard.args.qualityOfLife = ACH:Group(L["Quality of Life"], nil, 3, nil, function(info) return E.private.L1UI.qualityOfLife[info[#info]] end, function(info, value) E.private.L1UI.qualityOfLife[info[#info]] = value E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.blizzard.args.qualityOfLife.inline = true
 	L1UI.Options.args.blizzard.args.qualityOfLife.args.easyDelete = ACH:Toggle(L["Easy Delete"], L["Automatically fill out the confirmation text to delete items."], 1)
+	L1UI.Options.args.blizzard.args.strings = ACH:Group(L["Strings"], nil, 4, nil, nil, nil, nil, not E.Retail)
+	L1UI.Options.args.blizzard.args.strings.inline = true
+	L1UI.Options.args.blizzard.args.strings.args.editMode = ACH:Execute(L["Blizzard Edit Mode"], nil, 1, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-BlizzHUD') end)
 
 	-- Chat
 	L1UI.Options.args.chat = ACH:Group(L["Chat"], nil, 7)
