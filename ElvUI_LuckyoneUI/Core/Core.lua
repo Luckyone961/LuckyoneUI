@@ -1,5 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
+local DT = E:GetModule('DataTexts')
 
 local format, print = format, print
 local hooksecurefunc = hooksecurefunc
@@ -212,8 +213,11 @@ function L1UI:Setup_GlobalDB()
 	E.global.general.smallerWorldMapScale = 0.8
 	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
-	E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
-	E.DataTexts:BuildPanelFrame('Luckyone_MiniMap_DT')
+	DT:BuildPanelFrame('Luckyone_ActionBars_DT')
+	DT:BuildPanelFrame('Luckyone_MiniMap_DT')
+
+	E.db.datatexts.panels.Luckyone_ActionBars_DT = E.db.datatexts.panels.Luckyone_ActionBars_DT or {}
+	E.db.datatexts.panels.Luckyone_MiniMap_DT = E.db.datatexts.panels.Luckyone_MiniMap_DT or {}
 
 	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 	ActionBarsDT.backdrop = true
@@ -319,12 +323,12 @@ function L1UI:Setup_Layout(layout)
 end
 
 -- Performance config section
-function L1UI:Cleanup_Cache(addon, type)
+function L1UI:Cleanup_Cache(addon, frame)
 	if addon == 'elvui' and E.private.chat.enable then
-		if type == 'chat' then
+		if frame == 'chat' then
 			CH:ResetHistory()
 			L1UI:Print(L["Cleared ElvUI Chat History."])
-		elseif type == 'editbox' then
+		elseif frame == 'editbox' then
 			CH:ResetEditboxHistory()
 			L1UI:Print(L["Cleared ElvUI Editbox History."])
 		end

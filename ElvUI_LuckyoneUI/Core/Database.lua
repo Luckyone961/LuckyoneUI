@@ -1092,6 +1092,9 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184'
 	end
 
+	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
+	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
+
 	if layout == 'main' then
 
 		-- Main growth directions
