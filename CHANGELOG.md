@@ -1,4 +1,8 @@
-### Version 2.21 [In Development]
+### Version 2.21 [08-02-2023]
+**All WoW Versions:**  
+Hotfixed the installer for ElvUI 13.24  
+**Retail:**  
+Minor fix for the performance config section  
 ___
 ### Version 2.20 [03-02-2023]
 **All WoW Versions:**  
