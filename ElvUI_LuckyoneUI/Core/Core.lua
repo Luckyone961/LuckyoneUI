@@ -319,12 +319,12 @@ function L1UI:Setup_Layout(layout)
 end
 
 -- Performance config section
-function L1UI:Cleanup_Cache(addon, type)
+function L1UI:Cleanup_Cache(addon, frame)
 	if addon == 'elvui' and E.private.chat.enable then
-		if type == 'chat' then
+		if frame == 'chat' then
 			CH:ResetHistory()
 			L1UI:Print(L["Cleared ElvUI Chat History."])
-		elseif type == 'editbox' then
+		elseif frame == 'editbox' then
 			CH:ResetEditboxHistory()
 			L1UI:Print(L["Cleared ElvUI Editbox History."])
 		end
