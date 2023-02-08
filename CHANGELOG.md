@@ -1,4 +1,6 @@
 ### Version 2.22 [In Development]
+**Retail:**  
+Fixed 'ReputationReward' profile installer error  
 ___
 ### Version 2.21 [08-02-2023]
 **All WoW Versions:**  

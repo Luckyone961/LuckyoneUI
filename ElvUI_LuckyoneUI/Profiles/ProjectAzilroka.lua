@@ -24,7 +24,7 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	if E.Retail then
 		PA.db.MasterExperience.Enable = false
 		PA.db.MovableFrames.Enable = false
-		PA.db.ReputationReward.Enable = false
+		-- PA.db.ReputationReward.Enable = false
 		PA.db.SunsongRanchFarmer.Enable = false
 		PA.db.TorghastBuffs.Enable = false
 	end
