@@ -216,9 +216,6 @@ function L1UI:Setup_GlobalDB()
 	DT:BuildPanelFrame('Luckyone_ActionBars_DT')
 	DT:BuildPanelFrame('Luckyone_MiniMap_DT')
 
-	E.db.datatexts.panels.Luckyone_ActionBars_DT = E.db.datatexts.panels.Luckyone_ActionBars_DT or {}
-	E.db.datatexts.panels.Luckyone_MiniMap_DT = E.db.datatexts.panels.Luckyone_MiniMap_DT or {}
-
 	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 	ActionBarsDT.backdrop = true
 	ActionBarsDT.border = true
