@@ -1,4 +1,6 @@
 ### Version 2.22 [In Development]
+**All WoW Versions:**  
+Updated CVars list  
 **Retail:**  
 Fixed 'ReputationReward' profile installer error  
 ___
