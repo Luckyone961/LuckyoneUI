@@ -1,9 +1,4 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
--- LuckyoneUI Profile DB
-
-P.L1UI = {
-
-	install_version = nil,
-
-}
+-- Defaults: E.db.L1UI
+P.install_version = nil
