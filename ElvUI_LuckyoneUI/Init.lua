@@ -28,7 +28,11 @@ L1UI.RequiredVersion = 13.25
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
 
 function L1UI:Initialize()
-	if E.private.install_complete and E.db.L1UI.install_version == nil then
+	if E.private.install_complete == nil then
+		E.private.install_complete = E.version
+	end
+
+	if E.db.L1UI.install_version == nil then
 		E.PluginInstaller:Queue(L1UI.InstallerData)
 	end
 
