@@ -9,17 +9,12 @@ local GetAddOnMetadata = GetAddOnMetadata
 
 local L1UI = E:NewModule(addon, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
 
--- Database
-V.L1UI = {} -- E.private.L1UI
-P.L1UI = {} -- E.db.L1UI
-G.L1UI = {} -- E.global.L1UI
-
 Engine[1] = L1UI
 Engine[2] = E
 Engine[3] = L
-Engine[4] = V.L1UI
-Engine[5] = P.L1UI
-Engine[6] = G.L1UI
+Engine[4] = V
+Engine[5] = P
+Engine[6] = G
 _G[addon] = Engine
 
 -- Constants
