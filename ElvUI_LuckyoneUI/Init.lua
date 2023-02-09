@@ -1,12 +1,12 @@
 local E, _, V, P, G = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local EP = LibStub('LibElvUIPlugin-1.0')
-local addon, Engine = ...
+local PI = E:GetModule('PluginInstaller')
 
 local _G = _G
-local format = format
 local GetAddOnMetadata = GetAddOnMetadata
 
+local addon, Engine = ...
 local L1UI = E:NewModule(addon, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
 
 Engine[1] = L1UI
@@ -33,7 +33,7 @@ function L1UI:Initialize()
 	end
 
 	if E.db.L1UI.install_version == nil then
-		E.PluginInstaller:Queue(L1UI.InstallerData)
+		PI:Queue(L1UI.InstallerData)
 	end
 
 	EP:RegisterPlugin(addon, L1UI.Config)
