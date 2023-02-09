@@ -7,8 +7,8 @@ function L1UI:Setup_DBM(layout)
 	if not E:IsAddOnEnabled('DBM-Core') then return end
 
 	-- Profile names
-	local name = L1UI.Me and 'Luckyone-Main' or 'Luckyone-Main-'..L1UI.Version
-	local name_healing = L1UI.Me and 'Luckyone-Healing' or 'Luckyone-Healing-'..L1UI.Version
+	local name = E.global.L1UI.dev and 'Luckyone-Main' or 'Luckyone-Main-'..L1UI.Version
+	local name_healing = E.global.L1UI.dev and 'Luckyone-Healing' or 'Luckyone-Healing-'..L1UI.Version
 
 	for _, profile in pairs({name, name_healing}) do
 		-- Profile creation

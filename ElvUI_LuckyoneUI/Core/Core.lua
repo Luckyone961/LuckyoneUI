@@ -108,7 +108,7 @@ function L1UI:Setup_CVars()
 	end
 
 	-- My CVars
-	if L1UI.Me then
+	if E.global.L1UI.dev then
 		SetCVar('blockChannelInvites', 1)
 		SetCVar('CameraReduceUnexpectedMovement', 1)
 		SetCVar('DisableAdvancedFlyingVelocityVFX', 1)
@@ -190,7 +190,7 @@ function L1UI:Setup_PrivateDB()
 	E.private.nameplates.enable = false
 	E.private.skins.parchmentRemoverEnable = true
 
-	if L1UI.Me then
+	if E.global.L1UI.dev then
 		E.private.general.chatBubbles = 'disabled'
 		E.private.L1UI.disabledFrames.AlertFrame = true
 		E.private.L1UI.disabledFrames.BossBanner = true
@@ -276,9 +276,9 @@ function L1UI:Setup_Layout(layout)
 
 	-- Create a fresh profile in ElvUI
 	if layout == 'main' then
-		E.data:SetProfile(L1UI.Me and 'Luckyone Main' or 'Luckyone Main '..L1UI.Version)
+		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main '..L1UI.Version)
 	elseif layout == 'healing' then
-		E.data:SetProfile(L1UI.Me and 'Luckyone Healing' or 'Luckyone Healing '..L1UI.Version)
+		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing '..L1UI.Version)
 	end
 
 	-- E.global & Custom DataText

@@ -5,7 +5,7 @@ function L1UI:Setup_WarpDeplete()
 	if not E:IsAddOnEnabled('WarpDeplete') and E.Retail then return end
 
 	-- Profile name
-	local name = L1UI.Me and 'Luckyone' or 'Luckyone '..L1UI.Version
+	local name = E.global.L1UI.dev and 'Luckyone' or 'Luckyone '..L1UI.Version
 
 	-- Profile data
 	WarpDepleteDB["profiles"][name] = WarpDepleteDB["profiles"][name] or {}

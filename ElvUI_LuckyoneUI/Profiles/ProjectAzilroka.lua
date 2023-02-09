@@ -9,7 +9,7 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	local PA = _G.ProjectAzilroka
 
 	-- Profile creation
-	PA.data:SetProfile(L1UI.Me and 'Luckyone' or 'Luckyone '..L1UI.Version)
+	PA.data:SetProfile(E.global.L1UI.dev and 'Luckyone' or 'Luckyone '..L1UI.Version)
 
 	-- General modules
 	PA.db.AuraReminder.Enable = false

@@ -1,6 +1,9 @@
 ### Version 2.22 [In Development]
 **All WoW Versions:**  
-Updated CVars list  
+Added developer mode to the plugin  
+• Chat commands: /luckydev on & /luckydev off  
+• Make sure to carefully read the Developer config section if you decide to enable it  
+Updated CVars installer step and config description  
 **Retail:**  
 Fixed 'ReputationReward' profile installer error  
 ___

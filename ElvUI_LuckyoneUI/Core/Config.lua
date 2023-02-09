@@ -1,4 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local D = E:GetModule('Distributor')
+
 local ACH
 
 local pairs, sort = pairs, sort
@@ -55,6 +57,10 @@ function L1UI:Config()
 
 	-- LibAceConfigHelper
 	ACH = E.Libs.ACH
+
+	-- Don't export this
+	D.blacklistedKeys.global.L1UI = {}
+	D.blacklistedKeys.global.L1UI.dev = true
 
 	-- Header
 	L1UI.Options = ACH:Group(L1UI.Name, nil, 20)
@@ -340,6 +346,20 @@ function L1UI:Config()
 	L1UI.Options.args.links.args.discord = ACH:Input('Discord:', nil, 5, nil, 'full', function() return 'https://discord.gg/xRY4bwA' end)
 	L1UI.Options.args.links.args.issues = ACH:Input(L["Report issues here:"], nil, 6, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/issues' end)
 	L1UI.Options.args.links.args.guide = ACH:Input(L["Wowhead Guide:"], nil, 7, nil, 'full', function() return 'https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide' end)
+
+	-- Developer config
+	L1UI.Options.args.dev = ACH:Group(format('|cff4beb2c%s|r', 'Developer'), nil, 20, nil, nil, nil, nil, not E.global.L1UI.dev)
+	L1UI.Options.args.dev.args.header = ACH:Header('Developer config', 1)
+	L1UI.Options.args.dev.args.information = ACH:Group('Information', nil, 2)
+	L1UI.Options.args.dev.args.information.inline = true
+	L1UI.Options.args.dev.args.information.args.desc = ACH:Description('If you can see this section of the config, it means you enabled the LuckyoneUI developer mode.\n\nWhile this mode is enabled, the following will change:\n\n- Setup CVars button will set additional values as listed below.\n- Profiles created by the installer will no longer add the version suffix.\n- Profile installer will set additional values as listed below.\n\nIf you did not intend to turn this on please use the following chat command.', 1, 'medium')
+	L1UI.Options.args.dev.args.information.args.cmd = ACH:Input('', nil, 2, nil, 'full', function() return '/luckydev off' end)
+	L1UI.Options.args.dev.args.cvars = ACH:Group('Developer CVars', nil, 3)
+	L1UI.Options.args.dev.args.cvars.inline = true
+	L1UI.Options.args.dev.args.cvars.args.desc = ACH:Description('- blockChannelInvites 1\n- CameraReduceUnexpectedMovement 1\n- DisableAdvancedFlyingVelocityVFX 1\n- disableServerNagle 0\n- displaySpellActivationOverlays 0\n- doNotFlashLowHealthWarning 1\n- empowerTapControls 1\n- floatingCombatTextCombatDamage 0\n- floatingCombatTextCombatHealing 0\n- GxAllowCachelessShaderMode 0\n- maxFPSLoading 30\n- RAIDweatherDensity 0\n- showToastOffline 0\n- showToastOnline 0\n- showToastWindow 0\n- SpellQueueWindow 180\n- useIPv6 0\n- weatherDensity 0', 1, 'medium')
+	L1UI.Options.args.dev.args.db = ACH:Group('Developer ProfileDB', nil, 4)
+	L1UI.Options.args.dev.args.db.inline = true
+	L1UI.Options.args.dev.args.db.args.desc = ACH:Description('- ElvUI chat bubble skinning disabled\n- LuckyoneUI Alert Frame hider enabled\n- LuckyoneUI Boss Banner hider enabled\n- LuckyoneUI Easy Delete enabled\n- LuckyoneUI BugSack skin enabled', 1, 'medium')
 
 	E.Options.args.L1UI = L1UI.Options
 end

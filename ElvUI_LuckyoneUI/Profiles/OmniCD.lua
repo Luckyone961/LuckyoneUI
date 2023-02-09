@@ -7,8 +7,8 @@ function L1UI:Setup_OmniCD(layout)
 	if not E:IsAddOnEnabled('OmniCD') and E.Retail then return end
 
 	-- Profile names
-	local name = L1UI.Me and 'Luckyone Main' or 'Luckyone Main '..L1UI.Version
-	local name_healing = L1UI.Me and 'Luckyone Healing' or 'Luckyone Healing '..L1UI.Version
+	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main '..L1UI.Version
+	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing '..L1UI.Version
 
 	-- Disable LibDualSpec to set the profile
 	OmniCDDB["namespaces"]["LibDualSpec-1.0"] = OmniCDDB["namespaces"]["LibDualSpec-1.0"] or {}

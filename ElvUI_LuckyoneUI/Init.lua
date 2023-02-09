@@ -22,45 +22,12 @@ Engine[5] = P.L1UI
 Engine[6] = G.L1UI
 _G[addon] = Engine
 
--- My characters
-local name = format('%s-%s', E.myname, E:ShortenRealm(E.myrealm))
-local toons = {
-	-- Retail
-	["Luckyone-LaughingSkull"]		= true, -- [Horde] Druid
-	["Luckypriest-LaughingSkull"]	= true, -- [Horde] Priest
-	["Luckymonkas-LaughingSkull"]	= true, -- [Horde] Monk
-	["Luckyhunter-LaughingSkull"]	= true, -- [Horde] Hunter
-	["Luckydh-LaughingSkull"]		= true, -- [Horde] DH
-	["Luckymage-LaughingSkull"]		= true, -- [Horde] Mage
-	["Luckypala-LaughingSkull"]		= true, -- [Horde] Paladin
-	["Luckyrogue-LaughingSkull"]	= true, -- [Horde] Rogue
-	["Luckywl-LaughingSkull"]		= true, -- [Horde] Warlock
-	["Luckydk-LaughingSkull"]		= true, -- [Horde] DK
-	["Luckyevoker-LaughingSkull"]	= true, -- [Horde] Evoker
-	["Notlucky-LaughingSkull"]		= true, -- [Horde] Warrior
-	["Unluckyone-LaughingSkull"]	= true, -- [Horde] Shaman
-	["Luckydruid-LaughingSkull"]	= true, -- [Alliance] Druid
-	-- Wrath Classic
-	["Luckyone-Gehennas"]			= true, -- [Horde] Hunter
-	["Luckygrip-Gehennas"]			= true, -- [Horde] DK
-	["Luckyone-Everlook"]			= true, -- [Alliance] Druid
-	["Luckypriest-Everlook"]		= true, -- [Alliance] Priest
-	["Luckyrogue-Everlook"]			= true, -- [Alliance] Rogue
-	["Luckyhunter-Everlook"]		= true, -- [Alliance] Hunter
-	["Luckydk-Everlook"]			= true, -- [Alliance] DK
-	["Luckykek-Everlook"]			= true, -- [Alliance] Shaman
-	["Luckyone-Giantstalker"]		= true, -- [Alliance] Paladin
-	-- Testing
-	["Luckyone-Nobundo"]			= true, -- Retail PTR
-}
-
 -- Constants
 L1UI.Config = {}
 L1UI.CreditsList = {}
 L1UI.DefaultFont = 'Expressway'
 L1UI.DefaultTexture = 'Minimalist'
 L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
-L1UI.Me = toons[name]
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
 L1UI.RequiredVersion = 13.25
 L1UI.Version = GetAddOnMetadata(addon, 'Version')
@@ -68,10 +35,6 @@ L1UI.Version = GetAddOnMetadata(addon, 'Version')
 function L1UI:Initialize()
 	if E.private.install_complete and E.db.L1UI.install_version == nil then
 		E.PluginInstaller:Queue(L1UI.InstallerData)
-	end
-
-	if L1UI.Me and E:IsAddOnEnabled('ElvUI_SLE') then
-		ElvDB.ShadowLightAlpha = false
 	end
 
 	EP:RegisterPlugin(addon, L1UI.Config)
