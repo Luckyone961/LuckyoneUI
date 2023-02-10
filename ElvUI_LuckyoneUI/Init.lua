@@ -38,6 +38,10 @@ function L1UI:Initialize()
 
 	EP:RegisterPlugin(addon, L1UI.Config)
 	L1UI:RegisterEvents()
+
+	if E.db.L1UI.general.auto_update and (tostring(E.db.L1UI.install_version) < L1UI.Version) then
+		L1UI:UpdateLayout()
+	end
 end
 
 local function CallbackInitialize()

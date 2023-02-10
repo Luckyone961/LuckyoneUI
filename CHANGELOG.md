@@ -1,5 +1,6 @@
 ### Version 2.22 [In Development]
 **All WoW Versions:**  
+Added auto update option in /luckyoneui config so you don't have to click 'Update Layout'  
 Added developer mode to the plugin: /luckydev on -> Read new config section carefully  
 More adjustments for ElvUI 13.26 compatibility  
 The plugin will now automatically skip the default ElvUI installer on new characters  
