@@ -4,12 +4,14 @@ local _G = _G
 
 -- ProjectAzilroka profile
 function L1UI:Setup_ProjectAzilroka(noPrint)
-	if not E:IsAddOnEnabled('ProjectAzilroka') then return end
+	if not E:IsAddOnEnabled('ProjectAzilroka') then
+		return
+	end
 
 	local PA = _G.ProjectAzilroka
 
 	-- Profile creation
-	PA.data:SetProfile(E.global.L1UI.dev and 'Luckyone' or 'Luckyone '..L1UI.Version)
+	PA.data:SetProfile(E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. L1UI.Version)
 
 	-- General modules
 	PA.db.AuraReminder.Enable = false

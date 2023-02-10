@@ -4,7 +4,9 @@ local _G = _G
 
 -- WindTools profile
 function L1UI:Setup_WindTools(noPrint)
-	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then return end
+	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then
+		return
+	end
 
 	-- Don't overlap with ProjectAzilroka
 	if E:IsAddOnEnabled('ProjectAzilroka') then

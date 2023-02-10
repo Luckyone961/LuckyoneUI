@@ -2,7 +2,6 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- Auras config section: Buffs
 function L1UI:Setup_Buffs(frame, type)
-
 	local all = 'Blacklist,Personal,nonPersonal'
 	local min = 'Blacklist,Dispellable,RaidBuffsElvUI'
 
@@ -39,7 +38,6 @@ end
 
 -- Auras config section: Debuffs
 function L1UI:Setup_Debuffs(frame, type)
-
 	local all = 'Blacklist,Personal,nonPersonal'
 	local min = 'Blacklist,Personal,CCDebuffs'
 

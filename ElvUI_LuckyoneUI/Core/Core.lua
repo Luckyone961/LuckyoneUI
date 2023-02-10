@@ -9,7 +9,7 @@ local SetCVar = SetCVar
 
 -- Chat print
 function L1UI:Print(msg)
-	print(L1UI.Name..': '..msg)
+	print(L1UI.Name .. ': ' .. msg)
 end
 
 -- Reload popup
@@ -80,7 +80,6 @@ end
 
 -- General CVars
 function L1UI:Setup_CVars()
-
 	-- Core CVars
 	SetCVar('advancedCombatLogging', 1)
 	SetCVar('alwaysShowActionBars', 1)
@@ -135,7 +134,6 @@ end
 
 -- NamePlate CVars
 function L1UI:NameplateCVars()
-
 	SetCVar('NamePlateHorizontalScale', 1)
 	SetCVar('nameplateLargerScale', 1)
 	SetCVar('nameplateLargeTopInset', -1)
@@ -170,7 +168,6 @@ end
 
 -- E.private & Media
 function L1UI:Setup_PrivateDB()
-
 	E.db.general.font = L1UI.DefaultFont
 	E.db.general.fontSize = 11
 	E.db.general.fontStyle = 'OUTLINE'
@@ -202,7 +199,6 @@ end
 
 -- E.global & Custom DataText
 function L1UI:Setup_GlobalDB()
-
 	SetCVar('uiScale', 0.71111111111111)
 	E.global.general.UIScale = 0.71111111111111
 
@@ -266,20 +262,19 @@ end
 
 -- ElvUI Layouts setup
 function L1UI:Setup_Layout(layout)
-
 	-- Disable LibDualSpec to set the profile
 	if E.Retail or E.Wrath then
-		ElvDB["namespaces"]["LibDualSpec-1.0"] = ElvDB["namespaces"]["LibDualSpec-1.0"] or {}
-		ElvDB["namespaces"]["LibDualSpec-1.0"]["char"] = ElvDB["namespaces"]["LibDualSpec-1.0"]["char"] or {}
-		ElvDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm] = ElvDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm] or {}
-		ElvDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm]["enabled"] = false
+		ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
+		ElvDB['namespaces']['LibDualSpec-1.0']['char'] = ElvDB['namespaces']['LibDualSpec-1.0']['char'] or {}
+		ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
+		ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
 	end
 
 	-- Create a fresh profile in ElvUI
 	if layout == 'main' then
-		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main '..L1UI.Version)
+		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. L1UI.Version)
 	elseif layout == 'healing' then
-		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing '..L1UI.Version)
+		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. L1UI.Version)
 	end
 
 	-- E.global & Custom DataText
@@ -357,7 +352,9 @@ end
 
 -- Easy delete
 function L1UI:EasyDelete()
-	if not E.private.L1UI.qualityOfLife.easyDelete then return end
+	if not E.private.L1UI.qualityOfLife.easyDelete then
+		return
+	end
 
 	-- Higher quality than green
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', function(frame)

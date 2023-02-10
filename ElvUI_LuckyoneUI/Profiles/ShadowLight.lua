@@ -4,7 +4,9 @@ local GetAddOnMetadata = GetAddOnMetadata
 
 -- Shadow & Light profile
 function L1UI:Setup_ShadowAndLight(noPrint)
-	if not E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then return end
+	if not E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then
+		return
+	end
 
 	-- Get version
 	local version = GetAddOnMetadata('ElvUI_SLE', 'Version')

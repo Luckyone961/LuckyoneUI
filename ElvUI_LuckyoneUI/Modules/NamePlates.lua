@@ -5,7 +5,6 @@ local pairs = pairs
 
 -- NamePlate Setup for ElvUI and Plater
 function L1UI:Setup_NamePlates()
-
 	-- Make sure to enable ElvUI NamePlates
 	E.private.nameplates.enable = true
 
@@ -198,23 +197,12 @@ end
 
 -- Custom StyleFilters for all current Dungeons
 function L1UI:Setup_StyleFilters()
-	if not E.private.nameplates.enable then return end
+	if not E.private.nameplates.enable then
+		return
+	end
 
 	if E.Retail then
-
-		-- Wipe old filters
-		if E.global.nameplates.filters.Luckyone_RLP then E.global.nameplates.filters.Luckyone_RLP = nil end
-		if E.global.nameplates.filters.Luckyone_AA then E.global.nameplates.filters.Luckyone_AA = nil end
-		if E.global.nameplates.filters.Luckyone_NO then E.global.nameplates.filters.Luckyone_NO = nil end
-		if E.global.nameplates.filters.Luckyone_AV then E.global.nameplates.filters.Luckyone_AV = nil end
-		if E.global.nameplates.filters.Luckyone_COS then E.global.nameplates.filters.Luckyone_COS = nil end
-		if E.global.nameplates.filters.Luckyone_HOV then E.global.nameplates.filters.Luckyone_HOV = nil end
-		if E.global.nameplates.filters.Luckyone_SBG then E.global.nameplates.filters.Luckyone_SBG = nil end
-		if E.global.nameplates.filters.Luckyone_TOJS then E.global.nameplates.filters.Luckyone_TOJS = nil end
-		if E.global.nameplates.filters.Luckyone_TJS then E.global.nameplates.filters.Luckyone_TJS = nil end
-		if E.global.nameplates.filters.Luckyone_VOTI then E.global.nameplates.filters.Luckyone_VOTI = nil end
-
-		for _, filterName in pairs({'Luckyone_VOTI', 'Luckyone_RLP', 'Luckyone_AA', 'Luckyone_NO', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_SBG', 'Luckyone_TJS'}) do
+		for _, filterName in pairs({ 'Luckyone_VOTI', 'Luckyone_RLP', 'Luckyone_AA', 'Luckyone_NO', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_SBG', 'Luckyone_TJS' }) do
 			E.global.nameplates.filters[filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
 			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }

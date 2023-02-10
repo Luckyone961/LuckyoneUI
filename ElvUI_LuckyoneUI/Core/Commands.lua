@@ -33,7 +33,7 @@ local AddOns = {
 	ElvUI = true,
 	ElvUI_Libraries = true,
 	ElvUI_LuckyoneUI = true,
-	ElvUI_Options = true
+	ElvUI_Options = true,
 }
 
 -- LuckyoneUI debug mode

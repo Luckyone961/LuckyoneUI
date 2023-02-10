@@ -4,12 +4,14 @@ local unpack = unpack
 
 -- AddOnSkins Profile
 function L1UI:Setup_AddOnSkins(noPrint)
-	if not E:IsAddOnEnabled('AddOnSkins') then return end
+	if not E:IsAddOnEnabled('AddOnSkins') then
+		return
+	end
 
 	local AS = unpack(AddOnSkins)
 
 	-- Profile creation
-	AS.data:SetProfile(E.global.L1UI.dev and 'Luckyone' or 'Luckyone '..L1UI.Version)
+	AS.data:SetProfile(E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. L1UI.Version)
 
 	-- Profile data
 	AS.db.Shadows = false
