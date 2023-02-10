@@ -1,11 +1,11 @@
 ### Version 2.22 [In Development]
 **All WoW Versions:**  
-Added developer mode to the plugin  
-• Chat commands: /luckydev on & /luckydev off  
-• Make sure to carefully read the Developer config section if you decide to enable it  
+Added developer mode to the plugin: /luckydev on -> Read new config section carefully  
+More adjustments for ElvUI 13.26 compatibility  
+The plugin will now automatically skip the default ElvUI installer on new characters  
 Updated CVars installer step and config description  
 **Retail:**  
-Fixed 'ReputationReward' profile installer error  
+Fixed 'ReputationReward' profile installer error when using ProjectAzilroka  
 ___
 ### Version 2.21 [08-02-2023]
 **All WoW Versions:**  
