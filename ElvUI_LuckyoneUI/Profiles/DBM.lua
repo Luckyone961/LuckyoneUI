@@ -4,9 +4,7 @@ local pairs = pairs
 
 -- DBM profile
 function L1UI:Setup_DBM(layout)
-	if not E:IsAddOnEnabled('DBM-Core') then
-		return
-	end
+	if not E:IsAddOnEnabled('DBM-Core') then return end
 
 	-- Profile names
 	local name = E.global.L1UI.dev and 'Luckyone-Main' or 'Luckyone-Main-' .. L1UI.Version

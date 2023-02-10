@@ -197,9 +197,7 @@ end
 
 -- Custom StyleFilters for all current Dungeons
 function L1UI:Setup_StyleFilters()
-	if not E.private.nameplates.enable then
-		return
-	end
+	if not E.private.nameplates.enable then return end
 
 	if E.Retail then
 		for _, filterName in pairs({ 'Luckyone_VOTI', 'Luckyone_RLP', 'Luckyone_AA', 'Luckyone_NO', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_SBG', 'Luckyone_TJS' }) do

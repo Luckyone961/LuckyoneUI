@@ -352,9 +352,7 @@ end
 
 -- Easy delete
 function L1UI:EasyDelete()
-	if not E.private.L1UI.qualityOfLife.easyDelete then
-		return
-	end
+	if not E.private.L1UI.qualityOfLife.easyDelete then return end
 
 	-- Higher quality than green
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', function(frame)
