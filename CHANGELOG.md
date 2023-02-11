@@ -5,6 +5,7 @@ Added developer mode to the plugin: /luckydev on -> Read new config section care
 More adjustments for ElvUI 13.26 compatibility  
 The plugin will now automatically skip the default ElvUI installer on new characters  
 Updated CVars installer step and config description  
+Updated WeakAuras section to make it more clear which classes are maintained  
 **Retail:**  
 Fixed 'ReputationReward' profile installer error when using ProjectAzilroka  
 ___
