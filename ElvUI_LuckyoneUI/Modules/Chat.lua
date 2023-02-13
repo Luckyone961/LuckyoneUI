@@ -23,7 +23,6 @@ local VoiceTranscriptionFrame_UpdateVoiceTab = VoiceTranscriptionFrame_UpdateVoi
 
 -- Chat setup for tabs, windows and channels
 function L1UI:Setup_Chat()
-
 	-- CVars Chat
 	SetCVar('chatClassColorOverride', 0)
 	SetCVar('chatMouseScroll', 1)
@@ -79,21 +78,21 @@ function L1UI:Setup_Chat()
 	end
 
 	-- Whisper tab
-	local whisper = {'WHISPER', 'BN_WHISPER', 'IGNORED'}
+	local whisper = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame4)
 	for _, v in ipairs(whisper) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame4, v)
 	end
 
 	-- Guild tab
-	local guild = {'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER'}
+	local guild = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 	for _, v in ipairs(guild) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame5, v)
 	end
 
 	-- Party tab
-	local party = {'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER'}
+	local party = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame6)
 	for _, v in ipairs(party) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame6, v)

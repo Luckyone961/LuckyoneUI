@@ -2,9 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- UnitFrame color themes
 function L1UI:Setup_Theme(theme)
-
 	if theme == 'dark' then
-
 		E.db.unitframe.colors.classbackdrop = false
 		E.db.unitframe.colors.customhealthbackdrop = true
 		E.db.unitframe.colors.health_backdrop.b = 0.61
@@ -31,9 +29,7 @@ function L1UI:Setup_Theme(theme)
 		if not E.Retail then
 			E.db.unitframe.units.pet.health.colorHappiness = false
 		end
-
 	elseif theme == 'class' then
-
 		E.db.unitframe.colors.classbackdrop = true
 		E.db.unitframe.colors.customhealthbackdrop = true
 		E.db.unitframe.colors.health_backdrop.b = 0.05
@@ -57,7 +53,6 @@ function L1UI:Setup_Theme(theme)
 		if not E.Retail then
 			E.db.unitframe.units.pet.health.colorHappiness = true
 		end
-
 	end
 
 	E:UpdateMediaItems(true)

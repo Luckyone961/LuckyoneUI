@@ -9,7 +9,7 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	local PA = _G.ProjectAzilroka
 
 	-- Profile creation
-	PA.data:SetProfile(L1UI.Me and 'Luckyone' or 'Luckyone '..L1UI.Version)
+	PA.data:SetProfile(E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. L1UI.Version)
 
 	-- General modules
 	PA.db.AuraReminder.Enable = false
@@ -24,8 +24,6 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	if E.Retail then
 		PA.db.MasterExperience.Enable = false
 		PA.db.MovableFrames.Enable = false
-		PA.db.ReputationReward.Enable = false
-		PA.db.SunsongRanchFarmer.Enable = false
 		PA.db.TorghastBuffs.Enable = false
 	end
 

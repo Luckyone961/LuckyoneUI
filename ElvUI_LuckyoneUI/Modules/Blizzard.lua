@@ -4,7 +4,6 @@ local _G = _G
 
 -- Disabled Blizzard Frames (Loading on init)
 function L1UI:DisabledFrames()
-
 	if E.private.L1UI.disabledFrames.AlertFrame then
 		_G.AlertFrame:UnregisterAllEvents()
 		E:DisableMover('AlertFrameMover')
