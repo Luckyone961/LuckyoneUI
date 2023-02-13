@@ -1,4 +1,4 @@
-### Version 2.22 [In Development]
+### Version 2.22 [13-02-2023]
 **All WoW Versions:**  
 Added auto update option in /luckyoneui config so you don't have to click 'Update Layout'  
 Added developer mode to the plugin: /luckydev on -> Read new config section carefully  
@@ -8,6 +8,7 @@ Updated CVars installer step and config description
 Updated WeakAuras section to make it more clear which classes are maintained  
 **Retail:**  
 Fixed 'ReputationReward' profile installer error when using ProjectAzilroka  
+Fixed 'SunsongRanchFarmer' profile installer error when using ProjectAzilroka  
 ___
 ### Version 2.21 [08-02-2023]
 **All WoW Versions:**  
