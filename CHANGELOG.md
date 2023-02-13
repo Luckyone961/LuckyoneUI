@@ -1,3 +1,5 @@
+### Version 2.23 [In Development]
+___
 ### Version 2.22 [13-02-2023]
 **All WoW Versions:**  
 Added auto update option in /luckyoneui config so you don't have to click 'Update Layout'  
