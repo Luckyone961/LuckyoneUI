@@ -41,7 +41,7 @@ function L1UI:Skin_BugSack()
 		BugSackTabLast:Point('RIGHT', BugSackTabSession, 'LEFT', 5, 0)
 
 		-- Close Button(s)
-		for _, child in pairs({BugSackFrame:GetChildren()}) do
+		for _, child in pairs({ BugSackFrame:GetChildren() }) do
 			if child:IsObjectType('Button') and child:GetScript('OnClick') == BugSack.CloseSack then
 				S:HandleCloseButton(child)
 			end

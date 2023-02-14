@@ -1,5 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
+local DT = E:GetModule('DataTexts')
 
 local format, print = format, print
 local hooksecurefunc = hooksecurefunc
@@ -8,7 +9,7 @@ local SetCVar = SetCVar
 
 -- Chat print
 function L1UI:Print(msg)
-	print(L1UI.Name..': '..msg)
+	print(L1UI.Name .. ': ' .. msg)
 end
 
 -- Reload popup
@@ -79,17 +80,18 @@ end
 
 -- General CVars
 function L1UI:Setup_CVars()
-
 	-- Core CVars
 	SetCVar('advancedCombatLogging', 1)
 	SetCVar('alwaysShowActionBars', 1)
 	SetCVar('autoLootDefault', 1)
+	SetCVar('AutoPushSpellToActionBar', 0)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('ffxDeath', 0)
 	SetCVar('ffxGlow', 0)
 	SetCVar('ffxNether', 0)
 	SetCVar('fstack_preferParentKeys', 0)
 	SetCVar('lockActionBars', 1)
+	SetCVar('nameplateShowOnlyNames', 1)
 	SetCVar('profanityFilter', 0)
 	SetCVar('rawMouseEnable', 1)
 	SetCVar('screenshotQuality', 10)
@@ -105,18 +107,19 @@ function L1UI:Setup_CVars()
 	end
 
 	-- My CVars
-	if L1UI.Me then
-		SetCVar('AutoPushSpellToActionBar', 0)
+	if E.global.L1UI.dev then
 		SetCVar('blockChannelInvites', 1)
 		SetCVar('CameraReduceUnexpectedMovement', 1)
+		SetCVar('DisableAdvancedFlyingVelocityVFX', 1)
 		SetCVar('disableServerNagle', 0)
 		SetCVar('displaySpellActivationOverlays', 0)
 		SetCVar('doNotFlashLowHealthWarning', 1)
 		SetCVar('empowerTapControls', 1)
 		SetCVar('floatingCombatTextCombatDamage', 0)
 		SetCVar('floatingCombatTextCombatHealing', 0)
+		SetCVar('GxAllowCachelessShaderMode', 0)
+		SetCVar('LowLatencyMode', 2)
 		SetCVar('maxFPSLoading', 30)
-		SetCVar('nameplateShowOnlyNames', 1)
 		SetCVar('RAIDweatherDensity', 0)
 		SetCVar('showToastOffline', 0)
 		SetCVar('showToastOnline', 0)
@@ -124,7 +127,6 @@ function L1UI:Setup_CVars()
 		SetCVar('SpellQueueWindow', 180)
 		SetCVar('useIPv6', 0)
 		SetCVar('weatherDensity', 0)
-		SetCVar('GxAllowCachelessShaderMode', 0)
 	end
 
 	L1UI:Print(L["CVars have been set."])
@@ -132,7 +134,6 @@ end
 
 -- NamePlate CVars
 function L1UI:NameplateCVars()
-
 	SetCVar('NamePlateHorizontalScale', 1)
 	SetCVar('nameplateLargerScale', 1)
 	SetCVar('nameplateLargeTopInset', -1)
@@ -167,7 +168,6 @@ end
 
 -- E.private & Media
 function L1UI:Setup_PrivateDB()
-
 	E.db.general.font = L1UI.DefaultFont
 	E.db.general.fontSize = 11
 	E.db.general.fontStyle = 'OUTLINE'
@@ -188,7 +188,7 @@ function L1UI:Setup_PrivateDB()
 	E.private.nameplates.enable = false
 	E.private.skins.parchmentRemoverEnable = true
 
-	if L1UI.Me then
+	if E.global.L1UI.dev then
 		E.private.general.chatBubbles = 'disabled'
 		E.private.L1UI.disabledFrames.AlertFrame = true
 		E.private.L1UI.disabledFrames.BossBanner = true
@@ -199,7 +199,6 @@ end
 
 -- E.global & Custom DataText
 function L1UI:Setup_GlobalDB()
-
 	SetCVar('uiScale', 0.71111111111111)
 	E.global.general.UIScale = 0.71111111111111
 
@@ -212,8 +211,8 @@ function L1UI:Setup_GlobalDB()
 	E.global.general.smallerWorldMapScale = 0.8
 	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
-	E.DataTexts:BuildPanelFrame('Luckyone_ActionBars_DT')
-	E.DataTexts:BuildPanelFrame('Luckyone_MiniMap_DT')
+	DT:BuildPanelFrame('Luckyone_ActionBars_DT')
+	DT:BuildPanelFrame('Luckyone_MiniMap_DT')
 
 	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 	ActionBarsDT.backdrop = true
@@ -244,7 +243,7 @@ function L1UI:Setup_GlobalDB()
 	MiniMapDT.fonts.enable = true
 	MiniMapDT.fonts.font = L1UI.DefaultFont
 	MiniMapDT.fonts.fontOutline = 'OUTLINE'
-	MiniMapDT.fonts.fontSize = 14
+	MiniMapDT.fonts.fontSize = 15
 	MiniMapDT.frameLevel = 1
 	MiniMapDT.frameStrata = 'HIGH'
 	MiniMapDT.growth = 'HORIZONTAL'
@@ -263,18 +262,19 @@ end
 
 -- ElvUI Layouts setup
 function L1UI:Setup_Layout(layout)
-
 	-- Disable LibDualSpec to set the profile
 	if E.Retail or E.Wrath then
-		ElvDB["namespaces"]["LibDualSpec-1.0"] = ElvDB["namespaces"]["LibDualSpec-1.0"] or {}
-		ElvDB["namespaces"]["LibDualSpec-1.0"]["char"][E.mynameRealm]["enabled"] = false
+		ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
+		ElvDB['namespaces']['LibDualSpec-1.0']['char'] = ElvDB['namespaces']['LibDualSpec-1.0']['char'] or {}
+		ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
+		ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
 	end
 
 	-- Create a fresh profile in ElvUI
 	if layout == 'main' then
-		E.data:SetProfile(L1UI.Me and 'Luckyone Main' or 'Luckyone Main '..L1UI.Version)
+		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. L1UI.Version)
 	elseif layout == 'healing' then
-		E.data:SetProfile(L1UI.Me and 'Luckyone Healing' or 'Luckyone Healing '..L1UI.Version)
+		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. L1UI.Version)
 	end
 
 	-- E.global & Custom DataText
@@ -305,6 +305,11 @@ function L1UI:Setup_Layout(layout)
 		L1UI:Setup_ShadowAndLight(true)
 	end
 
+	-- WindTools profile
+	if E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then
+		L1UI:Setup_WindTools(true)
+	end
+
 	-- Push the update
 	E:StaggeredUpdateAll()
 
@@ -312,12 +317,12 @@ function L1UI:Setup_Layout(layout)
 end
 
 -- Performance config section
-function L1UI:Cleanup_Cache(addon, type)
+function L1UI:Cleanup_Cache(addon, frame)
 	if addon == 'elvui' and E.private.chat.enable then
-		if type == 'chat' then
+		if frame == 'chat' then
 			CH:ResetHistory()
 			L1UI:Print(L["Cleared ElvUI Chat History."])
-		elseif type == 'editbox' then
+		elseif frame == 'editbox' then
 			CH:ResetEditboxHistory()
 			L1UI:Print(L["Cleared ElvUI Editbox History."])
 		end

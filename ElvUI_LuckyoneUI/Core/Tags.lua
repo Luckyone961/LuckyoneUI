@@ -12,13 +12,13 @@ local UnitPowerMax = UnitPowerMax
 -- Display unit classification without 'affix' on minor enemies
 E:AddTag('luckyone:classification', 'UNIT_CLASSIFICATION_CHANGED', function(unit)
 	local class = UnitClassification(unit)
-	if (class == 'rare') then
+	if class == 'rare' then
 		return 'Rare'
-	elseif (class == 'rareelite') then
+	elseif class == 'rareelite' then
 		return 'Rare Elite'
-	elseif (class == 'elite') then
+	elseif class == 'elite' then
 		return 'Elite'
-	elseif (class == 'worldboss') then
+	elseif class == 'worldboss' then
 		return 'Boss'
 	end
 end)
@@ -33,7 +33,7 @@ end)
 -- Display mana (current) if the unit is flagged healer (Retail only)
 E:AddTag('luckyone:healermana:current', 'UNIT_POWER_FREQUENT UNIT_MAXPOWER', function(unit)
 	local role = UnitGroupRolesAssigned(unit)
-	if (role == 'HEALER') then
+	if role == 'HEALER' then
 		return UnitPower(unit, Enum.PowerType.Mana)
 	end
 end, not E.Retail)
@@ -41,12 +41,12 @@ end, not E.Retail)
 -- Display mana (percent) if the unit is flagged healer (Retail only)
 E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT', function(unit)
 	local role = UnitGroupRolesAssigned(unit)
-	if (role == 'HEALER') then
+	if role == 'HEALER' then
 		local powerMax = UnitPowerMax(unit, Enum.PowerType.Mana)
-		if (powerMax == 0) then
+		if powerMax == 0 then
 			return 0
 		else
-			return floor(UnitPower(unit, Enum.PowerType.Mana) / powerMax * 100 + .5)
+			return floor(UnitPower(unit, Enum.PowerType.Mana) / powerMax * 100 + 0.5)
 		end
 	end
 end, not E.Retail)

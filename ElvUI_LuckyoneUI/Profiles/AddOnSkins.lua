@@ -9,7 +9,7 @@ function L1UI:Setup_AddOnSkins(noPrint)
 	local AS = unpack(AddOnSkins)
 
 	-- Profile creation
-	AS.data:SetProfile(L1UI.Me and 'Luckyone' or 'Luckyone '..L1UI.Version)
+	AS.data:SetProfile(E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. L1UI.Version)
 
 	-- Profile data
 	AS.db.Shadows = false

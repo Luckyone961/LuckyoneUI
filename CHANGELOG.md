@@ -1,3 +1,68 @@
+### Version 2.23 [In Development]
+___
+### Version 2.22 [13-02-2023]
+**All WoW Versions:**  
+Added auto update option in /luckyoneui config so you don't have to click 'Update Layout'  
+Added developer mode to the plugin: /luckydev on -> Read new config section carefully  
+More adjustments for ElvUI 13.26 compatibility  
+The plugin will now automatically skip the default ElvUI installer on new characters  
+Updated CVars installer step and config description  
+Updated WeakAuras section to make it more clear which classes are maintained  
+**Retail:**  
+Fixed 'ReputationReward' profile installer error when using ProjectAzilroka  
+Fixed 'SunsongRanchFarmer' profile installer error when using ProjectAzilroka  
+___
+### Version 2.21 [08-02-2023]
+**All WoW Versions:**  
+Hotfixed the installer for ElvUI 13.24  
+**Retail:**  
+Minor fix for the performance config section  
+___
+### Version 2.20 [03-02-2023]
+**All WoW Versions:**  
+Enabled raid icon for focus and target by default  
+Custom glow for initial installer is back to ElvUI default (was Autocast Shine)  
+Updated BigWigs profile (Text positions only)  
+**Retail:**  
+Added some more general WeakAuras to the config section  
+Added edit mode import string to Blizzard config section  
+• This will position Chat, Talking Head, Quest Tracker correctly  
+Updated Details profile (Update frequency, DPS brackets)  
+Updated WindTools profile (Minimap, LFG, Misc)  
+___
+### Version 2.19 [25-01-2023]
+**All WoW Versions:**  
+Fixed error in Core.lua while running the installer process  
+Increased default font size for Time DataText from 14 to 15  
+Updated default positions for most minimap icons (Mail, Difficulty, LFG)  
+Updated russian localization (Credits: Hollicsh)  
+**Retail:**  
+Disabled profession quality on ActionBars by default  
+Updated some Season 1 Dungeon StyleFilters (AA)  
+Updated WindTools profile  
+**Wrath Classic:**  
+Fixes for party custom text on initial installer  
+___
+### Version 2.18 [17-01-2023]
+**All WoW Versions:**  
+NamePlates "Rework" for ElvUI and Plater  
+The NamePlates style remains similar, however the following has changed:  
+• Castbar icon is smaller and moved to the bottom  
+• Debuffs moved to the left and also grow to the left  
+• Spacing between plates has been reduced slightly  
+• Target mark moved to the center  
+**Retail:**  
+Added profile for ElvUI WindTools plugin in /luckyoneui config  
+• I disabled most features by default to keep it clean and minimalistic  
+• You can also disable ProjectAzilroka if you decide to use WindTools instead  
+Added Vault of the Incarnates StyleFilter (VOTI)  
+• Includes important Broodkeeper Mythic and Raszageth Mythic adds  
+Updated some Season 1 Dungeon StyleFilters (TOJS)  
+Updated WarpDeplete profile slightly (Minor pixel perfect fix)  
+**Wrath Classic:**  
+Minor fixes for Phase 2  
+Updated TOC for 3.4.1  
+___
 ### Version 2.17 [09-01-2023]
 **All WoW Versions:**  
 Optimized filter priority for enemy player buffs in ElvUI NamePlates  

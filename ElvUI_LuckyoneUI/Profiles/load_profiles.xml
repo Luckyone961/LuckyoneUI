@@ -8,4 +8,5 @@
 	<Script file='Quartz.lua'/>
 	<Script file='ShadowLight.lua'/>
 	<Script file='WarpDeplete.lua'/>
+	<Script file='WindTools.lua'/>
 </Ui>
