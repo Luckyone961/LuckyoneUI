@@ -497,7 +497,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.cooldown.mmssColor.b = 1
 	E.db.cooldown.mmssColor.g = 1
 	E.db.cooldown.mmssColor.r = 1
-	E.db.cooldown.mmssThreshold = 600
+	E.db.cooldown.mmssThreshold = 120
 	E.db.cooldown.secondsColor.b = 1
 	E.db.cooldown.secondsIndicator.b = 0.8
 	E.db.cooldown.secondsIndicator.g = 0.8
