@@ -408,7 +408,8 @@ function L1UI:Layout_Dragonflight(layout)
 	-- Auras
 	E.db.auras.buffs.countFont = L1UI.DefaultFont
 	E.db.auras.buffs.countFontOutline = 'OUTLINE'
-	E.db.auras.buffs.countFontSize = 11
+	E.db.auras.buffs.countFontSize = 12
+	E.db.auras.buffs.countXOffset = 1
 	E.db.auras.buffs.countYOffset = 2
 	E.db.auras.buffs.fadeThreshold = -1
 	E.db.auras.buffs.horizontalSpacing = 1
@@ -416,12 +417,14 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.auras.buffs.size = 22
 	E.db.auras.buffs.timeFont = L1UI.DefaultFont
 	E.db.auras.buffs.timeFontOutline = 'OUTLINE'
+	E.db.auras.buffs.timeXOffset = 1
 	E.db.auras.buffs.verticalSpacing = 14
 	E.db.auras.cooldown.checkSeconds = true
 	E.db.auras.cooldown.hhmmThreshold = 120
 	E.db.auras.debuffs.countFont = L1UI.DefaultFont
 	E.db.auras.debuffs.countFontOutline = 'OUTLINE'
-	E.db.auras.debuffs.countFontSize = 11
+	E.db.auras.debuffs.countFontSize = 12
+	E.db.auras.debuffs.countXOffset = 1
 	E.db.auras.debuffs.countYOffset = 2
 	E.db.auras.debuffs.fadeThreshold = -1
 	E.db.auras.debuffs.horizontalSpacing = 1
@@ -430,6 +433,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.auras.debuffs.size = 22
 	E.db.auras.debuffs.timeFont = L1UI.DefaultFont
 	E.db.auras.debuffs.timeFontOutline = 'OUTLINE'
+	E.db.auras.debuffs.timeXOffset = 1
 	E.db.auras.debuffs.verticalSpacing = 14
 
 	-- Chat
