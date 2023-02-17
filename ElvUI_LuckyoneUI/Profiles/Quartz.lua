@@ -16,8 +16,12 @@ function L1UI:Setup_Quartz(layout)
 	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. L1UI.Version
 
 	-- Disable LibDualSpec to set the profile
-	Quartz3DB['namespaces']['LibDualSpec-1.0'] = Quartz3DB['namespaces']['LibDualSpec-1.0'] or {}
-	Quartz3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
+	if E.Retail then
+		Quartz3DB['namespaces']['LibDualSpec-1.0'] = Quartz3DB['namespaces']['LibDualSpec-1.0'] or {}
+		Quartz3DB['namespaces']['LibDualSpec-1.0']['char'] = Quartz3DB['namespaces']['LibDualSpec-1.0']['char'] or {}
+		Quartz3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = Quartz3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
+		Quartz3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
+	end
 
 	-- Profile db
 	for _, profile in pairs({ name, name_healing }) do
