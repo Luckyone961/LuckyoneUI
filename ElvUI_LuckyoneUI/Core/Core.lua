@@ -255,8 +255,8 @@ function L1UI:Setup_GlobalDB()
 	MiniMapDT.panelTransparency = true
 	MiniMapDT.textJustify = 'CENTER'
 	MiniMapDT.tooltipAnchor = 'ANCHOR_BOTTOMLEFT'
-	MiniMapDT.tooltipXOffset = -30
-	MiniMapDT.tooltipYOffset = -6
+	MiniMapDT.tooltipXOffset = -53
+	MiniMapDT.tooltipYOffset = -3
 	MiniMapDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
 	MiniMapDT.width = 56
 end
