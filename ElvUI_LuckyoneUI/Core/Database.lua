@@ -30,7 +30,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.enhancedPvpMessages = false
 	E.db.general.interruptAnnounce = 'EMOTE'
 	E.db.general.itemLevel.itemLevelFont = L1UI.DefaultFont
-	E.db.general.itemLevel.itemLevelFontSize = 11
+	E.db.general.itemLevel.itemLevelFontSize = 10
 	E.db.general.loginmessage = false
 	E.db.general.lootRoll.buttonSize = 22
 	E.db.general.lootRoll.spacing = 3

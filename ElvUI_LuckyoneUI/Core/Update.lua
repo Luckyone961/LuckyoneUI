@@ -7,6 +7,7 @@ function L1UI:UpdateLayout(layout)
 
 	-- General db updates
 	E.db.general.altPowerBar.statusBarColorGradient = true
+	E.db.general.itemLevel.itemLevelFontSize = 10
 
 	L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "] .. L1UI.Version)
 end
