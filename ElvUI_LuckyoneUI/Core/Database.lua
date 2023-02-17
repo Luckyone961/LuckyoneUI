@@ -71,7 +71,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar1.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar1.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar1.hotkeyFontSize = 9
-	E.db.actionbar.bar1.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar1.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar1.hotkeyTextYOffset = -1
 	E.db.actionbar.bar1.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar1.macroFontOutline = 'OUTLINE'
@@ -89,7 +89,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar2.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar2.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar2.hotkeyFontSize = 9
-	E.db.actionbar.bar2.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar2.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar2.hotkeyTextYOffset = -1
 	E.db.actionbar.bar2.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar2.macroFontOutline = 'OUTLINE'
@@ -108,7 +108,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar3.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar3.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar3.hotkeyFontSize = 9
-	E.db.actionbar.bar3.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar3.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar3.hotkeyTextYOffset = -1
 	E.db.actionbar.bar3.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar3.macroFontOutline = 'OUTLINE'
@@ -129,7 +129,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar4.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar4.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar4.hotkeyFontSize = 9
-	E.db.actionbar.bar4.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar4.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar4.hotkeyTextYOffset = -1
 	E.db.actionbar.bar4.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar4.macroFontOutline = 'OUTLINE'
@@ -150,7 +150,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar5.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar5.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar5.hotkeyFontSize = 9
-	E.db.actionbar.bar5.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar5.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar5.hotkeyTextYOffset = -1
 	E.db.actionbar.bar5.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar5.macroFontOutline = 'OUTLINE'
@@ -171,7 +171,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar6.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar6.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar6.hotkeyFontSize = 9
-	E.db.actionbar.bar6.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar6.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar6.hotkeyTextYOffset = -1
 	E.db.actionbar.bar6.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar6.macroFontOutline = 'OUTLINE'
@@ -188,7 +188,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar7.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar7.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar7.hotkeyFontSize = 9
-	E.db.actionbar.bar7.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar7.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar7.hotkeyTextYOffset = -1
 	E.db.actionbar.bar7.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar7.macroFontOutline = 'OUTLINE'
@@ -205,7 +205,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar8.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar8.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar8.hotkeyFontSize = 9
-	E.db.actionbar.bar8.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar8.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar8.hotkeyTextYOffset = -1
 	E.db.actionbar.bar8.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar8.macroFontOutline = 'OUTLINE'
@@ -222,7 +222,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar9.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar9.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar9.hotkeyFontSize = 9
-	E.db.actionbar.bar9.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar9.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar9.hotkeyTextYOffset = -1
 	E.db.actionbar.bar9.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar9.macroFontOutline = 'OUTLINE'
@@ -239,7 +239,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar10.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar10.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar10.hotkeyFontSize = 9
-	E.db.actionbar.bar10.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar10.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar10.hotkeyTextYOffset = -1
 	E.db.actionbar.bar10.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar10.macroFontOutline = 'OUTLINE'
@@ -273,7 +273,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.bar13.hotkeyFont = L1UI.DefaultFont
 		E.db.actionbar.bar13.hotkeyFontOutline = 'OUTLINE'
 		E.db.actionbar.bar13.hotkeyFontSize = 9
-		E.db.actionbar.bar13.hotkeyTextPosition = 'TOPLEFT'
+		E.db.actionbar.bar13.hotkeyTextPosition = 'TOP'
 		E.db.actionbar.bar13.hotkeyTextYOffset = -1
 		E.db.actionbar.bar13.macroFont = L1UI.DefaultFont
 		E.db.actionbar.bar13.macroFontOutline = 'OUTLINE'
@@ -290,7 +290,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.bar14.hotkeyFont = L1UI.DefaultFont
 		E.db.actionbar.bar14.hotkeyFontOutline = 'OUTLINE'
 		E.db.actionbar.bar14.hotkeyFontSize = 9
-		E.db.actionbar.bar14.hotkeyTextPosition = 'TOPLEFT'
+		E.db.actionbar.bar14.hotkeyTextPosition = 'TOP'
 		E.db.actionbar.bar14.hotkeyTextYOffset = -1
 		E.db.actionbar.bar14.macroFont = L1UI.DefaultFont
 		E.db.actionbar.bar14.macroFontOutline = 'OUTLINE'
@@ -307,7 +307,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.bar15.hotkeyFont = L1UI.DefaultFont
 		E.db.actionbar.bar15.hotkeyFontOutline = 'OUTLINE'
 		E.db.actionbar.bar15.hotkeyFontSize = 9
-		E.db.actionbar.bar15.hotkeyTextPosition = 'TOPLEFT'
+		E.db.actionbar.bar15.hotkeyTextPosition = 'TOP'
 		E.db.actionbar.bar15.hotkeyTextYOffset = -1
 		E.db.actionbar.bar15.macroFont = L1UI.DefaultFont
 		E.db.actionbar.bar15.macroFontOutline = 'OUTLINE'
