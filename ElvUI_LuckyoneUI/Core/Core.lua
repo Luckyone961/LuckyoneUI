@@ -248,7 +248,7 @@ function L1UI:Setup_GlobalDB()
 	MiniMapDT.frameLevel = 1
 	MiniMapDT.frameStrata = 'HIGH'
 	MiniMapDT.growth = 'HORIZONTAL'
-	MiniMapDT.height = 12
+	MiniMapDT.height = 18
 	MiniMapDT.mouseover = false
 	MiniMapDT.name = 'Luckyone_MiniMap_DT'
 	MiniMapDT.numPoints = 1
@@ -258,7 +258,7 @@ function L1UI:Setup_GlobalDB()
 	MiniMapDT.tooltipXOffset = -30
 	MiniMapDT.tooltipYOffset = -6
 	MiniMapDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
-	MiniMapDT.width = 60
+	MiniMapDT.width = 56
 end
 
 -- ElvUI Layouts setup
