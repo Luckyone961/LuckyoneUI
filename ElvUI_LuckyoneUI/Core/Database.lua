@@ -523,20 +523,41 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.databars.threat.enable = false
 
 	-- DataTexts custom
+	E.db.datatexts.panels.Luckyone_ActionBars_DT.battleground = false
 	E.db.datatexts.panels.Luckyone_ActionBars_DT.enable = true
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[1] = 'System'
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[2] = 'Combat'
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[3] = 'Durability'
+	E.db.datatexts.panels.Luckyone_MiniMap_DT.battleground = false
 	E.db.datatexts.panels.Luckyone_MiniMap_DT.enable = true
 	E.db.datatexts.panels.Luckyone_MiniMap_DT[1] = 'Time'
 
 	-- DataTexts default
+	E.db.datatexts.battlePanel.LeftChatDataPanel[1] = ''
+	E.db.datatexts.battlePanel.LeftChatDataPanel[2] = ''
+	E.db.datatexts.battlePanel.LeftChatDataPanel[3] = ''
+	E.db.datatexts.battlePanel.RightChatDataPanel[1] = ''
+	E.db.datatexts.battlePanel.RightChatDataPanel[2] = ''
+	E.db.datatexts.battlePanel.RightChatDataPanel[3] = ''
 	E.db.datatexts.font = L1UI.DefaultFont
 	E.db.datatexts.fontOutline = 'OUTLINE'
 	E.db.datatexts.fontSize = 11
-	E.db.datatexts.panels.MinimapPanel.enable = false
+	E.db.datatexts.panels.LeftChatDataPanel.battleground = false
 	E.db.datatexts.panels.LeftChatDataPanel.enable = false
+	E.db.datatexts.panels.LeftChatDataPanel.panelTransparency = true
+	E.db.datatexts.panels.LeftChatDataPanel[1] = ''
+	E.db.datatexts.panels.LeftChatDataPanel[2] = ''
+	E.db.datatexts.panels.LeftChatDataPanel[3] = ''
+	E.db.datatexts.panels.MinimapPanel.enable = false
+	E.db.datatexts.panels.MinimapPanel.panelTransparency = true
+	E.db.datatexts.panels.MinimapPanel[1] = ''
+	E.db.datatexts.panels.MinimapPanel[2] = ''
+	E.db.datatexts.panels.RightChatDataPanel.battleground = false
 	E.db.datatexts.panels.RightChatDataPanel.enable = false
+	E.db.datatexts.panels.RightChatDataPanel.panelTransparency = true
+	E.db.datatexts.panels.RightChatDataPanel[1] = ''
+	E.db.datatexts.panels.RightChatDataPanel[2] = ''
+	E.db.datatexts.panels.RightChatDataPanel[3] = ''
 
 	-- Tooltip
 	E.db.tooltip.alwaysShowRealm = true
