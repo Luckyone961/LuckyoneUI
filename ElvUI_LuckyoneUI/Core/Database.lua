@@ -466,6 +466,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.chat.tabFontSize = 10
 	E.db.chat.tabSelector = 'NONE'
 	E.db.chat.throttleInterval = 0
+	E.db.chat.useBTagName = true
 
 	-- Cooldown Text
 	E.db.cooldown.daysIndicator.g = 0.4
