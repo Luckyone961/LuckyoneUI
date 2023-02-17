@@ -437,6 +437,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.auras.debuffs.verticalSpacing = 14
 
 	-- Chat
+	E.db.chat.customTimeColor.b = 1
+	E.db.chat.customTimeColor.g = 1
+	E.db.chat.customTimeColor.r = 1
 	E.db.chat.desaturateVoiceIcons = false
 	E.db.chat.editboxHistorySize = 5
 	E.db.chat.editBoxPosition = 'ABOVE_CHAT_INSIDE'
@@ -470,6 +473,8 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.chat.tabFontSize = 10
 	E.db.chat.tabSelector = 'NONE'
 	E.db.chat.throttleInterval = 0
+	E.db.chat.timeStampFormat = '%H:%M '
+	E.db.chat.timeStampLocalTime = true
 	E.db.chat.useBTagName = true
 
 	-- Cooldown Text
