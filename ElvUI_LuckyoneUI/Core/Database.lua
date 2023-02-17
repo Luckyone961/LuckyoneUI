@@ -371,6 +371,9 @@ function L1UI:Layout_Dragonflight(layout)
 	-- Bags
 	E.db.bags.autoToggle.guildBank = true
 	E.db.bags.autoToggle.soulBind = false
+	E.db.bags.bagBar.backdropSpacing = 1
+	E.db.bags.bagBar.size = 23
+	E.db.bags.bagBar.spacing = 0
 	E.db.bags.bagSize = 30
 	E.db.bags.bagWidth = 414
 	E.db.bags.bankSize = 30
@@ -1028,6 +1031,7 @@ function L1UI:Layout_Dragonflight(layout)
 	-- Shared movers
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-178'
 	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-300,-210'
+	E.db.movers.BagsMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,UIParent,TOPRIGHT,-80,-207'
 	E.db.movers.BNETMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-199'

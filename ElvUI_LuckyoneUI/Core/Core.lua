@@ -172,6 +172,7 @@ function L1UI:Setup_PrivateDB()
 	E.db.general.fontSize = 11
 	E.db.general.fontStyle = 'OUTLINE'
 
+	E.private.bags.bagBar = false
 	E.private.general.chatBubbleFont = L1UI.DefaultFont
 	E.private.general.chatBubbleFontOutline = 'OUTLINE'
 	E.private.general.dmgfont = L1UI.DefaultFont
