@@ -419,8 +419,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.auras.buffs.timeFontOutline = 'OUTLINE'
 	E.db.auras.buffs.timeXOffset = 1
 	E.db.auras.buffs.verticalSpacing = 14
-	E.db.auras.cooldown.checkSeconds = true
-	E.db.auras.cooldown.hhmmThreshold = 120
 	E.db.auras.debuffs.countFont = L1UI.DefaultFont
 	E.db.auras.debuffs.countFontOutline = 'OUTLINE'
 	E.db.auras.debuffs.countFontSize = 12
@@ -478,22 +476,34 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.chat.useBTagName = true
 
 	-- Cooldown Text
-	E.db.cooldown.daysIndicator.g = 0.4
-	E.db.cooldown.daysIndicator.r = 0.4
-	E.db.cooldown.expireIndicator.b = 0
-	E.db.cooldown.expireIndicator.g = 0
+	E.db.cooldown.checkSeconds = true
+	E.db.cooldown.daysIndicator.b = 0.8
+	E.db.cooldown.daysIndicator.g = 0.8
+	E.db.cooldown.daysIndicator.r = 0.8
+	E.db.cooldown.expireIndicator.b = 0.8
+	E.db.cooldown.expireIndicator.g = 0.8
+	E.db.cooldown.expireIndicator.r = 0.8
 	E.db.cooldown.fonts.font = L1UI.DefaultFont
 	E.db.cooldown.fonts.fontSize = 16
 	E.db.cooldown.hhmmColor.b = 1
 	E.db.cooldown.hhmmColor.g = 1
 	E.db.cooldown.hhmmColor.r = 0.4
-	E.db.cooldown.hoursIndicator.r = 0.4
+	E.db.cooldown.hoursIndicator.b = 0.8
+	E.db.cooldown.hoursIndicator.g = 0.8
+	E.db.cooldown.hoursIndicator.r = 0.8
+	E.db.cooldown.minutesIndicator.b = 0.8
+	E.db.cooldown.minutesIndicator.g = 0.8
+	E.db.cooldown.minutesIndicator.r = 0.8
 	E.db.cooldown.mmssColor.b = 1
 	E.db.cooldown.mmssColor.g = 1
 	E.db.cooldown.mmssColor.r = 1
+	E.db.cooldown.mmssThreshold = 600
 	E.db.cooldown.secondsColor.b = 1
+	E.db.cooldown.secondsIndicator.b = 0.8
+	E.db.cooldown.secondsIndicator.g = 0.8
+	E.db.cooldown.secondsIndicator.r = 0.8
 	E.db.cooldown.targetAura = false
-	E.db.cooldown.threshold = 5
+	E.db.cooldown.threshold = 4
 
 	-- DataBars
 	E.db.databars.azerite.enable = false
