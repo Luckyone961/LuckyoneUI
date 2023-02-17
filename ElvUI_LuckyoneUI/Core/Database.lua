@@ -9,6 +9,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.afkChat = false
 	E.db.general.altPowerBar.font = L1UI.DefaultFont
 	E.db.general.altPowerBar.statusBar = L1UI.DefaultTexture
+	E.db.general.altPowerBar.statusBarColorGradient = true
 	E.db.general.autoAcceptInvite = true
 	E.db.general.autoRepair = E.Retail and 'GUILD' or 'PLAYER'
 	E.db.general.backdropcolor.b = 0.13

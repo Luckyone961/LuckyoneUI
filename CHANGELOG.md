@@ -1,4 +1,8 @@
 ### Version 2.23 [In Development]
+**All WoW Versions:**  
+Fixed rare installer error when using Quartz for castbars  
+**Retail:**  
+Enabled color gradient for Alternative Power by default  
 ___
 ### Version 2.22 [13-02-2023]
 **All WoW Versions:**  
