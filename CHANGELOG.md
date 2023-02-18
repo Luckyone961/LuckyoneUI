@@ -1,6 +1,12 @@
 ### Version 2.23 [In Development]
 **All WoW Versions:**  
 Fixed rare installer error when using Quartz for castbars  
+The following changes will only apply to fresh profiles and not update existing profiles  
+• ActionBar hotkey text position is now 'TOP' (was 'TOPLEFT')  
+• Chat will now show time stamps (Format: HH:MM, Color: White)  
+• Cooldown text will now show in "44m" format and swap to MM:SS at 2 minutes remaining  
+• Itemlevel font size is now 10 (was 11)  
+• Mouseover tooltip of the custom Minimap DataText will no longer overlap Minimap buttons  
 **Retail:**  
 Enabled color gradient for Alternative Power by default  
 ___
