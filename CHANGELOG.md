@@ -1,5 +1,6 @@
-### Version 2.23 [In Development]
+### Version 2.23 [18-02-2023]
 **All WoW Versions:**  
+Added seperate installer step for all ElvUI plugin profiles  
 Fixed rare installer error when using Quartz for castbars  
 The following changes will only apply to fresh profiles and not update existing profiles  
 • ActionBar hotkey text position is now 'TOP' (was 'TOPLEFT')  
@@ -9,6 +10,7 @@ The following changes will only apply to fresh profiles and not update existing 
 • Mouseover tooltip of the custom Minimap DataText will no longer overlap Minimap buttons  
 **Retail:**  
 Enabled color gradient for Alternative Power by default  
+Fixed the installer not working with the most recent WindTools update  
 ___
 ### Version 2.22 [13-02-2023]
 **All WoW Versions:**  
