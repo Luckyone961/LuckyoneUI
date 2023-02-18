@@ -291,26 +291,6 @@ function L1UI:Setup_Layout(layout)
 		L1UI:Layout_Dragonflight('healing')
 	end
 
-	-- AddOnSkins profile
-	if E:IsAddOnEnabled('AddOnSkins') then
-		L1UI:Setup_AddOnSkins(true)
-	end
-
-	-- ProjectAzilroka profile
-	if E:IsAddOnEnabled('ProjectAzilroka') then
-		L1UI:Setup_ProjectAzilroka(true)
-	end
-
-	-- Shadow & Light profile
-	if E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then
-		L1UI:Setup_ShadowAndLight(true)
-	end
-
-	-- WindTools profile
-	if E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then
-		L1UI:Setup_WindTools(true)
-	end
-
 	-- Push the update
 	E:StaggeredUpdateAll()
 
