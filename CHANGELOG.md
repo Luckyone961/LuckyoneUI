@@ -1,4 +1,4 @@
-### Version 2.23 [18-02-2023]
+### Version 2.23 [19-02-2023]
 **All WoW Versions:**  
 Added seperate installer step for all ElvUI plugin profiles  
 Fixed rare installer error when using Quartz for castbars  
