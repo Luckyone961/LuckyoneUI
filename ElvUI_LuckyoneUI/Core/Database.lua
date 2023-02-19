@@ -9,6 +9,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.afkChat = false
 	E.db.general.altPowerBar.font = L1UI.DefaultFont
 	E.db.general.altPowerBar.statusBar = L1UI.DefaultTexture
+	E.db.general.altPowerBar.statusBarColorGradient = true
 	E.db.general.autoAcceptInvite = true
 	E.db.general.autoRepair = E.Retail and 'GUILD' or 'PLAYER'
 	E.db.general.backdropcolor.b = 0.13
@@ -29,7 +30,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.enhancedPvpMessages = false
 	E.db.general.interruptAnnounce = 'EMOTE'
 	E.db.general.itemLevel.itemLevelFont = L1UI.DefaultFont
-	E.db.general.itemLevel.itemLevelFontSize = 11
+	E.db.general.itemLevel.itemLevelFontSize = 10
 	E.db.general.loginmessage = false
 	E.db.general.lootRoll.buttonSize = 22
 	E.db.general.lootRoll.spacing = 3
@@ -70,7 +71,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar1.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar1.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar1.hotkeyFontSize = 9
-	E.db.actionbar.bar1.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar1.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar1.hotkeyTextYOffset = -1
 	E.db.actionbar.bar1.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar1.macroFontOutline = 'OUTLINE'
@@ -88,7 +89,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar2.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar2.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar2.hotkeyFontSize = 9
-	E.db.actionbar.bar2.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar2.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar2.hotkeyTextYOffset = -1
 	E.db.actionbar.bar2.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar2.macroFontOutline = 'OUTLINE'
@@ -107,7 +108,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar3.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar3.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar3.hotkeyFontSize = 9
-	E.db.actionbar.bar3.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar3.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar3.hotkeyTextYOffset = -1
 	E.db.actionbar.bar3.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar3.macroFontOutline = 'OUTLINE'
@@ -128,7 +129,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar4.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar4.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar4.hotkeyFontSize = 9
-	E.db.actionbar.bar4.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar4.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar4.hotkeyTextYOffset = -1
 	E.db.actionbar.bar4.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar4.macroFontOutline = 'OUTLINE'
@@ -149,7 +150,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar5.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar5.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar5.hotkeyFontSize = 9
-	E.db.actionbar.bar5.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar5.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar5.hotkeyTextYOffset = -1
 	E.db.actionbar.bar5.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar5.macroFontOutline = 'OUTLINE'
@@ -170,7 +171,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar6.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar6.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar6.hotkeyFontSize = 9
-	E.db.actionbar.bar6.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar6.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar6.hotkeyTextYOffset = -1
 	E.db.actionbar.bar6.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar6.macroFontOutline = 'OUTLINE'
@@ -187,7 +188,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar7.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar7.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar7.hotkeyFontSize = 9
-	E.db.actionbar.bar7.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar7.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar7.hotkeyTextYOffset = -1
 	E.db.actionbar.bar7.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar7.macroFontOutline = 'OUTLINE'
@@ -204,7 +205,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar8.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar8.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar8.hotkeyFontSize = 9
-	E.db.actionbar.bar8.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar8.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar8.hotkeyTextYOffset = -1
 	E.db.actionbar.bar8.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar8.macroFontOutline = 'OUTLINE'
@@ -221,7 +222,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar9.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar9.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar9.hotkeyFontSize = 9
-	E.db.actionbar.bar9.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar9.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar9.hotkeyTextYOffset = -1
 	E.db.actionbar.bar9.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar9.macroFontOutline = 'OUTLINE'
@@ -238,7 +239,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar10.hotkeyFont = L1UI.DefaultFont
 	E.db.actionbar.bar10.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar10.hotkeyFontSize = 9
-	E.db.actionbar.bar10.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.bar10.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar10.hotkeyTextYOffset = -1
 	E.db.actionbar.bar10.macroFont = L1UI.DefaultFont
 	E.db.actionbar.bar10.macroFontOutline = 'OUTLINE'
@@ -272,7 +273,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.bar13.hotkeyFont = L1UI.DefaultFont
 		E.db.actionbar.bar13.hotkeyFontOutline = 'OUTLINE'
 		E.db.actionbar.bar13.hotkeyFontSize = 9
-		E.db.actionbar.bar13.hotkeyTextPosition = 'TOPLEFT'
+		E.db.actionbar.bar13.hotkeyTextPosition = 'TOP'
 		E.db.actionbar.bar13.hotkeyTextYOffset = -1
 		E.db.actionbar.bar13.macroFont = L1UI.DefaultFont
 		E.db.actionbar.bar13.macroFontOutline = 'OUTLINE'
@@ -289,7 +290,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.bar14.hotkeyFont = L1UI.DefaultFont
 		E.db.actionbar.bar14.hotkeyFontOutline = 'OUTLINE'
 		E.db.actionbar.bar14.hotkeyFontSize = 9
-		E.db.actionbar.bar14.hotkeyTextPosition = 'TOPLEFT'
+		E.db.actionbar.bar14.hotkeyTextPosition = 'TOP'
 		E.db.actionbar.bar14.hotkeyTextYOffset = -1
 		E.db.actionbar.bar14.macroFont = L1UI.DefaultFont
 		E.db.actionbar.bar14.macroFontOutline = 'OUTLINE'
@@ -306,7 +307,7 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.bar15.hotkeyFont = L1UI.DefaultFont
 		E.db.actionbar.bar15.hotkeyFontOutline = 'OUTLINE'
 		E.db.actionbar.bar15.hotkeyFontSize = 9
-		E.db.actionbar.bar15.hotkeyTextPosition = 'TOPLEFT'
+		E.db.actionbar.bar15.hotkeyTextPosition = 'TOP'
 		E.db.actionbar.bar15.hotkeyTextYOffset = -1
 		E.db.actionbar.bar15.macroFont = L1UI.DefaultFont
 		E.db.actionbar.bar15.macroFontOutline = 'OUTLINE'
@@ -370,6 +371,9 @@ function L1UI:Layout_Dragonflight(layout)
 	-- Bags
 	E.db.bags.autoToggle.guildBank = true
 	E.db.bags.autoToggle.soulBind = false
+	E.db.bags.bagBar.backdropSpacing = 1
+	E.db.bags.bagBar.size = 23
+	E.db.bags.bagBar.spacing = 0
 	E.db.bags.bagSize = 30
 	E.db.bags.bagWidth = 414
 	E.db.bags.bankSize = 30
@@ -404,7 +408,8 @@ function L1UI:Layout_Dragonflight(layout)
 	-- Auras
 	E.db.auras.buffs.countFont = L1UI.DefaultFont
 	E.db.auras.buffs.countFontOutline = 'OUTLINE'
-	E.db.auras.buffs.countFontSize = 11
+	E.db.auras.buffs.countFontSize = 12
+	E.db.auras.buffs.countXOffset = 1
 	E.db.auras.buffs.countYOffset = 2
 	E.db.auras.buffs.fadeThreshold = -1
 	E.db.auras.buffs.horizontalSpacing = 1
@@ -412,12 +417,12 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.auras.buffs.size = 22
 	E.db.auras.buffs.timeFont = L1UI.DefaultFont
 	E.db.auras.buffs.timeFontOutline = 'OUTLINE'
+	E.db.auras.buffs.timeXOffset = 1
 	E.db.auras.buffs.verticalSpacing = 14
-	E.db.auras.cooldown.checkSeconds = true
-	E.db.auras.cooldown.hhmmThreshold = 120
 	E.db.auras.debuffs.countFont = L1UI.DefaultFont
 	E.db.auras.debuffs.countFontOutline = 'OUTLINE'
-	E.db.auras.debuffs.countFontSize = 11
+	E.db.auras.debuffs.countFontSize = 12
+	E.db.auras.debuffs.countXOffset = 1
 	E.db.auras.debuffs.countYOffset = 2
 	E.db.auras.debuffs.fadeThreshold = -1
 	E.db.auras.debuffs.horizontalSpacing = 1
@@ -426,9 +431,13 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.auras.debuffs.size = 22
 	E.db.auras.debuffs.timeFont = L1UI.DefaultFont
 	E.db.auras.debuffs.timeFontOutline = 'OUTLINE'
+	E.db.auras.debuffs.timeXOffset = 1
 	E.db.auras.debuffs.verticalSpacing = 14
 
 	-- Chat
+	E.db.chat.customTimeColor.b = 1
+	E.db.chat.customTimeColor.g = 1
+	E.db.chat.customTimeColor.r = 1
 	E.db.chat.desaturateVoiceIcons = false
 	E.db.chat.editboxHistorySize = 5
 	E.db.chat.editBoxPosition = 'ABOVE_CHAT_INSIDE'
@@ -462,24 +471,39 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.chat.tabFontSize = 10
 	E.db.chat.tabSelector = 'NONE'
 	E.db.chat.throttleInterval = 0
+	E.db.chat.timeStampFormat = '%H:%M '
+	E.db.chat.timeStampLocalTime = true
+	E.db.chat.useBTagName = true
 
 	-- Cooldown Text
-	E.db.cooldown.daysIndicator.g = 0.4
-	E.db.cooldown.daysIndicator.r = 0.4
-	E.db.cooldown.expireIndicator.b = 0
-	E.db.cooldown.expireIndicator.g = 0
+	E.db.cooldown.checkSeconds = true
+	E.db.cooldown.daysIndicator.b = 0.8
+	E.db.cooldown.daysIndicator.g = 0.8
+	E.db.cooldown.daysIndicator.r = 0.8
+	E.db.cooldown.expireIndicator.b = 0.8
+	E.db.cooldown.expireIndicator.g = 0.8
+	E.db.cooldown.expireIndicator.r = 0.8
 	E.db.cooldown.fonts.font = L1UI.DefaultFont
 	E.db.cooldown.fonts.fontSize = 16
 	E.db.cooldown.hhmmColor.b = 1
 	E.db.cooldown.hhmmColor.g = 1
 	E.db.cooldown.hhmmColor.r = 0.4
-	E.db.cooldown.hoursIndicator.r = 0.4
+	E.db.cooldown.hoursIndicator.b = 0.8
+	E.db.cooldown.hoursIndicator.g = 0.8
+	E.db.cooldown.hoursIndicator.r = 0.8
+	E.db.cooldown.minutesIndicator.b = 0.8
+	E.db.cooldown.minutesIndicator.g = 0.8
+	E.db.cooldown.minutesIndicator.r = 0.8
 	E.db.cooldown.mmssColor.b = 1
 	E.db.cooldown.mmssColor.g = 1
 	E.db.cooldown.mmssColor.r = 1
+	E.db.cooldown.mmssThreshold = 120
 	E.db.cooldown.secondsColor.b = 1
+	E.db.cooldown.secondsIndicator.b = 0.8
+	E.db.cooldown.secondsIndicator.g = 0.8
+	E.db.cooldown.secondsIndicator.r = 0.8
 	E.db.cooldown.targetAura = false
-	E.db.cooldown.threshold = 5
+	E.db.cooldown.threshold = 4
 
 	-- DataBars
 	E.db.databars.azerite.enable = false
@@ -499,20 +523,41 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.databars.threat.enable = false
 
 	-- DataTexts custom
+	E.db.datatexts.panels.Luckyone_ActionBars_DT.battleground = false
 	E.db.datatexts.panels.Luckyone_ActionBars_DT.enable = true
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[1] = 'System'
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[2] = 'Combat'
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[3] = 'Durability'
+	E.db.datatexts.panels.Luckyone_MiniMap_DT.battleground = false
 	E.db.datatexts.panels.Luckyone_MiniMap_DT.enable = true
 	E.db.datatexts.panels.Luckyone_MiniMap_DT[1] = 'Time'
 
 	-- DataTexts default
+	E.db.datatexts.battlePanel.LeftChatDataPanel[1] = ''
+	E.db.datatexts.battlePanel.LeftChatDataPanel[2] = ''
+	E.db.datatexts.battlePanel.LeftChatDataPanel[3] = ''
+	E.db.datatexts.battlePanel.RightChatDataPanel[1] = ''
+	E.db.datatexts.battlePanel.RightChatDataPanel[2] = ''
+	E.db.datatexts.battlePanel.RightChatDataPanel[3] = ''
 	E.db.datatexts.font = L1UI.DefaultFont
 	E.db.datatexts.fontOutline = 'OUTLINE'
 	E.db.datatexts.fontSize = 11
-	E.db.datatexts.panels.MinimapPanel.enable = false
+	E.db.datatexts.panels.LeftChatDataPanel.battleground = false
 	E.db.datatexts.panels.LeftChatDataPanel.enable = false
+	E.db.datatexts.panels.LeftChatDataPanel.panelTransparency = true
+	E.db.datatexts.panels.LeftChatDataPanel[1] = ''
+	E.db.datatexts.panels.LeftChatDataPanel[2] = ''
+	E.db.datatexts.panels.LeftChatDataPanel[3] = ''
+	E.db.datatexts.panels.MinimapPanel.enable = false
+	E.db.datatexts.panels.MinimapPanel.panelTransparency = true
+	E.db.datatexts.panels.MinimapPanel[1] = ''
+	E.db.datatexts.panels.MinimapPanel[2] = ''
+	E.db.datatexts.panels.RightChatDataPanel.battleground = false
 	E.db.datatexts.panels.RightChatDataPanel.enable = false
+	E.db.datatexts.panels.RightChatDataPanel.panelTransparency = true
+	E.db.datatexts.panels.RightChatDataPanel[1] = ''
+	E.db.datatexts.panels.RightChatDataPanel[2] = ''
+	E.db.datatexts.panels.RightChatDataPanel[3] = ''
 
 	-- Tooltip
 	E.db.tooltip.alwaysShowRealm = true
@@ -1027,6 +1072,7 @@ function L1UI:Layout_Dragonflight(layout)
 	-- Shared movers
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-178'
 	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-300,-210'
+	E.db.movers.BagsMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,UIParent,TOPRIGHT,-80,-207'
 	E.db.movers.BNETMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-199'
@@ -1034,7 +1080,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-110'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
-	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-46,-141'
+	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-50,-138'
 	E.db.movers.DurabilityFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-184'
 	E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 	E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,68'

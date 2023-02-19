@@ -1,4 +1,5 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local PI = E:GetModule('PluginInstaller')
 
 local next, pairs, strlower, wipe = next, pairs, strlower, wipe
 
@@ -22,7 +23,7 @@ end
 -- LuckyoneUI chat commands
 function L1UI:Toggles(msg)
 	if msg == 'install' then
-		E.PluginInstaller:Queue(L1UI.InstallerData)
+		PI:Queue(L1UI.InstallerData)
 	elseif msg == 'config' then
 		E:ToggleOptions()
 		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')

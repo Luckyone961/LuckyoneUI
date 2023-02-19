@@ -13,14 +13,10 @@ function L1UI:Setup_BigWigs(layout)
 	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. L1UI.Version
 
 	-- Required to add profiles to BigWigs3DB
-	if not IsAddOnLoaded('BigWigs_Core') then
-		LoadAddOn('BigWigs_Core')
-	end
+	if not IsAddOnLoaded('BigWigs_Core') then LoadAddOn('BigWigs_Core') end
 
 	-- Required to add profiles to Plugins DB
-	if not IsAddOnLoaded('BigWigs_Plugins') then
-		LoadAddOn('BigWigs_Plugins')
-	end
+	if not IsAddOnLoaded('BigWigs_Plugins') then LoadAddOn('BigWigs_Plugins') end
 
 	-- Flavor specific db name
 	local DB = E.Retail and BigWigs3DB or BigWigsClassicDB

@@ -8,9 +8,7 @@ function L1UI:Skin_BugSack()
 	if not E.private.L1UI.skins.BugSack then return end
 
 	hooksecurefunc(BugSack, 'OpenSack', function()
-		if BugSack.Skinned then
-			return
-		end
+		if BugSack.Skinned then return end
 
 		-- Main Frame
 		S:HandleFrame(BugSackFrame)

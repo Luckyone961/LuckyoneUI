@@ -1,5 +1,6 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local D = E:GetModule('Distributor')
+local PI = E:GetModule('PluginInstaller')
 
 local ACH
 
@@ -70,7 +71,7 @@ function L1UI:Config()
 	L1UI.Options.args.setup = ACH:Group('', nil, 1, nil, function(info) return E.db.L1UI.general[info[#info]] end, function(info, value) E.db.L1UI.general[info[#info]] = value end)
 	L1UI.Options.args.setup.inline = true
 	L1UI.Options.args.setup.args.auto_update = ACH:Toggle(L["Auto Update"], L["Automatically update after a new release."], 1)
-	L1UI.Options.args.setup.args.installer = ACH:Execute(L["Install"], L["Re-Run the installation process."], 2, function() E.PluginInstaller:Queue(L1UI.InstallerData) E:ToggleOptions() end)
+	L1UI.Options.args.setup.args.installer = ACH:Execute(L["Install"], L["Re-Run the installation process."], 2, function() PI:Queue(L1UI.InstallerData) E:ToggleOptions() end)
 	L1UI.Options.args.setup.args.updateMain = ACH:Execute(L["Update Main Layout"], L["Update Main layout to LuckyoneUI version: "]..L1UI.Version, 3, function() L1UI:UpdateLayout('main') end, nil, true)
 	L1UI.Options.args.setup.args.updateHealing = ACH:Execute(L["Update Healing Layout"], L["Update Healing layout to LuckyoneUI version: "]..L1UI.Version, 4, function() L1UI:UpdateLayout('healing') end, nil, true)
 

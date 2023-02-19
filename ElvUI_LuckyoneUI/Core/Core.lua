@@ -172,6 +172,7 @@ function L1UI:Setup_PrivateDB()
 	E.db.general.fontSize = 11
 	E.db.general.fontStyle = 'OUTLINE'
 
+	E.private.bags.bagBar = false
 	E.private.general.chatBubbleFont = L1UI.DefaultFont
 	E.private.general.chatBubbleFontOutline = 'OUTLINE'
 	E.private.general.dmgfont = L1UI.DefaultFont
@@ -250,17 +251,17 @@ function L1UI:Setup_GlobalDB()
 	MiniMapDT.frameLevel = 1
 	MiniMapDT.frameStrata = 'HIGH'
 	MiniMapDT.growth = 'HORIZONTAL'
-	MiniMapDT.height = 12
+	MiniMapDT.height = 18
 	MiniMapDT.mouseover = false
 	MiniMapDT.name = 'Luckyone_MiniMap_DT'
 	MiniMapDT.numPoints = 1
 	MiniMapDT.panelTransparency = true
 	MiniMapDT.textJustify = 'CENTER'
 	MiniMapDT.tooltipAnchor = 'ANCHOR_BOTTOMLEFT'
-	MiniMapDT.tooltipXOffset = -30
-	MiniMapDT.tooltipYOffset = -6
+	MiniMapDT.tooltipXOffset = -53
+	MiniMapDT.tooltipYOffset = -3
 	MiniMapDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
-	MiniMapDT.width = 60
+	MiniMapDT.width = 56
 end
 
 -- ElvUI Layouts setup
@@ -291,26 +292,6 @@ function L1UI:Setup_Layout(layout)
 		L1UI:Layout_Dragonflight('main')
 	elseif layout == 'healing' then
 		L1UI:Layout_Dragonflight('healing')
-	end
-
-	-- AddOnSkins profile
-	if E:IsAddOnEnabled('AddOnSkins') then
-		L1UI:Setup_AddOnSkins(true)
-	end
-
-	-- ProjectAzilroka profile
-	if E:IsAddOnEnabled('ProjectAzilroka') then
-		L1UI:Setup_ProjectAzilroka(true)
-	end
-
-	-- Shadow & Light profile
-	if E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then
-		L1UI:Setup_ShadowAndLight(true)
-	end
-
-	-- WindTools profile
-	if E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then
-		L1UI:Setup_WindTools(true)
 	end
 
 	-- Push the update
