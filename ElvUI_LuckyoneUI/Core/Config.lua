@@ -5,7 +5,7 @@ local PI = E:GetModule('PluginInstaller')
 local ACH
 
 local pairs, sort = pairs, sort
-local format, tonumber = format, tonumber
+local format, tonumber, tostring = format, tonumber, tostring
 local tconcat, tinsert = table.concat, table.insert
 
 local GetCVar, GetCVarBool = GetCVar, GetCVarBool
