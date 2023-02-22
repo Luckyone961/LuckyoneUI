@@ -24,7 +24,7 @@ E.PopupDialogs.L1UI_RL = {
 
 -- Version check popup
 E.PopupDialogs.L1UI_VC = {
-	text = format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]),
+	text = format('|cffC80000%s|r', L["Your ElvUI is outdated - please update and reload."]),
 	whileDead = 1,
 	hideOnEscape = false,
 }
