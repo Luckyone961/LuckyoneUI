@@ -4,11 +4,10 @@ if not L then return end
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
-L["Addon Download:"] = true
 L["Addon Profiles"] = true
 L["AddOnSkins profile has been set."] = true
+L["Adon Download:"] = true
 L["Alert Frame"] = true
-L["Archive"] = true
 L["Auras"] = true
 L["Author"] = true
 L["Auto Update"] = true
@@ -50,6 +49,7 @@ L["Color Theme"] = true
 L["Console Variables"] = true
 L["Cosmetic"] = true
 L["Credits"] = true
+L["Current"] = true
 L["CVars have been set."] = true
 L["Dark Style (Default)"] = true
 L["Dark"] = true
@@ -71,6 +71,7 @@ L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affi
 L["Displays the unit's Mana (Role: Healer)"] = true
 L["Displays the unit's Mana in percent (Role: Healer)"] = true
 L["DPS & Tanks"] = true
+L["Dragonflight Layouts"] = true
 L["Druid"] = true
 L["Easy Delete"] = true
 L["ElvUI Layouts"] = true
@@ -99,6 +100,7 @@ L["Install"] = true
 L["Installation Complete"] = true
 L["Installation"] = true
 L["Layout has been set."] = true
+L["Layouts"] = true
 L["Left panel: General - Log - Whisper - Guild - Party."] = true
 L["Links"] = true
 L["Mage"] = true
@@ -123,6 +125,7 @@ L["Option 1: "] = true
 L["Option 2: "] = true
 L["Optional step. Dark is applied by default."] = true
 L["Optional step. ElvUI castbars are used by default."] = true
+L["Outdated"] = true
 L["Paladin"] = true
 L["Performance"] = true
 L["Player Frame Buffs"] = true
@@ -161,6 +164,7 @@ L["Setup CVars"] = true
 L["Setup Details"] = true
 L["Setup WarpDeplete"] = true
 L["Shadow&Light profile has been set."] = true
+L["Shadowlands Layouts"] = true
 L["Shaman"] = true
 L["Show all auras except blacklisted."] = true
 L["Show All"] = true
