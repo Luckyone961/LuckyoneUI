@@ -4,7 +4,6 @@ if not L then return end
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
-L["(Disable the other 3 plugins)"] = true
 L["Addon Download:"] = true
 L["Addon Profiles"] = "Addon Profile"
 L["AddOnSkins profile has been set."] = "AddOnSkins Profil wurde festgelegt."
@@ -62,6 +61,7 @@ L["Demon Hunter"] = "Demonenjäger"
 L["Description"] = "Beschreibung"
 L["Details profile has been set."] = "Details Profil wurde festgelegt."
 L["Details Profile"] = "Details Profil"
+L["Disable the other 3 plugins"] = true
 L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"] = "Zeigt die prozentuale Gesundheit mit 1 Dezimalstelle unter 100%, 2 Dezimalstellen unter 10% an und blendet Dezimalstellen bei 100% aus."
 L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"] = "Zeigt die Klassifizierung der Einheit an (z. B. 'Elite' und 'Selten'), aber ohne 'Affix'"
 L["Displays the unit's Mana (Role: Healer)"] = "Zeigt das Mana der Einheit an (Rolle: Heiler)"

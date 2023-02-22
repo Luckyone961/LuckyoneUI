@@ -46,7 +46,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_ProjectAzilroka() end)
 			PluginInstallFrame.Option2:SetText('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r')
 			if E.Retail then
-				PluginInstallFrame.Desc3:SetText(L["Option 1: "] .. '|cff5385edWindTools|r' .. ' ' .. L["(Disable the other 3 plugins)"])
+				PluginInstallFrame.Desc3:SetText(L["Option 1: "] .. '|cff5385edWindTools|r' .. ' ' .. '(' .. L["Disable the other 3 plugins"] .. ')')
 				PluginInstallFrame.Desc4:SetText(L["Option 2: "] .. '|cff16C3F2AddOn|r|cFFFFFFFFSkins|r' .. ' + ' .. '|cff16C3F2Project|r|cFFFFFFFFAzilroka|r' .. ' + ' .. '|cff9482c9Shadow & Light|r')
 				PluginInstallFrame.Option3:Show()
 				PluginInstallFrame.Option3:SetScript('OnClick', function() L1UI:Setup_ShadowAndLight() end)
