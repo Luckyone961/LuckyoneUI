@@ -341,7 +341,7 @@ function L1UI:Setup_StyleFilters()
 	E.global.nameplates.filters.ElvUI_Target.actions.scale = 1
 
 	-- Set NamePlate CVars
-	L1UI:NameplateCVars()
+	L1UI:NameplateCVars(true)
 
 	L1UI:Print(L["NamePlate StyleFilters and CVars have been set."])
 end

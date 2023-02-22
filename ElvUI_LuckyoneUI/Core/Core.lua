@@ -79,7 +79,7 @@ function L1UI:VersionCheck()
 end
 
 -- General CVars
-function L1UI:Setup_CVars()
+function L1UI:Setup_CVars(noPrint)
 	-- Core CVars
 	SetCVar('advancedCombatLogging', 1)
 	SetCVar('alwaysShowActionBars', 1)
@@ -129,11 +129,13 @@ function L1UI:Setup_CVars()
 		SetCVar('weatherDensity', 0)
 	end
 
-	L1UI:Print(L["CVars have been set."])
+	if not noPrint then
+		L1UI:Print(L["CVars have been set."])
+	end
 end
 
 -- NamePlate CVars
-function L1UI:NameplateCVars()
+function L1UI:NameplateCVars(noPrint)
 	SetCVar('NamePlateHorizontalScale', 1)
 	SetCVar('nameplateLargerScale', 1)
 	SetCVar('nameplateLargeTopInset', -1)
@@ -163,7 +165,9 @@ function L1UI:NameplateCVars()
 		SetCVar('nameplateNotSelectedAlpha', 1)
 	end
 
-	L1UI:Print(L["NamePlate CVars have been set."])
+	if not noPrint then
+		L1UI:Print(L["NamePlate CVars have been set."])
+	end
 end
 
 -- E.private & Media
