@@ -26,21 +26,30 @@ L1UI.DefaultTexture = 'Minimalist'
 L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 L1UI.Name = '|cff4beb2cLuckyoneUI|r'
 L1UI.RequiredVersion = 13.26
-L1UI.Version = GetAddOnMetadata(addon, 'Version')
+L1UI.Version = tonumber(GetAddOnMetadata(addon, 'Version'))
 
 function L1UI:Initialize()
+	-- Convert DB
+	if E.db.L1UI.install_version then
+		E.global.L1UI.install_version = tonumber(E.db.L1UI.install_version)
+		E.db.L1UI.install_version = nil
+	end
+
+	-- Skip default ElvUI installer
 	if E.private.install_complete == nil then
 		E.private.install_complete = E.version
 	end
 
-	if E.db.L1UI.install_version == nil then
+	-- Queue LuckyoneUI installer
+	if E.global.L1UI.install_version == nil then
 		PI:Queue(L1UI.InstallerData)
 	end
 
 	EP:RegisterPlugin(addon, L1UI.Config)
 	L1UI:RegisterEvents()
 
-	if E.db.L1UI.general.auto_update and (tostring(E.db.L1UI.install_version) < L1UI.Version) then
+	-- If auto update is enabled
+	if E.db.L1UI.general.auto_update and (E.global.L1UI.install_version < L1UI.Version) then
 		L1UI:UpdateLayout()
 	end
 end

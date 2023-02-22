@@ -2,9 +2,9 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
 local DT = E:GetModule('DataTexts')
 
+local C_UI_Reload = C_UI.Reload
 local format, print = format, print
 local hooksecurefunc = hooksecurefunc
-local ReloadUI = ReloadUI
 local SetCVar = SetCVar
 
 -- Chat print
@@ -17,7 +17,7 @@ E.PopupDialogs.L1UI_RL = {
 	text = L["Reload required - continue?"],
 	button1 = ACCEPT,
 	button2 = CANCEL,
-	OnAccept = ReloadUI,
+	OnAccept = C_UI_Reload,
 	whileDead = 1,
 	hideOnEscape = false,
 }
@@ -106,7 +106,7 @@ function L1UI:Setup_CVars()
 		SetCVar('previewTalents', 1)
 	end
 
-	-- My CVars
+	-- Developer CVars
 	if E.global.L1UI.dev then
 		SetCVar('blockChannelInvites', 1)
 		SetCVar('CameraReduceUnexpectedMovement', 1)
@@ -189,6 +189,7 @@ function L1UI:Setup_PrivateDB()
 	E.private.nameplates.enable = false
 	E.private.skins.parchmentRemoverEnable = true
 
+	-- Developer db
 	if E.global.L1UI.dev then
 		E.private.general.chatBubbles = 'disabled'
 		E.private.L1UI.disabledFrames.AlertFrame = true

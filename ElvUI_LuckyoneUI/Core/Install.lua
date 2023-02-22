@@ -1,12 +1,12 @@
 local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
+local C_UI_Reload = C_UI.Reload
 local format = format
-local ReloadUI = ReloadUI
 
 -- Set install version to current LuckyoneUI version
 local function InstallComplete()
-	E.db.L1UI.install_version = L1UI.Version
-	ReloadUI()
+	E.global.L1UI.install_version = L1UI.Version
+	C_UI_Reload()
 end
 
 -- Installer table
@@ -16,7 +16,7 @@ L1UI.InstallerData = {
 	tutorialImage = L1UI.Logo,
 	Pages = {
 		[1] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText(L["Welcome"])
+			PluginInstallFrame.SubTitle:SetText(L["Welcome"])
 			PluginInstallFrame.Desc1:SetText(L["This installation process will guide you through a few steps and apply settings to your current ElvUI profile."])
 			PluginInstallFrame.Desc2:SetText(L["Note: |cff4beb2cMake sure you have a backup of your current profile|r"])
 			PluginInstallFrame.Option1:Show()
@@ -65,7 +65,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetText(L["Class Color"])
 		end,
 		[5] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText(L["Chat"])
+			PluginInstallFrame.SubTitle:SetText(L["Chat"])
 			PluginInstallFrame.Desc1:SetText(L["This will setup the chat windows to look like this:\n\nLeft Chat: General - Log - Whisper - Guild - Party\n\nRight Chat: Details! Damage Meter"])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
@@ -73,7 +73,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetText(L["Setup Chat"])
 		end,
 		[6] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText(L["Console Variables"])
+			PluginInstallFrame.SubTitle:SetText(L["Console Variables"])
 			PluginInstallFrame.Desc1:SetText(L["Full list of all changed CVars can be found in /luckyoneui config -> CVars."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
@@ -81,7 +81,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetText(L["Setup CVars"])
 		end,
 		[7] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText(L["NamePlates"])
+			PluginInstallFrame.SubTitle:SetText(L["NamePlates"])
 			PluginInstallFrame.Desc1:SetText(L["Choose between ElvUI NamePlates and Plater NamePlates."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cHigh|r"])
 			PluginInstallFrame.Option1:Show()
@@ -92,7 +92,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetText('Plater')
 		end,
 		[8] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText(L["BossMods"])
+			PluginInstallFrame.SubTitle:SetText(L["BossMods"])
 			PluginInstallFrame.Desc1:SetText(L["Choose between DBM and BigWigs."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
@@ -109,7 +109,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option4:SetText(L["DBM Healing"])
 		end,
 		[9] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText(L["Details Profile"])
+			PluginInstallFrame.SubTitle:SetText(L["Details Profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for Details! Damage Meter."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
@@ -117,7 +117,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetText(L["Setup Details"])
 		end,
 		[10] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText(L["Quartz Profile"])
+			PluginInstallFrame.SubTitle:SetText(L["Quartz Profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for Quartz."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
@@ -128,7 +128,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetText(L["Quartz Healing"])
 		end,
 		[E.Retail and 11] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText(L["OmniCD Profile"])
+			PluginInstallFrame.SubTitle:SetText(L["OmniCD Profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for OmniCD Party CDs."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()
@@ -139,7 +139,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetText(L["OmniCD Healing"])
 		end,
 		[E.Retail and 12] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText(L["WarpDeplete Profile"])
+			PluginInstallFrame.SubTitle:SetText(L["WarpDeplete Profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for WarpDeplete."])
 			PluginInstallFrame.Desc2:SetText(L["Importance: |cff4beb2cOptional|r"])
 			PluginInstallFrame.Option1:Show()

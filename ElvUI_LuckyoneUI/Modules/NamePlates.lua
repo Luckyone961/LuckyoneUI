@@ -189,7 +189,7 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.TARGET.arrowSpacing = 25
 	E.db.nameplates.units.TARGET.glowStyle = 'style2'
 
-	-- Update the module so we don't require a ReloadUI
+	-- Update the module so we don't require a /reload
 	if NP.Initialized then
 		E:UpdateNamePlates(true)
 	end
