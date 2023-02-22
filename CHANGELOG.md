@@ -1,3 +1,9 @@
+### Version 2.24 [In Development]
+**All WoW Versions:**  
+Reworked all installer steps and descriptions for a better experience  
+Reworked installer behaviour so it only auto shows once per account instead of each character  
+Updated tons of locale strings for localization  
+___
 ### Version 2.23 [19-02-2023]
 **All WoW Versions:**  
 Added seperate installer step for all ElvUI plugin profiles  
