@@ -4,7 +4,7 @@ local EP = LibStub('LibElvUIPlugin-1.0')
 local PI = E:GetModule('PluginInstaller')
 
 local _G = _G
-local tostring = tostring
+local tonumber, tostring = tonumber, tostring
 local GetAddOnMetadata = GetAddOnMetadata
 
 local addon, Engine = ...
