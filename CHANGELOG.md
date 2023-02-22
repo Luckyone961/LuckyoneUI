@@ -1,6 +1,8 @@
 ### Version 2.24 [In Development]
 **All WoW Versions:**  
+Added layouts config section  
 Fixed a duplicate chat print during the installer process  
+Removed archive config section  
 Reworked all installer steps and descriptions for a better experience  
 Reworked installer behaviour so it only auto shows once per account instead of each character  
 Updated tons of locale strings for localization  
