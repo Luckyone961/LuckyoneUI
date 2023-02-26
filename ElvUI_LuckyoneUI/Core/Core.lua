@@ -2,9 +2,9 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
 local DT = E:GetModule('DataTexts')
 
+local C_UI_Reload = C_UI.Reload
 local format, print = format, print
 local hooksecurefunc = hooksecurefunc
-local ReloadUI = ReloadUI
 local SetCVar = SetCVar
 
 -- Chat print
@@ -17,14 +17,14 @@ E.PopupDialogs.L1UI_RL = {
 	text = L["Reload required - continue?"],
 	button1 = ACCEPT,
 	button2 = CANCEL,
-	OnAccept = ReloadUI,
+	OnAccept = C_UI_Reload,
 	whileDead = 1,
 	hideOnEscape = false,
 }
 
 -- Version check popup
 E.PopupDialogs.L1UI_VC = {
-	text = format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]),
+	text = format('|cffC80000%s|r', L["Your ElvUI is outdated - please update and reload."]),
 	whileDead = 1,
 	hideOnEscape = false,
 }
@@ -79,7 +79,7 @@ function L1UI:VersionCheck()
 end
 
 -- General CVars
-function L1UI:Setup_CVars()
+function L1UI:Setup_CVars(noPrint)
 	-- Core CVars
 	SetCVar('advancedCombatLogging', 1)
 	SetCVar('alwaysShowActionBars', 1)
@@ -106,7 +106,7 @@ function L1UI:Setup_CVars()
 		SetCVar('previewTalents', 1)
 	end
 
-	-- My CVars
+	-- Developer CVars
 	if E.global.L1UI.dev then
 		SetCVar('blockChannelInvites', 1)
 		SetCVar('CameraReduceUnexpectedMovement', 1)
@@ -129,11 +129,13 @@ function L1UI:Setup_CVars()
 		SetCVar('weatherDensity', 0)
 	end
 
-	L1UI:Print(L["CVars have been set."])
+	if not noPrint then
+		L1UI:Print(L["CVars have been set."])
+	end
 end
 
 -- NamePlate CVars
-function L1UI:NameplateCVars()
+function L1UI:NameplateCVars(noPrint)
 	SetCVar('NamePlateHorizontalScale', 1)
 	SetCVar('nameplateLargerScale', 1)
 	SetCVar('nameplateLargeTopInset', -1)
@@ -163,7 +165,9 @@ function L1UI:NameplateCVars()
 		SetCVar('nameplateNotSelectedAlpha', 1)
 	end
 
-	L1UI:Print(L["NamePlate CVars have been set."])
+	if not noPrint then
+		L1UI:Print(L["NamePlate CVars have been set."])
+	end
 end
 
 -- E.private & Media
@@ -189,6 +193,7 @@ function L1UI:Setup_PrivateDB()
 	E.private.nameplates.enable = false
 	E.private.skins.parchmentRemoverEnable = true
 
+	-- Developer db
 	if E.global.L1UI.dev then
 		E.private.general.chatBubbles = 'disabled'
 		E.private.L1UI.disabledFrames.AlertFrame = true
@@ -264,8 +269,8 @@ function L1UI:Setup_GlobalDB()
 	MiniMapDT.width = 56
 end
 
--- ElvUI Layouts setup
-function L1UI:Setup_Layout(layout)
+-- Dragonflight layouts
+function L1UI:Setup_Layout_Dragonflight(layout)
 	-- Disable LibDualSpec to set the profile
 	if E.Retail or E.Wrath then
 		ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
@@ -292,6 +297,51 @@ function L1UI:Setup_Layout(layout)
 		L1UI:Layout_Dragonflight('main')
 	elseif layout == 'healing' then
 		L1UI:Layout_Dragonflight('healing')
+	end
+
+	-- Push the update
+	E:StaggeredUpdateAll()
+
+	L1UI:Print(L["Layout has been set."])
+end
+
+-- Shadowlands layouts
+function L1UI:Setup_Layout_Shadowlands(layout)
+	-- Disable LibDualSpec to set the profile
+	if E.Retail or E.Wrath then
+		ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
+		ElvDB['namespaces']['LibDualSpec-1.0']['char'] = ElvDB['namespaces']['LibDualSpec-1.0']['char'] or {}
+		ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
+		ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
+	end
+
+	-- Create a fresh profile in ElvUI
+	if layout == 'main' then
+		E.data:SetProfile('Luckyone Shadowlands Main')
+	elseif layout == 'healing' then
+		E.data:SetProfile('Luckyone Shadowlands Healing')
+	end
+
+	-- E.global & Custom DataText
+	SetCVar('uiScale', 0.71111111111111)
+	E.global.general.UIScale = 0.71111111111111
+	E.global.datatexts.settings.Combat.TimeFull = false
+	E.global.datatexts.settings.System.latency = 'HOME'
+	E.global.datatexts.settings.Time.time24 = true
+	E.global.general.commandBarSetting = 'DISABLED'
+	E.global.general.fadeMapWhenMoving = false
+	E.global.general.mapAlphaWhenMoving = 0.35
+	E.global.general.smallerWorldMapScale = 0.8
+	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
+
+	-- E.private & Media
+	L1UI:Setup_PrivateDB()
+
+	-- E.db & Movers
+	if layout == 'main' then
+		L1UI:Layout_Shadowlands('main')
+	elseif layout == 'healing' then
+		L1UI:Layout_Shadowlands('healing')
 	end
 
 	-- Push the update

@@ -5,5 +5,4 @@ P.L1UI = {
 	general = {
 		auto_update = false,
 	},
-	install_version = nil,
 }

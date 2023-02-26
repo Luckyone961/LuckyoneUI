@@ -12,6 +12,8 @@ function L1UI:Setup_OmniCD(layout)
 
 	-- Disable LibDualSpec to set the profile
 	OmniCDDB['namespaces']['LibDualSpec-1.0'] = OmniCDDB['namespaces']['LibDualSpec-1.0'] or {}
+	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] = OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] or {}
+	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
 	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
 
 	-- Global db

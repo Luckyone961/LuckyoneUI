@@ -4,10 +4,10 @@ local PI = E:GetModule('PluginInstaller')
 local next, pairs, strlower, wipe = next, pairs, strlower, wipe
 
 local _G = _G
+local C_UI_Reload = C_UI.Reload
 local DisableAddOn, EnableAddOn = DisableAddOn, EnableAddOn
 local GetAddOnInfo, GetNumAddOns = GetAddOnInfo, GetNumAddOns
 local LoadAddOn = LoadAddOn
-local ReloadUI = ReloadUI
 local SetCVar = SetCVar
 
 -- Weekly Rewards Frame chat commands
@@ -49,14 +49,14 @@ function L1UI:DebugMode(msg)
 			end
 		end
 		SetCVar('scriptErrors', 1)
-		ReloadUI()
+		C_UI_Reload()
 	elseif switch == 'off' then
 		if next(ElvDB.LuckyoneDisabledAddOns) then
 			for name in pairs(ElvDB.LuckyoneDisabledAddOns) do
 				EnableAddOn(name, E.myname)
 			end
 			wipe(ElvDB.LuckyoneDisabledAddOns)
-			ReloadUI()
+			C_UI_Reload()
 		end
 	else
 		L1UI:Print('/luckydebug on - /luckydebug off')

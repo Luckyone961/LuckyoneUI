@@ -1,3 +1,16 @@
+### Version 2.24 [26-02-2023]
+**All WoW Versions:**  
+Added layouts config section  
+Fixed a duplicate chat print during the installer process  
+Removed archive config section  
+Reworked all installer steps and descriptions for a better experience  
+Reworked installer behaviour so it only auto shows once per account instead of each character  
+Updated tons of locale strings for localization  
+Updated website descriptions and GitHub readme file informations  
+Updates for ElvUI 13.27  
+**Retail:**  
+Fixed rare installer error when using the OmniCD installer step  
+___
 ### Version 2.23 [19-02-2023]
 **All WoW Versions:**  
 Added seperate installer step for all ElvUI plugin profiles  
