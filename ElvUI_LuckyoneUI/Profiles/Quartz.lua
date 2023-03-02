@@ -153,53 +153,56 @@ function L1UI:Setup_Quartz(layout)
 		['x'] = 0.000244140625,
 	}
 
-	Quartz3DB['namespaces']['Focus']['profiles'] = Quartz3DB['namespaces']['Focus']['profiles'] or {}
-	Quartz3DB['namespaces']['Focus']['profiles'][name] = {
-		['timetextx'] = 2,
-		['nametextx'] = 2,
-		['w'] = 238,
-		['y'] = -140.9997406005859,
-		['font'] = 'Expressway',
-		['iconalpha'] = 1,
-		['strata'] = 'HIGH',
-		['point'] = 'CENTER',
-		['border'] = 'Square Full White',
-		['noInterruptColor'] = {
-			nil, -- [1]
-			0, -- [2]
-			nil, -- [3]
-			1, -- [4]
-		},
-		['fontsize'] = 11,
-		['texture'] = 'Minimalist',
-		['timefontsize'] = 11,
-		['noInterruptChangeColor'] = true,
-		['noInterruptShield'] = false,
-		['x'] = 278.0001831054688,
-	}
-	Quartz3DB['namespaces']['Focus']['profiles'][name_healing] = {
-		['timetextx'] = 2,
-		['nametextx'] = 2,
-		['w'] = 238,
-		['y'] = -140.9997100830078,
-		['font'] = 'Expressway',
-		['iconalpha'] = 1,
-		['strata'] = 'HIGH',
-		['point'] = 'CENTER',
-		['border'] = 'Square Full White',
-		['noInterruptColor'] = {
-			nil, -- [1]
-			0, -- [2]
-			nil, -- [3]
-			1, -- [4]
-		},
-		['fontsize'] = 11,
-		['texture'] = 'Minimalist',
-		['timefontsize'] = 11,
-		['noInterruptChangeColor'] = true,
-		['noInterruptShield'] = false,
-		['x'] = 358.0001220703125,
-	}
+	-- Focus doesn't exist in Classic Era
+	if not E.Classic then
+		Quartz3DB['namespaces']['Focus']['profiles'] = Quartz3DB['namespaces']['Focus']['profiles'] or {}
+		Quartz3DB['namespaces']['Focus']['profiles'][name] = {
+			['timetextx'] = 2,
+			['nametextx'] = 2,
+			['w'] = 238,
+			['y'] = -140.9997406005859,
+			['font'] = 'Expressway',
+			['iconalpha'] = 1,
+			['strata'] = 'HIGH',
+			['point'] = 'CENTER',
+			['border'] = 'Square Full White',
+			['noInterruptColor'] = {
+				nil, -- [1]
+				0, -- [2]
+				nil, -- [3]
+				1, -- [4]
+			},
+			['fontsize'] = 11,
+			['texture'] = 'Minimalist',
+			['timefontsize'] = 11,
+			['noInterruptChangeColor'] = true,
+			['noInterruptShield'] = false,
+			['x'] = 278.0001831054688,
+		}
+		Quartz3DB['namespaces']['Focus']['profiles'][name_healing] = {
+			['timetextx'] = 2,
+			['nametextx'] = 2,
+			['w'] = 238,
+			['y'] = -140.9997100830078,
+			['font'] = 'Expressway',
+			['iconalpha'] = 1,
+			['strata'] = 'HIGH',
+			['point'] = 'CENTER',
+			['border'] = 'Square Full White',
+			['noInterruptColor'] = {
+				nil, -- [1]
+				0, -- [2]
+				nil, -- [3]
+				1, -- [4]
+			},
+			['fontsize'] = 11,
+			['texture'] = 'Minimalist',
+			['timefontsize'] = 11,
+			['noInterruptChangeColor'] = true,
+			['noInterruptShield'] = false,
+			['x'] = 358.0001220703125,
+		}
+	end
 
 	Quartz3DB['namespaces']['Target']['profiles'] = Quartz3DB['namespaces']['Target']['profiles'] or {}
 	Quartz3DB['namespaces']['Target']['profiles'][name] = {

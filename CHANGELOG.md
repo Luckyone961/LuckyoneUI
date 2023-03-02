@@ -1,6 +1,8 @@
 ### Version 2.25 [In Development]
 **All WoW Versions:**  
 Fixed rare installer error when using the BigWigs installer step  
+**Classic:**  
+Fixed installer error when using the Quartz installer step  
 ___
 ### Version 2.24 [26-02-2023]
 **All WoW Versions:**  
