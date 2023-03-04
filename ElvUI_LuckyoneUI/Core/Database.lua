@@ -981,7 +981,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid1.phaseIndicator.xOffset = 1
 	E.db.unitframe.units.raid1.power.enable = false
-	E.db.unitframe.units.raid1.pvpclassificationindicator.size = 18
+	E.db.unitframe.units.raid1.pvpclassificationindicator.enable = false
 	E.db.unitframe.units.raid1.raidicon.attachTo = 'TOPRIGHT'
 	E.db.unitframe.units.raid1.raidicon.attachToObject = 'Health'
 	E.db.unitframe.units.raid1.raidicon.size = 12
@@ -1037,7 +1037,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.phaseIndicator.anchorPoint = 'BOTTOMRIGHT'
 	E.db.unitframe.units.raid3.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid3.phaseIndicator.xOffset = 1
-	E.db.unitframe.units.raid3.pvpclassificationindicator.size = 18
+	E.db.unitframe.units.raid3.pvpclassificationindicator.enable = false
 	E.db.unitframe.units.raid3.raidicon.attachTo = 'TOPRIGHT'
 	E.db.unitframe.units.raid3.raidicon.attachToObject = 'Health'
 	E.db.unitframe.units.raid3.raidicon.size = 12
