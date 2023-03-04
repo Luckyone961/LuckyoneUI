@@ -997,9 +997,12 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid1.rdebuffs.stack.xOffset = 1
 	E.db.unitframe.units.raid1.rdebuffs.stack.yOffset = 0
 	E.db.unitframe.units.raid1.rdebuffs.yOffset = 1
-	E.db.unitframe.units.raid1.readycheckIcon.attachTo = 'Frame'
-	E.db.unitframe.units.raid1.readycheckIcon.position = 'CENTER'
+	E.db.unitframe.units.raid1.readycheckIcon.attachToObject = 'Frame'
+	E.db.unitframe.units.raid1.readycheckIcon.position = 'TOP'
+	E.db.unitframe.units.raid1.readycheckIcon.size = 14
+	E.db.unitframe.units.raid1.readycheckIcon.xOffset = 0
 	E.db.unitframe.units.raid1.readycheckIcon.yOffset = 0
+	E.db.unitframe.units.raid1.resurrectIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.raid1.resurrectIcon.size = 18
 	E.db.unitframe.units.raid1.roleIcon.attachTo = 'Frame'
 	E.db.unitframe.units.raid1.roleIcon.damager = false
@@ -1007,6 +1010,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid1.roleIcon.size = 12
 	E.db.unitframe.units.raid1.roleIcon.xOffset = 0
 	E.db.unitframe.units.raid1.roleIcon.yOffset = 0
+	E.db.unitframe.units.raid1.summonIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.raid1.summonIcon.size = 18
 	E.db.unitframe.units.raid1.threatStyle = 'NONE'
 	E.db.unitframe.units.raid1.verticalSpacing = 1
@@ -1048,10 +1052,11 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.rdebuffs.size = 14
 	E.db.unitframe.units.raid3.rdebuffs.stack.position = 'CENTER'
 	E.db.unitframe.units.raid3.rdebuffs.stack.yOffset = 0
-	E.db.unitframe.units.raid3.readycheckIcon.position = 'TOPRIGHT'
-	E.db.unitframe.units.raid3.readycheckIcon.xOffset = -1
+	E.db.unitframe.units.raid3.readycheckIcon.attachToObject = 'Frame'
+	E.db.unitframe.units.raid3.readycheckIcon.position = 'RIGHT'
+	E.db.unitframe.units.raid3.readycheckIcon.xOffset = 0
 	E.db.unitframe.units.raid3.readycheckIcon.yOffset = 0
-	E.db.unitframe.units.raid3.resurrectIcon.attachTo = 'LEFT'
+	E.db.unitframe.units.raid3.resurrectIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.raid3.resurrectIcon.size = 18
 	E.db.unitframe.units.raid3.roleIcon.attachTo = 'Frame'
 	E.db.unitframe.units.raid3.roleIcon.damager = false
@@ -1060,7 +1065,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.roleIcon.size = 12
 	E.db.unitframe.units.raid3.roleIcon.xOffset = 0
 	E.db.unitframe.units.raid3.roleIcon.yOffset = 0
-	E.db.unitframe.units.raid3.summonIcon.attachTo = 'LEFT'
+	E.db.unitframe.units.raid3.summonIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.raid3.summonIcon.size = 18
 	E.db.unitframe.units.raid3.threatStyle = 'NONE'
 	E.db.unitframe.units.raid3.verticalSpacing = 1
@@ -1191,18 +1196,21 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid1.buffIndicator.enable = false
 		E.db.unitframe.units.raid1.height = 38
 		E.db.unitframe.units.raid1.rdebuffs.xOffset = 33
+		E.db.unitframe.units.raid1.rdebuffs.yOffset = 12
 		E.db.unitframe.units.raid1.width = 82
 
 		-- Main Raid2
 		E.db.unitframe.units.raid2.buffIndicator.enable = false
 		E.db.unitframe.units.raid2.height = 38
 		E.db.unitframe.units.raid2.rdebuffs.xOffset = 33
+		E.db.unitframe.units.raid2.rdebuffs.yOffset = 12
 		E.db.unitframe.units.raid2.width = 82
 
 		-- Main Raid3
 		E.db.unitframe.units.raid3.buffIndicator.enable = false
 		E.db.unitframe.units.raid3.height = 24
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 33
+		E.db.unitframe.units.raid3.rdebuffs.yOffset = 5
 		E.db.unitframe.units.raid3.width = 82
 	elseif layout == 'healing' then
 		-- Healing growth directions

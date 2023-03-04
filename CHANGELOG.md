@@ -3,9 +3,10 @@
 Fixed rare installer error when using the BigWigs installer step  
 The following changes will only apply to fresh profiles and not update existing profiles  
 • Moved name text for Raid1 and Raid2 to CENTER (was TOP)  
+• Moved ressurect icon for Raid1, Raid2, Raid3 to RIGHT (was CENTER)  
+• Moved role icon for Raid1, Raid2, Raid3 to LEFT (was BOTTOMLEFT)  
+• Moved summon icon for Raid1, Raid2, Raid3 to RIGHT (was CENTER)  
 • Removed health text for Raid1 and Raid2 frames  
-• Updated role icon position for Raid1 to LEFT (was BOTTOMLEFT)  
-• Updated role icon position for Raid3 to LEFT (was BOTTOMLEFT)  
 **Classic:**  
 Fixed installer error when using the Quartz installer step  
 ___
