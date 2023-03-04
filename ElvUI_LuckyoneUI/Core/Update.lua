@@ -5,8 +5,5 @@ function L1UI:UpdateLayout(layout)
 	-- Bump install version
 	E.global.L1UI.install_version = L1UI.Version
 
-	-- UnitFrame updates
-	E.db.unitframe.units.raid3.roleIcon.position = 'LEFT'
-
 	L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "] .. L1UI.Version)
 end

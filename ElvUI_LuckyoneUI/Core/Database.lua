@@ -968,12 +968,12 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid1.disableTargetGlow = true
 	E.db.unitframe.units.raid1.healPrediction.absorbStyle = 'WRAPPED'
 	E.db.unitframe.units.raid1.healPrediction.enable = true
-	E.db.unitframe.units.raid1.health.text_format = '[healthcolor][luckyone:health:percent]'
+	E.db.unitframe.units.raid1.health.text_format = ''
 	E.db.unitframe.units.raid1.health.xOffset = 0
 	E.db.unitframe.units.raid1.health.yOffset = 1
 	E.db.unitframe.units.raid1.horizontalSpacing = 1
 	E.db.unitframe.units.raid1.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.raid1.name.position = 'TOP'
+	E.db.unitframe.units.raid1.name.position = 'CENTER'
 	E.db.unitframe.units.raid1.name.text_format = '[classcolor][name:veryshort]'
 	E.db.unitframe.units.raid1.name.yOffset = -1
 	E.db.unitframe.units.raid1.numGroups = E.Retail and 4 or 2
@@ -1003,7 +1003,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid1.resurrectIcon.size = 18
 	E.db.unitframe.units.raid1.roleIcon.attachTo = 'Frame'
 	E.db.unitframe.units.raid1.roleIcon.damager = false
-	E.db.unitframe.units.raid1.roleIcon.position = 'BOTTOMLEFT'
+	E.db.unitframe.units.raid1.roleIcon.position = 'LEFT'
 	E.db.unitframe.units.raid1.roleIcon.size = 12
 	E.db.unitframe.units.raid1.roleIcon.xOffset = 0
 	E.db.unitframe.units.raid1.roleIcon.yOffset = 0
