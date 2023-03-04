@@ -1279,18 +1279,21 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid1.buffIndicator.enable = true
 		E.db.unitframe.units.raid1.height = 40
 		E.db.unitframe.units.raid1.rdebuffs.xOffset = 39
+		E.db.unitframe.units.raid1.rdebuffs.yOffset = 13
 		E.db.unitframe.units.raid1.width = 94
 
 		-- Healing Raid2
 		E.db.unitframe.units.raid2.buffIndicator.enable = true
 		E.db.unitframe.units.raid2.height = 40
 		E.db.unitframe.units.raid2.rdebuffs.xOffset = 39
+		E.db.unitframe.units.raid2.rdebuffs.yOffset = 13
 		E.db.unitframe.units.raid2.width = 94
 
 		-- Healing Raid3
 		E.db.unitframe.units.raid3.buffIndicator.enable = true
 		E.db.unitframe.units.raid3.height = 23
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 39
+		E.db.unitframe.units.raid3.rdebuffs.yOffset = 4
 		E.db.unitframe.units.raid3.width = 94
 	end
 end
