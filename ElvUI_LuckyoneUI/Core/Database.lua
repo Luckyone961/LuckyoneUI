@@ -4,6 +4,8 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 function L1UI:Layout_Dragonflight(layout)
 	-- AB conversion
 	E.db.convertPages = true
+	-- Protect movers error
+	E.db.movers = E.db.movers or {}
 
 	-- General
 	E.db.general.afkChat = false
@@ -1072,9 +1074,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.verticalSpacing = 1
 	E.db.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
 
-	-- Protect movers error
-	E.db.movers = E.db.movers or {}
-
 	-- Shared movers
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-178'
 	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-300,-210'
@@ -1302,6 +1301,8 @@ end
 function L1UI:Layout_Shadowlands(layout)
 	-- AB conversion
 	E.db.convertPages = true
+	-- Protect movers error
+	E.db.movers = E.db.movers or {}
 
 	-- General
 	E.db.general.afkChat = false
@@ -2173,9 +2174,6 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.unitframe.units.raid1.growthDirection = 'RIGHT_DOWN'
 	E.db.unitframe.units.raid2.growthDirection = 'RIGHT_DOWN'
 	E.db.unitframe.units.raid3.growthDirection = 'RIGHT_DOWN'
-
-	-- Protect movers error
-	E.db.movers = E.db.movers or {}
 
 	-- Shared movers
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-135'
