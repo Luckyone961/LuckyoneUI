@@ -1,6 +1,7 @@
 ### Version 2.25 [In Development]
 **All WoW Versions:**  
 Fixed rare installer error when using the BigWigs installer step  
+Updated role icon position for Raid3 to LEFT (was BOTTOMLEFT)  
 **Classic:**  
 Fixed installer error when using the Quartz installer step  
 ___

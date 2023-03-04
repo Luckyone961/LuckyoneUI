@@ -1056,7 +1056,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.roleIcon.attachTo = 'Frame'
 	E.db.unitframe.units.raid3.roleIcon.damager = false
 	E.db.unitframe.units.raid3.roleIcon.enable = true
-	E.db.unitframe.units.raid3.roleIcon.position = 'BOTTOMLEFT'
+	E.db.unitframe.units.raid3.roleIcon.position = 'LEFT'
 	E.db.unitframe.units.raid3.roleIcon.size = 12
 	E.db.unitframe.units.raid3.roleIcon.xOffset = 0
 	E.db.unitframe.units.raid3.roleIcon.yOffset = 0
