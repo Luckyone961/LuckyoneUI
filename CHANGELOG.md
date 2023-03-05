@@ -8,7 +8,7 @@ The following changes will only apply to fresh profiles or if dev-mode is enable
 • Moved summon icon for Raid1, Raid2, Raid3 to RIGHT (was CENTER)  
 • Removed health text for Raid1 and Raid2 frames  
 **Classic:**  
-Fixed installer error when using the Quartz installer step  
+Fixed installer error when using the Quartz installer step in Classic Era  
 ___
 ### Version 2.24 [26-02-2023]
 **All WoW Versions:**  
