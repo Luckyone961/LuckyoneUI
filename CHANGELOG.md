@@ -1,12 +1,13 @@
-### Version 2.25 [In Development]
+### Version 2.25 [06-03-2023]
 **All WoW Versions:**  
-Fixed rare installer error when using the BigWigs installer step  
 The following changes will only apply to fresh profiles or if dev-mode is enabled  
 • Moved name text for Raid1 and Raid2 to CENTER (was TOP)  
 • Moved ressurect icon for Raid1, Raid2, Raid3 to RIGHT (was CENTER)  
 • Moved role icon for Raid1, Raid2, Raid3 to LEFT (was BOTTOMLEFT)  
 • Moved summon icon for Raid1, Raid2, Raid3 to RIGHT (was CENTER)  
 • Removed health text for Raid1 and Raid2 frames  
+**Retail:**  
+Fixed rare installer error when using the BigWigs installer step  
 **Classic:**  
 Fixed installer error when using the Quartz installer step in Classic Era  
 ___
