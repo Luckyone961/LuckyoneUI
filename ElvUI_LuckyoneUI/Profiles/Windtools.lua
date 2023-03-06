@@ -6,14 +6,6 @@ local _G = _G
 function L1UI:Setup_WindTools(noPrint)
 	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then return end
 
-	-- Don't overlap with ProjectAzilroka
-	if E:IsAddOnEnabled('ProjectAzilroka') then
-		local PA = _G.ProjectAzilroka
-		PA.db.EnhancedFriendsList.Enable = false
-		PA.db.FasterLoot.Enable = false
-		PA.db.SquareMinimapButtons.Enable = false
-	end
-
 	-- Fix for garrison icon not moving to MinimapButtonBar
 	E.db.general.minimap.icons.classHall.scale = 1
 	E.db.general.minimap.icons.classHall.xOffset = 0

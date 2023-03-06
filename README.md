@@ -18,11 +18,11 @@
 • WeakAuras import strings for select specs and general utility  
 
 ### **Profiles**  
-• **UI:** ElvUI  
-• **BossMods:** DBM, BigWigs, LittleWigs  
-• **NamePlates:** Plater, ElvUI NamePlates  
-• **AddOns:** Details, OmniCD, Quartz, WarpDeplete  
-• **Plugins:** AddOnSkins, ProjectAzilroka, Shadow&Light, WindTools  
+• **UI:** [ElvUI](https://www.tukui.org/welcome.php)  
+• **BossMods:** [DBM](https://www.curseforge.com/wow/addons/deadly-boss-mods), [BigWigs](https://www.curseforge.com/wow/addons/big-wigs), [LittleWigs](https://www.curseforge.com/wow/addons/little-wigs)  
+• **NamePlates:** [Plater](https://www.curseforge.com/wow/addons/plater-nameplates), [ElvUI NamePlates](https://www.tukui.org/welcome.php)  
+• **AddOns:** [Details](https://www.curseforge.com/wow/addons/details), [OmniCD](https://www.curseforge.com/wow/addons/omnicd), [Quartz](https://www.curseforge.com/wow/addons/quartz), [WarpDeplete](https://www.curseforge.com/wow/addons/warpdeplete)  
+• **Plugins:** [AddOnSkins](https://www.curseforge.com/wow/addons/addonskins), [ProjectAzilroka](https://www.curseforge.com/wow/addons/projectazilroka), [Shadow&Light](https://www.curseforge.com/wow/addons/elvui-shadow-light), [WindTools](https://www.curseforge.com/wow/addons/elvui-windtools)  
 
 ### **Chat commands**  
 • **/luckyoneui install** [Re-Run the installer process]  
@@ -33,20 +33,20 @@
 
 ### **Required AddOns**  
 • The most recent ElvUI version. You need to stay up-to-date.  
-• **Download link:** https://www.tukui.org/welcome.php  
+• **Download link:** [Click here (Redirect to Tukui.org)](https://www.tukui.org/welcome.php)  
 
 ### **Luckyone WeakAuras**  
 • All my public import strings will be shared and updated on wago  
-• **Profile link:** https://wago.io/p/Luckyone  
+• **Profile link:** [Click here (Redirect to Wago.io)](https://wago.io/p/Luckyone)  
 
 ### **Luckyone on Twitch and YouTube**  
 • Raiding and Mythic+ content. Balance Druid PoV most of the time.  
-• **Twitch link:** https://www.twitch.tv/Luckyone1996  
-• **YouTube link:** https://www.youtube.com/@LuckyoneWoW  
+• **Twitch link:** [Click here (Redirect to Twitch.tv)](https://www.twitch.tv/Luckyone1996)  
+• **YouTube link:** [Click here (Redirect to YouTube.com)](https://www.youtube.com/@LuckyoneWoW)  
 
 ### **Setup guide**  
 • Installation guide for new users is available on Wowhead  
-• **Guide link:** https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide  
+• **Guide link:** [Click here (Redirect to Wowhead.com)](https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide)  
 
 ***
 ### **Main Layout:**  

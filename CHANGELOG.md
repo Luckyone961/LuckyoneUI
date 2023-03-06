@@ -1,3 +1,17 @@
+### Version 2.25 [06-03-2023]
+**All WoW Versions:**  
+The following changes will only apply to fresh profiles or if dev-mode is enabled  
+• Moved name text for Raid1 and Raid2 to CENTER (was TOP)  
+• Moved ressurect icon for Raid1, Raid2, Raid3 to RIGHT (was CENTER)  
+• Moved role icon for Raid1, Raid2, Raid3 to LEFT (was BOTTOMLEFT)  
+• Moved summon icon for Raid1, Raid2, Raid3 to RIGHT (was CENTER)  
+• Removed health text for Raid1 and Raid2 frames  
+Updated website descriptions and GitHub readme file informations  
+**Retail:**  
+Fixed rare installer error when using the BigWigs installer step  
+**Classic:**  
+Fixed 'focus' error when using the Quartz installer step in Classic Era  
+___
 ### Version 2.24 [26-02-2023]
 **All WoW Versions:**  
 Added layouts config section  

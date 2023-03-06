@@ -24,6 +24,7 @@ function L1UI:Setup_BigWigs(layout)
 
 	-- Profile creation
 	DB['profiles'] = DB['profiles'] or {}
+	DB['namespaces'] = DB['namespaces'] or {}
 
 	for _, profile in pairs({ name, name_healing }) do
 		DB['profiles'][profile] = DB['profiles'][profile] or {}
