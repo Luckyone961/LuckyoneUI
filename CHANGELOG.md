@@ -1,3 +1,5 @@
+### Version 2.26 [In Development]
+___
 ### Version 2.25 [06-03-2023]
 **All WoW Versions:**  
 The following changes will only apply to fresh profiles or if dev-mode is enabled  
