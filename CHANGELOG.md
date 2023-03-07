@@ -1,4 +1,6 @@
 ### Version 2.26 [In Development]
+**Retail:**  
+Updated WindTools profile  
 ___
 ### Version 2.25 [06-03-2023]
 **All WoW Versions:**  

@@ -27,7 +27,6 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.maps.worldMap.enable = false
 	E.private.WT.maps.worldMap.reveal.enable = false
 	E.private.WT.maps.worldMap.scale.enable = false
-	E.private.WT.misc.guildNewsItemLevel = false
 	E.private.WT.misc.lfgList.icon.pack = 'LYNUI'
 	E.private.WT.misc.lfgList.icon.size = 14
 	E.private.WT.misc.lfgList.line.height = 4
@@ -48,7 +47,6 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.skins.addons.bugSack = false
 	E.private.WT.skins.addons.hekili = false
 	E.private.WT.skins.addons.immersion = false
-	E.private.WT.skins.addons.meetingStone = false
 	E.private.WT.skins.addons.myslot = false
 	E.private.WT.skins.addons.omniCD = false
 	E.private.WT.skins.addons.omniCDIcon = false
