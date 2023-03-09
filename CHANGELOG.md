@@ -1,4 +1,7 @@
 ### Version 2.26 [In Development]
+**All WoW Versions:**  
+Disabled smoothing for UnitFrame Fader  
+Updated out of range transparency for UnitFrame Fader  
 **Retail:**  
 Updated WindTools profile  
 ___
