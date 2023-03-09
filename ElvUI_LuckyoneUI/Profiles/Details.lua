@@ -2,7 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- Details profile
 function L1UI:Setup_Details()
-	if not E:IsAddOnEnabled('Details') then return end
+	if not E:IsAddOnEnabled('Details') then L1UI:Print('Details ' .. L["not installed or enabled."]) return end
 
 	-- Profile name
 	local name = E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. L1UI.Version

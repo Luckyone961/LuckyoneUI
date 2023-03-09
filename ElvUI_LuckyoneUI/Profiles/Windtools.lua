@@ -2,7 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- WindTools profile
 function L1UI:Setup_WindTools(noPrint)
-	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then return end
+	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then L1UI:Print('WindTools ' .. L["not installed or enabled."]) return end
 
 	-- Fix for garrison icon not moving to MinimapButtonBar
 	E.db.general.minimap.icons.classHall.scale = 1

@@ -4,7 +4,7 @@ local _G = _G
 
 -- ProjectAzilroka profile
 function L1UI:Setup_ProjectAzilroka(noPrint)
-	if not E:IsAddOnEnabled('ProjectAzilroka') then return end
+	if not E:IsAddOnEnabled('ProjectAzilroka') then L1UI:Print('ProjectAzilroka ' .. L["not installed or enabled."]) return end
 
 	local PA = _G.ProjectAzilroka
 

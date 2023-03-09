@@ -2,7 +2,7 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 
 -- WarpDeplete Profile
 function L1UI:Setup_WarpDeplete()
-	if not E:IsAddOnEnabled('WarpDeplete') and E.Retail then return end
+	if not E:IsAddOnEnabled('WarpDeplete') and E.Retail then L1UI:Print('WarpDeplete ' .. L["not installed or enabled."]) return end
 
 	-- Profile name
 	local name = E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. L1UI.Version

@@ -116,6 +116,7 @@ L["NamePlate StyleFilters and CVars have been set."] = "NamePlate StyleFilters �
 L["NamePlates: Enemy NPC Buffs"] = "Баффы 'Индикаторы здоровья: Вражеский NPC'"
 L["NamePlates: Enemy NPC Debuffs"] = "Дебаффы 'Индикаторы здоровья: Вражеский NPC'"
 L["NamePlates"] = "Индикаторы здоровья"
+L["not installed or enabled."] = true
 L["Note"] = "Примечание"
 L["OmniCD Healing"] = "OmniCD 'Исцеление'"
 L["OmniCD Main"] = "OmniCD Основной"
