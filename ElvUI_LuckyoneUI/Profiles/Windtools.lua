@@ -9,6 +9,11 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.general.minimap.icons.classHall.xOffset = 0
 	E.db.general.minimap.icons.classHall.yOffset = 0
 
+	-- Restore defaults
+	E.db.WT = E:CopyTable({}, P.WT)
+	E.global.WT = E:CopyTable({}, G.WT)
+	E.private.WT = E:CopyTable({}, V.WT)
+
 	-- Global db
 	E.global.WT.core.loginMessage = false
 	E.global.WT.core.noDuplicatedParty = true

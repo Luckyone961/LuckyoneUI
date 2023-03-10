@@ -10,15 +10,16 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	local version = GetAddOnMetadata('ElvUI_SLE', 'Version')
 
 	-- Restore defaults
+	E.db.sle = E:CopyTable({}, P.sle)
 	E.global.sle = E:CopyTable({}, G.sle)
 	E.private.sle = E:CopyTable({}, V.sle)
 
-	-- Shadow & Light Global DB
+	-- Global DB
 	E.global.sle.advanced.confirmed = true
 	E.global.sle.advanced.gameMenu.enable = false
 	E.global.sle.advanced.general = true
 
-	-- Shadow & Light Private DB
+	-- Private DB
 	E.private.sle.install_complete = version
 	E.private.sle.module.blizzmove.enable = true
 	E.private.sle.professions.deconButton.enable = false
@@ -29,7 +30,7 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.private.sle.skins.objectiveTracker.underlineHeight = 2
 	E.private.sle.skins.petbattles.enable = false
 
-	-- Shadow & Light Profile DB
+	-- Profile DB
 	E.db.sle.actionbar.vehicle.enabled = false
 
 	E.db.sle.afk.chat.show = false

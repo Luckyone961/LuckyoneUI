@@ -4,6 +4,7 @@ Added chat prints to the installer if an addon or plugin is not installed
 Disabled smoothing for UnitFrame Fader  
 Updated out of range transparency for UnitFrame Fader  
 **Retail:**  
+Fixes for the Shadow&Light profile  
 Updated WindTools profile  
 ___
 ### Version 2.25 [06-03-2023]
