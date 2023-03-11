@@ -6,6 +6,7 @@ Disabled smoothing for UnitFrame Fader
 Updated out of range transparency for UnitFrame Fader  
 **Retail:**  
 Fixes for the Shadow&Light profile  
+Updated Shadow&Light profile  
 Updated WindTools profile  
 ___
 ### Version 2.25 [06-03-2023]

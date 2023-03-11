@@ -21,7 +21,6 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 
 	-- Private DB
 	E.private.sle.install_complete = version
-	E.private.sle.module.blizzmove.enable = true
 	E.private.sle.professions.deconButton.enable = false
 	E.private.sle.skins.objectiveTracker.BGbackdrop = false
 	E.private.sle.skins.objectiveTracker.color.g = 0.41
@@ -110,21 +109,13 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.db.sle.armory.stats.statFonts.size = 11
 
 	E.db.sle.media.fonts.gossip.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.gossip.size = 11
 	E.db.sle.media.fonts.mail.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.mail.size = 11
 	E.db.sle.media.fonts.objective.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.objective.outline = 'OUTLINE'
-	E.db.sle.media.fonts.objective.size = 11
 	E.db.sle.media.fonts.objectiveHeader.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.objectiveHeader.outline = 'OUTLINE'
 	E.db.sle.media.fonts.pvp.font = L1UI.DefaultFont
 	E.db.sle.media.fonts.questFontSuperHuge.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.questFontSuperHuge.size = 22
 	E.db.sle.media.fonts.subzone.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.subzone.size = 24
 	E.db.sle.media.fonts.zone.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.zone.size = 30
 
 	E.db.sle.raidmarkers.enable = false
 
@@ -133,7 +124,6 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.db.sle.skins.objectiveTracker.colorHeader.g = 0
 	E.db.sle.skins.objectiveTracker.colorHeader.r = 0.81
 	E.db.sle.skins.objectiveTracker.underlineClass = true
-	E.db.sle.skins.talkinghead.hide = true
 
 	if not noPrint then
 		L1UI:Print(L["Shadow&Light profile has been set."])
