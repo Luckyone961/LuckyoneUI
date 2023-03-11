@@ -1,6 +1,7 @@
 ### Version 2.26 [In Development]
 **All WoW Versions:**  
 Added chat prints to the installer if an addon or plugin is not installed  
+Added ptBR localization (Credits: Eltreum)  
 Disabled smoothing for UnitFrame Fader  
 Updated out of range transparency for UnitFrame Fader  
 **Retail:**  
