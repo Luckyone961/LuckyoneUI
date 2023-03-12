@@ -200,6 +200,7 @@ function L1UI:Setup_PrivateDB()
 		E.private.L1UI.disabledFrames.BossBanner = true
 		E.private.L1UI.qualityOfLife.easyDelete = true
 		E.private.L1UI.skins.BugSack = true
+		E.private.L1UI.skins.TalentLoadoutsEx = true
 	end
 end
 
