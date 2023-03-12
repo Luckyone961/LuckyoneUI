@@ -50,4 +50,5 @@ function L1UI:Skin_BugSack()
 		BugSack.Skinned = true
 	end)
 end
+
 S:AddCallbackForAddon('BugSack', 'LuckyoneUI_BugSack', L1UI.Skin_BugSack)
