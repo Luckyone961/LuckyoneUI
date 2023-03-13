@@ -1,7 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file='Auras.lua'/>
-	<Script file='Blizzard.lua'/>
-	<Script file='Chat.lua'/>
-	<Script file='NamePlates.lua'/>
-	<Include file='Skins\load_skins.xml'/>
+	<Include file='Auras\auras.xml'/>
+	<Include file='Blizzard\blizzard.xml'/>
+	<Include file='Chat\chat.xml'/>
+	<Include file='NamePlates\nameplates.xml'/>
+	<Include file='Skins\skins.xml'/>
 </Ui>
