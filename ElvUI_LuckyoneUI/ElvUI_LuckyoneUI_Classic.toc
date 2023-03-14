@@ -8,9 +8,9 @@
 
 Init.lua
 
-Locales\load_locales.xml
-Core\load_core.xml
-Media\load_media.xml
-Modules\load_modules.xml
-Profiles\load_profiles.xml
-Settings\load_settings.xml
+Locales\Locales.xml
+Core\Core.xml
+Media\Media.xml
+Modules\Modules.xml
+Profiles\Profiles.xml
+Settings\Settings.xml
