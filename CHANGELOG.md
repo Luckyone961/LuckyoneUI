@@ -1,4 +1,4 @@
-### Version 2.26 [15-03-2023]
+### Version 2.26 [In Development]
 **All WoW Versions:**  
 Added chat prints to the installer if an addon or plugin is not installed  
 Added ptBR localization (Credits: Eltreum)  
@@ -7,8 +7,8 @@ Disabled smoothing for UnitFrame Fader
 Updated out of range transparency for UnitFrame Fader  
 **Retail:**  
 Compatibility tweaks if you use Shadow&Light + WindTools together  
-Fixes for the Shadow&Light profile (Use their alpha version or wait for the release)  
-Updated Shadow&Light profile (Use their alpha version or wait for the release)  
+Fixes for the Shadow&Light profile  
+Updated Shadow&Light profile  
 Updated WindTools profile  
 ___
 ### Version 2.25 [06-03-2023]
