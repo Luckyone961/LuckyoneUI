@@ -6,8 +6,9 @@ Added skin for TalentLoadoutsEx AddOn
 Disabled smoothing for UnitFrame Fader  
 Updated out of range transparency for UnitFrame Fader  
 **Retail:**  
-Fixes for the Shadow&Light profile  
-Updated Shadow&Light profile  
+Compatibility tweaks if you use Shadow&Light + WindTools together  
+Fixes for the Shadow&Light profile (Use their alpha version or wait for the release)  
+Updated Shadow&Light profile (Use their alpha version or wait for the release)  
 Updated WindTools profile  
 ___
 ### Version 2.25 [06-03-2023]
