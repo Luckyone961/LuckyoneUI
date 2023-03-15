@@ -1,4 +1,4 @@
-### Version 2.26 [In Development]
+### Version 2.26 [15-03-2023]
 **All WoW Versions:**  
 Added chat prints to the installer if an addon or plugin is not installed  
 Added ptBR localization (Credits: Eltreum)  
