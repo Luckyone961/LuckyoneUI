@@ -15,6 +15,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT = E:CopyTable({}, V.WT)
 
 	-- Global db
+	E.global.WT.core.compatibilityCheck = false
 	E.global.WT.core.loginMessage = false
 	E.global.WT.core.noDuplicatedParty = true
 
@@ -41,8 +42,12 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.misc.tags = false
 	E.private.WT.quest.objectiveTracker.cosmeticBar.border = 'ONEPIXEL'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.color.mode = 'CLASS'
+	E.private.WT.quest.objectiveTracker.cosmeticBar.enable = not E:IsAddOnEnabled('ElvUI_SLE')
 	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = L1UI.DefaultTexture
 	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 228
+	E.private.WT.quest.objectiveTracker.header.classColor = true
+	E.private.WT.quest.objectiveTracker.header.size = 12
+	E.private.WT.quest.objectiveTracker.menuTitle.font.size = 12
 	E.private.WT.quest.objectiveTracker.titleColor.classColor = true
 	E.private.WT.skins.addons.adiBags = false
 	E.private.WT.skins.addons.angryKeystones = false
@@ -133,6 +138,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.misc.gameBar.enable = false
 	E.db.WT.quest.paragonReputation.toast.sound = false
 	E.db.WT.quest.switchButtons.enable = false
+	E.db.WT.quest.turnIn.enable = false
 	E.db.WT.quest.turnIn.selectReward = false
 	E.db.WT.skins.vignetting.enable = false
 	E.db.WT.social.chatBar.enable = false

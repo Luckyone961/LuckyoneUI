@@ -21,10 +21,9 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 
 	-- Private DB
 	E.private.sle.install_complete = version
+	E.private.sle.module.blizzmove.enable = false
 	E.private.sle.professions.deconButton.enable = false
 	E.private.sle.skins.objectiveTracker.BGbackdrop = false
-	E.private.sle.skins.objectiveTracker.color.g = 0.41
-	E.private.sle.skins.objectiveTracker.color.r = 0.25
 	E.private.sle.skins.objectiveTracker.texture = L1UI.DefaultTexture
 	E.private.sle.skins.objectiveTracker.underlineHeight = 2
 	E.private.sle.skins.petbattles.enable = false
@@ -105,7 +104,7 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.db.sle.media.fonts.gossip.font = L1UI.DefaultFont
 	E.db.sle.media.fonts.mail.font = L1UI.DefaultFont
 	E.db.sle.media.fonts.objective.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.objective.fontSize = 11
+	E.db.sle.media.fonts.objective.fontSize = 10
 	E.db.sle.media.fonts.objectiveHeader.font = L1UI.DefaultFont
 	E.db.sle.media.fonts.objectiveHeader.fontOutline = 'OUTLINE'
 	E.db.sle.media.fonts.pvp.font = L1UI.DefaultFont
