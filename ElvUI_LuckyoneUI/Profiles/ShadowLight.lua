@@ -70,6 +70,7 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.db.sle.armory.character.enable = true
 	E.db.sle.armory.character.enchant.font = L1UI.DefaultFont
 	E.db.sle.armory.character.enchant.fontSize = 9
+	E.db.sle.armory.character.enchant.showReal = false
 	E.db.sle.armory.character.enchant.yOffset = -1
 	E.db.sle.armory.character.gem.xOffset = 4
 	E.db.sle.armory.character.gem.yOffset = -1
@@ -82,6 +83,7 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.db.sle.armory.inspect.enable = true
 	E.db.sle.armory.inspect.enchant.font = L1UI.DefaultFont
 	E.db.sle.armory.inspect.enchant.fontSize = 9
+	E.db.sle.armory.inspect.enchant.showReal = false
 	E.db.sle.armory.inspect.enchant.yOffset = -1
 	E.db.sle.armory.inspect.gem.xOffset = 4
 	E.db.sle.armory.inspect.gem.yOffset = -1
