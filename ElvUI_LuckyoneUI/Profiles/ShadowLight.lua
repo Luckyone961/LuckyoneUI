@@ -78,6 +78,7 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.db.sle.armory.character.ilvl.font = L1UI.DefaultFont
 	E.db.sle.armory.character.ilvl.fontSize = 11
 	E.db.sle.armory.inspect.background.overlay = false
+	E.db.sle.armory.inspect.background.selectedBG = 'HIDE'
 	E.db.sle.armory.inspect.enable = true
 	E.db.sle.armory.inspect.enchant.font = L1UI.DefaultFont
 	E.db.sle.armory.inspect.enchant.fontSize = 9
