@@ -2,7 +2,6 @@ local L1UI, E, L, V, P, G = unpack(select(2, ...))
 local CH = E:GetModule('Chat')
 local DT = E:GetModule('DataTexts')
 
-local AddonCompartmentFrame = E.Retail and AddonCompartmentFrame
 local C_UI_Reload = C_UI.Reload
 local format, print = format, print
 local hooksecurefunc = hooksecurefunc
@@ -78,16 +77,6 @@ function L1UI:VersionCheck()
 		L1UI:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
 	end
 end
-
--- AddOn compartment
-AddonCompartmentFrame:RegisterAddon({
-	text = L1UI.Name,
-	notCheckable = true,
-	func = function()
-		E:ToggleOptions()
-		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
-	end,
-})
 
 -- General CVars
 function L1UI:Setup_CVars(noPrint)
