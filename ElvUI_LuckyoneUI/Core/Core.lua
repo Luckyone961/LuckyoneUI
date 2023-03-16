@@ -1,4 +1,4 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local L1UI, E, L, V, P, G = unpack((select(2, ...)))
 local CH = E:GetModule('Chat')
 local DT = E:GetModule('DataTexts')
 

@@ -1,4 +1,4 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local L1UI, E, L, V, P, G = unpack((select(2, ...)))
 
 -- Dragonflight layout
 function L1UI:Layout_Dragonflight(layout)

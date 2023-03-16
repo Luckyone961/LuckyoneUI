@@ -1,4 +1,4 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local L1UI, E, L, V, P, G = unpack((select(2, ...)))
 
 -- Details profile
 function L1UI:Setup_Details()

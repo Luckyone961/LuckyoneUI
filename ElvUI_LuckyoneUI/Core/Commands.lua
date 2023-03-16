@@ -1,4 +1,4 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local L1UI, E, L, V, P, G = unpack((select(2, ...)))
 local PI = E:GetModule('PluginInstaller')
 
 local next, pairs, strlower, wipe = next, pairs, strlower, wipe

@@ -1,4 +1,4 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local L1UI, E, L, V, P, G = unpack((select(2, ...)))
 
 -- WarpDeplete Profile
 function L1UI:Setup_WarpDeplete()
