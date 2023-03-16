@@ -50,7 +50,6 @@ for _, name in pairs(SUPPORT) do
 end
 L1UI.SUPPORT_STRING = tconcat(SUPPORT, '|n')
 
--- stylua: ignore start
 -- LuckyoneUI config panel
 function L1UI:Config()
 
@@ -383,7 +382,6 @@ function L1UI:Config()
 
 	E.Options.args.L1UI = L1UI.Options
 end
--- stylua: ignore end
 
 --[[
 	ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
