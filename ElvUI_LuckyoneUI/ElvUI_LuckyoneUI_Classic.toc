@@ -1,16 +1,12 @@
-## Interface: 11403
-## Author: Luckyone
-## Version: 2.25
 ## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cffFF7E40Classic|r
 ## Notes: Luckyone's ElvUI Edit
-## RequiredDeps: ElvUI
+## Dependencies: ElvUI
+
 ## DefaultState: enabled
+## Author: Luckyone
+## Version: 2.25
 
-Init.lua
+## Interface: 11403
+## X-Required-ElvUI: 13.27
 
-Locales\Locales.xml
-Core\Core.xml
-Media\Media.xml
-Modules\Modules.xml
-Profiles\Profiles.xml
-Settings\Settings.xml
+Load.xml

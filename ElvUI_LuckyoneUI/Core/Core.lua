@@ -72,7 +72,7 @@ E.PopupDialogs.L1UI_EDITBOX = {
 
 -- Version check
 function L1UI:VersionCheck()
-	if E.version < L1UI.RequiredVersion then
+	if E.version < L1UI.RequiredElvUI then
 		E:StaticPopup_Show('L1UI_VC')
 		L1UI:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
 	end
