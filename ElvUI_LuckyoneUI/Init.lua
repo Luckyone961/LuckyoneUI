@@ -7,16 +7,8 @@ local _G = _G
 local tonumber = tonumber
 local GetAddOnMetadata = GetAddOnMetadata
 
-local addon, Engine = ...
-local L1UI = E:NewModule(addon, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
-
-Engine[1] = L1UI
-Engine[2] = E
-Engine[3] = L
-Engine[4] = V
-Engine[5] = P
-Engine[6] = G
-_G[addon] = Engine
+local addon, ns = ...
+L1UI = E:NewModule(addon, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
 
 -- Constants
 L1UI.Config = {}
