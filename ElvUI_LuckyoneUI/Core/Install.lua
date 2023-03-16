@@ -1,4 +1,4 @@
-local L1UI, E, L, V, P, G = unpack((select(2, ...)))
+local E, L, V, P, G = unpack(ElvUI)
 
 local C_UI_Reload = C_UI.Reload
 local format = format
