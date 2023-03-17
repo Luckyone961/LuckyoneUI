@@ -5,7 +5,6 @@ local PI = E:GetModule('PluginInstaller')
 
 local Name, Private = ...
 
-local _G = _G
 local tonumber = tonumber
 local GetAddOnMetadata = GetAddOnMetadata
 
