@@ -1,3 +1,4 @@
+local _, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- WindTools profile
@@ -34,7 +35,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.misc.lfgList.icon.pack = 'LYNUI'
 	E.private.WT.misc.lfgList.icon.size = 14
 	E.private.WT.misc.lfgList.line.height = 4
-	E.private.WT.misc.lfgList.line.tex = L1UI.DefaultTexture
+	E.private.WT.misc.lfgList.line.tex = Private.Texture
 	E.private.WT.misc.lfgList.partyKeystone.enable = false
 	E.private.WT.misc.lfgList.rightPanel.enable = false
 	E.private.WT.misc.moveSpeed = true
@@ -43,7 +44,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.quest.objectiveTracker.cosmeticBar.border = 'ONEPIXEL'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.color.mode = 'CLASS'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.enable = not E:IsAddOnEnabled('ElvUI_SLE')
-	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = L1UI.DefaultTexture
+	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = Private.Texture
 	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 228
 	E.private.WT.quest.objectiveTracker.header.classColor = true
 	E.private.WT.quest.objectiveTracker.header.size = 12
@@ -66,32 +67,32 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.skins.addons.tomCats = false
 	E.private.WT.skins.addons.warpDeplete = false
 	E.private.WT.skins.addons.weakAuras = false
-	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.name = L1UI.DefaultFont
+	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.name = Private.Font
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.size = 12
 	E.private.WT.skins.blizzard.enable = false
 	E.private.WT.skins.elvui.enable = false
-	E.private.WT.skins.ime.label.name = L1UI.DefaultFont
-	E.private.WT.skins.rollResult.name = L1UI.DefaultFont
+	E.private.WT.skins.ime.label.name = Private.Font
+	E.private.WT.skins.rollResult.name = Private.Font
 	E.private.WT.skins.shadow = false
 	E.private.WT.skins.weakAurasShadow = false
 	E.private.WT.skins.widgets.button.backdrop.classColor = true
-	E.private.WT.skins.widgets.button.backdrop.texture = L1UI.DefaultTexture
+	E.private.WT.skins.widgets.button.backdrop.texture = Private.Texture
 	E.private.WT.skins.widgets.button.selected.backdropClassColor = true
 	E.private.WT.skins.widgets.button.selected.borderClassColor = true
 	E.private.WT.skins.widgets.checkBox.classColor = true
-	E.private.WT.skins.widgets.checkBox.texture = L1UI.DefaultTexture
+	E.private.WT.skins.widgets.checkBox.texture = Private.Texture
 	E.private.WT.skins.widgets.slider.classColor = true
-	E.private.WT.skins.widgets.slider.texture = L1UI.DefaultTexture
+	E.private.WT.skins.widgets.slider.texture = Private.Texture
 	E.private.WT.skins.widgets.tab.backdrop.classColor = true
-	E.private.WT.skins.widgets.tab.backdrop.texture = L1UI.DefaultTexture
+	E.private.WT.skins.widgets.tab.backdrop.texture = Private.Texture
 	E.private.WT.skins.widgets.tab.selected.backdropClassColor = true
 	E.private.WT.skins.widgets.tab.selected.borderClassColor = true
-	E.private.WT.skins.widgets.tab.selected.texture = L1UI.DefaultTexture
+	E.private.WT.skins.widgets.tab.selected.texture = Private.Texture
 	E.private.WT.skins.widgets.treeGroupButton.backdrop.classColor = true
-	E.private.WT.skins.widgets.treeGroupButton.backdrop.texture = L1UI.DefaultTexture
+	E.private.WT.skins.widgets.treeGroupButton.backdrop.texture = Private.Texture
 	E.private.WT.skins.widgets.treeGroupButton.selected.backdropClassColor = true
 	E.private.WT.skins.widgets.treeGroupButton.selected.borderClassColor = true
-	E.private.WT.skins.widgets.treeGroupButton.selected.texture = L1UI.DefaultTexture
+	E.private.WT.skins.widgets.treeGroupButton.selected.texture = Private.Texture
 	E.private.WT.tooltips.factionIcon = false
 	E.private.WT.tooltips.icon = false
 	E.private.WT.tooltips.objectiveProgress = false

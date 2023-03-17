@@ -1,9 +1,10 @@
+local _, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- Ingame config buttons 'Update Main' & 'Update Healing'
 function L1UI:UpdateLayout(layout)
 	-- Bump install version
-	E.global.L1UI.install_version = L1UI.Version
+	E.global.L1UI.install_version = Private.Version
 
 	-- UnitFrame updates
 	E.db.unitframe.units.arena.fader.minAlpha = 0.5
@@ -27,5 +28,5 @@ function L1UI:UpdateLayout(layout)
 	E.db.unitframe.units.targettarget.fader.minAlpha = 0.5
 	E.db.unitframe.units.targettarget.fader.smooth = 0
 
-	L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "] .. L1UI.Version)
+	L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "] .. Private.Version)
 end

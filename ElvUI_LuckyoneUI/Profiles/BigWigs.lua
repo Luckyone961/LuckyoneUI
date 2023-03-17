@@ -1,3 +1,4 @@
+local _, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 local IsAddOnLoaded = IsAddOnLoaded
@@ -9,8 +10,8 @@ function L1UI:Setup_BigWigs(layout)
 	if not E:IsAddOnEnabled('BigWigs') then L1UI:Print('BigWigs ' .. L["not installed or enabled."]) return end
 
 	-- Profile names
-	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. L1UI.Version
-	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. L1UI.Version
+	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
+	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version
 
 	-- Required to add profiles to BigWigs3DB
 	if not IsAddOnLoaded('BigWigs_Core') then LoadAddOn('BigWigs_Core') end

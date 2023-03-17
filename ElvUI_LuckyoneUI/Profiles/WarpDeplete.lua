@@ -1,3 +1,4 @@
+local _, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- WarpDeplete Profile
@@ -5,38 +6,38 @@ function L1UI:Setup_WarpDeplete()
 	if not E:IsAddOnEnabled('WarpDeplete') and E.Retail then L1UI:Print('WarpDeplete ' .. L["not installed or enabled."]) return end
 
 	-- Profile name
-	local name = E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. L1UI.Version
+	local name = E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. Private.Version
 
 	-- Profile data
 	WarpDepleteDB['profiles'][name] = WarpDepleteDB['profiles'][name] or {}
 	WarpDepleteDB['profiles'][name] = {
-		['bar1Font'] = L1UI.DefaultFont,
+		['bar1Font'] = Private.Font,
 		['bar1FontSize'] = 11,
-		['bar1Texture'] = L1UI.DefaultTexture,
-		['bar2Font'] = L1UI.DefaultFont,
+		['bar1Texture'] = Private.Texture,
+		['bar2Font'] = Private.Font,
 		['bar2FontSize'] = 11,
-		['bar2Texture'] = L1UI.DefaultTexture,
-		['bar3Font'] = L1UI.DefaultFont,
+		['bar2Texture'] = Private.Texture,
+		['bar3Font'] = Private.Font,
 		['bar3FontSize'] = 11,
-		['bar3Texture'] = L1UI.DefaultTexture,
+		['bar3Texture'] = Private.Texture,
 		['barWidth'] = 244,
-		['deathsFont'] = L1UI.DefaultFont,
+		['deathsFont'] = Private.Font,
 		['deathsFontSize'] = 11,
-		['forcesFont'] = L1UI.DefaultFont,
+		['forcesFont'] = Private.Font,
 		['forcesFontSize'] = 11,
-		['forcesOverlayTexture'] = L1UI.DefaultTexture,
-		['forcesTexture'] = L1UI.DefaultTexture,
+		['forcesOverlayTexture'] = Private.Texture,
+		['forcesTexture'] = Private.Texture,
 		['frameAnchor'] = 'TOPRIGHT',
 		['frameX'] = 19.00000953674316,
 		['frameY'] = -164.0001068115234,
-		['keyDetailsFont'] = L1UI.DefaultFont,
+		['keyDetailsFont'] = Private.Font,
 		['keyDetailsFontSize'] = 11,
-		['keyFont'] = L1UI.DefaultFont,
+		['keyFont'] = Private.Font,
 		['keyFontSize'] = 11,
-		['objectivesFont'] = L1UI.DefaultFont,
+		['objectivesFont'] = Private.Font,
 		['objectivesFontSize'] = 11,
 		['showDeathsTooltip'] = false,
-		['timerFont'] = L1UI.DefaultFont,
+		['timerFont'] = Private.Font,
 		['timerFontSize'] = 22,
 	}
 
