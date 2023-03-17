@@ -13,38 +13,34 @@ L1UI = E:NewModule(Name, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTi
 
 Private.Config = {}
 Private.Credits = {}
-
 Private.Font = 'Expressway'
-Private.Texture = 'Minimalist'
 Private.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 Private.Name = '|cff4beb2cLuckyoneUI|r'
+Private.Texture = 'Minimalist'
+
 Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
 Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
 
 function L1UI:Initialize()
-	-- Convert DB
-	if E.db.L1UI.install_version then
+	if E.db.L1UI.install_version then -- Convert db
 		E.global.L1UI.install_version = tonumber(E.db.L1UI.install_version)
 		E.db.L1UI.install_version = nil
 	end
 
-	-- Skip default ElvUI installer
-	if E.private.install_complete == nil then
+	if E.private.install_complete == nil then -- Installer skip
 		E.private.install_complete = E.version
 	end
 
-	-- Queue LuckyoneUI installer
-	if E.global.L1UI.install_version == nil then
+	if E.global.L1UI.install_version == nil then -- Installer queue
 		PI:Queue(L1UI.InstallerData)
+	end
+
+	if E.db.L1UI.general.auto_update and (E.global.L1UI.install_version < Private.Version) then
+		L1UI:UpdateLayout()
 	end
 
 	EP:RegisterPlugin(Name, L1UI.Config)
 	L1UI:RegisterEvents()
-
-	-- If auto update is enabled
-	if E.db.L1UI.general.auto_update and (E.global.L1UI.install_version < Private.Version) then
-		L1UI:UpdateLayout()
-	end
 end
 
 local function CallbackInitialize()
