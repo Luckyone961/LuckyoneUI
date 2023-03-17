@@ -416,7 +416,6 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	L1UI:LoadCommands()
 end
 
--- This is called in L1UI:Initialize()
 function L1UI:RegisterEvents()
 	L1UI:RegisterEvent('PLAYER_ENTERING_WORLD')
 end

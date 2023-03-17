@@ -20,7 +20,7 @@ Private.Texture = 'Minimalist'
 Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
 Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
 
-function L1UI:Initialize()
+local function Initialize()
 	if E.db.L1UI.install_version then -- Convert db
 		E.global.L1UI.install_version = tonumber(E.db.L1UI.install_version)
 		E.db.L1UI.install_version = nil
@@ -43,7 +43,7 @@ function L1UI:Initialize()
 end
 
 local function CallbackInitialize()
-	L1UI:Initialize()
+	Initialize()
 end
 
 E:RegisterModule(Name, CallbackInitialize)
