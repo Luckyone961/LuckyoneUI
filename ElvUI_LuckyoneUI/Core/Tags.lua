@@ -1,4 +1,5 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local _, Private = ...
+local E, L, V, P, G = unpack(ElvUI)
 
 local floor = floor
 
@@ -52,9 +53,9 @@ E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT', fun
 end, not E.Retail)
 
 -- Descriptions for (Retail-Only) Available Tags
-E:AddTagInfo('luckyone:healermana:current', L1UI.Name, L["Displays the unit's Mana (Role: Healer)"], nil, not E.Retail)
-E:AddTagInfo('luckyone:healermana:percent', L1UI.Name, L["Displays the unit's Mana in percent (Role: Healer)"], nil, not E.Retail)
+E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana (Role: Healer)"], nil, not E.Retail)
+E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana in percent (Role: Healer)"], nil, not E.Retail)
 
 -- Descriptions for Available Tags
-E:AddTagInfo('luckyone:classification', L1UI.Name, L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"])
-E:AddTagInfo('luckyone:health:percent', L1UI.Name, L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"])
+E:AddTagInfo('luckyone:classification', Private.Name, L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"])
+E:AddTagInfo('luckyone:health:percent', Private.Name, L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"])

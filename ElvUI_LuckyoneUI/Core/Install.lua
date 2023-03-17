@@ -1,19 +1,20 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local _, Private = ...
+local E, L, V, P, G = unpack(ElvUI)
 
 local C_UI_Reload = C_UI.Reload
 local format = format
 
 -- Set install version to current LuckyoneUI version
 local function InstallComplete()
-	E.global.L1UI.install_version = L1UI.Version
+	E.global.L1UI.install_version = Private.Version
 	C_UI_Reload()
 end
 
 -- Installer table
 L1UI.InstallerData = {
-	Title = format('|cff4beb2c%s %s|r', L1UI.Name, L["Installation"]),
-	Name = L1UI.Name,
-	tutorialImage = L1UI.Logo,
+	Title = format('|cff4beb2c%s %s|r', Private.Name, L["Installation"]),
+	Name = Private.Name,
+	tutorialImage = Private.Logo,
 	Pages = {
 		[1] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Welcome"])

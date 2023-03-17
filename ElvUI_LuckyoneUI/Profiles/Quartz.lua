@@ -1,10 +1,11 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local _, Private = ...
+local E, L, V, P, G = unpack(ElvUI)
 
 local pairs = pairs
 
 -- Quartz profile
 function L1UI:Setup_Quartz(layout)
-	if not E:IsAddOnEnabled('Quartz') then return end
+	if not E:IsAddOnEnabled('Quartz') then L1UI:Print('Quartz ' .. L["not installed or enabled."]) return end
 
 	-- Disable ElvUI castbars if Quartz is used
 	E.db.unitframe.units.focus.castbar.enable = false
@@ -12,8 +13,8 @@ function L1UI:Setup_Quartz(layout)
 	E.db.unitframe.units.target.castbar.enable = false
 
 	-- Profile names
-	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. L1UI.Version
-	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. L1UI.Version
+	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
+	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version
 
 	-- Disable LibDualSpec to set the profile
 	if E.Retail then

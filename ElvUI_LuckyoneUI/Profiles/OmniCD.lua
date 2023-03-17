@@ -1,14 +1,15 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local _, Private = ...
+local E, L, V, P, G = unpack(ElvUI)
 
 local pairs = pairs
 
 -- OmniCD profile
 function L1UI:Setup_OmniCD(layout)
-	if not E:IsAddOnEnabled('OmniCD') and E.Retail then return end
+	if not E:IsAddOnEnabled('OmniCD') and E.Retail then L1UI:Print('OmniCD ' .. L["not installed or enabled."]) return end
 
 	-- Profile names
-	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. L1UI.Version
-	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. L1UI.Version
+	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
+	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version
 
 	-- Disable LibDualSpec to set the profile
 	OmniCDDB['namespaces']['LibDualSpec-1.0'] = OmniCDDB['namespaces']['LibDualSpec-1.0'] or {}

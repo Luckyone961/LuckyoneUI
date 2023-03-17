@@ -1,0 +1,7 @@
+<Ui xmlns='http://www.blizzard.com/wow/ui/'>
+	<Include file='Auras\Auras.xml'/>
+	<Include file='Blizzard\Blizzard.xml'/>
+	<Include file='Chat\Chat.xml'/>
+	<Include file='NamePlates\NamePlates.xml'/>
+	<Include file='Skins\Skins.xml'/>
+</Ui>

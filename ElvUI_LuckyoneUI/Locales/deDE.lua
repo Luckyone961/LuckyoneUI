@@ -116,6 +116,7 @@ L["NamePlate StyleFilters and CVars have been set."] = "Namensplaketten Stilfilt
 L["NamePlates: Enemy NPC Buffs"] = "Namensplaketten: Feindliche NPC Stärkungszauber"
 L["NamePlates: Enemy NPC Debuffs"] = "Namensplaketten: Feindliche NPC Schwächungszauber"
 L["NamePlates"] = "Namensplaketten"
+L["not installed or enabled."] = true
 L["Note"] = "Notiz"
 L["OmniCD Healing"] = true
 L["OmniCD Main"] = true

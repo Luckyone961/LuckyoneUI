@@ -116,6 +116,7 @@ L["NamePlate StyleFilters and CVars have been set."] = true
 L["NamePlates: Enemy NPC Buffs"] = true
 L["NamePlates: Enemy NPC Debuffs"] = true
 L["NamePlates"] = true
+L["not installed or enabled."] = true
 L["Note"] = true
 L["OmniCD Healing"] = true
 L["OmniCD Main"] = true

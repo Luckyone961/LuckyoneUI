@@ -1,4 +1,5 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local _, Private = ...
+local E, L, V, P, G = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 local hooksecurefunc = hooksecurefunc
@@ -50,4 +51,5 @@ function L1UI:Skin_BugSack()
 		BugSack.Skinned = true
 	end)
 end
+
 S:AddCallbackForAddon('BugSack', 'LuckyoneUI_BugSack', L1UI.Skin_BugSack)

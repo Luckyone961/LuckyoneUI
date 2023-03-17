@@ -1,14 +1,15 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local _, Private = ...
+local E, L, V, P, G = unpack(ElvUI)
 
 local pairs = pairs
 
 -- DBM profile
 function L1UI:Setup_DBM(layout)
-	if not E:IsAddOnEnabled('DBM-Core') then return end
+	if not E:IsAddOnEnabled('DBM-Core') then L1UI:Print('DBM ' .. L["not installed or enabled."]) return end
 
 	-- Profile names
-	local name = E.global.L1UI.dev and 'Luckyone-Main' or 'Luckyone-Main-' .. L1UI.Version
-	local name_healing = E.global.L1UI.dev and 'Luckyone-Healing' or 'Luckyone-Healing-' .. L1UI.Version
+	local name = E.global.L1UI.dev and 'Luckyone-Main' or 'Luckyone-Main-' .. Private.Version
+	local name_healing = E.global.L1UI.dev and 'Luckyone-Healing' or 'Luckyone-Healing-' .. Private.Version
 
 	for _, profile in pairs({ name, name_healing }) do
 		-- Profile creation

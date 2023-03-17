@@ -1,3 +1,18 @@
+### Version 2.26 [17-03-2023]
+**All WoW Versions:**  
+Added chat prints to the installer if an addon or plugin is not installed  
+Added ptBR localization (Credits: Eltreum)  
+Added skin for TalentLoadoutsEx AddOn  
+Disabled smoothing for UnitFrame Fader  
+Updated out of range transparency for UnitFrame Fader  
+**Retail:**  
+Compatibility tweaks if you use Shadow&Light + WindTools together  
+Updated Shadow&Light profile (Requires alpha version or wait for them to release the update)  
+Updated WindTools profile  
+**Backend:**  
+Swapped to private namespace for constants and tables  
+Worth mentioning but I don't think anyone is using my stuff anyways  
+___
 ### Version 2.25 [06-03-2023]
 **All WoW Versions:**  
 The following changes will only apply to fresh profiles or if dev-mode is enabled  

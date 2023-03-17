@@ -1,4 +1,5 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local _, Private = ...
+local E, L, V, P, G = unpack(ElvUI)
 local D = E:GetModule('Distributor')
 local PI = E:GetModule('PluginInstaller')
 
@@ -14,7 +15,7 @@ local SetCVar = SetCVar
 local AUTHOR = { '|cffFF7D0ALuckyone|r (EU) - LaughingSkull' }
 local CODING = { '|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|r', '|cffFF7D0AMerathilis|r' }
 local SUPPORT = { '|cffe6cc80Calmcacil|r', '|cffe6cc80DaPaKnat|r', '|cffe6cc80Debeleus|r', '|cffe6cc80DevinDog|r', '|cffe6cc80Dukes|r', '|cffe6cc80Fooseq|r', '|cffe6cc80Garbar|r', '|cffe6cc80Kenneth|r', '|cffe6cc80Liam|r', '|cffe6cc80Littlesack|r', '|cffe6cc80Lox|r', '|cffe6cc80Midnatt|r', '|cffe6cc80MonkeyHack|r', '|cffe6cc80Onlyne|r', '|cffe6cc80ShowNoMercy|r', '|cffe6cc80Treelyté|r', '|cffe6cc80Triplebeamdreams|r', '|cffe6cc80Tykk|r', '|cffe6cc80Logan|r' }
-local TESTERS = { '|cff00FF96AltBridge|r', '|cff69CCF0Sniefer|r', '|cffABD473Badbrain|r', '|cffABD473Xyf|r', '|cffC41F3BKringel|r', '|cffF58CBAIllusion|r', '|cffABD473Dlarge|r', '|cffe6cc80Hollicsh|r' }
+local TESTERS = { '|cff00FF96AltBridge|r', '|cff69CCF0Sniefer|r', '|cffABD473Badbrain|r', '|cffABD473Xyf|r', '|cffC41F3BKringel|r', '|cffF58CBAIllusion|r', '|cffABD473Dlarge|r', '|cffe6cc80Hollicsh|r', '|cff3FC7EBEltreum|r' }
 
 local function CheckRaid()
 	if tonumber(GetCVar('RAIDsettingsEnabled')) == 0 then
@@ -31,31 +32,30 @@ sort(SUPPORT, SortList)
 sort(TESTERS, SortList)
 
 for _, name in pairs(AUTHOR) do
-	tinsert(L1UI.CreditsList, name)
+	tinsert(Private.Credits, name)
 end
-L1UI.AUTHOR_STRING = tconcat(AUTHOR, '|n')
+Private.AUTHOR_STRING = tconcat(AUTHOR, '|n')
 
 for _, name in pairs(CODING) do
-	tinsert(L1UI.CreditsList, name)
+	tinsert(Private.Credits, name)
 end
-L1UI.CODING_STRING = tconcat(CODING, '|n')
+Private.CODING_STRING = tconcat(CODING, '|n')
 
 for _, name in pairs(TESTERS) do
-	tinsert(L1UI.CreditsList, name)
+	tinsert(Private.Credits, name)
 end
-L1UI.TESTER_STRING = tconcat(TESTERS, '|n')
+Private.TESTER_STRING = tconcat(TESTERS, '|n')
 
 for _, name in pairs(SUPPORT) do
-	tinsert(L1UI.CreditsList, name)
+	tinsert(Private.Credits, name)
 end
-L1UI.SUPPORT_STRING = tconcat(SUPPORT, '|n')
+Private.SUPPORT_STRING = tconcat(SUPPORT, '|n')
 
--- stylua: ignore start
 -- LuckyoneUI config panel
 function L1UI:Config()
 
 	-- Add LuckyoneUI version on top of the ElvUI config
-	E.Options.name = format('%s + %s |cff99ff33%.2f|r', E.Options.name, L1UI.Name, L1UI.Version)
+	E.Options.name = format('%s + %s |cff99ff33%.2f|r', E.Options.name, Private.Name, Private.Version)
 
 	-- LibAceConfigHelper
 	ACH = E.Libs.ACH
@@ -65,15 +65,15 @@ function L1UI:Config()
 	D.blacklistedKeys.global.L1UI.dev = true
 
 	-- Header
-	L1UI.Options = ACH:Group(L1UI.Name, nil, 20)
+	L1UI.Options = ACH:Group(Private.Name, nil, 20)
 
 	-- Installer & Update
 	L1UI.Options.args.setup = ACH:Group('', nil, 1, nil, function(info) return E.db.L1UI.general[info[#info]] end, function(info, value) E.db.L1UI.general[info[#info]] = value end)
 	L1UI.Options.args.setup.inline = true
 	L1UI.Options.args.setup.args.auto_update = ACH:Toggle(L["Auto Update"], L["Automatically update after a new release."], 1)
 	L1UI.Options.args.setup.args.installer = ACH:Execute(L["Install"], L["Re-Run the installation process."], 2, function() PI:Queue(L1UI.InstallerData) E:ToggleOptions() end)
-	L1UI.Options.args.setup.args.updateMain = ACH:Execute(L["Update Main Layout"], L["Update Main layout to LuckyoneUI version: "]..L1UI.Version, 3, function() L1UI:UpdateLayout('main') end, nil, true)
-	L1UI.Options.args.setup.args.updateHealing = ACH:Execute(L["Update Healing Layout"], L["Update Healing layout to LuckyoneUI version: "]..L1UI.Version, 4, function() L1UI:UpdateLayout('healing') end, nil, true)
+	L1UI.Options.args.setup.args.updateMain = ACH:Execute(L["Update Main Layout"], L["Update Main layout to LuckyoneUI version: "]..Private.Version, 3, function() L1UI:UpdateLayout('main') end, nil, true)
+	L1UI.Options.args.setup.args.updateHealing = ACH:Execute(L["Update Healing Layout"], L["Update Healing layout to LuckyoneUI version: "]..Private.Version, 4, function() L1UI:UpdateLayout('healing') end, nil, true)
 
 	-- Spacer
 	L1UI.Options.args.header = ACH:Spacer(2, 'full')
@@ -191,7 +191,7 @@ function L1UI:Config()
 	-- Layouts
 	L1UI.Options.args.layouts = ACH:Group(L["Layouts"], nil, 8)
 	L1UI.Options.args.layouts.args.desc = ACH:Header(L["Layouts"], 1)
-	L1UI.Options.args.layouts.args.dragonflight = ACH:Group(L["Dragonflight Layouts"] .. ' (v' .. tostring(L1UI.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 2)
+	L1UI.Options.args.layouts.args.dragonflight = ACH:Group(L["Dragonflight Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 2)
 	L1UI.Options.args.layouts.args.dragonflight.inline = true
 	L1UI.Options.args.layouts.args.dragonflight.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() L1UI:Setup_Layout_Dragonflight('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.layouts.args.dragonflight.args.healing = ACH:Execute(L["Healing"], nil, 2, function() L1UI:Setup_Layout_Dragonflight('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
@@ -277,6 +277,7 @@ function L1UI:Config()
 	L1UI.Options.args.skins.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return E.private.L1UI.skins[info[#info]] end, function(info, value) E.private.L1UI.skins[info[#info]] = value E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.skins.args.addons.inline = true
 	L1UI.Options.args.skins.args.addons.args.BugSack = ACH:Toggle('BugSack', nil, 1, nil, nil, nil, nil, nil, not E:IsAddOnEnabled('BugSack'))
+	L1UI.Options.args.skins.args.addons.args.TalentLoadoutsEx = ACH:Toggle('TalentLoadoutsEx', nil, 2, nil, nil, nil, nil, nil, not E:IsAddOnEnabled('TalentLoadoutsEx'))
 
 	-- Tags
 	L1UI.Options.args.tags = ACH:Group(L["Tags"], nil, 13)
@@ -345,16 +346,16 @@ function L1UI:Config()
 	L1UI.Options.args.credits.args.header = ACH:Header(L["Credits"], 1)
 	L1UI.Options.args.credits.args.author = ACH:Group(L["Author"], nil, 2)
 	L1UI.Options.args.credits.args.author.inline = true
-	L1UI.Options.args.credits.args.author.args.desc = ACH:Description(L1UI.AUTHOR_STRING, 1, 'medium')
+	L1UI.Options.args.credits.args.author.args.desc = ACH:Description(Private.AUTHOR_STRING, 1, 'medium')
 	L1UI.Options.args.credits.args.coding = ACH:Group(L["Coding"], nil, 3)
 	L1UI.Options.args.credits.args.coding.inline = true
 	L1UI.Options.args.credits.args.coding.args.desc = ACH:Description(L1UI.CODING_STRING, 1, 'medium')
 	L1UI.Options.args.credits.args.testers = ACH:Group(L["Testers and Translation"], nil, 4)
 	L1UI.Options.args.credits.args.testers.inline = true
-	L1UI.Options.args.credits.args.testers.args.desc = ACH:Description(L1UI.TESTER_STRING, 1, 'medium')
+	L1UI.Options.args.credits.args.testers.args.desc = ACH:Description(Private.TESTER_STRING, 1, 'medium')
 	L1UI.Options.args.credits.args.supporter = ACH:Group(L["Supporters"], nil, 5)
 	L1UI.Options.args.credits.args.supporter.inline = true
-	L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description(L1UI.SUPPORT_STRING, 1, 'medium')
+	L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description(Private.SUPPORT_STRING, 1, 'medium')
 
 	-- Links
 	L1UI.Options.args.links = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 18)
@@ -382,7 +383,6 @@ function L1UI:Config()
 
 	E.Options.args.L1UI = L1UI.Options
 end
--- stylua: ignore end
 
 --[[
 	ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)

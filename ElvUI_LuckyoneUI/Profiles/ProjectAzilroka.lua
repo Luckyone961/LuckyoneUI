@@ -1,15 +1,16 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local _, Private = ...
+local E, L, V, P, G = unpack(ElvUI)
 
 local _G = _G
 
 -- ProjectAzilroka profile
 function L1UI:Setup_ProjectAzilroka(noPrint)
-	if not E:IsAddOnEnabled('ProjectAzilroka') then return end
+	if not E:IsAddOnEnabled('ProjectAzilroka') then L1UI:Print('ProjectAzilroka ' .. L["not installed or enabled."]) return end
 
 	local PA = _G.ProjectAzilroka
 
 	-- Profile creation
-	PA.data:SetProfile(E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. L1UI.Version)
+	PA.data:SetProfile(E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. Private.Version)
 
 	-- General modules
 	PA.db.AuraReminder.Enable = false
@@ -31,7 +32,7 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	PA.db.EnhancedFriendsList.DiffLevel = false
 	PA.db.EnhancedFriendsList.InfoFontSize = 10
 	PA.db.EnhancedFriendsList.NameFontSize = 11
-	PA.db.EnhancedFriendsList.Texture = L1UI.DefaultTexture
+	PA.db.EnhancedFriendsList.Texture = Private.Texture
 
 	-- SquareMinimapButtons setup
 	PA.db.SquareMinimapButtons.Backdrop = false
@@ -44,10 +45,10 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	PA.db.SquareMinimapButtons.Shadows = false
 
 	-- stAddonManager setup
-	PA.db.stAddonManager.CheckTexture = L1UI.DefaultTexture
+	PA.db.stAddonManager.CheckTexture = Private.Texture
 	PA.db.stAddonManager.ClassColor = true
 	PA.db.stAddonManager.EnableRequiredAddons = false
-	PA.db.stAddonManager.Font = L1UI.DefaultFont
+	PA.db.stAddonManager.Font = Private.Font
 	PA.db.stAddonManager.FontSize = 12
 	PA.db.stAddonManager.FrameWidth = 720
 	PA.db.stAddonManager.NumAddOns = 18
