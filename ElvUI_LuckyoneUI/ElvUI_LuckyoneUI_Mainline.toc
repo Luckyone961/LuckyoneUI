@@ -1,16 +1,12 @@
-## Interface: 100005
-## Author: Luckyone
-## Version: 2.22
 ## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r
 ## Notes: Luckyone's ElvUI Edit
-## RequiredDeps: ElvUI
+## Dependencies: ElvUI
+
 ## DefaultState: enabled
+## Author: Luckyone
+## Version: 2.26
 
-Init.lua
+## Interface: 100005
+## X-Required-ElvUI: 13.27
 
-Locales\load_locales.xml
-Core\load_core.xml
-Media\load_media.xml
-Modules\load_modules.xml
-Profiles\load_profiles.xml
-Settings\load_settings.xml
+Load.xml

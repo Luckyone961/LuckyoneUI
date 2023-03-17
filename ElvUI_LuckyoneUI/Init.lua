@@ -3,50 +3,47 @@ local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local EP = LibStub('LibElvUIPlugin-1.0')
 local PI = E:GetModule('PluginInstaller')
 
-local _G = _G
-local tostring = tostring
+local Name, Private = ...
+
+local tonumber = tonumber
 local GetAddOnMetadata = GetAddOnMetadata
 
-local addon, Engine = ...
-local L1UI = E:NewModule(addon, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
+L1UI = E:NewModule(Name, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
 
-Engine[1] = L1UI
-Engine[2] = E
-Engine[3] = L
-Engine[4] = V
-Engine[5] = P
-Engine[6] = G
-_G[addon] = Engine
+Private.Config = {}
+Private.Credits = {}
+Private.Font = 'Expressway'
+Private.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
+Private.Name = '|cff4beb2cLuckyoneUI|r'
+Private.Texture = 'Minimalist'
 
--- Constants
-L1UI.Config = {}
-L1UI.CreditsList = {}
-L1UI.DefaultFont = 'Expressway'
-L1UI.DefaultTexture = 'Minimalist'
-L1UI.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
-L1UI.Name = '|cff4beb2cLuckyoneUI|r'
-L1UI.RequiredVersion = 13.26
-L1UI.Version = GetAddOnMetadata(addon, 'Version')
+Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
+Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
 
-function L1UI:Initialize()
-	if E.private.install_complete == nil then
+local function Initialize()
+	if E.db.L1UI.install_version then -- Convert db
+		E.global.L1UI.install_version = tonumber(E.db.L1UI.install_version)
+		E.db.L1UI.install_version = nil
+	end
+
+	if E.private.install_complete == nil then -- Installer skip
 		E.private.install_complete = E.version
 	end
 
-	if E.db.L1UI.install_version == nil then
+	if E.global.L1UI.install_version == nil then -- Installer queue
 		PI:Queue(L1UI.InstallerData)
 	end
 
-	EP:RegisterPlugin(addon, L1UI.Config)
-	L1UI:RegisterEvents()
-
-	if E.db.L1UI.general.auto_update and (tostring(E.db.L1UI.install_version) < L1UI.Version) then
+	if E.db.L1UI.general.auto_update and (E.global.L1UI.install_version < Private.Version) then
 		L1UI:UpdateLayout()
 	end
+
+	EP:RegisterPlugin(Name, L1UI.Config)
+	L1UI:RegisterEvents()
 end
 
 local function CallbackInitialize()
-	L1UI:Initialize()
+	Initialize()
 end
 
-E:RegisterModule(addon, CallbackInitialize)
+E:RegisterModule(Name, CallbackInitialize)

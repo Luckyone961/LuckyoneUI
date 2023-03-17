@@ -1,0 +1,12 @@
+<Ui xmlns='http://www.blizzard.com/wow/ui/'>
+	<!-- Execute init -->
+	<Script file='Init.lua'/>
+	<!-- Load localization -->
+	<Include file='Locales\Locales.xml'/>
+	<!-- Load everything else -->
+	<Include file='Core\Core.xml'/>
+	<Include file='Media\Media.xml'/>
+	<Include file='Modules\Modules.xml'/>
+	<Include file='Profiles\Profiles.xml'/>
+	<Include file='Settings\Settings.xml'/>
+</Ui>

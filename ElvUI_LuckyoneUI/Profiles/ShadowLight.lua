@@ -1,138 +1,126 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local _, Private = ...
+local E, L, V, P, G = unpack(ElvUI)
 
 local GetAddOnMetadata = GetAddOnMetadata
 
 -- Shadow & Light profile
 function L1UI:Setup_ShadowAndLight(noPrint)
-	if not E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then return end
+	if not E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then L1UI:Print('Shadow&Light ' .. L["not installed or enabled."]) return end
 
 	-- Get version
 	local version = GetAddOnMetadata('ElvUI_SLE', 'Version')
 
 	-- Restore defaults
+	E.db.sle = E:CopyTable({}, P.sle)
 	E.global.sle = E:CopyTable({}, G.sle)
 	E.private.sle = E:CopyTable({}, V.sle)
 
-	-- Shadow & Light Global DB
+	-- Global DB
 	E.global.sle.advanced.confirmed = true
 	E.global.sle.advanced.gameMenu.enable = false
 	E.global.sle.advanced.general = true
 
-	-- Shadow & Light Private DB
+	-- Private DB
 	E.private.sle.install_complete = version
-	E.private.sle.module.blizzmove.enable = true
+	E.private.sle.module.blizzmove.enable = false
 	E.private.sle.professions.deconButton.enable = false
 	E.private.sle.skins.objectiveTracker.BGbackdrop = false
-	E.private.sle.skins.objectiveTracker.color.g = 0.41
-	E.private.sle.skins.objectiveTracker.color.r = 0.25
-	E.private.sle.skins.objectiveTracker.texture = L1UI.DefaultTexture
+	E.private.sle.skins.objectiveTracker.texture = Private.Texture
 	E.private.sle.skins.objectiveTracker.underlineHeight = 2
 	E.private.sle.skins.petbattles.enable = false
 
-	-- Shadow & Light Profile DB
+	-- Profile DB
 	E.db.sle.actionbar.vehicle.enabled = false
 
 	E.db.sle.afk.chat.show = false
 	E.db.sle.afk.defaultGraphics.classCrest.enable = false
 	E.db.sle.afk.defaultGraphics.elvuiLogo.enable = false
+	E.db.sle.afk.defaultGraphics.exPack.enable = false
+	E.db.sle.afk.defaultGraphics.factionCrest.enable = false
 	E.db.sle.afk.defaultGraphics.factionLogo.enable = false
 	E.db.sle.afk.defaultGraphics.raceCrest.enable = false
 	E.db.sle.afk.defaultGraphics.slLogo.enable = false
 	E.db.sle.afk.defaultTexts.SL_AFKMessage.anchorPoint = 'CENTER'
 	E.db.sle.afk.defaultTexts.SL_AFKMessage.attachTo = 'SL_BottomPanel'
-	E.db.sle.afk.defaultTexts.SL_AFKMessage.font = L1UI.DefaultFont
+	E.db.sle.afk.defaultTexts.SL_AFKMessage.font = Private.Font
 	E.db.sle.afk.defaultTexts.SL_AFKMessage.yOffset = 10
-	E.db.sle.afk.defaultTexts.SL_AFKTimePassed.font = L1UI.DefaultFont
+	E.db.sle.afk.defaultTexts.SL_AFKTimePassed.font = Private.Font
 	E.db.sle.afk.defaultTexts.SL_Date.anchorPoint = 'CENTER'
-	E.db.sle.afk.defaultTexts.SL_Date.font = L1UI.DefaultFont
+	E.db.sle.afk.defaultTexts.SL_Date.font = Private.Font
 	E.db.sle.afk.defaultTexts.SL_Date.size = 24
 	E.db.sle.afk.defaultTexts.SL_Date.xOffset = 0
 	E.db.sle.afk.defaultTexts.SL_Date.yOffset = 40
 	E.db.sle.afk.defaultTexts.SL_GuildName.enable = false
-	E.db.sle.afk.defaultTexts.SL_GuildName.font = L1UI.DefaultFont
-	E.db.sle.afk.defaultTexts.SL_GuildName.size = 18
 	E.db.sle.afk.defaultTexts.SL_GuildRank.enable = false
-	E.db.sle.afk.defaultTexts.SL_GuildRank.font = L1UI.DefaultFont
-	E.db.sle.afk.defaultTexts.SL_GuildRank.size = 18
 	E.db.sle.afk.defaultTexts.SL_PlayerClass.enable = false
-	E.db.sle.afk.defaultTexts.SL_PlayerClass.font = L1UI.DefaultFont
-	E.db.sle.afk.defaultTexts.SL_PlayerClass.size = 18
 	E.db.sle.afk.defaultTexts.SL_PlayerLevel.enable = false
-	E.db.sle.afk.defaultTexts.SL_PlayerLevel.font = L1UI.DefaultFont
-	E.db.sle.afk.defaultTexts.SL_PlayerLevel.size = 18
 	E.db.sle.afk.defaultTexts.SL_PlayerName.enable = false
-	E.db.sle.afk.defaultTexts.SL_PlayerName.font = L1UI.DefaultFont
-	E.db.sle.afk.defaultTexts.SL_PlayerName.size = 26
 	E.db.sle.afk.defaultTexts.SL_ScrollFrame.enable = false
-	E.db.sle.afk.defaultTexts.SL_SubText.font = L1UI.DefaultFont
-	E.db.sle.afk.defaultTexts.SL_Time.font = L1UI.DefaultFont
+	E.db.sle.afk.defaultTexts.SL_SubText.font = Private.Font
+	E.db.sle.afk.defaultTexts.SL_Time.font = Private.Font
 	E.db.sle.afk.defaultTexts.SL_Time.size = 20
 	E.db.sle.afk.enable = true
-	E.db.sle.afk.playermodel.distance = 6
 	E.db.sle.afk.playermodel.enable = false
 
 	E.db.sle.armory.character.background.overlay = false
 	E.db.sle.armory.character.background.selectedBG = 'HIDE'
 	E.db.sle.armory.character.durability.display = 'Hide'
-	E.db.sle.armory.character.durability.font = L1UI.DefaultFont
+	E.db.sle.armory.character.durability.font = Private.Font
 	E.db.sle.armory.character.durability.fontSize = 11
 	E.db.sle.armory.character.enable = true
-	E.db.sle.armory.character.enchant.font = L1UI.DefaultFont
+	E.db.sle.armory.character.enchant.font = Private.Font
 	E.db.sle.armory.character.enchant.fontSize = 9
+	E.db.sle.armory.character.enchant.showReal = false
 	E.db.sle.armory.character.enchant.yOffset = -1
 	E.db.sle.armory.character.gem.xOffset = 4
 	E.db.sle.armory.character.gem.yOffset = -1
 	E.db.sle.armory.character.gradient.quality = true
 	E.db.sle.armory.character.ilvl.colorType = 'QUALITY'
-	E.db.sle.armory.character.ilvl.font = L1UI.DefaultFont
+	E.db.sle.armory.character.ilvl.font = Private.Font
 	E.db.sle.armory.character.ilvl.fontSize = 11
 	E.db.sle.armory.inspect.background.overlay = false
+	E.db.sle.armory.inspect.background.selectedBG = 'HIDE'
 	E.db.sle.armory.inspect.enable = true
-	E.db.sle.armory.inspect.enchant.font = L1UI.DefaultFont
+	E.db.sle.armory.inspect.enchant.font = Private.Font
 	E.db.sle.armory.inspect.enchant.fontSize = 9
+	E.db.sle.armory.inspect.enchant.showReal = false
 	E.db.sle.armory.inspect.enchant.yOffset = -1
 	E.db.sle.armory.inspect.gem.xOffset = 4
 	E.db.sle.armory.inspect.gem.yOffset = -1
 	E.db.sle.armory.inspect.gradient.quality = true
 	E.db.sle.armory.inspect.ilvl.colorType = 'QUALITY'
-	E.db.sle.armory.inspect.ilvl.font = L1UI.DefaultFont
+	E.db.sle.armory.inspect.ilvl.font = Private.Font
 	E.db.sle.armory.inspect.ilvl.fontSize = 11
-	E.db.sle.armory.stats.catFonts.font = L1UI.DefaultFont
-	E.db.sle.armory.stats.catFonts.outline = 'OUTLINE'
-	E.db.sle.armory.stats.itemLevel.font = L1UI.DefaultFont
-	E.db.sle.armory.stats.itemLevel.outline = 'OUTLINE'
-	E.db.sle.armory.stats.itemLevel.size = 15
+	E.db.sle.armory.stats.itemLevel.font = Private.Font
+	E.db.sle.armory.stats.itemLevel.fontOutline = 'OUTLINE'
+	E.db.sle.armory.stats.itemLevel.fontSize = 15
 	E.db.sle.armory.stats.List.ATTACK_DAMAGE = false
 	E.db.sle.armory.stats.List.SPELLPOWER = false
-	E.db.sle.armory.stats.statFonts.font = L1UI.DefaultFont
-	E.db.sle.armory.stats.statFonts.outline = 'OUTLINE'
-	E.db.sle.armory.stats.statFonts.size = 11
+	E.db.sle.armory.stats.statHeaders.font = Private.Font
+	E.db.sle.armory.stats.statHeaders.fontOutline = 'OUTLINE'
+	E.db.sle.armory.stats.statLabels.font = Private.Font
+	E.db.sle.armory.stats.statLabels.fontOutline = 'OUTLINE'
+	E.db.sle.armory.stats.statLabels.fontSize = 11
 
-	E.db.sle.media.fonts.gossip.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.gossip.size = 11
-	E.db.sle.media.fonts.mail.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.mail.size = 11
-	E.db.sle.media.fonts.objective.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.objective.outline = 'OUTLINE'
-	E.db.sle.media.fonts.objective.size = 11
-	E.db.sle.media.fonts.objectiveHeader.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.objectiveHeader.outline = 'OUTLINE'
-	E.db.sle.media.fonts.pvp.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.questFontSuperHuge.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.questFontSuperHuge.size = 22
-	E.db.sle.media.fonts.subzone.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.subzone.size = 24
-	E.db.sle.media.fonts.zone.font = L1UI.DefaultFont
-	E.db.sle.media.fonts.zone.size = 30
+	E.db.sle.media.fonts.gossip.font = Private.Font
+	E.db.sle.media.fonts.mail.font = Private.Font
+	E.db.sle.media.fonts.objective.font = Private.Font
+	E.db.sle.media.fonts.objective.fontSize = 10
+	E.db.sle.media.fonts.objectiveHeader.font = Private.Font
+	E.db.sle.media.fonts.objectiveHeader.fontOutline = 'OUTLINE'
+	E.db.sle.media.fonts.pvp.font = Private.Font
+	E.db.sle.media.fonts.questFontSuperHuge.font = Private.Font
+	E.db.sle.media.fonts.scenarioStage.HeaderText.font = Private.Font
+	E.db.sle.media.fonts.scenarioStage.HeaderText.fontSize = 12
+	E.db.sle.media.fonts.scenarioStage.TimerText.font = Private.Font
+	E.db.sle.media.fonts.scenarioStage.TimerText.fontSize = 16
+	E.db.sle.media.fonts.subzone.font = Private.Font
+	E.db.sle.media.fonts.zone.font = Private.Font
 
 	E.db.sle.raidmarkers.enable = false
 
 	E.db.sle.skins.objectiveTracker.classHeader = true
-	E.db.sle.skins.objectiveTracker.colorHeader.b = 1
-	E.db.sle.skins.objectiveTracker.colorHeader.g = 0
-	E.db.sle.skins.objectiveTracker.colorHeader.r = 0.81
 	E.db.sle.skins.objectiveTracker.underlineClass = true
-	E.db.sle.skins.talkinghead.hide = true
 
 	if not noPrint then
 		L1UI:Print(L["Shadow&Light profile has been set."])

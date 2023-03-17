@@ -1,4 +1,58 @@
-### Version 2.23 [In Development]
+### Version 2.26 [17-03-2023]
+**All WoW Versions:**  
+Added chat prints to the installer if an addon or plugin is not installed  
+Added ptBR localization (Credits: Eltreum)  
+Added skin for TalentLoadoutsEx AddOn  
+Disabled smoothing for UnitFrame Fader  
+Updated out of range transparency for UnitFrame Fader  
+**Retail:**  
+Compatibility tweaks if you use Shadow&Light + WindTools together  
+Updated Shadow&Light profile (Requires alpha version or wait for them to release the update)  
+Updated WindTools profile  
+**Backend:**  
+Swapped to private namespace for constants and tables  
+Worth mentioning but I don't think anyone is using my stuff anyways  
+___
+### Version 2.25 [06-03-2023]
+**All WoW Versions:**  
+The following changes will only apply to fresh profiles or if dev-mode is enabled  
+• Moved name text for Raid1 and Raid2 to CENTER (was TOP)  
+• Moved ressurect icon for Raid1, Raid2, Raid3 to RIGHT (was CENTER)  
+• Moved role icon for Raid1, Raid2, Raid3 to LEFT (was BOTTOMLEFT)  
+• Moved summon icon for Raid1, Raid2, Raid3 to RIGHT (was CENTER)  
+• Removed health text for Raid1 and Raid2 frames  
+Updated website descriptions and GitHub readme file informations  
+**Retail:**  
+Fixed rare installer error when using the BigWigs installer step  
+**Classic:**  
+Fixed 'focus' error when using the Quartz installer step in Classic Era  
+___
+### Version 2.24 [26-02-2023]
+**All WoW Versions:**  
+Added layouts config section  
+Fixed a duplicate chat print during the installer process  
+Removed archive config section  
+Reworked all installer steps and descriptions for a better experience  
+Reworked installer behaviour so it only auto shows once per account instead of each character  
+Updated tons of locale strings for localization  
+Updated website descriptions and GitHub readme file informations  
+Updates for ElvUI 13.27  
+**Retail:**  
+Fixed rare installer error when using the OmniCD installer step  
+___
+### Version 2.23 [19-02-2023]
+**All WoW Versions:**  
+Added seperate installer step for all ElvUI plugin profiles  
+Fixed rare installer error when using Quartz for castbars  
+The following changes will only apply to fresh profiles and not update existing profiles  
+• ActionBar hotkey text position is now 'TOP' (was 'TOPLEFT')  
+• Chat will now show time stamps (Format: HH:MM, Color: White)  
+• Cooldown text will now show in "44m" format and swap to MM:SS at 2 minutes remaining  
+• Itemlevel font size is now 10 (was 11)  
+• Mouseover tooltip of the custom Minimap DataText will no longer overlap Minimap buttons  
+**Retail:**  
+Enabled color gradient for Alternative Power by default  
+Fixed the installer not working with the most recent WindTools update  
 ___
 ### Version 2.22 [13-02-2023]
 **All WoW Versions:**  

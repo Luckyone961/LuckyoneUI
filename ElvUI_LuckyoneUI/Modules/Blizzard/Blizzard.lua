@@ -1,4 +1,5 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local _, Private = ...
+local E, L, V, P, G = unpack(ElvUI)
 
 local _G = _G
 

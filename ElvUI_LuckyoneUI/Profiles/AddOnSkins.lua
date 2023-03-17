@@ -1,15 +1,16 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local _, Private = ...
+local E, L, V, P, G = unpack(ElvUI)
 
 local unpack = unpack
 
 -- AddOnSkins Profile
 function L1UI:Setup_AddOnSkins(noPrint)
-	if not E:IsAddOnEnabled('AddOnSkins') then return end
+	if not E:IsAddOnEnabled('AddOnSkins') then L1UI:Print('AddOnSkins ' .. L["not installed or enabled."]) return end
 
 	local AS = unpack(AddOnSkins)
 
 	-- Profile creation
-	AS.data:SetProfile(E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. L1UI.Version)
+	AS.data:SetProfile(E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. Private.Version)
 
 	-- Profile data
 	AS.db.Shadows = false

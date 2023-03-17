@@ -1,10 +1,11 @@
-local L1UI, E, L, V, P, G = unpack(select(2, ...))
+local _, Private = ...
+local E, L, V, P, G = unpack(ElvUI)
 
 local pairs = pairs
 
 -- Quartz profile
 function L1UI:Setup_Quartz(layout)
-	if not E:IsAddOnEnabled('Quartz') then return end
+	if not E:IsAddOnEnabled('Quartz') then L1UI:Print('Quartz ' .. L["not installed or enabled."]) return end
 
 	-- Disable ElvUI castbars if Quartz is used
 	E.db.unitframe.units.focus.castbar.enable = false
@@ -12,12 +13,16 @@ function L1UI:Setup_Quartz(layout)
 	E.db.unitframe.units.target.castbar.enable = false
 
 	-- Profile names
-	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. L1UI.Version
-	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. L1UI.Version
+	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
+	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version
 
 	-- Disable LibDualSpec to set the profile
-	Quartz3DB['namespaces']['LibDualSpec-1.0'] = Quartz3DB['namespaces']['LibDualSpec-1.0'] or {}
-	Quartz3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
+	if E.Retail then
+		Quartz3DB['namespaces']['LibDualSpec-1.0'] = Quartz3DB['namespaces']['LibDualSpec-1.0'] or {}
+		Quartz3DB['namespaces']['LibDualSpec-1.0']['char'] = Quartz3DB['namespaces']['LibDualSpec-1.0']['char'] or {}
+		Quartz3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = Quartz3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
+		Quartz3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
+	end
 
 	-- Profile db
 	for _, profile in pairs({ name, name_healing }) do
@@ -149,53 +154,56 @@ function L1UI:Setup_Quartz(layout)
 		['x'] = 0.000244140625,
 	}
 
-	Quartz3DB['namespaces']['Focus']['profiles'] = Quartz3DB['namespaces']['Focus']['profiles'] or {}
-	Quartz3DB['namespaces']['Focus']['profiles'][name] = {
-		['timetextx'] = 2,
-		['nametextx'] = 2,
-		['w'] = 238,
-		['y'] = -140.9997406005859,
-		['font'] = 'Expressway',
-		['iconalpha'] = 1,
-		['strata'] = 'HIGH',
-		['point'] = 'CENTER',
-		['border'] = 'Square Full White',
-		['noInterruptColor'] = {
-			nil, -- [1]
-			0, -- [2]
-			nil, -- [3]
-			1, -- [4]
-		},
-		['fontsize'] = 11,
-		['texture'] = 'Minimalist',
-		['timefontsize'] = 11,
-		['noInterruptChangeColor'] = true,
-		['noInterruptShield'] = false,
-		['x'] = 278.0001831054688,
-	}
-	Quartz3DB['namespaces']['Focus']['profiles'][name_healing] = {
-		['timetextx'] = 2,
-		['nametextx'] = 2,
-		['w'] = 238,
-		['y'] = -140.9997100830078,
-		['font'] = 'Expressway',
-		['iconalpha'] = 1,
-		['strata'] = 'HIGH',
-		['point'] = 'CENTER',
-		['border'] = 'Square Full White',
-		['noInterruptColor'] = {
-			nil, -- [1]
-			0, -- [2]
-			nil, -- [3]
-			1, -- [4]
-		},
-		['fontsize'] = 11,
-		['texture'] = 'Minimalist',
-		['timefontsize'] = 11,
-		['noInterruptChangeColor'] = true,
-		['noInterruptShield'] = false,
-		['x'] = 358.0001220703125,
-	}
+	-- Focus doesn't exist in Classic Era
+	if not E.Classic then
+		Quartz3DB['namespaces']['Focus']['profiles'] = Quartz3DB['namespaces']['Focus']['profiles'] or {}
+		Quartz3DB['namespaces']['Focus']['profiles'][name] = {
+			['timetextx'] = 2,
+			['nametextx'] = 2,
+			['w'] = 238,
+			['y'] = -140.9997406005859,
+			['font'] = 'Expressway',
+			['iconalpha'] = 1,
+			['strata'] = 'HIGH',
+			['point'] = 'CENTER',
+			['border'] = 'Square Full White',
+			['noInterruptColor'] = {
+				nil, -- [1]
+				0, -- [2]
+				nil, -- [3]
+				1, -- [4]
+			},
+			['fontsize'] = 11,
+			['texture'] = 'Minimalist',
+			['timefontsize'] = 11,
+			['noInterruptChangeColor'] = true,
+			['noInterruptShield'] = false,
+			['x'] = 278.0001831054688,
+		}
+		Quartz3DB['namespaces']['Focus']['profiles'][name_healing] = {
+			['timetextx'] = 2,
+			['nametextx'] = 2,
+			['w'] = 238,
+			['y'] = -140.9997100830078,
+			['font'] = 'Expressway',
+			['iconalpha'] = 1,
+			['strata'] = 'HIGH',
+			['point'] = 'CENTER',
+			['border'] = 'Square Full White',
+			['noInterruptColor'] = {
+				nil, -- [1]
+				0, -- [2]
+				nil, -- [3]
+				1, -- [4]
+			},
+			['fontsize'] = 11,
+			['texture'] = 'Minimalist',
+			['timefontsize'] = 11,
+			['noInterruptChangeColor'] = true,
+			['noInterruptShield'] = false,
+			['x'] = 358.0001220703125,
+		}
+	end
 
 	Quartz3DB['namespaces']['Target']['profiles'] = Quartz3DB['namespaces']['Target']['profiles'] or {}
 	Quartz3DB['namespaces']['Target']['profiles'][name] = {
