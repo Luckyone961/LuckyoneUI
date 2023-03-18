@@ -1,3 +1,5 @@
+### Version 2.27 [In Development]
+___
 ### Version 2.26 [17-03-2023]
 **All WoW Versions:**  
 Added chat prints to the installer if an addon or plugin is not installed  
