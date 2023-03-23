@@ -1,3 +1,9 @@
+### Version 2.27 [23-03-2023]
+**All WoW Versions:**  
+ElvUI 13.29+ compatibility  
+**Retail:**  
+Updated TOC for 10.0.7  
+___
 ### Version 2.26 [17-03-2023]
 **All WoW Versions:**  
 Added chat prints to the installer if an addon or plugin is not installed  
