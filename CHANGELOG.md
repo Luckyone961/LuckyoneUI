@@ -1,6 +1,6 @@
-### Version 2.27 [In Development]
+### Version 2.27 [23-03-2023]
 **All WoW Versions:**  
-ElvUI 13.28+ compatibility  
+ElvUI 13.29+ compatibility  
 **Retail:**  
 Updated TOC for 10.0.7  
 ___
