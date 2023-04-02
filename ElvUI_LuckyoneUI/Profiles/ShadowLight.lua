@@ -1,7 +1,7 @@
 local _, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
-local GetAddOnMetadata = GetAddOnMetadata
+local GetAddOnMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
 
 -- Shadow & Light profile
 function L1UI:Setup_ShadowAndLight(noPrint)

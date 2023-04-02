@@ -6,7 +6,7 @@ local PI = E:GetModule('PluginInstaller')
 local Name, Private = ...
 
 local tonumber = tonumber
-local GetAddOnMetadata = GetAddOnMetadata
+local GetAddOnMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
 
 L1UI = E:NewModule(Name, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
 
