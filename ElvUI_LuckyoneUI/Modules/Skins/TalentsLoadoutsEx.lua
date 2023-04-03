@@ -83,6 +83,11 @@ function L1UI:Skin_TalentLoadoutsEx()
 		TlxFrame.PopupFrame.BorderBox.IconSelectorEditBox:StripTextures()
 		S:HandleEditBox(TlxFrame.PopupFrame.BorderBox.IconSelectorEditBox)
 
+		-- Notes
+		if TlxFrame.PopupFrame.SearchNotice.NineSlice then
+			TlxFrame.PopupFrame.SearchNotice.NineSlice:SetTemplate('Transparent')
+		end
+
 		TlxFrame.PopupFrame.Skinned = true
 	end)
 end
