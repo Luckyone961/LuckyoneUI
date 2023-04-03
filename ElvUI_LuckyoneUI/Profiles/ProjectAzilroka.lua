@@ -5,7 +5,7 @@ local _G = _G
 
 -- ProjectAzilroka profile
 function L1UI:Setup_ProjectAzilroka(noPrint)
-	if not E:IsAddOnEnabled('ProjectAzilroka') then L1UI:Print('ProjectAzilroka ' .. L["not installed or enabled."]) return end
+	if not E:IsAddOnEnabled('ProjectAzilroka') then Private:Print('ProjectAzilroka ' .. L["not installed or enabled."]) return end
 
 	local PA = _G.ProjectAzilroka
 
@@ -60,6 +60,6 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,0,-156'
 
 	if not noPrint then
-		L1UI:Print(L["ProjectAzilroka profile has been set."])
+		Private:Print(L["ProjectAzilroka profile has been set."])
 	end
 end

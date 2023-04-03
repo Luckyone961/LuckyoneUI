@@ -3,7 +3,7 @@ local E, L, V, P, G = unpack(ElvUI)
 
 -- Details profile
 function L1UI:Setup_Details()
-	if not E:IsAddOnEnabled('Details') then L1UI:Print('Details ' .. L["not installed or enabled."]) return end
+	if not E:IsAddOnEnabled('Details') then Private:Print('Details ' .. L["not installed or enabled."]) return end
 
 	-- Profile name
 	local name = E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. Private.Version
@@ -24,5 +24,5 @@ function L1UI:Setup_Details()
 	_detalhes.always_use_profile = true
 	_detalhes.always_use_profile_name = name
 
-	L1UI:Print(L["Details profile has been set."])
+	Private:Print(L["Details profile has been set."])
 end

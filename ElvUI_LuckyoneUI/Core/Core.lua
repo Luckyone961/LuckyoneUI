@@ -9,7 +9,7 @@ local hooksecurefunc = hooksecurefunc
 local SetCVar = SetCVar
 
 -- Chat print
-function L1UI:Print(msg)
+function Private:Print(msg)
 	print(Private.Name .. ': ' .. msg)
 end
 
@@ -45,7 +45,7 @@ E.PopupDialogs.L1UI_EDITBOX = {
 		self.editBox:SetText(data)
 		self.editBox:HighlightText()
 		self.editBox:SetJustifyH('CENTER')
-		L1UI:Print(data)
+		Private:Print(data)
 	end,
 	OnHide = function(self)
 		self.editBox:Width(self.editBox.width or 50)
@@ -75,7 +75,7 @@ E.PopupDialogs.L1UI_EDITBOX = {
 function L1UI:VersionCheck()
 	if E.version < Private.RequiredElvUI then
 		E:StaticPopup_Show('L1UI_VC')
-		L1UI:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
+		Private:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
 	end
 end
 
@@ -131,7 +131,7 @@ function L1UI:Setup_CVars(noPrint)
 	end
 
 	if not noPrint then
-		L1UI:Print(L["CVars have been set."])
+		Private:Print(L["CVars have been set."])
 	end
 end
 
@@ -167,7 +167,7 @@ function L1UI:NameplateCVars(noPrint)
 	end
 
 	if not noPrint then
-		L1UI:Print(L["NamePlate CVars have been set."])
+		Private:Print(L["NamePlate CVars have been set."])
 	end
 end
 
@@ -301,7 +301,7 @@ function L1UI:Setup_Layout_Dragonflight(layout)
 	-- Push the update
 	E:StaggeredUpdateAll()
 
-	L1UI:Print(L["Layout has been set."])
+	Private:Print(L["Layout has been set."])
 end
 
 -- Shadowlands layouts
@@ -346,7 +346,7 @@ function L1UI:Setup_Layout_Shadowlands(layout)
 	-- Push the update
 	E:StaggeredUpdateAll()
 
-	L1UI:Print(L["Layout has been set."])
+	Private:Print(L["Layout has been set."])
 end
 
 -- Performance config section
@@ -354,10 +354,10 @@ function L1UI:Cleanup_Cache(addon, frame)
 	if addon == 'elvui' and E.private.chat.enable then
 		if frame == 'chat' then
 			CH:ResetHistory()
-			L1UI:Print(L["Cleared ElvUI Chat History."])
+			Private:Print(L["Cleared ElvUI Chat History."])
 		elseif frame == 'editbox' then
 			CH:ResetEditboxHistory()
-			L1UI:Print(L["Cleared ElvUI Editbox History."])
+			Private:Print(L["Cleared ElvUI Editbox History."])
 		end
 	elseif addon == 'details' and E:IsAddOnEnabled('Details') then
 		_detalhes.boss_mods_timers = {}
@@ -365,21 +365,21 @@ function L1UI:Cleanup_Cache(addon, frame)
 		_detalhes.npcid_pool = {}
 		_detalhes.spell_pool = {}
 		_detalhes.spell_school_cache = {}
-		L1UI:Print(L["Cleared Details Cache."])
+		Private:Print(L["Cleared Details Cache."])
 	elseif addon == 'plater' and E:IsAddOnEnabled('Plater') then
 		PlaterDB.captured_casts = {}
 		PlaterDB.captured_spells = {}
-		L1UI:Print(L["Cleared Plater Cache."])
+		Private:Print(L["Cleared Plater Cache."])
 	elseif addon == 'rc' and E:IsAddOnEnabled('RCLootCouncil') then
 		RCLootCouncilDB.global.cache = {}
 		RCLootCouncilDB.global.errors = {}
 		RCLootCouncilDB.global.log = {}
 		RCLootCouncilDB.global.verTestCandidates = {}
-		L1UI:Print(L["Cleared RCLootCouncil Cache."])
+		Private:Print(L["Cleared RCLootCouncil Cache."])
 	elseif addon == 'mrt' and E:IsAddOnEnabled('MRT') then
 		VMRT.ExCD2.gnGUIDs = {}
 		VMRT.Inspect.Soulbinds = {}
-		L1UI:Print(L["Cleared Method Raid Tools Cache."])
+		Private:Print(L["Cleared Method Raid Tools Cache."])
 	end
 end
 

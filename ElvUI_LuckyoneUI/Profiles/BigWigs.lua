@@ -7,7 +7,7 @@ local pairs = pairs
 
 -- BigWigs profiles
 function L1UI:Setup_BigWigs(layout)
-	if not E:IsAddOnEnabled('BigWigs') then L1UI:Print('BigWigs ' .. L["not installed or enabled."]) return end
+	if not E:IsAddOnEnabled('BigWigs') then Private:Print('BigWigs ' .. L["not installed or enabled."]) return end
 
 	-- Profile names
 	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
@@ -316,5 +316,5 @@ function L1UI:Setup_BigWigs(layout)
 		BigWigs.db:SetProfile(name_healing)
 	end
 
-	L1UI:Print(L["BigWigs profile has been set."])
+	Private:Print(L["BigWigs profile has been set."])
 end

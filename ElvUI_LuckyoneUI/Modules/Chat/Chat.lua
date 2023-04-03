@@ -107,5 +107,5 @@ function L1UI:Setup_Chat()
 	-- Select the main tab
 	FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
 
-	L1UI:Print(L["Chat setup successful."])
+	Private:Print(L["Chat setup successful."])
 end

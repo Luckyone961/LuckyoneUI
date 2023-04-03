@@ -6,5 +6,5 @@ function L1UI:UpdateLayout(layout)
 	-- Bump install version
 	E.global.L1UI.install_version = Private.Version
 
-	L1UI:Print(L["Successfully updated your current layout to LuckyoneUI version "] .. Private.Version)
+	Private:Print(L["Successfully updated your current layout to LuckyoneUI version "] .. Private.Version)
 end

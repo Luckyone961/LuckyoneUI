@@ -3,7 +3,7 @@ local E, L, V, P, G = unpack(ElvUI)
 
 -- WarpDeplete Profile
 function L1UI:Setup_WarpDeplete()
-	if not E:IsAddOnEnabled('WarpDeplete') and E.Retail then L1UI:Print('WarpDeplete ' .. L["not installed or enabled."]) return end
+	if not E:IsAddOnEnabled('WarpDeplete') and E.Retail then Private:Print('WarpDeplete ' .. L["not installed or enabled."]) return end
 
 	-- Profile name
 	local name = E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. Private.Version
@@ -44,5 +44,5 @@ function L1UI:Setup_WarpDeplete()
 	-- Profile key
 	WarpDepleteDB['profileKeys'][E.mynameRealm] = name
 
-	L1UI:Print(L["WarpDeplete profile has been set."])
+	Private:Print(L["WarpDeplete profile has been set."])
 end
