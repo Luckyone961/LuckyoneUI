@@ -1,4 +1,4 @@
-### Version 2.28 [In Development]
+### Version 2.28 [05-04-2023]
 **All WoW Versions:**  
 Added support for PTR servers  
 **Retail:**  
