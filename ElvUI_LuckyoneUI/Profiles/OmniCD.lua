@@ -1,11 +1,11 @@
-local _, Private = ...
+local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 local pairs = pairs
 
 -- OmniCD profile
 function L1UI:Setup_OmniCD(layout)
-	if not E:IsAddOnEnabled('OmniCD') and E.Retail then L1UI:Print('OmniCD ' .. L["not installed or enabled."]) return end
+	if not E:IsAddOnEnabled('OmniCD') and E.Retail then Private:Print('OmniCD ' .. L["not installed or enabled."]) return end
 
 	-- Profile names
 	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
@@ -598,5 +598,5 @@ function L1UI:Setup_OmniCD(layout)
 		OmniCDDB['profileKeys'][E.mynameRealm] = name_healing
 	end
 
-	L1UI:Print(L["OmniCD profile has been set."])
+	Private:Print(L["OmniCD profile has been set."])
 end

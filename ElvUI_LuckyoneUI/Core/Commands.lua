@@ -1,4 +1,4 @@
-local _, Private = ...
+local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 local PI = E:GetModule('PluginInstaller')
 
@@ -60,7 +60,7 @@ function L1UI:DebugMode(msg)
 			C_UI_Reload()
 		end
 	else
-		L1UI:Print('/luckydebug on - /luckydebug off')
+		Private:Print('/luckydebug on - /luckydebug off')
 	end
 end
 
@@ -68,11 +68,11 @@ end
 function L1UI:Dev(msg)
 	if msg == 'on' then
 		E.global.L1UI.dev = true
-		L1UI:Print('Developer mode enabled.')
+		Private:Print('Developer mode enabled.')
 		E:StaticPopup_Show('L1UI_RL')
 	elseif msg == 'off' then
 		E.global.L1UI.dev = false
-		L1UI:Print('Developer mode disabled.')
+		Private:Print('Developer mode disabled.')
 		E:StaticPopup_Show('L1UI_RL')
 	end
 end

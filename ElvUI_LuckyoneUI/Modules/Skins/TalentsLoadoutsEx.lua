@@ -1,4 +1,4 @@
-local _, Private = ...
+local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
@@ -82,6 +82,11 @@ function L1UI:Skin_TalentLoadoutsEx()
 		-- EditBox
 		TlxFrame.PopupFrame.BorderBox.IconSelectorEditBox:StripTextures()
 		S:HandleEditBox(TlxFrame.PopupFrame.BorderBox.IconSelectorEditBox)
+
+		-- Notes
+		if TlxFrame.PopupFrame.SearchNotice.NineSlice then
+			TlxFrame.PopupFrame.SearchNotice.NineSlice:SetTemplate('Transparent')
+		end
 
 		TlxFrame.PopupFrame.Skinned = true
 	end)

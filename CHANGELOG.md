@@ -1,3 +1,9 @@
+### Version 2.28 [05-04-2023]
+**All WoW Versions:**  
+Added support for PTR servers  
+**Retail:**  
+Updated TalentLoadoutsEx skin  
+___
 ### Version 2.27 [23-03-2023]
 **All WoW Versions:**  
 ElvUI 13.29+ compatibility  

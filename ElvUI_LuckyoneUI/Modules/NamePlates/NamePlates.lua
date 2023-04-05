@@ -1,4 +1,4 @@
-local _, Private = ...
+local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 
@@ -344,5 +344,5 @@ function L1UI:Setup_StyleFilters()
 	-- Set NamePlate CVars
 	L1UI:NameplateCVars(true)
 
-	L1UI:Print(L["NamePlate StyleFilters and CVars have been set."])
+	Private:Print(L["NamePlate StyleFilters and CVars have been set."])
 end
