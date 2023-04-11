@@ -1,4 +1,4 @@
-local _, Private = ...
+local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- Auras config section: Buffs
@@ -34,7 +34,7 @@ function L1UI:Setup_Buffs(frame, option)
 
 	E:UpdateUnitFrames()
 
-	L1UI:Print(L["Buff filters updated."])
+	Private:Print(L["Buff filters updated."])
 end
 
 -- Auras config section: Debuffs
@@ -70,5 +70,5 @@ function L1UI:Setup_Debuffs(frame, option)
 
 	E:UpdateUnitFrames()
 
-	L1UI:Print(L["Debuff filters updated."])
+	Private:Print(L["Debuff filters updated."])
 end

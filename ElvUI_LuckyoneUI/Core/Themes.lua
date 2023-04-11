@@ -1,4 +1,4 @@
-local _, Private = ...
+local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- UnitFrame color themes
@@ -59,5 +59,5 @@ function L1UI:Setup_Theme(theme)
 	E:UpdateMediaItems(true)
 	E:UpdateUnitFrames()
 
-	L1UI:Print(L["Theme has been set."])
+	Private:Print(L["Theme has been set."])
 end
