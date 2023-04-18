@@ -1,4 +1,6 @@
 ### Version 2.29 [In Development]
+**All WoW Versions:**  
+Some more updates for PTR servers  
 **Retail:**  
 Updated OmniCD tracked spells list  
 ___

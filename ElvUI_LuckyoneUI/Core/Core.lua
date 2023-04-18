@@ -79,6 +79,14 @@ function L1UI:VersionCheck()
 	end
 end
 
+-- AddOn Compartment
+function L1UI_OnAddonCompartmentClick()
+	if not E.Retail then return end
+
+	E:ToggleOptions()
+	E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
+end
+
 -- General CVars
 function L1UI:Setup_CVars(noPrint)
 	-- Core CVars
