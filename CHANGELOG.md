@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 Some more updates for PTR servers  
 **Retail:**  
+Removed StyleFilters for Season 1 Dungeons  
 Updated OmniCD tracked spells list  
 ___
 ### Version 2.28 [05-04-2023]
