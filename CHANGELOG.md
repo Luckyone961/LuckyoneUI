@@ -1,4 +1,4 @@
-### Version 2.29 [In Development]
+### Version 2.29 [19-04-2023]
 **All WoW Versions:**  
 Some more updates for PTR servers  
 **Retail:**  
