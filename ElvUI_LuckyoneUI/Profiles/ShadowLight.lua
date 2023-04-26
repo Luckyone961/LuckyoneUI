@@ -22,7 +22,6 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 
 	-- Private DB
 	E.private.sle.install_complete = version
-	E.private.sle.module.blizzmove.enable = false
 	E.private.sle.professions.deconButton.enable = false
 	E.private.sle.skins.objectiveTracker.BGbackdrop = false
 	E.private.sle.skins.objectiveTracker.texture = Private.Texture

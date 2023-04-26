@@ -1,3 +1,7 @@
+### Version 2.30 [In Development]
+**Retail:**  
+Updated Shadow&Light profile  
+___
 ### Version 2.29 [19-04-2023]
 **All WoW Versions:**  
 Some more updates for PTR servers  
