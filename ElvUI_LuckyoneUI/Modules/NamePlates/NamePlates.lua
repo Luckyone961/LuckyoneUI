@@ -190,7 +190,6 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.TARGET.arrowSpacing = 25
 	E.db.nameplates.units.TARGET.glowStyle = 'style2'
 
-	-- Update the module so we don't require a /reload
 	if NP.Initialized then
 		E:UpdateNamePlates(true)
 	end
@@ -201,7 +200,7 @@ function L1UI:Setup_StyleFilters()
 	if not E.private.nameplates.enable then return end
 
 	if E.Retail then
-		for _, filterName in pairs({ 'Luckyone_VOTI', 'Luckyone_RLP', 'Luckyone_AA', 'Luckyone_NO', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_SBG', 'Luckyone_TJS' }) do
+		for _, filterName in pairs({ 'Luckyone_VOTI' }) do
 			E.global.nameplates.filters[filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
 			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
@@ -216,6 +215,15 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_VOTI.triggers.names['199547'] = true -- Frostforged Zealot
 		E.global.nameplates.filters.Luckyone_VOTI.triggers.priority = 2
 
+		-- Edited version of ElvUI_Explosives
+		E.global.nameplates.filters.ElvUI_Explosives.actions.color.healthColor.b = 1
+		E.global.nameplates.filters.ElvUI_Explosives.actions.color.healthColor.g = 0
+		E.global.nameplates.filters.ElvUI_Explosives.actions.color.healthColor.r = 0.49
+		E.global.nameplates.filters.ElvUI_Explosives.actions.scale = 1
+		E.global.nameplates.filters.ElvUI_Explosives.actions.usePortrait = false
+		E.global.nameplates.filters.ElvUI_Explosives.triggers.priority = 1
+
+		--[[
 		-- Ruby Life Pools [RLP]
 		E.global.nameplates.filters.Luckyone_RLP.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_RLP.actions.color.healthColor.g = 0.75
@@ -327,14 +335,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_TJS.triggers.names['59545'] = true -- The Golden Beetle
 		E.global.nameplates.filters.Luckyone_TJS.triggers.names['59555'] = true -- Haunting Sha
 		E.global.nameplates.filters.Luckyone_TJS.triggers.priority = 2
-
-		-- Edited version of ElvUI_Explosives
-		E.global.nameplates.filters.ElvUI_Explosives.actions.color.healthColor.b = 1
-		E.global.nameplates.filters.ElvUI_Explosives.actions.color.healthColor.g = 0
-		E.global.nameplates.filters.ElvUI_Explosives.actions.color.healthColor.r = 0.49
-		E.global.nameplates.filters.ElvUI_Explosives.actions.scale = 1
-		E.global.nameplates.filters.ElvUI_Explosives.actions.usePortrait = false
-		E.global.nameplates.filters.ElvUI_Explosives.triggers.priority = 1
+		]]
 	end
 
 	-- Disable alpha fading and scaling for ElvUI_Target and ElvUI_NonTarget
