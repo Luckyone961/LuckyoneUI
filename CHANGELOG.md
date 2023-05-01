@@ -1,6 +1,9 @@
 ### Version 2.30 [In Development]
+**All WoW Versions:**  
+ElvUI 13.30+ compatibility  
 **Retail:**  
 Updated Shadow&Light profile  
+Updated TOC for 10.1  
 ___
 ### Version 2.29 [19-04-2023]
 **All WoW Versions:**  
