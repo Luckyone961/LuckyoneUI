@@ -7,6 +7,6 @@
 ## Version: 2.29
 
 ## Interface: 30401
-## X-Required-ElvUI: 13.29
+## X-Required-ElvUI: 13.30
 
 Load.xml
