@@ -1,3 +1,11 @@
+### Version 2.30 [02-05-2023]
+**All WoW Versions:**  
+ElvUI 13.30+ compatibility  
+**Retail:**  
+Added initial setup for Addon Compartment font and position  
+Updated Shadow&Light profile  
+Updated TOC for 10.1  
+___
 ### Version 2.29 [19-04-2023]
 **All WoW Versions:**  
 Some more updates for PTR servers  
