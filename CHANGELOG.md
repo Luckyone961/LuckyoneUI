@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 ElvUI 13.30+ compatibility  
 **Retail:**  
+Added initial setup for Addon Compartment font and position  
 Updated Shadow&Light profile  
 Updated TOC for 10.1  
 ___

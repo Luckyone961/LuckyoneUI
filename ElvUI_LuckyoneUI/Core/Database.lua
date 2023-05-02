@@ -9,6 +9,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers = E.db.movers or {}
 
 	-- General
+	if E.Retail then
+		E.db.general.addonCompartment.fontOutline = 'OUTLINE'
+		E.db.general.addonCompartment.size = 20
+	end
 	E.db.general.afkChat = false
 	E.db.general.altPowerBar.font = Private.Font
 	E.db.general.altPowerBar.statusBar = Private.Texture
@@ -1094,6 +1098,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
 
 	-- Shared movers
+	E.db.movers.AddonCompartmentMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66'
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-178'
 	E.db.movers.AltPowerBarMover = E.Retail and 'TOP,UIParent,TOP,0,-18' or nil
 	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-300,-210'
