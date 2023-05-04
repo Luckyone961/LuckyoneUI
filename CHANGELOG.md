@@ -1,4 +1,13 @@
 ### Version 2.31 [In Development]
+**All WoW Versions:**  
+ElvUI 13.31+ compatibility  
+**Retail:**  
+Defaults for new Queue Status (Position, Font, Size)  
+Defaults for new addon compartment (Position, Size, Strata)  
+**Wrath Classic:**  
+Defaults for new Queue Status (Position, Font, Size)  
+**Classic:**  
+Fixed installer error in Layout  
 ___
 ### Version 2.30 [02-05-2023]
 **All WoW Versions:**  
