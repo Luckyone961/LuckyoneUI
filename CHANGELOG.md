@@ -4,6 +4,7 @@ ElvUI 13.31+ compatibility
 **Retail:**  
 Defaults for new Queue Status (Position, Font, Size)  
 Defaults for new addon compartment (Position, Size, Strata)  
+Updated TalentLoadoutsEx skin  
 **Wrath Classic:**  
 Defaults for new Queue Status (Position, Font, Size)  
 **Classic:**  

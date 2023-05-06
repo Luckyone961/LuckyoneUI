@@ -77,15 +77,18 @@ function L1UI:Skin_TalentLoadoutsEx()
 		S:HandleButton(TlxFrame.PopupFrame.BorderBox.CancelButton)
 
 		-- Scroll
-		S:HandleScrollBar(TlxFrame.PopupFrame.IconSelector.ScrollBar)
+		S:HandleTrimScrollBar(TlxFrame.PopupFrame.IconSelector.ScrollBar)
 
 		-- EditBox
 		TlxFrame.PopupFrame.BorderBox.IconSelectorEditBox:StripTextures()
 		S:HandleEditBox(TlxFrame.PopupFrame.BorderBox.IconSelectorEditBox)
 
 		-- Notes
-		if TlxFrame.PopupFrame.SearchNotice.NineSlice then
-			TlxFrame.PopupFrame.SearchNotice.NineSlice:SetTemplate('Transparent')
+		local notice = TlxFrame.PopupFrame.SearchNotice.NineSlice
+		if notice then
+			notice:SetTemplate('Transparent')
+			notice:Point('TOPLEFT', TlxFrame.PopupFrame, 'BOTTOMLEFT', 6, 1)
+			notice:Point('TOPRIGHT', TlxFrame.PopupFrame, 'BOTTOMRIGHT', -5, 1)
 		end
 
 		TlxFrame.PopupFrame.Skinned = true
