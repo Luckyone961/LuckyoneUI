@@ -9,6 +9,8 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers = E.db.movers or {}
 
 	-- General
+	E.db.general.addonCompartment.fontOutline = 'OUTLINE'
+	E.db.general.addonCompartment.size = 20
 	E.db.general.afkChat = false
 	E.db.general.altPowerBar.font = Private.Font
 	E.db.general.altPowerBar.statusBar = Private.Texture
@@ -47,9 +49,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.minimap.icons.difficulty.scale = 0.75
 	E.db.general.minimap.icons.difficulty.xOffset = 12
 	E.db.general.minimap.icons.difficulty.yOffset = -5
-	E.db.general.minimap.icons.lfgEye.scale = 0.5
-	E.db.general.minimap.icons.lfgEye.xOffset = 0
-	E.db.general.minimap.icons.lfgEye.yOffset = 0
 	E.db.general.minimap.icons.mail.texture = 'Mail1'
 	E.db.general.minimap.icons.mail.xOffset = -2
 	E.db.general.minimap.icons.mail.yOffset = 2
@@ -60,6 +59,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.minimap.size = 153
 	E.db.general.objectiveFrameAutoHide = false
 	E.db.general.objectiveFrameHeight = 600
+	E.db.general.queueStatus.scale = 0.4
 	E.db.general.talkingHeadFrameBackdrop = true
 	E.db.general.talkingHeadFrameScale = 0.7
 	E.db.general.vehicleSeatIndicatorSize = 64
@@ -82,6 +82,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar1.macrotext = true
 	E.db.actionbar.bar1.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar1.macroTextYOffset = 1
+	E.db.actionbar.bar1.professionQuality.enable = false
 	E.db.actionbar.bar2.buttonSize = 26
 	E.db.actionbar.bar2.buttonSpacing = 1
 	E.db.actionbar.bar2.countFont = Private.Font
@@ -100,6 +101,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar2.macrotext = true
 	E.db.actionbar.bar2.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar2.macroTextYOffset = 1
+	E.db.actionbar.bar2.professionQuality.enable = false
 	E.db.actionbar.bar3.buttons = 12
 	E.db.actionbar.bar3.buttonSize = 26
 	E.db.actionbar.bar3.buttonSpacing = 1
@@ -119,6 +121,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar3.macrotext = true
 	E.db.actionbar.bar3.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar3.macroTextYOffset = 1
+	E.db.actionbar.bar3.professionQuality.enable = false
 	E.db.actionbar.bar4.backdrop = false
 	E.db.actionbar.bar4.buttons = 12
 	E.db.actionbar.bar4.buttonSize = 26
@@ -141,6 +144,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar4.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar4.macroTextYOffset = 1
 	E.db.actionbar.bar4.point = 'BOTTOMLEFT'
+	E.db.actionbar.bar4.professionQuality.enable = false
 	E.db.actionbar.bar5.buttons = 12
 	E.db.actionbar.bar5.buttonSize = 26
 	E.db.actionbar.bar5.buttonSpacing = 1
@@ -162,6 +166,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar5.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar5.macroTextYOffset = 1
 	E.db.actionbar.bar5.mouseover = true
+	E.db.actionbar.bar5.professionQuality.enable = false
 	E.db.actionbar.bar6.buttons = 12
 	E.db.actionbar.bar6.buttonSize = 26
 	E.db.actionbar.bar6.buttonSpacing = 1
@@ -182,6 +187,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar6.macrotext = true
 	E.db.actionbar.bar6.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar6.macroTextYOffset = 1
+	E.db.actionbar.bar6.professionQuality.enable = false
 	E.db.actionbar.bar7.buttonSize = 26
 	E.db.actionbar.bar7.buttonSpacing = 1
 	E.db.actionbar.bar7.countFont = Private.Font
@@ -199,6 +205,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar7.macrotext = true
 	E.db.actionbar.bar7.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar7.macroTextYOffset = 1
+	E.db.actionbar.bar7.professionQuality.enable = false
 	E.db.actionbar.bar8.buttonSize = 26
 	E.db.actionbar.bar8.buttonSpacing = 1
 	E.db.actionbar.bar8.countFont = Private.Font
@@ -216,6 +223,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar8.macrotext = true
 	E.db.actionbar.bar8.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar8.macroTextYOffset = 1
+	E.db.actionbar.bar8.professionQuality.enable = false
 	E.db.actionbar.bar9.buttonSize = 26
 	E.db.actionbar.bar9.buttonSpacing = 1
 	E.db.actionbar.bar9.countFont = Private.Font
@@ -233,6 +241,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar9.macrotext = true
 	E.db.actionbar.bar9.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar9.macroTextYOffset = 1
+	E.db.actionbar.bar9.professionQuality.enable = false
 	E.db.actionbar.bar10.buttonSize = 26
 	E.db.actionbar.bar10.buttonSpacing = 1
 	E.db.actionbar.bar10.countFont = Private.Font
@@ -250,23 +259,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.bar10.macrotext = true
 	E.db.actionbar.bar10.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar10.macroTextYOffset = 1
+	E.db.actionbar.bar10.professionQuality.enable = false
 
-	if E.Retail then
-		-- Profession Quality
-		E.db.actionbar.bar1.professionQuality.enable = false
-		E.db.actionbar.bar2.professionQuality.enable = false
-		E.db.actionbar.bar3.professionQuality.enable = false
-		E.db.actionbar.bar4.professionQuality.enable = false
-		E.db.actionbar.bar5.professionQuality.enable = false
-		E.db.actionbar.bar6.professionQuality.enable = false
-		E.db.actionbar.bar7.professionQuality.enable = false
-		E.db.actionbar.bar8.professionQuality.enable = false
-		E.db.actionbar.bar9.professionQuality.enable = false
-		E.db.actionbar.bar10.professionQuality.enable = false
-		E.db.actionbar.bar13.professionQuality.enable = false
-		E.db.actionbar.bar14.professionQuality.enable = false
-		E.db.actionbar.bar15.professionQuality.enable = false
-		-- Player Bars
+	if not E.Classic then
 		E.db.actionbar.bar13.buttonSize = 26
 		E.db.actionbar.bar13.buttonSpacing = 1
 		E.db.actionbar.bar13.countFont = Private.Font
@@ -281,9 +276,10 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.bar13.macroFont = Private.Font
 		E.db.actionbar.bar13.macroFontOutline = 'OUTLINE'
 		E.db.actionbar.bar13.macroFontSize = 9
+		E.db.actionbar.bar13.macrotext = true
 		E.db.actionbar.bar13.macroTextPosition = 'BOTTOM'
 		E.db.actionbar.bar13.macroTextYOffset = 1
-		E.db.actionbar.bar13.macrotext = true
+		E.db.actionbar.bar13.professionQuality.enable = false
 		E.db.actionbar.bar14.buttonSize = 26
 		E.db.actionbar.bar14.buttonSpacing = 1
 		E.db.actionbar.bar14.countFont = Private.Font
@@ -298,9 +294,10 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.bar14.macroFont = Private.Font
 		E.db.actionbar.bar14.macroFontOutline = 'OUTLINE'
 		E.db.actionbar.bar14.macroFontSize = 9
+		E.db.actionbar.bar14.macrotext = true
 		E.db.actionbar.bar14.macroTextPosition = 'BOTTOM'
 		E.db.actionbar.bar14.macroTextYOffset = 1
-		E.db.actionbar.bar14.macrotext = true
+		E.db.actionbar.bar14.professionQuality.enable = false
 		E.db.actionbar.bar15.buttonSize = 26
 		E.db.actionbar.bar15.buttonSpacing = 1
 		E.db.actionbar.bar15.countFont = Private.Font
@@ -315,9 +312,10 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.bar15.macroFont = Private.Font
 		E.db.actionbar.bar15.macroFontOutline = 'OUTLINE'
 		E.db.actionbar.bar15.macroFontSize = 9
+		E.db.actionbar.bar15.macrotext = true
 		E.db.actionbar.bar15.macroTextPosition = 'BOTTOM'
 		E.db.actionbar.bar15.macroTextYOffset = 1
-		E.db.actionbar.bar15.macrotext = true
+		E.db.actionbar.bar15.professionQuality.enable = false
 	end
 
 	E.db.actionbar.barPet.backdrop = false
@@ -1094,6 +1092,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
 
 	-- Shared movers
+	E.db.movers.AddonCompartmentMover = E.Retail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66' or nil
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-178'
 	E.db.movers.AltPowerBarMover = E.Retail and 'TOP,UIParent,TOP,0,-18' or nil
 	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-300,-210'
@@ -1141,6 +1140,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.PowerBarContainerMover = 'BOTTOM,UIParent,BOTTOM,0,163'
 	E.db.movers.QuestTimerFrameMover = E.Classic and 'TOP,ElvUIParent,TOP,0,-1' or nil
 	E.db.movers.QuestWatchFrameMover = E.Classic and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184' or nil
+	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-131'
 	E.db.movers.ReputationBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
