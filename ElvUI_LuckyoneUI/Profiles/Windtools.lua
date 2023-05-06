@@ -66,7 +66,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.skins.addons.tldrMissions = false
 	E.private.WT.skins.addons.tomCats = false
 	E.private.WT.skins.addons.warpDeplete = false
-	-- E.private.WT.skins.addons.weakAuras = false
+	E.private.WT.skins.addons.weakAuras = false
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.name = Private.Font
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.size = 12
 	E.private.WT.skins.blizzard.enable = false
@@ -74,7 +74,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.skins.ime.label.name = Private.Font
 	E.private.WT.skins.rollResult.name = Private.Font
 	E.private.WT.skins.shadow = false
-	-- E.private.WT.skins.weakAurasShadow = false
+	E.private.WT.skins.weakAurasShadow = false
 	E.private.WT.skins.widgets.button.backdrop.classColor = true
 	E.private.WT.skins.widgets.button.backdrop.texture = Private.Texture
 	E.private.WT.skins.widgets.button.selected.backdropClassColor = true
