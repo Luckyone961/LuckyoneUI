@@ -1,7 +1,8 @@
 ### Version 2.31 [In Development]
 **All WoW Versions:**  
-ElvUI 13.31+ compatibility  
+ElvUI 13.32+ compatibility  
 **Retail:**  
+Added initial ElvUI NamePlate StyleFilters for Season 2 Dungeons  
 Defaults for new Queue Status (Position, Font, Size)  
 Defaults for new addon compartment (Position, Size, Strata)  
 Updated TalentLoadoutsEx skin  
