@@ -1,6 +1,8 @@
-### Version 2.31 [In Development]
+### Version 2.31 [08-05-2023]
 **All WoW Versions:**  
 ElvUI 13.32+ compatibility  
+Updated Details profile  
+Updated Plater profile  
 **Retail:**  
 Added initial ElvUI NamePlate StyleFilters for Season 2 Dungeons  
 Defaults for new Queue Status (Position, Font, Size)  
