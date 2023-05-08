@@ -1,3 +1,7 @@
+### Version 2.32 [In Development]
+**All WoW Versions:**  
+Fixed installer error caused by old queueStatus db  
+___
 ### Version 2.31 [08-05-2023]
 **All WoW Versions:**  
 ElvUI 13.32+ compatibility  
