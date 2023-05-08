@@ -7,11 +7,13 @@ function L1UI:UpdateLayout(layout)
 	E.global.L1UI.install_version = Private.Version
 
 	-- Addon Compartment setup
-	if E.Retail then
-		E.db.general.addonCompartment.fontOutline = 'OUTLINE'
-		E.db.general.addonCompartment.size = 20
-		E.db.movers.AddonCompartmentMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66'
-	end
+	E.db.general.addonCompartment.fontOutline = 'OUTLINE'
+	E.db.general.addonCompartment.size = 20
+	E.db.movers.AddonCompartmentMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66'
+
+	-- New queue status setup
+	E.db.general.queueStatus.scale = 0.4
+	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-131'
 
 	Private:Print(L["Successfully updated your current layout to LuckyoneUI version "] .. Private.Version)
 end
