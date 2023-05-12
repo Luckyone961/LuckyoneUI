@@ -52,8 +52,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.minimap.icons.mail.texture = 'Mail1'
 	E.db.general.minimap.icons.mail.xOffset = -2
 	E.db.general.minimap.icons.mail.yOffset = 2
-	E.db.general.minimap.icons.queueStatus.xOffset = 0
-	E.db.general.minimap.icons.queueStatus.yOffset = 0
 	E.db.general.minimap.locationFontSize = 11
 	E.db.general.minimap.locationText = 'HIDE'
 	E.db.general.minimap.size = 153
