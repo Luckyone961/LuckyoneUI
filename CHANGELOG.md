@@ -1,6 +1,8 @@
 ### Version 2.32 [In Development]
 **All WoW Versions:**  
 Fixed installer error caused by old queueStatus db  
+**Retail:**  
+Updated Season 2 ElvUI NamePlate StyleFilters  
 ___
 ### Version 2.31 [08-05-2023]
 **All WoW Versions:**  

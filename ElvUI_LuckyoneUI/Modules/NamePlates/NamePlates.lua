@@ -239,6 +239,9 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_BH.triggers.names['186226'] = true -- Fetid Rotsinger
 		E.global.nameplates.filters.Luckyone_BH.triggers.names['186227'] = true -- Monstrous Decay
 		E.global.nameplates.filters.Luckyone_BH.triggers.names['187033'] = true -- Stinkbreath
+		E.global.nameplates.filters.Luckyone_BH.triggers.names['187224'] = true -- Vile Rothexer
+		E.global.nameplates.filters.Luckyone_BH.triggers.names['190426'] = true -- Decay Totem
+		E.global.nameplates.filters.Luckyone_BH.triggers.names['193799'] = true -- Rotchanting Totem
 		E.global.nameplates.filters.Luckyone_BH.triggers.priority = 2
 
 		-- Halls of Infusion [HOI]
