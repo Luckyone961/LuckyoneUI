@@ -239,6 +239,9 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_BH.triggers.names['186226'] = true -- Fetid Rotsinger
 		E.global.nameplates.filters.Luckyone_BH.triggers.names['186227'] = true -- Monstrous Decay
 		E.global.nameplates.filters.Luckyone_BH.triggers.names['187033'] = true -- Stinkbreath
+		E.global.nameplates.filters.Luckyone_BH.triggers.names['187224'] = true -- Vile Rothexer
+		E.global.nameplates.filters.Luckyone_BH.triggers.names['190426'] = true -- Decay Totem
+		E.global.nameplates.filters.Luckyone_BH.triggers.names['193799'] = true -- Rotchanting Totem
 		E.global.nameplates.filters.Luckyone_BH.triggers.priority = 2
 
 		-- Halls of Infusion [HOI]
@@ -261,7 +264,8 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_NELT.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_NELT.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_NELT.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_NELT.triggers.names['192787'] = true -- Qalashi Spinecrusher
+		E.global.nameplates.filters.Luckyone_NELT.triggers.names['192788'] = true -- Qalashi Thaumaturge
+		E.global.nameplates.filters.Luckyone_NELT.triggers.names['189265'] = true -- Qalashi Bonetender
 		E.global.nameplates.filters.Luckyone_NELT.triggers.names['189235'] = true -- Overseer Lahar
 		E.global.nameplates.filters.Luckyone_NELT.triggers.names['189466'] = true -- Irontorch Commander
 		E.global.nameplates.filters.Luckyone_NELT.triggers.names['193291'] = true -- Apex Blazewing
