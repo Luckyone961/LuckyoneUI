@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 Fixed installer error caused by old queueStatus db  
 **Retail:**  
+Updated OmniCD profile (Outdoor fix)  
 Updated Season 2 ElvUI NamePlate StyleFilters  
 ___
 ### Version 2.31 [08-05-2023]
