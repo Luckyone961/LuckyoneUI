@@ -252,6 +252,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_HOI.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_HOI.triggers.instanceType['party'] = true
 		E.global.nameplates.filters.Luckyone_HOI.triggers.names['190342'] = true -- Containment Apparatus
+		E.global.nameplates.filters.Luckyone_HOI.triggers.names['199037'] = true -- Primalist Shocktrooper
 		E.global.nameplates.filters.Luckyone_HOI.triggers.names['190368'] = true -- Flamecaller Aymi
 		E.global.nameplates.filters.Luckyone_HOI.triggers.names['190377'] = true -- Primalist Icecaller
 		E.global.nameplates.filters.Luckyone_HOI.triggers.names['190405'] = true -- Infuser Sariya
@@ -278,6 +279,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_ULD.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_ULD.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_ULD.triggers.instanceType['party'] = true
+		E.global.nameplates.filters.Luckyone_ULD.triggers.names['186420'] = true -- Earthen Weaver
 		E.global.nameplates.filters.Luckyone_ULD.triggers.names['184020'] = true -- Hulking Berserker
 		E.global.nameplates.filters.Luckyone_ULD.triggers.names['184107'] = true -- Runic Protector
 		E.global.nameplates.filters.Luckyone_ULD.triggers.priority = 2
@@ -305,6 +307,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_FH.triggers.names['129602'] = true -- Irontide Enforcer
 		E.global.nameplates.filters.Luckyone_FH.triggers.names['127111'] = true -- Irontide Oarsman
 		E.global.nameplates.filters.Luckyone_FH.triggers.names['130404'] = true -- Vermin Trapper
+		E.global.nameplates.filters.Luckyone_FH.triggers.names['129600'] = true -- Bilge Rat Brinescale
 		E.global.nameplates.filters.Luckyone_FH.triggers.names['126919'] = true -- Irontide Stormcaller
 		E.global.nameplates.filters.Luckyone_FH.triggers.priority = 2
 
