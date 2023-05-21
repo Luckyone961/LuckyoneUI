@@ -1,3 +1,7 @@
+### Version 2.33 [In Development]
+**All WoW Versions:**  
+Fixed some credits not displaying correctly  
+___
 ### Version 2.32 [21-05-2023]
 **All WoW Versions:**  
 Fixed installer error caused by old queueStatus db  

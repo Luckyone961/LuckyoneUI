@@ -348,7 +348,7 @@ function L1UI:Config()
 	L1UI.Options.args.credits.args.author.args.desc = ACH:Description(Private.AUTHOR_STRING, 1, 'medium')
 	L1UI.Options.args.credits.args.coding = ACH:Group(L["Coding"], nil, 3)
 	L1UI.Options.args.credits.args.coding.inline = true
-	L1UI.Options.args.credits.args.coding.args.desc = ACH:Description(L1UI.CODING_STRING, 1, 'medium')
+	L1UI.Options.args.credits.args.coding.args.desc = ACH:Description(Private.CODING_STRING, 1, 'medium')
 	L1UI.Options.args.credits.args.testers = ACH:Group(L["Testers and Translation"], nil, 4)
 	L1UI.Options.args.credits.args.testers.inline = true
 	L1UI.Options.args.credits.args.testers.args.desc = ACH:Description(Private.TESTER_STRING, 1, 'medium')
