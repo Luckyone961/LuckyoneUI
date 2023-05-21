@@ -60,6 +60,11 @@ function L1UI:Setup_OmniCD(layout)
 		-- Party db
 		OmniCDDB['profiles'][profile]['Party']['noneZoneSetting'] = 'party'
 		OmniCDDB['profiles'][profile]['Party']['scenarioZoneSetting'] = 'party'
+		OmniCDDB['profiles'][profile]['Party']['groupSize'] = {
+			["party"] = 5,
+			["scenario"] = 5,
+			["none"] = 5,
+		}
 		OmniCDDB['profiles'][profile]['Party']['visibility'] = {
 			['none'] = true,
 			['scenario'] = true,

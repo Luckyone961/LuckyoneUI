@@ -209,6 +209,7 @@ function L1UI:Setup_StyleFilters()
 	if E.global.nameplates.filters.Luckyone_RLP then E.global.nameplates.filters.Luckyone_RLP = nil end
 	if E.global.nameplates.filters.Luckyone_SBG then E.global.nameplates.filters.Luckyone_SBG = nil end
 	if E.global.nameplates.filters.Luckyone_TJS then E.global.nameplates.filters.Luckyone_TJS = nil end
+	if E.global.nameplates.filters.Luckyone_TOJS then E.global.nameplates.filters.Luckyone_TOJS = nil end
 	if E.global.nameplates.filters.Luckyone_VOTI then E.global.nameplates.filters.Luckyone_VOTI = nil end
 
 	-- Retail Season 2 Dungeons & Raid
@@ -239,6 +240,9 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_BH.triggers.names['186226'] = true -- Fetid Rotsinger
 		E.global.nameplates.filters.Luckyone_BH.triggers.names['186227'] = true -- Monstrous Decay
 		E.global.nameplates.filters.Luckyone_BH.triggers.names['187033'] = true -- Stinkbreath
+		E.global.nameplates.filters.Luckyone_BH.triggers.names['187224'] = true -- Vile Rothexer
+		E.global.nameplates.filters.Luckyone_BH.triggers.names['190426'] = true -- Decay Totem
+		E.global.nameplates.filters.Luckyone_BH.triggers.names['193799'] = true -- Rotchanting Totem
 		E.global.nameplates.filters.Luckyone_BH.triggers.priority = 2
 
 		-- Halls of Infusion [HOI]
@@ -249,6 +253,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_HOI.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_HOI.triggers.instanceType['party'] = true
 		E.global.nameplates.filters.Luckyone_HOI.triggers.names['190342'] = true -- Containment Apparatus
+		E.global.nameplates.filters.Luckyone_HOI.triggers.names['199037'] = true -- Primalist Shocktrooper
 		E.global.nameplates.filters.Luckyone_HOI.triggers.names['190368'] = true -- Flamecaller Aymi
 		E.global.nameplates.filters.Luckyone_HOI.triggers.names['190377'] = true -- Primalist Icecaller
 		E.global.nameplates.filters.Luckyone_HOI.triggers.names['190405'] = true -- Infuser Sariya
@@ -261,7 +266,8 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_NELT.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_NELT.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_NELT.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_NELT.triggers.names['192787'] = true -- Qalashi Spinecrusher
+		E.global.nameplates.filters.Luckyone_NELT.triggers.names['192788'] = true -- Qalashi Thaumaturge
+		E.global.nameplates.filters.Luckyone_NELT.triggers.names['189265'] = true -- Qalashi Bonetender
 		E.global.nameplates.filters.Luckyone_NELT.triggers.names['189235'] = true -- Overseer Lahar
 		E.global.nameplates.filters.Luckyone_NELT.triggers.names['189466'] = true -- Irontorch Commander
 		E.global.nameplates.filters.Luckyone_NELT.triggers.names['193291'] = true -- Apex Blazewing
@@ -274,6 +280,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_ULD.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_ULD.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_ULD.triggers.instanceType['party'] = true
+		E.global.nameplates.filters.Luckyone_ULD.triggers.names['186420'] = true -- Earthen Weaver
 		E.global.nameplates.filters.Luckyone_ULD.triggers.names['184020'] = true -- Hulking Berserker
 		E.global.nameplates.filters.Luckyone_ULD.triggers.names['184107'] = true -- Runic Protector
 		E.global.nameplates.filters.Luckyone_ULD.triggers.priority = 2
@@ -301,6 +308,7 @@ function L1UI:Setup_StyleFilters()
 		E.global.nameplates.filters.Luckyone_FH.triggers.names['129602'] = true -- Irontide Enforcer
 		E.global.nameplates.filters.Luckyone_FH.triggers.names['127111'] = true -- Irontide Oarsman
 		E.global.nameplates.filters.Luckyone_FH.triggers.names['130404'] = true -- Vermin Trapper
+		E.global.nameplates.filters.Luckyone_FH.triggers.names['129600'] = true -- Bilge Rat Brinescale
 		E.global.nameplates.filters.Luckyone_FH.triggers.names['126919'] = true -- Irontide Stormcaller
 		E.global.nameplates.filters.Luckyone_FH.triggers.priority = 2
 
