@@ -1,4 +1,4 @@
-### Version 2.32 [In Development]
+### Version 2.32 [21-05-2023]
 **All WoW Versions:**  
 Fixed installer error caused by old queueStatus db  
 **Retail:**  
