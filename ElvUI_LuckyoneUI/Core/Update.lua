@@ -6,5 +6,10 @@ function L1UI:UpdateLayout(layout)
 	-- Bump install version
 	E.global.L1UI.install_version = Private.Version
 
+	if E.Retail then
+		-- Cooldown Text updates
+		E.db.cooldown.showModRate = true
+	end
+
 	Private:Print(L["Successfully updated your current layout to LuckyoneUI version "] .. Private.Version)
 end
