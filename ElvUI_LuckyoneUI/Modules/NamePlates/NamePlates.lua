@@ -209,6 +209,7 @@ function L1UI:Setup_StyleFilters()
 	if E.global.nameplates.filters.Luckyone_RLP then E.global.nameplates.filters.Luckyone_RLP = nil end
 	if E.global.nameplates.filters.Luckyone_SBG then E.global.nameplates.filters.Luckyone_SBG = nil end
 	if E.global.nameplates.filters.Luckyone_TJS then E.global.nameplates.filters.Luckyone_TJS = nil end
+	if E.global.nameplates.filters.Luckyone_TOJS then E.global.nameplates.filters.Luckyone_TOJS = nil end
 	if E.global.nameplates.filters.Luckyone_VOTI then E.global.nameplates.filters.Luckyone_VOTI = nil end
 
 	-- Retail Season 2 Dungeons & Raid
