@@ -25,7 +25,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.maps.minimapButtons.backdropSpacing = 0
 	E.private.WT.maps.minimapButtons.buttonSize = 23
 	E.private.WT.maps.minimapButtons.expansionLandingPage = true
-	E.private.WT.maps.minimapButtons.inverseDirection = true
+	E.private.WT.maps.minimapButtons.inverseDirection = false
 	E.private.WT.maps.minimapButtons.spacing = 3
 	E.private.WT.maps.superTracker.enable = false
 	E.private.WT.maps.superTracker.waypointParse.enable = false

@@ -504,6 +504,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.cooldown.targetAura = false
 	E.db.cooldown.threshold = 4
 
+	if E.Retail then
+		E.db.cooldown.showModRate = true
+	end
+
 	-- DataBars
 	E.db.databars.azerite.enable = false
 	E.db.databars.experience.font = Private.Font
