@@ -1,3 +1,14 @@
+### Version 2.33 [01-06-2023]
+**All WoW Versions:**  
+ElvUI 13.33+ compatibility  
+Fixed some credits not displaying correctly  
+**Retail:**  
+Enabled "Modrate" for cooldown text by default  
+**Misc:**  
+Make sure to update from CurseForge or Wago AddOns  
+Plugin hosting on tukui website is no longer available  
+Updated readme urls for new tukui website  
+___
 ### Version 2.32 [21-05-2023]
 **All WoW Versions:**  
 Fixed installer error caused by old queueStatus db  

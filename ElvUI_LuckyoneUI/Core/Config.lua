@@ -12,7 +12,7 @@ local tconcat, tinsert = table.concat, table.insert
 local GetCVar, GetCVarBool = GetCVar, GetCVarBool
 local SetCVar = SetCVar
 
-local AUTHOR = { '|cffFF7D0ALuckyone|r (EU) - LaughingSkull' }
+local AUTHOR = { '|cffFF7D0ALuckyone|r (EU) - LaughingSkull', '|cff33937FLuckyevoker|r (EU) - LaughingSkull' }
 local CODING = { '|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|r', '|cffFF7D0AMerathilis|r' }
 local SUPPORT = { '|cffe6cc80Calmcacil|r', '|cffe6cc80DaPaKnat|r', '|cffe6cc80Debeleus|r', '|cffe6cc80DevinDog|r', '|cffe6cc80Dukes|r', '|cffe6cc80Fooseq|r', '|cffe6cc80Garbar|r', '|cffe6cc80Kenneth|r', '|cffe6cc80Liam|r', '|cffe6cc80Littlesack|r', '|cffe6cc80Lox|r', '|cffe6cc80Midnatt|r', '|cffe6cc80MonkeyHack|r', '|cffe6cc80Onlyne|r', '|cffe6cc80ShowNoMercy|r', '|cffe6cc80Treelyté|r', '|cffe6cc80Triplebeamdreams|r', '|cffe6cc80Tykk|r', '|cffe6cc80Logan|r' }
 local TESTERS = { '|cff00FF96AltBridge|r', '|cff69CCF0Sniefer|r', '|cffABD473Badbrain|r', '|cffABD473Xyf|r', '|cffC41F3BKringel|r', '|cffF58CBAIllusion|r', '|cffABD473Dlarge|r', '|cffe6cc80Hollicsh|r', '|cff3FC7EBEltreum|r' }
@@ -348,7 +348,7 @@ function L1UI:Config()
 	L1UI.Options.args.credits.args.author.args.desc = ACH:Description(Private.AUTHOR_STRING, 1, 'medium')
 	L1UI.Options.args.credits.args.coding = ACH:Group(L["Coding"], nil, 3)
 	L1UI.Options.args.credits.args.coding.inline = true
-	L1UI.Options.args.credits.args.coding.args.desc = ACH:Description(L1UI.CODING_STRING, 1, 'medium')
+	L1UI.Options.args.credits.args.coding.args.desc = ACH:Description(Private.CODING_STRING, 1, 'medium')
 	L1UI.Options.args.credits.args.testers = ACH:Group(L["Testers and Translation"], nil, 4)
 	L1UI.Options.args.credits.args.testers.inline = true
 	L1UI.Options.args.credits.args.testers.args.desc = ACH:Description(Private.TESTER_STRING, 1, 'medium')

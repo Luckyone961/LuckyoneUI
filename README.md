@@ -18,9 +18,9 @@
 • WeakAuras import strings for select specs and general utility  
 
 ### **Profiles**  
-• **UI:** [ElvUI](https://www.tukui.org/welcome.php)  
+• **UI:** [ElvUI](https://www.tukui.org/)  
 • **BossMods:** [DBM](https://www.curseforge.com/wow/addons/deadly-boss-mods), [BigWigs](https://www.curseforge.com/wow/addons/big-wigs), [LittleWigs](https://www.curseforge.com/wow/addons/little-wigs)  
-• **NamePlates:** [Plater](https://www.curseforge.com/wow/addons/plater-nameplates), [ElvUI NamePlates](https://www.tukui.org/welcome.php)  
+• **NamePlates:** [Plater](https://www.curseforge.com/wow/addons/plater-nameplates), [ElvUI NamePlates](https://www.tukui.org/)  
 • **AddOns:** [Details](https://www.curseforge.com/wow/addons/details), [OmniCD](https://www.curseforge.com/wow/addons/omnicd), [Quartz](https://www.curseforge.com/wow/addons/quartz), [WarpDeplete](https://www.curseforge.com/wow/addons/warpdeplete)  
 • **Plugins:** [AddOnSkins](https://www.curseforge.com/wow/addons/addonskins), [ProjectAzilroka](https://www.curseforge.com/wow/addons/projectazilroka), [Shadow&Light](https://www.curseforge.com/wow/addons/elvui-shadow-light), [WindTools](https://www.curseforge.com/wow/addons/elvui-windtools)  
 
@@ -33,7 +33,7 @@
 
 ### **Required AddOns**  
 • The most recent ElvUI version. You need to stay up-to-date.  
-• **Download link:** [Click here (Redirect to Tukui.org)](https://www.tukui.org/welcome.php)  
+• **Download link:** [Click here (Redirect to Tukui.org)](https://www.tukui.org/)  
 
 ### **Luckyone WeakAuras**  
 • All my public import strings will be shared and updated on wago  
