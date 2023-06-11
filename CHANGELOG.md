@@ -1,4 +1,6 @@
 ### Version 2.34 [In Development]
+**All WoW Versions:**  
+ElvUI 13.34+ compatibility  
 ___
 ### Version 2.33 [01-06-2023]
 **All WoW Versions:**  
