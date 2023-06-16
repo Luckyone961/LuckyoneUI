@@ -1,3 +1,16 @@
+### Version 2.34 [16-06-2023]
+**All WoW Versions:**  
+ElvUI 13.34+ compatibility  
+Updated default position for player castbar in the main layout as seen on yt/twitch  
+**Retail:**  
+Added ElvUI NamePlate StyleFilter for Aberrus Mythic  
+Fixed themes installer step breaking the healermana custom text for party frames  
+Removed labels on the custom ActionBars DataText by default  
+Updated default size and position for private auras and private warnings  
+Updated WindTools profile defaults  
+**Wrath Classic:**  
+Updated TOC for upcoming 3.4.2  
+___
 ### Version 2.33 [01-06-2023]
 **All WoW Versions:**  
 ElvUI 13.33+ compatibility  

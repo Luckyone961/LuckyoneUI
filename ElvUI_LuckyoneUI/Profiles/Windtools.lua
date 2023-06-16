@@ -16,7 +16,6 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT = E:CopyTable({}, V.WT)
 
 	-- Global db
-	E.global.WT.core.compatibilityCheck = false
 	E.global.WT.core.loginMessage = false
 	E.global.WT.core.noDuplicatedParty = true
 
@@ -25,7 +24,6 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.maps.minimapButtons.backdropSpacing = 0
 	E.private.WT.maps.minimapButtons.buttonSize = 23
 	E.private.WT.maps.minimapButtons.expansionLandingPage = true
-	E.private.WT.maps.minimapButtons.inverseDirection = false
 	E.private.WT.maps.minimapButtons.spacing = 3
 	E.private.WT.maps.superTracker.enable = false
 	E.private.WT.maps.superTracker.waypointParse.enable = false
@@ -46,9 +44,6 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.quest.objectiveTracker.cosmeticBar.enable = not E:IsAddOnEnabled('ElvUI_SLE')
 	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = Private.Texture
 	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 228
-	E.private.WT.quest.objectiveTracker.header.classColor = true
-	E.private.WT.quest.objectiveTracker.header.size = 12
-	E.private.WT.quest.objectiveTracker.menuTitle.font.size = 12
 	E.private.WT.quest.objectiveTracker.titleColor.classColor = true
 	E.private.WT.skins.addons.adiBags = false
 	E.private.WT.skins.addons.angryKeystones = false
@@ -110,7 +105,6 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.announcement.resetInstance.enable = false
 	E.db.WT.announcement.threatTransfer.enable = false
 	E.db.WT.announcement.utility.enable = false
-	E.db.WT.combat.classHelper.enable = false
 	E.db.WT.combat.combatAlert.animation = false
 	E.db.WT.combat.combatAlert.enterText = '+Combat'
 	E.db.WT.combat.combatAlert.leaveText = '-Combat'
@@ -139,7 +133,6 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.misc.gameBar.enable = false
 	E.db.WT.quest.paragonReputation.toast.sound = false
 	E.db.WT.quest.switchButtons.enable = false
-	E.db.WT.quest.turnIn.enable = false
 	E.db.WT.quest.turnIn.selectReward = false
 	E.db.WT.skins.vignetting.enable = false
 	E.db.WT.social.chatBar.enable = false
