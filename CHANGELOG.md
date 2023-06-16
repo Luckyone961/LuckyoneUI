@@ -1,6 +1,8 @@
 ### Version 2.34 [In Development]
 **All WoW Versions:**  
 ElvUI 13.34+ compatibility  
+**Retail:**  
+Added ElvUI NamePlate StyleFilter for Aberrus Mythic  
 ___
 ### Version 2.33 [01-06-2023]
 **All WoW Versions:**  

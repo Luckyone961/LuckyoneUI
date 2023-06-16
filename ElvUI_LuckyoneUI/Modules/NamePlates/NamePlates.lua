@@ -214,20 +214,20 @@ function L1UI:Setup_StyleFilters()
 
 	-- Retail Season 2 Dungeons & Raid
 	if E.Retail then
-		for _, filterName in pairs({ 'Luckyone_BH', 'Luckyone_HOI', 'Luckyone_NELT', 'Luckyone_ULD', 'Luckyone_NL', 'Luckyone_FH', 'Luckyone_UNDR', 'Luckyone_VP' }) do
+		for _, filterName in pairs({ 'Luckyone_Aberrus', 'Luckyone_BH', 'Luckyone_HOI', 'Luckyone_NELT', 'Luckyone_ULD', 'Luckyone_NL', 'Luckyone_FH', 'Luckyone_UNDR', 'Luckyone_VP' }) do
 			E.global.nameplates.filters[filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
 			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
 		end
 
 		-- Aberrus, the Shadowed Crucible [Aberrus]
-		-- E.global.nameplates.filters.Luckyone_Aberrus.actions.color.health = true
-		-- E.global.nameplates.filters.Luckyone_Aberrus.actions.color.healthColor.g = 0.75
-		-- E.global.nameplates.filters.Luckyone_Aberrus.actions.color.healthColor.r = 0
-		-- E.global.nameplates.filters.Luckyone_Aberrus.triggers.instanceType['raid'] = true
-		-- E.global.nameplates.filters.Luckyone_Aberrus.triggers.names[''] = true
-		-- E.global.nameplates.filters.Luckyone_Aberrus.triggers.names[''] = true
-		-- E.global.nameplates.filters.Luckyone_Aberrus.triggers.priority = 2
+		E.global.nameplates.filters.Luckyone_Aberrus.actions.color.health = true
+		E.global.nameplates.filters.Luckyone_Aberrus.actions.color.healthColor.g = 0.75
+		E.global.nameplates.filters.Luckyone_Aberrus.actions.color.healthColor.r = 0
+		E.global.nameplates.filters.Luckyone_Aberrus.triggers.instanceType['raid'] = true
+		E.global.nameplates.filters.Luckyone_Aberrus.triggers.names['203812'] = true -- Echo of Neltharion Adds
+		E.global.nameplates.filters.Luckyone_Aberrus.triggers.names['202969'] = true -- Scalecommander Sarkareth Mythic Adds
+		E.global.nameplates.filters.Luckyone_Aberrus.triggers.priority = 2
 
 		-- Brackenhide Hollow [BH]
 		E.global.nameplates.filters.Luckyone_BH.actions.color.health = true
