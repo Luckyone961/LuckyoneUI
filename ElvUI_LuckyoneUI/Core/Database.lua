@@ -62,6 +62,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.talkingHeadFrameScale = 0.7
 	E.db.general.vehicleSeatIndicatorSize = 64
 
+	if E.Retail then
+		E.db.general.privateAuras.icon.size = 64
+	end
+
 	-- ActionBars
 	E.db.actionbar.bar1.buttonSize = 26
 	E.db.actionbar.bar1.buttonSpacing = 1
@@ -1140,6 +1144,8 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,114'
 	E.db.movers.PlayerChoiceToggle = E.Retail and 'BOTTOM,UIParent,BOTTOM,0,369' or nil
 	E.db.movers.PowerBarContainerMover = 'BOTTOM,UIParent,BOTTOM,0,163'
+	E.db.movers.PrivateAurasMover = 'BOTTOM,UIParent,BOTTOM,174,452'
+	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-226'
 	E.db.movers.QuestTimerFrameMover = E.Classic and 'TOP,ElvUIParent,TOP,0,-1' or nil
 	E.db.movers.QuestWatchFrameMover = E.Classic and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184' or nil
 	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-131'
