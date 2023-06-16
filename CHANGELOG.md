@@ -1,6 +1,7 @@
-### Version 2.34 [In Development]
+### Version 2.34 [16-06-2023]
 **All WoW Versions:**  
 ElvUI 13.34+ compatibility  
+Updated default position for player castbar in the main layout as seen on yt/twitch  
 **Retail:**  
 Added ElvUI NamePlate StyleFilter for Aberrus Mythic  
 Fixed themes installer step breaking the healermana custom text for party frames  
