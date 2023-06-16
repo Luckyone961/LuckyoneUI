@@ -6,7 +6,7 @@
 ## Author: Luckyone
 ## Version: 2.33
 
-## Interface: 30401
+## Interface: 30402
 ## X-Required-ElvUI: 13.34
 
 Load.xml
