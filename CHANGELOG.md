@@ -3,6 +3,7 @@
 ElvUI 13.34+ compatibility  
 **Retail:**  
 Added ElvUI NamePlate StyleFilter for Aberrus Mythic  
+Fixed themes installer step breaking the healermana custom text for party frames  
 ___
 ### Version 2.33 [01-06-2023]
 **All WoW Versions:**  
