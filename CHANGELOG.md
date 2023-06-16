@@ -4,6 +4,10 @@ ElvUI 13.34+ compatibility
 **Retail:**  
 Added ElvUI NamePlate StyleFilter for Aberrus Mythic  
 Fixed themes installer step breaking the healermana custom text for party frames  
+Removed labels on the custom ActionBars DataText by default  
+Updated default size and position for private auras and private warnings  
+**Wrath Classic:**  
+Updated TOC for upcoming 3.4.2  
 ___
 ### Version 2.33 [01-06-2023]
 **All WoW Versions:**  

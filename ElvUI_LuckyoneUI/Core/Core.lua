@@ -210,8 +210,11 @@ function L1UI:Setup_GlobalDB()
 	SetCVar('uiScale', 0.71111111111111)
 	E.global.general.UIScale = 0.71111111111111
 
+	E.global.datatexts.settings.Combat.NoLabel = true
 	E.global.datatexts.settings.Combat.TimeFull = false
+	E.global.datatexts.settings.Durability.NoLabel = true
 	E.global.datatexts.settings.System.latency = 'HOME'
+	E.global.datatexts.settings.System.NoLabel = true
 	E.global.datatexts.settings.Time.time24 = true
 	E.global.general.commandBarSetting = 'DISABLED'
 	E.global.general.fadeMapWhenMoving = false
