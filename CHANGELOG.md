@@ -1,4 +1,4 @@
-### Version 2.35 [In Development]
+### Version 2.35 [30-06-2023]
 **Retail**  
 AddOn Compartment is now hidden by default  
 Updated some default anchor positions (Containers, MirrorTimers, Widgets)  
