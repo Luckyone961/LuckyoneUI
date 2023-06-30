@@ -1,3 +1,9 @@
+### Version 2.35 [30-06-2023]
+**Retail**  
+AddOn Compartment is now hidden by default  
+Updated some default anchor positions (Containers, MirrorTimers, Widgets)  
+Updated WindTools profile (Anchors, GroupInfo)  
+___
 ### Version 2.34 [16-06-2023]
 **All WoW Versions:**  
 ElvUI 13.34+ compatibility  

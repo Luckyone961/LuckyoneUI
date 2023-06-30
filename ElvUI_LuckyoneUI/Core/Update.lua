@@ -6,11 +6,8 @@ function L1UI:UpdateLayout(layout)
 	-- Bump install version
 	E.global.L1UI.install_version = Private.Version
 
-	-- Private aura db updates
 	if E.Retail then
-		E.db.general.privateAuras.icon.size = 64
-		E.db.movers.PrivateAurasMover = 'BOTTOM,UIParent,BOTTOM,174,452'
-		E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-226'
+		E.db.general.addonCompartment.hide = true
 	end
 
 	Private:Print(L["Successfully updated your current layout to LuckyoneUI version "] .. Private.Version)

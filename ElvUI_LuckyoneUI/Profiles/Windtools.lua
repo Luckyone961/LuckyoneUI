@@ -152,15 +152,17 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.social.friendList.textures.status = 'default'
 	E.db.WT.social.friendList.useClientColor = false
 	E.db.WT.social.smartTab.enable = false
-	E.db.WT.tooltips.groupInfo.enable = false
+	E.db.WT.tooltips.groupInfo.mode = 'COMPACT'
+	E.db.WT.tooltips.groupInfo.template = '{{classColorStart}}{{className}}{{classColorEnd}}{{amountStart}} x {{amount}}{{amountEnd}}'
+	E.db.WT.tooltips.groupInfo.title = false
 
 	-- Protect movers error
 	E.db.movers = E.db.movers or {}
 
 	-- Movers
-	E.db.movers.WTCombatAlertFrameMover = 'TOP,UIParent,TOP,0,-330'
+	E.db.movers.WTCombatAlertFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,0,410'
 	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-158'
-	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,UIParent,TOP,0,-155'
+	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-187'
 
 	if not noPrint then
 		Private:Print(L["WindTools profile has been set."])
