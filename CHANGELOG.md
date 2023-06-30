@@ -1,4 +1,6 @@
 ### Version 2.35 [In Development]
+**Retail**  
+Updated some default anchor positions (Widgets, Containers, MirrorTimers)  
 ___
 ### Version 2.34 [16-06-2023]
 **All WoW Versions:**  
