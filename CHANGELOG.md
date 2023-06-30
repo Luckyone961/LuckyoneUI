@@ -1,5 +1,6 @@
 ### Version 2.35 [In Development]
 **Retail**  
+AddOn Compartment is now hidden by default  
 Updated some default anchor positions (Containers, MirrorTimers, Widgets)  
 Updated WindTools profile (Anchors, GroupInfo)  
 ___

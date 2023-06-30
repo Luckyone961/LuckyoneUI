@@ -9,8 +9,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers = E.db.movers or {}
 
 	-- General
-	E.db.general.addonCompartment.fontOutline = 'OUTLINE'
-	E.db.general.addonCompartment.size = 20
 	E.db.general.afkChat = false
 	E.db.general.altPowerBar.font = Private.Font
 	E.db.general.altPowerBar.statusBar = Private.Texture
@@ -63,6 +61,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.vehicleSeatIndicatorSize = 64
 
 	if E.Retail then
+		E.db.general.addonCompartment.fontOutline = 'OUTLINE'
+		E.db.general.addonCompartment.hide = true
+		E.db.general.addonCompartment.size = 20
 		E.db.general.privateAuras.icon.size = 64
 	end
 
