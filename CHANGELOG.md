@@ -1,6 +1,7 @@
 ### Version 2.35 [In Development]
 **Retail**  
-Updated some default anchor positions (Widgets, Containers, MirrorTimers)  
+Updated some default anchor positions (Containers, MirrorTimers, Widgets)  
+Updated WindTools profile (Anchors, GroupInfo)  
 ___
 ### Version 2.34 [16-06-2023]
 **All WoW Versions:**  
