@@ -1,3 +1,9 @@
+### Version 2.35 [In Development]
+**All WoW Versions:**  
+ElvUI 13.36+ compatibility  
+**Retail**  
+Updated TOC for 10.1.5  
+___
 ### Version 2.35 [30-06-2023]
 **Retail**  
 AddOn Compartment is now hidden by default  
