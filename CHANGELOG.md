@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 ElvUI 13.36+ compatibility  
 **Retail**  
+Fixed installer error (MirrorTimers)  
 Updated TOC for 10.1.5  
 ___
 ### Version 2.35 [30-06-2023]

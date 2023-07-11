@@ -1141,9 +1141,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.MawBuffsBelowMinimapMover = E.Retail and 'TOPLEFT,ElvUIParent,TOPLEFT,1,-28' or nil
 	E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,163,-1'
 	E.db.movers.MinimapMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1'
-	E.db.movers.MirrorTimer1Mover = E.Retail and 'TOP,ElvUIParent,TOP,0,-67' or 'TOP,ElvUIParent,TOP,0,-60'
-	E.db.movers.MirrorTimer2Mover = E.Retail and 'TOP,ElvUIParent,TOP,0,-100' or 'TOP,ElvUIParent,TOP,0,-79'
-	E.db.movers.MirrorTimer3Mover = E.Retail and 'TOP,ElvUIParent,TOP,0,-133' or 'TOP,ElvUIParent,TOP,0,-98'
+	E.db.movers.MirrorTimer1Mover = not E.Retail and 'TOP,ElvUIParent,TOP,0,-60'
+	E.db.movers.MirrorTimer2Mover = not E.Retail and 'TOP,ElvUIParent,TOP,0,-79'
+	E.db.movers.MirrorTimer3Mover = not E.Retail and 'TOP,ElvUIParent,TOP,0,-98'
 	E.db.movers.ObjectiveFrameMover = E.Wrath and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184' or nil
 	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,114'
 	E.db.movers.PlayerChoiceToggle = E.Retail and 'BOTTOM,UIParent,BOTTOM,0,369' or nil
