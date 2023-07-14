@@ -1,3 +1,7 @@
+### Version 2.37 [In Development]
+**Retail:**  
+Updated WindTools profile (GroupInfo, Misc)  
+___
 ### Version 2.36 [12-07-2023]
 **All WoW Versions:**  
 ElvUI 13.36+ compatibility  
