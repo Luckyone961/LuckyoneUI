@@ -1,8 +1,43 @@
-### Version 2.33 [In Development]
+### Version 2.37 [In Development]
+**Retail:**  
+Updated WindTools profile (GroupInfo, Misc)  
+___
+### Version 2.36 [12-07-2023]
 **All WoW Versions:**  
+ElvUI 13.36+ compatibility  
+**Retail:**  
+Fixed installer error (MirrorTimers)  
+Updated TOC for 10.1.5  
+___
+### Version 2.35 [30-06-2023]
+**Retail:**  
+AddOn Compartment is now hidden by default  
+Updated some default anchor positions (Containers, MirrorTimers, Widgets)  
+Updated WindTools profile (Anchors, GroupInfo)  
+___
+### Version 2.34 [16-06-2023]
+**All WoW Versions:**  
+ElvUI 13.34+ compatibility  
+Updated default position for player castbar in the main layout as seen on yt/twitch  
+**Retail:**  
+Added ElvUI NamePlate StyleFilter for Aberrus Mythic  
+Fixed themes installer step breaking the healermana custom text for party frames  
+Removed labels on the custom ActionBars DataText by default  
+Updated default size and position for private auras and private warnings  
+Updated WindTools profile defaults  
+**Wrath Classic:**  
+Updated TOC for upcoming 3.4.2  
+___
+### Version 2.33 [01-06-2023]
+**All WoW Versions:**  
+ElvUI 13.33+ compatibility  
 Fixed some credits not displaying correctly  
 **Retail:**  
 Enabled "Modrate" for cooldown text by default  
+**Misc:**  
+Make sure to update from CurseForge or Wago AddOns  
+Plugin hosting on tukui website is no longer available  
+Updated readme urls for new tukui website  
 ___
 ### Version 2.32 [21-05-2023]
 **All WoW Versions:**  

@@ -21,11 +21,6 @@ Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
 Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
 
 local function Initialize()
-	if E.db.L1UI.install_version then -- Convert db
-		E.global.L1UI.install_version = tonumber(E.db.L1UI.install_version)
-		E.db.L1UI.install_version = nil
-	end
-
 	if E.private.install_complete == nil then -- Installer skip
 		E.private.install_complete = E.version
 	end
