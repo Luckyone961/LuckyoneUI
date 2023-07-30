@@ -1,4 +1,6 @@
 ### Version 2.37 [In Development]
+**All WoW Versions:**  
+ElvUI 13.38+ compatibility  
 **Retail:**  
 Updated OmniCD profile (Augmentation CDs)  
 Updated WindTools profile (GroupInfo, Misc)  
