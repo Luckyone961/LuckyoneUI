@@ -1,5 +1,6 @@
 ### Version 2.37 [In Development]
 **Retail:**  
+Updated OmniCD profile (Augmentation CDs)  
 Updated WindTools profile (GroupInfo, Misc)  
 ___
 ### Version 2.36 [12-07-2023]
