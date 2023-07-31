@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 ElvUI 13.38+ compatibility  
 **Retail:**  
+Updated Blizzard EditMode profile  
 Updated OmniCD profile (Augmentation CDs)  
 Updated WindTools profile (GroupInfo, Misc)  
 ___
