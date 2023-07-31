@@ -1,4 +1,4 @@
-### Version 2.37 [In Development]
+### Version 2.37 [31-07-2023]
 **All WoW Versions:**  
 ElvUI 13.38+ compatibility  
 **Retail:**  
