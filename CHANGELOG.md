@@ -1,12 +1,20 @@
+### Version 2.37 [31-07-2023]
+**All WoW Versions:**  
+ElvUI 13.38+ compatibility  
+**Retail:**  
+Updated Blizzard EditMode profile  
+Updated OmniCD profile (Augmentation CDs)  
+Updated WindTools profile (GroupInfo, Misc)  
+___
 ### Version 2.36 [12-07-2023]
 **All WoW Versions:**  
 ElvUI 13.36+ compatibility  
-**Retail**  
+**Retail:**  
 Fixed installer error (MirrorTimers)  
 Updated TOC for 10.1.5  
 ___
 ### Version 2.35 [30-06-2023]
-**Retail**  
+**Retail:**  
 AddOn Compartment is now hidden by default  
 Updated some default anchor positions (Containers, MirrorTimers, Widgets)  
 Updated WindTools profile (Anchors, GroupInfo)  

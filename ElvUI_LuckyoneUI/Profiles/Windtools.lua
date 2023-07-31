@@ -36,6 +36,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.misc.lfgList.line.tex = Private.Texture
 	E.private.WT.misc.lfgList.partyKeystone.enable = false
 	E.private.WT.misc.lfgList.rightPanel.enable = false
+	E.private.WT.misc.moveFrames.elvUIBags = false
 	E.private.WT.misc.moveSpeed = true
 	E.private.WT.misc.pauseToSlash = false
 	E.private.WT.misc.tags = false
@@ -153,7 +154,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.social.friendList.useClientColor = false
 	E.db.WT.social.smartTab.enable = false
 	E.db.WT.tooltips.groupInfo.mode = 'COMPACT'
-	E.db.WT.tooltips.groupInfo.template = '{{classColorStart}}{{className}}{{classColorEnd}}{{amountStart}} x {{amount}}{{amountEnd}}'
+	E.db.WT.tooltips.groupInfo.template = '{{classColorStart}}{{specName}}{{classColorEnd}}{{amountStart}} x {{amount}}{{amountEnd}}'
 	E.db.WT.tooltips.groupInfo.title = false
 
 	-- Protect movers error
