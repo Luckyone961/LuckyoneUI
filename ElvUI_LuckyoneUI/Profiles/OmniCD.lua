@@ -22,58 +22,11 @@ function L1UI:Setup_OmniCD(layout)
 	OmniCDDB['global']['disableElvMsg'] = true
 	OmniCDDB['version'] = 3
 
-	-- Shared db
+	-- Profile creation
 	for _, profile in pairs({ name, name_healing }) do
-		-- Profile creation
 		OmniCDDB['profiles'][profile] = OmniCDDB['profiles'][profile] or {}
 		OmniCDDB['profiles'][profile]['General'] = OmniCDDB['profiles'][profile]['General'] or {}
 		OmniCDDB['profiles'][profile]['Party'] = OmniCDDB['profiles'][profile]['Party'] or {}
-
-		-- General db
-		OmniCDDB['profiles'][profile]['General']['fonts'] = {
-			['statusBar'] = {
-				['font'] = 'Expressway',
-				['ofsX'] = 0,
-				['flag'] = 'OUTLINE',
-				['size'] = 18,
-			},
-			['optionSmall'] = {
-				['flag'] = 'OUTLINE',
-				['font'] = 'Expressway',
-			},
-			['anchor'] = {
-				['font'] = 'Expressway',
-				['ofsX'] = 0,
-				['flag'] = 'OUTLINE',
-			},
-			['icon'] = {
-				['font'] = 'Expressway',
-				['size'] = 12,
-			},
-			['option'] = {
-				['flag'] = 'OUTLINE',
-				['font'] = 'Expressway',
-			},
-		}
-		OmniCDDB['profiles'][profile]['General']['textures'] = {
-			['statusBar'] = {
-				['BG'] = 'Minimalist',
-				['bar'] = 'Minimalist',
-			},
-		}
-
-		-- Party db
-		OmniCDDB['profiles'][profile]['Party']['noneZoneSetting'] = 'party'
-		OmniCDDB['profiles'][profile]['Party']['scenarioZoneSetting'] = 'party'
-		OmniCDDB['profiles'][profile]['Party']['groupSize'] = {
-			["party"] = 5,
-			["scenario"] = 5,
-			["none"] = 5,
-		}
-		OmniCDDB['profiles'][profile]['Party']['visibility'] = {
-			['none'] = true,
-			['scenario'] = true,
-		}
 	end
 
 	-- Main profile
@@ -466,8 +419,56 @@ function L1UI:Setup_OmniCD(layout)
 		},
 	}
 
-	-- Add spell IDs
+	-- Additional data
 	for _, profile in pairs({ name, name_healing }) do
+		-- General db
+		OmniCDDB['profiles'][profile]['General']['fonts'] = {
+			['statusBar'] = {
+				['font'] = 'Expressway',
+				['ofsX'] = 0,
+				['flag'] = 'OUTLINE',
+				['size'] = 18,
+			},
+			['optionSmall'] = {
+				['flag'] = 'OUTLINE',
+				['font'] = 'Expressway',
+			},
+			['anchor'] = {
+				['font'] = 'Expressway',
+				['ofsX'] = 0,
+				['flag'] = 'OUTLINE',
+			},
+			['icon'] = {
+				['font'] = 'Expressway',
+				['size'] = 12,
+			},
+			['option'] = {
+				['flag'] = 'OUTLINE',
+				['font'] = 'Expressway',
+			},
+		}
+		OmniCDDB['profiles'][profile]['General']['textures'] = {
+			['statusBar'] = {
+				['BG'] = 'Minimalist',
+				['bar'] = 'Minimalist',
+			},
+		}
+
+		-- Party db
+		OmniCDDB['profiles'][profile]['Party']['visibility'] = {
+			['none'] = true,
+			['scenario'] = true,
+		}
+		OmniCDDB['profiles'][profile]['Party']['groupSize'] = {
+			['party'] = 5,
+			['scenario'] = 5,
+			['raid'] = 20,
+			['none'] = 5,
+		}
+		OmniCDDB['profiles'][profile]['Party']['noneZoneSetting'] = 'party'
+		OmniCDDB['profiles'][profile]['Party']['scenarioZoneSetting'] = 'party'
+
+		-- Spell IDs
 		for _, frame in pairs({ 'party', 'arena' }) do
 			OmniCDDB['profiles'][profile]['Party'][frame]['spells'] = OmniCDDB['profiles'][profile]['Party'][frame]['spells'] or {}
 			OmniCDDB['profiles'][profile]['Party'][frame]['spells'] = {
@@ -483,7 +484,7 @@ function L1UI:Setup_OmniCD(layout)
 				["197721"] = true,
 				["115750"] = false,
 				["22812"] = false,
-				["187827"] = false,
+				["187827"] = true,
 				["212295"] = false,
 				["212619"] = false,
 				["187650"] = false,
