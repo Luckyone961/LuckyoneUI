@@ -5,7 +5,7 @@ local unpack = unpack
 
 -- AddOnSkins Profile
 function L1UI:Setup_AddOnSkins(noPrint)
-	if not E:IsAddOnEnabled('AddOnSkins') then Private:Print('AddOnSkins ' .. L["not installed or enabled."]) return end
+	if not E:IsAddOnEnabled('AddOnSkins') then Private:Print('AddOnSkins ' .. L["is not installed or enabled."]) return end
 
 	local AS = unpack(AddOnSkins)
 

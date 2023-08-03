@@ -1,4 +1,6 @@
 ### Version 2.38 [In Development]
+**All WoW Versions:**  
+Updated some translations  
 **Retail:**  
 Fixed some issues in the OmniCD installer code  
 Updated OmniCD profile (Only track interrupts + 1 main damage CD for each spec)  
