@@ -1,3 +1,7 @@
+### Version 2.38 [In Development]
+**Retail:**  
+Updated OmniCD profile (Only track interrupts + 1 main damage CD for each spec)  
+___
 ### Version 2.37 [31-07-2023]
 **All WoW Versions:**  
 ElvUI 13.38+ compatibility  
