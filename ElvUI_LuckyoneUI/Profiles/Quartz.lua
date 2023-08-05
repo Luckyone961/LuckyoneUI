@@ -5,7 +5,7 @@ local pairs = pairs
 
 -- Quartz profile
 function L1UI:Setup_Quartz(layout)
-	if not E:IsAddOnEnabled('Quartz') then Private:Print('Quartz ' .. L["not installed or enabled."]) return end
+	if not E:IsAddOnEnabled('Quartz') then Private:Print('Quartz ' .. L["is not installed or enabled."]) return end
 
 	-- Disable ElvUI castbars if Quartz is used
 	E.db.unitframe.units.focus.castbar.enable = false

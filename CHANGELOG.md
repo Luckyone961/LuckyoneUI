@@ -1,5 +1,16 @@
-### Version 2.37 [In Development]
+### Version 2.38 [In Development]
+**All WoW Versions:**  
+Updated some translations  
 **Retail:**  
+Fixed some issues in the OmniCD installer code  
+Updated OmniCD profile (Only track interrupts + 1 main damage CD for each spec)  
+___
+### Version 2.37 [31-07-2023]
+**All WoW Versions:**  
+ElvUI 13.38+ compatibility  
+**Retail:**  
+Updated Blizzard EditMode profile  
+Updated OmniCD profile (Augmentation CDs)  
 Updated WindTools profile (GroupInfo, Misc)  
 ___
 ### Version 2.36 [12-07-2023]
