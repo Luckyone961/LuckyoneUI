@@ -1,3 +1,11 @@
+### Version 2.38 [14-08-2023]
+**All WoW Versions:**  
+Updated deDE localization  
+Updated ptBR localization (Credits: Eltreum)  
+**Retail:**  
+Fixed issues in the OmniCD installer code which skipped some settings  
+Reworked OmniCD profile (Only track interrupts + 1 main damage CD for each spec)  
+___
 ### Version 2.37 [31-07-2023]
 **All WoW Versions:**  
 ElvUI 13.38+ compatibility  
