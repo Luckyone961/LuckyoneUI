@@ -19,9 +19,8 @@ function L1UI:Setup_BigWigs(layout)
 	-- Required to add profiles to Plugins DB
 	if not IsAddOnLoaded('BigWigs_Plugins') then LoadAddOn('BigWigs_Plugins') end
 
-	-- Flavor specific db name
-	local DB = E.Retail and BigWigs3DB or BigWigsClassicDB
-	local iconDB = E.Retail and BigWigsIconDB or BigWigsIconClassicDB
+	local DB = BigWigs3DB
+	local iconDB = BigWigsIconDB
 
 	-- Profile creation
 	DB['profiles'] = DB['profiles'] or {}

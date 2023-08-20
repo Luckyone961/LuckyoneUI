@@ -1,3 +1,9 @@
+### Version 2.39 [In Development]
+**Classic:**  
+Fixed BigWigs installer for their latest update  
+**Wrath Classic:**  
+Fixed BigWigs installer for their latest update  
+___
 ### Version 2.38 [14-08-2023]
 **All WoW Versions:**  
 Updated deDE localization  
