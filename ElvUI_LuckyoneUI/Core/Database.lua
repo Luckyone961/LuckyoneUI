@@ -1124,9 +1124,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.ElvAB_8 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-483'
 	E.db.movers.ElvAB_9 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-456'
 	E.db.movers.ElvAB_10 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-429'
-	E.db.movers.ElvAB_13 = E.Retail and 'TOPLEFT,ElvUIParent,TOPLEFT,1,-402' or nil
-	E.db.movers.ElvAB_14 = E.Retail and 'TOPLEFT,ElvUIParent,TOPLEFT,1,-375' or nil
-	E.db.movers.ElvAB_15 = E.Retail and 'TOPLEFT,ElvUIParent,TOPLEFT,1,-348' or nil
+	E.db.movers.ElvAB_13 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-402'
+	E.db.movers.ElvAB_14 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-375'
+	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-348'
 	E.db.movers.ElvUIBagMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,140'
 	E.db.movers.ElvUIBankMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 	E.db.movers.EventToastMover = E.Retail and 'TOP,ElvUIParent,TOP,0,-166' or nil
