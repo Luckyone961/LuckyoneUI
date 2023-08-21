@@ -1,5 +1,6 @@
 ### Version 2.39 [In Development]
 **Classic:**  
+Preconfigured actionbar 13, 14, 15 (Disabled by default)  
 Fixed BigWigs installer for their latest update  
 **Wrath Classic:**  
 Fixed BigWigs installer for their latest update  

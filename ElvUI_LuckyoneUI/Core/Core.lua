@@ -182,7 +182,7 @@ function L1UI:Setup_PrivateDB()
 	E.private.general.chatBubbleFontOutline = 'OUTLINE'
 	E.private.general.dmgfont = Private.Font
 	E.private.general.glossTex = Private.Texture
-	E.private.general.minimap.hideTracking = true
+	E.private.general.minimap.hideTracking = not E.Classic
 	E.private.general.namefont = Private.Font
 	E.private.general.nameplateFont = Private.Font
 	E.private.general.nameplateLargeFont = Private.Font
