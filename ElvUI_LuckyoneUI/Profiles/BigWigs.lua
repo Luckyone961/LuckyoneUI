@@ -19,39 +19,35 @@ function L1UI:Setup_BigWigs(layout)
 	-- Required to add profiles to Plugins DB
 	if not IsAddOnLoaded('BigWigs_Plugins') then LoadAddOn('BigWigs_Plugins') end
 
-	-- Flavor specific db name
-	local DB = E.Retail and BigWigs3DB or BigWigsClassicDB
-	local iconDB = E.Retail and BigWigsIconDB or BigWigsIconClassicDB
-
 	-- Profile creation
-	DB['profiles'] = DB['profiles'] or {}
-	DB['namespaces'] = DB['namespaces'] or {}
+	BigWigs3DB['profiles'] = BigWigs3DB['profiles'] or {}
+	BigWigs3DB['namespaces'] = BigWigs3DB['namespaces'] or {}
 
 	for _, profile in pairs({ name, name_healing }) do
-		DB['profiles'][profile] = DB['profiles'][profile] or {}
-		DB['profiles'][profile]['showZoneMessages'] = false
-		DB['profiles'][profile]['fakeDBMVersion'] = true
-		DB['profiles'][profile]['flash'] = false
+		BigWigs3DB['profiles'][profile] = BigWigs3DB['profiles'][profile] or {}
+		BigWigs3DB['profiles'][profile]['showZoneMessages'] = false
+		BigWigs3DB['profiles'][profile]['fakeDBMVersion'] = true
+		BigWigs3DB['profiles'][profile]['flash'] = false
 	end
 
 	-- Disable minimap icon
-	iconDB['hide'] = true
+	BigWigsIconDB['hide'] = true
 
 	-- Profile data
-	DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'] = DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'] or {}
-	DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'][name] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'] or {}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'][name] = {
 		['exitCombatOther'] = 3,
 		['disabled'] = false,
 		['modeOther'] = 2,
 	}
-	DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'][name_healing] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'][name_healing] = {
 		['exitCombatOther'] = 3,
 		['disabled'] = false,
 		['modeOther'] = 2,
 	}
 
-	DB['namespaces']['BigWigs_Plugins_Bars']['profiles'] = DB['namespaces']['BigWigs_Plugins_Bars']['profiles'] or {}
-	DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'] or {}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name] = {
 		['barStyle'] = 'ElvUI',
 		['BigWigsAnchor_height'] = 15.99998760223389,
 		['BigWigsAnchor_width'] = 221.0000152587891,
@@ -78,7 +74,7 @@ function L1UI:Setup_BigWigs(layout)
 		['visibleBarLimit'] = 8,
 		['visibleBarLimitEmph'] = 5,
 	}
-	DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing] = {
 		['barStyle'] = 'ElvUI',
 		['BigWigsAnchor_height'] = 15.99998760223389,
 		['BigWigsAnchor_width'] = 221.0000305175781,
@@ -106,8 +102,8 @@ function L1UI:Setup_BigWigs(layout)
 		['visibleBarLimitEmph'] = 5,
 	}
 
-	DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] = DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] or {}
-	DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] or {}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name] = {
 		['blockTalkingHeads'] = {
 			true, -- [1]
 			nil, -- [2]
@@ -115,7 +111,7 @@ function L1UI:Setup_BigWigs(layout)
 			true, -- [4]
 		},
 	}
-	DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name_healing] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name_healing] = {
 		['blockTalkingHeads'] = {
 			true, -- [1]
 			nil, -- [2]
@@ -124,8 +120,8 @@ function L1UI:Setup_BigWigs(layout)
 		},
 	}
 
-	DB['namespaces']['BigWigs_Plugins_Colors']['profiles'] = DB['namespaces']['BigWigs_Plugins_Colors']['profiles'] or {}
-	DB['namespaces']['BigWigs_Plugins_Colors']['profiles'][name] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'] or {}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'][name] = {
 		['barBackground'] = {
 			['BigWigs_Plugins_Colors'] = {
 				['default'] = {
@@ -137,7 +133,7 @@ function L1UI:Setup_BigWigs(layout)
 			},
 		},
 	}
-	DB['namespaces']['BigWigs_Plugins_Colors']['profiles'][name_healing] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'][name_healing] = {
 		['barBackground'] = {
 			['BigWigs_Plugins_Colors'] = {
 				['default'] = {
@@ -150,8 +146,8 @@ function L1UI:Setup_BigWigs(layout)
 		},
 	}
 
-	DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'] = DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'] or {}
-	DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'][name] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'] or {}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'][name] = {
 		['outline'] = 'OUTLINE',
 		['fontSize'] = 50,
 		['fontName'] = 'Expressway',
@@ -162,7 +158,7 @@ function L1UI:Setup_BigWigs(layout)
 			-385, -- [4]
 		},
 	}
-	DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'][name_healing] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'][name_healing] = {
 		['outline'] = 'OUTLINE',
 		['fontSize'] = 50,
 		['fontName'] = 'Expressway',
@@ -174,18 +170,18 @@ function L1UI:Setup_BigWigs(layout)
 		},
 	}
 
-	DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] = DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] or {}
-	DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] or {}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name] = {
 		['posx'] = 962.8443809535747,
 		['posy'] = 72.42229450539753,
 	}
-	DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name_healing] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name_healing] = {
 		['posx'] = 962.8443809535747,
 		['posy'] = 72.42229450539753,
 	}
 
-	DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] = DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] or {}
-	DB['namespaces']['BigWigs_Plugins_Messages']['profiles'][name] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] or {}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'][name] = {
 		['outline'] = 'OUTLINE',
 		['fontSize'] = 16,
 		['emphFontName'] = 'Expressway',
@@ -206,7 +202,7 @@ function L1UI:Setup_BigWigs(layout)
 			-15, -- [4]
 		},
 	}
-	DB['namespaces']['BigWigs_Plugins_Messages']['profiles'][name_healing] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'][name_healing] = {
 		['outline'] = 'OUTLINE',
 		['fontSize'] = 16,
 		['emphFontName'] = 'Expressway',
@@ -228,8 +224,8 @@ function L1UI:Setup_BigWigs(layout)
 		},
 	}
 
-	DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'] = DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'] or {}
-	DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'][name] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'] or {}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'][name] = {
 		['posx'] = 296,
 		['fontSize'] = 18,
 		['fontName'] = 'Expressway',
@@ -246,7 +242,7 @@ function L1UI:Setup_BigWigs(layout)
 		['height'] = 119.9999694824219,
 		['font'] = 'Friz Quadrata TT',
 	}
-	DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'][name_healing] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'][name_healing] = {
 		['posx'] = 296,
 		['fontSize'] = 18,
 		['fontName'] = 'Expressway',
@@ -264,47 +260,47 @@ function L1UI:Setup_BigWigs(layout)
 		['font'] = 'Friz Quadrata TT',
 	}
 
-	DB['namespaces']['BigWigs_Plugins_Pull']['profiles'] = DB['namespaces']['BigWigs_Plugins_Pull']['profiles'] or {}
-	DB['namespaces']['BigWigs_Plugins_Pull']['profiles'][name] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'] or {}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'][name] = {
 		['voice'] = 'enUS: Default (Female)',
 		['endPullSound'] = 'None',
 	}
-	DB['namespaces']['BigWigs_Plugins_Pull']['profiles'][name_healing] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'][name_healing] = {
 		['voice'] = 'enUS: Default (Female)',
 		['endPullSound'] = 'None',
 	}
 
-	DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'] = DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'] or {}
-	DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'] or {}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name] = {
 		['disabled'] = true,
 	}
-	DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name_healing] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name_healing] = {
 		['disabled'] = true,
 	}
 
-	DB['namespaces']['BigWigs_Plugins_Victory']['profiles'] = DB['namespaces']['BigWigs_Plugins_Victory']['profiles'] or {}
-	DB['namespaces']['BigWigs_Plugins_Victory']['profiles'][name] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'] or {}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'][name] = {
 		['bigwigsMsg'] = true,
 		['blizzMsg'] = false,
 	}
-	DB['namespaces']['BigWigs_Plugins_Victory']['profiles'][name_healing] = {
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'][name_healing] = {
 		['bigwigsMsg'] = true,
 		['blizzMsg'] = false,
 	}
 
 	if E.Retail then
 		-- Disable LibDualSpec to set the profile
-		DB['namespaces']['LibDualSpec-1.0'] = DB['namespaces']['LibDualSpec-1.0'] or {}
-		DB['namespaces']['LibDualSpec-1.0']['char'] = DB['namespaces']['LibDualSpec-1.0']['char'] or {}
-		DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
-		DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
+		BigWigs3DB['namespaces']['LibDualSpec-1.0'] = BigWigs3DB['namespaces']['LibDualSpec-1.0'] or {}
+		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'] = BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'] or {}
+		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
+		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
 
 		-- AltPower db
-		DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'] = DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'] or {}
-		DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name] = {
+		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'] or {}
+		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name] = {
 			['disabled'] = true,
 		}
-		DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name_healing] = {
+		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name_healing] = {
 			['disabled'] = true,
 		}
 	end
