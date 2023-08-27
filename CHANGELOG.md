@@ -1,6 +1,10 @@
-### Version 2.39 [In Development]
+### Version 2.39 [23-08-2023]
+**All WoW Versions:**  
+ElvUI 13.39+ compatibility  
 **Classic:**  
 Fixed BigWigs installer for their latest update  
+Preconfigured actionbar 13, 14, 15 (Disabled by default)  
+Updated TOC for 1.14.4  
 **Wrath Classic:**  
 Fixed BigWigs installer for their latest update  
 ___
