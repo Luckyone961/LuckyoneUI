@@ -1,3 +1,9 @@
+### Version 2.40 [In Development]
+**All WoW Versions:**  
+ElvUI 13.40+ compatibility  
+**Retail:**  
+Updated TOC for 10.1.7  
+___
 ### Version 2.39 [23-08-2023]
 **All WoW Versions:**  
 ElvUI 13.39+ compatibility  
