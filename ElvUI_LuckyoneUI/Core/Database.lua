@@ -1113,7 +1113,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-110'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-50,-138'
-	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,192,1'
+	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,193,1'
 	E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 	E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,68'
 	E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,41'
@@ -1159,7 +1159,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.TorghastBuffsMover = E.Retail and 'TOPLEFT,ElvUIParent,TOPLEFT,4,-51' or nil
 	E.db.movers.TorghastChoiceToggle = E.Retail and 'BOTTOM,UIParent,BOTTOM,0,369' or nil
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
-	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
+	E.db.movers.VehicleSeatMover = 'BOTTOM,ElvUIParent,BOTTOM,-195,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-28'
 	E.db.movers.ZoneAbility = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,66' or nil
 
