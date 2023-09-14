@@ -1108,7 +1108,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.BNETMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-199'
 	E.db.movers.BossButton = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,119' or nil
-	E.db.movers.BossHeaderMover = E.Retail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-300,-210' or E.Wrath and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-250,-240' or nil
+	E.db.movers.BossHeaderMover = not E.Classic and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-300,-210'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-110'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'

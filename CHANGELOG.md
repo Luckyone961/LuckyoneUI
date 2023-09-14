@@ -1,6 +1,8 @@
 ### Version 2.41 [In Development]
 **All WoW Versions:**  
 Swapped default positions of Micro and Stance bar for fresh installs  
+**Wrath Classic:**  
+Match default position of Boss Frames with Retail  
 ___
 ### Version 2.40 [06-09-2023]
 **All WoW Versions:**  
