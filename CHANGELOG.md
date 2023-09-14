@@ -1,3 +1,7 @@
+### Version 2.41 [In Development]
+**All WoW Versions:**  
+Swapped default positions of Micro and Stance bar for fresh installs  
+___
 ### Version 2.40 [06-09-2023]
 **All WoW Versions:**  
 ElvUI 13.40+ compatibility  

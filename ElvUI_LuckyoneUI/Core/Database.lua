@@ -1136,7 +1136,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.LootFrameMover = 'TOP,ElvUIParent,TOP,0,-187'
 	E.db.movers.LossControlMover = E.Retail and 'TOP,ElvUIParent,TOP,0,-490' or nil
 	E.db.movers.MawBuffsBelowMinimapMover = E.Retail and 'TOPLEFT,ElvUIParent,TOPLEFT,1,-28' or nil
-	E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,163,-1'
+	E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
 	E.db.movers.MinimapMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1'
 	E.db.movers.MirrorTimer1Mover = not E.Retail and 'TOP,ElvUIParent,TOP,0,-60'
 	E.db.movers.MirrorTimer2Mover = not E.Retail and 'TOP,ElvUIParent,TOP,0,-79'
@@ -1152,7 +1152,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-131'
 	E.db.movers.ReputationBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
-	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
+	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,210,-1'
 	E.db.movers.TalkingHeadFrameMover = E.Retail and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,140' or nil
 	E.db.movers.TooltipMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,102'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-46'
