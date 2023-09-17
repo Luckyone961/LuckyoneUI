@@ -4,9 +4,9 @@ local NP = E:GetModule('NamePlates')
 
 local pairs = pairs
 
--- NamePlate Setup for ElvUI and Plater
+-- NamePlate Setup for ElvUI
 function L1UI:Setup_NamePlates()
-	-- Make sure to enable ElvUI NamePlates
+	-- Make sure to enable the module
 	E.private.nameplates.enable = true
 
 	-- Restore defaults
