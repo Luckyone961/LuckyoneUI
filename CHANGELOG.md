@@ -1,6 +1,7 @@
 ### Version 2.41 [In Development]
 **All WoW Versions:**  
 Party frames in the healing layout are back to vertical style  
+Removed Quartz profiles  
 Swapped default positions of Micro and Stance bar for fresh installs  
 Updated default position of VehicleSeatMover slightly  
 Updated default postion of DurabilityFrameMover slightly  
