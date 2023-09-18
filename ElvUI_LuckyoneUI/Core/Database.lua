@@ -949,6 +949,14 @@ function L1UI:Layout_Dragonflight(layout)
 
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.CombatIcon.enable = false
+	E.db.unitframe.units.party.debuffs.countFont = Private.Font
+	E.db.unitframe.units.party.debuffs.countXOffset = 2
+	E.db.unitframe.units.party.debuffs.enable = true
+	E.db.unitframe.units.party.debuffs.maxDuration = 0
+	E.db.unitframe.units.party.debuffs.perrow = 2
+	E.db.unitframe.units.party.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
+	E.db.unitframe.units.party.debuffs.xOffset = 1
+	E.db.unitframe.units.party.debuffs.yOffset = -1
 	E.db.unitframe.units.party.disableFocusGlow = true
 	E.db.unitframe.units.party.disableMouseoverGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
@@ -962,23 +970,31 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.party.orientation = 'MIDDLE'
 	E.db.unitframe.units.party.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.party.phaseIndicator.scale = 0.5
+	E.db.unitframe.units.party.phaseIndicator.xOffset = 15
 	E.db.unitframe.units.party.power.enable = false
 	E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.party.raidicon.size = 14
 	E.db.unitframe.units.party.raidicon.xOffset = -3
 	E.db.unitframe.units.party.raidicon.yOffset = 0
 	E.db.unitframe.units.party.raidRoleIcons.yOffset = 1
+	E.db.unitframe.units.party.rdebuffs.enable = false
 	E.db.unitframe.units.party.readycheckIcon.attachTo = 'Frame'
 	E.db.unitframe.units.party.readycheckIcon.position = 'RIGHT'
 	E.db.unitframe.units.party.readycheckIcon.xOffset = -2
 	E.db.unitframe.units.party.readycheckIcon.yOffset = 0
 	E.db.unitframe.units.party.roleIcon.enable = true
+	E.db.unitframe.units.party.roleIcon.position = 'LEFT'
+	E.db.unitframe.units.party.roleIcon.size = 11
+	E.db.unitframe.units.party.roleIcon.xOffset = 0
+	E.db.unitframe.units.party.showPlayer = false
 	E.db.unitframe.units.party.summonIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.party.summonIcon.size = 24
+	E.db.unitframe.units.party.summonIcon.xOffset = -15
 	E.db.unitframe.units.party.threatStyle = 'NONE'
 	E.db.unitframe.units.party.verticalSpacing = 1
 
 	-- Shared growth directions
+	E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
 	E.db.unitframe.units.raid1.growthDirection = 'RIGHT_DOWN'
 	E.db.unitframe.units.raid2.growthDirection = 'RIGHT_DOWN'
 	E.db.unitframe.units.raid3.growthDirection = 'RIGHT_DOWN'
@@ -1168,9 +1184,6 @@ function L1UI:Layout_Dragonflight(layout)
 
 	if layout == 'main' then
 
-		-- Main growth directions
-		E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
-
 		-- Main movers
 		E.db.movers.ElvUF_FocusCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,278,391'
 		E.db.movers.ElvUF_FocusMover = 'BOTTOM,ElvUIParent,BOTTOM,278,410'
@@ -1198,23 +1211,8 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.player.castbar.width = 279
 
 		-- Main Party
-		E.db.unitframe.units.party.debuffs.countFont = Private.Font
-		E.db.unitframe.units.party.debuffs.countXOffset = 2
-		E.db.unitframe.units.party.debuffs.enable = true
-		E.db.unitframe.units.party.debuffs.maxDuration = 0
-		E.db.unitframe.units.party.debuffs.perrow = 2
-		E.db.unitframe.units.party.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
 		E.db.unitframe.units.party.debuffs.sizeOverride = 32
-		E.db.unitframe.units.party.debuffs.xOffset = 1
-		E.db.unitframe.units.party.debuffs.yOffset = -1
 		E.db.unitframe.units.party.height = 32
-		E.db.unitframe.units.party.phaseIndicator.xOffset = 15
-		E.db.unitframe.units.party.rdebuffs.enable = false
-		E.db.unitframe.units.party.roleIcon.position = 'LEFT'
-		E.db.unitframe.units.party.roleIcon.size = 11
-		E.db.unitframe.units.party.roleIcon.xOffset = 0
-		E.db.unitframe.units.party.showPlayer = false
-		E.db.unitframe.units.party.summonIcon.xOffset = -15
 		E.db.unitframe.units.party.width = 190
 
 		-- Main Raid1
@@ -1240,13 +1238,10 @@ function L1UI:Layout_Dragonflight(layout)
 
 	elseif layout == 'healing' then
 
-		-- Healing growth directions
-		E.db.unitframe.units.party.growthDirection = 'RIGHT_DOWN'
-
 		-- Healing movers
 		E.db.movers.ElvUF_FocusCastbarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-482,391'
 		E.db.movers.ElvUF_FocusMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-482,410'
-		E.db.movers.ElvUF_PartyMover = 'BOTTOM,UIParent,BOTTOM,0,300'
+		E.db.movers.ElvUF_PartyMover = 'TOPLEFT,ElvUIParent,TOPLEFT,482,-390'
 		E.db.movers.ElvUF_PetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,141'
 		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,-1,95'
 		E.db.movers.ElvUF_PlayerMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,482,300'
@@ -1274,35 +1269,9 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.player.castbar.width = 324
 
 		-- Healing Party
-		E.db.unitframe.units.party.debuffs.enable = false
+		E.db.unitframe.units.party.debuffs.sizeOverride = 40
 		E.db.unitframe.units.party.height = 40
-		E.db.unitframe.units.party.phaseIndicator.xOffset = 2
-		E.db.unitframe.units.party.rdebuffs.enable = true
-		E.db.unitframe.units.party.rdebuffs.font = Private.Font
-		E.db.unitframe.units.party.rdebuffs.fontOutline = 'OUTLINE'
-		E.db.unitframe.units.party.rdebuffs.fontSize = 9
-		E.db.unitframe.units.party.rdebuffs.size = 14
-		E.db.unitframe.units.party.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.party.rdebuffs.stack.xOffset = 1
-		E.db.unitframe.units.party.rdebuffs.stack.yOffset = 0
-		E.db.unitframe.units.party.rdebuffs.yOffset = 1
-		E.db.unitframe.units.party.roleIcon.attachTo = 'Frame'
-		E.db.unitframe.units.party.roleIcon.damager = false
-		E.db.unitframe.units.party.roleIcon.position = 'TOP'
-		E.db.unitframe.units.party.roleIcon.size = 12
-		E.db.unitframe.units.party.roleIcon.xOffset = 0
-		E.db.unitframe.units.party.roleIcon.yOffset = 0
-		E.db.unitframe.units.party.summonIcon.xOffset = -2
-		E.db.unitframe.units.party.width = 94
-
-		-- Healing Party Pets [nonRetail only]
-		E.db.unitframe.units.party.petsGroup.anchorPoint = 'BOTTOM'
-		E.db.unitframe.units.party.petsGroup.enable = not E.Retail
-		E.db.unitframe.units.party.petsGroup.healPrediction.enable = true
-		E.db.unitframe.units.party.petsGroup.threatStyle = 'NONE'
-		E.db.unitframe.units.party.petsGroup.width = 94
-		E.db.unitframe.units.party.petsGroup.xOffset = 0
-		E.db.unitframe.units.party.petsGroup.yOffset = -1
+		E.db.unitframe.units.party.width = 240
 
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.enable = true
