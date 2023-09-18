@@ -1245,8 +1245,8 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_PetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,141'
 		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,-1,95'
 		E.db.movers.ElvUF_PlayerMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,482,300'
-		E.db.movers.ElvUF_Raid1Mover = E.Retail and 'BOTTOM,ElvUIParent,BOTTOM,0,177' or 'BOTTOM,UIParent,BOTTOM,0,259'
-		E.db.movers.ElvUF_Raid2Mover = E.Retail and 'BOTTOM,UIParent,BOTTOM,0,95' or 'BOTTOM,UIParent,BOTTOM,0,136'
+		E.db.movers.ElvUF_Raid1Mover = E.Retail and 'BOTTOM,ElvUIParent,BOTTOM,0,193' or 'BOTTOM,UIParent,BOTTOM,0,267'
+		E.db.movers.ElvUF_Raid2Mover = E.Retail and 'BOTTOM,ElvUIParent,BOTTOM,0,119' or 'BOTTOM,UIParent,BOTTOM,0,156'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,149'
 		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-482,281'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-482,300'
@@ -1275,16 +1275,16 @@ function L1UI:Layout_Dragonflight(layout)
 
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.enable = true
-		E.db.unitframe.units.raid1.height = 40
+		E.db.unitframe.units.raid1.height = 36
 		E.db.unitframe.units.raid1.rdebuffs.xOffset = 39
-		E.db.unitframe.units.raid1.rdebuffs.yOffset = 13
+		E.db.unitframe.units.raid1.rdebuffs.yOffset = 11
 		E.db.unitframe.units.raid1.width = 94
 
 		-- Healing Raid2
 		E.db.unitframe.units.raid2.buffIndicator.enable = true
-		E.db.unitframe.units.raid2.height = 40
+		E.db.unitframe.units.raid2.height = 36
 		E.db.unitframe.units.raid2.rdebuffs.xOffset = 39
-		E.db.unitframe.units.raid2.rdebuffs.yOffset = 13
+		E.db.unitframe.units.raid2.rdebuffs.yOffset = 11
 		E.db.unitframe.units.raid2.width = 94
 
 		-- Healing Raid3
