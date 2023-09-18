@@ -260,7 +260,6 @@ function L1UI:Config()
 	L1UI.Options.args.profiles.args.addonsMain = ACH:Group(L["Addon Profiles"], nil, 7)
 	L1UI.Options.args.profiles.args.addonsMain.inline = true
 	L1UI.Options.args.profiles.args.addonsMain.args.omnicd = ACH:Execute(L["OmniCD Main"], L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_OmniCD('main') E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.profiles.args.addonsMain.args.quartz = ACH:Execute(L["Quartz Main"], L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_Quartz('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.profiles.args.header3 = ACH:Header(L["Profiles for Healing"], 8)
 	L1UI.Options.args.profiles.args.bossmodsHealing = ACH:Group(L["BossMods Profiles"], nil, 9)
 	L1UI.Options.args.profiles.args.bossmodsHealing.inline = true
@@ -269,7 +268,6 @@ function L1UI:Config()
 	L1UI.Options.args.profiles.args.addonsHealing = ACH:Group(L["Addon Profiles"], nil, 10)
 	L1UI.Options.args.profiles.args.addonsHealing.inline = true
 	L1UI.Options.args.profiles.args.addonsHealing.args.omnicd = ACH:Execute(L["OmniCD Healing"], L["Reset to LuckyoneUI defaults."], 1, function() L1UI:Setup_OmniCD('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.profiles.args.addonsHealing.args.quartz = ACH:Execute(L["Quartz Healing"], L["Reset to LuckyoneUI defaults."], 2, function() L1UI:Setup_Quartz('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 
 	-- Skins
 	L1UI.Options.args.skins = ACH:Group('Skins', nil, 12)
@@ -284,9 +282,10 @@ function L1UI:Config()
 	L1UI.Options.args.tags.args.header = ACH:Header(L["Tags"], 1)
 	L1UI.Options.args.tags.args.spacer = ACH:Spacer(2, 'full')
 	L1UI.Options.args.tags.args.tag1 = ACH:Input(L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"], nil, 3, nil, 'full', function() return '[luckyone:health:percent]' end, nil, nil)
-	L1UI.Options.args.tags.args.tag2 = ACH:Input(L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"], nil, 4, nil, 'full', function() return '[luckyone:classification]' end, nil, nil)
-	L1UI.Options.args.tags.args.tag3 = ACH:Input(L["Displays the unit's Mana (Role: Healer)"], nil, 5, nil, 'full', function() return '[luckyone:healermana:current]' end, nil, nil, not E.Retail)
-	L1UI.Options.args.tags.args.tag4 = ACH:Input(L["Displays the unit's Mana in percent (Role: Healer)"], nil, 6, nil, 'full', function() return '[luckyone:healermana:percent]' end, nil, nil, not E.Retail)
+	L1UI.Options.args.tags.args.tag2 = ACH:Input(L["Displays percentage mana without decimals"], nil, 4, nil, 'full', function() return '[luckyone:mana:percent]' end, nil, nil)
+	L1UI.Options.args.tags.args.tag3 = ACH:Input(L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"], nil, 5, nil, 'full', function() return '[luckyone:classification]' end, nil, nil)
+	L1UI.Options.args.tags.args.tag4 = ACH:Input(L["Displays the unit's Mana (Role: Healer)"], nil, 6, nil, 'full', function() return '[luckyone:healermana:current]' end, nil, nil, not E.Retail)
+	L1UI.Options.args.tags.args.tag5 = ACH:Input(L["Displays the unit's Mana in percent (Role: Healer)"], nil, 7, nil, 'full', function() return '[luckyone:healermana:percent]' end, nil, nil, not E.Retail)
 
 	-- Themes
 	L1UI.Options.args.themes = ACH:Group(L["Themes"], nil, 14)
