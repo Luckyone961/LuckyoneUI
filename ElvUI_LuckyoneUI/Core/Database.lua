@@ -826,7 +826,7 @@ function L1UI:Layout_Dragonflight(layout)
 	-- Shared Player
 	E.db.unitframe.units.player.customTexts = E.db.unitframe.units.player.customTexts or {}
 	E.db.unitframe.units.player.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '', xOffset = -2, yOffset = 0 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[classcolor][name]', xOffset = 5, yOffset = 0 }
+	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[classcolor][name:short]', xOffset = 5, yOffset = 0 }
 
 	E.db.unitframe.units.player.aurabar.enable = false
 	E.db.unitframe.units.player.buffs.attachTo = 'FRAME'
