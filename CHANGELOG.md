@@ -1,4 +1,4 @@
-### Version 2.41 [In Development]
+### Version 2.41 [18-09-2023]
 **All WoW Versions:**  
 Added new custom tag luckyone:mana:percent for mana without decimals  
 Party frames in the healing layout are back to vertical style  
