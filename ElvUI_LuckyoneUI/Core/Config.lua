@@ -282,9 +282,10 @@ function L1UI:Config()
 	L1UI.Options.args.tags.args.header = ACH:Header(L["Tags"], 1)
 	L1UI.Options.args.tags.args.spacer = ACH:Spacer(2, 'full')
 	L1UI.Options.args.tags.args.tag1 = ACH:Input(L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"], nil, 3, nil, 'full', function() return '[luckyone:health:percent]' end, nil, nil)
-	L1UI.Options.args.tags.args.tag2 = ACH:Input(L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"], nil, 4, nil, 'full', function() return '[luckyone:classification]' end, nil, nil)
-	L1UI.Options.args.tags.args.tag3 = ACH:Input(L["Displays the unit's Mana (Role: Healer)"], nil, 5, nil, 'full', function() return '[luckyone:healermana:current]' end, nil, nil, not E.Retail)
-	L1UI.Options.args.tags.args.tag4 = ACH:Input(L["Displays the unit's Mana in percent (Role: Healer)"], nil, 6, nil, 'full', function() return '[luckyone:healermana:percent]' end, nil, nil, not E.Retail)
+	L1UI.Options.args.tags.args.tag2 = ACH:Input(L["Displays percentage mana without decimals"], nil, 4, nil, 'full', function() return '[luckyone:mana:percent]' end, nil, nil)
+	L1UI.Options.args.tags.args.tag2 = ACH:Input(L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"], nil, 5, nil, 'full', function() return '[luckyone:classification]' end, nil, nil)
+	L1UI.Options.args.tags.args.tag3 = ACH:Input(L["Displays the unit's Mana (Role: Healer)"], nil, 6, nil, 'full', function() return '[luckyone:healermana:current]' end, nil, nil, not E.Retail)
+	L1UI.Options.args.tags.args.tag4 = ACH:Input(L["Displays the unit's Mana in percent (Role: Healer)"], nil, 7, nil, 'full', function() return '[luckyone:healermana:percent]' end, nil, nil, not E.Retail)
 
 	-- Themes
 	L1UI.Options.args.themes = ACH:Group(L["Themes"], nil, 14)

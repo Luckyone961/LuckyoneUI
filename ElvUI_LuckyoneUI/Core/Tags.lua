@@ -33,8 +33,8 @@ end)
 
 -- Display percentage mana with 0 decimals
 E:AddTag('luckyone:mana:percent', 'UNIT_POWER_FREQUENT UNIT_MAXPOWER UNIT_DISPLAYPOWER', function(unit)
-	local min = UnitPower(unit, POWERTYPE_MANA)
-	return E:GetFormattedText('PERCENT', min, UnitPowerMax(unit, POWERTYPE_MANA), 0, nil)
+	local min = UnitPower(unit, Enum.PowerType.Mana)
+	return E:GetFormattedText('PERCENT', min, UnitPowerMax(unit, Enum.PowerType.Mana), 0, nil)
 end)
 
 -- Display mana (current) if the unit is flagged healer (Retail only)
@@ -48,13 +48,9 @@ end, not E.Retail)
 -- Display mana (percent) if the unit is flagged healer (Retail only)
 E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT', function(unit)
 	local role = UnitGroupRolesAssigned(unit)
+	local min = UnitPower(unit, Enum.PowerType.Mana)
 	if role == 'HEALER' then
-		local powerMax = UnitPowerMax(unit, Enum.PowerType.Mana)
-		if powerMax == 0 then
-			return 0
-		else
-			return floor(UnitPower(unit, Enum.PowerType.Mana) / powerMax * 100 + 0.5)
-		end
+		return E:GetFormattedText('PERCENT', min, UnitPowerMax(unit, Enum.PowerType.Mana), 0, nil)
 	end
 end, not E.Retail)
 
