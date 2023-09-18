@@ -124,18 +124,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_Details() end)
 			PluginInstallFrame.Option1:SetText(L["Setup Details"])
 		end,
-		[10] = function()
-			PluginInstallFrame.SubTitle:SetText(L["Quartz Profile"])
-			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for Quartz."])
-			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Optional step. ElvUI castbars are used by default."]))
-			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_Quartz('main') end)
-			PluginInstallFrame.Option1:SetText('Quartz')
-			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_Quartz('healing') end)
-			PluginInstallFrame.Option2:SetText(L["Quartz Healing"])
-		end,
-		[E.Retail and 11] = function()
+		[E.Retail and 10] = function()
 			PluginInstallFrame.SubTitle:SetText(L["OmniCD Profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for OmniCD Party CDs."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -146,7 +135,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_OmniCD('healing') end)
 			PluginInstallFrame.Option2:SetText(L["OmniCD Healing"])
 		end,
-		[E.Retail and 12] = function()
+		[E.Retail and 11] = function()
 			PluginInstallFrame.SubTitle:SetText(L["WarpDeplete Profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for WarpDeplete."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -154,7 +143,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_WarpDeplete() end)
 			PluginInstallFrame.Option1:SetText(L["Setup WarpDeplete"])
 		end,
-		[E.Retail and 13 or 11] = function()
+		[E.Retail and 12 or 10] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Installation Complete"])
 			PluginInstallFrame.Desc1:SetText(L["You have completed the installation process, please click 'Finished' to reload the UI."])
 			PluginInstallFrame.Desc2:SetText(L["Feel free to join our community Discord for support and social chats."])
@@ -176,10 +165,9 @@ L1UI.InstallerData = {
 		[7] = L["NamePlates"],
 		[8] = L["BossMods"],
 		[9] = 'Details',
-		[10] = 'Quartz',
-		[E.Retail and 11] = 'OmniCD',
-		[E.Retail and 12] = 'WarpDeplete',
-		[E.Retail and 13 or 11] = L["Installation Complete"],
+		[E.Retail and 10] = 'OmniCD',
+		[E.Retail and 11] = 'WarpDeplete',
+		[E.Retail and 12 or 10] = L["Installation Complete"],
 	},
 	StepTitlesColor = { 1, 1, 1 },
 	StepTitlesColorSelected = { 0, 179 / 255, 1 },
