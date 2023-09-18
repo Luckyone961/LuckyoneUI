@@ -51,8 +51,8 @@
 ***
 ### **Main Layout:**  
 ***
-![LuckyoneUI DPS & Tanks](https://i.imgur.com/8rZTbuC.jpg)  
+![LuckyoneUI Main Layout](https://i.imgur.com/5xlMMug.jpg)  
 ***
 ### **Healing Layout:**  
 ***
-![LuckyoneUI Healing](https://i.imgur.com/bJlcS8C.jpg)  
+![LuckyoneUI Healing Layout](https://i.imgur.com/vk4zvo1.jpg)  
