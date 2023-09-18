@@ -1,5 +1,6 @@
 ### Version 2.41 [In Development]
 **All WoW Versions:**  
+Added new custom tag luckyone:mana:percent for mana without decimals  
 Party frames in the healing layout are back to vertical style  
 Removed Quartz profiles  
 Swapped default positions of Micro and Stance bar for fresh installs  
