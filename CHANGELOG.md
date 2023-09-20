@@ -1,3 +1,7 @@
+### Version 2.42 [In Development]
+**Retail:**  
+Fixed wrong growth direction for kicks in the new OmniCD healing profile  
+___
 ### Version 2.41 [18-09-2023]
 **All WoW Versions:**  
 Added new custom tag luckyone:mana:percent for mana without decimals  

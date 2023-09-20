@@ -235,7 +235,7 @@ function L1UI:Setup_OmniCD(layout)
 			['extraBars'] = {
 				['raidBar0'] = {
 					['columns'] = 10,
-					['growUpward'] = true,
+					['growUpward'] = false,
 					['hideSpark'] = true,
 					['locked'] = true,
 					['paddingY'] = 2,
@@ -327,7 +327,7 @@ function L1UI:Setup_OmniCD(layout)
 			['extraBars'] = {
 				['raidBar0'] = {
 					['columns'] = 10,
-					['growUpward'] = true,
+					['growUpward'] = false,
 					['hideSpark'] = true,
 					['locked'] = true,
 					['paddingY'] = 2,
