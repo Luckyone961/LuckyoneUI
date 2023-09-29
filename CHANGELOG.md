@@ -1,4 +1,6 @@
-### Version 2.42 [In Development]
+### Version 2.42 [29-09-2023]
+**All WoW Versions:**  
+ElvUI 13.41+ compatibility  
 **Retail:**  
 Fixed wrong growth direction for kicks in the new OmniCD healing profile  
 ___
