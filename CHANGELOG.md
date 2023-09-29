@@ -3,6 +3,8 @@
 ElvUI 13.41+ compatibility  
 **Retail:**  
 Fixed wrong growth direction for kicks in the new OmniCD healing profile  
+**Misc:**  
+Updated preview screenshots  
 ___
 ### Version 2.41 [18-09-2023]
 **All WoW Versions:**  
