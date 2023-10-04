@@ -14,5 +14,9 @@ function L1UI:UpdateLayout(layout)
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[classcolor][name:short]|r[manacolor][ - >luckyone:healermana:percent]'
 	end
 
+	if E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then
+		E.db.WT.quest.turnIn.mode = 'COMPLETE'
+	end
+
 	Private:Print(L["Successfully updated your current layout to LuckyoneUI version "] .. Private.Version)
 end
