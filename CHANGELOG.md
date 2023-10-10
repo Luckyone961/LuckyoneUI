@@ -1,4 +1,6 @@
 ### Version 2.43 [In Development]
+**All WoW Versions:**  
+ElvUI 13.43+ compatibility  
 **Retail:**  
 Updated WindTools profile (Quests)  
 ___
