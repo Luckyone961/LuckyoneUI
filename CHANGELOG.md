@@ -3,6 +3,8 @@
 ElvUI 13.43+ compatibility  
 **Retail:**  
 Updated WindTools profile (Quests)  
+**Wrath Classic:**  
+Updated TOC for 3.4.3  
 ___
 ### Version 2.42 [29-09-2023]
 **All WoW Versions:**  
