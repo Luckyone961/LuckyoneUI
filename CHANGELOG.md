@@ -1,4 +1,4 @@
-### Version 2.43 [In Development]
+### Version 2.43 [11-10-2023]
 **All WoW Versions:**  
 ElvUI 13.44+ compatibility  
 **Retail:**  
