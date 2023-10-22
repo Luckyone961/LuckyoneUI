@@ -18,5 +18,7 @@ function L1UI:UpdateLayout(layout)
 		E.db.WT.quest.turnIn.mode = 'COMPLETE'
 	end
 
+	E.db.tooltip.healthBar.fontOutline = 'OUTLINE'
+
 	Private:Print(L["Successfully updated your current layout to LuckyoneUI version "] .. Private.Version)
 end

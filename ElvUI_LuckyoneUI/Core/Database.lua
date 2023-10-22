@@ -573,6 +573,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.tooltip.headerFontOutline = 'OUTLINE'
 	E.db.tooltip.headerFontSize = 11
 	E.db.tooltip.healthBar.font = Private.Font
+	E.db.tooltip.healthBar.fontOutline = 'OUTLINE'
 	E.db.tooltip.healthBar.fontSize = 11
 	E.db.tooltip.healthBar.height = 2
 	E.db.tooltip.healthBar.statusPosition = 'TOP'
