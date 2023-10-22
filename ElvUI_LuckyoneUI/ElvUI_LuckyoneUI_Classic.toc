@@ -7,6 +7,6 @@
 ## Version: 2.43
 
 ## Interface: 11404
-## X-Required-ElvUI: 13.44
+## X-Required-ElvUI: 13.45
 
 Load.xml
