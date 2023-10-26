@@ -1,4 +1,4 @@
-### Version 2.44 [In Development]
+### Version 2.44 [26-10-2023]
 **All WoW Versions:**  
 ElvUI 13.46+ compatibility  
 Updated ElvUI profiles (fixed tooltip font outline)  
