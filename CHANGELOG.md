@@ -1,3 +1,37 @@
+### Version 2.44 [26-10-2023]
+**All WoW Versions:**  
+ElvUI 13.46+ compatibility  
+Updated ElvUI profiles (fixed tooltip font outline)  
+___
+### Version 2.43 [11-10-2023]
+**All WoW Versions:**  
+ElvUI 13.44+ compatibility  
+**Retail:**  
+Updated WindTools profile (Quests)  
+**Wrath Classic:**  
+Updated TOC for 3.4.3  
+___
+### Version 2.42 [29-09-2023]
+**All WoW Versions:**  
+ElvUI 13.41+ compatibility  
+**Retail:**  
+Fixed wrong growth direction for kicks in the new OmniCD healing profile  
+**Misc:**  
+Updated preview screenshots  
+___
+### Version 2.41 [18-09-2023]
+**All WoW Versions:**  
+Added new custom tag luckyone:mana:percent for mana without decimals  
+Party frames in the healing layout are back to vertical style  
+Removed Quartz profiles  
+Swapped default positions of Micro and Stance bar for fresh installs  
+Updated default position of VehicleSeatMover slightly  
+Updated default postion of DurabilityFrameMover slightly  
+**Retail:**  
+Updated OmniCD profile to match new party healing layout  
+**Wrath Classic:**  
+Match default position of Boss Frames with Retail  
+___
 ### Version 2.40 [06-09-2023]
 **All WoW Versions:**  
 ElvUI 13.40+ compatibility  

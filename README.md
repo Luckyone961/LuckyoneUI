@@ -21,7 +21,7 @@
 • **UI:** [ElvUI](https://www.tukui.org/)  
 • **BossMods:** [DBM](https://www.curseforge.com/wow/addons/deadly-boss-mods), [BigWigs](https://www.curseforge.com/wow/addons/big-wigs), [LittleWigs](https://www.curseforge.com/wow/addons/little-wigs)  
 • **NamePlates:** [Plater](https://www.curseforge.com/wow/addons/plater-nameplates), [ElvUI NamePlates](https://www.tukui.org/)  
-• **AddOns:** [Details](https://www.curseforge.com/wow/addons/details), [OmniCD](https://www.curseforge.com/wow/addons/omnicd), [Quartz](https://www.curseforge.com/wow/addons/quartz), [WarpDeplete](https://www.curseforge.com/wow/addons/warpdeplete)  
+• **AddOns:** [Details](https://www.curseforge.com/wow/addons/details), [OmniCD](https://www.curseforge.com/wow/addons/omnicd), [WarpDeplete](https://www.curseforge.com/wow/addons/warpdeplete)  
 • **Plugins:** [AddOnSkins](https://www.curseforge.com/wow/addons/addonskins), [ProjectAzilroka](https://www.curseforge.com/wow/addons/projectazilroka), [Shadow&Light](https://www.curseforge.com/wow/addons/elvui-shadow-light), [WindTools](https://www.curseforge.com/wow/addons/elvui-windtools)  
 
 ### **Chat commands**  
@@ -51,8 +51,8 @@
 ***
 ### **Main Layout:**  
 ***
-![LuckyoneUI DPS & Tanks](https://i.imgur.com/8rZTbuC.jpg)  
+![LuckyoneUI Main Layout](https://i.imgur.com/5xlMMug.jpg)  
 ***
 ### **Healing Layout:**  
 ***
-![LuckyoneUI Healing](https://i.imgur.com/bJlcS8C.jpg)  
+![LuckyoneUI Healing Layout](https://i.imgur.com/vk4zvo1.jpg)  

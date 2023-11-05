@@ -134,6 +134,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.misc.gameBar.enable = false
 	E.db.WT.quest.paragonReputation.toast.sound = false
 	E.db.WT.quest.switchButtons.enable = false
+	E.db.WT.quest.turnIn.mode = 'COMPLETE'
 	E.db.WT.quest.turnIn.selectReward = false
 	E.db.WT.skins.vignetting.enable = false
 	E.db.WT.social.chatBar.enable = false
