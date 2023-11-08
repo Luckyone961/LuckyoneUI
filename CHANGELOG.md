@@ -1,3 +1,10 @@
+### Version 2.45 [08-11-2023]
+**All WoW Versions:**  
+ElvUI 13.47+ compatibility  
+**Retail:**  
+Removed StyleFilters for Season 2 Dungeons  
+Updated TOC for 10.2  
+___
 ### Version 2.44 [26-10-2023]
 **All WoW Versions:**  
 ElvUI 13.46+ compatibility  
