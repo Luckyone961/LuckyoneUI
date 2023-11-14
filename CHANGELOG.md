@@ -1,3 +1,7 @@
+### Version 2.46 [In Development]
+**Retail:**  
+Added initial ElvUI NamePlate StyleFilters for Season 3 Dungeons  
+___
 ### Version 2.45 [08-11-2023]
 **All WoW Versions:**  
 ElvUI 13.47+ compatibility  
