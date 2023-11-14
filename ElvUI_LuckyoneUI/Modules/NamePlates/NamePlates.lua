@@ -222,7 +222,7 @@ local function wipe()
 end
 
 -- Custom StyleFilters for all current Dungeons
-function L1UI:Setup_StyleFilters()
+function L1UI:Setup_StyleFilters(skipVars)
 	if not E.private.nameplates.enable then return end
 
 	-- Wipe old filters
@@ -356,7 +356,9 @@ function L1UI:Setup_StyleFilters()
 	E.global.nameplates.filters.ElvUI_Target.actions.scale = 1
 
 	-- Set NamePlate CVars
-	L1UI:NameplateCVars(true)
+	if not skipVars then
+		L1UI:NameplateCVars(true)
+	end
 
 	Private:Print(L["NamePlate StyleFilters and CVars have been set."])
 end
