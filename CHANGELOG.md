@@ -1,3 +1,13 @@
+### Version 2.46 [17-11-2023]
+**All WoW Versions:**  
+ElvUI 13.52+ compatibility  
+**Retail:**  
+Added initial ElvUI NamePlate StyleFilters for Season 3 Dungeons  
+**Misc:**  
+Druid WA updated on wago  
+Evoker WA updated on wago  
+Plater updated on wago  
+___
 ### Version 2.45 [08-11-2023]
 **All WoW Versions:**  
 ElvUI 13.47+ compatibility  

@@ -20,5 +20,9 @@ function L1UI:UpdateLayout(layout)
 
 	E.db.tooltip.healthBar.fontOutline = 'OUTLINE'
 
+	if E.private.nameplates.enable then
+		L1UI:Setup_StyleFilters(true)
+	end
+
 	Private:Print(L["Successfully updated your current layout to LuckyoneUI version "] .. Private.Version)
 end
