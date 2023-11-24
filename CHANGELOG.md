@@ -1,3 +1,7 @@
+### Version 2.47 [In Development]
+**Retail:**  
+Fixed Shadow&Light installer error (gossip nil value)  
+___
 ### Version 2.46 [17-11-2023]
 **All WoW Versions:**  
 ElvUI 13.52+ compatibility  

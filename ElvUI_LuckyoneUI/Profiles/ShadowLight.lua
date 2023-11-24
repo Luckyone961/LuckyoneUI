@@ -101,21 +101,6 @@ function L1UI:Setup_ShadowAndLight(noPrint)
 	E.db.sle.armory.stats.statLabels.fontOutline = 'OUTLINE'
 	E.db.sle.armory.stats.statLabels.fontSize = 11
 
-	E.db.sle.media.fonts.gossip.font = Private.Font
-	E.db.sle.media.fonts.mail.font = Private.Font
-	E.db.sle.media.fonts.objective.font = Private.Font
-	E.db.sle.media.fonts.objective.fontSize = 10
-	E.db.sle.media.fonts.objectiveHeader.font = Private.Font
-	E.db.sle.media.fonts.objectiveHeader.fontOutline = 'OUTLINE'
-	E.db.sle.media.fonts.pvp.font = Private.Font
-	E.db.sle.media.fonts.questFontSuperHuge.font = Private.Font
-	E.db.sle.media.fonts.scenarioStage.HeaderText.font = Private.Font
-	E.db.sle.media.fonts.scenarioStage.HeaderText.fontSize = 12
-	E.db.sle.media.fonts.scenarioStage.TimerText.font = Private.Font
-	E.db.sle.media.fonts.scenarioStage.TimerText.fontSize = 16
-	E.db.sle.media.fonts.subzone.font = Private.Font
-	E.db.sle.media.fonts.zone.font = Private.Font
-
 	E.db.sle.raidmarkers.enable = false
 
 	E.db.sle.skins.objectiveTracker.classHeader = true
