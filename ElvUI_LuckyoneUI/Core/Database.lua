@@ -1225,7 +1225,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 		-- Main Raid2
 		E.db.unitframe.units.raid2.buffIndicator.enable = false
-		E.db.unitframe.units.raid2.height = 38
+		E.db.unitframe.units.raid2.height = 32
 		E.db.unitframe.units.raid2.rdebuffs.xOffset = 33
 		E.db.unitframe.units.raid2.rdebuffs.yOffset = 12
 		E.db.unitframe.units.raid2.width = 82
