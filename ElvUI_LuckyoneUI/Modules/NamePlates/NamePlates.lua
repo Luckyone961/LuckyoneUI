@@ -219,6 +219,16 @@ local function wipe()
 	if E.global.nameplates.filters.Luckyone_UNDR then E.global.nameplates.filters.Luckyone_UNDR = nil end
 	if E.global.nameplates.filters.Luckyone_VP then E.global.nameplates.filters.Luckyone_VP = nil end
 	if E.global.nameplates.filters.Luckyone_Aberrus then E.global.nameplates.filters.Luckyone_Aberrus = nil end
+	-- Season 3
+	if E.global.nameplates.filters.Luckyone_FALL then E.global.nameplates.filters.Luckyone_FALL = nil end
+	if E.global.nameplates.filters.Luckyone_RISE then E.global.nameplates.filters.Luckyone_RISE = nil end
+	if E.global.nameplates.filters.Luckyone_DHT then E.global.nameplates.filters.Luckyone_DHT = nil end
+	if E.global.nameplates.filters.Luckyone_BRH then E.global.nameplates.filters.Luckyone_BRH = nil end
+	if E.global.nameplates.filters.Luckyone_AD then E.global.nameplates.filters.Luckyone_AD = nil end
+	if E.global.nameplates.filters.Luckyone_WM then E.global.nameplates.filters.Luckyone_WM = nil end
+	if E.global.nameplates.filters.Luckyone_EB then E.global.nameplates.filters.Luckyone_EB = nil end
+	if E.global.nameplates.filters.Luckyone_TOTT then E.global.nameplates.filters.Luckyone_TOTT = nil end
+	-- if E.global.nameplates.filters.Luckyone_Amirdrassil then E.global.nameplates.filters.Luckyone_Amirdrassil = nil end
 end
 
 -- Custom StyleFilters for all current Dungeons
@@ -253,9 +263,10 @@ function L1UI:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_FALL.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_FALL.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_FALL.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_FALL.triggers.names['205435'] = true -- Epoch Ripper
+		E.global.nameplates.filters.Luckyone_FALL.triggers.names['205384'] = true -- Infinite Chronoweaver
 		E.global.nameplates.filters.Luckyone_FALL.triggers.names['206140'] = true -- Coalesced Time
-		E.global.nameplates.filters.Luckyone_FALL.triggers.names['199749'] = true -- Timestream Anomaly
+		E.global.nameplates.filters.Luckyone_FALL.triggers.names['205804'] = true -- Risen Dragon
+		E.global.nameplates.filters.Luckyone_FALL.triggers.names['205691'] = true -- Iridikron's Creation
 		E.global.nameplates.filters.Luckyone_FALL.triggers.priority = 2
 
 		-- Dawn of the Infinites: Murozond's Rise [RISE]
@@ -268,8 +279,10 @@ function L1UI:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_RISE.triggers.names['205158'] = true -- Spurlok, Timesworn Sentinel
 		E.global.nameplates.filters.Luckyone_RISE.triggers.names['205152'] = true -- Lerai, Timesworn Maiden
 		E.global.nameplates.filters.Luckyone_RISE.triggers.names['206230'] = true -- Infinite Diversionist
+		E.global.nameplates.filters.Luckyone_RISE.triggers.names['208698'] = true -- Infinite Riftmage
 		E.global.nameplates.filters.Luckyone_RISE.triggers.names['205363'] = true -- Time-Lost Waveshaper
 		E.global.nameplates.filters.Luckyone_RISE.triggers.names['208193'] = true -- Paladin of the Silver Hand
+		E.global.nameplates.filters.Luckyone_RISE.triggers.names['208440'] = true -- Infinite Slayer
 		E.global.nameplates.filters.Luckyone_RISE.triggers.names['205212'] = true -- Infinite Keeper
 		E.global.nameplates.filters.Luckyone_RISE.triggers.priority = 2
 
@@ -299,6 +312,7 @@ function L1UI:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_BRH.triggers.names['98280'] = true -- Risen Arcanist
 		E.global.nameplates.filters.Luckyone_BRH.triggers.names['101549'] = true -- Arcane Minion
 		E.global.nameplates.filters.Luckyone_BRH.triggers.names['98810'] = true -- Wrathguard Bladelord
+		E.global.nameplates.filters.Luckyone_BRH.triggers.names['102788'] = true -- Felspite Dominator
 		E.global.nameplates.filters.Luckyone_BRH.triggers.priority = 2
 
 		-- Waycrest Manor [WM]
@@ -312,7 +326,7 @@ function L1UI:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_WM.triggers.names['131586'] = true -- Banquet Steward
 		E.global.nameplates.filters.Luckyone_WM.triggers.names['131858'] = true -- Thornguard
 		E.global.nameplates.filters.Luckyone_WM.triggers.names['131685'] = true -- Runic Disciple
-		E.global.nameplates.filters.Luckyone_WM.triggers.names['131819'] = true -- Coven Diviner
+		E.global.nameplates.filters.Luckyone_WM.triggers.names['131812'] = true -- Heartsbane Soulcharmer
 		E.global.nameplates.filters.Luckyone_WM.triggers.priority = 2
 
 		-- Atal'Dazar [AD]
@@ -324,6 +338,7 @@ function L1UI:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_AD.triggers.instanceType['party'] = true
 		E.global.nameplates.filters.Luckyone_AD.triggers.names['127315'] = true -- Reanimation Totem
 		E.global.nameplates.filters.Luckyone_AD.triggers.names['122973'] = true -- Dazar'ai Confessor
+		E.global.nameplates.filters.Luckyone_AD.triggers.names['128434'] = true -- Feasting Skyscreamer
 		E.global.nameplates.filters.Luckyone_AD.triggers.priority = 2
 
 		-- Everbloom [EB]
@@ -335,6 +350,7 @@ function L1UI:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_EB.triggers.instanceType['party'] = true
 		E.global.nameplates.filters.Luckyone_EB.triggers.names['81820'] = true -- Everbloom Mender
 		E.global.nameplates.filters.Luckyone_EB.triggers.names['81984'] = true -- Gnarlroot
+		E.global.nameplates.filters.Luckyone_EB.triggers.names['84767'] = true -- Twisted Abomination
 		E.global.nameplates.filters.Luckyone_EB.triggers.names['84957'] = true -- Putrid Pyromancer
 		E.global.nameplates.filters.Luckyone_EB.triggers.priority = 2
 
@@ -348,6 +364,8 @@ function L1UI:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_TOTT.triggers.names['41096'] = true -- Naz'jar Oracle
 		E.global.nameplates.filters.Luckyone_TOTT.triggers.names['214117'] = true -- Stormflurry Totem
 		E.global.nameplates.filters.Luckyone_TOTT.triggers.names['44404'] = true -- Naz'jar Frost Witch
+		E.global.nameplates.filters.Luckyone_TOTT.triggers.names['212775'] = true -- Faceless Seer
+		E.global.nameplates.filters.Luckyone_TOTT.triggers.names['40925'] = true -- Tainted Sentry
 		E.global.nameplates.filters.Luckyone_TOTT.triggers.priority = 2
 	end
 
