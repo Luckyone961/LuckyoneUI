@@ -1,4 +1,4 @@
-### Version 2.47 [In Development]
+### Version 2.47 [28-11-2023]
 **All WoW Versions:**  
 Changed Raid font size to 11 (was 12)  
 Changed Raid2 (30man) height to 32 (was 38)  
