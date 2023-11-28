@@ -627,7 +627,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.cooldown.override = false
 	E.db.unitframe.font = Private.Font
 	E.db.unitframe.fontOutline = 'OUTLINE'
-	E.db.unitframe.fontSize = 12
+	E.db.unitframe.fontSize = 11
 	E.db.unitframe.statusbar = Private.Texture
 
 	-- Shared MA/MT

@@ -1,6 +1,11 @@
 ### Version 2.47 [In Development]
+**All WoW Versions:**  
+Changed Raid font size to 11 (was 12)  
 **Retail:**  
 Fixed Shadow&Light installer error (gossip nil value)  
+**Misc:**  
+Druid WA updated on wago  
+Evoker WA updated on wago  
 ___
 ### Version 2.46 [17-11-2023]
 **All WoW Versions:**  
