@@ -9,5 +9,10 @@ function L1UI:UpdateLayout(layout)
 	-- UnitFrame updates
 	E.db.unitframe.fontSize = 11
 
+	-- NamePlate updates
+	if E.private.nameplates.enable then
+		L1UI:Setup_StyleFilters(true)
+	end
+
 	Private:Print(L["Successfully updated your current layout to LuckyoneUI version "] .. Private.Version)
 end
