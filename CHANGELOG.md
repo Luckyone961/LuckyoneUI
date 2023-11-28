@@ -4,6 +4,8 @@ Changed Raid font size to 11 (was 12)
 Changed Raid2 (30man) height to 32 (was 38)  
 **Retail:**  
 Fixed Shadow&Light installer error (gossip nil value)  
+**Classic:**  
+Updated TOC for 1.15.0  
 **Misc:**  
 Druid WA updated on wago  
 Evoker WA updated on wago  
