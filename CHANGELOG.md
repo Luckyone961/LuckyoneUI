@@ -1,3 +1,5 @@
+### Version 2.48 [In Development]
+___
 ### Version 2.47 [28-11-2023]
 **All WoW Versions:**  
 Changed Raid font size to 11 (was 12)  
