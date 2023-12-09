@@ -2179,13 +2179,13 @@ function L1UI:Layout_Shadowlands(layout)
 	-- Shared movers
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-135'
 	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235'
-	E.db.movers.ArtifactBarMover = E.Retail and 'BOTTOM,ElvUIParent,BOTTOM,1,16' or nil
-	E.db.movers.AzeriteBarMover = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or nil
+	E.db.movers.ArtifactBarMover = 'BOTTOM,ElvUIParent,BOTTOM,1,16'
+	E.db.movers.AzeriteBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
 	E.db.movers.BelowMinimapContainerMover = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,70,485' or 'TOP,UIParent,TOP,0,-26'
 	E.db.movers.BNETMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-139'
-	E.db.movers.BossButton = E.Retail and 'BOTTOM,ElvUIParent,BOTTOM,-168,128' or nil
-	E.db.movers.BossHeaderMover = E.Retail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235' or nil
+	E.db.movers.BossButton = 'BOTTOM,ElvUIParent,BOTTOM,-168,128'
+	E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-166,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-166,-128'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
@@ -2202,34 +2202,34 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.movers.ElvAB_10 = 'BOTTOM,ElvUIParent,BOTTOM,0,255'
 	E.db.movers.ElvUIBagMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,173'
 	E.db.movers.ElvUIBankMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
-	E.db.movers.EventToastMover = E.Retail and 'TOP,ElvUIParent,TOP,0,-139' or nil
+	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-139'
 	E.db.movers.ExperienceBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,1'
 	E.db.movers.GMMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-503,-1'
-	E.db.movers.HonorBarMover = E.Retail and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1' or nil
+	E.db.movers.HonorBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1'
 	E.db.movers.LeftChatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1'
 	E.db.movers.LootFrameMover = 'TOP,ElvUIParent,TOP,0,-156'
-	E.db.movers.LossControlMover = E.Retail and 'TOP,ElvUIParent,TOP,0,-492' or nil
-	E.db.movers.MawBuffsBelowMinimapMover = E.Retail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-15,-380' or nil
+	E.db.movers.LossControlMover = 'TOP,ElvUIParent,TOP,0,-492'
+	E.db.movers.MawBuffsBelowMinimapMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-15,-380'
 	E.db.movers.MinimapMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1'
 	E.db.movers.MirrorTimer1Mover = 'TOP,ElvUIParent,TOP,0,-78'
 	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-97'
 	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-116'
-	E.db.movers.ObjectiveFrameMover = E.Wrath and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-100,-215' or nil
+	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-100,-215'
 	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,128'
-	E.db.movers.PetExperienceBarMover = not E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or nil
-	E.db.movers.QuestTimerFrameMover = E.Classic and 'TOP,ElvUIParent,TOP,0,-1' or nil
-	E.db.movers.QuestWatchFrameMover = E.Classic and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-215' or nil
+	E.db.movers.PetExperienceBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
+	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-1'
+	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-215'
 	E.db.movers.ReputationBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
 	E.db.movers.SocialMenuMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,196'
-	E.db.movers.TalkingHeadFrameMover = E.Retail and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,173' or nil
+	E.db.movers.TalkingHeadFrameMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,173'
 	E.db.movers.ThreatBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,1'
 	E.db.movers.TooltipMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-57'
-	E.db.movers.TorghastBuffsMover = E.Retail and 'TOPLEFT,ElvUIParent,TOPLEFT,4,-51' or nil
+	E.db.movers.TorghastBuffsMover = 'TOPLEFT,ElvUIParent,TOPLEFT,4,-51'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-27'
-	E.db.movers.ZoneAbility = E.Retail and 'BOTTOM,ElvUIParent,BOTTOM,168,128' or nil
+	E.db.movers.ZoneAbility = 'BOTTOM,ElvUIParent,BOTTOM,168,128'
 
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
 
@@ -2239,7 +2239,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
 
 		-- Main movers
-		E.db.movers.AltPowerBarMover = E.Retail and 'BOTTOM,ElvUIParent,BOTTOM,0,158' or nil
+		E.db.movers.AltPowerBarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,158'
 		E.db.movers.ElvUF_AssistMover = 'TOPLEFT,ElvUIParent,BOTTOMLEFT,0,1048'
 		E.db.movers.ElvUF_FocusCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,253,451'
 		E.db.movers.ElvUF_FocusMover = 'BOTTOM,ElvUIParent,BOTTOM,253,470'
@@ -2255,7 +2255,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,253,320'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-530,320'
 		E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,157,-1'
-		E.db.movers.PlayerChoiceToggle = E.Retail and 'BOTTOM,UIParent,BOTTOM,0,182' or nil
+		E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,182'
 		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,182'
 		E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,1'
 
@@ -2406,7 +2406,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.unitframe.units.party.growthDirection = 'RIGHT_DOWN'
 
 		-- Healing movers
-		E.db.movers.AltPowerBarMover = E.Retail and 'BOTTOM,ElvUIParent,BOTTOM,0,368' or nil
+		E.db.movers.AltPowerBarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,368'
 		E.db.movers.ElvUF_AssistMover = 'TOPLEFT,ElvUIParent,BOTTOMLEFT,0,1048'
 		E.db.movers.ElvUF_FocusCastbarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,451'
 		E.db.movers.ElvUF_FocusMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,470'
@@ -2422,7 +2422,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.movers.ElvUF_TargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,320'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-460,320'
 		E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,174,-1'
-		E.db.movers.PlayerChoiceToggle = E.Retail and 'BOTTOM,UIParent,BOTTOM,0,158' or nil
+		E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,158'
 		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,368'
 		E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,438,1'
 
