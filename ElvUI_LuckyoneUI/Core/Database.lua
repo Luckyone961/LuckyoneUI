@@ -15,10 +15,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.altPowerBar.statusBarColorGradient = true
 	E.db.general.autoAcceptInvite = true
 	E.db.general.autoRepair = E.Retail and 'GUILD' or 'PLAYER'
-	E.db.general.backdropcolor.b = 0.13
-	E.db.general.backdropcolor.g = 0.13
-	E.db.general.backdropcolor.r = 0.13
-	E.db.general.backdropfadecolor.a = 0.9
+	E.db.general.backdropcolor.b = 0.12
+	E.db.general.backdropcolor.g = 0.12
+	E.db.general.backdropcolor.r = 0.12
+	E.db.general.backdropfadecolor.a = 0.90
 	E.db.general.backdropfadecolor.b = 0.05
 	E.db.general.backdropfadecolor.g = 0.05
 	E.db.general.backdropfadecolor.r = 0.05
@@ -31,6 +31,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.customGlow.useColor = true
 	E.db.general.durabilityScale = 0.5
 	E.db.general.enhancedPvpMessages = false
+	E.db.general.guildBank.countFont = Private.Font
+	E.db.general.guildBank.countFontOutline = 'OUTLINE'
+	E.db.general.guildBank.itemLevelFont = Private.Font
+	E.db.general.guildBank.itemLevelFontOutline = 'OUTLINE'
 	E.db.general.interruptAnnounce = 'EMOTE'
 	E.db.general.itemLevel.itemLevelFont = Private.Font
 	E.db.general.itemLevel.itemLevelFontSize = 10
@@ -44,9 +48,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.minimap.icons.challengeMode.xOffset = 3
 	E.db.general.minimap.icons.challengeMode.yOffset = -1
 	E.db.general.minimap.icons.classHall.scale = 0.5
-	E.db.general.minimap.icons.difficulty.scale = 0.75
-	E.db.general.minimap.icons.difficulty.xOffset = 12
-	E.db.general.minimap.icons.difficulty.yOffset = -5
+	E.db.general.minimap.icons.difficulty.scale = 0.8
+	E.db.general.minimap.icons.difficulty.xOffset = 8
+	E.db.general.minimap.icons.difficulty.yOffset = -4
 	E.db.general.minimap.icons.mail.texture = 'Mail1'
 	E.db.general.minimap.icons.mail.xOffset = -2
 	E.db.general.minimap.icons.mail.yOffset = 2
@@ -65,6 +69,13 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.general.addonCompartment.hide = true
 		E.db.general.addonCompartment.size = 20
 		E.db.general.privateAuras.icon.size = 64
+	end
+
+	if not E.Classic then
+		E.db.general.guildBank.countFont = Private.Font
+		E.db.general.guildBank.countFontOutline = 'OUTLINE'
+		E.db.general.guildBank.itemLevelFont = Private.Font
+		E.db.general.guildBank.itemLevelFontOutline = 'OUTLINE'
 	end
 
 	-- ActionBars
@@ -384,7 +395,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.bags.countFont = Private.Font
 	E.db.bags.countFontOutline = 'OUTLINE'
 	E.db.bags.countFontSize = 11
-	E.db.bags.currencyFormat = 'ICON_TEXT'
 	E.db.bags.itemInfoFont = Private.Font
 	E.db.bags.itemInfoFontOutline = 'OUTLINE'
 	E.db.bags.itemInfoFontSize = 11
@@ -392,7 +402,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.bags.itemLevelFontOutline = 'OUTLINE'
 	E.db.bags.itemLevelFontSize = 11
 	E.db.bags.moneyFormat = 'FULL'
-	E.db.bags.specialtyColors = false
+	E.db.bags.transparent = true
 	E.db.bags.upgradeIcon = false
 	E.db.bags.vendorGrays.enable = true
 	E.db.bags.vendorGrays.interval = 0.1
@@ -403,9 +413,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.bags.split.bagSpacing = 1
 		E.db.bags.split.player = true
 	end
-
-	E.db.bags.transparent = true
-	E.db.bags.vendorGrays.enable = true
 
 	-- Auras
 	E.db.auras.buffs.countFont = Private.Font
@@ -450,7 +457,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.chat.fontOutline = 'OUTLINE'
 	E.db.chat.hideChatToggles = true
 	E.db.chat.historySize = 200
-	E.db.chat.keywords = '%MYNAME%'
 	E.db.chat.lfgIcons = false
 	E.db.chat.maxLines = 500
 	E.db.chat.numScrollMessages = 2
@@ -584,9 +590,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.tooltip.mythicDataEnable = false
 	E.db.tooltip.role = false
 	E.db.tooltip.showElvUIUsers = true
-	E.db.tooltip.showMount = false
 	E.db.tooltip.smallTextFontSize = 11
-	E.db.tooltip.targetInfo = false
 	E.db.tooltip.textFontSize = 11
 
 	-- Shared UnitFrames media
@@ -1117,16 +1121,16 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
 
 	-- Shared movers
-	E.db.movers.AddonCompartmentMover = E.Retail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66' or nil
+	E.db.movers.AddonCompartmentMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66'
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-178'
-	E.db.movers.AltPowerBarMover = E.Retail and 'TOP,ElvUIParent,TOP,0,-16' or nil
+	E.db.movers.AltPowerBarMover = 'TOP,ElvUIParent,TOP,0,-16'
 	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-300,-210'
 	E.db.movers.BagsMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-84,-210'
 	E.db.movers.BNETMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-199'
-	E.db.movers.BossButton = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,119' or nil
-	E.db.movers.BossHeaderMover = not E.Classic and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-300,-210'
+	E.db.movers.BossButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,119'
+	E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-300,-210'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-110'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
@@ -1147,39 +1151,39 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-348'
 	E.db.movers.ElvUIBagMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,140'
 	E.db.movers.ElvUIBankMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
-	E.db.movers.EventToastMover = E.Retail and 'TOP,ElvUIParent,TOP,0,-166' or nil
+	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-166'
 	E.db.movers.ExperienceBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,1'
 	E.db.movers.GMMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-434,-1'
 	E.db.movers.LeftChatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1'
 	E.db.movers.LootFrameMover = 'TOP,ElvUIParent,TOP,0,-187'
-	E.db.movers.LossControlMover = E.Retail and 'TOP,ElvUIParent,TOP,0,-490' or nil
-	E.db.movers.MawBuffsBelowMinimapMover = E.Retail and 'TOPLEFT,ElvUIParent,TOPLEFT,1,-28' or nil
+	E.db.movers.LossControlMover = 'TOP,ElvUIParent,TOP,0,-490'
+	E.db.movers.MawBuffsBelowMinimapMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-28'
 	E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
 	E.db.movers.MinimapMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1'
-	E.db.movers.MirrorTimer1Mover = not E.Retail and 'TOP,ElvUIParent,TOP,0,-60'
-	E.db.movers.MirrorTimer2Mover = not E.Retail and 'TOP,ElvUIParent,TOP,0,-79'
-	E.db.movers.MirrorTimer3Mover = not E.Retail and 'TOP,ElvUIParent,TOP,0,-98'
-	E.db.movers.ObjectiveFrameMover = E.Wrath and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184' or nil
+	E.db.movers.MirrorTimer1Mover = 'TOP,ElvUIParent,TOP,0,-60'
+	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-79'
+	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-98'
+	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184'
 	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,114'
-	E.db.movers.PlayerChoiceToggle = E.Retail and 'BOTTOM,UIParent,BOTTOM,0,369' or nil
+	E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
 	E.db.movers.PowerBarContainerMover = 'BOTTOM,UIParent,BOTTOM,0,163'
 	E.db.movers.PrivateAurasMover = 'BOTTOM,UIParent,BOTTOM,174,452'
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-258'
-	E.db.movers.QuestTimerFrameMover = E.Classic and 'TOP,ElvUIParent,TOP,0,-1' or nil
-	E.db.movers.QuestWatchFrameMover = E.Classic and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184' or nil
+	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-1'
+	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184'
 	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-131'
 	E.db.movers.ReputationBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,210,-1'
-	E.db.movers.TalkingHeadFrameMover = E.Retail and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,140' or nil
+	E.db.movers.TalkingHeadFrameMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,140'
 	E.db.movers.TooltipMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,102'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-46'
-	E.db.movers.TorghastBuffsMover = E.Retail and 'TOPLEFT,ElvUIParent,TOPLEFT,4,-51' or nil
-	E.db.movers.TorghastChoiceToggle = E.Retail and 'BOTTOM,UIParent,BOTTOM,0,369' or nil
+	E.db.movers.TorghastBuffsMover = 'TOPLEFT,ElvUIParent,TOPLEFT,4,-51'
+	E.db.movers.TorghastChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
 	E.db.movers.VehicleSeatMover = 'BOTTOM,ElvUIParent,BOTTOM,-195,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-28'
-	E.db.movers.ZoneAbility = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,66' or nil
+	E.db.movers.ZoneAbility = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,66'
 
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
 	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
