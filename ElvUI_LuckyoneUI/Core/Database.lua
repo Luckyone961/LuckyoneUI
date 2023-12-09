@@ -31,10 +31,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.customGlow.useColor = true
 	E.db.general.durabilityScale = 0.5
 	E.db.general.enhancedPvpMessages = false
-	E.db.general.guildBank.countFont = Private.Font
-	E.db.general.guildBank.countFontOutline = 'OUTLINE'
-	E.db.general.guildBank.itemLevelFont = Private.Font
-	E.db.general.guildBank.itemLevelFontOutline = 'OUTLINE'
 	E.db.general.interruptAnnounce = 'EMOTE'
 	E.db.general.itemLevel.itemLevelFont = Private.Font
 	E.db.general.itemLevel.itemLevelFontSize = 10
