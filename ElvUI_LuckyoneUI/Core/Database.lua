@@ -868,6 +868,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.player.health.text_format = ''
 	E.db.unitframe.units.player.height = 40
 	E.db.unitframe.units.player.partyIndicator.enable = false
+	E.db.unitframe.units.player.power.enable = false
 	E.db.unitframe.units.player.power.height = 5
 	E.db.unitframe.units.player.power.text_format = ''
 	E.db.unitframe.units.player.power.width = 'inset'
@@ -1125,13 +1126,13 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-84,-210'
 	E.db.movers.BNETMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-199'
-	E.db.movers.BossButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,119'
+	E.db.movers.BossButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,102'
 	E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-300,-210'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-110'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-50,-138'
-	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,193,1'
+	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,192,1'
 	E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 	E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,68'
 	E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,41'
@@ -1177,9 +1178,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.TorghastBuffsMover = 'TOPLEFT,ElvUIParent,TOPLEFT,4,-51'
 	E.db.movers.TorghastChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
-	E.db.movers.VehicleSeatMover = 'BOTTOM,ElvUIParent,BOTTOM,-195,1'
+	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-28'
-	E.db.movers.ZoneAbility = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,66'
+	E.db.movers.ZoneAbility = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,49'
 
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
 	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
@@ -1206,7 +1207,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[health:current:shortvalue] • [luckyone:health:percent]'
 
 		-- Main Misc
-		E.db.unitframe.units.player.power.enable = false
 		E.db.unitframe.units.targettarget.enable = true
 
 		-- Main Player
@@ -1240,7 +1240,7 @@ function L1UI:Layout_Dragonflight(layout)
 
 	elseif layout == 'healing' then
 
-		-- Healing movers
+		-- Healing Movers
 		E.db.movers.ElvUF_FocusCastbarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-482,391'
 		E.db.movers.ElvUF_FocusMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-482,410'
 		E.db.movers.ElvUF_PartyMover = 'TOPLEFT,ElvUIParent,TOPLEFT,482,-390'
@@ -1260,11 +1260,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[manacolor][perpp<%]|r • [health:current:shortvalue] • [luckyone:health:percent]'
 
 		-- Healing Misc
-		E.db.unitframe.colors.custompowerbackdrop = true
-		E.db.unitframe.colors.power_backdrop.b = 0.05
-		E.db.unitframe.colors.power_backdrop.g = 0.05
-		E.db.unitframe.colors.power_backdrop.r = 0.05
-		E.db.unitframe.units.player.power.enable = false
 		E.db.unitframe.units.targettarget.enable = false
 
 		-- Healing Player
@@ -1295,6 +1290,66 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 39
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 4
 		E.db.unitframe.units.raid3.width = 94
+
+	elseif layout == 'support' then
+
+		-- Support Movers
+		E.db.movers.ElvAB_1 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
+		E.db.movers.ElvAB_2 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,194'
+		E.db.movers.ElvAB_3 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,167'
+		E.db.movers.ElvUF_FocusCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,278,419'
+		E.db.movers.ElvUF_FocusMover = 'BOTTOM,ElvUIParent,BOTTOM,278,438'
+		E.db.movers.ElvUF_PartyMover = 'TOPLEFT,ElvUIParent,TOPLEFT,360,-360'
+		E.db.movers.ElvUF_PetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,28'
+		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,UIParent,BOTTOM,0,233'
+		E.db.movers.ElvUF_PlayerMover = 'BOTTOM,ElvUIParent,BOTTOM,-278,300'
+		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
+		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
+		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
+		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,278,281'
+		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,278,300'
+		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,252'
+		E.db.movers.PetAB = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,1'
+		E.db.movers.PrivateAurasMover = 'TOP,ElvUIParent,TOP,174,-504'
+		E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-258'
+		E.db.movers.ShiftAB = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,542,300'
+		E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,509,301'
+
+		-- Support Custom Texts
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = E.Retail and '[classcolor][name:short]|r[manacolor][ - >luckyone:healermana:percent]' or '[classcolor][name:short]'
+		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[health:current:shortvalue] • [luckyone:health:percent]'
+
+		-- Support Misc
+		E.db.unitframe.units.targettarget.enable = true
+
+		-- Support Player
+		E.db.unitframe.units.player.castbar.width = 279
+
+		-- Support Party
+		E.db.unitframe.units.party.debuffs.sizeOverride = 32
+		E.db.unitframe.units.party.height = 32
+		E.db.unitframe.units.party.width = 190
+
+		-- Support Raid1
+		E.db.unitframe.units.raid1.buffIndicator.enable = false
+		E.db.unitframe.units.raid1.height = 38
+		E.db.unitframe.units.raid1.rdebuffs.xOffset = 33
+		E.db.unitframe.units.raid1.rdebuffs.yOffset = 12
+		E.db.unitframe.units.raid1.width = 82
+
+		-- Support Raid2
+		E.db.unitframe.units.raid2.buffIndicator.enable = false
+		E.db.unitframe.units.raid2.height = 32
+		E.db.unitframe.units.raid2.rdebuffs.xOffset = 33
+		E.db.unitframe.units.raid2.rdebuffs.yOffset = 12
+		E.db.unitframe.units.raid2.width = 82
+
+		-- Support Raid3
+		E.db.unitframe.units.raid3.buffIndicator.enable = false
+		E.db.unitframe.units.raid3.height = 24
+		E.db.unitframe.units.raid3.rdebuffs.xOffset = 33
+		E.db.unitframe.units.raid3.rdebuffs.yOffset = 5
+		E.db.unitframe.units.raid3.width = 82
 	end
 end
 
