@@ -327,24 +327,24 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.barPet.countFontSize = 9
 	E.db.actionbar.barPet.hotkeyFont = Private.Font
 	E.db.actionbar.barPet.hotkeyFontOutline = 'OUTLINE'
-	E.db.actionbar.barPet.hotkeyFontSize = 8
-	E.db.actionbar.barPet.hotkeyTextPosition = 'TOPLEFT'
-	E.db.actionbar.barPet.hotkeyTextYOffset = 0
+	E.db.actionbar.barPet.hotkeyFontSize = 9
+	E.db.actionbar.barPet.hotkeyTextPosition = 'TOP'
+	E.db.actionbar.barPet.hotkeyTextYOffset = -1
 	E.db.actionbar.barPet.point = 'TOPLEFT'
 	E.db.actionbar.cooldown.override = false
 	E.db.actionbar.countTextPosition = 'BOTTOM'
 	E.db.actionbar.countTextYOffset = 1
-	E.db.actionbar.extraActionButton.alpha = 1
 	E.db.actionbar.extraActionButton.clean = true
 	E.db.actionbar.extraActionButton.hotkeyFont = Private.Font
 	E.db.actionbar.extraActionButton.hotkeyFontOutline = 'OUTLINE'
-	E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.extraActionButton.hotkeyFontSize = 9
+	E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.extraActionButton.hotkeyTextYOffset = -1
-	E.db.actionbar.extraActionButton.scale = 1
 	E.db.actionbar.flyoutSize = 26
 	E.db.actionbar.font = Private.Font
 	E.db.actionbar.fontOutline = 'OUTLINE'
-	E.db.actionbar.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.fontSize = 9
+	E.db.actionbar.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.microbar.buttonHeight = 26
 	E.db.actionbar.microbar.buttonSize = 18
@@ -365,9 +365,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.transparent = true
 	E.db.actionbar.vehicleExitButton.hotkeyFont = Private.Font
 	E.db.actionbar.vehicleExitButton.hotkeyFontOutline = 'OUTLINE'
-	E.db.actionbar.zoneActionButton.alpha = 1
+	E.db.actionbar.vehicleExitButton.hotkeyFontSize = 9
+	E.db.actionbar.vehicleExitButton.hotkeyTextPosition = 'TOP'
+	E.db.actionbar.vehicleExitButton.hotkeyTextYOffset = -1
 	E.db.actionbar.zoneActionButton.clean = true
-	E.db.actionbar.zoneActionButton.scale = 1
 
 	-- Bags
 	E.db.bags.autoToggle.guildBank = true
