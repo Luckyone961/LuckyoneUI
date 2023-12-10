@@ -615,9 +615,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.colors.health.g = 0.05
 	E.db.unitframe.colors.health.r = 0.05
 	E.db.unitframe.colors.healthMultiplier = 0.75
-	E.db.unitframe.colors.power.LUNAR_POWER.b = 0.9
-	E.db.unitframe.colors.power.LUNAR_POWER.g = 0.52
-	E.db.unitframe.colors.power.LUNAR_POWER.r = 0.3
 	E.db.unitframe.colors.power.MANA.b = 0.97
 	E.db.unitframe.colors.power.MANA.g = 1
 	E.db.unitframe.colors.power.MANA.r = 0
@@ -625,6 +622,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.colors.tapped.r = 0.54
 	E.db.unitframe.colors.transparentHealth = true
 	E.db.unitframe.colors.useDeadBackdrop = true
+	E.db.unitframe.cooldown.fonts.font = Private.Font
 	E.db.unitframe.cooldown.override = false
 	E.db.unitframe.font = Private.Font
 	E.db.unitframe.fontOutline = 'OUTLINE'
@@ -1320,6 +1318,14 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[health:current:shortvalue] • [luckyone:health:percent]'
 
 		-- Support Misc
+		E.db.actionbar.stanceBar.buttonSize = 19
+		E.db.actionbar.stanceBar.buttonSpacing = 2
+		E.db.actionbar.stanceBar.buttonsPerRow = 1
+		E.db.actionbar.stanceBar.hotkeyFontSize = 8
+		E.db.actionbar.stanceBar.hotkeyTextPosition = 'TOP'
+		E.db.actionbar.stanceBar.hotkeyTextXOffset = 1
+		E.db.actionbar.stanceBar.mouseover = false
+
 		E.db.unitframe.units.targettarget.enable = true
 
 		-- Support Player
