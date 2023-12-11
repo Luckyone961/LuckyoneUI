@@ -1,4 +1,4 @@
-### Version 2.48 [In Development]
+### Version 2.48 [11-12-2023]
 **All WoW Versions:**  
 Added my support layout to the installer (Bottom/Center raidframes, no actionbars)  
 Updated BigWigs profile (Set visible bar limit to max 4)  
