@@ -1293,6 +1293,9 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[health:current:shortvalue] • [luckyone:health:percent]'
 
 		-- Support Misc
+		E.db.actionbar.bar1.mouseover = true
+		E.db.actionbar.bar2.mouseover = true
+		E.db.actionbar.bar3.mouseover = true
 		E.db.actionbar.stanceBar.buttonSize = 19
 		E.db.actionbar.stanceBar.buttonSpacing = 2
 		E.db.actionbar.stanceBar.buttonsPerRow = 1
@@ -1302,6 +1305,8 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.actionbar.stanceBar.mouseover = false
 
 		E.db.unitframe.units.targettarget.enable = true
+
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 414
 
 		-- Support Player
 		E.db.unitframe.units.player.castbar.width = 279

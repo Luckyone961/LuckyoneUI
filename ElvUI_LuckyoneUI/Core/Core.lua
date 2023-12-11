@@ -286,6 +286,8 @@ function L1UI:Setup_Layout_Dragonflight(layout)
 		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version)
 	elseif layout == 'healing' then
 		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version)
+	elseif layout == 'support' then
+		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Support' or 'Luckyone Support ' .. Private.Version)
 	end
 
 	-- E.global & Custom DataText
@@ -299,6 +301,8 @@ function L1UI:Setup_Layout_Dragonflight(layout)
 		L1UI:Layout_Dragonflight('main')
 	elseif layout == 'healing' then
 		L1UI:Layout_Dragonflight('healing')
+	elseif layout == 'support' then
+		L1UI:Layout_Dragonflight('support')
 	end
 
 	-- Push the update
