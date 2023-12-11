@@ -15,10 +15,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.altPowerBar.statusBarColorGradient = true
 	E.db.general.autoAcceptInvite = true
 	E.db.general.autoRepair = E.Retail and 'GUILD' or 'PLAYER'
-	E.db.general.backdropcolor.b = 0.13
-	E.db.general.backdropcolor.g = 0.13
-	E.db.general.backdropcolor.r = 0.13
-	E.db.general.backdropfadecolor.a = 0.9
+	E.db.general.backdropcolor.b = 0.12
+	E.db.general.backdropcolor.g = 0.12
+	E.db.general.backdropcolor.r = 0.12
+	E.db.general.backdropfadecolor.a = 0.90
 	E.db.general.backdropfadecolor.b = 0.05
 	E.db.general.backdropfadecolor.g = 0.05
 	E.db.general.backdropfadecolor.r = 0.05
@@ -44,9 +44,9 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.minimap.icons.challengeMode.xOffset = 3
 	E.db.general.minimap.icons.challengeMode.yOffset = -1
 	E.db.general.minimap.icons.classHall.scale = 0.5
-	E.db.general.minimap.icons.difficulty.scale = 0.75
-	E.db.general.minimap.icons.difficulty.xOffset = 12
-	E.db.general.minimap.icons.difficulty.yOffset = -5
+	E.db.general.minimap.icons.difficulty.scale = 0.8
+	E.db.general.minimap.icons.difficulty.xOffset = 8
+	E.db.general.minimap.icons.difficulty.yOffset = -4
 	E.db.general.minimap.icons.mail.texture = 'Mail1'
 	E.db.general.minimap.icons.mail.xOffset = -2
 	E.db.general.minimap.icons.mail.yOffset = 2
@@ -65,6 +65,13 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.general.addonCompartment.hide = true
 		E.db.general.addonCompartment.size = 20
 		E.db.general.privateAuras.icon.size = 64
+	end
+
+	if not E.Classic then
+		E.db.general.guildBank.countFont = Private.Font
+		E.db.general.guildBank.countFontOutline = 'OUTLINE'
+		E.db.general.guildBank.itemLevelFont = Private.Font
+		E.db.general.guildBank.itemLevelFontOutline = 'OUTLINE'
 	end
 
 	-- ActionBars
@@ -327,24 +334,24 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.barPet.countFontSize = 9
 	E.db.actionbar.barPet.hotkeyFont = Private.Font
 	E.db.actionbar.barPet.hotkeyFontOutline = 'OUTLINE'
-	E.db.actionbar.barPet.hotkeyFontSize = 8
-	E.db.actionbar.barPet.hotkeyTextPosition = 'TOPLEFT'
-	E.db.actionbar.barPet.hotkeyTextYOffset = 0
+	E.db.actionbar.barPet.hotkeyFontSize = 9
+	E.db.actionbar.barPet.hotkeyTextPosition = 'TOP'
+	E.db.actionbar.barPet.hotkeyTextYOffset = -1
 	E.db.actionbar.barPet.point = 'TOPLEFT'
 	E.db.actionbar.cooldown.override = false
 	E.db.actionbar.countTextPosition = 'BOTTOM'
 	E.db.actionbar.countTextYOffset = 1
-	E.db.actionbar.extraActionButton.alpha = 1
 	E.db.actionbar.extraActionButton.clean = true
 	E.db.actionbar.extraActionButton.hotkeyFont = Private.Font
 	E.db.actionbar.extraActionButton.hotkeyFontOutline = 'OUTLINE'
-	E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.extraActionButton.hotkeyFontSize = 9
+	E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.extraActionButton.hotkeyTextYOffset = -1
-	E.db.actionbar.extraActionButton.scale = 1
 	E.db.actionbar.flyoutSize = 26
 	E.db.actionbar.font = Private.Font
 	E.db.actionbar.fontOutline = 'OUTLINE'
-	E.db.actionbar.hotkeyTextPosition = 'TOPLEFT'
+	E.db.actionbar.fontSize = 9
+	E.db.actionbar.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.microbar.buttonHeight = 26
 	E.db.actionbar.microbar.buttonSize = 18
@@ -365,9 +372,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.actionbar.transparent = true
 	E.db.actionbar.vehicleExitButton.hotkeyFont = Private.Font
 	E.db.actionbar.vehicleExitButton.hotkeyFontOutline = 'OUTLINE'
-	E.db.actionbar.zoneActionButton.alpha = 1
+	E.db.actionbar.vehicleExitButton.hotkeyFontSize = 9
+	E.db.actionbar.vehicleExitButton.hotkeyTextPosition = 'TOP'
+	E.db.actionbar.vehicleExitButton.hotkeyTextYOffset = -1
 	E.db.actionbar.zoneActionButton.clean = true
-	E.db.actionbar.zoneActionButton.scale = 1
 
 	-- Bags
 	E.db.bags.autoToggle.guildBank = true
@@ -383,7 +391,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.bags.countFont = Private.Font
 	E.db.bags.countFontOutline = 'OUTLINE'
 	E.db.bags.countFontSize = 11
-	E.db.bags.currencyFormat = 'ICON_TEXT'
 	E.db.bags.itemInfoFont = Private.Font
 	E.db.bags.itemInfoFontOutline = 'OUTLINE'
 	E.db.bags.itemInfoFontSize = 11
@@ -391,7 +398,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.bags.itemLevelFontOutline = 'OUTLINE'
 	E.db.bags.itemLevelFontSize = 11
 	E.db.bags.moneyFormat = 'FULL'
-	E.db.bags.specialtyColors = false
+	E.db.bags.transparent = true
 	E.db.bags.upgradeIcon = false
 	E.db.bags.vendorGrays.enable = true
 	E.db.bags.vendorGrays.interval = 0.1
@@ -402,9 +409,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.bags.split.bagSpacing = 1
 		E.db.bags.split.player = true
 	end
-
-	E.db.bags.transparent = true
-	E.db.bags.vendorGrays.enable = true
 
 	-- Auras
 	E.db.auras.buffs.countFont = Private.Font
@@ -449,7 +453,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.chat.fontOutline = 'OUTLINE'
 	E.db.chat.hideChatToggles = true
 	E.db.chat.historySize = 200
-	E.db.chat.keywords = '%MYNAME%'
 	E.db.chat.lfgIcons = false
 	E.db.chat.maxLines = 500
 	E.db.chat.numScrollMessages = 2
@@ -583,9 +586,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.tooltip.mythicDataEnable = false
 	E.db.tooltip.role = false
 	E.db.tooltip.showElvUIUsers = true
-	E.db.tooltip.showMount = false
 	E.db.tooltip.smallTextFontSize = 11
-	E.db.tooltip.targetInfo = false
 	E.db.tooltip.textFontSize = 11
 
 	-- Shared UnitFrames media
@@ -614,9 +615,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.colors.health.g = 0.05
 	E.db.unitframe.colors.health.r = 0.05
 	E.db.unitframe.colors.healthMultiplier = 0.75
-	E.db.unitframe.colors.power.LUNAR_POWER.b = 0.9
-	E.db.unitframe.colors.power.LUNAR_POWER.g = 0.52
-	E.db.unitframe.colors.power.LUNAR_POWER.r = 0.3
 	E.db.unitframe.colors.power.MANA.b = 0.97
 	E.db.unitframe.colors.power.MANA.g = 1
 	E.db.unitframe.colors.power.MANA.r = 0
@@ -624,6 +622,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.colors.tapped.r = 0.54
 	E.db.unitframe.colors.transparentHealth = true
 	E.db.unitframe.colors.useDeadBackdrop = true
+	E.db.unitframe.cooldown.fonts.font = Private.Font
 	E.db.unitframe.cooldown.override = false
 	E.db.unitframe.font = Private.Font
 	E.db.unitframe.fontOutline = 'OUTLINE'
@@ -675,7 +674,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.arena.debuffs.sizeOverride = 32
 	E.db.unitframe.units.arena.debuffs.xOffset = -34
 	E.db.unitframe.units.arena.debuffs.yOffset = 1
-	E.db.unitframe.units.arena.disableMouseoverGlow = true
 	E.db.unitframe.units.arena.disableTargetGlow = true
 	E.db.unitframe.units.arena.fader.minAlpha = 0.5
 	E.db.unitframe.units.arena.fader.smooth = 0
@@ -789,7 +787,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.boss.debuffs.sizeOverride = 32
 	E.db.unitframe.units.boss.debuffs.xOffset = -1
 	E.db.unitframe.units.boss.debuffs.yOffset = 1
-	E.db.unitframe.units.boss.disableMouseoverGlow = true
 	E.db.unitframe.units.boss.disableTargetGlow = true
 	E.db.unitframe.units.boss.fader.minAlpha = 0.5
 	E.db.unitframe.units.boss.fader.smooth = 0
@@ -867,6 +864,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.player.health.text_format = ''
 	E.db.unitframe.units.player.height = 40
 	E.db.unitframe.units.player.partyIndicator.enable = false
+	E.db.unitframe.units.player.power.enable = false
 	E.db.unitframe.units.player.power.height = 5
 	E.db.unitframe.units.player.power.text_format = ''
 	E.db.unitframe.units.player.power.width = 'inset'
@@ -959,7 +957,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.party.debuffs.xOffset = 1
 	E.db.unitframe.units.party.debuffs.yOffset = -1
 	E.db.unitframe.units.party.disableFocusGlow = true
-	E.db.unitframe.units.party.disableMouseoverGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.fader.minAlpha = 0.5
 	E.db.unitframe.units.party.fader.smooth = 0
@@ -1001,9 +998,12 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.growthDirection = 'RIGHT_DOWN'
 
 	-- Shared Raid1
+	E.db.unitframe.units.raid1.buffIndicator.countFont = Private.Font
+	E.db.unitframe.units.raid1.buffIndicator.countFontSize = 10
+	E.db.unitframe.units.raid1.buffIndicator.enable = true
+	E.db.unitframe.units.raid1.buffIndicator.size = 6
 	E.db.unitframe.units.raid1.classbar.enable = false
 	E.db.unitframe.units.raid1.disableFocusGlow = true
-	E.db.unitframe.units.raid1.disableMouseoverGlow = true
 	E.db.unitframe.units.raid1.disableTargetGlow = true
 	E.db.unitframe.units.raid1.fader.minAlpha = 0.5
 	E.db.unitframe.units.raid1.fader.smooth = 0
@@ -1061,13 +1061,16 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
 
 	-- Shared Raid3
+	E.db.unitframe.units.raid3.buffIndicator.countFont = Private.Font
+	E.db.unitframe.units.raid3.buffIndicator.countFontSize = 10
+	E.db.unitframe.units.raid3.buffIndicator.enable = true
+	E.db.unitframe.units.raid3.buffIndicator.size = 6
 	E.db.unitframe.units.raid3.classbar.enable = false
 	E.db.unitframe.units.raid3.debuffs.countFont = Private.Font
 	E.db.unitframe.units.raid3.debuffs.desaturate = false
 	E.db.unitframe.units.raid3.debuffs.maxDuration = 0
 	E.db.unitframe.units.raid3.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
 	E.db.unitframe.units.raid3.disableFocusGlow = true
-	E.db.unitframe.units.raid3.disableMouseoverGlow = true
 	E.db.unitframe.units.raid3.disableTargetGlow = true
 	E.db.unitframe.units.raid3.fader.minAlpha = 0.5
 	E.db.unitframe.units.raid3.fader.smooth = 0
@@ -1116,21 +1119,21 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
 
 	-- Shared movers
-	E.db.movers.AddonCompartmentMover = E.Retail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66' or nil
+	E.db.movers.AddonCompartmentMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66'
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-178'
-	E.db.movers.AltPowerBarMover = E.Retail and 'TOP,ElvUIParent,TOP,0,-16' or nil
+	E.db.movers.AltPowerBarMover = 'TOP,ElvUIParent,TOP,0,-16'
 	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-300,-210'
 	E.db.movers.BagsMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-84,-210'
 	E.db.movers.BNETMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-199'
-	E.db.movers.BossButton = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,119' or nil
-	E.db.movers.BossHeaderMover = not E.Classic and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-300,-210'
+	E.db.movers.BossButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,102'
+	E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-300,-210'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-157,-110'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-50,-138'
-	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,193,1'
+	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,192,1'
 	E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 	E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,68'
 	E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,41'
@@ -1146,44 +1149,77 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-348'
 	E.db.movers.ElvUIBagMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,140'
 	E.db.movers.ElvUIBankMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
-	E.db.movers.EventToastMover = E.Retail and 'TOP,ElvUIParent,TOP,0,-166' or nil
+	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-166'
 	E.db.movers.ExperienceBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,1'
 	E.db.movers.GMMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-434,-1'
 	E.db.movers.LeftChatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1'
 	E.db.movers.LootFrameMover = 'TOP,ElvUIParent,TOP,0,-187'
-	E.db.movers.LossControlMover = E.Retail and 'TOP,ElvUIParent,TOP,0,-490' or nil
-	E.db.movers.MawBuffsBelowMinimapMover = E.Retail and 'TOPLEFT,ElvUIParent,TOPLEFT,1,-28' or nil
+	E.db.movers.LossControlMover = 'TOP,ElvUIParent,TOP,0,-490'
+	E.db.movers.MawBuffsBelowMinimapMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-28'
 	E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
 	E.db.movers.MinimapMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1'
-	E.db.movers.MirrorTimer1Mover = not E.Retail and 'TOP,ElvUIParent,TOP,0,-60'
-	E.db.movers.MirrorTimer2Mover = not E.Retail and 'TOP,ElvUIParent,TOP,0,-79'
-	E.db.movers.MirrorTimer3Mover = not E.Retail and 'TOP,ElvUIParent,TOP,0,-98'
-	E.db.movers.ObjectiveFrameMover = E.Wrath and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184' or nil
+	E.db.movers.MirrorTimer1Mover = 'TOP,ElvUIParent,TOP,0,-60'
+	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-79'
+	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-98'
+	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184'
 	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,114'
-	E.db.movers.PlayerChoiceToggle = E.Retail and 'BOTTOM,UIParent,BOTTOM,0,369' or nil
+	E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
 	E.db.movers.PowerBarContainerMover = 'BOTTOM,UIParent,BOTTOM,0,163'
 	E.db.movers.PrivateAurasMover = 'BOTTOM,UIParent,BOTTOM,174,452'
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-258'
-	E.db.movers.QuestTimerFrameMover = E.Classic and 'TOP,ElvUIParent,TOP,0,-1' or nil
-	E.db.movers.QuestWatchFrameMover = E.Classic and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184' or nil
+	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-1'
+	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184'
 	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-131'
 	E.db.movers.ReputationBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,210,-1'
-	E.db.movers.TalkingHeadFrameMover = E.Retail and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,140' or nil
+	E.db.movers.TalkingHeadFrameMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,140'
 	E.db.movers.TooltipMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,102'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-46'
-	E.db.movers.TorghastBuffsMover = E.Retail and 'TOPLEFT,ElvUIParent,TOPLEFT,4,-51' or nil
-	E.db.movers.TorghastChoiceToggle = E.Retail and 'BOTTOM,UIParent,BOTTOM,0,369' or nil
+	E.db.movers.TorghastBuffsMover = 'TOPLEFT,ElvUIParent,TOPLEFT,4,-51'
+	E.db.movers.TorghastChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
-	E.db.movers.VehicleSeatMover = 'BOTTOM,ElvUIParent,BOTTOM,-195,1'
+	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-28'
-	E.db.movers.ZoneAbility = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,66' or nil
+	E.db.movers.ZoneAbility = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,49'
 
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
 	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
 
 	if layout == 'main' then
+
+		-- Main Custom Texts
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = E.Retail and '[classcolor][name:short]|r[manacolor][ - >luckyone:healermana:percent]' or '[classcolor][name:short]'
+		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[health:current:shortvalue] • [luckyone:health:percent]'
+
+		-- Main Misc
+		E.db.unitframe.units.targettarget.enable = true
+
+		-- Main Player
+		E.db.unitframe.units.player.castbar.width = 279
+
+		-- Main Party
+		E.db.unitframe.units.party.debuffs.sizeOverride = 32
+		E.db.unitframe.units.party.height = 32
+		E.db.unitframe.units.party.width = 190
+
+		-- Main Raid1
+		E.db.unitframe.units.raid1.height = 38
+		E.db.unitframe.units.raid1.rdebuffs.xOffset = 33
+		E.db.unitframe.units.raid1.rdebuffs.yOffset = 12
+		E.db.unitframe.units.raid1.width = 82
+
+		-- Main Raid2
+		E.db.unitframe.units.raid2.height = 32
+		E.db.unitframe.units.raid2.rdebuffs.xOffset = 33
+		E.db.unitframe.units.raid2.rdebuffs.yOffset = 12
+		E.db.unitframe.units.raid2.width = 82
+
+		-- Main Raid3
+		E.db.unitframe.units.raid3.height = 24
+		E.db.unitframe.units.raid3.rdebuffs.xOffset = 33
+		E.db.unitframe.units.raid3.rdebuffs.yOffset = 5
+		E.db.unitframe.units.raid3.width = 82
 
 		-- Main movers
 		E.db.movers.ElvUF_FocusCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,278,391'
@@ -1200,46 +1236,42 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,252'
 		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,185'
 
-		-- Main Custom Texts
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = E.Retail and '[classcolor][name:short]|r[manacolor][ - >luckyone:healermana:percent]' or '[classcolor][name:short]'
-		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[health:current:shortvalue] • [luckyone:health:percent]'
-
-		-- Main Misc
-		E.db.unitframe.units.player.power.enable = false
-		E.db.unitframe.units.targettarget.enable = true
-
-		-- Main Player
-		E.db.unitframe.units.player.castbar.width = 279
-
-		-- Main Party
-		E.db.unitframe.units.party.debuffs.sizeOverride = 32
-		E.db.unitframe.units.party.height = 32
-		E.db.unitframe.units.party.width = 190
-
-		-- Main Raid1
-		E.db.unitframe.units.raid1.buffIndicator.enable = false
-		E.db.unitframe.units.raid1.height = 38
-		E.db.unitframe.units.raid1.rdebuffs.xOffset = 33
-		E.db.unitframe.units.raid1.rdebuffs.yOffset = 12
-		E.db.unitframe.units.raid1.width = 82
-
-		-- Main Raid2
-		E.db.unitframe.units.raid2.buffIndicator.enable = false
-		E.db.unitframe.units.raid2.height = 32
-		E.db.unitframe.units.raid2.rdebuffs.xOffset = 33
-		E.db.unitframe.units.raid2.rdebuffs.yOffset = 12
-		E.db.unitframe.units.raid2.width = 82
-
-		-- Main Raid3
-		E.db.unitframe.units.raid3.buffIndicator.enable = false
-		E.db.unitframe.units.raid3.height = 24
-		E.db.unitframe.units.raid3.rdebuffs.xOffset = 33
-		E.db.unitframe.units.raid3.rdebuffs.yOffset = 5
-		E.db.unitframe.units.raid3.width = 82
-
 	elseif layout == 'healing' then
 
-		-- Healing movers
+		-- Healing Custom Texts
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[classcolor][name:short]'
+		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[manacolor][perpp<%]|r • [health:current:shortvalue] • [luckyone:health:percent]'
+
+		-- Healing Misc
+		E.db.unitframe.units.targettarget.enable = false
+
+		-- Healing Player
+		E.db.unitframe.units.player.castbar.width = 324
+
+		-- Healing Party
+		E.db.unitframe.units.party.debuffs.sizeOverride = 40
+		E.db.unitframe.units.party.height = 40
+		E.db.unitframe.units.party.width = 240
+
+		-- Healing Raid1
+		E.db.unitframe.units.raid1.height = 36
+		E.db.unitframe.units.raid1.rdebuffs.xOffset = 39
+		E.db.unitframe.units.raid1.rdebuffs.yOffset = 11
+		E.db.unitframe.units.raid1.width = 94
+
+		-- Healing Raid2
+		E.db.unitframe.units.raid2.height = 36
+		E.db.unitframe.units.raid2.rdebuffs.xOffset = 39
+		E.db.unitframe.units.raid2.rdebuffs.yOffset = 11
+		E.db.unitframe.units.raid2.width = 94
+
+		-- Healing Raid3
+		E.db.unitframe.units.raid3.height = 23
+		E.db.unitframe.units.raid3.rdebuffs.xOffset = 39
+		E.db.unitframe.units.raid3.rdebuffs.yOffset = 4
+		E.db.unitframe.units.raid3.width = 94
+
+		-- Healing Movers
 		E.db.movers.ElvUF_FocusCastbarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-482,391'
 		E.db.movers.ElvUF_FocusMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-482,410'
 		E.db.movers.ElvUF_PartyMover = 'TOPLEFT,ElvUIParent,TOPLEFT,482,-390'
@@ -1254,46 +1286,83 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-202,320'
 		E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,382,141'
 
-		-- Healing Custom Texts
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[classcolor][name:short]'
-		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[manacolor][perpp<%]|r • [health:current:shortvalue] • [luckyone:health:percent]'
+	elseif layout == 'support' then
 
-		-- Healing Misc
-		E.db.unitframe.colors.custompowerbackdrop = true
-		E.db.unitframe.colors.power_backdrop.b = 0.05
-		E.db.unitframe.colors.power_backdrop.g = 0.05
-		E.db.unitframe.colors.power_backdrop.r = 0.05
-		E.db.unitframe.units.player.power.enable = false
-		E.db.unitframe.units.targettarget.enable = false
+		-- Support Custom Texts
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = E.Retail and '[classcolor][name:short]|r[manacolor][ - >luckyone:healermana:percent]' or '[classcolor][name:short]'
+		E.db.unitframe.units.player.customTexts.Luckyone_HP.text_format = '[health:current:shortvalue] • [luckyone:health:percent]'
 
-		-- Healing Player
-		E.db.unitframe.units.player.castbar.width = 324
+		-- Support Misc
+		E.db.actionbar.bar1.mouseover = true
+		E.db.actionbar.bar2.mouseover = true
+		E.db.actionbar.bar3.mouseover = true
+		E.db.actionbar.stanceBar.buttonSize = 19
+		E.db.actionbar.stanceBar.buttonSpacing = 2
+		E.db.actionbar.stanceBar.buttonsPerRow = 1
+		E.db.actionbar.stanceBar.hotkeyFontSize = 8
+		E.db.actionbar.stanceBar.hotkeyTextPosition = 'TOP'
+		E.db.actionbar.stanceBar.hotkeyTextXOffset = 1
+		E.db.actionbar.stanceBar.mouseover = false
 
-		-- Healing Party
-		E.db.unitframe.units.party.debuffs.sizeOverride = 40
-		E.db.unitframe.units.party.height = 40
-		E.db.unitframe.units.party.width = 240
+		E.db.unitframe.units.targettarget.enable = true
 
-		-- Healing Raid1
-		E.db.unitframe.units.raid1.buffIndicator.enable = true
-		E.db.unitframe.units.raid1.height = 36
-		E.db.unitframe.units.raid1.rdebuffs.xOffset = 39
-		E.db.unitframe.units.raid1.rdebuffs.yOffset = 11
-		E.db.unitframe.units.raid1.width = 94
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 414
 
-		-- Healing Raid2
-		E.db.unitframe.units.raid2.buffIndicator.enable = true
-		E.db.unitframe.units.raid2.height = 36
-		E.db.unitframe.units.raid2.rdebuffs.xOffset = 39
-		E.db.unitframe.units.raid2.rdebuffs.yOffset = 11
-		E.db.unitframe.units.raid2.width = 94
+		-- Support Player
+		E.db.unitframe.units.player.castbar.width = 279
 
-		-- Healing Raid3
-		E.db.unitframe.units.raid3.buffIndicator.enable = true
-		E.db.unitframe.units.raid3.height = 23
-		E.db.unitframe.units.raid3.rdebuffs.xOffset = 39
-		E.db.unitframe.units.raid3.rdebuffs.yOffset = 4
-		E.db.unitframe.units.raid3.width = 94
+		-- Support Party
+		E.db.unitframe.units.party.debuffs.sizeOverride = 32
+		E.db.unitframe.units.party.height = 32
+		E.db.unitframe.units.party.raidRoleIcons.enable = false
+		E.db.unitframe.units.party.roleIcon.enable = false
+		E.db.unitframe.units.party.width = 190
+
+		-- Support Raid1
+		E.db.unitframe.units.raid1.height = 38
+		E.db.unitframe.units.raid1.raidRoleIcons.enable = false
+		E.db.unitframe.units.raid1.rdebuffs.xOffset = -33
+		E.db.unitframe.units.raid1.rdebuffs.yOffset = 1
+		E.db.unitframe.units.raid1.roleIcon.enable = false
+		E.db.unitframe.units.raid1.width = 82
+
+		-- Support Raid2
+		E.db.unitframe.units.raid2.height = 32
+		E.db.unitframe.units.raid2.raidRoleIcons.enable = false
+		E.db.unitframe.units.raid2.rdebuffs.xOffset = -33
+		E.db.unitframe.units.raid2.rdebuffs.yOffset = 1
+		E.db.unitframe.units.raid2.roleIcon.enable = false
+		E.db.unitframe.units.raid2.width = 82
+
+		-- Support Raid3
+		E.db.unitframe.units.raid3.height = 24
+		E.db.unitframe.units.raid3.raidRoleIcons.enable = false
+		E.db.unitframe.units.raid3.rdebuffs.xOffset = -33
+		E.db.unitframe.units.raid3.rdebuffs.yOffset = 1
+		E.db.unitframe.units.raid3.roleIcon.enable = false
+		E.db.unitframe.units.raid3.width = 82
+
+		-- Support Movers
+		E.db.movers.ElvAB_1 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,140'
+		E.db.movers.ElvAB_2 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,194'
+		E.db.movers.ElvAB_3 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,167'
+		E.db.movers.ElvUF_FocusCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,278,419'
+		E.db.movers.ElvUF_FocusMover = 'BOTTOM,ElvUIParent,BOTTOM,278,438'
+		E.db.movers.ElvUF_PartyMover = 'TOPLEFT,ElvUIParent,TOPLEFT,360,-360'
+		E.db.movers.ElvUF_PetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,28'
+		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,UIParent,BOTTOM,0,233'
+		E.db.movers.ElvUF_PlayerMover = 'BOTTOM,ElvUIParent,BOTTOM,-278,300'
+		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
+		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
+		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
+		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,278,281'
+		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,278,300'
+		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,252'
+		E.db.movers.PetAB = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,1'
+		E.db.movers.PrivateAurasMover = 'TOP,ElvUIParent,TOP,174,-504'
+		E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-258'
+		E.db.movers.ShiftAB = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,542,300'
+		E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,509,301'
 	end
 end
 
@@ -2178,13 +2247,13 @@ function L1UI:Layout_Shadowlands(layout)
 	-- Shared movers
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-135'
 	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235'
-	E.db.movers.ArtifactBarMover = E.Retail and 'BOTTOM,ElvUIParent,BOTTOM,1,16' or nil
-	E.db.movers.AzeriteBarMover = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or nil
+	E.db.movers.ArtifactBarMover = 'BOTTOM,ElvUIParent,BOTTOM,1,16'
+	E.db.movers.AzeriteBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
 	E.db.movers.BelowMinimapContainerMover = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,70,485' or 'TOP,UIParent,TOP,0,-26'
 	E.db.movers.BNETMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-139'
-	E.db.movers.BossButton = E.Retail and 'BOTTOM,ElvUIParent,BOTTOM,-168,128' or nil
-	E.db.movers.BossHeaderMover = E.Retail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235' or nil
+	E.db.movers.BossButton = 'BOTTOM,ElvUIParent,BOTTOM,-168,128'
+	E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-271,-235'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-166,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-166,-128'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
@@ -2201,34 +2270,34 @@ function L1UI:Layout_Shadowlands(layout)
 	E.db.movers.ElvAB_10 = 'BOTTOM,ElvUIParent,BOTTOM,0,255'
 	E.db.movers.ElvUIBagMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,173'
 	E.db.movers.ElvUIBankMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,173'
-	E.db.movers.EventToastMover = E.Retail and 'TOP,ElvUIParent,TOP,0,-139' or nil
+	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-139'
 	E.db.movers.ExperienceBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,416,1'
 	E.db.movers.GMMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-503,-1'
-	E.db.movers.HonorBarMover = E.Retail and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1' or nil
+	E.db.movers.HonorBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,1'
 	E.db.movers.LeftChatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1'
 	E.db.movers.LootFrameMover = 'TOP,ElvUIParent,TOP,0,-156'
-	E.db.movers.LossControlMover = E.Retail and 'TOP,ElvUIParent,TOP,0,-492' or nil
-	E.db.movers.MawBuffsBelowMinimapMover = E.Retail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-15,-380' or nil
+	E.db.movers.LossControlMover = 'TOP,ElvUIParent,TOP,0,-492'
+	E.db.movers.MawBuffsBelowMinimapMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-15,-380'
 	E.db.movers.MinimapMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1'
 	E.db.movers.MirrorTimer1Mover = 'TOP,ElvUIParent,TOP,0,-78'
 	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-97'
 	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-116'
-	E.db.movers.ObjectiveFrameMover = E.Wrath and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-100,-215' or nil
+	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-100,-215'
 	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,128'
-	E.db.movers.PetExperienceBarMover = not E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or nil
-	E.db.movers.QuestTimerFrameMover = E.Classic and 'TOP,ElvUIParent,TOP,0,-1' or nil
-	E.db.movers.QuestWatchFrameMover = E.Classic and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-215' or nil
+	E.db.movers.PetExperienceBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
+	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-1'
+	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-215'
 	E.db.movers.ReputationBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
 	E.db.movers.SocialMenuMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,196'
-	E.db.movers.TalkingHeadFrameMover = E.Retail and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,173' or nil
+	E.db.movers.TalkingHeadFrameMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,173'
 	E.db.movers.ThreatBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,1'
 	E.db.movers.TooltipMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,135'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-57'
-	E.db.movers.TorghastBuffsMover = E.Retail and 'TOPLEFT,ElvUIParent,TOPLEFT,4,-51' or nil
+	E.db.movers.TorghastBuffsMover = 'TOPLEFT,ElvUIParent,TOPLEFT,4,-51'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-27'
-	E.db.movers.ZoneAbility = E.Retail and 'BOTTOM,ElvUIParent,BOTTOM,168,128' or nil
+	E.db.movers.ZoneAbility = 'BOTTOM,ElvUIParent,BOTTOM,168,128'
 
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
 
@@ -2238,7 +2307,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
 
 		-- Main movers
-		E.db.movers.AltPowerBarMover = E.Retail and 'BOTTOM,ElvUIParent,BOTTOM,0,158' or nil
+		E.db.movers.AltPowerBarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,158'
 		E.db.movers.ElvUF_AssistMover = 'TOPLEFT,ElvUIParent,BOTTOMLEFT,0,1048'
 		E.db.movers.ElvUF_FocusCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,253,451'
 		E.db.movers.ElvUF_FocusMover = 'BOTTOM,ElvUIParent,BOTTOM,253,470'
@@ -2254,7 +2323,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,253,320'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-530,320'
 		E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,157,-1'
-		E.db.movers.PlayerChoiceToggle = E.Retail and 'BOTTOM,UIParent,BOTTOM,0,182' or nil
+		E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,182'
 		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,182'
 		E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,1'
 
@@ -2405,7 +2474,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.unitframe.units.party.growthDirection = 'RIGHT_DOWN'
 
 		-- Healing movers
-		E.db.movers.AltPowerBarMover = E.Retail and 'BOTTOM,ElvUIParent,BOTTOM,0,368' or nil
+		E.db.movers.AltPowerBarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,368'
 		E.db.movers.ElvUF_AssistMover = 'TOPLEFT,ElvUIParent,BOTTOMLEFT,0,1048'
 		E.db.movers.ElvUF_FocusCastbarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,451'
 		E.db.movers.ElvUF_FocusMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,470'
@@ -2421,7 +2490,7 @@ function L1UI:Layout_Shadowlands(layout)
 		E.db.movers.ElvUF_TargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,320'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-460,320'
 		E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,174,-1'
-		E.db.movers.PlayerChoiceToggle = E.Retail and 'BOTTOM,UIParent,BOTTOM,0,158' or nil
+		E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,158'
 		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,0,368'
 		E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,438,1'
 

@@ -35,6 +35,9 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:Show()
 			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_Layout_Dragonflight('healing') end)
 			PluginInstallFrame.Option2:SetText(L["Healing"])
+			PluginInstallFrame.Option3:Show()
+			PluginInstallFrame.Option3:SetScript('OnClick', function() L1UI:Setup_Layout_Dragonflight('support') end)
+			PluginInstallFrame.Option3:SetText(L["Support"])
 		end,
 		[3] = function()
 			PluginInstallFrame.SubTitle:SetText(L["ElvUI Plugins"])

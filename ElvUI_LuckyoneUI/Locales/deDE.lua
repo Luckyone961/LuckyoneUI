@@ -168,6 +168,7 @@ L["Show All"] = "Alle anzeigen"
 L["Skip and close the installer"] = true
 L["Strings"] = true
 L["Successfully updated your current layout to LuckyoneUI version "] = "Dein aktuelles Layout wurde erfolgreich auf die LuckyoneUI Version aktualisiert."
+L["Support"] = true
 L["Supporters"] = "Unterstützer"
 L["Tags"] = true
 L["Target Frame Buffs"] = "Zielfenster Stärkungszauber"

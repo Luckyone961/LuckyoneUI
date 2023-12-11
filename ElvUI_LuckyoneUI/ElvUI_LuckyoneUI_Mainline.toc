@@ -4,10 +4,10 @@
 
 ## DefaultState: enabled
 ## Author: Luckyone
-## Version: 2.47
+## Version: 2.48
 
 ## Interface: 100200
-## X-Required-ElvUI: 13.52
+## X-Required-ElvUI: 13.53
 
 ## AddonCompartmentFunc: L1UI_OnAddonCompartmentClick
 ## IconTexture: Interface\AddOns\ElvUI_LuckyoneUI\Media\Textures\Compartment.png
