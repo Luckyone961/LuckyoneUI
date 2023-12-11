@@ -168,6 +168,7 @@ L["Show All"] = "Mostrar Todas"
 L["Skip and close the installer"] = "Pular e fechar o instalador"
 L["Strings"] = "Códigos de Importação" --while strings are normally use to talk about import strings this doesn't quite work well in portuguese, so here im using import codes instead because it makes more sense
 L["Successfully updated your current layout to LuckyoneUI version "] = "Seu perfil foi atualizado com sucesso para o LuckyoneUI versão "
+L["Support"] = true
 L["Supporters"] = "Apoiadores"
 L["Tags"] = true
 L["Target Frame Buffs"] = "Bônus do Quadro de Alvo"

@@ -168,6 +168,7 @@ L["Show All"] = "Показать все"
 L["Skip and close the installer"] = true
 L["Strings"] = true
 L["Successfully updated your current layout to LuckyoneUI version "] = "Ваш текущий макет успешно обновлен до версии "
+L["Support"] = true
 L["Supporters"] = "Поддержка"
 L["Tags"] = "Теги"
 L["Target Frame Buffs"] = "Баффы рамки цели"
