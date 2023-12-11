@@ -4,6 +4,7 @@ Added my support layout to the installer (Bottom/Center raidframes, no actionbar
 Updated BigWigs profile (Set visible bar limit to max 4)  
 Updated General db (Guildbank font, outline, size)  
 Updated Minimap db (Difficulty scale, position)  
+Updated ptBR localization (Credits: Eltreum)  
 Updated UnitFrames db (Enabled mouseover glow by default)  
 ___
 ### Version 2.47 [28-11-2023]
