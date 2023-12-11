@@ -1,4 +1,10 @@
 ### Version 2.48 [In Development]
+**All WoW Versions:**  
+Added my support layout to the installer (Bottom/Center raidframes, no actionbars)  
+Updated BigWigs profile (Set visible bar limit to max 4)  
+Updated General db (Guildbank font, outline, size)  
+Updated Minimap db (Difficulty scale, position)  
+Updated UnitFrames db (Enabled mouseover glow by default)  
 ___
 ### Version 2.47 [28-11-2023]
 **All WoW Versions:**  
