@@ -674,7 +674,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.arena.debuffs.sizeOverride = 32
 	E.db.unitframe.units.arena.debuffs.xOffset = -34
 	E.db.unitframe.units.arena.debuffs.yOffset = 1
-	E.db.unitframe.units.arena.disableMouseoverGlow = true
 	E.db.unitframe.units.arena.disableTargetGlow = true
 	E.db.unitframe.units.arena.fader.minAlpha = 0.5
 	E.db.unitframe.units.arena.fader.smooth = 0
@@ -788,7 +787,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.boss.debuffs.sizeOverride = 32
 	E.db.unitframe.units.boss.debuffs.xOffset = -1
 	E.db.unitframe.units.boss.debuffs.yOffset = 1
-	E.db.unitframe.units.boss.disableMouseoverGlow = true
 	E.db.unitframe.units.boss.disableTargetGlow = true
 	E.db.unitframe.units.boss.fader.minAlpha = 0.5
 	E.db.unitframe.units.boss.fader.smooth = 0
@@ -959,7 +957,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.party.debuffs.xOffset = 1
 	E.db.unitframe.units.party.debuffs.yOffset = -1
 	E.db.unitframe.units.party.disableFocusGlow = true
-	E.db.unitframe.units.party.disableMouseoverGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.fader.minAlpha = 0.5
 	E.db.unitframe.units.party.fader.smooth = 0
@@ -1003,7 +1000,6 @@ function L1UI:Layout_Dragonflight(layout)
 	-- Shared Raid1
 	E.db.unitframe.units.raid1.classbar.enable = false
 	E.db.unitframe.units.raid1.disableFocusGlow = true
-	E.db.unitframe.units.raid1.disableMouseoverGlow = true
 	E.db.unitframe.units.raid1.disableTargetGlow = true
 	E.db.unitframe.units.raid1.fader.minAlpha = 0.5
 	E.db.unitframe.units.raid1.fader.smooth = 0
@@ -1067,7 +1063,6 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.debuffs.maxDuration = 0
 	E.db.unitframe.units.raid3.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
 	E.db.unitframe.units.raid3.disableFocusGlow = true
-	E.db.unitframe.units.raid3.disableMouseoverGlow = true
 	E.db.unitframe.units.raid3.disableTargetGlow = true
 	E.db.unitframe.units.raid3.fader.minAlpha = 0.5
 	E.db.unitframe.units.raid3.fader.smooth = 0
