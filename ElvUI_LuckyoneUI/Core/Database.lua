@@ -998,6 +998,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.growthDirection = 'RIGHT_DOWN'
 
 	-- Shared Raid1
+	E.db.unitframe.units.raid1.buffIndicator.countFont = Private.Font
+	E.db.unitframe.units.raid1.buffIndicator.countFontSize = 10
+	E.db.unitframe.units.raid1.buffIndicator.enable = true
+	E.db.unitframe.units.raid1.buffIndicator.size = 6
 	E.db.unitframe.units.raid1.classbar.enable = false
 	E.db.unitframe.units.raid1.disableFocusGlow = true
 	E.db.unitframe.units.raid1.disableTargetGlow = true
@@ -1057,6 +1061,10 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
 
 	-- Shared Raid3
+	E.db.unitframe.units.raid3.buffIndicator.countFont = Private.Font
+	E.db.unitframe.units.raid3.buffIndicator.countFontSize = 10
+	E.db.unitframe.units.raid3.buffIndicator.enable = true
+	E.db.unitframe.units.raid3.buffIndicator.size = 6
 	E.db.unitframe.units.raid3.classbar.enable = false
 	E.db.unitframe.units.raid3.debuffs.countFont = Private.Font
 	E.db.unitframe.units.raid3.debuffs.desaturate = false
@@ -1196,21 +1204,18 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.width = 190
 
 		-- Main Raid1
-		E.db.unitframe.units.raid1.buffIndicator.enable = false
 		E.db.unitframe.units.raid1.height = 38
 		E.db.unitframe.units.raid1.rdebuffs.xOffset = 33
 		E.db.unitframe.units.raid1.rdebuffs.yOffset = 12
 		E.db.unitframe.units.raid1.width = 82
 
 		-- Main Raid2
-		E.db.unitframe.units.raid2.buffIndicator.enable = false
 		E.db.unitframe.units.raid2.height = 32
 		E.db.unitframe.units.raid2.rdebuffs.xOffset = 33
 		E.db.unitframe.units.raid2.rdebuffs.yOffset = 12
 		E.db.unitframe.units.raid2.width = 82
 
 		-- Main Raid3
-		E.db.unitframe.units.raid3.buffIndicator.enable = false
 		E.db.unitframe.units.raid3.height = 24
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 33
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 5
@@ -1249,21 +1254,18 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.width = 240
 
 		-- Healing Raid1
-		E.db.unitframe.units.raid1.buffIndicator.enable = true
 		E.db.unitframe.units.raid1.height = 36
 		E.db.unitframe.units.raid1.rdebuffs.xOffset = 39
 		E.db.unitframe.units.raid1.rdebuffs.yOffset = 11
 		E.db.unitframe.units.raid1.width = 94
 
 		-- Healing Raid2
-		E.db.unitframe.units.raid2.buffIndicator.enable = true
 		E.db.unitframe.units.raid2.height = 36
 		E.db.unitframe.units.raid2.rdebuffs.xOffset = 39
 		E.db.unitframe.units.raid2.rdebuffs.yOffset = 11
 		E.db.unitframe.units.raid2.width = 94
 
 		-- Healing Raid3
-		E.db.unitframe.units.raid3.buffIndicator.enable = true
 		E.db.unitframe.units.raid3.height = 23
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 39
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 4
@@ -1307,27 +1309,32 @@ function L1UI:Layout_Dragonflight(layout)
 		-- Support Party
 		E.db.unitframe.units.party.debuffs.sizeOverride = 32
 		E.db.unitframe.units.party.height = 32
+		E.db.unitframe.units.party.raidRoleIcons.enable = false
+		E.db.unitframe.units.party.roleIcon.enable = false
 		E.db.unitframe.units.party.width = 190
 
 		-- Support Raid1
-		E.db.unitframe.units.raid1.buffIndicator.enable = false
 		E.db.unitframe.units.raid1.height = 38
-		E.db.unitframe.units.raid1.rdebuffs.xOffset = 33
-		E.db.unitframe.units.raid1.rdebuffs.yOffset = 12
+		E.db.unitframe.units.raid1.raidRoleIcons.enable = false
+		E.db.unitframe.units.raid1.rdebuffs.xOffset = -33
+		E.db.unitframe.units.raid1.rdebuffs.yOffset = 1
+		E.db.unitframe.units.raid1.roleIcon.enable = false
 		E.db.unitframe.units.raid1.width = 82
 
 		-- Support Raid2
-		E.db.unitframe.units.raid2.buffIndicator.enable = false
 		E.db.unitframe.units.raid2.height = 32
-		E.db.unitframe.units.raid2.rdebuffs.xOffset = 33
-		E.db.unitframe.units.raid2.rdebuffs.yOffset = 12
+		E.db.unitframe.units.raid2.raidRoleIcons.enable = false
+		E.db.unitframe.units.raid2.rdebuffs.xOffset = -33
+		E.db.unitframe.units.raid2.rdebuffs.yOffset = 1
+		E.db.unitframe.units.raid2.roleIcon.enable = false
 		E.db.unitframe.units.raid2.width = 82
 
 		-- Support Raid3
-		E.db.unitframe.units.raid3.buffIndicator.enable = false
 		E.db.unitframe.units.raid3.height = 24
-		E.db.unitframe.units.raid3.rdebuffs.xOffset = 33
-		E.db.unitframe.units.raid3.rdebuffs.yOffset = 5
+		E.db.unitframe.units.raid3.raidRoleIcons.enable = false
+		E.db.unitframe.units.raid3.rdebuffs.xOffset = -33
+		E.db.unitframe.units.raid3.rdebuffs.yOffset = 1
+		E.db.unitframe.units.raid3.roleIcon.enable = false
 		E.db.unitframe.units.raid3.width = 82
 
 		-- Support Movers
