@@ -1,6 +1,7 @@
 ### Version 2.49 [In Development]
 **All WoW Versions:**  
 ElvUI 13.54+ compatibility  
+Fixed minor text issue in Themes install step  
 **Retail:**  
 Added Amirdrassil ElvUI NamePlate StyleFilter (Larodar Brambles)  
 Enabled role icons in support layout by default (Party+Raid)  
