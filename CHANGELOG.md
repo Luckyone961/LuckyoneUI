@@ -1,6 +1,8 @@
 ### Version 2.49 [In Development]
 **All WoW Versions:**  
 ElvUI 13.54+ compatibility  
+**Retail:**  
+Added Amirdrassil ElvUI NamePlate StyleFilter (Larodar Brambles)  
 ___
 ### Version 2.48 [11-12-2023]
 **All WoW Versions:**  
