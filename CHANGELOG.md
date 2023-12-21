@@ -3,6 +3,9 @@
 ElvUI 13.54+ compatibility  
 **Retail:**  
 Added Amirdrassil ElvUI NamePlate StyleFilter (Larodar Brambles)  
+Enabled role icons in support layout by default (Party+Raid)  
+**Wrath Classic:**  
+Enabled role icons in support layout by default (Party+Raid)  
 ___
 ### Version 2.48 [11-12-2023]
 **All WoW Versions:**  

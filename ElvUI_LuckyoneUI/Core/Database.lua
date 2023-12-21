@@ -1045,6 +1045,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid1.resurrectIcon.size = 18
 	E.db.unitframe.units.raid1.roleIcon.attachTo = 'Frame'
 	E.db.unitframe.units.raid1.roleIcon.damager = false
+	E.db.unitframe.units.raid1.roleIcon.enable = true
 	E.db.unitframe.units.raid1.roleIcon.position = 'LEFT'
 	E.db.unitframe.units.raid1.roleIcon.size = 12
 	E.db.unitframe.units.raid1.roleIcon.xOffset = 0
@@ -1315,7 +1316,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.party.debuffs.sizeOverride = 32
 		E.db.unitframe.units.party.height = 32
 		E.db.unitframe.units.party.raidRoleIcons.enable = false
-		E.db.unitframe.units.party.roleIcon.enable = false
 		E.db.unitframe.units.party.width = 190
 
 		-- Support Raid1
@@ -1323,7 +1323,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid1.raidRoleIcons.enable = false
 		E.db.unitframe.units.raid1.rdebuffs.xOffset = -33
 		E.db.unitframe.units.raid1.rdebuffs.yOffset = 1
-		E.db.unitframe.units.raid1.roleIcon.enable = false
 		E.db.unitframe.units.raid1.width = 82
 
 		-- Support Raid2
@@ -1331,7 +1330,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid2.raidRoleIcons.enable = false
 		E.db.unitframe.units.raid2.rdebuffs.xOffset = -33
 		E.db.unitframe.units.raid2.rdebuffs.yOffset = 1
-		E.db.unitframe.units.raid2.roleIcon.enable = false
 		E.db.unitframe.units.raid2.width = 82
 
 		-- Support Raid3
@@ -1339,7 +1337,6 @@ function L1UI:Layout_Dragonflight(layout)
 		E.db.unitframe.units.raid3.raidRoleIcons.enable = false
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = -33
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 1
-		E.db.unitframe.units.raid3.roleIcon.enable = false
 		E.db.unitframe.units.raid3.width = 82
 
 		-- Support Movers
