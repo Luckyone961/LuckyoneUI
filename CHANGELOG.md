@@ -1,3 +1,15 @@
+### Version 2.49 [23-12-2023]
+**All WoW Versions:**  
+Added profile information popup for DBM users  
+Fixed minor text issue in Themes install step  
+Minor update for BigWigs (Visible Bar Limit 4 > 5)  
+**Retail:**  
+Added Amirdrassil ElvUI NamePlate StyleFilter (Larodar Brambles)  
+Enabled role icons in support layout by default (Party+Raid)  
+Minor update for Details (Enabled Aug Evoker prediction by default)  
+**Wrath Classic:**  
+Enabled role icons in support layout by default (Party+Raid)  
+___
 ### Version 2.48 [11-12-2023]
 **All WoW Versions:**  
 Added my support layout to the installer (Bottom/Center raidframes, no actionbars)  

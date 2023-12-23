@@ -71,8 +71,8 @@ function L1UI:Setup_BigWigs(layout)
 		['outline'] = 'OUTLINE',
 		['spacing'] = 3,
 		['texture'] = 'Minimalist',
-		['visibleBarLimit'] = 4,
-		['visibleBarLimitEmph'] = 4,
+		['visibleBarLimit'] = 5,
+		['visibleBarLimitEmph'] = 5,
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing] = {
 		['barStyle'] = 'ElvUI',
@@ -98,8 +98,8 @@ function L1UI:Setup_BigWigs(layout)
 		['outline'] = 'OUTLINE',
 		['spacing'] = 3,
 		['texture'] = 'Minimalist',
-		['visibleBarLimit'] = 4,
-		['visibleBarLimitEmph'] = 4,
+		['visibleBarLimit'] = 5,
+		['visibleBarLimitEmph'] = 5,
 	}
 
 	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] or {}

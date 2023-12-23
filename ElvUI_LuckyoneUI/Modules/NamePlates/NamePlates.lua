@@ -228,7 +228,7 @@ local function wipe()
 	if E.global.nameplates.filters.Luckyone_WM then E.global.nameplates.filters.Luckyone_WM = nil end
 	if E.global.nameplates.filters.Luckyone_EB then E.global.nameplates.filters.Luckyone_EB = nil end
 	if E.global.nameplates.filters.Luckyone_TOTT then E.global.nameplates.filters.Luckyone_TOTT = nil end
-	-- if E.global.nameplates.filters.Luckyone_Amirdrassil then E.global.nameplates.filters.Luckyone_Amirdrassil = nil end
+	if E.global.nameplates.filters.Luckyone_Amirdrassil then E.global.nameplates.filters.Luckyone_Amirdrassil = nil end
 end
 
 -- Custom StyleFilters for all current Dungeons
@@ -240,21 +240,19 @@ function L1UI:Setup_StyleFilters(skipVars)
 
 	-- Retail Season 3 Dungeons & Raid
 	if E.Retail then
-		for _, filterName in pairs({ 'Luckyone_FALL', 'Luckyone_RISE', 'Luckyone_DHT', 'Luckyone_BRH', 'Luckyone_AD', 'Luckyone_WM', 'Luckyone_EB', 'Luckyone_TOTT' }) do
+		for _, filterName in pairs({ 'Luckyone_Amirdrassil', 'Luckyone_FALL', 'Luckyone_RISE', 'Luckyone_DHT', 'Luckyone_BRH', 'Luckyone_AD', 'Luckyone_WM', 'Luckyone_EB', 'Luckyone_TOTT' }) do
 			E.global.nameplates.filters[filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
 			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
 		end
 
 		-- Amirdrassil: The Dream's Hope [Amirdrassil]
-		-- E.global.nameplates.filters.Luckyone_Amirdrassil.actions.color.health = true
-		-- E.global.nameplates.filters.Luckyone_Amirdrassil.actions.color.healthColor.g = 0.75
-		-- E.global.nameplates.filters.Luckyone_Amirdrassil.actions.color.healthColor.r = 0
-		-- E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.instanceType['raid'] = true
-		-- E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.names[''] = true -- Name 1
-		-- E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.names[''] = true -- Name 2
-		-- E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.names[''] = true -- Name 3
-		-- E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.priority = 2
+		E.global.nameplates.filters.Luckyone_Amirdrassil.actions.color.health = true
+		E.global.nameplates.filters.Luckyone_Amirdrassil.actions.color.healthColor.g = 0.75
+		E.global.nameplates.filters.Luckyone_Amirdrassil.actions.color.healthColor.r = 0
+		E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.instanceType['raid'] = true
+		E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.names['208461'] = true -- Scorching Brambles
+		E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.priority = 2
 
 		-- Dawn of the Infinites: Galakrond's Fall [FALL]
 		E.global.nameplates.filters.Luckyone_FALL.actions.color.health = true
