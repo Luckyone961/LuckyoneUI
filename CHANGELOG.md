@@ -6,6 +6,7 @@ Minor update for BigWigs (Visible Bar Limit 4 > 5)
 **Retail:**  
 Added Amirdrassil ElvUI NamePlate StyleFilter (Larodar Brambles)  
 Enabled role icons in support layout by default (Party+Raid)  
+Minor update for Details (Enabled Aug Evoker prediction by default)  
 **Wrath Classic:**  
 Enabled role icons in support layout by default (Party+Raid)  
 ___
