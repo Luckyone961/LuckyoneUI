@@ -1,6 +1,6 @@
-### Version 2.49 [In Development]
+### Version 2.49 [23-12-2023]
 **All WoW Versions:**  
-ElvUI 13.54+ compatibility  
+Added profile information popup for DBM users  
 Fixed minor text issue in Themes install step  
 Minor update for BigWigs (Visible Bar Limit 4 > 5)  
 **Retail:**  
