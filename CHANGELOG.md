@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 ElvUI 13.54+ compatibility  
 Fixed minor text issue in Themes install step  
+Minor update for BigWigs (Visible Bar Limit 4 > 5)  
 **Retail:**  
 Added Amirdrassil ElvUI NamePlate StyleFilter (Larodar Brambles)  
 Enabled role icons in support layout by default (Party+Raid)  
