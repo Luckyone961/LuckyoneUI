@@ -1,3 +1,7 @@
+### Version 2.50 [In Development]
+**Misc:**  
+Updated README  
+___
 ### Version 2.49 [23-12-2023]
 **All WoW Versions:**  
 Added profile information popup for DBM users  
