@@ -195,13 +195,10 @@ function L1UI:Setup_NamePlates()
 	end
 end
 
--- Custom StyleFilters for all current Dungeons
-function L1UI:Setup_StyleFilters()
-	if not E.private.nameplates.enable then return end
-
-	-- Wipe old data [General]
+local function wipe()
+	-- General
 	if E.global.nameplates.filters.ElvUI_Explosives then E.global.nameplates.filters.ElvUI_Explosives = nil end
-	-- Wipe old data [Season 1]
+	-- Season 1
 	if E.global.nameplates.filters.Luckyone_AA then E.global.nameplates.filters.Luckyone_AA = nil end
 	if E.global.nameplates.filters.Luckyone_AV then E.global.nameplates.filters.Luckyone_AV = nil end
 	if E.global.nameplates.filters.Luckyone_COS then E.global.nameplates.filters.Luckyone_COS = nil end
@@ -212,152 +209,35 @@ function L1UI:Setup_StyleFilters()
 	if E.global.nameplates.filters.Luckyone_TJS then E.global.nameplates.filters.Luckyone_TJS = nil end
 	if E.global.nameplates.filters.Luckyone_TOJS then E.global.nameplates.filters.Luckyone_TOJS = nil end
 	if E.global.nameplates.filters.Luckyone_VOTI then E.global.nameplates.filters.Luckyone_VOTI = nil end
-	-- Wipe old data [Season 2]
-	-- if E.global.nameplates.filters.Luckyone_BH then E.global.nameplates.filters.Luckyone_BH = nil end
-	-- if E.global.nameplates.filters.Luckyone_HOI then E.global.nameplates.filters.Luckyone_HOI = nil end
-	-- if E.global.nameplates.filters.Luckyone_NELT then E.global.nameplates.filters.Luckyone_NELT = nil end
-	-- if E.global.nameplates.filters.Luckyone_ULD then E.global.nameplates.filters.Luckyone_ULD = nil end
-	-- if E.global.nameplates.filters.Luckyone_NL then E.global.nameplates.filters.Luckyone_NL = nil end
-	-- if E.global.nameplates.filters.Luckyone_FH then E.global.nameplates.filters.Luckyone_FH = nil end
-	-- if E.global.nameplates.filters.Luckyone_UNDR then E.global.nameplates.filters.Luckyone_UNDR = nil end
-	-- if E.global.nameplates.filters.Luckyone_VP then E.global.nameplates.filters.Luckyone_VP = nil end
-	-- if E.global.nameplates.filters.Luckyone_Aberrus then E.global.nameplates.filters.Luckyone_Aberrus = nil end
-
-	-- Retail Season 2 Dungeons & Raid
-	if E.Retail then
-		for _, filterName in pairs({ 'Luckyone_Aberrus', 'Luckyone_BH', 'Luckyone_HOI', 'Luckyone_NELT', 'Luckyone_ULD', 'Luckyone_NL', 'Luckyone_FH', 'Luckyone_UNDR', 'Luckyone_VP' }) do
-			E.global.nameplates.filters[filterName] = {}
-			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
-			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
-		end
-
-		-- Aberrus, the Shadowed Crucible [Aberrus]
-		E.global.nameplates.filters.Luckyone_Aberrus.actions.color.health = true
-		E.global.nameplates.filters.Luckyone_Aberrus.actions.color.healthColor.g = 0.75
-		E.global.nameplates.filters.Luckyone_Aberrus.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_Aberrus.triggers.instanceType['raid'] = true
-		E.global.nameplates.filters.Luckyone_Aberrus.triggers.names['203812'] = true -- Echo of Neltharion Adds
-		E.global.nameplates.filters.Luckyone_Aberrus.triggers.names['202969'] = true -- Scalecommander Sarkareth Mythic Adds
-		E.global.nameplates.filters.Luckyone_Aberrus.triggers.priority = 2
-
-		-- Brackenhide Hollow [BH]
-		E.global.nameplates.filters.Luckyone_BH.actions.color.health = true
-		E.global.nameplates.filters.Luckyone_BH.actions.color.healthColor.g = 0.75
-		E.global.nameplates.filters.Luckyone_BH.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_BH.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_BH.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_BH.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_BH.triggers.names['186191'] = true -- Decay Speaker
-		E.global.nameplates.filters.Luckyone_BH.triggers.names['186226'] = true -- Fetid Rotsinger
-		E.global.nameplates.filters.Luckyone_BH.triggers.names['186227'] = true -- Monstrous Decay
-		E.global.nameplates.filters.Luckyone_BH.triggers.names['187033'] = true -- Stinkbreath
-		E.global.nameplates.filters.Luckyone_BH.triggers.names['187224'] = true -- Vile Rothexer
-		E.global.nameplates.filters.Luckyone_BH.triggers.names['190426'] = true -- Decay Totem
-		E.global.nameplates.filters.Luckyone_BH.triggers.names['193799'] = true -- Rotchanting Totem
-		E.global.nameplates.filters.Luckyone_BH.triggers.priority = 2
-
-		-- Halls of Infusion [HOI]
-		E.global.nameplates.filters.Luckyone_HOI.actions.color.health = true
-		E.global.nameplates.filters.Luckyone_HOI.actions.color.healthColor.g = 0.75
-		E.global.nameplates.filters.Luckyone_HOI.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_HOI.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_HOI.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_HOI.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_HOI.triggers.names['190342'] = true -- Containment Apparatus
-		E.global.nameplates.filters.Luckyone_HOI.triggers.names['199037'] = true -- Primalist Shocktrooper
-		E.global.nameplates.filters.Luckyone_HOI.triggers.names['190368'] = true -- Flamecaller Aymi
-		E.global.nameplates.filters.Luckyone_HOI.triggers.names['190377'] = true -- Primalist Icecaller
-		E.global.nameplates.filters.Luckyone_HOI.triggers.names['190405'] = true -- Infuser Sariya
-		E.global.nameplates.filters.Luckyone_HOI.triggers.priority = 2
-
-		-- Neltharus [NELT]
-		E.global.nameplates.filters.Luckyone_NELT.actions.color.health = true
-		E.global.nameplates.filters.Luckyone_NELT.actions.color.healthColor.g = 0.75
-		E.global.nameplates.filters.Luckyone_NELT.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_NELT.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_NELT.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_NELT.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_NELT.triggers.names['192788'] = true -- Qalashi Thaumaturge
-		E.global.nameplates.filters.Luckyone_NELT.triggers.names['189265'] = true -- Qalashi Bonetender
-		E.global.nameplates.filters.Luckyone_NELT.triggers.names['189235'] = true -- Overseer Lahar
-		E.global.nameplates.filters.Luckyone_NELT.triggers.names['189466'] = true -- Irontorch Commander
-		E.global.nameplates.filters.Luckyone_NELT.triggers.names['193291'] = true -- Apex Blazewing
-		E.global.nameplates.filters.Luckyone_NELT.triggers.priority = 2
-
-		-- Uldaman: Legacy of Tyr [ULD]
-		E.global.nameplates.filters.Luckyone_ULD.actions.color.health = true
-		E.global.nameplates.filters.Luckyone_ULD.actions.color.healthColor.g = 0.75
-		E.global.nameplates.filters.Luckyone_ULD.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_ULD.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_ULD.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_ULD.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_ULD.triggers.names['186420'] = true -- Earthen Weaver
-		E.global.nameplates.filters.Luckyone_ULD.triggers.names['184020'] = true -- Hulking Berserker
-		E.global.nameplates.filters.Luckyone_ULD.triggers.names['184107'] = true -- Runic Protector
-		E.global.nameplates.filters.Luckyone_ULD.triggers.priority = 2
-
-		-- Neltharion's Lair [NL]
-		E.global.nameplates.filters.Luckyone_NL.actions.color.health = true
-		E.global.nameplates.filters.Luckyone_NL.actions.color.healthColor.g = 0.75
-		E.global.nameplates.filters.Luckyone_NL.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_NL.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_NL.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_NL.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_NL.triggers.names['91001'] = true -- Tarspitter Lurker
-		E.global.nameplates.filters.Luckyone_NL.triggers.names['92610'] = true -- Understone Drummer
-		E.global.nameplates.filters.Luckyone_NL.triggers.names['101437'] = true -- Burning Geode
-		E.global.nameplates.filters.Luckyone_NL.triggers.names['102253'] = true -- Understone Demolisher
-		E.global.nameplates.filters.Luckyone_NL.triggers.priority = 2
-
-		-- Freehold [FH]
-		E.global.nameplates.filters.Luckyone_FH.actions.color.health = true
-		E.global.nameplates.filters.Luckyone_FH.actions.color.healthColor.g = 0.75
-		E.global.nameplates.filters.Luckyone_FH.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_FH.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_FH.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_FH.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_FH.triggers.names['129602'] = true -- Irontide Enforcer
-		E.global.nameplates.filters.Luckyone_FH.triggers.names['127111'] = true -- Irontide Oarsman
-		E.global.nameplates.filters.Luckyone_FH.triggers.names['130404'] = true -- Vermin Trapper
-		E.global.nameplates.filters.Luckyone_FH.triggers.names['129600'] = true -- Bilge Rat Brinescale
-		E.global.nameplates.filters.Luckyone_FH.triggers.names['126919'] = true -- Irontide Stormcaller
-		E.global.nameplates.filters.Luckyone_FH.triggers.priority = 2
-
-		-- The Underrot [UNDR]
-		E.global.nameplates.filters.Luckyone_UNDR.actions.color.health = true
-		E.global.nameplates.filters.Luckyone_UNDR.actions.color.healthColor.g = 0.75
-		E.global.nameplates.filters.Luckyone_UNDR.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_UNDR.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_UNDR.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_UNDR.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_UNDR.triggers.names['131492'] = true -- Devout Blood Priest
-		E.global.nameplates.filters.Luckyone_UNDR.triggers.names['130909'] = true -- Fetid Maggot
-		E.global.nameplates.filters.Luckyone_UNDR.triggers.names['134284'] = true -- Fallen Deathspeaker
-		E.global.nameplates.filters.Luckyone_UNDR.triggers.priority = 2
-
-		-- The Vortex Pinnacle [VP]
-		E.global.nameplates.filters.Luckyone_VP.actions.color.health = true
-		E.global.nameplates.filters.Luckyone_VP.actions.color.healthColor.g = 0.75
-		E.global.nameplates.filters.Luckyone_VP.actions.color.healthColor.r = 0
-		E.global.nameplates.filters.Luckyone_VP.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_VP.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_VP.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_VP.triggers.names['45919'] = true -- Young Storm Drake
-		E.global.nameplates.filters.Luckyone_VP.triggers.names['45935'] = true -- Temple Adept
-		E.global.nameplates.filters.Luckyone_VP.triggers.priority = 2
-	end
-
-	-- Disable alpha fading and scaling for ElvUI_Target and ElvUI_NonTarget
-	E.global.nameplates.filters.ElvUI_NonTarget.actions.alpha = -1
-	E.global.nameplates.filters.ElvUI_Target.actions.scale = 1
-
-	-- Set NamePlate CVars
-	L1UI:NameplateCVars(true)
-
-	Private:Print(L["NamePlate StyleFilters and CVars have been set."])
+	-- Season 2
+	if E.global.nameplates.filters.Luckyone_BH then E.global.nameplates.filters.Luckyone_BH = nil end
+	if E.global.nameplates.filters.Luckyone_HOI then E.global.nameplates.filters.Luckyone_HOI = nil end
+	if E.global.nameplates.filters.Luckyone_NELT then E.global.nameplates.filters.Luckyone_NELT = nil end
+	if E.global.nameplates.filters.Luckyone_ULD then E.global.nameplates.filters.Luckyone_ULD = nil end
+	if E.global.nameplates.filters.Luckyone_NL then E.global.nameplates.filters.Luckyone_NL = nil end
+	if E.global.nameplates.filters.Luckyone_FH then E.global.nameplates.filters.Luckyone_FH = nil end
+	if E.global.nameplates.filters.Luckyone_UNDR then E.global.nameplates.filters.Luckyone_UNDR = nil end
+	if E.global.nameplates.filters.Luckyone_VP then E.global.nameplates.filters.Luckyone_VP = nil end
+	if E.global.nameplates.filters.Luckyone_Aberrus then E.global.nameplates.filters.Luckyone_Aberrus = nil end
+	-- Season 3
+	if E.global.nameplates.filters.Luckyone_FALL then E.global.nameplates.filters.Luckyone_FALL = nil end
+	if E.global.nameplates.filters.Luckyone_RISE then E.global.nameplates.filters.Luckyone_RISE = nil end
+	if E.global.nameplates.filters.Luckyone_DHT then E.global.nameplates.filters.Luckyone_DHT = nil end
+	if E.global.nameplates.filters.Luckyone_BRH then E.global.nameplates.filters.Luckyone_BRH = nil end
+	if E.global.nameplates.filters.Luckyone_AD then E.global.nameplates.filters.Luckyone_AD = nil end
+	if E.global.nameplates.filters.Luckyone_WM then E.global.nameplates.filters.Luckyone_WM = nil end
+	if E.global.nameplates.filters.Luckyone_EB then E.global.nameplates.filters.Luckyone_EB = nil end
+	if E.global.nameplates.filters.Luckyone_TOTT then E.global.nameplates.filters.Luckyone_TOTT = nil end
+	if E.global.nameplates.filters.Luckyone_Amirdrassil then E.global.nameplates.filters.Luckyone_Amirdrassil = nil end
 end
 
---[[
+-- Custom StyleFilters for all current Dungeons
+function L1UI:Setup_StyleFilters(skipVars)
+	if not E.private.nameplates.enable then return end
+
+	-- Wipe old filters
+	wipe()
+
 	-- Retail Season 3 Dungeons & Raid
 	if E.Retail then
 		for _, filterName in pairs({ 'Luckyone_Amirdrassil', 'Luckyone_FALL', 'Luckyone_RISE', 'Luckyone_DHT', 'Luckyone_BRH', 'Luckyone_AD', 'Luckyone_WM', 'Luckyone_EB', 'Luckyone_TOTT' }) do
@@ -371,9 +251,7 @@ end
 		E.global.nameplates.filters.Luckyone_Amirdrassil.actions.color.healthColor.g = 0.75
 		E.global.nameplates.filters.Luckyone_Amirdrassil.actions.color.healthColor.r = 0
 		E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.instanceType['raid'] = true
-		E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.names[''] = true -- Name 1
-		E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.names[''] = true -- Name 2
-		E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.names[''] = true -- Name 3
+		E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.names['208461'] = true -- Scorching Brambles
 		E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.priority = 2
 
 		-- Dawn of the Infinites: Galakrond's Fall [FALL]
@@ -383,9 +261,10 @@ end
 		E.global.nameplates.filters.Luckyone_FALL.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_FALL.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_FALL.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_FALL.triggers.names[''] = true -- Name 1
-		E.global.nameplates.filters.Luckyone_FALL.triggers.names[''] = true -- Name 2
-		E.global.nameplates.filters.Luckyone_FALL.triggers.names[''] = true -- Name 3
+		E.global.nameplates.filters.Luckyone_FALL.triggers.names['205384'] = true -- Infinite Chronoweaver
+		E.global.nameplates.filters.Luckyone_FALL.triggers.names['206140'] = true -- Coalesced Time
+		E.global.nameplates.filters.Luckyone_FALL.triggers.names['205804'] = true -- Risen Dragon
+		E.global.nameplates.filters.Luckyone_FALL.triggers.names['205691'] = true -- Iridikron's Creation
 		E.global.nameplates.filters.Luckyone_FALL.triggers.priority = 2
 
 		-- Dawn of the Infinites: Murozond's Rise [RISE]
@@ -395,9 +274,14 @@ end
 		E.global.nameplates.filters.Luckyone_RISE.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_RISE.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_RISE.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_RISE.triggers.names[''] = true -- Name 1
-		E.global.nameplates.filters.Luckyone_RISE.triggers.names[''] = true -- Name 2
-		E.global.nameplates.filters.Luckyone_RISE.triggers.names[''] = true -- Name 3
+		E.global.nameplates.filters.Luckyone_RISE.triggers.names['205158'] = true -- Spurlok, Timesworn Sentinel
+		E.global.nameplates.filters.Luckyone_RISE.triggers.names['205152'] = true -- Lerai, Timesworn Maiden
+		E.global.nameplates.filters.Luckyone_RISE.triggers.names['206230'] = true -- Infinite Diversionist
+		E.global.nameplates.filters.Luckyone_RISE.triggers.names['208698'] = true -- Infinite Riftmage
+		E.global.nameplates.filters.Luckyone_RISE.triggers.names['205363'] = true -- Time-Lost Waveshaper
+		E.global.nameplates.filters.Luckyone_RISE.triggers.names['208193'] = true -- Paladin of the Silver Hand
+		E.global.nameplates.filters.Luckyone_RISE.triggers.names['208440'] = true -- Infinite Slayer
+		E.global.nameplates.filters.Luckyone_RISE.triggers.names['205212'] = true -- Infinite Keeper
 		E.global.nameplates.filters.Luckyone_RISE.triggers.priority = 2
 
 		-- Darkheart Thicket [DHT]
@@ -407,9 +291,10 @@ end
 		E.global.nameplates.filters.Luckyone_DHT.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_DHT.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_DHT.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_DHT.triggers.names[''] = true -- Name 1
-		E.global.nameplates.filters.Luckyone_DHT.triggers.names[''] = true -- Name 2
-		E.global.nameplates.filters.Luckyone_DHT.triggers.names[''] = true -- Name 3
+		E.global.nameplates.filters.Luckyone_DHT.triggers.names['95771'] = true -- Dreadsoul Ruiner
+		E.global.nameplates.filters.Luckyone_DHT.triggers.names['99359'] = true -- Rotheart Keeper
+		E.global.nameplates.filters.Luckyone_DHT.triggers.names['100531'] = true -- Bloodtainted Fury
+		E.global.nameplates.filters.Luckyone_DHT.triggers.names['99365'] = true -- Taintheart Stalker
 		E.global.nameplates.filters.Luckyone_DHT.triggers.priority = 2
 
 		-- Black Rook Hold [BRH]
@@ -419,9 +304,13 @@ end
 		E.global.nameplates.filters.Luckyone_BRH.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_BRH.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_BRH.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_BRH.triggers.names[''] = true -- Name 1
-		E.global.nameplates.filters.Luckyone_BRH.triggers.names[''] = true -- Name 2
-		E.global.nameplates.filters.Luckyone_BRH.triggers.names[''] = true -- Name 3
+		E.global.nameplates.filters.Luckyone_BRH.triggers.names['98362'] = true -- Troubled Soul
+		E.global.nameplates.filters.Luckyone_BRH.triggers.names['98538'] = true -- Lady Velandras Ravencrest
+		E.global.nameplates.filters.Luckyone_BRH.triggers.names['98521'] = true -- Lord Etheldrin Ravencrest
+		E.global.nameplates.filters.Luckyone_BRH.triggers.names['98280'] = true -- Risen Arcanist
+		E.global.nameplates.filters.Luckyone_BRH.triggers.names['101549'] = true -- Arcane Minion
+		E.global.nameplates.filters.Luckyone_BRH.triggers.names['98810'] = true -- Wrathguard Bladelord
+		E.global.nameplates.filters.Luckyone_BRH.triggers.names['102788'] = true -- Felspite Dominator
 		E.global.nameplates.filters.Luckyone_BRH.triggers.priority = 2
 
 		-- Waycrest Manor [WM]
@@ -431,9 +320,11 @@ end
 		E.global.nameplates.filters.Luckyone_WM.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_WM.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_WM.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_WM.triggers.names[''] = true -- Name 1
-		E.global.nameplates.filters.Luckyone_WM.triggers.names[''] = true -- Name 2
-		E.global.nameplates.filters.Luckyone_WM.triggers.names[''] = true -- Name 3
+		E.global.nameplates.filters.Luckyone_WM.triggers.names['131677'] = true -- Heartsbane Runeweaver
+		E.global.nameplates.filters.Luckyone_WM.triggers.names['131586'] = true -- Banquet Steward
+		E.global.nameplates.filters.Luckyone_WM.triggers.names['131858'] = true -- Thornguard
+		E.global.nameplates.filters.Luckyone_WM.triggers.names['131685'] = true -- Runic Disciple
+		E.global.nameplates.filters.Luckyone_WM.triggers.names['131812'] = true -- Heartsbane Soulcharmer
 		E.global.nameplates.filters.Luckyone_WM.triggers.priority = 2
 
 		-- Atal'Dazar [AD]
@@ -443,9 +334,9 @@ end
 		E.global.nameplates.filters.Luckyone_AD.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_AD.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_AD.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_AD.triggers.names[''] = true -- Name 1
-		E.global.nameplates.filters.Luckyone_AD.triggers.names[''] = true -- Name 2
-		E.global.nameplates.filters.Luckyone_AD.triggers.names[''] = true -- Name 3
+		E.global.nameplates.filters.Luckyone_AD.triggers.names['127315'] = true -- Reanimation Totem
+		E.global.nameplates.filters.Luckyone_AD.triggers.names['122973'] = true -- Dazar'ai Confessor
+		E.global.nameplates.filters.Luckyone_AD.triggers.names['128434'] = true -- Feasting Skyscreamer
 		E.global.nameplates.filters.Luckyone_AD.triggers.priority = 2
 
 		-- Everbloom [EB]
@@ -455,9 +346,10 @@ end
 		E.global.nameplates.filters.Luckyone_EB.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_EB.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_EB.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_EB.triggers.names[''] = true -- Name 1
-		E.global.nameplates.filters.Luckyone_EB.triggers.names[''] = true -- Name 2
-		E.global.nameplates.filters.Luckyone_EB.triggers.names[''] = true -- Name 3
+		E.global.nameplates.filters.Luckyone_EB.triggers.names['81820'] = true -- Everbloom Mender
+		E.global.nameplates.filters.Luckyone_EB.triggers.names['81984'] = true -- Gnarlroot
+		E.global.nameplates.filters.Luckyone_EB.triggers.names['84767'] = true -- Twisted Abomination
+		E.global.nameplates.filters.Luckyone_EB.triggers.names['84957'] = true -- Putrid Pyromancer
 		E.global.nameplates.filters.Luckyone_EB.triggers.priority = 2
 
 		-- Throne of the Tides [TOTT]
@@ -467,9 +359,22 @@ end
 		E.global.nameplates.filters.Luckyone_TOTT.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_TOTT.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_TOTT.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_TOTT.triggers.names[''] = true -- Name 1
-		E.global.nameplates.filters.Luckyone_TOTT.triggers.names[''] = true -- Name 2
-		E.global.nameplates.filters.Luckyone_TOTT.triggers.names[''] = true -- Name 3
+		E.global.nameplates.filters.Luckyone_TOTT.triggers.names['41096'] = true -- Naz'jar Oracle
+		E.global.nameplates.filters.Luckyone_TOTT.triggers.names['214117'] = true -- Stormflurry Totem
+		E.global.nameplates.filters.Luckyone_TOTT.triggers.names['44404'] = true -- Naz'jar Frost Witch
+		E.global.nameplates.filters.Luckyone_TOTT.triggers.names['212775'] = true -- Faceless Seer
+		E.global.nameplates.filters.Luckyone_TOTT.triggers.names['40925'] = true -- Tainted Sentry
 		E.global.nameplates.filters.Luckyone_TOTT.triggers.priority = 2
 	end
-]]
+
+	-- Disable alpha fading and scaling for ElvUI_Target and ElvUI_NonTarget
+	E.global.nameplates.filters.ElvUI_NonTarget.actions.alpha = -1
+	E.global.nameplates.filters.ElvUI_Target.actions.scale = 1
+
+	-- Set NamePlate CVars
+	if not skipVars then
+		L1UI:NameplateCVars(true)
+	end
+
+	Private:Print(L["NamePlate StyleFilters and CVars have been set."])
+end

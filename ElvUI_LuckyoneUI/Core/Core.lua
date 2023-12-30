@@ -71,6 +71,20 @@ E.PopupDialogs.L1UI_EDITBOX = {
 	hideOnEscape = 1,
 }
 
+-- DBM profile information
+local function dbm_popup_seen()
+	E.global.L1UI.dbm_popup_seen = true
+end
+
+E.PopupDialogs.L1UI_DBM_INFO = {
+	text = Private.Name ..'\n\n'.. 'Heads up! The profile for DBM will be removed soon.\nIt is highly recommended to use BigWigs instead.',
+	button1 = ACCEPT,
+	button2 = CANCEL,
+	OnAccept = dbm_popup_seen,
+	whileDead = 1,
+	hideOnEscape = false,
+}
+
 -- Version check
 function L1UI:VersionCheck()
 	if E.version < Private.RequiredElvUI then
@@ -289,6 +303,8 @@ function L1UI:Setup_Layout_Dragonflight(layout)
 		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version)
 	elseif layout == 'healing' then
 		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version)
+	elseif layout == 'support' then
+		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Support' or 'Luckyone Support ' .. Private.Version)
 	end
 
 	-- E.global & Custom DataText
@@ -302,6 +318,8 @@ function L1UI:Setup_Layout_Dragonflight(layout)
 		L1UI:Layout_Dragonflight('main')
 	elseif layout == 'healing' then
 		L1UI:Layout_Dragonflight('healing')
+	elseif layout == 'support' then
+		L1UI:Layout_Dragonflight('support')
 	end
 
 	-- Push the update
@@ -415,6 +433,10 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 
 	if initLogin or isReload then
 		L1UI:VersionCheck()
+	end
+
+	if E:IsAddOnEnabled('DBM-Core') and not E.global.L1UI.dbm_popup_seen then -- DBM profile information
+		E:StaticPopup_Show('L1UI_DBM_INFO')
 	end
 
 	L1UI:DisabledFrames()

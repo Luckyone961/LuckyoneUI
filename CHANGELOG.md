@@ -1,3 +1,59 @@
+### Version 2.50 [In Development]
+**Misc:**  
+Updated README  
+___
+### Version 2.49 [23-12-2023]
+**All WoW Versions:**  
+Added profile information popup for DBM users  
+Fixed minor text issue in Themes install step  
+Minor update for BigWigs (Visible Bar Limit 4 > 5)  
+**Retail:**  
+Added Amirdrassil ElvUI NamePlate StyleFilter (Larodar Brambles)  
+Enabled role icons in support layout by default (Party+Raid)  
+Minor update for Details (Enabled Aug Evoker prediction by default)  
+**Wrath Classic:**  
+Enabled role icons in support layout by default (Party+Raid)  
+___
+### Version 2.48 [11-12-2023]
+**All WoW Versions:**  
+Added my support layout to the installer (Bottom/Center raidframes, no actionbars)  
+Updated BigWigs profile (Set visible bar limit to max 4)  
+Updated General db (Guildbank font, outline, size)  
+Updated Minimap db (Difficulty scale, position)  
+Updated ptBR localization (Credits: Eltreum)  
+Updated UnitFrames db (Enabled mouseover glow by default)  
+___
+### Version 2.47 [28-11-2023]
+**All WoW Versions:**  
+Changed Raid font size to 11 (was 12)  
+Changed Raid2 (30man) height to 32 (was 38)  
+**Retail:**  
+Fixed Shadow&Light installer error (gossip nil value)  
+Updated ElvUI NamePlate StyleFilters based on +24 keys  
+**Classic:**  
+Updated TOC for 1.15.0  
+**Misc:**  
+Druid WA updated on wago  
+Evoker WA updated on wago  
+Plater updated on wago (to match ElvUI StyleFilters)  
+___
+### Version 2.46 [17-11-2023]
+**All WoW Versions:**  
+ElvUI 13.52+ compatibility  
+**Retail:**  
+Added initial ElvUI NamePlate StyleFilters for Season 3 Dungeons  
+**Misc:**  
+Druid WA updated on wago  
+Evoker WA updated on wago  
+Plater updated on wago  
+___
+### Version 2.45 [08-11-2023]
+**All WoW Versions:**  
+ElvUI 13.47+ compatibility  
+**Retail:**  
+Removed StyleFilters for Season 2 Dungeons  
+Updated TOC for 10.2  
+___
 ### Version 2.44 [26-10-2023]
 **All WoW Versions:**  
 ElvUI 13.46+ compatibility  

@@ -71,7 +71,7 @@ function L1UI:Setup_BigWigs(layout)
 		['outline'] = 'OUTLINE',
 		['spacing'] = 3,
 		['texture'] = 'Minimalist',
-		['visibleBarLimit'] = 8,
+		['visibleBarLimit'] = 5,
 		['visibleBarLimitEmph'] = 5,
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing] = {
@@ -98,7 +98,7 @@ function L1UI:Setup_BigWigs(layout)
 		['outline'] = 'OUTLINE',
 		['spacing'] = 3,
 		['texture'] = 'Minimalist',
-		['visibleBarLimit'] = 8,
+		['visibleBarLimit'] = 5,
 		['visibleBarLimitEmph'] = 5,
 	}
 
