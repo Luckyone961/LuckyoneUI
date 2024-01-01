@@ -1,5 +1,6 @@
 ### Version 2.50 [In Development]
 **Misc:**  
+Updated LICENSE  
 Updated README  
 ___
 ### Version 2.49 [23-12-2023]
