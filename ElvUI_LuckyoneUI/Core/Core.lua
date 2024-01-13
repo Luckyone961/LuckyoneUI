@@ -71,20 +71,6 @@ E.PopupDialogs.L1UI_EDITBOX = {
 	hideOnEscape = 1,
 }
 
--- DBM profile information
-local function dbm_popup_seen()
-	E.global.L1UI.dbm_popup_seen = true
-end
-
-E.PopupDialogs.L1UI_DBM_INFO = {
-	text = Private.Name ..'\n\n'.. 'Heads up! The profile for DBM will be removed soon.\nIt is highly recommended to use BigWigs instead.',
-	button1 = ACCEPT,
-	button2 = CANCEL,
-	OnAccept = dbm_popup_seen,
-	whileDead = 1,
-	hideOnEscape = false,
-}
-
 -- Version check
 function L1UI:VersionCheck()
 	if E.version < Private.RequiredElvUI then
@@ -433,10 +419,6 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 
 	if initLogin or isReload then
 		L1UI:VersionCheck()
-	end
-
-	if E:IsAddOnEnabled('DBM-Core') and not E.global.L1UI.dbm_popup_seen then -- DBM profile information
-		E:StaticPopup_Show('L1UI_DBM_INFO')
 	end
 
 	L1UI:DisabledFrames()

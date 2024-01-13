@@ -1,5 +1,8 @@
 ### Version 2.50 [In Development]
+**All WoW Versions:**  
+Removed DBM profiles and support  
 **Misc:**  
+Updated LICENSE  
 Updated README  
 ___
 ### Version 2.49 [23-12-2023]
