@@ -196,59 +196,37 @@ function L1UI:Setup_NamePlates()
 end
 
 local function Cleanup()
-	local keys = {
+	local toDelete = {
 		-- General
 		'ElvUI_Explosives',
 		-- Season 1
-		'Luckyone_AA',
-		'Luckyone_AV',
-		'Luckyone_COS',
-		'Luckyone_HOV',
-		'Luckyone_NO',
-		'Luckyone_RLP',
-		'Luckyone_SBG',
-		'Luckyone_TJS',
-		'Luckyone_TOJS',
-		'Luckyone_VOTI',
+		'Luckyone_AA', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_NO', 'Luckyone_RLP', 'Luckyone_SBG', 'Luckyone_TJS', 'Luckyone_TOJS', 'Luckyone_VOTI',
 		-- Season 2
-		'Luckyone_BH',
-		'Luckyone_HOI',
-		'Luckyone_NELT',
-		'Luckyone_ULD',
-		'Luckyone_NL',
-		'Luckyone_FH',
-		'Luckyone_UNDR',
-		'Luckyone_VP',
-		'Luckyone_Aberrus',
+		'Luckyone_BH', 'Luckyone_HOI', 'Luckyone_NELT', 'Luckyone_ULD', 'Luckyone_NL', 'Luckyone_FH', 'Luckyone_UNDR', 'Luckyone_VP', 'Luckyone_Aberrus',
 		-- Season 3
-		'Luckyone_FALL',
-		'Luckyone_RISE',
-		'Luckyone_DHT',
-		'Luckyone_BRH',
-		'Luckyone_AD',
-		'Luckyone_WM',
-		'Luckyone_EB',
-		'Luckyone_TOTT',
-		'Luckyone_Amirdrassil'
+		'Luckyone_FALL', 'Luckyone_RISE', 'Luckyone_DHT', 'Luckyone_BRH', 'Luckyone_AD', 'Luckyone_WM', 'Luckyone_EB', 'Luckyone_TOTT', 'Luckyone_Amirdrassil'
 	}
 
-	for _, v in pairs(keys) do
+	for _, v in pairs(toDelete) do
 		if E.global.nameplates.filters[v] then
 			E.global.nameplates.filters[v] = nil
 		end
 	end
 end
 
--- Custom StyleFilters for all current Dungeons
+-- Custom StyleFilters
 function L1UI:Setup_StyleFilters(skipVars)
 	if not E.private.nameplates.enable then return end
 
 	-- Wipe old filters
 	Cleanup()
 
-	-- Retail Season 3 Dungeons & Raid
 	if E.Retail then
-		for _, filterName in pairs({ 'Luckyone_Amirdrassil', 'Luckyone_FALL', 'Luckyone_RISE', 'Luckyone_DHT', 'Luckyone_BRH', 'Luckyone_AD', 'Luckyone_WM', 'Luckyone_EB', 'Luckyone_TOTT' }) do
+
+		-- Season 3 Dungeons & Raid
+		local filters = {'Luckyone_Amirdrassil', 'Luckyone_FALL', 'Luckyone_RISE', 'Luckyone_DHT', 'Luckyone_BRH', 'Luckyone_AD', 'Luckyone_WM', 'Luckyone_EB', 'Luckyone_TOTT'}
+
+		for _, filterName in pairs(filters) do
 			E.global.nameplates.filters[filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
 			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
