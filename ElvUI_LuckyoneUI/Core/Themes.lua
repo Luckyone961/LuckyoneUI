@@ -24,7 +24,7 @@ function L1UI:Setup_Theme(theme)
 		E.db.unitframe.units.raid1.name.text_format = '[classcolor][name:veryshort]'
 		E.db.unitframe.units.raid2.name.text_format = '[classcolor][name:veryshort]'
 		E.db.unitframe.units.raid3.name.text_format = '[classcolor][name:veryshort]'
-		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = '[classcolor][name:last]'
+		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = E.Retail and '[classcolor][name:last]' or '[difficultycolor][level< - ]|r[classcolor][name:last]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[classcolor][name:last]'
 
 		if not E.Retail then
@@ -48,7 +48,7 @@ function L1UI:Setup_Theme(theme)
 		E.db.unitframe.units.raid1.name.text_format = '[name:veryshort]'
 		E.db.unitframe.units.raid2.name.text_format = '[name:veryshort]'
 		E.db.unitframe.units.raid3.name.text_format = '[name:veryshort]'
-		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = '[name:last]'
+		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = E.Retail and '[name:last]' or '[difficultycolor][level< - ]|r[name:last]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[name:last]'
 
 		if not E.Retail then

@@ -1,9 +1,11 @@
 ### Version 2.50 [In Development]
 **All WoW Versions:**  
-Added skin for IRememberYou AddOn  
+Added skin for "I Remember You" AddOn  
 Removed DBM profiles and support  
 **Retail:**  
 Updated TOC for 10.2.5  
+**Classic:**  
+Added level to Target and NamePlates by default  
 **Misc:**  
 Updated LICENSE  
 Updated README  

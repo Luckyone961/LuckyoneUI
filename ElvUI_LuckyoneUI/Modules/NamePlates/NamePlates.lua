@@ -91,7 +91,7 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_NPC.health.text.yOffset = -20
 	E.db.nameplates.units.ENEMY_NPC.level.enable = false
 	E.db.nameplates.units.ENEMY_NPC.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.name.format = '[name:last]'
+	E.db.nameplates.units.ENEMY_NPC.name.format = E.Retail and '[name:last]' or '[difficultycolor][level< - ]|r[name:last]'
 	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -20
 	E.db.nameplates.units.ENEMY_NPC.pvpindicator.size = 35
@@ -156,7 +156,7 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_PLAYER.level.format = '[difficultycolor][level][shortclassification]'
 	E.db.nameplates.units.ENEMY_PLAYER.markHealers = false
 	E.db.nameplates.units.ENEMY_PLAYER.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.name.format = '[name:last]'
+	E.db.nameplates.units.ENEMY_PLAYER.name.format = E.Retail and '[name:last]' or '[difficultycolor][level< - ]|r[name:last]'
 	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -20
 	E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
