@@ -1,6 +1,7 @@
 ### Version 2.50 [In Development]
 **All WoW Versions:**  
 Added skin for "I Remember You" AddOn  
+ElvUI 13.55+ compatibility  
 Removed DBM profiles and support  
 **Retail:**  
 Updated TOC for 10.2.5  
