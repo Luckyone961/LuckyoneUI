@@ -6,7 +6,7 @@
 ## Author: Luckyone
 ## Version: 2.49
 
-## Interface: 100200
+## Interface: 100205
 ## X-Required-ElvUI: 13.54
 
 ## AddonCompartmentFunc: L1UI_OnAddonCompartmentClick

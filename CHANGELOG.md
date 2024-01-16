@@ -2,6 +2,8 @@
 **All WoW Versions:**  
 Added skin for IRememberYou AddOn  
 Removed DBM profiles and support  
+**Retail:**  
+Updated TOC for 10.2.5  
 **Misc:**  
 Updated LICENSE  
 Updated README  
