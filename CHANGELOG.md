@@ -1,4 +1,4 @@
-### Version 2.50 [In Development]
+### Version 2.50 [17-01-2024]
 **All WoW Versions:**  
 Added skin for "I Remember You" AddOn  
 ElvUI 13.55+ compatibility  
