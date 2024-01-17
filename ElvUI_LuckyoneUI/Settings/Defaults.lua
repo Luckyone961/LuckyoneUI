@@ -3,7 +3,6 @@ local E, L, V, P, G = unpack(ElvUI)
 
 -- Defaults: E.global.L1UI
 G.L1UI = {
-	dbm_popup_seen = false,
 	dev = false,
 	install_version = nil,
 }
@@ -20,6 +19,7 @@ V.L1UI = {
 	},
 	skins = {
 		BugSack = false,
+		IRememberYou = false,
 		TalentLoadoutsEx = false,
 	},
 }

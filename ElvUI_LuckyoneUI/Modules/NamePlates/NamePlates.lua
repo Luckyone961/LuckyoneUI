@@ -91,7 +91,7 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_NPC.health.text.yOffset = -20
 	E.db.nameplates.units.ENEMY_NPC.level.enable = false
 	E.db.nameplates.units.ENEMY_NPC.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.name.format = '[name:last]'
+	E.db.nameplates.units.ENEMY_NPC.name.format = E.Retail and '[name:last]' or '[difficultycolor][level< - ]|r[name:last]'
 	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -20
 	E.db.nameplates.units.ENEMY_NPC.pvpindicator.size = 35
@@ -156,7 +156,7 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_PLAYER.level.format = '[difficultycolor][level][shortclassification]'
 	E.db.nameplates.units.ENEMY_PLAYER.markHealers = false
 	E.db.nameplates.units.ENEMY_PLAYER.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.name.format = '[name:last]'
+	E.db.nameplates.units.ENEMY_PLAYER.name.format = E.Retail and '[name:last]' or '[difficultycolor][level< - ]|r[name:last]'
 	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -20
 	E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
@@ -195,52 +195,38 @@ function L1UI:Setup_NamePlates()
 	end
 end
 
-local function wipe()
-	-- General
-	if E.global.nameplates.filters.ElvUI_Explosives then E.global.nameplates.filters.ElvUI_Explosives = nil end
-	-- Season 1
-	if E.global.nameplates.filters.Luckyone_AA then E.global.nameplates.filters.Luckyone_AA = nil end
-	if E.global.nameplates.filters.Luckyone_AV then E.global.nameplates.filters.Luckyone_AV = nil end
-	if E.global.nameplates.filters.Luckyone_COS then E.global.nameplates.filters.Luckyone_COS = nil end
-	if E.global.nameplates.filters.Luckyone_HOV then E.global.nameplates.filters.Luckyone_HOV = nil end
-	if E.global.nameplates.filters.Luckyone_NO then E.global.nameplates.filters.Luckyone_NO = nil end
-	if E.global.nameplates.filters.Luckyone_RLP then E.global.nameplates.filters.Luckyone_RLP = nil end
-	if E.global.nameplates.filters.Luckyone_SBG then E.global.nameplates.filters.Luckyone_SBG = nil end
-	if E.global.nameplates.filters.Luckyone_TJS then E.global.nameplates.filters.Luckyone_TJS = nil end
-	if E.global.nameplates.filters.Luckyone_TOJS then E.global.nameplates.filters.Luckyone_TOJS = nil end
-	if E.global.nameplates.filters.Luckyone_VOTI then E.global.nameplates.filters.Luckyone_VOTI = nil end
-	-- Season 2
-	if E.global.nameplates.filters.Luckyone_BH then E.global.nameplates.filters.Luckyone_BH = nil end
-	if E.global.nameplates.filters.Luckyone_HOI then E.global.nameplates.filters.Luckyone_HOI = nil end
-	if E.global.nameplates.filters.Luckyone_NELT then E.global.nameplates.filters.Luckyone_NELT = nil end
-	if E.global.nameplates.filters.Luckyone_ULD then E.global.nameplates.filters.Luckyone_ULD = nil end
-	if E.global.nameplates.filters.Luckyone_NL then E.global.nameplates.filters.Luckyone_NL = nil end
-	if E.global.nameplates.filters.Luckyone_FH then E.global.nameplates.filters.Luckyone_FH = nil end
-	if E.global.nameplates.filters.Luckyone_UNDR then E.global.nameplates.filters.Luckyone_UNDR = nil end
-	if E.global.nameplates.filters.Luckyone_VP then E.global.nameplates.filters.Luckyone_VP = nil end
-	if E.global.nameplates.filters.Luckyone_Aberrus then E.global.nameplates.filters.Luckyone_Aberrus = nil end
-	-- Season 3
-	if E.global.nameplates.filters.Luckyone_FALL then E.global.nameplates.filters.Luckyone_FALL = nil end
-	if E.global.nameplates.filters.Luckyone_RISE then E.global.nameplates.filters.Luckyone_RISE = nil end
-	if E.global.nameplates.filters.Luckyone_DHT then E.global.nameplates.filters.Luckyone_DHT = nil end
-	if E.global.nameplates.filters.Luckyone_BRH then E.global.nameplates.filters.Luckyone_BRH = nil end
-	if E.global.nameplates.filters.Luckyone_AD then E.global.nameplates.filters.Luckyone_AD = nil end
-	if E.global.nameplates.filters.Luckyone_WM then E.global.nameplates.filters.Luckyone_WM = nil end
-	if E.global.nameplates.filters.Luckyone_EB then E.global.nameplates.filters.Luckyone_EB = nil end
-	if E.global.nameplates.filters.Luckyone_TOTT then E.global.nameplates.filters.Luckyone_TOTT = nil end
-	if E.global.nameplates.filters.Luckyone_Amirdrassil then E.global.nameplates.filters.Luckyone_Amirdrassil = nil end
+local function Cleanup()
+	local toDelete = {
+		-- General
+		'ElvUI_Explosives',
+		-- Season 1
+		'Luckyone_AA', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_NO', 'Luckyone_RLP', 'Luckyone_SBG', 'Luckyone_TJS', 'Luckyone_TOJS', 'Luckyone_VOTI',
+		-- Season 2
+		'Luckyone_BH', 'Luckyone_HOI', 'Luckyone_NELT', 'Luckyone_ULD', 'Luckyone_NL', 'Luckyone_FH', 'Luckyone_UNDR', 'Luckyone_VP', 'Luckyone_Aberrus',
+		-- Season 3
+		'Luckyone_FALL', 'Luckyone_RISE', 'Luckyone_DHT', 'Luckyone_BRH', 'Luckyone_AD', 'Luckyone_WM', 'Luckyone_EB', 'Luckyone_TOTT', 'Luckyone_Amirdrassil'
+	}
+
+	for _, v in pairs(toDelete) do
+		if E.global.nameplates.filters[v] then
+			E.global.nameplates.filters[v] = nil
+		end
+	end
 end
 
--- Custom StyleFilters for all current Dungeons
+-- Custom StyleFilters
 function L1UI:Setup_StyleFilters(skipVars)
 	if not E.private.nameplates.enable then return end
 
 	-- Wipe old filters
-	wipe()
+	Cleanup()
 
-	-- Retail Season 3 Dungeons & Raid
 	if E.Retail then
-		for _, filterName in pairs({ 'Luckyone_Amirdrassil', 'Luckyone_FALL', 'Luckyone_RISE', 'Luckyone_DHT', 'Luckyone_BRH', 'Luckyone_AD', 'Luckyone_WM', 'Luckyone_EB', 'Luckyone_TOTT' }) do
+
+		-- Season 3 Dungeons & Raid
+		local filters = {'Luckyone_Amirdrassil', 'Luckyone_FALL', 'Luckyone_RISE', 'Luckyone_DHT', 'Luckyone_BRH', 'Luckyone_AD', 'Luckyone_WM', 'Luckyone_EB', 'Luckyone_TOTT'}
+
+		for _, filterName in pairs(filters) do
 			E.global.nameplates.filters[filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
 			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }

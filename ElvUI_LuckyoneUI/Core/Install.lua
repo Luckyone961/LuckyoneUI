@@ -104,7 +104,7 @@ L1UI.InstallerData = {
 		end,
 		[8] = function()
 			PluginInstallFrame.SubTitle:SetText(L["BossMods"])
-			PluginInstallFrame.Desc1:SetText(L["Choose between DBM and BigWigs."])
+			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() L1UI:Setup_BigWigs('main') end)
@@ -112,12 +112,6 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:Show()
 			PluginInstallFrame.Option2:SetScript('OnClick', function() L1UI:Setup_BigWigs('healing') end)
 			PluginInstallFrame.Option2:SetText(L["BigWigs Healing"])
-			PluginInstallFrame.Option3:Show()
-			PluginInstallFrame.Option3:SetScript('OnClick', function() L1UI:Setup_DBM('main') end)
-			PluginInstallFrame.Option3:SetText('DBM')
-			PluginInstallFrame.Option4:Show()
-			PluginInstallFrame.Option4:SetScript('OnClick', function() L1UI:Setup_DBM('healing') end)
-			PluginInstallFrame.Option4:SetText(L["DBM Healing"])
 		end,
 		[9] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Details Profile"])

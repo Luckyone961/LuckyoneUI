@@ -1,4 +1,5 @@
 <Ui xmlns='http://www.blizzard.com/wow/ui/'>
 	<Script file='BugSack.lua'/>
+	<Script file='IRememberYou.lua'/>
 	<Script file='TalentsLoadoutsEx.lua'/>
 </Ui>

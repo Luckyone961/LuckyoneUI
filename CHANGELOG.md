@@ -1,3 +1,16 @@
+### Version 2.50 [17-01-2024]
+**All WoW Versions:**  
+Added skin for "I Remember You" AddOn  
+ElvUI 13.55+ compatibility  
+Removed DBM profiles and support  
+**Retail:**  
+Updated TOC for 10.2.5  
+**Classic:**  
+Added level to Target and NamePlates by default  
+**Misc:**  
+Updated LICENSE  
+Updated README  
+___
 ### Version 2.49 [23-12-2023]
 **All WoW Versions:**  
 Added profile information popup for DBM users  
