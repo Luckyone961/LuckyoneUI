@@ -13,11 +13,8 @@ function L1UI:Skin_IRememberYou()
 	local MyListAddonScrollFrameScrollBar = _G.MyListAddonScrollFrameScrollBar
 	S:HandleScrollBar(MyListAddonScrollFrameScrollBar)
 
-	local SliderAddonSlider = _G.SliderAddonSlider
-	SliderAddonSlider:StripTextures()
-
 	local sliderTextureFrame = _G.sliderTextureFrame
-	sliderTextureFrame:StripTextures()
+	sliderTextureFrame:SetTemplate()
 
 	local toolsEditBox = _G.toolsEditBox
 	S:HandleEditBox(toolsEditBox)
