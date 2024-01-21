@@ -1,5 +1,6 @@
 ### Version 2.51 [In Development]
 **All WoW Versions:**  
+Fixed Chat installer step  
 Updated skin for "I Remember You" AddOn  
 ___
 ### Version 2.50 [17-01-2024]

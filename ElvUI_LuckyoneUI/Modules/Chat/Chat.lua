@@ -3,13 +3,15 @@ local E, L, V, P, G = unpack(ElvUI)
 local CH = E:GetModule('Chat')
 
 local _G = _G
-local ipairs = ipairs
+local ipairs, next = ipairs, next
 
 local ChatFrame_AddChannel = ChatFrame_AddChannel
 local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
 local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
 local ChatFrame_RemoveMessageGroup = ChatFrame_RemoveMessageGroup
+local FCF_DockFrame = FCF_DockFrame
 local FCF_OpenNewWindow = FCF_OpenNewWindow
+local FCF_ResetChatWindow = FCF_ResetChatWindow
 local FCF_ResetChatWindows = FCF_ResetChatWindows
 local FCF_SavePositionAndDimensions = FCF_SavePositionAndDimensions
 local FCF_SetChatWindowFontSize = FCF_SetChatWindowFontSize
@@ -22,8 +24,13 @@ local VoiceTranscriptionFrame_UpdateEditBox = VoiceTranscriptionFrame_UpdateEdit
 local VoiceTranscriptionFrame_UpdateVisibility = VoiceTranscriptionFrame_UpdateVisibility
 local VoiceTranscriptionFrame_UpdateVoiceTab = VoiceTranscriptionFrame_UpdateVoiceTab
 
+local VOICE = VOICE
+
 -- Chat setup for tabs, windows and channels
 function L1UI:Setup_Chat()
+	-- General
+	local chats = _G.CHAT_FRAMES
+
 	-- CVars Chat
 	SetCVar('chatClassColorOverride', 0)
 	SetCVar('chatMouseScroll', 1)
@@ -39,17 +46,21 @@ function L1UI:Setup_Chat()
 	-- Reset chat to Blizzard defaults
 	FCF_ResetChatWindows()
 
+	-- Force initialize text-to-speech (it doesn't get shown)
+	local voiceChat = _G[chats[3]]
+	FCF_ResetChatWindow(voiceChat, VOICE)
+	FCF_DockFrame(voiceChat, 3)
+
 	-- Open 3 new tabs
 	FCF_OpenNewWindow()
 	FCF_OpenNewWindow()
 	FCF_OpenNewWindow()
 
-	for _, name in ipairs(_G.CHAT_FRAMES) do
+	for id, name in next, chats do
 		local frame = _G[name]
-		local id = frame:GetID()
 
 		if E.private.chat.enable then
-			CH:FCFTab_UpdateColors(CH:GetTab(_G[name]))
+			CH:FCFTab_UpdateColors(CH:GetTab(frame))
 		end
 
 		-- Font size 10 for all tabs
