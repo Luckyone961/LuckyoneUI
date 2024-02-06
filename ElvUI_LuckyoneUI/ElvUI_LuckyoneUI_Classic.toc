@@ -6,7 +6,7 @@
 ## Author: Luckyone
 ## Version: 2.51
 
-## Interface: 11500
+## Interface: 11501
 ## X-Required-ElvUI: 13.55
 
 Load.xml
