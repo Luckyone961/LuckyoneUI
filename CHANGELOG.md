@@ -1,5 +1,6 @@
 ### Version 2.52 [In Development]
 **Classic:**  
+Updated Auras module to include custom Whitelist  
 Updated TOC for 1.15.1  
 ___
 ### Version 2.51 [30-01-2024]
