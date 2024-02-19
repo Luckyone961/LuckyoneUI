@@ -1,3 +1,8 @@
+### Version 2.52 [19-02-2024]
+**Classic:**  
+Updated Auras module to include custom Whitelist  
+Updated TOC for 1.15.1  
+___
 ### Version 2.51 [30-01-2024]
 **All WoW Versions:**  
 Fixed Chat installer step  
