@@ -1,3 +1,8 @@
+### Version 2.53 [In Development]
+**All WoW Versions:**  
+ElvUI 13.59+ compatibility  
+Use ElvUI defaults for Minimap difficulty db  
+___
 ### Version 2.52 [19-02-2024]
 **Classic:**  
 Updated Auras module to include custom Whitelist  

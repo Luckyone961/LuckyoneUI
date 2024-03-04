@@ -7,6 +7,6 @@
 ## Version: 2.52
 
 ## Interface: 11501
-## X-Required-ElvUI: 13.58
+## X-Required-ElvUI: 13.59
 
 Load.xml
