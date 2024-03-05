@@ -1,6 +1,7 @@
 ### Version 2.53 [In Development]
 **All WoW Versions:**  
 ElvUI 13.59+ compatibility  
+Enabled all LuckyoneUI custom skins by default  
 Use ElvUI defaults for Minimap difficulty db  
 ___
 ### Version 2.52 [19-02-2024]
