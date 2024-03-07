@@ -40,13 +40,7 @@ function L1UI:Layout_Dragonflight(layout)
 	E.db.general.lootRoll.statusBarTexture = Private.Texture
 	E.db.general.lootRoll.style = 'fullbar'
 	E.db.general.lootRoll.width = 340
-	E.db.general.minimap.icons.challengeMode.scale = 0.75
-	E.db.general.minimap.icons.challengeMode.xOffset = 3
-	E.db.general.minimap.icons.challengeMode.yOffset = -1
 	E.db.general.minimap.icons.classHall.scale = 0.5
-	E.db.general.minimap.icons.difficulty.scale = 0.8
-	E.db.general.minimap.icons.difficulty.xOffset = 8
-	E.db.general.minimap.icons.difficulty.yOffset = -4
 	E.db.general.minimap.icons.mail.texture = 'Mail1'
 	E.db.general.minimap.icons.mail.xOffset = -2
 	E.db.general.minimap.icons.mail.yOffset = 2

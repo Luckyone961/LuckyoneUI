@@ -18,9 +18,9 @@ V.L1UI = {
 		easyDelete = false,
 	},
 	skins = {
-		BugSack = false,
-		IRememberYou = false,
-		TalentLoadoutsEx = false,
+		BugSack = true,
+		IRememberYou = true,
+		TalentLoadoutsEx = true,
 	},
 }
 
