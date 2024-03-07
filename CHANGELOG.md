@@ -1,4 +1,4 @@
-### Version 2.53 [In Development]
+### Version 2.53 [07-03-2024]
 **All WoW Versions:**  
 ElvUI 13.59+ compatibility  
 Enabled all LuckyoneUI custom skins by default  
