@@ -1,3 +1,7 @@
+### Version 2.54 [In Development]
+**Cataclysm Classic:**  
+Initial support  
+___
 ### Version 2.53 [07-03-2024]
 **All WoW Versions:**  
 ElvUI 13.59+ compatibility  

@@ -1,4 +1,4 @@
-## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cffba4533Cataclysm|r
+## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cffe89a14Cataclysm|r
 ## Notes: Luckyone's ElvUI Edit
 ## Dependencies: ElvUI
 
