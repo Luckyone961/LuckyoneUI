@@ -7,7 +7,7 @@
 ## Version: 2.53
 
 ## Interface: 100206
-## X-Required-ElvUI: 13.59
+## X-Required-ElvUI: 13.60
 
 ## AddonCompartmentFunc: L1UI_OnAddonCompartmentClick
 ## IconTexture: Interface\AddOns\ElvUI_LuckyoneUI\Media\Textures\Compartment.png
