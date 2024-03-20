@@ -1,4 +1,4 @@
-## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cffFF7E40Classic|r
+## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cffe89a14Cataclysm|r
 ## Notes: Luckyone's ElvUI Edit
 ## Dependencies: ElvUI
 
@@ -6,7 +6,7 @@
 ## Author: Luckyone
 ## Version: 2.54
 
-## Interface: 11501
+## Interface: 40400
 ## X-Required-ElvUI: 13.60
 
 Load.xml

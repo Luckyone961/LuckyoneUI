@@ -4,9 +4,9 @@
 
 ## DefaultState: enabled
 ## Author: Luckyone
-## Version: 2.53
+## Version: 2.54
 
 ## Interface: 30403
-## X-Required-ElvUI: 13.59
+## X-Required-ElvUI: 13.60
 
 Load.xml

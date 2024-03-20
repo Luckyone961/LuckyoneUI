@@ -1,3 +1,11 @@
+### Version 2.54 [20-03-2024]
+**All WoW Versions:**  
+ElvUI 13.60+ compatibility  
+**Retail:**  
+Updated TOC for 10.2.6  
+**Cataclysm Classic:**  
+Initial support  
+___
 ### Version 2.53 [07-03-2024]
 **All WoW Versions:**  
 ElvUI 13.59+ compatibility  
