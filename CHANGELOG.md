@@ -1,4 +1,6 @@
 ### Version 2.54 [In Development]
+**All WoW Versions:**  
+ElvUI 13.60+ compatibility  
 **Retail:**  
 Updated TOC for 10.2.6  
 **Cataclysm Classic:**  
