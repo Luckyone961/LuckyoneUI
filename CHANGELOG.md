@@ -1,4 +1,6 @@
 ### Version 2.54 [In Development]
+**Retail:**  
+Updated TOC for 10.2.6  
 **Cataclysm Classic:**  
 Initial support  
 ___
