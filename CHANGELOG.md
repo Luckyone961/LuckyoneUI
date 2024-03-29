@@ -1,4 +1,20 @@
-### Version 2.52 [In Development]
+### Version 2.54 [20-03-2024]
+**All WoW Versions:**  
+ElvUI 13.60+ compatibility  
+**Retail:**  
+Updated TOC for 10.2.6  
+**Cataclysm Classic:**  
+Initial support  
+___
+### Version 2.53 [07-03-2024]
+**All WoW Versions:**  
+ElvUI 13.59+ compatibility  
+Enabled all LuckyoneUI custom skins by default  
+Minimap difficulty icon will now use ElvUI defaults  
+**Classic:**  
+Internal TOC suffix updated  
+___
+### Version 2.52 [19-02-2024]
 **Classic:**  
 Updated Auras module to include custom Whitelist  
 Updated TOC for 1.15.1  
