@@ -1,6 +1,7 @@
 ### Version 2.55 [In Development]
 **All WoW Versions:**  
 ElvUI 13.61+ compatibility  
+Updated Details profile  
 **Classic:**  
 Updated TOC for 1.15.2  
 ___
