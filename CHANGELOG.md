@@ -1,3 +1,10 @@
+### Version 2.55 [03-04-2024]
+**All WoW Versions:**  
+ElvUI 13.61+ compatibility  
+Updated Details profile  
+**Classic:**  
+Updated TOC for 1.15.2  
+___
 ### Version 2.54 [20-03-2024]
 **All WoW Versions:**  
 ElvUI 13.60+ compatibility  
