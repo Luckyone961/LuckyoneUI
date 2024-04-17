@@ -1,6 +1,7 @@
 ### Version 2.56 [In Development]
 **Retail:**  
 Added custom Aura Indicator edits to the Auras config section  
+Removed Season 3 ElvUI NamePlate StyleFilters  
 ___
 ### Version 2.55 [03-04-2024]
 **All WoW Versions:**  
