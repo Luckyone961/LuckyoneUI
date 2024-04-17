@@ -4,6 +4,7 @@ Added custom Aura Indicator edits to the Auras config section
 Added Season 4 ElvUI NamePlate StyleFilters for Dungeons  
 Added Season 4 ElvUI NamePlate StyleFilters for Raids  
 Removed Season 3 ElvUI NamePlate StyleFilters  
+Updated Plater profile for Season 4 on Wago  
 ___
 ### Version 2.55 [03-04-2024]
 **All WoW Versions:**  
