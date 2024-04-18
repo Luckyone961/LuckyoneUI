@@ -1,4 +1,7 @@
 ### Version 2.56 [In Development]
+**All WoW Versions:**  
+Graphics confic section is now available for all versions (was Retail only)  
+Updated some developer profile CVars  
 **Retail:**  
 Added custom Aura Indicator edits to the Auras config section  
 Added Season 4 ElvUI NamePlate StyleFilters for Dungeons  
