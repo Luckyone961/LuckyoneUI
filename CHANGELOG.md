@@ -1,6 +1,7 @@
 ### Version 2.56 [In Development]
 **All WoW Versions:**  
 Graphics confic section is now available for all versions (was Retail only)  
+Removed Skin for TalentLoadoutsEx (Author made all functions private)  
 Updated some developer profile CVars  
 **Retail:**  
 Added custom Aura Indicator edits to the Auras config section  
