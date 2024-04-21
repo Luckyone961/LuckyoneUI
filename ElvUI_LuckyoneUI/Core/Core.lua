@@ -112,7 +112,7 @@ function L1UI:Setup_CVars(noPrint)
 		SetCVar('blockChannelInvites', 1)
 		SetCVar('CameraReduceUnexpectedMovement', 1)
 		SetCVar('DisableAdvancedFlyingVelocityVFX', 1)
-		SetCVar('disableServerNagle', 0)
+		SetCVar('disableServerNagle', 1)
 		SetCVar('displaySpellActivationOverlays', 0)
 		SetCVar('doNotFlashLowHealthWarning', 1)
 		SetCVar('empowerTapControls', 1)
@@ -122,11 +122,12 @@ function L1UI:Setup_CVars(noPrint)
 		SetCVar('LowLatencyMode', 2)
 		SetCVar('maxFPSLoading', 30)
 		SetCVar('RAIDweatherDensity', 0)
+		SetCVar('ResampleAlwaysSharpen', 1)
 		SetCVar('showToastOffline', 0)
 		SetCVar('showToastOnline', 0)
 		SetCVar('showToastWindow', 0)
 		SetCVar('SpellQueueWindow', 180)
-		SetCVar('useIPv6', 0)
+		SetCVar('useIPv6', 1)
 		SetCVar('weatherDensity', 0)
 	end
 
@@ -200,8 +201,6 @@ function L1UI:Setup_PrivateDB()
 		E.private.L1UI.disabledFrames.AlertFrame = true
 		E.private.L1UI.disabledFrames.BossBanner = true
 		E.private.L1UI.qualityOfLife.easyDelete = true
-		E.private.L1UI.skins.BugSack = true
-		E.private.L1UI.skins.TalentLoadoutsEx = true
 	end
 end
 

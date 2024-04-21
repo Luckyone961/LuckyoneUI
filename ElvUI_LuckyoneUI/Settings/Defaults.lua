@@ -20,7 +20,6 @@ V.L1UI = {
 	skins = {
 		BugSack = true,
 		IRememberYou = true,
-		TalentLoadoutsEx = true,
 	},
 }
 
