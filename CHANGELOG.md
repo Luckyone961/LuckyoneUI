@@ -1,3 +1,15 @@
+### Version 2.56 [23-04-2024]
+**All WoW Versions:**  
+Graphics confic section is now available for all versions (was Retail only)  
+Removed Skin for TalentLoadoutsEx (Author made all functions private)  
+Updated some developer profile CVars  
+**Retail:**  
+Added custom Aura Indicator edits to the Auras config section  
+Added Season 4 ElvUI NamePlate StyleFilters for Dungeons  
+Added Season 4 ElvUI NamePlate StyleFilters for Raids  
+Removed Season 3 ElvUI NamePlate StyleFilters  
+Updated Plater profile for Season 4 on Wago  
+___
 ### Version 2.55 [03-04-2024]
 **All WoW Versions:**  
 ElvUI 13.61+ compatibility  

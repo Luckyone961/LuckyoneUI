@@ -118,6 +118,12 @@ function L1UI:Config()
 	L1UI.Options.args.auras.args.debuffs.args.boss.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() L1UI:Setup_Debuffs('boss', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Debuffs('boss', 'all') end)
 
+	-- Auras [Filters]
+	L1UI.Options.args.auras.args.filters = ACH:Group(L["Filters"], nil, 4, nil, nil, nil, nil, not E.Retail)
+	L1UI.Options.args.auras.args.filters.inline = true
+	L1UI.Options.args.auras.args.filters.args.setup = ACH:Execute(L["Setup Aura Filters"], nil, 1, function() L1UI:Setup_Filters() E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.auras.args.filters.args.desc = ACH:Description(L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs Whitelist & Blacklist.\n"], 2, 'medium')
+
 	-- Blizzard
 	L1UI.Options.args.blizzard = ACH:Group(L["Blizzard"], nil, 4)
 	L1UI.Options.args.blizzard.args.desc = ACH:Header(L["Blizzard"], 1)
@@ -161,7 +167,7 @@ function L1UI:Config()
 	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- NamePlateHorizontalScale 1\n- nameplateLargerScale 1\n- nameplateLargeTopInset -1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOtherBottomInset -1\n- nameplateOtherTopInset -1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateSelfTopInset -1\n- NamePlateVerticalScale 1\n\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1', 1, 'medium')
 
 	-- Graphics
-	L1UI.Options.args.graphics = ACH:Group(L["Graphics"], nil, 7, nil, nil, nil, nil, not E.Retail)
+	L1UI.Options.args.graphics = ACH:Group(L["Graphics"], nil, 7, nil, nil, nil, nil)
 	L1UI.Options.args.graphics.args.desc = ACH:Header(L["Graphics"], 1)
 	L1UI.Options.args.graphics.args.enableRaid = ACH:Toggle(L["Enable Raid Graphics profile"], nil, 2, nil, nil, nil, function() return GetCVarBool('RAIDsettingsEnabled') end, function(_, value) SetCVar('RAIDsettingsEnabled', value and 1 or 0) end)
 	L1UI.Options.args.graphics.args.toggles = ACH:Group(L["General"], nil, 3)
@@ -171,18 +177,18 @@ function L1UI:Config()
 	L1UI.Options.args.graphics.args.sliders = ACH:Group(L["Raids / Battlegrounds / Dungeons"], nil, 4)
 	L1UI.Options.args.graphics.args.sliders.inline = true
 	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsSpellDensity = ACH:Range('Spell Density', 'Default: 4 | Suggestion: 0', 1, { min = 0, max = 5, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsSpellDensity')) end, function(_, value) SetCVar('raidGraphicsSpellDensity', value) end, CheckRaid)
-	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsComputeEffects = ACH:Range('Compute Effects', 'Default: 2 | Suggestion: 0', 2, { min = 0, max = 4, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsComputeEffects')) end, function(_, value) SetCVar('raidGraphicsComputeEffects', value) end, CheckRaid)
+	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsComputeEffects = ACH:Range('Compute Effects', 'Default: 2 | Suggestion: 0', 2, { min = 0, max = 4, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsComputeEffects')) end, function(_, value) SetCVar('raidGraphicsComputeEffects', value) end, CheckRaid, not E.Retail)
 	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsSSAO = ACH:Range('SSAO', 'Default: 3 | Suggestion: 0', 3, { min = 0, max = 4, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsSSAO')) end, function(_, value) SetCVar('raidGraphicsSSAO', value) end, CheckRaid)
 	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsEnvironmentDetail = ACH:Range('Environment Detail', 'Default: 5 | Suggestion: 0', 4, { min = 0, max = 9, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsEnvironmentDetail')) end, function(_, value) SetCVar('raidGraphicsEnvironmentDetail', value) end, CheckRaid)
 	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsGroundClutter = ACH:Range('Ground Clutter', 'Default: 5 | Suggestion: 0', 5, { min = 0, max = 9, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsGroundClutter')) end, function(_, value) SetCVar('raidGraphicsGroundClutter', value) end, CheckRaid)
 	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsViewDistance = ACH:Range('View Distance', 'Default: 5 | Suggestion: 0', 6, { min = 0, max = 9, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsViewDistance')) end, function(_, value) SetCVar('raidGraphicsViewDistance', value) end, CheckRaid)
-	L1UI.Options.args.graphics.args.sliders.args.RAIDweatherDensity = ACH:Range('Weather Density', 'Default: 2 | Suggestion: 0', 99, { min = 0, max = 2, step = 1 }, nil, function() return tonumber(GetCVar('RAIDweatherDensity')) end, function(_, value) SetCVar('RAIDweatherDensity', value) end)
+	L1UI.Options.args.graphics.args.sliders.args.RAIDweatherDensity = ACH:Range('Weather Density', 'Default: 2 | Suggestion: 0', E.Retail and 99 or 2, { min = 0, max = 2, step = 1 }, nil, function() return tonumber(GetCVar('RAIDweatherDensity')) end, function(_, value) SetCVar('RAIDweatherDensity', value) end)
 	L1UI.Options.args.graphics.args.cosmetic = ACH:Group(L["Cosmetic"], nil, 5)
 	L1UI.Options.args.graphics.args.cosmetic.inline = true
 	L1UI.Options.args.graphics.args.cosmetic.args.ffxDeath = ACH:Toggle('ffx Death', 'Default: on | Suggestion: off', 1, nil, nil, nil, function() return GetCVarBool('ffxDeath') end, function(_, value) SetCVar('ffxDeath', value and 1 or 0) end)
 	L1UI.Options.args.graphics.args.cosmetic.args.ffxGlow = ACH:Toggle('ffx Glow', 'Default: on | Suggestion: off', 2, nil, nil, nil, function() return GetCVarBool('ffxGlow') end, function(_, value) SetCVar('ffxGlow', value and 1 or 0) end)
 	L1UI.Options.args.graphics.args.cosmetic.args.ffxNether = ACH:Toggle('ffx Nether', 'Default: on | Suggestion: off', 3, nil, nil, nil, function() return GetCVarBool('ffxNether') end, function(_, value) SetCVar('ffxNether', value and 1 or 0) end)
-	L1UI.Options.args.graphics.args.cosmetic.args.raidGraphicsOutlineMode = ACH:Range('Outline Mode (Raid)', 'Default: 1 | Suggestion: 2', 4, { min = 0, max = 2, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsOutlineMode')) end, function(_, value) SetCVar('raidGraphicsOutlineMode', value) end, CheckRaid)
+	L1UI.Options.args.graphics.args.cosmetic.args.raidGraphicsOutlineMode = ACH:Range('Outline Mode (Raid)', 'Default: 1 | Suggestion: 2', 4, { min = 0, max = 2, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsOutlineMode')) end, function(_, value) SetCVar('raidGraphicsOutlineMode', value) end, CheckRaid, not E.Retail)
 	L1UI.Options.args.graphics.args.gx = ACH:Group(L["Restart Graphics Engine"], nil, 6)
 	L1UI.Options.args.graphics.args.gx.inline = true
 	L1UI.Options.args.graphics.args.gx.args.gxRestart = ACH:Execute(format('|cff3296ff%s|r', L["Restart Graphics Engine"]), nil, 1, function() RestartGx() end, nil, true)
@@ -271,7 +277,6 @@ function L1UI:Config()
 	L1UI.Options.args.skins.args.addons.inline = true
 	L1UI.Options.args.skins.args.addons.args.BugSack = ACH:Toggle('BugSack', nil, 1, nil, nil, nil, nil, nil, not E:IsAddOnEnabled('BugSack'))
 	L1UI.Options.args.skins.args.addons.args.IRememberYou = ACH:Toggle('IRememberYou', nil, 2, nil, nil, nil, nil, nil, not E:IsAddOnEnabled('IRememberYou'))
-	L1UI.Options.args.skins.args.addons.args.TalentLoadoutsEx = ACH:Toggle('TalentLoadoutsEx', nil, 3, nil, nil, nil, nil, nil, not E:IsAddOnEnabled('TalentLoadoutsEx'))
 
 	-- Tags
 	L1UI.Options.args.tags = ACH:Group(L["Tags"], nil, 13)
@@ -370,7 +375,7 @@ function L1UI:Config()
 	L1UI.Options.args.dev.args.information.args.cmd = ACH:Input('', nil, 2, nil, 'full', function() return '/luckydev off' end)
 	L1UI.Options.args.dev.args.cvars = ACH:Group('Developer CVars', nil, 3)
 	L1UI.Options.args.dev.args.cvars.inline = true
-	L1UI.Options.args.dev.args.cvars.args.desc = ACH:Description('- blockChannelInvites 1\n- CameraReduceUnexpectedMovement 1\n- DisableAdvancedFlyingVelocityVFX 1\n- disableServerNagle 0\n- displaySpellActivationOverlays 0\n- doNotFlashLowHealthWarning 1\n- empowerTapControls 1\n- floatingCombatTextCombatDamage 0\n- floatingCombatTextCombatHealing 0\n- GxAllowCachelessShaderMode 0\n- LowLatencyMode 2\n- maxFPSLoading 30\n- RAIDweatherDensity 0\n- showToastOffline 0\n- showToastOnline 0\n- showToastWindow 0\n- SpellQueueWindow 180\n- useIPv6 0\n- weatherDensity 0', 1, 'medium')
+	L1UI.Options.args.dev.args.cvars.args.desc = ACH:Description('- blockChannelInvites 1\n- CameraReduceUnexpectedMovement 1\n- DisableAdvancedFlyingVelocityVFX 1\n- disableServerNagle 1\n- displaySpellActivationOverlays 0\n- doNotFlashLowHealthWarning 1\n- empowerTapControls 1\n- floatingCombatTextCombatDamage 0\n- floatingCombatTextCombatHealing 0\n- GxAllowCachelessShaderMode 0\n- LowLatencyMode 2\n- maxFPSLoading 30\n- RAIDweatherDensity 0\n- showToastOffline 0\n- showToastOnline 0\n- showToastWindow 0\n- SpellQueueWindow 180\n- useIPv6 1\n- weatherDensity 0', 1, 'medium')
 	L1UI.Options.args.dev.args.db = ACH:Group('Developer ProfileDB', nil, 4)
 	L1UI.Options.args.dev.args.db.inline = true
 	L1UI.Options.args.dev.args.db.args.desc = ACH:Description('- ElvUI chat bubble skinning disabled\n- LuckyoneUI Alert Frame hider enabled\n- LuckyoneUI Boss Banner hider enabled\n- LuckyoneUI Easy Delete enabled\n- LuckyoneUI BugSack skin enabled', 1, 'medium')
