@@ -1,4 +1,4 @@
-### Version 2.56 [In Development]
+### Version 2.56 [23-04-2024]
 **All WoW Versions:**  
 Graphics confic section is now available for all versions (was Retail only)  
 Removed Skin for TalentLoadoutsEx (Author made all functions private)  
