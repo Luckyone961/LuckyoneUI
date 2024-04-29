@@ -92,6 +92,7 @@ L["Hide Blizzard Frames"] = "Esconder Painéis da Blizzard"
 L["Hide the Boss Banner"] = "Esconder o Anúncio do Chefe"
 L["Hide the Loot/Alert Frame"] = "Esconder o Painel de Saque/Alerta"
 L["Hide the Zone Text"] = "Esconder o Texto de Zona"
+L["Homepage:"] = true
 L["Hunter"] = "Caçador"
 L["Install"] = "Instalar"
 L["Installation Complete"] = "Instalação Completa"
