@@ -261,6 +261,7 @@ function L1UI:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_Amirdrassil.actions.color.healthColor.r = 0
 		E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.instanceType['raid'] = true
 		E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.names['208461'] = true -- Scorching Brambles
+		E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.names['207796'] = true -- Burning Colossus
 		E.global.nameplates.filters.Luckyone_Amirdrassil.triggers.priority = 2
 
 		-- Ruby Life Pools [RLP]
@@ -322,6 +323,7 @@ function L1UI:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_AV.triggers.names['196116'] = true -- Crystal Fury
 		E.global.nameplates.filters.Luckyone_AV.triggers.names['191739'] = true -- Scalebane Lieutenant
 		E.global.nameplates.filters.Luckyone_AV.triggers.names['187240'] = true -- Drakonid Breaker
+		E.global.nameplates.filters.Luckyone_AV.triggers.names['199368'] = true -- Hardened Crystal
 		E.global.nameplates.filters.Luckyone_AV.triggers.priority = 2
 
 		-- Brackenhide Hollow [BH]
@@ -331,6 +333,7 @@ function L1UI:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_BH.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_BH.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_BH.triggers.instanceType['party'] = true
+		E.global.nameplates.filters.Luckyone_BH.triggers.names['193352'] = true -- Hextrick Totem
 		E.global.nameplates.filters.Luckyone_BH.triggers.names['186191'] = true -- Decay Speaker
 		E.global.nameplates.filters.Luckyone_BH.triggers.names['186226'] = true -- Fetid Rotsinger
 		E.global.nameplates.filters.Luckyone_BH.triggers.names['186227'] = true -- Monstrous Decay
