@@ -1,4 +1,7 @@
 ### Version 2.57 [In Development]
+**All WoW Versions:**  
+Added option to scale Main layout and Support layout from 1080p to 1440p  
+Future layouts starting in patch 11.0 will be 1440p by default  
 **Retail:**  
 Updated Season 4 ElvUI NamePlate StyleFilters for Dungeons (AV, BH)  
 Updated Season 4 ElvUI NamePlate StyleFilters for Raids (Amirdrassil)  

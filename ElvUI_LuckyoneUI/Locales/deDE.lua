@@ -4,6 +4,7 @@ if not L then return end
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
+L["1080p > 1440p"] = true
 L["Addon Download:"] = true
 L["Addon Profiles"] = "Addon Profile"
 L["AddOnSkins profile has been set."] = "AddOnSkins Profil wurde festgelegt."
@@ -152,6 +153,7 @@ L["Reset to LuckyoneUI defaults."] = "Setze zu LuckyoneUI Standard zurück."
 L["Restart Graphics Engine"] = true
 L["Right panel: Details! Damage Meter."] = true
 L["Rogue"] = "Schurke"
+L["Scale the default 1080p to 1440p"] = "Den 1080p Standard auf 1440p skalieren"
 L["Select your preferred UnitFrames color theme."] = true
 L["Setup Aura Filters"] = "Aura Filter Einrichtung"
 L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]"] = "Chat Einrichtung setzt Deine Chat Panels auf die Standardeinstellungen zurück und erstellt benutzerdefinierte Chat Tabs.\n\nLinker Chat: [ Allgemein - Log - Flüstern - Gilde - Gruppe ]\n\nRechter Chat: [ Keine Tabs - Details! Schadensanzeige ]"
@@ -166,6 +168,7 @@ L["Show all auras except blacklisted."] = "Zeige alle Auren außer denen auf der
 L["Show All"] = "Alle anzeigen"
 L["Skip and close the installer"] = true
 L["Strings"] = true
+L["Successfully updated your current layout from 1080p to 1440p"] = "Dein aktuelles Layout wurde erfolgreich von 1080p auf 1440p Auflösung skaliert."
 L["Successfully updated your current layout to LuckyoneUI version "] = "Dein aktuelles Layout wurde erfolgreich auf die LuckyoneUI Version aktualisiert."
 L["Support"] = true
 L["Supporters"] = "Unterstützer"
