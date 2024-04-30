@@ -1,3 +1,8 @@
+### Version 2.57 [In Development]
+**Retail:**  
+Updated Season 4 ElvUI NamePlate StyleFilters for Dungeons (AV, BH)  
+Updated Season 4 ElvUI NamePlate StyleFilters for Raids (Amirdrassil)  
+___
 ### Version 2.56 [23-04-2024]
 **All WoW Versions:**  
 Graphics confic section is now available for all versions (was Retail only)  

@@ -92,6 +92,7 @@ L["Hide Blizzard Frames"] = "Verstecke Blizzard Fenster"
 L["Hide the Boss Banner"] = "Verstecke das Bossbanner"
 L["Hide the Loot/Alert Frame"] = "Verstecke das Beute-/Alarm Fenster"
 L["Hide the Zone Text"] = "Verstecke den Zonentext"
+L["Homepage:"] = true
 L["Hunter"] = "Jäger"
 L["Install"] = "Installieren"
 L["Installation Complete"] = "Installation Vollständig"

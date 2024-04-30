@@ -92,6 +92,7 @@ L["Hide Blizzard Frames"] = "Скрыть рамки Blizzard"
 L["Hide the Boss Banner"] = "Скрыть Баннер босса"
 L["Hide the Loot/Alert Frame"] = "Скрыть рамку с добычей/оповещением"
 L["Hide the Zone Text"] = "Скрыть текст локации"
+L["Homepage:"] = true
 L["Hunter"] = "Охотник"
 L["Install"] = "Установить"
 L["Installation Complete"] = "Установка завершена"
