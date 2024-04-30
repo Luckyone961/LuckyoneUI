@@ -2,6 +2,8 @@
 **Retail:**  
 Updated Season 4 ElvUI NamePlate StyleFilters for Dungeons (AV, BH)  
 Updated Season 4 ElvUI NamePlate StyleFilters for Raids (Amirdrassil)  
+**Cataclysm Classic:**  
+Initial support  
 ___
 ### Version 2.56 [23-04-2024]
 **All WoW Versions:**  
