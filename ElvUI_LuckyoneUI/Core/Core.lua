@@ -101,12 +101,6 @@ function L1UI:Setup_CVars(noPrint)
 	SetCVar('threatWarning', 3)
 	SetCVar('UberTooltips', 1)
 
-	-- Wrath CVars
-	if E.Wrath then
-		SetCVar('equipmentManager', 1)
-		SetCVar('previewTalents', 1)
-	end
-
 	-- Developer CVars
 	if E.global.L1UI.dev then
 		SetCVar('blockChannelInvites', 1)
@@ -276,7 +270,7 @@ end
 -- Dragonflight layouts
 function L1UI:Setup_Layout_Dragonflight(layout)
 	-- Disable LibDualSpec to set the profile
-	if E.Retail or E.Wrath then
+	if E.Retail or E.Cata then
 		ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
 		ElvDB['namespaces']['LibDualSpec-1.0']['char'] = ElvDB['namespaces']['LibDualSpec-1.0']['char'] or {}
 		ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
@@ -316,7 +310,7 @@ end
 -- Shadowlands layouts
 function L1UI:Setup_Layout_Shadowlands(layout)
 	-- Disable LibDualSpec to set the profile
-	if E.Retail or E.Wrath then
+	if E.Retail or E.Cata then
 		ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
 		ElvDB['namespaces']['LibDualSpec-1.0']['char'] = ElvDB['namespaces']['LibDualSpec-1.0']['char'] or {}
 		ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}

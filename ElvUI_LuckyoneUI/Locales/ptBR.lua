@@ -4,6 +4,7 @@ if not L then return end
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
+L["1080p > 1440p"] = true
 L["Addon Download:"] = "Download do Addon:"
 L["Addon Profiles"] = "Perfis dos Addons"
 L["AddOnSkins profile has been set."] = "Perfil do AddOnSkins foi configurado."
@@ -92,6 +93,7 @@ L["Hide Blizzard Frames"] = "Esconder Painéis da Blizzard"
 L["Hide the Boss Banner"] = "Esconder o Anúncio do Chefe"
 L["Hide the Loot/Alert Frame"] = "Esconder o Painel de Saque/Alerta"
 L["Hide the Zone Text"] = "Esconder o Texto de Zona"
+L["Homepage:"] = true
 L["Hunter"] = "Caçador"
 L["Install"] = "Instalar"
 L["Installation Complete"] = "Instalação Completa"
@@ -151,6 +153,7 @@ L["Reset to LuckyoneUI defaults."] = "Reestabelecer para os padrões do Luckyone
 L["Restart Graphics Engine"] = "Reiniciar o Motor Gráfico"
 L["Right panel: Details! Damage Meter."] = "Painel Direito: Details! Damage Meter."
 L["Rogue"] = "Ladino"
+L["Scale the default 1080p to 1440p"] = true
 L["Select your preferred UnitFrames color theme."] = "Selecione o perfil de cores para quadros de unidade que você prefere."
 L["Setup Aura Filters"] = true
 L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]"] = "Configurar o Chat irá reestabelecer os painéis de chat para o padrão e criar abas customizadas.\n\nChat Esquerdo: [ Geral - Regristro - Sussuro - Guilda - Grupo ]\n\nChat Direito: [ Sem Abas - Details! Damage Meter ]"
@@ -164,7 +167,8 @@ L["Shaman"] = "Xamã"
 L["Show all auras except blacklisted."] = "Mostrar todas as auras exceto as bloqueadas."
 L["Show All"] = "Mostrar Todas"
 L["Skip and close the installer"] = "Pular e fechar o instalador"
-L["Strings"] = "Códigos de Importação" --while strings are normally use to talk about import strings this doesn't quite work well in portuguese, so here im using import codes instead because it makes more sense
+L["Strings"] = "Códigos de Importação" -- While strings are normally use to talk about import strings this doesn't quite work well in portuguese, so here im using import codes instead because it makes more sense
+L["Successfully updated your current layout from 1080p to 1440p"] = true
 L["Successfully updated your current layout to LuckyoneUI version "] = "Seu perfil foi atualizado com sucesso para o LuckyoneUI versão "
 L["Support"] = "Suporte"
 L["Supporters"] = "Apoiadores"

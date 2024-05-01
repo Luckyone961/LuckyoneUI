@@ -4,6 +4,7 @@ if not L then return end
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
+L["1080p > 1440p"] = true
 L["Addon Download:"] = "Загрузить аддон:"
 L["Addon Profiles"] = "Профили дополнений"
 L["AddOnSkins profile has been set."] = "Профиль AddOnSkins установлен."
@@ -92,6 +93,7 @@ L["Hide Blizzard Frames"] = "Скрыть рамки Blizzard"
 L["Hide the Boss Banner"] = "Скрыть Баннер босса"
 L["Hide the Loot/Alert Frame"] = "Скрыть рамку с добычей/оповещением"
 L["Hide the Zone Text"] = "Скрыть текст локации"
+L["Homepage:"] = true
 L["Hunter"] = "Охотник"
 L["Install"] = "Установить"
 L["Installation Complete"] = "Установка завершена"
@@ -151,6 +153,7 @@ L["Reset to LuckyoneUI defaults."] = "Сброс настроек LuckyoneUI п�
 L["Restart Graphics Engine"] = "Перезапустить графический движок"
 L["Right panel: Details! Damage Meter."] = true
 L["Rogue"] = "Разбойник"
+L["Scale the default 1080p to 1440p"] = true
 L["Select your preferred UnitFrames color theme."] = true
 L["Setup Aura Filters"] = true
 L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]"] = "Настройка чата вернет Ваши панели чата к настройкам по умолчанию и создаст пользовательские вкладки.\n\nЛевый чат: [ Общее - Журнал - Шепот - Гильдия - Группа ]\n\nПравый чат: [ Нет вкладок - Details! Damage Meter ]"
@@ -165,6 +168,7 @@ L["Show all auras except blacklisted."] = "Показать все ауры, к�
 L["Show All"] = "Показать все"
 L["Skip and close the installer"] = true
 L["Strings"] = true
+L["Successfully updated your current layout from 1080p to 1440p"] = true
 L["Successfully updated your current layout to LuckyoneUI version "] = "Ваш текущий макет успешно обновлен до версии "
 L["Support"] = true
 L["Supporters"] = "Поддержка"
