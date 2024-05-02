@@ -1,3 +1,7 @@
+### Version 2.58 [In Development]
+**Cataclysm Classic:**  
+Error fix for pet happiness (Tags.lua)  
+___
 ### Version 2.57 [01-05-2024]
 **All WoW Versions:**  
 Added option to scale Main layout and Support layout from 1080p to 1440p  
