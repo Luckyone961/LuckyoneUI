@@ -1,7 +1,16 @@
-### Version 2.57 [In Development]
+### Version 2.58 [In Development]
+**Cataclysm Classic:**  
+Error fix for pet happiness (Tags.lua)  
+___
+### Version 2.57 [01-05-2024]
+**All WoW Versions:**  
+Added option to scale Main layout and Support layout from 1080p to 1440p  
+Future layouts starting in patch 11.0 will be 1440p by default  
 **Retail:**  
 Updated Season 4 ElvUI NamePlate StyleFilters for Dungeons (AV, BH)  
 Updated Season 4 ElvUI NamePlate StyleFilters for Raids (Amirdrassil)  
+**Cataclysm Classic:**  
+Initial support  
 ___
 ### Version 2.56 [23-04-2024]
 **All WoW Versions:**  

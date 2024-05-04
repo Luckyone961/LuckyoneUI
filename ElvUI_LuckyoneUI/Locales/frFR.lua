@@ -4,6 +4,7 @@ if not L then return end
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
+L["1080p > 1440p"] = true
 L["Addon Profiles"] = true
 L["AddOnSkins profile has been set."] = true
 L["Adon Download:"] = true
@@ -152,6 +153,7 @@ L["Reset to LuckyoneUI defaults."] = true
 L["Restart Graphics Engine"] = true
 L["Right panel: Details! Damage Meter."] = true
 L["Rogue"] = true
+L["Scale the default 1080p to 1440p"] = true
 L["Select your preferred UnitFrames color theme."] = true
 L["Setup Aura Filters"] = true
 L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]"] = true
@@ -166,6 +168,7 @@ L["Show all auras except blacklisted."] = true
 L["Show All"] = true
 L["Skip and close the installer"] = true
 L["Strings"] = true
+L["Successfully updated your current layout from 1080p to 1440p"] = true
 L["Successfully updated your current layout to LuckyoneUI version "] = true
 L["Support"] = true
 L["Supporters"] = true

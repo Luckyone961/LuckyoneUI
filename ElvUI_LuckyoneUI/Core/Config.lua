@@ -70,10 +70,11 @@ function L1UI:Config()
 	-- Installer & Update
 	L1UI.Options.args.setup = ACH:Group('', nil, 1, nil, function(info) return E.db.L1UI.general[info[#info]] end, function(info, value) E.db.L1UI.general[info[#info]] = value end)
 	L1UI.Options.args.setup.inline = true
-	L1UI.Options.args.setup.args.auto_update = ACH:Toggle(L["Auto Update"], L["Automatically update after a new release."], 1)
-	L1UI.Options.args.setup.args.installer = ACH:Execute(L["Install"], L["Re-Run the installation process."], 2, function() PI:Queue(L1UI.InstallerData) E:ToggleOptions() end)
-	L1UI.Options.args.setup.args.updateMain = ACH:Execute(L["Update Main Layout"], L["Update Main layout to LuckyoneUI version: "]..Private.Version, 3, function() L1UI:UpdateLayout('main') end, nil, true)
-	L1UI.Options.args.setup.args.updateHealing = ACH:Execute(L["Update Healing Layout"], L["Update Healing layout to LuckyoneUI version: "]..Private.Version, 4, function() L1UI:UpdateLayout('healing') end, nil, true)
+	L1UI.Options.args.setup.args.installer = ACH:Execute(L["Install"], L["Re-Run the installation process."], 1, function() PI:Queue(L1UI.InstallerData) E:ToggleOptions() end)
+	L1UI.Options.args.setup.args.updateMain = ACH:Execute(L["Update Main Layout"], L["Update Main layout to LuckyoneUI version: "]..Private.Version, 2, function() L1UI:UpdateLayout('main') end, nil, true)
+	L1UI.Options.args.setup.args.updateHealing = ACH:Execute(L["Update Healing Layout"], L["Update Healing layout to LuckyoneUI version: "]..Private.Version, 3, function() L1UI:UpdateLayout('healing') end, nil, true)
+	L1UI.Options.args.setup.args.updateResolution = ACH:Execute(L["1080p > 1440p"], L["Scale the default 1080p to 1440p"]..'|cffC80000\n\nTHIS IS ONLY FOR MAIN AND SUPPORT LAYOUTS (NOT HEALING)|r', 4, function() L1UI:UpdateResolution() end, nil, true)
+	L1UI.Options.args.setup.args.auto_update = ACH:Toggle(L["Auto Update"], L["Automatically update after a new release."], 5)
 
 	-- Spacer
 	L1UI.Options.args.header = ACH:Spacer(2, 'full')
@@ -333,12 +334,12 @@ function L1UI:Config()
 	L1UI.Options.args.weakauras.args.handleFriendlyNP = ACH:Execute('Handle Friendly NP', nil, 33, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/handleFriendlyNamePlates') end)
 	L1UI.Options.args.weakauras.args.handleNameplateFont = ACH:Execute('Handle NP Font', nil, 34, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/handleNamePlatesFont') end)
 
-	-- WeakAuras Wrath
-	L1UI.Options.args.weakaurasWrath = ACH:Group('WeakAuras', nil, 16, nil, nil, nil, nil, not E.Wrath)
-	L1UI.Options.args.weakaurasWrath.args.header1 = ACH:Header('WeakAuras', 1)
-	L1UI.Options.args.weakaurasWrath.args.hunter = ACH:Execute(format('|cffAAD372%s|r', L["Hunter"]), nil, 2, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/luckyoneHunterWrath') end)
-	L1UI.Options.args.weakaurasWrath.args.druid = ACH:Execute(format('|cffFF7C0A%s|r', L["Druid"]), nil, 3, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/luckyoneDruidWrath') end)
-	L1UI.Options.args.weakaurasWrath.args.priest = ACH:Execute(format('|cffFFFFFF%s|r', L["Priest"]), nil, 4, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/luckyonePriestWrath') end)
+	-- WeakAuras Cataclysm
+	-- L1UI.Options.args.weakaurasWrath = ACH:Group('WeakAuras', nil, 16, nil, nil, nil, nil, not E.Cata)
+	-- L1UI.Options.args.weakaurasWrath.args.header1 = ACH:Header('WeakAuras', 1)
+	-- L1UI.Options.args.weakaurasWrath.args.hunter = ACH:Execute(format('|cffAAD372%s|r', L["Hunter"]), nil, 2, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/luckyoneHunterWrath') end)
+	-- L1UI.Options.args.weakaurasWrath.args.druid = ACH:Execute(format('|cffFF7C0A%s|r', L["Druid"]), nil, 3, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/luckyoneDruidWrath') end)
+	-- L1UI.Options.args.weakaurasWrath.args.priest = ACH:Execute(format('|cffFFFFFF%s|r', L["Priest"]), nil, 4, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/luckyonePriestWrath') end)
 
 	-- Credits
 	L1UI.Options.args.credits = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 17)

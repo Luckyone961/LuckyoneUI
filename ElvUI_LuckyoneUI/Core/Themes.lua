@@ -19,7 +19,7 @@ function L1UI:Setup_Theme(theme)
 		E.db.unitframe.units.boss.name.text_format = '[classcolor][name:last]'
 		E.db.unitframe.units.focus.customTexts.Luckyone_Name.text_format = '[classcolor][name:last]'
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[classcolor][name:short]'
-		E.db.unitframe.units.pet.customTexts.Luckyone_Name.text_format = E.Retail and '[classcolor][name]' or '[happiness:color][name][ >happiness:full]'
+		E.db.unitframe.units.pet.customTexts.Luckyone_Name.text_format = E.Classic and '[happiness:color][name][ >happiness:full]' or '[classcolor][name]'
 		E.db.unitframe.units.player.customTexts.Luckyone_Name.text_format = '[classcolor][name:short]'
 		E.db.unitframe.units.raid1.name.text_format = '[classcolor][name:veryshort]'
 		E.db.unitframe.units.raid2.name.text_format = '[classcolor][name:veryshort]'
@@ -27,7 +27,7 @@ function L1UI:Setup_Theme(theme)
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = E.Retail and '[classcolor][name:last]' or '[difficultycolor][level< - ]|r[classcolor][name:last]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[classcolor][name:last]'
 
-		if not E.Retail then
+		if E.Classic then
 			E.db.unitframe.units.pet.health.colorHappiness = false
 		end
 	elseif theme == 'class' then
@@ -43,7 +43,7 @@ function L1UI:Setup_Theme(theme)
 		E.db.unitframe.units.boss.name.text_format = '[name:last]'
 		E.db.unitframe.units.focus.customTexts.Luckyone_Name.text_format = '[name:last]'
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[name:short]'
-		E.db.unitframe.units.pet.customTexts.Luckyone_Name.text_format = E.Retail and '[name]' or '[name][ >happiness:full]'
+		E.db.unitframe.units.pet.customTexts.Luckyone_Name.text_format = E.Classic and '[name][ >happiness:full]' or '[name]'
 		E.db.unitframe.units.player.customTexts.Luckyone_Name.text_format = '[name:short]'
 		E.db.unitframe.units.raid1.name.text_format = '[name:veryshort]'
 		E.db.unitframe.units.raid2.name.text_format = '[name:veryshort]'
@@ -51,7 +51,7 @@ function L1UI:Setup_Theme(theme)
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = E.Retail and '[name:last]' or '[difficultycolor][level< - ]|r[name:last]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[name:last]'
 
-		if not E.Retail then
+		if E.Classic then
 			E.db.unitframe.units.pet.health.colorHappiness = true
 		end
 	end
