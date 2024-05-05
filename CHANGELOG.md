@@ -1,5 +1,6 @@
 ### Version 2.58 [In Development]
 **Cataclysm Classic:**  
+Enabled my custom healermana Tags for Cata  
 Error fix for pet happiness (Tags.lua)  
 ___
 ### Version 2.57 [01-05-2024]

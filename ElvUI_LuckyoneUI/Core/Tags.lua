@@ -43,7 +43,7 @@ E:AddTag('luckyone:healermana:current', 'UNIT_POWER_FREQUENT UNIT_MAXPOWER', fun
 	if role == 'HEALER' then
 		return UnitPower(unit, Enum.PowerType.Mana)
 	end
-end, not E.Retail)
+end, E.Classic)
 
 -- Display mana (percent) if the unit is flagged healer (Retail only)
 E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT', function(unit)
@@ -52,11 +52,11 @@ E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT', fun
 	if role == 'HEALER' then
 		return E:GetFormattedText('PERCENT', min, UnitPowerMax(unit, Enum.PowerType.Mana), 0, nil)
 	end
-end, not E.Retail)
+end, E.Classic)
 
 -- Descriptions for (Retail-Only) Available Tags
-E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana (Role: Healer)"], nil, not E.Retail)
-E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana in percent (Role: Healer)"], nil, not E.Retail)
+E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana (Role: Healer)"], nil, E.Classic)
+E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana in percent (Role: Healer)"], nil, E.Classic)
 
 -- Descriptions for Available Tags
 E:AddTagInfo('luckyone:classification', Private.Name, L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"])
