@@ -277,7 +277,6 @@ function L1UI:Config()
 	L1UI.Options.args.skins.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return E.private.L1UI.skins[info[#info]] end, function(info, value) E.private.L1UI.skins[info[#info]] = value E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.skins.args.addons.inline = true
 	L1UI.Options.args.skins.args.addons.args.BugSack = ACH:Toggle('BugSack', nil, 1, nil, nil, nil, nil, nil, not E:IsAddOnEnabled('BugSack'))
-	L1UI.Options.args.skins.args.addons.args.IRememberYou = ACH:Toggle('IRememberYou', nil, 2, nil, nil, nil, nil, nil, not E:IsAddOnEnabled('IRememberYou'))
 
 	-- Tags
 	L1UI.Options.args.tags = ACH:Group(L["Tags"], nil, 13)
