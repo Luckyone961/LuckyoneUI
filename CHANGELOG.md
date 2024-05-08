@@ -1,4 +1,4 @@
-### Version 2.58 [In Development]
+### Version 2.58 [08-05-2024]
 **All WoW Versions:**  
 ElvUI 13.64+ compatibility  
 Removed skin for IRememberYou (its skinned by default now)  
