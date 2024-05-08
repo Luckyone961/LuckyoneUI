@@ -8,6 +8,13 @@ function L1UI:UpdateLayout(layout)
 	-- Bump install version
 	E.global.L1UI.install_version = Private.Version
 
+	-- Remove Cata happiness
+	if E.Cata then
+		if E.db.unitframe.units.pet.customTexts.Luckyone_Name.text_format == '[happiness:color][name][ >happiness:full]' then
+			E.db.unitframe.units.pet.customTexts.Luckyone_Name.text_format = '[classcolor][name]'
+		end
+	end
+
 	Private:Print(L["Successfully updated your current layout to LuckyoneUI version "] .. Private.Version)
 end
 
