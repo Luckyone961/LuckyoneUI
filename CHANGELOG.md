@@ -1,6 +1,12 @@
-### Version 2.58 [In Development]
+### Version 2.58 [08-05-2024]
+**All WoW Versions:**  
+ElvUI 13.64+ compatibility  
+Removed skin for IRememberYou (its skinned by default now)  
 **Cataclysm Classic:**  
+Enabled my custom healermana Tags for Cata  
 Error fix for pet happiness (Tags.lua)  
+**Retail:**  
+Updated TOC for 10.2.7  
 ___
 ### Version 2.57 [01-05-2024]
 **All WoW Versions:**  
