@@ -7,6 +7,6 @@
 ## Version: 2.57
 
 ## Interface: 40400
-## X-Required-ElvUI: 13.62
+## X-Required-ElvUI: 13.64
 
 Load.xml
