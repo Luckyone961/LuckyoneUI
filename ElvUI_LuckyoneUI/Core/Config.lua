@@ -120,7 +120,7 @@ function L1UI:Config()
 	L1UI.Options.args.auras.args.debuffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() L1UI:Setup_Debuffs('boss', 'all') end)
 
 	-- Auras [Filters]
-	L1UI.Options.args.auras.args.filters = ACH:Group(L["Filters"], nil, 4, nil, nil, nil, nil, not E.Retail)
+	L1UI.Options.args.auras.args.filters = ACH:Group(L["Filters"], nil, 4, nil, nil, nil, nil, E.Classic)
 	L1UI.Options.args.auras.args.filters.inline = true
 	L1UI.Options.args.auras.args.filters.args.setup = ACH:Execute(L["Setup Aura Filters"], nil, 1, function() L1UI:Setup_Filters() E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.auras.args.filters.args.desc = ACH:Description(L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs Whitelist & Blacklist.\n"], 2, 'medium')
