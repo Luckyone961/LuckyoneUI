@@ -1,6 +1,9 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
+-- This file is only for Retail
+if not E.Retail then return end
+
 local pairs = pairs
 
 -- Function to add IDs to a list

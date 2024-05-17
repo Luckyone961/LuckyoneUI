@@ -1,3 +1,7 @@
+### Version 2.59 [In Development]
+**Cataclysm Classic:**  
+Custom Aura Filters setup button is now available for Cata  
+___
 ### Version 2.58 [08-05-2024]
 **All WoW Versions:**  
 ElvUI 13.64+ compatibility  
