@@ -120,12 +120,6 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.item.inspect.enable = false
 	E.db.WT.item.itemLevel.enable = false
 	E.db.WT.item.trade.enable = false
-	E.db.WT.maps.eventTracker.communityFeast.alert = false
-	E.db.WT.maps.eventTracker.height = 30
-	E.db.WT.maps.eventTracker.iskaaranFishingNet.alert = false
-	E.db.WT.maps.eventTracker.siegeOnDragonbaneKeep.alert = false
-	E.db.WT.maps.eventTracker.spacing = 20
-	E.db.WT.maps.eventTracker.yOffset = 0
 	E.db.WT.maps.whoClicked.font.size = 12
 	E.db.WT.maps.whoClicked.onlyOnCombat = false
 	E.db.WT.maps.whoClicked.stayTime = 2
