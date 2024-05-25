@@ -20,7 +20,7 @@ function L1UI:Setup_Filters()
 	local unitframe = E.global['unitframe'] or {}
 	local aurafilters = unitframe['aurafilters'] or {}
 	local aurawatch = unitframe['aurawatch'] or {}
-	
+
 	-- Classes setup
 	local classes = {
 		-- Healers
