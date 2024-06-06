@@ -250,7 +250,10 @@ function L1UI:Setup_Filters()
 		["displayText"] = true,
 		["yOffset"] = 1,
 		["cooldownX"] = 0,
+		["countY"] = -10,
+		["countAnchor"] = "BOTTOM",
 		["style"] = "texturedIcon",
+		["countX"] = 0,
 		["cooldownY"] = 0,
 	}
 	classes["SHAMAN"][51945] = {
