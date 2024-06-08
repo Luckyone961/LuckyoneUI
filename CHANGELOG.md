@@ -1,4 +1,6 @@
 ### Version 2.60 [In Development]
+**All WoW Versions:**  
+ElvUI 13.66+ compatibility  
 **Cataclysm Classic:**  
 Fixed overlap of count and timer text in Shaman aura indicator  
 **Retail:**  
