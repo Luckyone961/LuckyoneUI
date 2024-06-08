@@ -1,6 +1,8 @@
 ### Version 2.60 [In Development]
 **Cataclysm Classic:**  
 Fixed overlap of count and timer text in Shaman aura indicator  
+**Retail:**  
+Updated TOC for TWW Beta  
 ___
 ### Version 2.59 [24-05-2024]
 **All WoW Versions:**  
