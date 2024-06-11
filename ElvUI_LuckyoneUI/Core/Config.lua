@@ -122,7 +122,7 @@ function L1UI:Config()
 	-- Auras [Filters]
 	L1UI.Options.args.auras.args.filters = ACH:Group(L["Filters"], nil, 4, nil, nil, nil, nil, E.Classic)
 	L1UI.Options.args.auras.args.filters.inline = true
-	L1UI.Options.args.auras.args.filters.args.setup = ACH:Execute(L["Setup Aura Filters"], nil, 1, function() L1UI:Setup_Filters() E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.auras.args.filters.args.setup = ACH:Execute(L["Setup Aura Filters"], nil, 1, function() if E.Retail then L1UI:Setup_Filters_Retail() elseif E.Cata then L1UI:Setup_Filters_Cata() end E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.auras.args.filters.args.desc = ACH:Description(L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs Whitelist & Blacklist.\n"], 2, 'medium')
 
 	-- Blizzard

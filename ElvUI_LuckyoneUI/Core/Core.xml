@@ -4,8 +4,7 @@
 	<Script file='Config.lua'/>
 	<Script file='Core.lua'/>
 	<Script file='Database.lua'/>
-	<Script file='Filters_Cata.lua'/>
-	<Script file='Filters_Mainline.lua'/>
+	<Script file='Filters.lua'/>
 	<Script file='Install.lua'/>
 	<Script file='Tags.lua'/>
 	<Script file='Themes.lua'/>
