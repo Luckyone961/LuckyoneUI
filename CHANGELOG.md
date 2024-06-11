@@ -1,4 +1,4 @@
-### Version 2.60 [In Development]
+### Version 2.60 [11-06-2024]
 **All WoW Versions:**  
 ElvUI 13.66+ compatibility  
 **Cataclysm Classic:**  
