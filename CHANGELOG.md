@@ -3,6 +3,7 @@
 ElvUI 13.66+ compatibility  
 **Cataclysm Classic:**  
 Fixed overlap of count and timer text in Shaman aura indicator  
+Updated Priest aura indicators  
 **Retail:**  
 Updated some APIs for upcoming changes  
 Updated TOC for TWW Beta  

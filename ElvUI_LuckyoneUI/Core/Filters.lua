@@ -269,7 +269,7 @@ function L1UI:Setup_Filters_Cata()
 		-- Healers
 		DRUID = { 467, 48438, 8936, 33763, 774, 29166 },
 		PALADIN = { 1044, 1022, 1038, 6940, 53563 },
-		PRIEST = { 41635, 17, 33206, 6788, 10060, 47788, 139 },
+		PRIEST = { 41635, 17, 33206, 6788, 10060, 47788, 139, 56161 },
 		SHAMAN = { 61295, 974, 51945, 16177 },
 		-- Others
 		DEATHKNIGHT = { 49016 },
@@ -457,6 +457,12 @@ function L1UI:Setup_Filters_Cata()
 		["cooldownX"] = 0,
 		["style"] = "texturedIcon",
 		["xOffset"] = 14,
+	}
+	classes["PRIEST"][56161] = {
+		["cooldownY"] = 0,
+		["displayText"] = true,
+		["cooldownX"] = 0,
+		["style"] = "texturedIcon",
 	}
 
 	-- Shaman
