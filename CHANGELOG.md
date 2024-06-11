@@ -1,3 +1,7 @@
+### Version 2.61 [In Development]
+**Misc:**  
+Updated README  
+___
 ### Version 2.60 [11-06-2024]
 **All WoW Versions:**  
 ElvUI 13.66+ compatibility  

@@ -41,7 +41,7 @@
 • **Profile link:** [Click here (Redirect to Wago.io)](https://wago.io/p/Luckyone)  
 
 ### **Luckyone on Twitch and YouTube**  
-• Raiding and Mythic+ content. Balance Druid PoV most of the time.  
+• Raiding and Mythic+ content. Evoker and Druid PoV most of the time.  
 • **Twitch link:** [Click here (Redirect to Twitch.tv)](https://www.twitch.tv/Luckyone1996)  
 • **YouTube link:** [Click here (Redirect to YouTube.com)](https://www.youtube.com/@LuckyoneWoW)  
 
