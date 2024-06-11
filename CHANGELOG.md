@@ -1,3 +1,13 @@
+### Version 2.60 [11-06-2024]
+**All WoW Versions:**  
+ElvUI 13.66+ compatibility  
+**Cataclysm Classic:**  
+Fixed overlap of count and timer text in Shaman aura indicator  
+Updated Priest aura indicators  
+**Retail:**  
+Updated some APIs for upcoming changes  
+Updated TOC for TWW Beta  
+___
 ### Version 2.59 [24-05-2024]
 **All WoW Versions:**  
 ElvUI 13.65+ compatibility  

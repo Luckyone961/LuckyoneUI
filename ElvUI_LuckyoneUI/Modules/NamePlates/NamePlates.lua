@@ -199,11 +199,11 @@ local function Cleanup()
 	local toDelete = {
 		-- General
 		'ElvUI_Explosives',
-		-- Season 1
+		-- Dragonflight Season 1
 		'Luckyone_AA', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_NO', 'Luckyone_RLP', 'Luckyone_SBG', 'Luckyone_TJS', 'Luckyone_TOJS', 'Luckyone_VOTI',
-		-- Season 2
+		-- Dragonflight Season 2
 		'Luckyone_BH', 'Luckyone_HOI', 'Luckyone_NELT', 'Luckyone_ULD', 'Luckyone_NL', 'Luckyone_FH', 'Luckyone_UNDR', 'Luckyone_VP', 'Luckyone_Aberrus',
-		-- Season 3
+		-- Dragonflight Season 3
 		'Luckyone_FALL', 'Luckyone_RISE', 'Luckyone_DHT', 'Luckyone_BRH', 'Luckyone_AD', 'Luckyone_WM', 'Luckyone_EB', 'Luckyone_TOTT', 'Luckyone_Amirdrassil'
 	}
 

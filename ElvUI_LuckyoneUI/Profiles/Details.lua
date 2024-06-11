@@ -21,12 +21,6 @@ function L1UI:Setup_Details()
 		_detalhes:ApplyProfile(name)
 	end
 
-	-- Not included in the profile string, so we enable it manually
-	if E.Retail then
-		Details.combat_log.evoker_calc_damage = true
-		Details.combat_log.evoker_show_realtimedps = true
-	end
-
 	-- Load the profile on all characters
 	_detalhes.always_use_profile = true
 	_detalhes.always_use_profile_name = name

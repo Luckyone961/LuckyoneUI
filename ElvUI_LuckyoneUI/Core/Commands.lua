@@ -6,9 +6,11 @@ local next, pairs, strlower, wipe = next, pairs, strlower, wipe
 
 local _G = _G
 local C_UI_Reload = C_UI.Reload
-local DisableAddOn, EnableAddOn = DisableAddOn, EnableAddOn
-local GetAddOnInfo, GetNumAddOns = GetAddOnInfo, GetNumAddOns
-local LoadAddOn = LoadAddOn
+local DisableAddOn = (C_AddOns and C_AddOns.DisableAddOn) or DisableAddOn
+local EnableAddOn = (C_AddOns and C_AddOns.EnableAddOn) or EnableAddOn
+local GetAddOnInfo = (C_AddOns and C_AddOns.GetAddOnInfo) or GetAddOnInfo
+local GetNumAddOns = (C_AddOns and C_AddOns.GetNumAddOns) or GetNumAddOns
+local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
 local SetCVar = SetCVar
 
 -- Weekly Rewards Frame chat commands

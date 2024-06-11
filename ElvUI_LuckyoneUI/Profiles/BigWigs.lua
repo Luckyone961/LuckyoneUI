@@ -1,8 +1,8 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
-local IsAddOnLoaded = IsAddOnLoaded
-local LoadAddOn = LoadAddOn
+local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
+local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
 local pairs = pairs
 
 -- BigWigs profiles
