@@ -2,7 +2,7 @@ local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- Dragonflight layout
-function L1UI:Layout_Dragonflight(layout)
+function Private:Layout_Dragonflight(layout)
 	-- AB conversion
 	E.db.convertPages = true
 	-- Protect movers error
@@ -1358,7 +1358,7 @@ function L1UI:Layout_Dragonflight(layout)
 end
 
 -- Shadowlands layout
-function L1UI:Layout_Shadowlands(layout)
+function Private:Layout_Shadowlands(layout)
 	-- AB conversion
 	E.db.convertPages = true
 	-- Protect movers error

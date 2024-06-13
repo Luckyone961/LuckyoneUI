@@ -4,7 +4,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local SetCVar = SetCVar
 
 -- Ingame config buttons 'Update Main' & 'Update Healing'
-function L1UI:UpdateLayout(layout)
+function Private:UpdateLayout(layout)
 	-- Bump install version
 	E.global.L1UI.install_version = Private.Version
 
@@ -19,7 +19,7 @@ function L1UI:UpdateLayout(layout)
 end
 
 -- Ingame config button for 1080p > 1440p scaling
-function L1UI:UpdateResolution()
+function Private:UpdateResolution()
 	-- Bump install version
 	E.global.L1UI.install_version = Private.Version
 

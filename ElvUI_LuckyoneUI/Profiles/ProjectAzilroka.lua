@@ -4,7 +4,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 
 -- ProjectAzilroka profile
-function L1UI:Setup_ProjectAzilroka(noPrint)
+function Private:Setup_ProjectAzilroka(noPrint)
 	if not E:IsAddOnEnabled('ProjectAzilroka') then Private:Print('ProjectAzilroka ' .. L["is not installed or enabled."]) return end
 
 	local PA = _G.ProjectAzilroka

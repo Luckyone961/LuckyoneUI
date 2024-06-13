@@ -6,7 +6,7 @@ local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
 local pairs = pairs
 
 -- BigWigs profiles
-function L1UI:Setup_BigWigs(layout)
+function Private:Setup_BigWigs(layout)
 	if not E:IsAddOnEnabled('BigWigs') then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
 
 	-- Profile names

@@ -11,7 +11,7 @@ local function Add(list, ids, value)
 end
 
 -- Aura Filters DB
-function L1UI:Setup_Filters_Retail()
+function Private:Setup_Filters_Retail()
 	if not E.Retail then return end
 
 	-- General setup
@@ -238,7 +238,7 @@ function L1UI:Setup_Filters_Retail()
 	classes['WARRIOR'][3411]['style'] = 'texturedIcon'
 end
 
-function L1UI:Setup_Filters_Cata()
+function Private:Setup_Filters_Cata()
 	if not E.Cata then return end
 
 	-- General setup

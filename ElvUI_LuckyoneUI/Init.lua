@@ -30,7 +30,7 @@ local function Initialize()
 	end
 
 	if E.db.L1UI.general.auto_update and (E.global.L1UI.install_version < Private.Version) then
-		L1UI:UpdateLayout()
+		Private:UpdateLayout()
 	end
 
 	EP:RegisterPlugin(Name, L1UI.Config)

@@ -27,7 +27,7 @@ local VoiceTranscriptionFrame_UpdateVoiceTab = VoiceTranscriptionFrame_UpdateVoi
 local VOICE = VOICE
 
 -- Chat setup for tabs, windows and channels
-function L1UI:Setup_Chat()
+function Private:Setup_Chat()
 	-- General
 	local chats = _G.CHAT_FRAMES
 

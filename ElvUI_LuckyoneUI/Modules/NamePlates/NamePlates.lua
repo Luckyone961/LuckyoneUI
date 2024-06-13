@@ -5,7 +5,7 @@ local NP = E:GetModule('NamePlates')
 local pairs = pairs
 
 -- NamePlate Setup for ElvUI
-function L1UI:Setup_NamePlates()
+function Private:Setup_NamePlates()
 	-- Make sure to enable the module
 	E.private.nameplates.enable = true
 
@@ -13,7 +13,7 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates = E:CopyTable({}, P.nameplates)
 
 	-- Setup StyleFilters (includes NamePlate CVars)
-	L1UI:Setup_StyleFilters()
+	Private:Setup_StyleFilters()
 
 	-- NamePlates general
 	E.db.nameplates.colors.castbarDesaturate = false
@@ -215,7 +215,7 @@ local function Cleanup()
 end
 
 -- Custom StyleFilters
-function L1UI:Setup_StyleFilters(skipVars)
+function Private:Setup_StyleFilters(skipVars)
 	if not E.private.nameplates.enable then return end
 
 	-- Wipe old filters
@@ -390,7 +390,7 @@ function L1UI:Setup_StyleFilters(skipVars)
 
 	-- Set NamePlate CVars
 	if not skipVars then
-		L1UI:NameplateCVars(true)
+		Private:NameplateCVars(true)
 	end
 
 	Private:Print(L["NamePlate StyleFilters and CVars have been set."])

@@ -4,7 +4,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local GetAddOnMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
 
 -- Shadow & Light profile
-function L1UI:Setup_ShadowAndLight(noPrint)
+function Private:Setup_ShadowAndLight(noPrint)
 	if not E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then Private:Print('Shadow&Light ' .. L["is not installed or enabled."]) return end
 
 	-- Get version

@@ -4,7 +4,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local pairs = pairs
 
 -- OmniCD profile
-function L1UI:Setup_OmniCD(layout)
+function Private:Setup_OmniCD(layout)
 	if not E:IsAddOnEnabled('OmniCD') and E.Retail then Private:Print('OmniCD ' .. L["is not installed or enabled."]) return end
 
 	-- Profile names

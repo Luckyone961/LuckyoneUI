@@ -72,7 +72,7 @@ E.PopupDialogs.L1UI_EDITBOX = {
 }
 
 -- Version check
-function L1UI:VersionCheck()
+function Private:VersionCheck()
 	if E.version < Private.RequiredElvUI then
 		E:StaticPopup_Show('L1UI_VC')
 		Private:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
@@ -80,7 +80,7 @@ function L1UI:VersionCheck()
 end
 
 -- General CVars
-function L1UI:Setup_CVars(noPrint)
+function Private:Setup_CVars(noPrint)
 	-- Core CVars
 	SetCVar('advancedCombatLogging', 1)
 	SetCVar('alwaysShowActionBars', 1)
@@ -131,7 +131,7 @@ function L1UI:Setup_CVars(noPrint)
 end
 
 -- NamePlate CVars
-function L1UI:NameplateCVars(noPrint)
+function Private:NameplateCVars(noPrint)
 	SetCVar('NamePlateHorizontalScale', 1)
 	SetCVar('nameplateLargerScale', 1)
 	SetCVar('nameplateLargeTopInset', -1)
@@ -167,7 +167,7 @@ function L1UI:NameplateCVars(noPrint)
 end
 
 -- E.private & Media
-function L1UI:Setup_PrivateDB()
+function Private:Setup_PrivateDB()
 	E.db.general.font = Private.Font
 	E.db.general.fontSize = 11
 	E.db.general.fontStyle = 'OUTLINE'
@@ -199,7 +199,7 @@ function L1UI:Setup_PrivateDB()
 end
 
 -- E.global & Custom DataText
-function L1UI:Setup_GlobalDB()
+function Private:Setup_GlobalDB()
 	SetCVar('uiScale', 0.71111111111111)
 	E.global.general.UIScale = 0.71111111111111
 
@@ -265,7 +265,7 @@ function L1UI:Setup_GlobalDB()
 end
 
 -- Dragonflight layouts
-function L1UI:Setup_Layout_Dragonflight(layout)
+function Private:Setup_Layout_Dragonflight(layout)
 	-- Disable LibDualSpec to set the profile
 	if E.Retail or E.Cata then
 		ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
@@ -284,18 +284,18 @@ function L1UI:Setup_Layout_Dragonflight(layout)
 	end
 
 	-- E.global & Custom DataText
-	L1UI:Setup_GlobalDB()
+	Private:Setup_GlobalDB()
 
 	-- E.private & Media
-	L1UI:Setup_PrivateDB()
+	Private:Setup_PrivateDB()
 
 	-- E.db & Movers
 	if layout == 'main' then
-		L1UI:Layout_Dragonflight('main')
+		Private:Layout_Dragonflight('main')
 	elseif layout == 'healing' then
-		L1UI:Layout_Dragonflight('healing')
+		Private:Layout_Dragonflight('healing')
 	elseif layout == 'support' then
-		L1UI:Layout_Dragonflight('support')
+		Private:Layout_Dragonflight('support')
 	end
 
 	-- Push the update
@@ -305,7 +305,7 @@ function L1UI:Setup_Layout_Dragonflight(layout)
 end
 
 -- Shadowlands layouts
-function L1UI:Setup_Layout_Shadowlands(layout)
+function Private:Setup_Layout_Shadowlands(layout)
 	-- Disable LibDualSpec to set the profile
 	if E.Retail or E.Cata then
 		ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
@@ -334,13 +334,13 @@ function L1UI:Setup_Layout_Shadowlands(layout)
 	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
 	-- E.private & Media
-	L1UI:Setup_PrivateDB()
+	Private:Setup_PrivateDB()
 
 	-- E.db & Movers
 	if layout == 'main' then
-		L1UI:Layout_Shadowlands('main')
+		Private:Layout_Shadowlands('main')
 	elseif layout == 'healing' then
-		L1UI:Layout_Shadowlands('healing')
+		Private:Layout_Shadowlands('healing')
 	end
 
 	-- Push the update
@@ -350,7 +350,7 @@ function L1UI:Setup_Layout_Shadowlands(layout)
 end
 
 -- Performance config section
-function L1UI:Cleanup_Cache(addon, frame)
+function Private:Cleanup_Cache(addon, frame)
 	if addon == 'elvui' and E.private.chat.enable then
 		if frame == 'chat' then
 			CH:ResetHistory()
@@ -384,7 +384,7 @@ function L1UI:Cleanup_Cache(addon, frame)
 end
 
 -- Easy delete
-function L1UI:EasyDelete()
+function Private:EasyDelete()
 	if not E.private.L1UI.qualityOfLife.easyDelete then return end
 
 	-- Higher quality than green
@@ -408,11 +408,11 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	end
 
 	if initLogin or isReload then
-		L1UI:VersionCheck()
+		Private:VersionCheck()
 	end
 
-	L1UI:DisabledFrames()
-	L1UI:EasyDelete()
+	Private:DisabledFrames()
+	Private:EasyDelete()
 	L1UI:LoadCommands()
 end
 

@@ -2,7 +2,7 @@ local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- WarpDeplete Profile
-function L1UI:Setup_WarpDeplete()
+function Private:Setup_WarpDeplete()
 	if not E:IsAddOnEnabled('WarpDeplete') and E.Retail then Private:Print('WarpDeplete ' .. L["is not installed or enabled."]) return end
 
 	-- Profile name

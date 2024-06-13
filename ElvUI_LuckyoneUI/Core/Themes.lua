@@ -2,7 +2,7 @@ local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- UnitFrame color themes
-function L1UI:Setup_Theme(theme)
+function Private:Setup_Theme(theme)
 	if theme == 'dark' then
 		E.db.unitframe.colors.classbackdrop = false
 		E.db.unitframe.colors.customhealthbackdrop = true

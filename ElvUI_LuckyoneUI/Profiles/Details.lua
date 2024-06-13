@@ -2,7 +2,7 @@ local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- Details profile
-function L1UI:Setup_Details()
+function Private:Setup_Details()
 	if not E:IsAddOnEnabled('Details') then Private:Print('Details ' .. L["is not installed or enabled."]) return end
 
 	-- Profile name

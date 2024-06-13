@@ -4,7 +4,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 
 -- Disabled Blizzard Frames (Loading on init)
-function L1UI:DisabledFrames()
+function Private:DisabledFrames()
 	if E.private.L1UI.disabledFrames.AlertFrame then
 		_G.AlertFrame:UnregisterAllEvents()
 		E:DisableMover('AlertFrameMover')
