@@ -65,6 +65,7 @@ L["Details Profile"] = "Details Profil"
 L["Disable the other 3 plugins"] = true
 L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"] = "Zeigt die prozentuale Gesundheit mit 1 Dezimalstelle unter 100%, 2 Dezimalstellen unter 10% an und blendet Dezimalstellen bei 100% aus."
 L["Displays percentage mana without decimals"] = "Zeigt das prozentuale Mana ohne Dezimalstellen an"
+L["Displays percentage power and hides power at 0"] = "Zeigt das prozentuale Mana und blendet Mana bei 0 aus"
 L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"] = "Zeigt die Klassifizierung der Einheit an (z. B. 'Elite' und 'Selten'), aber ohne 'Affix'"
 L["Displays the unit's Mana (Role: Healer)"] = "Zeigt das Mana der Einheit an (Rolle: Heiler)"
 L["Displays the unit's Mana in percent (Role: Healer)"] = "Zeigt das Mana der Einheit in Prozent an (Rolle: Heiler)"

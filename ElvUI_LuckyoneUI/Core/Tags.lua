@@ -31,6 +31,12 @@ E:AddTag('luckyone:health:percent', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
 	return E:GetFormattedText('PERCENT', currentHealth, maxHealth, percent == 100 and 0 or percent < 10 and 2 or 1, nil)
 end)
 
+-- Display percentage power and hides power at 0
+E:AddTag('luckyone:power:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT', function(unit)
+	local min, max = UnitPower(unit), UnitPowerMax(unit)
+	return (min == 0) and '' or floor(UnitPower(unit) / max * 100 + .5)
+end)
+
 -- Display percentage mana with 0 decimals
 E:AddTag('luckyone:mana:percent', 'UNIT_POWER_FREQUENT UNIT_MAXPOWER UNIT_DISPLAYPOWER', function(unit)
 	local min = UnitPower(unit, Enum.PowerType.Mana)
@@ -61,4 +67,5 @@ E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's
 -- Descriptions for Available Tags
 E:AddTagInfo('luckyone:classification', Private.Name, L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"])
 E:AddTagInfo('luckyone:health:percent', Private.Name, L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"])
+E:AddTagInfo('luckyone:power:percent', Private.Name, L["Displays percentage power and hides power at 0"])
 E:AddTagInfo('luckyone:mana:percent', Private.Name, L["Displays percentage mana without decimals"])
