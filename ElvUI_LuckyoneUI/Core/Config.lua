@@ -198,12 +198,18 @@ function L1UI:Config()
 	-- Layouts
 	L1UI.Options.args.layouts = ACH:Group(L["Layouts"], nil, 8)
 	L1UI.Options.args.layouts.args.desc = ACH:Header(L["Layouts"], 1)
-	L1UI.Options.args.layouts.args.dragonflight = ACH:Group(L["Dragonflight Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 2)
+	-- L1UI.Options.args.layouts.args.thewarwithin = ACH:Group(L["The War Within Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 3)
+	-- L1UI.Options.args.layouts.args.thewarwithin.inline = true
+	-- L1UI.Options.args.layouts.args.thewarwithin.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout_TheWarWithin('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	-- L1UI.Options.args.layouts.args.thewarwithin.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout_TheWarWithin('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	-- L1UI.Options.args.layouts.args.thewarwithin.args.support = ACH:Execute(L["Support"], nil, 3, function() Private:Setup_Layout_TheWarWithin('support') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	-- L1UI.Options.args.layouts.args.dragonflight = ACH:Group(L["Dragonflight Layouts"] .. ' (' .. 'v2.00' .. ') (' .. format('|cffC80000%s', L["Outdated"]) .. ')', nil, 3)
+	L1UI.Options.args.layouts.args.dragonflight = ACH:Group(L["Dragonflight Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 3)
 	L1UI.Options.args.layouts.args.dragonflight.inline = true
 	L1UI.Options.args.layouts.args.dragonflight.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout_Dragonflight('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.layouts.args.dragonflight.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout_Dragonflight('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.layouts.args.dragonflight.args.support = ACH:Execute(L["Support"], nil, 3, function() Private:Setup_Layout_Dragonflight('support') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.layouts.args.shadowlands = ACH:Group(L["Shadowlands Layouts"] .. ' (' .. 'v1.00' .. ') (' .. format('|cffC80000%s', L["Outdated"]) .. ')', nil, 3)
+	L1UI.Options.args.layouts.args.shadowlands = ACH:Group(L["Shadowlands Layouts"] .. ' (' .. 'v1.00' .. ') (' .. format('|cffC80000%s', L["Outdated"]) .. ')', nil, 4)
 	L1UI.Options.args.layouts.args.shadowlands.inline = true
 	L1UI.Options.args.layouts.args.shadowlands.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout_Shadowlands('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.layouts.args.shadowlands.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout_Shadowlands('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)

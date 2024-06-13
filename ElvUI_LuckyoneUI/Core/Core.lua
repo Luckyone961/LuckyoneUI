@@ -264,6 +264,9 @@ function Private:Setup_GlobalDB()
 	MiniMapDT.width = 56
 end
 
+-- The War Within layouts
+function Private:Setup_Layout_TheWarWithin(layout, resolution) end
+
 -- Dragonflight layouts
 function Private:Setup_Layout_Dragonflight(layout)
 	-- Disable LibDualSpec to set the profile

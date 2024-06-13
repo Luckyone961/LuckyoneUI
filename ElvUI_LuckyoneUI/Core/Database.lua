@@ -1,6 +1,9 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
+-- The War Within layout
+function Private:Layout_TheWarWithin(layout, resolution) end
+
 -- Dragonflight layout
 function Private:Layout_Dragonflight(layout)
 	-- AB conversion
