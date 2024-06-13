@@ -4,6 +4,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local floor = floor
 
 local UnitClassification = UnitClassification
+local UnitEffectiveLevel = UnitEffectiveLevel
 local UnitGroupRolesAssigned = UnitGroupRolesAssigned
 local UnitHealth = UnitHealth
 local UnitHealthMax = UnitHealthMax
@@ -43,6 +44,12 @@ E:AddTag('luckyone:mana:percent', 'UNIT_POWER_FREQUENT UNIT_MAXPOWER UNIT_DISPLA
 	return E:GetFormattedText('PERCENT', min, UnitPowerMax(unit, Enum.PowerType.Mana), 0, nil)
 end)
 
+-- Display the unit level if player is not max level
+E:AddTag('luckyone:level', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
+	local level, max = UnitEffectiveLevel(unit), E:XPIsLevelMax()
+	return max and nil or level > 0 and level or '??'
+end)
+
 -- Display mana (current) if the unit is flagged healer (Retail only)
 E:AddTag('luckyone:healermana:current', 'UNIT_POWER_FREQUENT UNIT_MAXPOWER', function(unit)
 	local role = UnitGroupRolesAssigned(unit)
@@ -69,3 +76,4 @@ E:AddTagInfo('luckyone:classification', Private.Name, L["Displays the unit's cla
 E:AddTagInfo('luckyone:health:percent', Private.Name, L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"])
 E:AddTagInfo('luckyone:power:percent', Private.Name, L["Displays percentage power and hides power at 0"])
 E:AddTagInfo('luckyone:mana:percent', Private.Name, L["Displays percentage mana without decimals"])
+E:AddTagInfo('luckyone:level', Private.Name, L["Displays the unit's level if the player is not max level"])

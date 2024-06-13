@@ -67,6 +67,7 @@ L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% an
 L["Displays percentage mana without decimals"] = "Exibe mana em porcentagem sem decimais"
 L["Displays percentage power and hides power at 0"] = true
 L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"] = "Exibe a classificação da unidade (ex: 'Elite' e 'Raro') mas sem o 'Afixo'"
+L["Displays the unit's level if the player is not max level"] = true
 L["Displays the unit's Mana (Role: Healer)"] = "Exibe o Mana da unidade (Função: Curador)"
 L["Displays the unit's Mana in percent (Role: Healer)"] = "Exibe o Mana da unidade em porcentagem (Função: Curador)"
 L["DPS & Tanks"] = "DPS & Tanques"
