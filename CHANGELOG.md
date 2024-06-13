@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 Added new custom tag luckyone:level  
 Added new custom tag luckyone:power:percent  
+Updated the Tags section of the LuckyoneUI config  
 **Misc:**  
 Updated README  
 ___
