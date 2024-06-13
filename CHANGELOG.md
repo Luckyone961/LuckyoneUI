@@ -1,5 +1,6 @@
 ### Version 2.61 [In Development]
 **All WoW Versions:**  
+Added new custom tag luckyone:level  
 Added new custom tag luckyone:power:percent  
 **Misc:**  
 Updated README  
