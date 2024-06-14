@@ -39,28 +39,18 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option3:SetScript('OnClick', function() Private:Setup_Layout_Dragonflight('support') end)
 			PluginInstallFrame.Option3:SetText(L["Support"])
 		end,
-		[3] = function()
+		[E.Retail and 3] = function()
 			PluginInstallFrame.SubTitle:SetText(L["ElvUI Plugins"])
 			PluginInstallFrame.Desc1:SetText(L["This step will configure profiles for other ElvUI plugins."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_AddOnSkins() end)
-			PluginInstallFrame.Option1:SetText('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r')
+			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_ShadowAndLight() end)
+			PluginInstallFrame.Option1:SetText('|cff9482c9Shadow & Light|r')
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_ProjectAzilroka() end)
-			PluginInstallFrame.Option2:SetText('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r')
-			if E.Retail then
-				PluginInstallFrame.Desc3:SetText(L["Option 1: "] .. '|cff5385edWindTools|r' .. ' ' .. '(' .. L["Disable the other 3 plugins"] .. ')')
-				PluginInstallFrame.Desc4:SetText(L["Option 2: "] .. '|cff16C3F2AddOn|r|cFFFFFFFFSkins|r' .. ' + ' .. '|cff16C3F2Project|r|cFFFFFFFFAzilroka|r' .. ' + ' .. '|cff9482c9Shadow & Light|r')
-				PluginInstallFrame.Option3:Show()
-				PluginInstallFrame.Option3:SetScript('OnClick', function() Private:Setup_ShadowAndLight() end)
-				PluginInstallFrame.Option3:SetText('|cff9482c9Shadow & Light|r')
-				PluginInstallFrame.Option4:Show()
-				PluginInstallFrame.Option4:SetScript('OnClick', function() Private:Setup_WindTools() end)
-				PluginInstallFrame.Option4:SetText('|cff5385edWindTools|r')
-			end
+			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_WindTools() end)
+			PluginInstallFrame.Option2:SetText('|cff5385edWindTools|r')
 		end,
-		[4] = function()
+		[E.Retail and 4 or 3] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Color Theme"])
 			PluginInstallFrame.Desc1:SetText(L["Select your preferred UnitFrames color theme."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Optional step. Dark is applied by default."]))
@@ -71,7 +61,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_Theme('class') end)
 			PluginInstallFrame.Option2:SetText(L["Class Color"])
 		end,
-		[5] = function()
+		[E.Retail and 5 or 4] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Chat"])
 			PluginInstallFrame.Desc1:SetText(L["This step will configure your two chat panels."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -81,7 +71,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_Chat() end)
 			PluginInstallFrame.Option1:SetText(L["Setup Chat"])
 		end,
-		[6] = function()
+		[E.Retail and 6 or 5] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Console Variables"])
 			PluginInstallFrame.Desc1:SetText(L["This step will configure some of Blizzards console variables."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -91,7 +81,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_CVars() end)
 			PluginInstallFrame.Option1:SetText(L["Setup CVars"])
 		end,
-		[7] = function()
+		[E.Retail and 7 or 6] = function()
 			PluginInstallFrame.SubTitle:SetText(L["NamePlates"])
 			PluginInstallFrame.Desc1:SetText(L["Choose between ElvUI NamePlates and Plater NamePlates."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -102,7 +92,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetScript('OnClick', function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Plater') end)
 			PluginInstallFrame.Option2:SetText('Plater')
 		end,
-		[8] = function()
+		[E.Retail and 8 or 7] = function()
 			PluginInstallFrame.SubTitle:SetText(L["BossMods"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -113,7 +103,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_BigWigs('healing') end)
 			PluginInstallFrame.Option2:SetText(L["BigWigs Healing"])
 		end,
-		[9] = function()
+		[E.Retail and 9 or 8] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Details Profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for Details! Damage Meter."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -140,7 +130,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_WarpDeplete() end)
 			PluginInstallFrame.Option1:SetText(L["Setup WarpDeplete"])
 		end,
-		[E.Retail and 12 or 10] = function()
+		[E.Retail and 12 or 9] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Installation Complete"])
 			PluginInstallFrame.Desc1:SetText(L["You have completed the installation process, please click 'Finished' to reload the UI."])
 			PluginInstallFrame.Desc2:SetText(L["Feel free to join our community Discord for support and social chats."])
@@ -155,20 +145,20 @@ L1UI.InstallerData = {
 	StepTitles = {
 		[1] = L["Welcome"],
 		[2] = L["ElvUI Layouts"],
-		[3] = L["ElvUI Plugins"],
-		[4] = L["Color Theme"],
-		[5] = L["Chat"],
-		[6] = L["Console Variables"],
-		[7] = L["NamePlates"],
-		[8] = L["BossMods"],
-		[9] = 'Details',
+		[E.Retail and 3] = L["ElvUI Plugins"],
+		[E.Retail and 4 or 3] = L["Color Theme"],
+		[E.Retail and 5 or 4] = L["Chat"],
+		[E.Retail and 6 or 5] = L["Console Variables"],
+		[E.Retail and 7 or 6] = L["NamePlates"],
+		[E.Retail and 8 or 7] = L["BossMods"],
+		[E.Retail and 9 or 8] = 'Details',
 		[E.Retail and 10] = 'OmniCD',
 		[E.Retail and 11] = 'WarpDeplete',
-		[E.Retail and 12 or 10] = L["Installation Complete"],
+		[E.Retail and 12 or 9] = L["Installation Complete"],
 	},
 	StepTitlesColor = { 1, 1, 1 },
 	StepTitlesColorSelected = { 0, 179 / 255, 1 },
-	StepTitleWidth = 200,
+	StepTitleWidth = 220,
 	StepTitleButtonWidth = 180,
 	StepTitleTextJustification = 'CENTER',
 }

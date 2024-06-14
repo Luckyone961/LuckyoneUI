@@ -28,7 +28,7 @@ E.PopupDialogs.L1UI_VC = {
 	hideOnEscape = false,
 }
 
--- Editbox popup from ElvUI\Core\General\StaticPopups.lua:78
+-- Editbox popup from ElvUI\Core\General\StaticPopups.lua
 -- Slightly modified for title text and additional chat print
 E.PopupDialogs.L1UI_EDITBOX = {
 	text = Private.Name,
@@ -179,10 +179,7 @@ function Private:EasyDelete()
 	end)
 end
 
-----------------------------------------------------------------------
-------------------------------- Events -------------------------------
-----------------------------------------------------------------------
-
+-- Events
 function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	if initLogin or not ElvDB.LuckyoneDisabledAddOns then
 		ElvDB.LuckyoneDisabledAddOns = {}
@@ -197,6 +194,7 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	L1UI:LoadCommands()
 end
 
+-- Register events
 function L1UI:RegisterEvents()
 	L1UI:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
