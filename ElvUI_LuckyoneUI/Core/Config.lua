@@ -12,7 +12,7 @@ local tconcat, tinsert = table.concat, table.insert
 local GetCVar, GetCVarBool = GetCVar, GetCVarBool
 local SetCVar = SetCVar
 
-local AUTHOR = { '|cffFF7D0ALuckyone|r (EU) - LaughingSkull', '|cff33937FLucky|r (EU) - LaughingSkull' }
+local AUTHOR = { '|cff33937FLucky|r - LaughingSkull', '|cffFF7D0ALuckyone|r - LaughingSkull' }
 local CODING = { '|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|r', '|cffFF7D0AMerathilis|r' }
 local SUPPORT = { '|cffe6cc80Calmcacil|r', '|cffe6cc80DaPaKnat|r', '|cffe6cc80Debeleus|r', '|cffe6cc80DevinDog|r', '|cffe6cc80Dukes|r', '|cffe6cc80Fooseq|r', '|cffe6cc80Garbar|r', '|cffe6cc80Kenneth|r', '|cffe6cc80Liam|r', '|cffe6cc80Littlesack|r', '|cffe6cc80Lox|r', '|cffe6cc80Midnatt|r', '|cffe6cc80MonkeyHack|r', '|cffe6cc80Onlyne|r', '|cffe6cc80ShowNoMercy|r', '|cffe6cc80Treelyté|r', '|cffe6cc80Triplebeamdreams|r', '|cffe6cc80Tykk|r', '|cffe6cc80Logan|r' }
 local TESTERS = { '|cff00FF96AltBridge|r', '|cff69CCF0Sniefer|r', '|cffABD473Badbrain|r', '|cffABD473Xyf|r', '|cffC41F3BKringel|r', '|cffF58CBAIllusion|r', '|cffABD473Dlarge|r', '|cffe6cc80Hollicsh|r', '|cff3FC7EBEltreum|r' }
@@ -163,8 +163,27 @@ function L1UI:Config()
 	L1UI.Options.args.cvars.args.nameplateDesc.inline = true
 	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- NamePlateHorizontalScale 1\n- nameplateLargerScale 1\n- nameplateLargeTopInset -1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOtherBottomInset -1\n- nameplateOtherTopInset -1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateSelfTopInset -1\n- NamePlateVerticalScale 1\n\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1', 1, 'medium')
 
+	-- ElvUI Layouts
+	L1UI.Options.args.layouts = ACH:Group('ElvUI' .. ' ' .. L["Layouts"], nil, 7)
+	L1UI.Options.args.layouts.args.desc = ACH:Header('ElvUI' .. ' ' .. L["Layouts"], 1)
+	-- L1UI.Options.args.layouts.args.thewarwithin = ACH:Group(L["The War Within Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 3)
+	-- L1UI.Options.args.layouts.args.thewarwithin.inline = true
+	-- L1UI.Options.args.layouts.args.thewarwithin.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout_TheWarWithin('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	-- L1UI.Options.args.layouts.args.thewarwithin.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout_TheWarWithin('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	-- L1UI.Options.args.layouts.args.thewarwithin.args.support = ACH:Execute(L["Support"], nil, 3, function() Private:Setup_Layout_TheWarWithin('support') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	-- L1UI.Options.args.layouts.args.dragonflight = ACH:Group(L["Dragonflight Layouts"] .. ' (' .. 'v2.00' .. ') (' .. format('|cffC80000%s', L["Outdated"]) .. ')', nil, 3)
+	L1UI.Options.args.layouts.args.dragonflight = ACH:Group(L["Dragonflight Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 3)
+	L1UI.Options.args.layouts.args.dragonflight.inline = true
+	L1UI.Options.args.layouts.args.dragonflight.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout_Dragonflight('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.layouts.args.dragonflight.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout_Dragonflight('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.layouts.args.dragonflight.args.support = ACH:Execute(L["Support"], nil, 3, function() Private:Setup_Layout_Dragonflight('support') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.layouts.args.shadowlands = ACH:Group(L["Shadowlands Layouts"] .. ' (' .. 'v1.00' .. ') (' .. format('|cffC80000%s', L["Outdated"]) .. ')', nil, 4)
+	L1UI.Options.args.layouts.args.shadowlands.inline = true
+	L1UI.Options.args.layouts.args.shadowlands.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout_Shadowlands('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.layouts.args.shadowlands.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout_Shadowlands('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+
 	-- Graphics
-	L1UI.Options.args.graphics = ACH:Group(L["Graphics"], nil, 7, nil, nil, nil, nil)
+	L1UI.Options.args.graphics = ACH:Group(L["Graphics"], nil, 8, nil, nil, nil, nil)
 	L1UI.Options.args.graphics.args.desc = ACH:Header(L["Graphics"], 1)
 	L1UI.Options.args.graphics.args.enableRaid = ACH:Toggle(L["Enable Raid Graphics profile"], nil, 2, nil, nil, nil, function() return GetCVarBool('RAIDsettingsEnabled') end, function(_, value) SetCVar('RAIDsettingsEnabled', value and 1 or 0) end)
 	L1UI.Options.args.graphics.args.toggles = ACH:Group(L["General"], nil, 3)
@@ -189,25 +208,6 @@ function L1UI:Config()
 	L1UI.Options.args.graphics.args.gx.inline = true
 	L1UI.Options.args.graphics.args.gx.args.gxRestart = ACH:Execute(format('|cff3296ff%s|r', L["Restart Graphics Engine"]), nil, 1, function() RestartGx() end, nil, true)
 	L1UI.Options.args.graphics.args.gx.args.desc = ACH:Description(L["This will restart your Games Graphics Engine and is only required,\nif you've touched the CachelessShaderMode option above."], 2, 'medium')
-
-	-- Layouts
-	L1UI.Options.args.layouts = ACH:Group(L["Layouts"], nil, 8)
-	L1UI.Options.args.layouts.args.desc = ACH:Header(L["Layouts"], 1)
-	-- L1UI.Options.args.layouts.args.thewarwithin = ACH:Group(L["The War Within Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 3)
-	-- L1UI.Options.args.layouts.args.thewarwithin.inline = true
-	-- L1UI.Options.args.layouts.args.thewarwithin.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout_TheWarWithin('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	-- L1UI.Options.args.layouts.args.thewarwithin.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout_TheWarWithin('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	-- L1UI.Options.args.layouts.args.thewarwithin.args.support = ACH:Execute(L["Support"], nil, 3, function() Private:Setup_Layout_TheWarWithin('support') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	-- L1UI.Options.args.layouts.args.dragonflight = ACH:Group(L["Dragonflight Layouts"] .. ' (' .. 'v2.00' .. ') (' .. format('|cffC80000%s', L["Outdated"]) .. ')', nil, 3)
-	L1UI.Options.args.layouts.args.dragonflight = ACH:Group(L["Dragonflight Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 3)
-	L1UI.Options.args.layouts.args.dragonflight.inline = true
-	L1UI.Options.args.layouts.args.dragonflight.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout_Dragonflight('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.layouts.args.dragonflight.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout_Dragonflight('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.layouts.args.dragonflight.args.support = ACH:Execute(L["Support"], nil, 3, function() Private:Setup_Layout_Dragonflight('support') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.layouts.args.shadowlands = ACH:Group(L["Shadowlands Layouts"] .. ' (' .. 'v1.00' .. ') (' .. format('|cffC80000%s', L["Outdated"]) .. ')', nil, 4)
-	L1UI.Options.args.layouts.args.shadowlands.inline = true
-	L1UI.Options.args.layouts.args.shadowlands.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout_Shadowlands('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.layouts.args.shadowlands.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout_Shadowlands('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 
 	-- Media
 	L1UI.Options.args.media = ACH:Group(L["Media"], nil, 9)
