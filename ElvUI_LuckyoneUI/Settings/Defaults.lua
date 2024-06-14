@@ -23,8 +23,4 @@ V.L1UI = {
 }
 
 -- Defaults: E.db.L1UI
-P.L1UI = {
-	general = {
-		auto_update = false,
-	},
-}
+P.L1UI = {}
