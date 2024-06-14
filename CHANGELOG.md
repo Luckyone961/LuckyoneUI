@@ -1,7 +1,8 @@
 ### Version 2.61 [In Development]
 **All WoW Versions:**  
 Added new custom tag luckyone:level  
-Added new custom tag luckyone:name:last  
+Added new custom tag luckyone:name:last-classcolor  
+Added new custom tag luckyone:name:last-nocolor  
 Added new custom tag luckyone:name:%s-classcolor (%s = veryshort, short, medium, long)  
 Added new custom tag luckyone:name:%s-nocolor (%s = veryshort, short, medium, long)  
 Added new custom tag luckyone:power:percent  
