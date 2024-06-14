@@ -4,7 +4,6 @@ if not L then return end
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
-L["1080p > 1440p"] = true
 L["Addon Download:"] = "Download do Addon:"
 L["Addon Profiles"] = "Perfis dos Addons"
 L["AddOnSkins profile has been set."] = "Perfil do AddOnSkins foi configurado."
@@ -159,7 +158,6 @@ L["Show all auras except blacklisted."] = "Mostrar todas as auras exceto as bloq
 L["Show All"] = "Mostrar Todas"
 L["Skip and close the installer"] = "Pular e fechar o instalador"
 L["Strings"] = "Códigos de Importação" -- While strings are normally use to talk about import strings this doesn't quite work well in portuguese, so here im using import codes instead because it makes more sense
-L["Successfully updated your current layout from 1080p to 1440p"] = true
 L["Successfully updated your current layout to LuckyoneUI version "] = "Seu perfil foi atualizado com sucesso para o LuckyoneUI versão "
 L["Support"] = "Suporte"
 L["Supporters"] = "Apoiadores"

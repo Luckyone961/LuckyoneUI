@@ -4,7 +4,6 @@ if not L then return end
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
-L["1080p > 1440p"] = true
 L["Addon Download:"] = "Загрузить аддон:"
 L["Addon Profiles"] = "Профили дополнений"
 L["AddOnSkins profile has been set."] = "Профиль AddOnSkins установлен."
@@ -159,7 +158,6 @@ L["Show all auras except blacklisted."] = "Показать все ауры, к�
 L["Show All"] = "Показать все"
 L["Skip and close the installer"] = true
 L["Strings"] = true
-L["Successfully updated your current layout from 1080p to 1440p"] = true
 L["Successfully updated your current layout to LuckyoneUI version "] = "Ваш текущий макет успешно обновлен до версии "
 L["Support"] = true
 L["Supporters"] = "Поддержка"
