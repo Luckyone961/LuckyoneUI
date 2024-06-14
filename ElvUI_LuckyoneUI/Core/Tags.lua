@@ -7,16 +7,23 @@ local strfind, strmatch = strfind, strmatch
 
 local _G = _G
 
+local C_PetJournal_GetPetTeamAverageLevel = C_PetJournal.GetPetTeamAverageLevel
+local GetCreatureDifficultyColor = GetCreatureDifficultyColor
 local GetPetHappiness = GetPetHappiness
+local GetRelativeDifficultyColor = GetRelativeDifficultyColor
 local HasPetUI = HasPetUI
+local QuestDifficultyColors = QuestDifficultyColors
+local UnitBattlePetLevel = UnitBattlePetLevel
 local UnitClassification = UnitClassification
 local UnitEffectiveLevel = UnitEffectiveLevel
 local UnitGroupRolesAssigned = UnitGroupRolesAssigned
 local UnitHealth = UnitHealth
 local UnitHealthMax = UnitHealthMax
 local UnitInPartyIsAI = UnitInPartyIsAI
+local UnitIsBattlePetCompanion = UnitIsBattlePetCompanion
 local UnitIsPlayer = UnitIsPlayer
 local UnitIsUnit = UnitIsUnit
+local UnitIsWildBattlePet = UnitIsWildBattlePet
 local UnitName = UnitName
 local UnitPower = UnitPower
 local UnitPowerMax = UnitPowerMax
@@ -53,10 +60,22 @@ E:AddTagInfo('luckyone:mana:percent', Private.Name, L["Displays percentage mana 
 
 -- Display the unit level if player is not max level
 E:AddTag('luckyone:level', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
+	local color
 	local level, max = UnitEffectiveLevel(unit), E:XPIsLevelMax()
-	return max and nil or level > 0 and level or '??'
+	if E.Retail and (UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit)) then
+		local level = UnitBattlePetLevel(unit)
+		local teamLevel = C_PetJournal_GetPetTeamAverageLevel()
+		if teamLevel < level or teamLevel > level then
+			color = GetRelativeDifficultyColor(teamLevel, level)
+		else
+			color = QuestDifficultyColors.difficult
+		end
+	else
+		color = GetCreatureDifficultyColor(UnitEffectiveLevel(unit))
+	end
+	return format('%s%s', Hex(color.r, color.g, color.b), max and nil or level > 0 and level or '??')
 end)
-E:AddTagInfo('luckyone:level', Private.Name, L["Displays the unit's level if the player is not max level"])
+E:AddTagInfo('luckyone:level', Private.Name, L["Displays the unit's level with difficultycolor if the player is not max level"])
 
 -- Display mana (current) if the unit is flagged healer (Retail and Cata only)
 E:AddTag('luckyone:healermana:current', 'UNIT_POWER_FREQUENT UNIT_MAXPOWER', function(unit)
