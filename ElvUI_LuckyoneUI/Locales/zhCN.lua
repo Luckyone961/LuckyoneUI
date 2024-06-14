@@ -51,6 +51,7 @@ L["Details profile"] = true
 L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"] = true
 L["Displays percentage mana without decimals"] = true
 L["Displays percentage power and hides power at 0"] = true
+L["Displays the last part of the unit's name with class color"] = true
 L["Displays the pet's name and includes (in Classic only) the full happiness status"] = true
 L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"] = true
 L["Displays the unit's level if the player is not max level"] = true

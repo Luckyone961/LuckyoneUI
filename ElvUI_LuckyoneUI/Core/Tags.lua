@@ -2,6 +2,8 @@ local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 local floor = floor
+local format = format
+local strfind, strmatch = strfind, strmatch
 
 local _G = _G
 
@@ -12,9 +14,13 @@ local UnitEffectiveLevel = UnitEffectiveLevel
 local UnitGroupRolesAssigned = UnitGroupRolesAssigned
 local UnitHealth = UnitHealth
 local UnitHealthMax = UnitHealthMax
+local UnitInPartyIsAI = UnitInPartyIsAI
+local UnitIsPlayer = UnitIsPlayer
 local UnitIsUnit = UnitIsUnit
+local UnitName = UnitName
 local UnitPower = UnitPower
 local UnitPowerMax = UnitPowerMax
+local UnitReaction = UnitReaction
 
 -- Display unit classification without 'affix' on minor enemies
 E:AddTag('luckyone:classification', 'UNIT_CLASSIFICATION_CHANGED', function(unit)
@@ -67,10 +73,28 @@ E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT', fun
 end, E.Classic)
 E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana in percent (Role: Healer)"], nil, E.Classic)
 
-E:AddTag('luckyone:pet:name-and-happiness', 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE', function(unit)
+-- Display pet name and happiness status (Classic only)
+E:AddTag('luckyone:pet:name-and-happiness', E.Retail and 'UNIT_NAME_UPDATE PET_UI_UPDATE' or 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE', function(unit)
 	local hasPetUI, isHunterPet = HasPetUI()
 	if hasPetUI and isHunterPet and UnitIsUnit('pet', unit) then
 		return (not E.Classic and 'Pet') or format('%s %s%s', 'Pet', Hex(_COLORS.happiness[GetPetHappiness()]), _G['PET_HAPPINESS'..GetPetHappiness()])
 	end
 end)
 E:AddTagInfo('luckyone:pet:name-and-happiness', Private.Name, L["Displays the pet's name and includes (in Classic only) the full happiness status"])
+
+-- Displays the last (and mostly important) part of the unit's name with class color
+E:AddTag('luckyone:name:last', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+	local name = UnitName(unit)
+	if name and strfind(name, '%s') then
+		name = strmatch(name, '([%S]+)$')
+	end
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+		local _, unitClass = UnitClass(unit)
+		local cs = ElvUF.colors.class[unitClass]
+		return format('%s%s', (cs and Hex(cs.r, cs.g, cs.b)) or '|cFFcccccc', name)
+	else
+		local cr = ElvUF.colors.reaction[UnitReaction(unit, 'player')]
+		return format('%s%s', (cr and Hex(cr.r, cr.g, cr.b)) or '|cFFcccccc', name)
+	end
+end)
+E:AddTagInfo('luckyone:name:last', Private.Name, L["Displays the last part of the unit's name with class color"])
