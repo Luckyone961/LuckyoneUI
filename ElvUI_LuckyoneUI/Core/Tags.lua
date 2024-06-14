@@ -118,7 +118,7 @@ end)
 E:AddTagInfo('luckyone:pet:name-and-happiness', Private.Name, L["Displays the pet's name and includes (in Classic only) the full happiness status"])
 
 -- Displays the last (and mostly important) part of the unit's name with class color
-E:AddTag('luckyone:name:last', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+E:AddTag('luckyone:name:last-classcolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 	local name = UnitName(unit)
 	if name and strfind(name, '%s') then
 		name = strmatch(name, '([%S]+)$')
@@ -132,4 +132,14 @@ E:AddTag('luckyone:name:last', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER
 		return format('%s%s', (cr and Hex(cr.r, cr.g, cr.b)) or '|cFFcccccc', name)
 	end
 end)
-E:AddTagInfo('luckyone:name:last', Private.Name, L["Displays the last part of the unit's name with class color"])
+E:AddTagInfo('luckyone:name:last-classcolor', Private.Name, L["Displays the last part of the unit's name with class color"])
+
+-- Displays the last (and mostly important) part of the unit's name with no color
+E:AddTag('luckyone:name:last-nocolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+	local name = UnitName(unit)
+	if name and strfind(name, '%s') then
+		name = strmatch(name, '([%S]+)$')
+	end
+	return name
+end)
+E:AddTagInfo('luckyone:name:last-nocolor', Private.Name, L["Displays the last part of the unit's name with no color"])

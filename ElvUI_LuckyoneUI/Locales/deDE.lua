@@ -52,6 +52,7 @@ L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% an
 L["Displays percentage mana without decimals"] = "Zeigt das prozentuale Mana ohne Dezimalstellen an"
 L["Displays percentage power with powercolor and hides power at 0"] = "Zeigt das prozentuale Mana mit der Kraftfarbe an und blendet das Mana bei 0 aus"
 L["Displays the last part of the unit's name with class color"] = "Zeigt den letzten Teil des Einheitsnamens mit Klassenfarbe an"
+L["Displays the last part of the unit's name with no color"] = "Zeigt den letzten Teil des Einheitsnamens ohne Farbe an"
 L["Displays the pet's name and includes (in Classic only) the full happiness status"] = "Zeigt den Namen des Begleiters an und enthält (nur in Classic) den vollständigen Fröhlichkeitsstatus"
 L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"] = "Zeigt die Klassifizierung der Einheit an (z. B. 'Elite' und 'Selten'), aber ohne 'Affix'"
 L["Displays the unit's level with difficultycolor if the player is not max level"] = "Zeigt das Level der Einheit an, wenn der Spieler nicht das Maximallevel erreicht hat"
