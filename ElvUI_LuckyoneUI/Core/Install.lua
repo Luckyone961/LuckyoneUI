@@ -93,7 +93,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetText('Plater')
 		end,
 		[E.Retail and 8 or 7] = function()
-			PluginInstallFrame.SubTitle:SetText(L["BossMods"])
+			PluginInstallFrame.SubTitle:SetText(L["BigWigs profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
@@ -104,7 +104,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetText(L["BigWigs Healing"])
 		end,
 		[E.Retail and 9 or 8] = function()
-			PluginInstallFrame.SubTitle:SetText(L["Details Profile"])
+			PluginInstallFrame.SubTitle:SetText(L["Details profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for Details! Damage Meter."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
@@ -112,7 +112,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetText(L["Setup Details"])
 		end,
 		[E.Retail and 10] = function()
-			PluginInstallFrame.SubTitle:SetText(L["OmniCD Profile"])
+			PluginInstallFrame.SubTitle:SetText(L["OmniCD profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for OmniCD Party CDs."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
@@ -123,7 +123,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetText(L["OmniCD Healing"])
 		end,
 		[E.Retail and 11] = function()
-			PluginInstallFrame.SubTitle:SetText(L["WarpDeplete Profile"])
+			PluginInstallFrame.SubTitle:SetText(L["WarpDeplete profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for WarpDeplete."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
@@ -150,7 +150,7 @@ L1UI.InstallerData = {
 		[E.Retail and 5 or 4] = L["Chat"],
 		[E.Retail and 6 or 5] = L["Console Variables"],
 		[E.Retail and 7 or 6] = L["NamePlates"],
-		[E.Retail and 8 or 7] = L["BossMods"],
+		[E.Retail and 8 or 7] = 'BigWigs',
 		[E.Retail and 9 or 8] = 'Details',
 		[E.Retail and 10] = 'OmniCD',
 		[E.Retail and 11] = 'WarpDeplete',
