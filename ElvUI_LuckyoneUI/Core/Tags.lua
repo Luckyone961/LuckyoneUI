@@ -139,7 +139,7 @@ end)
 E:AddTagInfo('luckyone:name:last-classcolor', Private.Name, L["Displays the last part of the unit's name with class color"])
 
 -- Displays the last (and mostly important) part of the unit's name with no color
-E:AddTag('luckyone:name:last-nocolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+E:AddTag('luckyone:name:last-nocolor', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 	local name = UnitName(unit)
 	if name and strfind(name, '%s') then
 		name = strmatch(name, '([%S]+)$')
@@ -147,3 +147,32 @@ E:AddTag('luckyone:name:last-nocolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_E
 	return name
 end)
 E:AddTagInfo('luckyone:name:last-nocolor', Private.Name, L["Displays the last part of the unit's name with no color"])
+
+for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long = 20 }) do
+	-- Displays the unit's name with classcolor and a maximum length of 5, 10, 15 and 20 characters
+	E:AddTag(format('luckyone:name:%s-classcolor', textFormat), 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+		local name = UnitName(unit)
+		if name then
+			name = E:ShortenString(name, length)
+		end
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+			local _, unitClass = UnitClass(unit)
+			local cs = ElvUF.colors.class[unitClass]
+			return format('%s%s', (cs and Hex(cs.r, cs.g, cs.b)) or '|cFFcccccc', name)
+		else
+			local cr = ElvUF.colors.reaction[UnitReaction(unit, 'player')]
+			return format('%s%s', (cr and Hex(cr.r, cr.g, cr.b)) or '|cFFcccccc', name)
+		end
+	end)
+	-- Displays the unit's name with no color and a maximum length of 5, 10, 15 and 20 characters
+	E:AddTag(format('luckyone:name:%s-nocolor', textFormat), 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+		local name = UnitName(unit)
+		if name then
+			name = E:ShortenString(name, length)
+		end
+		return name
+	end)
+
+	E:AddTagInfo(format('luckyone:name:%s-classcolor', textFormat), Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %i characters"], length))
+	E:AddTagInfo(format('luckyone:name:%s-nocolor', textFormat), Private.Name, format(L["Displays the unit's name with no color and a maximum length of %i characters"], length))
+end

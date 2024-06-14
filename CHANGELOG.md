@@ -2,10 +2,11 @@
 **All WoW Versions:**  
 Added new custom tag luckyone:level  
 Added new custom tag luckyone:name:last  
+Added new custom tag luckyone:name:%s-classcolor (%s = veryshort, short, medium, long)  
+Added new custom tag luckyone:name:%s-nocolor (%s = veryshort, short, medium, long)  
 Added new custom tag luckyone:power:percent  
 Removed update layout functions  
 Removed cache cleanup functions  
-Updated the Tags section of the LuckyoneUI config  
 **Classic:**  
 Added new custom tag luckyone:pet:name-and-happiness  
 **Misc:**  

@@ -58,6 +58,14 @@ L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affi
 L["Displays the unit's level with difficultycolor if the player is not max level"] = true
 L["Displays the unit's Mana with manacolor (Role: Healer)"] = "Отображает ману юнита (Роль: Исцеление)"
 L["Displays the unit's Mana with manacolor in percent (Role: Healer)"] = "Отображает ману юнита в процентах (Роль: Исцеление)"
+L["Displays the unit's name with classcolor and a maximum length of 5 characters"] = true
+L["Displays the unit's name with classcolor and a maximum length of 10 characters"] = true
+L["Displays the unit's name with classcolor and a maximum length of 15 characters"] = true
+L["Displays the unit's name with classcolor and a maximum length of 20 characters"] = true
+L["Displays the unit's name with no color and a maximum length of 5 characters"] = true
+L["Displays the unit's name with no color and a maximum length of 10 characters"] = true
+L["Displays the unit's name with no color and a maximum length of 15 characters"] = true
+L["Displays the unit's name with no color and a maximum length of 20 characters"] = true
 L["DPS & Tanks"] = "Урон и Танк"
 L["Dragonflight Layouts"] = true
 L["Druid"] = "Друид"
