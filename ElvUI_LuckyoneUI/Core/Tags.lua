@@ -66,7 +66,7 @@ end)
 E:AddTagInfo('luckyone:power:percent', Private.Name, L["Displays percentage power with powercolor and hides power at 0"])
 
 -- Display percentage mana with 0 decimals
-E:AddTag('luckyone:mana:percent', 'UNIT_POWER_FREQUENT UNIT_MAXPOWER UNIT_DISPLAYPOWER', function(unit)
+E:AddTag('luckyone:mana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local min = UnitPower(unit, Enum.PowerType.Mana)
 	return E:GetFormattedText('PERCENT', min, UnitPowerMax(unit, Enum.PowerType.Mana), 0, nil)
 end)
@@ -92,19 +92,21 @@ end)
 E:AddTagInfo('luckyone:level', Private.Name, L["Displays the unit's level with difficultycolor if the player is not max level"])
 
 -- Display mana (current) if the unit is flagged healer (Retail and Cata only)
-E:AddTag('luckyone:healermana:current', 'UNIT_POWER_FREQUENT UNIT_MAXPOWER', function(unit)
+E:AddTag('luckyone:healermana:current', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
+	local color = ElvUF.colors.power.MANA
 	local role = UnitGroupRolesAssigned(unit)
-	return role == 'HEALER' and UnitPower(unit, Enum.PowerType.Mana)
+	return format('%s%s', Hex(color.r, color.g, color.b), role == 'HEALER' and UnitPower(unit, Enum.PowerType.Mana))
 end, E.Classic)
-E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana (Role: Healer)"], nil, E.Classic)
+E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana with manacolor (Role: Healer)"], nil, E.Classic)
 
 -- Display mana (percent) if the unit is flagged healer (Retail and Cata only)
-E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT', function(unit)
+E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
+	local color = ElvUF.colors.power.MANA
 	local role = UnitGroupRolesAssigned(unit)
 	local min = UnitPower(unit, Enum.PowerType.Mana)
-	return role == 'HEALER' and E:GetFormattedText('PERCENT', min, UnitPowerMax(unit, Enum.PowerType.Mana), 0, nil)
+	return format('%s%s', Hex(color.r, color.g, color.b), role == 'HEALER' and E:GetFormattedText('PERCENT', min, UnitPowerMax(unit, Enum.PowerType.Mana), 0, nil))
 end, E.Classic)
-E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana in percent (Role: Healer)"], nil, E.Classic)
+E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"], nil, E.Classic)
 
 -- Display pet name and happiness status (Classic only)
 E:AddTag('luckyone:pet:name-and-happiness', E.Retail and 'UNIT_NAME_UPDATE PET_UI_UPDATE' or 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE', function(unit)

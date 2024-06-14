@@ -266,8 +266,8 @@ function L1UI:Config()
 	L1UI.Options.args.tags.args.tag5 = ACH:Input(L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"], nil, 7, nil, 'full', function() return '[luckyone:health:percent]' end)
 	L1UI.Options.args.tags.args.tag6 = ACH:Input(L["Displays percentage power with powercolor and hides power at 0"], nil, 8, nil, 'full', function() return '[luckyone:power:percent]' end)
 	L1UI.Options.args.tags.args.tag7 = ACH:Input(L["Displays percentage mana without decimals"], nil, 9, nil, 'full', function() return '[luckyone:mana:percent]' end)
-	L1UI.Options.args.tags.args.tag8 = ACH:Input(L["Displays the unit's Mana (Role: Healer)"], nil, 10, nil, 'full', function() return '[luckyone:healermana:current]' end, nil, nil, E.Classic)
-	L1UI.Options.args.tags.args.tag9 = ACH:Input(L["Displays the unit's Mana in percent (Role: Healer)"], nil, 11, nil, 'full', function() return '[luckyone:healermana:percent]' end, nil, nil, E.Classic)
+	L1UI.Options.args.tags.args.tag8 = ACH:Input(L["Displays the unit's Mana with manacolor (Role: Healer)"], nil, 10, nil, 'full', function() return '[luckyone:healermana:current]' end, nil, nil, E.Classic)
+	L1UI.Options.args.tags.args.tag9 = ACH:Input(L["Displays the unit's Mana with manacolor in percent (Role: Healer)"], nil, 11, nil, 'full', function() return '[luckyone:healermana:percent]' end, nil, nil, E.Classic)
 
 	-- Themes
 	L1UI.Options.args.themes = ACH:Group(L["Themes"], nil, 13)
