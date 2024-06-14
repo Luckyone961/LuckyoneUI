@@ -5,6 +5,8 @@ Added new custom tag luckyone:power:percent
 Removed update layout functions  
 Removed cache cleanup functions  
 Updated the Tags section of the LuckyoneUI config  
+**Classic:**  
+Added new custom tag luckyone:pet:name-and-happiness  
 **Misc:**  
 Updated README  
 ___

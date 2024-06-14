@@ -3,11 +3,16 @@ local E, L, V, P, G = unpack(ElvUI)
 
 local floor = floor
 
+local _G = _G
+
+local GetPetHappiness = GetPetHappiness
+local HasPetUI = HasPetUI
 local UnitClassification = UnitClassification
 local UnitEffectiveLevel = UnitEffectiveLevel
 local UnitGroupRolesAssigned = UnitGroupRolesAssigned
 local UnitHealth = UnitHealth
 local UnitHealthMax = UnitHealthMax
+local UnitIsUnit = UnitIsUnit
 local UnitPower = UnitPower
 local UnitPowerMax = UnitPowerMax
 
@@ -47,17 +52,25 @@ E:AddTag('luckyone:level', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 end)
 E:AddTagInfo('luckyone:level', Private.Name, L["Displays the unit's level if the player is not max level"])
 
--- Display mana (current) if the unit is flagged healer (Retail only)
+-- Display mana (current) if the unit is flagged healer (Retail and Cata only)
 E:AddTag('luckyone:healermana:current', 'UNIT_POWER_FREQUENT UNIT_MAXPOWER', function(unit)
 	local role = UnitGroupRolesAssigned(unit)
 	return role == 'HEALER' and UnitPower(unit, Enum.PowerType.Mana)
 end, E.Classic)
 E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana (Role: Healer)"], nil, E.Classic)
 
--- Display mana (percent) if the unit is flagged healer (Retail only)
+-- Display mana (percent) if the unit is flagged healer (Retail and Cata only)
 E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT', function(unit)
 	local role = UnitGroupRolesAssigned(unit)
 	local min = UnitPower(unit, Enum.PowerType.Mana)
 	return role == 'HEALER' and E:GetFormattedText('PERCENT', min, UnitPowerMax(unit, Enum.PowerType.Mana), 0, nil)
 end, E.Classic)
 E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana in percent (Role: Healer)"], nil, E.Classic)
+
+E:AddTag('luckyone:pet:name-and-happiness', 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE', function(unit)
+	local hasPetUI, isHunterPet = HasPetUI()
+	if hasPetUI and isHunterPet and UnitIsUnit('pet', unit) then
+		return (not E.Classic and 'Pet') or format('%s %s%s', 'Pet', Hex(_COLORS.happiness[GetPetHappiness()]), _G['PET_HAPPINESS'..GetPetHappiness()])
+	end
+end)
+E:AddTagInfo('luckyone:pet:name-and-happiness', Private.Name, L["Displays the pet's name and includes (in Classic only) the full happiness status"])

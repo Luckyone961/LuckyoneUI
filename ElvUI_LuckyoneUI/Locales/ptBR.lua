@@ -51,6 +51,7 @@ L["Details profile"] = "Perfil do Details"
 L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"] = "Exibe a porcentagem de vida com 1 casa decimar quando abaixo dos 100%, 2 casas decimais abaixo de 10% e esconde quando estiver no 100%"
 L["Displays percentage mana without decimals"] = "Exibe mana em porcentagem sem decimais"
 L["Displays percentage power and hides power at 0"] = true
+L["Displays the pet's name and includes (in Classic only) the full happiness status"] = true
 L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"] = "Exibe a classificação da unidade (ex: 'Elite' e 'Raro') mas sem o 'Afixo'"
 L["Displays the unit's level if the player is not max level"] = true
 L["Displays the unit's Mana (Role: Healer)"] = "Exibe o Mana da unidade (Função: Curador)"
