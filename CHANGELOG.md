@@ -1,6 +1,7 @@
 ### Version 2.61 [In Development]
 **All WoW Versions:**  
 Added new custom tag luckyone:level  
+Added new custom tag luckyone:name:last  
 Added new custom tag luckyone:power:percent  
 Removed update layout functions  
 Removed cache cleanup functions  
@@ -8,6 +9,7 @@ Updated the Tags section of the LuckyoneUI config
 **Classic:**  
 Added new custom tag luckyone:pet:name-and-happiness  
 **Misc:**  
+Updated some parts of the LuckyoneUI config  
 Updated README  
 ___
 ### Version 2.60 [11-06-2024]
