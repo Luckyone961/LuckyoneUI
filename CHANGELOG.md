@@ -2,6 +2,8 @@
 **All WoW Versions:**  
 Added new custom tag luckyone:level  
 Added new custom tag luckyone:power:percent  
+Removed update layout functions  
+Removed cache cleanup functions  
 Updated the Tags section of the LuckyoneUI config  
 **Misc:**  
 Updated README  
