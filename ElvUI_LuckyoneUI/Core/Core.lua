@@ -35,7 +35,7 @@ E.PopupDialogs.L1UI_EDITBOX = {
 	button1 = OKAY,
 	hasEditBox = 1,
 	OnShow = function(self, data)
-		self.editBox:SetAutoFocus(false)
+		self.editBox:SetAutoFocus(true)
 		self.editBox.width = self.editBox:GetWidth()
 		self.editBox:Width(280)
 		self.editBox:AddHistoryLine('text')
