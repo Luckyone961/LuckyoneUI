@@ -101,7 +101,7 @@ function L1UI:Config()
 	L1UI.Options.args.auras.args.buffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('boss', 'all') end)
 
 	-- Auras [Debuffs]
-	L1UI.Options.args.auras.args.debuffs = ACH:Group(format('|cffC80000%s|r', L["Debuffs"]), nil, 3)
+	L1UI.Options.args.auras.args.debuffs = ACH:Group(format('|cffC80000%s|r', L["Debuffs"]), nil, 4)
 	L1UI.Options.args.auras.args.debuffs.args.player = ACH:Group(L["Player Frame Debuffs"], nil, 1)
 	L1UI.Options.args.auras.args.debuffs.args.player.inline = true
 	L1UI.Options.args.auras.args.debuffs.args.player.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('player', 'min') end)
@@ -120,13 +120,13 @@ function L1UI:Config()
 	L1UI.Options.args.auras.args.debuffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('boss', 'all') end)
 
 	-- Auras [Filters]
-	L1UI.Options.args.auras.args.filters = ACH:Group(L["Filters"], nil, 4, nil, nil, nil, nil, E.Classic)
+	L1UI.Options.args.auras.args.filters = ACH:Group(L["Filters"], nil, 5, nil, nil, nil, nil, E.Classic)
 	L1UI.Options.args.auras.args.filters.inline = true
 	L1UI.Options.args.auras.args.filters.args.setup = ACH:Execute(L["Setup Aura Filters"], nil, 1, function() if E.Retail then Private:Setup_Filters_Retail() elseif E.Cata then Private:Setup_Filters_Cata() end E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.auras.args.filters.args.desc = ACH:Description(L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"], 2, 'medium')
 
 	-- Blizzard
-	L1UI.Options.args.blizzard = ACH:Group(L["Blizzard"], nil, 5)
+	L1UI.Options.args.blizzard = ACH:Group(L["Blizzard"], nil, 6)
 	L1UI.Options.args.blizzard.args.desc = ACH:Header(L["Blizzard"], 1)
 	L1UI.Options.args.blizzard.args.disabledFrames = ACH:Group(L["Hide Blizzard Frames"], nil, 2, nil, function(info) return E.private.L1UI.disabledFrames[info[#info]] end, function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.blizzard.args.disabledFrames.inline = true
@@ -141,7 +141,7 @@ function L1UI:Config()
 	L1UI.Options.args.blizzard.args.strings.args.editMode = ACH:Execute(L["Blizzard Edit Mode"], nil, 1, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-BlizzHUD') end)
 
 	-- Chat
-	L1UI.Options.args.chat = ACH:Group(L["Chat"], nil, 6)
+	L1UI.Options.args.chat = ACH:Group(L["Chat"], nil, 7)
 	L1UI.Options.args.chat.args.desc = ACH:Header(L["Chat"], 1)
 	L1UI.Options.args.chat.args.chatSetup = ACH:Group(L["Setup Chat"], nil, 2)
 	L1UI.Options.args.chat.args.chatSetup.inline = true
@@ -154,7 +154,7 @@ function L1UI:Config()
 	L1UI.Options.args.chat.args.chatVars.args.desc = ACH:Description('- chatClassColorOverride 0\n- chatMouseScroll 1\n- chatStyle classic\n- colorChatNamesByClass 1\n- whisperMode inline\n- wholeChatWindowClickable 0', 1, 'medium')
 
 	-- CVars
-	L1UI.Options.args.cvars = ACH:Group(L["Console Variables"], nil, 7)
+	L1UI.Options.args.cvars = ACH:Group(L["Console Variables"], nil, 8)
 	L1UI.Options.args.cvars.args.desc = ACH:Header(L["Console Variables"], 1)
 	L1UI.Options.args.cvars.args.setup = ACH:Group(L["Setup CVars"], nil, 2)
 	L1UI.Options.args.cvars.args.setup.inline = true
@@ -168,7 +168,7 @@ function L1UI:Config()
 	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- NamePlateHorizontalScale 1\n- nameplateLargerScale 1\n- nameplateLargeTopInset -1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOtherBottomInset -1\n- nameplateOtherTopInset -1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateSelfTopInset -1\n- NamePlateVerticalScale 1\n\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1', 1, 'medium')
 
 	-- Graphics
-	L1UI.Options.args.graphics = ACH:Group(L["Graphics"], nil, 8, nil, nil, nil, nil)
+	L1UI.Options.args.graphics = ACH:Group(L["Graphics"], nil, 9, nil, nil, nil, nil)
 	L1UI.Options.args.graphics.args.desc = ACH:Header(L["Graphics"], 1)
 	L1UI.Options.args.graphics.args.enableRaid = ACH:Toggle(L["Enable Raid Graphics profile"], nil, 2, nil, nil, nil, function() return GetCVarBool('RAIDsettingsEnabled') end, function(_, value) SetCVar('RAIDsettingsEnabled', value and 1 or 0) end)
 	L1UI.Options.args.graphics.args.toggles = ACH:Group(L["General"], nil, 3)
@@ -196,7 +196,7 @@ function L1UI:Config()
 	L1UI.Options.args.graphics.args.gx.args.desc = ACH:Description(L["This will restart your Games Graphics Engine and is only required,\nif you've touched the CachelessShaderMode option above."], 2, 'medium')
 
 	-- Layouts
-	L1UI.Options.args.layouts = ACH:Group(L["Layouts"], nil, 9)
+	L1UI.Options.args.layouts = ACH:Group(L["Layouts"], nil, 10)
 	L1UI.Options.args.layouts.args.desc = ACH:Header(L["Layouts"], 1)
 	-- L1UI.Options.args.layouts.args.thewarwithin = ACH:Group(L["The War Within Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 3)
 	-- L1UI.Options.args.layouts.args.thewarwithin.inline = true
@@ -215,7 +215,7 @@ function L1UI:Config()
 	L1UI.Options.args.layouts.args.shadowlands.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout_Shadowlands('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 
 	-- Media
-	L1UI.Options.args.media = ACH:Group(L["Media"], nil, 10)
+	L1UI.Options.args.media = ACH:Group(L["Media"], nil, 11)
 	L1UI.Options.args.media.args.header = ACH:Header(L["Media"], 1)
 	L1UI.Options.args.media.args.defaults = ACH:Group(L["Fonts and Textures"], nil, 2)
 	L1UI.Options.args.media.args.defaults.inline = true
@@ -223,30 +223,6 @@ function L1UI:Config()
 	L1UI.Options.args.media.args.defaultsDesc = ACH:Group(L["Fonts and Textures"], nil, 3)
 	L1UI.Options.args.media.args.defaultsDesc.inline = true
 	L1UI.Options.args.media.args.defaultsDesc.args.cvars = ACH:Description('- Expressway\n- Outline\n- Minimalist', 1, 'medium')
-
-	-- Performance
-	L1UI.Options.args.performance = ACH:Group(L["Performance"], nil, 11, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.performance.args.desc = ACH:Header(L["Performance"], 1)
-	L1UI.Options.args.performance.args.elvui = ACH:Group('ElvUI', nil, 2)
-	L1UI.Options.args.performance.args.elvui.inline = true
-	L1UI.Options.args.performance.args.elvui.args.chat = ACH:Execute(L["Clear Chat History"], nil, 1, function() Private:Cleanup_Cache('elvui', 'chat') end)
-	L1UI.Options.args.performance.args.elvui.args.edit = ACH:Execute(L["Clear Editbox History"], nil, 2, function() Private:Cleanup_Cache('elvui', 'editbox') end)
-	L1UI.Options.args.performance.args.details = ACH:Group('Details', nil, 3)
-	L1UI.Options.args.performance.args.details.inline = true
-	L1UI.Options.args.performance.args.details.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() Private:Cleanup_Cache('details') end)
-	L1UI.Options.args.performance.args.plater = ACH:Group('Plater', nil, 4)
-	L1UI.Options.args.performance.args.plater.inline = true
-	L1UI.Options.args.performance.args.plater.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() Private:Cleanup_Cache('plater') end)
-	L1UI.Options.args.performance.args.rcLoot = ACH:Group('RCLootCouncil', nil, 5)
-	L1UI.Options.args.performance.args.rcLoot.inline = true
-	L1UI.Options.args.performance.args.rcLoot.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() Private:Cleanup_Cache('rc') end)
-	L1UI.Options.args.performance.args.mrt = ACH:Group('Method Raid Tools', nil, 6)
-	L1UI.Options.args.performance.args.mrt.inline = true
-	L1UI.Options.args.performance.args.mrt.args.cache = ACH:Execute(L["Clear Cache"], nil, 1, function() Private:Cleanup_Cache('mrt') end)
-	L1UI.Options.args.performance.args.descAll = ACH:Header('', 7)
-	L1UI.Options.args.performance.args.all = ACH:Group(L["Clear Cache for all AddOns listed above"], nil, 8)
-	L1UI.Options.args.performance.args.all.inline = true
-	L1UI.Options.args.performance.args.all.args.cache = ACH:Execute(format('|cff3296ff%s|r', L["Clear All"]), nil, 1, function() Private:Cleanup_Cache('details') Private:Cleanup_Cache('plater') Private:Cleanup_Cache('rc') Private:Cleanup_Cache('mrt') E:StaticPopup_Show('L1UI_RL') end)
 
 	-- Profiles
 	L1UI.Options.args.profiles = ACH:Group(L["Profiles"], nil, 12)

@@ -13,7 +13,6 @@
 • ElvUI tags for detailed unit health information  
 • ElvUI tags for healer mana and unit classification  
 • Options to disable rather annoying Blizzard features  
-• Options to clear AddOn cache which will speed up your loading time  
 • Options to configure performance related and hidden Blizzard settings  
 • Toggles for Blizzards cosmetic on-screen ffx effects and other visuals  
 • WeakAuras import strings for select specs and general utility  

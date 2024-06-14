@@ -352,40 +352,6 @@ function Private:Setup_Layout_Shadowlands(layout)
 	Private:Print(L["Layout has been set."])
 end
 
--- Performance config section
-function Private:Cleanup_Cache(addon, frame)
-	if addon == 'elvui' and E.private.chat.enable then
-		if frame == 'chat' then
-			CH:ResetHistory()
-			Private:Print(L["Cleared ElvUI Chat History."])
-		elseif frame == 'editbox' then
-			CH:ResetEditboxHistory()
-			Private:Print(L["Cleared ElvUI Editbox History."])
-		end
-	elseif addon == 'details' and E:IsAddOnEnabled('Details') then
-		_detalhes.boss_mods_timers = {}
-		_detalhes.encounter_spell_pool = {}
-		_detalhes.npcid_pool = {}
-		_detalhes.spell_pool = {}
-		_detalhes.spell_school_cache = {}
-		Private:Print(L["Cleared Details Cache."])
-	elseif addon == 'plater' and E:IsAddOnEnabled('Plater') then
-		PlaterDB.captured_casts = {}
-		PlaterDB.captured_spells = {}
-		Private:Print(L["Cleared Plater Cache."])
-	elseif addon == 'rc' and E:IsAddOnEnabled('RCLootCouncil') then
-		RCLootCouncilDB.global.cache = {}
-		RCLootCouncilDB.global.errors = {}
-		RCLootCouncilDB.global.log = {}
-		RCLootCouncilDB.global.verTestCandidates = {}
-		Private:Print(L["Cleared RCLootCouncil Cache."])
-	elseif addon == 'mrt' and E:IsAddOnEnabled('MRT') then
-		VMRT.ExCD2.gnGUIDs = {}
-		VMRT.Inspect.Soulbinds = {}
-		Private:Print(L["Cleared Method Raid Tools Cache."])
-	end
-end
-
 -- Easy delete
 function Private:EasyDelete()
 	if not E.private.L1UI.qualityOfLife.easyDelete then return end
