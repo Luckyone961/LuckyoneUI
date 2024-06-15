@@ -3,6 +3,7 @@ local E, L, V, P, G = unpack(ElvUI)
 
 local floor = floor
 local format = format
+local pairs = pairs
 local strfind, strmatch = strfind, strmatch
 
 local _G = _G
@@ -45,8 +46,8 @@ E:AddTag('luckyone:health:percent', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
 end)
 E:AddTagInfo('luckyone:health:percent', Private.Name, L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"])
 
--- Display percentage power and hides power at 0
-E:AddTag('luckyone:power:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
+-- Display percentage power with powecolor and hides power at 0
+E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local min, max = UnitPower(unit), UnitPowerMax(unit)
 	local pType, pToken, altR, altG, altB = UnitPowerType(unit)
 	local color = _COLORS.power[pToken]
@@ -63,7 +64,14 @@ E:AddTag('luckyone:power:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPL
 	end
 	return format('%s%s', Hex(color), (min == 0) and '' or floor(UnitPower(unit) / max * 100 + .5))
 end)
-E:AddTagInfo('luckyone:power:percent', Private.Name, L["Displays percentage power with powercolor and hides power at 0"])
+E:AddTagInfo('luckyone:power:percent-color', Private.Name, L["Displays percentage power with powercolor and hides power at 0"])
+
+-- Display percentage power with no color and hides power at 0
+E:AddTag('luckyone:power:percent-nocolor', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
+	local min, max = UnitPower(unit), UnitPowerMax(unit)
+	return (min == 0) and '' or floor(UnitPower(unit) / max * 100 + .5)
+end)
+E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percentage power with no color and hides power at 0"])
 
 -- Display percentage mana with 0 decimals
 E:AddTag('luckyone:mana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
