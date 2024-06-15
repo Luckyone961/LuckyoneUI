@@ -5,9 +5,9 @@ local DT = E:GetModule('DataTexts')
 local SetCVar = SetCVar
 
 -- E.global & Custom DataText
-function Private:Setup_GlobalDB()
-	SetCVar('uiScale', 0.71111111111111)
-	E.global.general.UIScale = 0.71111111111111
+function Private:Setup_GlobalDB(resolution)
+	SetCVar('uiScale', 0.53333333333333)
+	E.global.general.UIScale = 0.53333333333333
 
 	E.global.datatexts.settings.Combat.NoLabel = true
 	E.global.datatexts.settings.Combat.TimeFull = false
@@ -103,10 +103,130 @@ function Private:Setup_PrivateDB()
 end
 
 -- The War Within layout db
-function Private:Layout_TheWarWithin(layout) end
+function Private:Layout_TheWarWithin(layout, resolution)
+	-- AB conversion
+	E.db.convertPages = true
+	-- Protect movers error
+	E.db.movers = E.db.movers or {}
+
+	-- General
+
+	-- ActionBars
+
+	-- Bags
+
+	-- Auras
+
+	-- Chat
+
+	-- Cooldown Text
+
+	-- DataBars
+
+	-- DataTexts custom
+
+	-- DataTexts default
+
+	-- Tooltip
+
+	-- Shared UnitFrames media
+
+	-- Shared MA/MT
+	E.db.unitframe.units.assist.enable = false
+	E.db.unitframe.units.tank.enable = false
+
+	-- Shared Arena
+	E.db.unitframe.units.arena.customTexts = E.db.unitframe.units.arena.customTexts or {}
+
+	-- Shared Focus
+	E.db.unitframe.units.focus.customTexts = E.db.unitframe.units.focus.customTexts or {}
+
+	-- Shared Boss
+	E.db.unitframe.units.boss.customTexts = E.db.unitframe.units.boss.customTexts or {}
+
+	-- Shared Pet
+	E.db.unitframe.units.pet.customTexts = E.db.unitframe.units.pet.customTexts or {}
+
+	-- Shared Player
+	E.db.unitframe.units.player.customTexts = E.db.unitframe.units.player.customTexts or {}
+
+	-- Shared Target
+	E.db.unitframe.units.target.customTexts = E.db.unitframe.units.target.customTexts or {}
+	E.db.unitframe.units.targettarget.customTexts = E.db.unitframe.units.targettarget.customTexts or {}
+
+	-- Shared Party
+	E.db.unitframe.units.party.customTexts = E.db.unitframe.units.party.customTexts or {}
+
+	-- Shared growth directions
+	E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
+	E.db.unitframe.units.raid1.growthDirection = 'RIGHT_DOWN'
+	E.db.unitframe.units.raid2.growthDirection = 'RIGHT_DOWN'
+	E.db.unitframe.units.raid3.growthDirection = 'RIGHT_DOWN'
+
+	-- Shared Raid1
+	E.db.unitframe.units.raid1.visibility = E.Retail and '[@raid6,noexists][@raid21,exists] hide;show' or '[@raid6,noexists][@raid11,exists] hide;show'
+
+	-- Shared Raid2
+	E:CopyTable(E.db.unitframe.units.raid2, E.db.unitframe.units.raid1)
+	E.db.unitframe.units.raid2.numGroups = E.Retail and 6 or 5
+	E.db.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
+
+	-- Shared Raid3
+	E.db.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
+
+	-- Shared movers
+
+	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
+	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
+
+	if layout == 'main' then
+
+	elseif layout == 'healing' then
+
+	elseif layout == 'support' then
+
+	end
+end
 
 -- Setup The War Within layout
-function Private:Setup_Layout_TheWarWithin(layout) end
+function Private:Setup_Layout_TheWarWithin(layout, resolution)
+	-- Disable LibDualSpec to set the profile
+	if not E.Classic then
+		ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
+		ElvDB['namespaces']['LibDualSpec-1.0']['char'] = ElvDB['namespaces']['LibDualSpec-1.0']['char'] or {}
+		ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
+		ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
+	end
+
+	-- Create a fresh profile in ElvUI
+	if layout == 'main' then
+		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version)
+	elseif layout == 'healing' then
+		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version)
+	elseif layout == 'support' then
+		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Support' or 'Luckyone Support ' .. Private.Version)
+	end
+
+	-- E.global & Custom DataText
+	Private:Setup_GlobalDB()
+
+	-- E.private & Media
+	Private:Setup_PrivateDB()
+
+	-- E.db & Movers
+	if layout == 'main' then
+		Private:Layout_TheWarWithin('main')
+	elseif layout == 'healing' then
+		Private:Layout_TheWarWithin('healing')
+	elseif layout == 'support' then
+		Private:Layout_TheWarWithin('support')
+	end
+
+	-- Push the update
+	E:StaggeredUpdateAll()
+
+	Private:Print(L["Layout has been set."])
+end
 
 -- Dragonflight layout db
 function Private:Layout_Dragonflight(layout)
@@ -1476,15 +1596,27 @@ function Private:Setup_Layout_Dragonflight(layout)
 
 	-- Create a fresh profile in ElvUI
 	if layout == 'main' then
-		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version)
+		E.data:SetProfile('Luckyone Dragonflight Main')
 	elseif layout == 'healing' then
-		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version)
+		E.data:SetProfile('Luckyone Dragonflight Healing')
 	elseif layout == 'support' then
-		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Support' or 'Luckyone Support ' .. Private.Version)
+		E.data:SetProfile('Luckyone Dragonflight Support')
 	end
 
 	-- E.global & Custom DataText
-	Private:Setup_GlobalDB()
+	SetCVar('uiScale', 0.71111111111111)
+	E.global.general.UIScale = 0.71111111111111
+	E.global.datatexts.settings.Combat.NoLabel = true
+	E.global.datatexts.settings.Combat.TimeFull = false
+	E.global.datatexts.settings.Durability.NoLabel = true
+	E.global.datatexts.settings.System.latency = 'HOME'
+	E.global.datatexts.settings.System.NoLabel = true
+	E.global.datatexts.settings.Time.time24 = true
+	E.global.general.commandBarSetting = 'DISABLED'
+	E.global.general.fadeMapWhenMoving = false
+	E.global.general.mapAlphaWhenMoving = 0.35
+	E.global.general.smallerWorldMapScale = 0.8
+	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
 	-- E.private & Media
 	Private:Setup_PrivateDB()

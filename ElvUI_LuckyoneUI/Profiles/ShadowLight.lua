@@ -4,7 +4,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local GetAddOnMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
 
 -- Shadow & Light profile
-function Private:Setup_ShadowAndLight(noPrint)
+function Private:Setup_ShadowAndLight()
 	if not E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then Private:Print('Shadow&Light ' .. L["is not installed or enabled."]) return end
 
 	-- Get version
@@ -106,7 +106,5 @@ function Private:Setup_ShadowAndLight(noPrint)
 	E.db.sle.skins.objectiveTracker.classHeader = true
 	E.db.sle.skins.objectiveTracker.underlineClass = true
 
-	if not noPrint then
-		Private:Print(L["Shadow&Light profile has been set."])
-	end
+	Private:Print(L["Shadow&Light profile has been set."])
 end

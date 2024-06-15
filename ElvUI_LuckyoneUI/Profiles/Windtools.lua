@@ -2,13 +2,8 @@ local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- WindTools profile
-function Private:Setup_WindTools(noPrint)
+function Private:Setup_WindTools()
 	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then Private:Print('WindTools ' .. L["is not installed or enabled."]) return end
-
-	-- Fix for garrison icon not moving to MinimapButtonBar
-	E.db.general.minimap.icons.classHall.scale = 1
-	E.db.general.minimap.icons.classHall.xOffset = 0
-	E.db.general.minimap.icons.classHall.yOffset = 0
 
 	-- Restore defaults
 	E.db.WT = E:CopyTable({}, P.WT)
@@ -160,7 +155,5 @@ function Private:Setup_WindTools(noPrint)
 	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-158'
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-187'
 
-	if not noPrint then
-		Private:Print(L["WindTools profile has been set."])
-	end
+	Private:Print(L["WindTools profile has been set."])
 end
