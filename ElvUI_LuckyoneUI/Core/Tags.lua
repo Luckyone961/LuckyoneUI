@@ -122,9 +122,18 @@ E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's
 
 -- Display pet name and happiness status (Classic only)
 E:AddTag('luckyone:pet:name-and-happiness', E.Retail and 'UNIT_NAME_UPDATE PET_UI_UPDATE' or 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE', function(unit)
-	local hasPetUI, isHunterPet = HasPetUI()
-	if hasPetUI and isHunterPet and UnitIsUnit('pet', unit) then
-		return (not E.Classic and 'Pet') or format('%s %s%s', 'Pet', Hex(_COLORS.happiness[GetPetHappiness()]), _G['PET_HAPPINESS'..GetPetHappiness()])
+	if not E.Classic then
+		return 'Pet'
+	else
+		local hasPetUI, isHunterPet = HasPetUI()
+		if hasPetUI and isHunterPet and UnitIsUnit('pet', unit) then
+			-- Return for Hunters
+			return format('%s%s', Hex(_COLORS.happiness[GetPetHappiness()]), _G['PET_HAPPINESS'..GetPetHappiness()])
+		end
+			-- Return for other Pet Classes
+		if hasPetUI and UnitIsUnit('pet', unit) then
+			return 'Pet'
+		end
 	end
 end)
 E:AddTagInfo('luckyone:pet:name-and-happiness', Private.Name, L["Displays the pet's name and includes (in Classic only) the full happiness status"])
