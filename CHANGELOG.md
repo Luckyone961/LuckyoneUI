@@ -1,17 +1,15 @@
-### Version 2.61 [In Development]
+### Version 3.00 [In Development]
+**Highlights:**  
+All informations will be available in the Discord announcement channel  
+First release of the v3 version for my layouts  
+Full 1440p (native) and 1080p (native) scaling and support  
+Plater profile is not built-in rather than a wago link  
+Updated installer process and config panels  
 **All WoW Versions:**  
-Added new custom tag luckyone:level  
-Added new custom tag luckyone:name:last-classcolor  
-Added new custom tag luckyone:name:last-nocolor  
-Added new custom tag luckyone:name:%s-classcolor (%s = veryshort, short, medium, long)  
-Added new custom tag luckyone:name:%s-nocolor (%s = veryshort, short, medium, long)  
-Added new custom tag luckyone:power:percent  
-Removed update layout functions  
-Removed cache cleanup functions  
-**Classic:**  
-Added new custom tag luckyone:pet:name-and-happiness  
+Added more than 10 new custom tags, see the full list in the config  
 **Misc:**  
-Updated some parts of the LuckyoneUI config  
+Updated Credits  
+Updated Links  
 Updated README  
 ___
 ### Version 2.60 [11-06-2024]
