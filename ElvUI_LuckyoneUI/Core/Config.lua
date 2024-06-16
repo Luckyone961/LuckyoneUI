@@ -240,7 +240,7 @@ function L1UI:Config()
 	L1UI.Options.args.profiles.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', L["Reset to LuckyoneUI defaults."], 4, function() Private:Setup_WindTools() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.profiles.args.nameplates = ACH:Group(L["NamePlate Profiles"], nil, 4)
 	L1UI.Options.args.profiles.args.nameplates.inline = true
-	L1UI.Options.args.profiles.args.nameplates.args.plater = ACH:Execute('Plater', L["Reset to LuckyoneUI defaults."], 1, function() Private:Setup_Plater() end, nil, true)
+	L1UI.Options.args.profiles.args.nameplates.args.plater = ACH:Execute('Plater', L["Reset to LuckyoneUI defaults."], 1, function() Private:Setup_Plater() E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.profiles.args.nameplates.args.elvui = ACH:Execute('ElvUI', L["Reset to LuckyoneUI defaults."], 2, function() Private:Setup_NamePlates() E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.profiles.args.nameplates.args.styleFilters = ACH:Execute('ElvUI StyleFilters', L["Reset to LuckyoneUI defaults."], 3, function() Private:Setup_StyleFilters() E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.profiles.args.addons = ACH:Group(L["Addon Profiles"], nil, 5)

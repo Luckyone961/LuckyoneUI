@@ -68,7 +68,7 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_NPC.castbar.textXOffset = 4
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeToHold = 2
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeXOffset = -1
-	E.db.nameplates.units.ENEMY_NPC.castbar.width = (scaled and 177) and 197
+	E.db.nameplates.units.ENEMY_NPC.castbar.width = (scaled and 177) or 197
 	E.db.nameplates.units.ENEMY_NPC.castbar.xOffset = (scaled and 7) or 6
 	E.db.nameplates.units.ENEMY_NPC.castbar.yOffset = (scaled and -17) or -18
 	E.db.nameplates.units.ENEMY_NPC.debuffs.anchorPoint = 'LEFT'
@@ -133,7 +133,7 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.textXOffset = 4
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeToHold = 2
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeXOffset = -1
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.width = (scaled and 177) and 197
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.width = (scaled and 177) or 197
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.xOffset = (scaled and 7) or 6
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.yOffset = (scaled and -17) or -18
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.anchorPoint = 'LEFT'
