@@ -18,6 +18,7 @@ function Private:Setup_Filters_Retail()
 	local unitframe = E.global['unitframe'] or {}
 	local aurafilters = unitframe['aurafilters'] or {}
 	local aurawatch = unitframe['aurawatch'] or {}
+	local auraHighlight = unitframe['AuraHighlightColors'] or {}
 
 	-- Classes setup
 	local classes = {
@@ -146,6 +147,18 @@ function Private:Setup_Filters_Retail()
 		["displayText"] = true,
 		["sizeOffset"] = 4,
 		["style"] = "texturedIcon",
+	}
+
+	auraHighlight[410089] = {
+		["enable"] = true,
+		["ownOnly"] = true,
+		["style"] = "FILL",
+		["color"] = {
+			["a"] = 0.65,
+			["r"] = 0.80,
+			["g"] = 0.59,
+			["b"] = 0.34,
+		},
 	}
 
 	-- Monk
