@@ -1,15 +1,12 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
--- Dev
-local dev = E.global.L1UI.dev
-
 -- WarpDeplete Profile
 function Private:Setup_WarpDeplete()
 	if not E:IsAddOnEnabled('WarpDeplete') and E.Retail then Private:Print('WarpDeplete ' .. L["is not installed or enabled."]) return end
 
 	-- Profile name
-	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version
+	local name = (E.global.L1UI.dev and 'Luckyone') or 'Luckyone ' .. Private.Version
 
 	-- Profile data
 	WarpDepleteDB['profiles'][name] = WarpDepleteDB['profiles'][name] or {}

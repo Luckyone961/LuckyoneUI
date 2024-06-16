@@ -5,18 +5,16 @@ local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
 local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
 local pairs = pairs
 
--- Dev
-local dev = E.global.L1UI.dev
--- 1080p
-local scaled = E.global.L1UI.scaled
-
 -- BigWigs profiles
 function Private:Setup_BigWigs(layout)
 	if not E:IsAddOnEnabled('BigWigs') then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
 
+	-- 1080p
+	local scaled = E.global.L1UI.scaled
+
 	-- Profile names
-	local name = dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
-	local name_healing = dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version
+	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
+	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version
 
 	-- Required to add profiles to BigWigs3DB
 	if not IsAddOnLoaded('BigWigs_Core') then LoadAddOn('BigWigs_Core') end

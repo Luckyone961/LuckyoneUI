@@ -3,9 +3,6 @@ local E, L, V, P, G = unpack(ElvUI)
 
 local _G = _G
 
--- Dev
-local dev = E.global.L1UI.dev
-
 -- ProjectAzilroka profile
 function Private:Setup_ProjectAzilroka()
 	if not E:IsAddOnEnabled('ProjectAzilroka') then Private:Print('ProjectAzilroka ' .. L["is not installed or enabled."]) return end
@@ -13,7 +10,7 @@ function Private:Setup_ProjectAzilroka()
 	local PA = _G.ProjectAzilroka
 
 	-- Profile creation
-	PA.data:SetProfile((dev and 'Luckyone') or 'Luckyone ' .. Private.Version)
+	PA.data:SetProfile((E.global.L1UI.dev and 'Luckyone') or 'Luckyone ' .. Private.Version)
 
 	-- General modules
 	PA.db.AuraReminder.Enable = false

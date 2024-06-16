@@ -1,12 +1,12 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
--- 1080p
-local scaled = E.global.L1UI.scaled
-
 -- WindTools profile
 function Private:Setup_WindTools()
 	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then Private:Print('WindTools ' .. L["is not installed or enabled."]) return end
+
+	-- 1080p
+	local scaled = E.global.L1UI.scaled
 
 	-- Restore defaults
 	E.db.WT = E:CopyTable({}, P.WT)

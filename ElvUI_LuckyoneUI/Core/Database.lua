@@ -4,13 +4,11 @@ local DT = E:GetModule('DataTexts')
 
 local SetCVar = SetCVar
 
--- Dev
-local dev = E.global.L1UI.dev
--- 1080p
-local scaled = E.global.L1UI.scaled
-
 -- E.global & Custom DataText
 function Private:Setup_GlobalDB()
+	-- 1080p
+	local scaled = E.global.L1UI.scaled
+
 	SetCVar('uiScale', (scaled and 0.71111111111111) or 0.53333333333333)
 	E.global.general.UIScale = (scaled and 0.71111111111111) or 0.53333333333333
 
@@ -100,7 +98,7 @@ function Private:Setup_PrivateDB()
 	E.private.nameplates.enable = false
 	E.private.skins.parchmentRemoverEnable = true
 
-	if dev then
+	if E.global.L1UI.dev then
 		E.private.general.chatBubbles = 'disabled'
 		E.private.L1UI.disabledFrames.AlertFrame = true
 		E.private.L1UI.disabledFrames.BossBanner = true
@@ -110,6 +108,8 @@ end
 
 -- The War Within layout db
 function Private:Layout_TheWarWithin(layout)
+	-- 1080p
+	local scaled = E.global.L1UI.scaled
 	-- AB conversion
 	E.db.convertPages = true
 	-- Protect movers error
@@ -1734,11 +1734,11 @@ function Private:Setup_Layout_TheWarWithin(layout)
 
 	-- Create a fresh profile in ElvUI
 	if layout == 'main' then
-		E.data:SetProfile(dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version)
+		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version)
 	elseif layout == 'healing' then
-		E.data:SetProfile(dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version)
+		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version)
 	elseif layout == 'support' then
-		E.data:SetProfile(dev and 'Luckyone Support' or 'Luckyone Support ' .. Private.Version)
+		E.data:SetProfile(E.global.L1UI.dev and 'Luckyone Support' or 'Luckyone Support ' .. Private.Version)
 	end
 
 	-- E.global & Custom DataText
