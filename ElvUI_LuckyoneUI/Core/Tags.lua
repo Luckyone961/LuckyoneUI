@@ -31,6 +31,8 @@ local UnitPowerMax = UnitPowerMax
 local UnitPowerType = UnitPowerType
 local UnitReaction = UnitReaction
 
+local UNKNOWN = _G.UNKNOWN
+
 -- Display unit classification without 'affix' on minor enemies
 E:AddTag('luckyone:classification', 'UNIT_CLASSIFICATION_CHANGED', function(unit)
 	local class = UnitClassification(unit)
@@ -147,10 +149,10 @@ E:AddTag('luckyone:name:last-classcolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANC
 	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		local cs = ElvUF.colors.class[unitClass]
-		return format('%s%s', (cs and Hex(cs.r, cs.g, cs.b)) or '|cFFcccccc', name)
+		return format('%s%s', (cs and Hex(cs.r, cs.g, cs.b)) or '|cFFcccccc', name or UNKNOWN)
 	else
 		local cr = ElvUF.colors.reaction[UnitReaction(unit, 'player')]
-		return format('%s%s', (cr and Hex(cr.r, cr.g, cr.b)) or '|cFFcccccc', name)
+		return format('%s%s', (cr and Hex(cr.r, cr.g, cr.b)) or '|cFFcccccc', name or UNKNOWN)
 	end
 end)
 E:AddTagInfo('luckyone:name:last-classcolor', Private.Name, L["Displays the last part of the unit's name with class color"])
