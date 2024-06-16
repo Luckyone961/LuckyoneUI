@@ -160,7 +160,7 @@ function Private:Setup_WindTools()
 	E.db.movers = E.db.movers or {}
 
 	-- Movers
-	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,394') or 'BOTTOM,ElvUIParent,BOTTOM,0,580'
+	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,405') or 'BOTTOM,ElvUIParent,BOTTOM,0,580'
 	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-177'
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,UIParent,TOP,0,-110'
 

@@ -1575,7 +1575,7 @@ function Private:Layout_TheWarWithin(layout)
 
 		-- Healing movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,UIParent,BOTTOM,-280,146') or 'BOTTOM,ElvUIParent,BOTTOM,-330,241'
-		E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-506,492') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-514,580'
+		E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-447,492') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-514,580'
 		E.db.movers.ElvUF_PartyMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,339') or 'BOTTOM,ElvUIParent,BOTTOM,0,455'
 		E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,366,358') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,636,474'
 		E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,114') or 'BOTTOM,ElvUIParent,BOTTOM,0,134'
@@ -1589,7 +1589,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-447,314') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-716,430'
 		E.db.movers.PlayerPowerBarMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,447,339') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,717,455'
 		E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-110'
-		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-508,-388') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-515,-670'
+		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-450,-388') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-515,-670'
 		E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,450,304') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,718,421'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,280,146') or 'BOTTOM,ElvUIParent,BOTTOM,330,241'
 
