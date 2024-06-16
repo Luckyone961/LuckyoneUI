@@ -763,7 +763,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.buffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.buffs.maxDuration = 0
 	E.db.unitframe.units.arena.buffs.perrow = 5
-	E.db.unitframe.units.arena.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.arena.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.arena.buffs.sizeOverride = 20
 	E.db.unitframe.units.arena.buffs.xOffset = -1
 	E.db.unitframe.units.arena.buffs.yOffset = -10
@@ -792,7 +792,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.debuffs.maxDuration = 0
 	E.db.unitframe.units.arena.debuffs.perrow = 5
-	E.db.unitframe.units.arena.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.arena.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
 	E.db.unitframe.units.arena.debuffs.sizeOverride = 20
 	E.db.unitframe.units.arena.debuffs.xOffset = -1
 	E.db.unitframe.units.arena.debuffs.yOffset = 1
@@ -834,7 +834,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.buffs.countYOffset = 0
 	E.db.unitframe.units.boss.buffs.growthY = 'DOWN'
 	E.db.unitframe.units.boss.buffs.perrow = 5
-	E.db.unitframe.units.boss.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.boss.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.boss.buffs.sizeOverride = 20
 	E.db.unitframe.units.boss.buffs.xOffset = -1
 	E.db.unitframe.units.boss.buffs.yOffset = -10
@@ -861,7 +861,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.boss.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.boss.debuffs.perrow = 5
-	E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
 	E.db.unitframe.units.boss.debuffs.sizeOverride = 20
 	E.db.unitframe.units.boss.debuffs.xOffset = -1
 	E.db.unitframe.units.boss.debuffs.yOffset = 1
@@ -902,7 +902,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.focus.buffs.maxDuration = 0
 	E.db.unitframe.units.focus.buffs.numrows = 2
 	E.db.unitframe.units.focus.buffs.perrow = 12
-	E.db.unitframe.units.focus.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.focus.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.focus.buffs.yOffset = 1
 	E.db.unitframe.units.focus.castbar.customTextFont.enable = true
 	E.db.unitframe.units.focus.castbar.customTextFont.font = Private.Font
@@ -930,7 +930,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.focus.debuffs.maxDuration = 0
 	E.db.unitframe.units.focus.debuffs.numrows = 2
 	E.db.unitframe.units.focus.debuffs.perrow = 12
-	E.db.unitframe.units.focus.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.focus.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
 	E.db.unitframe.units.focus.disableMouseoverGlow = true
 	E.db.unitframe.units.focus.disableTargetGlow = true
 	E.db.unitframe.units.focus.fader.minAlpha = 0.5
@@ -1071,7 +1071,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.target.debuffs.maxDuration = 0
 	E.db.unitframe.units.target.debuffs.numrows = 2
 	E.db.unitframe.units.target.debuffs.perrow = 12
-	E.db.unitframe.units.target.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.target.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
 	E.db.unitframe.units.target.disableMouseoverGlow = true
 	E.db.unitframe.units.target.fader.minAlpha = 0.5
 	E.db.unitframe.units.target.fader.smooth = 0
@@ -2399,7 +2399,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.unitframe.units.arena.buffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.buffs.maxDuration = 0
 	E.db.unitframe.units.arena.buffs.perrow = 2
-	E.db.unitframe.units.arena.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.arena.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.arena.buffs.sizeOverride = 32
 	E.db.unitframe.units.arena.buffs.xOffset = 1
 	E.db.unitframe.units.arena.buffs.yOffset = 1
@@ -2425,7 +2425,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.unitframe.units.arena.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.arena.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.debuffs.maxDuration = 0
-	E.db.unitframe.units.arena.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.arena.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
 	E.db.unitframe.units.arena.debuffs.sizeOverride = 32
 	E.db.unitframe.units.arena.debuffs.xOffset = -34
 	E.db.unitframe.units.arena.debuffs.yOffset = 1
@@ -2462,7 +2462,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.unitframe.units.focus.buffs.growthX = 'LEFT'
 	E.db.unitframe.units.focus.buffs.maxDuration = 0
 	E.db.unitframe.units.focus.buffs.perrow = 10
-	E.db.unitframe.units.focus.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.focus.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.focus.castbar.customTextFont.enable = true
 	E.db.unitframe.units.focus.castbar.customTextFont.font = Private.Font
 	E.db.unitframe.units.focus.castbar.customTextFont.fontSize = 11
@@ -2486,7 +2486,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.unitframe.units.focus.debuffs.growthX = 'RIGHT'
 	E.db.unitframe.units.focus.debuffs.maxDuration = 0
 	E.db.unitframe.units.focus.debuffs.perrow = 10
-	E.db.unitframe.units.focus.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.focus.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
 	E.db.unitframe.units.focus.disableMouseoverGlow = true
 	E.db.unitframe.units.focus.disableTargetGlow = true
 	E.db.unitframe.units.focus.fader.minAlpha = 0.5
@@ -2514,7 +2514,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.unitframe.units.boss.buffs.countXOffset = 1
 	E.db.unitframe.units.boss.buffs.growthY = 'DOWN'
 	E.db.unitframe.units.boss.buffs.perrow = 2
-	E.db.unitframe.units.boss.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.boss.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.boss.buffs.sizeOverride = 32
 	E.db.unitframe.units.boss.buffs.xOffset = 1
 	E.db.unitframe.units.boss.buffs.yOffset = 1
@@ -2538,7 +2538,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.unitframe.units.boss.debuffs.countXOffset = 1
 	E.db.unitframe.units.boss.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.boss.debuffs.growthY = 'DOWN'
-	E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
 	E.db.unitframe.units.boss.debuffs.sizeOverride = 32
 	E.db.unitframe.units.boss.debuffs.xOffset = -1
 	E.db.unitframe.units.boss.debuffs.yOffset = 1
@@ -2668,7 +2668,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.unitframe.units.target.debuffs.growthX = 'RIGHT'
 	E.db.unitframe.units.target.debuffs.maxDuration = 0
 	E.db.unitframe.units.target.debuffs.perrow = 10
-	E.db.unitframe.units.target.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.target.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
 	E.db.unitframe.units.target.disableMouseoverGlow = true
 	E.db.unitframe.units.target.fader.minAlpha = 0.5
 	E.db.unitframe.units.target.fader.smooth = 0
@@ -3681,7 +3681,7 @@ function Private:Layout_Shadowlands(layout)
 	E.db.unitframe.units.arena.buffs.countXOffset = 1
 	E.db.unitframe.units.arena.buffs.maxDuration = 0
 	E.db.unitframe.units.arena.buffs.numrows = 2
-	E.db.unitframe.units.arena.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.arena.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.arena.buffs.sizeOverride = 22
 	E.db.unitframe.units.arena.buffs.xOffset = 23
 	E.db.unitframe.units.arena.buffs.yOffset = -46
@@ -3707,7 +3707,7 @@ function Private:Layout_Shadowlands(layout)
 	E.db.unitframe.units.arena.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.debuffs.maxDuration = 0
 	E.db.unitframe.units.arena.debuffs.numrows = 2
-	E.db.unitframe.units.arena.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.arena.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
 	E.db.unitframe.units.arena.debuffs.sizeOverride = 22
 	E.db.unitframe.units.arena.debuffs.spacing = 0
 	E.db.unitframe.units.arena.debuffs.xOffset = -69
@@ -3740,7 +3740,7 @@ function Private:Layout_Shadowlands(layout)
 	E.db.unitframe.units.boss.buffs.countXOffset = 1
 	E.db.unitframe.units.boss.buffs.growthY = 'DOWN'
 	E.db.unitframe.units.boss.buffs.numrows = 2
-	E.db.unitframe.units.boss.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.boss.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.boss.buffs.xOffset = 23
 	E.db.unitframe.units.boss.buffs.yOffset = -21
 	E.db.unitframe.units.boss.castbar.customTextFont.enable = true
@@ -3763,7 +3763,7 @@ function Private:Layout_Shadowlands(layout)
 	E.db.unitframe.units.boss.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.boss.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.boss.debuffs.numrows = 2
-	E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
 	E.db.unitframe.units.boss.debuffs.spacing = 0
 	E.db.unitframe.units.boss.debuffs.xOffset = -23
 	E.db.unitframe.units.boss.debuffs.yOffset = -21
@@ -3787,7 +3787,7 @@ function Private:Layout_Shadowlands(layout)
 	E.db.unitframe.units.focus.buffs.growthX = 'LEFT'
 	E.db.unitframe.units.focus.buffs.maxDuration = 0
 	E.db.unitframe.units.focus.buffs.perrow = 2
-	E.db.unitframe.units.focus.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.focus.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.focus.buffs.sizeOverride = 23
 	E.db.unitframe.units.focus.castbar.customTextFont.enable = true
 	E.db.unitframe.units.focus.castbar.customTextFont.font = Private.Font
@@ -3813,7 +3813,7 @@ function Private:Layout_Shadowlands(layout)
 	E.db.unitframe.units.focus.debuffs.growthX = 'RIGHT'
 	E.db.unitframe.units.focus.debuffs.maxDuration = 0
 	E.db.unitframe.units.focus.debuffs.perrow = 8
-	E.db.unitframe.units.focus.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.focus.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
 	E.db.unitframe.units.focus.disableMouseoverGlow = true
 	E.db.unitframe.units.focus.disableTargetGlow = true
 	E.db.unitframe.units.focus.healPrediction.absorbStyle = 'WRAPPED'
@@ -3968,7 +3968,7 @@ function Private:Layout_Shadowlands(layout)
 	E.db.unitframe.units.target.buffs.countPosition = 'TOP'
 	E.db.unitframe.units.target.buffs.countYOffset = 14
 	E.db.unitframe.units.target.buffs.perrow = 2
-	E.db.unitframe.units.target.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.target.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.target.buffs.sizeOverride = 23
 	E.db.unitframe.units.target.castbar.customTextFont.enable = true
 	E.db.unitframe.units.target.castbar.customTextFont.font = Private.Font
@@ -3994,7 +3994,7 @@ function Private:Layout_Shadowlands(layout)
 	E.db.unitframe.units.target.debuffs.desaturate = false
 	E.db.unitframe.units.target.debuffs.growthX = 'RIGHT'
 	E.db.unitframe.units.target.debuffs.maxDuration = 0
-	E.db.unitframe.units.target.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.target.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
 	E.db.unitframe.units.target.disableMouseoverGlow = true
 	E.db.unitframe.units.target.healPrediction.absorbStyle = 'WRAPPED'
 	E.db.unitframe.units.target.health.position = 'CENTER'

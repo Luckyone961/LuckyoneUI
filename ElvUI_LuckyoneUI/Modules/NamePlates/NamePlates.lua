@@ -51,7 +51,7 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_NPC.buffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.buffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_NPC.buffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
+	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 	E.db.nameplates.units.ENEMY_NPC.buffs.size = (scaled and 20) or 22
 	E.db.nameplates.units.ENEMY_NPC.buffs.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.buffs.yOffset = -1
@@ -145,7 +145,7 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.size = (scaled and 20) or 22
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = -1
