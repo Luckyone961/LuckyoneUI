@@ -5,6 +5,7 @@ local E, L, V, P, G = unpack(ElvUI)
 G.L1UI = {
 	dev = false,
 	install_version = nil,
+	scaled = false,
 }
 
 -- Defaults: E.private.L1UI

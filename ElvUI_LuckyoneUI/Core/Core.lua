@@ -6,6 +6,9 @@ local format, print = format, print
 local hooksecurefunc = hooksecurefunc
 local SetCVar = SetCVar
 
+-- Dev
+local dev = E.global.L1UI.dev
+
 -- Chat print
 function Private:Print(msg)
 	print(Private.Name .. ': ' .. msg)
@@ -100,7 +103,7 @@ function Private:Setup_CVars(noPrint)
 	SetCVar('UberTooltips', 1)
 
 	-- Developer CVars
-	if E.global.L1UI.dev then
+	if dev then
 		SetCVar('blockChannelInvites', 1)
 		SetCVar('CameraReduceUnexpectedMovement', 1)
 		SetCVar('DisableAdvancedFlyingVelocityVFX', 1)

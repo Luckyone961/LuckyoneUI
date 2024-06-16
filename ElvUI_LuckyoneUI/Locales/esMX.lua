@@ -4,11 +4,13 @@ if not L then return end
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
+L["1440p = Default | 1080p = Downscaled"] = true
 L["Addon Download:"] = true
 L["Addon Profiles"] = true
 L["AddOnSkins profile has been set."] = true
 L["Alert Frame"] = true
 L["Archive - Old Layouts"] = true
+L["Augmentation"] = true
 L["Author"] = true
 L["Automatically fill out the confirmation text to delete items."] = true
 L["BigWigs Healing"] = true
@@ -98,6 +100,7 @@ L["Install"] = true
 L["Installation Complete"] = true
 L["Installation"] = true
 L["Layout has been set."] = true
+L["Layout Scale"] = true
 L["Layouts"] = true
 L["Left panel: General - Log - Whisper - Guild - Party."] = true
 L["Links"] = true
@@ -115,6 +118,7 @@ L["NamePlates: Enemy NPC Buffs"] = true
 L["NamePlates: Enemy NPC Debuffs"] = true
 L["NamePlates"] = true
 L["is not installed or enabled."] = true
+L["No ActionBars and centered Raid Frames"] = true
 L["Note"] = true
 L["OmniCD Healing"] = true
 L["OmniCD Main"] = true
@@ -125,6 +129,7 @@ L["Optional step. ElvUI castbars are used by default."] = true
 L["Outdated"] = true
 L["Paladin"] = true
 L["Performance"] = true
+L['Plater profile has been set.'] = true
 L["Player Frame Buffs"] = true
 L["Player Frame Debuffs"] = true
 L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."] = true
@@ -165,7 +170,6 @@ L["Show all auras except blacklisted."] = true
 L["Show All"] = true
 L["Skip and close the installer"] = true
 L["Successfully updated your current layout to LuckyoneUI version "] = true
-L["Support"] = true
 L["Supporters"] = true
 L["Tags"] = true
 L["Target Frame Buffs"] = true

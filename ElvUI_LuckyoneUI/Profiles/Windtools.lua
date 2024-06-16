@@ -1,6 +1,9 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
+-- 1080p
+local scaled = E.global.L1UI.scaled
+
 -- WindTools profile
 function Private:Setup_WindTools()
 	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then Private:Print('WindTools ' .. L["is not installed or enabled."]) return end
@@ -10,6 +13,11 @@ function Private:Setup_WindTools()
 	E.global.WT = E:CopyTable({}, G.WT)
 	E.private.WT = E:CopyTable({}, V.WT)
 
+	-- Fix expansion icon not correctly moving to minimap bar
+	E.db.general.minimap.icons.classHall.scale = 1.0
+	E.db.general.minimap.icons.classHall.xOffset = 0
+	E.db.general.minimap.icons.classHall.yOffset = 0
+
 	-- Global db
 	E.global.WT.core.loginMessage = false
 	E.global.WT.core.noDuplicatedParty = true
@@ -17,7 +25,8 @@ function Private:Setup_WindTools()
 	-- Private db
 	E.private.WT.maps.minimapButtons.backdrop = false
 	E.private.WT.maps.minimapButtons.backdropSpacing = 0
-	E.private.WT.maps.minimapButtons.buttonSize = 23
+	E.private.WT.maps.minimapButtons.buttonSize = 22
+	E.private.WT.maps.minimapButtons.buttonsPerRow = 7
 	E.private.WT.maps.minimapButtons.expansionLandingPage = true
 	E.private.WT.maps.minimapButtons.spacing = 3
 	E.private.WT.maps.superTracker.enable = false
@@ -151,9 +160,9 @@ function Private:Setup_WindTools()
 	E.db.movers = E.db.movers or {}
 
 	-- Movers
-	E.db.movers.WTCombatAlertFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,0,410'
-	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-158'
-	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-187'
+	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,394') or 'BOTTOM,ElvUIParent,BOTTOM,0,580'
+	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-177'
+	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,UIParent,TOP,0,-110'
 
 	Private:Print(L["WindTools profile has been set."])
 end

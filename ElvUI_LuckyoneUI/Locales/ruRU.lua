@@ -4,11 +4,13 @@ if not L then return end
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
+L["1440p = Default | 1080p = Downscaled"] = true
 L["Addon Download:"] = "Загрузить аддон:"
 L["Addon Profiles"] = "Профили дополнений"
 L["AddOnSkins profile has been set."] = "Профиль AddOnSkins установлен."
 L["Alert Frame"] = "Рамка оповещения"
 L["Archive - Old Layouts"] = true
+L["Augmentation"] = true
 L["Author"] = "Автор"
 L["Automatically fill out the confirmation text to delete items."] = "Автоматически заполнять текст подтверждения для удаления элементов."
 L["BigWigs Healing"] = "BigWings 'Исцеление'"
@@ -98,6 +100,7 @@ L["Install"] = "Установить"
 L["Installation Complete"] = "Установка завершена"
 L["Installation"] = "Установка"
 L["Layout has been set."] = "Макет установлен."
+L["Layout Scale"] = true
 L["Layouts"] = true
 L["Left panel: General - Log - Whisper - Guild - Party."] = true
 L["Links"] = "Ссылки"
@@ -115,6 +118,7 @@ L["NamePlates: Enemy NPC Buffs"] = "Баффы 'Индикаторы здоро�
 L["NamePlates: Enemy NPC Debuffs"] = "Дебаффы 'Индикаторы здоровья: Вражеский NPC'"
 L["NamePlates"] = "Индикаторы здоровья"
 L["is not installed or enabled."] = true
+L["No ActionBars and centered Raid Frames"] = true
 L["Note"] = "Примечание"
 L["OmniCD Healing"] = "OmniCD 'Исцеление'"
 L["OmniCD Main"] = "OmniCD Основной"
@@ -125,6 +129,7 @@ L["Optional step. ElvUI castbars are used by default."] = true
 L["Outdated"] = true
 L["Paladin"] = "Паладин"
 L["Performance"] = "Производительность"
+L['Plater profile has been set.'] = true
 L["Player Frame Buffs"] = "Баффы рамки игрока"
 L["Player Frame Debuffs"] = "Дебаффы рамки игрока"
 L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."] = true
@@ -165,7 +170,6 @@ L["Show all auras except blacklisted."] = "Показать все ауры, к�
 L["Show All"] = "Показать все"
 L["Skip and close the installer"] = true
 L["Successfully updated your current layout to LuckyoneUI version "] = "Ваш текущий макет успешно обновлен до версии "
-L["Support"] = true
 L["Supporters"] = "Поддержка"
 L["Tags"] = "Теги"
 L["Target Frame Buffs"] = "Баффы рамки цели"

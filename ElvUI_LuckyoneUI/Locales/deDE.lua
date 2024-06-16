@@ -4,11 +4,13 @@ if not L then return end
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
+L["1440p = Default | 1080p = Downscaled"] = "1440p = Standard | 1080p = Skaliert"
 L["Addon Download:"] = true
 L["Addon Profiles"] = "Addon Profile"
 L["AddOnSkins profile has been set."] = "AddOnSkins Profil wurde festgelegt."
 L["Alert Frame"] = "Alarmfenster"
 L["Archive - Old Layouts"] = true
+L["Augmentation"] = true
 L["Author"] = "Autor"
 L["Automatically fill out the confirmation text to delete items."] = "Fülle automatisch den Bestätigungstext zum Löschen von Gegenständen aus."
 L["BigWigs Healing"] = true
@@ -98,6 +100,7 @@ L["Install"] = "Installieren"
 L["Installation Complete"] = "Installation Vollständig"
 L["Installation"] = true
 L["Layout has been set."] = "Layout wurde festgelegt."
+L["Layout Scale"] = "Layout Skalierung"
 L["Layouts"] = true
 L["Left panel: General - Log - Whisper - Guild - Party."] = true
 L["Links"] = true
@@ -115,6 +118,7 @@ L["NamePlates: Enemy NPC Buffs"] = "Namensplaketten: Feindliche NPC Stärkungsza
 L["NamePlates: Enemy NPC Debuffs"] = "Namensplaketten: Feindliche NPC Schwächungszauber"
 L["NamePlates"] = "Namensplaketten"
 L["is not installed or enabled."] = "ist nicht installiert oder aktiviert."
+L["No ActionBars and centered Raid Frames"] = 'Keine Aktionsleisten und zentrierte Schlachtzugsfenster'
 L["Note"] = "Notiz"
 L["OmniCD Healing"] = true
 L["OmniCD Main"] = true
@@ -125,6 +129,7 @@ L["Optional step. ElvUI castbars are used by default."] = true
 L["Outdated"] = true
 L["Paladin"] = true
 L["Performance"] = "Leistung"
+L['Plater profile has been set.'] = "Plater Profil wurde festgelegt."
 L["Player Frame Buffs"] = "Spielerfenster Stärkungszauber"
 L["Player Frame Debuffs"] = "Spielerfenster Schwächungszauber"
 L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."] = "Bitte klicke auf die Schaltfläche unten, um Luckyones Profile für BigWigs und LittleWigs anzuwenden."
@@ -165,7 +170,6 @@ L["Show all auras except blacklisted."] = "Zeige alle Auren außer denen auf der
 L["Show All"] = "Alle anzeigen"
 L["Skip and close the installer"] = true
 L["Successfully updated your current layout to LuckyoneUI version "] = "Dein aktuelles Layout wurde erfolgreich auf die LuckyoneUI Version aktualisiert."
-L["Support"] = true
 L["Supporters"] = "Unterstützer"
 L["Tags"] = true
 L["Target Frame Buffs"] = "Zielfenster Stärkungszauber"

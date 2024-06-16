@@ -30,6 +30,8 @@ local VOICE = VOICE
 function Private:Setup_Chat()
 	-- General
 	local chats = _G.CHAT_FRAMES
+	-- 1080p
+	local scaled = E.global.L1UI.scaled
 
 	-- CVars Chat
 	SetCVar('chatClassColorOverride', 0)
@@ -63,8 +65,8 @@ function Private:Setup_Chat()
 			CH:FCFTab_UpdateColors(CH:GetTab(frame))
 		end
 
-		-- Font size 10 for all tabs
-		FCF_SetChatWindowFontSize(nil, frame, 10)
+		-- Font size for all tabs
+		FCF_SetChatWindowFontSize(nil, frame, (scaled and 10) or 11)
 
 		-- Tabs
 		if id == 1 then
@@ -104,7 +106,7 @@ function Private:Setup_Chat()
 	end
 
 	-- Party tab
-	local party = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER' }
+	local party = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER', 'SYSTEM' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame6)
 	for _, v in ipairs(party) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame6, v)

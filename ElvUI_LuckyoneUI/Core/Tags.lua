@@ -95,7 +95,7 @@ E:AddTag('luckyone:level', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 	else
 		color = GetCreatureDifficultyColor(UnitEffectiveLevel(unit))
 	end
-	return format('%s%s', Hex(color.r, color.g, color.b), max and nil or level > 0 and level or '??')
+	return not max and format('%s%s', Hex(color.r, color.g, color.b), level > 0 and level or '??')
 end)
 E:AddTagInfo('luckyone:level', Private.Name, L["Displays the unit's level with difficultycolor if the player is not max level"])
 

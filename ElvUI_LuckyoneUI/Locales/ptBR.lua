@@ -4,11 +4,13 @@ if not L then return end
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
+L["1440p = Default | 1080p = Downscaled"] = true
 L["Addon Download:"] = "Download do Addon:"
 L["Addon Profiles"] = "Perfis dos Addons"
 L["AddOnSkins profile has been set."] = "Perfil do AddOnSkins foi configurado."
 L["Alert Frame"] = "Painel de Alerta"
 L["Archive - Old Layouts"] = true
+L["Augmentation"] = true
 L["Author"] = "Autor"
 L["Automatically fill out the confirmation text to delete items."] = "Automaticamente preencher o texto de confirmação para deletar items."
 L["BigWigs Healing"] = "BigWigs Curar"
@@ -98,6 +100,7 @@ L["Install"] = "Instalar"
 L["Installation Complete"] = "Instalação Completa"
 L["Installation"] = "Instalação"
 L["Layout has been set."] = "Perfil foi configurado."
+L["Layout Scale"] = true
 L["Layouts"] = "Perfis"
 L["Left panel: General - Log - Whisper - Guild - Party."] = "Painel Esquerdo: Geral - Registro - Sussuro - Guilda - Grupo."
 L["Links"] = true
@@ -115,6 +118,7 @@ L["NamePlates: Enemy NPC Buffs"] = "Placas de Nomes: Bônus de NPC Inimigos"
 L["NamePlates: Enemy NPC Debuffs"] = "Placas de Nomes: Penalidades de NPC Inimigos"
 L["NamePlates"] = "Placas de Nome"
 L["is not installed or enabled."] = "não está instalado ou habilitado."
+L["No ActionBars and centered Raid Frames"] = true
 L["Note"] = "Nota"
 L["OmniCD Healing"] = "OmniCD Curador"
 L["OmniCD Main"] = "OmniCD Principal"
@@ -125,6 +129,7 @@ L["Optional step. ElvUI castbars are used by default."] = "Passo opcional. Barra
 L["Outdated"] = "Desatualizado"
 L["Paladin"] = "Paladino"
 L["Performance"] = "Desempenho"
+L['Plater profile has been set.'] = true
 L["Player Frame Buffs"] = "Bônus do Painel de Jogador"
 L["Player Frame Debuffs"] = "Penalidades do Painel de Jogador"
 L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."] = true
@@ -165,7 +170,6 @@ L["Show all auras except blacklisted."] = "Mostrar todas as auras exceto as bloq
 L["Show All"] = "Mostrar Todas"
 L["Skip and close the installer"] = "Pular e fechar o instalador"
 L["Successfully updated your current layout to LuckyoneUI version "] = "Seu perfil foi atualizado com sucesso para o LuckyoneUI versão "
-L["Support"] = "Suporte"
 L["Supporters"] = "Apoiadores"
 L["Tags"] = "Etiquetas"
 L["Target Frame Buffs"] = "Bônus do Quadro de Alvo"

@@ -66,23 +66,9 @@ function L1UI:DebugMode(msg)
 	end
 end
 
--- LuckyoneUI developer switch
-function L1UI:Dev(msg)
-	if msg == 'on' then
-		E.global.L1UI.dev = true
-		Private:Print('Developer mode enabled.')
-		E:StaticPopup_Show('L1UI_RL')
-	elseif msg == 'off' then
-		E.global.L1UI.dev = false
-		Private:Print('Developer mode disabled.')
-		E:StaticPopup_Show('L1UI_RL')
-	end
-end
-
 -- Register all commands
 function L1UI:LoadCommands()
 	self:RegisterChatCommand('luckydebug', 'DebugMode')
-	self:RegisterChatCommand('luckydev', 'Dev')
 	self:RegisterChatCommand('luckyoneui', 'Toggles')
 	if E.Retail then -- Retail chat commands
 		self:RegisterChatCommand('vault', 'WeeklyRewards')
