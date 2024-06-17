@@ -1,10 +1,26 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
+local PI = E:GetModule('PluginInstaller')
 
-local C_UI_Reload = C_UI.Reload
 local format, print = format, print
-local hooksecurefunc = hooksecurefunc
+local next, pairs, strlower, wipe = next, pairs, strlower, wipe
+
+local _G = _G
+local C_UI_Reload = C_UI.Reload
+local DisableAddOn = (C_AddOns and C_AddOns.DisableAddOn) or DisableAddOn
+local EnableAddOn = (C_AddOns and C_AddOns.EnableAddOn) or EnableAddOn
+local GetAddOnInfo = (C_AddOns and C_AddOns.GetAddOnInfo) or GetAddOnInfo
+local GetNumAddOns = (C_AddOns and C_AddOns.GetNumAddOns) or GetNumAddOns
+local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
 local SetCVar = SetCVar
+
+-- Keep these enabled in debug mode
+local AddOns = {
+	ElvUI = true,
+	ElvUI_Libraries = true,
+	ElvUI_LuckyoneUI = true,
+	ElvUI_Options = true
+}
 
 -- Chat print
 function Private:Print(msg)
@@ -77,106 +93,66 @@ function Private:VersionCheck()
 	end
 end
 
--- General CVars
-function Private:Setup_CVars(noPrint)
-	-- Core CVars
-	SetCVar('advancedCombatLogging', 1)
-	SetCVar('alwaysShowActionBars', 1)
-	SetCVar('autoLootDefault', 1)
-	SetCVar('AutoPushSpellToActionBar', 0)
-	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
-	SetCVar('ffxDeath', 0)
-	SetCVar('ffxGlow', 0)
-	SetCVar('ffxNether', 0)
-	SetCVar('fstack_preferParentKeys', 0)
-	SetCVar('lockActionBars', 1)
-	SetCVar('nameplateShowOnlyNames', 1)
-	SetCVar('profanityFilter', 0)
-	SetCVar('rawMouseEnable', 1)
-	SetCVar('screenshotQuality', 10)
-	SetCVar('showNPETutorials', 0)
-	SetCVar('showTutorials', 0)
-	SetCVar('threatWarning', 3)
-	SetCVar('UberTooltips', 1)
+-- Addon Compartment OnClick TOC func
+function L1UI_OnAddonCompartmentClick()
+	E:ToggleOptions()
+	E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
+end
 
-	-- Developer CVars
-	if E.global.L1UI.dev then
-		SetCVar('blockChannelInvites', 1)
-		SetCVar('CameraReduceUnexpectedMovement', 1)
-		SetCVar('DisableAdvancedFlyingVelocityVFX', 1)
-		SetCVar('disableServerNagle', 1)
-		SetCVar('displaySpellActivationOverlays', 0)
-		SetCVar('doNotFlashLowHealthWarning', 1)
-		SetCVar('empowerTapControls', 1)
-		SetCVar('floatingCombatTextCombatDamage', 0)
-		SetCVar('floatingCombatTextCombatHealing', 0)
-		SetCVar('GxAllowCachelessShaderMode', 0)
-		SetCVar('LowLatencyMode', 2)
-		SetCVar('maxFPSLoading', 30)
-		SetCVar('RAIDweatherDensity', 0)
-		SetCVar('ResampleAlwaysSharpen', 1)
-		SetCVar('showToastOffline', 0)
-		SetCVar('showToastOnline', 0)
-		SetCVar('showToastWindow', 0)
-		SetCVar('SpellQueueWindow', 180)
-		SetCVar('useIPv6', 1)
-		SetCVar('weatherDensity', 0)
-	end
-
-	if not noPrint then
-		Private:Print(L["CVars have been set."])
+-- Weekly Rewards Frame chat commands
+function L1UI:WeeklyRewards()
+	LoadAddOn('Blizzard_WeeklyRewards')
+	if _G.WeeklyRewardsFrame:IsShown() then
+		_G.WeeklyRewardsFrame:Hide()
+	else
+		_G.WeeklyRewardsFrame:Show()
 	end
 end
 
--- NamePlate CVars
-function Private:NameplateCVars(noPrint)
-	SetCVar('NamePlateHorizontalScale', 1)
-	SetCVar('nameplateLargerScale', 1)
-	SetCVar('nameplateLargeTopInset', -1)
-	SetCVar('nameplateMinAlpha', 1)
-	SetCVar('nameplateMinScale', 1)
-	SetCVar('nameplateMotion', 1)
-	SetCVar('nameplateOccludedAlphaMult', 1)
-	SetCVar('nameplateOtherBottomInset', -1)
-	SetCVar('nameplateOtherTopInset', -1)
-	SetCVar('nameplateOverlapH', 1)
-	SetCVar('nameplateOverlapV', 1.4)
-	SetCVar('nameplateSelectedScale', 1)
-	SetCVar('nameplateSelfAlpha', 1)
-	SetCVar('nameplateSelfTopInset', -1)
-	SetCVar('NamePlateVerticalScale', 1)
-
-	SetCVar('UnitNameEnemyGuardianName', 1)
-	SetCVar('UnitNameEnemyMinionName', 1)
-	SetCVar('UnitNameEnemyPetName', 1)
-	SetCVar('UnitNameEnemyPlayerName', 1)
-
-	if not E.Classic then
-		SetCVar('UnitNameEnemyTotem', 1)
-	end
-
-	if not E.Retail then
-		SetCVar('nameplateNotSelectedAlpha', 1)
-	end
-
-	if not noPrint then
-		Private:Print(L["NamePlate CVars have been set."])
+-- LuckyoneUI chat commands
+function L1UI:Toggles(msg)
+	if msg == 'install' then
+		PI:Queue(L1UI.InstallerData)
+	elseif msg == 'config' then
+		E:ToggleOptions()
+		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
 	end
 end
 
--- Easy delete
-function Private:EasyDelete()
-	if not E.private.L1UI.qualityOfLife.easyDelete then return end
+-- LuckyoneUI debug mode
+function L1UI:DebugMode(msg)
+	local switch = strlower(msg)
+	if switch == 'on' then
+		for i = 1, GetNumAddOns() do
+			local name = GetAddOnInfo(i)
+			if not AddOns[name] and E:IsAddOnEnabled(name) then
+				DisableAddOn(name, E.myname)
+				ElvDB.LuckyoneDisabledAddOns[name] = i
+			end
+		end
+		SetCVar('scriptErrors', 1)
+		C_UI_Reload()
+	elseif switch == 'off' then
+		if next(ElvDB.LuckyoneDisabledAddOns) then
+			for name in pairs(ElvDB.LuckyoneDisabledAddOns) do
+				EnableAddOn(name, E.myname)
+			end
+			wipe(ElvDB.LuckyoneDisabledAddOns)
+			C_UI_Reload()
+		end
+	else
+		Private:Print('/luckydebug on - /luckydebug off')
+	end
+end
 
-	-- Higher quality than green
-	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', function(frame)
-		frame.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)
-	end)
-
-	-- Quests and Quest starters
-	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', function(frame)
-		frame.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)
-	end)
+-- Register all commands
+function L1UI:LoadCommands()
+	self:RegisterChatCommand('luckydebug', 'DebugMode')
+	self:RegisterChatCommand('luckyoneui', 'Toggles')
+	if E.Retail then -- Retail chat commands
+		self:RegisterChatCommand('vault', 'WeeklyRewards')
+		self:RegisterChatCommand('weekly', 'WeeklyRewards')
+	end
 end
 
 -- Events
