@@ -5,7 +5,7 @@ local _G = _G
 local tinsert = table.insert
 
 -- Plater Profile
-function Private:Setup_Plater()
+function Private:Setup_Plater(installer)
 	if not E:IsAddOnEnabled('Plater') then return end
 
 	-- 1080p
@@ -28,6 +28,10 @@ function Private:Setup_Plater()
 		_G.PlaterDB.profileKeys[E.mynameRealm] = name
 	end
 
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L['Plater profile has been set.']
+		_G.LuckyoneInstallStepComplete:Show()
+	end
+
 	Private:Print(L['Plater profile has been set.'])
-	Private:Print('https://wago.io/LuckyoneUI-Plater')
 end

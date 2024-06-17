@@ -1,8 +1,10 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
+local _G = _G
+
 -- WarpDeplete Profile
-function Private:Setup_WarpDeplete()
+function Private:Setup_WarpDeplete(installer)
 	if not E:IsAddOnEnabled('WarpDeplete') and E.Retail then Private:Print('WarpDeplete ' .. L["is not installed or enabled."]) return end
 
 	-- Profile name
@@ -43,6 +45,11 @@ function Private:Setup_WarpDeplete()
 
 	-- Profile key
 	WarpDepleteDB['profileKeys'][E.mynameRealm] = name
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["WarpDeplete profile has been set."]
+		_G.LuckyoneInstallStepComplete:Show()
+	end
 
 	Private:Print(L["WarpDeplete profile has been set."])
 end

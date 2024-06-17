@@ -3,8 +3,10 @@ local E, L, V, P, G = unpack(ElvUI)
 
 local pairs = pairs
 
+local _G = _G
+
 -- OmniCD profile
-function Private:Setup_OmniCD(layout)
+function Private:Setup_OmniCD(layout, installer)
 	if not E:IsAddOnEnabled('OmniCD') and E.Retail then Private:Print('OmniCD ' .. L["is not installed or enabled."]) return end
 
 	-- 1080p
@@ -625,6 +627,11 @@ function Private:Setup_OmniCD(layout)
 		OmniCDDB['profileKeys'][E.mynameRealm] = name
 	elseif layout == 'healing' then
 		OmniCDDB['profileKeys'][E.mynameRealm] = name_healing
+	end
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["OmniCD profile has been set."]
+		_G.LuckyoneInstallStepComplete:Show()
 	end
 
 	Private:Print(L["OmniCD profile has been set."])

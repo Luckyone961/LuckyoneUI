@@ -1,8 +1,10 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
+local _G = _G
+
 -- UnitFrame color themes
-function Private:Setup_Theme(theme)
+function Private:Setup_Theme(theme, installer)
 	if theme == 'dark' then
 		E.db.unitframe.colors.classbackdrop = false
 		E.db.unitframe.colors.customhealthbackdrop = true
@@ -51,6 +53,11 @@ function Private:Setup_Theme(theme)
 
 	E:UpdateMediaItems(true)
 	E:UpdateUnitFrames()
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["Theme has been set."]
+		_G.LuckyoneInstallStepComplete:Show()
+	end
 
 	Private:Print(L["Theme has been set."])
 end

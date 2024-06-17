@@ -1,12 +1,14 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
-local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
-local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
 local pairs = pairs
 
+local _G = _G
+local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
+local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
+
 -- BigWigs profiles
-function Private:Setup_BigWigs(layout)
+function Private:Setup_BigWigs(layout, installer)
 	if not E:IsAddOnEnabled('BigWigs') then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
 
 	-- 1080p
@@ -320,6 +322,11 @@ function Private:Setup_BigWigs(layout)
 		BigWigs.db:SetProfile(name)
 	elseif layout == 'healing' then
 		BigWigs.db:SetProfile(name_healing)
+	end
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["BigWigs profile has been set."]
+		_G.LuckyoneInstallStepComplete:Show()
 	end
 
 	Private:Print(L["BigWigs profile has been set."])

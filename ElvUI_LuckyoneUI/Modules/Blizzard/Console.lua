@@ -1,10 +1,11 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
+local _G = _G
 local SetCVar = SetCVar
 
 -- General CVars
-function Private:Setup_CVars(noPrint)
+function Private:Setup_CVars(noPrint, installer)
 	-- Core CVars
 	SetCVar('advancedCombatLogging', 1)
 	SetCVar('alwaysShowActionBars', 1)
@@ -47,6 +48,11 @@ function Private:Setup_CVars(noPrint)
 		SetCVar('SpellQueueWindow', 180)
 		SetCVar('useIPv6', 1)
 		SetCVar('weatherDensity', 0)
+	end
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["CVars have been set."]
+		_G.LuckyoneInstallStepComplete:Show()
 	end
 
 	if not noPrint then

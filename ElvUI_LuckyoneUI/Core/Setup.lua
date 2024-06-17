@@ -2,6 +2,7 @@ local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
 
+local _G = _G
 local SetCVar = SetCVar
 
 local function HandleLibDualSpec()
@@ -10,6 +11,13 @@ local function HandleLibDualSpec()
 	ElvDB['namespaces']['LibDualSpec-1.0']['char'] = ElvDB['namespaces']['LibDualSpec-1.0']['char'] or {}
 	ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
 	ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
+end
+
+local function Refresh()
+	E:StaggeredUpdateAll()
+	E:UIMult()
+	E:UIScale()
+	E:Config_UpdateSize(true)
 end
 
 -- E.global & Custom DataText
@@ -118,7 +126,7 @@ function Private:Setup_PrivateDB()
 end
 
 -- Setup The War Within layout
-function Private:Setup_Layout_TheWarWithin(layout)
+function Private:Setup_Layout_TheWarWithin(layout, installer)
 	if not E.Classic then
 		HandleLibDualSpec()
 	end
@@ -148,7 +156,12 @@ function Private:Setup_Layout_TheWarWithin(layout)
 	end
 
 	-- Push the update
-	E:StaggeredUpdateAll()
+	Refresh()
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["Layout has been set."]
+		_G.LuckyoneInstallStepComplete:Show()
+	end
 
 	Private:Print(L["Layout has been set."])
 end
@@ -196,7 +209,7 @@ function Private:Setup_Layout_Dragonflight(layout)
 	end
 
 	-- Push the update
-	E:StaggeredUpdateAll()
+	Refresh()
 
 	Private:Print(L["Layout has been set."])
 end
@@ -237,7 +250,7 @@ function Private:Setup_Layout_Shadowlands(layout)
 	end
 
 	-- Push the update
-	E:StaggeredUpdateAll()
+	Refresh()
 
 	Private:Print(L["Layout has been set."])
 end

@@ -1,8 +1,10 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
+local _G = _G
+
 -- WindTools profile
-function Private:Setup_WindTools()
+function Private:Setup_WindTools(installer)
 	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then Private:Print('WindTools ' .. L["is not installed or enabled."]) return end
 
 	-- 1080p
@@ -163,6 +165,11 @@ function Private:Setup_WindTools()
 	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,405') or 'BOTTOM,ElvUIParent,BOTTOM,0,580'
 	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-177'
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,UIParent,TOP,0,-110'
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["WindTools profile has been set."]
+		_G.LuckyoneInstallStepComplete:Show()
+	end
 
 	Private:Print(L["WindTools profile has been set."])
 end

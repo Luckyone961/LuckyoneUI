@@ -1,14 +1,51 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
-local C_UI_Reload = C_UI.Reload
 local format = format
+
+local _G = _G
+local C_UI_Reload = C_UI.Reload
+local PlaySound = PlaySound
 
 -- Set install version to current LuckyoneUI version
 local function InstallComplete()
 	E.global.L1UI.install_version = Private.Version
 	C_UI_Reload()
 end
+
+-- Create step complete frame
+local function InstallStepComplete()
+	local Container = CreateFrame('Frame', 'LuckyoneInstallStepComplete', E.UIParent)
+	Container:Size(400, 60)
+	Container:Point('TOP', 0, -300)
+	Container:Hide()
+
+	Container:SetScript('OnShow', function(frame)
+		if frame.message then
+			PlaySound(888)
+			frame.text:SetText(format('%s: %s', Private.Name, frame.message))
+			E:Delay(3, frame.Hide, frame)
+			frame.message = nil
+		else
+			frame:Hide()
+		end
+	end)
+
+	Container.firstShow = false
+
+	Container.bg = Container:CreateTexture(nil, 'BACKGROUND')
+	Container.bg:Point('CENTER')
+	Container.bg:Size(400, 60)
+
+	Container.text = Container:CreateFontString(nil, 'ARTWORK', 'ElvUIFontNormal')
+	Container.text:Point('CENTER', 0, 2)
+	Container.text:SetTextColor(1, 1, 1)
+	Container.text:SetJustifyH('CENTER')
+end
+
+-- Initialize step complete frame
+InstallStepComplete()
+_G.LuckyoneInstallStepComplete:SetTemplate('Transparent')
 
 -- Installer table
 L1UI.InstallerData = {
@@ -42,13 +79,13 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Desc3:SetText(format('|cff33937F%s|r', L["Augmentation"]) .. ': ' .. L["No ActionBars and centered Raid Frames"] .. '.')
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_Layout_TheWarWithin('main') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_Layout_TheWarWithin('main', true) end)
 			PluginInstallFrame.Option1:SetText(L["DPS & Tanks"])
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_Layout_TheWarWithin('healing') end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_Layout_TheWarWithin('healing', true) end)
 			PluginInstallFrame.Option2:SetText(L["Healing"])
 			PluginInstallFrame.Option3:Show()
-			PluginInstallFrame.Option3:SetScript('OnClick', function() Private:Setup_Layout_TheWarWithin('support') end)
+			PluginInstallFrame.Option3:SetScript('OnClick', function() Private:Setup_Layout_TheWarWithin('support', true) end)
 			PluginInstallFrame.Option3:SetText(format('|cff33937F%s', L["Augmentation"]))
 		end,
 		[E.Retail and 4] = function()
@@ -56,10 +93,10 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["This step will configure profiles for other ElvUI plugins."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_WindTools() end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_WindTools(true) end)
 			PluginInstallFrame.Option1:SetText('|cff5385edWindTools|r')
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_ShadowAndLight() end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_ShadowAndLight(true) end)
 			PluginInstallFrame.Option2:SetText('|cff9482c9Shadow & Light|r')
 		end,
 		[E.Retail and 5 or 4] = function()
@@ -67,10 +104,10 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Select your preferred UnitFrames color theme."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Optional step. Dark is applied by default."]))
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_Theme('dark') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_Theme('dark', true) end)
 			PluginInstallFrame.Option1:SetText(L["Dark"])
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_Theme('class') end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_Theme('class', true) end)
 			PluginInstallFrame.Option2:SetText(L["Class Color"])
 		end,
 		[E.Retail and 6 or 5] = function()
@@ -80,7 +117,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc3:SetText(L["Left panel: General - Log - Whisper - Guild - Party."])
 			PluginInstallFrame.Desc4:SetText(L["Right panel: Details! Damage Meter."])
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_Chat() end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_Chat(true) end)
 			PluginInstallFrame.Option1:SetText(L["Setup Chat"])
 		end,
 		[E.Retail and 7 or 6] = function()
@@ -90,7 +127,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc3:SetText(L["Examples: Max camera distance, screenshot quality and tutorials."])
 			PluginInstallFrame.Desc4:SetText(L["The full list of configured CVars can be found in /luckyoneui config."])
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_CVars() end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_CVars(nil, true) end)
 			PluginInstallFrame.Option1:SetText(L["Setup CVars"])
 		end,
 		[E.Retail and 8 or 7] = function()
@@ -98,10 +135,10 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Choose between ElvUI NamePlates and Plater NamePlates."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_NamePlates() end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_NamePlates(true) end)
 			PluginInstallFrame.Option1:SetText('ElvUI')
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_Plater() end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_Plater(true) end)
 			PluginInstallFrame.Option2:SetText('Plater')
 		end,
 		[E.Retail and 9 or 8] = function()
@@ -120,7 +157,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for Details! Damage Meter."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_Details() end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_Details(true) end)
 			PluginInstallFrame.Option1:SetText(L["Setup Details"])
 		end,
 		[E.Retail and 11] = function()
@@ -128,10 +165,10 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for OmniCD Party CDs."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_OmniCD('main') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_OmniCD('main', true) end)
 			PluginInstallFrame.Option1:SetText('OmniCD')
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_OmniCD('healing') end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_OmniCD('healing', true) end)
 			PluginInstallFrame.Option2:SetText(L["OmniCD Healing"])
 		end,
 		[E.Retail and 12] = function()
@@ -139,7 +176,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for WarpDeplete."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_WarpDeplete() end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_WarpDeplete(true) end)
 			PluginInstallFrame.Option1:SetText(L["Setup WarpDeplete"])
 		end,
 		[E.Retail and 13 or 10] = function()

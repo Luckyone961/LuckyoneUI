@@ -4,8 +4,10 @@ local NP = E:GetModule('NamePlates')
 
 local pairs = pairs
 
+local _G = _G
+
 -- NamePlate Setup for ElvUI
-function Private:Setup_NamePlates()
+function Private:Setup_NamePlates(installer)
 	-- Make sure to enable the module
 	E.private.nameplates.enable = true
 
@@ -198,6 +200,11 @@ function Private:Setup_NamePlates()
 
 	if NP.Initialized then
 		E:UpdateNamePlates(true)
+	end
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["NamePlate StyleFilters and CVars have been set."]
+		_G.LuckyoneInstallStepComplete:Show()
 	end
 end
 

@@ -27,7 +27,7 @@ local VoiceTranscriptionFrame_UpdateVoiceTab = VoiceTranscriptionFrame_UpdateVoi
 local VOICE = VOICE
 
 -- Chat setup for tabs, windows and channels
-function Private:Setup_Chat()
+function Private:Setup_Chat(installer)
 	-- General
 	local chats = _G.CHAT_FRAMES
 	-- 1080p
@@ -119,6 +119,11 @@ function Private:Setup_Chat()
 
 	-- Select the main tab
 	FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["Chat setup successful."]
+		_G.LuckyoneInstallStepComplete:Show()
+	end
 
 	Private:Print(L["Chat setup successful."])
 end

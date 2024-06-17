@@ -1,8 +1,10 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
+local _G = _G
+
 -- Details profile
-function Private:Setup_Details()
+function Private:Setup_Details(installer)
 	if not E:IsAddOnEnabled('Details') then Private:Print('Details ' .. L["is not installed or enabled."]) return end
 
 	-- 1080p
@@ -26,6 +28,11 @@ function Private:Setup_Details()
 	-- Load the profile on all characters
 	_detalhes.always_use_profile = true
 	_detalhes.always_use_profile_name = name
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["Details profile has been set."]
+		_G.LuckyoneInstallStepComplete:Show()
+	end
 
 	Private:Print(L["Details profile has been set."])
 end
