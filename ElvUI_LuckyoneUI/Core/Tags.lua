@@ -106,7 +106,7 @@ E:AddTag('luckyone:healermana:current', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_
 	local color = ElvUF.colors.power.MANA
 	local role = UnitGroupRolesAssigned(unit)
 	if role == 'HEALER' then
-		return format('%s%i', Hex(color.r, color.g, color.b), UnitPower(unit, Enum.PowerType.Mana))
+		return format('%s%s', Hex(color.r, color.g, color.b), UnitPower(unit, Enum.PowerType.Mana))
 	end
 end, E.Classic)
 E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana with manacolor (Role: Healer)"], nil, E.Classic)
@@ -117,7 +117,7 @@ E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_
 	local role = UnitGroupRolesAssigned(unit)
 	local min = UnitPower(unit, Enum.PowerType.Mana)
 	if role == 'HEALER' then
-		return format('%s%i', Hex(color.r, color.g, color.b), E:GetFormattedText('PERCENT', min, UnitPowerMax(unit, Enum.PowerType.Mana), 0, nil))
+		return format('%s%s', Hex(color.r, color.g, color.b), E:GetFormattedText('PERCENT', min, UnitPowerMax(unit, Enum.PowerType.Mana), 0, nil))
 	end
 end, E.Classic)
 E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"], nil, E.Classic)
@@ -192,6 +192,6 @@ for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long =
 		return name
 	end)
 
-	E:AddTagInfo(format('luckyone:name:%s-classcolor', textFormat), Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %i characters"], length))
-	E:AddTagInfo(format('luckyone:name:%s-nocolor', textFormat), Private.Name, format(L["Displays the unit's name with no color and a maximum length of %i characters"], length))
+	E:AddTagInfo(format('luckyone:name:%s-classcolor', textFormat), Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters"], length))
+	E:AddTagInfo(format('luckyone:name:%s-nocolor', textFormat), Private.Name, format(L["Displays the unit's name with no color and a maximum length of %s characters"], length))
 end
