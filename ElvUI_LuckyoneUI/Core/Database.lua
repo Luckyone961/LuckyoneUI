@@ -245,13 +245,13 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar3.targetReticle = false
 	E.db.actionbar.bar4.backdrop = false
 	E.db.actionbar.bar4.buttons = 7
-	E.db.actionbar.bar4.buttonSize = 26
+	E.db.actionbar.bar4.buttonSize = (scaled and 21) or 26
 	E.db.actionbar.bar4.buttonSpacing = 1
 	E.db.actionbar.bar4.countFont = Private.Font
 	E.db.actionbar.bar4.countFontOutline = 'OUTLINE'
 	E.db.actionbar.bar4.countFontSize = 9
 	E.db.actionbar.bar4.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar4.enabled = E.Classic
+	E.db.actionbar.bar4.enabled = not E.Retail
 	E.db.actionbar.bar4.hotkeyFont = Private.Font
 	E.db.actionbar.bar4.hotkeyFontOutline = 'OUTLINE'
 	E.db.actionbar.bar4.hotkeyFontSize = 9
@@ -1301,11 +1301,11 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-104'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-56,-156'
-	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,192,1'
+	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,204,1'
 	E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 	E.db.movers.ElvAB_2 = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,64') or 'BOTTOM,ElvUIParent,BOTTOM,0,72'
 	E.db.movers.ElvAB_3 = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,39') or 'BOTTOM,ElvUIParent,BOTTOM,0,43'
-	E.db.movers.ElvAB_4 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,466,1'
+	E.db.movers.ElvAB_4 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,406,1') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,466,1'
 	E.db.movers.ElvAB_5 = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-390') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-546'
 	E.db.movers.ElvAB_6 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-541'
 	E.db.movers.ElvAB_7 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-512'
@@ -1329,11 +1329,11 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.movers.MirrorTimer1Mover = 'TOP,ElvUIParent,TOP,0,-60'
 	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-79'
 	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-98'
-	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184'
+	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-214'
 	E.db.movers.PetAB = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,89') or 'BOTTOM,ElvUIParent,BOTTOM,0,101'
 	E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-121'
-	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184'
+	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-214'
 	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-152'
 	E.db.movers.ReputationBarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-402,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-466,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
@@ -1342,7 +1342,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-45'
 	E.db.movers.TorghastChoiceToggle = 'BOTTOM,ElvUIParent,BOTTOM,0,550'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
-	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
+	E.db.movers.VehicleSeatMover = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,493,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
 
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
