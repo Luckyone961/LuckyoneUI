@@ -3,10 +3,11 @@
 All informations will be available in the Discord announcement channel  
 First release of the v3 version for my layouts  
 Full 1440p (native) and 1080p (native) scaling and support  
-Plater profile is not built-in rather than a wago link  
+Plater profile is now built-in rather than a wago link  
 Updated installer process and config panels  
 **All WoW Versions:**  
 Added more than 10 new custom tags, see the full list in the config  
+Updated chat commands 1: /lucky install 2: /lucky config  
 **Misc:**  
 Updated Credits  
 Updated Links  

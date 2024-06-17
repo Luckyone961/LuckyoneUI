@@ -5,7 +5,9 @@ local _G = _G
 
 -- UnitFrame color themes
 function Private:Setup_Theme(theme, installer)
+
 	if theme == 'dark' then
+
 		E.db.unitframe.colors.classbackdrop = false
 		E.db.unitframe.colors.customhealthbackdrop = true
 		E.db.unitframe.colors.health_backdrop.b = 0.61
@@ -30,6 +32,7 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
 
 	elseif theme == 'class' then
+
 		E.db.unitframe.colors.classbackdrop = true
 		E.db.unitframe.colors.customhealthbackdrop = true
 		E.db.unitframe.colors.health_backdrop.b = 0.05
@@ -49,6 +52,7 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.raidpet.name.text_format = '[luckyone:name:veryshort-nocolor]'
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = '[luckyone:level< |cffffffff- |r][luckyone:name:last-nocolor]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor]'
+
 	end
 
 	E:UpdateMediaItems(true)

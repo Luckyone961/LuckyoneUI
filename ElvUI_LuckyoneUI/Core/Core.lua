@@ -148,7 +148,7 @@ end
 -- Register all commands
 function L1UI:LoadCommands()
 	self:RegisterChatCommand('luckydebug', 'DebugMode')
-	self:RegisterChatCommand('luckyoneui', 'Toggles')
+	self:RegisterChatCommand('lucky', 'Toggles')
 	if E.Retail then -- Retail chat commands
 		self:RegisterChatCommand('vault', 'WeeklyRewards')
 		self:RegisterChatCommand('weekly', 'WeeklyRewards')

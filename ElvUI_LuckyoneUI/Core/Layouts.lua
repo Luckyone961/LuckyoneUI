@@ -590,7 +590,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.tooltip.showMount = false
 	E.db.tooltip.smallTextFontSize = (scaled and 9) or 10
 	E.db.tooltip.targetInfo = false
-	E.db.tooltip.textFontSize =(scaled and 10) or 11
+	E.db.tooltip.textFontSize = (scaled and 10) or 11
 
 	-- Shared UnitFrames
 	E.db.unitframe.colors.castbar_backdrop.b = 0.05
