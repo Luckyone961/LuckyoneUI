@@ -177,10 +177,10 @@ for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long =
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			local cs = ElvUF.colors.class[unitClass]
-			return format('%s%s', (cs and Hex(cs.r, cs.g, cs.b)) or '|cFFcccccc', name)
+			return format('%s%s', (cs and Hex(cs.r, cs.g, cs.b)) or '|cFFcccccc', name or UNKNOWN)
 		else
 			local cr = ElvUF.colors.reaction[UnitReaction(unit, 'player')]
-			return format('%s%s', (cr and Hex(cr.r, cr.g, cr.b)) or '|cFFcccccc', name)
+			return format('%s%s', (cr and Hex(cr.r, cr.g, cr.b)) or '|cFFcccccc', name or UNKNOWN)
 		end
 	end)
 	-- Displays the unit's name with no color and a maximum length of 5, 10, 15 and 20 characters

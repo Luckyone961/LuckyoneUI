@@ -5,6 +5,7 @@ local format = format
 
 local _G = _G
 local C_UI_Reload = C_UI.Reload
+local CreateFrame = CreateFrame
 local PlaySound = PlaySound
 
 -- Set install version to current LuckyoneUI version
