@@ -12,6 +12,7 @@
 ### **Features**  
 • All layouts are built on 1440p with full support and scaling for 1080p players  
 • Full support for all current WoW versions such as Retail, Cataclysm and Classic  
+• ElvUI tags for detailed health information, healer-only mana and more  
 • Option to automatically fill out the delete text when destroying items  
 • Options to configure performance related and hidden Blizzard settings  
 • Options to disable annoying Blizzard features like Boss Banners and more  
