@@ -1,6 +1,5 @@
 ***
-[![Discord](https://img.shields.io/badge/Join-Discord-purple
-)](https://discord.gg/xRY4bwA) [![Patreon](https://img.shields.io/badge/Support-Patreon-green)](https://www.patreon.com/luckyone) [![Donate](https://img.shields.io/badge/Support-Donate-blue)](https://streamlabs.com/luckyone1996/tip)  
+[![Discord](https://img.shields.io/badge/Join-Discord-green)](https://discord.gg/xRY4bwA) [![Patreon](https://img.shields.io/badge/Support-Patreon-orange)](https://www.patreon.com/luckyone) [![Donate](https://img.shields.io/badge/Support-Donate-blue)](https://streamlabs.com/luckyone1996/tip)  
 ***
 
 ### **Minimalistic plugin and layout installer for ElvUI**  
@@ -40,21 +39,21 @@
 • **Download link:** [Get ElvUI on the official website](https://www.tukui.org/)  
 
 ### **Luckyone WeakAuras**  
-• All my public import strings will be shared and updated on wago  
-• **Profile link:** [Luckyone on Wago)](https://wago.io/p/Luckyone)  
+• All my public import strings will be shared and updated on Wago.  
+• **Profile link:** [Luckyone on Wago](https://wago.io/p/Luckyone)  
 
 ### **Luckyone on Twitch and YouTube**  
 • Raiding and Mythic+ content. Evoker and Druid PoV most of the time.  
-• **Twitch link:** [Luckyone1996 on Twitch)](https://www.twitch.tv/Luckyone1996)  
+• **Twitch link:** [Luckyone1996 on Twitch](https://www.twitch.tv/Luckyone1996)  
 • **YouTube link:** [LuckyoneWoW on YouTube](https://www.youtube.com/@LuckyoneWoW)  
 
 ### **Setup guide**  
-• Installation guide for new users without ElvUI experience is available on Wowhead  
-• **Guide link:** [View guide on Wowhead)](https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide)  
+• Installation guide for new users without ElvUI experience is available on Wowhead.  
+• **Guide link:** [View guide on Wowhead](https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide)  
 
 ### **Website**  
-• Simple static web page without ads for quick access to all important links  
-• **Website link:** [Luckyone Development Website)](https://luckyone.dev/)  
+• Simple static web page without ads for quick access to all important links.  
+• **Website link:** [Luckyone Development Website](https://luckyone.dev/)  
 
 ***
 ### **Installer:**  
