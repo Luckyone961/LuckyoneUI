@@ -1,21 +1,25 @@
 ***
 [![Discord](https://img.shields.io/badge/Join-Discord-purple
-)](https://discord.gg/xRY4bwA) [![Patreon](https://img.shields.io/badge/Support-Patreon-orange)](https://www.patreon.com/luckyone) [![Donate](https://img.shields.io/badge/Support-Donate-blue)](https://streamlabs.com/luckyone1996/tip)  
+)](https://discord.gg/xRY4bwA) [![Patreon](https://img.shields.io/badge/Support-Patreon-green)](https://www.patreon.com/luckyone) [![Donate](https://img.shields.io/badge/Support-Donate-blue)](https://streamlabs.com/luckyone1996/tip)  
 ***
 
 ### **Minimalistic plugin and layout installer for ElvUI**  
 • Always up-to-date for the latest ElvUI changes  
-• Custom presets for DPS, Tanks & Healers  
-• Discord server for support and social chats  
-• Focus on high-end Mythic+ and Raiding  
+• Custom presets for DPS, Tanks, Healers and Augmentation  
+• Discord server for UI topics, support and social chats  
+• Layouts are specifically built for high Mythic+ and Raiding  
+• One of the most optimized UIs out there for the best possible performance  
 
 ### **Features**  
-• ElvUI tags for detailed unit health information  
-• ElvUI tags for healer mana and unit classification  
-• Options to disable rather annoying Blizzard features  
+• All layouts are built on 1440p with full support and scaling for 1080p players  
+• Full support for all current WoW versions such as Retail, Cataclysm and Classic  
+• Option to automatically fill out the delete text when destroying items  
 • Options to configure performance related and hidden Blizzard settings  
+• Options to disable annoying Blizzard features like Boss Banners and more  
 • Toggles for Blizzards cosmetic on-screen ffx effects and other visuals  
-• WeakAuras import strings for select specs and general utility  
+• WeakAuras import strings for some of the classes I decide to play  
+• WeakAuras import strings for general utility and other features  
+• WeakAuras import strings for Dungeon & Raid pack edits to fit my layout style  
 
 ### **Profiles**  
 • **UI:** [ElvUI](https://www.tukui.org/)  
@@ -25,34 +29,46 @@
 • **Plugins:** [AddOnSkins](https://www.curseforge.com/wow/addons/addonskins), [ProjectAzilroka](https://www.curseforge.com/wow/addons/projectazilroka), [Shadow&Light](https://www.curseforge.com/wow/addons/elvui-shadow-light), [WindTools](https://www.curseforge.com/wow/addons/elvui-windtools)  
 
 ### **Chat commands**  
-• **/luckyoneui install** [Re-Run the installer process]  
-• **/luckyoneui config** [Opens the ingame options]  
+• **/lucky install** [Re-Run the installer process]  
+• **/lucky config** [Opens the ingame options]  
 • **/luckydebug on** [Disables all AddOns except ElvUI and LuckyoneUI for troubleshooting]  
 • **/luckydebug off** [Re-Enables all AddOns disabled by the command above]  
 • **/vault** or **/weekly** [Open your great vault to check weekly progress]  
 
 ### **Required AddOns**  
-• The most recent ElvUI version. You need to stay up-to-date.  
-• **Download link:** [Click here (Redirect to Tukui.org)](https://www.tukui.org/)  
+• LuckyoneUI will always require the most recent version of ElvUI.  
+• **Download link:** [Get ElvUI on the official website](https://www.tukui.org/)  
 
 ### **Luckyone WeakAuras**  
 • All my public import strings will be shared and updated on wago  
-• **Profile link:** [Click here (Redirect to Wago.io)](https://wago.io/p/Luckyone)  
+• **Profile link:** [Luckyone on Wago)](https://wago.io/p/Luckyone)  
 
 ### **Luckyone on Twitch and YouTube**  
 • Raiding and Mythic+ content. Evoker and Druid PoV most of the time.  
-• **Twitch link:** [Click here (Redirect to Twitch.tv)](https://www.twitch.tv/Luckyone1996)  
-• **YouTube link:** [Click here (Redirect to YouTube.com)](https://www.youtube.com/@LuckyoneWoW)  
+• **Twitch link:** [Luckyone1996 on Twitch)](https://www.twitch.tv/Luckyone1996)  
+• **YouTube link:** [LuckyoneWoW on YouTube](https://www.youtube.com/@LuckyoneWoW)  
 
 ### **Setup guide**  
-• Installation guide for new users is available on Wowhead  
-• **Guide link:** [Click here (Redirect to Wowhead.com)](https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide)  
+• Installation guide for new users without ElvUI experience is available on Wowhead  
+• **Guide link:** [View guide on Wowhead)](https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide)  
 
+### **Website**  
+• Simple static web page without ads for quick access to all important links  
+• **Website link:** [Luckyone Development Website)](https://luckyone.dev/)  
+
+***
+### **Installer:**  
+***
+![LuckyoneUI Installer](https://i.imgur.com/T6Y8ZKN.jpg)  
 ***
 ### **Main Layout:**  
 ***
-![LuckyoneUI Main Layout](https://i.imgur.com/5xlMMug.jpg)  
+![LuckyoneUI Main Layout](https://i.imgur.com/h87gwkX.jpg)  
 ***
 ### **Healing Layout:**  
 ***
-![LuckyoneUI Healing Layout](https://i.imgur.com/vk4zvo1.jpg)  
+![LuckyoneUI Healing Layout](https://i.imgur.com/Rgliysf.jpg)  
+***
+### **Augmentation Layout:**  
+***
+![LuckyoneUI Augmentation Layout](https://i.imgur.com/N57uZWX.jpg)  
