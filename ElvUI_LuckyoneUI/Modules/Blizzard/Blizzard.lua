@@ -3,8 +3,10 @@ local E, L, V, P, G = unpack(ElvUI)
 
 local _G = _G
 
+local hooksecurefunc = hooksecurefunc
+
 -- Disabled Blizzard Frames (Loading on init)
-function L1UI:DisabledFrames()
+function Private:DisabledFrames()
 	if E.private.L1UI.disabledFrames.AlertFrame then
 		_G.AlertFrame:UnregisterAllEvents()
 		E:DisableMover('AlertFrameMover')
@@ -18,4 +20,19 @@ function L1UI:DisabledFrames()
 	if E.private.L1UI.disabledFrames.ZoneTextFrame then
 		_G.ZoneTextFrame:UnregisterAllEvents()
 	end
+end
+
+-- Easy delete
+function Private:EasyDelete()
+	if not E.private.L1UI.qualityOfLife.easyDelete then return end
+
+	-- Higher quality than green
+	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', function(frame)
+		frame.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)
+	end)
+
+	-- Quests and Quest starters
+	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', function(frame)
+		frame.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)
+	end)
 end

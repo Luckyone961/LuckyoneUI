@@ -4,13 +4,13 @@ local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 
 -- ProjectAzilroka profile
-function L1UI:Setup_ProjectAzilroka(noPrint)
+function Private:Setup_ProjectAzilroka()
 	if not E:IsAddOnEnabled('ProjectAzilroka') then Private:Print('ProjectAzilroka ' .. L["is not installed or enabled."]) return end
 
 	local PA = _G.ProjectAzilroka
 
 	-- Profile creation
-	PA.data:SetProfile(E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. Private.Version)
+	PA.data:SetProfile((E.global.L1UI.dev and 'Luckyone') or 'Luckyone ' .. Private.Version)
 
 	-- General modules
 	PA.db.AuraReminder.Enable = false
@@ -38,8 +38,8 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	PA.db.SquareMinimapButtons.Backdrop = false
 	PA.db.SquareMinimapButtons.BarMouseOver = false
 	PA.db.SquareMinimapButtons.ButtonSpacing = 1
-	PA.db.SquareMinimapButtons.ButtonsPerRow = 6
-	PA.db.SquareMinimapButtons.IconSize = 25
+	PA.db.SquareMinimapButtons.ButtonsPerRow = 7
+	PA.db.SquareMinimapButtons.IconSize = 24
 	PA.db.SquareMinimapButtons.MoveQueue = false
 	PA.db.SquareMinimapButtons.MoveTracker = false
 	PA.db.SquareMinimapButtons.Shadows = false
@@ -57,9 +57,7 @@ function L1UI:Setup_ProjectAzilroka(noPrint)
 	E.db.movers = E.db.movers or {}
 
 	-- Movers
-	E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,0,-156'
+	E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,0,-175'
 
-	if not noPrint then
-		Private:Print(L["ProjectAzilroka profile has been set."])
-	end
+	Private:Print(L["ProjectAzilroka profile has been set."])
 end

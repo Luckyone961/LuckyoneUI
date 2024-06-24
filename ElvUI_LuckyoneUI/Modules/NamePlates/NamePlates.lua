@@ -4,16 +4,21 @@ local NP = E:GetModule('NamePlates')
 
 local pairs = pairs
 
+local _G = _G
+
 -- NamePlate Setup for ElvUI
-function L1UI:Setup_NamePlates()
+function Private:Setup_NamePlates(installer)
 	-- Make sure to enable the module
 	E.private.nameplates.enable = true
+
+	-- 1080p
+	local scaled = E.global.L1UI.scaled
 
 	-- Restore defaults
 	E.db.nameplates = E:CopyTable({}, P.nameplates)
 
 	-- Setup StyleFilters (includes NamePlate CVars)
-	L1UI:Setup_StyleFilters()
+	Private:Setup_StyleFilters()
 
 	-- NamePlates general
 	E.db.nameplates.colors.castbarDesaturate = false
@@ -27,13 +32,10 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.cooldown.override = false
 	E.db.nameplates.lowHealthThreshold = 0
 	E.db.nameplates.overlapH = 1
-	E.db.nameplates.overlapV = 1.4
-	E.db.nameplates.plateSize.enemyHeight = 30
-	E.db.nameplates.plateSize.enemyWidth = 190
-	E.db.nameplates.plateSize.friendlyHeight = 30
-	E.db.nameplates.plateSize.friendlyWidth = 190
-	E.db.nameplates.plateSize.personalHeight = 30
-	E.db.nameplates.plateSize.personalWidth = 190
+	E.db.nameplates.overlapV = 1.6
+	E.db.nameplates.plateSize.enemyWidth = (scaled and 190) or 210
+	E.db.nameplates.plateSize.friendlyWidth = (scaled and 190) or 210
+	E.db.nameplates.plateSize.personalWidth = (scaled and 190) or 210
 	E.db.nameplates.statusbar = Private.Texture
 
 	-- NamePlates misc
@@ -51,25 +53,26 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_NPC.buffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.buffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_NPC.buffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
-	E.db.nameplates.units.ENEMY_NPC.buffs.size = 20
+	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
+	E.db.nameplates.units.ENEMY_NPC.buffs.size = (scaled and 20) or 22
 	E.db.nameplates.units.ENEMY_NPC.buffs.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.buffs.yOffset = -1
 	E.db.nameplates.units.ENEMY_NPC.castbar.castTimeFormat = 'REMAINING'
 	E.db.nameplates.units.ENEMY_NPC.castbar.channelTimeFormat = 'REMAINING'
 	E.db.nameplates.units.ENEMY_NPC.castbar.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.castbar.fontSize = 9
-	E.db.nameplates.units.ENEMY_NPC.castbar.height = 12
+	E.db.nameplates.units.ENEMY_NPC.castbar.fontSize = 10
+	E.db.nameplates.units.ENEMY_NPC.castbar.height = 14
+	E.db.nameplates.units.ENEMY_NPC.castbar.iconOffsetX = 2
 	E.db.nameplates.units.ENEMY_NPC.castbar.iconOffsetY = -1
 	E.db.nameplates.units.ENEMY_NPC.castbar.iconPosition = 'LEFT'
-	E.db.nameplates.units.ENEMY_NPC.castbar.iconSize = 14
+	E.db.nameplates.units.ENEMY_NPC.castbar.iconSize = 16
 	E.db.nameplates.units.ENEMY_NPC.castbar.textPosition = 'ONBAR'
-	E.db.nameplates.units.ENEMY_NPC.castbar.textXOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.castbar.textXOffset = 4
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeToHold = 2
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeXOffset = -1
-	E.db.nameplates.units.ENEMY_NPC.castbar.width = 177
-	E.db.nameplates.units.ENEMY_NPC.castbar.xOffset = 6
-	E.db.nameplates.units.ENEMY_NPC.castbar.yOffset = -16
+	E.db.nameplates.units.ENEMY_NPC.castbar.width = (scaled and 177) or 197
+	E.db.nameplates.units.ENEMY_NPC.castbar.xOffset = (scaled and 7) or 6
+	E.db.nameplates.units.ENEMY_NPC.castbar.yOffset = (scaled and -17) or -18
 	E.db.nameplates.units.ENEMY_NPC.debuffs.anchorPoint = 'LEFT'
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countFontSize = 12
@@ -79,19 +82,19 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_NPC.debuffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_NPC.debuffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_NPC.debuffs.size = 20
+	E.db.nameplates.units.ENEMY_NPC.debuffs.size = (scaled and 20) or 22
 	E.db.nameplates.units.ENEMY_NPC.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_NPC.debuffs.yOffset = -1
 	E.db.nameplates.units.ENEMY_NPC.eliteIcon.size = 14
 	E.db.nameplates.units.ENEMY_NPC.eliteIcon.xOffset = 3
-	E.db.nameplates.units.ENEMY_NPC.health.height = 18
+	E.db.nameplates.units.ENEMY_NPC.health.height = (scaled and 18) or 20
 	E.db.nameplates.units.ENEMY_NPC.health.text.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.health.text.format = '[luckyone:health:percent]'
 	E.db.nameplates.units.ENEMY_NPC.health.text.position = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_NPC.health.text.yOffset = -20
 	E.db.nameplates.units.ENEMY_NPC.level.enable = false
 	E.db.nameplates.units.ENEMY_NPC.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.name.format = E.Retail and '[name:last]' or '[difficultycolor][level< - ]|r[name:last]'
+	E.db.nameplates.units.ENEMY_NPC.name.format = '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
 	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -20
 	E.db.nameplates.units.ENEMY_NPC.pvpindicator.size = 35
@@ -116,24 +119,25 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.maxDuration = 0
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.numAuras = 4
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Blacklist,Dispellable,TurtleBuffs'
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 20
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = (scaled and 20) or 22
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.yOffset = -1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.castTimeFormat = 'REMAINING'
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.channelTimeFormat = 'REMAINING'
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.fontSize = 9
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.height = 12
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.fontSize = 10
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.height = 14
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconOffsetX = 2
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconOffsetY = -1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconPosition = 'LEFT'
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconSize = 14
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconSize = 16
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.textPosition = 'ONBAR'
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.textXOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.textXOffset = 4
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeToHold = 2
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeXOffset = -1
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.width = 177
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.xOffset = 6
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.yOffset = -16
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.width = (scaled and 177) or 197
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.xOffset = (scaled and 7) or 6
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.yOffset = (scaled and -17) or -18
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.anchorPoint = 'LEFT'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFontSize = 12
@@ -143,20 +147,20 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.size = 20
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.size = (scaled and 20) or 22
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = -1
-	E.db.nameplates.units.ENEMY_PLAYER.health.height = 18
+	E.db.nameplates.units.ENEMY_PLAYER.health.height = (scaled and 18) or 20
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.format = '[luckyone:health:percent]'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.position = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.yOffset = -20
 	E.db.nameplates.units.ENEMY_PLAYER.level.enable = false
-	E.db.nameplates.units.ENEMY_PLAYER.level.format = '[difficultycolor][level][shortclassification]'
+	E.db.nameplates.units.ENEMY_PLAYER.level.format = '[luckyone:level]'
 	E.db.nameplates.units.ENEMY_PLAYER.markHealers = false
 	E.db.nameplates.units.ENEMY_PLAYER.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.name.format = E.Retail and '[name:last]' or '[difficultycolor][level< - ]|r[name:last]'
+	E.db.nameplates.units.ENEMY_PLAYER.name.format = '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
 	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -20
 	E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
@@ -170,6 +174,8 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.FRIENDLY_NPC.health.text.format = '[luckyone:health:percent]'
 	E.db.nameplates.units.FRIENDLY_NPC.name.font = Private.Font
 	E.db.nameplates.units.FRIENDLY_NPC.nameOnly = true
+	E.db.nameplates.units.FRIENDLY_NPC.name.fontSize = (scaled and 11) or 14
+	E.db.nameplates.units.FRIENDLY_NPC.name.yOffset = 0
 	E.db.nameplates.units.FRIENDLY_NPC.questIcon.enable = false
 	E.db.nameplates.units.FRIENDLY_NPC.raidTargetIndicator.size = 20
 	E.db.nameplates.units.FRIENDLY_NPC.title.enable = true
@@ -180,6 +186,8 @@ function L1UI:Setup_NamePlates()
 	E.db.nameplates.units.FRIENDLY_PLAYER.markHealers = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.markTanks = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.name.font = Private.Font
+	E.db.nameplates.units.FRIENDLY_PLAYER.name.fontSize = (scaled and 11) or 14
+	E.db.nameplates.units.FRIENDLY_PLAYER.name.yOffset = 0
 	E.db.nameplates.units.FRIENDLY_PLAYER.nameOnly = true
 	E.db.nameplates.units.FRIENDLY_PLAYER.raidTargetIndicator.size = 20
 	E.db.nameplates.units.FRIENDLY_PLAYER.title.enable = true
@@ -193,17 +201,22 @@ function L1UI:Setup_NamePlates()
 	if NP.Initialized then
 		E:UpdateNamePlates(true)
 	end
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["NamePlate StyleFilters and CVars have been set."]
+		_G.LuckyoneInstallStepComplete:Show()
+	end
 end
 
 local function Cleanup()
 	local toDelete = {
 		-- General
 		'ElvUI_Explosives',
-		-- Season 1
+		-- Dragonflight Season 1
 		'Luckyone_AA', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_NO', 'Luckyone_RLP', 'Luckyone_SBG', 'Luckyone_TJS', 'Luckyone_TOJS', 'Luckyone_VOTI',
-		-- Season 2
+		-- Dragonflight Season 2
 		'Luckyone_BH', 'Luckyone_HOI', 'Luckyone_NELT', 'Luckyone_ULD', 'Luckyone_NL', 'Luckyone_FH', 'Luckyone_UNDR', 'Luckyone_VP', 'Luckyone_Aberrus',
-		-- Season 3
+		-- Dragonflight Season 3
 		'Luckyone_FALL', 'Luckyone_RISE', 'Luckyone_DHT', 'Luckyone_BRH', 'Luckyone_AD', 'Luckyone_WM', 'Luckyone_EB', 'Luckyone_TOTT', 'Luckyone_Amirdrassil'
 	}
 
@@ -215,7 +228,7 @@ local function Cleanup()
 end
 
 -- Custom StyleFilters
-function L1UI:Setup_StyleFilters(skipVars)
+function Private:Setup_StyleFilters(skipVars)
 	if not E.private.nameplates.enable then return end
 
 	-- Wipe old filters
@@ -390,7 +403,7 @@ function L1UI:Setup_StyleFilters(skipVars)
 
 	-- Set NamePlate CVars
 	if not skipVars then
-		L1UI:NameplateCVars(true)
+		Private:NameplateCVars(true)
 	end
 
 	Private:Print(L["NamePlate StyleFilters and CVars have been set."])

@@ -27,9 +27,11 @@ local VoiceTranscriptionFrame_UpdateVoiceTab = VoiceTranscriptionFrame_UpdateVoi
 local VOICE = VOICE
 
 -- Chat setup for tabs, windows and channels
-function L1UI:Setup_Chat()
+function Private:Setup_Chat(installer)
 	-- General
 	local chats = _G.CHAT_FRAMES
+	-- 1080p
+	local scaled = E.global.L1UI.scaled
 
 	-- CVars Chat
 	SetCVar('chatClassColorOverride', 0)
@@ -63,8 +65,8 @@ function L1UI:Setup_Chat()
 			CH:FCFTab_UpdateColors(CH:GetTab(frame))
 		end
 
-		-- Font size 10 for all tabs
-		FCF_SetChatWindowFontSize(nil, frame, 10)
+		-- Font size for all tabs
+		FCF_SetChatWindowFontSize(nil, frame, (scaled and 10) or 11)
 
 		-- Tabs
 		if id == 1 then
@@ -104,7 +106,7 @@ function L1UI:Setup_Chat()
 	end
 
 	-- Party tab
-	local party = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER' }
+	local party = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER', 'SYSTEM' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame6)
 	for _, v in ipairs(party) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame6, v)
@@ -117,6 +119,11 @@ function L1UI:Setup_Chat()
 
 	-- Select the main tab
 	FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["Chat setup successful."]
+		_G.LuckyoneInstallStepComplete:Show()
+	end
 
 	Private:Print(L["Chat setup successful."])
 end

@@ -4,13 +4,13 @@ local E, L, V, P, G = unpack(ElvUI)
 local unpack = unpack
 
 -- AddOnSkins Profile
-function L1UI:Setup_AddOnSkins(noPrint)
+function Private:Setup_AddOnSkins()
 	if not E:IsAddOnEnabled('AddOnSkins') then Private:Print('AddOnSkins ' .. L["is not installed or enabled."]) return end
 
 	local AS = unpack(AddOnSkins)
 
 	-- Profile creation
-	AS.data:SetProfile(E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. Private.Version)
+	AS.data:SetProfile((E.global.L1UI.dev and 'Luckyone') or 'Luckyone ' .. Private.Version)
 
 	-- Profile data
 	AS.db.Shadows = false
@@ -24,7 +24,5 @@ function L1UI:Setup_AddOnSkins(noPrint)
 	AS.db.EmbedSystemDual = false
 	AS.db.EmbedSystemMessage = false
 
-	if not noPrint then
-		Private:Print(L["AddOnSkins profile has been set."])
-	end
+	Private:Print(L["AddOnSkins profile has been set."])
 end

@@ -1,13 +1,18 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
-local IsAddOnLoaded = IsAddOnLoaded
-local LoadAddOn = LoadAddOn
 local pairs = pairs
 
+local _G = _G
+local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
+local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
+
 -- BigWigs profiles
-function L1UI:Setup_BigWigs(layout)
+function Private:Setup_BigWigs(layout, installer)
 	if not E:IsAddOnEnabled('BigWigs') then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
+
+	-- 1080p
+	local scaled = E.global.L1UI.scaled
 
 	-- Profile names
 	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
@@ -49,14 +54,14 @@ function L1UI:Setup_BigWigs(layout)
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name] = {
 		['barStyle'] = 'ElvUI',
-		['BigWigsAnchor_height'] = 15.99998760223389,
-		['BigWigsAnchor_width'] = 221.0000152587891,
-		['BigWigsAnchor_x'] = 412.7110342991,
-		['BigWigsAnchor_y'] = 212.222422673558,
-		['BigWigsEmphasizeAnchor_height'] = 15.99998760223389,
-		['BigWigsEmphasizeAnchor_width'] = 221.0000152587891,
-		['BigWigsEmphasizeAnchor_x'] = 598,
-		['BigWigsEmphasizeAnchor_y'] = 178.0001345184974,
+		['BigWigsAnchor_height'] = 18.00000190734863,
+		['BigWigsAnchor_width'] = 239,
+		['BigWigsAnchor_x'] = 470.3110271327969,
+		['BigWigsAnchor_y'] = 251.689059350565,
+		['BigWigsEmphasizeAnchor_height'] = 18.00000190734863,
+		['BigWigsEmphasizeAnchor_width'] = 239,
+		['BigWigsEmphasizeAnchor_x'] = 470.5334229777291,
+		['BigWigsEmphasizeAnchor_y'] = 241.4668094684748,
 		['emphasizeMove'] = false,
 		['emphasizeMultiplier'] = 1,
 		['emphasizeRestart'] = false,
@@ -71,19 +76,28 @@ function L1UI:Setup_BigWigs(layout)
 		['outline'] = 'OUTLINE',
 		['spacing'] = 3,
 		['texture'] = 'Minimalist',
-		['visibleBarLimit'] = 5,
+		['visibleBarLimit'] = 6,
 		['visibleBarLimitEmph'] = 5,
 	}
+
+	-- 1080p bars Main
+	if scaled then
+		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name]['BigWigsAnchor_x'] = 399.9109471835982
+		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name]['BigWigsAnchor_y'] = 229.2889812465364
+		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name]['BigWigsEmphasizeAnchor_x'] = 399.600009676069
+		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name]['BigWigsEmphasizeAnchor_y'] = 215.3333819502768
+	end
+
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing] = {
 		['barStyle'] = 'ElvUI',
-		['BigWigsAnchor_height'] = 15.99998760223389,
-		['BigWigsAnchor_width'] = 221.0000305175781,
-		['BigWigsAnchor_x'] = 355.8220138243451,
-		['BigWigsAnchor_y'] = 212.222422673558,
-		['BigWigsEmphasizeAnchor_height'] = 15.99998760223389,
-		['BigWigsEmphasizeAnchor_width'] = 221.0000305175781,
-		['BigWigsEmphasizeAnchor_x'] = 866.088996666258,
-		['BigWigsEmphasizeAnchor_y'] = 198.2889804958904,
+		['BigWigsAnchor_height'] = 18.00000190734863,
+		['BigWigsAnchor_width'] = 239,
+		['BigWigsAnchor_x'] = 392.977819974556,
+		['BigWigsAnchor_y'] = 241.5556115564395,
+		['BigWigsEmphasizeAnchor_height'] = 18.00000190734863,
+		['BigWigsEmphasizeAnchor_width'] = 239,
+		['BigWigsEmphasizeAnchor_x'] = 393.2001181632331,
+		['BigWigsEmphasizeAnchor_y'] = 231.3332802941368,
 		['emphasizeMove'] = false,
 		['emphasizeMultiplier'] = 1,
 		['emphasizeRestart'] = false,
@@ -98,25 +112,35 @@ function L1UI:Setup_BigWigs(layout)
 		['outline'] = 'OUTLINE',
 		['spacing'] = 3,
 		['texture'] = 'Minimalist',
-		['visibleBarLimit'] = 5,
+		['visibleBarLimit'] = 6,
 		['visibleBarLimitEmph'] = 5,
 	}
+
+	-- 1080p bars Healing
+	if scaled then
+		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['BigWigsAnchor_x'] = 332.1778943282061
+		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['BigWigsAnchor_y'] = 239.4224016307999
+		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['BigWigsEmphasizeAnchor_height'] = 18.00000190734863
+		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['BigWigsEmphasizeAnchor_width'] = 239
+		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['BigWigsEmphasizeAnchor_x'] = 332.400203361367
+		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['BigWigsEmphasizeAnchor_y'] = 224.9332519743984
+	end
 
 	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name] = {
 		['blockTalkingHeads'] = {
-			true, -- [1]
-			nil, -- [2]
-			nil, -- [3]
-			true, -- [4]
+			true,
+			nil,
+			nil,
+			true,
 		},
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name_healing] = {
 		['blockTalkingHeads'] = {
-			true, -- [1]
-			nil, -- [2]
-			nil, -- [3]
-			true, -- [4]
+			true,
+			nil,
+			nil,
+			true,
 		},
 	}
 
@@ -125,10 +149,10 @@ function L1UI:Setup_BigWigs(layout)
 		['barBackground'] = {
 			['BigWigs_Plugins_Colors'] = {
 				['default'] = {
-					0.05882352941176471, -- [1]
-					0.05882352941176471, -- [2]
-					0.05882352941176471, -- [3]
-					1, -- [4]
+					0.05,
+					0.05,
+					0.05,
+					0.90,
 				},
 			},
 		},
@@ -137,10 +161,10 @@ function L1UI:Setup_BigWigs(layout)
 		['barBackground'] = {
 			['BigWigs_Plugins_Colors'] = {
 				['default'] = {
-					0.05882352941176471, -- [1]
-					0.05882352941176471, -- [2]
-					0.05882352941176471, -- [3]
-					1, -- [4]
+					0.05,
+					0.05,
+					0.05,
+					0.90,
 				},
 			},
 		},
@@ -152,10 +176,10 @@ function L1UI:Setup_BigWigs(layout)
 		['fontSize'] = 50,
 		['fontName'] = 'Expressway',
 		['position'] = {
-			nil, -- [1]
-			nil, -- [2]
-			nil, -- [3]
-			-385, -- [4]
+			nil,
+			nil,
+			nil,
+			-385,
 		},
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'][name_healing] = {
@@ -163,22 +187,46 @@ function L1UI:Setup_BigWigs(layout)
 		['fontSize'] = 50,
 		['fontName'] = 'Expressway',
 		['position'] = {
-			nil, -- [1]
-			nil, -- [2]
-			nil, -- [3]
-			-380, -- [4]
+			nil,
+			nil,
+			nil,
+			-380,
 		},
 	}
 
 	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name] = {
-		['posx'] = 962.8443809535747,
-		['posy'] = 72.42229450539753,
+		['position'] = {
+			'BOTTOM',
+			'BOTTOM',
+			-507,
+			1.000007390975952,
+		},
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name_healing] = {
-		['posx'] = 962.8443809535747,
-		['posy'] = 72.42229450539753,
+		['position'] = {
+			'BOTTOM',
+			'BOTTOM',
+			-507,
+			1.000007390975952,
+		},
 	}
+
+	-- 1080p info box
+	if scaled then
+		BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name]['position'] = {
+			'BOTTOM',
+			'BOTTOM',
+			-360.749755859375,
+			1.000032067298889
+		}
+		BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name_healing]['position'] = {
+			'BOTTOM',
+			'BOTTOM',
+			-360.749755859375,
+			1.000032067298889
+		}
+	end
 
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'][name] = {
@@ -189,17 +237,17 @@ function L1UI:Setup_BigWigs(layout)
 		['growUpwards'] = false,
 		['emphOutline'] = 'OUTLINE',
 		['emphPosition'] = {
-			'TOP', -- [1]
-			'TOP', -- [2]
-			nil, -- [3]
-			-465, -- [4]
+			'TOP',
+			'TOP',
+			nil,
+			-465,
 		},
 		['fontName'] = 'Expressway',
 		['normalPosition'] = {
-			'CENTER', -- [1]
-			'CENTER', -- [2]
-			nil, -- [3]
-			-15, -- [4]
+			'CENTER',
+			'CENTER',
+			nil,
+			-15,
 		},
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'][name_healing] = {
@@ -210,54 +258,18 @@ function L1UI:Setup_BigWigs(layout)
 		['growUpwards'] = false,
 		['emphOutline'] = 'OUTLINE',
 		['emphPosition'] = {
-			'TOP', -- [1]
-			'TOP', -- [2]
-			nil, -- [3]
-			-300, -- [4]
+			'TOP',
+			'TOP',
+			nil,
+			-300,
 		},
 		['fontName'] = 'Expressway',
 		['normalPosition'] = {
-			'CENTER', -- [1]
-			'CENTER', -- [2]
-			nil, -- [3]
-			250, -- [4]
+			'CENTER',
+			'CENTER',
+			nil,
+			250,
 		},
-	}
-
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'][name] = {
-		['posx'] = 296,
-		['fontSize'] = 18,
-		['fontName'] = 'Expressway',
-		['width'] = 150.0000915527344,
-		['objects'] = {
-			['title'] = false,
-			['close'] = false,
-			['ability'] = false,
-			['tooltip'] = false,
-			['sound'] = false,
-		},
-		['posy'] = 87,
-		['lock'] = true,
-		['height'] = 119.9999694824219,
-		['font'] = 'Friz Quadrata TT',
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'][name_healing] = {
-		['posx'] = 296,
-		['fontSize'] = 18,
-		['fontName'] = 'Expressway',
-		['width'] = 150.0000915527344,
-		['objects'] = {
-			['title'] = false,
-			['close'] = false,
-			['ability'] = false,
-			['tooltip'] = false,
-			['sound'] = false,
-		},
-		['posy'] = 87,
-		['lock'] = true,
-		['height'] = 119.9999694824219,
-		['font'] = 'Friz Quadrata TT',
 	}
 
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'] or {}
@@ -310,6 +322,11 @@ function L1UI:Setup_BigWigs(layout)
 		BigWigs.db:SetProfile(name)
 	elseif layout == 'healing' then
 		BigWigs.db:SetProfile(name_healing)
+	end
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["BigWigs profile has been set."]
+		_G.LuckyoneInstallStepComplete:Show()
 	end
 
 	Private:Print(L["BigWigs profile has been set."])

@@ -3,9 +3,14 @@ local E, L, V, P, G = unpack(ElvUI)
 
 local pairs = pairs
 
+local _G = _G
+
 -- OmniCD profile
-function L1UI:Setup_OmniCD(layout)
+function Private:Setup_OmniCD(layout, installer)
 	if not E:IsAddOnEnabled('OmniCD') and E.Retail then Private:Print('OmniCD ' .. L["is not installed or enabled."]) return end
+
+	-- 1080p
+	local scaled = E.global.L1UI.scaled
 
 	-- Profile names
 	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
@@ -35,7 +40,7 @@ function L1UI:Setup_OmniCD(layout)
 			['extraBars'] = {
 				['raidBar0'] = {
 					['hideSpark'] = true,
-					['statusBarWidth'] = 280,
+					['statusBarWidth'] = 314,
 					['barColors'] = {
 						['classColor'] = false,
 						['inactiveColor'] = {
@@ -64,9 +69,12 @@ function L1UI:Setup_OmniCD(layout)
 					['locked'] = true,
 					['paddingY'] = 1,
 					['manualPos'] = {
-						['raidBar0'] = {
-							['y'] = 417.7780917134624,
-							['x'] = 256.3552796449858,
+						['raidBar0'] = scaled and {
+							['y'] = 438.0447154680951,
+							['x'] = 213.1553003003137,
+						} or {
+							['y'] = 424.7114153795919,
+							['x'] = 319.8219242320956,
 						},
 					},
 					['columns'] = 10,
@@ -112,10 +120,10 @@ function L1UI:Setup_OmniCD(layout)
 				['glowType'] = 'actionBar',
 			},
 			['icons'] = {
-				['counterScale'] = 0.9,
-				['scale'] = 0.9,
+				['counterScale'] = 1,
+				['scale'] = 1.1,
 				['showTooltip'] = true,
-				['chargeScale'] = 0.9,
+				['chargeScale'] = 1,
 			},
 			['position'] = {
 				['paddingX'] = 1,
@@ -133,7 +141,7 @@ function L1UI:Setup_OmniCD(layout)
 			['extraBars'] = {
 				['raidBar0'] = {
 					['hideSpark'] = true,
-					['statusBarWidth'] = 280,
+					['statusBarWidth'] = 314,
 					['barColors'] = {
 						['classColor'] = false,
 						['inactiveColor'] = {
@@ -162,9 +170,12 @@ function L1UI:Setup_OmniCD(layout)
 					['locked'] = true,
 					['paddingY'] = 1,
 					['manualPos'] = {
-						['raidBar0'] = {
-							['y'] = 417.7780917134624,
-							['x'] = 256.3552796449858,
+						['raidBar0'] = scaled and {
+							['y'] = 438.0447154680951,
+							['x'] = 213.1553003003137,
+						} or {
+							['y'] = 424.7114153795919,
+							['x'] = 319.8219242320956,
 						},
 					},
 					['columns'] = 10,
@@ -210,10 +221,10 @@ function L1UI:Setup_OmniCD(layout)
 				['glowType'] = 'actionBar',
 			},
 			['icons'] = {
-				['counterScale'] = 0.9,
-				['scale'] = 0.9,
+				['counterScale'] = 1,
+				['scale'] = 1.1,
 				['showTooltip'] = true,
-				['chargeScale'] = 0.9,
+				['chargeScale'] = 1,
 			},
 			['position'] = {
 				['paddingX'] = 1,
@@ -235,16 +246,19 @@ function L1UI:Setup_OmniCD(layout)
 			['extraBars'] = {
 				['raidBar0'] = {
 					['columns'] = 10,
-					['growUpward'] = false,
+					['growUpward'] = true,
 					['hideSpark'] = true,
 					['locked'] = true,
 					['paddingY'] = 2,
 					['scale'] = 0.6000000000000001,
-					['statusBarWidth'] = 364,
+					['statusBarWidth'] = 396,
 					['manualPos'] = {
-						['raidBar0'] = {
-							["y"] = 373.6890715486516,
-							["x"] = 343.1108373012739,
+						['raidBar0'] = scaled and {
+							['y'] = 354.4889191740094,
+							['x'] = 318.5774165683233,
+						} or {
+							['y'] = 343.8223486608986,
+							['x'] = 382.5775590154735,
 						},
 					},
 					['barColors'] = {
@@ -303,21 +317,21 @@ function L1UI:Setup_OmniCD(layout)
 				['glowType'] = 'actionBar',
 			},
 			['icons'] = {
-				["scale"] = 1.1,
-				["counterScale"] = 0.9,
-				["chargeScale"] = 0.9,
-				["showTooltip"] = true,
+				['counterScale'] = 0.8,
+				['showTooltip'] = true,
+				['chargeScale'] = 0.8,
 			},
 			['position'] = {
-				["anchor"] = "RIGHT",
-				["paddingY"] = 1,
-				["attachMore"] = "LEFT",
-				["columns"] = 4,
-				["paddingX"] = 1,
-				["attach"] = "LEFT",
-				["preset"] = "manual",
-				["offsetX"] = 1,
-				["anchorMore"] = "RIGHT",
+				['anchor'] = 'BOTTOMLEFT',
+				['paddingY'] = 1,
+				['attachMore'] = 'BOTTOMLEFT',
+				['columns'] = 4,
+				['paddingX'] = 1,
+				['attach'] = 'BOTTOMLEFT',
+				['preset'] = 'manual',
+				['offsetY'] = 30,
+				['offsetX'] = 0,
+				['anchorMore'] = 'BOTTOMLEFT',
 			},
 			['general'] = {
 				['showPlayer'] = true,
@@ -327,16 +341,19 @@ function L1UI:Setup_OmniCD(layout)
 			['extraBars'] = {
 				['raidBar0'] = {
 					['columns'] = 10,
-					['growUpward'] = false,
+					['growUpward'] = true,
 					['hideSpark'] = true,
 					['locked'] = true,
 					['paddingY'] = 2,
 					['scale'] = 0.6000000000000001,
-					['statusBarWidth'] = 364,
+					['statusBarWidth'] = 396,
 					['manualPos'] = {
-						['raidBar0'] = {
-							["y"] = 373.6890715486516,
-							["x"] = 343.1108373012739,
+						['raidBar0'] = scaled and {
+							['y'] = 354.4889191740094,
+							['x'] = 318.5774165683233,
+						} or {
+							['y'] = 343.8223486608986,
+							['x'] = 382.5775590154735,
 						},
 					},
 					['barColors'] = {
@@ -395,21 +412,21 @@ function L1UI:Setup_OmniCD(layout)
 				['glowType'] = 'actionBar',
 			},
 			['icons'] = {
-				["scale"] = 1.1,
-				["counterScale"] = 0.9,
-				["chargeScale"] = 0.9,
-				["showTooltip"] = true,
+				['counterScale'] = 0.8,
+				['showTooltip'] = true,
+				['chargeScale'] = 0.8,
 			},
 			['position'] = {
-				["anchor"] = "RIGHT",
-				["paddingY"] = 1,
-				["attachMore"] = "LEFT",
-				["columns"] = 4,
-				["paddingX"] = 1,
-				["attach"] = "LEFT",
-				["preset"] = "manual",
-				["offsetX"] = 1,
-				["anchorMore"] = "RIGHT",
+				['anchor'] = 'BOTTOMLEFT',
+				['paddingY'] = 1,
+				['attachMore'] = 'BOTTOMLEFT',
+				['columns'] = 4,
+				['paddingX'] = 1,
+				['attach'] = 'BOTTOMLEFT',
+				['preset'] = 'manual',
+				['offsetY'] = 30,
+				['offsetX'] = 0,
+				['anchorMore'] = 'BOTTOMLEFT',
 			},
 			['general'] = {
 				['showPlayer'] = true,
@@ -610,6 +627,11 @@ function L1UI:Setup_OmniCD(layout)
 		OmniCDDB['profileKeys'][E.mynameRealm] = name
 	elseif layout == 'healing' then
 		OmniCDDB['profileKeys'][E.mynameRealm] = name_healing
+	end
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["OmniCD profile has been set."]
+		_G.LuckyoneInstallStepComplete:Show()
 	end
 
 	Private:Print(L["OmniCD profile has been set."])

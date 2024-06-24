@@ -1,19 +1,24 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
+local _G = _G
+
 -- WindTools profile
-function L1UI:Setup_WindTools(noPrint)
+function Private:Setup_WindTools(installer)
 	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then Private:Print('WindTools ' .. L["is not installed or enabled."]) return end
 
-	-- Fix for garrison icon not moving to MinimapButtonBar
-	E.db.general.minimap.icons.classHall.scale = 1
-	E.db.general.minimap.icons.classHall.xOffset = 0
-	E.db.general.minimap.icons.classHall.yOffset = 0
+	-- 1080p
+	local scaled = E.global.L1UI.scaled
 
 	-- Restore defaults
 	E.db.WT = E:CopyTable({}, P.WT)
 	E.global.WT = E:CopyTable({}, G.WT)
 	E.private.WT = E:CopyTable({}, V.WT)
+
+	-- Fix expansion icon not correctly moving to minimap bar
+	E.db.general.minimap.icons.classHall.scale = 1.0
+	E.db.general.minimap.icons.classHall.xOffset = 0
+	E.db.general.minimap.icons.classHall.yOffset = 0
 
 	-- Global db
 	E.global.WT.core.loginMessage = false
@@ -22,7 +27,8 @@ function L1UI:Setup_WindTools(noPrint)
 	-- Private db
 	E.private.WT.maps.minimapButtons.backdrop = false
 	E.private.WT.maps.minimapButtons.backdropSpacing = 0
-	E.private.WT.maps.minimapButtons.buttonSize = 23
+	E.private.WT.maps.minimapButtons.buttonSize = 22
+	E.private.WT.maps.minimapButtons.buttonsPerRow = 7
 	E.private.WT.maps.minimapButtons.expansionLandingPage = true
 	E.private.WT.maps.minimapButtons.spacing = 3
 	E.private.WT.maps.superTracker.enable = false
@@ -40,11 +46,11 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.misc.moveSpeed = true
 	E.private.WT.misc.pauseToSlash = false
 	E.private.WT.misc.tags = false
-	E.private.WT.quest.objectiveTracker.cosmeticBar.border = 'ONEPIXEL'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.color.mode = 'CLASS'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.enable = not E:IsAddOnEnabled('ElvUI_SLE')
 	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = Private.Texture
-	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 228
+	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 230
+	E.private.WT.quest.objectiveTracker.noDash = false
 	E.private.WT.quest.objectiveTracker.titleColor.classColor = true
 	E.private.WT.skins.addons.adiBags = false
 	E.private.WT.skins.addons.angryKeystones = false
@@ -63,6 +69,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.skins.addons.tomCats = false
 	E.private.WT.skins.addons.warpDeplete = false
 	E.private.WT.skins.addons.weakAuras = false
+	E.private.WT.skins.addons.weakAurasOptions = false
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.name = Private.Font
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.size = 12
 	E.private.WT.skins.blizzard.enable = false
@@ -71,21 +78,28 @@ function L1UI:Setup_WindTools(noPrint)
 	E.private.WT.skins.rollResult.name = Private.Font
 	E.private.WT.skins.shadow = false
 	E.private.WT.skins.weakAurasShadow = false
+	E.private.WT.skins.widgets.button.backdrop.animationDuration = 0
 	E.private.WT.skins.widgets.button.backdrop.classColor = true
 	E.private.WT.skins.widgets.button.backdrop.texture = Private.Texture
+	E.private.WT.skins.widgets.button.selected.backdropAlpha = 1
 	E.private.WT.skins.widgets.button.selected.backdropClassColor = true
 	E.private.WT.skins.widgets.button.selected.borderClassColor = true
 	E.private.WT.skins.widgets.checkBox.classColor = true
 	E.private.WT.skins.widgets.checkBox.texture = Private.Texture
 	E.private.WT.skins.widgets.slider.classColor = true
 	E.private.WT.skins.widgets.slider.texture = Private.Texture
+	E.private.WT.skins.widgets.tab.backdrop.animationDuration = 0
 	E.private.WT.skins.widgets.tab.backdrop.classColor = true
 	E.private.WT.skins.widgets.tab.backdrop.texture = Private.Texture
+	E.private.WT.skins.widgets.tab.selected.backdropAlpha = 1
 	E.private.WT.skins.widgets.tab.selected.backdropClassColor = true
+	E.private.WT.skins.widgets.tab.selected.borderAlpha = 0
 	E.private.WT.skins.widgets.tab.selected.borderClassColor = true
 	E.private.WT.skins.widgets.tab.selected.texture = Private.Texture
+	E.private.WT.skins.widgets.treeGroupButton.backdrop.animationDuration = 0
 	E.private.WT.skins.widgets.treeGroupButton.backdrop.classColor = true
 	E.private.WT.skins.widgets.treeGroupButton.backdrop.texture = Private.Texture
+	E.private.WT.skins.widgets.treeGroupButton.selected.backdropAlpha = 1
 	E.private.WT.skins.widgets.treeGroupButton.selected.backdropClassColor = true
 	E.private.WT.skins.widgets.treeGroupButton.selected.borderClassColor = true
 	E.private.WT.skins.widgets.treeGroupButton.selected.texture = Private.Texture
@@ -108,6 +122,7 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.announcement.utility.enable = false
 	E.db.WT.combat.combatAlert.animation = false
 	E.db.WT.combat.combatAlert.enterText = '+Combat'
+	E.db.WT.combat.combatAlert.font.size = 24
 	E.db.WT.combat.combatAlert.leaveText = '-Combat'
 	E.db.WT.combat.combatAlert.speed = 0.5
 	E.db.WT.combat.quickKeystone.enable = false
@@ -126,9 +141,11 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.maps.whoClicked.yOffset = 19
 	E.db.WT.misc.disableTalkingHead = true
 	E.db.WT.misc.gameBar.enable = false
+	E.db.WT.misc.noLootPanel = true
 	E.db.WT.quest.paragonReputation.toast.sound = false
-	E.db.WT.quest.switchButtons.enable = false
+	E.db.WT.quest.switchButtons.announcement = false
 	E.db.WT.quest.turnIn.mode = 'COMPLETE'
+	E.db.WT.quest.turnIn.pauseModifier = 'ANY'
 	E.db.WT.quest.turnIn.selectReward = false
 	E.db.WT.skins.vignetting.enable = false
 	E.db.WT.social.chatBar.enable = false
@@ -145,7 +162,6 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.WT.social.friendList.infoFont.size = 10
 	E.db.WT.social.friendList.nameFont.size = 11
 	E.db.WT.social.friendList.textures.factionIcon = true
-	E.db.WT.social.friendList.textures.status = 'default'
 	E.db.WT.social.friendList.useClientColor = false
 	E.db.WT.social.smartTab.enable = false
 	E.db.WT.tooltips.groupInfo.mode = 'COMPACT'
@@ -156,11 +172,14 @@ function L1UI:Setup_WindTools(noPrint)
 	E.db.movers = E.db.movers or {}
 
 	-- Movers
-	E.db.movers.WTCombatAlertFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,0,410'
-	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-158'
-	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-187'
+	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,405') or 'BOTTOM,ElvUIParent,BOTTOM,0,580'
+	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-177'
+	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,UIParent,TOP,0,-110'
 
-	if not noPrint then
-		Private:Print(L["WindTools profile has been set."])
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["WindTools profile has been set."]
+		_G.LuckyoneInstallStepComplete:Show()
 	end
+
+	Private:Print(L["WindTools profile has been set."])
 end
