@@ -11,13 +11,14 @@ local function Add(list, ids, value)
 end
 
 -- Aura Filters DB
-function L1UI:Setup_Filters_Retail()
+function Private:Setup_Filters_Retail()
 	if not E.Retail then return end
 
 	-- General setup
 	local unitframe = E.global['unitframe'] or {}
 	local aurafilters = unitframe['aurafilters'] or {}
 	local aurawatch = unitframe['aurawatch'] or {}
+	local auraHighlight = unitframe['AuraHighlightColors'] or {}
 
 	-- Classes setup
 	local classes = {
@@ -148,6 +149,18 @@ function L1UI:Setup_Filters_Retail()
 		["style"] = "texturedIcon",
 	}
 
+	auraHighlight[410089] = {
+		["enable"] = true,
+		["ownOnly"] = true,
+		["style"] = "FILL",
+		["color"] = {
+			["a"] = 0.65,
+			["r"] = 0.80,
+			["g"] = 0.59,
+			["b"] = 0.34,
+		},
+	}
+
 	-- Monk
 	classes['MONK'][325209] = {
 		["point"] = "BOTTOMRIGHT",
@@ -238,7 +251,7 @@ function L1UI:Setup_Filters_Retail()
 	classes['WARRIOR'][3411]['style'] = 'texturedIcon'
 end
 
-function L1UI:Setup_Filters_Cata()
+function Private:Setup_Filters_Cata()
 	if not E.Cata then return end
 
 	-- General setup

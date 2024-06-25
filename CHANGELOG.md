@@ -1,3 +1,21 @@
+### Version 3.00 [25-06-2024]
+**Highlights:**  
+All informations will be available in the Discord announcement channel  
+First release of the v3 version for my layouts  
+Full 1440p (native) and 1080p (native) scaling and support  
+Plater profile is now built-in rather than a wago link  
+Updated installer process and config panels  
+**All WoW Versions:**  
+Added more than 10 new custom tags, see the full list in the config  
+Updated BigWigs for the latest changes  
+Updated chat commands 1: /lucky install 2: /lucky config  
+**Retail:**  
+Updated OmniCD for the latest changes  
+**Misc:**  
+Updated Credits  
+Updated Links  
+Updated README  
+___
 ### Version 2.60 [11-06-2024]
 **All WoW Versions:**  
 ElvUI 13.66+ compatibility  

@@ -1,12 +1,14 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
+local _G = _G
+
 -- WarpDeplete Profile
-function L1UI:Setup_WarpDeplete()
+function Private:Setup_WarpDeplete(installer)
 	if not E:IsAddOnEnabled('WarpDeplete') and E.Retail then Private:Print('WarpDeplete ' .. L["is not installed or enabled."]) return end
 
 	-- Profile name
-	local name = E.global.L1UI.dev and 'Luckyone' or 'Luckyone ' .. Private.Version
+	local name = (E.global.L1UI.dev and 'Luckyone') or 'Luckyone ' .. Private.Version
 
 	-- Profile data
 	WarpDepleteDB['profiles'][name] = WarpDepleteDB['profiles'][name] or {}
@@ -20,7 +22,7 @@ function L1UI:Setup_WarpDeplete()
 		['bar3Font'] = Private.Font,
 		['bar3FontSize'] = 11,
 		['bar3Texture'] = Private.Texture,
-		['barWidth'] = 244,
+		['barWidth'] = 220,
 		['deathsFont'] = Private.Font,
 		['deathsFontSize'] = 11,
 		['forcesFont'] = Private.Font,
@@ -28,8 +30,8 @@ function L1UI:Setup_WarpDeplete()
 		['forcesOverlayTexture'] = Private.Texture,
 		['forcesTexture'] = Private.Texture,
 		['frameAnchor'] = 'TOPRIGHT',
-		['frameX'] = 19.00000953674316,
-		['frameY'] = -164.0001068115234,
+		['frameX'] = 18.99979209899902,
+		['frameY'] = -185.0000457763672,
 		['keyDetailsFont'] = Private.Font,
 		['keyDetailsFontSize'] = 11,
 		['keyFont'] = Private.Font,
@@ -43,6 +45,11 @@ function L1UI:Setup_WarpDeplete()
 
 	-- Profile key
 	WarpDepleteDB['profileKeys'][E.mynameRealm] = name
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["WarpDeplete profile has been set."]
+		_G.LuckyoneInstallStepComplete:Show()
+	end
 
 	Private:Print(L["WarpDeplete profile has been set."])
 end

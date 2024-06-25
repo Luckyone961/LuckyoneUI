@@ -1,13 +1,18 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
-local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
-local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
 local pairs = pairs
 
+local _G = _G
+local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
+local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
+
 -- BigWigs profiles
-function L1UI:Setup_BigWigs(layout)
+function Private:Setup_BigWigs(layout, installer)
 	if not E:IsAddOnEnabled('BigWigs') then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
+
+	-- 1080p
+	local scaled = E.global.L1UI.scaled
 
 	-- Profile names
 	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
@@ -24,7 +29,7 @@ function L1UI:Setup_BigWigs(layout)
 	BigWigs3DB['namespaces'] = BigWigs3DB['namespaces'] or {}
 
 	for _, profile in pairs({ name, name_healing }) do
-		BigWigs3DB['profiles'][profile] = BigWigs3DB['profiles'][profile] or {}
+		BigWigs3DB['profiles'][profile] = {}
 		BigWigs3DB['profiles'][profile]['showZoneMessages'] = false
 		BigWigs3DB['profiles'][profile]['fakeDBMVersion'] = true
 		BigWigs3DB['profiles'][profile]['flash'] = false
@@ -33,34 +38,30 @@ function L1UI:Setup_BigWigs(layout)
 	-- Disable minimap icon
 	BigWigsIconDB['hide'] = true
 
-	-- Profile data
+	-- Plugin: AutoReply
 	BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'][name] = {
-		['exitCombatOther'] = 3,
 		['disabled'] = false,
+		['exitCombatOther'] = 3,
 		['modeOther'] = 2,
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'][name_healing] = {
-		['exitCombatOther'] = 3,
 		['disabled'] = false,
+		['exitCombatOther'] = 3,
 		['modeOther'] = 2,
 	}
 
+	-- Plugin: Bars
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name] = {
 		['barStyle'] = 'ElvUI',
-		['BigWigsAnchor_height'] = 15.99998760223389,
-		['BigWigsAnchor_width'] = 221.0000152587891,
-		['BigWigsAnchor_x'] = 412.7110342991,
-		['BigWigsAnchor_y'] = 212.222422673558,
-		['BigWigsEmphasizeAnchor_height'] = 15.99998760223389,
-		['BigWigsEmphasizeAnchor_width'] = 221.0000152587891,
-		['BigWigsEmphasizeAnchor_x'] = 598,
-		['BigWigsEmphasizeAnchor_y'] = 178.0001345184974,
 		['emphasizeMove'] = false,
 		['emphasizeMultiplier'] = 1,
 		['emphasizeRestart'] = false,
 		['emphasizeTime'] = 8,
+		['expHeight'] = 18,
+		['expPosition'] = { 'BOTTOM', 'BOTTOM', 10, -38, 'ElvUF_Player' },
+		['expWidth'] = 239,
 		['fontName'] = 'Expressway',
 		['fontSizeEmph'] = 11,
 		['fontSizeNameplate'] = 10,
@@ -68,26 +69,24 @@ function L1UI:Setup_BigWigs(layout)
 		['nameplateAlpha'] = 1,
 		['nameplateHeight'] = 14,
 		['nameplateOffsetY'] = 0,
+		['normalHeight'] = 18,
+		['normalPosition'] = { 'BOTTOM', 'BOTTOM', 10, -20, 'ElvUF_Player' },
+		['normalWidth'] = 239,
 		['outline'] = 'OUTLINE',
 		['spacing'] = 3,
 		['texture'] = 'Minimalist',
-		['visibleBarLimit'] = 5,
+		['visibleBarLimit'] = 6,
 		['visibleBarLimitEmph'] = 5,
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing] = {
 		['barStyle'] = 'ElvUI',
-		['BigWigsAnchor_height'] = 15.99998760223389,
-		['BigWigsAnchor_width'] = 221.0000305175781,
-		['BigWigsAnchor_x'] = 355.8220138243451,
-		['BigWigsAnchor_y'] = 212.222422673558,
-		['BigWigsEmphasizeAnchor_height'] = 15.99998760223389,
-		['BigWigsEmphasizeAnchor_width'] = 221.0000305175781,
-		['BigWigsEmphasizeAnchor_x'] = 866.088996666258,
-		['BigWigsEmphasizeAnchor_y'] = 198.2889804958904,
 		['emphasizeMove'] = false,
 		['emphasizeMultiplier'] = 1,
 		['emphasizeRestart'] = false,
 		['emphasizeTime'] = 8,
+		['expHeight'] = 18,
+		['expPosition'] = { 'BOTTOM', 'BOTTOM', 10, -57, 'ElvUF_Player' },
+		['expWidth'] = 239,
 		['fontName'] = 'Expressway',
 		['fontSizeEmph'] = 11,
 		['fontSizeNameplate'] = 10,
@@ -95,171 +94,84 @@ function L1UI:Setup_BigWigs(layout)
 		['nameplateAlpha'] = 1,
 		['nameplateHeight'] = 14,
 		['nameplateOffsetY'] = 0,
+		['normalHeight'] = 18,
+		['normalPosition'] = { 'BOTTOM', 'BOTTOM', 10, -39, 'ElvUF_Player' },
+		['normalWidth'] = 239,
 		['outline'] = 'OUTLINE',
 		['spacing'] = 3,
 		['texture'] = 'Minimalist',
-		['visibleBarLimit'] = 5,
+		['visibleBarLimit'] = 6,
 		['visibleBarLimitEmph'] = 5,
 	}
 
+	-- Plugin: BossBlock
 	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name] = {
-		['blockTalkingHeads'] = {
-			true, -- [1]
-			nil, -- [2]
-			nil, -- [3]
-			true, -- [4]
-		},
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name_healing] = {
-		['blockTalkingHeads'] = {
-			true, -- [1]
-			nil, -- [2]
-			nil, -- [3]
-			true, -- [4]
-		},
-	}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name]['blockTalkingHeads'] = { true, nil, nil, true }
+	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name_healing]['blockTalkingHeads'] = { true, nil, nil, true }
 
+	-- Plugin: Colors
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'][name] = {
 		['barBackground'] = {
 			['BigWigs_Plugins_Colors'] = {
-				['default'] = {
-					0.05882352941176471, -- [1]
-					0.05882352941176471, -- [2]
-					0.05882352941176471, -- [3]
-					1, -- [4]
-				},
+				['default'] = { 0.05, 0.05, 0.05, 0.90 },
 			},
 		},
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'][name_healing] = {
 		['barBackground'] = {
 			['BigWigs_Plugins_Colors'] = {
-				['default'] = {
-					0.05882352941176471, -- [1]
-					0.05882352941176471, -- [2]
-					0.05882352941176471, -- [3]
-					1, -- [4]
-				},
+				['default'] = { 0.05, 0.05, 0.05, 0.90 },
 			},
 		},
 	}
 
+	-- Plugin: Countdown
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'][name] = {
-		['outline'] = 'OUTLINE',
-		['fontSize'] = 50,
 		['fontName'] = 'Expressway',
-		['position'] = {
-			nil, -- [1]
-			nil, -- [2]
-			nil, -- [3]
-			-385, -- [4]
-		},
+		['fontSize'] = 50,
+		['outline'] = 'OUTLINE',
+		['position'] = { nil, nil, nil, -385 },
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'][name_healing] = {
-		['outline'] = 'OUTLINE',
-		['fontSize'] = 50,
 		['fontName'] = 'Expressway',
-		['position'] = {
-			nil, -- [1]
-			nil, -- [2]
-			nil, -- [3]
-			-380, -- [4]
-		},
+		['fontSize'] = 50,
+		['outline'] = 'OUTLINE',
+		['position'] = { nil, nil, nil, -380 },
 	}
 
+	-- Plugin: InfoBox
 	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name] = {
-		['posx'] = 962.8443809535747,
-		['posy'] = 72.42229450539753,
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name_healing] = {
-		['posx'] = 962.8443809535747,
-		['posy'] = 72.42229450539753,
-	}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name]['position'] = scaled and { 'BOTTOM', 'BOTTOM', -360, 1 } or { 'BOTTOM', 'BOTTOM', -507, 1 }
+	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name_healing]['position'] = scaled and { 'BOTTOM', 'BOTTOM', -360, 1 } or { 'BOTTOM', 'BOTTOM', -507, 1 }
 
+	-- Plugin: Messages
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'][name] = {
-		['outline'] = 'OUTLINE',
-		['fontSize'] = 16,
 		['emphFontName'] = 'Expressway',
 		['emphFontSize'] = 20,
-		['growUpwards'] = false,
 		['emphOutline'] = 'OUTLINE',
-		['emphPosition'] = {
-			'TOP', -- [1]
-			'TOP', -- [2]
-			nil, -- [3]
-			-465, -- [4]
-		},
+		['emphPosition'] = { 'TOP', 'TOP', nil, -465 },
 		['fontName'] = 'Expressway',
-		['normalPosition'] = {
-			'CENTER', -- [1]
-			'CENTER', -- [2]
-			nil, -- [3]
-			-15, -- [4]
-		},
+		['fontSize'] = 16,
+		['growUpwards'] = false,
+		['normalPosition'] = { 'CENTER', 'CENTER', nil, -15 },
+		['outline'] = 'OUTLINE',
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'][name_healing] = {
-		['outline'] = 'OUTLINE',
-		['fontSize'] = 16,
 		['emphFontName'] = 'Expressway',
 		['emphFontSize'] = 20,
-		['growUpwards'] = false,
 		['emphOutline'] = 'OUTLINE',
-		['emphPosition'] = {
-			'TOP', -- [1]
-			'TOP', -- [2]
-			nil, -- [3]
-			-300, -- [4]
-		},
+		['emphPosition'] = { 'TOP', 'TOP', nil, -300 },
 		['fontName'] = 'Expressway',
-		['normalPosition'] = {
-			'CENTER', -- [1]
-			'CENTER', -- [2]
-			nil, -- [3]
-			250, -- [4]
-		},
+		['fontSize'] = 16,
+		['growUpwards'] = false,
+		['normalPosition'] = { 'CENTER', 'CENTER', nil, 250 },
+		['outline'] = 'OUTLINE',
 	}
 
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'][name] = {
-		['posx'] = 296,
-		['fontSize'] = 18,
-		['fontName'] = 'Expressway',
-		['width'] = 150.0000915527344,
-		['objects'] = {
-			['title'] = false,
-			['close'] = false,
-			['ability'] = false,
-			['tooltip'] = false,
-			['sound'] = false,
-		},
-		['posy'] = 87,
-		['lock'] = true,
-		['height'] = 119.9999694824219,
-		['font'] = 'Friz Quadrata TT',
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Proximity']['profiles'][name_healing] = {
-		['posx'] = 296,
-		['fontSize'] = 18,
-		['fontName'] = 'Expressway',
-		['width'] = 150.0000915527344,
-		['objects'] = {
-			['title'] = false,
-			['close'] = false,
-			['ability'] = false,
-			['tooltip'] = false,
-			['sound'] = false,
-		},
-		['posy'] = 87,
-		['lock'] = true,
-		['height'] = 119.9999694824219,
-		['font'] = 'Friz Quadrata TT',
-	}
-
+	-- Plugin: Pull
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'][name] = {
 		['voice'] = 'enUS: Default (Female)',
@@ -270,14 +182,12 @@ function L1UI:Setup_BigWigs(layout)
 		['endPullSound'] = 'None',
 	}
 
+	-- Plugin: Raid Icons
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name] = {
-		['disabled'] = true,
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name_healing] = {
-		['disabled'] = true,
-	}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name]['disabled'] = true
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name_healing]['disabled'] = true
 
+	-- Plugin: Victory
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'][name] = {
 		['bigwigsMsg'] = true,
@@ -290,19 +200,15 @@ function L1UI:Setup_BigWigs(layout)
 
 	if E.Retail then
 		-- Disable LibDualSpec to set the profile
-		BigWigs3DB['namespaces']['LibDualSpec-1.0'] = BigWigs3DB['namespaces']['LibDualSpec-1.0'] or {}
-		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'] = BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'] or {}
-		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
+		BigWigs3DB['namespaces']['LibDualSpec-1.0'] = {}
+		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'] = {}
+		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = {}
 		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
 
 		-- AltPower db
 		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'] or {}
-		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name] = {
-			['disabled'] = true,
-		}
-		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name_healing] = {
-			['disabled'] = true,
-		}
+		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name]['disabled'] = true
+		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name_healing]['disabled'] = true
 	end
 
 	-- Set profile
@@ -310,6 +216,11 @@ function L1UI:Setup_BigWigs(layout)
 		BigWigs.db:SetProfile(name)
 	elseif layout == 'healing' then
 		BigWigs.db:SetProfile(name_healing)
+	end
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["BigWigs profile has been set."]
+		_G.LuckyoneInstallStepComplete:Show()
 	end
 
 	Private:Print(L["BigWigs profile has been set."])
