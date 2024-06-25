@@ -7,7 +7,10 @@ Plater profile is now built-in rather than a wago link
 Updated installer process and config panels  
 **All WoW Versions:**  
 Added more than 10 new custom tags, see the full list in the config  
+Updated BigWigs for the latest changes  
 Updated chat commands 1: /lucky install 2: /lucky config  
+**Retail:**  
+Updated OmniCD for the latest changes  
 **Misc:**  
 Updated Credits  
 Updated Links  
