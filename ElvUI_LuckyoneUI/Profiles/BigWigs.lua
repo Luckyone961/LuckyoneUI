@@ -54,18 +54,13 @@ function Private:Setup_BigWigs(layout, installer)
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name] = {
 		['barStyle'] = 'ElvUI',
-		['BigWigsAnchor_height'] = 18.00000190734863,
-		['BigWigsAnchor_width'] = 239,
-		['BigWigsAnchor_x'] = 470.3110271327969,
-		['BigWigsAnchor_y'] = 251.689059350565,
-		['BigWigsEmphasizeAnchor_height'] = 18.00000190734863,
-		['BigWigsEmphasizeAnchor_width'] = 239,
-		['BigWigsEmphasizeAnchor_x'] = 470.5334229777291,
-		['BigWigsEmphasizeAnchor_y'] = 241.4668094684748,
 		['emphasizeMove'] = false,
 		['emphasizeMultiplier'] = 1,
 		['emphasizeRestart'] = false,
 		['emphasizeTime'] = 8,
+		['expHeight'] = 18,
+		['expPosition'] = { nil, nil, -278, -276 },
+		['expWidth'] = 239,
 		['fontName'] = 'Expressway',
 		['fontSizeEmph'] = 11,
 		['fontSizeNameplate'] = 10,
@@ -73,6 +68,9 @@ function Private:Setup_BigWigs(layout, installer)
 		['nameplateAlpha'] = 1,
 		['nameplateHeight'] = 14,
 		['nameplateOffsetY'] = 0,
+		['normalHeight'] = 18,
+		['normalPosition'] = { nil, nil, -278, -257 },
+		['normalWidth'] = 239,
 		['outline'] = 'OUTLINE',
 		['spacing'] = 3,
 		['texture'] = 'Minimalist',
@@ -82,26 +80,19 @@ function Private:Setup_BigWigs(layout, installer)
 
 	-- 1080p bars Main
 	if scaled then
-		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name]['BigWigsAnchor_x'] = 399.9109471835982
-		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name]['BigWigsAnchor_y'] = 229.2889812465364
-		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name]['BigWigsEmphasizeAnchor_x'] = 399.600009676069
-		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name]['BigWigsEmphasizeAnchor_y'] = 215.3333819502768
+		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name]['expPosition'] = { nil, nil, -278, -246 }
+		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name]['normalPosition'] = { nil, nil, -278, -227 }
 	end
 
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing] = {
 		['barStyle'] = 'ElvUI',
-		['BigWigsAnchor_height'] = 18.00000190734863,
-		['BigWigsAnchor_width'] = 239,
-		['BigWigsAnchor_x'] = 392.977819974556,
-		['BigWigsAnchor_y'] = 241.5556115564395,
-		['BigWigsEmphasizeAnchor_height'] = 18.00000190734863,
-		['BigWigsEmphasizeAnchor_width'] = 239,
-		['BigWigsEmphasizeAnchor_x'] = 393.2001181632331,
-		['BigWigsEmphasizeAnchor_y'] = 231.3332802941368,
 		['emphasizeMove'] = false,
 		['emphasizeMultiplier'] = 1,
 		['emphasizeRestart'] = false,
 		['emphasizeTime'] = 8,
+		['expHeight'] = 18,
+		['expPosition'] = { nil, nil, -423, -295 },
+		['expWidth'] = 239,
 		['fontName'] = 'Expressway',
 		['fontSizeEmph'] = 11,
 		['fontSizeNameplate'] = 10,
@@ -109,6 +100,9 @@ function Private:Setup_BigWigs(layout, installer)
 		['nameplateAlpha'] = 1,
 		['nameplateHeight'] = 14,
 		['nameplateOffsetY'] = 0,
+		['normalHeight'] = 18,
+		['normalPosition'] = { nil, nil, -423, -276 },
+		['normalWidth'] = 239,
 		['outline'] = 'OUTLINE',
 		['spacing'] = 3,
 		['texture'] = 'Minimalist',
@@ -118,12 +112,8 @@ function Private:Setup_BigWigs(layout, installer)
 
 	-- 1080p bars Healing
 	if scaled then
-		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['BigWigsAnchor_x'] = 332.1778943282061
-		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['BigWigsAnchor_y'] = 239.4224016307999
-		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['BigWigsEmphasizeAnchor_height'] = 18.00000190734863
-		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['BigWigsEmphasizeAnchor_width'] = 239
-		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['BigWigsEmphasizeAnchor_x'] = 332.400203361367
-		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['BigWigsEmphasizeAnchor_y'] = 224.9332519743984
+		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['expPosition'] = { nil, nil, -373, -231 }
+		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['normalPosition'] = { nil, nil, -373, -212 }
 	end
 
 	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] or {}
