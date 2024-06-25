@@ -1,4 +1,4 @@
-<Ui xmlns='http://www.blizzard.com/wow/ui/'>
+<Ui>
 	<Script file='AddOnSkins.lua'/>
 	<Script file='BigWigs.lua'/>
 	<Script file='Details.lua'/>

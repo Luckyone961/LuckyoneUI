@@ -1,4 +1,4 @@
-<Ui xmlns='http://www.blizzard.com/wow/ui/'>
+<Ui>
 	<Script file='Config.lua'/>
 	<Script file='Core.lua'/>
 	<Script file='Install.lua'/>
