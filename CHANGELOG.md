@@ -1,4 +1,4 @@
-### Version 3.00 [In Development]
+### Version 3.00 [25-06-2024]
 **Highlights:**  
 All informations will be available in the Discord announcement channel  
 First release of the v3 version for my layouts  
