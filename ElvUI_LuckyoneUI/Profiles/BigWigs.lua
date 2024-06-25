@@ -29,7 +29,7 @@ function Private:Setup_BigWigs(layout, installer)
 	BigWigs3DB['namespaces'] = BigWigs3DB['namespaces'] or {}
 
 	for _, profile in pairs({ name, name_healing }) do
-		BigWigs3DB['profiles'][profile] = BigWigs3DB['profiles'][profile] or {}
+		BigWigs3DB['profiles'][profile] = {}
 		BigWigs3DB['profiles'][profile]['showZoneMessages'] = false
 		BigWigs3DB['profiles'][profile]['fakeDBMVersion'] = true
 		BigWigs3DB['profiles'][profile]['flash'] = false
@@ -200,9 +200,9 @@ function Private:Setup_BigWigs(layout, installer)
 
 	if E.Retail then
 		-- Disable LibDualSpec to set the profile
-		BigWigs3DB['namespaces']['LibDualSpec-1.0'] = BigWigs3DB['namespaces']['LibDualSpec-1.0'] or {}
-		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'] = BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'] or {}
-		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
+		BigWigs3DB['namespaces']['LibDualSpec-1.0'] = {}
+		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'] = {}
+		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = {}
 		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
 
 		-- AltPower db

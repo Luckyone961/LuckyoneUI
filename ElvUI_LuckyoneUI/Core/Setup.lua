@@ -7,9 +7,9 @@ local SetCVar = SetCVar
 
 local function HandleLibDualSpec()
 	-- Disable LibDualSpec to set the profile
-	ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
-	ElvDB['namespaces']['LibDualSpec-1.0']['char'] = ElvDB['namespaces']['LibDualSpec-1.0']['char'] or {}
-	ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
+	ElvDB['namespaces']['LibDualSpec-1.0'] = {}
+	ElvDB['namespaces']['LibDualSpec-1.0']['char'] = {}
+	ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = {}
 	ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
 end
 
