@@ -38,19 +38,20 @@ function Private:Setup_BigWigs(layout, installer)
 	-- Disable minimap icon
 	BigWigsIconDB['hide'] = true
 
-	-- Profile data
+	-- Plugin: AutoReply
 	BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'][name] = {
-		['exitCombatOther'] = 3,
 		['disabled'] = false,
+		['exitCombatOther'] = 3,
 		['modeOther'] = 2,
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'][name_healing] = {
-		['exitCombatOther'] = 3,
 		['disabled'] = false,
+		['exitCombatOther'] = 3,
 		['modeOther'] = 2,
 	}
 
+	-- Plugin: Bars
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name] = {
 		['barStyle'] = 'ElvUI',
@@ -77,7 +78,6 @@ function Private:Setup_BigWigs(layout, installer)
 		['visibleBarLimit'] = 6,
 		['visibleBarLimitEmph'] = 5,
 	}
-
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing] = {
 		['barStyle'] = 'ElvUI',
 		['emphasizeMove'] = false,
@@ -104,14 +104,12 @@ function Private:Setup_BigWigs(layout, installer)
 		['visibleBarLimitEmph'] = 5,
 	}
 
+	-- Plugin: BossBlock
 	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name] = {
-		['blockTalkingHeads'] = { true, nil, nil, true },
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name_healing] = {
-		['blockTalkingHeads'] = { true, nil, nil, true },
-	}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name]['blockTalkingHeads'] = { true, nil, nil, true }
+	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name_healing]['blockTalkingHeads'] = { true, nil, nil, true }
 
+	-- Plugin: Colors
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'][name] = {
 		['barBackground'] = {
@@ -128,52 +126,52 @@ function Private:Setup_BigWigs(layout, installer)
 		},
 	}
 
+	-- Plugin: Countdown
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'][name] = {
-		['outline'] = 'OUTLINE',
-		['fontSize'] = 50,
 		['fontName'] = 'Expressway',
+		['fontSize'] = 50,
+		['outline'] = 'OUTLINE',
 		['position'] = { nil, nil, nil, -385 },
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'][name_healing] = {
-		['outline'] = 'OUTLINE',
-		['fontSize'] = 50,
 		['fontName'] = 'Expressway',
+		['fontSize'] = 50,
+		['outline'] = 'OUTLINE',
 		['position'] = { nil, nil, nil, -380 },
 	}
 
+	-- Plugin: InfoBox
 	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name] = {
-		['position'] = scaled and { 'BOTTOM', 'BOTTOM', -360, 1 } or { 'BOTTOM', 'BOTTOM', -507, 1 },
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name_healing] = {
-		['position'] = scaled and { 'BOTTOM', 'BOTTOM', -360, 1 } or { 'BOTTOM', 'BOTTOM', -507, 1 },
-	}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name]['position'] = scaled and { 'BOTTOM', 'BOTTOM', -360, 1 } or { 'BOTTOM', 'BOTTOM', -507, 1 }
+	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name_healing]['position'] = scaled and { 'BOTTOM', 'BOTTOM', -360, 1 } or { 'BOTTOM', 'BOTTOM', -507, 1 }
 
+	-- Plugin: Messages
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'][name] = {
-		['outline'] = 'OUTLINE',
-		['fontSize'] = 16,
 		['emphFontName'] = 'Expressway',
 		['emphFontSize'] = 20,
-		['growUpwards'] = false,
 		['emphOutline'] = 'OUTLINE',
 		['emphPosition'] = { 'TOP', 'TOP', nil, -465 },
 		['fontName'] = 'Expressway',
+		['fontSize'] = 16,
+		['growUpwards'] = false,
 		['normalPosition'] = { 'CENTER', 'CENTER', nil, -15 },
+		['outline'] = 'OUTLINE',
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'][name_healing] = {
-		['outline'] = 'OUTLINE',
-		['fontSize'] = 16,
 		['emphFontName'] = 'Expressway',
 		['emphFontSize'] = 20,
-		['growUpwards'] = false,
 		['emphOutline'] = 'OUTLINE',
 		['emphPosition'] = { 'TOP', 'TOP', nil, -300 },
 		['fontName'] = 'Expressway',
+		['fontSize'] = 16,
+		['growUpwards'] = false,
 		['normalPosition'] = { 'CENTER', 'CENTER', nil, 250 },
+		['outline'] = 'OUTLINE',
 	}
 
+	-- Plugin: Pull
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'][name] = {
 		['voice'] = 'enUS: Default (Female)',
@@ -184,14 +182,12 @@ function Private:Setup_BigWigs(layout, installer)
 		['endPullSound'] = 'None',
 	}
 
+	-- Plugin: Raid Icons
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name] = {
-		['disabled'] = true,
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name_healing] = {
-		['disabled'] = true,
-	}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name]['disabled'] = true
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name_healing]['disabled'] = true
 
+	-- Plugin: Victory
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'][name] = {
 		['bigwigsMsg'] = true,
@@ -211,12 +207,8 @@ function Private:Setup_BigWigs(layout, installer)
 
 		-- AltPower db
 		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'] or {}
-		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name] = {
-			['disabled'] = true,
-		}
-		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name_healing] = {
-			['disabled'] = true,
-		}
+		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name]['disabled'] = true
+		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name_healing]['disabled'] = true
 	end
 
 	-- Set profile
