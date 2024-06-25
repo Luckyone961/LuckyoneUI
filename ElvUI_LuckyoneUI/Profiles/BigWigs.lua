@@ -59,7 +59,7 @@ function Private:Setup_BigWigs(layout, installer)
 		['emphasizeRestart'] = false,
 		['emphasizeTime'] = 8,
 		['expHeight'] = 18,
-		['expPosition'] = { nil, nil, -278, -276 },
+		['expPosition'] = scaled and { 'CENTER', 'CENTER', -278, -246 } or { 'CENTER', 'CENTER', -278, -276 },
 		['expWidth'] = 239,
 		['fontName'] = 'Expressway',
 		['fontSizeEmph'] = 11,
@@ -69,7 +69,7 @@ function Private:Setup_BigWigs(layout, installer)
 		['nameplateHeight'] = 14,
 		['nameplateOffsetY'] = 0,
 		['normalHeight'] = 18,
-		['normalPosition'] = { nil, nil, -278, -257 },
+		['normalPosition'] = scaled and { 'CENTER', 'CENTER', -278, -227 } or { 'CENTER', 'CENTER', -278, -257 },
 		['normalWidth'] = 239,
 		['outline'] = 'OUTLINE',
 		['spacing'] = 3,
@@ -77,12 +77,6 @@ function Private:Setup_BigWigs(layout, installer)
 		['visibleBarLimit'] = 6,
 		['visibleBarLimitEmph'] = 5,
 	}
-
-	-- 1080p bars Main
-	if scaled then
-		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name]['expPosition'] = { nil, nil, -278, -246 }
-		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name]['normalPosition'] = { nil, nil, -278, -227 }
-	end
 
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing] = {
 		['barStyle'] = 'ElvUI',
@@ -91,7 +85,7 @@ function Private:Setup_BigWigs(layout, installer)
 		['emphasizeRestart'] = false,
 		['emphasizeTime'] = 8,
 		['expHeight'] = 18,
-		['expPosition'] = { nil, nil, -423, -295 },
+		['expPosition'] = scaled and { 'CENTER', 'CENTER', -373, -231 } or { 'CENTER', 'CENTER', -423, -295 },
 		['expWidth'] = 239,
 		['fontName'] = 'Expressway',
 		['fontSizeEmph'] = 11,
@@ -101,7 +95,7 @@ function Private:Setup_BigWigs(layout, installer)
 		['nameplateHeight'] = 14,
 		['nameplateOffsetY'] = 0,
 		['normalHeight'] = 18,
-		['normalPosition'] = { nil, nil, -423, -276 },
+		['normalPosition'] = scaled and { 'CENTER', 'CENTER', -373, -212 } or { 'CENTER', 'CENTER', -423, -276 },
 		['normalWidth'] = 239,
 		['outline'] = 'OUTLINE',
 		['spacing'] = 3,
@@ -110,52 +104,26 @@ function Private:Setup_BigWigs(layout, installer)
 		['visibleBarLimitEmph'] = 5,
 	}
 
-	-- 1080p bars Healing
-	if scaled then
-		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['expPosition'] = { nil, nil, -373, -231 }
-		BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing]['normalPosition'] = { nil, nil, -373, -212 }
-	end
-
 	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name] = {
-		['blockTalkingHeads'] = {
-			true,
-			nil,
-			nil,
-			true,
-		},
+		['blockTalkingHeads'] = { true, nil, nil, true },
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name_healing] = {
-		['blockTalkingHeads'] = {
-			true,
-			nil,
-			nil,
-			true,
-		},
+		['blockTalkingHeads'] = { true, nil, nil, true },
 	}
 
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'][name] = {
 		['barBackground'] = {
 			['BigWigs_Plugins_Colors'] = {
-				['default'] = {
-					0.05,
-					0.05,
-					0.05,
-					0.90,
-				},
+				['default'] = { 0.05, 0.05, 0.05, 0.90 },
 			},
 		},
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'][name_healing] = {
 		['barBackground'] = {
 			['BigWigs_Plugins_Colors'] = {
-				['default'] = {
-					0.05,
-					0.05,
-					0.05,
-					0.90,
-				},
+				['default'] = { 0.05, 0.05, 0.05, 0.90 },
 			},
 		},
 	}
@@ -165,58 +133,22 @@ function Private:Setup_BigWigs(layout, installer)
 		['outline'] = 'OUTLINE',
 		['fontSize'] = 50,
 		['fontName'] = 'Expressway',
-		['position'] = {
-			nil,
-			nil,
-			nil,
-			-385,
-		},
+		['position'] = { nil, nil, nil, -385 },
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'][name_healing] = {
 		['outline'] = 'OUTLINE',
 		['fontSize'] = 50,
 		['fontName'] = 'Expressway',
-		['position'] = {
-			nil,
-			nil,
-			nil,
-			-380,
-		},
+		['position'] = { nil, nil, nil, -380 },
 	}
 
 	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name] = {
-		['position'] = {
-			'BOTTOM',
-			'BOTTOM',
-			-507,
-			1.000007390975952,
-		},
+		['position'] = scaled and { 'BOTTOM', 'BOTTOM', -360, 1 } or { 'BOTTOM', 'BOTTOM', -507, 1 },
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name_healing] = {
-		['position'] = {
-			'BOTTOM',
-			'BOTTOM',
-			-507,
-			1.000007390975952,
-		},
+		['position'] = scaled and { 'BOTTOM', 'BOTTOM', -360, 1 } or { 'BOTTOM', 'BOTTOM', -507, 1 },
 	}
-
-	-- 1080p info box
-	if scaled then
-		BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name]['position'] = {
-			'BOTTOM',
-			'BOTTOM',
-			-360.749755859375,
-			1.000032067298889
-		}
-		BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name_healing]['position'] = {
-			'BOTTOM',
-			'BOTTOM',
-			-360.749755859375,
-			1.000032067298889
-		}
-	end
 
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] or {}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'][name] = {
@@ -226,19 +158,9 @@ function Private:Setup_BigWigs(layout, installer)
 		['emphFontSize'] = 20,
 		['growUpwards'] = false,
 		['emphOutline'] = 'OUTLINE',
-		['emphPosition'] = {
-			'TOP',
-			'TOP',
-			nil,
-			-465,
-		},
+		['emphPosition'] = { 'TOP', 'TOP', nil, -465 },
 		['fontName'] = 'Expressway',
-		['normalPosition'] = {
-			'CENTER',
-			'CENTER',
-			nil,
-			-15,
-		},
+		['normalPosition'] = { 'CENTER', 'CENTER', nil, -15 },
 	}
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'][name_healing] = {
 		['outline'] = 'OUTLINE',
@@ -247,19 +169,9 @@ function Private:Setup_BigWigs(layout, installer)
 		['emphFontSize'] = 20,
 		['growUpwards'] = false,
 		['emphOutline'] = 'OUTLINE',
-		['emphPosition'] = {
-			'TOP',
-			'TOP',
-			nil,
-			-300,
-		},
+		['emphPosition'] = { 'TOP', 'TOP', nil, -300 },
 		['fontName'] = 'Expressway',
-		['normalPosition'] = {
-			'CENTER',
-			'CENTER',
-			nil,
-			250,
-		},
+		['normalPosition'] = { 'CENTER', 'CENTER', nil, 250 },
 	}
 
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'] or {}
