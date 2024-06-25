@@ -17,45 +17,38 @@ function Private:Setup_OmniCD(layout, installer)
 	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version
 
 	-- Disable LibDualSpec to set the profile
-	OmniCDDB['namespaces']['LibDualSpec-1.0'] = OmniCDDB['namespaces']['LibDualSpec-1.0'] or {}
-	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] = OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] or {}
-	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
+	OmniCDDB['namespaces']['LibDualSpec-1.0'] = {}
+	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] = {}
+	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = {}
 	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
 
 	-- Global db
 	OmniCDDB['cooldowns'] = {}
 	OmniCDDB['global']['disableElvMsg'] = true
-	OmniCDDB['version'] = 3
+	OmniCDDB['version'] = 4
 
 	-- Profile creation
 	for _, profile in pairs({ name, name_healing }) do
-		OmniCDDB['profiles'][profile] = OmniCDDB['profiles'][profile] or {}
-		OmniCDDB['profiles'][profile]['General'] = OmniCDDB['profiles'][profile]['General'] or {}
-		OmniCDDB['profiles'][profile]['Party'] = OmniCDDB['profiles'][profile]['Party'] or {}
+		OmniCDDB['profiles'][profile] = {}
+		OmniCDDB['profiles'][profile]['General'] = {}
+		OmniCDDB['profiles'][profile]['Party'] = {}
 	end
 
 	-- Main profile
 	OmniCDDB['profiles'][name]['Party'] = {
 		['party'] = {
 			['extraBars'] = {
-				['raidBar0'] = {
-					['hideSpark'] = true,
+				['raidBar1'] = {
 					['statusBarWidth'] = 314,
 					['barColors'] = {
-						['classColor'] = false,
-						['inactiveColor'] = {
+						['activeColor'] = {
 							['a'] = 0.90,
-							['b'] = 0.05,
-							['g'] = 0.05,
 							['r'] = 0.05,
+							['g'] = 0.05,
+							['b'] = 0.05,
 						},
 						['rechargeColor'] = {
 							['a'] = 0.90,
-							['r'] = 0.05,
-							['g'] = 0.05,
-							['b'] = 0.05,
-						},
-						['activeColor'] = {
 							['r'] = 0.05,
 							['g'] = 0.05,
 							['b'] = 0.05,
@@ -65,28 +58,33 @@ function Private:Setup_OmniCD(layout, installer)
 							['recharge'] = false,
 							['active'] = false,
 						},
-					},
-					['locked'] = true,
-					['paddingY'] = 1,
-					['manualPos'] = {
-						['raidBar0'] = scaled and {
-							['y'] = 438.0447154680951,
-							['x'] = 213.1553003003137,
-						} or {
-							['y'] = 424.7114153795919,
-							['x'] = 319.8219242320956,
+						['inactiveColor'] = {
+							['a'] = 0.90,
+							['r'] = 0.05,
+							['g'] = 0.05,
+							['b'] = 0.05,
 						},
 					},
-					['columns'] = 10,
+					['locked'] = true,
+					['hideSpark'] = true,
+					['manualPos'] = {
+						['raidBar1'] = scaled and {
+							['y'] = 438.12,
+							['x'] = 213.05,
+						} or {
+							['y'] = 424.79,
+							['x'] = 320.25,
+						},
+					},
 					['bgColors'] = {
-						['classColor'] = true,
-						['rechargeColor'] = {
+						['activeColor'] = {
+							['a'] = 0.90,
 							['r'] = 0.54,
 							['g'] = 0.56,
 							['b'] = 0.61,
 						},
-						['activeColor'] = {
-							['a'] = 1,
+						['rechargeColor'] = {
+							['a'] = 0.90,
 							['r'] = 0.54,
 							['g'] = 0.56,
 							['b'] = 0.61,
@@ -96,24 +94,12 @@ function Private:Setup_OmniCD(layout, installer)
 						},
 					},
 					['textColors'] = {
-						['classColor'] = true,
-						['inactiveColor'] = {
-							['a'] = 1,
-						},
-						['rechargeColor'] = {
-							['a'] = 1,
-						},
-						['activeColor'] = {
-							['a'] = 1,
-						},
 						['useClassColor'] = {
 							['inactive'] = true,
 							['recharge'] = true,
 							['active'] = true,
 						},
 					},
-					['showInterruptedSpell'] = false,
-					['scale'] = 0.6000000000000001,
 				},
 			},
 			['highlight'] = {
@@ -139,24 +125,17 @@ function Private:Setup_OmniCD(layout, installer)
 		},
 		['arena'] = {
 			['extraBars'] = {
-				['raidBar0'] = {
-					['hideSpark'] = true,
+				['raidBar1'] = {
 					['statusBarWidth'] = 314,
 					['barColors'] = {
-						['classColor'] = false,
-						['inactiveColor'] = {
+						['activeColor'] = {
 							['a'] = 0.90,
-							['b'] = 0.05,
-							['g'] = 0.05,
 							['r'] = 0.05,
+							['g'] = 0.05,
+							['b'] = 0.05,
 						},
 						['rechargeColor'] = {
 							['a'] = 0.90,
-							['r'] = 0.05,
-							['g'] = 0.05,
-							['b'] = 0.05,
-						},
-						['activeColor'] = {
 							['r'] = 0.05,
 							['g'] = 0.05,
 							['b'] = 0.05,
@@ -166,28 +145,33 @@ function Private:Setup_OmniCD(layout, installer)
 							['recharge'] = false,
 							['active'] = false,
 						},
-					},
-					['locked'] = true,
-					['paddingY'] = 1,
-					['manualPos'] = {
-						['raidBar0'] = scaled and {
-							['y'] = 438.0447154680951,
-							['x'] = 213.1553003003137,
-						} or {
-							['y'] = 424.7114153795919,
-							['x'] = 319.8219242320956,
+						['inactiveColor'] = {
+							['a'] = 0.90,
+							['r'] = 0.05,
+							['g'] = 0.05,
+							['b'] = 0.05,
 						},
 					},
-					['columns'] = 10,
+					['locked'] = true,
+					['hideSpark'] = true,
+					['manualPos'] = {
+						['raidBar1'] = scaled and {
+							['y'] = 438.12,
+							['x'] = 213.05,
+						} or {
+							['y'] = 424.79,
+							['x'] = 320.25,
+						},
+					},
 					['bgColors'] = {
-						['classColor'] = true,
-						['rechargeColor'] = {
+						['activeColor'] = {
+							['a'] = 0.90,
 							['r'] = 0.54,
 							['g'] = 0.56,
 							['b'] = 0.61,
 						},
-						['activeColor'] = {
-							['a'] = 1,
+						['rechargeColor'] = {
+							['a'] = 0.90,
 							['r'] = 0.54,
 							['g'] = 0.56,
 							['b'] = 0.61,
@@ -197,24 +181,12 @@ function Private:Setup_OmniCD(layout, installer)
 						},
 					},
 					['textColors'] = {
-						['classColor'] = true,
-						['inactiveColor'] = {
-							['a'] = 1,
-						},
-						['rechargeColor'] = {
-							['a'] = 1,
-						},
-						['activeColor'] = {
-							['a'] = 1,
-						},
 						['useClassColor'] = {
 							['inactive'] = true,
 							['recharge'] = true,
 							['active'] = true,
 						},
 					},
-					['showInterruptedSpell'] = false,
-					['scale'] = 0.6000000000000001,
 				},
 			},
 			['highlight'] = {
@@ -244,26 +216,9 @@ function Private:Setup_OmniCD(layout, installer)
 	OmniCDDB['profiles'][name_healing]['Party'] = {
 		['party'] = {
 			['extraBars'] = {
-				['raidBar0'] = {
-					['columns'] = 10,
-					['growUpward'] = true,
-					['hideSpark'] = true,
-					['locked'] = true,
-					['paddingY'] = 2,
-					['scale'] = 0.6000000000000001,
-					['statusBarWidth'] = 396,
-					['manualPos'] = {
-						['raidBar0'] = scaled and {
-							['y'] = 354.4889191740094,
-							['x'] = 318.5774165683233,
-						} or {
-							['y'] = 343.8223486608986,
-							['x'] = 382.5775590154735,
-						},
-					},
+				['raidBar1'] = {
 					['barColors'] = {
-						['classColor'] = false,
-						['inactiveColor'] = {
+						['activeColor'] = {
 							['a'] = 0.90,
 							['r'] = 0.05,
 							['g'] = 0.05,
@@ -271,46 +226,59 @@ function Private:Setup_OmniCD(layout, installer)
 						},
 						['rechargeColor'] = {
 							['a'] = 0.90,
-							['b'] = 0.05,
-							['g'] = 0.05,
 							['r'] = 0.05,
+							['g'] = 0.05,
+							['b'] = 0.05,
 						},
 						['useClassColor'] = {
 							['inactive'] = false,
 							['recharge'] = false,
 							['active'] = false,
 						},
-						['activeColor'] = {
-							['b'] = 0.05,
-							['g'] = 0.05,
+						['inactiveColor'] = {
+							['a'] = 0.90,
 							['r'] = 0.05,
+							['g'] = 0.05,
+							['b'] = 0.05,
 						},
 					},
+					['growUpward'] = true,
 					['bgColors'] = {
-						['classColor'] = true,
 						['rechargeColor'] = {
-							['b'] = 0.61,
-							['g'] = 0.56,
+							['a'] = 0.89,
 							['r'] = 0.54,
-						},
-						['activeColor'] = {
-							['a'] = 1,
-							['b'] = 0.61,
 							['g'] = 0.56,
-							['r'] = 0.54,
+							['b'] = 0.61,
 						},
 						['useClassColor'] = {
 							['recharge'] = false,
 						},
+						['activeColor'] = {
+							['a'] = 0.89,
+							['r'] = 0.54,
+							['g'] = 0.56,
+							['b'] = 0.61,
+						},
 					},
+					['locked'] = true,
+					['hideSpark'] = true,
 					['textColors'] = {
-						['classColor'] = true,
 						['useClassColor'] = {
 							['inactive'] = true,
 							['recharge'] = true,
 							['active'] = true,
 						},
 					},
+					['manualPos'] = {
+						['raidBar1'] = scaled and {
+							['y'] = 375.73,
+							['x'] = 318.12,
+						} or {
+							['y'] = 351.20,
+							['x'] = 382.66,
+						},
+					},
+					['statusBarWidth'] = 396,
 				},
 			},
 			['highlight'] = {
@@ -318,6 +286,7 @@ function Private:Setup_OmniCD(layout, installer)
 			},
 			['icons'] = {
 				['counterScale'] = 0.8,
+				['scale'] = 0.66,
 				['showTooltip'] = true,
 				['chargeScale'] = 0.8,
 			},
@@ -339,26 +308,9 @@ function Private:Setup_OmniCD(layout, installer)
 		},
 		['arena'] = {
 			['extraBars'] = {
-				['raidBar0'] = {
-					['columns'] = 10,
-					['growUpward'] = true,
-					['hideSpark'] = true,
-					['locked'] = true,
-					['paddingY'] = 2,
-					['scale'] = 0.6000000000000001,
-					['statusBarWidth'] = 396,
-					['manualPos'] = {
-						['raidBar0'] = scaled and {
-							['y'] = 354.4889191740094,
-							['x'] = 318.5774165683233,
-						} or {
-							['y'] = 343.8223486608986,
-							['x'] = 382.5775590154735,
-						},
-					},
+				['raidBar1'] = {
 					['barColors'] = {
-						['classColor'] = false,
-						['inactiveColor'] = {
+						['activeColor'] = {
 							['a'] = 0.90,
 							['r'] = 0.05,
 							['g'] = 0.05,
@@ -366,46 +318,59 @@ function Private:Setup_OmniCD(layout, installer)
 						},
 						['rechargeColor'] = {
 							['a'] = 0.90,
-							['b'] = 0.05,
-							['g'] = 0.05,
 							['r'] = 0.05,
+							['g'] = 0.05,
+							['b'] = 0.05,
 						},
 						['useClassColor'] = {
 							['inactive'] = false,
 							['recharge'] = false,
 							['active'] = false,
 						},
-						['activeColor'] = {
-							['b'] = 0.05,
-							['g'] = 0.05,
+						['inactiveColor'] = {
+							['a'] = 0.90,
 							['r'] = 0.05,
+							['g'] = 0.05,
+							['b'] = 0.05,
 						},
 					},
+					['growUpward'] = true,
 					['bgColors'] = {
-						['classColor'] = true,
 						['rechargeColor'] = {
-							['b'] = 0.61,
-							['g'] = 0.56,
+							['a'] = 0.89,
 							['r'] = 0.54,
-						},
-						['activeColor'] = {
-							['a'] = 1,
-							['b'] = 0.61,
 							['g'] = 0.56,
-							['r'] = 0.54,
+							['b'] = 0.61,
 						},
 						['useClassColor'] = {
 							['recharge'] = false,
 						},
+						['activeColor'] = {
+							['a'] = 0.89,
+							['r'] = 0.54,
+							['g'] = 0.56,
+							['b'] = 0.61,
+						},
 					},
+					['locked'] = true,
+					['hideSpark'] = true,
 					['textColors'] = {
-						['classColor'] = true,
 						['useClassColor'] = {
 							['inactive'] = true,
 							['recharge'] = true,
 							['active'] = true,
 						},
 					},
+					['manualPos'] = {
+						['raidBar1'] = scaled and {
+							['y'] = 375.73,
+							['x'] = 318.12,
+						} or {
+							['y'] = 351.20,
+							['x'] = 382.66,
+						},
+					},
+					['statusBarWidth'] = 396,
 				},
 			},
 			['highlight'] = {
@@ -413,6 +378,7 @@ function Private:Setup_OmniCD(layout, installer)
 			},
 			['icons'] = {
 				['counterScale'] = 0.8,
+				['scale'] = 0.66,
 				['showTooltip'] = true,
 				['chargeScale'] = 0.8,
 			},
@@ -471,6 +437,7 @@ function Private:Setup_OmniCD(layout, installer)
 
 		-- Party db
 		OmniCDDB['profiles'][profile]['Party']['visibility'] = {
+			['arena'] = false,
 			['none'] = true,
 			['scenario'] = true,
 		}
@@ -485,138 +452,94 @@ function Private:Setup_OmniCD(layout, installer)
 
 		-- Spell IDs
 		for _, frame in pairs({ 'party', 'arena' }) do
-			OmniCDDB['profiles'][profile]['Party'][frame]['spells'] = OmniCDDB['profiles'][profile]['Party'][frame]['spells'] or {}
+			OmniCDDB['profiles'][profile]['Party'][frame]['spells'] = {}
 			OmniCDDB['profiles'][profile]['Party'][frame]['spells'] = {
-				["374227"] = false,
+				["186387"] = false,
+				["370965"] = true,
 				["363916"] = false,
 				["216331"] = false,
+				["31661"] = false,
 				["118038"] = false,
-				["321507"] = true,
+				["198589"] = false,
 				["1022"] = false,
-				["116849"] = false,
-				["8143"] = false,
-				["33891"] = false,
-				["197721"] = true,
+				["51490"] = false,
 				["115750"] = false,
 				["22812"] = false,
-				["187827"] = true,
-				["212295"] = false,
-				["212619"] = false,
-				["187650"] = false,
+				["368970"] = false,
+				["368412"] = false,
 				["8122"] = false,
 				["235219"] = false,
-				["205180"] = true,
-				["48020"] = false,
-				["1122"] = true,
+				["104773"] = false,
+				["386071"] = false,
 				["5246"] = false,
-				["215652"] = false,
-				["59752"] = false,
+				["371032"] = false,
+				["157980"] = false,
 				["357170"] = false,
-				["102543"] = true,
 				["115203"] = false,
-				["15286"] = false,
-				["210918"] = false,
-				["345231"] = false,
-				["336135"] = false,
-				["209258"] = false,
-				["121471"] = true,
-				["102560"] = true,
-				["107574"] = true,
-				["108968"] = false,
+				["200733"] = false,
+				["396286"] = false,
+				["207167"] = false,
+				["31224"] = false,
 				["196718"] = false,
-				["1719"] = true,
 				["122783"] = false,
-				["10060"] = true,
-				["132578"] = true,
-				["53480"] = false,
-				["13750"] = true,
-				["47788"] = false,
+				["271466"] = false,
+				["383009"] = true,
 				["231895"] = false,
-				["401150"] = true,
-				["51533"] = true,
-				["210256"] = false,
-				["102558"] = true,
-				["47482"] = false,
+				["386997"] = false,
+				["122278"] = false,
+				["61336"] = false,
 				["265202"] = false,
-				["198111"] = false,
-				["236320"] = false,
 				["45438"] = false,
 				["342246"] = false,
-				["31230"] = false,
-				["194223"] = true,
-				["204336"] = false,
-				["377509"] = false,
+				["378779"] = false,
+				["199448"] = true,
 				["31935"] = false,
-				["228049"] = false,
+				["228049"] = true,
 				["228920"] = true,
-				["403631"] = true,
-				["186265"] = false,
+				["111898"] = false,
 				["48792"] = false,
-				["51052"] = false,
-				["115310"] = false,
-				["205604"] = false,
+				["322118"] = true,
 				["122470"] = false,
-				["408234"] = false,
-				["360952"] = true,
-				["198838"] = false,
-				["215982"] = false,
-				["64044"] = false,
-				["199452"] = false,
-				["108280"] = false,
-				["97462"] = false,
 				["342245"] = false,
-				["197268"] = false,
-				["61336"] = false,
-				["50334"] = true,
-				["853"] = false,
+				["321507"] = true,
+				["378279"] = false,
+				["108968"] = false,
+				["258860"] = false,
+				["262161"] = false,
+				["5484"] = false,
+				["46968"] = false,
+				["31821"] = false,
+				["383121"] = false,
+				["157981"] = false,
+				["97462"] = false,
+				["47585"] = false,
+				["19574"] = true,
+				["374251"] = true,
+				["204021"] = false,
+				["357214"] = false,
 				["108271"] = false,
-				["30884"] = false,
 				["42650"] = true,
 				["102342"] = false,
-				["109304"] = false,
-				["378441"] = false,
+				["325197"] = true,
+				["386394"] = false,
 				["871"] = false,
 				["47536"] = false,
-				["114556"] = false,
-				["19236"] = false,
-				["31224"] = false,
-				["48707"] = false,
-				["98008"] = false,
-				["31821"] = false,
-				["62618"] = false,
-				["2094"] = false,
-				["378464"] = false,
-				["374348"] = false,
-				["152279"] = true,
-				["6789"] = false,
 				["64843"] = false,
-				["7744"] = false,
-				["12472"] = true,
-				["198589"] = false,
-				["375087"] = true,
-				["23920"] = false,
-				["108238"] = false,
-				["372048"] = false,
-				["47585"] = false,
-				["5277"] = false,
-				["1856"] = false,
-				["122278"] = false,
-				["288613"] = true,
-				["123904"] = true,
-				["740"] = false,
 				["86949"] = false,
-				["19574"] = true,
+				["374227"] = false,
+				["51052"] = false,
+				["5277"] = false,
+				["391109"] = false,
+				["15286"] = false,
+				["48707"] = false,
+				["116844"] = false,
 				["196555"] = false,
-				["104773"] = false,
-				["33206"] = false,
+				["167105"] = false,
+				["192249"] = true,
 				["414658"] = false,
 				["191634"] = true,
 				["642"] = false,
-				["404381"] = false,
-				["265187"] = true,
-				["271466"] = false,
-				["336126"] = false,
-				["322118"] = true,
+				["23920"] = false,
 				["184364"] = false,
 			}
 		end
