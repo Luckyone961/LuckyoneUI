@@ -1,3 +1,7 @@
+### Version 3.02 [In Development]
+**Retail:**  
+Updated OmniCD profiles  
+___
 ### Version 3.01 [26-06-2024]
 **All WoW Versions:**  
 Fixed an issue in the BigWigs profile installer step  

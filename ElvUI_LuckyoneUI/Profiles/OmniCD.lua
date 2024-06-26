@@ -120,7 +120,7 @@ function Private:Setup_OmniCD(layout, installer)
 				['paddingY'] = 1,
 			},
 			['general'] = {
-				['showPlayer'] = true,
+				['showPlayer'] = false,
 			},
 		},
 		['arena'] = {
@@ -207,7 +207,7 @@ function Private:Setup_OmniCD(layout, installer)
 				['paddingY'] = 1,
 			},
 			['general'] = {
-				['showPlayer'] = true,
+				['showPlayer'] = false,
 			},
 		},
 	}
@@ -303,7 +303,7 @@ function Private:Setup_OmniCD(layout, installer)
 				['anchorMore'] = 'BOTTOMLEFT',
 			},
 			['general'] = {
-				['showPlayer'] = true,
+				['showPlayer'] = false,
 			},
 		},
 		['arena'] = {
@@ -395,7 +395,7 @@ function Private:Setup_OmniCD(layout, installer)
 				['anchorMore'] = 'BOTTOMLEFT',
 			},
 			['general'] = {
-				['showPlayer'] = true,
+				['showPlayer'] = false,
 			},
 		},
 	}
