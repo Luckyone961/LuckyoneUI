@@ -106,8 +106,12 @@ function Private:Setup_BigWigs(layout, installer)
 
 	-- Plugin: BossBlock
 	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name]['blockTalkingHeads'] = { true, nil, nil, true }
-	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name_healing]['blockTalkingHeads'] = { true, nil, nil, true }
+	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name] = {
+		['blockTalkingHeads'] = { true, nil, nil, true }
+	}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name_healing] = {
+		['blockTalkingHeads'] = { true, nil, nil, true }
+	}
 
 	-- Plugin: Colors
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'] or {}
@@ -143,8 +147,12 @@ function Private:Setup_BigWigs(layout, installer)
 
 	-- Plugin: InfoBox
 	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name]['position'] = scaled and { 'BOTTOM', 'BOTTOM', -360, 1 } or { 'BOTTOM', 'BOTTOM', -507, 1 }
-	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name_healing]['position'] = scaled and { 'BOTTOM', 'BOTTOM', -360, 1 } or { 'BOTTOM', 'BOTTOM', -507, 1 }
+	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name] = {
+		['position'] = scaled and { 'BOTTOM', 'BOTTOM', -360, 1 } or { 'BOTTOM', 'BOTTOM', -507, 1 }
+	}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name_healing] = {
+		['position'] = scaled and { 'BOTTOM', 'BOTTOM', -360, 1 } or { 'BOTTOM', 'BOTTOM', -507, 1 }
+	}
 
 	-- Plugin: Messages
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] or {}
@@ -184,8 +192,12 @@ function Private:Setup_BigWigs(layout, installer)
 
 	-- Plugin: Raid Icons
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name]['disabled'] = true
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name_healing]['disabled'] = true
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name] = {
+		['disabled'] = true
+	}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name_healing] = {
+		['disabled'] = true
+	}
 
 	-- Plugin: Victory
 	BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'] or {}
@@ -207,8 +219,12 @@ function Private:Setup_BigWigs(layout, installer)
 
 		-- AltPower db
 		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'] or {}
-		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name]['disabled'] = true
-		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name_healing]['disabled'] = true
+		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name] = {
+			['disabled'] = true
+		}
+		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name_healing] = {
+			['disabled'] = true
+		}
 	end
 
 	-- Set profile
