@@ -1,3 +1,7 @@
+### Version 3.01 [In Development]
+**All WoW Versions:**  
+Fixed an issue which broke the installer on a fresh WTF folder (Fixes #18)  
+___
 ### Version 3.00 [25-06-2024]
 **Highlights:**  
 All informations will be available in the Discord announcement channel  
