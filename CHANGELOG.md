@@ -1,5 +1,6 @@
-### Version 3.01 [In Development]
+### Version 3.01 [26-06-2024]
 **All WoW Versions:**  
+Fixed an issue in the BigWigs profile installer step  
 Fixed an issue which broke the installer on a fresh WTF folder (Fixes #18)  
 ___
 ### Version 3.00 [25-06-2024]
