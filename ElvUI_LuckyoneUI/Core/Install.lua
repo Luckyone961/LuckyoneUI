@@ -16,12 +16,10 @@ end
 
 -- Create step complete frame
 local function InstallStepComplete()
-	-- 1080p
-	local scaled = E.global.L1UI.scaled
 
 	local Container = CreateFrame('Frame', 'LuckyoneInstallStepComplete', E.UIParent)
 	Container:Size(400, 60)
-	Container:Point('TOP', 0, scaled and -100 or -300)
+	Container:Point('TOP', 0, -200)
 	Container:Hide()
 
 	Container:SetScript('OnShow', function(frame)
