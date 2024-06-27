@@ -1,4 +1,6 @@
 ### Version 3.02 [In Development]
+**All WoW Versions:**  
+ElvUI 13.67+ compatibility  
 **Retail:**  
 Updated OmniCD profiles  
 ___
