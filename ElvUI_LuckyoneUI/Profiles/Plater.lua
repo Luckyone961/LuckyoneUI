@@ -6,7 +6,7 @@ local tinsert = table.insert
 
 -- Plater Profile
 function Private:Setup_Plater(installer)
-	if not E:IsAddOnEnabled('Plater') then return end
+	if not E:IsAddOnEnabled('Plater') then Private:Print('Plater ' .. L["is not installed or enabled."]) return end
 
 	-- 1080p
 	local scaled = E.global.L1UI.scaled

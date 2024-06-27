@@ -148,10 +148,10 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_BigWigs('main') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_BigWigs('main', true) end)
 			PluginInstallFrame.Option1:SetText('BigWigs')
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_BigWigs('healing') end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_BigWigs('healing', true) end)
 			PluginInstallFrame.Option2:SetText(L["BigWigs Healing"])
 		end,
 		[E.Retail and 10 or 9] = function()
