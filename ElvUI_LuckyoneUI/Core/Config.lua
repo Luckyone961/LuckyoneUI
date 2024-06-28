@@ -251,12 +251,12 @@ function L1UI:Config()
 	L1UI.Options.args.profiles.args.addonsMain = ACH:Group(L["Addon Profiles"], nil, 7)
 	L1UI.Options.args.profiles.args.addonsMain.inline = true
 	L1UI.Options.args.profiles.args.addonsMain.args.omnicd = ACH:Execute(L["OmniCD Main"], L["Reset to LuckyoneUI defaults."], 1, function() Private:Setup_OmniCD('main') E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.profiles.args.addonsMain.args.bigwigs = ACH:Execute(L["BigWigs Main"], L["Reset to LuckyoneUI defaults."], 2, function() Private:Setup_BigWigs('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.addonsMain.args.bigwigs = ACH:Execute(L["BigWigs Main"], L["Reset to LuckyoneUI defaults."], 2, function() Private:Setup_BigWigs('main') end, nil, true)
 	L1UI.Options.args.profiles.args.header3 = ACH:Header(L["Profiles for Healing"], 8)
 	L1UI.Options.args.profiles.args.addonsHealing = ACH:Group(L["Addon Profiles"], nil, 9)
 	L1UI.Options.args.profiles.args.addonsHealing.inline = true
 	L1UI.Options.args.profiles.args.addonsHealing.args.omnicd = ACH:Execute(L["OmniCD Healing"], L["Reset to LuckyoneUI defaults."], 1, function() Private:Setup_OmniCD('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.profiles.args.addonsHealing.args.bigwigs = ACH:Execute(L["BigWigs Healing"], L["Reset to LuckyoneUI defaults."], 2, function() Private:Setup_BigWigs('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.addonsHealing.args.bigwigs = ACH:Execute(L["BigWigs Healing"], L["Reset to LuckyoneUI defaults."], 2, function() Private:Setup_BigWigs('healing') end, nil, true)
 
 	-- Skins
 	L1UI.Options.args.skins = ACH:Group('Skins', nil, 11)

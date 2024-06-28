@@ -1,6 +1,7 @@
 ### Version 3.02 [In Development]
 **All WoW Versions:**  
 ElvUI 13.67+ compatibility  
+Updated BigWigs import method to use their new API  
 **Retail:**  
 Updated OmniCD profiles  
 ___
