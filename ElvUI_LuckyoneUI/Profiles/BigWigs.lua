@@ -4,7 +4,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 
 -- BigWigs profiles
-function Private:Setup_BigWigs(layout, installer)
+function Private:Setup_BigWigs(layout)
 	if not E:IsAddOnEnabled('BigWigs') then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
 
 	-- Profile name
@@ -19,10 +19,6 @@ function Private:Setup_BigWigs(layout, installer)
 	-- Arg 1: AddOn name, Arg 2: Profile string, Arg 3: Profile name
 	BigWigsAPI:ImportProfileString(Private.Name, (layout == 'main' and profileStringMain) or profileStringHealing, (layout == 'main' and name) or name_healing)
 
-	if installer then
-		_G.LuckyoneInstallStepComplete.message = L["BigWigs profile has been set."]
-		_G.LuckyoneInstallStepComplete:Show()
-	end
-
-	Private:Print(L["BigWigs profile has been set."])
+	-- No chat print here
+	-- BigWigs will print a message with all important information after the import
 end
