@@ -1,238 +1,28 @@
 local Name, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
-local pairs = pairs
-
 local _G = _G
-local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
-local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
 
 -- BigWigs profiles
 function Private:Setup_BigWigs(layout, installer)
 	if not E:IsAddOnEnabled('BigWigs') then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
 
-	-- 1080p
-	local scaled = E.global.L1UI.scaled
+	-- Profile name
+	local name = 'Luckyone Main'
+	local name_healing ='Luckyone Healing'
 
-	-- Profile names
-	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
-	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version
+	-- Profile string
+	local profileStringMain = 'BW1:DnvSUTnsq0JhTrkoKCsYWkxroGKIlaPXWM5StI6ogihBbjlbA6ya3eTKCm5IBj3f7UuYkLQk16tWf5dqFc6lyH(eYNGqktr2LuKg3XIbCMLZBEV3o06RSgPGqGIHrubwIPzIxUcszjvP9C8hoszB9S)8BzuEkIuFqW77EHFxp1Uw)4xwVfK3tjuUysalNZiqNr2hEWBSkIUbK8YcoMWFB7fZbiRSIDr0nCgQQGDWmGqOt7yxC2rbuoklg6uKDCrjhoevMxGOZMTC4sqkXzXIV0GtZLeCgWhELF)ZVO78BPzYlXFgEXAJeVIXaEisaJNFlkcK4uyK9rh48nZHdOz0Weonfsk8Jt1TEbkfUV7DmUEqtrZkGZut12nmbjtwgHfmcAMbPDxA6AyjbunwgZPtVInfXJejZZfaouB1JVpKGeIqJRnUEmgg(kpebhNP29(0hiYIaeV0H)4A9RUOW)vdBEwuVr7C4bhE8)jQTK3z(kF4o5LjOi60Ewww28TL6zRFMxbybaofT(6xBIN8wBtZD1ucj08jQNTP5jaxOV7DCV(iwRq9OLACZQxDApNvTDOSnln)Xsni1xipt97QglGkmhVzcwGdiGlI3hNILpErHO912NN35F4m)fWDSZaCCI8VwzmSQb52V7P(BQb6dAVnNL4A89XZ19CnosM89NWAu)jEGqI4YexdmJ5sTdKZH7hGZW6DASqASIlLZiGxxYKRoNlyOqnPF0QYT(TSyzz2w8dIRgSgUXQNQAVva6uLJ7TycjzDnfmYQjBV)NMno8VPEEIQ5(RQwpn1EkBV6ohKtKygbdC7hGBaDcKSP(oOCVO9cdgfVFslUDRyRwbwR0s7H)UxQ9NQSBcCh67pCGQ)(KFDLr4N(Pr6fyGR25gvFD5(wQbSM1tP6Q8wZnPQjSU(eJ6k0H2f8MqXHWQUzXANnPZZ)N0z)8p'
+	local profileStringHealing = 'BW1:DnvVUTnsqyWWyKIdjwsg2U5k8vKding20NDY5Uqd6FeKSeKPJbCt0sQXKlULCxS7sjRGuPQRw1PYiipa6rq1PyHEe8JGqEaYUKI0iHfd4mlNV577BhA9nwTeqiqrqxQalX0uXFphsyXLPnD870vzB99gpMs5jis1bbN4DPVxp1AwFD9fRa5ekHYfddyzCgboUR9E7(wR8OBajROGJj8p29I4aKwuXop6gogvwWoymqi0rhBNF2(buokncoop7W8soCyqrEoIolxXHRaPeNgj()ACAMKGtbENR9BDXLEtUJMkVc)j4VwyK41mgWdrcO)K7qdajob6AV)UopAoSnnLggZPjqCUFCQU1lrjWdE3Z46bncnohotn1wUHXiz8SbybJGgBqATzMU6uqavTzrC6ORzJq8bI4jzcahQT6(pesqcrOX16xngddFtpebhLQw7HKNiY0aeVWH)Wc9RUOW)tdBw6GMDF(E7U3H)suBj)R5R8H7LxfJgqh10YYYMVQutB9ZKsaZbWjV1doWep6D2MM90ucj08zqtBtZdbUqF374EZ(SgH6rl14MwT6S1ew52HY2S0S9mnivxi)PADvTPqjM9xoelWbeWfXBHtWYxonx0(A7RxVlo7C)PW9SZbCuS81Zngw5GCB5DQ)YkGot7TzSyxJV3FIUNBWdKX)4vSAvFspqirCzSRbM(CP2bY4WdTXPy9onwinwXvYXeONhz41xWfmuOM0VyEXw)kwmRiBf(brLdwdxF12QTwjaDQYX9omHeVOIcgzvNTXVPzJd)hQDIv13CE56PP22SnQ6SDgrIzemWTFcU20Hq8YQ7GI9ITMAWi)9JAWTBez1iWAUwAp939mT)uMDBGBhF)oTvT28l2Znc)0p2vVadC1ZVv1sx(Zpt1MvVAkLxL3zUjv1HfvNyuxUo0UqVHuCim3lns7SXhVZ7tg)Z)'
 
-	-- Required to add profiles to BigWigs3DB
-	if not IsAddOnLoaded('BigWigs_Core') then LoadAddOn('BigWigs_Core') end
-
-	-- Required to add profiles to Plugins DB
-	if not IsAddOnLoaded('BigWigs_Plugins') then LoadAddOn('BigWigs_Plugins') end
-
-	-- Profile creation
-	BigWigs3DB['profiles'] = BigWigs3DB['profiles'] or {}
-	BigWigs3DB['namespaces'] = BigWigs3DB['namespaces'] or {}
-
-	for _, profile in pairs({ name, name_healing }) do
-		BigWigs3DB['profiles'][profile] = {}
-		BigWigs3DB['profiles'][profile]['showZoneMessages'] = false
-		BigWigs3DB['profiles'][profile]['fakeDBMVersion'] = true
-		BigWigs3DB['profiles'][profile]['flash'] = false
-	end
-
-	-- Disable minimap icon
-	BigWigsIconDB['hide'] = true
-
-	-- Plugin: AutoReply
-	BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'][name] = {
-		['disabled'] = false,
-		['exitCombatOther'] = 3,
-		['modeOther'] = 2,
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_AutoReply']['profiles'][name_healing] = {
-		['disabled'] = false,
-		['exitCombatOther'] = 3,
-		['modeOther'] = 2,
-	}
-
-	-- Plugin: Bars
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name] = {
-		['barStyle'] = 'ElvUI',
-		['emphasizeMove'] = false,
-		['emphasizeMultiplier'] = 1,
-		['emphasizeRestart'] = false,
-		['emphasizeTime'] = 8,
-		['expHeight'] = 18,
-		['expPosition'] = { 'BOTTOM', 'BOTTOM', 10, -38, 'ElvUF_Player' },
-		['expWidth'] = 239,
-		['fontName'] = 'Expressway',
-		['fontSizeEmph'] = 11,
-		['fontSizeNameplate'] = 10,
-		['interceptKey'] = 'SHIFT',
-		['nameplateAlpha'] = 1,
-		['nameplateHeight'] = 14,
-		['nameplateOffsetY'] = 0,
-		['normalHeight'] = 18,
-		['normalPosition'] = { 'BOTTOM', 'BOTTOM', 10, -20, 'ElvUF_Player' },
-		['normalWidth'] = 239,
-		['outline'] = 'OUTLINE',
-		['spacing'] = 3,
-		['texture'] = 'Minimalist',
-		['visibleBarLimit'] = 6,
-		['visibleBarLimitEmph'] = 5,
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Bars']['profiles'][name_healing] = {
-		['barStyle'] = 'ElvUI',
-		['emphasizeMove'] = false,
-		['emphasizeMultiplier'] = 1,
-		['emphasizeRestart'] = false,
-		['emphasizeTime'] = 8,
-		['expHeight'] = 18,
-		['expPosition'] = { 'BOTTOM', 'BOTTOM', 10, -57, 'ElvUF_Player' },
-		['expWidth'] = 239,
-		['fontName'] = 'Expressway',
-		['fontSizeEmph'] = 11,
-		['fontSizeNameplate'] = 10,
-		['interceptKey'] = 'SHIFT',
-		['nameplateAlpha'] = 1,
-		['nameplateHeight'] = 14,
-		['nameplateOffsetY'] = 0,
-		['normalHeight'] = 18,
-		['normalPosition'] = { 'BOTTOM', 'BOTTOM', 10, -39, 'ElvUF_Player' },
-		['normalWidth'] = 239,
-		['outline'] = 'OUTLINE',
-		['spacing'] = 3,
-		['texture'] = 'Minimalist',
-		['visibleBarLimit'] = 6,
-		['visibleBarLimitEmph'] = 5,
-	}
-
-	-- Plugin: BossBlock
-	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name] = {
-		['blockTalkingHeads'] = { true, nil, nil, true }
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_BossBlock']['profiles'][name_healing] = {
-		['blockTalkingHeads'] = { true, nil, nil, true }
-	}
-
-	-- Plugin: Colors
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'][name] = {
-		['barBackground'] = {
-			['BigWigs_Plugins_Colors'] = {
-				['default'] = { 0.05, 0.05, 0.05, 0.90 },
-			},
-		},
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Colors']['profiles'][name_healing] = {
-		['barBackground'] = {
-			['BigWigs_Plugins_Colors'] = {
-				['default'] = { 0.05, 0.05, 0.05, 0.90 },
-			},
-		},
-	}
-
-	-- Plugin: Countdown
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'][name] = {
-		['fontName'] = 'Expressway',
-		['fontSize'] = 50,
-		['outline'] = 'OUTLINE',
-		['position'] = { nil, nil, nil, -385 },
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Countdown']['profiles'][name_healing] = {
-		['fontName'] = 'Expressway',
-		['fontSize'] = 50,
-		['outline'] = 'OUTLINE',
-		['position'] = { nil, nil, nil, -380 },
-	}
-
-	-- Plugin: InfoBox
-	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name] = {
-		['position'] = scaled and { 'BOTTOM', 'BOTTOM', -360, 1 } or { 'BOTTOM', 'BOTTOM', -507, 1 }
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_InfoBox']['profiles'][name_healing] = {
-		['position'] = scaled and { 'BOTTOM', 'BOTTOM', -360, 1 } or { 'BOTTOM', 'BOTTOM', -507, 1 }
-	}
-
-	-- Plugin: Messages
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'][name] = {
-		['emphFontName'] = 'Expressway',
-		['emphFontSize'] = 20,
-		['emphOutline'] = 'OUTLINE',
-		['emphPosition'] = { 'TOP', 'TOP', nil, -465 },
-		['fontName'] = 'Expressway',
-		['fontSize'] = 16,
-		['growUpwards'] = false,
-		['normalPosition'] = { 'CENTER', 'CENTER', nil, -15 },
-		['outline'] = 'OUTLINE',
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Messages']['profiles'][name_healing] = {
-		['emphFontName'] = 'Expressway',
-		['emphFontSize'] = 20,
-		['emphOutline'] = 'OUTLINE',
-		['emphPosition'] = { 'TOP', 'TOP', nil, -300 },
-		['fontName'] = 'Expressway',
-		['fontSize'] = 16,
-		['growUpwards'] = false,
-		['normalPosition'] = { 'CENTER', 'CENTER', nil, 250 },
-		['outline'] = 'OUTLINE',
-	}
-
-	-- Plugin: Pull
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'][name] = {
-		['voice'] = 'enUS: Default (Female)',
-		['endPullSound'] = 'None',
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Pull']['profiles'][name_healing] = {
-		['voice'] = 'enUS: Default (Female)',
-		['endPullSound'] = 'None',
-	}
-
-	-- Plugin: Raid Icons
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name] = {
-		['disabled'] = true
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Raid Icons']['profiles'][name_healing] = {
-		['disabled'] = true
-	}
-
-	-- Plugin: Victory
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'] or {}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'][name] = {
-		['bigwigsMsg'] = true,
-		['blizzMsg'] = false,
-	}
-	BigWigs3DB['namespaces']['BigWigs_Plugins_Victory']['profiles'][name_healing] = {
-		['bigwigsMsg'] = true,
-		['blizzMsg'] = false,
-	}
-
-	if E.Retail then
-		-- Disable LibDualSpec to set the profile
-		BigWigs3DB['namespaces']['LibDualSpec-1.0'] = {}
-		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'] = {}
-		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = {}
-		BigWigs3DB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
-
-		-- AltPower db
-		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'] or {}
-		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name] = {
-			['disabled'] = true
-		}
-		BigWigs3DB['namespaces']['BigWigs_Plugins_AltPower']['profiles'][name_healing] = {
-			['disabled'] = true
-		}
-	end
+	-- Don't use LoadAddOn to force load core and options
+	BigWigsAPI:ImportProfileString(Private.Name, (layout == 'main' and profileStringMain) or profileStringHealing)
 
 	-- Set profile
-	if layout == 'main' then
-		BigWigs.db:SetProfile(name)
-	elseif layout == 'healing' then
-		BigWigs.db:SetProfile(name_healing)
-	end
+	BigWigs.db:SetProfile((layout == 'main' and name) or name_healing)
+
+	-- This is the actual profile import
+	BigWigsAPI:ImportProfileString(Private.Name, (layout == 'main' and profileStringMain) or profileStringHealing)
 
 	if installer then
 		_G.LuckyoneInstallStepComplete.message = L["BigWigs profile has been set."]
