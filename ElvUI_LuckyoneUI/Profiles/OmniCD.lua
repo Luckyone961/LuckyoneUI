@@ -13,7 +13,7 @@ function Private:Setup_OmniCD(layout, installer)
 	local scaled = E.global.L1UI.scaled
 
 	-- Profile names
-	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
+	local name_main = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
 	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version
 
 	-- Disable LibDualSpec to set the profile
@@ -28,14 +28,14 @@ function Private:Setup_OmniCD(layout, installer)
 	OmniCDDB['version'] = 4
 
 	-- Profile creation
-	for _, profile in pairs({ name, name_healing }) do
+	for _, profile in pairs({ name_main, name_healing }) do
 		OmniCDDB['profiles'][profile] = {}
 		OmniCDDB['profiles'][profile]['General'] = {}
 		OmniCDDB['profiles'][profile]['Party'] = {}
 	end
 
 	-- Main profile
-	OmniCDDB['profiles'][name]['Party'] = {
+	OmniCDDB['profiles'][name_main]['Party'] = {
 		['party'] = {
 			['extraBars'] = {
 				['raidBar1'] = {
@@ -401,7 +401,7 @@ function Private:Setup_OmniCD(layout, installer)
 	}
 
 	-- Additional data
-	for _, profile in pairs({ name, name_healing }) do
+	for _, profile in pairs({ name_main, name_healing }) do
 		-- General db
 		OmniCDDB['profiles'][profile]['General']['fonts'] = {
 			['statusBar'] = {
@@ -547,7 +547,7 @@ function Private:Setup_OmniCD(layout, installer)
 
 	-- Set profile
 	if layout == 'main' then
-		OmniCDDB['profileKeys'][E.mynameRealm] = name
+		OmniCDDB['profileKeys'][E.mynameRealm] = name_main
 	elseif layout == 'healing' then
 		OmniCDDB['profileKeys'][E.mynameRealm] = name_healing
 	end

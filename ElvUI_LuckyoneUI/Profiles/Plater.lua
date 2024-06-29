@@ -1,10 +1,11 @@
 local _, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
-local _G = _G
 local tinsert = table.insert
 
--- Plater Profile
+local _G = _G
+
+-- Plater profile
 function Private:Setup_Plater(installer)
 	if not E:IsAddOnEnabled('Plater') then Private:Print('Plater ' .. L["is not installed or enabled."]) return end
 
@@ -20,6 +21,7 @@ function Private:Setup_Plater(installer)
 
 	local data = _G.Plater.DecompressData((scaled and profileStringScaled) or profileStringNative, 'print')
 
+	-- Profile import
 	if _G.PlaterDB.profiles[name] then
 		tinsert(_G.PlaterDB.profileKeys, E.mynameRealm)
 		_G.PlaterDB.profileKeys[E.mynameRealm] = name

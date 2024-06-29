@@ -3,7 +3,7 @@ local E, L, V, P, G = unpack(ElvUI)
 
 local unpack = unpack
 
--- AddOnSkins Profile
+-- AddOnSkins profile
 function Private:Setup_AddOnSkins()
 	if not E:IsAddOnEnabled('AddOnSkins') then Private:Print('AddOnSkins ' .. L["is not installed or enabled."]) return end
 
