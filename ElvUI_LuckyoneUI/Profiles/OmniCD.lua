@@ -66,6 +66,7 @@ function Private:Setup_OmniCD(layout, installer)
 						},
 					},
 					['locked'] = true,
+					["paddingY"] = 1,
 					['hideSpark'] = true,
 					['manualPos'] = {
 						['raidBar1'] = scaled and {
@@ -153,6 +154,7 @@ function Private:Setup_OmniCD(layout, installer)
 						},
 					},
 					['locked'] = true,
+					["paddingY"] = 1,
 					['hideSpark'] = true,
 					['manualPos'] = {
 						['raidBar1'] = scaled and {
@@ -261,6 +263,7 @@ function Private:Setup_OmniCD(layout, installer)
 						},
 					},
 					['locked'] = true,
+					["paddingY"] = 1,
 					['hideSpark'] = true,
 					['textColors'] = {
 						['useClassColor'] = {
@@ -353,6 +356,7 @@ function Private:Setup_OmniCD(layout, installer)
 						},
 					},
 					['locked'] = true,
+					["paddingY"] = 1,
 					['hideSpark'] = true,
 					['textColors'] = {
 						['useClassColor'] = {
