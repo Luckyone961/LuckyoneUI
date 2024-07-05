@@ -5,12 +5,15 @@ local _G = _G
 
 -- ProjectAzilroka profile
 function Private:Setup_ProjectAzilroka()
-	if not E:IsAddOnEnabled('ProjectAzilroka') then Private:Print('ProjectAzilroka ' .. L["is not installed or enabled."]) return end
+	if not E:IsAddOnEnabled('ProjectAzilroka') then Private:Print('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r ' .. L["is not installed or enabled."]) return end
 
 	local PA = _G.ProjectAzilroka
 
+	-- Profile name
+	local name = (E.global.L1UI.dev and 'Luckyone') or 'Luckyone ' .. Private.Version
+
 	-- Profile creation
-	PA.data:SetProfile((E.global.L1UI.dev and 'Luckyone') or 'Luckyone ' .. Private.Version)
+	PA.data:SetProfile(name)
 
 	-- General modules
 	PA.db.AuraReminder.Enable = false

@@ -6,7 +6,7 @@ local GetAddOnMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMet
 
 -- Shadow & Light profile
 function Private:Setup_ShadowAndLight(installer)
-	if not E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then Private:Print('Shadow&Light ' .. L["is not installed or enabled."]) return end
+	if not E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then Private:Print('|cff9482c9Shadow & Light|r ' .. L["is not installed or enabled."]) return end
 
 	-- Get version
 	local version = GetAddOnMetadata('ElvUI_SLE', 'Version')

@@ -24,7 +24,7 @@ local function InstallStepComplete()
 
 	Container:SetScript('OnShow', function(frame)
 		if frame.message then
-			PlaySound(888)
+			PlaySound(888) -- 'Level Up'-Sound
 			frame.text:SetText(format('%s: %s', Private.Name, frame.message))
 			E:Delay(3, frame.Hide, frame)
 			frame.message = nil
