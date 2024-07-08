@@ -3,7 +3,10 @@ local E, L, V, P, G = unpack(ElvUI)
 local PI = E:GetModule('PluginInstaller')
 
 local format, print = format, print
-local next, pairs, strlower, wipe = next, pairs, strlower, wipe
+local ipairs, pairs = ipairs, pairs
+local next, wipe = next, wipe
+local strfind, strlower, strmatch = strfind, strlower, strmatch
+local tonumber = tonumber
 
 local _G = _G
 local C_UI_Reload = C_UI.Reload
@@ -25,6 +28,46 @@ local AddOns = {
 -- Chat print
 function Private:Print(msg)
 	print(Private.Name .. ': ' .. msg)
+end
+
+-- Gets the number from the profile string
+-- If it matches the specified profile type (Main/Healing/Support) or if no profile type is specified
+local function GetNumber(str, profileType)
+	if not profileType or strfind(str, profileType) then
+		local number = strmatch(str, '%d+%.?%d*')
+		return tonumber(number)
+	end
+	return nil
+end
+
+-- Find the profile with the highest number
+-- Optionally filtering by the specified profile type
+function Private:MostRecentProfile(profileType)
+	local profiles, count = E.data:GetProfiles()
+	local mostRecentNumber = nil
+	local mostRecentProfile = nil
+	local isDev = false
+
+	for _, profile in ipairs(profiles) do
+		local number = GetNumber(profile, profileType)
+
+		if number and (mostRecentNumber == nil or number > mostRecentNumber) then
+			mostRecentNumber = number
+			mostRecentProfile = profile
+		end
+
+		-- Check if the profile is exactly 'Luckyone' without a number
+		-- Useful for dev profiles or modified profile names
+		if profile == 'Luckyone' then
+			isDev = true
+		end
+	end
+
+	if not mostRecentProfile and isDev then
+		return 'Luckyone'
+	else
+		return mostRecentProfile
+	end
 end
 
 -- Reload popup
