@@ -33,12 +33,19 @@ end
 -- Gets the number from the profile string
 -- If it matches the specified profile type (Main/Healing/Support) or if no profile type is specified
 local function GetNumber(str, profileType)
-	if not profileType or strfind(str, profileType) then
-		local number = strmatch(str, '%d+%.?%d*')
-		return tonumber(number)
+	if profileType and not strfind(str, profileType) then
+		return nil
 	end
-	return nil
+
+	local number = strmatch(str, '%d+%.?%d*')
+
+	if number then
+		return tonumber(number)
+	else
+		return nil
+	end
 end
+
 
 -- Find the profile with the highest number
 -- Optionally filtering by the specified profile type
@@ -46,7 +53,9 @@ function Private:MostRecentProfile(profileType)
 	local profiles, count = E.data:GetProfiles()
 	local mostRecentNumber = nil
 	local mostRecentProfile = nil
-	local isDev = false
+	local mainDev = false
+	local healingDev = false
+	local supportDev = false
 
 	for _, profile in ipairs(profiles) do
 		local number = GetNumber(profile, profileType)
@@ -56,15 +65,26 @@ function Private:MostRecentProfile(profileType)
 			mostRecentProfile = profile
 		end
 
-		-- Check if the profile is exactly 'Luckyone' without a number
-		-- Useful for dev profiles or modified profile names
-		if profile == 'Luckyone' then
-			isDev = true
+		-- Check for dev profiles without a number
+		if profile == 'Luckyone Main' then
+			mainDev = true
+		elseif profile == 'Luckyone Healing' then
+			healingDev = true
+		elseif profile == 'Luckyone Support' then
+			supportDev = true
 		end
 	end
 
-	if not mostRecentProfile and isDev then
-		return 'Luckyone'
+	if not mostRecentProfile then
+		if profileType == 'Main' then
+			return mainDev and 'Luckyone Main' or nil
+		elseif profileType == 'Healing' then
+			return healingDev and 'Luckyone Healing' or nil
+		elseif profileType == 'Support' then
+			return supportDev and 'Luckyone Support' or nil
+		else
+			return nil
+		end
 	else
 		return mostRecentProfile
 	end
