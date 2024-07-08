@@ -92,14 +92,14 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.armory.inspect.ilvl.font = Private.Font
 	E.db.sle.armory.inspect.ilvl.fontSize = 11
 	E.db.sle.armory.stats.itemLevel.font = Private.Font
-	E.db.sle.armory.stats.itemLevel.fontOutline = 'OUTLINE'
+	E.db.sle.armory.stats.itemLevel.fontOutline = Private.Outline
 	E.db.sle.armory.stats.itemLevel.fontSize = 15
 	E.db.sle.armory.stats.List.ATTACK_DAMAGE = false
 	E.db.sle.armory.stats.List.SPELLPOWER = false
 	E.db.sle.armory.stats.statHeaders.font = Private.Font
-	E.db.sle.armory.stats.statHeaders.fontOutline = 'OUTLINE'
+	E.db.sle.armory.stats.statHeaders.fontOutline = Private.Outline
 	E.db.sle.armory.stats.statLabels.font = Private.Font
-	E.db.sle.armory.stats.statLabels.fontOutline = 'OUTLINE'
+	E.db.sle.armory.stats.statLabels.fontOutline = Private.Outline
 	E.db.sle.armory.stats.statLabels.fontSize = 11
 
 	E.db.sle.raidmarkers.enable = false

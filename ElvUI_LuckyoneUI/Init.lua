@@ -10,12 +10,15 @@ local GetAddOnMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMet
 
 L1UI = E:NewModule(Name, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
 
-Private.Config = {}
-Private.Credits = {}
-Private.Font = 'Expressway'
 Private.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 Private.Name = '|cff4beb2cLuckyoneUI|r'
+
+Private.Font = 'Expressway'
+Private.Outline = 'OUTLINE'
 Private.Texture = 'Minimalist'
+
+Private.Config = {}
+Private.Credits = {}
 
 Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
 Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))

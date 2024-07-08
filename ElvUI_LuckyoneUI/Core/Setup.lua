@@ -83,27 +83,27 @@ function Private:Setup_PrivateDB()
 	local scaled = E.global.L1UI.scaled
 
 	E.db.general.font = Private.Font
-	E.db.general.fonts.cooldown.outline = 'OUTLINE'
-	E.db.general.fonts.errortext.outline = 'OUTLINE'
+	E.db.general.fonts.cooldown.outline = Private.Outline
+	E.db.general.fonts.errortext.outline = Private.Outline
 	E.db.general.fonts.errortext.size = 16
-	E.db.general.fonts.mailbody.outline = 'OUTLINE'
-	E.db.general.fonts.objective.outline = 'OUTLINE'
+	E.db.general.fonts.mailbody.outline = Private.Outline
+	E.db.general.fonts.objective.outline = Private.Outline
 	E.db.general.fonts.questsmall.enable = true
-	E.db.general.fonts.questsmall.outline = 'OUTLINE'
+	E.db.general.fonts.questsmall.outline = Private.Outline
 	E.db.general.fonts.questsmall.size = 12
 	E.db.general.fonts.questtext.enable = true
-	E.db.general.fonts.questtext.outline = 'OUTLINE'
+	E.db.general.fonts.questtext.outline = Private.Outline
 	E.db.general.fonts.questtext.size = 12
 	E.db.general.fonts.questtitle.enable = true
-	E.db.general.fonts.questtitle.outline = 'OUTLINE'
+	E.db.general.fonts.questtitle.outline = Private.Outline
 	E.db.general.fonts.questtitle.size = 14
-	E.db.general.fonts.talkingtext.outline = 'OUTLINE'
-	E.db.general.fonts.talkingtitle.outline = 'OUTLINE'
+	E.db.general.fonts.talkingtext.outline = Private.Outline
+	E.db.general.fonts.talkingtitle.outline = Private.Outline
 	E.db.general.fontSize = 11
 
 	E.private.bags.bagBar = false
 	E.private.general.chatBubbleFont = Private.Font
-	E.private.general.chatBubbleFontOutline = 'OUTLINE'
+	E.private.general.chatBubbleFontOutline = Private.Outline
 	E.private.general.glossTex = Private.Texture
 	E.private.general.minimap.hideTracking = not E.Classic
 	E.private.general.nameplateFont = Private.Font

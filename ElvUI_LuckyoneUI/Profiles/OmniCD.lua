@@ -409,27 +409,27 @@ function Private:Setup_OmniCD(layout, installer)
 		-- General db
 		OmniCDDB['profiles'][profile]['General']['fonts'] = {
 			['statusBar'] = {
-				['font'] = 'Expressway',
+				['font'] = Private.Font,
 				['ofsX'] = 0,
-				['flag'] = 'OUTLINE',
+				['flag'] = Private.Outline,
 				['size'] = 18,
 			},
 			['optionSmall'] = {
-				['flag'] = 'OUTLINE',
-				['font'] = 'Expressway',
+				['flag'] = Private.Outline,
+				['font'] = Private.Font,
 			},
 			['anchor'] = {
-				['font'] = 'Expressway',
+				['font'] = Private.Font,
 				['ofsX'] = 0,
-				['flag'] = 'OUTLINE',
+				['flag'] = Private.Outline,
 			},
 			['icon'] = {
-				['font'] = 'Expressway',
+				['font'] = Private.Font,
 				['size'] = 12,
 			},
 			['option'] = {
-				['flag'] = 'OUTLINE',
-				['font'] = 'Expressway',
+				['flag'] = Private.Outline,
+				['font'] = Private.Font,
 			},
 		}
 		OmniCDDB['profiles'][profile]['General']['textures'] = {
