@@ -4,7 +4,9 @@ local E, L, V, P, G = unpack(ElvUI)
 local floor = floor
 local format = format
 local pairs = pairs
-local strfind, strmatch = strfind, strmatch
+local strfind = strfind
+local strmatch = strmatch
+local type = type
 
 local _G = _G
 
@@ -33,11 +35,33 @@ local UnitReaction = UnitReaction
 
 local UNKNOWN = _G.UNKNOWN
 
+local classificationText = {
+	rare = 'Rare',
+	rareelite = 'Rare Elite',
+	elite = 'Elite',
+	worldboss = 'Boss'
+}
+
+-- oUF\Elements\tags.lua
+local function Hex(r, g, b)
+	if(type(r) == 'table') then
+		if(r.r) then
+			r, g, b = r.r, r.g, r.b
+		else
+			r, g, b = unpack(r)
+		end
+	end
+
+	if not r or type(r) == 'string' then
+		return '|cffFFFFFF'
+	end
+
+	return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
+end
+
 -- Display unit classification without 'affix' on minor enemies
 E:AddTag('luckyone:classification', 'UNIT_CLASSIFICATION_CHANGED', function(unit)
-	local class = UnitClassification(unit)
-
-	return class == 'rare' and 'Rare' or class == 'rareelite' and 'Rare Elite' or class == 'elite' and 'Elite' or class == 'worldboss' and 'Boss' or nil
+	return classificationText[UnitClassification(unit)] or nil
 end)
 E:AddTagInfo('luckyone:classification', Private.Name, L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"])
 
@@ -184,18 +208,11 @@ E:AddTag('luckyone:name:last-nocolor', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGA
 end)
 E:AddTagInfo('luckyone:name:last-nocolor', Private.Name, L["Displays the last part of the unit's name with no color"])
 
-for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long = 20 }) do
-	-- Displays the unit's name with classcolor and a maximum length of 5, 10, 15 and 20 characters
-	E:AddTag(format('luckyone:name:%s-classcolor', textFormat), 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
-		local name = UnitName(unit)
+local function getFormattedName(unit, length, color)
+	local name = UnitName(unit) or UNKNOWN
+	name = E:ShortenString(name, length)
+	if color then
 		local colorHex = '|cFFcccccc' -- Default color
-
-		if name then
-			name = E:ShortenString(name, length)
-		else
-			name = UNKNOWN
-		end
-
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			local cs = ElvUF.colors.class[unitClass]
@@ -208,16 +225,20 @@ for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long =
 				colorHex = Hex(cr.r, cr.g, cr.b)
 			end
 		end
-
 		return format('%s%s', colorHex, name)
+	else
+		return name
+	end
+end
+
+for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long = 20 }) do
+	-- Displays the unit's name with classcolor and a maximum length of 5, 10, 15 and 20 characters
+	E:AddTag(format('luckyone:name:%s-classcolor', textFormat), 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+		return getFormattedName(unit, length, true)
 	end)
 	-- Displays the unit's name with no color and a maximum length of 5, 10, 15 and 20 characters
 	E:AddTag(format('luckyone:name:%s-nocolor', textFormat), 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
-		local name = UnitName(unit)
-		if name then
-			name = E:ShortenString(name, length)
-		end
-		return name
+		return getFormattedName(unit, length, false)
 	end)
 
 	E:AddTagInfo(format('luckyone:name:%s-classcolor', textFormat), Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters"], length))
