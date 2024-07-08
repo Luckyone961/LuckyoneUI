@@ -3,6 +3,7 @@
 ElvUI 13.67+ compatibility  
 Fixed power text being hidden behind castbars on some frames  
 Updated BigWigs import method to use their new API  
+Updated Themes code to respect healermana tags in party frames  
 **Retail:**  
 Updated OmniCD profiles  
 **Classic:**  
