@@ -7,6 +7,7 @@ local pairs = pairs
 local strfind = strfind
 local strmatch = strmatch
 local type = type
+local unpack = unpack
 
 local _G = _G
 
@@ -44,8 +45,8 @@ local classificationText = {
 
 -- oUF\Elements\tags.lua
 local function Hex(r, g, b)
-	if(type(r) == 'table') then
-		if(r.r) then
+	if (type(r) == 'table') then
+		if (r.r) then
 			r, g, b = r.r, r.g, r.b
 		else
 			r, g, b = unpack(r)
@@ -211,6 +212,7 @@ E:AddTagInfo('luckyone:name:last-nocolor', Private.Name, L["Displays the last pa
 local function getFormattedName(unit, length, color)
 	local name = UnitName(unit) or UNKNOWN
 	name = E:ShortenString(name, length)
+
 	if color then
 		local colorHex = '|cFFcccccc' -- Default color
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
