@@ -670,6 +670,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.castbar.customTimeFont.fontSize = 9
 	E.db.unitframe.units.arena.castbar.height = 14
 	E.db.unitframe.units.arena.castbar.iconAttachedTo = 'Castbar'
+	E.db.unitframe.units.arena.castbar.strataAndLevel.useCustomLevel = true
+	E.db.unitframe.units.arena.castbar.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.arena.castbar.textColor.b = 1
 	E.db.unitframe.units.arena.castbar.textColor.g = 1
 	E.db.unitframe.units.arena.castbar.textColor.r = 1
@@ -705,6 +707,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.name.text_format = ''
 	E.db.unitframe.units.arena.power.autoHide = true
 	E.db.unitframe.units.arena.power.height = 4
+	E.db.unitframe.units.arena.power.strataAndLevel.frameStrata = 'MEDIUM'
+	E.db.unitframe.units.arena.power.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.arena.power.text_format = ''
 	E.db.unitframe.units.arena.pvpclassificationindicator.size = 24
 	E.db.unitframe.units.arena.pvpclassificationindicator.xOffset = -40
@@ -741,6 +745,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.castbar.customTimeFont.fontSize = 9
 	E.db.unitframe.units.boss.castbar.height = 14
 	E.db.unitframe.units.boss.castbar.iconAttachedTo = 'Castbar'
+	E.db.unitframe.units.boss.castbar.strataAndLevel.useCustomLevel = true
+	E.db.unitframe.units.boss.castbar.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.boss.castbar.textColor.b = 1
 	E.db.unitframe.units.boss.castbar.textColor.g = 1
 	E.db.unitframe.units.boss.castbar.textColor.r = 1
@@ -774,6 +780,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.name.text_format = ''
 	E.db.unitframe.units.boss.power.autoHide = true
 	E.db.unitframe.units.boss.power.height = 4
+	E.db.unitframe.units.boss.power.strataAndLevel.frameStrata = 'MEDIUM'
+	E.db.unitframe.units.boss.power.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.boss.power.text_format = ''
 	E.db.unitframe.units.boss.raidicon.size = 10
 	E.db.unitframe.units.boss.raidicon.yOffset = -1
@@ -837,9 +845,6 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.focus.power.autoHide = true
 	E.db.unitframe.units.focus.power.detachedWidth = 200
 	E.db.unitframe.units.focus.power.height = 4
-	E.db.unitframe.units.focus.power.strataAndLevel.frameLevel = 2
-	E.db.unitframe.units.focus.power.strataAndLevel.frameStrata = 'MEDIUM'
-	E.db.unitframe.units.focus.power.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.focus.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.focus.raidicon.size = 40
 	E.db.unitframe.units.focus.raidicon.xOffset = 42
@@ -948,6 +953,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.target.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.target.castbar.customTimeFont.font = Private.Font
 	E.db.unitframe.units.target.castbar.customTimeFont.fontSize = 11
+	E.db.unitframe.units.target.castbar.strataAndLevel.useCustomLevel = true
+	E.db.unitframe.units.target.castbar.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.target.castbar.textColor.b = 1
 	E.db.unitframe.units.target.castbar.textColor.g = 1
 	E.db.unitframe.units.target.castbar.textColor.r = 1
@@ -1092,7 +1099,6 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.party.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.party.phaseIndicator.xOffset = 15
 	E.db.unitframe.units.party.power.enable = false
-	E.db.unitframe.units.party.power.height = 6
 	E.db.unitframe.units.party.raidRoleIcons.yOffset = 1
 	E.db.unitframe.units.party.rdebuffs.enable = false
 	E.db.unitframe.units.party.readycheckIcon.attachTo = 'Frame'
@@ -1279,6 +1285,15 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.party.showPlayer = false
 		E.db.unitframe.units.party.width = 210
 
+		-- Main Party (Classic Only)
+		if E.Classic then
+			E.db.unitframe.units.party.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = 'Expressway', fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color<%]', xOffset = 88, yOffset = 20 }
+			E.db.unitframe.units.party.power.autoHide = true
+			E.db.unitframe.units.party.power.enable = true
+			E.db.unitframe.units.party.power.height = 4
+			E.db.unitframe.units.party.power.text_format = ''
+		end
+
 		-- Main Raid1
 		E.db.unitframe.units.raid1.height = 40
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'TOPRIGHT'
@@ -1378,7 +1393,6 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.player.power.height = 18
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
-		E.db.unitframe.units.player.power.xOffset = 0
 
 		-- Healing TargetTarget
 		E.db.unitframe.units.targettarget.width = 260

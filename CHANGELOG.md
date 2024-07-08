@@ -1,9 +1,13 @@
 ### Version 3.02 [In Development]
 **All WoW Versions:**  
 ElvUI 13.67+ compatibility  
+Fixed power text being hidden behind castbars on some frames  
 Updated BigWigs import method to use their new API  
 **Retail:**  
 Updated OmniCD profiles  
+**Classic:**  
+Added mana to party frames for the Main layout  
+Updated TOC for 1.15.3  
 ___
 ### Version 3.01 [26-06-2024]
 **All WoW Versions:**  
