@@ -4,7 +4,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 local GetAddOnMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
 
--- Shadow & Light profile
+-- Shadow & Light ProfileDB
 function Private:Setup_ShadowAndLight(installer)
 	if not E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then Private:Print('|cff9482c9Shadow & Light|r ' .. L["is not installed or enabled."]) return end
 
@@ -14,7 +14,6 @@ function Private:Setup_ShadowAndLight(installer)
 	-- Restore defaults
 	E.db.sle = E:CopyTable({}, P.sle)
 	E.global.sle = E:CopyTable({}, G.sle)
-	E.private.sle = E:CopyTable({}, V.sle)
 
 	-- Global DB
 	E.global.sle.advanced.confirmed = true
@@ -22,12 +21,7 @@ function Private:Setup_ShadowAndLight(installer)
 	E.global.sle.advanced.general = true
 
 	-- Private DB
-	E.private.sle.install_complete = version
-	E.private.sle.professions.deconButton.enable = false
-	E.private.sle.skins.objectiveTracker.BGbackdrop = false
-	E.private.sle.skins.objectiveTracker.texture = Private.Texture
-	E.private.sle.skins.objectiveTracker.underlineHeight = 2
-	E.private.sle.skins.petbattles.enable = false
+	Private:Setup_Private_ShadowAndLight()
 
 	-- Profile DB
 	E.db.sle.actionbar.vehicle.enabled = false
@@ -105,6 +99,7 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.raidmarkers.enable = false
 
 	E.db.sle.skins.objectiveTracker.classHeader = true
+	E.db.sle.skins.objectiveTracker.underline = true
 	E.db.sle.skins.objectiveTracker.underlineClass = true
 
 	if installer then
@@ -113,4 +108,22 @@ function Private:Setup_ShadowAndLight(installer)
 	end
 
 	Private:Print(L["Shadow&Light profile has been set."])
+end
+
+-- Shadow & Light PrivateDB
+function Private:Setup_Private_ShadowAndLight()
+
+	-- Get version
+	local version = GetAddOnMetadata('ElvUI_SLE', 'Version')
+
+	-- Restore defaults
+	E.private.sle = E:CopyTable({}, V.sle)
+
+	-- Private DB
+	E.private.sle.install_complete = version
+	E.private.sle.professions.deconButton.enable = false
+	E.private.sle.skins.objectiveTracker.BGbackdrop = false
+	E.private.sle.skins.objectiveTracker.texture = Private.Texture
+	E.private.sle.skins.objectiveTracker.underlineHeight = 2
+	E.private.sle.skins.petbattles.enable = false
 end

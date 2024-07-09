@@ -136,6 +136,14 @@ function Private:Setup_PrivateDB()
 	E.private.nameplates.enable = false
 	E.private.skins.parchmentRemoverEnable = true
 
+	if E.Retail and E:IsAddOnEnabled('ElvUI_SLE') then
+		Private:Setup_Private_ShadowAndLight()
+	end
+
+	if E.Retail and E:IsAddOnEnabled('ElvUI_WindTools') then
+		Private:Setup_Private_WindTools()
+	end
+
 	if E.global.L1UI.dev then
 		E.private.general.chatBubbles = 'disabled'
 		E.private.L1UI.disabledFrames.AlertFrame = true
