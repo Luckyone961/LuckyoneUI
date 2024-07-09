@@ -34,22 +34,22 @@ sort(TESTERS, SortList)
 for _, name in pairs(AUTHOR) do
 	tinsert(Private.Credits, name)
 end
-Private.AUTHOR_STRING = tconcat(AUTHOR, '|n')
+local AUTHOR_STRING = tconcat(AUTHOR, '|n')
 
 for _, name in pairs(CODING) do
 	tinsert(Private.Credits, name)
 end
-Private.CODING_STRING = tconcat(CODING, '|n')
+local CODING_STRING = tconcat(CODING, '|n')
 
 for _, name in pairs(TESTERS) do
 	tinsert(Private.Credits, name)
 end
-Private.TESTER_STRING = tconcat(TESTERS, '|n')
+local TESTER_STRING = tconcat(TESTERS, '|n')
 
 for _, name in pairs(SUPPORT) do
 	tinsert(Private.Credits, name)
 end
-Private.SUPPORT_STRING = tconcat(SUPPORT, '|n')
+local SUPPORT_STRING = tconcat(SUPPORT, '|n')
 
 -- LuckyoneUI config panel
 function L1UI:Config()
@@ -70,7 +70,7 @@ function L1UI:Config()
 	-- Installer & Update
 	L1UI.Options.args.setup = ACH:Group('', nil, 1)
 	L1UI.Options.args.setup.inline = true
-	L1UI.Options.args.setup.args.header1 = ACH:Header(Private.Name .. ' ' .. L["Install"], 1)
+	L1UI.Options.args.setup.args.header1 = ACH:Header(Private.Name, 1)
 	L1UI.Options.args.setup.args.spacer1 = ACH:Spacer(2, 'full')
 	L1UI.Options.args.setup.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 3, function() PI:Queue(L1UI.InstallerData) E:ToggleOptions() end)
 	L1UI.Options.args.setup.args.dev = ACH:Toggle('Developer', "Enable this toggle to apply Luckyone's personal adjustments during the installation process.\n\nAdditional information section will show up at the bottom of the config after ReloadUI.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r", 4, nil, nil, nil, function() return E.global.L1UI.dev end, function(_, value) E.global.L1UI.dev = value end)
@@ -79,7 +79,7 @@ function L1UI:Config()
 	L1UI.Options.args.setup.args.spacer3 = ACH:Spacer(7, 'full')
 	L1UI.Options.args.setup.args.altMain = ACH:Execute(L["Alt: "] .. L["DPS & Tanks"], L["Quick setup for alts"] .. '\n\n' .. L["This step will load your most recent LuckyoneUI profile."], 8, function() Private:HandleAlts('Main') Private:Setup_PrivateDB() E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.setup.args.altHealing = ACH:Execute(L["Alt: "] .. L["Healing"], L["Quick setup for alts"] .. '\n\n' .. L["This step will load your most recent LuckyoneUI profile."], 9, function() Private:HandleAlts('Healing') Private:Setup_PrivateDB() E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.setup.args.altSupport = ACH:Execute(L["Alt: "] .. L["Support"], L["Quick setup for alts"] .. '\n\n' .. L["This step will load your most recent LuckyoneUI profile."], 10, function() Private:HandleAlts('Support') Private:Setup_PrivateDB() E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.setup.args.altSupport = ACH:Execute(L["Alt: "] .. format('|cff33937F%s', L["Augmentation"]), L["Quick setup for alts"] .. '\n\n' .. L["This step will load your most recent LuckyoneUI profile."], 10, function() Private:HandleAlts('Support') Private:Setup_PrivateDB() E:StaticPopup_Show('L1UI_RL') end, nil, true)
 
 	-- Spacer
 	L1UI.Options.args.header = ACH:Spacer(2, 'full')
@@ -329,16 +329,16 @@ function L1UI:Config()
 	L1UI.Options.args.credits.args.header = ACH:Header(L["Credits"], 1)
 	L1UI.Options.args.credits.args.author = ACH:Group(L["Author"], nil, 2)
 	L1UI.Options.args.credits.args.author.inline = true
-	L1UI.Options.args.credits.args.author.args.desc = ACH:Description(Private.AUTHOR_STRING, 1, 'medium')
+	L1UI.Options.args.credits.args.author.args.desc = ACH:Description(AUTHOR_STRING, 1, 'medium')
 	L1UI.Options.args.credits.args.coding = ACH:Group(L["Coding"], nil, 3)
 	L1UI.Options.args.credits.args.coding.inline = true
-	L1UI.Options.args.credits.args.coding.args.desc = ACH:Description(Private.CODING_STRING, 1, 'medium')
+	L1UI.Options.args.credits.args.coding.args.desc = ACH:Description(CODING_STRING, 1, 'medium')
 	L1UI.Options.args.credits.args.testers = ACH:Group(L["Testers and Translation"], nil, 4)
 	L1UI.Options.args.credits.args.testers.inline = true
-	L1UI.Options.args.credits.args.testers.args.desc = ACH:Description(Private.TESTER_STRING, 1, 'medium')
+	L1UI.Options.args.credits.args.testers.args.desc = ACH:Description(TESTER_STRING, 1, 'medium')
 	L1UI.Options.args.credits.args.supporter = ACH:Group(L["Supporters"], nil, 5)
 	L1UI.Options.args.credits.args.supporter.inline = true
-	L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description(Private.SUPPORT_STRING, 1, 'medium')
+	L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description(SUPPORT_STRING, 1, 'medium')
 
 	-- Links
 	L1UI.Options.args.links = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 16)
