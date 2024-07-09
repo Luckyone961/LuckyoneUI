@@ -17,7 +17,7 @@ function Private:Setup_BigWigs(layout)
 
 	-- Profile import
 	-- Arg 1: AddOn name, Arg 2: Profile string, Arg 3: Profile name
-	BigWigsAPI:ImportProfileString(Private.Name, (layout == 'main' and profile_main) or profile_healing, (layout == 'main' and name_main) or name_healing)
+	BigWigsAPI:ImportProfileString('LuckyoneUI', (layout == 'main' and profile_main) or profile_healing, (layout == 'main' and name_main) or name_healing)
 
 	-- Handle minimap icon
 	BigWigsIconDB.hide = true

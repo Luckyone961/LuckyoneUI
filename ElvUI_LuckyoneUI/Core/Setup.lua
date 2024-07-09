@@ -23,18 +23,34 @@ end
 -- Handler for existing profiles (Quick install on alts)
 function Private:HandleAlts(layout)
 	local mostRecentProfile = Private:GetMostRecentProfile(layout)
-	if not mostRecentProfile then Private:Print(L["No existing LuckyoneUI profile found."]) return end
 
-	HandleLibDualSpec()
+	if not mostRecentProfile then
+		Private:Print(L["No existing LuckyoneUI profile found."])
+		return
+	end
+
+	if not E.Classic then
+		HandleLibDualSpec()
+	end
+
+	-- Load the most recent profile
 	E.data:SetProfile(mostRecentProfile)
 
+	-- Fix our custom DataTexts
 	if layout == 'Main' or layout == 'Healing' then
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 299) or 347
 	elseif layout == 'Support' then
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 404) or 464
 	end
 
+	-- PrivateDB for ElvUI, Shadow&Light, WindTools
+	Private:Setup_PrivateDB()
+
+	-- Push the update
 	Refresh()
+
+	E:StaticPopup_Show('L1UI_RL')
+
 	Private:Print(L["Applied profile: "] .. mostRecentProfile)
 end
 
