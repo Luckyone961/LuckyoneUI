@@ -1,5 +1,5 @@
 local _, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 
 -- Auras config section: Buffs
 function Private:Setup_Buffs(frame, option)

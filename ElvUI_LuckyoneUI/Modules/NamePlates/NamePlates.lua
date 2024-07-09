@@ -1,5 +1,5 @@
 local _, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+local E, L, _, P = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 
 local pairs = pairs

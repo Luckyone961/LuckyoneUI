@@ -1,4 +1,4 @@
-local E, _, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local EP = LibStub('LibElvUIPlugin-1.0')
 local PI = E:GetModule('PluginInstaller')

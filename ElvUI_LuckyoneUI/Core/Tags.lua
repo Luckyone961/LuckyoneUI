@@ -1,5 +1,5 @@
 local _, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 
 local floor = floor
 local format = format
@@ -34,7 +34,7 @@ local UnitPowerMax = UnitPowerMax
 local UnitPowerType = UnitPowerType
 local UnitReaction = UnitReaction
 
-local UNKNOWN = _G.UNKNOWN
+local UNKNOWN = UNKNOWN
 
 local classificationText = {
 	rare = 'Rare',

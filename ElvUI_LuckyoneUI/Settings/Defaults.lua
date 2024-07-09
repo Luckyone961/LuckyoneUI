@@ -1,5 +1,5 @@
 local _, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+local _, _, V, P, G = unpack(ElvUI)
 
 -- Defaults: E.global.L1UI
 G.L1UI = {

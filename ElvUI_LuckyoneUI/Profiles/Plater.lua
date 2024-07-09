@@ -1,5 +1,5 @@
 local _, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 
 local tinsert = table.insert
 

@@ -1,5 +1,5 @@
 local _, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local D = E:GetModule('Distributor')
 local PI = E:GetModule('PluginInstaller')
 

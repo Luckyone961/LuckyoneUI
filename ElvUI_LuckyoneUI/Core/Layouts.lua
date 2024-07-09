@@ -1,5 +1,5 @@
 local _, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 
 -- The War Within layout db
 function Private:Layout_TheWarWithin(layout)
