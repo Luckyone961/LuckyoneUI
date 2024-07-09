@@ -1,6 +1,6 @@
 ### Version 3.02 [In Development]
 **All WoW Versions:**  
-ElvUI 13.67+ compatibility  
+Added quick setup for alts which can load existing LuckyoneUI profiles  
 Fixed power text being hidden behind castbars on some frames  
 Updated BigWigs import method to use their new API  
 Updated Themes code to respect healermana tags in party frames  

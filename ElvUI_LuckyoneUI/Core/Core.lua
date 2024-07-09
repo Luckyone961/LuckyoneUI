@@ -46,10 +46,9 @@ local function GetNumber(str, profileType)
 	end
 end
 
-
 -- Find the profile with the highest number
 -- Optionally filtering by the specified profile type
-function Private:MostRecentProfile(profileType)
+function Private:GetMostRecentProfile(profileType)
 	local profiles, count = E.data:GetProfiles()
 	local mostRecentNumber = nil
 	local mostRecentProfile = nil

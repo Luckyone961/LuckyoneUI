@@ -17,8 +17,8 @@ function Private:Setup_OmniCD(layout, installer)
 	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version
 
 	-- Disable LibDualSpec to set the profile
-	OmniCDDB['namespaces']['LibDualSpec-1.0'] = {}
-	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] = {}
+	OmniCDDB['namespaces']['LibDualSpec-1.0'] = OmniCDDB['namespaces']['LibDualSpec-1.0'] or {}
+	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] = OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] or {}
 	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = {}
 	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
 

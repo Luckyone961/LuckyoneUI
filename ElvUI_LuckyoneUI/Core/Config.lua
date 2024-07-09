@@ -70,8 +70,16 @@ function L1UI:Config()
 	-- Installer & Update
 	L1UI.Options.args.setup = ACH:Group('', nil, 1)
 	L1UI.Options.args.setup.inline = true
-	L1UI.Options.args.setup.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 1, function() PI:Queue(L1UI.InstallerData) E:ToggleOptions() end)
-	L1UI.Options.args.setup.args.dev = ACH:Toggle('Developer', "Enable this toggle to apply Luckyone's personal adjustments during the installation process.\n\nAdditional information section will show up at the bottom of the config after ReloadUI.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r", 2, nil, nil, nil, function() return E.global.L1UI.dev end, function(_, value) E.global.L1UI.dev = value end)
+	L1UI.Options.args.setup.args.header1 = ACH:Header(Private.Name .. ' ' .. L["Install"], 1)
+	L1UI.Options.args.setup.args.spacer1 = ACH:Spacer(2, 'full')
+	L1UI.Options.args.setup.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 3, function() PI:Queue(L1UI.InstallerData) E:ToggleOptions() end)
+	L1UI.Options.args.setup.args.dev = ACH:Toggle('Developer', "Enable this toggle to apply Luckyone's personal adjustments during the installation process.\n\nAdditional information section will show up at the bottom of the config after ReloadUI.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r", 4, nil, nil, nil, function() return E.global.L1UI.dev end, function(_, value) E.global.L1UI.dev = value end)
+	L1UI.Options.args.setup.args.spacer2 = ACH:Spacer(5, 'full')
+	L1UI.Options.args.setup.args.header2 = ACH:Header(L["Quick setup for alts"], 6)
+	L1UI.Options.args.setup.args.spacer3 = ACH:Spacer(7, 'full')
+	L1UI.Options.args.setup.args.altMain = ACH:Execute(L["Alt: "] .. L["DPS & Tanks"], L["Quick setup for alts"] .. '\n\n' .. L["This step will load your most recent LuckyoneUI profile."], 8, function() Private:HandleAlts('Main') Private:Setup_PrivateDB() E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.setup.args.altHealing = ACH:Execute(L["Alt: "] .. L["Healing"], L["Quick setup for alts"] .. '\n\n' .. L["This step will load your most recent LuckyoneUI profile."], 9, function() Private:HandleAlts('Healing') Private:Setup_PrivateDB() E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.setup.args.altSupport = ACH:Execute(L["Alt: "] .. L["Support"], L["Quick setup for alts"] .. '\n\n' .. L["This step will load your most recent LuckyoneUI profile."], 10, function() Private:HandleAlts('Support') Private:Setup_PrivateDB() E:StaticPopup_Show('L1UI_RL') end, nil, true)
 
 	-- Spacer
 	L1UI.Options.args.header = ACH:Spacer(2, 'full')

@@ -1355,6 +1355,9 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.raid3.roleIcon.yOffset = 0
 		E.db.unitframe.units.raid3.width = (scaled and 80) or 92
 
+		-- Main misc
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 299) or 347
+
 		-- Main movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,UIParent,BOTTOM,-230,146') or 'BOTTOM,ElvUIParent,BOTTOM,-260,209'
 		E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,318,459') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-660,580'
@@ -1482,6 +1485,9 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.raid3.roleIcon.yOffset = 0
 		E.db.unitframe.units.raid3.width = (scaled and 100) or 120
 
+		-- Healing misc
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 299) or 347
+
 		-- Healing movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,UIParent,BOTTOM,-280,146') or 'BOTTOM,ElvUIParent,BOTTOM,-330,241'
 		E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-447,492') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-514,580'
@@ -1599,7 +1605,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.raid3.roleIcon.yOffset = 0
 		E.db.unitframe.units.raid3.width = (scaled and 80) or 92
 
-		-- Special support stuff
+		-- Special misc
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 404) or 464
 		E.db.actionbar.bar1.mouseover = true
 		E.db.actionbar.bar2.mouseover = true

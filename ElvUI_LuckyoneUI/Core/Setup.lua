@@ -7,8 +7,8 @@ local SetCVar = SetCVar
 
 local function HandleLibDualSpec()
 	-- Disable LibDualSpec to set the profile
-	ElvDB['namespaces']['LibDualSpec-1.0'] = {}
-	ElvDB['namespaces']['LibDualSpec-1.0']['char'] = {}
+	ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
+	ElvDB['namespaces']['LibDualSpec-1.0']['char'] = ElvDB['namespaces']['LibDualSpec-1.0']['char'] or {}
 	ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = {}
 	ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
 end
@@ -18,6 +18,24 @@ local function Refresh()
 	E:UIMult()
 	E:UIScale()
 	E:Config_UpdateSize(true)
+end
+
+-- Handler for existing profiles (Quick install on alts)
+function Private:HandleAlts(layout)
+	local mostRecentProfile = Private:GetMostRecentProfile(layout)
+	if not mostRecentProfile then Private:Print(L["No existing LuckyoneUI profile found."]) return end
+
+	HandleLibDualSpec()
+	E.data:SetProfile(mostRecentProfile)
+
+	if layout == 'Main' or layout == 'Healing' then
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 299) or 347
+	elseif layout == 'Support' then
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 404) or 464
+	end
+
+	Refresh()
+	Private:Print(L["Applied profile: "] .. mostRecentProfile)
 end
 
 -- E.global & Custom DataText
