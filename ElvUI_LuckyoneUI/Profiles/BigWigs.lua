@@ -5,6 +5,8 @@ local E, L, V, P, G = unpack(ElvUI)
 function Private:Setup_BigWigs(layout)
 	if not E:IsAddOnEnabled('BigWigs') then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
 
+	local LDBI = LibStub('LibDBIcon-1.0')
+
 	-- Profile names
 	local name_main = 'Luckyone Main'
 	local name_healing = 'Luckyone Healing'
@@ -16,6 +18,10 @@ function Private:Setup_BigWigs(layout)
 	-- Profile import
 	-- Arg 1: AddOn name, Arg 2: Profile string, Arg 3: Profile name
 	BigWigsAPI:ImportProfileString(Private.Name, (layout == 'main' and profile_main) or profile_healing, (layout == 'main' and name_main) or name_healing)
+
+	-- Handle minimap icon
+	BigWigsIconDB.hide = true
+	LDBI:Hide('BigWigs')
 
 	-- No chat print here
 	-- BigWigs will print a message with all important information after the import
