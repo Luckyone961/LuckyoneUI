@@ -1,5 +1,5 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+local _, Private = ...
+local E, L = unpack(ElvUI)
 local CH = E:GetModule('Chat')
 
 local _G = _G

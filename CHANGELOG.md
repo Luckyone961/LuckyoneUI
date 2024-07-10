@@ -1,3 +1,16 @@
+### Version 3.02 [10-07-2024]
+**All WoW Versions:**  
+Added quick setup for alts which can load existing LuckyoneUI profiles  
+ElvUI 13.68+ compatibility  
+Fixed power text being hidden behind castbars on some frames  
+Updated BigWigs import method to use their new API  
+Updated Themes code to respect healermana tags in party frames  
+**Retail:**  
+Updated OmniCD profiles  
+**Classic:**  
+Added mana to party frames for the Main layout  
+Updated TOC for 1.15.3  
+___
 ### Version 3.01 [26-06-2024]
 **All WoW Versions:**  
 Fixed an issue in the BigWigs profile installer step  

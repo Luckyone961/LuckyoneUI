@@ -1,5 +1,5 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+local _, Private = ...
+local E = unpack(ElvUI)
 
 -- The War Within layout db
 function Private:Layout_TheWarWithin(layout)
@@ -11,7 +11,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.movers = E.db.movers or {}
 
 	-- General
-	E.db.general.addonCompartment.fontOutline = 'OUTLINE'
+	E.db.general.addonCompartment.fontOutline = Private.Outline
 	E.db.general.addonCompartment.hide = true
 	E.db.general.addonCompartment.size = 20
 	E.db.general.afkChat = false
@@ -37,9 +37,9 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.general.durabilityScale = 0.5
 	E.db.general.enhancedPvpMessages = false
 	E.db.general.guildBank.countFont = Private.Font
-	E.db.general.guildBank.countFontOutline = 'OUTLINE'
+	E.db.general.guildBank.countFontOutline = Private.Outline
 	E.db.general.guildBank.itemLevelFont = Private.Font
-	E.db.general.guildBank.itemLevelFontOutline = 'OUTLINE'
+	E.db.general.guildBank.itemLevelFontOutline = Private.Outline
 	E.db.general.itemLevel.itemLevelFont = Private.Font
 	E.db.general.itemLevel.itemLevelFontSize = 10
 	E.db.general.itemLevel.totalLevelFont = Private.Font
@@ -81,16 +81,16 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar1.buttonSize = (scaled and 24) or 28
 	E.db.actionbar.bar1.buttonSpacing = 1
 	E.db.actionbar.bar1.countFont = Private.Font
-	E.db.actionbar.bar1.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar1.countFontOutline = Private.Outline
 	E.db.actionbar.bar1.countFontSize = 9
 	E.db.actionbar.bar1.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar1.hotkeyFont = Private.Font
-	E.db.actionbar.bar1.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar1.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar1.hotkeyFontSize = 9
 	E.db.actionbar.bar1.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar1.hotkeyTextYOffset = -1
 	E.db.actionbar.bar1.macroFont = Private.Font
-	E.db.actionbar.bar1.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar1.macroFontOutline = Private.Outline
 	E.db.actionbar.bar1.macroFontSize = 9
 	E.db.actionbar.bar1.macrotext = true
 	E.db.actionbar.bar1.macroTextPosition = 'BOTTOM'
@@ -100,17 +100,17 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar2.buttonSize = (scaled and 24) or 28
 	E.db.actionbar.bar2.buttonSpacing = 1
 	E.db.actionbar.bar2.countFont = Private.Font
-	E.db.actionbar.bar2.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar2.countFontOutline = Private.Outline
 	E.db.actionbar.bar2.countFontSize = 9
 	E.db.actionbar.bar2.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar2.enabled = true
 	E.db.actionbar.bar2.hotkeyFont = Private.Font
-	E.db.actionbar.bar2.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar2.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar2.hotkeyFontSize = 9
 	E.db.actionbar.bar2.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar2.hotkeyTextYOffset = -1
 	E.db.actionbar.bar2.macroFont = Private.Font
-	E.db.actionbar.bar2.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar2.macroFontOutline = Private.Outline
 	E.db.actionbar.bar2.macroFontSize = 9
 	E.db.actionbar.bar2.macrotext = true
 	E.db.actionbar.bar2.macroTextPosition = 'BOTTOM'
@@ -122,16 +122,16 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar3.buttonSpacing = 1
 	E.db.actionbar.bar3.buttonsPerRow = 12
 	E.db.actionbar.bar3.countFont = Private.Font
-	E.db.actionbar.bar3.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar3.countFontOutline = Private.Outline
 	E.db.actionbar.bar3.countFontSize = 9
 	E.db.actionbar.bar3.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar3.hotkeyFont = Private.Font
-	E.db.actionbar.bar3.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar3.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar3.hotkeyFontSize = 9
 	E.db.actionbar.bar3.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar3.hotkeyTextYOffset = -1
 	E.db.actionbar.bar3.macroFont = Private.Font
-	E.db.actionbar.bar3.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar3.macroFontOutline = Private.Outline
 	E.db.actionbar.bar3.macroFontSize = 9
 	E.db.actionbar.bar3.macrotext = true
 	E.db.actionbar.bar3.macroTextPosition = 'BOTTOM'
@@ -143,17 +143,17 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar4.buttonSize = (scaled and 21) or 26
 	E.db.actionbar.bar4.buttonSpacing = 1
 	E.db.actionbar.bar4.countFont = Private.Font
-	E.db.actionbar.bar4.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar4.countFontOutline = Private.Outline
 	E.db.actionbar.bar4.countFontSize = 9
 	E.db.actionbar.bar4.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar4.enabled = not E.Retail
 	E.db.actionbar.bar4.hotkeyFont = Private.Font
-	E.db.actionbar.bar4.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar4.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar4.hotkeyFontSize = 9
 	E.db.actionbar.bar4.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar4.hotkeyTextYOffset = -1
 	E.db.actionbar.bar4.macroFont = Private.Font
-	E.db.actionbar.bar4.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar4.macroFontOutline = Private.Outline
 	E.db.actionbar.bar4.macroFontSize = 9
 	E.db.actionbar.bar4.macrotext = true
 	E.db.actionbar.bar4.macroTextPosition = 'BOTTOM'
@@ -166,17 +166,17 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar5.buttonSpacing = 1
 	E.db.actionbar.bar5.buttonsPerRow = 1
 	E.db.actionbar.bar5.countFont = Private.Font
-	E.db.actionbar.bar5.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar5.countFontOutline = Private.Outline
 	E.db.actionbar.bar5.countFontSize = 9
 	E.db.actionbar.bar5.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar5.enabled = true
 	E.db.actionbar.bar5.hotkeyFont = Private.Font
-	E.db.actionbar.bar5.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar5.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar5.hotkeyFontSize = 9
 	E.db.actionbar.bar5.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar5.hotkeyTextYOffset = -1
 	E.db.actionbar.bar5.macroFont = Private.Font
-	E.db.actionbar.bar5.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar5.macroFontOutline = Private.Outline
 	E.db.actionbar.bar5.macroFontSize = 9
 	E.db.actionbar.bar5.macrotext = true
 	E.db.actionbar.bar5.macroTextPosition = 'BOTTOM'
@@ -187,17 +187,17 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar6.buttonSize = (scaled and 24) or 28
 	E.db.actionbar.bar6.buttonSpacing = 1
 	E.db.actionbar.bar6.countFont = Private.Font
-	E.db.actionbar.bar6.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar6.countFontOutline = Private.Outline
 	E.db.actionbar.bar6.countFontSize = 9
 	E.db.actionbar.bar6.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar6.enabled = false
 	E.db.actionbar.bar6.hotkeyFont = Private.Font
-	E.db.actionbar.bar6.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar6.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar6.hotkeyFontSize = 9
 	E.db.actionbar.bar6.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar6.hotkeyTextYOffset = -1
 	E.db.actionbar.bar6.macroFont = Private.Font
-	E.db.actionbar.bar6.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar6.macroFontOutline = Private.Outline
 	E.db.actionbar.bar6.macroFontSize = 9
 	E.db.actionbar.bar6.macrotext = true
 	E.db.actionbar.bar6.macroTextPosition = 'BOTTOM'
@@ -207,16 +207,16 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar7.buttonSize = (scaled and 24) or 28
 	E.db.actionbar.bar7.buttonSpacing = 1
 	E.db.actionbar.bar7.countFont = Private.Font
-	E.db.actionbar.bar7.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar7.countFontOutline = Private.Outline
 	E.db.actionbar.bar7.countFontSize = 9
 	E.db.actionbar.bar7.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar7.hotkeyFont = Private.Font
-	E.db.actionbar.bar7.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar7.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar7.hotkeyFontSize = 9
 	E.db.actionbar.bar7.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar7.hotkeyTextYOffset = -1
 	E.db.actionbar.bar7.macroFont = Private.Font
-	E.db.actionbar.bar7.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar7.macroFontOutline = Private.Outline
 	E.db.actionbar.bar7.macroFontSize = 9
 	E.db.actionbar.bar7.macrotext = true
 	E.db.actionbar.bar7.macroTextPosition = 'BOTTOM'
@@ -226,16 +226,16 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar8.buttonSize = (scaled and 24) or 28
 	E.db.actionbar.bar8.buttonSpacing = 1
 	E.db.actionbar.bar8.countFont = Private.Font
-	E.db.actionbar.bar8.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar8.countFontOutline = Private.Outline
 	E.db.actionbar.bar8.countFontSize = 9
 	E.db.actionbar.bar8.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar8.hotkeyFont = Private.Font
-	E.db.actionbar.bar8.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar8.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar8.hotkeyFontSize = 9
 	E.db.actionbar.bar8.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar8.hotkeyTextYOffset = -1
 	E.db.actionbar.bar8.macroFont = Private.Font
-	E.db.actionbar.bar8.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar8.macroFontOutline = Private.Outline
 	E.db.actionbar.bar8.macroFontSize = 9
 	E.db.actionbar.bar8.macrotext = true
 	E.db.actionbar.bar8.macroTextPosition = 'BOTTOM'
@@ -245,16 +245,16 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar9.buttonSize = (scaled and 24) or 28
 	E.db.actionbar.bar9.buttonSpacing = 1
 	E.db.actionbar.bar9.countFont = Private.Font
-	E.db.actionbar.bar9.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar9.countFontOutline = Private.Outline
 	E.db.actionbar.bar9.countFontSize = 9
 	E.db.actionbar.bar9.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar9.hotkeyFont = Private.Font
-	E.db.actionbar.bar9.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar9.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar9.hotkeyFontSize = 9
 	E.db.actionbar.bar9.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar9.hotkeyTextYOffset = -1
 	E.db.actionbar.bar9.macroFont = Private.Font
-	E.db.actionbar.bar9.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar9.macroFontOutline = Private.Outline
 	E.db.actionbar.bar9.macroFontSize = 9
 	E.db.actionbar.bar9.macrotext = true
 	E.db.actionbar.bar9.macroTextPosition = 'BOTTOM'
@@ -264,16 +264,16 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar10.buttonSize = (scaled and 24) or 28
 	E.db.actionbar.bar10.buttonSpacing = 1
 	E.db.actionbar.bar10.countFont = Private.Font
-	E.db.actionbar.bar10.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar10.countFontOutline = Private.Outline
 	E.db.actionbar.bar10.countFontSize = 9
 	E.db.actionbar.bar10.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar10.hotkeyFont = Private.Font
-	E.db.actionbar.bar10.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar10.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar10.hotkeyFontSize = 9
 	E.db.actionbar.bar10.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar10.hotkeyTextYOffset = -1
 	E.db.actionbar.bar10.macroFont = Private.Font
-	E.db.actionbar.bar10.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar10.macroFontOutline = Private.Outline
 	E.db.actionbar.bar10.macroFontSize = 9
 	E.db.actionbar.bar10.macrotext = true
 	E.db.actionbar.bar10.macroTextPosition = 'BOTTOM'
@@ -283,16 +283,16 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar13.buttonSize = (scaled and 24) or 28
 	E.db.actionbar.bar13.buttonSpacing = 1
 	E.db.actionbar.bar13.countFont = Private.Font
-	E.db.actionbar.bar13.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar13.countFontOutline = Private.Outline
 	E.db.actionbar.bar13.countFontSize = 9
 	E.db.actionbar.bar13.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar13.hotkeyFont = Private.Font
-	E.db.actionbar.bar13.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar13.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar13.hotkeyFontSize = 9
 	E.db.actionbar.bar13.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar13.hotkeyTextYOffset = -1
 	E.db.actionbar.bar13.macroFont = Private.Font
-	E.db.actionbar.bar13.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar13.macroFontOutline = Private.Outline
 	E.db.actionbar.bar13.macroFontSize = 9
 	E.db.actionbar.bar13.macrotext = true
 	E.db.actionbar.bar13.macroTextPosition = 'BOTTOM'
@@ -302,16 +302,16 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar14.buttonSize = (scaled and 24) or 28
 	E.db.actionbar.bar14.buttonSpacing = 1
 	E.db.actionbar.bar14.countFont = Private.Font
-	E.db.actionbar.bar14.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar14.countFontOutline = Private.Outline
 	E.db.actionbar.bar14.countFontSize = 9
 	E.db.actionbar.bar14.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar14.hotkeyFont = Private.Font
-	E.db.actionbar.bar14.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar14.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar14.hotkeyFontSize = 9
 	E.db.actionbar.bar14.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar14.hotkeyTextYOffset = -1
 	E.db.actionbar.bar14.macroFont = Private.Font
-	E.db.actionbar.bar14.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar14.macroFontOutline = Private.Outline
 	E.db.actionbar.bar14.macroFontSize = 9
 	E.db.actionbar.bar14.macrotext = true
 	E.db.actionbar.bar14.macroTextPosition = 'BOTTOM'
@@ -321,16 +321,16 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar15.buttonSize = (scaled and 24) or 28
 	E.db.actionbar.bar15.buttonSpacing = 1
 	E.db.actionbar.bar15.countFont = Private.Font
-	E.db.actionbar.bar15.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar15.countFontOutline = Private.Outline
 	E.db.actionbar.bar15.countFontSize = 9
 	E.db.actionbar.bar15.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar15.hotkeyFont = Private.Font
-	E.db.actionbar.bar15.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar15.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar15.hotkeyFontSize = 9
 	E.db.actionbar.bar15.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar15.hotkeyTextYOffset = -1
 	E.db.actionbar.bar15.macroFont = Private.Font
-	E.db.actionbar.bar15.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar15.macroFontOutline = Private.Outline
 	E.db.actionbar.bar15.macroFontSize = 9
 	E.db.actionbar.bar15.macrotext = true
 	E.db.actionbar.bar15.macroTextPosition = 'BOTTOM'
@@ -342,10 +342,10 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.barPet.buttonSpacing = 1
 	E.db.actionbar.barPet.buttonsPerRow = 10
 	E.db.actionbar.barPet.countFont = Private.Font
-	E.db.actionbar.barPet.countFontOutline = 'OUTLINE'
+	E.db.actionbar.barPet.countFontOutline = Private.Outline
 	E.db.actionbar.barPet.countFontSize = 9
 	E.db.actionbar.barPet.hotkeyFont = Private.Font
-	E.db.actionbar.barPet.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.barPet.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.barPet.hotkeyFontSize = 9
 	E.db.actionbar.barPet.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.barPet.hotkeyTextYOffset = -1
@@ -355,13 +355,13 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.countTextYOffset = 1
 	E.db.actionbar.extraActionButton.clean = true
 	E.db.actionbar.extraActionButton.hotkeyFont = Private.Font
-	E.db.actionbar.extraActionButton.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.extraActionButton.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.extraActionButton.hotkeyFontSize = 9
 	E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.extraActionButton.hotkeyTextYOffset = -1
 	E.db.actionbar.flyoutSize = (scaled and 24) or 28
 	E.db.actionbar.font = Private.Font
-	E.db.actionbar.fontOutline = 'OUTLINE'
+	E.db.actionbar.fontOutline = Private.Outline
 	E.db.actionbar.fontSize = 9
 	E.db.actionbar.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.macroTextPosition = 'BOTTOM'
@@ -373,7 +373,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.stanceBar.buttonSize = 28
 	E.db.actionbar.stanceBar.buttonSpacing = 1
 	E.db.actionbar.stanceBar.hotkeyFont = Private.Font
-	E.db.actionbar.stanceBar.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.stanceBar.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.stanceBar.hotkeyFontSize = 9
 	E.db.actionbar.stanceBar.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.stanceBar.hotkeyTextYOffset = -1
@@ -381,7 +381,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.stanceBar.style = 'classic'
 	E.db.actionbar.transparent = true
 	E.db.actionbar.vehicleExitButton.hotkeyFont = Private.Font
-	E.db.actionbar.vehicleExitButton.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.vehicleExitButton.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.vehicleExitButton.hotkeyFontSize = 9
 	E.db.actionbar.vehicleExitButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.vehicleExitButton.hotkeyTextYOffset = -1
@@ -400,13 +400,13 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.bags.bankWidth = (scaled and 404) or 464
 	E.db.bags.clearSearchOnClose = true
 	E.db.bags.countFont = Private.Font
-	E.db.bags.countFontOutline = 'OUTLINE'
+	E.db.bags.countFontOutline = Private.Outline
 	E.db.bags.countFontSize = 11
 	E.db.bags.itemInfoFont = Private.Font
-	E.db.bags.itemInfoFontOutline = 'OUTLINE'
+	E.db.bags.itemInfoFontOutline = Private.Outline
 	E.db.bags.itemInfoFontSize = 11
 	E.db.bags.itemLevelFont = Private.Font
-	E.db.bags.itemLevelFontOutline = 'OUTLINE'
+	E.db.bags.itemLevelFontOutline = Private.Outline
 	E.db.bags.itemLevelFontSize = 11
 	E.db.bags.moneyFormat = 'FULL'
 	E.db.bags.specialtyColors = false
@@ -420,7 +420,7 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Auras
 	E.db.auras.buffs.countFont = Private.Font
-	E.db.auras.buffs.countFontOutline = 'OUTLINE'
+	E.db.auras.buffs.countFontOutline = Private.Outline
 	E.db.auras.buffs.countFontSize = 12
 	E.db.auras.buffs.countXOffset = 1
 	E.db.auras.buffs.countYOffset = 2
@@ -429,12 +429,12 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.auras.buffs.seperateOwn = 0
 	E.db.auras.buffs.size = 22
 	E.db.auras.buffs.timeFont = Private.Font
-	E.db.auras.buffs.timeFontOutline = 'OUTLINE'
+	E.db.auras.buffs.timeFontOutline = Private.Outline
 	E.db.auras.buffs.timeXOffset = 1
 	E.db.auras.buffs.timeYOffset = -1
 	E.db.auras.buffs.verticalSpacing = 12
 	E.db.auras.debuffs.countFont = Private.Font
-	E.db.auras.debuffs.countFontOutline = 'OUTLINE'
+	E.db.auras.debuffs.countFontOutline = Private.Outline
 	E.db.auras.debuffs.countFontSize = 12
 	E.db.auras.debuffs.countXOffset = 1
 	E.db.auras.debuffs.countYOffset = 2
@@ -444,7 +444,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.auras.debuffs.seperateOwn = 0
 	E.db.auras.debuffs.size = 22
 	E.db.auras.debuffs.timeFont = Private.Font
-	E.db.auras.debuffs.timeFontOutline = 'OUTLINE'
+	E.db.auras.debuffs.timeFontOutline = Private.Outline
 	E.db.auras.debuffs.timeXOffset = 1
 	E.db.auras.debuffs.timeYOffset = -1
 	E.db.auras.debuffs.verticalSpacing = 12
@@ -460,7 +460,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.chat.fade = false
 	E.db.chat.fadeTabsNoBackdrop = false
 	E.db.chat.font = Private.Font
-	E.db.chat.fontOutline = 'OUTLINE'
+	E.db.chat.fontOutline = Private.Outline
 	E.db.chat.hideChatToggles = true
 	E.db.chat.historySize = 200
 	E.db.chat.lfgIcons = false
@@ -484,7 +484,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.chat.showHistory.SAY = false
 	E.db.chat.showHistory.YELL = false
 	E.db.chat.tabFont = Private.Font
-	E.db.chat.tabFontOutline = 'OUTLINE'
+	E.db.chat.tabFontOutline = Private.Outline
 	E.db.chat.tabFontSize = 11
 	E.db.chat.tabSelector = 'NONE'
 	E.db.chat.throttleInterval = 0
@@ -511,7 +511,7 @@ function Private:Layout_TheWarWithin(layout)
 	-- DataBars
 	E.db.databars.azerite.enable = false
 	E.db.databars.experience.font = Private.Font
-	E.db.databars.experience.fontOutline = 'OUTLINE'
+	E.db.databars.experience.fontOutline = Private.Outline
 	E.db.databars.experience.height = 20
 	E.db.databars.experience.orientation = 'HORIZONTAL'
 	E.db.databars.experience.questCompletedOnly = true
@@ -547,7 +547,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.datatexts.battlePanel.RightChatDataPanel[2] = ''
 	E.db.datatexts.battlePanel.RightChatDataPanel[3] = ''
 	E.db.datatexts.font = Private.Font
-	E.db.datatexts.fontOutline = 'OUTLINE'
+	E.db.datatexts.fontOutline = Private.Outline
 	E.db.datatexts.fontSize = 11
 	E.db.datatexts.noCombatClick = true
 	E.db.datatexts.noCombatHover = true
@@ -572,12 +572,12 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.tooltip.alwaysShowRealm = true
 	E.db.tooltip.colorAlpha = 0.9
 	E.db.tooltip.font = Private.Font
-	E.db.tooltip.fontOutline = 'OUTLINE'
+	E.db.tooltip.fontOutline = Private.Outline
 	E.db.tooltip.headerFont = Private.Font
-	E.db.tooltip.headerFontOutline = 'OUTLINE'
+	E.db.tooltip.headerFontOutline = Private.Outline
 	E.db.tooltip.headerFontSize = (scaled and 10) or 11
 	E.db.tooltip.healthBar.font = Private.Font
-	E.db.tooltip.healthBar.fontOutline = 'OUTLINE'
+	E.db.tooltip.healthBar.fontOutline = Private.Outline
 	E.db.tooltip.healthBar.fontSize = (scaled and 9) or 10
 	E.db.tooltip.healthBar.height = 6
 	E.db.tooltip.healthBar.statusPosition = 'TOP'
@@ -633,7 +633,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.cooldown.fonts.font = Private.Font
 	E.db.unitframe.cooldown.override = false
 	E.db.unitframe.font = Private.Font
-	E.db.unitframe.fontOutline = 'OUTLINE'
+	E.db.unitframe.fontOutline = Private.Outline
 	E.db.unitframe.fontSize = 11
 	E.db.unitframe.modifiers.ALT = 'Blacklist'
 	E.db.unitframe.statusbar = Private.Texture
@@ -646,9 +646,9 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Arena
 	E.db.unitframe.units.arena.customTexts = {}
-	E.db.unitframe.units.arena.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
-	E.db.unitframe.units.arena.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[luckyone:name:last-classcolor]', xOffset = -3, yOffset = 0 }
-	E.db.unitframe.units.arena.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.arena.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 12, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
+	E.db.unitframe.units.arena.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = '[luckyone:name:last-classcolor]', xOffset = -3, yOffset = 0 }
+	E.db.unitframe.units.arena.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.arena.buffs.countFont = Private.Font
 	E.db.unitframe.units.arena.buffs.countFontSize = 10
@@ -670,6 +670,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.castbar.customTimeFont.fontSize = 9
 	E.db.unitframe.units.arena.castbar.height = 14
 	E.db.unitframe.units.arena.castbar.iconAttachedTo = 'Castbar'
+	E.db.unitframe.units.arena.castbar.strataAndLevel.useCustomLevel = true
+	E.db.unitframe.units.arena.castbar.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.arena.castbar.textColor.b = 1
 	E.db.unitframe.units.arena.castbar.textColor.g = 1
 	E.db.unitframe.units.arena.castbar.textColor.r = 1
@@ -705,6 +707,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.name.text_format = ''
 	E.db.unitframe.units.arena.power.autoHide = true
 	E.db.unitframe.units.arena.power.height = 4
+	E.db.unitframe.units.arena.power.strataAndLevel.frameStrata = 'MEDIUM'
+	E.db.unitframe.units.arena.power.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.arena.power.text_format = ''
 	E.db.unitframe.units.arena.pvpclassificationindicator.size = 24
 	E.db.unitframe.units.arena.pvpclassificationindicator.xOffset = -40
@@ -717,9 +721,9 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Boss
 	E.db.unitframe.units.boss.customTexts = {}
-	E.db.unitframe.units.boss.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
-	E.db.unitframe.units.boss.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[luckyone:name:last-classcolor]', xOffset = -3, yOffset = 0 }
-	E.db.unitframe.units.boss.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.boss.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 12, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
+	E.db.unitframe.units.boss.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = '[luckyone:name:last-classcolor]', xOffset = -3, yOffset = 0 }
+	E.db.unitframe.units.boss.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.boss.buffIndicator.enable = false
 	E.db.unitframe.units.boss.buffs.countFont = Private.Font
@@ -741,6 +745,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.castbar.customTimeFont.fontSize = 9
 	E.db.unitframe.units.boss.castbar.height = 14
 	E.db.unitframe.units.boss.castbar.iconAttachedTo = 'Castbar'
+	E.db.unitframe.units.boss.castbar.strataAndLevel.useCustomLevel = true
+	E.db.unitframe.units.boss.castbar.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.boss.castbar.textColor.b = 1
 	E.db.unitframe.units.boss.castbar.textColor.g = 1
 	E.db.unitframe.units.boss.castbar.textColor.r = 1
@@ -774,6 +780,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.name.text_format = ''
 	E.db.unitframe.units.boss.power.autoHide = true
 	E.db.unitframe.units.boss.power.height = 4
+	E.db.unitframe.units.boss.power.strataAndLevel.frameStrata = 'MEDIUM'
+	E.db.unitframe.units.boss.power.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.boss.power.text_format = ''
 	E.db.unitframe.units.boss.raidicon.size = 10
 	E.db.unitframe.units.boss.raidicon.yOffset = -1
@@ -782,8 +790,8 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Focus
 	E.db.unitframe.units.focus.customTexts = {}
-	E.db.unitframe.units.focus.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:name:last-classcolor]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.focus.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[luckyone:name:last-classcolor]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.focus.buffs.anchorPoint = 'TOPRIGHT'
 	E.db.unitframe.units.focus.buffs.attachTo = 'DEBUFFS'
@@ -837,9 +845,6 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.focus.power.autoHide = true
 	E.db.unitframe.units.focus.power.detachedWidth = 200
 	E.db.unitframe.units.focus.power.height = 4
-	E.db.unitframe.units.focus.power.strataAndLevel.frameLevel = 2
-	E.db.unitframe.units.focus.power.strataAndLevel.frameStrata = 'MEDIUM'
-	E.db.unitframe.units.focus.power.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.focus.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.focus.raidicon.size = 40
 	E.db.unitframe.units.focus.raidicon.xOffset = 42
@@ -850,8 +855,8 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Pet
 	E.db.unitframe.units.pet.customTexts = {}
-	E.db.unitframe.units.pet.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:pet:name-and-happiness]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.pet.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.pet.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[luckyone:pet:name-and-happiness]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.pet.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.pet.castbar.enable = false
 	E.db.unitframe.units.pet.disableMouseoverGlow = true
@@ -872,9 +877,9 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Player
 	E.db.unitframe.units.player.customTexts = {}
-	E.db.unitframe.units.player.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[health:current:shortvalue] • [luckyone:health:percent]', xOffset = -2, yOffset = 0 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:name:last-classcolor]', xOffset = 5, yOffset = 0 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 11, text_format = '', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.player.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 14, text_format = '[health:current:shortvalue] • [luckyone:health:percent]', xOffset = -2, yOffset = 0 }
+	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 14, text_format = '[luckyone:name:last-classcolor]', xOffset = 5, yOffset = 0 }
+	E.db.unitframe.units.player.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.player.aurabar.enable = false
 	E.db.unitframe.units.player.buffs.attachTo = 'FRAME'
@@ -928,9 +933,9 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Target
 	E.db.unitframe.units.target.customTexts = {}
-	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[luckyone:level< |cffffffff- |r][luckyone:name:last-classcolor]', xOffset = -3, yOffset = 0 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
+	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 14, text_format = '[luckyone:level< |cffffffff- |r][luckyone:name:last-classcolor]', xOffset = -3, yOffset = 0 }
+	E.db.unitframe.units.target.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.target.aurabar.enable = false
 	E.db.unitframe.units.target.buffs.attachTo = 'DEBUFFS'
@@ -948,6 +953,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.target.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.target.castbar.customTimeFont.font = Private.Font
 	E.db.unitframe.units.target.castbar.customTimeFont.fontSize = 11
+	E.db.unitframe.units.target.castbar.strataAndLevel.useCustomLevel = true
+	E.db.unitframe.units.target.castbar.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.target.castbar.textColor.b = 1
 	E.db.unitframe.units.target.castbar.textColor.g = 1
 	E.db.unitframe.units.target.castbar.textColor.r = 1
@@ -995,7 +1002,7 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared TargetTarget
 	E.db.unitframe.units.targettarget.customTexts = {}
-	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:name:last-classcolor]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[luckyone:name:last-classcolor]', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.targettarget.debuffs.enable = false
 	E.db.unitframe.units.targettarget.disableMouseoverGlow = true
@@ -1073,7 +1080,7 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Party
 	E.db.unitframe.units.party.customTexts = {}
-	E.db.unitframe.units.party.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.party.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.debuffs.enable = false
@@ -1092,7 +1099,6 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.party.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.party.phaseIndicator.xOffset = 15
 	E.db.unitframe.units.party.power.enable = false
-	E.db.unitframe.units.party.power.height = 6
 	E.db.unitframe.units.party.raidRoleIcons.yOffset = 1
 	E.db.unitframe.units.party.rdebuffs.enable = false
 	E.db.unitframe.units.party.readycheckIcon.attachTo = 'Frame'
@@ -1224,11 +1230,11 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.movers.MirrorTimer1Mover = 'TOP,ElvUIParent,TOP,0,-60'
 	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-79'
 	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-98'
-	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-214'
+	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.PetAB = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,89') or 'BOTTOM,ElvUIParent,BOTTOM,0,101'
 	E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-121'
-	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-214'
+	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-152'
 	E.db.movers.ReputationBarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-402,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-466,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
@@ -1278,6 +1284,15 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.party.roleIcon.xOffset = 0
 		E.db.unitframe.units.party.showPlayer = false
 		E.db.unitframe.units.party.width = 210
+
+		-- Main Party (Classic Only)
+		if E.Classic then
+			E.db.unitframe.units.party.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color<%]', xOffset = 88, yOffset = 20 }
+			E.db.unitframe.units.party.power.autoHide = true
+			E.db.unitframe.units.party.power.enable = true
+			E.db.unitframe.units.party.power.height = 4
+			E.db.unitframe.units.party.power.text_format = ''
+		end
 
 		-- Main Raid1
 		E.db.unitframe.units.raid1.height = 40
@@ -1340,6 +1355,9 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.raid3.roleIcon.yOffset = 0
 		E.db.unitframe.units.raid3.width = (scaled and 80) or 92
 
+		-- Main misc
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 299) or 347
+
 		-- Main movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,UIParent,BOTTOM,-230,146') or 'BOTTOM,ElvUIParent,BOTTOM,-260,209'
 		E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,318,459') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-660,580'
@@ -1378,7 +1396,6 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.player.power.height = 18
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
-		E.db.unitframe.units.player.power.xOffset = 0
 
 		-- Healing TargetTarget
 		E.db.unitframe.units.targettarget.width = 260
@@ -1467,6 +1484,9 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.raid3.roleIcon.xOffset = 0
 		E.db.unitframe.units.raid3.roleIcon.yOffset = 0
 		E.db.unitframe.units.raid3.width = (scaled and 100) or 120
+
+		-- Healing misc
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 299) or 347
 
 		-- Healing movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,UIParent,BOTTOM,-280,146') or 'BOTTOM,ElvUIParent,BOTTOM,-330,241'
@@ -1585,7 +1605,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.raid3.roleIcon.yOffset = 0
 		E.db.unitframe.units.raid3.width = (scaled and 80) or 92
 
-		-- Special support stuff
+		-- Special misc
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 404) or 464
 		E.db.actionbar.bar1.mouseover = true
 		E.db.actionbar.bar2.mouseover = true
@@ -1671,7 +1691,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.general.vehicleSeatIndicatorSize = 64
 
 	if E.Retail then
-		E.db.general.addonCompartment.fontOutline = 'OUTLINE'
+		E.db.general.addonCompartment.fontOutline = Private.Outline
 		E.db.general.addonCompartment.hide = true
 		E.db.general.addonCompartment.size = 20
 		E.db.general.privateAuras.icon.size = 64
@@ -1679,25 +1699,25 @@ function Private:Layout_Dragonflight(layout)
 
 	if not E.Classic then
 		E.db.general.guildBank.countFont = Private.Font
-		E.db.general.guildBank.countFontOutline = 'OUTLINE'
+		E.db.general.guildBank.countFontOutline = Private.Outline
 		E.db.general.guildBank.itemLevelFont = Private.Font
-		E.db.general.guildBank.itemLevelFontOutline = 'OUTLINE'
+		E.db.general.guildBank.itemLevelFontOutline = Private.Outline
 	end
 
 	-- ActionBars
 	E.db.actionbar.bar1.buttonSize = 26
 	E.db.actionbar.bar1.buttonSpacing = 1
 	E.db.actionbar.bar1.countFont = Private.Font
-	E.db.actionbar.bar1.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar1.countFontOutline = Private.Outline
 	E.db.actionbar.bar1.countFontSize = 9
 	E.db.actionbar.bar1.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar1.hotkeyFont = Private.Font
-	E.db.actionbar.bar1.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar1.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar1.hotkeyFontSize = 9
 	E.db.actionbar.bar1.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar1.hotkeyTextYOffset = -1
 	E.db.actionbar.bar1.macroFont = Private.Font
-	E.db.actionbar.bar1.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar1.macroFontOutline = Private.Outline
 	E.db.actionbar.bar1.macroFontSize = 9
 	E.db.actionbar.bar1.macrotext = true
 	E.db.actionbar.bar1.macroTextPosition = 'BOTTOM'
@@ -1706,17 +1726,17 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.bar2.buttonSize = 26
 	E.db.actionbar.bar2.buttonSpacing = 1
 	E.db.actionbar.bar2.countFont = Private.Font
-	E.db.actionbar.bar2.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar2.countFontOutline = Private.Outline
 	E.db.actionbar.bar2.countFontSize = 9
 	E.db.actionbar.bar2.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar2.enabled = true
 	E.db.actionbar.bar2.hotkeyFont = Private.Font
-	E.db.actionbar.bar2.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar2.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar2.hotkeyFontSize = 9
 	E.db.actionbar.bar2.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar2.hotkeyTextYOffset = -1
 	E.db.actionbar.bar2.macroFont = Private.Font
-	E.db.actionbar.bar2.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar2.macroFontOutline = Private.Outline
 	E.db.actionbar.bar2.macroFontSize = 9
 	E.db.actionbar.bar2.macrotext = true
 	E.db.actionbar.bar2.macroTextPosition = 'BOTTOM'
@@ -1727,16 +1747,16 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.bar3.buttonSpacing = 1
 	E.db.actionbar.bar3.buttonsPerRow = 12
 	E.db.actionbar.bar3.countFont = Private.Font
-	E.db.actionbar.bar3.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar3.countFontOutline = Private.Outline
 	E.db.actionbar.bar3.countFontSize = 9
 	E.db.actionbar.bar3.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar3.hotkeyFont = Private.Font
-	E.db.actionbar.bar3.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar3.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar3.hotkeyFontSize = 9
 	E.db.actionbar.bar3.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar3.hotkeyTextYOffset = -1
 	E.db.actionbar.bar3.macroFont = Private.Font
-	E.db.actionbar.bar3.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar3.macroFontOutline = Private.Outline
 	E.db.actionbar.bar3.macroFontSize = 9
 	E.db.actionbar.bar3.macrotext = true
 	E.db.actionbar.bar3.macroTextPosition = 'BOTTOM'
@@ -1748,17 +1768,17 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.bar4.buttonSpacing = 1
 	E.db.actionbar.bar4.buttonsPerRow = 12
 	E.db.actionbar.bar4.countFont = Private.Font
-	E.db.actionbar.bar4.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar4.countFontOutline = Private.Outline
 	E.db.actionbar.bar4.countFontSize = 9
 	E.db.actionbar.bar4.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar4.enabled = false
 	E.db.actionbar.bar4.hotkeyFont = Private.Font
-	E.db.actionbar.bar4.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar4.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar4.hotkeyFontSize = 9
 	E.db.actionbar.bar4.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar4.hotkeyTextYOffset = -1
 	E.db.actionbar.bar4.macroFont = Private.Font
-	E.db.actionbar.bar4.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar4.macroFontOutline = Private.Outline
 	E.db.actionbar.bar4.macroFontSize = 9
 	E.db.actionbar.bar4.macrotext = true
 	E.db.actionbar.bar4.macroTextPosition = 'BOTTOM'
@@ -1770,17 +1790,17 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.bar5.buttonSpacing = 1
 	E.db.actionbar.bar5.buttonsPerRow = 1
 	E.db.actionbar.bar5.countFont = Private.Font
-	E.db.actionbar.bar5.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar5.countFontOutline = Private.Outline
 	E.db.actionbar.bar5.countFontSize = 9
 	E.db.actionbar.bar5.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar5.enabled = true
 	E.db.actionbar.bar5.hotkeyFont = Private.Font
-	E.db.actionbar.bar5.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar5.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar5.hotkeyFontSize = 9
 	E.db.actionbar.bar5.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar5.hotkeyTextYOffset = -1
 	E.db.actionbar.bar5.macroFont = Private.Font
-	E.db.actionbar.bar5.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar5.macroFontOutline = Private.Outline
 	E.db.actionbar.bar5.macroFontSize = 9
 	E.db.actionbar.bar5.macrotext = true
 	E.db.actionbar.bar5.macroTextPosition = 'BOTTOM'
@@ -1792,17 +1812,17 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.bar6.buttonSpacing = 1
 	E.db.actionbar.bar6.buttonsPerRow = 12
 	E.db.actionbar.bar6.countFont = Private.Font
-	E.db.actionbar.bar6.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar6.countFontOutline = Private.Outline
 	E.db.actionbar.bar6.countFontSize = 9
 	E.db.actionbar.bar6.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar6.enabled = false
 	E.db.actionbar.bar6.hotkeyFont = Private.Font
-	E.db.actionbar.bar6.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar6.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar6.hotkeyFontSize = 9
 	E.db.actionbar.bar6.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar6.hotkeyTextYOffset = -1
 	E.db.actionbar.bar6.macroFont = Private.Font
-	E.db.actionbar.bar6.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar6.macroFontOutline = Private.Outline
 	E.db.actionbar.bar6.macroFontSize = 9
 	E.db.actionbar.bar6.macrotext = true
 	E.db.actionbar.bar6.macroTextPosition = 'BOTTOM'
@@ -1811,16 +1831,16 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.bar7.buttonSize = 26
 	E.db.actionbar.bar7.buttonSpacing = 1
 	E.db.actionbar.bar7.countFont = Private.Font
-	E.db.actionbar.bar7.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar7.countFontOutline = Private.Outline
 	E.db.actionbar.bar7.countFontSize = 9
 	E.db.actionbar.bar7.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar7.hotkeyFont = Private.Font
-	E.db.actionbar.bar7.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar7.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar7.hotkeyFontSize = 9
 	E.db.actionbar.bar7.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar7.hotkeyTextYOffset = -1
 	E.db.actionbar.bar7.macroFont = Private.Font
-	E.db.actionbar.bar7.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar7.macroFontOutline = Private.Outline
 	E.db.actionbar.bar7.macroFontSize = 9
 	E.db.actionbar.bar7.macrotext = true
 	E.db.actionbar.bar7.macroTextPosition = 'BOTTOM'
@@ -1829,16 +1849,16 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.bar8.buttonSize = 26
 	E.db.actionbar.bar8.buttonSpacing = 1
 	E.db.actionbar.bar8.countFont = Private.Font
-	E.db.actionbar.bar8.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar8.countFontOutline = Private.Outline
 	E.db.actionbar.bar8.countFontSize = 9
 	E.db.actionbar.bar8.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar8.hotkeyFont = Private.Font
-	E.db.actionbar.bar8.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar8.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar8.hotkeyFontSize = 9
 	E.db.actionbar.bar8.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar8.hotkeyTextYOffset = -1
 	E.db.actionbar.bar8.macroFont = Private.Font
-	E.db.actionbar.bar8.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar8.macroFontOutline = Private.Outline
 	E.db.actionbar.bar8.macroFontSize = 9
 	E.db.actionbar.bar8.macrotext = true
 	E.db.actionbar.bar8.macroTextPosition = 'BOTTOM'
@@ -1847,16 +1867,16 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.bar9.buttonSize = 26
 	E.db.actionbar.bar9.buttonSpacing = 1
 	E.db.actionbar.bar9.countFont = Private.Font
-	E.db.actionbar.bar9.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar9.countFontOutline = Private.Outline
 	E.db.actionbar.bar9.countFontSize = 9
 	E.db.actionbar.bar9.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar9.hotkeyFont = Private.Font
-	E.db.actionbar.bar9.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar9.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar9.hotkeyFontSize = 9
 	E.db.actionbar.bar9.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar9.hotkeyTextYOffset = -1
 	E.db.actionbar.bar9.macroFont = Private.Font
-	E.db.actionbar.bar9.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar9.macroFontOutline = Private.Outline
 	E.db.actionbar.bar9.macroFontSize = 9
 	E.db.actionbar.bar9.macrotext = true
 	E.db.actionbar.bar9.macroTextPosition = 'BOTTOM'
@@ -1865,16 +1885,16 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.bar10.buttonSize = 26
 	E.db.actionbar.bar10.buttonSpacing = 1
 	E.db.actionbar.bar10.countFont = Private.Font
-	E.db.actionbar.bar10.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar10.countFontOutline = Private.Outline
 	E.db.actionbar.bar10.countFontSize = 9
 	E.db.actionbar.bar10.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar10.hotkeyFont = Private.Font
-	E.db.actionbar.bar10.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar10.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar10.hotkeyFontSize = 9
 	E.db.actionbar.bar10.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar10.hotkeyTextYOffset = -1
 	E.db.actionbar.bar10.macroFont = Private.Font
-	E.db.actionbar.bar10.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar10.macroFontOutline = Private.Outline
 	E.db.actionbar.bar10.macroFontSize = 9
 	E.db.actionbar.bar10.macrotext = true
 	E.db.actionbar.bar10.macroTextPosition = 'BOTTOM'
@@ -1883,16 +1903,16 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.bar13.buttonSize = 26
 	E.db.actionbar.bar13.buttonSpacing = 1
 	E.db.actionbar.bar13.countFont = Private.Font
-	E.db.actionbar.bar13.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar13.countFontOutline = Private.Outline
 	E.db.actionbar.bar13.countFontSize = 9
 	E.db.actionbar.bar13.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar13.hotkeyFont = Private.Font
-	E.db.actionbar.bar13.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar13.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar13.hotkeyFontSize = 9
 	E.db.actionbar.bar13.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar13.hotkeyTextYOffset = -1
 	E.db.actionbar.bar13.macroFont = Private.Font
-	E.db.actionbar.bar13.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar13.macroFontOutline = Private.Outline
 	E.db.actionbar.bar13.macroFontSize = 9
 	E.db.actionbar.bar13.macrotext = true
 	E.db.actionbar.bar13.macroTextPosition = 'BOTTOM'
@@ -1901,16 +1921,16 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.bar14.buttonSize = 26
 	E.db.actionbar.bar14.buttonSpacing = 1
 	E.db.actionbar.bar14.countFont = Private.Font
-	E.db.actionbar.bar14.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar14.countFontOutline = Private.Outline
 	E.db.actionbar.bar14.countFontSize = 9
 	E.db.actionbar.bar14.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar14.hotkeyFont = Private.Font
-	E.db.actionbar.bar14.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar14.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar14.hotkeyFontSize = 9
 	E.db.actionbar.bar14.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar14.hotkeyTextYOffset = -1
 	E.db.actionbar.bar14.macroFont = Private.Font
-	E.db.actionbar.bar14.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar14.macroFontOutline = Private.Outline
 	E.db.actionbar.bar14.macroFontSize = 9
 	E.db.actionbar.bar14.macrotext = true
 	E.db.actionbar.bar14.macroTextPosition = 'BOTTOM'
@@ -1919,16 +1939,16 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.bar15.buttonSize = 26
 	E.db.actionbar.bar15.buttonSpacing = 1
 	E.db.actionbar.bar15.countFont = Private.Font
-	E.db.actionbar.bar15.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar15.countFontOutline = Private.Outline
 	E.db.actionbar.bar15.countFontSize = 9
 	E.db.actionbar.bar15.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar15.hotkeyFont = Private.Font
-	E.db.actionbar.bar15.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar15.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar15.hotkeyFontSize = 9
 	E.db.actionbar.bar15.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.bar15.hotkeyTextYOffset = -1
 	E.db.actionbar.bar15.macroFont = Private.Font
-	E.db.actionbar.bar15.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar15.macroFontOutline = Private.Outline
 	E.db.actionbar.bar15.macroFontSize = 9
 	E.db.actionbar.bar15.macrotext = true
 	E.db.actionbar.bar15.macroTextPosition = 'BOTTOM'
@@ -1940,10 +1960,10 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.barPet.buttonSpacing = 1
 	E.db.actionbar.barPet.buttonsPerRow = 10
 	E.db.actionbar.barPet.countFont = Private.Font
-	E.db.actionbar.barPet.countFontOutline = 'OUTLINE'
+	E.db.actionbar.barPet.countFontOutline = Private.Outline
 	E.db.actionbar.barPet.countFontSize = 9
 	E.db.actionbar.barPet.hotkeyFont = Private.Font
-	E.db.actionbar.barPet.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.barPet.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.barPet.hotkeyFontSize = 9
 	E.db.actionbar.barPet.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.barPet.hotkeyTextYOffset = -1
@@ -1953,13 +1973,13 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.countTextYOffset = 1
 	E.db.actionbar.extraActionButton.clean = true
 	E.db.actionbar.extraActionButton.hotkeyFont = Private.Font
-	E.db.actionbar.extraActionButton.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.extraActionButton.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.extraActionButton.hotkeyFontSize = 9
 	E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.extraActionButton.hotkeyTextYOffset = -1
 	E.db.actionbar.flyoutSize = 26
 	E.db.actionbar.font = Private.Font
-	E.db.actionbar.fontOutline = 'OUTLINE'
+	E.db.actionbar.fontOutline = Private.Outline
 	E.db.actionbar.fontSize = 9
 	E.db.actionbar.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.macroTextPosition = 'BOTTOM'
@@ -1973,7 +1993,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.stanceBar.buttonSize = 26
 	E.db.actionbar.stanceBar.buttonSpacing = 1
 	E.db.actionbar.stanceBar.hotkeyFont = Private.Font
-	E.db.actionbar.stanceBar.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.stanceBar.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.stanceBar.hotkeyFontSize = 9
 	E.db.actionbar.stanceBar.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.stanceBar.hotkeyTextYOffset = -1
@@ -1981,7 +2001,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.actionbar.stanceBar.style = 'classic'
 	E.db.actionbar.transparent = true
 	E.db.actionbar.vehicleExitButton.hotkeyFont = Private.Font
-	E.db.actionbar.vehicleExitButton.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.vehicleExitButton.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.vehicleExitButton.hotkeyFontSize = 9
 	E.db.actionbar.vehicleExitButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.vehicleExitButton.hotkeyTextYOffset = -1
@@ -1999,13 +2019,13 @@ function Private:Layout_Dragonflight(layout)
 	E.db.bags.bankWidth = 414
 	E.db.bags.clearSearchOnClose = true
 	E.db.bags.countFont = Private.Font
-	E.db.bags.countFontOutline = 'OUTLINE'
+	E.db.bags.countFontOutline = Private.Outline
 	E.db.bags.countFontSize = 11
 	E.db.bags.itemInfoFont = Private.Font
-	E.db.bags.itemInfoFontOutline = 'OUTLINE'
+	E.db.bags.itemInfoFontOutline = Private.Outline
 	E.db.bags.itemInfoFontSize = 11
 	E.db.bags.itemLevelFont = Private.Font
-	E.db.bags.itemLevelFontOutline = 'OUTLINE'
+	E.db.bags.itemLevelFontOutline = Private.Outline
 	E.db.bags.itemLevelFontSize = 11
 	E.db.bags.moneyFormat = 'FULL'
 	E.db.bags.transparent = true
@@ -2022,7 +2042,7 @@ function Private:Layout_Dragonflight(layout)
 
 	-- Auras
 	E.db.auras.buffs.countFont = Private.Font
-	E.db.auras.buffs.countFontOutline = 'OUTLINE'
+	E.db.auras.buffs.countFontOutline = Private.Outline
 	E.db.auras.buffs.countFontSize = 12
 	E.db.auras.buffs.countXOffset = 1
 	E.db.auras.buffs.countYOffset = 2
@@ -2031,11 +2051,11 @@ function Private:Layout_Dragonflight(layout)
 	E.db.auras.buffs.seperateOwn = 0
 	E.db.auras.buffs.size = 22
 	E.db.auras.buffs.timeFont = Private.Font
-	E.db.auras.buffs.timeFontOutline = 'OUTLINE'
+	E.db.auras.buffs.timeFontOutline = Private.Outline
 	E.db.auras.buffs.timeXOffset = 1
 	E.db.auras.buffs.verticalSpacing = 14
 	E.db.auras.debuffs.countFont = Private.Font
-	E.db.auras.debuffs.countFontOutline = 'OUTLINE'
+	E.db.auras.debuffs.countFontOutline = Private.Outline
 	E.db.auras.debuffs.countFontSize = 12
 	E.db.auras.debuffs.countXOffset = 1
 	E.db.auras.debuffs.countYOffset = 2
@@ -2045,7 +2065,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.auras.debuffs.seperateOwn = 0
 	E.db.auras.debuffs.size = 22
 	E.db.auras.debuffs.timeFont = Private.Font
-	E.db.auras.debuffs.timeFontOutline = 'OUTLINE'
+	E.db.auras.debuffs.timeFontOutline = Private.Outline
 	E.db.auras.debuffs.timeXOffset = 1
 	E.db.auras.debuffs.verticalSpacing = 14
 
@@ -2060,7 +2080,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.chat.fade = false
 	E.db.chat.fadeTabsNoBackdrop = false
 	E.db.chat.font = Private.Font
-	E.db.chat.fontOutline = 'OUTLINE'
+	E.db.chat.fontOutline = Private.Outline
 	E.db.chat.hideChatToggles = true
 	E.db.chat.historySize = 200
 	E.db.chat.lfgIcons = false
@@ -2081,7 +2101,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.chat.showHistory.SAY = false
 	E.db.chat.showHistory.YELL = false
 	E.db.chat.tabFont = Private.Font
-	E.db.chat.tabFontOutline = 'OUTLINE'
+	E.db.chat.tabFontOutline = Private.Outline
 	E.db.chat.tabFontSize = 10
 	E.db.chat.tabSelector = 'NONE'
 	E.db.chat.throttleInterval = 0
@@ -2148,7 +2168,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.datatexts.battlePanel.RightChatDataPanel[2] = ''
 	E.db.datatexts.battlePanel.RightChatDataPanel[3] = ''
 	E.db.datatexts.font = Private.Font
-	E.db.datatexts.fontOutline = 'OUTLINE'
+	E.db.datatexts.fontOutline = Private.Outline
 	E.db.datatexts.fontSize = 11
 	E.db.datatexts.panels.LeftChatDataPanel.battleground = false
 	E.db.datatexts.panels.LeftChatDataPanel.enable = false
@@ -2171,12 +2191,12 @@ function Private:Layout_Dragonflight(layout)
 	E.db.tooltip.alwaysShowRealm = true
 	E.db.tooltip.colorAlpha = 0.9
 	E.db.tooltip.font = Private.Font
-	E.db.tooltip.fontOutline = 'OUTLINE'
+	E.db.tooltip.fontOutline = Private.Outline
 	E.db.tooltip.headerFont = Private.Font
-	E.db.tooltip.headerFontOutline = 'OUTLINE'
+	E.db.tooltip.headerFontOutline = Private.Outline
 	E.db.tooltip.headerFontSize = 11
 	E.db.tooltip.healthBar.font = Private.Font
-	E.db.tooltip.healthBar.fontOutline = 'OUTLINE'
+	E.db.tooltip.healthBar.fontOutline = Private.Outline
 	E.db.tooltip.healthBar.fontSize = 11
 	E.db.tooltip.healthBar.height = 2
 	E.db.tooltip.healthBar.statusPosition = 'TOP'
@@ -2225,7 +2245,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.unitframe.cooldown.fonts.font = Private.Font
 	E.db.unitframe.cooldown.override = false
 	E.db.unitframe.font = Private.Font
-	E.db.unitframe.fontOutline = 'OUTLINE'
+	E.db.unitframe.fontOutline = Private.Outline
 	E.db.unitframe.fontSize = 11
 	E.db.unitframe.statusbar = Private.Texture
 
@@ -2235,7 +2255,7 @@ function Private:Layout_Dragonflight(layout)
 
 	-- Shared Arena
 	E.db.unitframe.units.arena.customTexts = {}
-	E.db.unitframe.units.arena.customTexts.Luckyone_Power = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = -1, yOffset = 0 }
+	E.db.unitframe.units.arena.customTexts.Luckyone_Power = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = -1, yOffset = 0 }
 
 	E.db.unitframe.units.arena.buffs.anchorPoint = 'RIGHT'
 	E.db.unitframe.units.arena.buffs.countFont = Private.Font
@@ -2296,8 +2316,8 @@ function Private:Layout_Dragonflight(layout)
 
 	-- Shared Focus
 	E.db.unitframe.units.focus.customTexts = {}
-	E.db.unitframe.units.focus.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
-	E.db.unitframe.units.focus.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[classcolor][name:last]', xOffset = -3, yOffset = 0 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 14, text_format = '[classcolor][name:last]', xOffset = -3, yOffset = 0 }
 
 	E.db.unitframe.units.focus.buffs.anchorPoint = 'TOPRIGHT'
 	E.db.unitframe.units.focus.buffs.countFont = Private.Font
@@ -2350,7 +2370,7 @@ function Private:Layout_Dragonflight(layout)
 
 	-- Shared Boss
 	E.db.unitframe.units.boss.customTexts = {}
-	E.db.unitframe.units.boss.customTexts.Luckyone_Power = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = -1, yOffset = 0 }
+	E.db.unitframe.units.boss.customTexts.Luckyone_Power = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = -1, yOffset = 0 }
 
 	E.db.unitframe.units.boss.buffIndicator.enable = false
 	E.db.unitframe.units.boss.buffs.anchorPoint = 'RIGHT'
@@ -2403,8 +2423,8 @@ function Private:Layout_Dragonflight(layout)
 
 	-- Shared Pet
 	E.db.unitframe.units.pet.customTexts = {}
-	E.db.unitframe.units.pet.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[health:current:shortvalue] • [luckyone:health:percent]', xOffset = -3, yOffset = 0 }
-	E.db.unitframe.units.pet.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = E.Classic and '[happiness:color][name][ >happiness:full]' or '[classcolor][name]', xOffset = 3, yOffset = 0 }
+	E.db.unitframe.units.pet.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = '[health:current:shortvalue] • [luckyone:health:percent]', xOffset = -3, yOffset = 0 }
+	E.db.unitframe.units.pet.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 12, text_format = E.Classic and '[happiness:color][name][ >happiness:full]' or '[classcolor][name]', xOffset = 3, yOffset = 0 }
 
 	E.db.unitframe.units.pet.buffs.enable = false
 	E.db.unitframe.units.pet.castbar.enable = false
@@ -2423,8 +2443,8 @@ function Private:Layout_Dragonflight(layout)
 
 	-- Shared Player
 	E.db.unitframe.units.player.customTexts = {}
-	E.db.unitframe.units.player.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '', xOffset = -2, yOffset = 0 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[classcolor][name:short]', xOffset = 5, yOffset = 0 }
+	E.db.unitframe.units.player.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 14, text_format = '', xOffset = -2, yOffset = 0 }
+	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 14, text_format = '[classcolor][name:short]', xOffset = 5, yOffset = 0 }
 
 	E.db.unitframe.units.player.aurabar.enable = false
 	E.db.unitframe.units.player.buffs.attachTo = 'FRAME'
@@ -2479,9 +2499,9 @@ function Private:Layout_Dragonflight(layout)
 	-- Shared Target
 	E.db.unitframe.units.target.customTexts = {}
 	E.db.unitframe.units.targettarget.customTexts = {}
-	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = E.Retail and '[classcolor][name:last]' or '[difficultycolor][level< - ]|r[classcolor][name:last]', xOffset = -3, yOffset = 0 }
-	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:last]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
+	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 14, text_format = E.Retail and '[classcolor][name:last]' or '[difficultycolor][level< - ]|r[classcolor][name:last]', xOffset = -3, yOffset = 0 }
+	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:last]', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.target.aurabar.enable = false
 	E.db.unitframe.units.target.buffs.countFont = Private.Font
@@ -2544,7 +2564,7 @@ function Private:Layout_Dragonflight(layout)
 
 	-- Shared Party
 	E.db.unitframe.units.party.customTexts = {}
-	E.db.unitframe.units.party.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.party.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.CombatIcon.enable = false
@@ -2629,7 +2649,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid1.raidRoleIcons.scale = 0.8
 	E.db.unitframe.units.raid1.raidRoleIcons.yOffset = 1
 	E.db.unitframe.units.raid1.rdebuffs.font = Private.Font
-	E.db.unitframe.units.raid1.rdebuffs.fontOutline = 'OUTLINE'
+	E.db.unitframe.units.raid1.rdebuffs.fontOutline = Private.Outline
 	E.db.unitframe.units.raid1.rdebuffs.fontSize = 9
 	E.db.unitframe.units.raid1.rdebuffs.size = 14
 	E.db.unitframe.units.raid1.rdebuffs.stack.position = 'CENTER'
@@ -2695,7 +2715,7 @@ function Private:Layout_Dragonflight(layout)
 	E.db.unitframe.units.raid3.raidRoleIcons.yOffset = 1
 	E.db.unitframe.units.raid3.rdebuffs.enable = true
 	E.db.unitframe.units.raid3.rdebuffs.font = Private.Font
-	E.db.unitframe.units.raid3.rdebuffs.fontOutline = 'OUTLINE'
+	E.db.unitframe.units.raid3.rdebuffs.fontOutline = Private.Outline
 	E.db.unitframe.units.raid3.rdebuffs.fontSize = 9
 	E.db.unitframe.units.raid3.rdebuffs.size = 14
 	E.db.unitframe.units.raid3.rdebuffs.stack.position = 'CENTER'
@@ -3009,29 +3029,29 @@ function Private:Layout_Shadowlands(layout)
 	E.db.actionbar.bar1.alpha = 1
 	E.db.actionbar.bar1.buttonSize = 28
 	E.db.actionbar.bar1.countFont = Private.Font
-	E.db.actionbar.bar1.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar1.countFontOutline = Private.Outline
 	E.db.actionbar.bar1.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar1.hotkeyFont = Private.Font
-	E.db.actionbar.bar1.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar1.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar1.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar1.hotkeyTextYOffset = -1
 	E.db.actionbar.bar1.macroFont = Private.Font
-	E.db.actionbar.bar1.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar1.macroFontOutline = Private.Outline
 	E.db.actionbar.bar1.macrotext = true
 	E.db.actionbar.bar1.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar1.macroTextYOffset = 1
 	E.db.actionbar.bar2.alpha = 1
 	E.db.actionbar.bar2.buttonSize = 28
 	E.db.actionbar.bar2.countFont = Private.Font
-	E.db.actionbar.bar2.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar2.countFontOutline = Private.Outline
 	E.db.actionbar.bar2.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar2.enabled = true
 	E.db.actionbar.bar2.hotkeyFont = Private.Font
-	E.db.actionbar.bar2.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar2.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar2.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar2.hotkeyTextYOffset = -1
 	E.db.actionbar.bar2.macroFont = Private.Font
-	E.db.actionbar.bar2.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar2.macroFontOutline = Private.Outline
 	E.db.actionbar.bar2.macrotext = true
 	E.db.actionbar.bar2.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar2.macroTextYOffset = 1
@@ -3040,14 +3060,14 @@ function Private:Layout_Shadowlands(layout)
 	E.db.actionbar.bar3.buttonSize = 28
 	E.db.actionbar.bar3.buttonsPerRow = 12
 	E.db.actionbar.bar3.countFont = Private.Font
-	E.db.actionbar.bar3.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar3.countFontOutline = Private.Outline
 	E.db.actionbar.bar3.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar3.hotkeyFont = Private.Font
-	E.db.actionbar.bar3.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar3.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar3.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar3.hotkeyTextYOffset = -1
 	E.db.actionbar.bar3.macroFont = Private.Font
-	E.db.actionbar.bar3.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar3.macroFontOutline = Private.Outline
 	E.db.actionbar.bar3.macrotext = true
 	E.db.actionbar.bar3.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar3.macroTextYOffset = 1
@@ -3057,15 +3077,15 @@ function Private:Layout_Shadowlands(layout)
 	E.db.actionbar.bar4.buttonSize = 28
 	E.db.actionbar.bar4.buttonsPerRow = E.Retail and 12 or 6
 	E.db.actionbar.bar4.countFont = Private.Font
-	E.db.actionbar.bar4.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar4.countFontOutline = Private.Outline
 	E.db.actionbar.bar4.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar4.enabled = not E.Retail
 	E.db.actionbar.bar4.hotkeyFont = Private.Font
-	E.db.actionbar.bar4.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar4.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar4.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar4.hotkeyTextYOffset = -1
 	E.db.actionbar.bar4.macroFont = Private.Font
-	E.db.actionbar.bar4.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar4.macroFontOutline = Private.Outline
 	E.db.actionbar.bar4.macrotext = true
 	E.db.actionbar.bar4.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar4.macroTextYOffset = 1
@@ -3076,15 +3096,15 @@ function Private:Layout_Shadowlands(layout)
 	E.db.actionbar.bar5.buttonSize = 28
 	E.db.actionbar.bar5.buttonsPerRow = 1
 	E.db.actionbar.bar5.countFont = Private.Font
-	E.db.actionbar.bar5.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar5.countFontOutline = Private.Outline
 	E.db.actionbar.bar5.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar5.enabled = true
 	E.db.actionbar.bar5.hotkeyFont = Private.Font
-	E.db.actionbar.bar5.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar5.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar5.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar5.hotkeyTextYOffset = -1
 	E.db.actionbar.bar5.macroFont = Private.Font
-	E.db.actionbar.bar5.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar5.macroFontOutline = Private.Outline
 	E.db.actionbar.bar5.macrotext = true
 	E.db.actionbar.bar5.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar5.macroTextYOffset = 1
@@ -3094,15 +3114,15 @@ function Private:Layout_Shadowlands(layout)
 	E.db.actionbar.bar6.buttonSize = 28
 	E.db.actionbar.bar6.buttonsPerRow = E.Retail and 12 or 6
 	E.db.actionbar.bar6.countFont = Private.Font
-	E.db.actionbar.bar6.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar6.countFontOutline = Private.Outline
 	E.db.actionbar.bar6.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar6.enabled = not E.Retail
 	E.db.actionbar.bar6.hotkeyFont = Private.Font
-	E.db.actionbar.bar6.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar6.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar6.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar6.hotkeyTextYOffset = -1
 	E.db.actionbar.bar6.macroFont = Private.Font
-	E.db.actionbar.bar6.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar6.macroFontOutline = Private.Outline
 	E.db.actionbar.bar6.macrotext = true
 	E.db.actionbar.bar6.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar6.macroTextYOffset = 1
@@ -3110,56 +3130,56 @@ function Private:Layout_Shadowlands(layout)
 	E.db.actionbar.bar7.alpha = 1
 	E.db.actionbar.bar7.buttonSize = 28
 	E.db.actionbar.bar7.countFont = Private.Font
-	E.db.actionbar.bar7.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar7.countFontOutline = Private.Outline
 	E.db.actionbar.bar7.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar7.hotkeyFont = Private.Font
-	E.db.actionbar.bar7.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar7.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar7.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar7.hotkeyTextYOffset = -1
 	E.db.actionbar.bar7.macroFont = Private.Font
-	E.db.actionbar.bar7.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar7.macroFontOutline = Private.Outline
 	E.db.actionbar.bar7.macrotext = true
 	E.db.actionbar.bar7.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar7.macroTextYOffset = 1
 	E.db.actionbar.bar8.alpha = 1
 	E.db.actionbar.bar8.buttonSize = 28
 	E.db.actionbar.bar8.countFont = Private.Font
-	E.db.actionbar.bar8.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar8.countFontOutline = Private.Outline
 	E.db.actionbar.bar8.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar8.hotkeyFont = Private.Font
-	E.db.actionbar.bar8.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar8.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar8.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar8.hotkeyTextYOffset = -1
 	E.db.actionbar.bar8.macroFont = Private.Font
-	E.db.actionbar.bar8.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar8.macroFontOutline = Private.Outline
 	E.db.actionbar.bar8.macrotext = true
 	E.db.actionbar.bar8.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar8.macroTextYOffset = 1
 	E.db.actionbar.bar9.alpha = 1
 	E.db.actionbar.bar9.buttonSize = 28
 	E.db.actionbar.bar9.countFont = Private.Font
-	E.db.actionbar.bar9.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar9.countFontOutline = Private.Outline
 	E.db.actionbar.bar9.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar9.hotkeyFont = Private.Font
-	E.db.actionbar.bar9.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar9.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar9.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar9.hotkeyTextYOffset = -1
 	E.db.actionbar.bar9.macroFont = Private.Font
-	E.db.actionbar.bar9.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar9.macroFontOutline = Private.Outline
 	E.db.actionbar.bar9.macrotext = true
 	E.db.actionbar.bar9.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar9.macroTextYOffset = 1
 	E.db.actionbar.bar10.alpha = 1
 	E.db.actionbar.bar10.buttonSize = 28
 	E.db.actionbar.bar10.countFont = Private.Font
-	E.db.actionbar.bar10.countFontOutline = 'OUTLINE'
+	E.db.actionbar.bar10.countFontOutline = Private.Outline
 	E.db.actionbar.bar10.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar10.hotkeyFont = Private.Font
-	E.db.actionbar.bar10.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.bar10.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar10.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.bar10.hotkeyTextYOffset = -1
 	E.db.actionbar.bar10.macroFont = Private.Font
-	E.db.actionbar.bar10.macroFontOutline = 'OUTLINE'
+	E.db.actionbar.bar10.macroFontOutline = Private.Outline
 	E.db.actionbar.bar10.macrotext = true
 	E.db.actionbar.bar10.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.bar10.macroTextYOffset = 1
@@ -3168,9 +3188,9 @@ function Private:Layout_Shadowlands(layout)
 	E.db.actionbar.barPet.buttonSize = 28
 	E.db.actionbar.barPet.buttonsPerRow = 10
 	E.db.actionbar.barPet.countFont = Private.Font
-	E.db.actionbar.barPet.countFontOutline = 'OUTLINE'
+	E.db.actionbar.barPet.countFontOutline = Private.Outline
 	E.db.actionbar.barPet.hotkeyFont = Private.Font
-	E.db.actionbar.barPet.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.barPet.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.barPet.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.barPet.hotkeyTextYOffset = -1
 	E.db.actionbar.barPet.point = 'TOPLEFT'
@@ -3180,13 +3200,13 @@ function Private:Layout_Shadowlands(layout)
 	E.db.actionbar.extraActionButton.alpha = 1
 	E.db.actionbar.extraActionButton.clean = true
 	E.db.actionbar.extraActionButton.hotkeyFont = Private.Font
-	E.db.actionbar.extraActionButton.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.extraActionButton.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.extraActionButton.hotkeyTextYOffset = -1
 	E.db.actionbar.extraActionButton.scale = 0.65
 	E.db.actionbar.flyoutSize = 28
 	E.db.actionbar.font = Private.Font
-	E.db.actionbar.fontOutline = 'OUTLINE'
+	E.db.actionbar.fontOutline = Private.Outline
 	E.db.actionbar.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.macroTextPosition = 'BOTTOM'
 	E.db.actionbar.microbar.buttonHeight = 25
@@ -3198,13 +3218,13 @@ function Private:Layout_Shadowlands(layout)
 	E.db.actionbar.stanceBar.buttonSize = 25
 	E.db.actionbar.stanceBar.buttonSpacing = 1
 	E.db.actionbar.stanceBar.hotkeyFont = Private.Font
-	E.db.actionbar.stanceBar.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.stanceBar.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.stanceBar.hotkeyTextPosition = 'TOPLEFT'
 	E.db.actionbar.stanceBar.hotkeyTextYOffset = -1
 	E.db.actionbar.stanceBar.mouseover = true
 	E.db.actionbar.transparent = true
 	E.db.actionbar.vehicleExitButton.hotkeyFont = Private.Font
-	E.db.actionbar.vehicleExitButton.hotkeyFontOutline = 'OUTLINE'
+	E.db.actionbar.vehicleExitButton.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.zoneActionButton.alpha = 1
 	E.db.actionbar.zoneActionButton.clean = true
 	E.db.actionbar.zoneActionButton.scale = 0.65
@@ -3214,13 +3234,13 @@ function Private:Layout_Shadowlands(layout)
 	E.db.bags.bankWidth = 414
 	E.db.bags.clearSearchOnClose = true
 	E.db.bags.countFont = Private.Font
-	E.db.bags.countFontOutline = 'OUTLINE'
+	E.db.bags.countFontOutline = Private.Outline
 	E.db.bags.countFontSize = 12
 	E.db.bags.itemInfoFont = Private.Font
-	E.db.bags.itemInfoFontOutline = 'OUTLINE'
+	E.db.bags.itemInfoFontOutline = Private.Outline
 	E.db.bags.itemInfoFontSize = 12
 	E.db.bags.itemLevelFont = Private.Font
-	E.db.bags.itemLevelFontOutline = 'OUTLINE'
+	E.db.bags.itemLevelFontOutline = Private.Outline
 	E.db.bags.itemLevelFontSize = 12
 	E.db.bags.moneyFormat = 'BLIZZARD'
 	E.db.bags.transparent = true
@@ -3228,17 +3248,17 @@ function Private:Layout_Shadowlands(layout)
 
 	-- Auras
 	E.db.auras.buffs.countFont = Private.Font
-	E.db.auras.buffs.countFontOutline = 'OUTLINE'
+	E.db.auras.buffs.countFontOutline = Private.Outline
 	E.db.auras.buffs.countFontSize = 12
 	E.db.auras.buffs.countYOffset = 2
 	E.db.auras.buffs.horizontalSpacing = 2
 	E.db.auras.buffs.seperateOwn = 0
 	E.db.auras.buffs.size = 26
 	E.db.auras.buffs.timeFont = Private.Font
-	E.db.auras.buffs.timeFontOutline = 'OUTLINE'
+	E.db.auras.buffs.timeFontOutline = Private.Outline
 	E.db.auras.buffs.timeFontSize = 11
 	E.db.auras.debuffs.countFont = Private.Font
-	E.db.auras.debuffs.countFontOutline = 'OUTLINE'
+	E.db.auras.debuffs.countFontOutline = Private.Outline
 	E.db.auras.debuffs.countFontSize = 12
 	E.db.auras.debuffs.countYOffset = 2
 	E.db.auras.debuffs.horizontalSpacing = 2
@@ -3246,7 +3266,7 @@ function Private:Layout_Shadowlands(layout)
 	E.db.auras.debuffs.seperateOwn = 0
 	E.db.auras.debuffs.size = 26
 	E.db.auras.debuffs.timeFont = Private.Font
-	E.db.auras.debuffs.timeFontOutline = 'OUTLINE'
+	E.db.auras.debuffs.timeFontOutline = Private.Outline
 	E.db.auras.debuffs.timeFontSize = 11
 
 	-- Chat
@@ -3257,7 +3277,7 @@ function Private:Layout_Shadowlands(layout)
 	E.db.chat.fade = false
 	E.db.chat.fadeTabsNoBackdrop = false
 	E.db.chat.font = Private.Font
-	E.db.chat.fontOutline = 'OUTLINE'
+	E.db.chat.fontOutline = Private.Outline
 	E.db.chat.hideChatToggles = true
 	E.db.chat.historySize = 200
 	E.db.chat.keywords = '%MYNAME%'
@@ -3281,7 +3301,7 @@ function Private:Layout_Shadowlands(layout)
 	E.db.chat.showHistory.SAY = false
 	E.db.chat.showHistory.YELL = false
 	E.db.chat.tabFont = Private.Font
-	E.db.chat.tabFontOutline = 'OUTLINE'
+	E.db.chat.tabFontOutline = Private.Outline
 	E.db.chat.tabFontSize = 10
 	E.db.chat.tabSelector = 'NONE'
 	E.db.chat.throttleInterval = 0
@@ -3317,7 +3337,7 @@ function Private:Layout_Shadowlands(layout)
 
 	-- DataTexts
 	E.db.datatexts.font = Private.Font
-	E.db.datatexts.fontOutline = 'OUTLINE'
+	E.db.datatexts.fontOutline = Private.Outline
 	E.db.datatexts.fontSize = 13
 	E.db.datatexts.panels.LeftChatDataPanel.enable = false
 	E.db.datatexts.panels.MinimapPanel.numPoints = 1
@@ -3329,9 +3349,9 @@ function Private:Layout_Shadowlands(layout)
 	E.db.tooltip.alwaysShowRealm = true
 	E.db.tooltip.colorAlpha = 0.80
 	E.db.tooltip.font = Private.Font
-	E.db.tooltip.fontOutline = 'OUTLINE'
+	E.db.tooltip.fontOutline = Private.Outline
 	E.db.tooltip.headerFont = Private.Font
-	E.db.tooltip.headerFontOutline = 'OUTLINE'
+	E.db.tooltip.headerFontOutline = Private.Outline
 	E.db.tooltip.headerFontSize = 11
 	E.db.tooltip.healthBar.font = Private.Font
 	E.db.tooltip.healthBar.fontSize = 11
@@ -3362,53 +3382,53 @@ function Private:Layout_Shadowlands(layout)
 	E.db.unitframe.units.targettarget.customTexts = {}
 
 	-- Custom Text: Arena
-	E.db.unitframe.units.arena.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent]', xOffset = 1, yOffset = 0 }
-	E.db.unitframe.units.arena.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.arena.customTexts.Luckyone_Power = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.arena.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent]', xOffset = 1, yOffset = 0 }
+	E.db.unitframe.units.arena.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.arena.customTexts.Luckyone_Power = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 14, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 0 }
 
 	-- Custom Text: Boss
-	E.db.unitframe.units.boss.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent]', xOffset = 1, yOffset = 0 }
-	E.db.unitframe.units.boss.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:last]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.boss.customTexts.Luckyone_Power = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 14, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.boss.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent]', xOffset = 1, yOffset = 0 }
+	E.db.unitframe.units.boss.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:last]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.boss.customTexts.Luckyone_Power = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 14, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 0 }
 
 	-- Custom Text: Focus
-	E.db.unitframe.units.focus.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.focus.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.focus.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:medium]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.focus.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 1, yOffset = 1 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:medium]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 1, yOffset = 1 }
 
 	-- Custom Text: Focus Target
-	E.db.unitframe.units.focustarget.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.focustarget.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.focustarget.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.focustarget.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 1 }
 
 	-- Custom Text: Party
-	E.db.unitframe.units.party.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.party.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
 
 	-- Custom Text: Pet
-	E.db.unitframe.units.pet.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.pet.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = E.Classic and '[happiness:color]Pet[ >happiness:full]' or '[classcolor]Pet', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.pet.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.pet.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = E.Classic and '[happiness:color]Pet[ >happiness:full]' or '[classcolor]Pet', xOffset = 0, yOffset = 1 }
 
 	-- Custom Text: Player
-	E.db.unitframe.units.player.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[health:current:shortvalue] | [luckyone:health:percent]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[classcolor][level]', xOffset = 1, yOffset = 1 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.player.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[health:current:shortvalue] | [luckyone:health:percent]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.player.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 12, text_format = '[classcolor][level]', xOffset = 1, yOffset = 1 }
+	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[classcolor][name]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.player.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 0, yOffset = 1 }
 
 	-- Custom Text: Raid1
-	E.db.unitframe.units.raid1.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.raid1.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
 
 	-- Custom Text: Raid2
-	E.db.unitframe.units.raid2.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.raid2.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 0 }
 
 	-- Custom Text: Target
-	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:last]', xOffset = 0, yOffset = 1 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'LEFT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 1, yOffset = 1 }
+	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent] | [health:current:shortvalue]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.target.customTexts.Luckyone_Level = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = E.Retail and '[classcolor][level]' or '[difficultycolor][level][classificationcolor][ >shortclassification]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:last]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.target.customTexts.Luckyone_Power = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 12, text_format = '[powercolor][perpp<%]', xOffset = 1, yOffset = 1 }
 
 	-- Custom Text: TargetTarget
-	E.db.unitframe.units.targettarget.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = 'OUTLINE', justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 1 }
+	E.db.unitframe.units.targettarget.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[luckyone:health:percent]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'InfoPanel', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[classcolor][name:short]', xOffset = 0, yOffset = 1 }
 
 	-- Shared UnitFrames media
 	E.db.unitframe.colors.castbar_backdrop.a = 0.80
@@ -3456,7 +3476,7 @@ function Private:Layout_Shadowlands(layout)
 	E.db.unitframe.cooldown.override = false
 	E.db.unitframe.cooldown.threshold = 4
 	E.db.unitframe.font = Private.Font
-	E.db.unitframe.fontOutline = 'OUTLINE'
+	E.db.unitframe.fontOutline = Private.Outline
 	E.db.unitframe.fontSize = 12
 	E.db.unitframe.statusbar = Private.Texture
 
@@ -3996,7 +4016,7 @@ function Private:Layout_Shadowlands(layout)
 		E.db.unitframe.units.raid1.raidicon.yOffset = 1
 		E.db.unitframe.units.raid1.raidRoleIcons.yOffset = 1
 		E.db.unitframe.units.raid1.rdebuffs.font = Private.Font
-		E.db.unitframe.units.raid1.rdebuffs.fontOutline = 'OUTLINE'
+		E.db.unitframe.units.raid1.rdebuffs.fontOutline = Private.Outline
 		E.db.unitframe.units.raid1.rdebuffs.size = 18
 		E.db.unitframe.units.raid1.rdebuffs.stack.position = 'CENTER'
 		E.db.unitframe.units.raid1.rdebuffs.stack.yOffset = 0
@@ -4045,7 +4065,7 @@ function Private:Layout_Shadowlands(layout)
 		E.db.unitframe.units.raid3.raidRoleIcons.yOffset = 1
 		E.db.unitframe.units.raid3.rdebuffs.enable = true
 		E.db.unitframe.units.raid3.rdebuffs.font = Private.Font
-		E.db.unitframe.units.raid3.rdebuffs.fontOutline = 'OUTLINE'
+		E.db.unitframe.units.raid3.rdebuffs.fontOutline = Private.Outline
 		E.db.unitframe.units.raid3.rdebuffs.size = 18
 		E.db.unitframe.units.raid3.rdebuffs.stack.position = 'CENTER'
 		E.db.unitframe.units.raid3.rdebuffs.stack.yOffset = 0
@@ -4110,7 +4130,7 @@ function Private:Layout_Shadowlands(layout)
 		E.db.unitframe.units.party.raidicon.yOffset = 0
 		E.db.unitframe.units.party.raidRoleIcons.yOffset = 1
 		E.db.unitframe.units.party.rdebuffs.font = Private.Font
-		E.db.unitframe.units.party.rdebuffs.fontOutline = 'OUTLINE'
+		E.db.unitframe.units.party.rdebuffs.fontOutline = Private.Outline
 		E.db.unitframe.units.party.rdebuffs.size = 18
 		E.db.unitframe.units.party.roleIcon.damager = false
 		E.db.unitframe.units.party.roleIcon.position = 'TOP'
@@ -4145,7 +4165,7 @@ function Private:Layout_Shadowlands(layout)
 		E.db.unitframe.units.raid1.raidicon.yOffset = 0
 		E.db.unitframe.units.raid1.raidRoleIcons.yOffset = 1
 		E.db.unitframe.units.raid1.rdebuffs.font = Private.Font
-		E.db.unitframe.units.raid1.rdebuffs.fontOutline = 'OUTLINE'
+		E.db.unitframe.units.raid1.rdebuffs.fontOutline = Private.Outline
 		E.db.unitframe.units.raid1.rdebuffs.size = 18
 		E.db.unitframe.units.raid1.roleIcon.damager = false
 		E.db.unitframe.units.raid1.roleIcon.position = 'TOP'
@@ -4186,7 +4206,7 @@ function Private:Layout_Shadowlands(layout)
 		E.db.unitframe.units.raid3.raidRoleIcons.yOffset = 1
 		E.db.unitframe.units.raid3.rdebuffs.enable = true
 		E.db.unitframe.units.raid3.rdebuffs.font = Private.Font
-		E.db.unitframe.units.raid3.rdebuffs.fontOutline = 'OUTLINE'
+		E.db.unitframe.units.raid3.rdebuffs.fontOutline = Private.Outline
 		E.db.unitframe.units.raid3.rdebuffs.size = 18
 		E.db.unitframe.units.raid3.summonIcon.attachTo = 'LEFT'
 		E.db.unitframe.units.raid3.threatStyle = 'NONE'

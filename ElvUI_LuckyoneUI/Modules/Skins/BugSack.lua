@@ -1,9 +1,10 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+local _, Private = ...
+local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
-local hooksecurefunc = hooksecurefunc
 local pairs = pairs
+
+local hooksecurefunc = hooksecurefunc
 
 function L1UI:Skin_BugSack()
 	if not E.private.L1UI.skins.BugSack then return end

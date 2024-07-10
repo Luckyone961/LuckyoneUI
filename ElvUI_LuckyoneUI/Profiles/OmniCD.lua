@@ -1,5 +1,5 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+local _, Private = ...
+local E, L = unpack(ElvUI)
 
 local pairs = pairs
 
@@ -13,12 +13,12 @@ function Private:Setup_OmniCD(layout, installer)
 	local scaled = E.global.L1UI.scaled
 
 	-- Profile names
-	local name = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
+	local name_main = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
 	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version
 
 	-- Disable LibDualSpec to set the profile
-	OmniCDDB['namespaces']['LibDualSpec-1.0'] = {}
-	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] = {}
+	OmniCDDB['namespaces']['LibDualSpec-1.0'] = OmniCDDB['namespaces']['LibDualSpec-1.0'] or {}
+	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] = OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] or {}
 	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = {}
 	OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
 
@@ -28,14 +28,14 @@ function Private:Setup_OmniCD(layout, installer)
 	OmniCDDB['version'] = 4
 
 	-- Profile creation
-	for _, profile in pairs({ name, name_healing }) do
+	for _, profile in pairs({ name_main, name_healing }) do
 		OmniCDDB['profiles'][profile] = {}
 		OmniCDDB['profiles'][profile]['General'] = {}
 		OmniCDDB['profiles'][profile]['Party'] = {}
 	end
 
 	-- Main profile
-	OmniCDDB['profiles'][name]['Party'] = {
+	OmniCDDB['profiles'][name_main]['Party'] = {
 		['party'] = {
 			['extraBars'] = {
 				['raidBar1'] = {
@@ -66,6 +66,7 @@ function Private:Setup_OmniCD(layout, installer)
 						},
 					},
 					['locked'] = true,
+					["paddingY"] = 1,
 					['hideSpark'] = true,
 					['manualPos'] = {
 						['raidBar1'] = scaled and {
@@ -120,7 +121,7 @@ function Private:Setup_OmniCD(layout, installer)
 				['paddingY'] = 1,
 			},
 			['general'] = {
-				['showPlayer'] = true,
+				['showPlayer'] = false,
 			},
 		},
 		['arena'] = {
@@ -153,6 +154,7 @@ function Private:Setup_OmniCD(layout, installer)
 						},
 					},
 					['locked'] = true,
+					["paddingY"] = 1,
 					['hideSpark'] = true,
 					['manualPos'] = {
 						['raidBar1'] = scaled and {
@@ -207,7 +209,7 @@ function Private:Setup_OmniCD(layout, installer)
 				['paddingY'] = 1,
 			},
 			['general'] = {
-				['showPlayer'] = true,
+				['showPlayer'] = false,
 			},
 		},
 	}
@@ -261,6 +263,7 @@ function Private:Setup_OmniCD(layout, installer)
 						},
 					},
 					['locked'] = true,
+					["paddingY"] = 1,
 					['hideSpark'] = true,
 					['textColors'] = {
 						['useClassColor'] = {
@@ -303,7 +306,7 @@ function Private:Setup_OmniCD(layout, installer)
 				['anchorMore'] = 'BOTTOMLEFT',
 			},
 			['general'] = {
-				['showPlayer'] = true,
+				['showPlayer'] = false,
 			},
 		},
 		['arena'] = {
@@ -353,6 +356,7 @@ function Private:Setup_OmniCD(layout, installer)
 						},
 					},
 					['locked'] = true,
+					["paddingY"] = 1,
 					['hideSpark'] = true,
 					['textColors'] = {
 						['useClassColor'] = {
@@ -395,37 +399,37 @@ function Private:Setup_OmniCD(layout, installer)
 				['anchorMore'] = 'BOTTOMLEFT',
 			},
 			['general'] = {
-				['showPlayer'] = true,
+				['showPlayer'] = false,
 			},
 		},
 	}
 
 	-- Additional data
-	for _, profile in pairs({ name, name_healing }) do
+	for _, profile in pairs({ name_main, name_healing }) do
 		-- General db
 		OmniCDDB['profiles'][profile]['General']['fonts'] = {
 			['statusBar'] = {
-				['font'] = 'Expressway',
+				['font'] = Private.Font,
 				['ofsX'] = 0,
-				['flag'] = 'OUTLINE',
+				['flag'] = Private.Outline,
 				['size'] = 18,
 			},
 			['optionSmall'] = {
-				['flag'] = 'OUTLINE',
-				['font'] = 'Expressway',
+				['flag'] = Private.Outline,
+				['font'] = Private.Font,
 			},
 			['anchor'] = {
-				['font'] = 'Expressway',
+				['font'] = Private.Font,
 				['ofsX'] = 0,
-				['flag'] = 'OUTLINE',
+				['flag'] = Private.Outline,
 			},
 			['icon'] = {
-				['font'] = 'Expressway',
+				['font'] = Private.Font,
 				['size'] = 12,
 			},
 			['option'] = {
-				['flag'] = 'OUTLINE',
-				['font'] = 'Expressway',
+				['flag'] = Private.Outline,
+				['font'] = Private.Font,
 			},
 		}
 		OmniCDDB['profiles'][profile]['General']['textures'] = {
@@ -547,7 +551,7 @@ function Private:Setup_OmniCD(layout, installer)
 
 	-- Set profile
 	if layout == 'main' then
-		OmniCDDB['profileKeys'][E.mynameRealm] = name
+		OmniCDDB['profileKeys'][E.mynameRealm] = name_main
 	elseif layout == 'healing' then
 		OmniCDDB['profileKeys'][E.mynameRealm] = name_healing
 	end

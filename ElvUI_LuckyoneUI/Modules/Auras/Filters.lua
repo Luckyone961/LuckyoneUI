@@ -1,5 +1,5 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+local _, Private = ...
+local E = unpack(ElvUI)
 
 local pairs = pairs
 
@@ -10,15 +10,15 @@ local function Add(list, ids, value)
 	end
 end
 
--- Aura Filters DB
+-- General vars
+local unitframe = E.global['unitframe'] or {}
+local aurafilters = unitframe['aurafilters'] or {}
+local aurawatch = unitframe['aurawatch'] or {}
+local auraHighlight = unitframe['AuraHighlightColors'] or {}
+
+-- Aura filters: Retail
 function Private:Setup_Filters_Retail()
 	if not E.Retail then return end
-
-	-- General setup
-	local unitframe = E.global['unitframe'] or {}
-	local aurafilters = unitframe['aurafilters'] or {}
-	local aurawatch = unitframe['aurawatch'] or {}
-	local auraHighlight = unitframe['AuraHighlightColors'] or {}
 
 	-- Classes setup
 	local classes = {
@@ -251,13 +251,9 @@ function Private:Setup_Filters_Retail()
 	classes['WARRIOR'][3411]['style'] = 'texturedIcon'
 end
 
+-- Aura filters: Cataclysm
 function Private:Setup_Filters_Cata()
 	if not E.Cata then return end
-
-	-- General setup
-	local unitframe = E.global['unitframe'] or {}
-	local aurafilters = unitframe['aurafilters'] or {}
-	local aurawatch = unitframe['aurawatch'] or {}
 
 	-- Classes setup
 	local classes = {
@@ -538,4 +534,51 @@ function Private:Setup_Filters_Cata()
 	-- Warrior
 	classes["WARRIOR"][3411]["style"] = "texturedIcon"
 	classes["WARRIOR"][50720]["style"] = "texturedIcon"
+end
+
+-- Aura filters: Classic
+function Private:Setup_Filters_Classic()
+	if not E.Classic then return end
+
+	-- Classes setup
+	local classes = {
+		-- Healers
+		DRUID = aurawatch['DRUID'] or {},
+		PALADIN = aurawatch['PALADIN'] or {},
+		PRIEST = aurawatch['PRIEST'] or {},
+		SHAMAN = aurawatch['SHAMAN'] or {},
+		-- Others
+		MAGE = aurawatch['MAGE'] or {},
+		WARLOCK = aurawatch['WARLOCK'] or {},
+		HUNTER = aurawatch['HUNTER'] or {},
+		ROGUE = aurawatch['ROGUE'] or {},
+		WARRIOR = aurawatch['WARRIOR'] or {}
+	}
+
+	local ids = {
+		-- General
+		blacklist = {},
+		whitelist = {},
+		-- Healers
+		DRUID = {},
+		PALADIN = {},
+		PRIEST = {},
+		SHAMAN = {},
+		-- Others
+		MAGE = {},
+		WARLOCK = {},
+		HUNTER = {},
+		ROGUE = {},
+		WARRIOR = {}
+	}
+
+	for class, classIDs in pairs(ids) do
+		if class == 'blacklist' then
+			Add(aurafilters['Blacklist'] or {}, classIDs, { enable = true, priority = 0 })
+		elseif class == 'whitelist' then
+			Add(aurafilters['Whitelist'] or {}, classIDs, { enable = false })
+		else
+			Add(classes[class], classIDs, { enable = true, color = {} })
+		end
+	end
 end
