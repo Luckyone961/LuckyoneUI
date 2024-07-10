@@ -1,4 +1,4 @@
-### Version 3.02 [In Development]
+### Version 3.02 [10-07-2024]
 **All WoW Versions:**  
 Added quick setup for alts which can load existing LuckyoneUI profiles  
 ElvUI 13.68+ compatibility  
