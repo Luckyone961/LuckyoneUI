@@ -1,3 +1,7 @@
+### Version 3.03 [In Development]
+**Classic:**  
+Fixed pet name tag to correctly work with temporary pets like Shadowfiend  
+___
 ### Version 3.02 [10-07-2024]
 **All WoW Versions:**  
 Added quick setup for alts which can load existing LuckyoneUI profiles  

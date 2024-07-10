@@ -168,6 +168,8 @@ E:AddTag('luckyone:pet:name-and-happiness', E.Classic and 'UNIT_NAME_UPDATE UNIT
 				-- Return for other Pet Classes
 				return 'Pet'
 			end
+		else -- Shadowfiend and others
+			return 'Pet'
 		end
 	end
 end)
