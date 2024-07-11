@@ -15,7 +15,7 @@ local EnableAddOn = (C_AddOns and C_AddOns.EnableAddOn) or EnableAddOn
 local GetAddOnInfo = (C_AddOns and C_AddOns.GetAddOnInfo) or GetAddOnInfo
 local GetNumAddOns = (C_AddOns and C_AddOns.GetNumAddOns) or GetNumAddOns
 local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
-local SetCVar = SetCVar
+local SetCVar = C_CVar.SetCVar
 
 -- Keep these enabled in debug mode
 local AddOns = {

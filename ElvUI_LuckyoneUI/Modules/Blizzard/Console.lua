@@ -2,7 +2,7 @@ local _, Private = ...
 local E, L = unpack(ElvUI)
 
 local _G = _G
-local SetCVar = SetCVar
+local SetCVar = C_CVar.SetCVar
 
 -- General CVars
 function Private:Setup_CVars(noPrint, installer)

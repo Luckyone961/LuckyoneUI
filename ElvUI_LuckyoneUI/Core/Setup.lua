@@ -3,7 +3,7 @@ local E, L = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
 
 local _G = _G
-local SetCVar = SetCVar
+local SetCVar = C_CVar.SetCVar
 
 local function HandleLibDualSpec()
 	-- Disable LibDualSpec to set the profile

@@ -9,8 +9,9 @@ local pairs, sort = pairs, sort
 local format, tonumber, tostring = format, tonumber, tostring
 local tconcat, tinsert = table.concat, table.insert
 
-local GetCVar, GetCVarBool = GetCVar, GetCVarBool
-local SetCVar = SetCVar
+local GetCVar = C_CVar.GetCVar
+local GetCVarBool = C_CVar.GetCVarBool
+local SetCVar = C_CVar.SetCVar
 
 local AUTHOR = { '|cff33937FLucky|r - LaughingSkull', '|cffFF7D0ALuckyone|r - LaughingSkull' }
 local CODING = { '|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|r', '|cffFF7D0AMerathilis|r' }
