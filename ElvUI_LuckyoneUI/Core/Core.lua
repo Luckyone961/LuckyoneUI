@@ -1,14 +1,17 @@
-local _, Private = ...
-local E, L = unpack(ElvUI)
-local PI = E:GetModule('PluginInstaller')
-
-local format, print = format, print
-local ipairs, pairs = ipairs, pairs
-local next, wipe = next, wipe
-local strfind, strlower, strmatch = strfind, strlower, strmatch
+-- Lua functions
+local format = format
+local ipairs = ipairs
+local next = next
+local pairs = pairs
+local print = print
+local strfind = strfind
+local strlower = strlower
+local strmatch = strmatch
 local tonumber = tonumber
+local unpack = unpack
+local wipe = wipe
 
-local _G = _G
+-- API cache
 local C_UI_Reload = C_UI.Reload
 local DisableAddOn = (C_AddOns and C_AddOns.DisableAddOn) or DisableAddOn
 local EnableAddOn = (C_AddOns and C_AddOns.EnableAddOn) or EnableAddOn
@@ -16,6 +19,16 @@ local GetAddOnInfo = (C_AddOns and C_AddOns.GetAddOnInfo) or GetAddOnInfo
 local GetNumAddOns = (C_AddOns and C_AddOns.GetNumAddOns) or GetNumAddOns
 local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
 local SetCVar = C_CVar.SetCVar
+
+-- Global environment
+local _G = _G
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
+local PI = E:GetModule('PluginInstaller')
 
 -- Keep these enabled in debug mode
 local AddOns = {

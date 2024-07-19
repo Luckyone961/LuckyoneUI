@@ -1,18 +1,30 @@
-local _, Private = ...
-local E, L = unpack(ElvUI)
-local D = E:GetModule('Distributor')
-local PI = E:GetModule('PluginInstaller')
+-- Lua functions
+local format = format
+local pairs = pairs
+local sort = sort
+local tconcat = table.concat
+local tinsert = table.insert
+local tonumber = tonumber
+local tostring = tostring
+local unpack = unpack
 
-local ACH
-
-local pairs, sort = pairs, sort
-local format, tonumber, tostring = format, tonumber, tostring
-local tconcat, tinsert = table.concat, table.insert
-
+-- API cache
 local GetCVar = C_CVar.GetCVar
 local GetCVarBool = C_CVar.GetCVarBool
 local SetCVar = C_CVar.SetCVar
 
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
+local D = E:GetModule('Distributor')
+local PI = E:GetModule('PluginInstaller')
+
+-- LibAceConfigHelper does not exist yet
+local ACH
+
+-- Credits
 local AUTHOR = { '|cff33937FLucky|r - LaughingSkull', '|cffFF7D0ALuckyone|r - LaughingSkull' }
 local CODING = { '|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|r', '|cffFF7D0AMerathilis|r' }
 local SUPPORT = { '|cffe6cc80Calmcacil|r', '|cffe6cc80DaPaKnat|r', '|cffe6cc80Debeleus|r', '|cffe6cc80DevinDog|r', '|cffe6cc80Dukes|r', '|cffe6cc80Fooseq|r', '|cffe6cc80Garbar|r', '|cffe6cc80Kenneth|r', '|cffe6cc80Liam|r', '|cffe6cc80Littlesack|r', '|cffe6cc80Lox|r', '|cffe6cc80Midnatt|r', '|cffe6cc80MonkeyHack|r', '|cffe6cc80Onlyne|r', '|cffe6cc80ShowNoMercy|r', '|cffe6cc80Treelyté|r', '|cffe6cc80Triplebeamdreams|r', '|cffe6cc80Tykk|r', '|cffe6cc80Logan|r' }

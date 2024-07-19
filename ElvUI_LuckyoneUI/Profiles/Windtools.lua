@@ -1,7 +1,14 @@
-local _, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+-- Lua functions
+local unpack = unpack
 
+-- Global environment
 local _G = _G
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L, V, P, G = unpack(ElvUI)
 
 -- WindTools ProfileDB
 function Private:Setup_WindTools(installer)

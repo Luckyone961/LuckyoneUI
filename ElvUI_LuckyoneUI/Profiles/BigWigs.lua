@@ -1,4 +1,10 @@
+-- Lua functions
+local unpack = unpack
+
+-- AddOn namespace
 local _, Private = ...
+
+-- ElvUI modules
 local E, L = unpack(ElvUI)
 
 -- BigWigs profiles

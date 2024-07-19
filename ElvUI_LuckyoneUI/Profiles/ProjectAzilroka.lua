@@ -1,7 +1,14 @@
-local _, Private = ...
-local E, L = unpack(ElvUI)
+-- Lua functions
+local unpack = unpack
 
+-- Global environment
 local _G = _G
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
 
 -- ProjectAzilroka profile
 function Private:Setup_ProjectAzilroka()

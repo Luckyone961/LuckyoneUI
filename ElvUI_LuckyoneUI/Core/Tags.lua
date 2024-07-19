@@ -1,6 +1,4 @@
-local _, Private = ...
-local E, L = unpack(ElvUI)
-
+-- Lua functions
 local floor = floor
 local format = format
 local pairs = pairs
@@ -9,8 +7,7 @@ local strmatch = strmatch
 local type = type
 local unpack = unpack
 
-local _G = _G
-
+-- API cache
 local C_PetJournal_GetPetTeamAverageLevel = C_PetJournal.GetPetTeamAverageLevel
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
 local GetPetHappiness = GetPetHappiness
@@ -34,7 +31,17 @@ local UnitPowerMax = UnitPowerMax
 local UnitPowerType = UnitPowerType
 local UnitReaction = UnitReaction
 
+-- Global environment
+local _G = _G
+
+-- Global strings
 local UNKNOWN = UNKNOWN
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
 
 local classificationText = {
 	rare = 'Rare',

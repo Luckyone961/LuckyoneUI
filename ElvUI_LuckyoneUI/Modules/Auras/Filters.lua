@@ -1,7 +1,12 @@
-local _, Private = ...
-local E = unpack(ElvUI)
-
+-- Lua functions
 local pairs = pairs
+local unpack = unpack
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E = unpack(ElvUI)
 
 -- Function to add IDs to a list
 local function Add(list, ids, value)

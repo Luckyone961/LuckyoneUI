@@ -1,12 +1,20 @@
-local _, Private = ...
-local E, L = unpack(ElvUI)
-
+-- Lua functions
 local format = format
+local unpack = unpack
 
-local _G = _G
+-- API cache
 local C_UI_Reload = C_UI.Reload
 local CreateFrame = CreateFrame
 local PlaySound = PlaySound
+
+-- Global environment
+local _G = _G
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
 
 -- Set install version to current LuckyoneUI version
 local function InstallComplete()

@@ -1,8 +1,17 @@
-local _, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+-- Lua functions
+local unpack = unpack
 
-local _G = _G
+-- API cache
 local GetAddOnMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
+
+-- Global environment
+local _G = _G
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L, V, P, G = unpack(ElvUI)
 
 -- Shadow & Light ProfileDB
 function Private:Setup_ShadowAndLight(installer)

@@ -1,9 +1,15 @@
-local _, Private = ...
-local E, L = unpack(ElvUI)
-
+-- Lua functions
 local tinsert = table.insert
+local unpack = unpack
 
+-- Global environment
 local _G = _G
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
 
 -- Plater profile
 function Private:Setup_Plater(installer)

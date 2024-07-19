@@ -1,10 +1,16 @@
+-- Lua functions
+local pairs = pairs
+local unpack = unpack
+
+-- Global environment
+local _G = _G
+
+-- AddOn namespace
 local _, Private = ...
+
+-- ElvUI modules
 local E, L, _, P = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
-
-local pairs = pairs
-
-local _G = _G
 
 -- NamePlate Setup for ElvUI
 function Private:Setup_NamePlates(installer)
