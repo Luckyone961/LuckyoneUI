@@ -1,4 +1,6 @@
 ### Version 3.03 [In Development]
+**All WoW Versions:**  
+Increased max possible rows of buffs for target and player from 2 to 3  
 **Classic:**  
 Fixed pet name tag to correctly work with temporary pets like Shadowfiend  
 Updated text format for the player mana bar in the healing layout  

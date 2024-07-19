@@ -803,7 +803,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.focus.buffs.enable = true
 	E.db.unitframe.units.focus.buffs.growthX = 'LEFT'
 	E.db.unitframe.units.focus.buffs.maxDuration = 0
-	E.db.unitframe.units.focus.buffs.numrows = 2
+	E.db.unitframe.units.focus.buffs.numrows = 3
 	E.db.unitframe.units.focus.buffs.perrow = 12
 	E.db.unitframe.units.focus.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.focus.buffs.yOffset = 1
@@ -944,7 +944,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.target.buffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.target.buffs.countXOffset = 2
 	E.db.unitframe.units.target.buffs.countYOffset = 0
-	E.db.unitframe.units.target.buffs.numrows = 2
+	E.db.unitframe.units.target.buffs.numrows = 3
 	E.db.unitframe.units.target.buffs.perrow = 12
 	E.db.unitframe.units.target.buffs.yOffset = 1
 	E.db.unitframe.units.target.castbar.customTextFont.enable = true
