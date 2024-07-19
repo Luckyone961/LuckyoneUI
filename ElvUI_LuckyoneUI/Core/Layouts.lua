@@ -1397,6 +1397,10 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
 
+		if E.Classic then
+			E.db.unitframe.units.player.power.EnergyManaRegen = true
+		end
+
 		-- Healing TargetTarget
 		E.db.unitframe.units.targettarget.width = 260
 
