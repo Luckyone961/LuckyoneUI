@@ -4,12 +4,12 @@ local ipairs = ipairs
 local next = next
 local pairs = pairs
 local print = print
-local strfind = strfind
-local strlower = strlower
-local strmatch = strmatch
+local strfind = string.find
+local strlower = string.lower
+local strmatch = string.match
 local tonumber = tonumber
 local unpack = unpack
-local wipe = wipe
+local wipe = table.wipe
 
 -- API cache
 local C_UI_Reload = C_UI.Reload

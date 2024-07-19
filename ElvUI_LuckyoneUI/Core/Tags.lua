@@ -2,8 +2,8 @@
 local floor = floor
 local format = format
 local pairs = pairs
-local strfind = strfind
-local strmatch = strmatch
+local strfind = string.find
+local strmatch = string.match
 local type = type
 local unpack = unpack
 

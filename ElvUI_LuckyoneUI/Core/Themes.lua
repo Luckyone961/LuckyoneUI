@@ -1,5 +1,5 @@
 -- Lua functions
-local strfind = strfind
+local strfind = string.find
 local unpack = unpack
 
 -- Global environment
