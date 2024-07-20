@@ -2,7 +2,7 @@
 local unpack = unpack
 
 -- API cache
-local GetAddOnMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
+local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 
 -- Global environment
 local _G = _G

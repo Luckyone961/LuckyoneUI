@@ -3,7 +3,7 @@ local tonumber = tonumber
 local unpack = unpack
 
 -- API cache
-local GetAddOnMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
+local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 
 -- AddOn namespace
 local Name, Private = ...
