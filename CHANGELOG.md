@@ -1,5 +1,6 @@
 ### Version 3.03 [In Development]
 **All WoW Versions:**  
+ElvUI 13.70+ compatibility  
 Increased max possible rows of buffs for target and focus from 2 to 3  
 **Classic:**  
 Enabled mana mp5 ticks by default in the healing layout  
