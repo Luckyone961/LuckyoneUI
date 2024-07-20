@@ -23,6 +23,10 @@ local SetCVar = C_CVar.SetCVar
 -- Global environment
 local _G = _G
 
+-- Global strings
+local ACCEPT = ACCEPT
+local CANCEL = CANCEL
+
 -- AddOn namespace
 local _, Private = ...
 
