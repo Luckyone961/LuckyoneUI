@@ -1,5 +1,11 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+-- Lua functions
+local unpack = unpack
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
 
 -- Auras config section: Buffs
 function Private:Setup_Buffs(frame, option)

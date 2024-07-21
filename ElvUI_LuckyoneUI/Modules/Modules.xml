@@ -1,4 +1,4 @@
-<Ui xmlns='http://www.blizzard.com/wow/ui/'>
+<Ui>
 	<Include file='Auras\Auras.xml'/>
 	<Include file='Blizzard\Blizzard.xml'/>
 	<Include file='Chat\Chat.xml'/>

@@ -1,4 +1,31 @@
-### Version 3.00 [In Development]
+### Version 3.03 [In Development]
+**All WoW Versions:**  
+ElvUI 13.70+ compatibility  
+Increased max possible rows of buffs for target and focus from 2 to 3  
+**Classic:**  
+Enabled mana mp5 ticks by default in the healing layout  
+Fixed pet name tag to correctly work with temporary pets like Shadowfiend  
+Updated text format for the player mana bar in the healing layout  
+___
+### Version 3.02 [10-07-2024]
+**All WoW Versions:**  
+Added quick setup for alts which can load existing LuckyoneUI profiles  
+ElvUI 13.68+ compatibility  
+Fixed power text being hidden behind castbars on some frames  
+Updated BigWigs import method to use their new API  
+Updated Themes code to respect healermana tags in party frames  
+**Retail:**  
+Updated OmniCD profiles  
+**Classic:**  
+Added mana to party frames for the Main layout  
+Updated TOC for 1.15.3  
+___
+### Version 3.01 [26-06-2024]
+**All WoW Versions:**  
+Fixed an issue in the BigWigs profile installer step  
+Fixed an issue which broke the installer on a fresh WTF folder (Fixes #18)  
+___
+### Version 3.00 [25-06-2024]
 **Highlights:**  
 All informations will be available in the Discord announcement channel  
 First release of the v3 version for my layouts  
@@ -7,7 +34,10 @@ Plater profile is now built-in rather than a wago link
 Updated installer process and config panels  
 **All WoW Versions:**  
 Added more than 10 new custom tags, see the full list in the config  
+Updated BigWigs for the latest changes  
 Updated chat commands 1: /lucky install 2: /lucky config  
+**Retail:**  
+Updated OmniCD for the latest changes  
 **Misc:**  
 Updated Credits  
 Updated Links  

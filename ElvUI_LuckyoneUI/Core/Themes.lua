@@ -1,10 +1,34 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+-- Lua functions
+local strfind = string.find
+local unpack = unpack
 
+-- Global environment
 local _G = _G
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
+
+-- Figure out our current profile
+local function Profile()
+	local data = E.data:GetCurrentProfile()
+
+	if strfind(data, 'Luckyone Main') or strfind(data, 'Luckyone Support') then
+		return 1
+	elseif strfind(data, 'Luckyone Healing') then
+		return 2
+	else
+		return nil
+	end
+end
 
 -- UnitFrame color themes
 function Private:Setup_Theme(theme, installer)
+
+	-- Get current layout
+	local profile = Profile()
 
 	if theme == 'dark' then
 
@@ -22,7 +46,7 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.arena.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
 		E.db.unitframe.units.boss.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
 		E.db.unitframe.units.focus.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[luckyone:name:short-classcolor]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (profile == 1 and not E.Classic) and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent<%]' or '[luckyone:name:short-classcolor]'
 		E.db.unitframe.units.player.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
 		E.db.unitframe.units.raid1.name.text_format = '[luckyone:name:veryshort-classcolor]'
 		E.db.unitframe.units.raid2.name.text_format = '[luckyone:name:veryshort-classcolor]'
@@ -44,7 +68,7 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.arena.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor]'
 		E.db.unitframe.units.boss.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor]'
 		E.db.unitframe.units.focus.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor]'
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[luckyone:name:short-nocolor]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (profile == 1 and not E.Classic) and '[luckyone:name:short-nocolor][ - >luckyone:healermana:percent<%]' or '[luckyone:name:short-nocolor]'
 		E.db.unitframe.units.player.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor]'
 		E.db.unitframe.units.raid1.name.text_format = '[luckyone:name:veryshort-nocolor]'
 		E.db.unitframe.units.raid2.name.text_format = '[luckyone:name:veryshort-nocolor]'

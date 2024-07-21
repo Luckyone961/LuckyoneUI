@@ -1,9 +1,17 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+-- Lua functions
+local unpack = unpack
 
+-- API cache
+local hooksecurefunc = hooksecurefunc
+
+-- Global environment
 local _G = _G
 
-local hooksecurefunc = hooksecurefunc
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E = unpack(ElvUI)
 
 -- Disabled Blizzard Frames (Loading on init)
 function Private:DisabledFrames()

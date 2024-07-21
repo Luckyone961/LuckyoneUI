@@ -1,17 +1,30 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+-- Lua functions
+local format = format
+local pairs = pairs
+local sort = sort
+local tconcat = table.concat
+local tinsert = table.insert
+local tonumber = tonumber
+local tostring = tostring
+local unpack = unpack
+
+-- API cache
+local GetCVar = C_CVar.GetCVar
+local GetCVarBool = C_CVar.GetCVarBool
+local SetCVar = C_CVar.SetCVar
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
 local D = E:GetModule('Distributor')
 local PI = E:GetModule('PluginInstaller')
 
+-- LibAceConfigHelper does not exist yet
 local ACH
 
-local pairs, sort = pairs, sort
-local format, tonumber, tostring = format, tonumber, tostring
-local tconcat, tinsert = table.concat, table.insert
-
-local GetCVar, GetCVarBool = GetCVar, GetCVarBool
-local SetCVar = SetCVar
-
+-- Credits
 local AUTHOR = { '|cff33937FLucky|r - LaughingSkull', '|cffFF7D0ALuckyone|r - LaughingSkull' }
 local CODING = { '|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|r', '|cffFF7D0AMerathilis|r' }
 local SUPPORT = { '|cffe6cc80Calmcacil|r', '|cffe6cc80DaPaKnat|r', '|cffe6cc80Debeleus|r', '|cffe6cc80DevinDog|r', '|cffe6cc80Dukes|r', '|cffe6cc80Fooseq|r', '|cffe6cc80Garbar|r', '|cffe6cc80Kenneth|r', '|cffe6cc80Liam|r', '|cffe6cc80Littlesack|r', '|cffe6cc80Lox|r', '|cffe6cc80Midnatt|r', '|cffe6cc80MonkeyHack|r', '|cffe6cc80Onlyne|r', '|cffe6cc80ShowNoMercy|r', '|cffe6cc80Treelyté|r', '|cffe6cc80Triplebeamdreams|r', '|cffe6cc80Tykk|r', '|cffe6cc80Logan|r' }
@@ -34,22 +47,22 @@ sort(TESTERS, SortList)
 for _, name in pairs(AUTHOR) do
 	tinsert(Private.Credits, name)
 end
-Private.AUTHOR_STRING = tconcat(AUTHOR, '|n')
+local AUTHOR_STRING = tconcat(AUTHOR, '|n')
 
 for _, name in pairs(CODING) do
 	tinsert(Private.Credits, name)
 end
-Private.CODING_STRING = tconcat(CODING, '|n')
+local CODING_STRING = tconcat(CODING, '|n')
 
 for _, name in pairs(TESTERS) do
 	tinsert(Private.Credits, name)
 end
-Private.TESTER_STRING = tconcat(TESTERS, '|n')
+local TESTER_STRING = tconcat(TESTERS, '|n')
 
 for _, name in pairs(SUPPORT) do
 	tinsert(Private.Credits, name)
 end
-Private.SUPPORT_STRING = tconcat(SUPPORT, '|n')
+local SUPPORT_STRING = tconcat(SUPPORT, '|n')
 
 -- LuckyoneUI config panel
 function L1UI:Config()
@@ -70,8 +83,16 @@ function L1UI:Config()
 	-- Installer & Update
 	L1UI.Options.args.setup = ACH:Group('', nil, 1)
 	L1UI.Options.args.setup.inline = true
-	L1UI.Options.args.setup.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 1, function() PI:Queue(L1UI.InstallerData) E:ToggleOptions() end)
-	L1UI.Options.args.setup.args.dev = ACH:Toggle('Developer', "Enable this toggle to apply Luckyone's personal adjustments during the installation process.\n\nAdditional information section will show up at the bottom of the config after ReloadUI.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r", 2, nil, nil, nil, function() return E.global.L1UI.dev end, function(_, value) E.global.L1UI.dev = value end)
+	L1UI.Options.args.setup.args.header1 = ACH:Header(Private.Name, 1)
+	L1UI.Options.args.setup.args.spacer1 = ACH:Spacer(2, 'full')
+	L1UI.Options.args.setup.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 3, function() PI:Queue(L1UI.InstallerData) E:ToggleOptions() end)
+	L1UI.Options.args.setup.args.dev = ACH:Toggle('Developer', "Enable this toggle to apply Luckyone's personal adjustments during the installation process.\n\nAdditional information section will show up at the bottom of the config after ReloadUI.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r", 4, nil, nil, nil, function() return E.global.L1UI.dev end, function(_, value) E.global.L1UI.dev = value end)
+	L1UI.Options.args.setup.args.spacer2 = ACH:Spacer(5, 'full')
+	L1UI.Options.args.setup.args.header2 = ACH:Header(L["Quick setup for alts"], 6)
+	L1UI.Options.args.setup.args.spacer3 = ACH:Spacer(7, 'full')
+	L1UI.Options.args.setup.args.altMain = ACH:Execute(L["Alt: "] .. L["DPS & Tanks"], L["Quick setup for alts"] .. '\n\n' .. L["This step will load your most recent LuckyoneUI profile."], 8, function() Private:HandleAlts('Main') end, nil, true)
+	L1UI.Options.args.setup.args.altHealing = ACH:Execute(L["Alt: "] .. L["Healing"], L["Quick setup for alts"] .. '\n\n' .. L["This step will load your most recent LuckyoneUI profile."], 9, function() Private:HandleAlts('Healing') end, nil, true)
+	L1UI.Options.args.setup.args.altSupport = ACH:Execute(L["Alt: "] .. format('|cff33937F%s', L["Augmentation"]), L["Quick setup for alts"] .. '\n\n' .. L["This step will load your most recent LuckyoneUI profile."], 10, function() Private:HandleAlts('Support') end, nil, true)
 
 	-- Spacer
 	L1UI.Options.args.header = ACH:Spacer(2, 'full')
@@ -159,19 +180,19 @@ function L1UI:Config()
 	L1UI.Options.args.cvars.args.setup.args.nameplateVars = ACH:Execute(L["NamePlate CVars"], nil, 2, function() Private:NameplateCVars() end, nil, true)
 	L1UI.Options.args.cvars.args.generalDesc = ACH:Group(L["General CVars"], nil, 3)
 	L1UI.Options.args.cvars.args.generalDesc.inline = true
-	L1UI.Options.args.cvars.args.generalDesc.args.cvars = ACH:Description('- advancedCombatLogging 1\n- alwaysShowActionBars 1\n- autoLootDefault 1\n- AutoPushSpellToActionBar 0\n- cameraDistanceMaxZoomFactor 2.6\n- ffxDeath 0\n- ffxGlow 0\n- ffxNether 0\n- fstack_preferParentKeys 0\n- lockActionBars 1\n- nameplateShowOnlyNames 1\n- profanityFilter 0\n- rawMouseEnable 1\n- screenshotQuality 10\n- showNPETutorials 0\n- showTutorials 0\n- threatWarning 3\n- UberTooltips 1', 1, 'medium')
+	L1UI.Options.args.cvars.args.generalDesc.args.cvars = ACH:Description('- alwaysShowActionBars 1\n- autoLootDefault 1\n- AutoPushSpellToActionBar 0\n- cameraDistanceMaxZoomFactor 2.6\n- ffxDeath 0\n- ffxGlow 0\n- ffxNether 0\n- fstack_preferParentKeys 0\n- lockActionBars 1\n- nameplateShowOnlyNames 1\n- profanityFilter 0\n- rawMouseEnable 1\n- screenshotQuality 10\n- showNPETutorials 0\n- showTutorials 0\n- threatWarning 3\n- UberTooltips 1', 1, 'medium')
 	L1UI.Options.args.cvars.args.nameplateDesc = ACH:Group(L["NamePlate CVars"], nil, 4)
 	L1UI.Options.args.cvars.args.nameplateDesc.inline = true
 	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- NamePlateHorizontalScale 1\n- nameplateLargerScale 1\n- nameplateLargeTopInset -1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOtherBottomInset -1\n- nameplateOtherTopInset -1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateSelfTopInset -1\n- NamePlateVerticalScale 1\n\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1', 1, 'medium')
 
 	-- ElvUI Layouts
-	L1UI.Options.args.layouts = ACH:Group('ElvUI' .. ' ' .. L["Layouts"], nil, 7)
+	L1UI.Options.args.layouts = ACH:Group('ElvUI ' .. L["Layouts"], nil, 7)
 	L1UI.Options.args.layouts.args.header1 = ACH:Header(L["Layout Scale"], 1)
 	L1UI.Options.args.layouts.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	L1UI.Options.args.layouts.args.scaling.inline = true
 	L1UI.Options.args.layouts.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not E.global.L1UI.scaled end, function(_, value) E.global.L1UI.scaled = not value end)
 	L1UI.Options.args.layouts.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return E.global.L1UI.scaled end, function(_, value) E.global.L1UI.scaled = value end)
-	L1UI.Options.args.layouts.args.header2 = ACH:Header('ElvUI' .. ' ' .. L["Layouts"], 3)
+	L1UI.Options.args.layouts.args.header2 = ACH:Header('ElvUI ' .. L["Layouts"], 3)
 	L1UI.Options.args.layouts.args.thewarwithin = ACH:Group('The War Within ' .. L["Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 4)
 	L1UI.Options.args.layouts.args.thewarwithin.inline = true
 	L1UI.Options.args.layouts.args.thewarwithin.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout_TheWarWithin('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
@@ -240,9 +261,9 @@ function L1UI:Config()
 	L1UI.Options.args.profiles.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', L["Reset to LuckyoneUI defaults."], 4, function() Private:Setup_WindTools() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.profiles.args.nameplates = ACH:Group(L["NamePlate Profiles"], nil, 4)
 	L1UI.Options.args.profiles.args.nameplates.inline = true
-	L1UI.Options.args.profiles.args.nameplates.args.plater = ACH:Execute('Plater', L["Reset to LuckyoneUI defaults."], 1, function() Private:Setup_Plater() E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.profiles.args.nameplates.args.elvui = ACH:Execute('ElvUI', L["Reset to LuckyoneUI defaults."], 2, function() Private:Setup_NamePlates() E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.profiles.args.nameplates.args.styleFilters = ACH:Execute('ElvUI StyleFilters', L["Reset to LuckyoneUI defaults."], 3, function() Private:Setup_StyleFilters() E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.nameplates.args.elvui = ACH:Execute('ElvUI', L["Reset to LuckyoneUI defaults."], 1, function() Private:Setup_NamePlates() E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.nameplates.args.styleFilters = ACH:Execute('ElvUI StyleFilters', L["Reset to LuckyoneUI defaults."], 2, function() Private:Setup_StyleFilters() E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.nameplates.args.plater = ACH:Execute('Plater', L["Reset to LuckyoneUI defaults."], 3, function() Private:Setup_Plater() E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.profiles.args.addons = ACH:Group(L["Addon Profiles"], nil, 5)
 	L1UI.Options.args.profiles.args.addons.inline = true
 	L1UI.Options.args.profiles.args.addons.args.details = ACH:Execute('Details', L["Reset to LuckyoneUI defaults."], 1, function() Private:Setup_Details() E:StaticPopup_Show('L1UI_RL') end, nil, true)
@@ -250,13 +271,13 @@ function L1UI:Config()
 	L1UI.Options.args.profiles.args.header2 = ACH:Header(L["Profiles for DPS & Tanks"], 6)
 	L1UI.Options.args.profiles.args.addonsMain = ACH:Group(L["Addon Profiles"], nil, 7)
 	L1UI.Options.args.profiles.args.addonsMain.inline = true
-	L1UI.Options.args.profiles.args.addonsMain.args.omnicd = ACH:Execute(L["OmniCD Main"], L["Reset to LuckyoneUI defaults."], 1, function() Private:Setup_OmniCD('main') E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.profiles.args.addonsMain.args.bigwigs = ACH:Execute(L["BigWigs Main"], L["Reset to LuckyoneUI defaults."], 2, function() Private:Setup_BigWigs('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.addonsMain.args.bigwigs = ACH:Execute(L["BigWigs Main"], L["Reset to LuckyoneUI defaults."], 1, function() Private:Setup_BigWigs('main') end, nil, true)
+	L1UI.Options.args.profiles.args.addonsMain.args.omnicd = ACH:Execute(L["OmniCD Main"], L["Reset to LuckyoneUI defaults."], 2, function() Private:Setup_OmniCD('main') E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.profiles.args.header3 = ACH:Header(L["Profiles for Healing"], 8)
 	L1UI.Options.args.profiles.args.addonsHealing = ACH:Group(L["Addon Profiles"], nil, 9)
 	L1UI.Options.args.profiles.args.addonsHealing.inline = true
-	L1UI.Options.args.profiles.args.addonsHealing.args.omnicd = ACH:Execute(L["OmniCD Healing"], L["Reset to LuckyoneUI defaults."], 1, function() Private:Setup_OmniCD('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
-	L1UI.Options.args.profiles.args.addonsHealing.args.bigwigs = ACH:Execute(L["BigWigs Healing"], L["Reset to LuckyoneUI defaults."], 2, function() Private:Setup_BigWigs('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.profiles.args.addonsHealing.args.bigwigs = ACH:Execute(L["BigWigs Healing"], L["Reset to LuckyoneUI defaults."], 1, function() Private:Setup_BigWigs('healing') end, nil, true)
+	L1UI.Options.args.profiles.args.addonsHealing.args.omnicd = ACH:Execute(L["OmniCD Healing"], L["Reset to LuckyoneUI defaults."], 2, function() Private:Setup_OmniCD('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
 
 	-- Skins
 	L1UI.Options.args.skins = ACH:Group('Skins', nil, 11)
@@ -321,16 +342,16 @@ function L1UI:Config()
 	L1UI.Options.args.credits.args.header = ACH:Header(L["Credits"], 1)
 	L1UI.Options.args.credits.args.author = ACH:Group(L["Author"], nil, 2)
 	L1UI.Options.args.credits.args.author.inline = true
-	L1UI.Options.args.credits.args.author.args.desc = ACH:Description(Private.AUTHOR_STRING, 1, 'medium')
+	L1UI.Options.args.credits.args.author.args.desc = ACH:Description(AUTHOR_STRING, 1, 'medium')
 	L1UI.Options.args.credits.args.coding = ACH:Group(L["Coding"], nil, 3)
 	L1UI.Options.args.credits.args.coding.inline = true
-	L1UI.Options.args.credits.args.coding.args.desc = ACH:Description(Private.CODING_STRING, 1, 'medium')
+	L1UI.Options.args.credits.args.coding.args.desc = ACH:Description(CODING_STRING, 1, 'medium')
 	L1UI.Options.args.credits.args.testers = ACH:Group(L["Testers and Translation"], nil, 4)
 	L1UI.Options.args.credits.args.testers.inline = true
-	L1UI.Options.args.credits.args.testers.args.desc = ACH:Description(Private.TESTER_STRING, 1, 'medium')
+	L1UI.Options.args.credits.args.testers.args.desc = ACH:Description(TESTER_STRING, 1, 'medium')
 	L1UI.Options.args.credits.args.supporter = ACH:Group(L["Supporters"], nil, 5)
 	L1UI.Options.args.credits.args.supporter.inline = true
-	L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description(Private.SUPPORT_STRING, 1, 'medium')
+	L1UI.Options.args.credits.args.supporter.args.desc = ACH:Description(SUPPORT_STRING, 1, 'medium')
 
 	-- Links
 	L1UI.Options.args.links = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 16)
@@ -351,7 +372,7 @@ function L1UI:Config()
 	L1UI.Options.args.dev.args.information.args.desc = ACH:Description('If you can see this section of the config, it means you enabled the LuckyoneUI developer mode.\n\nWhile this mode is enabled, the following will change:\n\n- Setup CVars button will set additional values as listed below.\n- Profiles created by the installer will no longer add the version suffix.\n- Profile installer will set additional values as listed below.', 1, 'medium')
 	L1UI.Options.args.dev.args.cvars = ACH:Group('Developer CVars', nil, 3)
 	L1UI.Options.args.dev.args.cvars.inline = true
-	L1UI.Options.args.dev.args.cvars.args.desc = ACH:Description('- blockChannelInvites 1\n- CameraReduceUnexpectedMovement 1\n- DisableAdvancedFlyingVelocityVFX 1\n- disableServerNagle 1\n- displaySpellActivationOverlays 0\n- doNotFlashLowHealthWarning 1\n- empowerTapControls 1\n- floatingCombatTextCombatDamage 0\n- floatingCombatTextCombatHealing 0\n- GxAllowCachelessShaderMode 0\n- LowLatencyMode 2\n- maxFPSLoading 30\n- RAIDweatherDensity 0\n- ResampleAlwaysSharpen 1\n- showToastOffline 0\n- showToastOnline 0\n- showToastWindow 0\n- SpellQueueWindow 180\n- useIPv6 1\n- weatherDensity 0', 1, 'medium')
+	L1UI.Options.args.dev.args.cvars.args.desc = ACH:Description('- advancedCombatLogging 1\n- blockChannelInvites 1\n- CameraReduceUnexpectedMovement 1\n- DisableAdvancedFlyingVelocityVFX 1\n- disableServerNagle 1\n- displaySpellActivationOverlays 0\n- doNotFlashLowHealthWarning 1\n- empowerTapControls 1\n- floatingCombatTextCombatDamage 0\n- floatingCombatTextCombatHealing 0\n- GxAllowCachelessShaderMode 0\n- LowLatencyMode 2\n- maxFPSLoading 30\n- RAIDweatherDensity 0\n- ResampleAlwaysSharpen 1\n- showToastOffline 0\n- showToastOnline 0\n- showToastWindow 0\n- SpellQueueWindow 180\n- useIPv6 1\n- weatherDensity 0', 1, 'medium')
 	L1UI.Options.args.dev.args.db = ACH:Group('Developer ProfileDB', nil, 4)
 	L1UI.Options.args.dev.args.db.inline = true
 	L1UI.Options.args.dev.args.db.args.desc = ACH:Description('- ElvUI chat bubble skinning disabled (To use texture replacements)\n- LuckyoneUI Alert Frame hider enabled\n- LuckyoneUI Boss Banner hider enabled\n- LuckyoneUI Easy Delete enabled\n- LuckyoneUI BugSack skin enabled', 1, 'medium')

@@ -1,13 +1,21 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+-- Lua functions
+local unpack = unpack
 
+-- API cache
+local SetCVar = C_CVar.SetCVar
+
+-- Global environment
 local _G = _G
-local SetCVar = SetCVar
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
 
 -- General CVars
 function Private:Setup_CVars(noPrint, installer)
 	-- Core CVars
-	SetCVar('advancedCombatLogging', 1)
 	SetCVar('alwaysShowActionBars', 1)
 	SetCVar('autoLootDefault', 1)
 	SetCVar('AutoPushSpellToActionBar', 0)
@@ -28,6 +36,7 @@ function Private:Setup_CVars(noPrint, installer)
 
 	-- Developer CVars
 	if E.global.L1UI.dev then
+		SetCVar('advancedCombatLogging', 1)
 		SetCVar('blockChannelInvites', 1)
 		SetCVar('CameraReduceUnexpectedMovement', 1)
 		SetCVar('DisableAdvancedFlyingVelocityVFX', 1)

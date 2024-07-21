@@ -1,23 +1,67 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+-- Lua functions
+local unpack = unpack
+
+-- API cache
+local SetCVar = C_CVar.SetCVar
+
+-- Global environment
+local _G = _G
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
 
-local _G = _G
-local SetCVar = SetCVar
-
+-- Disable LibDualSpec to set the profile
 local function HandleLibDualSpec()
-	-- Disable LibDualSpec to set the profile
 	ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
 	ElvDB['namespaces']['LibDualSpec-1.0']['char'] = ElvDB['namespaces']['LibDualSpec-1.0']['char'] or {}
-	ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] or {}
+	ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = {}
 	ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
 end
 
+-- Full frontend refresh
 local function Refresh()
 	E:StaggeredUpdateAll()
 	E:UIMult()
 	E:UIScale()
 	E:Config_UpdateSize(true)
+end
+
+-- Handler for existing profiles (Quick install on alts)
+function Private:HandleAlts(layout)
+	local mostRecentProfile = Private:GetMostRecentProfile(layout)
+
+	if not mostRecentProfile then
+		Private:Print(L["No existing LuckyoneUI profile found."])
+		return
+	end
+
+	if not E.Classic then
+		HandleLibDualSpec()
+	end
+
+	-- Load the most recent profile
+	E.data:SetProfile(mostRecentProfile)
+
+	-- Fix our custom DataTexts
+	if layout == 'Main' or layout == 'Healing' then
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 299) or 347
+	elseif layout == 'Support' then
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 404) or 464
+	end
+
+	-- PrivateDB for ElvUI, Shadow&Light, WindTools
+	Private:Setup_PrivateDB()
+
+	-- Push the update
+	Refresh()
+
+	E:StaticPopup_Show('L1UI_RL')
+
+	Private:Print(L["Applied profile: "] .. mostRecentProfile)
 end
 
 -- E.global & Custom DataText
@@ -83,27 +127,27 @@ function Private:Setup_PrivateDB()
 	local scaled = E.global.L1UI.scaled
 
 	E.db.general.font = Private.Font
-	E.db.general.fonts.cooldown.outline = 'OUTLINE'
-	E.db.general.fonts.errortext.outline = 'OUTLINE'
+	E.db.general.fonts.cooldown.outline = Private.Outline
+	E.db.general.fonts.errortext.outline = Private.Outline
 	E.db.general.fonts.errortext.size = 16
-	E.db.general.fonts.mailbody.outline = 'OUTLINE'
-	E.db.general.fonts.objective.outline = 'OUTLINE'
+	E.db.general.fonts.mailbody.outline = Private.Outline
+	E.db.general.fonts.objective.outline = Private.Outline
 	E.db.general.fonts.questsmall.enable = true
-	E.db.general.fonts.questsmall.outline = 'OUTLINE'
+	E.db.general.fonts.questsmall.outline = Private.Outline
 	E.db.general.fonts.questsmall.size = 12
 	E.db.general.fonts.questtext.enable = true
-	E.db.general.fonts.questtext.outline = 'OUTLINE'
+	E.db.general.fonts.questtext.outline = Private.Outline
 	E.db.general.fonts.questtext.size = 12
 	E.db.general.fonts.questtitle.enable = true
-	E.db.general.fonts.questtitle.outline = 'OUTLINE'
+	E.db.general.fonts.questtitle.outline = Private.Outline
 	E.db.general.fonts.questtitle.size = 14
-	E.db.general.fonts.talkingtext.outline = 'OUTLINE'
-	E.db.general.fonts.talkingtitle.outline = 'OUTLINE'
+	E.db.general.fonts.talkingtext.outline = Private.Outline
+	E.db.general.fonts.talkingtitle.outline = Private.Outline
 	E.db.general.fontSize = 11
 
 	E.private.bags.bagBar = false
 	E.private.general.chatBubbleFont = Private.Font
-	E.private.general.chatBubbleFontOutline = 'OUTLINE'
+	E.private.general.chatBubbleFontOutline = Private.Outline
 	E.private.general.glossTex = Private.Texture
 	E.private.general.minimap.hideTracking = not E.Classic
 	E.private.general.nameplateFont = Private.Font
@@ -117,6 +161,14 @@ function Private:Setup_PrivateDB()
 
 	E.private.nameplates.enable = false
 	E.private.skins.parchmentRemoverEnable = true
+
+	if E.Retail and E:IsAddOnEnabled('ElvUI_SLE') then
+		Private:Setup_Private_ShadowAndLight()
+	end
+
+	if E.Retail and E:IsAddOnEnabled('ElvUI_WindTools') then
+		Private:Setup_Private_WindTools()
+	end
 
 	if E.global.L1UI.dev then
 		E.private.general.chatBubbles = 'disabled'

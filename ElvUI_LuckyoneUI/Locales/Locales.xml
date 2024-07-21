@@ -1,4 +1,4 @@
-<Ui xmlns='http://www.blizzard.com/wow/ui/'>
+<Ui>
 	<Script file='enUS.lua'/>
 	<Script file='deDE.lua'/>
 	<Script file='esMX.lua'/>

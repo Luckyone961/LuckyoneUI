@@ -1,9 +1,16 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+-- Lua functions
+local unpack = unpack
 
+-- Global environment
 local _G = _G
 
--- WarpDeplete Profile
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
+
+-- WarpDeplete profile
 function Private:Setup_WarpDeplete(installer)
 	if not E:IsAddOnEnabled('WarpDeplete') and E.Retail then Private:Print('WarpDeplete ' .. L["is not installed or enabled."]) return end
 

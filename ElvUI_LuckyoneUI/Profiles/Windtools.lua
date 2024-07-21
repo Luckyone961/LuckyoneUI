@@ -1,11 +1,18 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
+-- Lua functions
+local unpack = unpack
 
+-- Global environment
 local _G = _G
 
--- WindTools profile
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L, V, P, G = unpack(ElvUI)
+
+-- WindTools ProfileDB
 function Private:Setup_WindTools(installer)
-	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then Private:Print('WindTools ' .. L["is not installed or enabled."]) return end
+	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
 	-- 1080p
 	local scaled = E.global.L1UI.scaled
@@ -13,7 +20,6 @@ function Private:Setup_WindTools(installer)
 	-- Restore defaults
 	E.db.WT = E:CopyTable({}, P.WT)
 	E.global.WT = E:CopyTable({}, G.WT)
-	E.private.WT = E:CopyTable({}, V.WT)
 
 	-- Fix expansion icon not correctly moving to minimap bar
 	E.db.general.minimap.icons.classHall.scale = 1.0
@@ -23,6 +29,87 @@ function Private:Setup_WindTools(installer)
 	-- Global db
 	E.global.WT.core.loginMessage = false
 	E.global.WT.core.noDuplicatedParty = true
+
+	-- Private db
+	Private:Setup_Private_WindTools()
+
+	-- Profile db
+	E.db.WT.announcement.combatResurrection.enable = false
+	E.db.WT.announcement.enable = false
+	E.db.WT.announcement.interrupt.enable = false
+	E.db.WT.announcement.keystone.enable = false
+	E.db.WT.announcement.resetInstance.enable = false
+	E.db.WT.announcement.threatTransfer.enable = false
+	E.db.WT.announcement.utility.enable = false
+	E.db.WT.combat.combatAlert.animation = false
+	E.db.WT.combat.combatAlert.enterText = '+Combat'
+	E.db.WT.combat.combatAlert.font.size = 24
+	E.db.WT.combat.combatAlert.leaveText = '-Combat'
+	E.db.WT.combat.combatAlert.speed = 0.5
+	E.db.WT.combat.quickKeystone.enable = false
+	E.db.WT.combat.raidMarkers.enable = false
+	E.db.WT.item.alreadyKnown.enable = false
+	E.db.WT.item.contacts.enable = false
+	E.db.WT.item.delete.enable = false
+	E.db.WT.item.extraItemsBar.enable = false
+	E.db.WT.item.fastLoot.limit = 0.05
+	E.db.WT.item.inspect.enable = false
+	E.db.WT.item.itemLevel.enable = false
+	E.db.WT.item.trade.enable = false
+	E.db.WT.maps.whoClicked.font.size = 12
+	E.db.WT.maps.whoClicked.onlyOnCombat = false
+	E.db.WT.maps.whoClicked.stayTime = 2
+	E.db.WT.maps.whoClicked.yOffset = 19
+	E.db.WT.misc.disableTalkingHead = true
+	E.db.WT.misc.gameBar.enable = false
+	E.db.WT.misc.noLootPanel = true
+	E.db.WT.quest.paragonReputation.toast.sound = false
+	E.db.WT.quest.switchButtons.announcement = false
+	E.db.WT.quest.turnIn.mode = 'COMPLETE'
+	E.db.WT.quest.turnIn.pauseModifier = 'ANY'
+	E.db.WT.quest.turnIn.selectReward = false
+	E.db.WT.skins.vignetting.enable = false
+	E.db.WT.social.chatBar.enable = false
+	E.db.WT.social.chatLink.armorCategory = false
+	E.db.WT.social.chatLink.icon = false
+	E.db.WT.social.chatLink.level = false
+	E.db.WT.social.chatLink.numbericalQualityTier = true
+	E.db.WT.social.chatLink.translateItem = false
+	E.db.WT.social.chatLink.weaponCategory = false
+	E.db.WT.social.chatText.enable = false
+	E.db.WT.social.contextMenu.enable = false
+	E.db.WT.social.emote.enable = false
+	E.db.WT.social.friendList.hideMaxLevel = false
+	E.db.WT.social.friendList.infoFont.size = 10
+	E.db.WT.social.friendList.nameFont.size = 11
+	E.db.WT.social.friendList.textures.factionIcon = true
+	E.db.WT.social.friendList.useClientColor = false
+	E.db.WT.social.smartTab.enable = false
+	E.db.WT.tooltips.groupInfo.mode = 'COMPACT'
+	E.db.WT.tooltips.groupInfo.template = '{{classColorStart}}{{specName}}{{classColorEnd}}{{amountStart}} x {{amount}}{{amountEnd}}'
+	E.db.WT.tooltips.groupInfo.title = false
+
+	-- Protect movers error
+	E.db.movers = E.db.movers or {}
+
+	-- Movers
+	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,405') or 'BOTTOM,ElvUIParent,BOTTOM,0,580'
+	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-177'
+	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,UIParent,TOP,0,-110'
+
+	if installer then
+		_G.LuckyoneInstallStepComplete.message = L["WindTools profile has been set."]
+		_G.LuckyoneInstallStepComplete:Show()
+	end
+
+	Private:Print(L["WindTools profile has been set."])
+end
+
+-- WindTools PrivateDB
+function Private:Setup_Private_WindTools()
+
+	-- Restore defaults
+	E.private.WT = E:CopyTable({}, V.WT)
 
 	-- Private db
 	E.private.WT.maps.minimapButtons.backdrop = false
@@ -111,75 +198,4 @@ function Private:Setup_WindTools(installer)
 	E.private.WT.tooltips.progression.enable = false
 	E.private.WT.tooltips.tierSet = false
 	E.private.WT.unitFrames.roleIcon.enable = false
-
-	-- Profile db
-	E.db.WT.announcement.combatResurrection.enable = false
-	E.db.WT.announcement.enable = false
-	E.db.WT.announcement.interrupt.enable = false
-	E.db.WT.announcement.keystone.enable = false
-	E.db.WT.announcement.resetInstance.enable = false
-	E.db.WT.announcement.threatTransfer.enable = false
-	E.db.WT.announcement.utility.enable = false
-	E.db.WT.combat.combatAlert.animation = false
-	E.db.WT.combat.combatAlert.enterText = '+Combat'
-	E.db.WT.combat.combatAlert.font.size = 24
-	E.db.WT.combat.combatAlert.leaveText = '-Combat'
-	E.db.WT.combat.combatAlert.speed = 0.5
-	E.db.WT.combat.quickKeystone.enable = false
-	E.db.WT.combat.raidMarkers.enable = false
-	E.db.WT.item.alreadyKnown.enable = false
-	E.db.WT.item.contacts.enable = false
-	E.db.WT.item.delete.enable = false
-	E.db.WT.item.extraItemsBar.enable = false
-	E.db.WT.item.fastLoot.limit = 0.05
-	E.db.WT.item.inspect.enable = false
-	E.db.WT.item.itemLevel.enable = false
-	E.db.WT.item.trade.enable = false
-	E.db.WT.maps.whoClicked.font.size = 12
-	E.db.WT.maps.whoClicked.onlyOnCombat = false
-	E.db.WT.maps.whoClicked.stayTime = 2
-	E.db.WT.maps.whoClicked.yOffset = 19
-	E.db.WT.misc.disableTalkingHead = true
-	E.db.WT.misc.gameBar.enable = false
-	E.db.WT.misc.noLootPanel = true
-	E.db.WT.quest.paragonReputation.toast.sound = false
-	E.db.WT.quest.switchButtons.announcement = false
-	E.db.WT.quest.turnIn.mode = 'COMPLETE'
-	E.db.WT.quest.turnIn.pauseModifier = 'ANY'
-	E.db.WT.quest.turnIn.selectReward = false
-	E.db.WT.skins.vignetting.enable = false
-	E.db.WT.social.chatBar.enable = false
-	E.db.WT.social.chatLink.armorCategory = false
-	E.db.WT.social.chatLink.icon = false
-	E.db.WT.social.chatLink.level = false
-	E.db.WT.social.chatLink.numbericalQualityTier = true
-	E.db.WT.social.chatLink.translateItem = false
-	E.db.WT.social.chatLink.weaponCategory = false
-	E.db.WT.social.chatText.enable = false
-	E.db.WT.social.contextMenu.enable = false
-	E.db.WT.social.emote.enable = false
-	E.db.WT.social.friendList.hideMaxLevel = false
-	E.db.WT.social.friendList.infoFont.size = 10
-	E.db.WT.social.friendList.nameFont.size = 11
-	E.db.WT.social.friendList.textures.factionIcon = true
-	E.db.WT.social.friendList.useClientColor = false
-	E.db.WT.social.smartTab.enable = false
-	E.db.WT.tooltips.groupInfo.mode = 'COMPACT'
-	E.db.WT.tooltips.groupInfo.template = '{{classColorStart}}{{specName}}{{classColorEnd}}{{amountStart}} x {{amount}}{{amountEnd}}'
-	E.db.WT.tooltips.groupInfo.title = false
-
-	-- Protect movers error
-	E.db.movers = E.db.movers or {}
-
-	-- Movers
-	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,405') or 'BOTTOM,ElvUIParent,BOTTOM,0,580'
-	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-177'
-	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,UIParent,TOP,0,-110'
-
-	if installer then
-		_G.LuckyoneInstallStepComplete.message = L["WindTools profile has been set."]
-		_G.LuckyoneInstallStepComplete:Show()
-	end
-
-	Private:Print(L["WindTools profile has been set."])
 end

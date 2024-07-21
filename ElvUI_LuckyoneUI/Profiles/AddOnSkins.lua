@@ -1,16 +1,23 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
-
+-- Lua functions
 local unpack = unpack
 
--- AddOnSkins Profile
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
+
+-- AddOnSkins profile
 function Private:Setup_AddOnSkins()
-	if not E:IsAddOnEnabled('AddOnSkins') then Private:Print('AddOnSkins ' .. L["is not installed or enabled."]) return end
+	if not E:IsAddOnEnabled('AddOnSkins') then Private:Print('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r ' .. L["is not installed or enabled."]) return end
 
 	local AS = unpack(AddOnSkins)
 
+	-- Profile name
+	local name = (E.global.L1UI.dev and 'Luckyone') or 'Luckyone ' .. Private.Version
+
 	-- Profile creation
-	AS.data:SetProfile((E.global.L1UI.dev and 'Luckyone') or 'Luckyone ' .. Private.Version)
+	AS.data:SetProfile(name)
 
 	-- Profile data
 	AS.db.Shadows = false

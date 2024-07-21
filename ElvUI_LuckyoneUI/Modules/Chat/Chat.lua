@@ -1,10 +1,15 @@
-local Name, Private = ...
-local E, L, V, P, G = unpack(ElvUI)
-local CH = E:GetModule('Chat')
+-- Lua functions
+local ipairs = ipairs
+local next = next
+local unpack = unpack
 
+-- API cache
+local SetCVar = C_CVar.SetCVar
+
+-- Global environment
 local _G = _G
-local ipairs, next = ipairs, next
 
+-- Blizzard functions
 local ChatFrame_AddChannel = ChatFrame_AddChannel
 local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
 local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
@@ -19,12 +24,19 @@ local FCF_SetWindowName = FCF_SetWindowName
 local FCF_StopDragging = FCF_StopDragging
 local FCFDock_SelectWindow = FCFDock_SelectWindow
 local FCFTab_UpdateColors = FCFTab_UpdateColors
-local SetCVar = SetCVar
 local VoiceTranscriptionFrame_UpdateEditBox = VoiceTranscriptionFrame_UpdateEditBox
 local VoiceTranscriptionFrame_UpdateVisibility = VoiceTranscriptionFrame_UpdateVisibility
 local VoiceTranscriptionFrame_UpdateVoiceTab = VoiceTranscriptionFrame_UpdateVoiceTab
 
+-- Global strings
 local VOICE = VOICE
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
+local CH = E:GetModule('Chat')
 
 -- Chat setup for tabs, windows and channels
 function Private:Setup_Chat(installer)
