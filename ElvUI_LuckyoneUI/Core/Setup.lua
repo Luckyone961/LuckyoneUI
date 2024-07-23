@@ -56,6 +56,9 @@ function Private:HandleAlts(layout)
 	-- PrivateDB for ElvUI, Shadow&Light, WindTools
 	Private:Setup_PrivateDB()
 
+	-- Chat setup
+	Private:Setup_Chat()
+
 	-- Push the update
 	Refresh()
 
