@@ -7,6 +7,8 @@ The quick setup for alts now includes the custom chat setup
 Enabled mana mp5 ticks by default in the healing layout  
 Fixed pet name tag to correctly work with temporary pets like Shadowfiend  
 Updated text format for the player mana bar in the healing layout  
+**Retail:**  
+Updated TOC for 11.0  
 ___
 ### Version 3.02 [10-07-2024]
 **All WoW Versions:**  
