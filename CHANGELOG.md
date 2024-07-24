@@ -1,3 +1,7 @@
+### Version 3.04 [In Development]
+**Retail:**  
+Set the default scale of the new ESC game menu to 80%  
+___
 ### Version 3.03 [24-07-2024]
 **All WoW Versions:**  
 ElvUI 13.71+ compatibility  

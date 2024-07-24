@@ -151,6 +151,7 @@ function Private:Setup_PrivateDB()
 	E.private.bags.bagBar = false
 	E.private.general.chatBubbleFont = Private.Font
 	E.private.general.chatBubbleFontOutline = Private.Outline
+	E.private.general.gameMenuScale = 0.8
 	E.private.general.glossTex = Private.Texture
 	E.private.general.minimap.hideTracking = not E.Classic
 	E.private.general.nameplateFont = Private.Font
