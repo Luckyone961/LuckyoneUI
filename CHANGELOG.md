@@ -1,6 +1,6 @@
-### Version 3.03 [In Development]
+### Version 3.03 [24-07-2024]
 **All WoW Versions:**  
-ElvUI 13.70+ compatibility  
+ElvUI 13.71+ compatibility  
 Increased max possible rows of buffs for target and focus from 2 to 3  
 The quick setup for alts now includes the custom chat setup  
 **Classic:**  
