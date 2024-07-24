@@ -1,10 +1,17 @@
-local _, Private = ...
-local E, L = unpack(ElvUI)
+-- Lua functions
+local strfind = string.find
+local unpack = unpack
 
-local strfind = strfind
-
+-- Global environment
 local _G = _G
 
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
+
+-- Figure out our current profile
 local function Profile()
 	local data = E.data:GetCurrentProfile()
 

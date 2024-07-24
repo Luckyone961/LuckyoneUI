@@ -1,16 +1,13 @@
-local _, Private = ...
-local E, L = unpack(ElvUI)
-
+-- Lua functions
 local floor = floor
 local format = format
 local pairs = pairs
-local strfind = strfind
-local strmatch = strmatch
+local strfind = string.find
+local strmatch = string.match
 local type = type
 local unpack = unpack
 
-local _G = _G
-
+-- API cache
 local C_PetJournal_GetPetTeamAverageLevel = C_PetJournal.GetPetTeamAverageLevel
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
 local GetPetHappiness = GetPetHappiness
@@ -34,7 +31,17 @@ local UnitPowerMax = UnitPowerMax
 local UnitPowerType = UnitPowerType
 local UnitReaction = UnitReaction
 
+-- Global environment
+local _G = _G
+
+-- Global strings
 local UNKNOWN = UNKNOWN
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
 
 local classificationText = {
 	rare = 'Rare',
@@ -168,6 +175,8 @@ E:AddTag('luckyone:pet:name-and-happiness', E.Classic and 'UNIT_NAME_UPDATE UNIT
 				-- Return for other Pet Classes
 				return 'Pet'
 			end
+		else -- Shadowfiend and others
+			return 'Pet'
 		end
 	end
 end)

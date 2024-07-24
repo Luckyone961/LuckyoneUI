@@ -1,18 +1,28 @@
+-- Lua functions
+local unpack = unpack
+
+-- API cache
+local SetCVar = C_CVar.SetCVar
+
+-- Global environment
+local _G = _G
+
+-- AddOn namespace
 local _, Private = ...
+
+-- ElvUI modules
 local E, L = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
 
-local _G = _G
-local SetCVar = SetCVar
-
+-- Disable LibDualSpec to set the profile
 local function HandleLibDualSpec()
-	-- Disable LibDualSpec to set the profile
 	ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
 	ElvDB['namespaces']['LibDualSpec-1.0']['char'] = ElvDB['namespaces']['LibDualSpec-1.0']['char'] or {}
 	ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = {}
 	ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
 end
 
+-- Full frontend refresh
 local function Refresh()
 	E:StaggeredUpdateAll()
 	E:UIMult()
@@ -45,6 +55,9 @@ function Private:HandleAlts(layout)
 
 	-- PrivateDB for ElvUI, Shadow&Light, WindTools
 	Private:Setup_PrivateDB()
+
+	-- Chat setup
+	Private:Setup_Chat()
 
 	-- Push the update
 	Refresh()

@@ -1,21 +1,38 @@
+-- Lua functions
+local format = format
+local ipairs = ipairs
+local next = next
+local pairs = pairs
+local print = print
+local strfind = string.find
+local strlower = string.lower
+local strmatch = string.match
+local tonumber = tonumber
+local unpack = unpack
+local wipe = table.wipe
+
+-- API cache
+local C_UI_Reload = C_UI.Reload
+local DisableAddOn = C_AddOns.DisableAddOn
+local EnableAddOn = C_AddOns.EnableAddOn
+local GetAddOnInfo = C_AddOns.GetAddOnInfo
+local GetNumAddOns = C_AddOns.GetNumAddOns
+local LoadAddOn = C_AddOns.LoadAddOn
+local SetCVar = C_CVar.SetCVar
+
+-- Global environment
+local _G = _G
+
+-- Global strings
+local ACCEPT = ACCEPT
+local CANCEL = CANCEL
+
+-- AddOn namespace
 local _, Private = ...
+
+-- ElvUI modules
 local E, L = unpack(ElvUI)
 local PI = E:GetModule('PluginInstaller')
-
-local format, print = format, print
-local ipairs, pairs = ipairs, pairs
-local next, wipe = next, wipe
-local strfind, strlower, strmatch = strfind, strlower, strmatch
-local tonumber = tonumber
-
-local _G = _G
-local C_UI_Reload = C_UI.Reload
-local DisableAddOn = (C_AddOns and C_AddOns.DisableAddOn) or DisableAddOn
-local EnableAddOn = (C_AddOns and C_AddOns.EnableAddOn) or EnableAddOn
-local GetAddOnInfo = (C_AddOns and C_AddOns.GetAddOnInfo) or GetAddOnInfo
-local GetNumAddOns = (C_AddOns and C_AddOns.GetNumAddOns) or GetNumAddOns
-local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
-local SetCVar = SetCVar
 
 -- Keep these enabled in debug mode
 local AddOns = {

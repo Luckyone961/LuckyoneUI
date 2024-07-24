@@ -1,9 +1,15 @@
-local _, Private = ...
-local E, L = unpack(ElvUI)
-
+-- Lua functions
 local pairs = pairs
+local unpack = unpack
 
+-- Global environment
 local _G = _G
+
+-- AddOn namespace
+local _, Private = ...
+
+-- ElvUI modules
+local E, L = unpack(ElvUI)
 
 -- OmniCD profile
 function Private:Setup_OmniCD(layout, installer)

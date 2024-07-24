@@ -1,4 +1,10 @@
+-- Lua functions
+local unpack = unpack
+
+-- AddOn namespace
 local _, Private = ...
+
+-- ElvUI modules
 local E = unpack(ElvUI)
 
 -- The War Within layout db
@@ -803,7 +809,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.focus.buffs.enable = true
 	E.db.unitframe.units.focus.buffs.growthX = 'LEFT'
 	E.db.unitframe.units.focus.buffs.maxDuration = 0
-	E.db.unitframe.units.focus.buffs.numrows = 2
+	E.db.unitframe.units.focus.buffs.numrows = 3
 	E.db.unitframe.units.focus.buffs.perrow = 12
 	E.db.unitframe.units.focus.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.focus.buffs.yOffset = 1
@@ -944,7 +950,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.target.buffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.target.buffs.countXOffset = 2
 	E.db.unitframe.units.target.buffs.countYOffset = 0
-	E.db.unitframe.units.target.buffs.numrows = 2
+	E.db.unitframe.units.target.buffs.numrows = 3
 	E.db.unitframe.units.target.buffs.perrow = 12
 	E.db.unitframe.units.target.buffs.yOffset = 1
 	E.db.unitframe.units.target.castbar.customTextFont.enable = true
@@ -1383,7 +1389,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.party.growthDirection = 'RIGHT_DOWN'
 
 		-- Healing Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = '[luckyone:power:percent-nocolor]'
+		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = E.Retail and '[luckyone:power:percent-nocolor]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
 		E.db.unitframe.units.player.castbar.customTextFont.fontSize = 14
 		E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 14
 		E.db.unitframe.units.player.castbar.height = 26
@@ -1396,6 +1402,10 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.player.power.height = 18
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
+
+		if E.Classic then
+			E.db.unitframe.units.player.power.EnergyManaRegen = true
+		end
 
 		-- Healing TargetTarget
 		E.db.unitframe.units.targettarget.width = 260
