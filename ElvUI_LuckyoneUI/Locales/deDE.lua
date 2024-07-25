@@ -64,10 +64,12 @@ L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affi
 L["Displays the unit's level with difficultycolor if the player is not max level"] = "Zeigt das Level der Einheit an, wenn der Spieler nicht das Maximallevel erreicht hat"
 L["Displays the unit's Mana with manacolor (Role: Healer)"] = "Zeigt das Mana der Einheit an (Rolle: Heiler)"
 L["Displays the unit's Mana with manacolor in percent (Role: Healer)"] = "Zeigt das Mana der Einheit in Prozent an (Rolle: Heiler)"
+L["Displays the unit's name with classcolor and a maximum length of %s characters and abbreviates long names"] = true
 L["Displays the unit's name with classcolor and a maximum length of 10 characters"] = true
 L["Displays the unit's name with classcolor and a maximum length of 15 characters"] = true
 L["Displays the unit's name with classcolor and a maximum length of 20 characters"] = true
 L["Displays the unit's name with classcolor and a maximum length of 5 characters"] = true
+L["Displays the unit's name with no color and a maximum length of %s characters and abbreviates long names"] = true
 L["Displays the unit's name with no color and a maximum length of 10 characters"] = true
 L["Displays the unit's name with no color and a maximum length of 15 characters"] = true
 L["Displays the unit's name with no color and a maximum length of 20 characters"] = true

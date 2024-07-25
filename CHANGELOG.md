@@ -1,6 +1,7 @@
 ### Version 3.04 [In Development]
 **All WoW Versions:**  
 Added % sign to player mana in the healing layout  
+Added luckyone:name:abbrev Tags with and without class color suffix  
 **Retail:**  
 Added the following to developer CVars list: minimapTrackingShowAll, cameraIndirectOffset  
 Set the default scale of the new ESC game menu to 80%  
