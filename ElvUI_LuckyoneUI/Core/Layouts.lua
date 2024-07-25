@@ -1389,7 +1389,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.party.growthDirection = 'RIGHT_DOWN'
 
 		-- Healing Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = E.Retail and '[luckyone:power:percent-nocolor]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
+		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = E.Retail and '[luckyone:power:percent-nocolor<%]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
 		E.db.unitframe.units.player.castbar.customTextFont.fontSize = 14
 		E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 14
 		E.db.unitframe.units.player.castbar.height = 26
