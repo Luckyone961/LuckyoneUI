@@ -4,6 +4,7 @@ Added % sign to player mana in the healing layout
 Added luckyone:name:abbrev Tags with and without class color suffix  
 **Retail:**  
 Added the following to developer CVars list: minimapTrackingShowAll, cameraIndirectOffset  
+No longer abbreviate enchants in the character panel by default  
 Set the default scale of the new ESC game menu to 80%  
 ___
 ### Version 3.03 [24-07-2024]
