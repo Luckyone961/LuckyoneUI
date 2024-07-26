@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 Added % sign to player mana in the healing layout  
 Added luckyone:name:abbrev Tags with and without class color suffix  
+Added skin for the "Tabardy" AddOn  
 Fixes for Plater Nameplates profile installer to perform correct scaling  
 **Retail:**  
 Added the following to developer CVars list: minimapTrackingShowAll, cameraIndirectOffset  

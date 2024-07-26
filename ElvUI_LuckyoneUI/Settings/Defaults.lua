@@ -26,6 +26,7 @@ V.L1UI = {
 	},
 	skins = {
 		BugSack = true,
+		Tabardy = true,
 	},
 }
 
