@@ -15,15 +15,15 @@ local function Add(list, ids, value)
 	end
 end
 
--- General vars
-local unitframe = E.global['unitframe'] or {}
-local aurafilters = unitframe['aurafilters'] or {}
-local aurawatch = unitframe['aurawatch'] or {}
-local auraHighlight = unitframe['AuraHighlightColors'] or {}
-
 -- Aura filters: Retail
 function Private:Setup_Filters_Retail()
 	if not E.Retail then return end
+
+	-- General vars
+	local unitframe = E.global['unitframe'] or {}
+	local aurafilters = unitframe['aurafilters'] or {}
+	local aurawatch = unitframe['aurawatch'] or {}
+	local auraHighlight = unitframe['AuraHighlightColors'] or {}
 
 	-- Classes setup
 	local classes = {
@@ -264,6 +264,12 @@ end
 -- Aura filters: Cataclysm
 function Private:Setup_Filters_Cata()
 	if not E.Cata then return end
+
+	-- General vars
+	local unitframe = E.global['unitframe'] or {}
+	local aurafilters = unitframe['aurafilters'] or {}
+	local aurawatch = unitframe['aurawatch'] or {}
+	local auraHighlight = unitframe['AuraHighlightColors'] or {}
 
 	-- Classes setup
 	local classes = {
@@ -549,6 +555,12 @@ end
 -- Aura filters: Classic
 function Private:Setup_Filters_Classic()
 	if not E.Classic then return end
+
+	-- General vars
+	local unitframe = E.global['unitframe'] or {}
+	local aurafilters = unitframe['aurafilters'] or {}
+	local aurawatch = unitframe['aurawatch'] or {}
+	local auraHighlight = unitframe['AuraHighlightColors'] or {}
 
 	-- Classes setup
 	local classes = {

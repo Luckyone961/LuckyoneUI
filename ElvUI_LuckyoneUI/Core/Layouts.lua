@@ -1413,6 +1413,7 @@ function Private:Layout_TheWarWithin(layout)
 
 		-- Healing Party
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[luckyone:name:short-classcolor]'
+		E.db.unitframe.units.party.buffIndicator.size = 14
 		E.db.unitframe.units.party.debuffs.enable = false
 		E.db.unitframe.units.party.height = 65
 		E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
@@ -1435,6 +1436,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.party.width = (scaled and 100) or 120
 
 		-- Healing Raid1
+		E.db.unitframe.units.raid1.buffIndicator.size = 14
 		E.db.unitframe.units.raid1.height = 65
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid1.raidicon.size = 14
@@ -1455,6 +1457,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.raid1.width = (scaled and 100) or 120
 
 		-- Healing Raid2
+		E.db.unitframe.units.raid2.buffIndicator.size = 14
 		E.db.unitframe.units.raid2.height = (scaled and 42) or 59
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid2.raidicon.size = 14
