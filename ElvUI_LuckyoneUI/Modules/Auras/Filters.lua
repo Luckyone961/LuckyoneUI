@@ -570,16 +570,224 @@ function Private:Setup_Filters_Classic()
 		blacklist = {},
 		whitelist = {},
 		-- Healers
-		DRUID = {},
-		PALADIN = {},
-		PRIEST = {},
-		SHAMAN = {},
+		DRUID = { 21849, 467, 1126, 8936, 408120, 774, 29166 },
+		PALADIN = { 19740, 25894, 1044, 25782, 6940, 19746, 1022, 19742, 19977, 465 },
+		PRIEST = { 6346, 139, 27683, 1243, 10060, 402004, 17, 27681, 14752, 401877, 21562, 976 },
+		SHAMAN = { 8072, 25909, 10596, 8182, 29203, 8185, 16237, 16191, 5677, 5672 },
 		-- Others
-		MAGE = {},
-		WARLOCK = {},
-		HUNTER = {},
+		MAGE = { 1008, 604, 1459, 23028, 130, 400735 },
+		WARLOCK = { 2970, 6512, 11743, 5697 },
+		HUNTER = { 19506, 13159, 20043 },
 		ROGUE = {},
-		WARRIOR = {}
+		WARRIOR = { 6673 }
+	}
+
+	-- Druid
+	classes["DRUID"][21849] = {
+		["style"] = "texturedIcon",
+	}
+	classes["DRUID"][467] = {
+		["style"] = "texturedIcon",
+	}
+	classes["DRUID"][1126] = {
+		["style"] = "texturedIcon",
+	}
+	classes["DRUID"][8936] = {
+		["style"] = "texturedIcon",
+	}
+	classes["DRUID"][408120] = {
+		["style"] = "texturedIcon",
+	}
+	classes["DRUID"][774] = {
+		["style"] = "texturedIcon",
+	}
+	classes["DRUID"][29166] = {
+		["style"] = "texturedIcon",
+	}
+
+	-- Paladin
+	classes["PALADIN"][19740] = {
+		["style"] = "texturedIcon",
+	}
+	classes["PALADIN"][25894] = {
+		["style"] = "texturedIcon",
+	}
+	classes["PALADIN"][1044] = {
+		["style"] = "texturedIcon",
+	}
+	classes["PALADIN"][25782] = {
+		["style"] = "texturedIcon",
+	}
+	classes["PALADIN"][6940] = {
+		["style"] = "texturedIcon",
+	}
+	classes["PALADIN"][19746] = {
+		["style"] = "texturedIcon",
+	}
+	classes["PALADIN"][1022] = {
+		["style"] = "texturedIcon",
+	}
+	classes["PALADIN"][19742] = {
+		["style"] = "texturedIcon",
+	}
+	classes["PALADIN"][19977] = {
+		["style"] = "texturedIcon",
+	}
+	classes["PALADIN"][465] = {
+		["style"] = "texturedIcon",
+	}
+
+	-- Priest
+	classes["PRIEST"][6346] = {
+		["point"] = "BOTTOMRIGHT",
+		["yOffset"] = -1,
+		["anyUnit"] = true,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes["PRIEST"][139] = {
+		["point"] = "TOPLEFT",
+		["yOffset"] = 1,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
+	}
+	classes["PRIEST"][27683] = {
+		["yOffset"] = -1,
+		["style"] = "texturedIcon",
+		["xOffset"] = 25,
+	}
+	classes["PRIEST"][1243] = {
+		["point"] = "BOTTOMLEFT",
+		["yOffset"] = -1,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
+	}
+	classes["PRIEST"][10060] = {
+		["yOffset"] = 1,
+		["style"] = "texturedIcon",
+	}
+	classes["PRIEST"][402004] = {
+		["yOffset"] = 1,
+		["style"] = "texturedIcon",
+	}
+	classes["PRIEST"][17] = {
+		["point"] = "TOPLEFT",
+		["yOffset"] = 1,
+		["style"] = "texturedIcon",
+		["xOffset"] = 25,
+	}
+	classes["PRIEST"][27681] = {
+		["point"] = "BOTTOMLEFT",
+		["yOffset"] = -1,
+		["style"] = "texturedIcon",
+		["xOffset"] = 12,
+	}
+	classes["PRIEST"][14752] = {
+		["point"] = "BOTTOMLEFT",
+		["yOffset"] = -1,
+		["style"] = "texturedIcon",
+		["xOffset"] = 12,
+	}
+	classes["PRIEST"][401877] = {
+		["point"] = "TOPLEFT",
+		["yOffset"] = 1,
+		["countY"] = 0,
+		["style"] = "texturedIcon",
+		["countX"] = 0,
+		["xOffset"] = 12,
+	}
+	classes["PRIEST"][21562] = {
+		["point"] = "BOTTOMLEFT",
+		["yOffset"] = -1,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
+	}
+	classes["PRIEST"][976] = {
+		["yOffset"] = -1,
+		["style"] = "texturedIcon",
+		["xOffset"] = 25,
+	}
+
+	-- Shaman
+	classes["SHAMAN"][8072] = {
+		["style"] = "texturedIcon",
+	}
+	classes["SHAMAN"][25909] = {
+		["style"] = "texturedIcon",
+	}
+	classes["SHAMAN"][10596] = {
+		["style"] = "texturedIcon",
+	}
+	classes["SHAMAN"][8182] = {
+		["style"] = "texturedIcon",
+	}
+	classes["SHAMAN"][29203] = {
+		["style"] = "texturedIcon",
+	}
+	classes["SHAMAN"][8185] = {
+		["style"] = "texturedIcon",
+	}
+	classes["SHAMAN"][16237] = {
+		["style"] = "texturedIcon",
+	}
+	classes["SHAMAN"][16191] = {
+		["style"] = "texturedIcon",
+	}
+	classes["SHAMAN"][5677] = {
+		["style"] = "texturedIcon",
+	}
+	classes["SHAMAN"][5672] = {
+		["style"] = "texturedIcon",
+	}
+
+	-- Mage
+	classes["MAGE"][1008] = {
+		["style"] = "texturedIcon",
+	}
+	classes["MAGE"][604] = {
+		["style"] = "texturedIcon",
+	}
+	classes["MAGE"][1459] = {
+		["style"] = "texturedIcon",
+	}
+	classes["MAGE"][23028] = {
+		["style"] = "texturedIcon",
+	}
+	classes["MAGE"][130] = {
+		["style"] = "texturedIcon",
+	}
+	classes["MAGE"][400735] = {
+		["style"] = "texturedIcon",
+	}
+
+	-- Warlock
+	classes["WARLOCK"][2970] = {
+		["style"] = "texturedIcon",
+	}
+	classes["WARLOCK"][6512] = {
+		["style"] = "texturedIcon",
+	}
+	classes["WARLOCK"][11743] = {
+		["style"] = "texturedIcon",
+	}
+	classes["WARLOCK"][5697] = {
+		["style"] = "texturedIcon",
+	}
+
+	-- Hunter
+	classes["HUNTER"][19506] = {
+		["style"] = "texturedIcon",
+	}
+	classes["HUNTER"][13159] = {
+		["style"] = "texturedIcon",
+	}
+	classes["HUNTER"][20043] = {
+		["style"] = "texturedIcon",
+	}
+
+	-- Warrior
+	classes["WARRIOR"][6673] = {
+		["style"] = "texturedIcon",
 	}
 
 	for class, classIDs in pairs(ids) do
