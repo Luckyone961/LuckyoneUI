@@ -42,6 +42,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.general.customGlow.useColor = true
 	E.db.general.durabilityScale = 0.5
 	E.db.general.enhancedPvpMessages = false
+	E.db.general.gameMenuScale = 0.8
 	E.db.general.guildBank.countFont = Private.Font
 	E.db.general.guildBank.countFontOutline = Private.Outline
 	E.db.general.guildBank.itemLevelFont = Private.Font
