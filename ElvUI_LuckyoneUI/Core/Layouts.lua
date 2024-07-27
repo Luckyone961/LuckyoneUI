@@ -1271,7 +1271,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.targettarget.width = 278
 
 		-- Main Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = not E.Classic and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent<%]' or '[luckyone:name:short-classcolor]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = not E.Classic and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]' or '[luckyone:name:short-classcolor]'
 		E.db.unitframe.units.party.debuffs.countFont = Private.Font
 		E.db.unitframe.units.party.debuffs.countXOffset = 2
 		E.db.unitframe.units.party.debuffs.enable = true
