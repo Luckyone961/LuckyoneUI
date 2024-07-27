@@ -180,6 +180,7 @@ function Private:Setup_PrivateDB()
 		E.private.L1UI.disabledFrames.AlertFrame = true
 		E.private.L1UI.disabledFrames.BossBanner = true
 		E.private.L1UI.qualityOfLife.easyDelete = true
+		E.private.L1UI.qualityOfLife.privacyOverlay = true
 	end
 end
 
