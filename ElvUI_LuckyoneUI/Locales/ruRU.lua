@@ -39,6 +39,7 @@ L["Coding"] = "Написание кода"
 L["Color Theme"] = "Цветовая тема"
 L["Console Variables"] = "Переменные консоли"
 L["Cosmetic"] = "Косметика"
+L["Creates an overlay to hide the chat frame when in the Communities Frame until you click on it."] = true
 L["Credits"] = "Благодарности"
 L["Current"] = true
 L["CVars have been set."] = "CVars установлены."
@@ -144,6 +145,7 @@ L["Please click the button below to apply Luckyones profile for OmniCD Party CDs
 L["Please click the button below to apply Luckyones profile for WarpDeplete."] = "Пожалуйста, нажмите кнопку ниже, чтобы применить профиль Luckyones для WarpDeplete."
 L["Please read the steps carefully before clicking any buttons."] = true
 L["Priest"] = "Жрец"
+L["Privacy Overlay"] = true
 L["Profile strings"] = true
 L["Profiles for DPS & Tanks"] = "Профили для 'Урона и Танков'"
 L["Profiles for Healing"] = "Профили для 'Исцеления'"

@@ -1,4 +1,5 @@
 <Ui>
 	<Script file='Blizzard.lua'/>
 	<Script file='Console.lua'/>
+	<Script file='PrivacyOverlay.lua'/>
 </Ui>

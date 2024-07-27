@@ -39,6 +39,7 @@ L["Coding"] = "Programação"
 L["Color Theme"] = "Cor do Tema"
 L["Console Variables"] = "Variáveis do Console"
 L["Cosmetic"] = "Cosmético"
+L["Creates an overlay to hide the chat frame when in the Communities Frame until you click on it."] = true
 L["Credits"] = "Créditos"
 L["Current"] = "Atual"
 L["CVars have been set."] = "As CVars foram configuradas"
@@ -144,6 +145,7 @@ L["Please click the button below to apply Luckyones profile for OmniCD Party CDs
 L["Please click the button below to apply Luckyones profile for WarpDeplete."] = "Por favor clique no botão abaixo para aplicar o perfil do Luckyone para o WarpDeplete."
 L["Please read the steps carefully before clicking any buttons."] = "Por favor leia os passos com cuidado antes de clicar em um botão."
 L["Priest"] = "Sacerdote"
+L["Privacy Overlay"] = true
 L["Profile strings"] = true
 L["Profiles for DPS & Tanks"] = "Perfis para DPS & Tanques"
 L["Profiles for Healing"] = "Perfis para Curador"

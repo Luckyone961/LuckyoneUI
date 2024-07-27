@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 Added % sign to player mana in the healing layout  
 Added luckyone:name:abbrev Tags with and without class color suffix  
+Added option to toggle a privacy overlay for the guild chat in /lucky config -> Blizzard improvements  
 Added skin for the "Tabardy" AddOn  
 Fixes for Plater Nameplates profile installer to perform correct scaling  
 **Retail:**  
