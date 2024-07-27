@@ -39,7 +39,7 @@ L["Coding"] = "Написание кода"
 L["Color Theme"] = "Цветовая тема"
 L["Console Variables"] = "Переменные консоли"
 L["Cosmetic"] = "Косметика"
-L["Creates an overlay to hide the chat frame when in the Communities Frame until you click on it."] = true
+L["Creates an overlay to hide the chat frame in the Communities Frame until you click on it."] = true = true
 L["Credits"] = "Благодарности"
 L["Current"] = true
 L["CVars have been set."] = "CVars установлены."
