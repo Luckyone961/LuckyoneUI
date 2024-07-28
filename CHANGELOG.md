@@ -1,11 +1,29 @@
-### Version 3.03 [In Development]
+### Version 3.04 [In Development]
 **All WoW Versions:**  
-ElvUI 13.70+ compatibility  
+Added % sign to player mana in the healing layout  
+Added luckyone:name:abbrev Tags with and without class color suffix  
+Added option to toggle a privacy overlay for the guild chat in /lucky config -> Blizzard improvements  
+Added skin for the "Tabardy" AddOn  
+Fixes for Plater Nameplates profile installer to perform correct scaling  
+**Retail:**  
+Added the following to developer CVars list: minimapTrackingShowAll, cameraIndirectOffset  
+Double % sign should be fixed for the healermana display of the party frames  
+No longer abbreviate enchants in the character panel by default  
+Set the default scale of the new ESC game menu to 80%  
+**Classic:**  
+Custom Aura Filters setup button is now available for Classic in /lucky config -> Buffs and Debuffs  
+___
+### Version 3.03 [24-07-2024]
+**All WoW Versions:**  
+ElvUI 13.71+ compatibility  
 Increased max possible rows of buffs for target and focus from 2 to 3  
+The quick setup for alts now includes the custom chat setup  
 **Classic:**  
 Enabled mana mp5 ticks by default in the healing layout  
 Fixed pet name tag to correctly work with temporary pets like Shadowfiend  
 Updated text format for the player mana bar in the healing layout  
+**Retail:**  
+Updated TOC for 11.0  
 ___
 ### Version 3.02 [10-07-2024]
 **All WoW Versions:**  

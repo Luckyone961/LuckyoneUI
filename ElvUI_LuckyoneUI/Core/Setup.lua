@@ -56,6 +56,9 @@ function Private:HandleAlts(layout)
 	-- PrivateDB for ElvUI, Shadow&Light, WindTools
 	Private:Setup_PrivateDB()
 
+	-- Chat setup
+	Private:Setup_Chat()
+
 	-- Push the update
 	Refresh()
 
@@ -70,6 +73,7 @@ function Private:Setup_GlobalDB()
 	local scaled = E.global.L1UI.scaled
 
 	SetCVar('uiScale', (scaled and 0.71111111111111) or 0.53333333333333)
+	SetCVar('useUiScale', 1)
 	E.global.general.UIScale = (scaled and 0.71111111111111) or 0.53333333333333
 
 	E.global.datatexts.settings.Combat.NoLabel = true
@@ -175,6 +179,7 @@ function Private:Setup_PrivateDB()
 		E.private.L1UI.disabledFrames.AlertFrame = true
 		E.private.L1UI.disabledFrames.BossBanner = true
 		E.private.L1UI.qualityOfLife.easyDelete = true
+		E.private.L1UI.qualityOfLife.privacyOverlay = true
 	end
 end
 
@@ -236,6 +241,7 @@ function Private:Setup_Layout_Dragonflight(layout)
 
 	-- E.global & Custom DataText
 	SetCVar('uiScale', 0.71111111111111)
+	SetCVar('useUiScale', 1)
 	E.global.general.UIScale = 0.71111111111111
 	E.global.datatexts.settings.Combat.NoLabel = true
 	E.global.datatexts.settings.Combat.TimeFull = false
@@ -282,6 +288,7 @@ function Private:Setup_Layout_Shadowlands(layout)
 
 	-- E.global & Custom DataText
 	SetCVar('uiScale', 0.71111111111111)
+	SetCVar('useUiScale', 1)
 	E.global.general.UIScale = 0.71111111111111
 	E.global.datatexts.settings.Combat.TimeFull = false
 	E.global.datatexts.settings.System.latency = 'HOME'

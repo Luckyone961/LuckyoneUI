@@ -23,9 +23,11 @@ V.L1UI = {
 	},
 	qualityOfLife = {
 		easyDelete = false,
+		privacyOverlay = false,
 	},
 	skins = {
 		BugSack = true,
+		Tabardy = true,
 	},
 }
 

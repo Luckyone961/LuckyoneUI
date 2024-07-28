@@ -57,6 +57,9 @@ function Private:Setup_CVars(noPrint, installer)
 		SetCVar('SpellQueueWindow', 180)
 		SetCVar('useIPv6', 1)
 		SetCVar('weatherDensity', 0)
+		-- 11.0 CVars
+		SetCVar('minimapTrackingShowAll', 1) -- Default 0
+		SetCVar('cameraIndirectOffset', 10) -- Default 1.5
 	end
 
 	if installer then

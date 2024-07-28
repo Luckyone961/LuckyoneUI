@@ -42,6 +42,8 @@ local _, Private = ...
 
 -- ElvUI modules
 local E, L = unpack(ElvUI)
+local Tags = ElvUF.Tags
+local Abbrev = Tags.Env.Abbrev
 
 local classificationText = {
 	rare = 'Rare',
@@ -218,8 +220,11 @@ E:AddTag('luckyone:name:last-nocolor', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGA
 end)
 E:AddTagInfo('luckyone:name:last-nocolor', Private.Name, L["Displays the last part of the unit's name with no color"])
 
-local function getFormattedName(unit, length, color)
+local function getFormattedName(unit, length, color, abbrev)
 	local name = UnitName(unit) or UNKNOWN
+	if abbrev then
+		name = Abbrev(name)
+	end
 	name = E:ShortenString(name, length)
 
 	if color then
@@ -251,7 +256,17 @@ for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long =
 	E:AddTag(format('luckyone:name:%s-nocolor', textFormat), 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 		return getFormattedName(unit, length, false)
 	end)
+	-- Displays the unit's name abbreviated with classcolor and a maximum length of 5, 10, 15 and 20 characters
+	E:AddTag(format('luckyone:name:abbrev:%s-classcolor', textFormat), 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+		return getFormattedName(unit, length, true, true)
+	end)
+	-- Displays the unit's name abbreviated with no color and a maximum length of 5, 10, 15 and 20 characters
+	E:AddTag(format('luckyone:name:abbrev:%s-nocolor', textFormat), 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+		return getFormattedName(unit, length, false, true)
+	end)
 
 	E:AddTagInfo(format('luckyone:name:%s-classcolor', textFormat), Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters"], length))
 	E:AddTagInfo(format('luckyone:name:%s-nocolor', textFormat), Private.Name, format(L["Displays the unit's name with no color and a maximum length of %s characters"], length))
+	E:AddTagInfo(format('luckyone:name:abbrev:%s-classcolor', textFormat), Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters and abbreviates long names"], length))
+	E:AddTagInfo(format('luckyone:name:abbrev:%s-nocolor', textFormat), Private.Name, format(L["Displays the unit's name with no color and a maximum length of %s characters and abbreviates long names"], length))
 end
