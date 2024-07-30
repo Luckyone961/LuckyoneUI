@@ -5,6 +5,7 @@ Added luckyone:name:abbrev Tags with and without class color suffix
 Added option to toggle a privacy overlay for the guild chat in /lucky config -> Blizzard improvements  
 Added skin for the "Tabardy" AddOn  
 Fixes for Plater Nameplates profile installer to perform correct scaling  
+Fixes for alt quick setup to perform correct scaling on 1080p ActionBars DataText  
 **Retail:**  
 Added the following to developer CVars list: minimapTrackingShowAll, cameraIndirectOffset  
 Double % sign should be fixed for the healermana display of the party frames  
