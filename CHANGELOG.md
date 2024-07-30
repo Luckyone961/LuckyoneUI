@@ -10,6 +10,7 @@ Added the following to developer CVars list: minimapTrackingShowAll, cameraIndir
 Double % sign should be fixed for the healermana display of the party frames  
 No longer abbreviate enchants in the character panel by default  
 Set the default scale of the new ESC game menu to 80%  
+Updated Plater profile  
 Updated WindTools profile (Turnin button is now hidden when 0 Quests are being tracked)  
 **Classic:**  
 Custom Aura Filters setup button is now available for Classic in /lucky config -> Buffs and Debuffs  
