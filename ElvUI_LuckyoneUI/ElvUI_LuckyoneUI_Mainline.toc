@@ -9,6 +9,9 @@
 ## Interface: 110000, 110002
 ## X-Required-ElvUI: 13.71
 
+## X-Curse-Project-ID: 363472
+## X-Wago-ID: Rn6VLGdB
+
 ## AddonCompartmentFunc: L1UI_OnAddonCompartmentClick
 ## IconTexture: Interface\AddOns\ElvUI_LuckyoneUI\Media\Textures\Compartment.png
 
