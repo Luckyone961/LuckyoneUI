@@ -4,6 +4,7 @@ move-folders:
   ElvUI_LuckyoneUI/ElvUI_LuckyoneUI: ElvUI_LuckyoneUI
 
 ignore:
+  - .github/*
   - .gitignore
   - CHANGELOG.md
   - CURRENT.md
