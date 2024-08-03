@@ -10,7 +10,6 @@ local SetCVar = C_CVar.SetCVar
 local _G = _G
 
 -- Blizzard functions
-local ChatFrame_AddChannel = ChatFrame_AddChannel
 local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
 local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
 local ChatFrame_RemoveMessageGroup = ChatFrame_RemoveMessageGroup
@@ -23,7 +22,6 @@ local FCF_SetChatWindowFontSize = FCF_SetChatWindowFontSize
 local FCF_SetWindowName = FCF_SetWindowName
 local FCF_StopDragging = FCF_StopDragging
 local FCFDock_SelectWindow = FCFDock_SelectWindow
-local FCFTab_UpdateColors = FCFTab_UpdateColors
 local VoiceTranscriptionFrame_UpdateEditBox = VoiceTranscriptionFrame_UpdateEditBox
 local VoiceTranscriptionFrame_UpdateVisibility = VoiceTranscriptionFrame_UpdateVisibility
 local VoiceTranscriptionFrame_UpdateVoiceTab = VoiceTranscriptionFrame_UpdateVoiceTab
