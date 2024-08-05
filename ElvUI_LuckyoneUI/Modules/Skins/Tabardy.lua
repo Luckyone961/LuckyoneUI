@@ -5,9 +5,6 @@ local unpack = unpack
 -- Global environment
 local _G = _G
 
--- AddOn namespace
-local _, Private = ...
-
 -- ElvUI modules
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')

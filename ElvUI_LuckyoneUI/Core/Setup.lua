@@ -32,6 +32,9 @@ end
 
 -- Handler for existing profiles (Quick install on alts)
 function Private:HandleAlts(layout)
+	-- 1080p
+	local scaled = E.global.L1UI.scaled
+
 	local mostRecentProfile = Private:GetMostRecentProfile(layout)
 
 	if not mostRecentProfile then
@@ -155,9 +158,9 @@ function Private:Setup_PrivateDB()
 	E.private.general.glossTex = Private.Texture
 	E.private.general.minimap.hideTracking = not E.Classic
 	E.private.general.nameplateFont = Private.Font
-	E.private.general.nameplateFontSize = (scaled and 9) or 12
+	E.private.general.nameplateFontSize = 9
 	E.private.general.nameplateLargeFont = Private.Font
-	E.private.general.nameplateLargeFontSize = (scaled and 11) or 14
+	E.private.general.nameplateLargeFontSize = 11
 	E.private.general.normTex = Private.Texture
 	E.private.general.totemTracker = false
 

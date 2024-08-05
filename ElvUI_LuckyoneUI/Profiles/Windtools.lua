@@ -65,6 +65,7 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.misc.noLootPanel = true
 	E.db.WT.quest.paragonReputation.toast.sound = false
 	E.db.WT.quest.switchButtons.announcement = false
+	E.db.WT.quest.switchButtons.hideWithObjectiveTracker = true
 	E.db.WT.quest.turnIn.mode = 'COMPLETE'
 	E.db.WT.quest.turnIn.pauseModifier = 'ANY'
 	E.db.WT.quest.turnIn.selectReward = false

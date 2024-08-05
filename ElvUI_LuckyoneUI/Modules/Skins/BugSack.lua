@@ -5,9 +5,6 @@ local unpack = unpack
 -- API cache
 local hooksecurefunc = hooksecurefunc
 
--- AddOn namespace
-local _, Private = ...
-
 -- ElvUI modules
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
