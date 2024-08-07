@@ -1,6 +1,7 @@
 ### Version 3.05 [In Development]
 **Retail:**  
 Reworked WeakAuras config section  
+WeakAuras can now be imported from ingame rather than a Wago link  
 ___
 ### Version 3.04 [07-08-2024]
 **All WoW Versions:**  
