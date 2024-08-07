@@ -1,3 +1,7 @@
+### Version 3.05 [In Development]
+**Retail:**  
+Reworked WeakAuras config section  
+___
 ### Version 3.04 [07-08-2024]
 **All WoW Versions:**  
 Added % sign to player mana in the healing layout  
