@@ -32,6 +32,9 @@ end
 
 -- Handler for existing profiles (Quick install on alts)
 function Private:HandleAlts(layout)
+	-- 1080p
+	local scaled = E.global.L1UI.scaled
+
 	local mostRecentProfile = Private:GetMostRecentProfile(layout)
 
 	if not mostRecentProfile then
@@ -73,6 +76,7 @@ function Private:Setup_GlobalDB()
 	local scaled = E.global.L1UI.scaled
 
 	SetCVar('uiScale', (scaled and 0.71111111111111) or 0.53333333333333)
+	SetCVar('useUiScale', 1)
 	E.global.general.UIScale = (scaled and 0.71111111111111) or 0.53333333333333
 
 	E.global.datatexts.settings.Combat.NoLabel = true
@@ -154,9 +158,9 @@ function Private:Setup_PrivateDB()
 	E.private.general.glossTex = Private.Texture
 	E.private.general.minimap.hideTracking = not E.Classic
 	E.private.general.nameplateFont = Private.Font
-	E.private.general.nameplateFontSize = (scaled and 9) or 12
+	E.private.general.nameplateFontSize = 9
 	E.private.general.nameplateLargeFont = Private.Font
-	E.private.general.nameplateLargeFontSize = (scaled and 11) or 14
+	E.private.general.nameplateLargeFontSize = 11
 	E.private.general.normTex = Private.Texture
 	E.private.general.totemTracker = false
 
@@ -178,6 +182,7 @@ function Private:Setup_PrivateDB()
 		E.private.L1UI.disabledFrames.AlertFrame = true
 		E.private.L1UI.disabledFrames.BossBanner = true
 		E.private.L1UI.qualityOfLife.easyDelete = true
+		E.private.L1UI.qualityOfLife.privacyOverlay = true
 	end
 end
 
@@ -239,6 +244,7 @@ function Private:Setup_Layout_Dragonflight(layout)
 
 	-- E.global & Custom DataText
 	SetCVar('uiScale', 0.71111111111111)
+	SetCVar('useUiScale', 1)
 	E.global.general.UIScale = 0.71111111111111
 	E.global.datatexts.settings.Combat.NoLabel = true
 	E.global.datatexts.settings.Combat.TimeFull = false
@@ -285,6 +291,7 @@ function Private:Setup_Layout_Shadowlands(layout)
 
 	-- E.global & Custom DataText
 	SetCVar('uiScale', 0.71111111111111)
+	SetCVar('useUiScale', 1)
 	E.global.general.UIScale = 0.71111111111111
 	E.global.datatexts.settings.Combat.TimeFull = false
 	E.global.datatexts.settings.System.latency = 'HOME'

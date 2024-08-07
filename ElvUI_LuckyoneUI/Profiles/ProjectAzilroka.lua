@@ -17,7 +17,7 @@ function Private:Setup_ProjectAzilroka()
 	local PA = _G.ProjectAzilroka
 
 	-- Profile name
-	local name = (E.global.L1UI.dev and 'Luckyone') or 'Luckyone ' .. Private.Version
+	local name = 'Luckyone'
 
 	-- Profile creation
 	PA.data:SetProfile(name)

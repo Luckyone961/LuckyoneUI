@@ -42,10 +42,12 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.general.customGlow.useColor = true
 	E.db.general.durabilityScale = 0.5
 	E.db.general.enhancedPvpMessages = false
+	E.db.general.gameMenuScale = 0.8
 	E.db.general.guildBank.countFont = Private.Font
 	E.db.general.guildBank.countFontOutline = Private.Outline
 	E.db.general.guildBank.itemLevelFont = Private.Font
 	E.db.general.guildBank.itemLevelFontOutline = Private.Outline
+	E.db.general.itemLevel.enchantAbbrev = false
 	E.db.general.itemLevel.itemLevelFont = Private.Font
 	E.db.general.itemLevel.itemLevelFontSize = 10
 	E.db.general.itemLevel.totalLevelFont = Private.Font
@@ -1270,7 +1272,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.targettarget.width = 278
 
 		-- Main Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = not E.Classic and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent<%]' or '[luckyone:name:short-classcolor]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = not E.Classic and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]' or '[luckyone:name:short-classcolor]'
 		E.db.unitframe.units.party.debuffs.countFont = Private.Font
 		E.db.unitframe.units.party.debuffs.countXOffset = 2
 		E.db.unitframe.units.party.debuffs.enable = true
@@ -1389,7 +1391,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.party.growthDirection = 'RIGHT_DOWN'
 
 		-- Healing Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = E.Retail and '[luckyone:power:percent-nocolor]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
+		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = E.Retail and '[luckyone:power:percent-nocolor<%]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
 		E.db.unitframe.units.player.castbar.customTextFont.fontSize = 14
 		E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 14
 		E.db.unitframe.units.player.castbar.height = 26
@@ -1412,6 +1414,7 @@ function Private:Layout_TheWarWithin(layout)
 
 		-- Healing Party
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[luckyone:name:short-classcolor]'
+		E.db.unitframe.units.party.buffIndicator.size = 14
 		E.db.unitframe.units.party.debuffs.enable = false
 		E.db.unitframe.units.party.height = 65
 		E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
@@ -1434,6 +1437,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.party.width = (scaled and 100) or 120
 
 		-- Healing Raid1
+		E.db.unitframe.units.raid1.buffIndicator.size = 14
 		E.db.unitframe.units.raid1.height = 65
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid1.raidicon.size = 14
@@ -1454,6 +1458,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.raid1.width = (scaled and 100) or 120
 
 		-- Healing Raid2
+		E.db.unitframe.units.raid2.buffIndicator.size = 14
 		E.db.unitframe.units.raid2.height = (scaled and 42) or 59
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid2.raidicon.size = 14
@@ -2796,7 +2801,6 @@ function Private:Layout_Dragonflight(layout)
 	E.db.movers.PowerBarContainerMover = 'BOTTOM,UIParent,BOTTOM,0,163'
 	E.db.movers.PrivateAurasMover = 'BOTTOM,UIParent,BOTTOM,174,452'
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-258'
-	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-1'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-80,-184'
 	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-131'
 	E.db.movers.ReputationBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
@@ -3904,7 +3908,6 @@ function Private:Layout_Shadowlands(layout)
 	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-100,-215'
 	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,128'
 	E.db.movers.PetExperienceBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
-	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-1'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-215'
 	E.db.movers.ReputationBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'

@@ -1,0 +1,16 @@
+package-as: ElvUI_LuckyoneUI
+
+move-folders:
+  ElvUI_LuckyoneUI/ElvUI_LuckyoneUI: ElvUI_LuckyoneUI
+
+ignore:
+  - .github/*
+  - .gitignore
+  - CHANGELOG.md
+  - CURRENT.md
+  - README.md
+  - LICENSE.txt
+
+manual-changelog:
+  filename: CURRENT.md
+  markup-type: markdown

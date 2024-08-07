@@ -17,9 +17,6 @@ local E, L, V, P, G = unpack(ElvUI)
 function Private:Setup_ShadowAndLight(installer)
 	if not E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then Private:Print('|cff9482c9Shadow & Light|r ' .. L["is not installed or enabled."]) return end
 
-	-- Get version
-	local version = GetAddOnMetadata('ElvUI_SLE', 'Version')
-
 	-- Restore defaults
 	E.db.sle = E:CopyTable({}, P.sle)
 	E.global.sle = E:CopyTable({}, G.sle)

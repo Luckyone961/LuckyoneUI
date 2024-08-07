@@ -14,7 +14,7 @@ function Private:Setup_AddOnSkins()
 	local AS = unpack(AddOnSkins)
 
 	-- Profile name
-	local name = (E.global.L1UI.dev and 'Luckyone') or 'Luckyone ' .. Private.Version
+	local name = 'Luckyone'
 
 	-- Profile creation
 	AS.data:SetProfile(name)
