@@ -1,4 +1,6 @@
 ### Version 3.05 [In Development]
+**All WoW Versions:**  
+Removed alt setup from installer, since the installer won't pop up on alts anyways (still available in the config)  
 **Retail:**  
 Reworked WeakAuras config section  
 WeakAuras can now be imported from ingame rather than a Wago link  
