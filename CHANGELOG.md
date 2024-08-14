@@ -3,6 +3,7 @@
 Removed alt setup from installer, since the installer won't pop up on alts anyways (still available in the config)  
 **Retail:**  
 Reworked WeakAuras config section  
+Updated TOC for 11.0.2  
 WeakAuras can now be imported from ingame rather than a Wago link  
 ___
 ### Version 3.04 [07-08-2024]
