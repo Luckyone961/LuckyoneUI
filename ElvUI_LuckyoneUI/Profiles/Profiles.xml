@@ -7,5 +7,6 @@
 	<Script file='ProjectAzilroka.lua'/>
 	<Script file='ShadowLight.lua'/>
 	<Script file='WarpDeplete.lua'/>
+	<Script file='WeakAuras.lua'/>
 	<Script file='WindTools.lua'/>
 </Ui>
