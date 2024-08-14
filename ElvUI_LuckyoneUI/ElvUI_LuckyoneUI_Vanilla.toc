@@ -7,7 +7,7 @@
 ## Version: 3.04
 
 ## Interface: 11503
-## X-Required-ElvUI: 13.73
+## X-Required-ElvUI: 13.74
 
 ## X-Curse-Project-ID: 363472
 ## X-Wago-ID: Rn6VLGdB
