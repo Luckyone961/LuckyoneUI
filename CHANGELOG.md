@@ -3,6 +3,7 @@
 ElvUI 13.74+ compatibility  
 Fixes for the AddOnSkins profile db  
 Removed alt setup from installer, since the installer won't pop up on alts anyways (still available in the config)  
+Updated deDE locales (Credits: Dlarge)  
 **Retail:**  
 Added LuckyoneUI edits of class packs for around 16 specializations  
 Reworked WeakAuras config section  
