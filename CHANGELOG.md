@@ -1,6 +1,7 @@
 ### Version 3.05 [In Development]
 **All WoW Versions:**  
 ElvUI 13.74+ compatibility  
+Fixes for the AddOnSkins profile db  
 Removed alt setup from installer, since the installer won't pop up on alts anyways (still available in the config)  
 **Retail:**  
 Added LuckyoneUI edits of class packs for around 16 specializations  
