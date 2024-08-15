@@ -312,7 +312,7 @@ function L1UI:Config()
 	L1UI.Options.args.weakauras.args.edits.inline = true
 	L1UI.Options.args.weakauras.args.edits.args.importButton = ACH:Execute(L["Custom edits for:"], nil, 1, function() Private:WeakAurasImport('customEdits') end)
 	L1UI.Options.args.weakauras.args.edits.args.spacer = ACH:Spacer(2, 'full')
-	L1UI.Options.args.weakauras.args.edits.args.auraList = ACH:Description('- |cff00FF98Monk|r Windwalker\n- |cffFFFFFFPriest|r: Shadow\n- |cffA330C9Demon Hunter|r: Havoc\n- |cffAAD372Hunter|r: Beast Master, Marksmanship\n- |cffFFF468Rogue|r: Assassination\n- |cff3FC7EBMage|r: Arcane, Fire\n- |cffC41E3ADeath Knight|r: Unholy\n- |cffF48CBAPaladin|r: Retribution\n- |cff8788EEWarlock|r: Demonology, Destruction\n- |cffC69B6DWarrior|r: Fury\n- |cff0070DDShaman|r: Elemental', 3, 'medium')
+	L1UI.Options.args.weakauras.args.edits.args.auraList = ACH:Description('- |cff00FF98Monk|r Windwalker\n- |cffFFFFFFPriest|r: Shadow\n- |cffA330C9Demon Hunter|r: Havoc\n- |cffAAD372Hunter|r: Beast Master, Marksmanship\n- |cffFFF468Rogue|r: Assassination, Outlaw\n- |cff3FC7EBMage|r: Arcane, Fire\n- |cffC41E3ADeath Knight|r: Unholy\n- |cffF48CBAPaladin|r: Retribution\n- |cff8788EEWarlock|r: Demonology, Destruction\n- |cffC69B6DWarrior|r: Fury\n- |cff0070DDShaman|r: Elemental\n- |cffFF7C0ADruid|r: Feral', 3, 'medium')
 	L1UI.Options.args.weakauras.args.general = ACH:Group(L["WeakAuras - The War Within"], nil, 3)
 	L1UI.Options.args.weakauras.args.general.inline = true
 	L1UI.Options.args.weakauras.args.general.args.keys = ACH:Execute('Link Keystones', nil, 1, function() Private:WeakAurasImport('keys') end)

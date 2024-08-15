@@ -21,7 +21,6 @@ function Private:Setup_AddOnSkins()
 
 	-- Profile data
 	AS.db.Shadows = false
-	AS.db.SkinDebug = true
 
 	AS.db.EmbedBackdrop = false
 	AS.db.EmbedBackdropTransparent = false
