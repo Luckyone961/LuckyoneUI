@@ -7,11 +7,19 @@ local _, Private = ...
 -- ElvUI modules
 local E, L = unpack(ElvUI)
 
+-- Runs after successful profile import
+local function CallbackFunction(accepted)
+	if not accepted then return end
+
+	-- Handle Minimap icon
+	local LDBI = LibStub('LibDBIcon-1.0')
+	BigWigsIconDB.hide = true
+	LDBI:Hide('BigWigs')
+end
+
 -- BigWigs profiles
 function Private:Setup_BigWigs(layout)
 	if not E:IsAddOnEnabled('BigWigs') then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
-
-	local LDBI = LibStub('LibDBIcon-1.0')
 
 	-- Profile names
 	local name_main = 'Luckyone Main'
@@ -23,11 +31,7 @@ function Private:Setup_BigWigs(layout)
 
 	-- Profile import
 	-- API:ImportProfileString(addonName, profileString, optionalCustomProfileName, optionalCallbackFunction)
-	BigWigsAPI:ImportProfileString('LuckyoneUI', (layout == 'main' and profile_main) or profile_healing, (layout == 'main' and name_main) or name_healing)
-
-	-- Handle minimap icon
-	BigWigsIconDB.hide = true
-	LDBI:Hide('BigWigs')
+	BigWigsAPI:ImportProfileString('LuckyoneUI', (layout == 'main' and profile_main) or profile_healing, (layout == 'main' and name_main) or name_healing, CallbackFunction)
 
 	-- No chat print here
 	-- BigWigs will print a message with all important information after the import
