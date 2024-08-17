@@ -2,6 +2,9 @@
 local pairs = pairs
 local unpack = unpack
 
+-- API cache
+local hooksecurefunc = hooksecurefunc
+
 -- Global environment
 local _G = _G
 
