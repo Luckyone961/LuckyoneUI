@@ -1,4 +1,4 @@
-### Version 3.05 [In Development]
+### Version 3.05 [17-08-2024]
 **All WoW Versions:**  
 ElvUI 13.74+ compatibility  
 Fixes for the AddOnSkins profile db  

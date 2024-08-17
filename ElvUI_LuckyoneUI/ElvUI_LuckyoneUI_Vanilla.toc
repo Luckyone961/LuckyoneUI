@@ -4,7 +4,7 @@
 
 ## DefaultState: enabled
 ## Author: Luckyone
-## Version: 3.04
+## Version: 3.05
 
 ## Interface: 11503
 ## X-Required-ElvUI: 13.74

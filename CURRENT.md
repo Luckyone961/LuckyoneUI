@@ -1,17 +1,11 @@
-### Version 3.04 [07-08-2024]
+### Version 3.05 [17-08-2024]
 **All WoW Versions:**  
-Added % sign to player mana in the healing layout  
-Added luckyone:name:abbrev Tags with and without class color suffix  
-Added option to toggle a privacy overlay for the guild chat in /lucky config -> Blizzard improvements  
-Added skin for the "Tabardy" AddOn  
-Fixes for Plater Nameplates profile installer to perform correct scaling  
-Fixes for alt quick setup to perform correct scaling on 1080p ActionBars DataText  
+ElvUI 13.74+ compatibility  
+Fixes for the AddOnSkins profile db  
+Removed alt setup from installer, since the installer won't pop up on alts anyways (still available in the config)  
+Updated deDE locales (Credits: Dlarge)  
 **Retail:**  
-Added the following to developer CVars list: minimapTrackingShowAll, cameraIndirectOffset  
-Double % sign should be fixed for the healermana display of the party frames  
-No longer abbreviate enchants in the character panel by default  
-Set the default scale of the new ESC game menu to 80%  
-Updated Plater profile  
-Updated WindTools profile (Turnin button is now hidden when 0 Quests are being tracked)  
-**Classic:**  
-Custom Aura Filters setup button is now available for Classic in /lucky config -> Buffs and Debuffs  
+Added LuckyoneUI edits of class packs for around 18 specializations  
+Reworked WeakAuras config section  
+Updated TOC for 11.0.2  
+WeakAuras can now be imported from ingame rather than a Wago link  
