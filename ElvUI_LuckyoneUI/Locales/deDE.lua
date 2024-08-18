@@ -182,6 +182,7 @@ L["Skip and close the installer"] = "Überspringe und schließe das Installation
 L["Successfully updated your current layout to LuckyoneUI version "] = "Dein aktuelles Layout wurde erfolgreich auf die LuckyoneUI Version aktualisiert."
 L["Supporters"] = "Unterstützer"
 L["Tags"] = true
+L["Tanks"] = true
 L["Target Frame Buffs"] = "Zielfenster Stärkungszauber"
 L["Target Frame Debuffs"] = "Zielfenster Schwächungszauber"
 L["Testers and Translation"] = "Tester und Übersetzer"

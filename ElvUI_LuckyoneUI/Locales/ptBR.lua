@@ -183,6 +183,7 @@ L["Skip and close the installer"] = "Pular e fechar o instalador"
 L["Successfully updated your current layout to LuckyoneUI version "] = "Seu perfil foi atualizado com sucesso para o LuckyoneUI versão "
 L["Supporters"] = "Apoiadores"
 L["Tags"] = "Etiquetas"
+L["Tanks"] = true
 L["Target Frame Buffs"] = "Bônus do Quadro de Alvo"
 L["Target Frame Debuffs"] = "Penalidades do Quadro de Alvo"
 L["Testers and Translation"] = "Testadores e Tradução"

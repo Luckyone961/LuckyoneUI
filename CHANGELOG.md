@@ -1,6 +1,7 @@
 ### Version 3.06 [In Development]
 **Retail:**  
-Added more specializations to the LuckyoneUI edits of class WeakAura packs  
+Added all Tank specializations to the LuckyoneUI edits of class WeakAura packs  
+Added more DPS specializations to the LuckyoneUI edits of class WeakAura packs  
 ___
 ### Version 3.05 [17-08-2024]
 **All WoW Versions:**  

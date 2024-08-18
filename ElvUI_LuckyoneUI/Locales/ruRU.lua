@@ -183,6 +183,7 @@ L["Skip and close the installer"] = true
 L["Successfully updated your current layout to LuckyoneUI version "] = "Ваш текущий макет успешно обновлен до версии "
 L["Supporters"] = "Поддержка"
 L["Tags"] = "Теги"
+L["Tanks"] = true
 L["Target Frame Buffs"] = "Баффы рамки цели"
 L["Target Frame Debuffs"] = "Дебаффы рамки цели"
 L["Testers and Translation"] = "Тестеры и перевод"

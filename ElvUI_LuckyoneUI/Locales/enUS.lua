@@ -183,6 +183,7 @@ L["Skip and close the installer"] = true
 L["Successfully updated your current layout to LuckyoneUI version "] = true
 L["Supporters"] = true
 L["Tags"] = true
+L["Tanks"] = true
 L["Target Frame Buffs"] = true
 L["Target Frame Debuffs"] = true
 L["Testers and Translation"] = true
