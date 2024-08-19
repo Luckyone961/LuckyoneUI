@@ -48,7 +48,7 @@ function Private:Setup_Filters_Retail()
 		DRUID = { 207386, 188550, 155777, 203554, 774, 102351, 102352, 8936, 33763, 48438, 200389 },
 		EVOKER = { 367364, 376788, 363502, 406732, 410089, 364343, 395152, 373267, 366155, 369459, 357170, 360827, 355941, 406789, 361022 },
 		MONK = { 325209, 115175, 191840, 116849, 119611, 124682, 116841 },
-		PALADIN = { 1044, 200025, 287280, 148039, 6940, 156910, 157047, 204018, 223306, 53563, 1022, 395180 },
+		PALADIN = { 1044, 200025, 148039, 6940, 156910, 157047, 204018, 223306, 53563, 1022, 395180, 156322, 481381 },
 		PRIEST = { 139, 193065, 10060, 214206, 17, 33206, 194384, 41635, 47788, 6788, 77489 },
 		SHAMAN = { 61295, 383648, 974 },
 		-- Others
@@ -222,7 +222,8 @@ function Private:Setup_Filters_Retail()
 	-- Paladin
 	classes['PALADIN'][1044]['style'] = 'texturedIcon'
 	classes['PALADIN'][200025]['style'] = 'texturedIcon'
-	classes['PALADIN'][287280]['style'] = 'texturedIcon'
+	classes['PALADIN'][481381]['style'] = 'texturedIcon'
+	classes['PALADIN'][156322]['style'] = 'texturedIcon'
 	classes['PALADIN'][148039]['style'] = 'texturedIcon'
 	classes['PALADIN'][6940]['style'] = 'texturedIcon'
 	classes['PALADIN'][156910]['style'] = 'texturedIcon'
