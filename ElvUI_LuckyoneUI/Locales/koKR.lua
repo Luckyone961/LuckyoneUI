@@ -93,6 +93,7 @@ L["Fonts and Textures"] = true
 L["General CVars"] = true
 L["General"] = true
 L["Graphics"] = true
+L["Healers"] = true
 L["Healing Layout"] = true
 L["Healing"] = true
 L["Hide Blizzard Frames"] = true

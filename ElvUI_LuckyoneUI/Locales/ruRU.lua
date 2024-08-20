@@ -93,6 +93,7 @@ L["Fonts and Textures"] = "Шрифты и текстуры"
 L["General CVars"] = "Основные CVars"
 L["General"] = "Общее"
 L["Graphics"] = "Графика"
+L["Healers"] = true
 L["Healing Layout"] = "Макет 'Исцеление'"
 L["Healing"] = "Исцеление"
 L["Hide Blizzard Frames"] = "Скрыть рамки Blizzard"

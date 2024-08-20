@@ -93,6 +93,7 @@ L["Fonts and Textures"] = "Fontes e Texturas"
 L["General CVars"] = "CVars Gerais"
 L["General"] = "Geral"
 L["Graphics"] = "Gráficos"
+L["Healers"] = true
 L["Healing Layout"] = "Perfil de Curandeiro"
 L["Healing"] = "Curando"
 L["Hide Blizzard Frames"] = "Esconder Painéis da Blizzard"
