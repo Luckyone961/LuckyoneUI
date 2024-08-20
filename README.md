@@ -1,5 +1,5 @@
 ***
-[![Discord](https://img.shields.io/badge/Join-Discord-green)](https://discord.gg/xRY4bwA) [![Patreon](https://img.shields.io/badge/Support-Patreon-orange)](https://www.patreon.com/luckyone) [![Donate](https://img.shields.io/badge/Support-Donate-blue)](https://streamlabs.com/luckyone1996/tip)  
+[![Discord](https://img.shields.io/badge/Join-Discord-green)](https://discord.gg/xRY4bwA) [![Patreon](https://img.shields.io/badge/Support-Patreon-orange)](https://www.patreon.com/luckyone) [![Donate](https://img.shields.io/badge/Support-Donate-blue)](https://streamlabs.com/luckyone1996/tip) [![Twitch](https://img.shields.io/badge/Support-Twitch-purple)](https://subs.twitch.tv/Luckyone1996)  
 ***
 
 ### **Minimalistic plugin and layout installer for ElvUI**  
