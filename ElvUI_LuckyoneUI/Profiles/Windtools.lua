@@ -137,7 +137,6 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.misc.pauseToSlash = false
 	E.private.WT.misc.tags = false
 	E.private.WT.quest.objectiveTracker.cosmeticBar.color.mode = 'CLASS'
-	E.private.WT.quest.objectiveTracker.cosmeticBar.enable = not E:IsAddOnEnabled('ElvUI_SLE')
 	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = Private.Texture
 	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 230
 	E.private.WT.quest.objectiveTracker.noDash = false
