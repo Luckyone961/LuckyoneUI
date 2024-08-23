@@ -7,7 +7,7 @@
 ## Version: 3.05
 
 ## Interface: 40400
-## X-Required-ElvUI: 13.74
+## X-Required-ElvUI: 13.75
 
 ## X-Curse-Project-ID: 363472
 ## X-Wago-ID: Rn6VLGdB

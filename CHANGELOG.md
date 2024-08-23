@@ -1,4 +1,6 @@
 ### Version 3.06 [In Development]
+**All WoW Versions:**  
+ElvUI 13.75+ compatibility  
 **Retail:**  
 Added all Healer specializations to the LuckyoneUI edits of class WeakAura packs  
 Added all Tank specializations to the LuckyoneUI edits of class WeakAura packs  
