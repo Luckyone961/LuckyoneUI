@@ -1,6 +1,7 @@
 ### Version 3.07 [In Development]
 **Retail:**  
 Added Season 1 ElvUI NamePlate StyleFilters for Dungeons  
+Updated Plater profile for Season 1 Dungeon custom colors  
 ___
 ### Version 3.06 [29-08-2024]
 **All WoW Versions:**  
