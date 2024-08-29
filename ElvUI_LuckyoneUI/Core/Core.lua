@@ -50,60 +50,33 @@ end
 -- Gets the number from the profile string
 -- If it matches the specified profile type (Main/Healing/Support) or if no profile type is specified
 local function GetNumber(str, profileType)
-	if profileType and not strfind(str, profileType) then
+	if profileType and not str:find(profileType, 1, true) then
 		return nil
 	end
 
-	local number = strmatch(str, '%d+%.?%d*')
-
-	if number then
-		return tonumber(number)
-	else
-		return nil
-	end
+	local number = str:match('%d+%.?%d*')
+	return number and tonumber(number) or nil
 end
 
 -- Find the profile with the highest number
 -- Optionally filtering by the specified profile type
 function Private:GetMostRecentProfile(profileType)
-	local profiles, count = E.data:GetProfiles()
-	local mostRecentNumber = nil
-	local mostRecentProfile = nil
-	local mainDev = false
-	local healingDev = false
-	local supportDev = false
+	local profiles = E.data:GetProfiles()
+	local mostRecentNumber, mostRecentProfile
+	local devProfiles = {
+		Main = 'Luckyone Main',
+		Healing = 'Luckyone Healing',
+		Support = 'Luckyone Support'
+	}
 
 	for _, profile in ipairs(profiles) do
 		local number = GetNumber(profile, profileType)
-
-		if number and (mostRecentNumber == nil or number > mostRecentNumber) then
-			mostRecentNumber = number
-			mostRecentProfile = profile
-		end
-
-		-- Check for dev profiles without a number
-		if profile == 'Luckyone Main' then
-			mainDev = true
-		elseif profile == 'Luckyone Healing' then
-			healingDev = true
-		elseif profile == 'Luckyone Support' then
-			supportDev = true
+		if number and (not mostRecentNumber or number > mostRecentNumber) then
+			mostRecentNumber, mostRecentProfile = number, profile
 		end
 	end
 
-	if not mostRecentProfile then
-		if profileType == 'Main' then
-			return mainDev and 'Luckyone Main' or nil
-		elseif profileType == 'Healing' then
-			return healingDev and 'Luckyone Healing' or nil
-		elseif profileType == 'Support' then
-			return supportDev and 'Luckyone Support' or nil
-		else
-			return nil
-		end
-	else
-		return mostRecentProfile
-	end
+	return mostRecentProfile or (profileType and devProfiles[profileType]) or nil
 end
 
 -- Reload popup
