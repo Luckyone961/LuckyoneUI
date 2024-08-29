@@ -178,6 +178,7 @@ function Private:Setup_PrivateDB()
 	end
 
 	if E.global.L1UI.dev then
+		E.private.bags.enable = false
 		E.private.general.chatBubbles = 'disabled'
 		E.private.L1UI.disabledFrames.AlertFrame = true
 		E.private.L1UI.disabledFrames.BossBanner = true

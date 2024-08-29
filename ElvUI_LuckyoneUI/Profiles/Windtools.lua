@@ -65,7 +65,7 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.misc.noLootPanel = true
 	E.db.WT.quest.paragonReputation.toast.sound = false
 	E.db.WT.quest.switchButtons.announcement = false
-	E.db.WT.quest.switchButtons.hideWithObjectiveTracker = true
+	E.db.WT.quest.switchButtons.hideWithObjectiveTracker = true -- Keep this, it won't get exported by default
 	E.db.WT.quest.turnIn.mode = 'COMPLETE'
 	E.db.WT.quest.turnIn.pauseModifier = 'ANY'
 	E.db.WT.quest.turnIn.selectReward = false
@@ -74,7 +74,6 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.social.chatLink.armorCategory = false
 	E.db.WT.social.chatLink.icon = false
 	E.db.WT.social.chatLink.level = false
-	E.db.WT.social.chatLink.numbericalQualityTier = true
 	E.db.WT.social.chatLink.translateItem = false
 	E.db.WT.social.chatLink.weaponCategory = false
 	E.db.WT.social.chatText.enable = false
@@ -86,6 +85,9 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.social.friendList.textures.factionIcon = true
 	E.db.WT.social.friendList.useClientColor = false
 	E.db.WT.social.smartTab.enable = false
+	E.db.WT.tooltips.elvUITweaks.betterMythicPlusInfo.enable = false
+	E.db.WT.tooltips.elvUITweaks.raceIcon.enable = false
+	E.db.WT.tooltips.elvUITweaks.specIcon.enable = false
 	E.db.WT.tooltips.groupInfo.mode = 'COMPACT'
 	E.db.WT.tooltips.groupInfo.template = '{{classColorStart}}{{specName}}{{classColorEnd}}{{amountStart}} x {{amount}}{{amountEnd}}'
 	E.db.WT.tooltips.groupInfo.title = false
@@ -135,7 +137,6 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.misc.pauseToSlash = false
 	E.private.WT.misc.tags = false
 	E.private.WT.quest.objectiveTracker.cosmeticBar.color.mode = 'CLASS'
-	E.private.WT.quest.objectiveTracker.cosmeticBar.enable = not E:IsAddOnEnabled('ElvUI_SLE')
 	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = Private.Texture
 	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 230
 	E.private.WT.quest.objectiveTracker.noDash = false

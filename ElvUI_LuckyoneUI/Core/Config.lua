@@ -308,12 +308,15 @@ function L1UI:Config()
 	L1UI.Options.args.weakauras.args.maintained.inline = true
 	L1UI.Options.args.weakauras.args.maintained.args.evoker = ACH:Execute(format('|cff33937F%s|r', L["Evoker"]), nil, 1, function() Private:WeakAurasImport('evoker') end)
 	L1UI.Options.args.weakauras.args.maintained.args.druid = ACH:Execute(format('|cffFF7C0A%s|r', L["Druid"]), nil, 2, function() Private:WeakAurasImport('druid') end)
+	L1UI.Options.args.weakauras.args.maintained.args.spacer = ACH:Spacer(3, 'full')
+	L1UI.Options.args.weakauras.args.maintained.args.auraList = ACH:Description('- |cff33937FEvoker|r: Augmentation, Devastation\n- |cffFF7C0ADruid|r: Balance', 5, 'medium')
 	L1UI.Options.args.weakauras.args.edits = ACH:Group(L["WeakAuras - Edits of other packs"], nil, 2)
 	L1UI.Options.args.weakauras.args.edits.inline = true
 	L1UI.Options.args.weakauras.args.edits.args.importButtonRanged = ACH:Execute(L["Ranged DPS"], nil, 1, function() Private:WeakAurasImport('customEditsRanged') end)
 	L1UI.Options.args.weakauras.args.edits.args.importButtonMelee = ACH:Execute(L["Melee DPS"], nil, 2, function() Private:WeakAurasImport('customEditsMelee') end)
 	L1UI.Options.args.weakauras.args.edits.args.spacer = ACH:Spacer(3, 'full')
-	L1UI.Options.args.weakauras.args.edits.args.auraList = ACH:Description('- |cff00FF98Monk|r Windwalker\n- |cffFFFFFFPriest|r: Shadow\n- |cffA330C9Demon Hunter|r: Havoc\n- |cffAAD372Hunter|r: Beast Master, Marksmanship\n- |cffFFF468Rogue|r: Assassination, Outlaw\n- |cff3FC7EBMage|r: Arcane, Fire\n- |cffC41E3ADeath Knight|r: Unholy, Frost\n- |cffF48CBAPaladin|r: Retribution\n- |cff8788EEWarlock|r: Demonology, Destruction\n- |cffC69B6DWarrior|r: Fury, Arms\n- |cff0070DDShaman|r: Elemental\n- |cffFF7C0ADruid|r: Feral', 4, 'medium')
+	L1UI.Options.args.weakauras.args.edits.args.importButtonTanks = ACH:Execute(L["Tanks"], nil, 4, function() Private:WeakAurasImport('customEditsTanks') end)
+	L1UI.Options.args.weakauras.args.edits.args.importButtonHealers = ACH:Execute(L["Healers"], nil, 5, function() Private:WeakAurasImport('customEditsHealers') end)
 	L1UI.Options.args.weakauras.args.misc = ACH:Group(L["WeakAuras - General"], nil, 3)
 	L1UI.Options.args.weakauras.args.misc.inline = true
 	L1UI.Options.args.weakauras.args.misc.args.keys = ACH:Execute('!keys command', nil, 1, function() Private:WeakAurasImport('keys') end)
