@@ -1,6 +1,7 @@
 ### Version 3.06 [In Development]
 **All WoW Versions:**  
 ElvUI 13.76+ compatibility  
+Updated BigWigs profiles to include their new Nameplate CD module  
 **Retail:**  
 Added all Healer specializations to the LuckyoneUI edits of class WeakAura packs  
 Added all Tank specializations to the LuckyoneUI edits of class WeakAura packs  
