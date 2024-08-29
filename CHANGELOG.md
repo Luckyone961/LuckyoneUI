@@ -1,3 +1,7 @@
+### Version 3.07 [In Development]
+**Retail:**  
+Added Season 1 ElvUI NamePlate StyleFilters for Dungeons  
+___
 ### Version 3.06 [29-08-2024]
 **All WoW Versions:**  
 ElvUI 13.76+ compatibility  
