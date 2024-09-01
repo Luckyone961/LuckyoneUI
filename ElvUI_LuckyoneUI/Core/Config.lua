@@ -328,6 +328,9 @@ function L1UI:Config()
 	L1UI.Options.args.weakauras.args.misc.args.handleNamePlatesFont = ACH:Execute('Handle Plates Font ', nil, 7, function() Private:WeakAurasImport('handleNamePlatesFont') end)
 	L1UI.Options.args.weakauras.args.misc.args.playerFrameUtilities = ACH:Execute('Player Frame Utility', nil, 8, function() Private:WeakAurasImport('playerFrameUtilities') end)
 	L1UI.Options.args.weakauras.args.misc.args.trinket = ACH:Execute('Trinket Tracker', nil, 9, function() Private:WeakAurasImport('trinket') end)
+	L1UI.Options.args.weakauras.args.dungeons = ACH:Group(L["WeakAuras - Dungeons"], nil, 4)
+	L1UI.Options.args.weakauras.args.dungeons.inline = true
+	L1UI.Options.args.weakauras.args.dungeons.args.affixes = ACH:Execute('Affixes', nil, 1, function() Private:WeakAurasImport('affixes') end)
 
 	-- Credits
 	L1UI.Options.args.credits = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 15)
