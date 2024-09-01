@@ -56,6 +56,8 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.item.inspect.enable = false
 	E.db.WT.item.itemLevel.enable = false
 	E.db.WT.item.trade.enable = false
+	E.db.WT.maps.eventTracker.font.scale = 0.9
+	E.db.WT.maps.eventTracker.theaterTroupe.sound = false
 	E.db.WT.maps.whoClicked.font.size = 12
 	E.db.WT.maps.whoClicked.onlyOnCombat = false
 	E.db.WT.maps.whoClicked.stayTime = 2
@@ -167,7 +169,6 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.skins.rollResult.name = Private.Font
 	E.private.WT.skins.shadow = false
 	E.private.WT.skins.weakAurasShadow = false
-	E.private.WT.skins.widgets.button.backdrop.animationDuration = 0
 	E.private.WT.skins.widgets.button.backdrop.classColor = true
 	E.private.WT.skins.widgets.button.backdrop.texture = Private.Texture
 	E.private.WT.skins.widgets.button.selected.backdropAlpha = 1
@@ -177,7 +178,6 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.skins.widgets.checkBox.texture = Private.Texture
 	E.private.WT.skins.widgets.slider.classColor = true
 	E.private.WT.skins.widgets.slider.texture = Private.Texture
-	E.private.WT.skins.widgets.tab.backdrop.animationDuration = 0
 	E.private.WT.skins.widgets.tab.backdrop.classColor = true
 	E.private.WT.skins.widgets.tab.backdrop.texture = Private.Texture
 	E.private.WT.skins.widgets.tab.selected.backdropAlpha = 1
@@ -185,7 +185,6 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.skins.widgets.tab.selected.borderAlpha = 0
 	E.private.WT.skins.widgets.tab.selected.borderClassColor = true
 	E.private.WT.skins.widgets.tab.selected.texture = Private.Texture
-	E.private.WT.skins.widgets.treeGroupButton.backdrop.animationDuration = 0
 	E.private.WT.skins.widgets.treeGroupButton.backdrop.classColor = true
 	E.private.WT.skins.widgets.treeGroupButton.backdrop.texture = Private.Texture
 	E.private.WT.skins.widgets.treeGroupButton.selected.backdropAlpha = 1
