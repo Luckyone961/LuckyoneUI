@@ -35,11 +35,11 @@ Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
 
 -- Initialize module in ElvUI
 local function Initialize()
-	if E.private.install_complete == nil then -- Installer skip
+	if E.private.install_complete == nil then -- ElvUI installer skip
 		E.private.install_complete = E.version
 	end
 
-	if E.global.L1UI.install_version == nil then -- Installer queue
+	if E.global.L1UI.install_version == nil then -- LuckyoneUI installer queue
 		PI:Queue(L1UI.InstallerData)
 	end
 
