@@ -212,56 +212,56 @@ function Private:HandleToons()
 	local guid = E.myguid
 	local toons = E.Retail and {
 		-- (1598: LaughingSkull)
-		['Player-1598-0F5E4639'] = true, -- [Alliance] Druid
-		['Player-1598-0F3E51B0'] = true, -- [Alliance] Druid 2
-		['Player-1598-0F46FF5A'] = true, -- [Horde] Evoker
-		['Player-1598-0F92E2B9'] = true, -- [Horde] Evoker 2
-		['Player-1598-0BFF3341'] = true, -- [Horde] DH
-		['Player-1598-0BD22704'] = true, -- [Horde] Priest
-		['Player-1598-0BEFA545'] = true, -- [Horde] Monk
-		['Player-1598-0E1A06DE'] = true, -- [Horde] Rogue
-		['Player-1598-0BF2E377'] = true, -- [Horde] Hunter
-		['Player-1598-0BF18248'] = true, -- [Horde] DK
-		['Player-1598-0BFABB95'] = true, -- [Horde] Mage
-		['Player-1598-0E67511D'] = true, -- [Horde] Paladin
-		['Player-1598-0C0DD01B'] = true, -- [Horde] Warlock
-		['Player-1598-0BF8013A'] = true, -- [Horde] Warrior
-		['Player-1598-0BF56103'] = true, -- [Horde] Shaman
-		['Player-1598-0F87B5AA'] = true, -- [Alliance] Priest
+		['Player-1598-0F5E4639'] = true, -- [A] Druid
+		['Player-1598-0F3E51B0'] = true, -- [A] Druid 2
+		['Player-1598-0F46FF5A'] = true, -- [H] Evoker
+		['Player-1598-0F92E2B9'] = true, -- [H] Evoker 2
+		['Player-1598-0BFF3341'] = true, -- [H] DH
+		['Player-1598-0BD22704'] = true, -- [H] Priest
+		['Player-1598-0BEFA545'] = true, -- [H] Monk
+		['Player-1598-0E1A06DE'] = true, -- [H] Rogue
+		['Player-1598-0BF2E377'] = true, -- [H] Hunter
+		['Player-1598-0BF18248'] = true, -- [H] DK
+		['Player-1598-0BFABB95'] = true, -- [H] Mage
+		['Player-1598-0E67511D'] = true, -- [H] Paladin
+		['Player-1598-0C0DD01B'] = true, -- [H] Warlock
+		['Player-1598-0BF8013A'] = true, -- [H] Warrior
+		['Player-1598-0BF56103'] = true, -- [H] Shaman
+		['Player-1598-0F87B5AA'] = true, -- [A] Priest
 	} or E.Cata and {
 		-- (4467: Firemaw, 4440: Everlook, 4476: Gehennas)
-		['Player-4467-04540395'] = true, -- [Alliance] Druid
-		['Player-4467-04542B4A'] = true, -- [Alliance] Priest
-		['Player-4467-04571AA2'] = true, -- [Alliance] Warlock
-		['Player-4467-04571911'] = true, -- [Alliance] Paladin
-		['Player-4467-04571A9F'] = true, -- [Alliance] Mage
-		['Player-4467-04571A8D'] = true, -- [Alliance] DK
-		['Player-4467-048C4EED'] = true, -- [Alliance] Hunter
-		['Player-4467-0489BE11'] = true, -- [Alliance] Shaman
-		['Player-4467-0489BDFD'] = true, -- [Alliance] Rogue
-		['Player-4467-04571A98'] = true, -- [Alliance] Warrior
-		['Player-4440-03AD654A'] = true, -- [Alliance] Rogue
-		['Player-4440-03ADE2DF'] = true, -- [Alliance] Shaman
-		['Player-4476-03BF41C9'] = true, -- [Horde] Hunter
+		['Player-4467-04540395'] = true, -- [A] Druid
+		['Player-4467-04542B4A'] = true, -- [A] Priest
+		['Player-4467-04571AA2'] = true, -- [A] Warlock
+		['Player-4467-04571911'] = true, -- [A] Paladin
+		['Player-4467-04571A9F'] = true, -- [A] Mage
+		['Player-4467-04571A8D'] = true, -- [A] DK
+		['Player-4467-048C4EED'] = true, -- [A] Hunter
+		['Player-4467-0489BE11'] = true, -- [A] Shaman
+		['Player-4467-0489BDFD'] = true, -- [A] Rogue
+		['Player-4467-04571A98'] = true, -- [A] Warrior
+		['Player-4440-03AD654A'] = true, -- [A] Rogue
+		['Player-4440-03ADE2DF'] = true, -- [A] Shaman
+		['Player-4476-03BF41C9'] = true, -- [H] Hunter
 	} or E.Classic and {
 		-- (5826: Lone Wolf, 5827: Living Flame)
-		['Player-5826-0202765F'] = true, -- [Alliance] Hunter
-		['Player-5826-020F7F10'] = true, -- [Alliance] Paladin
-		['Player-5826-02172E79'] = true, -- [Alliance] Warlock
-		['Player-5826-0234253E'] = true, -- [Alliance] Mage
-		['Player-5826-02342508'] = true, -- [Alliance] Priest
-		['Player-5826-023424EF'] = true, -- [Alliance] Druid
-		['Player-5826-02342520'] = true, -- [Alliance] Rogue
-		['Player-5826-02342556'] = true, -- [Alliance] Warrior
-		['Player-5827-02331C4B'] = true, -- [Horde] Shaman
+		['Player-5826-0202765F'] = true, -- [A] Hunter
+		['Player-5826-020F7F10'] = true, -- [A] Paladin
+		['Player-5826-02172E79'] = true, -- [A] Warlock
+		['Player-5826-0234253E'] = true, -- [A] Mage
+		['Player-5826-02342508'] = true, -- [A] Priest
+		['Player-5826-023424EF'] = true, -- [A] Druid
+		['Player-5826-02342520'] = true, -- [A] Rogue
+		['Player-5826-02342556'] = true, -- [A] Warrior
+		['Player-5827-02331C4B'] = true, -- [H] Shaman
 		-- (5261: Nek'Rosh)
-		['Player-5261-01ADAC25'] = true, -- [Horde] Rogue
-		['Player-5261-019F4B67'] = true, -- [Horde] Hunter
-		['Player-5261-01B3C53A'] = true, -- [Horde] Mage
-		['Player-5261-01B50AC4'] = true, -- [Horde] Druid
+		['Player-5261-01ADAC25'] = true, -- [H] Rogue
+		['Player-5261-019F4B67'] = true, -- [H] Hunter
+		['Player-5261-01B3C53A'] = true, -- [H] Mage
+		['Player-5261-01B50AC4'] = true, -- [H] Druid
 		-- (5233: Firemaw)
-		['Player-5233-01D22A72'] = true, -- [Horde] Hunter: Unluckyone
-		['Player-5233-01D27011'] = true, -- [Horde] Druid: Luckydruid
+		['Player-5233-01D22A72'] = true, -- [H] Hunter
+		['Player-5233-01D27011'] = true, -- [H] Druid
 	}
 
 	Private.itsLuckyone = toons[guid]
