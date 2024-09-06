@@ -2,6 +2,8 @@
 **Retail:**  
 Added Season 1 ElvUI NamePlate StyleFilters for Dungeons  
 Added Season 1 WeakAuras section for Dungeons  
+Updated LuckyoneUI Druid WeakAura  
+Updated LuckyoneUI Evoker WeakAura  
 Updated Plater profile for Season 1 Dungeon custom colors  
 Updated tons of LuckyoneUI edits of class WeakAura packs  
 Updated WindTools profile  
