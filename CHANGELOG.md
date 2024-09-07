@@ -1,4 +1,6 @@
 ### Version 3.07 [In Development]
+**All WoW Versions:**  
+Fixed ProjectAzilroka install error  
 **Retail:**  
 Added Season 1 ElvUI NamePlate StyleFilters for Dungeons  
 Added Season 1 WeakAuras section for Dungeons  

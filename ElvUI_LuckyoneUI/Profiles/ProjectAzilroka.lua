@@ -1,9 +1,6 @@
 -- Lua functions
 local unpack = unpack
 
--- Global environment
-local _G = _G
-
 -- AddOn namespace
 local _, Private = ...
 
@@ -14,7 +11,7 @@ local E, L = unpack(ElvUI)
 function Private:Setup_ProjectAzilroka()
 	if not E:IsAddOnEnabled('ProjectAzilroka') then Private:Print('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r ' .. L["is not installed or enabled."]) return end
 
-	local PA = _G.ProjectAzilroka
+	local PA = unpack(ProjectAzilroka)
 
 	-- Profile name
 	local name = 'Luckyone'
