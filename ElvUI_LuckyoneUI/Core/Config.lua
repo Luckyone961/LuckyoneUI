@@ -30,39 +30,28 @@ local CODING = { '|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|
 local SUPPORT = { '|cffe6cc80Calmcacil|r', '|cffe6cc80DaPaKnat|r', '|cffe6cc80Debeleus|r', '|cffe6cc80DevinDog|r', '|cffe6cc80Dukes|r', '|cffe6cc80Fooseq|r', '|cffe6cc80Garbar|r', '|cffe6cc80Kenneth|r', '|cffe6cc80Liam|r', '|cffe6cc80Littlesack|r', '|cffe6cc80Lox|r', '|cffe6cc80Midnatt|r', '|cffe6cc80MonkeyHack|r', '|cffe6cc80Onlyne|r', '|cffe6cc80ShowNoMercy|r', '|cffe6cc80Treelyté|r', '|cffe6cc80Triplebeamdreams|r', '|cffe6cc80Tykk|r', '|cffe6cc80Logan|r' }
 local TESTERS = { '|cff00FF96AltBridge|r', '|cff69CCF0Sniefer|r', '|cffABD473Badbrain|r', '|cffABD473Xyf|r', '|cffC41F3BKringel|r', '|cffF58CBAIllusion|r', '|cffABD473Dlarge|r', '|cffe6cc80Hollicsh|r', '|cff3FC7EBEltreum|r' }
 
+local function SortList(a, b)
+	return E:StripString(a) < E:StripString(b)
+end
+
+local function ProcessList(list)
+	sort(list, SortList)
+	for _, name in pairs(list) do
+		tinsert(Private.Credits, name)
+	end
+	return tconcat(list, '|n')
+end
+
+local AUTHOR_STRING = ProcessList(AUTHOR)
+local CODING_STRING = ProcessList(CODING)
+local TESTER_STRING = ProcessList(TESTERS)
+local SUPPORT_STRING = ProcessList(SUPPORT)
+
 local function CheckRaid()
 	if tonumber(GetCVar('RAIDsettingsEnabled')) == 0 then
 		return true
 	end
 end
-
-local function SortList(a, b)
-	return E:StripString(a) < E:StripString(b)
-end
-
-sort(CODING, SortList)
-sort(SUPPORT, SortList)
-sort(TESTERS, SortList)
-
-for _, name in pairs(AUTHOR) do
-	tinsert(Private.Credits, name)
-end
-local AUTHOR_STRING = tconcat(AUTHOR, '|n')
-
-for _, name in pairs(CODING) do
-	tinsert(Private.Credits, name)
-end
-local CODING_STRING = tconcat(CODING, '|n')
-
-for _, name in pairs(TESTERS) do
-	tinsert(Private.Credits, name)
-end
-local TESTER_STRING = tconcat(TESTERS, '|n')
-
-for _, name in pairs(SUPPORT) do
-	tinsert(Private.Credits, name)
-end
-local SUPPORT_STRING = tconcat(SUPPORT, '|n')
 
 -- LuckyoneUI config panel
 function L1UI:Config()
