@@ -9,6 +9,7 @@ Updated LuckyoneUI Evoker WeakAura
 Updated Plater profile for Season 1 Dungeon custom colors  
 Updated tons of LuckyoneUI edits of class WeakAura packs  
 Updated WindTools profile  
+WeakAuras will no longer hide will Dragonriding/Skyriding  
 ___
 ### Version 3.06 [29-08-2024]
 **All WoW Versions:**  
