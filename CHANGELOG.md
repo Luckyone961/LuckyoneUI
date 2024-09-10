@@ -7,6 +7,7 @@ Added Season 1 WeakAuras section for Dungeons
 Updated LuckyoneUI Class Edits (Melee, Ranged, Tanks, Healer)  
 Updated LuckyoneUI Druid WeakAura  
 Updated LuckyoneUI Evoker WeakAura  
+Updated OmniCD profile  
 Updated Plater profile for Season 1 Dungeon custom colors  
 Updated Shadow&Light profile  
 Updated WindTools profile  
