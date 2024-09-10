@@ -1,5 +1,6 @@
 ### Version 3.07 [In Development]
 **All WoW Versions:**  
+ElvUI 13.77+ compatibility  
 Fixed ProjectAzilroka install error  
 **Retail:**  
 Added Season 1 ElvUI NamePlate StyleFilters for Dungeons  
