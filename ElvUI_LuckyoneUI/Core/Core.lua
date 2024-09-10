@@ -50,60 +50,33 @@ end
 -- Gets the number from the profile string
 -- If it matches the specified profile type (Main/Healing/Support) or if no profile type is specified
 local function GetNumber(str, profileType)
-	if profileType and not strfind(str, profileType) then
+	if profileType and not str:find(profileType, 1, true) then
 		return nil
 	end
 
-	local number = strmatch(str, '%d+%.?%d*')
-
-	if number then
-		return tonumber(number)
-	else
-		return nil
-	end
+	local number = str:match('%d+%.?%d*')
+	return number and tonumber(number) or nil
 end
 
 -- Find the profile with the highest number
 -- Optionally filtering by the specified profile type
 function Private:GetMostRecentProfile(profileType)
-	local profiles, count = E.data:GetProfiles()
-	local mostRecentNumber = nil
-	local mostRecentProfile = nil
-	local mainDev = false
-	local healingDev = false
-	local supportDev = false
+	local profiles = E.data:GetProfiles()
+	local mostRecentNumber, mostRecentProfile
+	local devProfiles = {
+		Main = 'Luckyone Main',
+		Healing = 'Luckyone Healing',
+		Support = 'Luckyone Support'
+	}
 
 	for _, profile in ipairs(profiles) do
 		local number = GetNumber(profile, profileType)
-
-		if number and (mostRecentNumber == nil or number > mostRecentNumber) then
-			mostRecentNumber = number
-			mostRecentProfile = profile
-		end
-
-		-- Check for dev profiles without a number
-		if profile == 'Luckyone Main' then
-			mainDev = true
-		elseif profile == 'Luckyone Healing' then
-			healingDev = true
-		elseif profile == 'Luckyone Support' then
-			supportDev = true
+		if number and (not mostRecentNumber or number > mostRecentNumber) then
+			mostRecentNumber, mostRecentProfile = number, profile
 		end
 	end
 
-	if not mostRecentProfile then
-		if profileType == 'Main' then
-			return mainDev and 'Luckyone Main' or nil
-		elseif profileType == 'Healing' then
-			return healingDev and 'Luckyone Healing' or nil
-		elseif profileType == 'Support' then
-			return supportDev and 'Luckyone Support' or nil
-		else
-			return nil
-		end
-	else
-		return mostRecentProfile
-	end
+	return mostRecentProfile or (profileType and devProfiles[profileType]) or nil
 end
 
 -- Reload popup
@@ -234,6 +207,66 @@ function L1UI:LoadCommands()
 	end
 end
 
+-- Luckyone characters by GUID
+function Private:HandleToons()
+	local guid = E.myguid
+	local toons = E.Retail and {
+		-- (1598: LaughingSkull)
+		['Player-1598-0F5E4639'] = true, -- [A] Druid
+		['Player-1598-0F3E51B0'] = true, -- [A] Druid 2
+		['Player-1598-0F46FF5A'] = true, -- [H] Evoker
+		['Player-1598-0F92E2B9'] = true, -- [H] Evoker 2
+		['Player-1598-0BFF3341'] = true, -- [H] DH
+		['Player-1598-0BD22704'] = true, -- [H] Priest
+		['Player-1598-0BEFA545'] = true, -- [H] Monk
+		['Player-1598-0E1A06DE'] = true, -- [H] Rogue
+		['Player-1598-0BF2E377'] = true, -- [H] Hunter
+		['Player-1598-0BF18248'] = true, -- [H] DK
+		['Player-1598-0BFABB95'] = true, -- [H] Mage
+		['Player-1598-0E67511D'] = true, -- [H] Paladin
+		['Player-1598-0C0DD01B'] = true, -- [H] Warlock
+		['Player-1598-0BF8013A'] = true, -- [H] Warrior
+		['Player-1598-0BF56103'] = true, -- [H] Shaman
+		['Player-1598-0F87B5AA'] = true, -- [A] Priest
+	} or E.Cata and {
+		-- (4467: Firemaw, 4440: Everlook, 4476: Gehennas)
+		['Player-4467-04540395'] = true, -- [A] Druid
+		['Player-4467-04542B4A'] = true, -- [A] Priest
+		['Player-4467-04571AA2'] = true, -- [A] Warlock
+		['Player-4467-04571911'] = true, -- [A] Paladin
+		['Player-4467-04571A9F'] = true, -- [A] Mage
+		['Player-4467-04571A8D'] = true, -- [A] DK
+		['Player-4467-048C4EED'] = true, -- [A] Hunter
+		['Player-4467-0489BE11'] = true, -- [A] Shaman
+		['Player-4467-0489BDFD'] = true, -- [A] Rogue
+		['Player-4467-04571A98'] = true, -- [A] Warrior
+		['Player-4440-03AD654A'] = true, -- [A] Rogue
+		['Player-4440-03ADE2DF'] = true, -- [A] Shaman
+		['Player-4476-03BF41C9'] = true, -- [H] Hunter
+	} or E.Classic and {
+		-- (5826: Lone Wolf, 5827: Living Flame)
+		['Player-5826-0202765F'] = true, -- [A] Hunter
+		['Player-5826-020F7F10'] = true, -- [A] Paladin
+		['Player-5826-02172E79'] = true, -- [A] Warlock
+		['Player-5826-0234253E'] = true, -- [A] Mage
+		['Player-5826-02342508'] = true, -- [A] Priest
+		['Player-5826-023424EF'] = true, -- [A] Druid
+		['Player-5826-02342520'] = true, -- [A] Rogue
+		['Player-5826-02342556'] = true, -- [A] Warrior
+		['Player-5827-02331C4B'] = true, -- [H] Shaman
+		-- (5261: Nek'Rosh)
+		['Player-5261-01ADAC25'] = true, -- [H] Rogue
+		['Player-5261-019F4B67'] = true, -- [H] Hunter
+		['Player-5261-01B3C53A'] = true, -- [H] Mage
+		['Player-5261-01B50AC4'] = true, -- [H] Druid
+		-- (5233: Firemaw)
+		['Player-5233-01D22A72'] = true, -- [H] Hunter
+		['Player-5233-01D27011'] = true, -- [H] Druid
+	}
+
+	Private.itsLuckyone = toons[guid]
+end
+
 -- Events
 function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	if initLogin or not ElvDB.LuckyoneDisabledAddOns then
@@ -246,6 +279,7 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 
 	Private:DisabledFrames()
 	Private:EasyDelete()
+	Private:HandleToons()
 	L1UI:LoadCommands()
 end
 

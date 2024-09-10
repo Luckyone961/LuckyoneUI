@@ -30,39 +30,28 @@ local CODING = { '|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|
 local SUPPORT = { '|cffe6cc80Calmcacil|r', '|cffe6cc80DaPaKnat|r', '|cffe6cc80Debeleus|r', '|cffe6cc80DevinDog|r', '|cffe6cc80Dukes|r', '|cffe6cc80Fooseq|r', '|cffe6cc80Garbar|r', '|cffe6cc80Kenneth|r', '|cffe6cc80Liam|r', '|cffe6cc80Littlesack|r', '|cffe6cc80Lox|r', '|cffe6cc80Midnatt|r', '|cffe6cc80MonkeyHack|r', '|cffe6cc80Onlyne|r', '|cffe6cc80ShowNoMercy|r', '|cffe6cc80Treelyté|r', '|cffe6cc80Triplebeamdreams|r', '|cffe6cc80Tykk|r', '|cffe6cc80Logan|r' }
 local TESTERS = { '|cff00FF96AltBridge|r', '|cff69CCF0Sniefer|r', '|cffABD473Badbrain|r', '|cffABD473Xyf|r', '|cffC41F3BKringel|r', '|cffF58CBAIllusion|r', '|cffABD473Dlarge|r', '|cffe6cc80Hollicsh|r', '|cff3FC7EBEltreum|r' }
 
+local function SortList(a, b)
+	return E:StripString(a) < E:StripString(b)
+end
+
+local function ProcessList(list)
+	sort(list, SortList)
+	for _, name in pairs(list) do
+		tinsert(Private.Credits, name)
+	end
+	return tconcat(list, '|n')
+end
+
+local AUTHOR_STRING = ProcessList(AUTHOR)
+local CODING_STRING = ProcessList(CODING)
+local TESTER_STRING = ProcessList(TESTERS)
+local SUPPORT_STRING = ProcessList(SUPPORT)
+
 local function CheckRaid()
 	if tonumber(GetCVar('RAIDsettingsEnabled')) == 0 then
 		return true
 	end
 end
-
-local function SortList(a, b)
-	return E:StripString(a) < E:StripString(b)
-end
-
-sort(CODING, SortList)
-sort(SUPPORT, SortList)
-sort(TESTERS, SortList)
-
-for _, name in pairs(AUTHOR) do
-	tinsert(Private.Credits, name)
-end
-local AUTHOR_STRING = tconcat(AUTHOR, '|n')
-
-for _, name in pairs(CODING) do
-	tinsert(Private.Credits, name)
-end
-local CODING_STRING = tconcat(CODING, '|n')
-
-for _, name in pairs(TESTERS) do
-	tinsert(Private.Credits, name)
-end
-local TESTER_STRING = tconcat(TESTERS, '|n')
-
-for _, name in pairs(SUPPORT) do
-	tinsert(Private.Credits, name)
-end
-local SUPPORT_STRING = tconcat(SUPPORT, '|n')
 
 -- LuckyoneUI config panel
 function L1UI:Config()
@@ -322,12 +311,17 @@ function L1UI:Config()
 	L1UI.Options.args.weakauras.args.misc.args.keys = ACH:Execute('!keys command', nil, 1, function() Private:WeakAurasImport('keys') end)
 	L1UI.Options.args.weakauras.args.misc.args.dragonriding = ACH:Execute('Dragonriding', nil, 2, function() Private:WeakAurasImport('dragonriding') end)
 	L1UI.Options.args.weakauras.args.misc.args.elvuiMythicVisibility = ACH:Execute('ElvUI Mythic Handler', nil, 3, function() Private:WeakAurasImport('elvuiMythicVisibility') end)
-	L1UI.Options.args.weakauras.args.misc.args.externals = ACH:Execute('Externals on You', nil, 4, function() Private:WeakAurasImport('externals') end)
-	L1UI.Options.args.weakauras.args.misc.args.groupfinderAppTextHide = ACH:Execute('Groupfinder AppText Hide', nil, 5, function() Private:WeakAurasImport('groupfinderAppTextHide') end)
-	L1UI.Options.args.weakauras.args.misc.args.handleFriendlyNamePlates = ACH:Execute('Handle Friendly Plates', nil, 6, function() Private:WeakAurasImport('handleFriendlyNamePlates') end)
-	L1UI.Options.args.weakauras.args.misc.args.handleNamePlatesFont = ACH:Execute('Handle Plates Font ', nil, 7, function() Private:WeakAurasImport('handleNamePlatesFont') end)
-	L1UI.Options.args.weakauras.args.misc.args.playerFrameUtilities = ACH:Execute('Player Frame Utility', nil, 8, function() Private:WeakAurasImport('playerFrameUtilities') end)
-	L1UI.Options.args.weakauras.args.misc.args.trinket = ACH:Execute('Trinket Tracker', nil, 9, function() Private:WeakAurasImport('trinket') end)
+	L1UI.Options.args.weakauras.args.misc.args.spacerOne = ACH:Spacer(4, 'full')
+	L1UI.Options.args.weakauras.args.misc.args.externals = ACH:Execute('Externals on You', nil, 5, function() Private:WeakAurasImport('externals') end)
+	L1UI.Options.args.weakauras.args.misc.args.groupfinderAppTextHide = ACH:Execute('Groupfinder AppText Hide', nil, 6, function() Private:WeakAurasImport('groupfinderAppTextHide') end)
+	L1UI.Options.args.weakauras.args.misc.args.handleFriendlyNamePlates = ACH:Execute('Handle Friendly Plates', nil, 7, function() Private:WeakAurasImport('handleFriendlyNamePlates') end)
+	L1UI.Options.args.weakauras.args.misc.args.spacerTwo = ACH:Spacer(8, 'full')
+	L1UI.Options.args.weakauras.args.misc.args.handleNamePlatesFont = ACH:Execute('Handle Plates Font ', nil, 9, function() Private:WeakAurasImport('handleNamePlatesFont') end)
+	L1UI.Options.args.weakauras.args.misc.args.playerFrameUtilities = ACH:Execute('Player Frame Utility', nil, 10, function() Private:WeakAurasImport('playerFrameUtilities') end)
+	L1UI.Options.args.weakauras.args.misc.args.trinket = ACH:Execute('Trinket Tracker', nil, 11, function() Private:WeakAurasImport('trinket') end)
+	L1UI.Options.args.weakauras.args.dungeons = ACH:Group(L["WeakAuras - Dungeons"], nil, 4)
+	L1UI.Options.args.weakauras.args.dungeons.inline = true
+	L1UI.Options.args.weakauras.args.dungeons.args.affixes = ACH:Execute('Affixes', nil, 1, function() Private:WeakAurasImport('affixes') end)
 
 	-- Credits
 	L1UI.Options.args.credits = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 15)

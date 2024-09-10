@@ -62,8 +62,6 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.afk.enable = true
 	E.db.sle.afk.playermodel.enable = false
 
-	E.db.sle.armory.character.background.overlay = false
-	E.db.sle.armory.character.background.selectedBG = 'HIDE'
 	E.db.sle.armory.character.durability.display = 'Hide'
 	E.db.sle.armory.character.durability.font = Private.Font
 	E.db.sle.armory.character.durability.fontSize = 11
@@ -105,7 +103,6 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.raidmarkers.enable = false
 
 	E.db.sle.skins.objectiveTracker.classHeader = true
-	E.db.sle.skins.objectiveTracker.underline = true
 	E.db.sle.skins.objectiveTracker.underlineClass = true
 
 	if installer then
@@ -127,6 +124,7 @@ function Private:Setup_Private_ShadowAndLight()
 
 	-- Private DB
 	E.private.sle.install_complete = version
+	E.private.sle.module.shadows.enable = false
 	E.private.sle.professions.deconButton.enable = false
 	E.private.sle.skins.objectiveTracker.BGbackdrop = false
 	E.private.sle.skins.objectiveTracker.texture = Private.Texture

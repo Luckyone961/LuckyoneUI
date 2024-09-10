@@ -206,6 +206,7 @@ L["Warlock"] = true
 L["WarpDeplete profile has been set."] = true
 L["WarpDeplete profile"] = true
 L["Warrior"] = true
+L["WeakAuras - Dungeons"] = true
 L["WeakAuras - Edits of other packs"] = true
 L["WeakAuras - General"] = true
 L["WeakAuras - Maintained"] = true

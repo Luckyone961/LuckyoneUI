@@ -54,15 +54,13 @@ local classificationText = {
 
 -- oUF\Elements\tags.lua
 local function Hex(r, g, b)
-	if (type(r) == 'table') then
-		if (r.r) then
+	if type(r) == 'table' then
+		if r.r then
 			r, g, b = r.r, r.g, r.b
 		else
 			r, g, b = unpack(r)
 		end
-	end
-
-	if not r or type(r) == 'string' then
+	elseif not r or type(r) == 'string' then
 		return '|cffFFFFFF'
 	end
 
