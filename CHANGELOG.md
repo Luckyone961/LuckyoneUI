@@ -4,10 +4,11 @@ Fixed ProjectAzilroka install error
 **Retail:**  
 Added Season 1 ElvUI NamePlate StyleFilters for Dungeons  
 Added Season 1 WeakAuras section for Dungeons  
+Updated LuckyoneUI Class Edits (Melee, Ranged, Tanks, Healer)  
 Updated LuckyoneUI Druid WeakAura  
 Updated LuckyoneUI Evoker WeakAura  
 Updated Plater profile for Season 1 Dungeon custom colors  
-Updated tons of LuckyoneUI edits of class WeakAura packs  
+Updated Shadow&Light profile  
 Updated WindTools profile  
 WeakAuras will no longer hide while Dragonriding/Skyriding  
 ___
