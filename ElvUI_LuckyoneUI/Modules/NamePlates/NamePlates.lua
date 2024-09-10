@@ -365,6 +365,10 @@ function Private:Setup_StyleFilters(skipVars)
 	E.global.nameplates.filters.ElvUI_NonTarget.actions.alpha = -1
 	E.global.nameplates.filters.ElvUI_Target.actions.scale = 1
 
+	-- Turn off both default filters
+	E.db.nameplates.filters.ElvUI_NonTarget.triggers.enable = false
+	E.db.nameplates.filters.ElvUI_Target.triggers.enable = false
+
 	-- Set NamePlate CVars
 	if not skipVars then
 		Private:NameplateCVars(true)
