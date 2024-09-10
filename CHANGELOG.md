@@ -4,7 +4,7 @@ Fixed ProjectAzilroka install error
 **Retail:**  
 Added Season 1 ElvUI NamePlate StyleFilters for Dungeons  
 Added Season 1 WeakAuras section for Dungeons  
-Updated LuckyoneUI Class Edits (Melee, Ranged, Tanks, Healer)  
+Updated LuckyoneUI Class WeakAura Edits (Melee, Ranged, Tanks, Healer)  
 Updated LuckyoneUI Druid WeakAura  
 Updated LuckyoneUI Evoker WeakAura  
 Updated OmniCD profile  
