@@ -1,4 +1,4 @@
-### Version 3.07 [In Development]
+### Version 3.07 [10-09-2024]
 **All WoW Versions:**  
 ElvUI 13.77+ compatibility  
 Fixed ProjectAzilroka install error  
