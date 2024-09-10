@@ -26,7 +26,8 @@
 • **BossMods:** [BigWigs](https://www.curseforge.com/wow/addons/big-wigs), [LittleWigs](https://www.curseforge.com/wow/addons/little-wigs)  
 • **NamePlates:** [Plater](https://www.curseforge.com/wow/addons/plater-nameplates), [ElvUI NamePlates](https://www.tukui.org/)  
 • **AddOns:** [Details](https://www.curseforge.com/wow/addons/details), [OmniCD](https://www.curseforge.com/wow/addons/omnicd), [WarpDeplete](https://www.curseforge.com/wow/addons/warpdeplete)  
-• **Plugins:** [AddOnSkins](https://www.curseforge.com/wow/addons/addonskins), [ProjectAzilroka](https://www.curseforge.com/wow/addons/projectazilroka), [Shadow&Light](https://www.curseforge.com/wow/addons/elvui-shadow-light), [WindTools](https://www.curseforge.com/wow/addons/elvui-windtools)  
+• **Plugins (Recommended):** [Shadow&Light](https://www.curseforge.com/wow/addons/elvui-shadow-light), [WindTools](https://www.curseforge.com/wow/addons/elvui-windtools)  
+• **Plugins (Optional):** [AddOnSkins](https://www.curseforge.com/wow/addons/addonskins), [ProjectAzilroka](https://www.curseforge.com/wow/addons/projectazilroka)  
 
 ### **Chat commands**  
 • **/lucky install** [Re-Run the installer process]  
