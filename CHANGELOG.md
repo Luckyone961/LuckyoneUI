@@ -1,5 +1,6 @@
 ### Version 3.08 [In Development]
 **Retail:**  
+Added font outline to objective tracker text (Click /lucky config - Media - Reset Media)  
 Updated LuckyoneUI Evoker WeakAura  
 ___
 ### Version 3.07 [10-09-2024]
