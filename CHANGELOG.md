@@ -1,3 +1,7 @@
+### Version 3.08 [In Development]
+**Retail:**  
+Updated LuckyoneUI Evoker WeakAura  
+___
 ### Version 3.07 [10-09-2024]
 **All WoW Versions:**  
 ElvUI 13.77+ compatibility  
