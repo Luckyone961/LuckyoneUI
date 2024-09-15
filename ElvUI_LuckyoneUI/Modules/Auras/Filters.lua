@@ -96,12 +96,6 @@ function Private:Setup_Filters_Retail()
 		["xOffset"] = 1,
 	}
 	classes['EVOKER'][360827] = {
-		["color"] = {
-			["a"] = 1,
-			["b"] = 1,
-			["g"] = 1,
-			["r"] = 1,
-		},
 		["countAnchor"] = "BOTTOM",
 		["point"] = "TOPLEFT",
 		["sizeOffset"] = 6,
@@ -149,11 +143,6 @@ function Private:Setup_Filters_Retail()
 	}
 	classes['EVOKER'][369459] = {
 		["anyUnit"] = true,
-		["color"] = {
-			["b"] = 1,
-			["g"] = 1,
-			["r"] = 1,
-		},
 		["cooldownAnchor"] = "CENTER",
 		["countAnchor"] = "BOTTOMRIGHT",
 		["countX"] = 1,
