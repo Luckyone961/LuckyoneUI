@@ -5,6 +5,8 @@ Fixed installer error preventing to apply WindTools profile
 Reworked aura indicators for Preservation Evoker (Config -> Buffs and Debuffs -> Setup Aura Filters)  
 Updated LuckyoneUI Class WeakAura Edits (Melee, Ranged, Tanks, Healer)  
 Updated LuckyoneUI Evoker WeakAura  
+**Classic:**  
+Updated TOC for 1.15.4  
 ___
 ### Version 3.07 [10-09-2024]
 **All WoW Versions:**  
