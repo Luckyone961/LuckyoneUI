@@ -244,15 +244,15 @@ function Private:HandleToons()
 		['Player-4440-03ADE2DF'] = true, -- [A] Shaman
 		['Player-4476-03BF41C9'] = true, -- [H] Hunter
 	} or E.Classic and {
-		-- (5826: Lone Wolf, 5827: Living Flame)
-		['Player-5826-0202765F'] = true, -- [A] Hunter
-		['Player-5826-020F7F10'] = true, -- [A] Paladin
-		['Player-5826-02172E79'] = true, -- [A] Warlock
-		['Player-5826-0234253E'] = true, -- [A] Mage
-		['Player-5826-02342508'] = true, -- [A] Priest
-		['Player-5826-023424EF'] = true, -- [A] Druid
-		['Player-5826-02342520'] = true, -- [A] Rogue
-		['Player-5826-02342556'] = true, -- [A] Warrior
+		-- (5827: Living Flame)
+		['Player-5827-0273D732'] = true, -- [A] Hunter
+		['Player-5827-0273D63E'] = true, -- [A] Paladin
+		['Player-5827-0273D63D'] = true, -- [A] Warlock
+		['Player-5827-0273D649'] = true, -- [A] Mage
+		['Player-5827-0273D661'] = true, -- [A] Priest
+		['Player-5827-0273D65D'] = true, -- [A] Druid
+		['Player-5827-0273D63F'] = true, -- [A] Rogue
+		['Player-5827-0273D638'] = true, -- [A] Warrior
 		['Player-5827-02331C4B'] = true, -- [H] Shaman
 		-- (5261: Nek'Rosh)
 		['Player-5261-01ADAC25'] = true, -- [H] Rogue

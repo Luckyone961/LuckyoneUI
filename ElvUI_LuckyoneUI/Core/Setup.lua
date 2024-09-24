@@ -138,7 +138,9 @@ function Private:Setup_PrivateDB()
 	E.db.general.fonts.errortext.outline = Private.Outline
 	E.db.general.fonts.errortext.size = 16
 	E.db.general.fonts.mailbody.outline = Private.Outline
+	E.db.general.fonts.objective.enable = true
 	E.db.general.fonts.objective.outline = Private.Outline
+	E.db.general.fonts.objective.size = 12
 	E.db.general.fonts.questsmall.enable = true
 	E.db.general.fonts.questsmall.outline = Private.Outline
 	E.db.general.fonts.questsmall.size = 12

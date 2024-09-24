@@ -81,82 +81,129 @@ function Private:Setup_Filters_Retail()
 	classes['DRUID'][200389]['style'] = 'texturedIcon'
 
 	-- Evoker
-	classes['EVOKER'][367364]["style"] = "texturedIcon"
-	classes['EVOKER'][376788]["style"] = "texturedIcon"
-	classes['EVOKER'][363502]["style"] = "texturedIcon"
-	classes['EVOKER'][406732] = {
-		["point"] = "TOP",
+	classes['EVOKER'][355941] = {
 		["displayText"] = true,
-		["sizeOffset"] = 4,
+		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+		["yOffset"] = 1,
 	}
-	classes['EVOKER'][410089] = {
-		["point"] = "TOPRIGHT",
+	classes['EVOKER'][357170] = {
 		["displayText"] = true,
-		["sizeOffset"] = 6,
-		["style"] = "timerOnly",
-		["color"] = {
-			["a"] = 1,
-			["r"] = 1,
-			["g"] = 1,
-			["b"] = 1,
-		},
+		["point"] = "RIGHT",
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
 	}
-	classes['EVOKER'][364343]["style"] = "texturedIcon"
+	classes['EVOKER'][360827] = {
+		["countAnchor"] = "BOTTOM",
+		["point"] = "TOPLEFT",
+		["sizeOffset"] = 6,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
+		["yOffset"] = 1,
+	}
+	classes['EVOKER'][361022] = {
+		["point"] = "BOTTOMLEFT",
+		["sizeOffset"] = 6,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
+		["yOffset"] = -1,
+	}
+	classes['EVOKER'][363502] = {
+		["displayText"] = true,
+		["point"] = "BOTTOMRIGHT",
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+		["yOffset"] = -1,
+	}
+	classes['EVOKER'][364343] = {
+		["displayText"] = true,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -17,
+		["yOffset"] = 1,
+	}
+	classes['EVOKER'][366155] = {
+		["displayText"] = true,
+		["point"] = "TOP",
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 17,
+		["yOffset"] = 1,
+	}
+	classes['EVOKER'][367364] = {
+		["displayText"] = true,
+		["point"] = "TOP",
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 0,
+		["yOffset"] = 1,
+	}
+	classes['EVOKER'][369459] = {
+		["anyUnit"] = true,
+		["cooldownAnchor"] = "CENTER",
+		["countAnchor"] = "BOTTOMRIGHT",
+		["countX"] = 1,
+		["countY"] = 1,
+		["displayText"] = false,
+		["enabled"] = true,
+		["id"] = 369459,
+		["onlyShowMissing"] = false,
+		["point"] = "TOPLEFT",
+		["sizeOffset"] = 6,
+		["style"] = "texturedIcon",
+		["textThreshold"] = -1,
+		["xOffset"] = -1,
+		["yOffset"] = 1,
+	}
+	classes['EVOKER'][373267] = {
+		["displayText"] = true,
+		["point"] = "TOPLEFT",
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 16,
+		["yOffset"] = 1,
+	}
+	classes['EVOKER'][376788] = {
+		["displayText"] = true,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -16,
+		["yOffset"] = 1,
+	}
 	classes['EVOKER'][395152] = {
 		["displayText"] = true,
 		["enabled"] = false,
 		["sizeOffset"] = 6,
 		["style"] = "texturedIcon",
 	}
-	classes['EVOKER'][373267]["style"] = "texturedIcon"
-	classes['EVOKER'][366155]["style"] = "texturedIcon"
-	classes['EVOKER'][369459] = {
-		["enabled"] = true,
-		["anyUnit"] = true,
-		["point"] = "TOPLEFT",
-		["cooldownAnchor"] = "CENTER",
-		["id"] = 369459,
-		["displayText"] = false,
-		["textThreshold"] = -1,
-		["yOffset"] = 0,
-		["countAnchor"] = "BOTTOMRIGHT",
+	classes['EVOKER'][406732] = {
+		["displayText"] = true,
+		["point"] = "TOP",
 		["sizeOffset"] = 6,
 		["style"] = "texturedIcon",
-		["countY"] = 1,
-		["countX"] = 1,
-		["xOffset"] = 0,
-		["color"] = {
-			["b"] = 1,
-			["g"] = 1,
-			["r"] = 1,
-		},
-		["onlyShowMissing"] = false,
+		["yOffset"] = 1,
 	}
-	classes['EVOKER'][357170]["style"] = "texturedIcon"
-	classes['EVOKER'][360827] = {
-		["point"] = "TOPLEFT",
-		["countAnchor"] = "BOTTOM",
+	classes['EVOKER'][406789] = {
+		["displayText"] = true,
+		["point"] = "TOP",
 		["sizeOffset"] = 6,
 		["style"] = "texturedIcon",
+		["yOffset"] = 1,
+	}
+	classes['EVOKER'][410089] = {
 		["color"] = {
 			["a"] = 1,
 			["b"] = 1,
 			["g"] = 1,
 			["r"] = 1,
 		},
-	}
-	classes['EVOKER'][355941]["style"] = "texturedIcon"
-	classes['EVOKER'][406789] = {
-		["point"] = "TOP",
 		["displayText"] = true,
-		["sizeOffset"] = 4,
-		["style"] = "texturedIcon",
-	}
-	classes['EVOKER'][361022] = {
-		["point"] = "BOTTOMLEFT",
+		["point"] = "TOPRIGHT",
 		["sizeOffset"] = 6,
-		["style"] = "texturedIcon",
+		["style"] = "timerOnly",
 	}
 
 	auraHighlight[410089] = {

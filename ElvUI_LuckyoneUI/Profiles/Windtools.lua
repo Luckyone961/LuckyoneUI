@@ -89,7 +89,6 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.misc.disableTalkingHead = true
 	E.db.WT.misc.gameBar.enable = false
 	E.db.WT.misc.noLootPanel = true
-	E.db.WT.quest.paragonReputation.toast.sound = false
 	E.db.WT.quest.switchButtons.announcement = false
 	E.db.WT.quest.turnIn.mode = 'COMPLETE'
 	E.db.WT.quest.turnIn.pauseModifier = 'ANY'

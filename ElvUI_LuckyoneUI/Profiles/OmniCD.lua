@@ -19,8 +19,8 @@ function Private:Setup_OmniCD(layout, installer)
 	local scaled = E.global.L1UI.scaled
 
 	-- Profile names
-	local name_main = E.global.L1UI.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version
-	local name_healing = E.global.L1UI.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version
+	local name_main = (E.global.L1UI.dev and 'Luckyone Main') or 'Luckyone Main ' .. Private.Version
+	local name_healing = (E.global.L1UI.dev and 'Luckyone Healing') or 'Luckyone Healing ' .. Private.Version
 
 	-- Disable LibDualSpec to set the profile
 	OmniCDDB['namespaces']['LibDualSpec-1.0'] = OmniCDDB['namespaces']['LibDualSpec-1.0'] or {}
