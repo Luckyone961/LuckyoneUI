@@ -1,6 +1,7 @@
 ### Version 3.09 [In Development]
 **Retail:**  
 Updated LuckyoneUI Class WeakAura Edits (Healer)  
+Updated LuckyoneUI Evoker WeakAura  
 ___
 ### Version 3.08 [24-09-2024]
 **All WoW Versions:**  
