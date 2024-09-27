@@ -1,4 +1,6 @@
 ### Version 3.09 [In Development]
+**All WoW Versions:**  
+Reduced update rate for Tags to 3 per second (was 4)  
 **Retail:**  
 Updated LuckyoneUI Class WeakAura Edits (Healer)  
 Updated LuckyoneUI Evoker WeakAura  
