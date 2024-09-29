@@ -1,6 +1,7 @@
 ### Version 3.09 [In Development]
 **All WoW Versions:**  
 Reduced update rate for Tags to 3 per second (was 4)  
+Updated player castbar colors to match health and backdrop (black/gray)  
 **Retail:**  
 Updated LuckyoneUI Class WeakAura Edits (Healer)  
 Updated LuckyoneUI Evoker WeakAura  
