@@ -1186,7 +1186,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.raid3.debuffs.countFont = Private.Font
 	E.db.unitframe.units.raid3.debuffs.desaturate = false
 	E.db.unitframe.units.raid3.debuffs.maxDuration = 0
-	E.db.unitframe.units.raid3.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
+	E.db.unitframe.units.raid3.debuffs.priority = 'Blacklist,Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid3.disableFocusGlow = true
 	E.db.unitframe.units.raid3.disableTargetGlow = true
 	E.db.unitframe.units.raid3.fader.minAlpha = 0.5
@@ -3673,7 +3673,7 @@ function Private:Layout_Shadowlands(layout)
 	E.db.unitframe.units.focus.raidicon.yOffset = 0
 	E.db.unitframe.units.focus.threatStyle = 'NONE'
 	E.db.unitframe.units.focustarget.buffs.countFont = Private.Font
-	E.db.unitframe.units.focustarget.buffs.priority = 'Blacklist,Personal,PlayerBuffs,Dispellable'
+	E.db.unitframe.units.focustarget.buffs.priority = 'Blacklist,Personal,Dispellable'
 	E.db.unitframe.units.focustarget.debuffs.attachTo = 'BUFFS'
 	E.db.unitframe.units.focustarget.debuffs.countFont = Private.Font
 	E.db.unitframe.units.focustarget.debuffs.maxDuration = 0
