@@ -949,6 +949,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.player.pvp.text_format = ''
 	E.db.unitframe.units.player.pvpIcon.scale = 0.85
 	E.db.unitframe.units.player.raidicon.enable = false
+	E.db.unitframe.units.player.raidRoleIcons.combatHide = true
 	E.db.unitframe.units.player.raidRoleIcons.yOffset = 1
 	E.db.unitframe.units.player.RestIcon.enable = false
 	E.db.unitframe.units.player.threatStyle = 'NONE'
@@ -1017,6 +1018,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.target.raidicon.size = 40
 	E.db.unitframe.units.target.raidicon.xOffset = 42
 	E.db.unitframe.units.target.raidicon.yOffset = 1
+	E.db.unitframe.units.target.raidRoleIcons.combatHide = true
 	E.db.unitframe.units.target.raidRoleIcons.position = 'TOPRIGHT'
 	E.db.unitframe.units.target.raidRoleIcons.yOffset = 1
 	E.db.unitframe.units.target.smartAuraPosition = 'FLUID_BUFFS_ON_DEBUFFS'
@@ -1122,6 +1124,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.party.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.party.phaseIndicator.xOffset = 15
 	E.db.unitframe.units.party.power.enable = false
+	E.db.unitframe.units.party.raidRoleIcons.combatHide = true
 	E.db.unitframe.units.party.raidRoleIcons.yOffset = 1
 	E.db.unitframe.units.party.rdebuffs.enable = false
 	E.db.unitframe.units.party.readycheckIcon.attachTo = 'Frame'
@@ -1155,6 +1158,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid1.power.enable = false
 	E.db.unitframe.units.raid1.pvpclassificationindicator.enable = false
+	E.db.unitframe.units.raid1.raidRoleIcons.combatHide = true
 	E.db.unitframe.units.raid1.raidRoleIcons.scale = 0.8
 	E.db.unitframe.units.raid1.raidRoleIcons.yOffset = 1
 	E.db.unitframe.units.raid1.readycheckIcon.position = 'TOP'
@@ -1199,6 +1203,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.raid3.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.raid3.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid3.pvpclassificationindicator.enable = false
+	E.db.unitframe.units.raid3.raidRoleIcons.combatHide = true
 	E.db.unitframe.units.raid3.raidRoleIcons.scale = 0.8
 	E.db.unitframe.units.raid3.raidRoleIcons.yOffset = 1
 	E.db.unitframe.units.raid3.readycheckIcon.position = 'RIGHT'
