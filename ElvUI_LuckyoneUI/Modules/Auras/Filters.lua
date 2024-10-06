@@ -46,7 +46,7 @@ function Private:Setup_Filters_Retail()
 		whitelist = {},
 		-- Healers
 		DRUID = { 207386, 188550, 155777, 203554, 774, 102351, 102352, 8936, 33763, 48438, 200389 },
-		EVOKER = { 367364, 376788, 363502, 406732, 410089, 364343, 395152, 373267, 366155, 369459, 357170, 360827, 355941, 406789, 361022 },
+		EVOKER = { 367364, 376788, 363502, 406732, 410089, 364343, 395152, 373267, 366155, 369459, 357170, 360827, 355941, 406789, 361022, 412710 },
 		MONK = { 325209, 115175, 191840, 116849, 119611, 124682, 116841 },
 		PALADIN = { 1044, 200025, 148039, 6940, 156910, 157047, 204018, 223306, 53563, 1022, 395180, 156322, 481381 },
 		PRIEST = { 139, 193065, 10060, 214206, 17, 33206, 194384, 41635, 47788, 6788, 77489 },
@@ -204,6 +204,30 @@ function Private:Setup_Filters_Retail()
 		["point"] = "TOPRIGHT",
 		["sizeOffset"] = 6,
 		["style"] = "timerOnly",
+	}
+	classes['EVOKER'][412710] = {
+		["point"] = "TOPLEFT",
+		["color"] = {
+			["b"] = 1,
+			["g"] = 1,
+			["r"] = 1,
+		},
+		["displayText"] = false,
+		["yOffset"] = 1,
+		["enabled"] = true,
+		["anyUnit"] = false,
+		["cooldownX"] = 1,
+		["id"] = 412710,
+		["countY"] = 1,
+		["textThreshold"] = -1,
+		["countAnchor"] = "BOTTOMRIGHT",
+		["sizeOffset"] = 6,
+		["style"] = "texturedIcon",
+		["cooldownY"] = 1,
+		["countX"] = 1,
+		["cooldownAnchor"] = "CENTER",
+		["xOffset"] = -1,
+		["onlyShowMissing"] = false,
 	}
 
 	auraHighlight[410089] = {

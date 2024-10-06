@@ -5,6 +5,7 @@ Raid Rold Indicator (Lead, Assist, Masterloot) is now auto hiding while in comba
 Reduced update rate for Tags to 3 per second (was 4)  
 Updated player castbar colors to match health and backdrop (black/gray)  
 **Retail:**  
+Added aura indicator for Timelessness (Config -> Buffs and Debuffs -> Setup Aura Filters)  
 Updated LuckyoneUI Class WeakAura Edits (Healer)  
 Updated LuckyoneUI Evoker WeakAura  
 ___
