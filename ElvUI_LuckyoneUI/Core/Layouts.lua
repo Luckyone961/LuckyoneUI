@@ -909,6 +909,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.player.castbar.customColor.colorNoInterrupt.g = 0.05
 	E.db.unitframe.units.player.castbar.customColor.colorNoInterrupt.r = 0.05
 	E.db.unitframe.units.player.castbar.customColor.enable = true
+	E.db.unitframe.units.player.castbar.customColor.transparent = true
 	E.db.unitframe.units.player.castbar.customColor.useCustomBackdrop = true
 	E.db.unitframe.units.player.castbar.customTextFont.enable = true
 	E.db.unitframe.units.player.castbar.customTextFont.font = Private.Font
