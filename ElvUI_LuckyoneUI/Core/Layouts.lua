@@ -79,6 +79,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.general.objectiveFrameAutoHide = false
 	E.db.general.objectiveFrameHeight = 600
 	E.db.general.privateAuras.icon.size = 64
+	E.db.general.privateRaidWarning.scale = 2
 	E.db.general.queueStatus.scale = 0.3
 	E.db.general.tagUpdateRate = 0.33
 	E.db.general.talkingHeadFrameBackdrop = true
