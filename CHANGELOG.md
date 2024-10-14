@@ -8,6 +8,7 @@ Updated player castbar colors to match health and backdrop (black/gray)
 Added aura indicator for Timelessness (Config -> Buffs and Debuffs -> Setup Aura Filters)  
 Updated LuckyoneUI Class WeakAura Edits (Healer)  
 Updated LuckyoneUI Evoker WeakAura  
+Updated WarpDeplete profile  
 ___
 ### Version 3.08 [24-09-2024]
 **All WoW Versions:**  
