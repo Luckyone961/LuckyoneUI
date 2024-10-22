@@ -9,6 +9,7 @@ Added aura indicator for Timelessness (Config -> Buffs and Debuffs -> Setup Aura
 Updated LuckyoneUI Class WeakAura Edits (Healer)  
 Updated LuckyoneUI Evoker WeakAura  
 Updated size and position for Private Aura Raid Warning Text  
+Updated TOC for 11.0.5  
 Updated WarpDeplete profile  
 ___
 ### Version 3.08 [24-09-2024]
