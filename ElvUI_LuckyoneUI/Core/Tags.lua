@@ -67,6 +67,33 @@ local function Hex(r, g, b)
 	return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
 end
 
+local function getFormattedName(unit, length, color, abbrev)
+	local name = UnitName(unit) or UNKNOWN
+	if abbrev then
+		name = Abbrev(name)
+	end
+	name = E:ShortenString(name, length)
+
+	if color then
+		local colorHex = '|cFFcccccc' -- Default color
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+			local _, unitClass = UnitClass(unit)
+			local cs = ElvUF.colors.class[unitClass]
+			if cs then
+				colorHex = Hex(cs.r, cs.g, cs.b)
+			end
+		else
+			local cr = ElvUF.colors.reaction[UnitReaction(unit, 'player')]
+			if cr then
+				colorHex = Hex(cr.r, cr.g, cr.b)
+			end
+		end
+		return format('%s%s', colorHex, name)
+	else
+		return name
+	end
+end
+
 -- Display unit classification without 'affix' on minor enemies
 E:AddTag('luckyone:classification', 'UNIT_CLASSIFICATION_CHANGED', function(unit)
 	return classificationText[UnitClassification(unit)] or nil
@@ -217,33 +244,6 @@ E:AddTag('luckyone:name:last-nocolor', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGA
 	return name
 end)
 E:AddTagInfo('luckyone:name:last-nocolor', Private.Name, L["Displays the last part of the unit's name with no color"])
-
-local function getFormattedName(unit, length, color, abbrev)
-	local name = UnitName(unit) or UNKNOWN
-	if abbrev then
-		name = Abbrev(name)
-	end
-	name = E:ShortenString(name, length)
-
-	if color then
-		local colorHex = '|cFFcccccc' -- Default color
-		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-			local _, unitClass = UnitClass(unit)
-			local cs = ElvUF.colors.class[unitClass]
-			if cs then
-				colorHex = Hex(cs.r, cs.g, cs.b)
-			end
-		else
-			local cr = ElvUF.colors.reaction[UnitReaction(unit, 'player')]
-			if cr then
-				colorHex = Hex(cr.r, cr.g, cr.b)
-			end
-		end
-		return format('%s%s', colorHex, name)
-	else
-		return name
-	end
-end
 
 for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long = 20 }) do
 	-- Displays the unit's name with classcolor and a maximum length of 5, 10, 15 and 20 characters
