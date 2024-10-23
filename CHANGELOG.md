@@ -1,5 +1,6 @@
-### Version 3.09 [In Development]
+### Version 3.09 [23-10-2024]
 **All WoW Versions:**  
+ElvUI 13.79+ compatibility  
 Fixed a few lua errors in Plater (Pet battles & castbar related)  
 Raid Rold Indicator (Lead, Assist, Masterloot) is now auto hiding while in combat  
 Reduced update rate for Tags to 3 per second (was 4)  
