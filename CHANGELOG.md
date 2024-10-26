@@ -1,6 +1,8 @@
 ### Version 3.10 [In Development]
 **All WoW Versions:**  
 Updated BigWigs profiles (Install error fixes & new API)  
+**Retail:**  
+Updated LuckyoneUI Druid WeakAura  
 ___
 ### Version 3.09 [23-10-2024]
 **All WoW Versions:**  
