@@ -3,6 +3,8 @@
 Updated BigWigs profiles (Install error fixes & new API)  
 **Retail:**  
 Updated LuckyoneUI Druid WeakAura  
+**Cataclysm Classic:**  
+Updated TOC for patch 4.4.1  
 ___
 ### Version 3.09 [23-10-2024]
 **All WoW Versions:**  
