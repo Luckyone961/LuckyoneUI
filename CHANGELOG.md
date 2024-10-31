@@ -1,5 +1,6 @@
 ### Version 3.10 [In Development]
 **All WoW Versions:**  
+ElvUI 13.80+ compatibility  
 Updated BigWigs profiles (Install error fixes & new API)  
 **Retail:**  
 Updated LuckyoneUI Druid WeakAura  
