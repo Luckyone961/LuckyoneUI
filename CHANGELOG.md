@@ -1,5 +1,15 @@
-### Version 3.09 [In Development]
+### Version 3.10 [In Development]
 **All WoW Versions:**  
+ElvUI 13.80+ compatibility  
+Updated BigWigs profiles (Install error fixes & new API)  
+**Retail:**  
+Updated LuckyoneUI Druid WeakAura  
+**Cataclysm Classic:**  
+Updated TOC for patch 4.4.1  
+___
+### Version 3.09 [23-10-2024]
+**All WoW Versions:**  
+ElvUI 13.79+ compatibility  
 Fixed a few lua errors in Plater (Pet battles & castbar related)  
 Raid Rold Indicator (Lead, Assist, Masterloot) is now auto hiding while in combat  
 Reduced update rate for Tags to 3 per second (was 4)  
@@ -9,6 +19,7 @@ Added aura indicator for Timelessness (Config -> Buffs and Debuffs -> Setup Aura
 Updated LuckyoneUI Class WeakAura Edits (Healer)  
 Updated LuckyoneUI Evoker WeakAura  
 Updated size and position for Private Aura Raid Warning Text  
+Updated TOC for 11.0.5  
 Updated WarpDeplete profile  
 ___
 ### Version 3.08 [24-09-2024]
