@@ -32,6 +32,7 @@ function Private:Setup_Theme(theme, installer)
 
 	if theme == 'dark' then
 
+		-- Frame colors
 		E.db.unitframe.colors.classbackdrop = false
 		E.db.unitframe.colors.customhealthbackdrop = true
 		E.db.unitframe.colors.health_backdrop.b = 0.61
@@ -43,6 +44,7 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.colors.healthclass = false
 		E.db.unitframe.colors.useDeadBackdrop = true
 
+		-- Text colors
 		E.db.unitframe.units.arena.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
 		E.db.unitframe.units.boss.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
 		E.db.unitframe.units.focus.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
@@ -55,8 +57,12 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = '[luckyone:level< |cffffffff- |r][luckyone:name:last-classcolor]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
 
+		-- Castbar color
+		E.db.unitframe.units.player.castbar.customColor.enable = true
+
 	elseif theme == 'class' then
 
+		-- Frame colors
 		E.db.unitframe.colors.classbackdrop = true
 		E.db.unitframe.colors.customhealthbackdrop = true
 		E.db.unitframe.colors.health_backdrop.b = 0.05
@@ -65,6 +71,7 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.colors.healthclass = true
 		E.db.unitframe.colors.useDeadBackdrop = true
 
+		-- Text colors
 		E.db.unitframe.units.arena.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor]'
 		E.db.unitframe.units.boss.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor]'
 		E.db.unitframe.units.focus.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor]'
@@ -76,6 +83,9 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.raidpet.name.text_format = '[luckyone:name:veryshort-nocolor]'
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = '[luckyone:level< |cffffffff- |r][luckyone:name:last-nocolor]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor]'
+
+		-- Castbar color
+		E.db.unitframe.units.player.castbar.customColor.enable = false
 
 	end
 
