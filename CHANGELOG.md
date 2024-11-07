@@ -1,4 +1,4 @@
-### Version 3.10 [In Development]
+### Version 3.10 [07-11-2024]
 **All WoW Versions:**  
 ElvUI 13.80+ compatibility  
 Updated BigWigs installer (Error fixes & new import API)  
