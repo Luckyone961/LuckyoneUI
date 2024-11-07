@@ -1,9 +1,11 @@
 ### Version 3.10 [In Development]
 **All WoW Versions:**  
 ElvUI 13.80+ compatibility  
-Updated BigWigs profiles (Install error fixes & new API)  
+Updated BigWigs installer (Error fixes & new import API)  
+Updated Themes code to respect my recent player castbar color change  
 **Retail:**  
 Updated LuckyoneUI Druid WeakAura  
+Updated LuckyoneUI Evoker WeakAura  
 **Cataclysm Classic:**  
 Updated TOC for patch 4.4.1  
 ___
