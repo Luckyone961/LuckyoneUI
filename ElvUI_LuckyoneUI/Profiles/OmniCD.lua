@@ -45,7 +45,7 @@ function Private:Setup_OmniCD(layout, installer)
 		['party'] = {
 			['extraBars'] = {
 				['raidBar1'] = {
-					['statusBarWidth'] = 314,
+					['statusBarWidth'] = 324,
 					['barColors'] = {
 						['activeColor'] = {
 							['a'] = 0.90,
@@ -135,7 +135,7 @@ function Private:Setup_OmniCD(layout, installer)
 		['arena'] = {
 			['extraBars'] = {
 				['raidBar1'] = {
-					['statusBarWidth'] = 314,
+					['statusBarWidth'] = 324,
 					['barColors'] = {
 						['activeColor'] = {
 							['a'] = 0.90,
@@ -289,7 +289,7 @@ function Private:Setup_OmniCD(layout, installer)
 							['x'] = 382.66,
 						},
 					},
-					['statusBarWidth'] = 396,
+					['statusBarWidth'] = 406,
 				},
 			},
 			['highlight'] = {
@@ -382,7 +382,7 @@ function Private:Setup_OmniCD(layout, installer)
 							['x'] = 382.66,
 						},
 					},
-					['statusBarWidth'] = 396,
+					['statusBarWidth'] = 406,
 				},
 			},
 			['highlight'] = {

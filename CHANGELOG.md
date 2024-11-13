@@ -1,3 +1,7 @@
+### Version 3.11 [In Development]
+**Retail:**  
+Fixed OmniCD statusbar width  
+___
 ### Version 3.10 [07-11-2024]
 **All WoW Versions:**  
 ElvUI 13.80+ compatibility  
