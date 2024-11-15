@@ -1,6 +1,7 @@
 ### Version 3.11 [In Development]
 **Retail:**  
 Fixed OmniCD statusbar width  
+Removed LuckyoneUI Dragonriding Edit WeakAura (Glider AddOn is recommended)  
 Updated LuckyoneUI Externals WeakAura  
 ___
 ### Version 3.10 [07-11-2024]
