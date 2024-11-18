@@ -1,4 +1,6 @@
 ### Version 3.11 [In Development]
+**All WoW Versions:**  
+Fixed Details install error  
 **Retail:**  
 Fixed OmniCD statusbar width  
 Removed LuckyoneUI Dragonriding Edit WeakAura (Glider AddOn is recommended)  
