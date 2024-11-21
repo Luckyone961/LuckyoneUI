@@ -1,4 +1,4 @@
-### Version 3.11 [In Development]
+### Version 3.11 [21-11-2024]
 **All WoW Versions:**  
 ElvUI 13.81+ compatibility  
 Fixed Details install error  
