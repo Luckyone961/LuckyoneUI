@@ -1,10 +1,10 @@
-### Version 3.10 [07-11-2024]
+### Version 3.11 [21-11-2024]
 **All WoW Versions:**  
-ElvUI 13.80+ compatibility  
-Updated BigWigs installer (Error fixes & new import API)  
-Updated Themes code to respect my recent player castbar color change  
+ElvUI 13.81+ compatibility  
+Fixed Details install error  
 **Retail:**  
-Updated LuckyoneUI Druid WeakAura  
-Updated LuckyoneUI Evoker WeakAura  
-**Cataclysm Classic:**  
-Updated TOC for patch 4.4.1  
+Fixed OmniCD statusbar width  
+Removed LuckyoneUI Dragonriding Edit WeakAura (Glider AddOn is recommended)  
+Updated LuckyoneUI Externals WeakAura  
+**Classic:**  
+Updated TOC for 1.15.5  
