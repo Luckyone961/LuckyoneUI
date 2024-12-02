@@ -1,3 +1,7 @@
+### Version 3.12 [In Development]
+**Classic:**  
+Added my OmniCD profile like in retail (Style and position, no spells list)  
+___
 ### Version 3.11 [21-11-2024]
 **All WoW Versions:**  
 ElvUI 13.81+ compatibility  
