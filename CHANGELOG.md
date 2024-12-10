@@ -1,4 +1,6 @@
 ### Version 3.12 [In Development]
+**All WoW Versions:**  
+Fixed an error complaining about itemCount being a string value  
 **Classic:**  
 Added my OmniCD profile like in retail (Style and position, no spells list)  
 ___
