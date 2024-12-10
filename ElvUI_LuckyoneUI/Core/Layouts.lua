@@ -591,7 +591,9 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.tooltip.healthBar.height = 6
 	E.db.tooltip.healthBar.statusPosition = 'TOP'
 	E.db.tooltip.inspectDataEnable = false
-	E.db.tooltip.itemCount = 'NONE'
+	E.db.tooltip.itemCount.bags = false
+	E.db.tooltip.itemCount.bank = false
+	E.db.tooltip.itemCount.stack = false
 	E.db.tooltip.itemQuality = true
 	E.db.tooltip.mythicDataEnable = false
 	E.db.tooltip.role = false
