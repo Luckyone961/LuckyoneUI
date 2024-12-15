@@ -1,9 +1,28 @@
-### Version 3.10 [In Development]
+### Version 3.12 [In Development]
+**All WoW Versions:**  
+Fixed an error complaining about itemCount being a string value  
+**Classic:**  
+Added my OmniCD profile like in retail (Style and position, no spells list)  
+___
+### Version 3.11 [21-11-2024]
+**All WoW Versions:**  
+ElvUI 13.81+ compatibility  
+Fixed Details install error  
+**Retail:**  
+Fixed OmniCD statusbar width  
+Removed LuckyoneUI Dragonriding Edit WeakAura (Glider AddOn is recommended)  
+Updated LuckyoneUI Externals WeakAura  
+**Classic:**  
+Updated TOC for 1.15.5  
+___
+### Version 3.10 [07-11-2024]
 **All WoW Versions:**  
 ElvUI 13.80+ compatibility  
-Updated BigWigs profiles (Install error fixes & new API)  
+Updated BigWigs installer (Error fixes & new import API)  
+Updated Themes code to respect my recent player castbar color change  
 **Retail:**  
 Updated LuckyoneUI Druid WeakAura  
+Updated LuckyoneUI Evoker WeakAura  
 **Cataclysm Classic:**  
 Updated TOC for patch 4.4.1  
 ___

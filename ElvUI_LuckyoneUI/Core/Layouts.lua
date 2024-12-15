@@ -591,7 +591,9 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.tooltip.healthBar.height = 6
 	E.db.tooltip.healthBar.statusPosition = 'TOP'
 	E.db.tooltip.inspectDataEnable = false
-	E.db.tooltip.itemCount = 'NONE'
+	E.db.tooltip.itemCount.bags = false
+	E.db.tooltip.itemCount.bank = false
+	E.db.tooltip.itemCount.stack = false
 	E.db.tooltip.itemQuality = true
 	E.db.tooltip.mythicDataEnable = false
 	E.db.tooltip.role = false
@@ -1265,7 +1267,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-420'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
-	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-152'
+	E.db.movers.QueueStatusMover = E.Retail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-152' or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-150'
 	E.db.movers.ReputationBarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-402,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-466,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,232,-1'
