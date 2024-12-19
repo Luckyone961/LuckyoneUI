@@ -114,7 +114,7 @@ E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT
 	local min, max = UnitPower(unit), UnitPowerMax(unit)
 	local pType, pToken, altR, altG, altB = UnitPowerType(unit)
 	local color = _COLORS.power[pToken] or (altR and (altR > 1 or altG > 1 or altB > 1) and Hex(altR / 255, altG / 255, altB / 255)) or Hex(_COLORS.power[pType] or _COLORS.power.MANA)
-	local percentage = (min == 0) and '' or floor(min / max * 100 + .5)
+	local percentage = (min == 0 or max == 0) and '' or floor(min / max * 100 + .5)
 
 	if altR and not _COLORS.power[pToken] then
 		if altR <= 1 and altG <= 1 and altB <= 1 then
