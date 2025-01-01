@@ -1,6 +1,8 @@
 ### Version 3.13 [In Development]
 **Retail:**  
 Minor pixel-perfect edit for OmniCD icons  
+**Misc:**  
+Updated LICENSE  
 ___
 ### Version 3.12 [19-12-2024]
 **All WoW Versions:**  
