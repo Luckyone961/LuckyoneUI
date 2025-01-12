@@ -1,10 +1,7 @@
-### Version 3.11 [21-11-2024]
+### Version 3.12 [19-12-2024]
 **All WoW Versions:**  
-ElvUI 13.81+ compatibility  
-Fixed Details install error  
+Fixed an error complaining about itemCount being a string value  
 **Retail:**  
-Fixed OmniCD statusbar width  
-Removed LuckyoneUI Dragonriding Edit WeakAura (Glider AddOn is recommended)  
-Updated LuckyoneUI Externals WeakAura  
+Updated TOC for 11.0.7  
 **Classic:**  
-Updated TOC for 1.15.5  
+Added my OmniCD profile like in retail (Style and position, no spells list)  

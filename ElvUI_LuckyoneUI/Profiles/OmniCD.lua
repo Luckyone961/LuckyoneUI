@@ -116,7 +116,7 @@ function Private:Setup_OmniCD(layout, installer)
 			},
 			['icons'] = {
 				['counterScale'] = 1,
-				['scale'] = 1.1,
+				['scale'] = 1.12,
 				['showTooltip'] = true,
 				['chargeScale'] = 1,
 			},
@@ -206,7 +206,7 @@ function Private:Setup_OmniCD(layout, installer)
 			},
 			['icons'] = {
 				['counterScale'] = 1,
-				['scale'] = 1.1,
+				['scale'] = 1.12,
 				['showTooltip'] = true,
 				['chargeScale'] = 1,
 			},
