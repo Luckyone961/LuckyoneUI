@@ -1,4 +1,6 @@
 ### Version 3.13 [In Development]
+**All WoW Versions:**  
+ElvUI 13.82+ compatibility  
 **Retail:**  
 Minor pixel-perfect edit for OmniCD icons  
 **Misc:**  
