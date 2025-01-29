@@ -179,6 +179,11 @@ function Private:Setup_PrivateDB()
 		Private:Setup_Private_WindTools()
 	end
 
+	if E.Classic then
+		-- This will make sure Shaman is blue instead of pink
+		E.private.general.classColors = true
+	end
+
 	if E.global.L1UI.dev then
 		E.private.bags.enable = false
 		E.private.general.chatBubbles = 'disabled'
