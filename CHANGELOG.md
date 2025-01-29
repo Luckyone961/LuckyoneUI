@@ -3,6 +3,8 @@
 ElvUI 13.82+ compatibility  
 **Retail:**  
 Minor pixel-perfect edit for OmniCD icons  
+**Classic:**  
+Updated TOC for 1.15.6  
 **Misc:**  
 Updated LICENSE  
 ___
