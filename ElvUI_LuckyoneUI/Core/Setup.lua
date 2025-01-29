@@ -171,12 +171,13 @@ function Private:Setup_PrivateDB()
 	E.private.nameplates.enable = false
 	E.private.skins.parchmentRemoverEnable = true
 
-	if E.Retail and E:IsAddOnEnabled('ElvUI_SLE') then
-		Private:Setup_Private_ShadowAndLight()
-	end
-
-	if E.Retail and E:IsAddOnEnabled('ElvUI_WindTools') then
-		Private:Setup_Private_WindTools()
+	if E.Retail then
+		if E:IsAddOnEnabled('ElvUI_SLE') then
+			Private:Setup_Private_ShadowAndLight()
+		end
+		if E:IsAddOnEnabled('ElvUI_WindTools') then
+			Private:Setup_Private_WindTools()
+		end
 	end
 
 	if E.Classic then
