@@ -223,7 +223,9 @@ local function Cleanup()
 		-- Dragonflight Season 2
 		'Luckyone_BH', 'Luckyone_HOI', 'Luckyone_NELT', 'Luckyone_ULD', 'Luckyone_NL', 'Luckyone_FH', 'Luckyone_UNDR', 'Luckyone_VP', 'Luckyone_Aberrus',
 		-- Dragonflight Season 3
-		'Luckyone_FALL', 'Luckyone_RISE', 'Luckyone_DHT', 'Luckyone_BRH', 'Luckyone_AD', 'Luckyone_WM', 'Luckyone_EB', 'Luckyone_TOTT', 'Luckyone_Amirdrassil'
+		'Luckyone_FALL', 'Luckyone_RISE', 'Luckyone_DHT', 'Luckyone_BRH', 'Luckyone_AD', 'Luckyone_WM', 'Luckyone_EB', 'Luckyone_TOTT', 'Luckyone_Amirdrassil',
+		-- TWW Season 1
+		'Luckyone_ARAK', 'Luckyone_COT', 'Luckyone_DAWN', 'Luckyone_SV', 'Luckyone_GB', 'Luckyone_MISTS', 'Luckyone_SIEGE', 'Luckyone_NW'
 	}
 
 	for _, v in pairs(toDelete) do
@@ -254,14 +256,6 @@ function Private:Setup_StyleFilters(skipVars)
 			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
 			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
 		end
-
-		-- Nerub'ar Palace [PALACE]
-		-- E.global.nameplates.filters.Luckyone_PALACE.actions.color.health = true
-		-- E.global.nameplates.filters.Luckyone_PALACE.actions.color.healthColor.g = 0.75
-		-- E.global.nameplates.filters.Luckyone_PALACE.actions.color.healthColor.r = 0
-		-- E.global.nameplates.filters.Luckyone_PALACE.triggers.instanceType['raid'] = true
-		-- E.global.nameplates.filters.Luckyone_PALACE.triggers.names['123456'] = true -- Name
-		-- E.global.nameplates.filters.Luckyone_PALACE.triggers.priority = 2
 
 		-- Ara-Kara, City of Echoes [ARAK]
 		E.global.nameplates.filters.Luckyone_ARAK.actions.color.health = true
