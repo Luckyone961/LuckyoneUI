@@ -244,7 +244,7 @@ function Private:Setup_StyleFilters(skipVars)
 
 	if E.Retail then
 
-		-- Season 1 Dungeons & Raid
+		-- TWW Season 1
 		local filters = {
 			-- Dungeons
 			'Luckyone_ARAK', 'Luckyone_COT', 'Luckyone_DAWN', 'Luckyone_SV', 'Luckyone_GB', 'Luckyone_MISTS', 'Luckyone_SIEGE', 'Luckyone_NW'
@@ -370,3 +370,115 @@ function Private:Setup_StyleFilters(skipVars)
 
 	Private:Print(L["NamePlate StyleFilters and CVars have been set."])
 end
+
+--[[
+	-- TWW Season 2
+	local filters = {
+		-- Dungeons
+		'Luckyone_BREW', 'Luckyone_ROOK', 'Luckyone_DFC', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_ML', 'Luckyone_TOP', 'Luckyone_WORK'
+	}
+
+	-- Create filters and set defaults
+	for _, filterName in pairs(filters) do
+		E.global.nameplates.filters[filterName] = {}
+		E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
+		E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
+	end
+
+	-- Cinderbrew Meadery [BREW]
+	E.global.nameplates.filters.Luckyone_BREW.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_BREW.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_BREW.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_BREW.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_BREW.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_BREW.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_BREW.triggers.names[''] = true -- Name 1
+	E.global.nameplates.filters.Luckyone_BREW.triggers.names[''] = true -- Name 2
+	E.global.nameplates.filters.Luckyone_BREW.triggers.names[''] = true -- Name 3
+	E.global.nameplates.filters.Luckyone_BREW.triggers.names[''] = true -- Name 4
+	E.global.nameplates.filters.Luckyone_BREW.triggers.priority = 2
+
+	-- The Rookery [ROOK]
+	E.global.nameplates.filters.Luckyone_ROOK.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_ROOK.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_ROOK.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_ROOK.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_ROOK.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_ROOK.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_ROOK.triggers.names[''] = true -- Name 1
+	E.global.nameplates.filters.Luckyone_ROOK.triggers.names[''] = true -- Name 2
+	E.global.nameplates.filters.Luckyone_ROOK.triggers.priority = 2
+
+	-- Darkflame Cleft [DFC]
+	E.global.nameplates.filters.Luckyone_DFC.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_DFC.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_DFC.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_DFC.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_DFC.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_DFC.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_DFC.triggers.names[''] = true -- Name 1
+	E.global.nameplates.filters.Luckyone_DFC.triggers.names[''] = true -- Name 2
+	E.global.nameplates.filters.Luckyone_DFC.triggers.names[''] = true -- Name 3
+	E.global.nameplates.filters.Luckyone_DFC.triggers.priority = 2
+
+	-- Priory of the Sacred Flame [PSF]
+	E.global.nameplates.filters.Luckyone_PSF.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_PSF.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_PSF.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_PSF.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_PSF.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_PSF.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_PSF.triggers.names[''] = true -- Name 1
+	E.global.nameplates.filters.Luckyone_PSF.triggers.names[''] = true -- Name 2
+	E.global.nameplates.filters.Luckyone_PSF.triggers.priority = 2
+
+	-- Operation: Floodgate [FLOOD]
+	E.global.nameplates.filters.Luckyone_FLOOD.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_FLOOD.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_FLOOD.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.names[''] = true -- Name 1
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.names[''] = true -- Name 2
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.names[''] = true -- Name 3
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.priority = 2
+
+	-- The MOTHERLODE!! [ML]
+	E.global.nameplates.filters.Luckyone_ML.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_ML.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_ML.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_ML.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_ML.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_ML.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_ML.triggers.names[''] = true -- Name 1
+	E.global.nameplates.filters.Luckyone_ML.triggers.names[''] = true -- Name 2
+	E.global.nameplates.filters.Luckyone_ML.triggers.names[''] = true -- Name 3
+	E.global.nameplates.filters.Luckyone_ML.triggers.priority = 2
+
+	-- Theater of Pain [TOP]
+	E.global.nameplates.filters.Luckyone_TOP.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_TOP.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_TOP.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_TOP.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_TOP.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_TOP.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_TOP.triggers.names[''] = true -- Name 1
+	E.global.nameplates.filters.Luckyone_TOP.triggers.names[''] = true -- Name 2
+	E.global.nameplates.filters.Luckyone_TOP.triggers.names[''] = true -- Name 3
+	E.global.nameplates.filters.Luckyone_TOP.triggers.names[''] = true -- Name 4
+	E.global.nameplates.filters.Luckyone_TOP.triggers.priority = 2
+
+	-- Mechagon Workshop [WORK]
+	E.global.nameplates.filters.Luckyone_WORK.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_WORK.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_WORK.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_WORK.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_WORK.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_WORK.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_WORK.triggers.names[''] = true -- Name 1
+	E.global.nameplates.filters.Luckyone_WORK.triggers.names[''] = true -- Name 2
+	E.global.nameplates.filters.Luckyone_WORK.triggers.names[''] = true -- Name 3
+	E.global.nameplates.filters.Luckyone_WORK.triggers.names[''] = true -- Name 4
+	E.global.nameplates.filters.Luckyone_WORK.triggers.priority = 2
+]]
