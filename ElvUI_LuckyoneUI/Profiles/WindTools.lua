@@ -82,9 +82,7 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.item.inspect.enable = false
 	E.db.WT.item.itemLevel.enable = false
 	E.db.WT.item.trade.enable = false
-	E.db.WT.maps.eventTracker.font.scale = 0.9
-	E.db.WT.maps.eventTracker.style.backdropYOffset = 2
-	E.db.WT.maps.eventTracker.theaterTroupe.sound = false
+	E.db.WT.maps.eventTracker.enable = false
 	E.db.WT.maps.whoClicked.font.size = 12
 	E.db.WT.maps.whoClicked.onlyOnCombat = false
 	E.db.WT.maps.whoClicked.stayTime = 2

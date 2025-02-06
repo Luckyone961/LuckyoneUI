@@ -3,6 +3,7 @@
 ElvUI 13.83+ compatibility  
 **Retail:**  
 Updates for Shadow & Light profile (AFK Mode, Armory Mode)  
+Updates for WindTools profile (Disabled Map EventTracker)  
 ___
 ### Version 3.13 [29-01-2025]
 **All WoW Versions:**  
