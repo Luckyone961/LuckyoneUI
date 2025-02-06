@@ -1,3 +1,7 @@
+### Version 3.14 [In Development]
+**Retail:**  
+Updates for Shadow & Light profile (AFK Mode, Armory Mode)  
+___
 ### Version 3.13 [29-01-2025]
 **All WoW Versions:**  
 ElvUI 13.82+ compatibility  
