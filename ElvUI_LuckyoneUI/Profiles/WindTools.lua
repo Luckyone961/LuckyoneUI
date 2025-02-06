@@ -10,7 +10,10 @@ local _, Private = ...
 -- ElvUI modules
 local E, L, V, P, G = unpack(ElvUI)
 
--- WindTools ProfileDB
+--[[
+	WindTools ProfileDB
+	LC: 06/02/2025
+]]
 function Private:Setup_WindTools(installer)
 	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
@@ -132,7 +135,10 @@ function Private:Setup_WindTools(installer)
 	Private:Print(L["WindTools profile has been set."])
 end
 
--- WindTools PrivateDB
+--[[
+	WindTools PrivateDB
+	LC: 06/02/2025
+]]
 function Private:Setup_Private_WindTools()
 
 	-- Restore defaults
