@@ -1,6 +1,6 @@
 ### Version 3.14 [In Development]
 **All WoW Versions:**  
-ElvUI 13.83+ compatibility  
+ElvUI 13.84+ compatibility  
 **Retail:**  
 Updates for Shadow & Light profile (AFK Mode, Armory Mode)  
 Updates for WindTools profile (Disabled Map EventTracker)  
