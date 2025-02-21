@@ -1,7 +1,10 @@
-### Version 3.12 [19-12-2024]
+### Version 3.13 [29-01-2025]
 **All WoW Versions:**  
-Fixed an error complaining about itemCount being a string value  
+ElvUI 13.82+ compatibility  
 **Retail:**  
-Updated TOC for 11.0.7  
+Minor pixel-perfect edit for OmniCD icons  
 **Classic:**  
-Added my OmniCD profile like in retail (Style and position, no spells list)  
+Shaman default color set to blue instead of pink  
+Updated TOC for 1.15.6  
+**Misc:**  
+Updated LICENSE  

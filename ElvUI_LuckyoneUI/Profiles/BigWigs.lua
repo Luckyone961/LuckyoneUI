@@ -17,7 +17,10 @@ local function CallbackFunction(accepted)
 	LDBI:Hide('BigWigs')
 end
 
--- BigWigs profiles
+--[[
+	BigWigs profiles
+	LC: 06/02/2025
+]]
 function Private:Setup_BigWigs(layout)
 	if not E:IsAddOnEnabled('BigWigs') then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
 

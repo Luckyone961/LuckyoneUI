@@ -10,7 +10,10 @@ local _, Private = ...
 -- ElvUI modules
 local E, L, V, P, G = unpack(ElvUI)
 
--- WindTools ProfileDB
+--[[
+	WindTools ProfileDB
+	LC: 06/02/2025
+]]
 function Private:Setup_WindTools(installer)
 	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
@@ -79,9 +82,7 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.item.inspect.enable = false
 	E.db.WT.item.itemLevel.enable = false
 	E.db.WT.item.trade.enable = false
-	E.db.WT.maps.eventTracker.font.scale = 0.9
-	E.db.WT.maps.eventTracker.style.backdropYOffset = 2
-	E.db.WT.maps.eventTracker.theaterTroupe.sound = false
+	E.db.WT.maps.eventTracker.enable = false
 	E.db.WT.maps.whoClicked.font.size = 12
 	E.db.WT.maps.whoClicked.onlyOnCombat = false
 	E.db.WT.maps.whoClicked.stayTime = 2
@@ -132,7 +133,10 @@ function Private:Setup_WindTools(installer)
 	Private:Print(L["WindTools profile has been set."])
 end
 
--- WindTools PrivateDB
+--[[
+	WindTools PrivateDB
+	LC: 06/02/2025
+]]
 function Private:Setup_Private_WindTools()
 
 	-- Restore defaults

@@ -13,7 +13,10 @@ local _, Private = ...
 -- ElvUI modules
 local E, L, V, P, G = unpack(ElvUI)
 
--- Shadow & Light ProfileDB
+--[[
+	Shadow & Light ProfileDB
+	LC: 06/02/2025
+]]
 function Private:Setup_ShadowAndLight(installer)
 	if not E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then Private:Print('|cff9482c9Shadow & Light|r ' .. L["is not installed or enabled."]) return end
 
@@ -43,8 +46,9 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.afk.defaultTexts.SL_AFKMessage.anchorPoint = 'CENTER'
 	E.db.sle.afk.defaultTexts.SL_AFKMessage.attachTo = 'SL_BottomPanel'
 	E.db.sle.afk.defaultTexts.SL_AFKMessage.font = Private.Font
-	E.db.sle.afk.defaultTexts.SL_AFKMessage.yOffset = 10
+	E.db.sle.afk.defaultTexts.SL_AFKMessage.yOffset = 0
 	E.db.sle.afk.defaultTexts.SL_AFKTimePassed.font = Private.Font
+	E.db.sle.afk.defaultTexts.SL_AFKTimePassed.xOffset = 2
 	E.db.sle.afk.defaultTexts.SL_Date.anchorPoint = 'CENTER'
 	E.db.sle.afk.defaultTexts.SL_Date.font = Private.Font
 	E.db.sle.afk.defaultTexts.SL_Date.size = 24
@@ -56,12 +60,15 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.afk.defaultTexts.SL_PlayerLevel.enable = false
 	E.db.sle.afk.defaultTexts.SL_PlayerName.enable = false
 	E.db.sle.afk.defaultTexts.SL_ScrollFrame.enable = false
+	E.db.sle.afk.defaultTexts.SL_SubText.enable = false
 	E.db.sle.afk.defaultTexts.SL_SubText.font = Private.Font
 	E.db.sle.afk.defaultTexts.SL_Time.font = Private.Font
 	E.db.sle.afk.defaultTexts.SL_Time.size = 20
 	E.db.sle.afk.enable = true
 	E.db.sle.afk.playermodel.enable = false
 
+	E.db.sle.armory.character.background.overlay = false
+	E.db.sle.armory.character.background.selectedBG = 'HIDE'
 	E.db.sle.armory.character.durability.display = 'Hide'
 	E.db.sle.armory.character.durability.font = Private.Font
 	E.db.sle.armory.character.durability.fontSize = 11
@@ -72,10 +79,9 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.armory.character.enchant.yOffset = -1
 	E.db.sle.armory.character.gem.xOffset = 4
 	E.db.sle.armory.character.gem.yOffset = -1
-	E.db.sle.armory.character.gradient.quality = true
-	E.db.sle.armory.character.ilvl.colorType = 'QUALITY'
 	E.db.sle.armory.character.ilvl.font = Private.Font
 	E.db.sle.armory.character.ilvl.fontSize = 11
+	E.db.sle.armory.character.transmog.enableArrow = false
 	E.db.sle.armory.inspect.background.overlay = false
 	E.db.sle.armory.inspect.background.selectedBG = 'HIDE'
 	E.db.sle.armory.inspect.enable = true
@@ -85,14 +91,15 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.armory.inspect.enchant.yOffset = -1
 	E.db.sle.armory.inspect.gem.xOffset = 4
 	E.db.sle.armory.inspect.gem.yOffset = -1
-	E.db.sle.armory.inspect.gradient.quality = true
-	E.db.sle.armory.inspect.ilvl.colorType = 'QUALITY'
 	E.db.sle.armory.inspect.ilvl.font = Private.Font
 	E.db.sle.armory.inspect.ilvl.fontSize = 11
+	E.db.sle.armory.inspect.transmog.enableArrow = false
 	E.db.sle.armory.stats.itemLevel.font = Private.Font
 	E.db.sle.armory.stats.itemLevel.fontOutline = Private.Outline
-	E.db.sle.armory.stats.itemLevel.fontSize = 15
+	E.db.sle.armory.stats.itemLevel.fontSize = 18
+	E.db.sle.armory.stats.itemLevel.gradient.style = ''
 	E.db.sle.armory.stats.List.ATTACK_DAMAGE = false
+	E.db.sle.armory.stats.List.MOVESPEED = false
 	E.db.sle.armory.stats.List.SPELLPOWER = false
 	E.db.sle.armory.stats.statHeaders.font = Private.Font
 	E.db.sle.armory.stats.statHeaders.fontOutline = Private.Outline
@@ -113,7 +120,10 @@ function Private:Setup_ShadowAndLight(installer)
 	Private:Print(L["Shadow&Light profile has been set."])
 end
 
--- Shadow & Light PrivateDB
+--[[
+	Shadow & Light PrivateDB
+	LC: 06/02/2025
+]]
 function Private:Setup_Private_ShadowAndLight()
 
 	-- Get version

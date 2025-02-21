@@ -7,7 +7,10 @@ local _, Private = ...
 -- ElvUI modules
 local E, L = unpack(ElvUI)
 
--- ProjectAzilroka profile
+--[[
+	ProjectAzilroka profile
+	LC: 06/02/2025
+]]
 function Private:Setup_ProjectAzilroka()
 	if not E:IsAddOnEnabled('ProjectAzilroka') then Private:Print('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r ' .. L["is not installed or enabled."]) return end
 

@@ -50,12 +50,7 @@ end
 -- Gets the number from the profile string
 -- If it matches the specified profile type (Main/Healing/Support) or if no profile type is specified
 local function GetNumber(str, profileType)
-	if profileType and not str:find(profileType, 1, true) then
-		return nil
-	end
-
-	local number = str:match('%d+%.?%d*')
-	return number and tonumber(number) or nil
+	return (not profileType or str:find(profileType, 1, true)) and tonumber(str:match('%d+%.?%d*')) or nil
 end
 
 -- Find the profile with the highest number
@@ -244,6 +239,10 @@ function Private:HandleToons()
 		['Player-4440-03ADE2DF'] = true, -- [A] Shaman
 		['Player-4476-03BF41C9'] = true, -- [H] Hunter
 	} or E.Classic and {
+		-- (6112: Spineshatter)
+		['Player-6112-028A3A6D'] = true,-- [H] Hunter
+		['Player-6112-02A2F754'] = true,-- [H] Priest
+		['Player-6112-02A39E0E'] = true,-- [H] Warlock
 		-- (5827: Living Flame)
 		['Player-5827-0273D732'] = true, -- [A] Hunter
 		['Player-5827-0273D63E'] = true, -- [A] Paladin

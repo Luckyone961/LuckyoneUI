@@ -7,7 +7,10 @@ local _, Private = ...
 -- ElvUI modules
 local E, L = unpack(ElvUI)
 
--- AddOnSkins profile
+--[[
+	AddOnSkins profile
+	LC: 06/02/2025
+]]
 function Private:Setup_AddOnSkins()
 	if not E:IsAddOnEnabled('AddOnSkins') then Private:Print('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r ' .. L["is not installed or enabled."]) return end
 
