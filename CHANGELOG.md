@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 ElvUI 13.84+ compatibility  
 **Retail:**  
+Added Season 1 ElvUI NamePlate StyleFilters for Dungeons  
 Updates for Shadow & Light profile (AFK Mode, Armory Mode)  
 Updates for WindTools profile (Disabled Map EventTracker)  
 ___
