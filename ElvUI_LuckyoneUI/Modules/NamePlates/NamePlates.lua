@@ -289,9 +289,10 @@ function Private:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_DFC.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_DFC.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_DFC.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_DFC.triggers.names['210818'] = true -- Lowly Moleherd
+		E.global.nameplates.filters.Luckyone_DFC.triggers.names['211121'] = true -- Rank Overseer
+		E.global.nameplates.filters.Luckyone_DFC.triggers.names['208450'] = true -- Wandering Candle
 		E.global.nameplates.filters.Luckyone_DFC.triggers.names['208456'] = true -- Shuffling Horror
-		E.global.nameplates.filters.Luckyone_DFC.triggers.names['212411'] = true -- Torchsnarl
+		E.global.nameplates.filters.Luckyone_DFC.triggers.names['212412'] = true -- Sootsnout
 		E.global.nameplates.filters.Luckyone_DFC.triggers.priority = 2
 
 		-- Priory of the Sacred Flame [PSF]
