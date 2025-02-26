@@ -10,7 +10,10 @@ local _, Private = ...
 -- ElvUI modules
 local E, L = unpack(ElvUI)
 
--- WarpDeplete profile
+--[[
+	WarpDeplete profile
+	LC: 06/02/2025
+]]
 function Private:Setup_WarpDeplete(installer)
 	if not E:IsAddOnEnabled('WarpDeplete') and E.Retail then Private:Print('WarpDeplete ' .. L["is not installed or enabled."]) return end
 

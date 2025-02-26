@@ -15,13 +15,7 @@ local E, L = unpack(ElvUI)
 local function Profile()
 	local data = E.data:GetCurrentProfile()
 
-	if strfind(data, 'Luckyone Main') or strfind(data, 'Luckyone Support') then
-		return 1
-	elseif strfind(data, 'Luckyone Healing') then
-		return 2
-	else
-		return nil
-	end
+	return strfind(data, 'Luckyone Main') or strfind(data, 'Luckyone Support') and 1 or strfind(data, 'Luckyone Healing') and 2 or nil
 end
 
 -- UnitFrame color themes
