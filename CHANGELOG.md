@@ -3,6 +3,7 @@
 ElvUI 13.85+ compatibility  
 **Retail:**  
 Added Season 1 ElvUI NamePlate StyleFilters for Dungeons  
+Updated LuckyoneUI Druid WeakAura  
 Updated LuckyoneUI Evoker WeakAura  
 Updated Plater profile for Season 1 Dungeon custom colors  
 Updated TOC for 11.1.0  
