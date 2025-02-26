@@ -1,6 +1,6 @@
 ### Version 3.14 [In Development]
 **All WoW Versions:**  
-ElvUI 13.84+ compatibility  
+ElvUI 13.85+ compatibility  
 **Retail:**  
 Added Season 1 ElvUI NamePlate StyleFilters for Dungeons  
 Updated LuckyoneUI Evoker WeakAura  
