@@ -1,4 +1,4 @@
-### Version 3.14 [In Development]
+### Version 3.14 [26-02-2025]
 **All WoW Versions:**  
 ElvUI 13.85+ compatibility  
 **Retail:**  
