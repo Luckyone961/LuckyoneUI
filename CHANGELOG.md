@@ -1,6 +1,8 @@
 ### Version 3.15 [In Development]
 **All WoW Versions:**  
 Slightly adjusted position anchors for EventToastWidget and TopCenterWidget  
+**Retail:**  
+Updated LuckyoneUI Druid WeakAura  
 **Misc:**  
 Fixed typos in previous changelog (Mentioned season 1 instead of season 2)  
 ___
