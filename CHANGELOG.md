@@ -1,6 +1,7 @@
 ### Version 3.15 [In Development]
 **All WoW Versions:**  
 Slightly adjusted position anchors for EventToastWidget and TopCenterWidget  
+Updated BigWigs profiles for their latest NamePlate module changes  
 **Retail:**  
 Updated LuckyoneUI Druid WeakAura  
 Updated LuckyoneUI Evoker WeakAura  
