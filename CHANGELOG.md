@@ -6,6 +6,8 @@ Updated BigWigs profiles for their latest NamePlate module changes
 **Retail:**  
 Updated LuckyoneUI Druid WeakAura  
 Updated LuckyoneUI Evoker WeakAura  
+Updated Plater profile for Season 2 Dungeon custom colors  
+Updated Season 2 ElvUI NamePlate StyleFilters for Dungeons  
 **Misc:**  
 Fixed typos in previous changelog (Mentioned season 1 instead of season 2)  
 ___
