@@ -217,7 +217,7 @@ end
 local function Cleanup()
 	local toDelete = {
 		-- General
-		'ElvUI_Explosives',
+		'ElvUI_Explosives', 'Luckyone_SPECIAL',
 		-- Dragonflight Season 1
 		'Luckyone_AA', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_NO', 'Luckyone_RLP', 'Luckyone_SBG', 'Luckyone_TJS', 'Luckyone_TOJS', 'Luckyone_VOTI',
 		-- Dragonflight Season 2
@@ -249,7 +249,7 @@ function Private:Setup_StyleFilters(skipVars)
 		-- TWW Season 2
 		local filters = {
 			-- Dungeons
-			'Luckyone_BREW', 'Luckyone_ROOK', 'Luckyone_DFC', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_ML', 'Luckyone_TOP', 'Luckyone_WORK'
+			'Luckyone_SPECIAL', 'Luckyone_BREW', 'Luckyone_ROOK', 'Luckyone_DFC', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_ML', 'Luckyone_TOP', 'Luckyone_WORK'
 		}
 
 		-- Create filters and set defaults
@@ -259,6 +259,19 @@ function Private:Setup_StyleFilters(skipVars)
 			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
 		end
 
+		-- Special coloring [SPECIAL]
+		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.health = true
+		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.r = 1
+		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.g = 0.25
+		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.b = 0.99
+		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.instanceDifficulty.dungeon['mythic'] = true
+		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.instanceDifficulty.dungeon['mythic+'] = true
+		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.instanceType['party'] = true
+		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['229296'] = true -- Orb of Ascendance
+		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['220368'] = true -- Failed Batch
+		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['231176'] = true -- Scaffolding
+		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.priority = 2
+
 		-- Cinderbrew Meadery [BREW]
 		E.global.nameplates.filters.Luckyone_BREW.actions.color.health = true
 		E.global.nameplates.filters.Luckyone_BREW.actions.color.healthColor.g = 0.75
@@ -266,6 +279,7 @@ function Private:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_BREW.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_BREW.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_BREW.triggers.instanceType['party'] = true
+		E.global.nameplates.filters.Luckyone_BREW.triggers.names['210269'] = true -- Hired Muscle
 		E.global.nameplates.filters.Luckyone_BREW.triggers.names['214673'] = true -- Flavor Scientist
 		E.global.nameplates.filters.Luckyone_BREW.triggers.names['214697'] = true -- Chef Chewie
 		E.global.nameplates.filters.Luckyone_BREW.triggers.names['220141'] = true -- Royal Jelly Purveyor
