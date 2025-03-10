@@ -1,4 +1,6 @@
 ### Version 3.16 [In Development]
+**All WoW Versions:**  
+Slightly adjusted position anchors for Arena and Boss frames  
 **Retail:**  
 Updated LuckyoneUI Evoker WeakAura  
 ___
