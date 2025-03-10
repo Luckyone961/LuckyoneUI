@@ -1,11 +1,12 @@
-### Version 3.14 [26-02-2025]
+### Version 3.15 [10-03-2025]
 **All WoW Versions:**  
-ElvUI 13.85+ compatibility  
+ElvUI 13.86+ compatibility  
+Slightly adjusted position anchors for EventToastWidget and TopCenterWidget  
+Updated BigWigs profiles for their latest NamePlate module changes  
 **Retail:**  
-Added Season 1 ElvUI NamePlate StyleFilters for Dungeons  
 Updated LuckyoneUI Druid WeakAura  
 Updated LuckyoneUI Evoker WeakAura  
-Updated Plater profile for Season 1 Dungeon custom colors  
-Updated TOC for 11.1.0  
-Updates for Shadow & Light profile (AFK Mode, Armory Mode)  
-Updates for WindTools profile (Disabled Map EventTracker)  
+Updated Plater profile for Season 2 Dungeon custom colors  
+Updated Season 2 ElvUI NamePlate StyleFilters for Dungeons  
+**Misc:**  
+Fixed typos in previous changelog (Mentioned season 1 instead of season 2)  
