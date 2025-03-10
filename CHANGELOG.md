@@ -1,3 +1,7 @@
+### Version 3.16 [In Development]
+**Retail:**  
+Updated LuckyoneUI Evoker WeakAura  
+___
 ### Version 3.15 [10-03-2025]
 **All WoW Versions:**  
 ElvUI 13.86+ compatibility  
