@@ -15,7 +15,7 @@ local E, L, V, P, G = unpack(ElvUI)
 
 --[[
 	Shadow & Light ProfileDB
-	LC: 06/02/2025
+	LC: 14/03/2025
 ]]
 function Private:Setup_ShadowAndLight(installer)
 	if not E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then Private:Print('|cff9482c9Shadow & Light|r ' .. L["is not installed or enabled."]) return end
@@ -48,10 +48,10 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.afk.defaultTexts.SL_AFKMessage.font = Private.Font
 	E.db.sle.afk.defaultTexts.SL_AFKMessage.yOffset = 0
 	E.db.sle.afk.defaultTexts.SL_AFKTimePassed.font = Private.Font
-	E.db.sle.afk.defaultTexts.SL_AFKTimePassed.xOffset = 2
+	E.db.sle.afk.defaultTexts.SL_AFKTimePassed.xOffset = 3
 	E.db.sle.afk.defaultTexts.SL_Date.anchorPoint = 'CENTER'
 	E.db.sle.afk.defaultTexts.SL_Date.font = Private.Font
-	E.db.sle.afk.defaultTexts.SL_Date.size = 24
+	E.db.sle.afk.defaultTexts.SL_Date.size = 26
 	E.db.sle.afk.defaultTexts.SL_Date.xOffset = 0
 	E.db.sle.afk.defaultTexts.SL_Date.yOffset = 40
 	E.db.sle.afk.defaultTexts.SL_GuildName.enable = false
@@ -63,7 +63,8 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.afk.defaultTexts.SL_SubText.enable = false
 	E.db.sle.afk.defaultTexts.SL_SubText.font = Private.Font
 	E.db.sle.afk.defaultTexts.SL_Time.font = Private.Font
-	E.db.sle.afk.defaultTexts.SL_Time.size = 20
+	E.db.sle.afk.defaultTexts.SL_Time.size = 26
+	E.db.sle.afk.defaultTexts.SL_Time.yOffset = -10
 	E.db.sle.afk.enable = true
 	E.db.sle.afk.playermodel.enable = false
 

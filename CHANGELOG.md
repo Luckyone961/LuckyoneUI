@@ -4,6 +4,7 @@ Slightly adjusted position anchors for Arena and Boss frames
 **Retail:**  
 Updated LuckyoneUI Dungeon Affixes and Utility WeakAura  
 Updated LuckyoneUI Evoker WeakAura  
+Updates for Shadow & Light profile (AFK Mode)  
 **Misc:**  
 Added the font "Geist" (Light, Regular, Medium, Bold, Semi Bold)  
 Removed fonts (BeeLeave, Handa, OrelegaOne, Roboto)  
