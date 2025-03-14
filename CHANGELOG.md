@@ -3,6 +3,9 @@
 Slightly adjusted position anchors for Arena and Boss frames  
 **Retail:**  
 Updated LuckyoneUI Evoker WeakAura  
+**Misc:**  
+Added the font "Geist" (Light, Regular, Medium, Bold, Semi Bold)  
+Removed fonts (BeeLeave, Handa, OrelegaOne, Roboto)  
 ___
 ### Version 3.15 [10-03-2025]
 **All WoW Versions:**  
