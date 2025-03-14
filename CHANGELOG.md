@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 Slightly adjusted position anchors for Arena and Boss frames  
 **Retail:**  
+Updated LuckyoneUI Dungeon Affixes and Utility WeakAura  
 Updated LuckyoneUI Evoker WeakAura  
 **Misc:**  
 Added the font "Geist" (Light, Regular, Medium, Bold, Semi Bold)  
