@@ -261,9 +261,9 @@ function Private:Setup_StyleFilters(skipVars)
 
 		-- Special coloring [SPECIAL]
 		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.health = true
-		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.r = 0.78
-		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.g = 0.61
-		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.b = 0.43
+		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.r = 1
+		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.g = 0.25
+		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.b = 0.99
 		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.instanceType['party'] = true
@@ -279,6 +279,7 @@ function Private:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_BREW.triggers.instanceDifficulty.dungeon['mythic'] = true
 		E.global.nameplates.filters.Luckyone_BREW.triggers.instanceDifficulty.dungeon['mythic+'] = true
 		E.global.nameplates.filters.Luckyone_BREW.triggers.instanceType['party'] = true
+		E.global.nameplates.filters.Luckyone_BREW.triggers.names['210269'] = true -- Hired Muscle
 		E.global.nameplates.filters.Luckyone_BREW.triggers.names['214673'] = true -- Flavor Scientist
 		E.global.nameplates.filters.Luckyone_BREW.triggers.names['214697'] = true -- Chef Chewie
 		E.global.nameplates.filters.Luckyone_BREW.triggers.names['220141'] = true -- Royal Jelly Purveyor
@@ -293,6 +294,7 @@ function Private:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_ROOK.triggers.instanceType['party'] = true
 		E.global.nameplates.filters.Luckyone_ROOK.triggers.names['209801'] = true -- Quartermaster Koratite
 		E.global.nameplates.filters.Luckyone_ROOK.triggers.names['212793'] = true -- Void Ascendant
+		E.global.nameplates.filters.Luckyone_ROOK.triggers.names['214421'] = true -- Coalescing Void Diffuser
 		E.global.nameplates.filters.Luckyone_ROOK.triggers.priority = 2
 
 		-- Darkflame Cleft [DFC]

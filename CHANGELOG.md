@@ -1,4 +1,15 @@
-### Version 3.15 [In Development]
+### Version 3.16 [In Development]
+**All WoW Versions:**  
+Slightly adjusted position anchors for Arena and Boss frames  
+**Retail:**  
+Updated LuckyoneUI Dungeon Affixes and Utility WeakAura  
+Updated LuckyoneUI Evoker WeakAura  
+Updates for Shadow & Light profile (AFK Mode)  
+**Misc:**  
+Added the font "Geist" (Light, Regular, Medium, Bold, Semi Bold)  
+Removed fonts (BeeLeave, Handa, OrelegaOne, Roboto)  
+___
+### Version 3.15 [10-03-2025]
 **All WoW Versions:**  
 ElvUI 13.86+ compatibility  
 Slightly adjusted position anchors for EventToastWidget and TopCenterWidget  
