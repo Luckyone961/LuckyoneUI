@@ -3,6 +3,7 @@
 Slightly adjusted position anchors for Arena and Boss frames  
 **Retail:**  
 Updated LuckyoneUI Dungeon Affixes and Utility WeakAura  
+Updated LuckyoneUI Druid WeakAura  
 Updated LuckyoneUI Evoker WeakAura  
 Updates for Shadow & Light profile (AFK Mode)  
 **Misc:**  
