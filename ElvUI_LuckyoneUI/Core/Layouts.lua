@@ -1431,7 +1431,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.player.power.enable = true
 		E.db.unitframe.units.player.power.height = 18
 		E.db.unitframe.units.player.power.position = 'CENTER'
-		E.db.unitframe.units.player.power.powerPrediction = true
+		E.db.unitframe.units.player.power.powerPrediction = Private.itsLuckyone and false or true
 
 		if E.Classic then
 			E.db.unitframe.units.player.power.EnergyManaRegen = true
@@ -1550,6 +1550,15 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-450,-388') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-515,-670'
 		E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,450,304') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,718,421'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,280,146') or 'BOTTOM,ElvUIParent,BOTTOM,330,241'
+
+		if Private.itsLuckyone then
+			E.db.actionbar.bar1.mouseover = true
+			E.db.actionbar.bar2.mouseover = true
+			E.db.actionbar.bar3.mouseover = true
+			E.db.movers.ElvAB_1 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
+			E.db.movers.ElvAB_2 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,248'
+			E.db.movers.ElvAB_3 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,219'
+		end
 
 	elseif layout == 'support' then
 
