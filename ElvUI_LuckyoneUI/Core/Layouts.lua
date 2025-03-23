@@ -1405,7 +1405,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,324') or 'BOTTOM,ElvUIParent,BOTTOM,288,474'
 		E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,272') or 'BOTTOM,ElvUIParent,BOTTOM,0,422'
 		E.db.movers.PowerBarContainerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,226') or 'BOTTOM,ElvUIParent,BOTTOM,0,376'
-		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-542,-422') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-661,-670'
+		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-542,-422') or 'TOP,UIParent,TOP,222,-510'
 		E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,542,289') or 'BOTTOM,ElvUIParent,BOTTOM,-401,440'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,230,146') or 'BOTTOM,ElvUIParent,BOTTOM,260,209'
 
@@ -1670,7 +1670,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,272') or 'BOTTOM,ElvUIParent,BOTTOM,0,422'
 		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,231') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,277'
 		E.db.movers.PowerBarContainerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,226') or 'BOTTOM,ElvUIParent,BOTTOM,0,376'
-		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-542,-422') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-661,-670'
+		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-542,-422') or 'TOP,UIParent,TOP,222,-510'
 		E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,542,289') or 'BOTTOM,ElvUIParent,BOTTOM,-401,440'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,230,146') or 'BOTTOM,ElvUIParent,BOTTOM,260,209'
 	end
