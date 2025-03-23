@@ -681,6 +681,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.castbar.customTimeFont.fontSize = 9
 	E.db.unitframe.units.arena.castbar.height = 14
 	E.db.unitframe.units.arena.castbar.iconAttachedTo = 'Castbar'
+	E.db.unitframe.units.arena.castbar.positionsGroup.xOffset = 1
+	E.db.unitframe.units.arena.castbar.positionsGroup.yOffset = -1
 	E.db.unitframe.units.arena.castbar.strataAndLevel.useCustomLevel = true
 	E.db.unitframe.units.arena.castbar.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.arena.castbar.textColor.b = 1
@@ -756,6 +758,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.castbar.customTimeFont.fontSize = 9
 	E.db.unitframe.units.boss.castbar.height = 14
 	E.db.unitframe.units.boss.castbar.iconAttachedTo = 'Castbar'
+	E.db.unitframe.units.boss.castbar.positionsGroup.xOffset = 1
+	E.db.unitframe.units.boss.castbar.positionsGroup.yOffset = -1
 	E.db.unitframe.units.boss.castbar.strataAndLevel.useCustomLevel = true
 	E.db.unitframe.units.boss.castbar.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.boss.castbar.textColor.b = 1

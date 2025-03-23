@@ -1,5 +1,6 @@
 ### Version 3.16 [In Development]
 **All WoW Versions:**  
+Fixed pixel perfect castbar offset for Arena and Boss frames  
 Slightly adjusted position anchors for Arena and Boss frames  
 **Retail:**  
 Updated LuckyoneUI Dungeon Affixes and Utility WeakAura  
@@ -9,7 +10,7 @@ Updated LuckyoneUI Healer WeakAura Edits (Monk, Evoker)
 Updates for Shadow & Light profile (AFK Mode)  
 **Misc:**  
 Added the font "Geist" (Light, Regular, Medium, Bold, Semi Bold)  
-Removed fonts (BeeLeave, Handa, OrelegaOne, Roboto)  
+Removed old SharedMedia fonts (BeeLeave, Handa, OrelegaOne, Roboto)  
 ___
 ### Version 3.15 [10-03-2025]
 **All WoW Versions:**  
