@@ -312,6 +312,7 @@ function Private:SyncSettings()
 	-- Custom
 	SetCVar('assaoSharpness', 1)
 	SetCVar('cameraIndirectOffset', 10)
+	SetCVar('checkAddonVersion', 0)
 	SetCVar('ffxDeath', 0)
 	SetCVar('ffxGlow', 0)
 	SetCVar('ffxNether', 0)
