@@ -1,5 +1,6 @@
-### Version 3.16 [In Development]
+### Version 3.16 [28-03-2025]
 **All WoW Versions:**  
+ElvUI 13.87+ compatibility  
 Fixed pixel perfect castbar offset for Arena and Boss frames  
 Slightly adjusted position anchors for Arena and Boss frames  
 **Retail:**  
