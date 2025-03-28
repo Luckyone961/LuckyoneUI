@@ -312,11 +312,16 @@ function Private:SyncSettings()
 
 	-- Custom
 	SetCVar('assaoSharpness', 1)
+	SetCVar('cameraIndirectOffset', 10)
+	SetCVar('ffxDeath', 0)
+	SetCVar('ffxGlow', 0)
+	SetCVar('ffxNether', 0)
 	SetCVar('floatingCombatTextCombatDamage', 0)
 	SetCVar('floatingCombatTextCombatHealing', 0)
 	SetCVar('GxAllowCachelessShaderMode', 0)
 	SetCVar('maxFPSLoading', 30)
 	SetCVar('RAIDweatherDensity', 0)
+	SetCVar('rawMouseEnable', 1)
 	SetCVar('ResampleAlwaysSharpen', 1)
 	SetCVar('SpellQueueWindow', 180)
 
