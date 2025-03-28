@@ -681,6 +681,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.castbar.customTimeFont.fontSize = 9
 	E.db.unitframe.units.arena.castbar.height = 14
 	E.db.unitframe.units.arena.castbar.iconAttachedTo = 'Castbar'
+	E.db.unitframe.units.arena.castbar.positionsGroup.xOffset = 1
+	E.db.unitframe.units.arena.castbar.positionsGroup.yOffset = -1
 	E.db.unitframe.units.arena.castbar.strataAndLevel.useCustomLevel = true
 	E.db.unitframe.units.arena.castbar.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.arena.castbar.textColor.b = 1
@@ -756,6 +758,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.castbar.customTimeFont.fontSize = 9
 	E.db.unitframe.units.boss.castbar.height = 14
 	E.db.unitframe.units.boss.castbar.iconAttachedTo = 'Castbar'
+	E.db.unitframe.units.boss.castbar.positionsGroup.xOffset = 1
+	E.db.unitframe.units.boss.castbar.positionsGroup.yOffset = -1
 	E.db.unitframe.units.boss.castbar.strataAndLevel.useCustomLevel = true
 	E.db.unitframe.units.boss.castbar.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.boss.castbar.textColor.b = 1
@@ -1224,12 +1228,12 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.movers.AddonCompartmentMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66'
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-202'
 	E.db.movers.AltPowerBarMover = 'TOP,ElvUIParent,TOP,0,-22'
-	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-222,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-240,-240'
+	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-260,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-420,-240'
 	E.db.movers.BagsMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-173'
 	E.db.movers.BNETMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,156') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
-	E.db.movers.BossHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-222,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-240,-240'
+	E.db.movers.BossHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-260,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-420,-240'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-104'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
@@ -1265,7 +1269,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.PetAB = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,89') or 'BOTTOM,ElvUIParent,BOTTOM,0,101'
 	E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
-	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-420'
+	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-414'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.QueueStatusMover = E.Retail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-152' or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-150'
 	E.db.movers.ReputationBarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-402,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-466,1'
@@ -1405,7 +1409,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,324') or 'BOTTOM,ElvUIParent,BOTTOM,288,474'
 		E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,272') or 'BOTTOM,ElvUIParent,BOTTOM,0,422'
 		E.db.movers.PowerBarContainerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,226') or 'BOTTOM,ElvUIParent,BOTTOM,0,376'
-		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-542,-422') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-661,-670'
+		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-542,-422') or 'TOP,UIParent,TOP,222,-510'
 		E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,542,289') or 'BOTTOM,ElvUIParent,BOTTOM,-401,440'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,230,146') or 'BOTTOM,ElvUIParent,BOTTOM,260,209'
 
@@ -1427,7 +1431,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.player.power.enable = true
 		E.db.unitframe.units.player.power.height = 18
 		E.db.unitframe.units.player.power.position = 'CENTER'
-		E.db.unitframe.units.player.power.powerPrediction = true
+		E.db.unitframe.units.player.power.powerPrediction = Private.itsLuckyone and false or true
 
 		if E.Classic then
 			E.db.unitframe.units.player.power.EnergyManaRegen = true
@@ -1546,6 +1550,15 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-450,-388') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-515,-670'
 		E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,450,304') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,718,421'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,280,146') or 'BOTTOM,ElvUIParent,BOTTOM,330,241'
+
+		if Private.itsLuckyone then
+			E.db.actionbar.bar1.mouseover = true
+			E.db.actionbar.bar2.mouseover = true
+			E.db.actionbar.bar3.mouseover = true
+			E.db.movers.ElvAB_1 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
+			E.db.movers.ElvAB_2 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,248'
+			E.db.movers.ElvAB_3 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,219'
+		end
 
 	elseif layout == 'support' then
 
@@ -1670,7 +1683,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,272') or 'BOTTOM,ElvUIParent,BOTTOM,0,422'
 		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,231') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,277'
 		E.db.movers.PowerBarContainerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,226') or 'BOTTOM,ElvUIParent,BOTTOM,0,376'
-		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-542,-422') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-661,-670'
+		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-542,-422') or 'TOP,UIParent,TOP,222,-510'
 		E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,542,289') or 'BOTTOM,ElvUIParent,BOTTOM,-401,440'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,230,146') or 'BOTTOM,ElvUIParent,BOTTOM,260,209'
 	end

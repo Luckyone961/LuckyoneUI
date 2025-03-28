@@ -1,12 +1,14 @@
-### Version 3.15 [10-03-2025]
+### Version 3.16 [28-03-2025]
 **All WoW Versions:**  
-ElvUI 13.86+ compatibility  
-Slightly adjusted position anchors for EventToastWidget and TopCenterWidget  
-Updated BigWigs profiles for their latest NamePlate module changes  
+ElvUI 13.87+ compatibility  
+Fixed pixel perfect castbar offset for Arena and Boss frames  
+Slightly adjusted position anchors for Arena and Boss frames  
 **Retail:**  
+Updated LuckyoneUI Dungeon Affixes and Utility WeakAura  
 Updated LuckyoneUI Druid WeakAura  
 Updated LuckyoneUI Evoker WeakAura  
-Updated Plater profile for Season 2 Dungeon custom colors  
-Updated Season 2 ElvUI NamePlate StyleFilters for Dungeons  
+Updated LuckyoneUI Healer WeakAura Edits (Monk, Evoker)  
+Updates for Shadow & Light profile (AFK Mode)  
 **Misc:**  
-Fixed typos in previous changelog (Mentioned season 1 instead of season 2)  
+Added the font "Geist" (Light, Regular, Medium, Bold, Semi Bold)  
+Removed old SharedMedia fonts (BeeLeave, Handa, OrelegaOne, Roboto)  

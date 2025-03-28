@@ -294,6 +294,7 @@ function Private:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_ROOK.triggers.instanceType['party'] = true
 		E.global.nameplates.filters.Luckyone_ROOK.triggers.names['209801'] = true -- Quartermaster Koratite
 		E.global.nameplates.filters.Luckyone_ROOK.triggers.names['212793'] = true -- Void Ascendant
+		E.global.nameplates.filters.Luckyone_ROOK.triggers.names['214421'] = true -- Coalescing Void Diffuser
 		E.global.nameplates.filters.Luckyone_ROOK.triggers.priority = 2
 
 		-- Darkflame Cleft [DFC]
