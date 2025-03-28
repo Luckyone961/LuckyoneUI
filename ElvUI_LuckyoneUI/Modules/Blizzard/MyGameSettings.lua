@@ -8,6 +8,11 @@ local _, Private = ...
 -- From top to bottom in ESC > Options
 function Private:SyncSettings()
 
+	-- Run general functions first
+	Private:Setup_Chat()
+	Private:Setup_CVars(true)
+	Private:NameplateCVars(true)
+
 	-- Gameplay > Controls > General
 	SetCVar('deselectOnClick', 0)
 	SetCVar('autoDismountFlying', 1)
@@ -139,7 +144,6 @@ function Private:SyncSettings()
 	SetCVar('SoftTargetIconEnemy', 0)
 	SetCVar('SoftTargetIconGameObject', 0)
 	SetCVar('SoftTargetLowPriorityIcons', 0)
-	SetCVar('arachnophobiaMode', 1)
 
 	-- Accessibility > Colorblind Mode
 	SetCVar('colorblindMode', 0)
@@ -171,6 +175,7 @@ function Private:SyncSettings()
 	SetCVar('cameraFov', 90)
 
 	-- System > Graphics > Quality Base
+	SetCVar('graphicsQuality', 9)
 	SetCVar('shadowMode', 3)
 	SetCVar('shadowTextureSize', 2048)
 	SetCVar('shadowBlendCascades', 1)
@@ -218,6 +223,7 @@ function Private:SyncSettings()
 
 	-- System > Graphics > Quality Raid and Battleground
 	SetCVar('RAIDsettingsEnabled', 1)
+	SetCVar('RAIDgraphicsQuality', 9)
 	SetCVar('RAIDshadowMode', 1)
 	SetCVar('RAIDshadowTextureSize', 1024)
 	SetCVar('RAIDshadowBlendCascades', 0)
