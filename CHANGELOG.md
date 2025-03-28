@@ -1,3 +1,8 @@
+### Version 3.17 [In Development]
+**All WoW Versions:**  
+Reworked Console Variables config section (Updated lists and descriptions)  
+Reworked Developer config section  
+___
 ### Version 3.16 [28-03-2025]
 **All WoW Versions:**  
 ElvUI 13.87+ compatibility  

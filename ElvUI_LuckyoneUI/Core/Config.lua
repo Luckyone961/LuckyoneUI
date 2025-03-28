@@ -351,13 +351,22 @@ function L1UI:Config()
 
 	-- Developer config
 	L1UI.Options.args.dev = ACH:Group(format('|cff4beb2c%s|r', 'Developer'), nil, 17, nil, nil, nil, nil, not E.global.L1UI.dev)
-	L1UI.Options.args.dev.args.header = ACH:Header('Developer', 1)
-	L1UI.Options.args.dev.args.information = ACH:Group('Information', nil, 2)
+	L1UI.Options.args.dev.args.header1 = ACH:Header('Developer', 1)
+	L1UI.Options.args.dev.args.spacer1 = ACH:Spacer(2, 'full')
+	L1UI.Options.args.dev.args.information = ACH:Group('Information', nil, 3)
 	L1UI.Options.args.dev.args.information.inline = true
 	L1UI.Options.args.dev.args.information.args.desc = ACH:Description('If you can see this section of the config, it means you enabled the LuckyoneUI developer mode.\n\nWhile this mode is enabled, the following will change:\n\n- Profiles created by the installer will no longer add the version suffix.\n- Profile installer will set additional values as listed below.', 1, 'medium')
-	L1UI.Options.args.dev.args.db = ACH:Group('Developer ProfileDB', nil, 4)
+	L1UI.Options.args.dev.args.spacer2 = ACH:Spacer(4, 'full')
+	L1UI.Options.args.dev.args.db = ACH:Group('Developer ProfileDB', nil, 5)
 	L1UI.Options.args.dev.args.db.inline = true
 	L1UI.Options.args.dev.args.db.args.desc = ACH:Description('- ElvUI chat bubble skinning disabled (To use texture replacements)\n- LuckyoneUI Alert Frame hider enabled\n- LuckyoneUI Boss Banner hider enabled\n- LuckyoneUI Easy Delete enabled', 1, 'medium')
+	L1UI.Options.args.dev.args.header2 = ACH:Header(format('|cffC80000%s|r','Luckys Private Section'), 6)
+	L1UI.Options.args.dev.args.spacer3 = ACH:Spacer(7, 'full')
+	L1UI.Options.args.dev.args.privateInfo = ACH:Group('Important information', nil, 8)
+	L1UI.Options.args.dev.args.privateInfo.inline = true
+	L1UI.Options.args.dev.args.privateInfo.args.desc = ACH:Description('This is a private section of the config, it is not meant for public use.\n\nPlease do not touch anything in this section.\n\nIf you do, think twice about it, you are on your own.', 1, 'medium')
+	L1UI.Options.args.dev.args.spacer4 = ACH:Spacer(9, 'full')
+	L1UI.Options.args.dev.args.privateFunc = ACH:Execute('Sync Game Settings', 'Clicking this button will reset every single option in your game (Pretty much everything you can see in ESC > Options) and replace it with a copy of Luckys settings. |cffC80000Think twice about it, there is no going back. This is meant only for myself.|r', 10, function() Private:SyncSettings() end, nil, true)
 
 	E.Options.args.L1UI = L1UI.Options
 end
