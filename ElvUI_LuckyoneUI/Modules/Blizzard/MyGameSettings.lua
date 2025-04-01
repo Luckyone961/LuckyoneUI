@@ -4,6 +4,9 @@ local SetCVar = C_CVar.SetCVar
 -- AddOn namespace
 local _, Private = ...
 
+-- ElvUI modules
+local E = unpack(ElvUI)
+
 -- Full export of all game settings
 -- From top to bottom in ESC > Options
 function Private:SyncSettings()
@@ -76,6 +79,12 @@ function Private:SyncSettings()
 	SetCVar('chatBubblesParty', 1)
 	SetCVar('ReplaceOtherPlayerPortraits', 1)
 	SetCVar('ReplaceMyPlayerPortrait', 1)
+
+	if not E.Retail then
+		SetCVar('instantQuestText', 1)
+		SetCVar('previewTalentsOptions', 1)
+		SetCVar('showNewbieTips', 0)
+	end
 
 	-- Gameplay > Action Bars > General
 	SetCVar('enableMultiActionBars', 0)
