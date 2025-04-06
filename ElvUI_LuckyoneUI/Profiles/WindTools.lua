@@ -116,6 +116,7 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.tooltips.groupInfo.mode = 'COMPACT'
 	E.db.WT.tooltips.groupInfo.template = '{{classColorStart}}{{specName}}{{classColorEnd}}{{amountStart}} x {{amount}}{{amountEnd}}'
 	E.db.WT.tooltips.groupInfo.title = false
+	E.db.WT.tooltips.keystone.enable = false
 
 	-- Protect movers error
 	E.db.movers = E.db.movers or {}
