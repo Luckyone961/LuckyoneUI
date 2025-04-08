@@ -36,7 +36,7 @@ function Private:SyncSettings()
 	SetCVar('autoInteract', 0)
 
 	-- Gameplay > Controls > Camera
-	SetCVar('cameraWaterCollision', 1)
+	SetCVar('cameraWaterCollision', 0)
 	SetCVar('cameraYawSmoothSpeed', 270)
 	SetCVar('cameraPitchSmoothSpeed', 67.5)
 	SetCVar('cameraSmoothStyle', 0)
