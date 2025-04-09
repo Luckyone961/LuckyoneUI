@@ -4,6 +4,8 @@ Reworked Console Variables config section (Updated lists and descriptions)
 Reworked Developer config section  
 **Retail:**  
 Updated WindTools profile (Disabled keystone in tooltips)  
+**Classic:**  
+Updated TOC for 1.15.7  
 ___
 ### Version 3.16 [28-03-2025]
 **All WoW Versions:**  
