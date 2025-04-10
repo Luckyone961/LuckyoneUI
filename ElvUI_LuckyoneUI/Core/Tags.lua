@@ -138,7 +138,7 @@ local function formatTargetName(unit, lastPartOnly, withColor)
 	end
 
 	if withColor then
-		return format('%s%s', getUnitColor(unit), targetName)
+		return format('%s%s', getUnitColor(unit..'target'), targetName)
 	else
 		return targetName
 	end
@@ -285,7 +285,7 @@ end)
 E:AddTagInfo('luckyone:name:last-nocolor', Private.Name, L["Displays the last part of the unit's name with no color"])
 
 -- Displays the last (and mostly important) part of the unit's target name with class color
-E:AddTag('luckyone:target:last-classcolor', 'UNIT_TARGET', function(unit)
+E:AddTag('luckyone:target:last-classcolor', 'UNIT_TARGET UNIT_FACTION', function(unit)
 	return formatTargetName(unit, true, true)
 end)
 E:AddTagInfo('luckyone:target:last-classcolor', Private.Name, L["Displays the last part of the unit's target name with class color"])
@@ -297,7 +297,7 @@ end)
 E:AddTagInfo('luckyone:target:last-nocolor', Private.Name, L["Displays the last part of the unit's target name with no color"])
 
 -- Displays the unit's target name with class color
-E:AddTag('luckyone:target:name-classcolor', 'UNIT_TARGET', function(unit)
+E:AddTag('luckyone:target:name-classcolor', 'UNIT_TARGET UNIT_FACTION', function(unit)
 	return formatTargetName(unit, false, true)
 end)
 E:AddTagInfo('luckyone:target:name-classcolor', Private.Name, L["Displays the unit's target name with class color"])
