@@ -1,5 +1,6 @@
 ### Version 3.17 [In Development]
 **All WoW Versions:**  
+Default font size for Pet, Player, Target, Focus is now 12 (was 14) to match other frames  
 Reworked Console Variables config section (Updated lists and descriptions)  
 Reworked Developer config section  
 **Retail:**  

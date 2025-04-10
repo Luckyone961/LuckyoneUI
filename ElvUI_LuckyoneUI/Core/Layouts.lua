@@ -805,7 +805,7 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Focus
 	E.db.unitframe.units.focus.customTexts = {}
-	E.db.unitframe.units.focus.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[luckyone:name:last-classcolor]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[luckyone:name:last-classcolor]', xOffset = 0, yOffset = 0 }
 	E.db.unitframe.units.focus.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.focus.buffs.anchorPoint = 'TOPRIGHT'
@@ -870,7 +870,7 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Pet
 	E.db.unitframe.units.pet.customTexts = {}
-	E.db.unitframe.units.pet.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[luckyone:pet:name-and-happiness]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.pet.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[luckyone:pet:name-and-happiness]', xOffset = 0, yOffset = 0 }
 	E.db.unitframe.units.pet.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.pet.castbar.enable = false
@@ -892,8 +892,8 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Player
 	E.db.unitframe.units.player.customTexts = {}
-	E.db.unitframe.units.player.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 14, text_format = '[health:current:shortvalue] • [luckyone:health:percent]', xOffset = -2, yOffset = 0 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 14, text_format = '[luckyone:name:last-classcolor]', xOffset = 5, yOffset = 0 }
+	E.db.unitframe.units.player.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = '[health:current:shortvalue] • [luckyone:health:percent]', xOffset = -2, yOffset = 0 }
+	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 12, text_format = '[luckyone:name:last-classcolor]', xOffset = 5, yOffset = 0 }
 	E.db.unitframe.units.player.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.player.aurabar.enable = false
@@ -965,8 +965,8 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Target
 	E.db.unitframe.units.target.customTexts = {}
-	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 14, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 14, text_format = '[luckyone:level< |cffffffff- |r][luckyone:name:last-classcolor]', xOffset = -3, yOffset = 0 }
+	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 12, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
+	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = '[luckyone:level< |cffffffff- |r][luckyone:name:last-classcolor]', xOffset = -3, yOffset = 0 }
 	E.db.unitframe.units.target.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.target.aurabar.enable = false
@@ -1035,7 +1035,7 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared TargetTarget
 	E.db.unitframe.units.targettarget.customTexts = {}
-	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '[luckyone:name:last-classcolor]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[luckyone:name:last-classcolor]', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.targettarget.debuffs.enable = false
 	E.db.unitframe.units.targettarget.disableMouseoverGlow = true
@@ -1113,7 +1113,7 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Party
 	E.db.unitframe.units.party.customTexts = {}
-	E.db.unitframe.units.party.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 14, text_format = '', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.party.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.debuffs.enable = false
