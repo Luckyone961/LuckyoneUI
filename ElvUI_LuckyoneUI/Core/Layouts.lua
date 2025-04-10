@@ -1431,7 +1431,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.player.power.enable = true
 		E.db.unitframe.units.player.power.height = 18
 		E.db.unitframe.units.player.power.position = 'CENTER'
-		E.db.unitframe.units.player.power.powerPrediction = Private.itsLuckyone and false or true
+		E.db.unitframe.units.player.power.powerPrediction = true
 
 		if E.Classic then
 			E.db.unitframe.units.player.power.EnergyManaRegen = true
@@ -1558,6 +1558,8 @@ function Private:Layout_TheWarWithin(layout)
 			E.db.movers.ElvAB_1 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
 			E.db.movers.ElvAB_2 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,248'
 			E.db.movers.ElvAB_3 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,219'
+			E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
+			E.db.unitframe.units.player.power.powerPrediction = false
 		end
 
 	elseif layout == 'support' then

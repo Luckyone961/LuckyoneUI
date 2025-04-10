@@ -68,7 +68,6 @@ function Private:SyncSettings()
 	-- Gameplay > Interface > Display
 	SetCVar('hideAdventureJournalAlerts', 1)
 	SetCVar('showInGameNavigation', 1)
-	SetCVar('showTutorials', 0)
 	SetCVar('Outline', 2)
 	SetCVar('statusTextDisplay', 'BOTH')
 	SetCVar('statusText', 1)
