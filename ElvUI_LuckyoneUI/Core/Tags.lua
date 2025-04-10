@@ -280,12 +280,7 @@ E:AddTagInfo('luckyone:name:last-classcolor', Private.Name, L["Displays the last
 -- Displays the last (and mostly important) part of the unit's name with no color
 E:AddTag('luckyone:name:last-nocolor', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 	local name = UnitName(unit)
-
-	if name and strfind(name, '%s') then
-		name = strmatch(name, '([%S]+)$')
-	end
-
-	return name
+	return getLastNamePart(name)
 end)
 E:AddTagInfo('luckyone:name:last-nocolor', Private.Name, L["Displays the last part of the unit's name with no color"])
 
