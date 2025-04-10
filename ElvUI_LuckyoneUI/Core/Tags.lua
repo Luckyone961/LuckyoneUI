@@ -245,6 +245,72 @@ E:AddTag('luckyone:name:last-nocolor', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGA
 end)
 E:AddTagInfo('luckyone:name:last-nocolor', Private.Name, L["Displays the last part of the unit's name with no color"])
 
+-- Displays the last (and mostly important) part of the unit's target name with class color
+E:AddTag('luckyone:target:last-classcolor', 'UNIT_TARGET', function(unit)
+	local targetName = UnitName(unit..'target')
+	if not targetName then return end
+
+	local color, formattedName
+
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+		local _, unitClass = UnitClass(unit)
+		local cs = ElvUF.colors.class[unitClass]
+		color = cs and Hex(cs.r, cs.g, cs.b) or '|cFFcccccc'
+	else
+		local cr = ElvUF.colors.reaction[UnitReaction(unit, 'player')]
+		color = cr and Hex(cr.r, cr.g, cr.b) or '|cFFcccccc'
+	end
+
+	if targetName and strfind(targetName, '%s') then
+		targetName = strmatch(targetName, '([%S]+)$')
+	end
+
+	return format('%s%s', color, targetName)
+end)
+E:AddTagInfo('luckyone:target:last-classcolor', Private.Name, L["Displays the last part of the unit's target name with class color"])
+
+-- Displays the last (and mostly important) part of the unit's target name with no color
+E:AddTag('luckyone:target:last-nocolor', 'UNIT_TARGET', function(unit)
+	local targetName = UnitName(unit..'target')
+	if not targetName then return end
+
+	if targetName and strfind(targetName, '%s') then
+		targetName = strmatch(targetName, '([%S]+)$')
+	end
+
+	return targetName
+end)
+E:AddTagInfo('luckyone:target:last-nocolor', Private.Name, L["Displays the last part of the unit's target name with no color"])
+
+-- Displays the unit's target name with class color
+E:AddTag('luckyone:target:name-classcolor', 'UNIT_TARGET UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+	local targetName = UnitName(unit..'target')
+	if not targetName then return end
+
+	local color, formattedName
+
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+		local _, unitClass = UnitClass(unit)
+		local cs = ElvUF.colors.class[unitClass]
+		color = cs and Hex(cs.r, cs.g, cs.b) or '|cFFcccccc'
+	else
+		local cr = ElvUF.colors.reaction[UnitReaction(unit, 'player')]
+		color = cr and Hex(cr.r, cr.g, cr.b) or '|cFFcccccc'
+	end
+
+	return format('%s%s', color, targetName)
+end)
+E:AddTagInfo('luckyone:target:name-classcolor', Private.Name, L["Displays the unit's target name with class color"])
+
+-- Displays the unit's target name with no color
+E:AddTag('luckyone:target:name-nocolor', 'UNIT_TARGET UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+	local targetName = UnitName(unit..'target')
+	if not targetName then return end
+
+	return targetName
+end)
+E:AddTagInfo('luckyone:target:name-nocolor', Private.Name, L["Displays the unit's target name with no color"])
+
 for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long = 20 }) do
 	-- Displays the unit's name with classcolor and a maximum length of 5, 10, 15 and 20 characters
 	E:AddTag(format('luckyone:name:%s-classcolor', textFormat), 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
