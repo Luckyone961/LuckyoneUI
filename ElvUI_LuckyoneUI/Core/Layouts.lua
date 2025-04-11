@@ -966,7 +966,7 @@ function Private:Layout_TheWarWithin(layout)
 	-- Shared Target
 	E.db.unitframe.units.target.customTexts = {}
 	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 12, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = '[luckyone:level< |cffffffff- |r][luckyone:name:last-classcolor]', xOffset = -3, yOffset = 0 }
+	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = Private.itsLuckyone and '[luckyone:level< |cffffffff- |r][luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]' or '[luckyone:level< |cffffffff- |r][luckyone:name:last-classcolor]', xOffset = -3, yOffset = 0 }
 	E.db.unitframe.units.target.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.target.aurabar.enable = false
@@ -1037,6 +1037,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.targettarget.customTexts = {}
 	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[luckyone:name:last-classcolor]', xOffset = 0, yOffset = 0 }
 
+	E.db.unitframe.units.targettarget.enable = not Private.itsLuckyone
 	E.db.unitframe.units.targettarget.debuffs.enable = false
 	E.db.unitframe.units.targettarget.disableMouseoverGlow = true
 	E.db.unitframe.units.targettarget.fader.minAlpha = 0.5
