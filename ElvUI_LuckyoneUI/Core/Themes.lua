@@ -48,7 +48,7 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.raid2.name.text_format = '[luckyone:name:veryshort-classcolor]'
 		E.db.unitframe.units.raid3.name.text_format = '[luckyone:name:veryshort-classcolor]'
 		E.db.unitframe.units.raidpet.name.text_format = '[luckyone:name:veryshort-classcolor]'
-		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = Private.itsLuckyone and '[luckyone:level< |cffffffff- |r][luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]' or '[luckyone:level< |cffffffff- |r][luckyone:name:last-classcolor]'
+		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = Private.itsLuckyone and '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]' or '[luckyone:name:last-classcolor]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
 
 		-- Castbar color
@@ -75,7 +75,7 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.raid2.name.text_format = '[luckyone:name:veryshort-nocolor]'
 		E.db.unitframe.units.raid3.name.text_format = '[luckyone:name:veryshort-nocolor]'
 		E.db.unitframe.units.raidpet.name.text_format = '[luckyone:name:veryshort-nocolor]'
-		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = Private.itsLuckyone and '[luckyone:level< |cffffffff- |r][luckyone:name:last-nocolor][ |r» >luckyone:target:last-classcolor]' or'[luckyone:level< |cffffffff- |r][luckyone:name:last-nocolor]'
+		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = Private.itsLuckyone and '[luckyone:name:last-nocolor][ |r» >luckyone:target:last-classcolor]' or '[luckyone:name:last-nocolor]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor]'
 
 		-- Castbar color
