@@ -5,7 +5,7 @@ local unpack = unpack
 local _, Private = ...
 
 -- ElvUI modules
-local E, L = unpack(ElvUI)
+local _, L = unpack(ElvUI)
 
 -- Runs after successful profile import
 local function CallbackFunction(accepted)
@@ -22,7 +22,7 @@ end
 	LC: 04/03/2025
 ]]
 function Private:Setup_BigWigs(layout)
-	if not E:IsAddOnEnabled('BigWigs') then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
+	if not BigWigsAPI then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
 
 	-- Profile names
 	local name_main = 'Luckyone Main'
