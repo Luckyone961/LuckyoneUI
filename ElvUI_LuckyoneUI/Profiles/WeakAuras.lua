@@ -7,12 +7,10 @@ local _, Private = ...
 -- ElvUI modules
 local E, L = unpack(ElvUI)
 
---[[
-	WeakAuras import data
-	LC: 23/03/2025
-]]
+-- WeakAuras import data
+-- LC: 23/03/2025
 function Private:WeakAurasImport(aura)
-	if not E:IsAddOnEnabled('WeakAuras') and E.Retail then Private:Print('WeakAuras ' .. L["is not installed or enabled."]) return end
+	if not (Private.IsAddOnLoaded('WeakAuras') and E.Retail) then Private:Print('WeakAuras ' .. L["is not installed or enabled."]) return end
 
 	local import = WeakAuras.Import
 

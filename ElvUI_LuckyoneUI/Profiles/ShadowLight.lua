@@ -13,12 +13,10 @@ local _, Private = ...
 -- ElvUI modules
 local E, L, V, P, G = unpack(ElvUI)
 
---[[
-	Shadow & Light ProfileDB
-	LC: 14/03/2025
-]]
+-- Shadow & Light ProfileDB
+-- LC: 14/03/2025
 function Private:Setup_ShadowAndLight(installer)
-	if not E:IsAddOnEnabled('ElvUI_SLE') and E.Retail then Private:Print('|cff9482c9Shadow & Light|r ' .. L["is not installed or enabled."]) return end
+	if not (Private.IsAddOnLoaded('ElvUI_SLE') and E.Retail) then Private:Print('|cff9482c9Shadow & Light|r ' .. L["is not installed or enabled."]) return end
 
 	-- Restore defaults
 	E.db.sle = E:CopyTable({}, P.sle)
@@ -121,10 +119,8 @@ function Private:Setup_ShadowAndLight(installer)
 	Private:Print(L["Shadow&Light profile has been set."])
 end
 
---[[
-	Shadow & Light PrivateDB
-	LC: 06/02/2025
-]]
+-- Shadow & Light PrivateDB
+-- LC: 06/02/2025
 function Private:Setup_Private_ShadowAndLight()
 
 	-- Get version

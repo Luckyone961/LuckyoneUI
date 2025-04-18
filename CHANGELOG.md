@@ -3,6 +3,7 @@
 Added luckyone:target Tags with and without class color suffix  
 Added luckyone:target:last Tags with and without class color suffix  
 Default font size for Pet, Player, Target, Focus is now 12 (was 14) to match other frames  
+Fixed a rare bug that could cause the BigWigs and Details installer to fail  
 Reworked Console Variables config section (Updated lists and descriptions)  
 Reworked Developer config section  
 **Retail:**  

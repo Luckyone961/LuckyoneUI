@@ -11,16 +11,14 @@ local _, L = unpack(ElvUI)
 local function CallbackFunction(accepted)
 	if not accepted then return end
 
-	-- Handle Minimap icon
+	-- Handle minimap icon
 	local LDBI = LibStub('LibDBIcon-1.0')
 	BigWigsIconDB.hide = true
 	LDBI:Hide('BigWigs')
 end
 
---[[
-	BigWigs profiles
-	LC: 04/03/2025
-]]
+-- BigWigs profiles
+-- LC: 04/03/2025
 function Private:Setup_BigWigs(layout)
 	if not BigWigsAPI then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
 

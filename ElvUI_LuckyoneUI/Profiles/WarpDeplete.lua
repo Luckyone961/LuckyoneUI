@@ -10,15 +10,16 @@ local _, Private = ...
 -- ElvUI modules
 local E, L = unpack(ElvUI)
 
---[[
-	WarpDeplete profile
-	LC: 06/02/2025
-]]
+-- WarpDeplete profile
+-- LC: 06/02/2025
 function Private:Setup_WarpDeplete(installer)
-	if not E:IsAddOnEnabled('WarpDeplete') and E.Retail then Private:Print('WarpDeplete ' .. L["is not installed or enabled."]) return end
+	if not (Private.IsAddOnLoaded('WarpDeplete') and E.Retail) then Private:Print('WarpDeplete ' .. L["is not installed or enabled."]) return end
+
+	-- Global db
+	local dev = E.global.L1UI.dev
 
 	-- Profile name
-	local name = (E.global.L1UI.dev and 'Luckyone') or 'Luckyone ' .. Private.Version
+	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version
 
 	-- Profile data
 	WarpDepleteDB['profiles'][name] = WarpDepleteDB['profiles'][name] or {}
