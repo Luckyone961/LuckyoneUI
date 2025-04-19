@@ -7,6 +7,7 @@ Fixed a rare bug that could cause the BigWigs and Details installer to fail
 Reworked Console Variables config section (Updated lists and descriptions)  
 Reworked Developer config section  
 **Retail:**  
+Updated LuckyoneUI Healer WeakAura Edits (Druid, Evoker, Monk)  
 Updated WindTools profile (Disabled keystone in tooltips)  
 **Classic:**  
 Updated TOC for 1.15.7  
