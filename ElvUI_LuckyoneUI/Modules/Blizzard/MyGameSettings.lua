@@ -309,7 +309,7 @@ function Private:SyncSettings()
 
 	-- System > Network
 	SetCVar('disableServerNagle', 1)
-	SetCVar('useIPv6', 1)
+	SetCVar('useIPv6', 0)
 	SetCVar('advancedCombatLogging', 1)
 
 	-- Custom
