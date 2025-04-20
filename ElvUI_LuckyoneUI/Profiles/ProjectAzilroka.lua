@@ -7,12 +7,10 @@ local _, Private = ...
 -- ElvUI modules
 local E, L = unpack(ElvUI)
 
---[[
-	ProjectAzilroka profile
-	LC: 06/02/2025
-]]
+-- ProjectAzilroka profile
+-- LC: 06/02/2025
 function Private:Setup_ProjectAzilroka()
-	if not E:IsAddOnEnabled('ProjectAzilroka') then Private:Print('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r ' .. L["is not installed or enabled."]) return end
+	if not Private.IsAddOnLoaded('ProjectAzilroka') then Private:Print('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r ' .. L["is not installed or enabled."]) return end
 
 	local PA = unpack(ProjectAzilroka)
 
@@ -30,6 +28,7 @@ function Private:Setup_ProjectAzilroka()
 	PA.db.MouseoverAuras.Enable = false
 	PA.db.OzCooldowns.Enable = false
 	PA.db.QuestSounds.Enable = false
+	PA.db.stAddonManager.Enable = false
 
 	-- Retail modules
 	if E.Retail then

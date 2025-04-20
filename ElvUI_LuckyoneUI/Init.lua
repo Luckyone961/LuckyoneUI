@@ -4,6 +4,7 @@ local unpack = unpack
 
 -- API cache
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 
 -- AddOn namespace
 local Name, Private = ...
@@ -29,7 +30,8 @@ Private.Texture = 'Minimalist'
 Private.Config = {}
 Private.Credits = {}
 
--- Constants: Version checks
+-- Constants: Checks
+Private.IsAddOnLoaded = IsAddOnLoaded
 Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
 Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
 

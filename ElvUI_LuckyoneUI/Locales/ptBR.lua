@@ -60,6 +60,8 @@ L["Displays percentage power with no color and hides power at 0"] = true
 L["Displays percentage power with powercolor and hides power at 0"] = true
 L["Displays the last part of the unit's name with class color"] = true
 L["Displays the last part of the unit's name with no color"] = true
+L["Displays the last part of the unit's target name with class color"] = true
+L["Displays the last part of the unit's target name with no color"] = true
 L["Displays the pet's name and includes (in Classic only) the full happiness status"] = true
 L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"] = "Exibe a classificação da unidade (ex: 'Elite' e 'Raro') mas sem o 'Afixo'"
 L["Displays the unit's level with difficultycolor if the player is not max level"] = true
@@ -75,6 +77,8 @@ L["Displays the unit's name with no color and a maximum length of 10 characters"
 L["Displays the unit's name with no color and a maximum length of 15 characters"] = true
 L["Displays the unit's name with no color and a maximum length of 20 characters"] = true
 L["Displays the unit's name with no color and a maximum length of 5 characters"] = true
+L["Displays the unit's target name with class color"] = true
+L["Displays the unit's target name with no color"] = true
 L["DPS & Tanks"] = "DPS & Tanques"
 L["Druid"] = "Druída"
 L["Easy Delete"] = "Delete Fácil"
