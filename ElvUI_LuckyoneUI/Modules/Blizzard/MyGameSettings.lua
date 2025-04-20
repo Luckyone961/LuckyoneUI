@@ -167,7 +167,7 @@ function Private:SyncSettings()
 	SetCVar('uiScale', 0.53333333333333)
 	SetCVar('vsync', 1)
 	SetCVar('LowLatencyMode', 2)
-	SetCVar('ffxAntiAliasingMode', 0)
+	SetCVar('ffxAntiAliasingMode', 3)
 	SetCVar('cameraFov', 90)
 
 	-- System > Graphics > Quality Base
