@@ -1,3 +1,7 @@
+### Version 3.18 [In Development]
+**Retail:**  
+Fixed Shadow&Light installer error complaining about gameMenu being nil  
+___
 ### Version 3.17 [23-04-2025]
 **All WoW Versions:**  
 ElvUI 13.89+ compatibility  
