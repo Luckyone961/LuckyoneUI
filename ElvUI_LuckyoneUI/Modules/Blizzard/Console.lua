@@ -15,54 +15,18 @@ local E, L = unpack(ElvUI)
 
 -- General CVars
 function Private:Setup_CVars(noPrint, installer)
-	-- Core CVars
+
 	SetCVar('alwaysShowActionBars', 1)
-	SetCVar('autoLootDefault', 1)
 	SetCVar('AutoPushSpellToActionBar', 0)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
-	SetCVar('ffxDeath', 0)
-	SetCVar('ffxGlow', 0)
-	SetCVar('ffxNether', 0)
 	SetCVar('fstack_preferParentKeys', 0)
 	SetCVar('lockActionBars', 1)
-	SetCVar('nameplateShowOnlyNames', 1)
-	SetCVar('profanityFilter', 0)
-	SetCVar('rawMouseEnable', 1)
+	SetCVar('minimapTrackingShowAll', 1)
 	SetCVar('screenshotQuality', 10)
 	SetCVar('showNPETutorials', 0)
 	SetCVar('showTutorials', 0)
 	SetCVar('threatWarning', 3)
 	SetCVar('UberTooltips', 1)
-
-	-- Developer CVars
-	if E.global.L1UI.dev then
-		SetCVar('advancedCombatLogging', 1)
-		SetCVar('assaoSharpness', 1)
-		SetCVar('blockChannelInvites', 1)
-		SetCVar('CameraReduceUnexpectedMovement', 1)
-		SetCVar('DisableAdvancedFlyingVelocityVFX', 1)
-		SetCVar('disableServerNagle', 1)
-		SetCVar('displaySpellActivationOverlays', 0)
-		SetCVar('doNotFlashLowHealthWarning', 1)
-		SetCVar('empowerTapControls', 1)
-		SetCVar('floatingCombatTextCombatDamage', 0)
-		SetCVar('floatingCombatTextCombatHealing', 0)
-		SetCVar('GxAllowCachelessShaderMode', 0)
-		SetCVar('LowLatencyMode', 2)
-		SetCVar('maxFPSLoading', 30)
-		SetCVar('RAIDweatherDensity', 0)
-		SetCVar('ResampleAlwaysSharpen', 1)
-		SetCVar('ResampleSharpness', 0)
-		SetCVar('showToastOffline', 0)
-		SetCVar('showToastOnline', 0)
-		SetCVar('showToastWindow', 0)
-		SetCVar('SpellQueueWindow', 180)
-		SetCVar('useIPv6', 1)
-		SetCVar('weatherDensity', 0)
-		-- 11.0 CVars
-		SetCVar('minimapTrackingShowAll', 1) -- Default 0
-		SetCVar('cameraIndirectOffset', 10) -- Default 1.5
-	end
 
 	if installer then
 		_G.LuckyoneInstallStepComplete.message = L["CVars have been set."]
@@ -76,6 +40,7 @@ end
 
 -- NamePlate CVars
 function Private:NameplateCVars(noPrint)
+
 	SetCVar('NamePlateHorizontalScale', 1)
 	SetCVar('nameplateLargerScale', 1)
 	SetCVar('nameplateLargeTopInset', -1)
@@ -90,6 +55,7 @@ function Private:NameplateCVars(noPrint)
 	SetCVar('nameplateSelectedScale', 1)
 	SetCVar('nameplateSelfAlpha', 1)
 	SetCVar('nameplateSelfTopInset', -1)
+	SetCVar('nameplateShowOnlyNames', 1)
 	SetCVar('NamePlateVerticalScale', 1)
 
 	SetCVar('UnitNameEnemyGuardianName', 1)

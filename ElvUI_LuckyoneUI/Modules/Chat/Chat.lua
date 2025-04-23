@@ -48,6 +48,7 @@ function Private:Setup_Chat(installer)
 	SetCVar('chatMouseScroll', 1)
 	SetCVar('chatStyle', 'classic')
 	SetCVar('colorChatNamesByClass', 1)
+	SetCVar('showTimestamps', 'none')
 	SetCVar('whisperMode', 'inline')
 	SetCVar('wholeChatWindowClickable', 0)
 

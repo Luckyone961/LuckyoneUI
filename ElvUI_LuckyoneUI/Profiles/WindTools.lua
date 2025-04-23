@@ -10,12 +10,10 @@ local _, Private = ...
 -- ElvUI modules
 local E, L, V, P, G = unpack(ElvUI)
 
---[[
-	WindTools ProfileDB
-	LC: 06/02/2025
-]]
+-- WindTools ProfileDB
+-- LC: 06/02/2025
 function Private:Setup_WindTools(installer)
-	if not E:IsAddOnEnabled('ElvUI_WindTools') and E.Retail then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
+	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and E.Retail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
 	-- 1080p
 	local scaled = E.global.L1UI.scaled
@@ -116,6 +114,7 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.tooltips.groupInfo.mode = 'COMPACT'
 	E.db.WT.tooltips.groupInfo.template = '{{classColorStart}}{{specName}}{{classColorEnd}}{{amountStart}} x {{amount}}{{amountEnd}}'
 	E.db.WT.tooltips.groupInfo.title = false
+	E.db.WT.tooltips.keystone.enable = false
 
 	-- Protect movers error
 	E.db.movers = E.db.movers or {}
@@ -133,10 +132,8 @@ function Private:Setup_WindTools(installer)
 	Private:Print(L["WindTools profile has been set."])
 end
 
---[[
-	WindTools PrivateDB
-	LC: 06/02/2025
-]]
+-- WindTools PrivateDB
+-- LC: 06/02/2025
 function Private:Setup_Private_WindTools()
 
 	-- Restore defaults

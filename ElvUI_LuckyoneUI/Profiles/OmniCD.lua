@@ -11,19 +11,17 @@ local _, Private = ...
 -- ElvUI modules
 local E, L = unpack(ElvUI)
 
---[[
-	OmniCD profile
-	LC: 29/12/2024
-]]
+-- OmniCD profile
+-- LC: 29/12/2024
 function Private:Setup_OmniCD(layout, installer)
-	if not E:IsAddOnEnabled('OmniCD') and E.Retail then Private:Print('OmniCD ' .. L["is not installed or enabled."]) return end
+	if not Private.IsAddOnLoaded('OmniCD') then Private:Print('OmniCD ' .. L["is not installed or enabled."]) return end
 
-	-- 1080p
-	local scaled = E.global.L1UI.scaled
+	-- Global db
+	local dev, scaled = E.global.L1UI.dev, E.global.L1UI.scaled
 
 	-- Profile names
-	local name_main = (E.global.L1UI.dev and 'Luckyone Main') or 'Luckyone Main ' .. Private.Version
-	local name_healing = (E.global.L1UI.dev and 'Luckyone Healing') or 'Luckyone Healing ' .. Private.Version
+	local name_main = (dev and 'Luckyone Main') or 'Luckyone Main ' .. Private.Version
+	local name_healing = (dev and 'Luckyone Healing') or 'Luckyone Healing ' .. Private.Version
 
 	-- Disable LibDualSpec to set the profile
 	if E.Retail then

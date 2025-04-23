@@ -170,10 +170,10 @@ function L1UI:Config()
 	L1UI.Options.args.cvars.args.setup.args.nameplateVars = ACH:Execute(L["NamePlate CVars"], nil, 2, function() Private:NameplateCVars() end, nil, true)
 	L1UI.Options.args.cvars.args.generalDesc = ACH:Group(L["General CVars"], nil, 3)
 	L1UI.Options.args.cvars.args.generalDesc.inline = true
-	L1UI.Options.args.cvars.args.generalDesc.args.cvars = ACH:Description('- alwaysShowActionBars 1\n- autoLootDefault 1\n- AutoPushSpellToActionBar 0\n- cameraDistanceMaxZoomFactor 2.6\n- ffxDeath 0\n- ffxGlow 0\n- ffxNether 0\n- fstack_preferParentKeys 0\n- lockActionBars 1\n- nameplateShowOnlyNames 1\n- profanityFilter 0\n- rawMouseEnable 1\n- screenshotQuality 10\n- showNPETutorials 0\n- showTutorials 0\n- threatWarning 3\n- UberTooltips 1', 1, 'medium')
+	L1UI.Options.args.cvars.args.generalDesc.args.cvars = ACH:Description('- alwaysShowActionBars 1\n- AutoPushSpellToActionBar 0\n- cameraDistanceMaxZoomFactor 2.6\n- fstack_preferParentKeys 0\n- lockActionBars 1\n- minimapTrackingShowAll 1\n- screenshotQuality 10\n- showNPETutorials 0\n- showTutorials 0\n- threatWarning 3\n- UberTooltips 1\n', 1, 'medium')
 	L1UI.Options.args.cvars.args.nameplateDesc = ACH:Group(L["NamePlate CVars"], nil, 4)
 	L1UI.Options.args.cvars.args.nameplateDesc.inline = true
-	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- NamePlateHorizontalScale 1\n- nameplateLargerScale 1\n- nameplateLargeTopInset -1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOtherBottomInset -1\n- nameplateOtherTopInset -1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.7\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateSelfTopInset -1\n- NamePlateVerticalScale 1\n\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1', 1, 'medium')
+	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- NamePlateHorizontalScale 1\n- nameplateLargerScale 1\n- nameplateLargeTopInset -1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOtherBottomInset -1\n- nameplateOtherTopInset -1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.7\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateSelfTopInset -1\n- nameplateShowOnlyNames 1\n- NamePlateVerticalScale 1\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1\n', 1, 'medium')
 
 	-- ElvUI Layouts
 	L1UI.Options.args.layouts = ACH:Group('ElvUI ' .. L["Layouts"], nil, 7)
@@ -351,16 +351,22 @@ function L1UI:Config()
 
 	-- Developer config
 	L1UI.Options.args.dev = ACH:Group(format('|cff4beb2c%s|r', 'Developer'), nil, 17, nil, nil, nil, nil, not E.global.L1UI.dev)
-	L1UI.Options.args.dev.args.header = ACH:Header('Developer', 1)
-	L1UI.Options.args.dev.args.information = ACH:Group('Information', nil, 2)
+	L1UI.Options.args.dev.args.header1 = ACH:Header('Developer', 1)
+	L1UI.Options.args.dev.args.spacer1 = ACH:Spacer(2, 'full')
+	L1UI.Options.args.dev.args.information = ACH:Group('Information', nil, 3)
 	L1UI.Options.args.dev.args.information.inline = true
-	L1UI.Options.args.dev.args.information.args.desc = ACH:Description('If you can see this section of the config, it means you enabled the LuckyoneUI developer mode.\n\nWhile this mode is enabled, the following will change:\n\n- Setup CVars button will set additional values as listed below.\n- Profiles created by the installer will no longer add the version suffix.\n- Profile installer will set additional values as listed below.', 1, 'medium')
-	L1UI.Options.args.dev.args.cvars = ACH:Group('Developer CVars', nil, 3)
-	L1UI.Options.args.dev.args.cvars.inline = true
-	L1UI.Options.args.dev.args.cvars.args.desc = ACH:Description('- advancedCombatLogging 1\n- assaoSharpness 1\n- blockChannelInvites 1\n- cameraIndirectOffset 10\n- CameraReduceUnexpectedMovement 1\n- DisableAdvancedFlyingVelocityVFX 1\n- disableServerNagle 1\n- displaySpellActivationOverlays 0\n- doNotFlashLowHealthWarning 1\n- empowerTapControls 1\n- floatingCombatTextCombatDamage 0\n- floatingCombatTextCombatHealing 0\n- GxAllowCachelessShaderMode 0\n- LowLatencyMode 2\n- maxFPSLoading 30\n- minimapTrackingShowAll 1\n- RAIDweatherDensity 0\n- ResampleAlwaysSharpen 1\n- ResampleSharpness 0\n- showToastOffline 0\n- showToastOnline 0\n- showToastWindow 0\n- SpellQueueWindow 180\n- useIPv6 1\n- weatherDensity 0', 1, 'medium')
-	L1UI.Options.args.dev.args.db = ACH:Group('Developer ProfileDB', nil, 4)
+	L1UI.Options.args.dev.args.information.args.desc = ACH:Description('If you can see this section of the config, it means you enabled the LuckyoneUI developer mode.\n\nWhile this mode is enabled, the following will change:\n\n- Profiles created by the installer will no longer add the version suffix to the profile name.\n- Profile installer make additional adjustments as listed below.', 1, 'medium')
+	L1UI.Options.args.dev.args.spacer2 = ACH:Spacer(4, 'full')
+	L1UI.Options.args.dev.args.db = ACH:Group('Developer ProfileDB', nil, 5)
 	L1UI.Options.args.dev.args.db.inline = true
-	L1UI.Options.args.dev.args.db.args.desc = ACH:Description('- ElvUI chat bubble skinning disabled (To use texture replacements)\n- LuckyoneUI Alert Frame hider enabled\n- LuckyoneUI Boss Banner hider enabled\n- LuckyoneUI Easy Delete enabled', 1, 'medium')
+	L1UI.Options.args.dev.args.db.args.desc = ACH:Description('- ElvUI chat bubble skinning disabled (To use texture replacements)\n- ElvUI bags module disabled (To use Baganator)\n- ElvUI nameplates module disabled (To use Plater)\n\n- TargetTarget frame disabled\n- TargetTarget name added to Target frame text format\n\n- LuckyoneUI Alert Frame hider enabled\n- LuckyoneUI Boss Banner hider enabled\n- LuckyoneUI Easy Delete enabled', 1, 'medium')
+	L1UI.Options.args.dev.args.header2 = ACH:Header(format('|cffC80000%s|r','Luckys Private Section'), 6)
+	L1UI.Options.args.dev.args.spacer3 = ACH:Spacer(7, 'full')
+	L1UI.Options.args.dev.args.privateInfo = ACH:Group('Important information', nil, 8)
+	L1UI.Options.args.dev.args.privateInfo.inline = true
+	L1UI.Options.args.dev.args.privateInfo.args.desc = ACH:Description('This is a private section of the config, it is not meant for public use.\n\nPlease do not touch anything in this section.\n\nIf you do, make sure to use /console cvar_default (before you click). Keep in mind there is no support.', 1, 'medium')
+	L1UI.Options.args.dev.args.spacer4 = ACH:Spacer(9, 'full')
+	L1UI.Options.args.dev.args.privateFunc = ACH:Execute('Sync Game Settings', 'Clicking this button will reset every single option in your game (Pretty much everything you can see in ESC > Options) and replace it with a copy of Luckys settings. |cffC80000Think twice about it, there is no going back. This is meant only for myself.|r', 10, function() Private:SyncSettings() end, nil, true)
 
 	E.Options.args.L1UI = L1UI.Options
 end

@@ -52,45 +52,95 @@ local classificationText = {
 	worldboss = 'Boss'
 }
 
--- oUF\Elements\tags.lua
 local function Hex(r, g, b)
+	if type(r) == 'number' and g and b then
+		return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
+	end
+
 	if type(r) == 'table' then
 		if r.r then
 			r, g, b = r.r, r.g, r.b
 		else
 			r, g, b = unpack(r)
 		end
-	elseif not r or type(r) == 'string' then
-		return '|cffFFFFFF'
+		return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
 	end
 
-	return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
+	return '|cffFFFFFF'
 end
 
 local function getFormattedName(unit, length, color, abbrev)
 	local name = UnitName(unit) or UNKNOWN
-	if abbrev then
-		name = Abbrev(name)
-	end
-	name = E:ShortenString(name, length)
 
-	if color then
-		local colorHex = '|cFFcccccc' -- Default color
-		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-			local _, unitClass = UnitClass(unit)
+	if name ~= UNKNOWN then
+		if abbrev then
+			name = Abbrev(name)
+		end
+		name = E:ShortenString(name, length)
+	end
+
+	if not color then return name end
+
+	local colorHex = '|cFFcccccc' -- Default color
+
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+		local _, unitClass = UnitClass(unit)
+		if unitClass then
 			local cs = ElvUF.colors.class[unitClass]
 			if cs then
 				colorHex = Hex(cs.r, cs.g, cs.b)
 			end
-		else
-			local cr = ElvUF.colors.reaction[UnitReaction(unit, 'player')]
+		end
+	else
+		local reaction = UnitReaction(unit, 'player')
+		if reaction then
+			local cr = ElvUF.colors.reaction[reaction]
 			if cr then
 				colorHex = Hex(cr.r, cr.g, cr.b)
 			end
 		end
-		return format('%s%s', colorHex, name)
+	end
+
+	return format('%s%s', colorHex, name)
+end
+
+local function getUnitColor(unit)
+	local color = '|cFFcccccc'
+
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+		local _, unitClass = UnitClass(unit)
+		local cs = ElvUF.colors.class[unitClass]
+		if cs then
+			color = Hex(cs.r, cs.g, cs.b)
+		end
 	else
-		return name
+		local cr = ElvUF.colors.reaction[UnitReaction(unit, 'player')]
+		if cr then
+			color = Hex(cr.r, cr.g, cr.b)
+		end
+	end
+
+	return color
+end
+
+local function getLastNamePart(name)
+	if not name then return name end
+	if not strfind(name, '%s') then return name end
+	return strmatch(name, '([%S]+)$')
+end
+
+local function formatTargetName(unit, lastPartOnly, withColor)
+	local targetName = UnitName(unit..'target')
+	if not targetName then return end
+
+	if lastPartOnly and strfind(targetName, '%s') then
+		targetName = strmatch(targetName, '([%S]+)$')
+	end
+
+	if withColor then
+		return format('%s%s', getUnitColor(unit..'target'), targetName)
+	else
+		return targetName
 	end
 end
 
@@ -104,7 +154,6 @@ E:AddTagInfo('luckyone:classification', Private.Name, L["Displays the unit's cla
 E:AddTag('luckyone:health:percent', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
 	local currentHealth, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
 	local percent = currentHealth / maxHealth * 100
-
 	return E:GetFormattedText('PERCENT', currentHealth, maxHealth, percent == 100 and 0 or percent < 10 and 2 or 1, nil)
 end)
 E:AddTagInfo('luckyone:health:percent', Private.Name, L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"])
@@ -124,15 +173,14 @@ E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT
 		color = Hex(color)
 	end
 
-	return format('%s%s', color, percentage)
+	return color..percentage
 end)
 E:AddTagInfo('luckyone:power:percent-color', Private.Name, L["Displays percentage power with powercolor and hides power at 0"])
 
 -- Display percentage power with no color and hides power at 0
 E:AddTag('luckyone:power:percent-nocolor', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local min, max = UnitPower(unit), UnitPowerMax(unit)
-
-	return (min == 0) and '' or floor(UnitPower(unit) / max * 100 + .5)
+	return (min == 0) and '' or floor(min / max * 100 + .5)
 end)
 E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percentage power with no color and hides power at 0"])
 
@@ -223,27 +271,42 @@ E:AddTag('luckyone:name:last-classcolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANC
 		color = cr and Hex(cr.r, cr.g, cr.b) or '|cFFcccccc'
 	end
 
-	if name and strfind(name, '%s') then
-		name = strmatch(name, '([%S]+)$')
-	end
+	formattedName = name and (strfind(name, '%s') and strmatch(name, '([%S]+)$') or name) or UNKNOWN
 
-	formattedName = name or UNKNOWN
-
-	return format('%s%s', color, formattedName)
+	return color..formattedName
 end)
 E:AddTagInfo('luckyone:name:last-classcolor', Private.Name, L["Displays the last part of the unit's name with class color"])
 
 -- Displays the last (and mostly important) part of the unit's name with no color
 E:AddTag('luckyone:name:last-nocolor', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 	local name = UnitName(unit)
-
-	if name and strfind(name, '%s') then
-		name = strmatch(name, '([%S]+)$')
-	end
-
-	return name
+	return getLastNamePart(name)
 end)
 E:AddTagInfo('luckyone:name:last-nocolor', Private.Name, L["Displays the last part of the unit's name with no color"])
+
+-- Displays the last (and mostly important) part of the unit's target name with class color
+E:AddTag('luckyone:target:last-classcolor', 'UNIT_TARGET UNIT_FACTION', function(unit)
+	return formatTargetName(unit, true, true)
+end)
+E:AddTagInfo('luckyone:target:last-classcolor', Private.Name, L["Displays the last part of the unit's target name with class color"])
+
+-- Displays the last (and mostly important) part of the unit's target name with no color
+E:AddTag('luckyone:target:last-nocolor', 'UNIT_TARGET', function(unit)
+	return formatTargetName(unit, true, false)
+end)
+E:AddTagInfo('luckyone:target:last-nocolor', Private.Name, L["Displays the last part of the unit's target name with no color"])
+
+-- Displays the unit's target name with class color
+E:AddTag('luckyone:target:name-classcolor', 'UNIT_TARGET UNIT_FACTION', function(unit)
+	return formatTargetName(unit, false, true)
+end)
+E:AddTagInfo('luckyone:target:name-classcolor', Private.Name, L["Displays the unit's target name with class color"])
+
+-- Displays the unit's target name with no color
+E:AddTag('luckyone:target:name-nocolor', 'UNIT_TARGET', function(unit)
+	return formatTargetName(unit, false, false)
+end)
+E:AddTagInfo('luckyone:target:name-nocolor', Private.Name, L["Displays the unit's target name with no color"])
 
 for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long = 20 }) do
 	-- Displays the unit's name with classcolor and a maximum length of 5, 10, 15 and 20 characters
