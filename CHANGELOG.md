@@ -1,4 +1,4 @@
-### Version 3.17 [In Development]
+### Version 3.17 [23-04-2025]
 **All WoW Versions:**  
 ElvUI 13.89+ compatibility  
 Added luckyone:target Tags with and without class color suffix  
