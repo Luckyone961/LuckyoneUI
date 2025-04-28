@@ -57,7 +57,7 @@ function Private:HandleAlts(layout)
 	end
 
 	-- PrivateDB for ElvUI, Shadow&Light, WindTools
-	Private:Setup_PrivateDB()
+	Private:Setup_PrivateDB(true)
 
 	-- Chat setup
 	Private:Setup_Chat()
@@ -129,7 +129,7 @@ function Private:Setup_GlobalDB()
 end
 
 -- E.private & Media
-function Private:Setup_PrivateDB()
+function Private:Setup_PrivateDB(includePlugins)
 	-- 1080p
 	local scaled = E.global.L1UI.scaled
 
@@ -171,11 +171,11 @@ function Private:Setup_PrivateDB()
 	E.private.nameplates.enable = false
 	E.private.skins.parchmentRemoverEnable = true
 
-	if E.Retail then
-		if E:IsAddOnEnabled('ElvUI_SLE') then
+	if includePlugins and E.Retail then
+		if Private.IsAddOnLoaded('ElvUI_SLE') then
 			Private:Setup_Private_ShadowAndLight()
 		end
-		if E:IsAddOnEnabled('ElvUI_WindTools') then
+		if Private.IsAddOnLoaded('ElvUI_WindTools') then
 			Private:Setup_Private_WindTools()
 		end
 	end
