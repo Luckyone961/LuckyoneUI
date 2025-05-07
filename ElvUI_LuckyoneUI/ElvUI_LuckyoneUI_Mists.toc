@@ -1,0 +1,15 @@
+## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cff00b17eMists|r
+## Notes: Luckyone's ElvUI Edit
+## Dependencies: ElvUI
+
+## DefaultState: enabled
+## Author: Luckyone
+## Version: 3.18
+
+## Interface: 50500
+## X-Required-ElvUI: 13.89
+
+## X-Curse-Project-ID: 363472
+## X-Wago-ID: Rn6VLGdB
+
+Load.xml
