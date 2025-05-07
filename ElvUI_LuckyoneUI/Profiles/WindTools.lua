@@ -140,7 +140,6 @@ function Private:Setup_Private_WindTools()
 	E.private.WT = E:CopyTable({}, V.WT)
 
 	-- Private db
-	E.private.WT.item.extendMerchantPages.enable = true
 	E.private.WT.maps.minimapButtons.backdrop = false
 	E.private.WT.maps.minimapButtons.backdropSpacing = 0
 	E.private.WT.maps.minimapButtons.buttonSize = 22

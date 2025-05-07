@@ -24,7 +24,6 @@ function Private:Setup_ShadowAndLight(installer)
 
 	-- Global DB
 	E.global.sle.advanced.confirmed = true
-	E.global.sle.advanced.gameMenu.enable = false
 	E.global.sle.advanced.general = true
 
 	-- Private DB
