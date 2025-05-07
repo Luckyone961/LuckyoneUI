@@ -238,6 +238,11 @@ function Private:HandleToons()
 		['Player-4440-03AD654A'] = true, -- [A] Rogue
 		['Player-4440-03ADE2DF'] = true, -- [A] Shaman
 		['Player-4476-03BF41C9'] = true, -- [H] Hunter
+	} or E.Mists and {
+		-- (4618: Classic Beta PvE)
+		['Player-4618-003506AE'] = true, -- [A] Monk
+		['Player-4618-003506A9'] = true, -- [A] Druid
+		['Player-4618-003506A7'] = true, -- [A] Priest
 	} or E.Classic and {
 		-- (6112: Spineshatter)
 		['Player-6112-028A3A6D'] = true,-- [H] Hunter
