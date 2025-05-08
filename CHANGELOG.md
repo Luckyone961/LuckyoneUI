@@ -1,3 +1,9 @@
+### Version 3.19 [In Development]
+**Retail:**  
+Updated LuckyoneUI Evoker WeakAura  
+**Mists:**  
+Initial support for Mists of Pandaria Classic Beta  
+___
 ### Version 3.18 [07-05-2025]
 **All WoW Versions:**  
 The layout installer can no longer break due to changes in 3rd party plugins  
