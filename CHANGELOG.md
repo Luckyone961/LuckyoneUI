@@ -1,5 +1,6 @@
 ### Version 3.19 [In Development]
 **All WoW Versions:**  
+ElvUI 13.90+ compatibility  
 Recoded the popup for completed steps during installer process to fix some show/hide issues  
 **Retail:**  
 Updated LuckyoneUI Evoker WeakAura  
