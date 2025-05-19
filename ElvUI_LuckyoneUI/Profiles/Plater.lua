@@ -37,8 +37,7 @@ function Private:Setup_Plater(installer)
 	end
 
 	if installer then
-		_G.LuckyoneInstallStepComplete.message = L["Plater profile has been set."]
-		_G.LuckyoneInstallStepComplete:Show()
+		_G.LuckyoneInstallStepComplete:ShowMessage(L["Plater profile has been set."])
 	end
 
 	Private:Print(L["Plater profile has been set."])

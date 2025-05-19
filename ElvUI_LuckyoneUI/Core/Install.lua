@@ -29,19 +29,7 @@ local function InstallStepComplete()
 	Container:Size(400, 60)
 	Container:Point('TOP', 0, -200)
 	Container:Hide()
-
-	Container:SetScript('OnShow', function(frame)
-		if frame.message then
-			PlaySound(888) -- 'Level Up'-Sound
-			frame.text:SetText(format('%s: %s', Private.Name, frame.message))
-			E:Delay(3, frame.Hide, frame)
-			frame.message = nil
-		else
-			frame:Hide()
-		end
-	end)
-
-	Container.firstShow = false
+	_G.LuckyoneInstallStepComplete = Container
 
 	Container.bg = Container:CreateTexture(nil, 'BACKGROUND')
 	Container.bg:Point('CENTER')
@@ -51,6 +39,27 @@ local function InstallStepComplete()
 	Container.text:Point('CENTER', 0, 2)
 	Container.text:SetTextColor(1, 1, 1)
 	Container.text:SetJustifyH('CENTER')
+
+	local hideTimer
+
+	function Container:ShowMessage(msg)
+		if hideTimer then
+			E:CancelTimer(hideTimer, true)
+			hideTimer = nil
+		end
+
+		PlaySound(888) -- 'Level Up'-Sound
+		self.text:SetText(format('%s: %s', Private.Name, msg))
+
+		if not self:IsShown() then
+			self:Show()
+		end
+
+		hideTimer = E:ScheduleTimer(function()
+			self:Hide()
+			hideTimer = nil
+		end, 3)
+	end
 end
 
 -- Initialize step complete frame
