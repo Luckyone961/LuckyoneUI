@@ -12,7 +12,7 @@ local _, Private = ...
 local E, L = unpack(ElvUI)
 
 -- Plater profile
--- LC: 10/03/2025
+-- LC: 22/05/2025
 function Private:Setup_Plater(installer)
 	if not Private.IsAddOnLoaded('Plater') then Private:Print('Plater ' .. L["is not installed or enabled."]) return end
 
