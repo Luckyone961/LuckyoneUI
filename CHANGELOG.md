@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 ElvUI 13.90+ compatibility  
 Recoded the popup for completed steps during installer process to fix some show/hide issues  
+Updated BigWigs profile strings (Fixed offset values for the NamePlate CDs module)  
 **Retail:**  
 Updated LuckyoneUI Evoker WeakAura  
 **Mists:**  
