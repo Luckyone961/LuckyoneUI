@@ -39,8 +39,7 @@ function Private:Setup_Details(installer)
 	Details.always_use_profile_name = name
 
 	if installer then
-		_G.LuckyoneInstallStepComplete.message = L["Details profile has been set."]
-		_G.LuckyoneInstallStepComplete:Show()
+		_G.LuckyoneInstallStepComplete:ShowMessage(L["Details profile has been set."])
 	end
 
 	Private:Print(L["Details profile has been set."])

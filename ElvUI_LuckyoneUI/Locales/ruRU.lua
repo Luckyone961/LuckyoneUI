@@ -84,7 +84,6 @@ L["Druid"] = "Друид"
 L["Easy Delete"] = true
 L["ElvUI Layouts"] = true
 L["ElvUI Plugins"] = "Плагины ElvUI"
-L["ElvUI Plugins"] = true
 L["Enable Raid Graphics profile"] = "Включить профиль Raid Graphics"
 L["Evoker"] = "Пробудитель"
 L["Examples: Max camera distance, screenshot quality and tutorials."] = true

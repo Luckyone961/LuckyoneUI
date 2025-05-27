@@ -132,8 +132,7 @@ function Private:Setup_Chat(installer)
 	FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
 
 	if installer then
-		_G.LuckyoneInstallStepComplete.message = L["Chat setup successful."]
-		_G.LuckyoneInstallStepComplete:Show()
+		_G.LuckyoneInstallStepComplete:ShowMessage(L["Chat setup successful."])
 	end
 
 	Private:Print(L["Chat setup successful."])

@@ -229,8 +229,7 @@ function Private:Setup_Layout_TheWarWithin(layout, installer)
 	Refresh()
 
 	if installer then
-		_G.LuckyoneInstallStepComplete.message = L["Layout has been set."]
-		_G.LuckyoneInstallStepComplete:Show()
+		_G.LuckyoneInstallStepComplete:ShowMessage(L["Layout has been set."])
 	end
 
 	Private:Print(L["Layout has been set."])

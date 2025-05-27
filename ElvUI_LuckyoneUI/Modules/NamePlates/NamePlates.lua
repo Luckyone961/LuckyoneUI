@@ -209,8 +209,7 @@ function Private:Setup_NamePlates(installer)
 	end
 
 	if installer then
-		_G.LuckyoneInstallStepComplete.message = L["NamePlate StyleFilters and CVars have been set."]
-		_G.LuckyoneInstallStepComplete:Show()
+		_G.LuckyoneInstallStepComplete:ShowMessage(L["NamePlate StyleFilters and CVars have been set."])
 	end
 end
 

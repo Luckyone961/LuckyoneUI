@@ -1,6 +1,10 @@
-### Version 3.18 [07-05-2025]
+### Version 3.19 [27-05-2025]
 **All WoW Versions:**  
-The layout installer can no longer break due to changes in 3rd party plugins  
+ElvUI 13.90+ compatibility  
+Recoded the popup for completed steps during installer process to fix some show/hide issues  
+Updated BigWigs profile strings (Fixed offset values for the NamePlate CDs module)  
+Updated Plater profile string for their new encoding format (No profile changes)  
 **Retail:**  
-Fixed Shadow&Light installer error complaining about gameMenu being nil  
-Updated WindTools profile (Disabled extended merchant page)  
+Updated LuckyoneUI Evoker WeakAura  
+**Mists:**  
+Initial support for Mists of Pandaria Classic Beta  

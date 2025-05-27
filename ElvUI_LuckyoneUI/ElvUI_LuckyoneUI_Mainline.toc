@@ -4,10 +4,10 @@
 
 ## DefaultState: enabled
 ## Author: Luckyone
-## Version: 3.18
+## Version: 3.19
 
 ## Interface: 110105
-## X-Required-ElvUI: 13.89
+## X-Required-ElvUI: 13.90
 
 ## X-Curse-Project-ID: 363472
 ## X-Wago-ID: Rn6VLGdB
