@@ -125,8 +125,7 @@ function Private:Setup_WindTools(installer)
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,UIParent,TOP,0,-110'
 
 	if installer then
-		_G.LuckyoneInstallStepComplete.message = L["WindTools profile has been set."]
-		_G.LuckyoneInstallStepComplete:Show()
+		_G.LuckyoneInstallStepComplete:ShowMessage(L["WindTools profile has been set."])
 	end
 
 	Private:Print(L["WindTools profile has been set."])

@@ -1,4 +1,4 @@
-## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cffFF7E40Classic|r
+## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cff00b17eMists|r
 ## Notes: Luckyone's ElvUI Edit
 ## Dependencies: ElvUI
 
@@ -6,7 +6,7 @@
 ## Author: Luckyone
 ## Version: 3.19
 
-## Interface: 11507
+## Interface: 50500
 ## X-Required-ElvUI: 13.90
 
 ## X-Curse-Project-ID: 363472

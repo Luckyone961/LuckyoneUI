@@ -84,7 +84,6 @@ L["Druid"] = true
 L["Easy Delete"] = true
 L["ElvUI Layouts"] = true
 L["ElvUI Plugins"] = true
-L["ElvUI Plugins"] = true
 L["Enable Raid Graphics profile"] = true
 L["Evoker"] = true
 L["Examples: Max camera distance, screenshot quality and tutorials."] = true

@@ -111,8 +111,7 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.skins.objectiveTracker.underlineClass = true
 
 	if installer then
-		_G.LuckyoneInstallStepComplete.message = L["Shadow&Light profile has been set."]
-		_G.LuckyoneInstallStepComplete:Show()
+		_G.LuckyoneInstallStepComplete:ShowMessage(L["Shadow&Light profile has been set."])
 	end
 
 	Private:Print(L["Shadow&Light profile has been set."])

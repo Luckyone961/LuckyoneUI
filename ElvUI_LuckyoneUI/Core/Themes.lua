@@ -89,8 +89,7 @@ function Private:Setup_Theme(theme, installer)
 	E:UpdateUnitFrames()
 
 	if installer then
-		_G.LuckyoneInstallStepComplete.message = L["Theme has been set."]
-		_G.LuckyoneInstallStepComplete:Show()
+		_G.LuckyoneInstallStepComplete:ShowMessage(L["Theme has been set."])
 	end
 
 	Private:Print(L["Theme has been set."])

@@ -29,8 +29,7 @@ function Private:Setup_CVars(noPrint, installer)
 	SetCVar('UberTooltips', 1)
 
 	if installer then
-		_G.LuckyoneInstallStepComplete.message = L["CVars have been set."]
-		_G.LuckyoneInstallStepComplete:Show()
+		_G.LuckyoneInstallStepComplete:ShowMessage(L["CVars have been set."])
 	end
 
 	if not noPrint then

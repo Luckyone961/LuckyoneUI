@@ -84,7 +84,6 @@ L["Druid"] = "Druída"
 L["Easy Delete"] = "Delete Fácil"
 L["ElvUI Layouts"] = "Perfis do ElvUI"
 L["ElvUI Plugins"] = "Plugins do ElvUI"
-L["ElvUI Plugins"] = "Plugins do ElvUI" --double line
 L["Enable Raid Graphics profile"] = "Habilitar o perfil de Gráficos para Raide"
 L["Evoker"] = "Evocador"
 L["Examples: Max camera distance, screenshot quality and tutorials."] = "Exemplos: Distância máxima da camêra, qualidade de fotos máxima e tutoriais."

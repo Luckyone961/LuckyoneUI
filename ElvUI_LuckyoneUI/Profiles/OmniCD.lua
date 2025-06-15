@@ -576,8 +576,7 @@ function Private:Setup_OmniCD(layout, installer)
 	end
 
 	if installer then
-		_G.LuckyoneInstallStepComplete.message = L["OmniCD profile has been set."]
-		_G.LuckyoneInstallStepComplete:Show()
+		_G.LuckyoneInstallStepComplete:ShowMessage(L["OmniCD profile has been set."])
 	end
 
 	Private:Print(L["OmniCD profile has been set."])
