@@ -1,3 +1,9 @@
+### Version 3.20 [In Development]
+**All WoW Versions:**  
+Plater import is back to old format, which will work in non-Retail again  
+**Retail:**  
+Updated TOC for 11.1.7  
+___
 ### Version 3.19 [27-05-2025]
 **All WoW Versions:**  
 ElvUI 13.90+ compatibility  
