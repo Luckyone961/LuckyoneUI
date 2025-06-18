@@ -1,5 +1,6 @@
 ### Version 3.20 [In Development]
 **All WoW Versions:**  
+BigWigs profile updates for their latest nameplate icon size changes  
 Plater import is back to old format, which will work in non-Retail again  
 **Retail:**  
 Updated TOC for 11.1.7  
