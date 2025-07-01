@@ -600,22 +600,34 @@ function Private:Setup_Filters_Mists()
 		["yOffset"] = 1,
 		["style"] = "texturedIcon",
 		["xOffset"] = 29,
+		["displayText"] = true,
+		["cooldownX"] = 0,
+		["cooldownY"] = 0,
 	}
 	classes["MONK"][119611] = {
 		["yOffset"] = 1,
 		["style"] = "texturedIcon",
 		["xOffset"] = -1,
+		["displayText"] = true,
+		["cooldownX"] = 0,
+		["cooldownY"] = 0,
 	}
 	classes["MONK"][116849] = {
 		["yOffset"] = 1,
 		["style"] = "texturedIcon",
 		["xOffset"] = 1,
+		["displayText"] = true,
+		["cooldownX"] = 0,
+		["cooldownY"] = 0,
 	}
 	classes["MONK"][132120] = {
 		["point"] = "TOPLEFT",
 		["yOffset"] = 1,
 		["style"] = "texturedIcon",
 		["xOffset"] = 14,
+		["displayText"] = true,
+		["cooldownX"] = 0,
+		["cooldownY"] = 0,
 	}
 
 	-- Death Knight
