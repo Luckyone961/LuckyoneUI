@@ -345,6 +345,7 @@ function Private:Setup_Filters_Mists()
 		PALADIN = aurawatch['PALADIN'] or {},
 		PRIEST = aurawatch['PRIEST'] or {},
 		SHAMAN = aurawatch['SHAMAN'] or {},
+		MONK = aurawatch['MONK'] or {},
 		-- Others
 		DEATHKNIGHT = aurawatch['DEATHKNIGHT'] or {},
 		MAGE = aurawatch['MAGE'] or {},
@@ -361,11 +362,12 @@ function Private:Setup_Filters_Mists()
 		-- Healers
 		DRUID = { 467, 48438, 8936, 33763, 774, 29166 },
 		PALADIN = { 1044, 1022, 1038, 6940, 53563 },
-		PRIEST = { 41635, 17, 33206, 6788, 10060, 47788, 139, 56161 },
+		PRIEST = { 41635, 17, 33206, 6788, 10060, 47788, 139 },
 		SHAMAN = { 61295, 974, 51945, 16177 },
+		MONK = { 132120, 116849, 119611, 124081 },
 		-- Others
 		DEATHKNIGHT = { 49016 },
-		MAGE = { 130 },
+		MAGE = { 130, 54646 },
 		WARLOCK = { 5697, 20707 },
 		HUNTER = { 34477 },
 		ROGUE = { 57933 },
@@ -550,12 +552,6 @@ function Private:Setup_Filters_Mists()
 		["style"] = "texturedIcon",
 		["xOffset"] = 14,
 	}
-	classes["PRIEST"][56161] = {
-		["cooldownY"] = 0,
-		["displayText"] = true,
-		["cooldownX"] = 0,
-		["style"] = "texturedIcon",
-	}
 
 	-- Shaman
 	classes["SHAMAN"][61295] = {
@@ -596,6 +592,30 @@ function Private:Setup_Filters_Mists()
 		["cooldownX"] = 0,
 		["style"] = "texturedIcon",
 		["cooldownY"] = 0,
+	}
+
+	-- Monk
+	classes["MONK"][124081] = {
+		["point"] = "TOPLEFT",
+		["yOffset"] = 1,
+		["style"] = "texturedIcon",
+		["xOffset"] = 29,
+	}
+	classes["MONK"][119611] = {
+		["yOffset"] = 1,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
+	}
+	classes["MONK"][116849] = {
+		["yOffset"] = 1,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes["MONK"][132120] = {
+		["point"] = "TOPLEFT",
+		["yOffset"] = 1,
+		["style"] = "texturedIcon",
+		["xOffset"] = 14,
 	}
 
 	-- Death Knight
