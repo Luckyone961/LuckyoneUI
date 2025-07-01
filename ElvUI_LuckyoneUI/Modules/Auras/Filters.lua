@@ -328,9 +328,9 @@ function Private:Setup_Filters_Retail()
 	classes['WARRIOR'][3411]['style'] = 'texturedIcon'
 end
 
--- Aura filters: Cataclysm
-function Private:Setup_Filters_Cata()
-	if not E.Cata then return end
+-- Aura filters: Mists of Pandaria
+function Private:Setup_Filters_Mists()
+	if not E.Mists then return end
 
 	-- General vars
 	local unitframe = E.global['unitframe'] or {}

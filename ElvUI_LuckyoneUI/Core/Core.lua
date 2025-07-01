@@ -223,7 +223,7 @@ function Private:HandleToons()
 		['Player-1598-0BF8013A'] = true, -- [H] Warrior
 		['Player-1598-0BF56103'] = true, -- [H] Shaman
 		['Player-1598-0F87B5AA'] = true, -- [A] Priest
-	} or E.Cata and {
+	} or E.Mists and {
 		-- (4467: Firemaw, 4440: Everlook, 4476: Gehennas)
 		['Player-4467-04540395'] = true, -- [A] Druid
 		['Player-4467-04542B4A'] = true, -- [A] Priest
