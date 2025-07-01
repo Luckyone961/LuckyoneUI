@@ -1,3 +1,8 @@
+### Version 3.21 [In Development]
+**Mists:**  
+Added setup for mists aura filters in /lucky config - Buffs and Debuffs  
+Full support for Mists of Pandaria Classic  
+___
 ### Version 3.20 [18-06-2025]
 **All WoW Versions:**  
 ElvUI 13.92+ compatibility  
