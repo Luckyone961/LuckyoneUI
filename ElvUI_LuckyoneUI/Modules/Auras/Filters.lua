@@ -360,14 +360,14 @@ function Private:Setup_Filters_Mists()
 		blacklist = {},
 		whitelist = {},
 		-- Healers
-		DRUID = { 467, 48438, 8936, 33763, 774, 29166 },
+		DRUID = { 48438, 8936, 33763, 774, 29166 },
 		PALADIN = { 1044, 1022, 1038, 6940, 53563 },
 		PRIEST = { 41635, 17, 33206, 6788, 10060, 47788, 139 },
-		SHAMAN = { 61295, 974, 51945, 16177 },
+		SHAMAN = { 61295, 974, 51945 },
 		MONK = { 132120, 116849, 119611, 124081 },
 		-- Others
 		DEATHKNIGHT = { 49016 },
-		MAGE = { 130, 54646 },
+		MAGE = { 130 },
 		WARLOCK = { 5697, 20707 },
 		HUNTER = { 34477 },
 		ROGUE = { 57933 },
@@ -385,14 +385,6 @@ function Private:Setup_Filters_Mists()
 	end
 
 	-- Druid
-	classes["DRUID"][467] = {
-		["cooldownY"] = 0,
-		["displayText"] = true,
-		["yOffset"] = 1,
-		["cooldownX"] = 0,
-		["style"] = "texturedIcon",
-		["xOffset"] = -14,
-	}
 	classes["DRUID"][48438] = {
 		["point"] = "TOPLEFT",
 		["xOffset"] = 29,
@@ -578,15 +570,6 @@ function Private:Setup_Filters_Mists()
 	classes["SHAMAN"][51945] = {
 		["point"] = "TOPLEFT",
 		["xOffset"] = 29,
-		["displayText"] = true,
-		["yOffset"] = 1,
-		["cooldownX"] = 0,
-		["style"] = "texturedIcon",
-		["cooldownY"] = 0,
-	}
-	classes["SHAMAN"][16177] = {
-		["point"] = "TOPLEFT",
-		["xOffset"] = 14,
 		["displayText"] = true,
 		["yOffset"] = 1,
 		["cooldownX"] = 0,
