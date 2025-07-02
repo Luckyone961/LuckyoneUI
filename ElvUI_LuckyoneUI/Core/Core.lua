@@ -237,6 +237,7 @@ function Private:HandleToons()
 		['Player-4467-04571A98'] = true, -- [A] Warrior
 		['Player-4440-03AD654A'] = true, -- [A] Rogue
 		['Player-4440-03ADE2DF'] = true, -- [A] Shaman
+		['Player-4467-0613ECA1'] = true, -- [A] Monk
 		['Player-4476-03BF41C9'] = true, -- [H] Hunter
 		['Player-4476-049F4831'] = true, -- [H] DK
 		['Player-4476-05C7B834'] = true, -- [H] Mage
