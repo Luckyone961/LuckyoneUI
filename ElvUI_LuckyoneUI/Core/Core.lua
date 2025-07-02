@@ -240,6 +240,7 @@ function Private:HandleToons()
 		['Player-4476-03BF41C9'] = true, -- [H] Hunter
 		['Player-4476-049F4831'] = true, -- [H] DK
 		['Player-4476-05C7B834'] = true, -- [H] Mage
+		['Player-4476-05CAB05D'] = true, -- [H] Monk
 	} or E.Classic and {
 		-- (6112: Spineshatter)
 		['Player-6112-028A3A6D'] = true, -- [H] Hunter
