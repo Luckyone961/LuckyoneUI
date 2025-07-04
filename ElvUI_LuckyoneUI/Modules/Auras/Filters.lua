@@ -328,9 +328,9 @@ function Private:Setup_Filters_Retail()
 	classes['WARRIOR'][3411]['style'] = 'texturedIcon'
 end
 
--- Aura filters: Cataclysm
-function Private:Setup_Filters_Cata()
-	if not E.Cata then return end
+-- Aura filters: Mists of Pandaria
+function Private:Setup_Filters_Mists()
+	if not E.Mists then return end
 
 	-- General vars
 	local unitframe = E.global['unitframe'] or {}
@@ -345,6 +345,7 @@ function Private:Setup_Filters_Cata()
 		PALADIN = aurawatch['PALADIN'] or {},
 		PRIEST = aurawatch['PRIEST'] or {},
 		SHAMAN = aurawatch['SHAMAN'] or {},
+		MONK = aurawatch['MONK'] or {},
 		-- Others
 		DEATHKNIGHT = aurawatch['DEATHKNIGHT'] or {},
 		MAGE = aurawatch['MAGE'] or {},
@@ -359,10 +360,11 @@ function Private:Setup_Filters_Cata()
 		blacklist = {},
 		whitelist = {},
 		-- Healers
-		DRUID = { 467, 48438, 8936, 33763, 774, 29166 },
+		DRUID = { 48438, 8936, 33763, 774, 29166 },
 		PALADIN = { 1044, 1022, 1038, 6940, 53563 },
-		PRIEST = { 41635, 17, 33206, 6788, 10060, 47788, 139, 56161 },
-		SHAMAN = { 61295, 974, 51945, 16177 },
+		PRIEST = { 41635, 17, 33206, 6788, 10060, 47788, 139 },
+		SHAMAN = { 61295, 974, 51945 },
+		MONK = { 132120, 116849, 119611, 124081 },
 		-- Others
 		DEATHKNIGHT = { 49016 },
 		MAGE = { 130 },
@@ -383,14 +385,6 @@ function Private:Setup_Filters_Cata()
 	end
 
 	-- Druid
-	classes["DRUID"][467] = {
-		["cooldownY"] = 0,
-		["displayText"] = true,
-		["yOffset"] = 1,
-		["cooldownX"] = 0,
-		["style"] = "texturedIcon",
-		["xOffset"] = -14,
-	}
 	classes["DRUID"][48438] = {
 		["point"] = "TOPLEFT",
 		["xOffset"] = 29,
@@ -550,12 +544,6 @@ function Private:Setup_Filters_Cata()
 		["style"] = "texturedIcon",
 		["xOffset"] = 14,
 	}
-	classes["PRIEST"][56161] = {
-		["cooldownY"] = 0,
-		["displayText"] = true,
-		["cooldownX"] = 0,
-		["style"] = "texturedIcon",
-	}
 
 	-- Shaman
 	classes["SHAMAN"][61295] = {
@@ -588,13 +576,40 @@ function Private:Setup_Filters_Cata()
 		["style"] = "texturedIcon",
 		["cooldownY"] = 0,
 	}
-	classes["SHAMAN"][16177] = {
+
+	-- Monk
+	classes["MONK"][124081] = {
 		["point"] = "TOPLEFT",
+		["yOffset"] = 1,
+		["style"] = "texturedIcon",
+		["xOffset"] = 29,
+		["displayText"] = true,
+		["cooldownX"] = 0,
+		["cooldownY"] = 0,
+	}
+	classes["MONK"][119611] = {
+		["yOffset"] = 1,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
+		["displayText"] = true,
+		["cooldownX"] = 0,
+		["cooldownY"] = 0,
+	}
+	classes["MONK"][116849] = {
+		["yOffset"] = 1,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+		["displayText"] = true,
+		["cooldownX"] = 0,
+		["cooldownY"] = 0,
+	}
+	classes["MONK"][132120] = {
+		["point"] = "TOPLEFT",
+		["yOffset"] = 1,
+		["style"] = "texturedIcon",
 		["xOffset"] = 14,
 		["displayText"] = true,
-		["yOffset"] = 1,
 		["cooldownX"] = 0,
-		["style"] = "texturedIcon",
 		["cooldownY"] = 0,
 	}
 

@@ -1,7 +1,6 @@
-### Version 3.20 [18-06-2025]
+### Version 3.21 [04-07-2025]
 **All WoW Versions:**  
-ElvUI 13.92+ compatibility  
-BigWigs profile updates for their latest nameplate icon size changes  
-Plater import is back to old format, which will work in non-Retail again  
-**Retail:**  
-Updated TOC for 11.1.7  
+ElvUI 13.93+ compatibility  
+**Mists:**  
+Added setup for mists aura filters in /lucky config - Buffs and Debuffs  
+Full support for Mists of Pandaria Classic  

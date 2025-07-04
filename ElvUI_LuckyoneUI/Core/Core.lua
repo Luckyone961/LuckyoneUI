@@ -223,7 +223,7 @@ function Private:HandleToons()
 		['Player-1598-0BF8013A'] = true, -- [H] Warrior
 		['Player-1598-0BF56103'] = true, -- [H] Shaman
 		['Player-1598-0F87B5AA'] = true, -- [A] Priest
-	} or E.Cata and {
+	} or E.Mists and {
 		-- (4467: Firemaw, 4440: Everlook, 4476: Gehennas)
 		['Player-4467-04540395'] = true, -- [A] Druid
 		['Player-4467-04542B4A'] = true, -- [A] Priest
@@ -237,12 +237,11 @@ function Private:HandleToons()
 		['Player-4467-04571A98'] = true, -- [A] Warrior
 		['Player-4440-03AD654A'] = true, -- [A] Rogue
 		['Player-4440-03ADE2DF'] = true, -- [A] Shaman
+		['Player-4467-0613ECA1'] = true, -- [A] Monk
 		['Player-4476-03BF41C9'] = true, -- [H] Hunter
-	} or E.Mists and {
-		-- (4618: Classic Beta PvE)
-		['Player-4618-003506AE'] = true, -- [A] Monk
-		['Player-4618-003506A9'] = true, -- [A] Druid
-		['Player-4618-003506A7'] = true, -- [A] Priest
+		['Player-4476-049F4831'] = true, -- [H] DK
+		['Player-4476-05C7B834'] = true, -- [H] Mage
+		['Player-4476-05CAB05D'] = true, -- [H] Monk
 	} or E.Classic and {
 		-- (6112: Spineshatter)
 		['Player-6112-028A3A6D'] = true, -- [H] Hunter

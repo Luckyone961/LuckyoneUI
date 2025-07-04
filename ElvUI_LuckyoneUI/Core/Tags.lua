@@ -210,7 +210,7 @@ E:AddTag('luckyone:level', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 end)
 E:AddTagInfo('luckyone:level', Private.Name, L["Displays the unit's level with difficultycolor if the player is not max level"])
 
--- Display mana (current) if the unit is flagged healer (Retail and Cata only)
+-- Display mana (current) if the unit is flagged healer (Retail and Mists only)
 E:AddTag('luckyone:healermana:current', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local role = UnitGroupRolesAssigned(unit)
 
@@ -221,7 +221,7 @@ E:AddTag('luckyone:healermana:current', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_
 end, E.Classic)
 E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana with manacolor (Role: Healer)"], nil, E.Classic)
 
--- Display mana (percent) if the unit is flagged healer (Retail and Cata only)
+-- Display mana (percent) if the unit is flagged healer (Retail and Mists only)
 E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local role = UnitGroupRolesAssigned(unit)
 	if role == 'HEALER' then
