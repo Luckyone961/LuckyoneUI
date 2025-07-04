@@ -7,7 +7,7 @@
 ## Version: 3.20
 
 ## Interface: 50500
-## X-Required-ElvUI: 13.92
+## X-Required-ElvUI: 13.93
 
 ## X-Curse-Project-ID: 363472
 ## X-Wago-ID: Rn6VLGdB
