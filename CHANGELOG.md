@@ -1,4 +1,4 @@
-### Version 3.21 [In Development]
+### Version 3.21 [04-07-2025]
 **All WoW Versions:**  
 ElvUI 13.93+ compatibility  
 **Mists:**  
