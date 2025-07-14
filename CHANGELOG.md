@@ -1,3 +1,7 @@
+### Version 3.22 [In Development]
+**All WoW Versions:**  
+ElvUI 13.94+ compatibility  
+___
 ### Version 3.21 [04-07-2025]
 **All WoW Versions:**  
 ElvUI 13.93+ compatibility  
