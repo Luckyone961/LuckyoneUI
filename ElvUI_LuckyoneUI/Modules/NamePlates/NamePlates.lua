@@ -386,3 +386,135 @@ function Private:Setup_StyleFilters(skipVars)
 
 	Private:Print(L["NamePlate StyleFilters and CVars have been set."])
 end
+
+--[[
+	-- TWW Season 3
+	local filters = {
+		-- Dungeons
+		'Luckyone_SPECIAL', 'Luckyone_ARAK', 'Luckyone_EDA', 'Luckyone_HOA', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_GMBT', 'Luckyone_STRT', 'Luckyone_DAWN'
+	}
+
+	-- Create filters and set defaults
+	for _, filterName in pairs(filters) do
+		E.global.nameplates.filters[filterName] = {}
+		E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
+		E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
+	end
+
+	-- Special coloring [SPECIAL]
+	E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.r = 1
+	E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.g = 0.25
+	E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.b = 0.99
+	E.global.nameplates.filters.Luckyone_SPECIAL.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_SPECIAL.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_SPECIAL.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['229296'] = true -- Orb of Ascendance
+	E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['220368'] = true -- Failed Batch
+	E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['231176'] = true -- Scaffolding
+	E.global.nameplates.filters.Luckyone_SPECIAL.triggers.priority = 2
+
+	-- Ara-Kara, City of Echoes [ARAK]
+	E.global.nameplates.filters.Luckyone_ARAK.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_ARAK.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_ARAK.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_ARAK.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_ARAK.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_ARAK.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_ARAK.triggers.names['000000'] = true -- NPC 1
+	E.global.nameplates.filters.Luckyone_ARAK.triggers.names['000000'] = true -- NPC 2
+	E.global.nameplates.filters.Luckyone_ARAK.triggers.names['000000'] = true -- NPC 3
+	E.global.nameplates.filters.Luckyone_ARAK.triggers.names['000000'] = true -- NPC 4
+	E.global.nameplates.filters.Luckyone_ARAK.triggers.priority = 2
+
+	-- Eco-Dome Al'dani [EDA]
+	E.global.nameplates.filters.Luckyone_EDA.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_EDA.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_EDA.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_EDA.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_EDA.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_EDA.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_EDA.triggers.names['000000'] = true -- NPC 1
+	E.global.nameplates.filters.Luckyone_EDA.triggers.names['000000'] = true -- NPC 2
+	E.global.nameplates.filters.Luckyone_EDA.triggers.names['000000'] = true -- NPC 3
+	E.global.nameplates.filters.Luckyone_EDA.triggers.names['000000'] = true -- NPC 4
+	E.global.nameplates.filters.Luckyone_EDA.triggers.priority = 2
+
+	-- Halls of Atonement [HOA]
+	E.global.nameplates.filters.Luckyone_HOA.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_HOA.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_HOA.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_HOA.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_HOA.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_HOA.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_HOA.triggers.names['000000'] = true -- NPC 1
+	E.global.nameplates.filters.Luckyone_HOA.triggers.names['000000'] = true -- NPC 2
+	E.global.nameplates.filters.Luckyone_HOA.triggers.names['000000'] = true -- NPC 3
+	E.global.nameplates.filters.Luckyone_HOA.triggers.names['000000'] = true -- NPC 4
+	E.global.nameplates.filters.Luckyone_HOA.triggers.priority = 2
+
+	-- Priory of the Sacred Flame [PSF]
+	E.global.nameplates.filters.Luckyone_PSF.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_PSF.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_PSF.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_PSF.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_PSF.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_PSF.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_PSF.triggers.names['000000'] = true -- NPC 1
+	E.global.nameplates.filters.Luckyone_PSF.triggers.names['000000'] = true -- NPC 2
+	E.global.nameplates.filters.Luckyone_PSF.triggers.names['000000'] = true -- NPC 3
+	E.global.nameplates.filters.Luckyone_PSF.triggers.names['000000'] = true -- NPC 4
+	E.global.nameplates.filters.Luckyone_PSF.triggers.priority = 2
+
+	-- Operation: Floodgate [FLOOD]
+	E.global.nameplates.filters.Luckyone_FLOOD.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_FLOOD.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_FLOOD.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.names['000000'] = true -- NPC 1
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.names['000000'] = true -- NPC 2
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.names['000000'] = true -- NPC 3
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.names['000000'] = true -- NPC 4
+	E.global.nameplates.filters.Luckyone_FLOOD.triggers.priority = 2
+
+	-- Tazavesh: So'leah's Gambit [GMBT]
+	E.global.nameplates.filters.Luckyone_GMBT.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_GMBT.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_GMBT.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_GMBT.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_GMBT.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_GMBT.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_GMBT.triggers.names['000000'] = true -- NPC 1
+	E.global.nameplates.filters.Luckyone_GMBT.triggers.names['000000'] = true -- NPC 2
+	E.global.nameplates.filters.Luckyone_GMBT.triggers.names['000000'] = true -- NPC 3
+	E.global.nameplates.filters.Luckyone_GMBT.triggers.names['000000'] = true -- NPC 4
+	E.global.nameplates.filters.Luckyone_GMBT.triggers.priority = 2
+
+	-- Tazavesh: Streets of Wonder [STRT]
+	E.global.nameplates.filters.Luckyone_STRT.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_STRT.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_STRT.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_STRT.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_STRT.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_STRT.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_STRT.triggers.names['000000'] = true -- NPC 1
+	E.global.nameplates.filters.Luckyone_STRT.triggers.names['000000'] = true -- NPC 2
+	E.global.nameplates.filters.Luckyone_STRT.triggers.names['000000'] = true -- NPC 3
+	E.global.nameplates.filters.Luckyone_STRT.triggers.names['000000'] = true -- NPC 4
+	E.global.nameplates.filters.Luckyone_STRT.triggers.priority = 2
+
+	-- The Dawnbreaker [DAWN]
+	E.global.nameplates.filters.Luckyone_DAWN.actions.color.health = true
+	E.global.nameplates.filters.Luckyone_DAWN.actions.color.healthColor.g = 0.75
+	E.global.nameplates.filters.Luckyone_DAWN.actions.color.healthColor.r = 0
+	E.global.nameplates.filters.Luckyone_DAWN.triggers.instanceDifficulty.dungeon['mythic'] = true
+	E.global.nameplates.filters.Luckyone_DAWN.triggers.instanceDifficulty.dungeon['mythic+'] = true
+	E.global.nameplates.filters.Luckyone_DAWN.triggers.instanceType['party'] = true
+	E.global.nameplates.filters.Luckyone_DAWN.triggers.names['000000'] = true -- NPC 1
+	E.global.nameplates.filters.Luckyone_DAWN.triggers.names['000000'] = true -- NPC 2
+	E.global.nameplates.filters.Luckyone_DAWN.triggers.names['000000'] = true -- NPC 3
+	E.global.nameplates.filters.Luckyone_DAWN.triggers.names['000000'] = true -- NPC 4
+	E.global.nameplates.filters.Luckyone_DAWN.triggers.priority = 2
+]]
