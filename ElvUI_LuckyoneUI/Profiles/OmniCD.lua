@@ -561,7 +561,7 @@ function Private:Setup_OmniCD(layout, installer)
 	end
 
 	-- Turn on bars for Classic (off by Default)
-	if E.Classic then
+	if not E.Retail then
 		OmniCDDB['profiles'][name_main]['Party']['party']['extraBars']['raidBar1']["enabled"] = true
 		OmniCDDB['profiles'][name_main]['Party']['arena']['extraBars']['raidBar1']["enabled"] = true
 		OmniCDDB['profiles'][name_healing]['Party']['party']['extraBars']['raidBar1']["enabled"] = true
