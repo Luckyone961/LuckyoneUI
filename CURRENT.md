@@ -1,6 +1,9 @@
-### Version 3.21 [04-07-2025]
+### Version 3.22 [28-07-2025]
 **All WoW Versions:**  
-ElvUI 13.93+ compatibility  
+ElvUI 13.94+ compatibility  
+Updated BigWigs profile (Fixed broken bar textures, fonts, size)  
+**Retail:**  
+Added luckyone:health:percent-with-absorbs Tag (0 decimals)  
+Added luckyone:health:percent-with-absorbs:nostatus Tag (0 decimals)  
 **Mists:**  
-Added setup for mists aura filters in /lucky config - Buffs and Debuffs  
-Full support for Mists of Pandaria Classic  
+Added OmniCD support (Layouts & Spells)  

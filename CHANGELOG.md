@@ -1,4 +1,4 @@
-### Version 3.22 [In Development]
+### Version 3.22 [28-07-2025]
 **All WoW Versions:**  
 ElvUI 13.94+ compatibility  
 Updated BigWigs profile (Fixed broken bar textures, fonts, size)  
