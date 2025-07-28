@@ -1,6 +1,7 @@
 ### Version 3.22 [In Development]
 **All WoW Versions:**  
 ElvUI 13.94+ compatibility  
+Updated BigWigs profile (Fixed broken bar textures, fonts, size)  
 **Mists:**  
 Added OmniCD support (Layouts & Spells)  
 ___
