@@ -2,6 +2,7 @@
 **Retail:**  
 Added Season 3 ElvUI NamePlate StyleFilters for Dungeons  
 Updated Plater profile for Season 3 Dungeon custom colors  
+Updated TOC for patch 11.2  
 ___
 ### Version 3.22 [28-07-2025]
 **All WoW Versions:**  
