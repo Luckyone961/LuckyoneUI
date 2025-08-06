@@ -1,6 +1,7 @@
 ### Version 3.23 [In Development]
 **Retail:**  
 Added Season 3 ElvUI NamePlate StyleFilters for Dungeons  
+Updated LuckyoneUI Evoker WeakAura  
 Updated Plater profile for Season 3 Dungeon custom colors  
 Updated TOC for patch 11.2  
 ___
