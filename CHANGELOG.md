@@ -1,5 +1,6 @@
 ### Version 3.23 [In Development]
 **All WoW Versions:**  
+ElvUI 13.95+ compatibility  
 Fixed the EasyDelete option in /lucky config - Blizzard improvements  
 **Retail:**  
 Added Season 3 ElvUI NamePlate StyleFilters for Dungeons  
