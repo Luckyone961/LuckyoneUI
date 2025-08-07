@@ -1,4 +1,4 @@
-### Version 3.23 [In Development]
+### Version 3.23 [07-08-2025]
 **All WoW Versions:**  
 ElvUI 13.95+ compatibility  
 Fixed the EasyDelete option in /lucky config - Blizzard improvements  
