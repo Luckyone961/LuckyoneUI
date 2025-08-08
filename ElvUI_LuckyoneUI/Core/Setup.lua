@@ -115,7 +115,7 @@ function Private:Setup_GlobalDB()
 	MiniMapDT.border = false
 	MiniMapDT.fonts.enable = true
 	MiniMapDT.fonts.font = Private.Font
-	MiniMapDT.fonts.fontSize = 16
+	MiniMapDT.fonts.fontSize = 14
 	MiniMapDT.frameStrata = 'HIGH'
 	MiniMapDT.height = 18
 	MiniMapDT.name = 'Luckyone_MiniMap_DT'
