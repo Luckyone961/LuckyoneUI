@@ -48,9 +48,7 @@ local TESTER_STRING = ProcessList(TESTERS)
 local SUPPORT_STRING = ProcessList(SUPPORT)
 
 local function CheckRaid()
-	if tonumber(GetCVar('RAIDsettingsEnabled')) == 0 then
-		return true
-	end
+	return tonumber(GetCVar('RAIDsettingsEnabled')) == 0 or nil
 end
 
 -- LuckyoneUI config panel
