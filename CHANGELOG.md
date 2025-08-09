@@ -2,6 +2,8 @@
 **All WoW Versions:**  
 ElvUI 13.96+ compatibility  
 Updated the position and size of all minimap buttons (Mail, Difficulty, etc)  
+**Retail:**  
+Updated Season 3 ElvUI NamePlate StyleFilters for Dungeons (EDA)  
 ___
 ### Version 3.23 [07-08-2025]
 **All WoW Versions:**  
