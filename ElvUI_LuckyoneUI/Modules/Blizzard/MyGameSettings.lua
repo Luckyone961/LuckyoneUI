@@ -14,7 +14,7 @@ function Private:SyncSettings()
 	Private:NameplateCVars(true)
 
 	-- Gameplay > Controls > General
-	SetCVar('deselectOnClick', 0)
+	SetCVar('deselectOnClick', 1)
 	SetCVar('autoDismountFlying', 1)
 	SetCVar('autoClearAFK', 1)
 	SetCVar('interactOnLeftClick', 1)
