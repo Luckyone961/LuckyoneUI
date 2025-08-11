@@ -20,6 +20,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.general.addonCompartment.fontOutline = Private.Outline
 	E.db.general.addonCompartment.hide = true
 	E.db.general.addonCompartment.size = 20
+	E.db.general.afk = false
 	E.db.general.afkChat = false
 	E.db.general.altPowerBar.font = Private.Font
 	E.db.general.altPowerBar.statusBar = Private.Texture
