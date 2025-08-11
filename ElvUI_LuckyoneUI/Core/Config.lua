@@ -319,6 +319,7 @@ function L1UI:Config()
 	L1UI.Options.args.weakauras.args.dungeons = ACH:Group(L["WeakAuras - Dungeons"], nil, 4)
 	L1UI.Options.args.weakauras.args.dungeons.inline = true
 	L1UI.Options.args.weakauras.args.dungeons.args.affixes = ACH:Execute('Affixes', nil, 1, function() Private:WeakAurasImport('affixes') end)
+	L1UI.Options.args.weakauras.args.dungeons.args.dungeonCore = ACH:Execute('TWW Season 3', nil, 2, function() Private:WeakAurasImport('dungeonCore') end)
 
 	-- Credits
 	L1UI.Options.args.credits = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 15)
