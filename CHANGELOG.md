@@ -1,6 +1,37 @@
-### Version 3.22 [In Development]
+### Version 3.24 [In Development]
+**All WoW Versions:**  
+ElvUI 13.96+ compatibility  
+Disabled AFK mode by default  
+Updated the position and size of all minimap buttons (Mail, Difficulty, etc)  
+**Retail:**  
+Added ingame import for the Season 3 Dungeon WeakAura pack  
+Updated import for the Affixes WeakAura group  
+Updated Plater profile and tweaked custom mod code  
+Updated Season 3 ElvUI NamePlate StyleFilters for Dungeons (EDA)  
+**Mists:**  
+Updated Plater profile for better non-Retail mod support  
+___
+### Version 3.23 [07-08-2025]
+**All WoW Versions:**  
+ElvUI 13.95+ compatibility  
+Fixed the EasyDelete option in /lucky config - Blizzard improvements  
+**Retail:**  
+Added Season 3 ElvUI NamePlate StyleFilters for Dungeons  
+Updated LuckyoneUI Druid WeakAura (Balance)  
+Updated LuckyoneUI Evoker WeakAura (Augmentation, Devastation)  
+Updated LuckyoneUI Player Frame Utilities WeakAura  
+Updated Plater profile for Season 3 Dungeon custom colors  
+Updated TOC for patch 11.2  
+___
+### Version 3.22 [28-07-2025]
 **All WoW Versions:**  
 ElvUI 13.94+ compatibility  
+Updated BigWigs profile (Fixed broken bar textures, fonts, size)  
+**Retail:**  
+Added luckyone:health:percent-with-absorbs Tag (0 decimals)  
+Added luckyone:health:percent-with-absorbs:nostatus Tag (0 decimals)  
+**Mists:**  
+Added OmniCD support (Layouts & Spells)  
 ___
 ### Version 3.21 [04-07-2025]
 **All WoW Versions:**  
