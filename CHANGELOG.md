@@ -5,6 +5,7 @@ Disabled AFK mode by default
 Updated the position and size of all minimap buttons (Mail, Difficulty, etc)  
 **Retail:**  
 Added ingame import for the Season 3 Dungeon WeakAura pack  
+Added StyleFilter for coloring Manaforge Omega priority adds  
 Updated import for the Affixes WeakAura group  
 Updated Plater profile and tweaked custom mod code  
 Updated Season 3 ElvUI NamePlate StyleFilters for Dungeons (EDA)  

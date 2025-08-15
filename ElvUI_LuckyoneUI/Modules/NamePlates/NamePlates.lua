@@ -250,7 +250,7 @@ function Private:Setup_StyleFilters(skipVars)
 		-- TWW Season 3
 		local filters = {
 			-- Dungeons
-			'Luckyone_SPECIAL', 'Luckyone_ARAK', 'Luckyone_EDA', 'Luckyone_HOA', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_GMBT', 'Luckyone_STRT', 'Luckyone_DAWN'
+			'Luckyone_SPECIAL', 'Luckyone_MF', 'Luckyone_ARAK', 'Luckyone_EDA', 'Luckyone_HOA', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_GMBT', 'Luckyone_STRT', 'Luckyone_DAWN'
 		}
 
 		-- Create filters and set defaults
@@ -275,6 +275,15 @@ function Private:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['177237'] = true -- Chains of Damnation [STRT]
 		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['244302'] = true -- Binding Javelin [EDA]
 		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['240952'] = true -- Evoked Spirit [EDA]
+		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.priority = 2
+
+		-- Manaforge Omega [MF]
+		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.health = true
+		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.r = 1
+		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.g = 0.25
+		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.b = 0.99
+		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.instanceType['raid'] = true
+		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['241800'] = true -- Manaforged Titan [Nexus-King Salhadaar]
 		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.priority = 2
 
 		-- Ara-Kara, City of Echoes [ARAK]
