@@ -1,4 +1,4 @@
-### Version 3.24 [In Development]
+### Version 3.24 [16-08-2025]
 **All WoW Versions:**  
 ElvUI 13.97+ compatibility  
 Disabled AFK mode by default  
