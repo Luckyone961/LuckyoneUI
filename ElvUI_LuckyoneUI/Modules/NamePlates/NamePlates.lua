@@ -228,7 +228,7 @@ local function Cleanup()
 		-- TWW Season 2
 		'Luckyone_BREW', 'Luckyone_ROOK', 'Luckyone_DFC', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_ML', 'Luckyone_TOP', 'Luckyone_WORK',
 		-- TWW Season 3
-		'Luckyone_ARAK', 'Luckyone_EDA', 'Luckyone_HOA', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_GMBT', 'Luckyone_STRT', 'Luckyone_DAWN'
+		'Luckyone_ARAK', 'Luckyone_EDA', 'Luckyone_HOA', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_GMBT', 'Luckyone_STRT', 'Luckyone_DAWN', 'Luckyone_MF'
 	}
 
 	for _, v in pairs(toDelete) do
@@ -250,7 +250,7 @@ function Private:Setup_StyleFilters(skipVars)
 		-- TWW Season 3
 		local filters = {
 			-- Dungeons
-			'Luckyone_SPECIAL', 'Luckyone_ARAK', 'Luckyone_EDA', 'Luckyone_HOA', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_GMBT', 'Luckyone_STRT', 'Luckyone_DAWN'
+			'Luckyone_SPECIAL', 'Luckyone_MF', 'Luckyone_ARAK', 'Luckyone_EDA', 'Luckyone_HOA', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_GMBT', 'Luckyone_STRT', 'Luckyone_DAWN'
 		}
 
 		-- Create filters and set defaults
@@ -274,7 +274,18 @@ function Private:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['175576'] = true -- Containment Cell [STRT]
 		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['177237'] = true -- Chains of Damnation [STRT]
 		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['244302'] = true -- Binding Javelin [EDA]
+		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['240952'] = true -- Evoked Spirit [EDA]
 		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.priority = 2
+
+		-- Manaforge Omega [MF]
+		E.global.nameplates.filters.Luckyone_MF.actions.color.health = true
+		E.global.nameplates.filters.Luckyone_MF.actions.color.healthColor.r = 1
+		E.global.nameplates.filters.Luckyone_MF.actions.color.healthColor.g = 0.25
+		E.global.nameplates.filters.Luckyone_MF.actions.color.healthColor.b = 0.99
+		E.global.nameplates.filters.Luckyone_MF.triggers.instanceType['raid'] = true
+		E.global.nameplates.filters.Luckyone_MF.triggers.names['241800'] = true -- Manaforged Titan [Nexus-King Salhadaar]
+		E.global.nameplates.filters.Luckyone_MF.triggers.names['242587'] = true -- Living Mass [Dimensius]
+		E.global.nameplates.filters.Luckyone_MF.triggers.priority = 2
 
 		-- Ara-Kara, City of Echoes [ARAK]
 		E.global.nameplates.filters.Luckyone_ARAK.actions.color.health = true
