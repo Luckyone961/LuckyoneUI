@@ -278,14 +278,14 @@ function Private:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.priority = 2
 
 		-- Manaforge Omega [MF]
-		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.health = true
-		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.r = 1
-		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.g = 0.25
-		E.global.nameplates.filters.Luckyone_SPECIAL.actions.color.healthColor.b = 0.99
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.instanceType['raid'] = true
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['241800'] = true -- Manaforged Titan [Nexus-King Salhadaar]
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['242587'] = true -- Living Mass [Dimensius]
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.priority = 2
+		E.global.nameplates.filters.Luckyone_MF.actions.color.health = true
+		E.global.nameplates.filters.Luckyone_MF.actions.color.healthColor.r = 1
+		E.global.nameplates.filters.Luckyone_MF.actions.color.healthColor.g = 0.25
+		E.global.nameplates.filters.Luckyone_MF.actions.color.healthColor.b = 0.99
+		E.global.nameplates.filters.Luckyone_MF.triggers.instanceType['raid'] = true
+		E.global.nameplates.filters.Luckyone_MF.triggers.names['241800'] = true -- Manaforged Titan [Nexus-King Salhadaar]
+		E.global.nameplates.filters.Luckyone_MF.triggers.names['242587'] = true -- Living Mass [Dimensius]
+		E.global.nameplates.filters.Luckyone_MF.triggers.priority = 2
 
 		-- Ara-Kara, City of Echoes [ARAK]
 		E.global.nameplates.filters.Luckyone_ARAK.actions.color.health = true
