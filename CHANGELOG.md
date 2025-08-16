@@ -1,6 +1,6 @@
 ### Version 3.24 [In Development]
 **All WoW Versions:**  
-ElvUI 13.96+ compatibility  
+ElvUI 13.97+ compatibility  
 Disabled AFK mode by default  
 Updated the position and size of all minimap buttons (Mail, Difficulty, etc)  
 **Retail:**  
