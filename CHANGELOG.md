@@ -1,3 +1,7 @@
+### Version 3.25 [In Development]
+**All WoW Versions:**  
+Updated BigWigs profile string  
+___
 ### Version 3.24 [16-08-2025]
 **All WoW Versions:**  
 ElvUI 13.97+ compatibility  
