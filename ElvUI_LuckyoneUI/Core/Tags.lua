@@ -142,7 +142,7 @@ local function formatTargetName(unit, lastPartOnly, withColor)
 	end
 
 	if withColor then
-		return format('%s%s', getUnitColor(unit..'target'), targetName)
+		return getUnitColor(unit..'target')..targetName
 	else
 		return targetName
 	end
