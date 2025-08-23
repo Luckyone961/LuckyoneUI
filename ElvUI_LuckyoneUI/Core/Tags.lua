@@ -141,11 +141,7 @@ local function formatTargetName(unit, lastPartOnly, withColor)
 		targetName = strmatch(targetName, '([%S]+)$')
 	end
 
-	if withColor then
-		return getUnitColor(unit..'target')..targetName
-	else
-		return targetName
-	end
+	return withColor and (getUnitColor(unit..'target')..targetName) or targetName
 end
 
 -- Display unit classification without 'affix' on minor enemies
