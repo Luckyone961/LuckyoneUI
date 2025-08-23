@@ -2,7 +2,7 @@
 local format = format
 local pairs = pairs
 local sort = sort
-local tconcat = table.concat
+local concat = table.concat
 local tinsert = table.insert
 local tonumber = tonumber
 local tostring = tostring
@@ -39,7 +39,7 @@ local function ProcessList(list)
 	for _, name in pairs(list) do
 		tinsert(Private.Credits, name)
 	end
-	return tconcat(list, '|n')
+	return concat(list, '|n')
 end
 
 local AUTHOR_STRING = ProcessList(AUTHOR)
