@@ -1,5 +1,6 @@
 ### Version 3.25 [In Development]
 **All WoW Versions:**  
+Spell name is now disabled by default (Player Castbar)  
 Updated BigWigs profile string  
 ___
 ### Version 3.24 [16-08-2025]
