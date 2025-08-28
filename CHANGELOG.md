@@ -2,6 +2,8 @@
 **All WoW Versions:**  
 Spell name is now disabled by default (Player Castbar)  
 Updated BigWigs profile string  
+**Retail:**  
+Reworked WeakAuras section in the config (Import via Wago URL, Notes in chat print)  
 ___
 ### Version 3.24 [16-08-2025]
 **All WoW Versions:**  
