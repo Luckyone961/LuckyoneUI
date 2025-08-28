@@ -17,28 +17,28 @@ function Private:WeakAurasImport(aura)
 	if not (Private.IsAddOnLoaded('WeakAuras') and E.Retail) then Private:Print('WeakAuras ' .. L["is not installed or enabled."]) return end
 
 	local auraLinks = {
-		evoker = 'https://wago.io/LuckyoneUI-Evoker',
-		druid = 'https://wago.io/LuckyoneUI-Druid',
-		customEditsRanged = 'https://wago.io/LuckyoneUI-Class-Edits-Ranged',
-		customEditsMelee = 'https://wago.io/LuckyoneUI-Class-Edits-Melee',
-		customEditsTanks = 'https://wago.io/LuckyoneUI-Class-Edits-Tanks',
-		customEditsHealers = 'https://wago.io/LuckyoneUI-Class-Edits-Healers',
-		keys = 'https://wago.io/keystones',
-		elvuiMythicVisibility = 'https://wago.io/ElvUI-Mythic-Visibility',
-		externals = 'https://wago.io/LuckyoneUI-Externals',
-		groupfinderAppTextHide = 'https://wago.io/appTextHide',
-		handleFriendlyNamePlates = 'https://wago.io/handleFriendlyNamePlates',
-		handleNamePlatesFont = 'https://wago.io/handleNamePlatesFont',
-		playerFrameUtilities = 'https://wago.io/LuckyoneUI-PlayerFrameUtilities',
-		trinket = 'https://wago.io/Trinket',
-		affixes = 'https://wago.io/affixes',
-		dungeonCore = 'https://wago.io/LuckyoneUI-Dungeons',
-		raidCore = 'https://wago.io/LuckyoneUI-Raid',
+		evoker = 'LuckyoneUI-Evoker',
+		druid = 'LuckyoneUI-Druid',
+		customEditsRanged = 'LuckyoneUI-Class-Edits-Ranged',
+		customEditsMelee = 'LuckyoneUI-Class-Edits-Melee',
+		customEditsTanks = 'LuckyoneUI-Class-Edits-Tanks',
+		customEditsHealers = 'LuckyoneUI-Class-Edits-Healers',
+		keys = 'keystones',
+		elvuiMythicVisibility = 'ElvUI-Mythic-Visibility',
+		externals = 'LuckyoneUI-Externals',
+		groupfinderAppTextHide = 'appTextHide',
+		handleFriendlyNamePlates = 'handleFriendlyNamePlates',
+		handleNamePlatesFont = 'handleNamePlatesFont',
+		playerFrameUtilities = 'LuckyoneUI-PlayerFrameUtilities',
+		trinket = 'Trinket',
+		affixes = 'affixes',
+		dungeonCore = 'LuckyoneUI-Dungeons',
+		raidCore = 'LuckyoneUI-Raid',
 	}
 
 	local link = auraLinks[aura]
 	if link then
-		ShowImportBox(link)
+		ShowImportBox('https://wago.io/'..link)
 	end
 
 	Private:Print(L["Copy the import string from the Wago link and paste it in /wa."])
