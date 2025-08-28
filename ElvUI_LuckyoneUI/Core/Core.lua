@@ -98,13 +98,12 @@ E.PopupDialogs.L1UI_EDITBOX = {
 	button1 = OKAY,
 	hasEditBox = 1,
 	OnShow = function(self, data)
-		self.editBox:SetAutoFocus(true)
+		self.editBox:SetAutoFocus(false)
 		self.editBox.width = self.editBox:GetWidth()
-		self.editBox:Width(280)
+		self.editBox:Width(310)
 		self.editBox:AddHistoryLine('text')
 		self.editBox.temptxt = data
 		self.editBox:SetText(data)
-		self.editBox:HighlightText()
 		self.editBox:SetJustifyH('CENTER')
 		Private:Print(data)
 	end,
@@ -124,9 +123,7 @@ E.PopupDialogs.L1UI_EDITBOX = {
 			self:SetText(self.temptxt)
 		end
 		self:HighlightText()
-		self:ClearFocus()
 	end,
-	OnAccept = E.noop,
 	whileDead = 1,
 	preferredIndex = 3,
 	hideOnEscape = 1,
