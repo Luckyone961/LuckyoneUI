@@ -978,6 +978,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.target.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
 
 	E.db.unitframe.units.target.aurabar.enable = false
+	E.db.unitframe.units.target.auras.enable = false
 	E.db.unitframe.units.target.buffs.attachTo = 'DEBUFFS'
 	E.db.unitframe.units.target.buffs.countFont = Private.Font
 	E.db.unitframe.units.target.buffs.countFontSize = 10

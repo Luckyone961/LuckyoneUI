@@ -50,6 +50,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.visibility.enemy.minions = true
 
 	-- Enemy NPC
+	E.db.nameplates.units.ENEMY_NPC.auras.enable = false
 	E.db.nameplates.units.ENEMY_NPC.buffs.anchorPoint = 'RIGHT'
 	E.db.nameplates.units.ENEMY_NPC.buffs.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.buffs.countFontSize = 12
