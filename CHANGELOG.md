@@ -1,5 +1,6 @@
 ### Version 3.25 [In Development]
 **All WoW Versions:**  
+Removed archived old layouts (Shadowlands, Dragonflight)  
 Updated BigWigs profile string  
 **Retail:**  
 Reworked WeakAuras section in the config (Import via Wago URL, Notes in chat print)  
