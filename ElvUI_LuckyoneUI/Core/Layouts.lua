@@ -929,7 +929,6 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.player.castbar.customTextFont.font = Private.Font
 	E.db.unitframe.units.player.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.player.castbar.customTimeFont.font = Private.Font
-	E.db.unitframe.units.player.castbar.hideName = true
 	E.db.unitframe.units.player.castbar.latency = false
 	E.db.unitframe.units.player.castbar.spark = true
 	E.db.unitframe.units.player.castbar.textColor.b = 1
