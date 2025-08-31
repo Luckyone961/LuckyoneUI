@@ -11,7 +11,7 @@ local _, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- WindTools ProfileDB
--- LC: 06/02/2025
+-- LC: 31/08/2025
 function Private:Setup_WindTools(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and E.Retail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
@@ -21,11 +21,6 @@ function Private:Setup_WindTools(installer)
 	-- Restore defaults
 	E.db.WT = E:CopyTable({}, P.WT)
 	E.global.WT = E:CopyTable({}, G.WT)
-
-	-- Fix expansion icon not correctly moving to minimap bar
-	E.db.general.minimap.icons.classHall.scale = 1.0
-	E.db.general.minimap.icons.classHall.xOffset = 0
-	E.db.general.minimap.icons.classHall.yOffset = 0
 
 	-- Keep this, it won't get exported by default
 	E.db.WT.quest.switchButtons.hideWithObjectiveTracker = true
@@ -132,7 +127,7 @@ function Private:Setup_WindTools(installer)
 end
 
 -- WindTools PrivateDB
--- LC: 06/02/2025
+-- LC: 31/08/2025
 function Private:Setup_Private_WindTools()
 
 	-- Restore defaults
