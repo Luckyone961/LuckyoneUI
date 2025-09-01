@@ -2,6 +2,7 @@
 **All WoW Versions:**  
 Removed archived old layouts (Shadowlands, Dragonflight)  
 Updated BigWigs profile string  
+Updated ElvUI NamePlates  
 **Retail:**  
 Reworked WeakAuras section in the config (Import via Wago URL, Notes in chat print)  
 ___
