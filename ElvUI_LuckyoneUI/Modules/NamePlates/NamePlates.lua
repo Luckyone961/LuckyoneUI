@@ -1,5 +1,5 @@
 -- Lua functions
-local pairs = pairs
+local ipairs = ipairs
 local unpack = unpack
 
 -- Global environment
@@ -58,7 +58,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.buffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_NPC.buffs.numAuras = 4
 	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
-	E.db.nameplates.units.ENEMY_NPC.buffs.size = 22
+	E.db.nameplates.units.ENEMY_NPC.buffs.size = 24
 	E.db.nameplates.units.ENEMY_NPC.buffs.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.buffs.yOffset = -1
 	E.db.nameplates.units.ENEMY_NPC.castbar.castTimeFormat = 'REMAINING'
@@ -76,7 +76,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeXOffset = -1
 	E.db.nameplates.units.ENEMY_NPC.castbar.width = 197
 	E.db.nameplates.units.ENEMY_NPC.castbar.xOffset = 6
-	E.db.nameplates.units.ENEMY_NPC.castbar.yOffset = -18
+	E.db.nameplates.units.ENEMY_NPC.castbar.yOffset = -19
 	E.db.nameplates.units.ENEMY_NPC.debuffs.anchorPoint = 'LEFT'
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countFontSize = 12
@@ -86,12 +86,12 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.debuffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_NPC.debuffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_NPC.debuffs.size = 22
+	E.db.nameplates.units.ENEMY_NPC.debuffs.size = 24
 	E.db.nameplates.units.ENEMY_NPC.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_NPC.debuffs.yOffset = -1
 	E.db.nameplates.units.ENEMY_NPC.eliteIcon.size = 14
 	E.db.nameplates.units.ENEMY_NPC.eliteIcon.xOffset = 3
-	E.db.nameplates.units.ENEMY_NPC.health.height = 20
+	E.db.nameplates.units.ENEMY_NPC.health.height = 22
 	E.db.nameplates.units.ENEMY_NPC.health.text.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.health.text.format = '[luckyone:health:percent]'
 	E.db.nameplates.units.ENEMY_NPC.health.text.position = 'TOPRIGHT'
@@ -124,7 +124,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.maxDuration = 0
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.numAuras = 4
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Blacklist,Dispellable,TurtleBuffs'
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 22
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 24
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.yOffset = -1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.castTimeFormat = 'REMAINING'
@@ -142,7 +142,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeXOffset = -1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.width = 197
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.xOffset = 6
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.yOffset = -18
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.yOffset = -19
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.anchorPoint = 'LEFT'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFontSize = 12
@@ -153,10 +153,10 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.numAuras = 4
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.size = 22
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.size = 24
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = -1
-	E.db.nameplates.units.ENEMY_PLAYER.health.height = 20
+	E.db.nameplates.units.ENEMY_PLAYER.health.height = 22
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.format = '[luckyone:health:percent]'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.position = 'TOPRIGHT'
@@ -178,7 +178,6 @@ function Private:Setup_NamePlates(installer)
 	-- Friendly NPC
 	E.db.nameplates.units.FRIENDLY_NPC.health.text.format = '[luckyone:health:percent]'
 	E.db.nameplates.units.FRIENDLY_NPC.name.font = Private.Font
-	E.db.nameplates.units.FRIENDLY_NPC.nameOnly = true
 	E.db.nameplates.units.FRIENDLY_NPC.name.fontSize = 14
 	E.db.nameplates.units.FRIENDLY_NPC.name.yOffset = 0
 	E.db.nameplates.units.FRIENDLY_NPC.questIcon.enable = false
@@ -231,7 +230,7 @@ local function Cleanup()
 		'Luckyone_ARAK', 'Luckyone_EDA', 'Luckyone_HOA', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_GMBT', 'Luckyone_STRT', 'Luckyone_DAWN', 'Luckyone_MF'
 	}
 
-	for _, v in pairs(toDelete) do
+	for _, v in ipairs(toDelete) do
 		if E.global.nameplates.filters[v] then
 			E.global.nameplates.filters[v] = nil
 		end
@@ -254,7 +253,7 @@ function Private:Setup_StyleFilters(skipVars)
 		}
 
 		-- Create filters and set defaults
-		for _, filterName in pairs(filters) do
+		for _, filterName in ipairs(filters) do
 			E.global.nameplates.filters[filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
 			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
