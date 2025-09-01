@@ -115,6 +115,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
 
 	-- Enemy Player
+	E.db.nameplates.units.ENEMY_PLAYER.auras.enable = false
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.anchorPoint = 'RIGHT'
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.countFontSize = 12
@@ -189,6 +190,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.FRIENDLY_NPC.title.font = Private.Font
 
 	-- Friendly Player
+	E.db.nameplates.units.FRIENDLY_PLAYER.auras.enable = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.health.text.format = '[luckyone:health:percent]'
 	E.db.nameplates.units.FRIENDLY_PLAYER.markHealers = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.markTanks = false
