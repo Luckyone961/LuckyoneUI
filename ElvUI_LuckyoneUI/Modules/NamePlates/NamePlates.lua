@@ -42,6 +42,23 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.colors.selection[3].b = 0.02
 	E.db.nameplates.colors.selection[3].g = 0.82
 	E.db.nameplates.colors.selection[3].r = 0.02
+	E.db.nameplates.colors.threat.badColor.b = 0
+	E.db.nameplates.colors.threat.badColor.g = 0
+	E.db.nameplates.colors.threat.badTransition.b = 0
+	E.db.nameplates.colors.threat.badTransition.g = 0.80
+	E.db.nameplates.colors.threat.goodColor.b = 1
+	E.db.nameplates.colors.threat.goodColor.g = 0.50
+	E.db.nameplates.colors.threat.goodColor.r = 0.50
+	E.db.nameplates.colors.threat.goodTransition.b = 0
+	E.db.nameplates.colors.threat.goodTransition.g = 1
+	E.db.nameplates.colors.threat.offTankColor.g = 0.92
+	E.db.nameplates.colors.threat.offTankColor.r = 0.73
+	E.db.nameplates.colors.threat.offTankColorBadTransition.b = 1
+	E.db.nameplates.colors.threat.offTankColorBadTransition.g = 0.92
+	E.db.nameplates.colors.threat.offTankColorBadTransition.r = 0.73
+	E.db.nameplates.colors.threat.offTankColorGoodTransition.b = 1
+	E.db.nameplates.colors.threat.offTankColorGoodTransition.g = 0.92
+	E.db.nameplates.colors.threat.offTankColorGoodTransition.r = 0.73
 
 	-- NamePlates general
 	E.db.nameplates.cooldown.override = false
