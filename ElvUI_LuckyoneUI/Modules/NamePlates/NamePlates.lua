@@ -1,5 +1,5 @@
 -- Lua functions
-local ipairs = ipairs
+local pairs = pairs
 local unpack = unpack
 
 -- Global environment
@@ -257,26 +257,10 @@ function Private:Setup_NamePlates(installer)
 end
 
 local function Cleanup()
-	local toDelete = {
-		-- General
-		'ElvUI_Explosives', 'Luckyone_SPECIAL',
-		-- Dragonflight Season 1
-		'Luckyone_AA', 'Luckyone_AV', 'Luckyone_COS', 'Luckyone_HOV', 'Luckyone_NO', 'Luckyone_RLP', 'Luckyone_SBG', 'Luckyone_TJS', 'Luckyone_TOJS', 'Luckyone_VOTI',
-		-- Dragonflight Season 2
-		'Luckyone_BH', 'Luckyone_HOI', 'Luckyone_NELT', 'Luckyone_ULD', 'Luckyone_NL', 'Luckyone_FH', 'Luckyone_UNDR', 'Luckyone_VP', 'Luckyone_Aberrus',
-		-- Dragonflight Season 3
-		'Luckyone_FALL', 'Luckyone_RISE', 'Luckyone_DHT', 'Luckyone_BRH', 'Luckyone_AD', 'Luckyone_WM', 'Luckyone_EB', 'Luckyone_TOTT', 'Luckyone_Amirdrassil',
-		-- TWW Season 1
-		'Luckyone_ARAK', 'Luckyone_COT', 'Luckyone_DAWN', 'Luckyone_SV', 'Luckyone_GB', 'Luckyone_MISTS', 'Luckyone_SIEGE', 'Luckyone_NW',
-		-- TWW Season 2
-		'Luckyone_BREW', 'Luckyone_ROOK', 'Luckyone_DFC', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_ML', 'Luckyone_TOP', 'Luckyone_WORK',
-		-- TWW Season 3
-		'Luckyone_ARAK', 'Luckyone_EDA', 'Luckyone_HOA', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_GMBT', 'Luckyone_STRT', 'Luckyone_DAWN', 'Luckyone_MF'
-	}
-
-	for _, v in ipairs(toDelete) do
-		if E.global.nameplates.filters[v] then
-			E.global.nameplates.filters[v] = nil
+	-- Wipe any existing Luckyone filters
+	for filterName, _ in pairs(E.global.nameplates.filters) do
+		if filterName:match('^Luckyone_') then
+			E.global.nameplates.filters[filterName] = nil
 		end
 	end
 end
@@ -292,8 +276,19 @@ function Private:Setup_StyleFilters(skipVars)
 
 		-- TWW Season 3
 		local filters = {
+			-- General
+			'Luckyone_SPECIAL',
+			-- Raid
+			'Luckyone_MF',
 			-- Dungeons
-			'Luckyone_SPECIAL', 'Luckyone_MF', 'Luckyone_ARAK', 'Luckyone_EDA', 'Luckyone_HOA', 'Luckyone_PSF', 'Luckyone_FLOOD', 'Luckyone_GMBT', 'Luckyone_STRT', 'Luckyone_DAWN'
+			'Luckyone_ARAK',
+			'Luckyone_EDA',
+			'Luckyone_HOA',
+			'Luckyone_PSF',
+			'Luckyone_FLOOD',
+			'Luckyone_GMBT',
+			'Luckyone_STRT',
+			'Luckyone_DAWN'
 		}
 
 		-- Create filters and set defaults
