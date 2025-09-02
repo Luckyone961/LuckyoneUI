@@ -300,11 +300,13 @@ function Private:Setup_StyleFilters(skipVars)
 	-- Wipe old filters
 	Cleanup()
 
-	if E.Retail then
+		if E.Retail then
 
 		-- TWW Season 3
 		local filters = {
 			-- General
+			'Luckyone_Quest_H',
+			'Luckyone_Quest_N',
 			'Luckyone_SPECIAL',
 			-- Raid
 			'Luckyone_MF',
@@ -316,7 +318,7 @@ function Private:Setup_StyleFilters(skipVars)
 			'Luckyone_FLOOD',
 			'Luckyone_GMBT',
 			'Luckyone_STRT',
-			'Luckyone_DAWN'
+			'Luckyone_DAWN',
 		}
 
 		-- Create filters and set defaults
@@ -325,6 +327,28 @@ function Private:Setup_StyleFilters(skipVars)
 			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
 			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
 		end
+
+		-- Quest Hostile
+		E.global.nameplates.filters.Luckyone_Quest_H.actions.health.colors.color.b = 0
+		E.global.nameplates.filters.Luckyone_Quest_H.actions.health.colors.color.g = 0.37
+		E.global.nameplates.filters.Luckyone_Quest_H.actions.health.colors.enable = true
+		E.global.nameplates.filters.Luckyone_Quest_H.triggers.isNotTapDenied = true
+		E.global.nameplates.filters.Luckyone_Quest_H.triggers.isQuest = true
+		E.global.nameplates.filters.Luckyone_Quest_H.triggers.outOfCombatUnit = true
+		E.global.nameplates.filters.Luckyone_Quest_H.triggers.priority = 2
+		E.global.nameplates.filters.Luckyone_Quest_H.triggers.reactionType.enable = true
+		E.global.nameplates.filters.Luckyone_Quest_H.triggers.reactionType.hostile = true
+
+		-- Quest Neutral
+		E.global.nameplates.filters.Luckyone_Quest_N.actions.health.colors.color.b = 0
+		E.global.nameplates.filters.Luckyone_Quest_N.actions.health.colors.color.g = 0.65
+		E.global.nameplates.filters.Luckyone_Quest_N.actions.health.colors.enable = true
+		E.global.nameplates.filters.Luckyone_Quest_N.triggers.isNotTapDenied = true
+		E.global.nameplates.filters.Luckyone_Quest_N.triggers.isQuest = true
+		E.global.nameplates.filters.Luckyone_Quest_N.triggers.outOfCombatUnit = true
+		E.global.nameplates.filters.Luckyone_Quest_N.triggers.priority = 2
+		E.global.nameplates.filters.Luckyone_Quest_N.triggers.reactionType.enable = true
+		E.global.nameplates.filters.Luckyone_Quest_N.triggers.reactionType.neutral = true
 
 		-- Special coloring [SPECIAL]
 		E.global.nameplates.filters.Luckyone_SPECIAL.actions.health.colors.enable = true
