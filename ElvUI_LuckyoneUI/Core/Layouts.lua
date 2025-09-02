@@ -596,7 +596,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.tooltip.healthBar.fontOutline = Private.Outline
 	E.db.tooltip.healthBar.fontSize = (scaled and 9) or 10
 	E.db.tooltip.healthBar.height = 6
-	E.db.tooltip.healthBar.statusPosition = 'TOP'
+	E.db.tooltip.healthBar.statusPosition = 'DISABLED'
 	E.db.tooltip.inspectDataEnable = false
 	E.db.tooltip.itemCount.bags = false
 	E.db.tooltip.itemCount.bank = false
