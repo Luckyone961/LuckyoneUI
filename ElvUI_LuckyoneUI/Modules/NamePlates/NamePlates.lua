@@ -221,6 +221,8 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.title.format = ''
 
 	-- Friendly NPC
+	E.db.nameplates.units.FRIENDLY_NPC.buffs.enable = false
+	E.db.nameplates.units.FRIENDLY_NPC.debuffs.enable = false
 	E.db.nameplates.units.FRIENDLY_NPC.health.text.format = '[luckyone:health:percent]'
 	E.db.nameplates.units.FRIENDLY_NPC.name.font = Private.Font
 	E.db.nameplates.units.FRIENDLY_NPC.name.fontSize = 14
@@ -232,6 +234,8 @@ function Private:Setup_NamePlates(installer)
 
 	-- Friendly Player
 	E.db.nameplates.units.FRIENDLY_PLAYER.auras.enable = false
+	E.db.nameplates.units.FRIENDLY_PLAYER.buffs.enable = false
+	E.db.nameplates.units.FRIENDLY_PLAYER.debuffs.enable = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.health.text.format = '[luckyone:health:percent]'
 	E.db.nameplates.units.FRIENDLY_PLAYER.markHealers = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.markTanks = false
