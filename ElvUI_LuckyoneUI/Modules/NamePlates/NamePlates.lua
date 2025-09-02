@@ -60,7 +60,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.auras.desaturate = false
 	E.db.nameplates.units.ENEMY_NPC.auras.height = 24
 	E.db.nameplates.units.ENEMY_NPC.auras.keepSizeRatio = false
-	E.db.nameplates.units.ENEMY_NPC.auras.priority = 'ImportantCC'
+	E.db.nameplates.units.ENEMY_NPC.auras.priority = E.Retail and 'ImportantCC' or 'CCDebuffs'
 	E.db.nameplates.units.ENEMY_NPC.auras.size = 30
 	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.enable = true
 	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.font = Private.Font
@@ -146,7 +146,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.auras.desaturate = false
 	E.db.nameplates.units.ENEMY_PLAYER.auras.height = 24
 	E.db.nameplates.units.ENEMY_PLAYER.auras.keepSizeRatio = false
-	E.db.nameplates.units.ENEMY_PLAYER.auras.priority = 'ImportantCC'
+	E.db.nameplates.units.ENEMY_PLAYER.auras.priority = E.Retail and 'ImportantCC' or 'CCDebuffs'
 	E.db.nameplates.units.ENEMY_PLAYER.auras.size = 30
 	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.enable = true
 	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.font = Private.Font
