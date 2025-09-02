@@ -1,5 +1,6 @@
 ### Version 3.25 [In Development]
 **All WoW Versions:**  
+Health bar on tooltips is now disabled by default  
 Removed archived old layouts (Shadowlands, Dragonflight)  
 Updated BigWigs profile string  
 **Retail:**  
