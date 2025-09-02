@@ -300,29 +300,48 @@ function Private:Setup_StyleFilters(skipVars)
 	-- Wipe old filters
 	Cleanup()
 
-		if E.Retail then
+	-- Base filters
+	local baseFilters = {
+		'Luckyone_Quest_H',
+		'Luckyone_Quest_N',
+	}
 
-		-- TWW Season 3
-		local filters = {
-			-- General
-			'Luckyone_Quest_H',
-			'Luckyone_Quest_N',
-			'Luckyone_SPECIAL',
-			-- Raid
-			'Luckyone_MF',
-			-- Dungeons
-			'Luckyone_ARAK',
-			'Luckyone_EDA',
-			'Luckyone_HOA',
-			'Luckyone_PSF',
-			'Luckyone_FLOOD',
-			'Luckyone_GMBT',
-			'Luckyone_STRT',
-			'Luckyone_DAWN',
-		}
+	-- Retail specific filters
+	local retailFilters = {
+		-- Global
+		'Luckyone_SPECIAL',
+		-- Raid
+		'Luckyone_MF',
+		-- Dungeons
+		'Luckyone_ARAK',
+		'Luckyone_EDA',
+		'Luckyone_HOA',
+		'Luckyone_PSF',
+		'Luckyone_FLOOD',
+		'Luckyone_GMBT',
+		'Luckyone_STRT',
+		'Luckyone_DAWN',
+	}
 
-		-- Create filters and set defaults
-		for _, filterName in ipairs(filters) do
+	-- Create base filters
+	for _, filterName in ipairs(baseFilters) do
+		E.global.nameplates.filters[filterName] = {}
+		E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
+		E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
+	end
+
+	-- Disable alpha fading and scaling for ElvUI_Target and ElvUI_NonTarget
+	E.global.nameplates.filters.ElvUI_NonTarget.actions.alpha = -1
+	E.global.nameplates.filters.ElvUI_Target.actions.scale = 1
+
+	-- Turn off both default filters
+	E.db.nameplates.filters.ElvUI_NonTarget.triggers.enable = false
+	E.db.nameplates.filters.ElvUI_Target.triggers.enable = false
+
+	if E.Retail then
+
+		-- Create retail specific filters
+		for _, filterName in ipairs(retailFilters) do
 			E.global.nameplates.filters[filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
 			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
@@ -476,14 +495,6 @@ function Private:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_DAWN.triggers.names['213893'] = true -- Nightfall Darkcaster
 		E.global.nameplates.filters.Luckyone_DAWN.triggers.priority = 2
 	end
-
-	-- Disable alpha fading and scaling for ElvUI_Target and ElvUI_NonTarget
-	E.global.nameplates.filters.ElvUI_NonTarget.actions.alpha = -1
-	E.global.nameplates.filters.ElvUI_Target.actions.scale = 1
-
-	-- Turn off both default filters
-	E.db.nameplates.filters.ElvUI_NonTarget.triggers.enable = false
-	E.db.nameplates.filters.ElvUI_Target.triggers.enable = false
 
 	-- Set NamePlate CVars
 	if not skipVars then
