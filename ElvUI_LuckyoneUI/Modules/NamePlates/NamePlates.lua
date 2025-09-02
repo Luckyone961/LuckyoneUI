@@ -24,6 +24,7 @@ function Private:Setup_NamePlates(installer)
 	Private:Setup_StyleFilters()
 
 	-- NamePlates general
+	E.db.nameplates.colors.auraByType = false
 	E.db.nameplates.colors.castbarDesaturate = false
 	E.db.nameplates.colors.castColor.g = 1
 	E.db.nameplates.colors.castColor.r = 0.02
@@ -46,21 +47,45 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.visibility.enemy.guardians = true
 	E.db.nameplates.visibility.enemy.minions = true
 
+	-- Target indicator
+	E.db.nameplates.units.TARGET.arrowScale = 0.7
+	E.db.nameplates.units.TARGET.arrowSpacing = 25
+	E.db.nameplates.units.TARGET.glowStyle = 'style2'
+
 	-- Enemy NPC
-	E.db.nameplates.units.ENEMY_NPC.auras.enable = false
-	E.db.nameplates.units.ENEMY_NPC.buffs.anchorPoint = 'RIGHT'
+	E.db.nameplates.units.ENEMY_NPC.auras.countFont = Private.Font
+	E.db.nameplates.units.ENEMY_NPC.auras.countFontSize = 12
+	E.db.nameplates.units.ENEMY_NPC.auras.countXOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.auras.countYOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.auras.desaturate = false
+	E.db.nameplates.units.ENEMY_NPC.auras.height = 24
+	E.db.nameplates.units.ENEMY_NPC.auras.keepSizeRatio = false
+	E.db.nameplates.units.ENEMY_NPC.auras.priority = 'ImportantCC'
+	E.db.nameplates.units.ENEMY_NPC.auras.size = 30
+	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.enable = true
+	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.font = Private.Font
+	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.fontSize = 11
+	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.length = 5
+	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.xOffset = 2
+	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.yOffset = 13
+	E.db.nameplates.units.ENEMY_NPC.auras.yOffset = -1
+	E.db.nameplates.units.ENEMY_NPC.buffs.anchorPoint = 'LEFT'
+	E.db.nameplates.units.ENEMY_NPC.buffs.attachTo = 'DEBUFFS'
 	E.db.nameplates.units.ENEMY_NPC.buffs.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.buffs.countFontSize = 12
 	E.db.nameplates.units.ENEMY_NPC.buffs.countPosition = 'TOP'
+	E.db.nameplates.units.ENEMY_NPC.buffs.countXOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.buffs.countYOffset = 14
 	E.db.nameplates.units.ENEMY_NPC.buffs.desaturate = false
 	E.db.nameplates.units.ENEMY_NPC.buffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.buffs.fontSize = 10
-	E.db.nameplates.units.ENEMY_NPC.buffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
+	E.db.nameplates.units.ENEMY_NPC.buffs.maxDuration = 300
+	E.db.nameplates.units.ENEMY_NPC.buffs.numAuras = 2
+	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Dispellable'
 	E.db.nameplates.units.ENEMY_NPC.buffs.size = 24
-	E.db.nameplates.units.ENEMY_NPC.buffs.xOffset = 2
-	E.db.nameplates.units.ENEMY_NPC.buffs.yOffset = -1
+	E.db.nameplates.units.ENEMY_NPC.buffs.xOffset = -1
+	E.db.nameplates.units.ENEMY_NPC.buffs.yOffset = 0
+	E.db.nameplates.units.ENEMY_NPC.castbar.anchorPoint = 'BOTTOMLEFT'
 	E.db.nameplates.units.ENEMY_NPC.castbar.castTimeFormat = 'REMAINING'
 	E.db.nameplates.units.ENEMY_NPC.castbar.channelTimeFormat = 'REMAINING'
 	E.db.nameplates.units.ENEMY_NPC.castbar.font = Private.Font
@@ -75,17 +100,19 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeToHold = 2
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeXOffset = -1
 	E.db.nameplates.units.ENEMY_NPC.castbar.width = 197
-	E.db.nameplates.units.ENEMY_NPC.castbar.xOffset = 6
-	E.db.nameplates.units.ENEMY_NPC.castbar.yOffset = -19
+	E.db.nameplates.units.ENEMY_NPC.castbar.xOffset = 13
+	E.db.nameplates.units.ENEMY_NPC.castbar.yOffset = 3
 	E.db.nameplates.units.ENEMY_NPC.debuffs.anchorPoint = 'LEFT'
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countFontSize = 12
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countPosition = 'TOP'
+	E.db.nameplates.units.ENEMY_NPC.debuffs.countXOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countYOffset = 14
 	E.db.nameplates.units.ENEMY_NPC.debuffs.desaturate = false
 	E.db.nameplates.units.ENEMY_NPC.debuffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_NPC.debuffs.numAuras = 4
+	E.db.nameplates.units.ENEMY_NPC.debuffs.priority = 'blockNoDuration,Personal'
 	E.db.nameplates.units.ENEMY_NPC.debuffs.size = 24
 	E.db.nameplates.units.ENEMY_NPC.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_NPC.debuffs.yOffset = -1
@@ -112,21 +139,38 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
 
 	-- Enemy Player
-	E.db.nameplates.units.ENEMY_PLAYER.auras.enable = false
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.anchorPoint = 'RIGHT'
+	E.db.nameplates.units.ENEMY_PLAYER.auras.countFont = Private.Font
+	E.db.nameplates.units.ENEMY_PLAYER.auras.countFontSize = 12
+	E.db.nameplates.units.ENEMY_PLAYER.auras.countXOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.auras.countYOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.auras.desaturate = false
+	E.db.nameplates.units.ENEMY_PLAYER.auras.height = 24
+	E.db.nameplates.units.ENEMY_PLAYER.auras.keepSizeRatio = false
+	E.db.nameplates.units.ENEMY_PLAYER.auras.priority = 'ImportantCC'
+	E.db.nameplates.units.ENEMY_PLAYER.auras.size = 30
+	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.enable = true
+	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.font = Private.Font
+	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.fontSize = 11
+	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.length = 5
+	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.xOffset = 2
+	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.yOffset = 13
+	E.db.nameplates.units.ENEMY_PLAYER.auras.yOffset = -1
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.anchorPoint = 'LEFT'
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.attachTo = 'DEBUFFS'
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.countFontSize = 12
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.countPosition = 'TOP'
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.countXOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.countYOffset = 14
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.desaturate = false
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.fontSize = 10
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.maxDuration = 0
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Blacklist,Dispellable,TurtleBuffs'
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.numAuras = 2
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Dispellable'
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 24
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.xOffset = 2
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.yOffset = -1
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.xOffset = -1
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.yOffset = 0
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.anchorPoint = 'BOTTOMLEFT'
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.castTimeFormat = 'REMAINING'
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.channelTimeFormat = 'REMAINING'
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.font = Private.Font
@@ -141,18 +185,19 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeToHold = 2
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeXOffset = -1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.width = 197
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.xOffset = 6
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.yOffset = -19
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.xOffset = 13
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.yOffset = 3
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.anchorPoint = 'LEFT'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFontSize = 12
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countPosition = 'TOP'
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countXOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countYOffset = 14
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.desaturate = false
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = 'blockNoDuration,Personal'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.size = 24
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = -1
@@ -197,11 +242,6 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.FRIENDLY_PLAYER.raidTargetIndicator.size = 20
 	E.db.nameplates.units.FRIENDLY_PLAYER.title.enable = true
 	E.db.nameplates.units.FRIENDLY_PLAYER.title.font = Private.Font
-
-	-- Target indicator
-	E.db.nameplates.units.TARGET.arrowScale = 0.7
-	E.db.nameplates.units.TARGET.arrowSpacing = 25
-	E.db.nameplates.units.TARGET.glowStyle = 'style2'
 
 	if NP.Initialized then
 		E:UpdateNamePlates(true)
