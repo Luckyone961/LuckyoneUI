@@ -23,7 +23,7 @@ function Private:Setup_NamePlates(installer)
 	-- Setup StyleFilters (includes NamePlate CVars)
 	Private:Setup_StyleFilters()
 
-	-- NamePlates general
+	-- NamePlates colors
 	E.db.nameplates.colors.auraByType = false
 	E.db.nameplates.colors.castbarDesaturate = false
 	E.db.nameplates.colors.castColor.g = 1
@@ -33,6 +33,17 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.colors.castNoInterruptColor.r = 1
 	E.db.nameplates.colors.glowColor.b = 0.97
 	E.db.nameplates.colors.glowColor.r = 0
+	E.db.nameplates.colors.selection[0].b = 0.07
+	E.db.nameplates.colors.selection[0].g = 0.13
+	E.db.nameplates.colors.selection[0].r = 0.92
+	E.db.nameplates.colors.selection[2].b = 0.27
+	E.db.nameplates.colors.selection[2].g = 0.80
+	E.db.nameplates.colors.selection[2].r = 0.93
+	E.db.nameplates.colors.selection[3].b = 0.02
+	E.db.nameplates.colors.selection[3].g = 0.82
+	E.db.nameplates.colors.selection[3].r = 0.02
+
+	-- NamePlates general
 	E.db.nameplates.cooldown.override = false
 	E.db.nameplates.lowHealthThreshold = 0
 	E.db.nameplates.overlapH = 1
