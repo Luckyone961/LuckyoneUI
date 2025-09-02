@@ -59,6 +59,9 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.colors.threat.offTankColorGoodTransition.b = 1
 	E.db.nameplates.colors.threat.offTankColorGoodTransition.g = 0.92
 	E.db.nameplates.colors.threat.offTankColorGoodTransition.r = 0.73
+	E.db.nameplates.colors.threat.soloColor.b = 1
+	E.db.nameplates.colors.threat.soloColor.g = 0.50
+	E.db.nameplates.colors.threat.soloColor.r = 0.50
 
 	-- NamePlates general
 	E.db.nameplates.cooldown.override = false
@@ -69,6 +72,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.plateSize.friendlyWidth = 210
 	E.db.nameplates.plateSize.personalWidth = 210
 	E.db.nameplates.statusbar = Private.Texture
+	E.db.nameplates.threat.useSoloColor = true
 
 	-- NamePlates misc
 	E.db.nameplates.units.PLAYER.enable = false
