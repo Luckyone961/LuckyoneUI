@@ -131,6 +131,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.castbar.anchorPoint = 'BOTTOMLEFT'
 	E.db.nameplates.units.ENEMY_NPC.castbar.castTimeFormat = 'REMAINING'
 	E.db.nameplates.units.ENEMY_NPC.castbar.channelTimeFormat = 'REMAINING'
+	E.db.nameplates.units.ENEMY_NPC.castbar.displayTarget = true
 	E.db.nameplates.units.ENEMY_NPC.castbar.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.castbar.fontSize = 10
 	E.db.nameplates.units.ENEMY_NPC.castbar.height = 14
@@ -180,6 +181,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.size = 16
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 0
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.smartAuraPosition = 'FLUID_BUFFS_ON_DEBUFFS'
 
 	-- Enemy Player
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countFont = Private.Font
@@ -216,6 +218,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.anchorPoint = 'BOTTOMLEFT'
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.castTimeFormat = 'REMAINING'
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.channelTimeFormat = 'REMAINING'
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.displayTarget = true
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.fontSize = 10
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.height = 14
@@ -261,6 +264,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.size = 16
 	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.xOffset = 0
 	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.yOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.smartAuraPosition = 'FLUID_BUFFS_ON_DEBUFFS'
 	E.db.nameplates.units.ENEMY_PLAYER.title.format = ''
 
 	-- Friendly NPC
