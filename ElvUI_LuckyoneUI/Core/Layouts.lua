@@ -706,7 +706,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.buffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.buffs.maxDuration = 0
 	E.db.unitframe.units.arena.buffs.perrow = 5
-	E.db.unitframe.units.arena.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.arena.buffs.priority = 'Whitelist,TurtleBuffs,Dispellable'
 	E.db.unitframe.units.arena.buffs.sizeOverride = 20
 	E.db.unitframe.units.arena.buffs.xOffset = -1
 	E.db.unitframe.units.arena.buffs.yOffset = -10
@@ -739,7 +739,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.debuffs.maxDuration = 0
 	E.db.unitframe.units.arena.debuffs.perrow = 5
-	E.db.unitframe.units.arena.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
+	E.db.unitframe.units.arena.debuffs.priority = E.Retail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
 	E.db.unitframe.units.arena.debuffs.sizeOverride = 20
 	E.db.unitframe.units.arena.debuffs.xOffset = -1
 	E.db.unitframe.units.arena.debuffs.yOffset = 1
@@ -813,7 +813,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.buffs.countYOffset = 0
 	E.db.unitframe.units.boss.buffs.growthY = 'DOWN'
 	E.db.unitframe.units.boss.buffs.perrow = 5
-	E.db.unitframe.units.boss.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.boss.buffs.priority = 'Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.boss.buffs.sizeOverride = 20
 	E.db.unitframe.units.boss.buffs.xOffset = -1
 	E.db.unitframe.units.boss.buffs.yOffset = -10
@@ -844,7 +844,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.boss.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.boss.debuffs.perrow = 5
-	E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
+	E.db.unitframe.units.boss.debuffs.priority = E.Retail and 'blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
 	E.db.unitframe.units.boss.debuffs.sizeOverride = 20
 	E.db.unitframe.units.boss.debuffs.xOffset = -1
 	E.db.unitframe.units.boss.debuffs.yOffset = 1
@@ -908,7 +908,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.focus.buffs.maxDuration = 0
 	E.db.unitframe.units.focus.buffs.numrows = 3
 	E.db.unitframe.units.focus.buffs.perrow = 12
-	E.db.unitframe.units.focus.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.focus.buffs.priority = 'Dispellable,RaidBuffsElvUI,Mount'
 	E.db.unitframe.units.focus.buffs.yOffset = 1
 	E.db.unitframe.units.focus.castbar.customTextFont.enable = true
 	E.db.unitframe.units.focus.castbar.customTextFont.font = Private.Font
@@ -936,7 +936,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.focus.debuffs.maxDuration = 0
 	E.db.unitframe.units.focus.debuffs.numrows = 2
 	E.db.unitframe.units.focus.debuffs.perrow = 12
-	E.db.unitframe.units.focus.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
+	E.db.unitframe.units.focus.debuffs.priority = E.Retail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
 	E.db.unitframe.units.focus.disableMouseoverGlow = true
 	E.db.unitframe.units.focus.disableTargetGlow = true
 	E.db.unitframe.units.focus.fader.minAlpha = 0.5
@@ -1081,6 +1081,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.player.debuffs.countXOffset = 2
 	E.db.unitframe.units.player.debuffs.countYOffset = 0
 	E.db.unitframe.units.player.debuffs.desaturate = false
+	E.db.unitframe.units.player.debuffs.enable = false
 	E.db.unitframe.units.player.debuffs.numrows = 2
 	E.db.unitframe.units.player.debuffs.perrow = 12
 	E.db.unitframe.units.player.disableMouseoverGlow = true
@@ -1148,6 +1149,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.target.buffs.countYOffset = 0
 	E.db.unitframe.units.target.buffs.numrows = 3
 	E.db.unitframe.units.target.buffs.perrow = 12
+	E.db.unitframe.units.target.buffs.priority = 'Dispellable,RaidBuffsElvUI,Mount'
 	E.db.unitframe.units.target.buffs.yOffset = 1
 	E.db.unitframe.units.target.castbar.customTextFont.enable = true
 	E.db.unitframe.units.target.castbar.customTextFont.font = Private.Font
@@ -1175,7 +1177,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.target.debuffs.maxDuration = 0
 	E.db.unitframe.units.target.debuffs.numrows = 2
 	E.db.unitframe.units.target.debuffs.perrow = 12
-	E.db.unitframe.units.target.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
+	E.db.unitframe.units.target.debuffs.priority = E.Retail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
 	E.db.unitframe.units.target.disableMouseoverGlow = true
 	E.db.unitframe.units.target.fader.minAlpha = 0.5
 	E.db.unitframe.units.target.fader.smooth = 0
@@ -1235,12 +1237,11 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.raidpet.buffIndicator.countFontSize = 10
 	E.db.unitframe.units.raidpet.buffIndicator.enable = true
 	E.db.unitframe.units.raidpet.buffIndicator.size = 6
-	E.db.unitframe.units.raidpet.buffs.priority = 'Blacklist,TurtleBuffs'
 	E.db.unitframe.units.raidpet.classbar.enable = false
 	E.db.unitframe.units.raidpet.debuffs.countFont = Private.Font
 	E.db.unitframe.units.raidpet.debuffs.desaturate = false
 	E.db.unitframe.units.raidpet.debuffs.maxDuration = 0
-	E.db.unitframe.units.raidpet.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
+	E.db.unitframe.units.raidpet.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raidpet.disableFocusGlow = true
 	E.db.unitframe.units.raidpet.disableTargetGlow = true
 	E.db.unitframe.units.raidpet.enable = E.Classic
@@ -1308,6 +1309,7 @@ function Private:Layout_TheWarWithin(layout)
 
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.debuffs.enable = false
+	E.db.unitframe.units.party.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.party.disableFocusGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.fader.minAlpha = 0.5
@@ -1342,6 +1344,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.raid1.buffIndicator.countFontSize = 10
 	E.db.unitframe.units.raid1.buffIndicator.size = 6
 	E.db.unitframe.units.raid1.classbar.enable = false
+	E.db.unitframe.units.raid1.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid1.disableFocusGlow = true
 	E.db.unitframe.units.raid1.disableTargetGlow = true
 	E.db.unitframe.units.raid1.fader.minAlpha = 0.5
@@ -1389,7 +1392,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.raid3.debuffs.countFont = Private.Font
 	E.db.unitframe.units.raid3.debuffs.desaturate = false
 	E.db.unitframe.units.raid3.debuffs.maxDuration = 0
-	E.db.unitframe.units.raid3.debuffs.priority = 'Blacklist,Dispellable,RaidDebuffs'
+	E.db.unitframe.units.raid3.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid3.disableFocusGlow = true
 	E.db.unitframe.units.raid3.disableTargetGlow = true
 	E.db.unitframe.units.raid3.fader.minAlpha = 0.5
@@ -1497,7 +1500,6 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.party.debuffs.enable = true
 		E.db.unitframe.units.party.debuffs.maxDuration = 0
 		E.db.unitframe.units.party.debuffs.perrow = 2
-		E.db.unitframe.units.party.debuffs.priority = 'Blacklist,Dispellable,RaidDebuffs'
 		E.db.unitframe.units.party.debuffs.sizeOverride = 40
 		E.db.unitframe.units.party.debuffs.xOffset = 1
 		E.db.unitframe.units.party.debuffs.yOffset = -1
@@ -1784,7 +1786,6 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.party.debuffs.enable = true
 		E.db.unitframe.units.party.debuffs.maxDuration = 0
 		E.db.unitframe.units.party.debuffs.perrow = 2
-		E.db.unitframe.units.party.debuffs.priority = 'Blacklist,Dispellable,RaidDebuffs'
 		E.db.unitframe.units.party.debuffs.sizeOverride = 40
 		E.db.unitframe.units.party.debuffs.xOffset = 1
 		E.db.unitframe.units.party.debuffs.yOffset = -1
