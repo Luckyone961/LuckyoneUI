@@ -1058,8 +1058,11 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.player.castbar.customColor.useCustomBackdrop = true
 	E.db.unitframe.units.player.castbar.customTextFont.enable = true
 	E.db.unitframe.units.player.castbar.customTextFont.font = Private.Font
+	E.db.unitframe.units.player.castbar.customTextFont.fontSize = 14
 	E.db.unitframe.units.player.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.player.castbar.customTimeFont.font = Private.Font
+	E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 14
+	E.db.unitframe.units.player.castbar.height = 30
 	E.db.unitframe.units.player.castbar.hideName = true
 	E.db.unitframe.units.player.castbar.latency = false
 	E.db.unitframe.units.player.castbar.spark = true
@@ -1486,7 +1489,6 @@ function Private:Layout_TheWarWithin(layout)
 
 		-- Main Player
 		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = '[luckyone:power:percent-color]'
-		E.db.unitframe.units.player.castbar.height = 24
 		E.db.unitframe.units.player.castbar.width = 279
 		E.db.unitframe.units.player.power.autoHide = true
 
@@ -1602,7 +1604,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,318,459') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-660,580'
 		E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,300,-300') or 'TOPLEFT,ElvUIParent,TOPLEFT,600,-480'
 		E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,461,324') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,781,474'
-		E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,UIParent,BOTTOM,0,247') or 'BOTTOM,ElvUIParent,BOTTOM,0,397'
+		E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,UIParent,BOTTOM,0,266') or 'BOTTOM,ElvUIParent,BOTTOM,0,416'
 		E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,324') or 'BOTTOM,ElvUIParent,BOTTOM,-288,474'
 		E.db.movers.ElvUF_Raid1Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,156') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
 		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,156') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
@@ -1623,9 +1625,6 @@ function Private:Layout_TheWarWithin(layout)
 
 		-- Healing Player
 		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = E.Retail and '[luckyone:power:percent-nocolor<%]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
-		E.db.unitframe.units.player.castbar.customTextFont.fontSize = 14
-		E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 14
-		E.db.unitframe.units.player.castbar.height = 26
 		E.db.unitframe.units.player.castbar.width = (scaled and 505) or 605
 		E.db.unitframe.units.player.power.attachTextTo = 'Power'
 		E.db.unitframe.units.player.power.autoHide = false
@@ -1739,7 +1738,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-447,492') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-514,580'
 		E.db.movers.ElvUF_PartyMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,339') or 'BOTTOM,ElvUIParent,BOTTOM,0,455'
 		E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,366,358') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,636,474'
-		E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,114') or 'BOTTOM,ElvUIParent,BOTTOM,0,134'
+		E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,114') or 'BOTTOM,ElvUIParent,BOTTOM,0,130'
 		E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,447,358') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,717,474'
 		E.db.movers.ElvUF_Raid1Mover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,141') or 'BOTTOM,ElvUIParent,BOTTOM,0,257'
 		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,147') or 'BOTTOM,ElvUIParent,BOTTOM,0,161'
@@ -1772,7 +1771,6 @@ function Private:Layout_TheWarWithin(layout)
 
 		-- Support Player
 		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = '[luckyone:power:percent-color]'
-		E.db.unitframe.units.player.castbar.height = 24
 		E.db.unitframe.units.player.castbar.width = 279
 		E.db.unitframe.units.player.power.autoHide = true
 
@@ -1876,7 +1874,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,318,459') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-660,580'
 		E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,300,-300') or 'TOPLEFT,ElvUIParent,TOPLEFT,600,-480'
 		E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,461,324') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,781,474'
-		E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,UIParent,BOTTOM,0,247') or 'BOTTOM,ElvUIParent,BOTTOM,0,397'
+		E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,UIParent,BOTTOM,0,266') or 'BOTTOM,ElvUIParent,BOTTOM,0,416'
 		E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,324') or 'BOTTOM,ElvUIParent,BOTTOM,-288,474'
 		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
