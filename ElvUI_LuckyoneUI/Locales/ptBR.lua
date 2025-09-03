@@ -119,6 +119,7 @@ L["Layout Scale"] = true
 L["Layouts"] = "Perfis"
 L["Left panel: General - Log - Whisper - Guild - Party."] = "Painel Esquerdo: Geral - Registro - Sussuro - Guilda - Grupo."
 L["Links"] = true
+L["LuckyoneUI Default"] = true
 L["Mage"] = "Mago"
 L["Main Layout"] = "Perfil Principal"
 L["Make sure to keep your WeakAuras updated using the WA Companion or Wago App."] = true

@@ -106,38 +106,38 @@ function L1UI:Config()
 	L1UI.Options.args.auras.args.buffs = ACH:Group(format('|cff3296ff%s|r', L["Buffs"]), nil, 1)
 	L1UI.Options.args.auras.args.buffs.args.player = ACH:Group(L["Player Frame Buffs"], nil, 1)
 	L1UI.Options.args.auras.args.buffs.args.player.inline = true
-	L1UI.Options.args.auras.args.buffs.args.player.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('player', 'min') end)
+	L1UI.Options.args.auras.args.buffs.args.player.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('player', 'min') end)
 	L1UI.Options.args.auras.args.buffs.args.player.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('player', 'all') end)
 	L1UI.Options.args.auras.args.buffs.args.target = ACH:Group(L["Target Frame Buffs"], nil, 2)
 	L1UI.Options.args.auras.args.buffs.args.target.inline = true
-	L1UI.Options.args.auras.args.buffs.args.target.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('target', 'min') end)
+	L1UI.Options.args.auras.args.buffs.args.target.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('target', 'min') end)
 	L1UI.Options.args.auras.args.buffs.args.target.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('target', 'all') end)
 	L1UI.Options.args.auras.args.buffs.args.focus = ACH:Group(L["Focus Frame Buffs"], nil, 3, nil, nil, nil, nil, E.Classic)
 	L1UI.Options.args.auras.args.buffs.args.focus.inline = true
-	L1UI.Options.args.auras.args.buffs.args.focus.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('focus', 'min') end)
+	L1UI.Options.args.auras.args.buffs.args.focus.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('focus', 'min') end)
 	L1UI.Options.args.auras.args.buffs.args.focus.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('focus', 'all') end)
 	L1UI.Options.args.auras.args.buffs.args.boss = ACH:Group(L["Boss Frame Buffs"], nil, 4, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.auras.args.buffs.args.boss.inline = true
-	L1UI.Options.args.auras.args.buffs.args.boss.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('boss', 'min') end)
+	L1UI.Options.args.auras.args.buffs.args.boss.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('boss', 'min') end)
 	L1UI.Options.args.auras.args.buffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('boss', 'all') end)
 
 	-- Auras [Debuffs]
 	L1UI.Options.args.auras.args.debuffs = ACH:Group(format('|cffC80000%s|r', L["Debuffs"]), nil, 2)
 	L1UI.Options.args.auras.args.debuffs.args.player = ACH:Group(L["Player Frame Debuffs"], nil, 1)
 	L1UI.Options.args.auras.args.debuffs.args.player.inline = true
-	L1UI.Options.args.auras.args.debuffs.args.player.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('player', 'min') end)
+	L1UI.Options.args.auras.args.debuffs.args.player.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('player', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.player.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('player', 'all') end)
 	L1UI.Options.args.auras.args.debuffs.args.target = ACH:Group(L["Target Frame Debuffs"], nil, 2)
 	L1UI.Options.args.auras.args.debuffs.args.target.inline = true
-	L1UI.Options.args.auras.args.debuffs.args.target.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('target', 'min') end)
+	L1UI.Options.args.auras.args.debuffs.args.target.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('target', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.target.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('target', 'all') end)
 	L1UI.Options.args.auras.args.debuffs.args.focus = ACH:Group(L["Focus Frame Debuffs"], nil, 3, nil, nil, nil, nil, E.Classic)
 	L1UI.Options.args.auras.args.debuffs.args.focus.inline = true
-	L1UI.Options.args.auras.args.debuffs.args.focus.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('focus', 'min') end)
+	L1UI.Options.args.auras.args.debuffs.args.focus.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('focus', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.focus.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('focus', 'all') end)
 	L1UI.Options.args.auras.args.debuffs.args.boss = ACH:Group(L["Boss Frame Debuffs"], nil, 4, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.auras.args.debuffs.args.boss.inline = true
-	L1UI.Options.args.auras.args.debuffs.args.boss.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('boss', 'min') end)
+	L1UI.Options.args.auras.args.debuffs.args.boss.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('boss', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('boss', 'all') end)
 
 	-- Auras [Filters]

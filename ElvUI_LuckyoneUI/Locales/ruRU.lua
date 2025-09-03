@@ -119,6 +119,7 @@ L["Layout Scale"] = true
 L["Layouts"] = true
 L["Left panel: General - Log - Whisper - Guild - Party."] = true
 L["Links"] = "Ссылки"
+L["LuckyoneUI Default"] = true
 L["Mage"] = "Маг"
 L["Main Layout"] = "Основной макет"
 L["Make sure to keep your WeakAuras updated using the WA Companion or Wago App."] = true

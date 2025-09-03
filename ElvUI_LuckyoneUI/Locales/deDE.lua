@@ -119,6 +119,7 @@ L["Layout Scale"] = "Layout Skalierung"
 L["Layouts"] = true
 L["Left panel: General - Log - Whisper - Guild - Party."] = "Linkes Feld: Allgemein – Log – Flüstern – Gilde – Party."
 L["Links"] = true
+L["LuckyoneUI Default"] = "LuckyoneUI Standard"
 L["Mage"] = "Magier"
 L["Main Layout"] = "Hauptlayout"
 L["Make sure to keep your WeakAuras updated using the WA Companion or Wago App."] = "Sorge dafür, dass Deine WeakAuras mit dem WA Companion oder der Wago App auf dem neuesten Stand bleiben."
