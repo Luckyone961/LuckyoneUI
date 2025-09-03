@@ -549,8 +549,6 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[1] = 'System'
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[2] = 'Combat'
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[3] = 'Durability'
-	E.db.datatexts.panels.Luckyone_ActionBars_DT[4] = ''
-	E.db.datatexts.panels.Luckyone_ActionBars_DT[5] = ''
 	E.db.datatexts.panels.Luckyone_MiniMap_DT.battleground = false
 	E.db.datatexts.panels.Luckyone_MiniMap_DT.enable = true
 	E.db.datatexts.panels.Luckyone_MiniMap_DT[1] = 'Time'
