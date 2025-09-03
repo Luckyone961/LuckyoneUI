@@ -9,7 +9,7 @@ local E, L = unpack(ElvUI)
 
 -- Auras config section: Buffs
 function Private:Setup_Buffs(frame, option)
-	local all = 'Blacklist,Personal,nonPersonal'
+	local all = 'Blacklist,Personal,NonPersonal'
 	local min = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 
 	if frame == 'player' then
@@ -45,7 +45,7 @@ end
 
 -- Auras config section: Debuffs
 function Private:Setup_Debuffs(frame, option)
-	local all = 'Blacklist,Personal,nonPersonal'
+	local all = 'Blacklist,Personal,NonPersonal'
 	local min = 'Blacklist,Whitelist,Personal,CCDebuffs'
 
 	if frame == 'player' then

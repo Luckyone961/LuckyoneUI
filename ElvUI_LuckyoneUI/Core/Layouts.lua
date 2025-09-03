@@ -1037,7 +1037,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.player.buffs.attachTo = 'FRAME'
 	E.db.unitframe.units.player.buffs.countFont = Private.Font
 	E.db.unitframe.units.player.buffs.perrow = 10
-	E.db.unitframe.units.player.buffs.priority = 'Blacklist,Personal,nonPersonal'
+	E.db.unitframe.units.player.buffs.priority = 'Blacklist,Personal,NonPersonal'
 	E.db.unitframe.units.player.buffs.yOffset = 1
 	E.db.unitframe.units.player.castbar.customColor.color.b = 0.05
 	E.db.unitframe.units.player.castbar.customColor.color.g = 0.05
