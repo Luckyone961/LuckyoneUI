@@ -5,20 +5,38 @@ local unpack = unpack
 local _, Private = ...
 
 -- ElvUI modules
-local _, L = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 
--- Runs after successful profile import
-local function CallbackFunction(accepted)
-	if not accepted then return end
-
-	-- Handle minimap icon
+-- Handle minimap icon
+local function HandleMinimapIcon()
 	local LDBI = LibStub('LibDBIcon-1.0')
 	BigWigsIconDB.hide = true
 	LDBI:Hide('BigWigs')
 end
 
+-- Nameplate AddOn check
+local function NameplateAddonCheck(profileName)
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Nameplates'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Nameplates'] or {}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Nameplates']['profiles'] = BigWigs3DB['namespaces']['BigWigs_Plugins_Nameplates']['profiles'] or {}
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Nameplates']['profiles'][profileName]['iconOffsetXTarget'] = E.private.nameplates.enable and -1 or 3
+	BigWigs3DB['namespaces']['BigWigs_Plugins_Nameplates']['profiles'][profileName]['iconOffsetX'] = E.private.nameplates.enable and -1 or 3
+end
+
+-- Runs after successful profile import
+local function CallbackMain(accepted)
+	if not accepted then return end
+	HandleMinimapIcon()
+	NameplateAddonCheck('Luckyone Main')
+end
+
+local function CallbackHealing(accepted)
+	if not accepted then return end
+	HandleMinimapIcon()
+	NameplateAddonCheck('Luckyone Healing')
+end
+
 -- BigWigs profiles
--- LC: 28/08/2025
+-- LC: 03/09/2025
 function Private:Setup_BigWigs(layout)
 	if not BigWigsAPI then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
 
@@ -32,7 +50,7 @@ function Private:Setup_BigWigs(layout)
 
 	-- Profile import
 	-- API.RegisterProfile(addonName, profileString, optionalCustomProfileName, optionalCallbackFunction)
-	BigWigsAPI.RegisterProfile('LuckyoneUI', (layout == 'main' and profile_main) or profile_healing, (layout == 'main' and name_main) or name_healing, CallbackFunction)
+	BigWigsAPI.RegisterProfile('LuckyoneUI', (layout == 'main' and profile_main) or profile_healing, (layout == 'main' and name_main) or name_healing, (layout == 'main' and CallbackMain) or CallbackHealing)
 
 	-- No chat print here
 	-- BigWigs will print a message with all important information after the import
