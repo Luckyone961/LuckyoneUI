@@ -119,11 +119,17 @@ function Private:Setup_Filters_Retail()
 		["yOffset"] = -1,
 	}
 	classes['EVOKER'][364343] = {
+		["color"] = {
+			["a"] = 1,
+			["r"] = 1,
+			["g"] = 1,
+			["b"] = 1,
+		},
 		["displayText"] = true,
-		["sizeOffset"] = 2,
-		["style"] = "texturedIcon",
+		["yOffset"] = 2,
+		["sizeOffset"] = 6,
+		["style"] = "timerOnly",
 		["xOffset"] = -17,
-		["yOffset"] = 1,
 	}
 	classes['EVOKER'][366155] = {
 		["displayText"] = true,
@@ -230,6 +236,7 @@ function Private:Setup_Filters_Retail()
 		["onlyShowMissing"] = false,
 	}
 
+	-- Prescience
 	auraHighlight[410089] = {
 		["enable"] = true,
 		["ownOnly"] = true,
@@ -239,6 +246,19 @@ function Private:Setup_Filters_Retail()
 			["r"] = 0.80,
 			["g"] = 0.59,
 			["b"] = 0.34,
+		},
+	}
+
+	-- Echo
+	auraHighlight[364343] = {
+		["enable"] = true,
+		["ownOnly"] = true,
+		["style"] = "FILL",
+		["color"] = {
+			["a"] = 0.45,
+			["b"] = 0.51,
+			["g"] = 0.96,
+			["r"] = 0.51,
 		},
 	}
 
