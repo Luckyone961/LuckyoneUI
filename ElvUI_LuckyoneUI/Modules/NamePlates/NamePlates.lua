@@ -78,6 +78,8 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.overlapH = 1
 	E.db.nameplates.overlapV = 1.7
 	E.db.nameplates.plateSize.enemyWidth = 210
+	E.db.nameplates.plateSize.friendlyHeight = 8
+	E.db.nameplates.plateSize.friendlyWidth = 1
 	E.db.nameplates.plateSize.friendlyWidth = 210
 	E.db.nameplates.plateSize.personalWidth = 210
 	E.db.nameplates.statusbar = Private.Texture
