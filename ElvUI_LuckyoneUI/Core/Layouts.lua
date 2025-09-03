@@ -716,9 +716,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.arena.castbar.customTimeFont.font = Private.Font
 	E.db.unitframe.units.arena.castbar.customTimeFont.fontSize = 9
-	E.db.unitframe.units.arena.castbar.height = 14
+	E.db.unitframe.units.arena.castbar.height = 16
 	E.db.unitframe.units.arena.castbar.iconAttachedTo = 'Castbar'
-	E.db.unitframe.units.arena.castbar.positionsGroup.xOffset = 1
 	E.db.unitframe.units.arena.castbar.positionsGroup.yOffset = -1
 	E.db.unitframe.units.arena.castbar.strataAndLevel.useCustomLevel = true
 	E.db.unitframe.units.arena.castbar.strataAndLevel.useCustomStrata = true
@@ -755,6 +754,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.middleClickFocus = true
 	E.db.unitframe.units.arena.name.attachTextTo = 'Frame'
 	E.db.unitframe.units.arena.name.text_format = ''
+	E.db.unitframe.units.arena.orientation = 'LEFT'
 	E.db.unitframe.units.arena.power.autoHide = true
 	E.db.unitframe.units.arena.power.height = 4
 	E.db.unitframe.units.arena.power.strataAndLevel.frameStrata = 'MEDIUM'
@@ -766,7 +766,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.pvpTrinket.size = 41
 	E.db.unitframe.units.arena.raidicon.size = 10
 	E.db.unitframe.units.arena.raidicon.yOffset = -1
-	E.db.unitframe.units.arena.spacing = 16
+	E.db.unitframe.units.arena.spacing = 18
 	E.db.unitframe.units.arena.width = 210
 
 	-- Shared Boss
