@@ -185,7 +185,6 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.skins.blizzard.enable = false
 	E.private.WT.skins.elvui.enable = false
 	E.private.WT.skins.ime.label.name = Private.Font
-	E.private.WT.skins.rollResult.name = Private.Font
 	E.private.WT.skins.shadow = false
 	E.private.WT.skins.weakAurasShadow = false
 	E.private.WT.skins.widgets.button.backdrop.classColor = true
