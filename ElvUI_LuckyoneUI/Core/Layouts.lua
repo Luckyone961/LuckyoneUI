@@ -823,9 +823,9 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.boss.castbar.customTimeFont.font = Private.Font
 	E.db.unitframe.units.boss.castbar.customTimeFont.fontSize = 9
-	E.db.unitframe.units.boss.castbar.height = 14
+	E.db.unitframe.units.boss.castbar.displayTargetClass = false
+	E.db.unitframe.units.boss.castbar.height = 16
 	E.db.unitframe.units.boss.castbar.iconAttachedTo = 'Castbar'
-	E.db.unitframe.units.boss.castbar.positionsGroup.xOffset = 1
 	E.db.unitframe.units.boss.castbar.positionsGroup.yOffset = -1
 	E.db.unitframe.units.boss.castbar.strataAndLevel.useCustomLevel = true
 	E.db.unitframe.units.boss.castbar.strataAndLevel.useCustomStrata = true
@@ -860,6 +860,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.middleClickFocus = true
 	E.db.unitframe.units.boss.name.attachTextTo = 'Frame'
 	E.db.unitframe.units.boss.name.text_format = ''
+	E.db.unitframe.units.boss.orientation = 'LEFT'
 	E.db.unitframe.units.boss.power.autoHide = true
 	E.db.unitframe.units.boss.power.height = 4
 	E.db.unitframe.units.boss.power.strataAndLevel.frameStrata = 'MEDIUM'
@@ -867,7 +868,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.power.text_format = ''
 	E.db.unitframe.units.boss.raidicon.size = 10
 	E.db.unitframe.units.boss.raidicon.yOffset = -1
-	E.db.unitframe.units.boss.spacing = 16
+	E.db.unitframe.units.boss.spacing = 18
 	E.db.unitframe.units.boss.width = 210
 
 	-- Shared Focus
