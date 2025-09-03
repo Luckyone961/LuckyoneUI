@@ -89,6 +89,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.PLAYER.enable = false
 	E.db.nameplates.visibility.enemy.guardians = true
 	E.db.nameplates.visibility.enemy.minions = true
+	E.db.nameplates.widgets.below = false
 
 	-- Target indicator
 	E.db.nameplates.units.TARGET.arrowScale = 0.7
