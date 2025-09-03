@@ -153,7 +153,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.debuffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_NPC.debuffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_NPC.debuffs.priority = 'blockNoDuration,Personal'
+	E.db.nameplates.units.ENEMY_NPC.debuffs.priority = E.Retail and 'blockNonPersonal,ClassDebuffs' or 'blockCCDebuffs,Personal'
 	E.db.nameplates.units.ENEMY_NPC.debuffs.size = 24
 	E.db.nameplates.units.ENEMY_NPC.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_NPC.debuffs.yOffset = -1
@@ -238,7 +238,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = 'blockNoDuration,Personal'
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = E.Retail and 'blockNonPersonal,ClassDebuffs' or 'blockCCDebuffs,Personal'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.size = 24
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = -1
