@@ -76,7 +76,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.cooldown.override = false
 	E.db.nameplates.lowHealthThreshold = 0
 	E.db.nameplates.overlapH = 1
-	E.db.nameplates.overlapV = 2
+	E.db.nameplates.overlapV = 2.2
 	E.db.nameplates.plateSize.enemyWidth = 210
 	E.db.nameplates.plateSize.friendlyHeight = 8
 	E.db.nameplates.plateSize.friendlyWidth = 210
