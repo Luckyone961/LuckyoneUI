@@ -46,7 +46,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.colors.selection[0].g = 0.13
 	E.db.nameplates.colors.selection[0].r = 0.92
 	E.db.nameplates.colors.selection[2].b = 0.27
-	E.db.nameplates.colors.selection[2].g = 0.80
+	E.db.nameplates.colors.selection[2].g = 0.8
 	E.db.nameplates.colors.selection[2].r = 0.93
 	E.db.nameplates.colors.selection[3].b = 0.02
 	E.db.nameplates.colors.selection[3].g = 0.82
@@ -54,10 +54,10 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.colors.threat.badColor.b = 0
 	E.db.nameplates.colors.threat.badColor.g = 0
 	E.db.nameplates.colors.threat.badTransition.b = 0
-	E.db.nameplates.colors.threat.badTransition.g = 0.80
+	E.db.nameplates.colors.threat.badTransition.g = 0.8
 	E.db.nameplates.colors.threat.goodColor.b = 1
-	E.db.nameplates.colors.threat.goodColor.g = 0.50
-	E.db.nameplates.colors.threat.goodColor.r = 0.50
+	E.db.nameplates.colors.threat.goodColor.g = 0.5
+	E.db.nameplates.colors.threat.goodColor.r = 0.5
 	E.db.nameplates.colors.threat.goodTransition.b = 0
 	E.db.nameplates.colors.threat.goodTransition.g = 1
 	E.db.nameplates.colors.threat.offTankColor.g = 0.92
@@ -69,8 +69,8 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.colors.threat.offTankColorGoodTransition.g = 0.92
 	E.db.nameplates.colors.threat.offTankColorGoodTransition.r = 0.73
 	E.db.nameplates.colors.threat.soloColor.b = 1
-	E.db.nameplates.colors.threat.soloColor.g = 0.50
-	E.db.nameplates.colors.threat.soloColor.r = 0.50
+	E.db.nameplates.colors.threat.soloColor.g = 0.5
+	E.db.nameplates.colors.threat.soloColor.r = 0.5
 
 	-- NamePlates general
 	E.db.nameplates.cooldown.override = false
@@ -79,14 +79,12 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.overlapV = 2
 	E.db.nameplates.plateSize.enemyWidth = 210
 	E.db.nameplates.plateSize.friendlyHeight = 8
-	E.db.nameplates.plateSize.friendlyWidth = 1
 	E.db.nameplates.plateSize.friendlyWidth = 210
 	E.db.nameplates.plateSize.personalWidth = 210
 	E.db.nameplates.statusbar = Private.Texture
 	E.db.nameplates.threat.useSoloColor = true
 
 	-- NamePlates misc
-	E.db.nameplates.units.PLAYER.enable = false
 	E.db.nameplates.visibility.enemy.guardians = true
 	E.db.nameplates.visibility.enemy.minions = true
 	E.db.nameplates.widgets.below = false
@@ -140,6 +138,10 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.castbar.iconOffsetY = -1
 	E.db.nameplates.units.ENEMY_NPC.castbar.iconPosition = 'LEFT'
 	E.db.nameplates.units.ENEMY_NPC.castbar.iconSize = 16
+	E.db.nameplates.units.ENEMY_NPC.castbar.targetAnchorPoint = 'RIGHT'
+	E.db.nameplates.units.ENEMY_NPC.castbar.targetFont = Private.Font
+	E.db.nameplates.units.ENEMY_NPC.castbar.targetStyle = 'SEPARATE'
+	E.db.nameplates.units.ENEMY_NPC.castbar.targetXOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.castbar.textPosition = 'ONBAR'
 	E.db.nameplates.units.ENEMY_NPC.castbar.textXOffset = 4
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeToHold = 2
