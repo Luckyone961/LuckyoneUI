@@ -1067,10 +1067,11 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.player.castbar.textColor.b = 1
 	E.db.unitframe.units.player.castbar.textColor.g = 1
 	E.db.unitframe.units.player.castbar.textColor.r = 1
-	E.db.unitframe.units.player.castbar.tickColor.a = 0.89
+	E.db.unitframe.units.player.castbar.tickColor.a = 1
 	E.db.unitframe.units.player.castbar.tickColor.b = 1
 	E.db.unitframe.units.player.castbar.tickColor.g = 1
 	E.db.unitframe.units.player.castbar.tickColor.r = 1
+	E.db.unitframe.units.player.castbar.tickWidth = 2
 	E.db.unitframe.units.player.castbar.timeToHold = 2
 	E.db.unitframe.units.player.castbar.xOffsetText = 2
 	E.db.unitframe.units.player.castbar.xOffsetTime = -2
