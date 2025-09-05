@@ -100,11 +100,13 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.auras.countXOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.auras.countYOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.auras.desaturate = false
+	E.db.nameplates.units.ENEMY_NPC.auras.filter = 'HELPFUL|HARMFUL'
 	E.db.nameplates.units.ENEMY_NPC.auras.height = 24
 	E.db.nameplates.units.ENEMY_NPC.auras.keepSizeRatio = false
-	E.db.nameplates.units.ENEMY_NPC.auras.priority = E.Retail and 'ImportantCC' or 'CCDebuffs'
+	E.db.nameplates.units.ENEMY_NPC.auras.maxDuration = 300
+	E.db.nameplates.units.ENEMY_NPC.auras.numAuras = 3
+	E.db.nameplates.units.ENEMY_NPC.auras.priority = E.Retail and 'Dispellable,ImportantCC' or 'Dispellable,CCDebuffs'
 	E.db.nameplates.units.ENEMY_NPC.auras.size = 30
-	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.enable = true
 	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.fontSize = 11
 	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.length = 5
@@ -119,8 +121,10 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.buffs.countXOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.buffs.countYOffset = 14
 	E.db.nameplates.units.ENEMY_NPC.buffs.desaturate = false
+	E.db.nameplates.units.ENEMY_NPC.buffs.enable = false
 	E.db.nameplates.units.ENEMY_NPC.buffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.buffs.fontSize = 10
+	E.db.nameplates.units.ENEMY_NPC.buffs.growthX = 'LEFT'
 	E.db.nameplates.units.ENEMY_NPC.buffs.maxDuration = 300
 	E.db.nameplates.units.ENEMY_NPC.buffs.numAuras = 2
 	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Dispellable'
