@@ -167,7 +167,6 @@ function Private:Setup_PrivateDB(includePlugins)
 
 	E.private.install_complete = E.version
 
-	E.private.nameplates.enable = false
 	E.private.skins.parchmentRemoverEnable = true
 
 	if includePlugins and E.Retail then

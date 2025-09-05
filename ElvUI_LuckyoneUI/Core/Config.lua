@@ -345,11 +345,11 @@ function L1UI:Config()
 	L1UI.Options.args.dev.args.spacer1 = ACH:Spacer(2, 'full')
 	L1UI.Options.args.dev.args.information = ACH:Group('Information', nil, 3)
 	L1UI.Options.args.dev.args.information.inline = true
-	L1UI.Options.args.dev.args.information.args.desc = ACH:Description('If you can see this section of the config, it means you enabled the LuckyoneUI developer mode.\n\nWhile this mode is enabled, the following will change:\n\n- Profiles created by the installer will no longer add the version suffix to the profile name.\n- Profile installer make additional adjustments as listed below.', 1, 'medium')
+	L1UI.Options.args.dev.args.information.args.desc = ACH:Description('If you can see this section of the config, it means you enabled the LuckyoneUI developer mode.\n\nWhile this mode is enabled, the following will change:\n\n- Profiles created by the installer will no longer add the version suffix to the profile name.\n- Profile installer make additional database adjustments as listed below.', 1, 'medium')
 	L1UI.Options.args.dev.args.spacer2 = ACH:Spacer(4, 'full')
 	L1UI.Options.args.dev.args.db = ACH:Group('Developer ProfileDB', nil, 5)
 	L1UI.Options.args.dev.args.db.inline = true
-	L1UI.Options.args.dev.args.db.args.desc = ACH:Description('- ElvUI chat bubble skinning disabled (To use texture replacements)\n- ElvUI bags module disabled (To use Baganator)\n- ElvUI nameplates module disabled (To use Plater)\n\n- TargetTarget frame disabled\n- TargetTarget name added to Target frame text format\n\n- LuckyoneUI Alert Frame hider enabled\n- LuckyoneUI Boss Banner hider enabled\n- LuckyoneUI Easy Delete enabled', 1, 'medium')
+	L1UI.Options.args.dev.args.db.args.desc = ACH:Description('- ElvUI chat bubble skinning disabled (To use texture replacements)\n- ElvUI bags module disabled (To use Baganator)\n- LuckyoneUI Alert Frame hider enabled\n- LuckyoneUI Boss Banner hider enabled\n- LuckyoneUI Easy Delete enabled\n- LuckyoneUI Privacy Overlay enabled', 1, 'medium')
 	L1UI.Options.args.dev.args.header2 = ACH:Header(format('|cffC80000%s|r','Luckys Private Section'), 6)
 	L1UI.Options.args.dev.args.spacer3 = ACH:Spacer(7, 'full')
 	L1UI.Options.args.dev.args.privateInfo = ACH:Group('Important information', nil, 8)
