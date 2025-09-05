@@ -444,6 +444,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.auras.buffs.horizontalSpacing = 1
 	E.db.auras.buffs.seperateOwn = 0
 	E.db.auras.buffs.size = 22
+	E.db.auras.buffs.sortMethod = 'INDEX'
 	E.db.auras.buffs.timeFont = Private.Font
 	E.db.auras.buffs.timeFontOutline = Private.Outline
 	E.db.auras.buffs.timeXOffset = 1
@@ -459,6 +460,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.auras.debuffs.maxWraps = 2
 	E.db.auras.debuffs.seperateOwn = 0
 	E.db.auras.debuffs.size = 22
+	E.db.auras.debuffs.sortMethod = 'INDEX'
 	E.db.auras.debuffs.timeFont = Private.Font
 	E.db.auras.debuffs.timeFontOutline = Private.Outline
 	E.db.auras.debuffs.timeXOffset = 1
