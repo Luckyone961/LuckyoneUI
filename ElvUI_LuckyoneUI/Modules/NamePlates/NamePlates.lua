@@ -268,7 +268,6 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.size = 16
 	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.xOffset = 0
 	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.yOffset = 1
-	E.db.nameplates.units.ENEMY_PLAYER.smartAuraPosition = 'FLUID_BUFFS_ON_DEBUFFS'
 	E.db.nameplates.units.ENEMY_PLAYER.title.format = ''
 
 	-- Friendly NPC
