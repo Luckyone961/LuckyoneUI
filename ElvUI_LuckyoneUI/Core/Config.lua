@@ -2,7 +2,7 @@
 local format = format
 local pairs = pairs
 local sort = sort
-local tconcat = table.concat
+local concat = table.concat
 local tinsert = table.insert
 local tonumber = tonumber
 local tostring = tostring
@@ -39,7 +39,7 @@ local function ProcessList(list)
 	for _, name in pairs(list) do
 		tinsert(Private.Credits, name)
 	end
-	return tconcat(list, '|n')
+	return concat(list, '|n')
 end
 
 local AUTHOR_STRING = ProcessList(AUTHOR)
@@ -186,16 +186,6 @@ function L1UI:Config()
 	L1UI.Options.args.layouts.args.thewarwithin.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout_TheWarWithin('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.layouts.args.thewarwithin.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout_TheWarWithin('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	L1UI.Options.args.layouts.args.thewarwithin.args.support = ACH:Execute(format('|cff33937F%s', L["Augmentation"]), L["No ActionBars and centered Raid Frames"], 3, function() Private:Setup_Layout_TheWarWithin('support') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.layouts.args.header3 = ACH:Header(L["Archive - Old Layouts"], 5)
-	L1UI.Options.args.layouts.args.dragonflight = ACH:Group('Dragonflight ' .. L["Layouts"] .. ' (' .. 'v2.00' .. ') (' .. format('|cffC80000%s', L["Outdated"]) .. ')', nil, 6)
-	L1UI.Options.args.layouts.args.dragonflight.inline = true
-	L1UI.Options.args.layouts.args.dragonflight.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout_Dragonflight('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.layouts.args.dragonflight.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout_Dragonflight('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.layouts.args.dragonflight.args.support = ACH:Execute(format('|cff33937F%s', L["Augmentation"]), L["No ActionBars and centered Raid Frames"], 3, function() Private:Setup_Layout_Dragonflight('support') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.layouts.args.shadowlands = ACH:Group('Shadowlands ' .. L["Layouts"] .. ' (' .. 'v1.00' .. ') (' .. format('|cffC80000%s', L["Outdated"]) .. ')', nil, 7)
-	L1UI.Options.args.layouts.args.shadowlands.inline = true
-	L1UI.Options.args.layouts.args.shadowlands.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout_Shadowlands('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.layouts.args.shadowlands.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout_Shadowlands('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 
 	-- Graphics
 	L1UI.Options.args.graphics = ACH:Group(L["Graphics"], nil, 8, nil, nil, nil, nil)
@@ -304,22 +294,23 @@ function L1UI:Config()
 	L1UI.Options.args.weakauras.args.edits.args.spacer = ACH:Spacer(3, 'full')
 	L1UI.Options.args.weakauras.args.edits.args.importButtonTanks = ACH:Execute(L["Tanks"], nil, 4, function() Private:WeakAurasImport('customEditsTanks') end)
 	L1UI.Options.args.weakauras.args.edits.args.importButtonHealers = ACH:Execute(L["Healers"], nil, 5, function() Private:WeakAurasImport('customEditsHealers') end)
-	L1UI.Options.args.weakauras.args.misc = ACH:Group(L["WeakAuras - General"], nil, 3)
-	L1UI.Options.args.weakauras.args.misc.inline = true
-	L1UI.Options.args.weakauras.args.misc.args.keys = ACH:Execute('!keys command', nil, 1, function() Private:WeakAurasImport('keys') end)
-	L1UI.Options.args.weakauras.args.misc.args.elvuiMythicVisibility = ACH:Execute('ElvUI Mythic Handler', nil, 2, function() Private:WeakAurasImport('elvuiMythicVisibility') end)
-	L1UI.Options.args.weakauras.args.misc.args.spacerOne = ACH:Spacer(3, 'full')
-	L1UI.Options.args.weakauras.args.misc.args.externals = ACH:Execute('Externals on You', nil, 4, function() Private:WeakAurasImport('externals') end)
-	L1UI.Options.args.weakauras.args.misc.args.groupfinderAppTextHide = ACH:Execute('Groupfinder AppText Hide', nil, 5, function() Private:WeakAurasImport('groupfinderAppTextHide') end)
-	L1UI.Options.args.weakauras.args.misc.args.handleFriendlyNamePlates = ACH:Execute('Handle Friendly Plates', nil, 6, function() Private:WeakAurasImport('handleFriendlyNamePlates') end)
-	L1UI.Options.args.weakauras.args.misc.args.spacerTwo = ACH:Spacer(7, 'full')
-	L1UI.Options.args.weakauras.args.misc.args.handleNamePlatesFont = ACH:Execute('Handle Plates Font ', nil, 8, function() Private:WeakAurasImport('handleNamePlatesFont') end)
-	L1UI.Options.args.weakauras.args.misc.args.playerFrameUtilities = ACH:Execute('Player Frame Utility', nil, 9, function() Private:WeakAurasImport('playerFrameUtilities') end)
-	L1UI.Options.args.weakauras.args.misc.args.trinket = ACH:Execute('Trinket Tracker', nil, 10, function() Private:WeakAurasImport('trinket') end)
-	L1UI.Options.args.weakauras.args.dungeons = ACH:Group(L["WeakAuras - Dungeons"], nil, 4)
-	L1UI.Options.args.weakauras.args.dungeons.inline = true
-	L1UI.Options.args.weakauras.args.dungeons.args.affixes = ACH:Execute('Affixes', nil, 1, function() Private:WeakAurasImport('affixes') end)
-	L1UI.Options.args.weakauras.args.dungeons.args.dungeonCore = ACH:Execute('TWW Season 3', nil, 2, function() Private:WeakAurasImport('dungeonCore') end)
+	L1UI.Options.args.weakauras.args.general = ACH:Group(L["WeakAuras - General"], nil, 3)
+	L1UI.Options.args.weakauras.args.general.inline = true
+	L1UI.Options.args.weakauras.args.general.args.keys = ACH:Execute('!keys command', nil, 1, function() Private:WeakAurasImport('keys') end)
+	L1UI.Options.args.weakauras.args.general.args.elvuiMythicVisibility = ACH:Execute('ElvUI Mythic Handler', nil, 2, function() Private:WeakAurasImport('elvuiMythicVisibility') end)
+	L1UI.Options.args.weakauras.args.general.args.spacerOne = ACH:Spacer(3, 'full')
+	L1UI.Options.args.weakauras.args.general.args.externals = ACH:Execute('Externals on You', nil, 4, function() Private:WeakAurasImport('externals') end)
+	L1UI.Options.args.weakauras.args.general.args.groupfinderAppTextHide = ACH:Execute('Groupfinder AppText Hide', nil, 5, function() Private:WeakAurasImport('groupfinderAppTextHide') end)
+	L1UI.Options.args.weakauras.args.general.args.handleFriendlyNamePlates = ACH:Execute('Handle Friendly Plates', nil, 6, function() Private:WeakAurasImport('handleFriendlyNamePlates') end)
+	L1UI.Options.args.weakauras.args.general.args.spacerTwo = ACH:Spacer(7, 'full')
+	L1UI.Options.args.weakauras.args.general.args.handleNamePlatesFont = ACH:Execute('Handle Plates Font ', nil, 8, function() Private:WeakAurasImport('handleNamePlatesFont') end)
+	L1UI.Options.args.weakauras.args.general.args.playerFrameUtilities = ACH:Execute('Player Frame Utility', nil, 9, function() Private:WeakAurasImport('playerFrameUtilities') end)
+	L1UI.Options.args.weakauras.args.general.args.trinket = ACH:Execute('Trinket Tracker', nil, 10, function() Private:WeakAurasImport('trinket') end)
+	L1UI.Options.args.weakauras.args.other = ACH:Group(L["WeakAuras - Other"], nil, 4)
+	L1UI.Options.args.weakauras.args.other.inline = true
+	L1UI.Options.args.weakauras.args.other.args.affixes = ACH:Execute('Affixes', nil, 1, function() Private:WeakAurasImport('affixes') end)
+	L1UI.Options.args.weakauras.args.other.args.dungeonCore = ACH:Execute('Season 3 Dungeon', nil, 2, function() Private:WeakAurasImport('dungeonCore') end)
+	L1UI.Options.args.weakauras.args.other.args.raidCore = ACH:Execute('Season 3 Raid', nil, 2, function() Private:WeakAurasImport('raidCore') end)
 
 	-- Credits
 	L1UI.Options.args.credits = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 15)
