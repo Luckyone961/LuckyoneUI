@@ -103,7 +103,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.auras.height = 24
 	E.db.nameplates.units.ENEMY_NPC.auras.keepSizeRatio = false
 	E.db.nameplates.units.ENEMY_NPC.auras.numAuras = 3
-	E.db.nameplates.units.ENEMY_NPC.auras.priority = E.Retail and 'Dispellable,ImportantCC' or 'Dispellable,CCDebuffs'
+	E.db.nameplates.units.ENEMY_NPC.auras.priority = E.Retail and 'ImportantCC' or 'CCDebuffs'
 	E.db.nameplates.units.ENEMY_NPC.auras.size = 30
 	E.db.nameplates.units.ENEMY_NPC.auras.sortMethod = 'INDEX'
 	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.font = Private.Font
