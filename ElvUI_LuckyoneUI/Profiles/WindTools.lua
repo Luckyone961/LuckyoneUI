@@ -11,7 +11,7 @@ local _, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- WindTools ProfileDB
--- LC: 31/08/2025
+-- LC: 07/09/2025
 function Private:Setup_WindTools(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and E.Retail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
@@ -27,10 +27,10 @@ function Private:Setup_WindTools(installer)
 
 	-- Global db
 	E.global.WT.core.loginMessage = false
-	E.global.WT.core.noDuplicatedParty = true
 
 	-- Personal favorite list for the mailbox
 	if Private.itsLuckyone then
+		E.db.WT.item.contacts.defaultPage = 'FAVORITE'
 		E.global.WT.item.contacts.favorites = {
 			['Lucky-LaughingSkull'] = true,
 			['Luckytwo-LaughingSkull'] = true,
@@ -68,7 +68,6 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.combat.quickKeystone.enable = false
 	E.db.WT.combat.raidMarkers.enable = false
 	E.db.WT.item.alreadyKnown.enable = false
-	E.db.WT.item.contacts.defaultPage = 'FAVORITE'
 	E.db.WT.item.delete.enable = false
 	E.db.WT.item.extraItemsBar.enable = false
 	E.db.WT.item.fastLoot.limit = 0.05
@@ -81,9 +80,12 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.maps.whoClicked.stayTime = 2
 	E.db.WT.maps.whoClicked.yOffset = 19
 	E.db.WT.misc.disableTalkingHead = true
+	E.db.WT.misc.exitPhaseDiving.enable = false
 	E.db.WT.misc.gameBar.enable = false
 	E.db.WT.misc.noLootPanel = true
 	E.db.WT.quest.switchButtons.announcement = false
+	E.db.WT.quest.switchButtons.font.color.b = 1
+	E.db.WT.quest.switchButtons.font.color.g = 1
 	E.db.WT.quest.turnIn.mode = 'COMPLETE'
 	E.db.WT.quest.turnIn.pauseModifier = 'ANY'
 	E.db.WT.quest.turnIn.selectReward = false
@@ -91,24 +93,32 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.social.chatBar.enable = false
 	E.db.WT.social.chatLink.armorCategory = false
 	E.db.WT.social.chatLink.icon = false
+	E.db.WT.social.chatLink.iconHeight = 12
+	E.db.WT.social.chatLink.iconWidth = 12
 	E.db.WT.social.chatLink.level = false
+	E.db.WT.social.chatLink.numericalQualityTier = true
 	E.db.WT.social.chatLink.translateItem = false
 	E.db.WT.social.chatLink.weaponCategory = false
-	E.db.WT.social.chatText.enable = false
+	E.db.WT.social.chatText.bnetFriendOnline = false
+	E.db.WT.social.chatText.classIcon = false
+	E.db.WT.social.chatText.factionIcon = false
+	E.db.WT.social.chatText.guildMemberStatusInviteLink = false
+	E.db.WT.social.chatText.removeRealm = false
+	E.db.WT.social.chatText.roleIconSize = 12
+	E.db.WT.social.chatText.roleIconStyle = 'DEFAULT'
 	E.db.WT.social.contextMenu.enable = false
 	E.db.WT.social.emote.enable = false
 	E.db.WT.social.friendList.hideMaxLevel = false
 	E.db.WT.social.friendList.infoFont.size = 10
 	E.db.WT.social.friendList.nameFont.size = 11
+	E.db.WT.social.friendList.textures.gameIcon = 'FACTION'
 	E.db.WT.social.friendList.useClientColor = false
 	E.db.WT.social.smartTab.enable = false
 	E.db.WT.tooltips.elvUITweaks.betterMythicPlusInfo.enable = false
 	E.db.WT.tooltips.elvUITweaks.raceIcon.enable = false
 	E.db.WT.tooltips.elvUITweaks.specIcon.enable = false
-	E.db.WT.tooltips.groupInfo.enable = true
 	E.db.WT.tooltips.groupInfo.mode = 'COMPACT'
 	E.db.WT.tooltips.groupInfo.template = '{{classColorStart}}{{specName}}{{classColorEnd}}{{amountStart}} x {{amount}}{{amountEnd}}'
-	E.db.WT.tooltips.groupInfo.title = false
 	E.db.WT.tooltips.keystone.enable = false
 
 	-- Protect movers error
@@ -127,13 +137,14 @@ function Private:Setup_WindTools(installer)
 end
 
 -- WindTools PrivateDB
--- LC: 31/08/2025
+-- LC: 07/09/2025
 function Private:Setup_Private_WindTools()
 
 	-- Restore defaults
 	E.private.WT = E:CopyTable({}, V.WT)
 
 	-- Private db
+	E.private.WT.item.extendMerchantPages.enable = true
 	E.private.WT.maps.minimapButtons.backdrop = false
 	E.private.WT.maps.minimapButtons.backdropSpacing = 0
 	E.private.WT.maps.minimapButtons.buttonSize = 22
@@ -155,14 +166,24 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.misc.moveSpeed = true
 	E.private.WT.misc.pauseToSlash = false
 	E.private.WT.misc.tags = false
+	E.private.WT.quest.objectiveTracker.cosmeticBar.border = 'ONEPIXEL'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.color.mode = 'CLASS'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = Private.Texture
-	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 230
-	E.private.WT.quest.objectiveTracker.noDash = false
+	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 252
+	E.private.WT.quest.objectiveTracker.enable = not Private.IsAddOnLoaded('ElvUI_SLE')
+	E.private.WT.quest.objectiveTracker.header.classColor = true
+	E.private.WT.quest.objectiveTracker.header.size = 12
+	E.private.WT.quest.objectiveTracker.info.size = 11
+	E.private.WT.quest.objectiveTracker.infoColor.customColorHighlight.b = 1
+	E.private.WT.quest.objectiveTracker.infoColor.customColorHighlight.g = 1
+	E.private.WT.quest.objectiveTracker.infoColor.customColorHighlight.r = 1
+	E.private.WT.quest.objectiveTracker.infoColor.customColorNormal.b = 1
+	E.private.WT.quest.objectiveTracker.infoColor.customColorNormal.g = 1
+	E.private.WT.quest.objectiveTracker.infoColor.customColorNormal.r = 1
+	E.private.WT.quest.objectiveTracker.menuTitle.classColor = true
+	E.private.WT.quest.objectiveTracker.menuTitle.font.size = 12
 	E.private.WT.quest.objectiveTracker.titleColor.classColor = true
-	E.private.WT.skins.addons.ace3 = false
-	E.private.WT.skins.addons.ace3DropdownBackdrop = false
-	E.private.WT.skins.addons.adiBags = false
+	E.private.WT.skins.actionStatus.size = 12
 	E.private.WT.skins.addons.angryKeystones = false
 	E.private.WT.skins.addons.bigWigs = false
 	E.private.WT.skins.addons.bugSack = false
@@ -173,19 +194,18 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.skins.addons.omniCDIcon = false
 	E.private.WT.skins.addons.omniCDStatusBar = false
 	E.private.WT.skins.addons.premadeGroupsFilter = false
-	E.private.WT.skins.addons.rematch = false
 	E.private.WT.skins.addons.tinyInspect = false
-	E.private.WT.skins.addons.tldrMissions = false
 	E.private.WT.skins.addons.tomCats = false
 	E.private.WT.skins.addons.warpDeplete = false
 	E.private.WT.skins.addons.weakAuras = false
 	E.private.WT.skins.addons.weakAurasOptions = false
+	E.private.WT.skins.addons.worldQuestTab = false
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.name = Private.Font
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.size = 12
 	E.private.WT.skins.blizzard.enable = false
 	E.private.WT.skins.elvui.enable = false
 	E.private.WT.skins.ime.label.name = Private.Font
-	E.private.WT.skins.rollResult.name = Private.Font
+	E.private.WT.skins.ime.label.size = 12
 	E.private.WT.skins.shadow = false
 	E.private.WT.skins.weakAurasShadow = false
 	E.private.WT.skins.widgets.button.backdrop.classColor = true
@@ -211,11 +231,10 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.skins.widgets.treeGroupButton.selected.borderClassColor = true
 	E.private.WT.skins.widgets.treeGroupButton.selected.texture = Private.Texture
 	E.private.WT.tooltips.factionIcon = false
-	E.private.WT.tooltips.icon = false
-	E.private.WT.tooltips.objectiveProgress = false
 	E.private.WT.tooltips.petIcon = false
 	E.private.WT.tooltips.petId = false
 	E.private.WT.tooltips.progression.enable = false
 	E.private.WT.tooltips.tierSet = false
+	E.private.WT.tooltips.titleIcon.enable = false
 	E.private.WT.unitFrames.roleIcon.enable = false
 end

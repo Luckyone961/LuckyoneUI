@@ -107,8 +107,10 @@ function Private:Setup_ShadowAndLight(installer)
 
 	E.db.sle.raidmarkers.enable = false
 
-	E.db.sle.skins.objectiveTracker.classHeader = true
-	E.db.sle.skins.objectiveTracker.underlineClass = true
+	if not Private.IsAddOnLoaded('ElvUI_WindTools') then
+		E.db.sle.skins.objectiveTracker.classHeader = true
+		E.db.sle.skins.objectiveTracker.underlineClass = true
+	end
 
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["Shadow&Light profile has been set."])
