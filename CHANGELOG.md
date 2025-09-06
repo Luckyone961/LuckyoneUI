@@ -1,11 +1,24 @@
 ### Version 3.25 [In Development]
+**TLDR:**  
+A complete re-run of the installer is recommended if you want all the updates  
+Full ElvUI 14 support and hundreds of small QOL tweaks across the layout  
 **All WoW Versions:**  
-Health bar on tooltips is now disabled by default  
-Removed archived old layouts (Shadowlands, Dragonflight)  
-Updated BigWigs profile string  
-Updated ElvUI NamePlates  
+Added a custom statusbar texture to LibSharedMedia called Bubbles  
+Optimized code for some custom tags to perform even better  
+Optimized filtering priorities for buffs and debuffs across all frames  
+Removed old Shadowlands and Dragonflight layouts from the database  
+Reworked ElvUI nameplates from scratch to match Plater (including all colors)  
+Reworked the majority of /lucky config and added more cosmetic graphics toggles  
+TargetTarget frame is now off by default and Target of Target name is part of the Target frame  
+The spellname on the player castbar is now off by default (Cast time still shows)  
+The ticks on the player castbar are now less transparent and twice as big in width  
+Tooltip healthbar and health information at the top is now disabled by default  
+Updated boss frames spacing and castbar size as well as castbar icon position  
+WeakAura imports in the config are back to being handled via Wago urls for faster updates  
 **Retail:**  
-Reworked WeakAuras section in the config (Import via Wago URL, Notes in chat print)  
+Updated aura setup to include frame highlighting for Preservation Evoker Echo  
+Updated BigWigs profile strings to include keystone module settings  
+Updated WindTools profile  
 ___
 ### Version 3.24 [16-08-2025]
 **All WoW Versions:**  
