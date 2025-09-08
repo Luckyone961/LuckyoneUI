@@ -37,6 +37,22 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.colors.healthclass = false
 		E.db.unitframe.colors.useDeadBackdrop = true
 
+		-- Highlighting
+		E.db.unitframe.colors.debuffHighlight.blendMode = 'ADD'
+
+		E.db.unitframe.colors.debuffHighlight.Bleed.a = 0.45
+		E.db.unitframe.colors.debuffHighlight.Curse.a = 0.45
+		E.db.unitframe.colors.debuffHighlight.Disease.a = 0.45
+		E.db.unitframe.colors.debuffHighlight.Magic.a = 0.45
+		E.db.unitframe.colors.debuffHighlight.Poison.a = 0.45
+
+		E.db.unitframe.colors.healPrediction.absorbs.a = 0.25
+		E.db.unitframe.colors.healPrediction.healAbsorbs.a = 0.25
+		E.db.unitframe.colors.healPrediction.others.a = 0.25
+		E.db.unitframe.colors.healPrediction.overabsorbs.a = 0.25
+		E.db.unitframe.colors.healPrediction.overhealabsorbs.a = 0.25
+		E.db.unitframe.colors.healPrediction.personal.a = 0.25
+
 		-- Text colors
 		E.db.unitframe.units.arena.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
 		E.db.unitframe.units.boss.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
@@ -50,9 +66,6 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
 
-		-- Castbar color
-		E.db.unitframe.units.player.castbar.customColor.enable = true
-
 	elseif theme == 'class' then
 
 		-- Frame colors
@@ -63,6 +76,22 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.colors.health_backdrop.r = 0.05
 		E.db.unitframe.colors.healthclass = true
 		E.db.unitframe.colors.useDeadBackdrop = true
+
+		-- Highlighting
+		E.db.unitframe.colors.debuffHighlight.blendMode = 'ALPHAKEY'
+
+		E.db.unitframe.colors.debuffHighlight.Bleed.a = 1
+		E.db.unitframe.colors.debuffHighlight.Curse.a = 1
+		E.db.unitframe.colors.debuffHighlight.Disease.a = 1
+		E.db.unitframe.colors.debuffHighlight.Magic.a = 1
+		E.db.unitframe.colors.debuffHighlight.Poison.a = 1
+
+		E.db.unitframe.colors.healPrediction.absorbs.a = 0.6
+		E.db.unitframe.colors.healPrediction.healAbsorbs.a = 0.6
+		E.db.unitframe.colors.healPrediction.others.a = 0.6
+		E.db.unitframe.colors.healPrediction.overabsorbs.a = 0.6
+		E.db.unitframe.colors.healPrediction.overhealabsorbs.a = 0.6
+		E.db.unitframe.colors.healPrediction.personal.a = 0.6
 
 		-- Text colors
 		E.db.unitframe.units.arena.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor]'
@@ -76,9 +105,6 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.raidpet.name.text_format = '[luckyone:name:veryshort-nocolor]'
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor][ |r» >luckyone:target:last-classcolor]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor]'
-
-		-- Castbar color
-		E.db.unitframe.units.player.castbar.customColor.enable = false
 
 	end
 

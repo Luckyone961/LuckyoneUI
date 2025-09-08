@@ -653,7 +653,6 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.font = Private.Font
 	E.db.unitframe.fontOutline = Private.Outline
 	E.db.unitframe.fontSize = 11
-	E.db.unitframe.modifiers.ALT = 'Blacklist'
 	E.db.unitframe.statusbar = Private.Texture
 	E.db.unitframe.targetOnMouseDown = true
 	E.db.unitframe.targetSound = true

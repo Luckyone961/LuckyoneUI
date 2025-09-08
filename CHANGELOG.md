@@ -7,6 +7,7 @@ Added a custom statusbar texture to LibSharedMedia called Bubbles
 Optimized code for some custom tags to perform even better  
 Optimized filtering priorities for buffs and debuffs across all frames  
 Removed old Shadowlands and Dragonflight layouts from the database  
+Reworked colors and transparency for absorbs and dispels in the "Class Color" theme  
 Reworked ElvUI nameplates from scratch to match Plater (including all colors)  
 Reworked the majority of /lucky config and added more cosmetic graphics toggles  
 TargetTarget frame is now off by default and Target of Target name is part of the Target frame  
