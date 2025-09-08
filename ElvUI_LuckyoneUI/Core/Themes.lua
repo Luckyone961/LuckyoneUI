@@ -53,6 +53,10 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.colors.healPrediction.overhealabsorbs.a = 0.25
 		E.db.unitframe.colors.healPrediction.personal.a = 0.25
 
+		E.db.unitframe.colors.healPrediction.overabsorbs.b = 1
+		E.db.unitframe.colors.healPrediction.overabsorbs.g = 1
+		E.db.unitframe.colors.healPrediction.overabsorbs.r = 0
+
 		-- Text colors
 		E.db.unitframe.units.arena.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
 		E.db.unitframe.units.boss.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
@@ -92,6 +96,10 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.colors.healPrediction.overabsorbs.a = 0.6
 		E.db.unitframe.colors.healPrediction.overhealabsorbs.a = 0.6
 		E.db.unitframe.colors.healPrediction.personal.a = 0.6
+
+		E.db.unitframe.colors.healPrediction.overabsorbs.b = 0
+		E.db.unitframe.colors.healPrediction.overabsorbs.g = 1
+		E.db.unitframe.colors.healPrediction.overabsorbs.r = 1
 
 		-- Text colors
 		E.db.unitframe.units.arena.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor]'
