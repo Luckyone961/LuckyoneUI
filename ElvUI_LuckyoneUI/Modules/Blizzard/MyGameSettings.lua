@@ -8,11 +8,6 @@ local _, Private = ...
 -- From top to bottom in ESC > Options
 function Private:SyncSettings()
 
-	-- Run general functions first
-	Private:Setup_Chat()
-	Private:Setup_CVars(true)
-	Private:NameplateCVars(true)
-
 	-- Gameplay > Controls > General
 	SetCVar('deselectOnClick', 1)
 	SetCVar('autoDismountFlying', 1)
@@ -82,7 +77,6 @@ function Private:SyncSettings()
 
 	-- Gameplay > Action Bars > General
 	SetCVar('enableMultiActionBars', 0)
-	SetCVar('lockActionBars', 1)
 	SetCVar('countdownForCooldowns', 0)
 
 	-- Gameplay > Combat > General
@@ -316,7 +310,7 @@ function Private:SyncSettings()
 	SetCVar('Sound_EnableSFX', 1)
 	SetCVar('Sound_EnablePetSounds', 1)
 	SetCVar('Sound_EnableEmoteSounds', 1)
-	SetCVar('Sound_GameplaySFX', 1)
+	SetCVar('Sound_GameplaySFX', 0.8)
 	SetCVar('Sound_EnableDialog', 1)
 	SetCVar('Sound_EnableErrorSpeech', 0)
 	SetCVar('Sound_EnableAmbience', 0)
@@ -338,7 +332,7 @@ function Private:SyncSettings()
 	SetCVar('useIPv6', 0)
 	SetCVar('advancedCombatLogging', 1)
 
-	-- Custom
+	-- Hidden & Unlisted
 	SetCVar('assaoSharpness', 1)
 	SetCVar('cameraIndirectOffset', 10)
 	SetCVar('checkAddonVersion', 0)
@@ -363,6 +357,11 @@ function Private:SyncSettings()
 	SetCVar('timeMgrUseLocalTime', 1)
 	SetCVar('UnitNamePlayerGuild', 0)
 	SetCVar('UnitNamePlayerPVPTitle', 0)
+
+	-- LuckyoneUI modules
+	Private:Setup_Chat()
+	Private:Setup_CVars(true)
+	Private:NameplateCVars(true)
 
 	Private:Print('Synced game settings.')
 end
