@@ -20,7 +20,7 @@ Updated target castbar height from 18 to 20 to match BigWigs bar height
 WeakAura imports in the config are back to being handled via Wago urls for faster updates  
 **Retail:**  
 Updated aura setup to include frame highlighting for Preservation Evoker Echo  
-Updated BigWigs profile strings to include keystone module settings  
+Updated BigWigs profile (Keystone module, Battle Ress module, Nameplate module)  
 Updated WindTools profile (Objective Tracker, Chat Tweaks, Skins)  
 ___
 ### Version 3.25 [07-09-2025]
