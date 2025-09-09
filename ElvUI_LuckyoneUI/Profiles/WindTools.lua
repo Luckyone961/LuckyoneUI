@@ -11,7 +11,7 @@ local _, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- WindTools ProfileDB
--- LC: 07/09/2025
+-- LC: 09/09/2025
 function Private:Setup_WindTools(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and E.Retail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
@@ -137,11 +137,16 @@ function Private:Setup_WindTools(installer)
 end
 
 -- WindTools PrivateDB
--- LC: 07/09/2025
+-- LC: 09/09/2025
 function Private:Setup_Private_WindTools()
 
 	-- Restore defaults
 	E.private.WT = E:CopyTable({}, V.WT)
+
+	-- To avoid compatibility popup
+	if not Private.IsAddOnLoaded('ElvUI_SLE') then
+		E.private.WT.quest.objectiveTracker.enable = true
+	end
 
 	-- Private db
 	E.private.WT.item.extendMerchantPages.enable = true
@@ -170,7 +175,6 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.quest.objectiveTracker.cosmeticBar.color.mode = 'CLASS'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = Private.Texture
 	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 252
-	E.private.WT.quest.objectiveTracker.enable = not Private.IsAddOnLoaded('ElvUI_SLE')
 	E.private.WT.quest.objectiveTracker.header.classColor = true
 	E.private.WT.quest.objectiveTracker.header.size = 12
 	E.private.WT.quest.objectiveTracker.info.size = 11

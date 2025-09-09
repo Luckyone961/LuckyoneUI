@@ -21,7 +21,7 @@ WeakAura imports in the config are back to being handled via Wago urls for faste
 **Retail:**  
 Updated aura setup to include frame highlighting for Preservation Evoker Echo  
 Updated BigWigs profile strings to include keystone module settings  
-Updated WindTools profile  
+Updated WindTools profile (Objective Tracker, Chat Tweaks, Skins)  
 ___
 ### Version 3.25 [07-09-2025]
 **All WoW Versions:**  
