@@ -103,7 +103,7 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.social.chatText.classIcon = false
 	E.db.WT.social.chatText.factionIcon = false
 	E.db.WT.social.chatText.guildMemberStatusInviteLink = false
-	E.db.WT.social.chatText.removeRealm = false
+	E.db.WT.social.chatText.mergeAchievement = false
 	E.db.WT.social.chatText.roleIconSize = 12
 	E.db.WT.social.chatText.roleIconStyle = 'DEFAULT'
 	E.db.WT.social.contextMenu.enable = false
