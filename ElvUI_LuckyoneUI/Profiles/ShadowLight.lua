@@ -61,7 +61,7 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.afk.defaultTexts.SL_Time.font = Private.Font
 	E.db.sle.afk.defaultTexts.SL_Time.size = 26
 	E.db.sle.afk.defaultTexts.SL_Time.yOffset = -10
-	E.db.sle.afk.enable = true
+	E.db.sle.afk.enable = false
 	E.db.sle.afk.playermodel.enable = false
 	E.db.sle.armory.character.background.overlay = false
 	E.db.sle.armory.character.background.selectedBG = 'HIDE'
