@@ -14,7 +14,7 @@ local _, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- Shadow & Light ProfileDB
--- LC: 14/03/2025
+-- LC: 09/09/2025
 function Private:Setup_ShadowAndLight(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_SLE') and E.Retail) then Private:Print('|cff9482c9Shadow & Light|r ' .. L["is not installed or enabled."]) return end
 
@@ -31,7 +31,6 @@ function Private:Setup_ShadowAndLight(installer)
 
 	-- Profile DB
 	E.db.sle.actionbar.vehicle.enabled = false
-
 	E.db.sle.afk.chat.show = false
 	E.db.sle.afk.defaultGraphics.classCrest.enable = false
 	E.db.sle.afk.defaultGraphics.elvuiLogo.enable = false
@@ -64,7 +63,6 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.afk.defaultTexts.SL_Time.yOffset = -10
 	E.db.sle.afk.enable = true
 	E.db.sle.afk.playermodel.enable = false
-
 	E.db.sle.armory.character.background.overlay = false
 	E.db.sle.armory.character.background.selectedBG = 'HIDE'
 	E.db.sle.armory.character.durability.display = 'Hide'
@@ -104,9 +102,9 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.armory.stats.statLabels.font = Private.Font
 	E.db.sle.armory.stats.statLabels.fontOutline = Private.Outline
 	E.db.sle.armory.stats.statLabels.fontSize = 11
-
 	E.db.sle.raidmarkers.enable = false
 
+	-- To avoid compatibility popup
 	if not Private.IsAddOnLoaded('ElvUI_WindTools') then
 		E.db.sle.skins.objectiveTracker.classHeader = true
 		E.db.sle.skins.objectiveTracker.underlineClass = true
@@ -120,7 +118,7 @@ function Private:Setup_ShadowAndLight(installer)
 end
 
 -- Shadow & Light PrivateDB
--- LC: 06/02/2025
+-- LC: 09/09/2025
 function Private:Setup_Private_ShadowAndLight()
 
 	-- Get version
