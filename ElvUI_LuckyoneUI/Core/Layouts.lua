@@ -763,8 +763,10 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.pvpclassificationindicator.xOffset = -40
 	E.db.unitframe.units.arena.pvpSpecIcon = false
 	E.db.unitframe.units.arena.pvpTrinket.size = 41
-	E.db.unitframe.units.arena.raidicon.size = 10
-	E.db.unitframe.units.arena.raidicon.yOffset = -1
+	E.db.unitframe.units.arena.raidicon.attachTo = 'RIGHT'
+	E.db.unitframe.units.arena.raidicon.size = 60
+	E.db.unitframe.units.arena.raidicon.xOffset = 82
+	E.db.unitframe.units.arena.raidicon.yOffset = 1
 	E.db.unitframe.units.arena.spacing = 18
 	E.db.unitframe.units.arena.width = 210
 
@@ -865,8 +867,10 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.power.strataAndLevel.frameStrata = 'MEDIUM'
 	E.db.unitframe.units.boss.power.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.boss.power.text_format = ''
-	E.db.unitframe.units.boss.raidicon.size = 10
-	E.db.unitframe.units.boss.raidicon.yOffset = -1
+	E.db.unitframe.units.boss.raidicon.attachTo = 'RIGHT'
+	E.db.unitframe.units.boss.raidicon.size = 40
+	E.db.unitframe.units.boss.raidicon.xOffset = 42
+	E.db.unitframe.units.boss.raidicon.yOffset = 1
 	E.db.unitframe.units.boss.spacing = 18
 	E.db.unitframe.units.boss.width = 210
 
