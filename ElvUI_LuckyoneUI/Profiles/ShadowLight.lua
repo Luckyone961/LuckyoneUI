@@ -103,11 +103,12 @@ function Private:Setup_ShadowAndLight(installer)
 	E.db.sle.armory.stats.statLabels.fontOutline = Private.Outline
 	E.db.sle.armory.stats.statLabels.fontSize = 11
 	E.db.sle.raidmarkers.enable = false
+	E.db.sle.skins.objectiveTracker.classHeader = true
+	E.db.sle.skins.objectiveTracker.underlineClass = true
 
 	-- To avoid compatibility popup
-	if not Private.IsAddOnLoaded('ElvUI_WindTools') then
-		E.db.sle.skins.objectiveTracker.classHeader = true
-		E.db.sle.skins.objectiveTracker.underlineClass = true
+	if Private.IsAddOnLoaded('ElvUI_WindTools') then
+		E.db.sle.skins.objectiveTracker.underline = false
 	end
 
 	if installer then

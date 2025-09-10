@@ -143,11 +143,6 @@ function Private:Setup_Private_WindTools()
 	-- Restore defaults
 	E.private.WT = E:CopyTable({}, V.WT)
 
-	-- To avoid compatibility popup
-	if not Private.IsAddOnLoaded('ElvUI_SLE') then
-		E.private.WT.quest.objectiveTracker.enable = true
-	end
-
 	-- Private db
 	E.private.WT.item.extendMerchantPages.enable = true
 	E.private.WT.maps.minimapButtons.backdrop = false
@@ -175,6 +170,7 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.quest.objectiveTracker.cosmeticBar.color.mode = 'CLASS'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = Private.Texture
 	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 252
+	E.private.WT.quest.objectiveTracker.enable = true
 	E.private.WT.quest.objectiveTracker.header.classColor = true
 	E.private.WT.quest.objectiveTracker.header.size = 12
 	E.private.WT.quest.objectiveTracker.info.size = 11
