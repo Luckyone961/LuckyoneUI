@@ -17,8 +17,11 @@
 - The ticks on the player castbar are now less transparent and twice as big in width  
 - Tooltip healthbar and health information at the top is now disabled by default  
 - Tweaked some anchor positions on the 1080p scaled layouts  
+- Updated arena frames spacing and castbar size as well as castbar icon position  
 - Updated boss frames spacing and castbar size as well as castbar icon position  
+- Updated deDE localization  
 - Updated Details profile  
+- Updated ptBR localization (Credits: Eltreum)  
 - Updated sorting method for top auras next to the minimap to index like Blizzard  
 - Updated target castbar height from 18 to 20 to match BigWigs bar height  
 - WeakAura imports in the config are back to being handled via Wago urls for faster updates  
