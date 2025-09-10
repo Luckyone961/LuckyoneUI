@@ -6,7 +6,7 @@ local unpack = unpack
 local _, Private = ...
 
 -- ElvUI modules
-local E = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 
 -- Function to add IDs to a list
 local function Add(list, ids, value)
