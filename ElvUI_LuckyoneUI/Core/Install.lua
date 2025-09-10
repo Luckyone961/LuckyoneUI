@@ -86,10 +86,10 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["1440p = Default | 1080p = Downscaled"] .. '.')
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() E.global.L1UI.scaled = false Private:Print(L["Layout Scale"] .. ' 1440p') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() E.global.L1UI.scaled = false Private:Print(L["Layout Scale"] .. ' 1440p') _G.LuckyoneInstallStepComplete:ShowMessage(L["Layout Scale"] .. ' 1440p') end)
 			PluginInstallFrame.Option1:SetText('1440p')
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() E.global.L1UI.scaled = true Private:Print(L["Layout Scale"] .. ' 1080p') end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() E.global.L1UI.scaled = true Private:Print(L["Layout Scale"] .. ' 1080p') _G.LuckyoneInstallStepComplete:ShowMessage(L["Layout Scale"] .. ' 1080p') end)
 			PluginInstallFrame.Option2:SetText('1080p')
 		end,
 		[3] = function()
