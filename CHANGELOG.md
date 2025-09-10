@@ -6,6 +6,7 @@
 
 **All WoW Versions:**  
 - Added a custom statusbar texture to LibSharedMedia called Bubbles  
+- Added a new installer step for ElvUI aura filters  
 - Optimized code for some custom tags to perform even better  
 - Optimized filtering priorities for buffs and debuffs across all frames  
 - Removed old Shadowlands and Dragonflight layouts from the database  

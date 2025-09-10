@@ -44,6 +44,7 @@ L["Cosmetic"] = "Косметика"
 L["Creates an overlay to hide the chat frame in the Communities Frame until you click on it."] = true
 L["Credits"] = "Благодарности"
 L["Current"] = true
+L["Custom ElvUI aura filters loaded."] = true
 L["CVars have been set."] = "CVars установлены."
 L["Dark Style (Default)"] = "Темный стиль (по умолчанию)"
 L["Dark"] = "Темная"

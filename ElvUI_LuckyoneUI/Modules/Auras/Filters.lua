@@ -15,6 +15,23 @@ local function Add(list, ids, value)
 	end
 end
 
+-- Aura filters: Installer Function
+function Private:Setup_Filters(installer)
+	if E.Retail then
+		Private:Setup_Filters_Retail()
+	elseif E.Mists then
+		Private:Setup_Filters_Mists()
+	elseif E.Classic then
+		Private:Setup_Filters_Classic()
+	end
+
+	if installer then
+		_G.LuckyoneInstallStepComplete:ShowMessage(L["Custom ElvUI aura filters loaded."])
+	end
+
+	Private:Print(L["Custom ElvUI aura filters loaded."])
+end
+
 -- Aura filters: Retail
 function Private:Setup_Filters_Retail()
 	if not E.Retail then return end
