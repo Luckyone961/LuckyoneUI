@@ -40,8 +40,6 @@ local CH = E:GetModule('Chat')
 function Private:Setup_Chat(installer)
 	-- General
 	local chats = _G.CHAT_FRAMES
-	-- 1080p
-	local scaled = E.global.L1UI.scaled
 
 	-- CVars Chat
 	SetCVar('chatClassColorOverride', 0)
@@ -77,7 +75,7 @@ function Private:Setup_Chat(installer)
 		end
 
 		-- Font size for all tabs
-		FCF_SetChatWindowFontSize(nil, frame, (scaled and 10) or 11)
+		FCF_SetChatWindowFontSize(nil, frame, 11)
 
 		-- Tabs
 		if id == 1 then

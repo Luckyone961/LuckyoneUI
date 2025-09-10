@@ -145,7 +145,7 @@ function L1UI:Config()
 	L1UI.Options.args.privateDB.args.header = ACH:Header(L["Character specific"], 1)
 	L1UI.Options.args.privateDB.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 2)
 	L1UI.Options.args.privateDB.args.defaults.inline = true
-	L1UI.Options.args.privateDB.args.defaults.args.private = ACH:Execute(L["Restore Defaults"], nil, 1, function() Private:Setup_PrivateDB() E:UpdateMediaItems(true) end, nil, true)
+	L1UI.Options.args.privateDB.args.defaults.args.private = ACH:Execute(L["Restore Defaults"], nil, 1, function() Private:Setup_PrivateDB(true) E:UpdateMediaItems(true) end, nil, true)
 	L1UI.Options.args.privateDB.args.defaultsDesc = ACH:Group(L["The following data will be updated"], nil, 3)
 	L1UI.Options.args.privateDB.args.defaultsDesc.inline = true
 	L1UI.Options.args.privateDB.args.defaultsDesc.args.cvars = ACH:Description('- All Fonts: Expressway\n- All Font Outlines: Outline\n- All Textures: Minimalist\n\n- Friendly Nameplate Font Sizes\n- Totem Tracker: disabled\n- Parchment Remover: enabled\n\n- (Classic Only) Make Shamans blue instead of pink\n- (Retail Only) Character specific settings for Shadow&Light and WindTools', 1, 'medium')
