@@ -281,45 +281,55 @@ function Private:Setup_Filters_Retail()
 
 	-- Monk
 	classes['MONK'][325209] = {
-		["point"] = "BOTTOMRIGHT",
-		["xOffset"] = -14,
-		["sizeOffset"] = 4,
+		["point"] = "TOPLEFT",
+		["xOffset"] = 33,
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
 	}
 	classes['MONK'][115175] = {
-		["point"] = "TOPRIGHT",
-		["xOffset"] = -14,
-		["sizeOffset"] = 4,
+		["point"] = "BOTTOMLEFT",
+		["xOffset"] = -1,
+		["displayText"] = true,
+		["yOffset"] = -1,
+		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
 	}
 	classes['MONK'][116849] = {
-		["point"] = "TOPLEFT",
-		["sizeOffset"] = 4,
+		["point"] = "RIGHT",
+		["displayText"] = true,
+		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
+		["xOffset"] = 1,
 	}
 	classes['MONK'][119611] = {
-		["point"] = "TOPRIGHT",
 		["displayText"] = true,
+		["yOffset"] = 1,
 		["countY"] = 0,
-		["sizeOffset"] = 4,
+		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
-		["cooldownY"] = 0,
-	}
-	classes['MONK'][124682] = {
-		["point"] = "BOTTOMRIGHT",
-		["displayText"] = true,
-		["countY"] = 0,
-		["sizeOffset"] = 4,
-		["style"] = "texturedIcon",
-		["countX"] = 0,
+		["xOffset"] = -1,
 		["cooldownY"] = 0,
 	}
 	classes['MONK'][116841] = {
-		["point"] = "TOPLEFT",
-		["anyUnit"] = true,
-		["sizeOffset"] = 4,
+		["point"] = "TOPRIGHT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
-		["xOffset"] = 14,
+		["xOffset"] = 1,
+	}
+	classes['MONK'][124682] = {
+		["point"] = "TOPLEFT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["countY"] = 0,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["countX"] = 0,
+		["xOffset"] = 16,
+		["cooldownY"] = 0,
 	}
 
 	-- Paladin
