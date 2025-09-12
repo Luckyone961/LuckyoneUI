@@ -115,7 +115,7 @@ function Private:Setup_Filters_Retail()
 	classes['EVOKER'][360827] = {
 		["countAnchor"] = "BOTTOM",
 		["point"] = "TOPLEFT",
-		["sizeOffset"] = 6,
+		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
 		["xOffset"] = -1,
 		["yOffset"] = 1,
@@ -175,7 +175,7 @@ function Private:Setup_Filters_Retail()
 		["id"] = 369459,
 		["onlyShowMissing"] = false,
 		["point"] = "TOPLEFT",
-		["sizeOffset"] = 6,
+		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
 		["textThreshold"] = -1,
 		["xOffset"] = -1,
@@ -212,7 +212,7 @@ function Private:Setup_Filters_Retail()
 	classes['EVOKER'][406789] = {
 		["displayText"] = true,
 		["point"] = "TOP",
-		["sizeOffset"] = 6,
+		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
 		["yOffset"] = 1,
 	}
@@ -244,7 +244,7 @@ function Private:Setup_Filters_Retail()
 		["countY"] = 1,
 		["textThreshold"] = -1,
 		["countAnchor"] = "BOTTOMRIGHT",
-		["sizeOffset"] = 6,
+		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
 		["cooldownY"] = 1,
 		["countX"] = 1,
