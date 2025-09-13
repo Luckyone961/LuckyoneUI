@@ -62,7 +62,7 @@ function Private:Setup_Filters_Retail()
 		blacklist = { 393957, 382428, 388755 },
 		whitelist = {},
 		-- Healers
-		DRUID = { 207386, 188550, 155777, 203554, 774, 102351, 102352, 8936, 33763, 48438, 200389 },
+		DRUID = { 207386, 188550, 155777, 203554, 774, 102351, 102352, 8936, 33763, 48438, 200389, 157982, 391891 },
 		EVOKER = { 367364, 376788, 363502, 406732, 410089, 364343, 395152, 373267, 366155, 369459, 357170, 360827, 355941, 406789, 361022, 412710 },
 		MONK = { 325209, 115175, 116849, 119611, 124682, 116841 },
 		PALADIN = { 1044, 200025, 148039, 6940, 156910, 157047, 204018, 223306, 53563, 1022, 395180, 156322 },
@@ -85,17 +85,79 @@ function Private:Setup_Filters_Retail()
 	end
 
 	-- Druid
-	classes['DRUID'][207386]['style'] = 'texturedIcon'
-	classes['DRUID'][188550]['style'] = 'texturedIcon'
-	classes['DRUID'][155777]['style'] = 'texturedIcon'
-	classes['DRUID'][203554]['style'] = 'texturedIcon'
-	classes['DRUID'][774]['style'] = 'texturedIcon'
-	classes['DRUID'][102351]['style'] = 'texturedIcon'
-	classes['DRUID'][102352]['style'] = 'texturedIcon'
-	classes['DRUID'][8936]['style'] = 'texturedIcon'
-	classes['DRUID'][33763]['style'] = 'texturedIcon'
-	classes['DRUID'][48438]['style'] = 'texturedIcon'
-	classes['DRUID'][200389]['style'] = 'texturedIcon'
+	classes['DRUID'][188550] = { -- Lifebloom
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 33,
+	}
+	classes['DRUID'][33763] = { -- Lifebloom
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 33,
+	}
+	classes['DRUID'][774] = { -- Rejuvenation
+		["point"] = "TOPLEFT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
+	}
+	classes['DRUID'][155777] = { -- Rejuvenation (Germination)
+		["point"] = "TOPLEFT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 16,
+	}
+	classes['DRUID'][8936] = { -- Regrowth
+		["point"] = "TOPRIGHT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -16,
+	}
+	classes['DRUID'][48438] = { -- Wild Growth
+		["point"] = "TOPRIGHT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes['DRUID'][391891] = { -- Adaptive Swarm
+		["point"] = "TOPRIGHT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -33,
+	}
+	classes['DRUID'][102351] = { -- Cenarion Ward
+		["point"] = "RIGHT",
+		["displayText"] = true,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes['DRUID'][102352] = { -- Cenarion Ward
+		["point"] = "RIGHT",
+		["displayText"] = true,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+
+	classes['DRUID'][207386]["enabled"] = false -- Spring Blossoms
+	classes['DRUID'][203554]["enabled"] = false -- Focused Growth
+	classes['DRUID'][157982]["enabled"] = false -- Tranquility
+	classes['DRUID'][200389]["enabled"] = false -- Cultivation
 
 	-- Evoker
 	classes['EVOKER'][355941] = {
