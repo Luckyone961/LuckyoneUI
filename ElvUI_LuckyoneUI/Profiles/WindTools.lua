@@ -11,7 +11,7 @@ local _, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- WindTools ProfileDB
--- LC: 09/09/2025
+-- LC: 14/09/2025
 function Private:Setup_WindTools(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and E.Retail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
@@ -30,23 +30,27 @@ function Private:Setup_WindTools(installer)
 
 	-- Personal favorite list for the mailbox
 	if Private.itsLuckyone then
-		E.db.WT.item.contacts.defaultPage = 'FAVORITE'
-		E.global.WT.item.contacts.favorites = {
-			['Lucky-LaughingSkull'] = true,
-			['Luckytwo-LaughingSkull'] = true,
-			['Luckyone-LaughingSkull'] = true,
-			['Luckymonkas-LaughingSkull'] = true,
-			['Luckypriest-LaughingSkull'] = true,
-			['Luckydh-LaughingSkull'] = true,
-			['Luckydk-LaughingSkull'] = true,
-			['Luckyhunter-LaughingSkull'] = true,
-			['Luckymage-LaughingSkull'] = true,
-			['Luckypala-LaughingSkull'] = true,
-			['Luckyrogue-LaughingSkull'] = true,
-			['Luckywl-LaughingSkull'] = true,
-			['Notlucky-LaughingSkull'] = true,
-			['Unluckyone-LaughingSkull'] = true
+		E.global.WT.item.contacts.alts = {}
+		E.global.WT.item.contacts.alts['Laughing Skull'] = {}
+		E.global.WT.item.contacts.alts['Laughing Skull']['Horde'] = {
+			['Notlucky'] = 'WARRIOR',
+			['Lucky'] = 'EVOKER',
+			['Luckyhunter'] = 'HUNTER',
+			['Luckytwo'] = 'EVOKER',
+			['Luckypala'] = 'PALADIN',
+			['Luckypriest'] = 'PRIEST',
+			['Unluckyone'] = 'SHAMAN',
+			['Luckydh'] = 'DEMONHUNTER',
+			['Luckydk'] = 'DEATHKNIGHT',
+			['Luckywl'] = 'WARLOCK',
+			['Luckymage'] = 'MAGE',
+			['Luckyrogue'] = 'ROGUE',
 		}
+		E.global.WT.item.contacts.alts['Laughing Skull']['Alliance'] = {
+			['Luckyone'] = 'DRUID',
+			['Luckymonkas'] = 'MONK',
+		}
+		E.global.WT.item.contacts.updateAlts = false
 	end
 
 	-- Private db
