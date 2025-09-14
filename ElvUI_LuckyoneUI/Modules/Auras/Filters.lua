@@ -154,7 +154,6 @@ function Private:Setup_Filters_Retail()
 		['style'] = 'texturedIcon',
 		['xOffset'] = 1,
 	}
-
 	classes['DRUID'][207386]['enabled'] = false -- Spring Blossoms
 	classes['DRUID'][203554]['enabled'] = false -- Focused Growth
 	classes['DRUID'][157982]['enabled'] = false -- Tranquility
@@ -466,7 +465,6 @@ function Private:Setup_Filters_Retail()
 		["style"] = "texturedIcon",
 		["xOffset"] = 1,
 	}
-
 	classes['PALADIN'][157047]['enabled'] = false -- Saved by the Light
 	classes['PALADIN'][156322]['enabled'] = false -- Eternal Flame
 	classes['PALADIN'][223306]['enabled'] = false -- Bestow Faith
@@ -531,7 +529,6 @@ function Private:Setup_Filters_Retail()
 		["style"] = "texturedIcon",
 		["xOffset"] = 1,
 	}
-
 	classes['PRIEST'][77489]['enabled'] = false -- Echo of Light
 	classes['PRIEST'][193065]['enabled'] = false -- Protective Light
 
