@@ -66,7 +66,7 @@ function Private:Setup_Filters_Retail()
 		DRUID = { 207386, 188550, 155777, 203554, 774, 102351, 102352, 8936, 33763, 48438, 200389, 157982, 391891 },
 		EVOKER = { 367364, 376788, 363502, 406732, 410089, 364343, 395152, 373267, 366155, 369459, 357170, 360827, 355941, 406789, 361022, 412710 },
 		MONK = { 325209, 115175, 116849, 119611, 124682, 116841 },
-		PALADIN = { 1044, 200025, 148039, 6940, 156910, 157047, 204018, 53563, 1022, 395180, 156322 },
+		PALADIN = { 1044, 200025, 148039, 6940, 156910, 157047, 204018, 53563, 1022, 395180, 156322, 223306, 431381 },
 		PRIEST = { 139, 193065, 10060, 17, 33206, 194384, 41635, 47788, 6788, 77489 },
 		SHAMAN = { 61295, 383648, 974 },
 		-- Others
@@ -392,17 +392,84 @@ function Private:Setup_Filters_Retail()
 	}
 
 	-- Paladin
-	classes['PALADIN'][1044]['style'] = 'texturedIcon' -- Hand of Freedom
-	classes['PALADIN'][200025]['style'] = 'texturedIcon' -- Beacon of Virtue
-	classes['PALADIN'][156322]['style'] = 'texturedIcon' -- Eternal Flame
-	classes['PALADIN'][148039]['style'] = 'texturedIcon' -- Barrier of Faith (Accumulation)
-	classes['PALADIN'][6940]['style'] = 'texturedIcon' -- Hand of Sacrifice
-	classes['PALADIN'][156910]['style'] = 'texturedIcon' -- Beacon of Faith
-	classes['PALADIN'][157047]['style'] = 'texturedIcon' -- Saved by the Light
-	classes['PALADIN'][204018]['style'] = 'texturedIcon' -- Blessing of Spellwarding
-	classes['PALADIN'][53563]['style'] = 'texturedIcon' -- Beacon of Light
-	classes['PALADIN'][1022]['style'] = 'texturedIcon' -- Hand of Protection
-	classes['PALADIN'][395180]['style'] = 'texturedIcon' -- Barrier of Faith (Absorbtion)
+	classes['PALADIN'][431381] = { -- Dawnlight
+		["point"] = "TOPLEFT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
+	}
+	classes['PALADIN'][6940] = { -- Hand of Sacrifice
+		["point"] = "TOPLEFT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 16,
+	}
+	classes['PALADIN'][148039] = { -- Barrier of Faith (Accumulation)
+		["point"] = "TOPRIGHT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -16,
+	}
+	classes['PALADIN'][395180] = { -- Barrier of Faith (Absorbtion)
+		["point"] = "TOPRIGHT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -16,
+	}
+	classes['PALADIN'][53563] = { -- Beacon of Light
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes['PALADIN'][200025] = { -- Beacon of Virtue
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes['PALADIN'][156910] = { -- Beacon of Faith
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes['PALADIN'][1022] = { -- Hand of Protection
+		["point"] = "RIGHT",
+		["displayText"] = true,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes['PALADIN'][204018] = { -- Blessing of Spellwarding
+		["point"] = "RIGHT",
+		["displayText"] = true,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes['PALADIN'][1044] = { -- Hand of Freedom
+		["displayText"] = true,
+		["yOffset"] = -1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+
+	classes['PALADIN'][157047]['enabled'] = false -- Saved by the Light
+	classes['PALADIN'][156322]['enabled'] = false -- Eternal Flame
+	classes['PALADIN'][223306]['enabled'] = false -- Bestow Faith
 
 	-- Priest
 	classes['PRIEST'][139]['style'] = 'texturedIcon' -- Renew
