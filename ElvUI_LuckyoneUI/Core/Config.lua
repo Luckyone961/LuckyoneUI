@@ -319,7 +319,9 @@ function L1UI:Config()
 	L1UI.Options.args.links.args.discord = ACH:Input('Discord:', nil, 5, nil, 'full', function() return 'https://discord.luckyone.dev' end)
 	L1UI.Options.args.links.args.issues = ACH:Input(L["Report issues here:"], nil, 6, nil, 'full', function() return 'https://tickets.luckyone.dev' end)
 	L1UI.Options.args.links.args.guide = ACH:Input(L["Wowhead Guide:"], nil, 7, nil, 'full', function() return 'https://guide.luckyone.dev' end)
-	L1UI.Options.args.links.args.homepage = ACH:Input(L["Homepage:"], nil, 8, nil, 'full', function() return 'https://luckyone.dev' end)
+	L1UI.Options.args.links.args.twitch = ACH:Input('Twitch:', nil, 8, nil, 'full', function() return 'https://twitch.luckyone.dev' end)
+	L1UI.Options.args.links.args.youtube = ACH:Input('YouTube:', nil, 9, nil, 'full', function() return 'https://youtube.luckyone.dev' end)
+	L1UI.Options.args.links.args.homepage = ACH:Input(L["Homepage:"], nil, 10, nil, 'full', function() return 'https://luckyone.dev' end)
 
 	-- Developer config
 	L1UI.Options.args.dev = ACH:Group(format('|cff4beb2c%s|r', 'Developer'), nil, 17)
