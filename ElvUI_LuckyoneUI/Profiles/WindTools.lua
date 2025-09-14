@@ -28,31 +28,6 @@ function Private:Setup_WindTools(installer)
 	-- Global db
 	E.global.WT.core.loginMessage = false
 
-	-- Personal favorite list for the mailbox
-	if Private.itsLuckyone then
-		E.global.WT.item.contacts.alts = {}
-		E.global.WT.item.contacts.alts['Laughing Skull'] = {}
-		E.global.WT.item.contacts.alts['Laughing Skull']['Horde'] = {
-			['Notlucky'] = 'WARRIOR',
-			['Lucky'] = 'EVOKER',
-			['Luckyhunter'] = 'HUNTER',
-			['Luckytwo'] = 'EVOKER',
-			['Luckypala'] = 'PALADIN',
-			['Luckypriest'] = 'PRIEST',
-			['Unluckyone'] = 'SHAMAN',
-			['Luckydh'] = 'DEMONHUNTER',
-			['Luckydk'] = 'DEATHKNIGHT',
-			['Luckywl'] = 'WARLOCK',
-			['Luckymage'] = 'MAGE',
-			['Luckyrogue'] = 'ROGUE',
-		}
-		E.global.WT.item.contacts.alts['Laughing Skull']['Alliance'] = {
-			['Luckyone'] = 'DRUID',
-			['Luckymonkas'] = 'MONK',
-		}
-		E.global.WT.item.contacts.updateAlts = false
-	end
-
 	-- Private db
 	Private:Setup_Private_WindTools()
 
@@ -124,6 +99,31 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.tooltips.groupInfo.mode = 'COMPACT'
 	E.db.WT.tooltips.groupInfo.template = '{{classColorStart}}{{specName}}{{classColorEnd}}{{amountStart}} x {{amount}}{{amountEnd}}'
 	E.db.WT.tooltips.keystone.enable = false
+
+	-- Mailbox favorite list
+	if Private.itsLuckyone then
+		E.global.WT.item.contacts.alts = {}
+		E.global.WT.item.contacts.alts['Laughing Skull'] = {}
+		E.global.WT.item.contacts.alts['Laughing Skull']['Horde'] = {
+			['Notlucky'] = 'WARRIOR',
+			['Lucky'] = 'EVOKER',
+			['Luckyhunter'] = 'HUNTER',
+			['Luckytwo'] = 'EVOKER',
+			['Luckypala'] = 'PALADIN',
+			['Luckypriest'] = 'PRIEST',
+			['Unluckyone'] = 'SHAMAN',
+			['Luckydh'] = 'DEMONHUNTER',
+			['Luckydk'] = 'DEATHKNIGHT',
+			['Luckywl'] = 'WARLOCK',
+			['Luckymage'] = 'MAGE',
+			['Luckyrogue'] = 'ROGUE',
+		}
+		E.global.WT.item.contacts.alts['Laughing Skull']['Alliance'] = {
+			['Luckyone'] = 'DRUID',
+			['Luckymonkas'] = 'MONK',
+		}
+		E.global.WT.item.contacts.updateAlts = false
+	end
 
 	-- Protect movers error
 	E.db.movers = E.db.movers or {}
