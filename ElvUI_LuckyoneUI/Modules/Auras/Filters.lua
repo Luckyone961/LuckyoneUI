@@ -240,7 +240,7 @@ function Private:Setup_Filters_Retail()
 	classes['EVOKER'][406732] = { -- Spatial Paradox (Player)
 		['displayText'] = true,
 		['point'] = 'TOP',
-		['sizeOffset'] = 6,
+		['sizeOffset'] = 2,
 		['style'] = 'texturedIcon',
 		['yOffset'] = 1,
 	}
@@ -250,12 +250,6 @@ function Private:Setup_Filters_Retail()
 		['sizeOffset'] = 2,
 		['style'] = 'texturedIcon',
 		['yOffset'] = 1,
-	}
-	classes['EVOKER'][395152] = { -- Ebon Might (Others)
-		['displayText'] = true,
-		['enabled'] = false,
-		['sizeOffset'] = 6,
-		['style'] = 'texturedIcon',
 	}
 	classes['EVOKER'][410089] = { -- Prescience
 		['color'] = {
@@ -290,7 +284,7 @@ function Private:Setup_Filters_Retail()
 	}
 	classes['EVOKER'][361022] = { -- Sense Power
 		['point'] = 'BOTTOMLEFT',
-		['sizeOffset'] = 6,
+		['sizeOffset'] = 2,
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 		['yOffset'] = -1,
@@ -336,6 +330,7 @@ function Private:Setup_Filters_Retail()
 		['xOffset'] = -1,
 		['onlyShowMissing'] = false,
 	}
+	classes['EVOKER'][395152]['enabled'] = false -- Ebon Might (Others)
 
 	-- Monk
 	classes['MONK'][119611] = { -- Renewing Mist
