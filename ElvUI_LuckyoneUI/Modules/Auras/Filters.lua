@@ -536,9 +536,30 @@ function Private:Setup_Filters_Retail()
 	classes['PRIEST'][193065]['enabled'] = false -- Protective Light
 
 	-- Shaman
-	classes['SHAMAN'][61295]['style'] = 'texturedIcon' -- Riptide
-	classes['SHAMAN'][383648]['style'] = 'texturedIcon' -- Earth Shield (Elemental Orbit)
-	classes['SHAMAN'][974]['style'] = 'texturedIcon' -- Earth Shield
+	classes['SHAMAN'][61295] = { -- Riptide
+		["point"] = "TOPLEFT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
+	}
+	classes['SHAMAN'][383648] = { -- Earth Shield (Elemental Orbit)
+		["point"] = "TOPLEFT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 16,
+	}
+	classes['SHAMAN'][974] = { -- Earth Shield
+		["point"] = "TOPLEFT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 16,
+	}
 
 	-- Hunter
 	classes['HUNTER'][90361]['style'] = 'texturedIcon' -- Spirit Mend
