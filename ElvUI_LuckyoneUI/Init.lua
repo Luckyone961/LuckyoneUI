@@ -43,7 +43,7 @@ local function Initialize()
 	end
 
 	-- Shadow & Light installer skip
-	if E.private.sle.install_complete == nil and E.Retail then
+	if (E.Retail and E.private.sle) and E.private.sle.install_complete == nil then
 		E.private.sle.install_complete = tonumber(GetAddOnMetadata('ElvUI_SLE', 'Version'))
 	end
 
