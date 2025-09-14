@@ -472,16 +472,68 @@ function Private:Setup_Filters_Retail()
 	classes['PALADIN'][223306]['enabled'] = false -- Bestow Faith
 
 	-- Priest
-	classes['PRIEST'][139]['style'] = 'texturedIcon' -- Renew
-	classes['PRIEST'][193065]['style'] = 'texturedIcon' -- Masochism
-	classes['PRIEST'][10060]['style'] = 'texturedIcon' -- Power Infusion
-	classes['PRIEST'][17]['style'] = 'texturedIcon' -- Power Word: Shield
-	classes['PRIEST'][33206]['style'] = 'texturedIcon' -- Pain Suppression
-	classes['PRIEST'][194384]['style'] = 'texturedIcon' -- Atonement
-	classes['PRIEST'][41635]['style'] = 'texturedIcon' -- Prayer of Mending
-	classes['PRIEST'][47788]['style'] = 'texturedIcon' -- Guardian Spirit
-	classes['PRIEST'][6788]['style'] = 'texturedIcon' -- Weakened Soul
-	classes['PRIEST'][77489]['style'] = 'texturedIcon' -- Echo of Light
+	classes['PRIEST'][194384] = { -- Atonement
+		["point"] = "TOPLEFT",
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
+	}
+	classes['PRIEST'][17] = { -- Power Word: Shield
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 16,
+	}
+	classes['PRIEST'][41635] = { -- Prayer of Mending
+		["point"] = "TOP",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+	}
+	classes['PRIEST'][139] = { -- Renew
+		["point"] = "TOPRIGHT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -16,
+	}
+	classes['PRIEST'][6788] = { -- Weakened Soul
+		["point"] = "TOPRIGHT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes['PRIEST'][33206] = { -- Pain Suppression
+		["point"] = "RIGHT",
+		["displayText"] = true,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes['PRIEST'][47788] = { -- Guardian Spirit
+		["point"] = "RIGHT",
+		["displayText"] = true,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes['PRIEST'][10060] = { -- Power Infusion
+		["point"] = "BOTTOMRIGHT",
+		["displayText"] = true,
+		["yOffset"] = -1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+
+	classes['PRIEST'][77489]['enabled'] = false -- Echo of Light
+	classes['PRIEST'][193065]['enabled'] = false -- Protective Light
 
 	-- Shaman
 	classes['SHAMAN'][61295]['style'] = 'texturedIcon' -- Riptide
