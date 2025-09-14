@@ -7,8 +7,9 @@ local _, Private = ...
 -- ElvUI modules
 local E = unpack(ElvUI)
 
--- The War Within layout db
-function Private:Layout_TheWarWithin(layout)
+-- ElvUI profile
+-- LC: 14/09/2025
+function Private:Setup_ElvUI(layout)
 	-- Global db
 	local scaled = E.global.L1UI.scaled
 	-- AB conversion

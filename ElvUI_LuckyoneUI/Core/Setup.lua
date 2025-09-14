@@ -194,7 +194,7 @@ function Private:Setup_PrivateDB(includePlugins)
 end
 
 -- Setup The War Within layout
-function Private:Setup_Layout_TheWarWithin(layout, installer)
+function Private:Setup_Layout(layout, installer)
 	if not E.Classic then
 		HandleLibDualSpec()
 	end
@@ -216,11 +216,11 @@ function Private:Setup_Layout_TheWarWithin(layout, installer)
 
 	-- E.db & Movers
 	if layout == 'main' then
-		Private:Layout_TheWarWithin('main')
+		Private:Setup_ElvUI('main')
 	elseif layout == 'healing' then
-		Private:Layout_TheWarWithin('healing')
+		Private:Setup_ElvUI('healing')
 	elseif layout == 'support' then
-		Private:Layout_TheWarWithin('support')
+		Private:Setup_ElvUI('support')
 	end
 
 	-- Push the update
