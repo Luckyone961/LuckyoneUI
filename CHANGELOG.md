@@ -19,19 +19,19 @@
 - Tooltip healthbar and health information at the top is now disabled by default  
 - Tweaked some anchor positions on the 1080p scaled layouts  
 - Updated arena frames spacing and castbar size as well as castbar icon position  
-- Updated aura indicators for hots, shields, externals (Size, Position, Icon Type, Duration)  
 - Updated boss frames spacing and castbar size as well as castbar icon position  
 - Updated deDE localization  
 - Updated Details profile  
 - Updated ptBR localization (Credits: Eltreum)  
 - Updated sorting method for top auras next to the minimap to index like Blizzard  
 - Updated target castbar height from 18 to 20 to match BigWigs bar height  
-- WeakAura imports in the config are back to being handled via Wago urls for faster updates  
 
 **Retail:**  
+- Updated aura indicators for hots, shields, externals (Size, Position, Icon Type, Duration)  
 - Updated aura setup to include frame highlighting for Preservation Evoker Echo  
 - Updated BigWigs profile (Keystone module, Battle Ress module, Nameplate module)  
 - Updated WindTools profile (Objective Tracker, Chat Tweaks, Skins)  
+- WeakAura imports in /lucky config are back to being handled via Wago urls for faster updates  
 
 ## Version 3.25 [07-09-2025]
 
