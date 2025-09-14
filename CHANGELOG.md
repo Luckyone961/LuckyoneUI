@@ -19,6 +19,7 @@
 - Tooltip healthbar and health information at the top is now disabled by default  
 - Tweaked some anchor positions on the 1080p scaled layouts  
 - Updated arena frames spacing and castbar size as well as castbar icon position  
+- Updated aura indicators for hots, shields, externals (Size, Position, Icon Type, Duration)  
 - Updated boss frames spacing and castbar size as well as castbar icon position  
 - Updated deDE localization  
 - Updated Details profile  
