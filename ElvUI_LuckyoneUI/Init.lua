@@ -6,6 +6,9 @@ local unpack = unpack
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 
+-- Library cache
+local LibStub = LibStub
+
 -- AddOn namespace
 local Name, Private = ...
 

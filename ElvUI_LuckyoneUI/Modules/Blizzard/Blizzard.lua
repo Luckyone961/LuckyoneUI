@@ -7,6 +7,9 @@ local hooksecurefunc = hooksecurefunc
 -- Global environment
 local _G = _G
 
+-- Global strings
+local DELETE_ITEM_CONFIRM_STRING = DELETE_ITEM_CONFIRM_STRING
+
 -- AddOn namespace
 local _, Private = ...
 
