@@ -1478,7 +1478,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,232,-1'
 	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,118') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,154'
-	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-70'
+	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-80'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
 	E.db.movers.VehicleSeatMover = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,493,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
