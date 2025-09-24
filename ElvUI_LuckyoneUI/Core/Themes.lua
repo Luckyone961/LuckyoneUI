@@ -37,15 +37,17 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.colors.healthclass = false
 		E.db.unitframe.colors.useDeadBackdrop = true
 
-		-- Highlighting
+		-- Highlighting mode
 		E.db.unitframe.colors.debuffHighlight.blendMode = 'ADD'
 
+		-- Highlighting alpha
 		E.db.unitframe.colors.debuffHighlight.Bleed.a = 0.45
 		E.db.unitframe.colors.debuffHighlight.Curse.a = 0.45
 		E.db.unitframe.colors.debuffHighlight.Disease.a = 0.45
 		E.db.unitframe.colors.debuffHighlight.Magic.a = 0.45
 		E.db.unitframe.colors.debuffHighlight.Poison.a = 0.45
 
+		-- Prediction & Absorb alpha
 		E.db.unitframe.colors.healPrediction.absorbs.a = 0.25
 		E.db.unitframe.colors.healPrediction.healAbsorbs.a = 0.25
 		E.db.unitframe.colors.healPrediction.others.a = 0.25
@@ -53,9 +55,19 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.colors.healPrediction.overhealabsorbs.a = 0.25
 		E.db.unitframe.colors.healPrediction.personal.a = 0.25
 
+		-- Prediction & Absorb colors
 		E.db.unitframe.colors.healPrediction.overabsorbs.b = 1
 		E.db.unitframe.colors.healPrediction.overabsorbs.g = 1
 		E.db.unitframe.colors.healPrediction.overabsorbs.r = 0
+
+		-- Castbar colors
+		E.db.unitframe.colors.castbar_backdrop.b = 0.61
+		E.db.unitframe.colors.castbar_backdrop.g = 0.56
+		E.db.unitframe.colors.castbar_backdrop.r = 0.54
+		E.db.unitframe.units.player.castbar.customColor.colorBackdrop.b = 0.61
+		E.db.unitframe.units.player.castbar.customColor.colorBackdrop.g = 0.56
+		E.db.unitframe.units.player.castbar.customColor.colorBackdrop.r = 0.54
+		E.db.unitframe.units.player.castbar.customColor.enable = true
 
 		-- Text colors
 		E.db.unitframe.units.arena.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-classcolor]'
@@ -81,15 +93,17 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.colors.healthclass = true
 		E.db.unitframe.colors.useDeadBackdrop = true
 
-		-- Highlighting
+		-- Highlighting mode
 		E.db.unitframe.colors.debuffHighlight.blendMode = 'ALPHAKEY'
 
+		-- Highlighting alpha
 		E.db.unitframe.colors.debuffHighlight.Bleed.a = 1
 		E.db.unitframe.colors.debuffHighlight.Curse.a = 1
 		E.db.unitframe.colors.debuffHighlight.Disease.a = 1
 		E.db.unitframe.colors.debuffHighlight.Magic.a = 1
 		E.db.unitframe.colors.debuffHighlight.Poison.a = 1
 
+		-- Prediction & Absorb alpha
 		E.db.unitframe.colors.healPrediction.absorbs.a = 0.6
 		E.db.unitframe.colors.healPrediction.healAbsorbs.a = 0.6
 		E.db.unitframe.colors.healPrediction.others.a = 0.6
@@ -97,9 +111,19 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.colors.healPrediction.overhealabsorbs.a = 0.6
 		E.db.unitframe.colors.healPrediction.personal.a = 0.6
 
+		-- Prediction & Absorb colors
 		E.db.unitframe.colors.healPrediction.overabsorbs.b = 0
 		E.db.unitframe.colors.healPrediction.overabsorbs.g = 1
 		E.db.unitframe.colors.healPrediction.overabsorbs.r = 1
+
+		-- Castbar colors
+		E.db.unitframe.colors.castbar_backdrop.b = 0.05
+		E.db.unitframe.colors.castbar_backdrop.g = 0.05
+		E.db.unitframe.colors.castbar_backdrop.r = 0.05
+		E.db.unitframe.units.player.castbar.customColor.colorBackdrop.b = 0.05
+		E.db.unitframe.units.player.castbar.customColor.colorBackdrop.g = 0.05
+		E.db.unitframe.units.player.castbar.customColor.colorBackdrop.r = 0.05
+		E.db.unitframe.units.player.castbar.customColor.enable = false
 
 		-- Text colors
 		E.db.unitframe.units.arena.customTexts.Luckyone_Name.text_format = '[luckyone:name:last-nocolor]'

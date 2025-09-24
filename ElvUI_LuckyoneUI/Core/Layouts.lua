@@ -646,6 +646,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.colors.power.MANA.r = 0
 	E.db.unitframe.colors.tapped.g = 0.56
 	E.db.unitframe.colors.tapped.r = 0.54
+	E.db.unitframe.colors.transparentCastbar = true
 	E.db.unitframe.colors.transparentHealth = true
 	E.db.unitframe.colors.transparentPower = true
 	E.db.unitframe.colors.useDeadBackdrop = true
@@ -1047,7 +1048,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.castbar.customColor.color.b = 0.05
 	E.db.unitframe.units.player.castbar.customColor.color.g = 0.05
 	E.db.unitframe.units.player.castbar.customColor.color.r = 0.05
-	E.db.unitframe.units.player.castbar.customColor.colorBackdrop.a = 0.89
+	E.db.unitframe.units.player.castbar.customColor.colorBackdrop.a = 0.9
 	E.db.unitframe.units.player.castbar.customColor.colorBackdrop.b = 0.61
 	E.db.unitframe.units.player.castbar.customColor.colorBackdrop.g = 0.56
 	E.db.unitframe.units.player.castbar.customColor.colorBackdrop.r = 0.54
@@ -1058,7 +1059,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.castbar.customColor.colorNoInterrupt.g = 0.05
 	E.db.unitframe.units.player.castbar.customColor.colorNoInterrupt.r = 0.05
 	E.db.unitframe.units.player.castbar.customColor.enable = true
-	E.db.unitframe.units.player.castbar.customColor.transparent = false
+	E.db.unitframe.units.player.castbar.customColor.transparent = true
 	E.db.unitframe.units.player.castbar.customColor.useCustomBackdrop = true
 	E.db.unitframe.units.player.castbar.customTextFont.enable = true
 	E.db.unitframe.units.player.castbar.customTextFont.font = Private.Font
