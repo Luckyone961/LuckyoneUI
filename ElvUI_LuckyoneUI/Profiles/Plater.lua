@@ -16,6 +16,9 @@ local E, L = unpack(ElvUI)
 function Private:Setup_Plater(installer)
 	if not Private.IsAddOnLoaded('Plater') then Private:Print('Plater ' .. L["is not installed or enabled."]) return end
 
+	-- Make sure the ElvUI module is off when using Plater
+	E.private.nameplates.enable = false
+
 	-- Global db
 	local dev = E.global.L1UI.dev
 

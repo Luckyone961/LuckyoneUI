@@ -7,6 +7,10 @@ local hooksecurefunc = hooksecurefunc
 
 -- Global environment
 local _G = _G
+local UIParent = UIParent
+
+-- Global constants
+local COMMUNITIES_FRAME_DISPLAY_MODES = COMMUNITIES_FRAME_DISPLAY_MODES
 
 -- AddOn namespace
 local _, Private = ...
@@ -18,9 +22,6 @@ local S = E:GetModule('Skins')
 -- Privacy overlay for the guild chat, useful for streamers and recordings, based on a outdated WeakAura on Wago
 function L1UI:PrivacyOverlay()
 	if not E.private.L1UI.qualityOfLife.privacyOverlay then return end
-
-	-- Global strings
-	local COMMUNITIES_FRAME_DISPLAY_MODES_CHAT = COMMUNITIES_FRAME_DISPLAY_MODES.CHAT
 
 	-- Create the overlay frame
 	local PrivacyOverlay = CreateFrame('Button', nil, UIParent)
@@ -48,7 +49,7 @@ function L1UI:PrivacyOverlay()
 
 	-- Show the overlay
 	local function ShowOverlay()
-		if _G.CommunitiesFrame:GetDisplayMode() == COMMUNITIES_FRAME_DISPLAY_MODES_CHAT then
+		if _G.CommunitiesFrame:GetDisplayMode() == COMMUNITIES_FRAME_DISPLAY_MODES.CHAT then
 			PrivacyOverlay:SetAllPoints(_G.CommunitiesFrame.Chat.InsetFrame)
 			PrivacyOverlay:Show()
 		else

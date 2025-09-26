@@ -16,6 +16,7 @@ local GetRelativeDifficultyColor = GetRelativeDifficultyColor
 local HasPetUI = HasPetUI
 local QuestDifficultyColors = QuestDifficultyColors
 local UnitBattlePetLevel = UnitBattlePetLevel
+local UnitClass = UnitClass
 local UnitClassification = UnitClassification
 local UnitEffectiveLevel = UnitEffectiveLevel
 local UnitGetTotalAbsorbs = UnitGetTotalAbsorbs

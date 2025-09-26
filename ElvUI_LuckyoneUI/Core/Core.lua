@@ -26,6 +26,7 @@ local _G = _G
 -- Global strings
 local ACCEPT = ACCEPT
 local CANCEL = CANCEL
+local OKAY = OKAY
 
 -- AddOn namespace
 local _, Private = ...
