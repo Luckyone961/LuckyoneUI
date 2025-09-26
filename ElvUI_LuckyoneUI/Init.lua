@@ -6,6 +6,9 @@ local unpack = unpack
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 
+-- Library cache
+local LibStub = LibStub
+
 -- AddOn namespace
 local Name, Private = ...
 
@@ -37,11 +40,18 @@ Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
 
 -- Initialize module in ElvUI
 local function Initialize()
-	if E.private.install_complete == nil then -- ElvUI installer skip
+	-- ElvUI installer skip
+	if E.private.install_complete == nil then
 		E.private.install_complete = E.version
 	end
 
-	if E.global.L1UI.install_version == nil then -- LuckyoneUI installer queue
+	-- Shadow & Light installer skip
+	if (E.Retail and E.private.sle) and E.private.sle.install_complete == nil then
+		E.private.sle.install_complete = tonumber(GetAddOnMetadata('ElvUI_SLE', 'Version'))
+	end
+
+	-- LuckyoneUI installer queue
+	if E.global.L1UI.install_version == nil then
 		PI:Queue(L1UI.InstallerData)
 	end
 

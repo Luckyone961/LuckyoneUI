@@ -4,7 +4,6 @@ local pairs = pairs
 local sort = sort
 local concat = table.concat
 local tinsert = table.insert
-local tonumber = tonumber
 local tostring = tostring
 local unpack = unpack
 
@@ -47,10 +46,6 @@ local CODING_STRING = ProcessList(CODING)
 local TESTER_STRING = ProcessList(TESTERS)
 local SUPPORT_STRING = ProcessList(SUPPORT)
 
-local function CheckRaid()
-	return tonumber(GetCVar('RAIDsettingsEnabled')) == 0 or nil
-end
-
 -- LuckyoneUI config panel
 function L1UI:Config()
 
@@ -73,13 +68,12 @@ function L1UI:Config()
 	L1UI.Options.args.setup.args.header1 = ACH:Header(Private.Name, 1)
 	L1UI.Options.args.setup.args.spacer1 = ACH:Spacer(2, 'full')
 	L1UI.Options.args.setup.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 3, function() PI:Queue(L1UI.InstallerData) E:ToggleOptions() end)
-	L1UI.Options.args.setup.args.dev = ACH:Toggle('Developer', "Enable this toggle to apply Luckyone's personal adjustments during the installation process.\n\nAdditional information section will show up at the bottom of the config after ReloadUI.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r", 4, nil, nil, nil, function() return E.global.L1UI.dev end, function(_, value) E.global.L1UI.dev = value end)
-	L1UI.Options.args.setup.args.spacer2 = ACH:Spacer(5, 'full')
-	L1UI.Options.args.setup.args.header2 = ACH:Header(L["Quick setup for alts"], 6)
-	L1UI.Options.args.setup.args.spacer3 = ACH:Spacer(7, 'full')
-	L1UI.Options.args.setup.args.altMain = ACH:Execute(L["Alt: "] .. L["DPS & Tanks"], L["Quick setup for alts"] .. '\n\n' .. L["This step will load your most recent LuckyoneUI profile."], 8, function() Private:HandleAlts('Main') end, nil, true)
-	L1UI.Options.args.setup.args.altHealing = ACH:Execute(L["Alt: "] .. L["Healing"], L["Quick setup for alts"] .. '\n\n' .. L["This step will load your most recent LuckyoneUI profile."], 9, function() Private:HandleAlts('Healing') end, nil, true)
-	L1UI.Options.args.setup.args.altSupport = ACH:Execute(L["Alt: "] .. format('|cff33937F%s', L["Augmentation"]), L["Quick setup for alts"] .. '\n\n' .. L["This step will load your most recent LuckyoneUI profile."], 10, function() Private:HandleAlts('Support') end, nil, true)
+	L1UI.Options.args.setup.args.spacer2 = ACH:Spacer(4, 'full')
+	L1UI.Options.args.setup.args.header2 = ACH:Header(L["Quick setup for alts"], 5)
+	L1UI.Options.args.setup.args.spacer3 = ACH:Spacer(6, 'full')
+	L1UI.Options.args.setup.args.altMain = ACH:Execute(L["Alt: "] .. L["DPS & Tanks"], L["This will load your most recent LuckyoneUI profile."], 7, function() Private:HandleAlts('Main') end, nil, true)
+	L1UI.Options.args.setup.args.altHealing = ACH:Execute(L["Alt: "] .. L["Healing"], L["This will load your most recent LuckyoneUI profile."], 8, function() Private:HandleAlts('Healing') end, nil, true)
+	L1UI.Options.args.setup.args.altSupport = ACH:Execute(L["Alt: "] .. format('|cff33937F%s', L["Augmentation"]), L["This will load your most recent LuckyoneUI profile."], 9, function() Private:HandleAlts('Support') end, nil, true)
 
 	-- Spacer
 	L1UI.Options.args.header = ACH:Spacer(2, 'full')
@@ -106,48 +100,58 @@ function L1UI:Config()
 	L1UI.Options.args.auras.args.buffs = ACH:Group(format('|cff3296ff%s|r', L["Buffs"]), nil, 1)
 	L1UI.Options.args.auras.args.buffs.args.player = ACH:Group(L["Player Frame Buffs"], nil, 1)
 	L1UI.Options.args.auras.args.buffs.args.player.inline = true
-	L1UI.Options.args.auras.args.buffs.args.player.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('player', 'min') end)
+	L1UI.Options.args.auras.args.buffs.args.player.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('player', 'min') end)
 	L1UI.Options.args.auras.args.buffs.args.player.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('player', 'all') end)
 	L1UI.Options.args.auras.args.buffs.args.target = ACH:Group(L["Target Frame Buffs"], nil, 2)
 	L1UI.Options.args.auras.args.buffs.args.target.inline = true
-	L1UI.Options.args.auras.args.buffs.args.target.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('target', 'min') end)
+	L1UI.Options.args.auras.args.buffs.args.target.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('target', 'min') end)
 	L1UI.Options.args.auras.args.buffs.args.target.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('target', 'all') end)
 	L1UI.Options.args.auras.args.buffs.args.focus = ACH:Group(L["Focus Frame Buffs"], nil, 3, nil, nil, nil, nil, E.Classic)
 	L1UI.Options.args.auras.args.buffs.args.focus.inline = true
-	L1UI.Options.args.auras.args.buffs.args.focus.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('focus', 'min') end)
+	L1UI.Options.args.auras.args.buffs.args.focus.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('focus', 'min') end)
 	L1UI.Options.args.auras.args.buffs.args.focus.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('focus', 'all') end)
 	L1UI.Options.args.auras.args.buffs.args.boss = ACH:Group(L["Boss Frame Buffs"], nil, 4, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.auras.args.buffs.args.boss.inline = true
-	L1UI.Options.args.auras.args.buffs.args.boss.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('boss', 'min') end)
+	L1UI.Options.args.auras.args.buffs.args.boss.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('boss', 'min') end)
 	L1UI.Options.args.auras.args.buffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('boss', 'all') end)
 
 	-- Auras [Debuffs]
 	L1UI.Options.args.auras.args.debuffs = ACH:Group(format('|cffC80000%s|r', L["Debuffs"]), nil, 2)
 	L1UI.Options.args.auras.args.debuffs.args.player = ACH:Group(L["Player Frame Debuffs"], nil, 1)
 	L1UI.Options.args.auras.args.debuffs.args.player.inline = true
-	L1UI.Options.args.auras.args.debuffs.args.player.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('player', 'min') end)
+	L1UI.Options.args.auras.args.debuffs.args.player.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('player', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.player.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('player', 'all') end)
 	L1UI.Options.args.auras.args.debuffs.args.target = ACH:Group(L["Target Frame Debuffs"], nil, 2)
 	L1UI.Options.args.auras.args.debuffs.args.target.inline = true
-	L1UI.Options.args.auras.args.debuffs.args.target.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('target', 'min') end)
+	L1UI.Options.args.auras.args.debuffs.args.target.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('target', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.target.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('target', 'all') end)
 	L1UI.Options.args.auras.args.debuffs.args.focus = ACH:Group(L["Focus Frame Debuffs"], nil, 3, nil, nil, nil, nil, E.Classic)
 	L1UI.Options.args.auras.args.debuffs.args.focus.inline = true
-	L1UI.Options.args.auras.args.debuffs.args.focus.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('focus', 'min') end)
+	L1UI.Options.args.auras.args.debuffs.args.focus.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('focus', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.focus.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('focus', 'all') end)
 	L1UI.Options.args.auras.args.debuffs.args.boss = ACH:Group(L["Boss Frame Debuffs"], nil, 4, nil, nil, nil, nil, not E.Retail)
 	L1UI.Options.args.auras.args.debuffs.args.boss.inline = true
-	L1UI.Options.args.auras.args.debuffs.args.boss.args.min = ACH:Execute(L["Minimalistic"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('boss', 'min') end)
+	L1UI.Options.args.auras.args.debuffs.args.boss.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('boss', 'min') end)
 	L1UI.Options.args.auras.args.debuffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('boss', 'all') end)
 
 	-- Auras [Filters]
 	L1UI.Options.args.auras.args.filters = ACH:Group(L["Filters"], nil, 3)
 	L1UI.Options.args.auras.args.filters.inline = true
-	L1UI.Options.args.auras.args.filters.args.setup = ACH:Execute(L["Setup Aura Filters"], nil, 1, function() if E.Retail then Private:Setup_Filters_Retail() elseif E.Mists then Private:Setup_Filters_Mists() elseif E.Classic then Private:Setup_Filters_Classic() end E:StaticPopup_Show('L1UI_RL') end)
+	L1UI.Options.args.auras.args.filters.args.setup = ACH:Execute(L["Setup Aura Filters"], nil, 1, function() Private:Setup_Filters() E:StaticPopup_Show('L1UI_RL') end)
 	L1UI.Options.args.auras.args.filters.args.desc = ACH:Description(L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"], 2, 'medium')
 
+	-- Character specific db
+	L1UI.Options.args.privateDB = ACH:Group(L["Character specific"], nil, 5)
+	L1UI.Options.args.privateDB.args.header = ACH:Header(L["Character specific"], 1)
+	L1UI.Options.args.privateDB.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 2)
+	L1UI.Options.args.privateDB.args.defaults.inline = true
+	L1UI.Options.args.privateDB.args.defaults.args.private = ACH:Execute(L["Restore Defaults"], nil, 1, function() Private:Setup_PrivateDB(true) E:UpdateMediaItems(true) end, nil, true)
+	L1UI.Options.args.privateDB.args.defaultsDesc = ACH:Group(L["The following data will be updated"], nil, 3)
+	L1UI.Options.args.privateDB.args.defaultsDesc.inline = true
+	L1UI.Options.args.privateDB.args.defaultsDesc.args.cvars = ACH:Description('- All Fonts: Expressway\n- All Font Outlines: Outline\n- All Textures: Minimalist\n\n- Friendly Nameplate Font Sizes\n- Totem Tracker: disabled\n- Parchment Remover: enabled\n\n- (Classic Only) Make Shamans blue instead of pink\n- (Retail Only) Character specific settings for Shadow&Light and WindTools', 1, 'medium')
+
 	-- Chat
-	L1UI.Options.args.chat = ACH:Group(L["Chat"], nil, 5)
+	L1UI.Options.args.chat = ACH:Group(L["Chat"], nil, 6)
 	L1UI.Options.args.chat.args.header = ACH:Header(L["Chat"], 1)
 	L1UI.Options.args.chat.args.chatSetup = ACH:Group(L["Setup Chat"], nil, 2)
 	L1UI.Options.args.chat.args.chatSetup.inline = true
@@ -160,7 +164,7 @@ function L1UI:Config()
 	L1UI.Options.args.chat.args.chatVars.args.desc = ACH:Description('- chatClassColorOverride 0\n- chatMouseScroll 1\n- chatStyle classic\n- colorChatNamesByClass 1\n- whisperMode inline\n- wholeChatWindowClickable 0', 1, 'medium')
 
 	-- CVars
-	L1UI.Options.args.cvars = ACH:Group(L["Console Variables"], nil, 6)
+	L1UI.Options.args.cvars = ACH:Group(L["Console Variables"], nil, 7)
 	L1UI.Options.args.cvars.args.header = ACH:Header(L["Console Variables"], 1)
 	L1UI.Options.args.cvars.args.setup = ACH:Group(L["Setup CVars"], nil, 2)
 	L1UI.Options.args.cvars.args.setup.inline = true
@@ -171,10 +175,10 @@ function L1UI:Config()
 	L1UI.Options.args.cvars.args.generalDesc.args.cvars = ACH:Description('- alwaysShowActionBars 1\n- AutoPushSpellToActionBar 0\n- cameraDistanceMaxZoomFactor 2.6\n- fstack_preferParentKeys 0\n- lockActionBars 1\n- minimapTrackingShowAll 1\n- screenshotQuality 10\n- showNPETutorials 0\n- showTutorials 0\n- threatWarning 3\n- UberTooltips 1\n', 1, 'medium')
 	L1UI.Options.args.cvars.args.nameplateDesc = ACH:Group(L["NamePlate CVars"], nil, 4)
 	L1UI.Options.args.cvars.args.nameplateDesc.inline = true
-	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- NamePlateHorizontalScale 1\n- nameplateLargerScale 1\n- nameplateLargeTopInset -1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOtherBottomInset -1\n- nameplateOtherTopInset -1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.7\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateSelfTopInset -1\n- nameplateShowOnlyNames 1\n- NamePlateVerticalScale 1\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1\n', 1, 'medium')
+	L1UI.Options.args.cvars.args.nameplateDesc.args.cvars = ACH:Description('- NamePlateHorizontalScale 1\n- nameplateLargerScale 1\n- nameplateLargeTopInset -1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOtherBottomInset -1\n- nameplateOtherTopInset -1\n- nameplateOverlapH 1\n- nameplateOverlapV 2.2\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateSelfTopInset -1\n- nameplateShowOnlyNames 1\n- NamePlateVerticalScale 1\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1\n', 1, 'medium')
 
 	-- ElvUI Layouts
-	L1UI.Options.args.layouts = ACH:Group('ElvUI ' .. L["Layouts"], nil, 7)
+	L1UI.Options.args.layouts = ACH:Group('ElvUI ' .. L["Layouts"], nil, 8)
 	L1UI.Options.args.layouts.args.header1 = ACH:Header(L["Layout Scale"], 1)
 	L1UI.Options.args.layouts.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	L1UI.Options.args.layouts.args.scaling.inline = true
@@ -183,46 +187,24 @@ function L1UI:Config()
 	L1UI.Options.args.layouts.args.header2 = ACH:Header('ElvUI ' .. L["Layouts"], 3)
 	L1UI.Options.args.layouts.args.thewarwithin = ACH:Group('The War Within ' .. L["Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 4)
 	L1UI.Options.args.layouts.args.thewarwithin.inline = true
-	L1UI.Options.args.layouts.args.thewarwithin.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout_TheWarWithin('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.layouts.args.thewarwithin.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout_TheWarWithin('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	L1UI.Options.args.layouts.args.thewarwithin.args.support = ACH:Execute(format('|cff33937F%s', L["Augmentation"]), L["No ActionBars and centered Raid Frames"], 3, function() Private:Setup_Layout_TheWarWithin('support') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.layouts.args.thewarwithin.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout('main') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.layouts.args.thewarwithin.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout('healing') E:StaticPopup_Show('L1UI_RL') end, nil, true)
+	L1UI.Options.args.layouts.args.thewarwithin.args.support = ACH:Execute(format('|cff33937F%s', L["Augmentation"]), L["No ActionBars and centered Raid Frames"], 3, function() Private:Setup_Layout('support') E:StaticPopup_Show('L1UI_RL') end, nil, true)
 
 	-- Graphics
-	L1UI.Options.args.graphics = ACH:Group(L["Graphics"], nil, 8, nil, nil, nil, nil)
+	L1UI.Options.args.graphics = ACH:Group(L["Graphics"], nil, 9)
 	L1UI.Options.args.graphics.args.header = ACH:Header(L["Graphics"], 1)
-	L1UI.Options.args.graphics.args.enableRaid = ACH:Toggle(L["Enable Raid Graphics profile"], nil, 2, nil, nil, nil, function() return GetCVarBool('RAIDsettingsEnabled') end, function(_, value) SetCVar('RAIDsettingsEnabled', value and 1 or 0) end)
-	L1UI.Options.args.graphics.args.toggles = ACH:Group(L["General"], nil, 3)
+	L1UI.Options.args.graphics.args.toggles = ACH:Group(L["General"], nil, 2)
 	L1UI.Options.args.graphics.args.toggles.inline = true
-	L1UI.Options.args.graphics.args.toggles.args.ResampleAlwaysSharpen = ACH:Toggle('ResampleAlwaysSharpen', 'Default: off | Suggestion: on', 1, nil, nil, nil, function() return GetCVarBool('ResampleAlwaysSharpen') end, function(_, value) SetCVar('ResampleAlwaysSharpen', value and 1 or 0) end)
-	L1UI.Options.args.graphics.args.toggles.args.GxAllowCachelessShaderMode = ACH:Toggle('CachelessShaderMode', 'Default: off | Suggestion: off', 2, nil, nil, nil, function() return GetCVarBool('GxAllowCachelessShaderMode') end, function(_, value) SetCVar('GxAllowCachelessShaderMode', value and 1 or 0) end)
-	L1UI.Options.args.graphics.args.sliders = ACH:Group(L["Raids / Battlegrounds / Dungeons"], nil, 4)
-	L1UI.Options.args.graphics.args.sliders.inline = true
-	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsSpellDensity = ACH:Range('Spell Density', 'Default: 1 | Suggestion: 0', 1, { min = 0, max = 2, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsSpellDensity')) end, function(_, value) SetCVar('raidGraphicsSpellDensity', value) end, CheckRaid)
-	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsComputeEffects = ACH:Range('Compute Effects', 'Default: 2 | Suggestion: 0', 2, { min = 0, max = 4, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsComputeEffects')) end, function(_, value) SetCVar('raidGraphicsComputeEffects', value) end, CheckRaid, not E.Retail)
-	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsSSAO = ACH:Range('SSAO', 'Default: 3 | Suggestion: 0', 3, { min = 0, max = 4, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsSSAO')) end, function(_, value) SetCVar('raidGraphicsSSAO', value) end, CheckRaid)
-	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsEnvironmentDetail = ACH:Range('Environment Detail', 'Default: 5 | Suggestion: 0', 4, { min = 0, max = 9, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsEnvironmentDetail')) end, function(_, value) SetCVar('raidGraphicsEnvironmentDetail', value) end, CheckRaid)
-	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsGroundClutter = ACH:Range('Ground Clutter', 'Default: 5 | Suggestion: 0', 5, { min = 0, max = 9, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsGroundClutter')) end, function(_, value) SetCVar('raidGraphicsGroundClutter', value) end, CheckRaid)
-	L1UI.Options.args.graphics.args.sliders.args.raidGraphicsViewDistance = ACH:Range('View Distance', 'Default: 5 | Suggestion: 0', 6, { min = 0, max = 9, step = 1 }, nil, function() return tonumber(GetCVar('raidGraphicsViewDistance')) end, function(_, value) SetCVar('raidGraphicsViewDistance', value) end, CheckRaid)
-	L1UI.Options.args.graphics.args.sliders.args.RAIDweatherDensity = ACH:Range('Weather Density', 'Default: 2 | Suggestion: 0', E.Retail and 99 or 2, { min = 0, max = 2, step = 1 }, nil, function() return tonumber(GetCVar('RAIDweatherDensity')) end, function(_, value) SetCVar('RAIDweatherDensity', value) end)
-	L1UI.Options.args.graphics.args.cosmetic = ACH:Group(L["Cosmetic"], nil, 5)
+	L1UI.Options.args.graphics.args.toggles.args.ResampleAlwaysSharpen = ACH:Toggle('ResampleAlwaysSharpen', 'Game Default: off | Suggestion: on', 1, nil, nil, nil, function() return GetCVarBool('ResampleAlwaysSharpen') end, function(_, value) SetCVar('ResampleAlwaysSharpen', value and 1 or 0) end)
+	L1UI.Options.args.graphics.args.toggles.args.GxAllowCachelessShaderMode = ACH:Toggle('CachelessShaderMode', 'Game Default: off | Suggestion: off', 2, nil, nil, nil, function() return GetCVarBool('GxAllowCachelessShaderMode') end, function(_, value) SetCVar('GxAllowCachelessShaderMode', value and 1 or 0) end)
+	L1UI.Options.args.graphics.args.cosmetic = ACH:Group(L["Cosmetic"], nil, 3)
 	L1UI.Options.args.graphics.args.cosmetic.inline = true
-	L1UI.Options.args.graphics.args.cosmetic.args.ffxDeath = ACH:Toggle('ffx Death', 'Default: on | Suggestion: off', 1, nil, nil, nil, function() return GetCVarBool('ffxDeath') end, function(_, value) SetCVar('ffxDeath', value and 1 or 0) end)
-	L1UI.Options.args.graphics.args.cosmetic.args.ffxGlow = ACH:Toggle('ffx Glow', 'Default: on | Suggestion: off', 2, nil, nil, nil, function() return GetCVarBool('ffxGlow') end, function(_, value) SetCVar('ffxGlow', value and 1 or 0) end)
-	L1UI.Options.args.graphics.args.cosmetic.args.ffxNether = ACH:Toggle('ffx Nether', 'Default: on | Suggestion: off', 3, nil, nil, nil, function() return GetCVarBool('ffxNether') end, function(_, value) SetCVar('ffxNether', value and 1 or 0) end)
-	L1UI.Options.args.graphics.args.gx = ACH:Group(L["Restart Graphics Engine"], nil, 6)
-	L1UI.Options.args.graphics.args.gx.inline = true
-	L1UI.Options.args.graphics.args.gx.args.gxRestart = ACH:Execute(format('|cff3296ff%s|r', L["Restart Graphics Engine"]), nil, 1, function() RestartGx() end, nil, true)
-	L1UI.Options.args.graphics.args.gx.args.desc = ACH:Description(L["This will restart your Games Graphics Engine and is only required,\nif you've touched the CachelessShaderMode option above."], 2, 'medium')
-
-	-- Media
-	L1UI.Options.args.media = ACH:Group(L["Media"], nil, 9)
-	L1UI.Options.args.media.args.header = ACH:Header(L["Media"], 1)
-	L1UI.Options.args.media.args.defaults = ACH:Group(L["Fonts and Textures"], nil, 2)
-	L1UI.Options.args.media.args.defaults.inline = true
-	L1UI.Options.args.media.args.defaults.args.private = ACH:Execute(L["Reset Media"], L["Reset Fonts, Textures, Skins to LuckyoneUI defaults."], 1, function() Private:Setup_PrivateDB() E:UpdateMediaItems(true) end, nil, true)
-	L1UI.Options.args.media.args.defaultsDesc = ACH:Group(L["Fonts and Textures"], nil, 3)
-	L1UI.Options.args.media.args.defaultsDesc.inline = true
-	L1UI.Options.args.media.args.defaultsDesc.args.cvars = ACH:Description('- Expressway\n- Outline\n- Minimalist', 1, 'medium')
+	L1UI.Options.args.graphics.args.cosmetic.args.ffxDeath = ACH:Toggle('ffx Death', 'Game Default: on | Suggestion: off', 1, nil, nil, nil, function() return GetCVarBool('ffxDeath') end, function(_, value) SetCVar('ffxDeath', value and 1 or 0) end)
+	L1UI.Options.args.graphics.args.cosmetic.args.ffxGlow = ACH:Toggle('ffx Glow', 'Game Default: on | Suggestion: off', 2, nil, nil, nil, function() return GetCVarBool('ffxGlow') end, function(_, value) SetCVar('ffxGlow', value and 1 or 0) end)
+	L1UI.Options.args.graphics.args.cosmetic.args.ffxNether = ACH:Toggle('ffx Nether', 'Game Default: on | Suggestion: off', 3, nil, nil, nil, function() return GetCVarBool('ffxNether') end, function(_, value) SetCVar('ffxNether', value and 1 or 0) end)
+	L1UI.Options.args.graphics.args.cosmetic.args.ffxVenari = ACH:Toggle('ffx Venari', 'Game Default: on | Suggestion: off', 4, nil, nil, nil, function() return GetCVarBool('ffxVenari') end, function(_, value) SetCVar('ffxVenari', value and 1 or 0) end)
+	L1UI.Options.args.graphics.args.cosmetic.args.ffxLingeringVenari = ACH:Toggle('ffx Lingering Venari', 'Game Default: on | Suggestion: off', 5, nil, nil, nil, function() return GetCVarBool('ffxLingeringVenari') end, function(_, value) SetCVar('ffxLingeringVenari', value and 1 or 0) end)
 
 	-- Profiles
 	L1UI.Options.args.profiles = ACH:Group(L["Profiles"], nil, 10)
@@ -332,31 +314,37 @@ function L1UI:Config()
 	L1UI.Options.args.links = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 16)
 	L1UI.Options.args.links.args.header = ACH:Header(L["Links"], 1)
 	L1UI.Options.args.links.args.spacer = ACH:Spacer(2, 'full')
-	L1UI.Options.args.links.args.website = ACH:Input(L["Addon Download:"], nil, 3, nil, 'full', function() return 'https://www.curseforge.com/wow/addons/elvui_luckyoneui' end)
-	L1UI.Options.args.links.args.changelog = ACH:Input(L["Changelog:"], nil, 4, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/blob/development/CHANGELOG.md' end)
-	L1UI.Options.args.links.args.discord = ACH:Input('Discord:', nil, 5, nil, 'full', function() return 'https://discord.gg/xRY4bwA' end)
-	L1UI.Options.args.links.args.issues = ACH:Input(L["Report issues here:"], nil, 6, nil, 'full', function() return 'https://github.com/Luckyone961/LuckyoneUI/issues' end)
-	L1UI.Options.args.links.args.guide = ACH:Input(L["Wowhead Guide:"], nil, 7, nil, 'full', function() return 'https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide' end)
-	L1UI.Options.args.links.args.homepage = ACH:Input(L["Homepage:"], nil, 8, nil, 'full', function() return 'https://luckyone.dev' end)
+	L1UI.Options.args.links.args.website = ACH:Input(L["Addon Download:"], nil, 3, nil, 'full', function() return 'https://download.luckyone.dev' end)
+	L1UI.Options.args.links.args.changelog = ACH:Input(L["Changelog:"], nil, 4, nil, 'full', function() return 'https://changelog.luckyone.dev' end)
+	L1UI.Options.args.links.args.discord = ACH:Input('Discord:', nil, 5, nil, 'full', function() return 'https://discord.luckyone.dev' end)
+	L1UI.Options.args.links.args.issues = ACH:Input(L["Report issues here:"], nil, 6, nil, 'full', function() return 'https://tickets.luckyone.dev' end)
+	L1UI.Options.args.links.args.guide = ACH:Input(L["Wowhead Guide:"], nil, 7, nil, 'full', function() return 'https://guide.luckyone.dev' end)
+	L1UI.Options.args.links.args.twitch = ACH:Input('Twitch:', nil, 8, nil, 'full', function() return 'https://twitch.luckyone.dev' end)
+	L1UI.Options.args.links.args.youtube = ACH:Input('YouTube:', nil, 9, nil, 'full', function() return 'https://youtube.luckyone.dev' end)
+	L1UI.Options.args.links.args.homepage = ACH:Input(L["Homepage:"], nil, 10, nil, 'full', function() return 'https://luckyone.dev' end)
 
 	-- Developer config
-	L1UI.Options.args.dev = ACH:Group(format('|cff4beb2c%s|r', 'Developer'), nil, 17, nil, nil, nil, nil, not E.global.L1UI.dev)
+	L1UI.Options.args.dev = ACH:Group(format('|cff4beb2c%s|r', 'Developer'), nil, 17)
 	L1UI.Options.args.dev.args.header1 = ACH:Header('Developer', 1)
 	L1UI.Options.args.dev.args.spacer1 = ACH:Spacer(2, 'full')
-	L1UI.Options.args.dev.args.information = ACH:Group('Information', nil, 3)
-	L1UI.Options.args.dev.args.information.inline = true
-	L1UI.Options.args.dev.args.information.args.desc = ACH:Description('If you can see this section of the config, it means you enabled the LuckyoneUI developer mode.\n\nWhile this mode is enabled, the following will change:\n\n- Profiles created by the installer will no longer add the version suffix to the profile name.\n- Profile installer make additional adjustments as listed below.', 1, 'medium')
+	L1UI.Options.args.dev.args.toggles = ACH:Group('Toggles', nil, 3)
+	L1UI.Options.args.dev.args.toggles.inline = true
+	L1UI.Options.args.dev.args.toggles.args.dev = ACH:Toggle('Developer Mode', 'Enable this toggle to apply Luckyone\'s personal adjustments during the installation process.\n\nAdditional information section will show up at the bottom of the config after ReloadUI.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r', 1, nil, nil, nil, function() return E.global.L1UI.dev end, function(_, value) E.global.L1UI.dev = value end)
 	L1UI.Options.args.dev.args.spacer2 = ACH:Spacer(4, 'full')
-	L1UI.Options.args.dev.args.db = ACH:Group('Developer ProfileDB', nil, 5)
+	L1UI.Options.args.dev.args.information = ACH:Group('Information', nil, 5)
+	L1UI.Options.args.dev.args.information.inline = true
+	L1UI.Options.args.dev.args.information.args.desc = ACH:Description('While this developer mode is enabled, the following will change:\n\n- Profiles created by the installer will no longer add the version suffix to the profile name.\n- Profile installer make additional database adjustments as listed below.', 1, 'medium')
+	L1UI.Options.args.dev.args.spacer3 = ACH:Spacer(6, 'full')
+	L1UI.Options.args.dev.args.db = ACH:Group('Developer Mode Changes', nil, 7)
 	L1UI.Options.args.dev.args.db.inline = true
-	L1UI.Options.args.dev.args.db.args.desc = ACH:Description('- ElvUI chat bubble skinning disabled (To use texture replacements)\n- ElvUI bags module disabled (To use Baganator)\n- ElvUI nameplates module disabled (To use Plater)\n\n- TargetTarget frame disabled\n- TargetTarget name added to Target frame text format\n\n- LuckyoneUI Alert Frame hider enabled\n- LuckyoneUI Boss Banner hider enabled\n- LuckyoneUI Easy Delete enabled', 1, 'medium')
-	L1UI.Options.args.dev.args.header2 = ACH:Header(format('|cffC80000%s|r','Luckys Private Section'), 6)
-	L1UI.Options.args.dev.args.spacer3 = ACH:Spacer(7, 'full')
-	L1UI.Options.args.dev.args.privateInfo = ACH:Group('Important information', nil, 8)
-	L1UI.Options.args.dev.args.privateInfo.inline = true
-	L1UI.Options.args.dev.args.privateInfo.args.desc = ACH:Description('This is a private section of the config, it is not meant for public use.\n\nPlease do not touch anything in this section.\n\nIf you do, make sure to use /console cvar_default (before you click). Keep in mind there is no support.', 1, 'medium')
+	L1UI.Options.args.dev.args.db.args.desc = ACH:Description('- ElvUI chat bubble skinning disabled (To use texture replacements)\n- ElvUI bags module disabled (To use Baganator)\n- LuckyoneUI Alert Frame hider enabled\n- LuckyoneUI Boss Banner hider enabled\n- LuckyoneUI Easy Delete enabled\n- LuckyoneUI Privacy Overlay enabled', 1, 'medium')
+	L1UI.Options.args.dev.args.header2 = ACH:Header(format('|cffC80000%s|r','Luckys Private Section'), 8)
 	L1UI.Options.args.dev.args.spacer4 = ACH:Spacer(9, 'full')
-	L1UI.Options.args.dev.args.privateFunc = ACH:Execute('Sync Game Settings', 'Clicking this button will reset every single option in your game (Pretty much everything you can see in ESC > Options) and replace it with a copy of Luckys settings. |cffC80000Think twice about it, there is no going back. This is meant only for myself.|r', 10, function() Private:SyncSettings() end, nil, true)
+	L1UI.Options.args.dev.args.privateInfo = ACH:Group('Important information', nil, 10)
+	L1UI.Options.args.dev.args.privateInfo.inline = true
+	L1UI.Options.args.dev.args.privateInfo.args.desc = ACH:Description('This is a private button of the config, it is not meant for public use.\nYou should not touch it.\nIf you do make sure to use /console cvar_default before you click it.\nKeep in mind there is no support.', 1, 'medium')
+	L1UI.Options.args.dev.args.spacer5 = ACH:Spacer(11, 'full')
+	L1UI.Options.args.dev.args.privateFunc = ACH:Execute('Sync Game Settings', 'Clicking this button will reset every single option in your game (Pretty much everything you can see in ESC > Options) and replace it with a copy of Luckys settings. |cffC80000Think twice about it, there is no going back. This is meant only for myself.|r', 12, function() Private:SyncSettings() end, nil, true)
 
 	E.Options.args.L1UI = L1UI.Options
 end

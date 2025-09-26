@@ -94,7 +94,6 @@ function Private:Setup_GlobalDB()
 	DT:BuildPanelFrame('Luckyone_ActionBars_DT')
 
 	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
-	ActionBarsDT.enable = true
 	ActionBarsDT.fonts.enable = true
 	ActionBarsDT.fonts.font = Private.Font
 	ActionBarsDT.fonts.fontSize = 10
@@ -105,7 +104,7 @@ function Private:Setup_GlobalDB()
 	ActionBarsDT.tooltipAnchor = 'ANCHOR_TOP'
 	ActionBarsDT.tooltipXOffset = 0
 	ActionBarsDT.tooltipYOffset = 5
-	ActionBarsDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
+	ActionBarsDT.visibility = (E.Retail or E.Mists) and '[petbattle] hide;show' or 'show'
 	ActionBarsDT.width = (scaled and 299) or 347
 
 	DT:BuildPanelFrame('Luckyone_MiniMap_DT')
@@ -124,7 +123,7 @@ function Private:Setup_GlobalDB()
 	MiniMapDT.tooltipAnchor = 'ANCHOR_BOTTOMLEFT'
 	MiniMapDT.tooltipXOffset = -41
 	MiniMapDT.tooltipYOffset = -29
-	MiniMapDT.visibility = E.Retail and '[petbattle] hide;show' or 'show'
+	MiniMapDT.visibility = (E.Retail or E.Mists) and '[petbattle] hide;show' or 'show'
 	MiniMapDT.width = 56
 end
 
@@ -168,7 +167,6 @@ function Private:Setup_PrivateDB(includePlugins)
 
 	E.private.install_complete = E.version
 
-	E.private.nameplates.enable = false
 	E.private.skins.parchmentRemoverEnable = true
 
 	if includePlugins and E.Retail then
@@ -196,7 +194,7 @@ function Private:Setup_PrivateDB(includePlugins)
 end
 
 -- Setup The War Within layout
-function Private:Setup_Layout_TheWarWithin(layout, installer)
+function Private:Setup_Layout(layout, installer)
 	if not E.Classic then
 		HandleLibDualSpec()
 	end
@@ -218,11 +216,11 @@ function Private:Setup_Layout_TheWarWithin(layout, installer)
 
 	-- E.db & Movers
 	if layout == 'main' then
-		Private:Layout_TheWarWithin('main')
+		Private:Setup_ElvUI('main')
 	elseif layout == 'healing' then
-		Private:Layout_TheWarWithin('healing')
+		Private:Setup_ElvUI('healing')
 	elseif layout == 'support' then
-		Private:Layout_TheWarWithin('support')
+		Private:Setup_ElvUI('support')
 	end
 
 	-- Push the update

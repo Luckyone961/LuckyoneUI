@@ -11,7 +11,7 @@ local _, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- WindTools ProfileDB
--- LC: 07/09/2025
+-- LC: 14/09/2025
 function Private:Setup_WindTools(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and E.Retail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
@@ -27,27 +27,6 @@ function Private:Setup_WindTools(installer)
 
 	-- Global db
 	E.global.WT.core.loginMessage = false
-
-	-- Personal favorite list for the mailbox
-	if Private.itsLuckyone then
-		E.db.WT.item.contacts.defaultPage = 'FAVORITE'
-		E.global.WT.item.contacts.favorites = {
-			['Lucky-LaughingSkull'] = true,
-			['Luckytwo-LaughingSkull'] = true,
-			['Luckyone-LaughingSkull'] = true,
-			['Luckymonkas-LaughingSkull'] = true,
-			['Luckypriest-LaughingSkull'] = true,
-			['Luckydh-LaughingSkull'] = true,
-			['Luckydk-LaughingSkull'] = true,
-			['Luckyhunter-LaughingSkull'] = true,
-			['Luckymage-LaughingSkull'] = true,
-			['Luckypala-LaughingSkull'] = true,
-			['Luckyrogue-LaughingSkull'] = true,
-			['Luckywl-LaughingSkull'] = true,
-			['Notlucky-LaughingSkull'] = true,
-			['Unluckyone-LaughingSkull'] = true
-		}
-	end
 
 	-- Private db
 	Private:Setup_Private_WindTools()
@@ -103,7 +82,7 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.social.chatText.classIcon = false
 	E.db.WT.social.chatText.factionIcon = false
 	E.db.WT.social.chatText.guildMemberStatusInviteLink = false
-	E.db.WT.social.chatText.removeRealm = false
+	E.db.WT.social.chatText.mergeAchievement = false
 	E.db.WT.social.chatText.roleIconSize = 12
 	E.db.WT.social.chatText.roleIconStyle = 'DEFAULT'
 	E.db.WT.social.contextMenu.enable = false
@@ -121,13 +100,38 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.tooltips.groupInfo.template = '{{classColorStart}}{{specName}}{{classColorEnd}}{{amountStart}} x {{amount}}{{amountEnd}}'
 	E.db.WT.tooltips.keystone.enable = false
 
+	-- Mailbox favorite list
+	if Private.itsLuckyone then
+		E.global.WT.item.contacts.alts = {}
+		E.global.WT.item.contacts.alts['Laughing Skull'] = {}
+		E.global.WT.item.contacts.alts['Laughing Skull']['Horde'] = {
+			['Notlucky'] = 'WARRIOR',
+			['Lucky'] = 'EVOKER',
+			['Luckyhunter'] = 'HUNTER',
+			['Luckytwo'] = 'EVOKER',
+			['Luckypala'] = 'PALADIN',
+			['Luckypriest'] = 'PRIEST',
+			['Unluckyone'] = 'SHAMAN',
+			['Luckydh'] = 'DEMONHUNTER',
+			['Luckydk'] = 'DEATHKNIGHT',
+			['Luckywl'] = 'WARLOCK',
+			['Luckymage'] = 'MAGE',
+			['Luckyrogue'] = 'ROGUE',
+		}
+		E.global.WT.item.contacts.alts['Laughing Skull']['Alliance'] = {
+			['Luckyone'] = 'DRUID',
+			['Luckymonkas'] = 'MONK',
+		}
+		E.global.WT.item.contacts.updateAlts = false
+	end
+
 	-- Protect movers error
 	E.db.movers = E.db.movers or {}
 
 	-- Movers
 	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,405') or 'BOTTOM,ElvUIParent,BOTTOM,0,590'
 	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-177'
-	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,UIParent,TOP,0,-110'
+	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-110'
 
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["WindTools profile has been set."])
@@ -137,7 +141,7 @@ function Private:Setup_WindTools(installer)
 end
 
 -- WindTools PrivateDB
--- LC: 07/09/2025
+-- LC: 09/09/2025
 function Private:Setup_Private_WindTools()
 
 	-- Restore defaults
@@ -170,7 +174,7 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.quest.objectiveTracker.cosmeticBar.color.mode = 'CLASS'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = Private.Texture
 	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 252
-	E.private.WT.quest.objectiveTracker.enable = not Private.IsAddOnLoaded('ElvUI_SLE')
+	E.private.WT.quest.objectiveTracker.enable = true
 	E.private.WT.quest.objectiveTracker.header.classColor = true
 	E.private.WT.quest.objectiveTracker.header.size = 12
 	E.private.WT.quest.objectiveTracker.info.size = 11
