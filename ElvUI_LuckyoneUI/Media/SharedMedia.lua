@@ -17,6 +17,7 @@ LSM:Register('font', 'Geist Semi Bold', [[Interface\AddOns\ElvUI_LuckyoneUI\Medi
 LSM:Register('statusbar', 'Atrocity', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Statusbar\Atrocity.tga]])
 LSM:Register('statusbar', 'Skullflower', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Statusbar\Skullflower.tga]])
 LSM:Register('statusbar', 'Luckyone Bubbles', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Statusbar\LuckyoneBubbles.tga]])
+LSM:Register('statusbar', 'Luckyone Focus', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Statusbar\LuckyoneFocus.tga]])
 
 -------------------------------------------------------
 --------------------- Information ---------------------

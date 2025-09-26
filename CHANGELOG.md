@@ -1,4 +1,9 @@
-﻿## Version 3.26 [26-09-2025]
+﻿## Version 3.27 [In Development]
+
+**All WoW Versions:**  
+- Added a custom statusbar texture to LibSharedMedia called Focus  
+
+## Version 3.26 [26-09-2025]
 
 **Highlights:**  
 - A complete re-run of the /lucky install is recommended if you want all the updates  
