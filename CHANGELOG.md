@@ -3,6 +3,12 @@
 **All WoW Versions:**  
 - Added a custom statusbar texture to LibSharedMedia called Focus  
 
+**Retail:**  
+- Added a new ElvUI Nameplate StyleFilter for current focus target  
+
+**Mists:**  
+- Added a new ElvUI Nameplate StyleFilter for current focus target  
+
 ## Version 3.26 [26-09-2025]
 
 **Highlights:**  
