@@ -1,4 +1,4 @@
-﻿## Version 3.26 [In Development]
+﻿## Version 3.26 [26-09-2025]
 
 **Highlights:**  
 - A complete re-run of the /lucky install is recommended if you want all the updates  
