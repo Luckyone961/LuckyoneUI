@@ -2,6 +2,7 @@
 
 **All WoW Versions:**  
 - Added a custom statusbar texture to LibSharedMedia called Focus  
+- ElvUI Nameplates will no longer fade-in and immediately spawn instead  
 
 **Retail:**  
 - Added a new ElvUI Nameplate StyleFilter for current focus target  

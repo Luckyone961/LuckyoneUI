@@ -74,6 +74,7 @@ function Private:Setup_NamePlates(installer)
 
 	-- NamePlates general
 	E.db.nameplates.cooldown.override = false
+	E.db.nameplates.fadeIn = false
 	E.db.nameplates.lowHealthThreshold = 0
 	E.db.nameplates.overlapH = 1
 	E.db.nameplates.overlapV = 2.2
