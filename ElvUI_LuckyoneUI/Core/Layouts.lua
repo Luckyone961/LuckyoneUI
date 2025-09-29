@@ -609,7 +609,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.tooltip.smallTextFontSize = 10
 	E.db.tooltip.targetInfo = false
 	E.db.tooltip.textFontSize = 11
-	E.db.tooltip.yOffset = 1
 
 	-- Shared UnitFrames
 	E.db.unitframe.colors.castbar_backdrop.b = 0.05
