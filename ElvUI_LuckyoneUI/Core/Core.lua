@@ -283,6 +283,10 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	Private:EasyDelete()
 	Private:HandleToons()
 	L1UI:LoadCommands()
+
+	if Private.itsLuckyone then
+		E.global.L1UI.dev = true
+	end
 end
 
 -- Register events
