@@ -587,29 +587,29 @@ function Private:Setup_ElvUI(layout)
 
 	-- Tooltip
 	E.db.tooltip.alwaysShowRealm = true
+	E.db.tooltip.anchorToBags = 'DISABLED'
 	E.db.tooltip.colorAlpha = 0.9
 	E.db.tooltip.font = Private.Font
 	E.db.tooltip.fontOutline = Private.Outline
 	E.db.tooltip.headerFont = Private.Font
 	E.db.tooltip.headerFontOutline = Private.Outline
-	E.db.tooltip.headerFontSize = (scaled and 10) or 11
+	E.db.tooltip.headerFontSize = 11
 	E.db.tooltip.healthBar.font = Private.Font
 	E.db.tooltip.healthBar.fontOutline = Private.Outline
-	E.db.tooltip.healthBar.fontSize = (scaled and 9) or 10
+	E.db.tooltip.healthBar.fontSize = 10
 	E.db.tooltip.healthBar.height = 6
 	E.db.tooltip.healthBar.statusPosition = 'DISABLED'
 	E.db.tooltip.inspectDataEnable = false
 	E.db.tooltip.itemCount.bags = false
-	E.db.tooltip.itemCount.bank = false
-	E.db.tooltip.itemCount.stack = false
 	E.db.tooltip.itemQuality = true
 	E.db.tooltip.mythicDataEnable = false
 	E.db.tooltip.role = false
 	E.db.tooltip.showElvUIUsers = true
 	E.db.tooltip.showMount = false
-	E.db.tooltip.smallTextFontSize = (scaled and 9) or 10
+	E.db.tooltip.smallTextFontSize = 10
 	E.db.tooltip.targetInfo = false
-	E.db.tooltip.textFontSize = (scaled and 10) or 11
+	E.db.tooltip.textFontSize = 11
+	E.db.tooltip.yOffset = 1
 
 	-- Shared UnitFrames
 	E.db.unitframe.colors.castbar_backdrop.b = 0.05
@@ -1479,7 +1479,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ReputationBarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-402,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-466,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,232,-1'
-	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,118') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,154'
+	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,118') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,154'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-80'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
 	E.db.movers.VehicleSeatMover = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,493,1'
