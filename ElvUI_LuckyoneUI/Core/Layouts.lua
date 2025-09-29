@@ -406,15 +406,15 @@ function Private:Setup_ElvUI(layout)
 
 	-- Bags
 	E.db.bags.autoToggle.guildBank = true
-	E.db.bags.autoToggle.soulBind = false
 	E.db.bags.bagBar.backdropSpacing = 1
 	E.db.bags.bagBar.font = Private.Font
 	E.db.bags.bagBar.size = 23
 	E.db.bags.bagBar.spacing = 0
 	E.db.bags.bagSize = (scaled and 28) or 30
 	E.db.bags.bagWidth = (scaled and 400) or 464
+	E.db.bags.bankCombined = true
 	E.db.bags.bankSize = (scaled and 28) or 30
-	E.db.bags.bankWidth = (scaled and 404) or 464
+	E.db.bags.bankWidth = (scaled and 520) or 700
 	E.db.bags.clearSearchOnClose = true
 	E.db.bags.countFont = Private.Font
 	E.db.bags.countFontOutline = Private.Outline
@@ -432,8 +432,11 @@ function Private:Setup_ElvUI(layout)
 	E.db.bags.split.bagSpacing = 1
 	E.db.bags.split.player = true
 	E.db.bags.upgradeIcon = false
+	E.db.bags.useBlizzardCleanupBank = false
 	E.db.bags.vendorGrays.enable = true
 	E.db.bags.vendorGrays.interval = 0.1
+	E.db.bags.warbandSize = (scaled and 28) or 30
+	E.db.bags.warbandWidth = (scaled and 520) or 700
 
 	-- Auras
 	E.db.auras.buffs.countFont = Private.Font
