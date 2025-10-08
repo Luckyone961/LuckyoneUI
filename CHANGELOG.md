@@ -16,6 +16,7 @@
 
 **Mists:**  
 - Added a new ElvUI Nameplate StyleFilter for current focus target  
+- Fixed the EasyDelete option  
 
 ## Version 3.26 [26-09-2025]
 
