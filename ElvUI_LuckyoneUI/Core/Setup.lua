@@ -184,12 +184,16 @@ function Private:Setup_PrivateDB(includePlugins)
 	end
 
 	if E.global.L1UI.dev then
-		E.private.bags.enable = false
+		-- Private keys for the dev profile
 		E.private.general.chatBubbles = 'disabled'
 		E.private.L1UI.disabledFrames.AlertFrame = true
 		E.private.L1UI.disabledFrames.BossBanner = true
 		E.private.L1UI.qualityOfLife.easyDelete = true
 		E.private.L1UI.qualityOfLife.privacyOverlay = true
+
+		-- Enable these modules only if the alternative is not loaded
+		E.private.bags.enable = (not Private.IsAddOnLoaded('Baganator'))
+		E.private.nameplates.enable = (not Private.IsAddOnLoaded('Plater'))
 	end
 end
 

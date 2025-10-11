@@ -222,24 +222,25 @@ function Private:HandleToons()
 		['Player-1598-0BF56103'] = true, -- [H] Shaman
 		['Player-1598-0F87B5AA'] = true, -- [A] Priest
 	} or E.Mists and {
-		-- (4467: Firemaw, 4440: Everlook, 4476: Gehennas)
-		['Player-4467-04540395'] = true, -- [A] Druid
-		['Player-4467-04542B4A'] = true, -- [A] Priest
-		['Player-4467-04571AA2'] = true, -- [A] Warlock
-		['Player-4467-04571911'] = true, -- [A] Paladin
-		['Player-4467-04571A9F'] = true, -- [A] Mage
-		['Player-4467-04571A8D'] = true, -- [A] DK
-		['Player-4467-048C4EED'] = true, -- [A] Hunter
-		['Player-4467-0489BE11'] = true, -- [A] Shaman
-		['Player-4467-0489BDFD'] = true, -- [A] Rogue
-		['Player-4467-04571A98'] = true, -- [A] Warrior
-		['Player-4440-03AD654A'] = true, -- [A] Rogue
-		['Player-4440-03ADE2DF'] = true, -- [A] Shaman
-		['Player-4467-0613ECA1'] = true, -- [A] Monk
-		['Player-4476-03BF41C9'] = true, -- [H] Hunter
-		['Player-4476-049F4831'] = true, -- [H] DK
-		['Player-4476-05C7B834'] = true, -- [H] Mage
-		['Player-4476-05CAB05D'] = true, -- [H] Monk
+		-- (4454: Garalon + Shek'zeer)
+		['Player-4454-060E2FD9'] = true, -- [H] Mage
+		['Player-4454-060E336E'] = true, -- [H] Hunter
+		['Player-4454-060E339A'] = true, -- [H] Monk
+		['Player-4454-060E4058'] = true, -- [A] Druid
+		['Player-4454-060E4064'] = true, -- [A] Priest
+		['Player-4454-060E406B'] = true, -- [A] Warlock
+		['Player-4454-060E4071'] = true, -- [A] Shaman
+		['Player-4454-060E4076'] = true, -- [A] Warrior
+		['Player-4454-060E4089'] = true, -- [A] Rogue
+		['Player-4454-060E4091'] = true, -- [A] Paladin
+		['Player-4454-060E4086'] = true, -- [A] DK
+		['Player-4454-060E45B6'] = true, -- [A] Mage
+		['Player-4454-060E45EA'] = true, -- [A] Hunter
+		-- (4440: Everlook)
+		['Player-4440-037C7E29'] = true, -- [A] DK
+		['Player-4454-060E3657'] = true, -- [H] Druid
+		['Player-4454-060E364E'] = true, -- [H] Priest
+		['Player-4454-060E361A'] = true, -- [H] Shaman
 	} or E.Classic and {
 		-- (6112: Spineshatter)
 		['Player-6112-028A3A6D'] = true, -- [H] Hunter
@@ -282,6 +283,10 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	Private:EasyDelete()
 	Private:HandleToons()
 	L1UI:LoadCommands()
+
+	if Private.itsLuckyone then
+		E.global.L1UI.dev = true
+	end
 end
 
 -- Register events

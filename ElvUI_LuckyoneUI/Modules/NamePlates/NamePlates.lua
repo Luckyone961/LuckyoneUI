@@ -74,6 +74,7 @@ function Private:Setup_NamePlates(installer)
 
 	-- NamePlates general
 	E.db.nameplates.cooldown.override = false
+	E.db.nameplates.fadeIn = false
 	E.db.nameplates.lowHealthThreshold = 0
 	E.db.nameplates.overlapH = 1
 	E.db.nameplates.overlapV = 2.2
@@ -319,6 +320,11 @@ function Private:Setup_StyleFilters(skipVars)
 		'Luckyone_Quest_N',
 	}
 
+	-- NonClassic specific filters
+	local nonClassicFilters = {
+		'Luckyone_Focus',
+	}
+
 	-- Retail specific filters
 	local retailFilters = {
 		-- Global
@@ -372,6 +378,22 @@ function Private:Setup_StyleFilters(skipVars)
 	E.global.nameplates.filters.Luckyone_Quest_N.triggers.priority = 2
 	E.global.nameplates.filters.Luckyone_Quest_N.triggers.reactionType.enable = true
 	E.global.nameplates.filters.Luckyone_Quest_N.triggers.reactionType.neutral = true
+
+	if not E.Classic then
+
+		-- Create NonClassic specific filters
+		for _, filterName in ipairs(nonClassicFilters) do
+			E.global.nameplates.filters[filterName] = {}
+			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
+			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
+		end
+
+		-- Focus target [FOCUS]
+		E.global.nameplates.filters.Luckyone_Focus.actions.health.texture.enable = true
+		E.global.nameplates.filters.Luckyone_Focus.actions.health.texture.texture = 'Luckyone Focus'
+		E.global.nameplates.filters.Luckyone_Focus.triggers.isFocus = true
+		E.global.nameplates.filters.Luckyone_Focus.triggers.priority = 2
+	end
 
 	if E.Retail then
 

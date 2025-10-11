@@ -406,15 +406,15 @@ function Private:Setup_ElvUI(layout)
 
 	-- Bags
 	E.db.bags.autoToggle.guildBank = true
-	E.db.bags.autoToggle.soulBind = false
 	E.db.bags.bagBar.backdropSpacing = 1
 	E.db.bags.bagBar.font = Private.Font
 	E.db.bags.bagBar.size = 23
 	E.db.bags.bagBar.spacing = 0
 	E.db.bags.bagSize = (scaled and 28) or 30
 	E.db.bags.bagWidth = (scaled and 400) or 464
+	E.db.bags.bankCombined = true
 	E.db.bags.bankSize = (scaled and 28) or 30
-	E.db.bags.bankWidth = (scaled and 404) or 464
+	E.db.bags.bankWidth = (scaled and 520) or 700
 	E.db.bags.clearSearchOnClose = true
 	E.db.bags.countFont = Private.Font
 	E.db.bags.countFontOutline = Private.Outline
@@ -432,8 +432,11 @@ function Private:Setup_ElvUI(layout)
 	E.db.bags.split.bagSpacing = 1
 	E.db.bags.split.player = true
 	E.db.bags.upgradeIcon = false
+	E.db.bags.useBlizzardCleanupBank = false
 	E.db.bags.vendorGrays.enable = true
 	E.db.bags.vendorGrays.interval = 0.1
+	E.db.bags.warbandSize = (scaled and 28) or 30
+	E.db.bags.warbandWidth = (scaled and 520) or 700
 
 	-- Auras
 	E.db.auras.buffs.countFont = Private.Font
@@ -587,29 +590,28 @@ function Private:Setup_ElvUI(layout)
 
 	-- Tooltip
 	E.db.tooltip.alwaysShowRealm = true
+	E.db.tooltip.anchorToBags = 'DISABLED'
 	E.db.tooltip.colorAlpha = 0.9
 	E.db.tooltip.font = Private.Font
 	E.db.tooltip.fontOutline = Private.Outline
 	E.db.tooltip.headerFont = Private.Font
 	E.db.tooltip.headerFontOutline = Private.Outline
-	E.db.tooltip.headerFontSize = (scaled and 10) or 11
+	E.db.tooltip.headerFontSize = 11
 	E.db.tooltip.healthBar.font = Private.Font
 	E.db.tooltip.healthBar.fontOutline = Private.Outline
-	E.db.tooltip.healthBar.fontSize = (scaled and 9) or 10
+	E.db.tooltip.healthBar.fontSize = 10
 	E.db.tooltip.healthBar.height = 6
 	E.db.tooltip.healthBar.statusPosition = 'DISABLED'
 	E.db.tooltip.inspectDataEnable = false
 	E.db.tooltip.itemCount.bags = false
-	E.db.tooltip.itemCount.bank = false
-	E.db.tooltip.itemCount.stack = false
 	E.db.tooltip.itemQuality = true
 	E.db.tooltip.mythicDataEnable = false
 	E.db.tooltip.role = false
 	E.db.tooltip.showElvUIUsers = true
 	E.db.tooltip.showMount = false
-	E.db.tooltip.smallTextFontSize = (scaled and 9) or 10
+	E.db.tooltip.smallTextFontSize = 10
 	E.db.tooltip.targetInfo = false
-	E.db.tooltip.textFontSize = (scaled and 10) or 11
+	E.db.tooltip.textFontSize = 11
 
 	-- Shared UnitFrames
 	E.db.unitframe.colors.castbar_backdrop.b = 0.05
@@ -1059,7 +1061,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.castbar.customColor.colorNoInterrupt.g = 0.05
 	E.db.unitframe.units.player.castbar.customColor.colorNoInterrupt.r = 0.05
 	E.db.unitframe.units.player.castbar.customColor.enable = true
-	E.db.unitframe.units.player.castbar.customColor.transparent = false
+	E.db.unitframe.units.player.castbar.customColor.transparent = true
 	E.db.unitframe.units.player.castbar.customColor.useCustomBackdrop = true
 	E.db.unitframe.units.player.castbar.customTextFont.enable = true
 	E.db.unitframe.units.player.castbar.customTextFont.font = Private.Font
@@ -1479,7 +1481,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ReputationBarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-402,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-466,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,232,-1'
-	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,118') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,154'
+	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,118') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,154'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-80'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
 	E.db.movers.VehicleSeatMover = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,493,1'
