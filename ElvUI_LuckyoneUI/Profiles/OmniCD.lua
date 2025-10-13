@@ -24,7 +24,7 @@ function Private:Setup_OmniCD(layout, installer)
 	local name_healing = (dev and 'Luckyone Healing') or 'Luckyone Healing ' .. Private.Version
 
 	-- Disable LibDualSpec to set the profile
-	if E.Retail then
+	if Private.isRetail then
 		OmniCDDB['namespaces']['LibDualSpec-1.0'] = OmniCDDB['namespaces']['LibDualSpec-1.0'] or {}
 		OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] = OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] or {}
 		OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = {}
@@ -468,7 +468,7 @@ function Private:Setup_OmniCD(layout, installer)
 		-- Spell IDs
 		for _, frame in pairs({ 'party', 'arena' }) do
 			OmniCDDB['profiles'][profile]['Party'][frame]['spells'] = {}
-			if E.Retail then
+			if Private.isRetail then
 				OmniCDDB['profiles'][profile]['Party'][frame]['spells'] = {
 					["186387"] = false,
 					["374227"] = false,
@@ -556,7 +556,7 @@ function Private:Setup_OmniCD(layout, installer)
 					["265202"] = false,
 					["184364"] = false,
 				}
-			elseif E.Mists then
+			elseif Private.isMists then
 				OmniCDDB['profiles'][profile]['Party'][frame]["spells"] = {
 					["110696"] = false,
 					["28730"] = true,
@@ -756,7 +756,7 @@ function Private:Setup_OmniCD(layout, installer)
 	end
 
 	-- Turn on bars for Classic (off by Default)
-	if not E.Retail then
+	if not Private.isRetail then
 		OmniCDDB['profiles'][name_main]['Party']['party']['extraBars']['raidBar1']["enabled"] = true
 		OmniCDDB['profiles'][name_main]['Party']['arena']['extraBars']['raidBar1']["enabled"] = true
 		OmniCDDB['profiles'][name_healing]['Party']['party']['extraBars']['raidBar1']["enabled"] = true

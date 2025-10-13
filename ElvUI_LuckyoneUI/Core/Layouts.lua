@@ -27,7 +27,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.altPowerBar.statusBar = Private.Texture
 	E.db.general.altPowerBar.statusBarColorGradient = true
 	E.db.general.autoAcceptInvite = true
-	E.db.general.autoRepair = (E.Retail and 'GUILD') or 'PLAYER'
+	E.db.general.autoRepair = (Private.isRetail and 'GUILD') or 'PLAYER'
 	E.db.general.backdropcolor.b = 0.12
 	E.db.general.backdropcolor.g = 0.12
 	E.db.general.backdropcolor.r = 0.12
@@ -163,7 +163,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.actionbar.bar4.countFontOutline = Private.Outline
 	E.db.actionbar.bar4.countFontSize = 9
 	E.db.actionbar.bar4.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar4.enabled = not E.Retail
+	E.db.actionbar.bar4.enabled = not Private.isRetail
 	E.db.actionbar.bar4.hotkeyFont = Private.Font
 	E.db.actionbar.bar4.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar4.hotkeyFontSize = 9
@@ -741,7 +741,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.debuffs.maxDuration = 0
 	E.db.unitframe.units.arena.debuffs.perrow = 5
-	E.db.unitframe.units.arena.debuffs.priority = E.Retail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.arena.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
 	E.db.unitframe.units.arena.debuffs.sizeOverride = 20
 	E.db.unitframe.units.arena.debuffs.xOffset = -1
 	E.db.unitframe.units.arena.debuffs.yOffset = 1
@@ -849,7 +849,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.boss.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.boss.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.boss.debuffs.perrow = 5
-	E.db.unitframe.units.boss.debuffs.priority = E.Retail and 'blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
+	E.db.unitframe.units.boss.debuffs.priority = Private.isRetail and 'blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
 	E.db.unitframe.units.boss.debuffs.sizeOverride = 20
 	E.db.unitframe.units.boss.debuffs.xOffset = -1
 	E.db.unitframe.units.boss.debuffs.yOffset = 1
@@ -943,7 +943,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.focus.debuffs.maxDuration = 0
 	E.db.unitframe.units.focus.debuffs.numrows = 2
 	E.db.unitframe.units.focus.debuffs.perrow = 12
-	E.db.unitframe.units.focus.debuffs.priority = E.Retail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.focus.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
 	E.db.unitframe.units.focus.disableMouseoverGlow = true
 	E.db.unitframe.units.focus.disableTargetGlow = true
 	E.db.unitframe.units.focus.fader.minAlpha = 0.5
@@ -1189,7 +1189,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.debuffs.maxDuration = 0
 	E.db.unitframe.units.target.debuffs.numrows = 2
 	E.db.unitframe.units.target.debuffs.perrow = 12
-	E.db.unitframe.units.target.debuffs.priority = E.Retail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
+	E.db.unitframe.units.target.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
 	E.db.unitframe.units.target.disableMouseoverGlow = true
 	E.db.unitframe.units.target.fader.minAlpha = 0.5
 	E.db.unitframe.units.target.fader.smooth = 0
@@ -1256,7 +1256,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raidpet.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raidpet.disableFocusGlow = true
 	E.db.unitframe.units.raidpet.disableTargetGlow = true
-	E.db.unitframe.units.raidpet.enable = E.Classic
+	E.db.unitframe.units.raidpet.enable = Private.isClassic
 	E.db.unitframe.units.raidpet.healPrediction.absorbStyle = 'WRAPPED'
 	E.db.unitframe.units.raidpet.healPrediction.enable = true
 	E.db.unitframe.units.raidpet.health.text_format = ''
@@ -1389,12 +1389,12 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.summonIcon.size = 18
 	E.db.unitframe.units.raid1.threatStyle = 'NONE'
 	E.db.unitframe.units.raid1.verticalSpacing = 1
-	E.db.unitframe.units.raid1.visibility = E.Retail and '[@raid6,noexists][@raid21,exists] hide;show' or '[@raid6,noexists][@raid11,exists] hide;show'
+	E.db.unitframe.units.raid1.visibility = Private.isRetail and '[@raid6,noexists][@raid21,exists] hide;show' or '[@raid6,noexists][@raid11,exists] hide;show'
 
 	-- Shared Raid2
 	E:CopyTable(E.db.unitframe.units.raid2, E.db.unitframe.units.raid1)
-	E.db.unitframe.units.raid2.numGroups = E.Retail and 6 or 5
-	E.db.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
+	E.db.unitframe.units.raid2.numGroups = Private.isRetail and 6 or 5
+	E.db.unitframe.units.raid2.visibility = Private.isRetail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
 
 	-- Shared Raid3
 	E.db.unitframe.units.raid3.buffIndicator.countFont = Private.Font
@@ -1428,7 +1428,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.summonIcon.size = 18
 	E.db.unitframe.units.raid3.threatStyle = 'NONE'
 	E.db.unitframe.units.raid3.verticalSpacing = 1
-	E.db.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
+	E.db.unitframe.units.raid3.visibility = Private.isRetail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
 
 	-- Shared movers
 	E.db.movers.AddonCompartmentMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66'
@@ -1477,14 +1477,14 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-200'
 	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-24'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
-	E.db.movers.QueueStatusMover = E.Retail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-152' or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-150'
+	E.db.movers.QueueStatusMover = Private.isRetail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-152' or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-150'
 	E.db.movers.ReputationBarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-402,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-466,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,232,-1'
 	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,118') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,154'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-80'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
-	E.db.movers.VehicleSeatMover = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,493,1'
+	E.db.movers.VehicleSeatMover = Private.isRetail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,493,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
 
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
@@ -1504,7 +1504,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.targettarget.width = 278
 
 		-- Main Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = not E.Classic and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]' or '[luckyone:name:short-classcolor]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = not Private.isClassic and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]' or '[luckyone:name:short-classcolor]'
 		E.db.unitframe.units.party.debuffs.countFont = Private.Font
 		E.db.unitframe.units.party.debuffs.countXOffset = 2
 		E.db.unitframe.units.party.debuffs.enable = true
@@ -1525,7 +1525,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.party.width = 210
 
 		-- Main Party (Classic Only)
-		if E.Classic then
+		if Private.isClassic then
 			E.db.unitframe.units.party.customTexts.Luckyone_Power = {
 				attachTextTo = 'Power',
 				enable = true,
@@ -1632,7 +1632,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.party.growthDirection = 'RIGHT_DOWN'
 
 		-- Healing Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = E.Retail and '[luckyone:power:percent-nocolor<%]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
+		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-nocolor<%]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
 		E.db.unitframe.units.player.castbar.width = (scaled and 505) or 605
 		E.db.unitframe.units.player.power.attachTextTo = 'Power'
 		E.db.unitframe.units.player.power.autoHide = false
@@ -1643,7 +1643,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
 
-		if E.Classic then
+		if Private.isClassic then
 			E.db.unitframe.units.player.power.EnergyManaRegen = true
 		end
 

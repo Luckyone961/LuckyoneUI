@@ -115,7 +115,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_Filters(true) end)
 			PluginInstallFrame.Option1:SetText(L["Setup Aura Filters"])
 		end,
-		[E.Retail and 5] = function()
+		[Private.isRetail and 5] = function()
 			PluginInstallFrame.SubTitle:SetText(L["ElvUI Plugins"])
 			PluginInstallFrame.Desc1:SetText(L["This step will configure profiles for other ElvUI plugins."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -126,7 +126,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_ShadowAndLight(true) end)
 			PluginInstallFrame.Option2:SetText('|cff9482c9Shadow & Light|r')
 		end,
-		[E.Retail and 6 or 5] = function()
+		[Private.isRetail and 6 or 5] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Color Theme"])
 			PluginInstallFrame.Desc1:SetText(L["Select your preferred UnitFrames color theme."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Optional step. Dark is applied by default."]))
@@ -137,7 +137,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_Theme('class', true) end)
 			PluginInstallFrame.Option2:SetText(L["Class Color"])
 		end,
-		[E.Retail and 7 or 6] = function()
+		[Private.isRetail and 7 or 6] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Chat"])
 			PluginInstallFrame.Desc1:SetText(L["This step will configure your two chat panels."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -147,7 +147,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_Chat(true) end)
 			PluginInstallFrame.Option1:SetText(L["Setup Chat"])
 		end,
-		[E.Retail and 8 or 7] = function()
+		[Private.isRetail and 8 or 7] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Console Variables"])
 			PluginInstallFrame.Desc1:SetText(L["This step will configure some of Blizzards console variables."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -157,7 +157,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_CVars(nil, true) end)
 			PluginInstallFrame.Option1:SetText(L["Setup CVars"])
 		end,
-		[E.Retail and 9 or 8] = function()
+		[Private.isRetail and 9 or 8] = function()
 			PluginInstallFrame.SubTitle:SetText(L["NamePlates"])
 			PluginInstallFrame.Desc1:SetText(L["Choose between ElvUI NamePlates and Plater NamePlates."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -168,7 +168,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_Plater(true) end)
 			PluginInstallFrame.Option2:SetText('Plater')
 		end,
-		[E.Retail and 10 or 9] = function()
+		[Private.isRetail and 10 or 9] = function()
 			PluginInstallFrame.SubTitle:SetText(L["BigWigs profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -179,7 +179,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_BigWigs('healing') end)
 			PluginInstallFrame.Option2:SetText(L["BigWigs Healing"])
 		end,
-		[E.Retail and 11 or 10] = function()
+		[Private.isRetail and 11 or 10] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Details profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for Details! Damage Meter."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -187,7 +187,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_Details(true) end)
 			PluginInstallFrame.Option1:SetText(L["Setup Details"])
 		end,
-		[E.Retail and 12] = function()
+		[Private.isRetail and 12] = function()
 			PluginInstallFrame.SubTitle:SetText(L["OmniCD profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for OmniCD Party CDs."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -198,7 +198,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option2:SetScript('OnClick', function() Private:Setup_OmniCD('healing', true) end)
 			PluginInstallFrame.Option2:SetText(L["OmniCD Healing"])
 		end,
-		[E.Retail and 13] = function()
+		[Private.isRetail and 13] = function()
 			PluginInstallFrame.SubTitle:SetText(L["WarpDeplete profile"])
 			PluginInstallFrame.Desc1:SetText(L["Please click the button below to apply Luckyones profile for WarpDeplete."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
@@ -206,7 +206,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() Private:Setup_WarpDeplete(true) end)
 			PluginInstallFrame.Option1:SetText(L["Setup WarpDeplete"])
 		end,
-		[E.Retail and 14 or 11] = function()
+		[Private.isRetail and 14 or 11] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Installation Complete"])
 			PluginInstallFrame.Desc1:SetText(L["You have completed the installation process, please click 'Finished' to reload the UI."])
 			PluginInstallFrame.Desc2:SetText(L["Feel free to join our community Discord for support and social chats."])
@@ -223,16 +223,16 @@ L1UI.InstallerData = {
 		[2] = L["Layout Scale"],
 		[3] = L["ElvUI Layouts"],
 		[4] = L["ElvUI Filters"],
-		[E.Retail and 5] = L["ElvUI Plugins"],
-		[E.Retail and 6 or 5] = L["Color Theme"],
-		[E.Retail and 7 or 6] = L["Chat"],
-		[E.Retail and 8 or 7] = L["Console Variables"],
-		[E.Retail and 9 or 8] = L["NamePlates"],
-		[E.Retail and 10 or 9] = 'BigWigs',
-		[E.Retail and 11 or 10] = 'Details',
-		[E.Retail and 12] = 'OmniCD',
-		[E.Retail and 13] = 'WarpDeplete',
-		[E.Retail and 14 or 11] = L["Installation Complete"],
+		[Private.isRetail and 5] = L["ElvUI Plugins"],
+		[Private.isRetail and 6 or 5] = L["Color Theme"],
+		[Private.isRetail and 7 or 6] = L["Chat"],
+		[Private.isRetail and 8 or 7] = L["Console Variables"],
+		[Private.isRetail and 9 or 8] = L["NamePlates"],
+		[Private.isRetail and 10 or 9] = 'BigWigs',
+		[Private.isRetail and 11 or 10] = 'Details',
+		[Private.isRetail and 12] = 'OmniCD',
+		[Private.isRetail and 13] = 'WarpDeplete',
+		[Private.isRetail and 14 or 11] = L["Installation Complete"],
 	},
 	StepTitlesColor = { 1, 1, 1 },
 	StepTitlesColorSelected = { 0, 179 / 255, 1 },

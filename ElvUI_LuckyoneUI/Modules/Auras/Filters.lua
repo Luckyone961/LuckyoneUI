@@ -18,11 +18,11 @@ end
 
 -- Aura filters: Installer Function
 function Private:Setup_Filters(installer)
-	if E.Retail then
+	if Private.isRetail then
 		Private:Setup_Filters_Retail()
-	elseif E.Mists then
+	elseif Private.isMists then
 		Private:Setup_Filters_Mists()
-	elseif E.Classic then
+	elseif Private.isClassic then
 		Private:Setup_Filters_Classic()
 	end
 
@@ -35,7 +35,7 @@ end
 
 -- Aura filters: Retail
 function Private:Setup_Filters_Retail()
-	if not E.Retail then return end
+	if not Private.isRetail then return end
 
 	-- General vars
 	local unitframe = E.global['unitframe'] or {}
@@ -565,7 +565,7 @@ end
 
 -- Aura filters: Mists of Pandaria
 function Private:Setup_Filters_Mists()
-	if not E.Mists then return end
+	if not Private.isMists then return end
 
 	-- General vars
 	local unitframe = E.global['unitframe'] or {}
@@ -871,7 +871,7 @@ end
 
 -- Aura filters: Classic
 function Private:Setup_Filters_Classic()
-	if not E.Classic then return end
+	if not Private.isClassic then return end
 
 	-- General vars
 	local unitframe = E.global['unitframe'] or {}

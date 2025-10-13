@@ -74,13 +74,13 @@ local function BuildBlizzardSection()
 	section.args.disabledFrames = ACH:Group(L["Hide Blizzard Frames"], nil, 2, nil, function(info) return E.private.L1UI.disabledFrames[info[#info]] end, function(info, value) E.private.L1UI.disabledFrames[info[#info]] = value E:StaticPopup_Show('L1UI_RL') end)
 	section.args.disabledFrames.inline = true
 	section.args.disabledFrames.args.AlertFrame = ACH:Toggle(L["Alert Frame"], L["Hide the Loot/Alert Frame"], 1)
-	section.args.disabledFrames.args.BossBanner = ACH:Toggle(L["Boss Banner"], L["Hide the Boss Banner"], 2, nil, nil, nil, nil, nil, nil, not E.Retail)
+	section.args.disabledFrames.args.BossBanner = ACH:Toggle(L["Boss Banner"], L["Hide the Boss Banner"], 2, nil, nil, nil, nil, nil, nil, not Private.isRetail)
 	section.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle(L["Zone Text"], L["Hide the Zone Text"], 3)
 	section.args.qualityOfLife = ACH:Group(L["Quality of Life"], nil, 3, nil, function(info) return E.private.L1UI.qualityOfLife[info[#info]] end, function(info, value) E.private.L1UI.qualityOfLife[info[#info]] = value E:StaticPopup_Show('L1UI_RL') end)
 	section.args.qualityOfLife.inline = true
 	section.args.qualityOfLife.args.easyDelete = ACH:Toggle(L["Easy Delete"], L["Automatically fill out the confirmation text to delete items."], 1)
 	section.args.qualityOfLife.args.privacyOverlay = ACH:Toggle(L["Privacy Overlay"], L["Creates an overlay to hide the chat frame in the Communities Frame until you click on it."], 2)
-	section.args.strings = ACH:Group(L["Profile strings"], nil, 4, nil, nil, nil, nil, not E.Retail)
+	section.args.strings = ACH:Group(L["Profile strings"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
 	section.args.strings.inline = true
 	section.args.strings.args.editMode = ACH:Execute(L["Blizzard Edit Mode"], nil, 1, function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-BlizzHUD') end)
 	return section
@@ -99,11 +99,11 @@ local function BuildAurasSection()
 	section.args.buffs.args.target.inline = true
 	section.args.buffs.args.target.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('target', 'min') end)
 	section.args.buffs.args.target.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('target', 'all') end)
-	section.args.buffs.args.focus = ACH:Group(L["Focus Frame Buffs"], nil, 3, nil, nil, nil, nil, E.Classic)
+	section.args.buffs.args.focus = ACH:Group(L["Focus Frame Buffs"], nil, 3, nil, nil, nil, nil, Private.isClassic)
 	section.args.buffs.args.focus.inline = true
 	section.args.buffs.args.focus.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('focus', 'min') end)
 	section.args.buffs.args.focus.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('focus', 'all') end)
-	section.args.buffs.args.boss = ACH:Group(L["Boss Frame Buffs"], nil, 4, nil, nil, nil, nil, not E.Retail)
+	section.args.buffs.args.boss = ACH:Group(L["Boss Frame Buffs"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
 	section.args.buffs.args.boss.inline = true
 	section.args.buffs.args.boss.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('boss', 'min') end)
 	section.args.buffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('boss', 'all') end)
@@ -116,11 +116,11 @@ local function BuildAurasSection()
 	section.args.debuffs.args.target.inline = true
 	section.args.debuffs.args.target.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('target', 'min') end)
 	section.args.debuffs.args.target.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('target', 'all') end)
-	section.args.debuffs.args.focus = ACH:Group(L["Focus Frame Debuffs"], nil, 3, nil, nil, nil, nil, E.Classic)
+	section.args.debuffs.args.focus = ACH:Group(L["Focus Frame Debuffs"], nil, 3, nil, nil, nil, nil, Private.isClassic)
 	section.args.debuffs.args.focus.inline = true
 	section.args.debuffs.args.focus.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('focus', 'min') end)
 	section.args.debuffs.args.focus.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('focus', 'all') end)
-	section.args.debuffs.args.boss = ACH:Group(L["Boss Frame Debuffs"], nil, 4, nil, nil, nil, nil, not E.Retail)
+	section.args.debuffs.args.boss = ACH:Group(L["Boss Frame Debuffs"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
 	section.args.debuffs.args.boss.inline = true
 	section.args.debuffs.args.boss.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('boss', 'min') end)
 	section.args.debuffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('boss', 'all') end)
@@ -224,8 +224,8 @@ local function BuildProfilesSection()
 	section.args.plugins.inline = true
 	section.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', L["Reset to LuckyoneUI defaults."], 1, function() Private:Setup_AddOnSkins() E:StaticPopup_Show('L1UI_RL') end, nil, true)
 	section.args.plugins.args.pa = ACH:Execute('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r', L["Reset to LuckyoneUI defaults."], 2, function() Private:Setup_ProjectAzilroka() E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	section.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', L["Reset to LuckyoneUI defaults."], 3, function() Private:Setup_ShadowAndLight() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
-	section.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', L["Reset to LuckyoneUI defaults."], 4, function() Private:Setup_WindTools() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
+	section.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', L["Reset to LuckyoneUI defaults."], 3, function() Private:Setup_ShadowAndLight() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', L["Reset to LuckyoneUI defaults."], 4, function() Private:Setup_WindTools() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.nameplates = ACH:Group(L["NamePlate Profiles"], nil, 4)
 	section.args.nameplates.inline = true
 	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', L["Reset to LuckyoneUI defaults."], 1, function() Private:Setup_NamePlates() E:StaticPopup_Show('L1UI_RL') end, nil, true)
@@ -234,7 +234,7 @@ local function BuildProfilesSection()
 	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 5)
 	section.args.addons.inline = true
 	section.args.addons.args.details = ACH:Execute('Details', L["Reset to LuckyoneUI defaults."], 1, function() Private:Setup_Details() E:StaticPopup_Show('L1UI_RL') end, nil, true)
-	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', L["Reset to LuckyoneUI defaults."], 2, function() Private:Setup_WarpDeplete() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not E.Retail)
+	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', L["Reset to LuckyoneUI defaults."], 2, function() Private:Setup_WarpDeplete() E:StaticPopup_Show('L1UI_RL') end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.header2 = ACH:Header(L["Profiles for DPS & Tanks"], 6)
 	section.args.addonsMain = ACH:Group(L["Addon Profiles"], nil, 7)
 	section.args.addonsMain.inline = true
@@ -281,7 +281,7 @@ end
 
 -- Build WeakAuras Section
 local function BuildWeakAurasSection()
-	local section = ACH:Group('WeakAuras', nil, 14, nil, nil, nil, nil, not E.Retail)
+	local section = ACH:Group('WeakAuras', nil, 14, nil, nil, nil, nil, not Private.isRetail)
 	section.args.maintained = ACH:Group(L["WeakAuras - Maintained"], nil, 1)
 	section.args.maintained.inline = true
 	section.args.maintained.args.evoker = ACH:Execute(format('|cff33937F%s|r', L["Evoker"]), nil, 1, function() Private:WeakAurasImport('evoker') end)

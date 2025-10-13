@@ -5,6 +5,10 @@ local unpack = unpack
 -- API cache
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
+local WOW_PROJECT_ID = WOW_PROJECT_ID
+local WOW_PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
+local WOW_PROJECT_MISTS_CLASSIC = WOW_PROJECT_MISTS_CLASSIC
+local WOW_PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
 
 -- Library cache
 local LibStub = LibStub
@@ -29,6 +33,11 @@ Private.Font = 'Expressway'
 Private.Outline = 'OUTLINE'
 Private.Texture = 'Minimalist'
 
+-- Constants: Supported game versions
+Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
+Private.isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
+Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
+
 -- Constants: Tables
 Private.Config = {}
 Private.Credits = {}
@@ -46,7 +55,7 @@ local function Initialize()
 	end
 
 	-- Shadow & Light installer skip
-	if (E.Retail and E.private.sle) and E.private.sle.install_complete == nil then
+	if (Private.isRetail and E.private.sle) and E.private.sle.install_complete == nil then
 		E.private.sle.install_complete = tonumber(GetAddOnMetadata('ElvUI_SLE', 'Version'))
 	end
 

@@ -62,11 +62,11 @@ function Private:NameplateCVars(noPrint)
 	SetCVar('UnitNameEnemyPetName', 1)
 	SetCVar('UnitNameEnemyPlayerName', 1)
 
-	if not E.Classic then
+	if not Private.isClassic then
 		SetCVar('UnitNameEnemyTotem', 1)
 	end
 
-	if not E.Retail then
+	if not Private.isRetail then
 		SetCVar('nameplateNotSelectedAlpha', 1)
 	end
 

@@ -56,19 +56,19 @@ function Private:Setup_Debuffs(frame, option)
 		if option == 'all' then
 			E.db.unitframe.units.target.debuffs.priority = all
 		else
-			E.db.unitframe.units.target.debuffs.priority = E.Retail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
+			E.db.unitframe.units.target.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
 		end
 	elseif frame == 'focus' then
 		if option == 'all' then
 			E.db.unitframe.units.focus.debuffs.priority = all
 		else
-			E.db.unitframe.units.focus.debuffs.priority = E.Retail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
+			E.db.unitframe.units.focus.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
 		end
 	elseif frame == 'boss' then
 		if option == 'all' then
 			E.db.unitframe.units.boss.debuffs.priority = all
 		else
-			E.db.unitframe.units.boss.debuffs.priority = E.Retail and 'blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
+			E.db.unitframe.units.boss.debuffs.priority = Private.isRetail and 'blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
 		end
 	end
 

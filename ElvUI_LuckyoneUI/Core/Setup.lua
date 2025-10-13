@@ -42,7 +42,7 @@ function Private:HandleAlts(layout)
 		return
 	end
 
-	if not E.Classic then
+	if not Private.isClassic then
 		HandleLibDualSpec()
 	end
 
@@ -104,7 +104,7 @@ function Private:Setup_GlobalDB()
 	ActionBarsDT.tooltipAnchor = 'ANCHOR_TOP'
 	ActionBarsDT.tooltipXOffset = 0
 	ActionBarsDT.tooltipYOffset = 5
-	ActionBarsDT.visibility = (E.Retail or E.Mists) and '[petbattle] hide;show' or 'show'
+	ActionBarsDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
 	ActionBarsDT.width = (scaled and 299) or 347
 
 	DT:BuildPanelFrame('Luckyone_MiniMap_DT')
@@ -123,7 +123,7 @@ function Private:Setup_GlobalDB()
 	MiniMapDT.tooltipAnchor = 'ANCHOR_BOTTOMLEFT'
 	MiniMapDT.tooltipXOffset = -41
 	MiniMapDT.tooltipYOffset = -29
-	MiniMapDT.visibility = (E.Retail or E.Mists) and '[petbattle] hide;show' or 'show'
+	MiniMapDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
 	MiniMapDT.width = 56
 end
 
@@ -157,7 +157,7 @@ function Private:Setup_PrivateDB(includePlugins)
 	E.private.general.chatBubbleFont = Private.Font
 	E.private.general.chatBubbleFontOutline = Private.Outline
 	E.private.general.glossTex = Private.Texture
-	E.private.general.minimap.hideTracking = not E.Classic
+	E.private.general.minimap.hideTracking = not Private.isClassic
 	E.private.general.nameplateFont = Private.Font
 	E.private.general.nameplateFontSize = 9
 	E.private.general.nameplateLargeFont = Private.Font
@@ -169,7 +169,7 @@ function Private:Setup_PrivateDB(includePlugins)
 
 	E.private.skins.parchmentRemoverEnable = true
 
-	if includePlugins and E.Retail then
+	if includePlugins and Private.isRetail then
 		if Private.IsAddOnLoaded('ElvUI_SLE') then
 			Private:Setup_Private_ShadowAndLight()
 		end
@@ -178,7 +178,7 @@ function Private:Setup_PrivateDB(includePlugins)
 		end
 	end
 
-	if E.Classic then
+	if Private.isClassic then
 		-- This will make sure Shaman is blue instead of pink
 		E.private.general.classColors = true
 	end
@@ -199,7 +199,7 @@ end
 
 -- Setup The War Within layout
 function Private:Setup_Layout(layout, installer)
-	if not E.Classic then
+	if not Private.isClassic then
 		HandleLibDualSpec()
 	end
 

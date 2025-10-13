@@ -104,7 +104,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.auras.height = 24
 	E.db.nameplates.units.ENEMY_NPC.auras.keepSizeRatio = false
 	E.db.nameplates.units.ENEMY_NPC.auras.numAuras = 3
-	E.db.nameplates.units.ENEMY_NPC.auras.priority = E.Retail and 'ImportantCC' or 'CCDebuffs'
+	E.db.nameplates.units.ENEMY_NPC.auras.priority = Private.isRetail and 'ImportantCC' or 'CCDebuffs'
 	E.db.nameplates.units.ENEMY_NPC.auras.size = 30
 	E.db.nameplates.units.ENEMY_NPC.auras.sortMethod = 'INDEX'
 	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.font = Private.Font
@@ -161,7 +161,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.debuffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_NPC.debuffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_NPC.debuffs.priority = E.Retail and 'blockNonPersonal,ClassDebuffs' or 'blockCCDebuffs,Personal'
+	E.db.nameplates.units.ENEMY_NPC.debuffs.priority = Private.isRetail and 'blockNonPersonal,ClassDebuffs' or 'blockCCDebuffs,Personal'
 	E.db.nameplates.units.ENEMY_NPC.debuffs.size = 24
 	E.db.nameplates.units.ENEMY_NPC.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_NPC.debuffs.yOffset = -1
@@ -196,7 +196,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.auras.height = 24
 	E.db.nameplates.units.ENEMY_PLAYER.auras.keepSizeRatio = false
 	E.db.nameplates.units.ENEMY_PLAYER.auras.numAuras = 3
-	E.db.nameplates.units.ENEMY_PLAYER.auras.priority = E.Retail and 'ImportantCC' or 'CCDebuffs'
+	E.db.nameplates.units.ENEMY_PLAYER.auras.priority = Private.isRetail and 'ImportantCC' or 'CCDebuffs'
 	E.db.nameplates.units.ENEMY_PLAYER.auras.size = 30
 	E.db.nameplates.units.ENEMY_PLAYER.auras.sortMethod = 'INDEX'
 	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.font = Private.Font
@@ -248,7 +248,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = E.Retail and 'blockNonPersonal,ClassDebuffs' or 'blockCCDebuffs,Personal'
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = Private.isRetail and 'blockNonPersonal,ClassDebuffs' or 'blockCCDebuffs,Personal'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.size = 24
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = -1
@@ -379,7 +379,7 @@ function Private:Setup_StyleFilters(skipVars)
 	E.global.nameplates.filters.Luckyone_Quest_N.triggers.reactionType.enable = true
 	E.global.nameplates.filters.Luckyone_Quest_N.triggers.reactionType.neutral = true
 
-	if not E.Classic then
+	if not Private.isClassic then
 
 		-- Create NonClassic specific filters
 		for _, filterName in ipairs(nonClassicFilters) do
@@ -395,7 +395,7 @@ function Private:Setup_StyleFilters(skipVars)
 		E.global.nameplates.filters.Luckyone_Focus.triggers.priority = 2
 	end
 
-	if E.Retail then
+	if Private.isRetail then
 
 		-- Create retail specific filters
 		for _, filterName in ipairs(retailFilters) do

@@ -13,7 +13,7 @@ local E, L, V, P, G = unpack(ElvUI)
 -- WindTools ProfileDB
 -- LC: 14/09/2025
 function Private:Setup_WindTools(installer)
-	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and E.Retail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
+	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and Private.isRetail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
 	-- 1080p
 	local scaled = E.global.L1UI.scaled

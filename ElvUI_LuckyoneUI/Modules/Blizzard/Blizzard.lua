@@ -23,7 +23,7 @@ function Private:DisabledFrames()
 		E:DisableMover('AlertFrameMover')
 	end
 
-	if E.private.L1UI.disabledFrames.BossBanner and E.Retail then
+	if E.private.L1UI.disabledFrames.BossBanner and Private.isRetail then
 		_G.BossBanner:UnregisterAllEvents()
 		E:DisableMover('BossBannerMover')
 	end
@@ -39,13 +39,13 @@ function Private:EasyDelete()
 
 	-- Higher quality than green
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', function(frame)
-		local name = E.Classic and frame.editBox or frame.EditBox
+		local name = Private.isClassic and frame.editBox or frame.EditBox
 		name:SetText(DELETE_ITEM_CONFIRM_STRING)
 	end)
 
 	-- Quests and Quest starters
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', function(frame)
-		local name = E.Classic and frame.editBox or frame.EditBox
+		local name = Private.isClassic and frame.editBox or frame.EditBox
 		name:SetText(DELETE_ITEM_CONFIRM_STRING)
 	end)
 end

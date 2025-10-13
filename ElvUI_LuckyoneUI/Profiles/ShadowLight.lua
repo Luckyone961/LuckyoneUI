@@ -16,7 +16,7 @@ local E, L, V, P, G = unpack(ElvUI)
 -- Shadow & Light ProfileDB
 -- LC: 09/09/2025
 function Private:Setup_ShadowAndLight(installer)
-	if not (Private.IsAddOnLoaded('ElvUI_SLE') and E.Retail) then Private:Print('|cff9482c9Shadow & Light|r ' .. L["is not installed or enabled."]) return end
+	if not (Private.IsAddOnLoaded('ElvUI_SLE') and Private.isRetail) then Private:Print('|cff9482c9Shadow & Light|r ' .. L["is not installed or enabled."]) return end
 
 	-- Restore defaults
 	E.db.sle = E:CopyTable({}, P.sle)

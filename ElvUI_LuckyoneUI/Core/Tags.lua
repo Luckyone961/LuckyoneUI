@@ -93,7 +93,7 @@ local function getFormattedName(unit, length, color, abbrev)
 
 	local colorHex = '|cFFcccccc' -- Default color
 
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+	if UnitIsPlayer(unit) or (Private.isRetail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if unitClass then
 			local cs = ElvUF_colors_class[unitClass]
@@ -117,7 +117,7 @@ end
 local function getUnitColor(unit)
 	local color = '|cFFcccccc'
 
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+	if UnitIsPlayer(unit) or (Private.isRetail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		local cs = ElvUF_colors_class[unitClass]
 		if cs then
@@ -179,8 +179,8 @@ E:AddTag('luckyone:health:percent-with-absorbs', 'UNIT_HEALTH UNIT_MAXHEALTH UNI
 
 	local healthTotalIncludingAbsorbs = UnitHealth(unit) + absorb
 	return E:GetFormattedText('PERCENT', healthTotalIncludingAbsorbs, UnitHealthMax(unit), 0, nil)
-end, E.Classic)
-E:AddTagInfo('luckyone:health:percent-with-absorbs', Private.Name, L["Displays the unit's current health as a percentage with absorb values, without decimals"], nil, E.Classic)
+end, Private.isClassic)
+E:AddTagInfo('luckyone:health:percent-with-absorbs', Private.Name, L["Displays the unit's current health as a percentage with absorb values, without decimals"], nil, Private.isClassic)
 
 -- Display percentage health with absorb values, without decimals and without status
 E:AddTag('luckyone:health:percent-with-absorbs:nostatus', 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_ABSORB_AMOUNT_CHANGED UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
@@ -191,8 +191,8 @@ E:AddTag('luckyone:health:percent-with-absorbs:nostatus', 'UNIT_HEALTH UNIT_MAXH
 
 	local healthTotalIncludingAbsorbs = UnitHealth(unit) + absorb
 	return E:GetFormattedText('PERCENT', healthTotalIncludingAbsorbs, UnitHealthMax(unit), 0, nil)
-end, E.Classic)
-E:AddTagInfo('luckyone:health:percent-with-absorbs:nostatus', Private.Name, L["Displays the unit's current health as a percentage with absorb values, without decimals and without status"], nil, E.Classic)
+end, Private.isClassic)
+E:AddTagInfo('luckyone:health:percent-with-absorbs:nostatus', Private.Name, L["Displays the unit's current health as a percentage with absorb values, without decimals and without status"], nil, Private.isClassic)
 
 -- Display percentage power with powecolor and hides power at 0
 E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
@@ -234,7 +234,7 @@ E:AddTag('luckyone:level', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 	local level = UnitEffectiveLevel(unit)
 	local max = E:XPIsLevelMax()
 
-	if E.Retail and (UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit)) then
+	if Private.isRetail and (UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit)) then
 		level = UnitBattlePetLevel(unit)
 		local teamLevel = C_PetJournal_GetPetTeamAverageLevel()
 		color = (teamLevel ~= level) and GetRelativeDifficultyColor(teamLevel, level) or QuestDifficultyColors.difficult
@@ -254,8 +254,8 @@ E:AddTag('luckyone:healermana:current', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_
 		local color = ElvUF_colors_power.MANA
 		return Hex(color.r, color.g, color.b) .. UnitPower(unit, Enum.PowerType.Mana)
 	end
-end, E.Classic)
-E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana with manacolor (Role: Healer)"], nil, E.Classic)
+end, Private.isClassic)
+E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana with manacolor (Role: Healer)"], nil, Private.isClassic)
 
 -- Display mana (percent) if the unit is flagged healer (Retail and Mists only)
 E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
@@ -267,12 +267,12 @@ E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_
 
 		return Hex(color.r, color.g, color.b) .. E:GetFormattedText('PERCENT', min, max, 0, nil)
 	end
-end, E.Classic)
-E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"], nil, E.Classic)
+end, Private.isClassic)
+E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"], nil, Private.isClassic)
 
 -- Display pet name and happiness status (Classic only)
-E:AddTag('luckyone:pet:name-and-happiness', E.Classic and 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE' or 'UNIT_NAME_UPDATE PET_UI_UPDATE', function(unit)
-	if not E.Classic then
+E:AddTag('luckyone:pet:name-and-happiness', Private.isClassic and 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE' or 'UNIT_NAME_UPDATE PET_UI_UPDATE', function(unit)
+	if not Private.isClassic then
 		return 'Pet'
 	else
 		local hasPetUI, isHunterPet = HasPetUI()
@@ -298,7 +298,7 @@ E:AddTag('luckyone:name:last-classcolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANC
 	local name = UnitName(unit)
 	local color, formattedName
 
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+	if UnitIsPlayer(unit) or (Private.isRetail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		local cs = ElvUF_colors_class[unitClass]
 		color = cs and Hex(cs.r, cs.g, cs.b) or '|cFFcccccc'

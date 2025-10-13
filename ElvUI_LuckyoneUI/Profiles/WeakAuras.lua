@@ -14,7 +14,7 @@ end
 -- WeakAuras
 -- LC: 28/08/2025
 function Private:WeakAurasImport(aura)
-	if not (Private.IsAddOnLoaded('WeakAuras') and E.Retail) then Private:Print('WeakAuras ' .. L["is not installed or enabled."]) return end
+	if not (Private.IsAddOnLoaded('WeakAuras') and Private.isRetail) then Private:Print('WeakAuras ' .. L["is not installed or enabled."]) return end
 
 	local auraLinks = {
 		evoker = 'LuckyoneUI-Evoker',

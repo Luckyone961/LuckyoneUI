@@ -194,7 +194,7 @@ end
 function L1UI:LoadCommands()
 	self:RegisterChatCommand('luckydebug', 'DebugMode')
 	self:RegisterChatCommand('lucky', 'Toggles')
-	if E.Retail then -- Retail chat commands
+	if Private.isRetail then -- Retail chat commands
 		self:RegisterChatCommand('vault', 'WeeklyRewards')
 		self:RegisterChatCommand('weekly', 'WeeklyRewards')
 	end
@@ -203,7 +203,7 @@ end
 -- Luckyone characters by GUID
 function Private:HandleToons()
 	local guid = E.myguid
-	local toons = E.Retail and {
+	local toons = Private.isRetail and {
 		-- (1598: LaughingSkull)
 		['Player-1598-0F5E4639'] = true, -- [A] Druid
 		['Player-1598-0F3E51B0'] = true, -- [A] Druid 2
@@ -221,7 +221,7 @@ function Private:HandleToons()
 		['Player-1598-0BF8013A'] = true, -- [H] Warrior
 		['Player-1598-0BF56103'] = true, -- [H] Shaman
 		['Player-1598-0F87B5AA'] = true, -- [A] Priest
-	} or E.Mists and {
+	} or Private.isMists and {
 		-- (4454: Garalon + Shek'zeer)
 		['Player-4454-060E2FD9'] = true, -- [H] Mage
 		['Player-4454-060E336E'] = true, -- [H] Hunter
@@ -241,7 +241,7 @@ function Private:HandleToons()
 		['Player-4454-060E3657'] = true, -- [H] Druid
 		['Player-4454-060E364E'] = true, -- [H] Priest
 		['Player-4454-060E361A'] = true, -- [H] Shaman
-	} or E.Classic and {
+	} or Private.isClassic and {
 		-- (6112: Spineshatter)
 		['Player-6112-028A3A6D'] = true, -- [H] Hunter
 		['Player-6112-02A2F754'] = true, -- [H] Priest
