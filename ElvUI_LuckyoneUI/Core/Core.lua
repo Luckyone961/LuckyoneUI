@@ -207,6 +207,7 @@ function Private:HandleToons()
 		-- (1598: LaughingSkull)
 		['Player-1598-0F5E4639'] = true, -- [A] Druid
 		['Player-1598-0F3E51B0'] = true, -- [A] Druid 2
+		['Player-1598-0FBCD9A2'] = true, -- [A] DH
 		['Player-1598-0F46FF5A'] = true, -- [H] Evoker
 		['Player-1598-0F92E2B9'] = true, -- [H] Evoker 2
 		['Player-1598-0BFF3341'] = true, -- [H] DH
