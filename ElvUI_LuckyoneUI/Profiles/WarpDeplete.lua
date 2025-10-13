@@ -57,7 +57,7 @@ function Private:Setup_WarpDeplete(installer)
 	}
 
 	-- Profile key
-	WarpDepleteDB['profileKeys'][E.mynameRealm] = name
+	WarpDepleteDB['profileKeys'][Private.myNameRealm] = name
 
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["WarpDeplete profile has been set."])

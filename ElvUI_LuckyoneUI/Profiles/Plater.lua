@@ -32,11 +32,11 @@ function Private:Setup_Plater(installer)
 
 	-- Profile import
 	if PlaterDB.profiles[name] then -- Profile already exists, don't import, just load
-		tinsert(PlaterDB.profileKeys, E.mynameRealm)
-		PlaterDB.profileKeys[E.mynameRealm] = name
+		tinsert(PlaterDB.profileKeys, Private.myNameRealm)
+		PlaterDB.profileKeys[Private.myNameRealm] = name
 	else -- Import the profile string
 		PlaterDB.profiles[name] = data
-		PlaterDB.profileKeys[E.mynameRealm] = name
+		PlaterDB.profileKeys[Private.myNameRealm] = name
 	end
 
 	if installer then

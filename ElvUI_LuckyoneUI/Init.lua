@@ -4,7 +4,13 @@ local unpack = unpack
 
 -- API cache
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
+local GetRealmName = GetRealmName
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
+local UnitGUID = UnitGUID
+local UnitLevel = UnitLevel
+local UnitName = UnitName
+
+-- Globals
 local WOW_PROJECT_ID = WOW_PROJECT_ID
 local WOW_PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
 local WOW_PROJECT_MISTS_CLASSIC = WOW_PROJECT_MISTS_CLASSIC
@@ -46,6 +52,12 @@ Private.Credits = {}
 Private.IsAddOnLoaded = IsAddOnLoaded
 Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
 Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
+
+-- Constants: Misc
+Private.myGUID = UnitGUID('player')
+Private.myName = UnitName('player')
+Private.myRealm = GetRealmName()
+Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
 
 -- Initialize module in ElvUI
 local function Initialize()

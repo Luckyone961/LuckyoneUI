@@ -18,8 +18,8 @@ local DT = E:GetModule('DataTexts')
 local function HandleLibDualSpec()
 	ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
 	ElvDB['namespaces']['LibDualSpec-1.0']['char'] = ElvDB['namespaces']['LibDualSpec-1.0']['char'] or {}
-	ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = {}
-	ElvDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
+	ElvDB['namespaces']['LibDualSpec-1.0']['char'][Private.myNameRealm] = {}
+	ElvDB['namespaces']['LibDualSpec-1.0']['char'][Private.myNameRealm]['enabled'] = false
 end
 
 -- Full frontend refresh

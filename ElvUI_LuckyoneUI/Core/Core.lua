@@ -171,7 +171,7 @@ function L1UI:DebugMode(msg)
 		for i = 1, GetNumAddOns() do
 			local name = GetAddOnInfo(i)
 			if not AddOns[name] and E:IsAddOnEnabled(name) then
-				DisableAddOn(name, E.myname)
+				DisableAddOn(name, Private.myName)
 				ElvDB.LuckyoneDisabledAddOns[name] = i
 			end
 		end
@@ -180,7 +180,7 @@ function L1UI:DebugMode(msg)
 	elseif switch == 'off' then
 		if next(ElvDB.LuckyoneDisabledAddOns) then
 			for name in pairs(ElvDB.LuckyoneDisabledAddOns) do
-				EnableAddOn(name, E.myname)
+				EnableAddOn(name, Private.myName)
 			end
 			wipe(ElvDB.LuckyoneDisabledAddOns)
 			C_UI_Reload()
@@ -202,7 +202,7 @@ end
 
 -- Luckyone characters by GUID
 function Private:HandleToons()
-	local guid = E.myguid
+	local guid = Private.myGUID
 	local toons = Private.isRetail and {
 		-- (1598: LaughingSkull)
 		['Player-1598-0F5E4639'] = true, -- [A] Druid

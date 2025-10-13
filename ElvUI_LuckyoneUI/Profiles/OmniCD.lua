@@ -27,8 +27,8 @@ function Private:Setup_OmniCD(layout, installer)
 	if Private.isRetail then
 		OmniCDDB['namespaces']['LibDualSpec-1.0'] = OmniCDDB['namespaces']['LibDualSpec-1.0'] or {}
 		OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] = OmniCDDB['namespaces']['LibDualSpec-1.0']['char'] or {}
-		OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm] = {}
-		OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][E.mynameRealm]['enabled'] = false
+		OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][Private.myNameRealm] = {}
+		OmniCDDB['namespaces']['LibDualSpec-1.0']['char'][Private.myNameRealm]['enabled'] = false
 	end
 
 	-- Global db
@@ -765,9 +765,9 @@ function Private:Setup_OmniCD(layout, installer)
 
 	-- Set profile
 	if layout == 'main' then
-		OmniCDDB['profileKeys'][E.mynameRealm] = name_main
+		OmniCDDB['profileKeys'][Private.myNameRealm] = name_main
 	elseif layout == 'healing' then
-		OmniCDDB['profileKeys'][E.mynameRealm] = name_healing
+		OmniCDDB['profileKeys'][Private.myNameRealm] = name_healing
 	end
 
 	if installer then
