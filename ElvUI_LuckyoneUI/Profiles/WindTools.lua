@@ -1,6 +1,9 @@
 -- Lua functions
 local unpack = unpack
 
+-- API cache
+local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
+
 -- Global environment
 local _G = _G
 
@@ -18,9 +21,17 @@ function Private:Setup_WindTools(installer)
 	-- 1080p
 	local scaled = E.global.L1UI.scaled
 
+	-- Get version
+	local version = GetAddOnMetadata('ElvUI_WindTools', 'X-Version')
+
 	-- Restore defaults
 	E.db.WT = E:CopyTable({}, P.WT)
 	E.global.WT = E:CopyTable({}, G.WT)
+
+	-- Avoid recent db convert, seems to run after import and re-enables stuff we don't want
+	E.db.WT.version = version
+	E.global.WT.version = version
+	E.private.WT.version = version
 
 	-- Keep this, it won't get exported by default
 	E.db.WT.quest.switchButtons.hideWithObjectiveTracker = true
