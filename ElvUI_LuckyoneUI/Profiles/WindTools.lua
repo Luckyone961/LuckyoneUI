@@ -11,7 +11,7 @@ local _, Private = ...
 local E, L, V, P, G = unpack(ElvUI)
 
 -- WindTools ProfileDB
--- LC: 14/09/2025
+-- LC: 27/10/2025
 function Private:Setup_WindTools(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and Private.isRetail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
@@ -58,13 +58,16 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.maps.whoClicked.onlyOnCombat = false
 	E.db.WT.maps.whoClicked.stayTime = 2
 	E.db.WT.maps.whoClicked.yOffset = 19
+	E.db.WT.misc.achievementTracker.show = false
 	E.db.WT.misc.disableTalkingHead = true
 	E.db.WT.misc.exitPhaseDiving.enable = false
 	E.db.WT.misc.gameBar.enable = false
 	E.db.WT.misc.noLootPanel = true
+	E.db.WT.quest.progress.enable = false
 	E.db.WT.quest.switchButtons.announcement = false
 	E.db.WT.quest.switchButtons.font.color.b = 1
 	E.db.WT.quest.switchButtons.font.color.g = 1
+	E.db.WT.quest.turnIn.enable = false
 	E.db.WT.quest.turnIn.mode = 'COMPLETE'
 	E.db.WT.quest.turnIn.pauseModifier = 'ANY'
 	E.db.WT.quest.turnIn.selectReward = false
@@ -141,7 +144,7 @@ function Private:Setup_WindTools(installer)
 end
 
 -- WindTools PrivateDB
--- LC: 09/09/2025
+-- LC: 27/10/2025
 function Private:Setup_Private_WindTools()
 
 	-- Restore defaults

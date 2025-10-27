@@ -1,4 +1,9 @@
-﻿## Version 3.27 [11-10-2025]
+﻿## Version 3.28 [In Development]
+
+**Retail:**  
+- Updated WindTools profile (Quest progress, Auto turnin, Achievement tracker)  
+
+## Version 3.27 [11-10-2025]
 
 **All WoW Versions:**  
 - ElvUI 14.02+ compatibility  
