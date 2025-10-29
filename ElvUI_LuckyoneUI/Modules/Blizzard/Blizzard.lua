@@ -7,6 +7,9 @@ local hooksecurefunc = hooksecurefunc
 -- Global environment
 local _G = _G
 
+-- Global strings
+local DELETE_ITEM_CONFIRM_STRING = DELETE_ITEM_CONFIRM_STRING
+
 -- AddOn namespace
 local _, Private = ...
 
@@ -20,7 +23,7 @@ function Private:DisabledFrames()
 		E:DisableMover('AlertFrameMover')
 	end
 
-	if E.private.L1UI.disabledFrames.BossBanner and E.Retail then
+	if E.private.L1UI.disabledFrames.BossBanner and Private.isRetail then
 		_G.BossBanner:UnregisterAllEvents()
 		E:DisableMover('BossBannerMover')
 	end
@@ -36,13 +39,13 @@ function Private:EasyDelete()
 
 	-- Higher quality than green
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', function(frame)
-		local name = E.Retail and frame.EditBox or frame.editBox
+		local name = Private.isClassic and frame.editBox or frame.EditBox
 		name:SetText(DELETE_ITEM_CONFIRM_STRING)
 	end)
 
 	-- Quests and Quest starters
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', function(frame)
-		local name = E.Retail and frame.EditBox or frame.editBox
+		local name = Private.isClassic and frame.editBox or frame.EditBox
 		name:SetText(DELETE_ITEM_CONFIRM_STRING)
 	end)
 end

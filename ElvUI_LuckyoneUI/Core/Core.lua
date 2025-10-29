@@ -26,6 +26,7 @@ local _G = _G
 -- Global strings
 local ACCEPT = ACCEPT
 local CANCEL = CANCEL
+local OKAY = OKAY
 
 -- AddOn namespace
 local _, Private = ...
@@ -98,13 +99,12 @@ E.PopupDialogs.L1UI_EDITBOX = {
 	button1 = OKAY,
 	hasEditBox = 1,
 	OnShow = function(self, data)
-		self.editBox:SetAutoFocus(true)
+		self.editBox:SetAutoFocus(false)
 		self.editBox.width = self.editBox:GetWidth()
-		self.editBox:Width(280)
+		self.editBox:Width(310)
 		self.editBox:AddHistoryLine('text')
 		self.editBox.temptxt = data
 		self.editBox:SetText(data)
-		self.editBox:HighlightText()
 		self.editBox:SetJustifyH('CENTER')
 		Private:Print(data)
 	end,
@@ -124,9 +124,7 @@ E.PopupDialogs.L1UI_EDITBOX = {
 			self:SetText(self.temptxt)
 		end
 		self:HighlightText()
-		self:ClearFocus()
 	end,
-	OnAccept = E.noop,
 	whileDead = 1,
 	preferredIndex = 3,
 	hideOnEscape = 1,
@@ -173,7 +171,7 @@ function L1UI:DebugMode(msg)
 		for i = 1, GetNumAddOns() do
 			local name = GetAddOnInfo(i)
 			if not AddOns[name] and E:IsAddOnEnabled(name) then
-				DisableAddOn(name, E.myname)
+				DisableAddOn(name, Private.myName)
 				ElvDB.LuckyoneDisabledAddOns[name] = i
 			end
 		end
@@ -182,7 +180,7 @@ function L1UI:DebugMode(msg)
 	elseif switch == 'off' then
 		if next(ElvDB.LuckyoneDisabledAddOns) then
 			for name in pairs(ElvDB.LuckyoneDisabledAddOns) do
-				EnableAddOn(name, E.myname)
+				EnableAddOn(name, Private.myName)
 			end
 			wipe(ElvDB.LuckyoneDisabledAddOns)
 			C_UI_Reload()
@@ -196,7 +194,7 @@ end
 function L1UI:LoadCommands()
 	self:RegisterChatCommand('luckydebug', 'DebugMode')
 	self:RegisterChatCommand('lucky', 'Toggles')
-	if E.Retail then -- Retail chat commands
+	if Private.isRetail then -- Retail chat commands
 		self:RegisterChatCommand('vault', 'WeeklyRewards')
 		self:RegisterChatCommand('weekly', 'WeeklyRewards')
 	end
@@ -204,11 +202,12 @@ end
 
 -- Luckyone characters by GUID
 function Private:HandleToons()
-	local guid = E.myguid
-	local toons = E.Retail and {
+	local guid = Private.myGUID
+	local toons = Private.isRetail and {
 		-- (1598: LaughingSkull)
 		['Player-1598-0F5E4639'] = true, -- [A] Druid
 		['Player-1598-0F3E51B0'] = true, -- [A] Druid 2
+		['Player-1598-0FBCD9A2'] = true, -- [A] DH
 		['Player-1598-0F46FF5A'] = true, -- [H] Evoker
 		['Player-1598-0F92E2B9'] = true, -- [H] Evoker 2
 		['Player-1598-0BFF3341'] = true, -- [H] DH
@@ -223,26 +222,27 @@ function Private:HandleToons()
 		['Player-1598-0BF8013A'] = true, -- [H] Warrior
 		['Player-1598-0BF56103'] = true, -- [H] Shaman
 		['Player-1598-0F87B5AA'] = true, -- [A] Priest
-	} or E.Mists and {
-		-- (4467: Firemaw, 4440: Everlook, 4476: Gehennas)
-		['Player-4467-04540395'] = true, -- [A] Druid
-		['Player-4467-04542B4A'] = true, -- [A] Priest
-		['Player-4467-04571AA2'] = true, -- [A] Warlock
-		['Player-4467-04571911'] = true, -- [A] Paladin
-		['Player-4467-04571A9F'] = true, -- [A] Mage
-		['Player-4467-04571A8D'] = true, -- [A] DK
-		['Player-4467-048C4EED'] = true, -- [A] Hunter
-		['Player-4467-0489BE11'] = true, -- [A] Shaman
-		['Player-4467-0489BDFD'] = true, -- [A] Rogue
-		['Player-4467-04571A98'] = true, -- [A] Warrior
-		['Player-4440-03AD654A'] = true, -- [A] Rogue
-		['Player-4440-03ADE2DF'] = true, -- [A] Shaman
-		['Player-4467-0613ECA1'] = true, -- [A] Monk
-		['Player-4476-03BF41C9'] = true, -- [H] Hunter
-		['Player-4476-049F4831'] = true, -- [H] DK
-		['Player-4476-05C7B834'] = true, -- [H] Mage
-		['Player-4476-05CAB05D'] = true, -- [H] Monk
-	} or E.Classic and {
+	} or Private.isMists and {
+		-- (4454: Garalon + Shek'zeer)
+		['Player-4454-060E2FD9'] = true, -- [H] Mage
+		['Player-4454-060E336E'] = true, -- [H] Hunter
+		['Player-4454-060E339A'] = true, -- [H] Monk
+		['Player-4454-060E4058'] = true, -- [A] Druid
+		['Player-4454-060E4064'] = true, -- [A] Priest
+		['Player-4454-060E406B'] = true, -- [A] Warlock
+		['Player-4454-060E4071'] = true, -- [A] Shaman
+		['Player-4454-060E4076'] = true, -- [A] Warrior
+		['Player-4454-060E4089'] = true, -- [A] Rogue
+		['Player-4454-060E4091'] = true, -- [A] Paladin
+		['Player-4454-060E4086'] = true, -- [A] DK
+		['Player-4454-060E45B6'] = true, -- [A] Mage
+		['Player-4454-060E45EA'] = true, -- [A] Hunter
+		-- (4440: Everlook)
+		['Player-4440-037C7E29'] = true, -- [A] DK
+		['Player-4454-060E3657'] = true, -- [H] Druid
+		['Player-4454-060E364E'] = true, -- [H] Priest
+		['Player-4454-060E361A'] = true, -- [H] Shaman
+	} or Private.isClassic and {
 		-- (6112: Spineshatter)
 		['Player-6112-028A3A6D'] = true, -- [H] Hunter
 		['Player-6112-02A2F754'] = true, -- [H] Priest
@@ -284,6 +284,10 @@ function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	Private:EasyDelete()
 	Private:HandleToons()
 	L1UI:LoadCommands()
+
+	if Private.itsLuckyone then
+		E.global.L1UI.dev = true
+	end
 end
 
 -- Register events

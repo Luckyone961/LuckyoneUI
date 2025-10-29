@@ -1,4 +1,5 @@
 -- Lua functions
+local concat = table.concat
 local floor = floor
 local format = format
 local pairs = pairs
@@ -15,6 +16,7 @@ local GetRelativeDifficultyColor = GetRelativeDifficultyColor
 local HasPetUI = HasPetUI
 local QuestDifficultyColors = QuestDifficultyColors
 local UnitBattlePetLevel = UnitBattlePetLevel
+local UnitClass = UnitClass
 local UnitClassification = UnitClassification
 local UnitEffectiveLevel = UnitEffectiveLevel
 local UnitGetTotalAbsorbs = UnitGetTotalAbsorbs
@@ -49,6 +51,11 @@ local E, L = unpack(ElvUI)
 local Tags = ElvUF.Tags
 local Abbrev = Tags.Env.Abbrev
 
+local _COLORS = ElvUF.colors
+local ElvUF_colors_class = ElvUF.colors.class
+local ElvUF_colors_power = ElvUF.colors.power
+local ElvUF_colors_reaction = ElvUF.colors.reaction
+
 local classificationText = {
 	rare = 'Rare',
 	rareelite = 'Rare Elite',
@@ -57,16 +64,15 @@ local classificationText = {
 }
 
 local function Hex(r, g, b)
-	if type(r) == 'number' and g and b then
-		return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
-	end
-
 	if type(r) == 'table' then
 		if r.r then
 			r, g, b = r.r, r.g, r.b
 		else
 			r, g, b = unpack(r)
 		end
+	end
+
+	if type(r) == 'number' and g and b then
 		return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
 	end
 
@@ -87,10 +93,10 @@ local function getFormattedName(unit, length, color, abbrev)
 
 	local colorHex = '|cFFcccccc' -- Default color
 
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+	if UnitIsPlayer(unit) or (Private.isRetail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if unitClass then
-			local cs = ElvUF.colors.class[unitClass]
+			local cs = ElvUF_colors_class[unitClass]
 			if cs then
 				colorHex = Hex(cs.r, cs.g, cs.b)
 			end
@@ -98,27 +104,27 @@ local function getFormattedName(unit, length, color, abbrev)
 	else
 		local reaction = UnitReaction(unit, 'player')
 		if reaction then
-			local cr = ElvUF.colors.reaction[reaction]
+			local cr = ElvUF_colors_reaction[reaction]
 			if cr then
 				colorHex = Hex(cr.r, cr.g, cr.b)
 			end
 		end
 	end
 
-	return format('%s%s', colorHex, name)
+	return colorHex .. name
 end
 
 local function getUnitColor(unit)
 	local color = '|cFFcccccc'
 
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+	if UnitIsPlayer(unit) or (Private.isRetail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
-		local cs = ElvUF.colors.class[unitClass]
+		local cs = ElvUF_colors_class[unitClass]
 		if cs then
 			color = Hex(cs.r, cs.g, cs.b)
 		end
 	else
-		local cr = ElvUF.colors.reaction[UnitReaction(unit, 'player')]
+		local cr = ElvUF_colors_reaction[UnitReaction(unit, 'player')]
 		if cr then
 			color = Hex(cr.r, cr.g, cr.b)
 		end
@@ -141,11 +147,7 @@ local function formatTargetName(unit, lastPartOnly, withColor)
 		targetName = strmatch(targetName, '([%S]+)$')
 	end
 
-	if withColor then
-		return format('%s%s', getUnitColor(unit..'target'), targetName)
-	else
-		return targetName
-	end
+	return withColor and (getUnitColor(unit..'target')..targetName) or targetName
 end
 
 -- Display unit classification without 'affix' on minor enemies
@@ -177,8 +179,8 @@ E:AddTag('luckyone:health:percent-with-absorbs', 'UNIT_HEALTH UNIT_MAXHEALTH UNI
 
 	local healthTotalIncludingAbsorbs = UnitHealth(unit) + absorb
 	return E:GetFormattedText('PERCENT', healthTotalIncludingAbsorbs, UnitHealthMax(unit), 0, nil)
-end, E.Classic)
-E:AddTagInfo('luckyone:health:percent-with-absorbs', Private.Name, L["Displays the unit's current health as a percentage with absorb values, without decimals"], nil, E.Classic)
+end, Private.isClassic)
+E:AddTagInfo('luckyone:health:percent-with-absorbs', Private.Name, L["Displays the unit's current health as a percentage with absorb values, without decimals"], nil, Private.isClassic)
 
 -- Display percentage health with absorb values, without decimals and without status
 E:AddTag('luckyone:health:percent-with-absorbs:nostatus', 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_ABSORB_AMOUNT_CHANGED UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
@@ -189,8 +191,8 @@ E:AddTag('luckyone:health:percent-with-absorbs:nostatus', 'UNIT_HEALTH UNIT_MAXH
 
 	local healthTotalIncludingAbsorbs = UnitHealth(unit) + absorb
 	return E:GetFormattedText('PERCENT', healthTotalIncludingAbsorbs, UnitHealthMax(unit), 0, nil)
-end, E.Classic)
-E:AddTagInfo('luckyone:health:percent-with-absorbs:nostatus', Private.Name, L["Displays the unit's current health as a percentage with absorb values, without decimals and without status"], nil, E.Classic)
+end, Private.isClassic)
+E:AddTagInfo('luckyone:health:percent-with-absorbs:nostatus', Private.Name, L["Displays the unit's current health as a percentage with absorb values, without decimals and without status"], nil, Private.isClassic)
 
 -- Display percentage power with powecolor and hides power at 0
 E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
@@ -207,7 +209,7 @@ E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT
 		color = Hex(color)
 	end
 
-	return color..percentage
+	return color .. percentage
 end)
 E:AddTagInfo('luckyone:power:percent-color', Private.Name, L["Displays percentage power with powercolor and hides power at 0"])
 
@@ -232,7 +234,7 @@ E:AddTag('luckyone:level', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 	local level = UnitEffectiveLevel(unit)
 	local max = E:XPIsLevelMax()
 
-	if E.Retail and (UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit)) then
+	if Private.isRetail and (UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit)) then
 		level = UnitBattlePetLevel(unit)
 		local teamLevel = C_PetJournal_GetPetTeamAverageLevel()
 		color = (teamLevel ~= level) and GetRelativeDifficultyColor(teamLevel, level) or QuestDifficultyColors.difficult
@@ -240,7 +242,7 @@ E:AddTag('luckyone:level', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 		color = GetCreatureDifficultyColor(level)
 	end
 
-	return not max and format('%s%s', Hex(color.r, color.g, color.b), (level > 0) and level or '??')
+	return not max and Hex(color.r, color.g, color.b) .. ((level > 0) and level or '??')
 end)
 E:AddTagInfo('luckyone:level', Private.Name, L["Displays the unit's level with difficultycolor if the player is not max level"])
 
@@ -249,28 +251,28 @@ E:AddTag('luckyone:healermana:current', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_
 	local role = UnitGroupRolesAssigned(unit)
 
 	if role == 'HEALER' then
-		local color = ElvUF.colors.power.MANA
-		return format('%s%s', Hex(color.r, color.g, color.b), UnitPower(unit, Enum.PowerType.Mana))
+		local color = ElvUF_colors_power.MANA
+		return Hex(color.r, color.g, color.b) .. UnitPower(unit, Enum.PowerType.Mana)
 	end
-end, E.Classic)
-E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana with manacolor (Role: Healer)"], nil, E.Classic)
+end, Private.isClassic)
+E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana with manacolor (Role: Healer)"], nil, Private.isClassic)
 
 -- Display mana (percent) if the unit is flagged healer (Retail and Mists only)
 E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local role = UnitGroupRolesAssigned(unit)
 	if role == 'HEALER' then
-		local color = ElvUF.colors.power.MANA
+		local color = ElvUF_colors_power.MANA
 		local min = UnitPower(unit, Enum.PowerType.Mana)
 		local max = UnitPowerMax(unit, Enum.PowerType.Mana)
 
-		return format('%s%s', Hex(color.r, color.g, color.b), E:GetFormattedText('PERCENT', min, max, 0, nil))
+		return Hex(color.r, color.g, color.b) .. E:GetFormattedText('PERCENT', min, max, 0, nil)
 	end
-end, E.Classic)
-E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"], nil, E.Classic)
+end, Private.isClassic)
+E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"], nil, Private.isClassic)
 
 -- Display pet name and happiness status (Classic only)
-E:AddTag('luckyone:pet:name-and-happiness', E.Classic and 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE' or 'UNIT_NAME_UPDATE PET_UI_UPDATE', function(unit)
-	if not E.Classic then
+E:AddTag('luckyone:pet:name-and-happiness', Private.isClassic and 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE' or 'UNIT_NAME_UPDATE PET_UI_UPDATE', function(unit)
+	if not Private.isClassic then
 		return 'Pet'
 	else
 		local hasPetUI, isHunterPet = HasPetUI()
@@ -279,7 +281,7 @@ E:AddTag('luckyone:pet:name-and-happiness', E.Classic and 'UNIT_NAME_UPDATE UNIT
 				local petHappiness = GetPetHappiness()
 				local happinessColor = _COLORS.happiness[petHappiness]
 				-- Return for Hunters
-				return format('%s%s', Hex(happinessColor), _G['PET_HAPPINESS' .. petHappiness])
+				return Hex(happinessColor) .. _G['PET_HAPPINESS' .. petHappiness]
 			else
 				-- Return for other Pet Classes
 				return 'Pet'
@@ -296,18 +298,18 @@ E:AddTag('luckyone:name:last-classcolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANC
 	local name = UnitName(unit)
 	local color, formattedName
 
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+	if UnitIsPlayer(unit) or (Private.isRetail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
-		local cs = ElvUF.colors.class[unitClass]
+		local cs = ElvUF_colors_class[unitClass]
 		color = cs and Hex(cs.r, cs.g, cs.b) or '|cFFcccccc'
 	else
-		local cr = ElvUF.colors.reaction[UnitReaction(unit, 'player')]
+		local cr = ElvUF_colors_reaction[UnitReaction(unit, 'player')]
 		color = cr and Hex(cr.r, cr.g, cr.b) or '|cFFcccccc'
 	end
 
 	formattedName = name and (strfind(name, '%s') and strmatch(name, '([%S]+)$') or name) or UNKNOWN
 
-	return color..formattedName
+	return color .. formattedName
 end)
 E:AddTagInfo('luckyone:name:last-classcolor', Private.Name, L["Displays the last part of the unit's name with class color"])
 
@@ -344,24 +346,24 @@ E:AddTagInfo('luckyone:target:name-nocolor', Private.Name, L["Displays the unit'
 
 for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long = 20 }) do
 	-- Displays the unit's name with classcolor and a maximum length of 5, 10, 15 and 20 characters
-	E:AddTag(format('luckyone:name:%s-classcolor', textFormat), 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+	E:AddTag('luckyone:name:' .. textFormat .. '-classcolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 		return getFormattedName(unit, length, true)
 	end)
 	-- Displays the unit's name with no color and a maximum length of 5, 10, 15 and 20 characters
-	E:AddTag(format('luckyone:name:%s-nocolor', textFormat), 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+	E:AddTag('luckyone:name:' .. textFormat .. '-nocolor', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 		return getFormattedName(unit, length, false)
 	end)
 	-- Displays the unit's name abbreviated with classcolor and a maximum length of 5, 10, 15 and 20 characters
-	E:AddTag(format('luckyone:name:abbrev:%s-classcolor', textFormat), 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+	E:AddTag('luckyone:name:abbrev:' .. textFormat .. '-classcolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 		return getFormattedName(unit, length, true, true)
 	end)
 	-- Displays the unit's name abbreviated with no color and a maximum length of 5, 10, 15 and 20 characters
-	E:AddTag(format('luckyone:name:abbrev:%s-nocolor', textFormat), 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+	E:AddTag('luckyone:name:abbrev:' .. textFormat .. '-nocolor', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 		return getFormattedName(unit, length, false, true)
 	end)
 
-	E:AddTagInfo(format('luckyone:name:%s-classcolor', textFormat), Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters"], length))
-	E:AddTagInfo(format('luckyone:name:%s-nocolor', textFormat), Private.Name, format(L["Displays the unit's name with no color and a maximum length of %s characters"], length))
-	E:AddTagInfo(format('luckyone:name:abbrev:%s-classcolor', textFormat), Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters and abbreviates long names"], length))
-	E:AddTagInfo(format('luckyone:name:abbrev:%s-nocolor', textFormat), Private.Name, format(L["Displays the unit's name with no color and a maximum length of %s characters and abbreviates long names"], length))
+	E:AddTagInfo('luckyone:name:' .. textFormat .. '-classcolor', Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters"], length))
+	E:AddTagInfo('luckyone:name:' .. textFormat .. '-nocolor', Private.Name, format(L["Displays the unit's name with no color and a maximum length of %s characters"], length))
+	E:AddTagInfo('luckyone:name:abbrev:' .. textFormat .. '-classcolor', Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters and abbreviates long names"], length))
+	E:AddTagInfo('luckyone:name:abbrev:' .. textFormat .. '-nocolor', Private.Name, format(L["Displays the unit's name with no color and a maximum length of %s characters and abbreviates long names"], length))
 end

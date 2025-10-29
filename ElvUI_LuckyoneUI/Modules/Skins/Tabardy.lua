@@ -1,5 +1,5 @@
 -- Lua functions
-local pairs = pairs
+local ipairs = ipairs
 local unpack = unpack
 
 -- API cache
@@ -12,16 +12,6 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
-local function HandleNextPrev(button)
-
-	S:HandleNextPrevButton(button, nil, nil, true)
-
-	button:SetScript('OnEnter', nil)
-	button:SetScript('OnLeave', nil)
-	button:SetScript('OnMouseUp', nil)
-	button:SetScript('OnMouseDown', nil)
-end
-
 function L1UI:Skin_Tabardy()
 	if not E.private.L1UI.skins.Tabardy then return end
 
@@ -31,25 +21,19 @@ function L1UI:Skin_Tabardy()
 	TabardyDesigner.Bg:Hide()
 	TabardyDesigner.NineSlice:Hide()
 
+	S:HandleCloseButton(TabardyDesigner.CloseButton)
+
 	local buttons = {
 		TabardyDesigner.AcceptButton,
 		TabardyDesigner.CancelButton,
 		TabardyDesigner.Customizations.EmblemPicker,
 		TabardyDesigner.Customizations.EmblemColorPicker,
-		TabardyDesigner.Customizations.BackgroundPicker
+		TabardyDesigner.Customizations.BackgroundPicker,
+		TabardyDesigner.Customizations.BorderPicker,
+		TabardyDesigner.Customizations.BorderColorPicker
 	}
-	for _, button in pairs(buttons) do
+	for _, button in ipairs(buttons) do
 		S:HandleButton(button)
-	end
-
-	local nextPrev = {
-		TabardyDesigner.Customizations.BorderPicker.DecrementButton,
-		TabardyDesigner.Customizations.BorderPicker.IncrementButton,
-		TabardyDesigner.Customizations.BorderColorPicker.DecrementButton,
-		TabardyDesigner.Customizations.BorderColorPicker.IncrementButton
-	}
-	for _, button in pairs(nextPrev) do
-		HandleNextPrev(button)
 	end
 
 	hooksecurefunc(TabardyDesigner, 'LoadPortrait', function()

@@ -1,13 +1,21 @@
-### Version 3.24 [16-08-2025]
+## Version 3.27 [11-10-2025]
+
 **All WoW Versions:**  
-ElvUI 13.97+ compatibility  
-Disabled AFK mode by default  
-Updated the position and size of all minimap buttons (Mail, Difficulty, etc)  
+- ElvUI 14.02+ compatibility  
+- Added a custom statusbar texture to LibSharedMedia called Focus  
+- Disabled the new "anchor to ElvUI bags" tooltip option when ElvUI bags are enabled  
+- ElvUI Nameplates will no longer fade-in and immediately spawn instead  
+- Fixed minor pixel-perfect issue about the game tooltip  
+- Reworked developer section of /lucky config  
+- Updated ElvUI bankframe width  
+
 **Retail:**  
-Added ingame import for the Season 3 Dungeon WeakAura pack  
-Added StyleFilter for coloring Manaforge Omega priority adds (Last 2 bosses)  
-Updated import for the Affixes WeakAura group  
-Updated Plater profile and tweaked custom mod code  
-Updated Season 3 ElvUI NamePlate StyleFilters for Dungeons (EDA)  
+- Added a new ElvUI Nameplate StyleFilter for current focus target  
+- Updated ElvUI bankframe to combine all tabs by default  
+- Updated ElvUI warband bankframe width and icon size  
+- Updated the skin for the "Tabardy" AddOn  
+- Updated TOC for patch 11.2.5  
+
 **Mists:**  
-Updated Plater profile for better non-Retail mod support  
+- Added a new ElvUI Nameplate StyleFilter for current focus target  
+- Fixed the EasyDelete option  

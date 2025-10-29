@@ -31,7 +31,7 @@ function Private:Setup_ProjectAzilroka()
 	PA.db.stAddonManager.Enable = false
 
 	-- Retail modules
-	if E.Retail then
+	if Private.isRetail then
 		PA.db.MasterExperience.Enable = false
 		PA.db.MovableFrames.Enable = false
 		PA.db.TorghastBuffs.Enable = false

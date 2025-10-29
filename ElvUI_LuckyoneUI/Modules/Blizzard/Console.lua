@@ -50,7 +50,7 @@ function Private:NameplateCVars(noPrint)
 	SetCVar('nameplateOtherBottomInset', -1)
 	SetCVar('nameplateOtherTopInset', -1)
 	SetCVar('nameplateOverlapH', 1)
-	SetCVar('nameplateOverlapV', 1.7)
+	SetCVar('nameplateOverlapV', 2.2)
 	SetCVar('nameplateSelectedScale', 1)
 	SetCVar('nameplateSelfAlpha', 1)
 	SetCVar('nameplateSelfTopInset', -1)
@@ -62,11 +62,11 @@ function Private:NameplateCVars(noPrint)
 	SetCVar('UnitNameEnemyPetName', 1)
 	SetCVar('UnitNameEnemyPlayerName', 1)
 
-	if not E.Classic then
+	if not Private.isClassic then
 		SetCVar('UnitNameEnemyTotem', 1)
 	end
 
-	if not E.Retail then
+	if not Private.isRetail then
 		SetCVar('nameplateNotSelectedAlpha', 1)
 	end
 

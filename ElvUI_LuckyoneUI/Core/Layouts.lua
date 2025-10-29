@@ -7,10 +7,11 @@ local _, Private = ...
 -- ElvUI modules
 local E = unpack(ElvUI)
 
--- The War Within layout db
-function Private:Layout_TheWarWithin(layout)
+-- ElvUI profile
+-- LC: 25/09/2025
+function Private:Setup_ElvUI(layout)
 	-- Global db
-	local dev, scaled = E.global.L1UI.dev, E.global.L1UI.scaled
+	local scaled = E.global.L1UI.scaled
 	-- AB conversion
 	E.db.convertPages = true
 	-- Protect movers error
@@ -26,7 +27,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.general.altPowerBar.statusBar = Private.Texture
 	E.db.general.altPowerBar.statusBarColorGradient = true
 	E.db.general.autoAcceptInvite = true
-	E.db.general.autoRepair = (E.Retail and 'GUILD') or 'PLAYER'
+	E.db.general.autoRepair = (Private.isRetail and 'GUILD') or 'PLAYER'
 	E.db.general.backdropcolor.b = 0.12
 	E.db.general.backdropcolor.g = 0.12
 	E.db.general.backdropcolor.r = 0.12
@@ -162,7 +163,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.actionbar.bar4.countFontOutline = Private.Outline
 	E.db.actionbar.bar4.countFontSize = 9
 	E.db.actionbar.bar4.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar4.enabled = not E.Retail
+	E.db.actionbar.bar4.enabled = not Private.isRetail
 	E.db.actionbar.bar4.hotkeyFont = Private.Font
 	E.db.actionbar.bar4.hotkeyFontOutline = Private.Outline
 	E.db.actionbar.bar4.hotkeyFontSize = 9
@@ -405,15 +406,15 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Bags
 	E.db.bags.autoToggle.guildBank = true
-	E.db.bags.autoToggle.soulBind = false
 	E.db.bags.bagBar.backdropSpacing = 1
 	E.db.bags.bagBar.font = Private.Font
 	E.db.bags.bagBar.size = 23
 	E.db.bags.bagBar.spacing = 0
 	E.db.bags.bagSize = (scaled and 28) or 30
 	E.db.bags.bagWidth = (scaled and 400) or 464
+	E.db.bags.bankCombined = true
 	E.db.bags.bankSize = (scaled and 28) or 30
-	E.db.bags.bankWidth = (scaled and 404) or 464
+	E.db.bags.bankWidth = (scaled and 520) or 700
 	E.db.bags.clearSearchOnClose = true
 	E.db.bags.countFont = Private.Font
 	E.db.bags.countFontOutline = Private.Outline
@@ -431,8 +432,11 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.bags.split.bagSpacing = 1
 	E.db.bags.split.player = true
 	E.db.bags.upgradeIcon = false
+	E.db.bags.useBlizzardCleanupBank = false
 	E.db.bags.vendorGrays.enable = true
 	E.db.bags.vendorGrays.interval = 0.1
+	E.db.bags.warbandSize = (scaled and 28) or 30
+	E.db.bags.warbandWidth = (scaled and 520) or 700
 
 	-- Auras
 	E.db.auras.buffs.countFont = Private.Font
@@ -444,6 +448,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.auras.buffs.horizontalSpacing = 1
 	E.db.auras.buffs.seperateOwn = 0
 	E.db.auras.buffs.size = 22
+	E.db.auras.buffs.sortMethod = 'INDEX'
 	E.db.auras.buffs.timeFont = Private.Font
 	E.db.auras.buffs.timeFontOutline = Private.Outline
 	E.db.auras.buffs.timeXOffset = 1
@@ -459,6 +464,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.auras.debuffs.maxWraps = 2
 	E.db.auras.debuffs.seperateOwn = 0
 	E.db.auras.debuffs.size = 22
+	E.db.auras.debuffs.sortMethod = 'INDEX'
 	E.db.auras.debuffs.timeFont = Private.Font
 	E.db.auras.debuffs.timeFontOutline = Private.Outline
 	E.db.auras.debuffs.timeXOffset = 1
@@ -549,8 +555,6 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[1] = 'System'
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[2] = 'Combat'
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[3] = 'Durability'
-	E.db.datatexts.panels.Luckyone_ActionBars_DT[4] = ''
-	E.db.datatexts.panels.Luckyone_ActionBars_DT[5] = ''
 	E.db.datatexts.panels.Luckyone_MiniMap_DT.battleground = false
 	E.db.datatexts.panels.Luckyone_MiniMap_DT.enable = true
 	E.db.datatexts.panels.Luckyone_MiniMap_DT[1] = 'Time'
@@ -586,29 +590,28 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Tooltip
 	E.db.tooltip.alwaysShowRealm = true
+	E.db.tooltip.anchorToBags = 'DISABLED'
 	E.db.tooltip.colorAlpha = 0.9
 	E.db.tooltip.font = Private.Font
 	E.db.tooltip.fontOutline = Private.Outline
 	E.db.tooltip.headerFont = Private.Font
 	E.db.tooltip.headerFontOutline = Private.Outline
-	E.db.tooltip.headerFontSize = (scaled and 10) or 11
+	E.db.tooltip.headerFontSize = 11
 	E.db.tooltip.healthBar.font = Private.Font
 	E.db.tooltip.healthBar.fontOutline = Private.Outline
-	E.db.tooltip.healthBar.fontSize = (scaled and 9) or 10
+	E.db.tooltip.healthBar.fontSize = 10
 	E.db.tooltip.healthBar.height = 6
-	E.db.tooltip.healthBar.statusPosition = 'TOP'
+	E.db.tooltip.healthBar.statusPosition = 'DISABLED'
 	E.db.tooltip.inspectDataEnable = false
 	E.db.tooltip.itemCount.bags = false
-	E.db.tooltip.itemCount.bank = false
-	E.db.tooltip.itemCount.stack = false
 	E.db.tooltip.itemQuality = true
 	E.db.tooltip.mythicDataEnable = false
 	E.db.tooltip.role = false
 	E.db.tooltip.showElvUIUsers = true
 	E.db.tooltip.showMount = false
-	E.db.tooltip.smallTextFontSize = (scaled and 9) or 10
+	E.db.tooltip.smallTextFontSize = 10
 	E.db.tooltip.targetInfo = false
-	E.db.tooltip.textFontSize = (scaled and 10) or 11
+	E.db.tooltip.textFontSize = 11
 
 	-- Shared UnitFrames
 	E.db.unitframe.colors.castbar_backdrop.b = 0.05
@@ -645,6 +648,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.colors.power.MANA.r = 0
 	E.db.unitframe.colors.tapped.g = 0.56
 	E.db.unitframe.colors.tapped.r = 0.54
+	E.db.unitframe.colors.transparentCastbar = false
 	E.db.unitframe.colors.transparentHealth = true
 	E.db.unitframe.colors.transparentPower = true
 	E.db.unitframe.colors.useDeadBackdrop = true
@@ -653,7 +657,6 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.font = Private.Font
 	E.db.unitframe.fontOutline = Private.Outline
 	E.db.unitframe.fontSize = 11
-	E.db.unitframe.modifiers.ALT = 'Blacklist'
 	E.db.unitframe.statusbar = Private.Texture
 	E.db.unitframe.targetOnMouseDown = true
 	E.db.unitframe.targetSound = true
@@ -664,9 +667,39 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Arena
 	E.db.unitframe.units.arena.customTexts = {}
-	E.db.unitframe.units.arena.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 12, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
-	E.db.unitframe.units.arena.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = '[luckyone:name:last-classcolor]', xOffset = -3, yOffset = 0 }
-	E.db.unitframe.units.arena.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.arena.customTexts.Luckyone_HP = {
+		attachTextTo = 'Health',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'LEFT',
+		size = 12,
+		text_format = '[luckyone:health:percent] • [health:current:shortvalue]',
+		xOffset = 3,
+		yOffset = 0
+	}
+	E.db.unitframe.units.arena.customTexts.Luckyone_Name = {
+		attachTextTo = 'Health',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'RIGHT',
+		size = 12,
+		text_format = '[luckyone:name:last-classcolor]',
+		xOffset = -3,
+		yOffset = 0
+	}
+	E.db.unitframe.units.arena.customTexts.Luckyone_Power = {
+		attachTextTo = 'Power',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'CENTER',
+		size = 11,
+		text_format = '[luckyone:power:percent-color]',
+		xOffset = 0,
+		yOffset = 0
+	}
 
 	E.db.unitframe.units.arena.buffs.countFont = Private.Font
 	E.db.unitframe.units.arena.buffs.countFontSize = 10
@@ -676,7 +709,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.buffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.buffs.maxDuration = 0
 	E.db.unitframe.units.arena.buffs.perrow = 5
-	E.db.unitframe.units.arena.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.arena.buffs.priority = 'Whitelist,TurtleBuffs,Dispellable'
 	E.db.unitframe.units.arena.buffs.sizeOverride = 20
 	E.db.unitframe.units.arena.buffs.xOffset = -1
 	E.db.unitframe.units.arena.buffs.yOffset = -10
@@ -686,9 +719,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.arena.castbar.customTimeFont.font = Private.Font
 	E.db.unitframe.units.arena.castbar.customTimeFont.fontSize = 9
-	E.db.unitframe.units.arena.castbar.height = 14
+	E.db.unitframe.units.arena.castbar.height = 16
 	E.db.unitframe.units.arena.castbar.iconAttachedTo = 'Castbar'
-	E.db.unitframe.units.arena.castbar.positionsGroup.xOffset = 1
 	E.db.unitframe.units.arena.castbar.positionsGroup.yOffset = -1
 	E.db.unitframe.units.arena.castbar.strataAndLevel.useCustomLevel = true
 	E.db.unitframe.units.arena.castbar.strataAndLevel.useCustomStrata = true
@@ -709,7 +741,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.debuffs.maxDuration = 0
 	E.db.unitframe.units.arena.debuffs.perrow = 5
-	E.db.unitframe.units.arena.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
+	E.db.unitframe.units.arena.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
 	E.db.unitframe.units.arena.debuffs.sizeOverride = 20
 	E.db.unitframe.units.arena.debuffs.xOffset = -1
 	E.db.unitframe.units.arena.debuffs.yOffset = 1
@@ -725,6 +757,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.middleClickFocus = true
 	E.db.unitframe.units.arena.name.attachTextTo = 'Frame'
 	E.db.unitframe.units.arena.name.text_format = ''
+	E.db.unitframe.units.arena.orientation = 'LEFT'
 	E.db.unitframe.units.arena.power.autoHide = true
 	E.db.unitframe.units.arena.power.height = 4
 	E.db.unitframe.units.arena.power.strataAndLevel.frameStrata = 'MEDIUM'
@@ -734,16 +767,48 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.arena.pvpclassificationindicator.xOffset = -40
 	E.db.unitframe.units.arena.pvpSpecIcon = false
 	E.db.unitframe.units.arena.pvpTrinket.size = 41
-	E.db.unitframe.units.arena.raidicon.size = 10
-	E.db.unitframe.units.arena.raidicon.yOffset = -1
-	E.db.unitframe.units.arena.spacing = 16
+	E.db.unitframe.units.arena.raidicon.attachTo = 'RIGHT'
+	E.db.unitframe.units.arena.raidicon.size = 60
+	E.db.unitframe.units.arena.raidicon.xOffset = 82
+	E.db.unitframe.units.arena.raidicon.yOffset = 1
+	E.db.unitframe.units.arena.spacing = 18
 	E.db.unitframe.units.arena.width = 210
 
 	-- Shared Boss
 	E.db.unitframe.units.boss.customTexts = {}
-	E.db.unitframe.units.boss.customTexts.Luckyone_HP = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 12, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
-	E.db.unitframe.units.boss.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = '[luckyone:name:last-classcolor]', xOffset = -3, yOffset = 0 }
-	E.db.unitframe.units.boss.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.boss.customTexts.Luckyone_HP = {
+		attachTextTo = 'Health',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'LEFT',
+		size = 12,
+		text_format = '[luckyone:health:percent] • [health:current:shortvalue]',
+		xOffset = 3,
+		yOffset = 0
+	}
+	E.db.unitframe.units.boss.customTexts.Luckyone_Name = {
+		attachTextTo = 'Health',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'RIGHT',
+		size = 12,
+		text_format = '[luckyone:name:last-classcolor]',
+		xOffset = -3,
+		yOffset = 0
+	}
+	E.db.unitframe.units.boss.customTexts.Luckyone_Power = {
+		attachTextTo = 'Power',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'CENTER',
+		size = 11,
+		text_format = '[luckyone:power:percent-color]',
+		xOffset = 0,
+		yOffset = 0
+	}
 
 	E.db.unitframe.units.boss.buffIndicator.enable = false
 	E.db.unitframe.units.boss.buffs.countFont = Private.Font
@@ -753,7 +818,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.buffs.countYOffset = 0
 	E.db.unitframe.units.boss.buffs.growthY = 'DOWN'
 	E.db.unitframe.units.boss.buffs.perrow = 5
-	E.db.unitframe.units.boss.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.boss.buffs.priority = 'Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.boss.buffs.sizeOverride = 20
 	E.db.unitframe.units.boss.buffs.xOffset = -1
 	E.db.unitframe.units.boss.buffs.yOffset = -10
@@ -763,9 +828,9 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.boss.castbar.customTimeFont.font = Private.Font
 	E.db.unitframe.units.boss.castbar.customTimeFont.fontSize = 9
-	E.db.unitframe.units.boss.castbar.height = 14
+	E.db.unitframe.units.boss.castbar.displayTargetClass = false
+	E.db.unitframe.units.boss.castbar.height = 16
 	E.db.unitframe.units.boss.castbar.iconAttachedTo = 'Castbar'
-	E.db.unitframe.units.boss.castbar.positionsGroup.xOffset = 1
 	E.db.unitframe.units.boss.castbar.positionsGroup.yOffset = -1
 	E.db.unitframe.units.boss.castbar.strataAndLevel.useCustomLevel = true
 	E.db.unitframe.units.boss.castbar.strataAndLevel.useCustomStrata = true
@@ -784,7 +849,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.boss.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.boss.debuffs.perrow = 5
-	E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
+	E.db.unitframe.units.boss.debuffs.priority = Private.isRetail and 'blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
 	E.db.unitframe.units.boss.debuffs.sizeOverride = 20
 	E.db.unitframe.units.boss.debuffs.xOffset = -1
 	E.db.unitframe.units.boss.debuffs.yOffset = 1
@@ -800,20 +865,43 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.boss.middleClickFocus = true
 	E.db.unitframe.units.boss.name.attachTextTo = 'Frame'
 	E.db.unitframe.units.boss.name.text_format = ''
+	E.db.unitframe.units.boss.orientation = 'LEFT'
 	E.db.unitframe.units.boss.power.autoHide = true
 	E.db.unitframe.units.boss.power.height = 4
 	E.db.unitframe.units.boss.power.strataAndLevel.frameStrata = 'MEDIUM'
 	E.db.unitframe.units.boss.power.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.boss.power.text_format = ''
-	E.db.unitframe.units.boss.raidicon.size = 10
-	E.db.unitframe.units.boss.raidicon.yOffset = -1
-	E.db.unitframe.units.boss.spacing = 16
+	E.db.unitframe.units.boss.raidicon.attachTo = 'RIGHT'
+	E.db.unitframe.units.boss.raidicon.size = 40
+	E.db.unitframe.units.boss.raidicon.xOffset = 42
+	E.db.unitframe.units.boss.raidicon.yOffset = 1
+	E.db.unitframe.units.boss.spacing = 18
 	E.db.unitframe.units.boss.width = 210
 
 	-- Shared Focus
 	E.db.unitframe.units.focus.customTexts = {}
-	E.db.unitframe.units.focus.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[luckyone:name:last-classcolor]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.focus.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.focus.customTexts.Luckyone_Name = {
+		attachTextTo = 'Frame',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'CENTER',
+		size = 12,
+		text_format = '[luckyone:name:last-classcolor]',
+		xOffset = 0,
+		yOffset = 0
+	}
+	E.db.unitframe.units.focus.customTexts.Luckyone_Power = {
+		attachTextTo = 'Power',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'CENTER',
+		size = 11,
+		text_format = '[luckyone:power:percent-color]',
+		xOffset = 0,
+		yOffset = 0
+	}
 
 	E.db.unitframe.units.focus.buffs.anchorPoint = 'TOPRIGHT'
 	E.db.unitframe.units.focus.buffs.attachTo = 'DEBUFFS'
@@ -827,7 +915,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.focus.buffs.maxDuration = 0
 	E.db.unitframe.units.focus.buffs.numrows = 3
 	E.db.unitframe.units.focus.buffs.perrow = 12
-	E.db.unitframe.units.focus.buffs.priority = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
+	E.db.unitframe.units.focus.buffs.priority = 'Dispellable,RaidBuffsElvUI,Mount'
 	E.db.unitframe.units.focus.buffs.yOffset = 1
 	E.db.unitframe.units.focus.castbar.customTextFont.enable = true
 	E.db.unitframe.units.focus.castbar.customTextFont.font = Private.Font
@@ -855,7 +943,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.focus.debuffs.maxDuration = 0
 	E.db.unitframe.units.focus.debuffs.numrows = 2
 	E.db.unitframe.units.focus.debuffs.perrow = 12
-	E.db.unitframe.units.focus.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
+	E.db.unitframe.units.focus.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
 	E.db.unitframe.units.focus.disableMouseoverGlow = true
 	E.db.unitframe.units.focus.disableTargetGlow = true
 	E.db.unitframe.units.focus.fader.minAlpha = 0.5
@@ -877,8 +965,28 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Pet
 	E.db.unitframe.units.pet.customTexts = {}
-	E.db.unitframe.units.pet.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[luckyone:pet:name-and-happiness]', xOffset = 0, yOffset = 0 }
-	E.db.unitframe.units.pet.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.pet.customTexts.Luckyone_Name = {
+		attachTextTo = 'Frame',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'CENTER',
+		size = 12,
+		text_format = '[luckyone:pet:name-and-happiness]',
+		xOffset = 0,
+		yOffset = 0
+	}
+	E.db.unitframe.units.pet.customTexts.Luckyone_Power = {
+		attachTextTo = 'Power',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'CENTER',
+		size = 11,
+		text_format = '[luckyone:power:percent-color]',
+		xOffset = 0,
+		yOffset = 0
+	}
 
 	E.db.unitframe.units.pet.castbar.enable = false
 	E.db.unitframe.units.pet.disableMouseoverGlow = true
@@ -899,20 +1007,50 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Player
 	E.db.unitframe.units.player.customTexts = {}
-	E.db.unitframe.units.player.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = '[health:current:shortvalue] • [luckyone:health:percent]', xOffset = -2, yOffset = 0 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 12, text_format = '[luckyone:name:last-classcolor]', xOffset = 5, yOffset = 0 }
-	E.db.unitframe.units.player.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.player.customTexts.Luckyone_HP = {
+		attachTextTo = 'Frame',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'RIGHT',
+		size = 12,
+		text_format = '[health:current:shortvalue] • [luckyone:health:percent]',
+		xOffset = -2,
+		yOffset = 0
+	}
+	E.db.unitframe.units.player.customTexts.Luckyone_Name = {
+		attachTextTo = 'Frame',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'LEFT',
+		size = 12,
+		text_format = '[luckyone:name:last-classcolor]',
+		xOffset = 5,
+		yOffset = 0
+	}
+	E.db.unitframe.units.player.customTexts.Luckyone_Power = {
+		attachTextTo = 'Power',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'CENTER',
+		size = 11,
+		text_format = '',
+		xOffset = 0,
+		yOffset = 0
+	}
 
 	E.db.unitframe.units.player.aurabar.enable = false
 	E.db.unitframe.units.player.buffs.attachTo = 'FRAME'
 	E.db.unitframe.units.player.buffs.countFont = Private.Font
 	E.db.unitframe.units.player.buffs.perrow = 10
-	E.db.unitframe.units.player.buffs.priority = 'Blacklist,Personal,nonPersonal'
+	E.db.unitframe.units.player.buffs.priority = 'Blacklist,Personal,NonPersonal'
 	E.db.unitframe.units.player.buffs.yOffset = 1
 	E.db.unitframe.units.player.castbar.customColor.color.b = 0.05
 	E.db.unitframe.units.player.castbar.customColor.color.g = 0.05
 	E.db.unitframe.units.player.castbar.customColor.color.r = 0.05
-	E.db.unitframe.units.player.castbar.customColor.colorBackdrop.a = 0.89
+	E.db.unitframe.units.player.castbar.customColor.colorBackdrop.a = 0.9
 	E.db.unitframe.units.player.castbar.customColor.colorBackdrop.b = 0.61
 	E.db.unitframe.units.player.castbar.customColor.colorBackdrop.g = 0.56
 	E.db.unitframe.units.player.castbar.customColor.colorBackdrop.r = 0.54
@@ -927,17 +1065,22 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.player.castbar.customColor.useCustomBackdrop = true
 	E.db.unitframe.units.player.castbar.customTextFont.enable = true
 	E.db.unitframe.units.player.castbar.customTextFont.font = Private.Font
+	E.db.unitframe.units.player.castbar.customTextFont.fontSize = 14
 	E.db.unitframe.units.player.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.player.castbar.customTimeFont.font = Private.Font
+	E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 14
+	E.db.unitframe.units.player.castbar.height = 30
+	E.db.unitframe.units.player.castbar.hideName = true
 	E.db.unitframe.units.player.castbar.latency = false
 	E.db.unitframe.units.player.castbar.spark = true
 	E.db.unitframe.units.player.castbar.textColor.b = 1
 	E.db.unitframe.units.player.castbar.textColor.g = 1
 	E.db.unitframe.units.player.castbar.textColor.r = 1
-	E.db.unitframe.units.player.castbar.tickColor.a = 0.89
+	E.db.unitframe.units.player.castbar.tickColor.a = 1
 	E.db.unitframe.units.player.castbar.tickColor.b = 1
 	E.db.unitframe.units.player.castbar.tickColor.g = 1
 	E.db.unitframe.units.player.castbar.tickColor.r = 1
+	E.db.unitframe.units.player.castbar.tickWidth = 2
 	E.db.unitframe.units.player.castbar.timeToHold = 2
 	E.db.unitframe.units.player.castbar.xOffsetText = 2
 	E.db.unitframe.units.player.castbar.xOffsetTime = -2
@@ -949,6 +1092,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.player.debuffs.countXOffset = 2
 	E.db.unitframe.units.player.debuffs.countYOffset = 0
 	E.db.unitframe.units.player.debuffs.desaturate = false
+	E.db.unitframe.units.player.debuffs.enable = false
 	E.db.unitframe.units.player.debuffs.numrows = 2
 	E.db.unitframe.units.player.debuffs.perrow = 12
 	E.db.unitframe.units.player.disableMouseoverGlow = true
@@ -972,11 +1116,42 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Target
 	E.db.unitframe.units.target.customTexts = {}
-	E.db.unitframe.units.target.customTexts.Luckyone_HP = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'LEFT', size = 12, text_format = '[luckyone:health:percent] • [health:current:shortvalue]', xOffset = 3, yOffset = 0 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'RIGHT', size = 12, text_format = (dev and '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]') or '[luckyone:name:last-classcolor]', xOffset = -3, yOffset = 0 }
-	E.db.unitframe.units.target.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.target.customTexts.Luckyone_HP = {
+		attachTextTo = 'Frame',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'LEFT',
+		size = 12,
+		text_format = '[luckyone:health:percent] • [health:current:shortvalue]',
+		xOffset = 3,
+		yOffset = 0
+	}
+	E.db.unitframe.units.target.customTexts.Luckyone_Name = {
+		attachTextTo = 'Frame',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'RIGHT',
+		size = 12,
+		text_format = '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]',
+		xOffset = -3,
+		yOffset = 0
+	}
+	E.db.unitframe.units.target.customTexts.Luckyone_Power = {
+		attachTextTo = 'Power',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'CENTER',
+		size = 11,
+		text_format = '[luckyone:power:percent-color]',
+		xOffset = 0,
+		yOffset = 0
+	}
 
 	E.db.unitframe.units.target.aurabar.enable = false
+	E.db.unitframe.units.target.auras.enable = false
 	E.db.unitframe.units.target.buffs.attachTo = 'DEBUFFS'
 	E.db.unitframe.units.target.buffs.countFont = Private.Font
 	E.db.unitframe.units.target.buffs.countFontSize = 10
@@ -985,6 +1160,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.target.buffs.countYOffset = 0
 	E.db.unitframe.units.target.buffs.numrows = 3
 	E.db.unitframe.units.target.buffs.perrow = 12
+	E.db.unitframe.units.target.buffs.priority = 'Dispellable,RaidBuffsElvUI,Mount'
 	E.db.unitframe.units.target.buffs.yOffset = 1
 	E.db.unitframe.units.target.castbar.customTextFont.enable = true
 	E.db.unitframe.units.target.castbar.customTextFont.font = Private.Font
@@ -992,6 +1168,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.target.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.target.castbar.customTimeFont.font = Private.Font
 	E.db.unitframe.units.target.castbar.customTimeFont.fontSize = 11
+	E.db.unitframe.units.target.castbar.height = 20
 	E.db.unitframe.units.target.castbar.strataAndLevel.useCustomLevel = true
 	E.db.unitframe.units.target.castbar.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.target.castbar.textColor.b = 1
@@ -1012,7 +1189,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.target.debuffs.maxDuration = 0
 	E.db.unitframe.units.target.debuffs.numrows = 2
 	E.db.unitframe.units.target.debuffs.perrow = 12
-	E.db.unitframe.units.target.debuffs.priority = 'Blacklist,Whitelist,Personal,CCDebuffs'
+	E.db.unitframe.units.target.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
 	E.db.unitframe.units.target.disableMouseoverGlow = true
 	E.db.unitframe.units.target.fader.minAlpha = 0.5
 	E.db.unitframe.units.target.fader.smooth = 0
@@ -1042,9 +1219,19 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared TargetTarget
 	E.db.unitframe.units.targettarget.customTexts = {}
-	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = { attachTextTo = 'Frame', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '[luckyone:name:last-classcolor]', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.targettarget.customTexts.Luckyone_Name = {
+		attachTextTo = 'Frame',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'CENTER',
+		size = 12,
+		text_format = '[luckyone:name:last-classcolor]',
+		xOffset = 0,
+		yOffset = 0
+	}
 
-	E.db.unitframe.units.targettarget.enable = (not dev)
+	E.db.unitframe.units.targettarget.enable = false
 	E.db.unitframe.units.targettarget.debuffs.enable = false
 	E.db.unitframe.units.targettarget.disableMouseoverGlow = true
 	E.db.unitframe.units.targettarget.fader.minAlpha = 0.5
@@ -1062,15 +1249,14 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.raidpet.buffIndicator.countFontSize = 10
 	E.db.unitframe.units.raidpet.buffIndicator.enable = true
 	E.db.unitframe.units.raidpet.buffIndicator.size = 6
-	E.db.unitframe.units.raidpet.buffs.priority = 'Blacklist,TurtleBuffs'
 	E.db.unitframe.units.raidpet.classbar.enable = false
 	E.db.unitframe.units.raidpet.debuffs.countFont = Private.Font
 	E.db.unitframe.units.raidpet.debuffs.desaturate = false
 	E.db.unitframe.units.raidpet.debuffs.maxDuration = 0
-	E.db.unitframe.units.raidpet.debuffs.priority = 'Blacklist,RaidDebuffs,Dispellable'
+	E.db.unitframe.units.raidpet.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raidpet.disableFocusGlow = true
 	E.db.unitframe.units.raidpet.disableTargetGlow = true
-	E.db.unitframe.units.raidpet.enable = E.Classic
+	E.db.unitframe.units.raidpet.enable = Private.isClassic
 	E.db.unitframe.units.raidpet.healPrediction.absorbStyle = 'WRAPPED'
 	E.db.unitframe.units.raidpet.healPrediction.enable = true
 	E.db.unitframe.units.raidpet.health.text_format = ''
@@ -1121,10 +1307,21 @@ function Private:Layout_TheWarWithin(layout)
 
 	-- Shared Party
 	E.db.unitframe.units.party.customTexts = {}
-	E.db.unitframe.units.party.customTexts.Luckyone_Name = { attachTextTo = 'Health', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 12, text_format = '', xOffset = 0, yOffset = 0 }
+	E.db.unitframe.units.party.customTexts.Luckyone_Name = {
+		attachTextTo = 'Health',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'CENTER',
+		size = 12,
+		text_format = '',
+		xOffset = 0,
+		yOffset = 0
+	}
 
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.debuffs.enable = false
+	E.db.unitframe.units.party.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.party.disableFocusGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.fader.minAlpha = 0.5
@@ -1159,6 +1356,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.raid1.buffIndicator.countFontSize = 10
 	E.db.unitframe.units.raid1.buffIndicator.size = 6
 	E.db.unitframe.units.raid1.classbar.enable = false
+	E.db.unitframe.units.raid1.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid1.disableFocusGlow = true
 	E.db.unitframe.units.raid1.disableTargetGlow = true
 	E.db.unitframe.units.raid1.fader.minAlpha = 0.5
@@ -1191,12 +1389,12 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.raid1.summonIcon.size = 18
 	E.db.unitframe.units.raid1.threatStyle = 'NONE'
 	E.db.unitframe.units.raid1.verticalSpacing = 1
-	E.db.unitframe.units.raid1.visibility = E.Retail and '[@raid6,noexists][@raid21,exists] hide;show' or '[@raid6,noexists][@raid11,exists] hide;show'
+	E.db.unitframe.units.raid1.visibility = Private.isRetail and '[@raid6,noexists][@raid21,exists] hide;show' or '[@raid6,noexists][@raid11,exists] hide;show'
 
 	-- Shared Raid2
 	E:CopyTable(E.db.unitframe.units.raid2, E.db.unitframe.units.raid1)
-	E.db.unitframe.units.raid2.numGroups = E.Retail and 6 or 5
-	E.db.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
+	E.db.unitframe.units.raid2.numGroups = Private.isRetail and 6 or 5
+	E.db.unitframe.units.raid2.visibility = Private.isRetail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
 
 	-- Shared Raid3
 	E.db.unitframe.units.raid3.buffIndicator.countFont = Private.Font
@@ -1206,7 +1404,7 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.raid3.debuffs.countFont = Private.Font
 	E.db.unitframe.units.raid3.debuffs.desaturate = false
 	E.db.unitframe.units.raid3.debuffs.maxDuration = 0
-	E.db.unitframe.units.raid3.debuffs.priority = 'Blacklist,Dispellable,RaidDebuffs'
+	E.db.unitframe.units.raid3.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid3.disableFocusGlow = true
 	E.db.unitframe.units.raid3.disableTargetGlow = true
 	E.db.unitframe.units.raid3.fader.minAlpha = 0.5
@@ -1230,18 +1428,18 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.unitframe.units.raid3.summonIcon.size = 18
 	E.db.unitframe.units.raid3.threatStyle = 'NONE'
 	E.db.unitframe.units.raid3.verticalSpacing = 1
-	E.db.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
+	E.db.unitframe.units.raid3.visibility = Private.isRetail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
 
 	-- Shared movers
 	E.db.movers.AddonCompartmentMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66'
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-202'
 	E.db.movers.AltPowerBarMover = 'TOP,ElvUIParent,TOP,0,-22'
-	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-260,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-420,-240'
+	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-200,-330') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-420,-240'
 	E.db.movers.BagsMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-173'
 	E.db.movers.BNETMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,156') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
-	E.db.movers.BossHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-260,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-420,-240'
+	E.db.movers.BossHeaderMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-200,296') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-420,-240'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-104'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
@@ -1267,8 +1465,8 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.movers.FocusPowerBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-660,580'
 	E.db.movers.GMMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-453,-1'
 	E.db.movers.LeftChatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1'
-	E.db.movers.LootFrameMover = 'TOP,UIParent,TOP,0,-87'
-	E.db.movers.LossControlMover = (scaled and 'TOP,UIParent,TOP,0,-490') or 'TOP,UIParent,TOP,0,-670'
+	E.db.movers.LootFrameMover = 'TOP,ElvUIParent,TOP,0,-88'
+	E.db.movers.LossControlMover = (scaled and 'TOP,ElvUIParent,TOP,0,-460') or 'TOP,ElvUIParent,TOP,0,-640'
 	E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
 	E.db.movers.MinimapMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1'
 	E.db.movers.MirrorTimer1Mover = 'TOP,ElvUIParent,TOP,0,-60'
@@ -1276,18 +1474,17 @@ function Private:Layout_TheWarWithin(layout)
 	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-98'
 	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.PetAB = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,89') or 'BOTTOM,ElvUIParent,BOTTOM,0,101'
-	E.db.movers.PlayerChoiceToggle = 'BOTTOM,UIParent,BOTTOM,0,369'
-	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-414'
+	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-200'
+	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-24'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
-	E.db.movers.QueueStatusMover = E.Retail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-152' or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-150'
+	E.db.movers.QueueStatusMover = Private.isRetail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-152' or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-150'
 	E.db.movers.ReputationBarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-402,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-466,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,232,-1'
-	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,118') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,154'
-	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-70'
-	E.db.movers.TorghastChoiceToggle = 'BOTTOM,ElvUIParent,BOTTOM,0,550'
+	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,118') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,154'
+	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-80'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
-	E.db.movers.VehicleSeatMover = E.Retail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,493,1'
+	E.db.movers.VehicleSeatMover = Private.isRetail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,493,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
 
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
@@ -1300,7 +1497,6 @@ function Private:Layout_TheWarWithin(layout)
 
 		-- Main Player
 		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = '[luckyone:power:percent-color]'
-		E.db.unitframe.units.player.castbar.height = 24
 		E.db.unitframe.units.player.castbar.width = 279
 		E.db.unitframe.units.player.power.autoHide = true
 
@@ -1308,13 +1504,12 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.targettarget.width = 278
 
 		-- Main Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = not E.Classic and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]' or '[luckyone:name:short-classcolor]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = not Private.isClassic and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]' or '[luckyone:name:short-classcolor]'
 		E.db.unitframe.units.party.debuffs.countFont = Private.Font
 		E.db.unitframe.units.party.debuffs.countXOffset = 2
 		E.db.unitframe.units.party.debuffs.enable = true
 		E.db.unitframe.units.party.debuffs.maxDuration = 0
 		E.db.unitframe.units.party.debuffs.perrow = 2
-		E.db.unitframe.units.party.debuffs.priority = 'Blacklist,Dispellable,RaidDebuffs'
 		E.db.unitframe.units.party.debuffs.sizeOverride = 40
 		E.db.unitframe.units.party.debuffs.xOffset = 1
 		E.db.unitframe.units.party.debuffs.yOffset = -1
@@ -1330,8 +1525,18 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.party.width = 210
 
 		-- Main Party (Classic Only)
-		if E.Classic then
-			E.db.unitframe.units.party.customTexts.Luckyone_Power = { attachTextTo = 'Power', enable = true, font = Private.Font, fontOutline = Private.Outline, justifyH = 'CENTER', size = 11, text_format = '[luckyone:power:percent-color<%]', xOffset = 88, yOffset = 20 }
+		if Private.isClassic then
+			E.db.unitframe.units.party.customTexts.Luckyone_Power = {
+				attachTextTo = 'Power',
+				enable = true,
+				font = Private.Font,
+				fontOutline = Private.Outline,
+				justifyH = 'CENTER',
+				size = 11,
+				text_format = '[luckyone:power:percent-color<%]',
+				xOffset = 88,
+				yOffset = 20
+			}
 			E.db.unitframe.units.party.power.autoHide = true
 			E.db.unitframe.units.party.power.enable = true
 			E.db.unitframe.units.party.power.height = 4
@@ -1403,22 +1608,22 @@ function Private:Layout_TheWarWithin(layout)
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 299) or 347
 
 		-- Main movers
-		E.db.movers.BossButton = (scaled and 'BOTTOM,UIParent,BOTTOM,-230,146') or 'BOTTOM,ElvUIParent,BOTTOM,-260,209'
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-230,146') or 'BOTTOM,ElvUIParent,BOTTOM,-260,209'
 		E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,318,459') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-660,580'
 		E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,300,-300') or 'TOPLEFT,ElvUIParent,TOPLEFT,600,-480'
 		E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,461,324') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,781,474'
-		E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,UIParent,BOTTOM,0,247') or 'BOTTOM,ElvUIParent,BOTTOM,0,397'
+		E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,266') or 'BOTTOM,ElvUIParent,BOTTOM,0,416'
 		E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,324') or 'BOTTOM,ElvUIParent,BOTTOM,-288,474'
 		E.db.movers.ElvUF_Raid1Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,156') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
 		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,156') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
 		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,156') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
 		E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,438'
-		E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,305') or 'BOTTOM,ElvUIParent,BOTTOM,288,455'
+		E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,303') or 'BOTTOM,ElvUIParent,BOTTOM,288,453'
 		E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,324') or 'BOTTOM,ElvUIParent,BOTTOM,288,474'
 		E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,272') or 'BOTTOM,ElvUIParent,BOTTOM,0,422'
 		E.db.movers.PowerBarContainerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,226') or 'BOTTOM,ElvUIParent,BOTTOM,0,376'
-		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-542,-422') or 'TOP,UIParent,TOP,222,-510'
-		E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,542,289') or 'BOTTOM,ElvUIParent,BOTTOM,-401,440'
+		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-542,-422') or 'TOP,ElvUIParent,TOP,330,-408'
+		E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,543,416') or 'BOTTOM,ElvUIParent,BOTTOM,-401,566'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,230,146') or 'BOTTOM,ElvUIParent,BOTTOM,260,209'
 
 	elseif layout == 'healing' then
@@ -1427,10 +1632,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.party.growthDirection = 'RIGHT_DOWN'
 
 		-- Healing Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = E.Retail and '[luckyone:power:percent-nocolor<%]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
-		E.db.unitframe.units.player.castbar.customTextFont.fontSize = 14
-		E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 14
-		E.db.unitframe.units.player.castbar.height = 26
+		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-nocolor<%]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
 		E.db.unitframe.units.player.castbar.width = (scaled and 505) or 605
 		E.db.unitframe.units.player.power.attachTextTo = 'Power'
 		E.db.unitframe.units.player.power.autoHide = false
@@ -1441,7 +1643,7 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
 
-		if E.Classic then
+		if Private.isClassic then
 			E.db.unitframe.units.player.power.EnergyManaRegen = true
 		end
 
@@ -1540,23 +1742,23 @@ function Private:Layout_TheWarWithin(layout)
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 299) or 347
 
 		-- Healing movers
-		E.db.movers.BossButton = (scaled and 'BOTTOM,UIParent,BOTTOM,-280,146') or 'BOTTOM,ElvUIParent,BOTTOM,-330,241'
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-280,146') or 'BOTTOM,ElvUIParent,BOTTOM,-330,241'
 		E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-447,492') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-514,580'
 		E.db.movers.ElvUF_PartyMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,339') or 'BOTTOM,ElvUIParent,BOTTOM,0,455'
 		E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,366,358') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,636,474'
-		E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,114') or 'BOTTOM,ElvUIParent,BOTTOM,0,134'
+		E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,110') or 'BOTTOM,ElvUIParent,BOTTOM,0,130'
 		E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,447,358') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,717,474'
 		E.db.movers.ElvUF_Raid1Mover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,141') or 'BOTTOM,ElvUIParent,BOTTOM,0,257'
 		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,147') or 'BOTTOM,ElvUIParent,BOTTOM,0,161'
-		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,141') or 'BOTTOM,UIParent,BOTTOM,0,241'
+		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,141') or 'BOTTOM,ElvUIParent,BOTTOM,0,241'
 		E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,438'
-		E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-447,339') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-717,455'
+		E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-447,337') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-717,453'
 		E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-447,358') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-716,474'
 		E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-447,314') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-716,430'
 		E.db.movers.PlayerPowerBarMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,447,339') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,717,455'
 		E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-110'
-		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-450,-388') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-515,-670'
-		E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,450,304') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,718,421'
+		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-450,-388') or 'TOP,ElvUIParent,TOP,330,-408'
+		E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,448,450') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,718,566'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,280,146') or 'BOTTOM,ElvUIParent,BOTTOM,330,241'
 
 		if Private.itsLuckyone then
@@ -1577,7 +1779,6 @@ function Private:Layout_TheWarWithin(layout)
 
 		-- Support Player
 		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = '[luckyone:power:percent-color]'
-		E.db.unitframe.units.player.castbar.height = 24
 		E.db.unitframe.units.player.castbar.width = 279
 		E.db.unitframe.units.player.power.autoHide = true
 
@@ -1591,7 +1792,6 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.unitframe.units.party.debuffs.enable = true
 		E.db.unitframe.units.party.debuffs.maxDuration = 0
 		E.db.unitframe.units.party.debuffs.perrow = 2
-		E.db.unitframe.units.party.debuffs.priority = 'Blacklist,Dispellable,RaidDebuffs'
 		E.db.unitframe.units.party.debuffs.sizeOverride = 40
 		E.db.unitframe.units.party.debuffs.xOffset = 1
 		E.db.unitframe.units.party.debuffs.yOffset = -1
@@ -1675,26 +1875,26 @@ function Private:Layout_TheWarWithin(layout)
 		E.db.actionbar.barPet.mouseover = true
 
 		-- Support movers
-		E.db.movers.BossButton = (scaled and 'BOTTOM,UIParent,BOTTOM,-230,146') or 'BOTTOM,ElvUIParent,BOTTOM,-260,209'
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-230,146') or 'BOTTOM,ElvUIParent,BOTTOM,-260,209'
 		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,156') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
 		E.db.movers.ElvAB_2 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,206') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,248'
 		E.db.movers.ElvAB_3 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,181') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,219'
 		E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,318,459') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-660,580'
 		E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,300,-300') or 'TOPLEFT,ElvUIParent,TOPLEFT,600,-480'
 		E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,461,324') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,781,474'
-		E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,UIParent,BOTTOM,0,247') or 'BOTTOM,ElvUIParent,BOTTOM,0,397'
+		E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,266') or 'BOTTOM,ElvUIParent,BOTTOM,0,416'
 		E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,324') or 'BOTTOM,ElvUIParent,BOTTOM,-288,474'
 		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 		E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,438'
-		E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,305') or 'BOTTOM,ElvUIParent,BOTTOM,288,455'
+		E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,303') or 'BOTTOM,ElvUIParent,BOTTOM,288,453'
 		E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,324') or 'BOTTOM,ElvUIParent,BOTTOM,288,474'
 		E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,272') or 'BOTTOM,ElvUIParent,BOTTOM,0,422'
 		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,231') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,277'
 		E.db.movers.PowerBarContainerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,226') or 'BOTTOM,ElvUIParent,BOTTOM,0,376'
-		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-542,-422') or 'TOP,UIParent,TOP,222,-510'
-		E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,542,289') or 'BOTTOM,ElvUIParent,BOTTOM,-401,440'
+		E.db.movers.PrivateAurasMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-542,-422') or 'TOP,ElvUIParent,TOP,330,-408'
+		E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,543,416') or 'BOTTOM,ElvUIParent,BOTTOM,-401,566'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,230,146') or 'BOTTOM,ElvUIParent,BOTTOM,260,209'
 	end
 end
