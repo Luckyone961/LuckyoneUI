@@ -8,6 +8,7 @@ end
 
 -- Lua functions
 local pairs = pairs
+local select = select
 local unpack = unpack
 
 -- API cache
@@ -30,12 +31,13 @@ function Private:Skin_BugSack()
 		S:HandleScrollBar(BugSackScrollScrollBar)
 
 		-- Buttons
+		local buttonHeight = 24
 		S:HandleButton(BugSackNextButton)
 		S:HandleButton(BugSackSendButton)
 		S:HandleButton(BugSackPrevButton)
-		BugSackNextButton:Height(24)
-		BugSackSendButton:Height(24)
-		BugSackPrevButton:Height(24)
+		BugSackNextButton:Height(buttonHeight)
+		BugSackSendButton:Height(buttonHeight)
+		BugSackPrevButton:Height(buttonHeight)
 
 		BugSackPrevButton:ClearAllPoints()
 		BugSackPrevButton:Point('BOTTOMLEFT', BugSackFrame, 'BOTTOMLEFT', 12, 6)
@@ -46,15 +48,18 @@ function Private:Skin_BugSack()
 		S:HandleTab(BugSackTabAll)
 		S:HandleTab(BugSackTabSession)
 		S:HandleTab(BugSackTabLast)
+
 		BugSackTabSession:ClearAllPoints()
-		BugSackTabAll:ClearAllPoints()
-		BugSackTabLast:ClearAllPoints()
 		BugSackTabSession:Point('CENTER', BugSackFrame, 'BOTTOM', 0, -16)
+		BugSackTabAll:ClearAllPoints()
 		BugSackTabAll:Point('LEFT', BugSackTabSession, 'RIGHT', -5, 0)
+		BugSackTabLast:ClearAllPoints()
 		BugSackTabLast:Point('RIGHT', BugSackTabSession, 'LEFT', 5, 0)
 
 		-- Close Button(s)
-		for _, child in pairs({ BugSackFrame:GetChildren() }) do
+		local numChildren = select('#', BugSackFrame:GetChildren())
+		for i = 1, numChildren do
+			local child = select(i, BugSackFrame:GetChildren())
 			if child:IsObjectType('Button') and child:GetScript('OnClick') == BugSack.CloseSack then
 				S:HandleCloseButton(child)
 			end

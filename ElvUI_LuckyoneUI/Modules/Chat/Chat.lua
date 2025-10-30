@@ -32,6 +32,11 @@ local VoiceTranscriptionFrame_UpdateVoiceTab = VoiceTranscriptionFrame_UpdateVoi
 -- Global strings
 local VOICE = VOICE
 
+-- Constants
+local WHISPER_TAB = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
+local GUILD_TAB = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
+local PARTY_TAB = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER', 'SYSTEM' }
+
 -- Chat setup for tabs, windows and channels
 function Private:Setup_Chat(installer)
 	-- General
@@ -68,7 +73,8 @@ function Private:Setup_Chat(installer)
 
 		if Private.ElvUI then
 			if ElvUI[1].private.chat.enable then
-				ElvUI[1]:GetModule('Chat'):FCFTab_UpdateColors(ElvUI[1]:GetModule('Chat'):GetTab(frame))
+				local module = ElvUI[1]:GetModule('Chat')
+				module:FCFTab_UpdateColors(module:GetTab(frame))
 			end
 		end
 
@@ -101,23 +107,20 @@ function Private:Setup_Chat(installer)
 	end
 
 	-- Whisper tab
-	local whisper = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame4)
-	for _, v in ipairs(whisper) do
+	for _, v in ipairs(WHISPER_TAB) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame4, v)
 	end
 
 	-- Guild tab
-	local guild = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
-	for _, v in ipairs(guild) do
+	for _, v in ipairs(GUILD_TAB) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame5, v)
 	end
 
 	-- Party tab
-	local party = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER', 'SYSTEM' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame6)
-	for _, v in ipairs(party) do
+	for _, v in ipairs(PARTY_TAB) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame6, v)
 	end
 

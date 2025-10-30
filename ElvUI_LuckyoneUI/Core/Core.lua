@@ -9,7 +9,7 @@ local format = format
 local next = next
 local pairs = pairs
 local print = print
-local strmatch = string.match
+local strlower = string.lower
 local wipe = table.wipe
 
 -- API cache
@@ -27,6 +27,7 @@ local _G = _G
 
 -- Blizzard functions
 local Settings_OpenToCategory = _G.Settings.OpenToCategory
+local StaticPopup_Show = _G.StaticPopup_Show
 
 -- Global strings
 local ACCEPT = ACCEPT
@@ -47,7 +48,6 @@ function Private:Print(msg)
 end
 
 -- Minimap icon
-local icon = LDBI
 local LuckyoneLDB = LDB:NewDataObject(Name, {
 	type = 'data source',
 	text = Private.Name,
@@ -62,7 +62,7 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 			end
 		elseif button == 'RightButton' then
 			if IsShiftKeyDown() then
-				icon:Hide(Name)
+				LDBI:Hide(Name)
 				Private.Addon.db.global.minimap.hide = true
 			end
 		end
@@ -173,10 +173,10 @@ function Private.Addon:Toggles(msg)
 		end
 	elseif msg == 'minimap' then
 		if Private.Addon.db.global.minimap.hide then
-			icon:Show(Name)
+			LDBI:Show(Name)
 			Private.Addon.db.global.minimap.hide = false
 		else
-			icon:Hide(Name)
+			LDBI:Hide(Name)
 			Private.Addon.db.global.minimap.hide = true
 		end
 	end
@@ -312,7 +312,7 @@ function Private.Addon:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 end
 
 function Private.Addon:PLAYER_LOGIN()
-	icon:Register(Name, LuckyoneLDB, Private.Addon.db.global.minimap)
+	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.global.minimap)
 end
 
 -- Register events during addon initialization

@@ -1,5 +1,4 @@
 -- Lua functions
-local format = string.format
 local print = print
 local tonumber = tonumber
 
@@ -69,7 +68,7 @@ Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
 Private.myGUID = UnitGUID('player')
 Private.myName = UnitName('player')
 Private.myRealm = GetRealmName()
-Private.myNameRealm = format('%s - %s', Private.myName, Private.myRealm)
+Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
 
 -- ElvUI compatibility
 Private.ElvUI = Private.IsAddOnLoaded('ElvUI')
@@ -97,6 +96,7 @@ local function ElvUI_Initialization()
 	-- Convert old db to avoid forced installer re-run
 	if E.global.L1UI and E.global.L1UI.install_version ~= nil then
 		Private.Addon.db.global.install_version = E.global.L1UI.install_version
+		E.global.L1UI.install_version = nil
 	end
 
 	-- LuckyoneUI installer queue
