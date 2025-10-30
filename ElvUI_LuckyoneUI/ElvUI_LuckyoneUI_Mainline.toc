@@ -14,7 +14,7 @@
 ## X-Wago-ID: Rn6VLGdB
 
 ## AddonCompartmentFunc: LuckyoneUI_OnAddonCompartmentClick
-## IconTexture: Interface\AddOns\LuckyoneUI\Media\Textures\Compartment.png
+## IconTexture: Interface\AddOns\ElvUI_LuckyoneUI\Media\Textures\Compartment.png
 
 Libs\Libs.xml
 Locales\Locales.xml
