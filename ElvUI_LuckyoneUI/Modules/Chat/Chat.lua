@@ -78,8 +78,10 @@ function Private:Setup_Chat(installer)
 		-- Tabs
 		if id == 1 then
 			FCF_SetWindowName(frame, 'General')
-			frame:ClearAllPoints()
-			frame:Point('BOTTOMLEFT', _G.LeftChatToggleButton, 'TOPLEFT', 1, 3)
+			if Private.ElvUI then
+				frame:ClearAllPoints()
+				frame:Point('BOTTOMLEFT', _G.LeftChatToggleButton, 'TOPLEFT', 1, 3)
+			end
 		elseif id == 2 then
 			FCF_SetWindowName(frame, 'Log')
 		elseif id == 3 then
