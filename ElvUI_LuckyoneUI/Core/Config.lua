@@ -45,7 +45,7 @@ local function BuildSetupSection()
 	section.inline = true
 	section.args.header1 = ACH:Header(Private.Name, 1)
 	section.args.spacer1 = ACH:Spacer(2, 'full')
-	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 3, function() PI:Queue(Private.InstallerData) ElvUI[1]:ToggleOptions() end)
+	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 3, function() ElvUI[1]:GetModule('PluginInstaller'):Queue(Private.InstallerData) ElvUI[1]:ToggleOptions() end)
 	section.args.spacer2 = ACH:Spacer(4, 'full')
 	section.args.header2 = ACH:Header(L["Quick setup for alts"], 5)
 	section.args.spacer3 = ACH:Spacer(6, 'full')

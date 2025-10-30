@@ -190,17 +190,17 @@ function Private.Addon:DebugMode(msg)
 			local name = GetAddOnInfo(i)
 			if not AddOns[name] and Private.IsAddOnLoaded(name) then
 				DisableAddOn(name, Private.myName)
-				Private.Addon.db.DebugDisabledAddOns[name] = i
+				Private.Addon.db.global.DebugDisabledAddOns[name] = i
 			end
 		end
 		SetCVar('scriptErrors', 1)
 		C_UI_Reload()
 	elseif switch == 'off' then
-		if next(Private.Addon.db.DebugDisabledAddOns) then
-			for name in pairs(Private.Addon.db.DebugDisabledAddOns) do
+		if next(Private.Addon.db.global.DebugDisabledAddOns) then
+			for name in pairs(Private.Addon.db.global.DebugDisabledAddOns) do
 				EnableAddOn(name, Private.myName)
 			end
-			wipe(Private.Addon.db.DebugDisabledAddOns)
+			wipe(Private.Addon.db.global.DebugDisabledAddOns)
 			C_UI_Reload()
 		end
 	else
@@ -292,8 +292,8 @@ end
 
 -- Events
 function Private.Addon:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
-	if initLogin or not Private.Addon.db.DebugDisabledAddOns then
-		Private.Addon.db.DebugDisabledAddOns = {}
+	if initLogin or not Private.Addon.db.global.DebugDisabledAddOns then
+		Private.Addon.db.global.DebugDisabledAddOns = {}
 	end
 
 	if Private.ElvUI and (initLogin or isReload) then

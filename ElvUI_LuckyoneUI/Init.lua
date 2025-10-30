@@ -111,9 +111,6 @@ end
 -- Called directly after the addon is fully loaded
 function Private.Addon:OnInitialize()
 
-	-- Build config and defaults
-	Private.Addon:BuildConfig()
-
 	-- SavedVariables
 	Private.Addon.db = Private.Libs.ADB:New('LuckyoneDB', Private.Defaults, true)
 
@@ -121,6 +118,7 @@ function Private.Addon:OnInitialize()
 		ElvUI_Initialization()
 	else
 		-- Register config
+		Private.Addon:BuildConfig()
 		Private.Libs.AC:RegisterOptionsTable('LuckyoneUI', Private.Config)
 		Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI')
 	end
