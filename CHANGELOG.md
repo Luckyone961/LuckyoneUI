@@ -1,7 +1,15 @@
 ﻿## Version 3.28 [In Development]
 
+**Highlights:**  
+- Added a minimap icon which is enabled by default but can be turned off with one click  
+- LuckyoneUI is now an addon instead of a plugin, it works with and without ElvUI  
+- Reworked the README file which is basically the description of the addon and features  
+
 **Retail:**  
 - Updated WindTools profile (Quest progress, Auto turnin, Achievement tracker)  
+
+**Mists:**  
+- Updated TOC for 5.5.2  
 
 **Classic:**  
 - Fixed the EasyDelete option  
