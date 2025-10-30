@@ -1,7 +1,10 @@
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
+
 -- Lua functions
 local ipairs = ipairs
 local next = next
-local unpack = unpack
 
 -- API cache
 local SetCVar = C_CVar.SetCVar
@@ -28,13 +31,6 @@ local VoiceTranscriptionFrame_UpdateVoiceTab = VoiceTranscriptionFrame_UpdateVoi
 
 -- Global strings
 local VOICE = VOICE
-
--- AddOn namespace
-local _, Private = ...
-
--- ElvUI modules
-local E, L = unpack(ElvUI)
-local CH = E:GetModule('Chat')
 
 -- Chat setup for tabs, windows and channels
 function Private:Setup_Chat(installer)
@@ -70,8 +66,10 @@ function Private:Setup_Chat(installer)
 	for id, name in next, chats do
 		local frame = _G[name]
 
-		if E.private.chat.enable then
-			CH:FCFTab_UpdateColors(CH:GetTab(frame))
+		if Private.ElvUI then
+			if ElvUI[1].private.chat.enable then
+				ElvUI[1]:GetModule('Chat'):FCFTab_UpdateColors(ElvUI[1]:GetModule('Chat'):GetTab(frame))
+			end
 		end
 
 		-- Font size for all tabs

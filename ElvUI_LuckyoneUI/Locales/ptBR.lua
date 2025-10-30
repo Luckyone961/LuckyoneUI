@@ -1,6 +1,10 @@
-local L = ElvUI[1].Libs.ACL:NewLocale('ElvUI', 'ptBR')
+-- Addon namespace
+local _, Private = ...
+
+local L = Private.ElvUI and ElvUI[1].Libs.ACL:NewLocale('ElvUI', 'ptBR') or LibStub('AceLocale-3.0'):NewLocale('LuckyoneUI', 'ptBR')
 if not L then return end
 
+-- Copy the enUS.lua file here and replace the strings with the translated ones
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
@@ -127,6 +131,7 @@ L["Make sure to keep your WeakAuras updated using the WA Companion or Wago App."
 L["Melee DPS"] = "DPS Corpo a Corpo"
 L["Minimalistic. Only important auras."] = "Minimalista. Apenas auras importantes."
 L["Minimalistic"] = "Minimalista"
+L["Minimap_Tooltip"] = "|cff4beb2cClique|r para abrir o menu de opções.\n|cff4beb2cShift-Clique com o Botão Direito|r para esconder o ícone do minimapa."
 L["Monk"] = "Monge"
 L["NamePlate CVars have been set."] = "CVars de Placas de Nomes foram configuradas."
 L["NamePlate CVars"] = "CVars de Placas de Nomes"
@@ -180,7 +185,7 @@ L["Rogue"] = "Ladino"
 L["Scale the default 1080p to 1440p"] = "Escala para o padrão 1080p para 1440p"
 L["Select your preferred UnitFrames color theme."] = "Selecione o perfil de cores para quadros de unidade que você prefere."
 L["Setup Aura Filters"] = "Configurar Filtros de Auras"
-L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]"] = "Configurar o Chat irá reestabelecer os painéis de chat para o padrão e criar abas customizadas.\n\nChat Esquerdo: [ Geral - Regristro - Sussuro - Guilda - Grupo ]\n\nChat Direito: [ Sem Abas - Details! Damage Meter ]"
+L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nChat tabs: [ General - Log - Whisper - Guild - Party ]"] = "Configurar o Chat irá reestabelecer os painéis de chat para o padrão e criar abas customizadas.\n\nChat tabs: [ Geral - Regristro - Sussuro - Guilda - Grupo ]"
 L["Setup Chat"] = "Configurar o Chat"
 L["Setup CVars"] = "Configurar as CVars"
 L["Setup Details"] = "Configurar o Details"

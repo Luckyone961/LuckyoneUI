@@ -1,14 +1,18 @@
 -- Lua functions
+local format = string.format
+local print = print
 local tonumber = tonumber
-local unpack = unpack
 
 -- API cache
+local C_Timer = C_Timer
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local GetRealmName = GetRealmName
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 local UnitGUID = UnitGUID
-local UnitLevel = UnitLevel
 local UnitName = UnitName
+
+-- LibStub
+local LibStub = LibStub
 
 -- Globals
 local WOW_PROJECT_ID = WOW_PROJECT_ID
@@ -16,51 +20,70 @@ local WOW_PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
 local WOW_PROJECT_MISTS_CLASSIC = WOW_PROJECT_MISTS_CLASSIC
 local WOW_PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
 
--- Library cache
-local LibStub = LibStub
-
--- AddOn namespace
+-- Addon namespace
 local Name, Private = ...
 
--- ElvUI modules
-local E = unpack(ElvUI)
-local EP = LibStub('LibElvUIPlugin-1.0')
-local PI = E:GetModule('PluginInstaller')
+-- Create a new AceAddon instance
+local L1UI = LibStub('AceAddon-3.0'):NewAddon(Name, 'AceConsole-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
 
--- Ace modules
-L1UI = E:NewModule(Name, 'AceConsole-3.0', 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
+-- Core reference
+Private.Addon = L1UI
+Private.Config = {}
 
--- Constants: Logo, Name
+-- Libraries
+Private.Libs = {
+	-- Ace
+	ADB = LibStub('AceDB-3.0'),
+	ABH = LibStub('AceDBOptions-3.0'),
+	GUI = LibStub('AceGUI-3.0'),
+	AC = LibStub('AceConfig-3.0'),
+	ACD = LibStub('AceConfigDialog-3.0'),
+	ACL = LibStub('AceLocale-3.0'):GetLocale(Name),
+	-- Custom
+	ACH = LibStub('LibAceConfigHelper'),
+	LDB = LibStub('LibDataBroker-1.1'),
+	LDBI = LibStub('LibDBIcon-1.0'),
+	-- Extras
+	LSM = LibStub('LibSharedMedia-3.0'),
+}
+
+-- Logo, Name
 Private.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
 Private.Name = '|cff4beb2cLuckyoneUI|r'
 
--- Constants: Media
+-- Media
 Private.Font = 'Expressway'
 Private.Outline = 'OUTLINE'
 Private.Texture = 'Minimalist'
 
--- Constants: Supported game versions
+-- Game flavors
 Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 Private.isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 
--- Constants: Tables
-Private.Config = {}
-Private.Credits = {}
-
--- Constants: Checks
+-- API checks
 Private.IsAddOnLoaded = IsAddOnLoaded
-Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
 Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
 
--- Constants: Misc
+-- Player utils
 Private.myGUID = UnitGUID('player')
 Private.myName = UnitName('player')
 Private.myRealm = GetRealmName()
-Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
+Private.myNameRealm = format('%s - %s', Private.myName, Private.myRealm)
 
--- Initialize module in ElvUI
-local function Initialize()
+-- ElvUI compatibility
+Private.ElvUI = Private.IsAddOnLoaded('ElvUI')
+Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
+
+-- ElvUI init
+local function ElvUI_Initialization()
+	if not Private.ElvUI then return end
+
+	-- ElvUI modules
+	local E = unpack(ElvUI)
+	local EP = LibStub('LibElvUIPlugin-1.0')
+	local PI = E:GetModule('PluginInstaller')
+
 	-- ElvUI installer skip
 	if E.private.install_complete == nil then
 		E.private.install_complete = E.version
@@ -71,17 +94,37 @@ local function Initialize()
 		E.private.sle.install_complete = tonumber(GetAddOnMetadata('ElvUI_SLE', 'Version'))
 	end
 
-	-- LuckyoneUI installer queue
-	if E.global.L1UI.install_version == nil then
-		PI:Queue(L1UI.InstallerData)
+	-- Convert old db to avoid forced installer re-run
+	if E.global.L1UI and E.global.L1UI.install_version ~= nil then
+		Private.Addon.db.global.install_version = E.global.L1UI.install_version
 	end
 
-	EP:RegisterPlugin(Name, L1UI.Config)
-	L1UI:RegisterEvents()
+	-- LuckyoneUI installer queue
+	if Private.Addon.db.global.install_version == nil then
+		PI:Queue(Private.InstallerData)
+	end
+
+	EP:RegisterPlugin(Name, Private.Addon.BuildConfig)
+	E:RegisterModule(Name)
 end
 
-local function CallbackInitialize()
-	Initialize()
-end
+-- Called directly after the addon is fully loaded
+function Private.Addon:OnInitialize()
 
-E:RegisterModule(Name, CallbackInitialize)
+	-- Build config and defaults
+	Private.Addon:BuildConfig()
+
+	-- SavedVariables
+	Private.Addon.db = Private.Libs.ADB:New('LuckyoneDB', Private.Defaults, true)
+
+	if Private.ElvUI then
+		ElvUI_Initialization()
+	else
+		-- Register config
+		Private.Libs.AC:RegisterOptionsTable('LuckyoneUI', Private.Config)
+		Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI')
+	end
+
+	-- Events
+	Private.Addon:RegisterEvents()
+end

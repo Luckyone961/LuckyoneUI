@@ -1,3 +1,6 @@
+-- Addon namespace
+local _, Private = ...
+
 -- Lua functions
 local unpack = unpack
 
@@ -12,16 +15,10 @@ local UIParent = UIParent
 -- Global constants
 local COMMUNITIES_FRAME_DISPLAY_MODES = COMMUNITIES_FRAME_DISPLAY_MODES
 
--- AddOn namespace
-local _, Private = ...
-
--- ElvUI modules
-local E = unpack(ElvUI)
-local S = E:GetModule('Skins')
-
 -- Privacy overlay for the guild chat, useful for streamers and recordings, based on a outdated WeakAura on Wago
-function L1UI:PrivacyOverlay()
-	if not E.private.L1UI.qualityOfLife.privacyOverlay then return end
+function Private:PrivacyOverlay()
+	if not Private.Addon.db.global.qualityOfLife.privacyOverlay then return end
+	if not Private.IsAddOnLoaded('Blizzard_Communities') then return end
 
 	-- Create the overlay frame
 	local PrivacyOverlay = CreateFrame('Button', nil, UIParent)
@@ -32,7 +29,7 @@ function L1UI:PrivacyOverlay()
 
 	-- Text on the overlay
 	PrivacyOverlay.text = PrivacyOverlay:CreateFontString()
-	PrivacyOverlay.text:SetFontObject('ElvUIFontNormal') -- Use ElvUI font
+	PrivacyOverlay.text:SetFontObject(Private.ElvUI and 'ElvUIFontNormal' or 'GameFontNormal')
 	PrivacyOverlay.text:SetText('Chat Hidden. Click to show.')
 	PrivacyOverlay.text:SetTextColor(1, 1, 1, 1) -- R, G, B, A
 	PrivacyOverlay.text:SetJustifyH('CENTER')
@@ -71,5 +68,3 @@ function L1UI:PrivacyOverlay()
 	hooksecurefunc(_G.CommunitiesFrame, 'Hide', HideOverlay)
 	hooksecurefunc(_G.CommunitiesFrame, 'OnClubSelected', ShowOverlay)
 end
-
-S:AddCallbackForAddon('Blizzard_Communities', 'LuckyoneUI_PrivacyOverlay', L1UI.PrivacyOverlay)

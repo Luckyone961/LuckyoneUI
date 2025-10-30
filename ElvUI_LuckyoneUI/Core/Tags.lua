@@ -1,3 +1,12 @@
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
+
+-- ElvUI file
+if not Private.ElvUI then
+	return
+end
+
 -- Lua functions
 local concat = table.concat
 local floor = floor
@@ -43,11 +52,8 @@ local _G = _G
 -- Global strings
 local UNKNOWN = UNKNOWN
 
--- AddOn namespace
-local _, Private = ...
-
 -- ElvUI modules
-local E, L = unpack(ElvUI)
+local E = unpack(ElvUI)
 local Tags = ElvUF.Tags
 local Abbrev = Tags.Env.Abbrev
 

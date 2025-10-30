@@ -1,3 +1,12 @@
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
+
+-- ElvUI file
+if not Private.ElvUI then
+	return
+end
+
 -- Lua functions
 local unpack = unpack
 
@@ -7,11 +16,8 @@ local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 -- Global environment
 local _G = _G
 
--- AddOn namespace
-local _, Private = ...
-
 -- ElvUI modules
-local E, L, V, P, G = unpack(ElvUI)
+local E, _, V, P, G = unpack(ElvUI)
 
 -- Shadow & Light ProfileDB
 -- LC: 09/09/2025

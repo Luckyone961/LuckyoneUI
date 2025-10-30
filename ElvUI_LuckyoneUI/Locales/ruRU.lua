@@ -1,6 +1,10 @@
-local L = ElvUI[1].Libs.ACL:NewLocale('ElvUI', 'ruRU')
+-- Addon namespace
+local _, Private = ...
+
+local L = Private.ElvUI and ElvUI[1].Libs.ACL:NewLocale('ElvUI', 'ruRU') or LibStub('AceLocale-3.0'):NewLocale('LuckyoneUI', 'ruRU')
 if not L then return end
 
+-- Copy the enUS.lua file here and replace the strings with the translated ones
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
@@ -127,6 +131,7 @@ L["Make sure to keep your WeakAuras updated using the WA Companion or Wago App."
 L["Melee DPS"] = true
 L["Minimalistic. Only important auras."] = "Минималистичный. Только важные ауры."
 L["Minimalistic"] = "Минималистичный"
+L["Minimap_Tooltip"] = "|cff4beb2cClick|r to open the options menu.\n|cff4beb2cShift-Right-Click|r to hide the minimap icon."
 L["Monk"] = "Монах"
 L["NamePlate CVars have been set."] = "CVars индикаторы здоровья установлены."
 L["NamePlate CVars"] = "CVars Индикаторов здоровья"
@@ -180,7 +185,7 @@ L["Rogue"] = "Разбойник"
 L["Scale the default 1080p to 1440p"] = true
 L["Select your preferred UnitFrames color theme."] = true
 L["Setup Aura Filters"] = true
-L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]"] = "Настройка чата вернет Ваши панели чата к настройкам по умолчанию и создаст пользовательские вкладки.\n\nЛевый чат: [ Общее - Журнал - Шепот - Гильдия - Группа ]\n\nПравый чат: [ Нет вкладок - Details! Damage Meter ]"
+L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nChat tabs: [ General - Log - Whisper - Guild - Party ]"] = "Настройка чата вернет Ваши панели чата к настройкам по умолчанию и создаст пользовательские вкладки.\n\nChat tabs: [ Общее - Журнал - Шепот - Гильдия - Группа ]"
 L["Setup Chat"] = "Настройка чата"
 L["Setup CVars"] = "Настройка CVars"
 L["Setup Details"] = "Настройка Details"

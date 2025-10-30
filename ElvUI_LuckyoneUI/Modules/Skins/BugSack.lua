@@ -1,3 +1,11 @@
+-- Addon namespace
+local _, Private = ...
+
+-- ElvUI file
+if not Private.ElvUI then
+	return
+end
+
 -- Lua functions
 local pairs = pairs
 local unpack = unpack
@@ -9,8 +17,8 @@ local hooksecurefunc = hooksecurefunc
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
-function L1UI:Skin_BugSack()
-	if not E.private.L1UI.skins.BugSack then return end
+function Private:Skin_BugSack()
+	if not Private.Addon.db.global.skins.BugSack then return end
 
 	hooksecurefunc(BugSack, 'OpenSack', function()
 		if BugSack.Skinned then return end
@@ -56,4 +64,4 @@ function L1UI:Skin_BugSack()
 	end)
 end
 
-S:AddCallbackForAddon('BugSack', 'LuckyoneUI_BugSack', L1UI.Skin_BugSack)
+S:AddCallbackForAddon('BugSack', 'LuckyoneUI_BugSack', Private.Skin_BugSack)

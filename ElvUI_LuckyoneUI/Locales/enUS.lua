@@ -1,6 +1,10 @@
-local L = ElvUI[1].Libs.ACL:NewLocale('ElvUI', 'enUS')
+-- Addon namespace
+local _, Private = ...
+
+local L = Private.ElvUI and ElvUI[1].Libs.ACL:NewLocale('ElvUI', 'enUS') or LibStub('AceLocale-3.0'):NewLocale('LuckyoneUI', 'enUS', true, true)
 if not L then return end
 
+-- This is the default locale file, use these strings for reference
 -- Please contact me on Discord if you contributed to the translation of LuckyoneUI
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
@@ -127,6 +131,7 @@ L["Make sure to keep your WeakAuras updated using the WA Companion or Wago App."
 L["Melee DPS"] = true
 L["Minimalistic. Only important auras."] = true
 L["Minimalistic"] = true
+L["Minimap_Tooltip"] = "|cff4beb2cClick|r to open the options menu.\n|cff4beb2cShift-Right-Click|r to hide the minimap icon."
 L["Monk"] = true
 L["NamePlate CVars have been set."] = true
 L["NamePlate CVars"] = true
@@ -180,7 +185,7 @@ L["Rogue"] = true
 L["Scale the default 1080p to 1440p"] = true
 L["Select your preferred UnitFrames color theme."] = true
 L["Setup Aura Filters"] = true
-L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nLeft Chat: [ General - Log - Whisper - Guild - Party ]\n\nRight Chat: [ No Tabs - Details! Damage Meter ]"] = true
+L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nChat tabs: [ General - Log - Whisper - Guild - Party ]"] = true
 L["Setup Chat"] = true
 L["Setup CVars"] = true
 L["Setup Details"] = true

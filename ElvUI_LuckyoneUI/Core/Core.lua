@@ -1,14 +1,15 @@
+-- Addon namespace
+local Name, Private = ...
+local L = Private.Libs.ACL
+local LDB = Private.Libs.LDB
+local LDBI = Private.Libs.LDBI
+
 -- Lua functions
 local format = format
-local ipairs = ipairs
 local next = next
 local pairs = pairs
 local print = print
-local strfind = string.find
-local strlower = string.lower
 local strmatch = string.match
-local tonumber = tonumber
-local unpack = unpack
 local wipe = table.wipe
 
 -- API cache
@@ -17,23 +18,20 @@ local DisableAddOn = C_AddOns.DisableAddOn
 local EnableAddOn = C_AddOns.EnableAddOn
 local GetAddOnInfo = C_AddOns.GetAddOnInfo
 local GetNumAddOns = C_AddOns.GetNumAddOns
+local IsShiftKeyDown = IsShiftKeyDown
 local LoadAddOn = C_AddOns.LoadAddOn
 local SetCVar = C_CVar.SetCVar
 
 -- Global environment
 local _G = _G
 
+-- Blizzard functions
+local Settings_OpenToCategory = _G.Settings.OpenToCategory
+
 -- Global strings
 local ACCEPT = ACCEPT
 local CANCEL = CANCEL
 local OKAY = OKAY
-
--- AddOn namespace
-local _, Private = ...
-
--- ElvUI modules
-local E, L = unpack(ElvUI)
-local PI = E:GetModule('PluginInstaller')
 
 -- Keep these enabled in debug mode
 local AddOns = {
@@ -48,35 +46,47 @@ function Private:Print(msg)
 	print(Private.Name .. ': ' .. msg)
 end
 
--- Gets the number from the profile string
--- If it matches the specified profile type (Main/Healing/Support) or if no profile type is specified
-local function GetNumber(str, profileType)
-	return (not profileType or str:find(profileType, 1, true)) and tonumber(str:match('%d+%.?%d*')) or nil
-end
-
--- Find the profile with the highest number
--- Optionally filtering by the specified profile type
-function Private:GetMostRecentProfile(profileType)
-	local profiles = E.data:GetProfiles()
-	local mostRecentNumber, mostRecentProfile
-	local devProfiles = {
-		Main = 'Luckyone Main',
-		Healing = 'Luckyone Healing',
-		Support = 'Luckyone Support'
-	}
-
-	for _, profile in ipairs(profiles) do
-		local number = GetNumber(profile, profileType)
-		if number and (not mostRecentNumber or number > mostRecentNumber) then
-			mostRecentNumber, mostRecentProfile = number, profile
+-- Minimap icon
+local icon = LDBI
+local LuckyoneLDB = LDB:NewDataObject(Name, {
+	type = 'data source',
+	text = Private.Name,
+	icon = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Compartment.png',
+	OnClick = function(_, button)
+		if button == 'LeftButton' then
+			if Private.ElvUI then
+				ElvUI[1]:ToggleOptions()
+				ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
+			else
+				Settings_OpenToCategory('LuckyoneUI')
+			end
+		elseif button == 'RightButton' then
+			if IsShiftKeyDown() then
+				icon:Hide(Name)
+				Private.Addon.db.global.minimap.hide = true
+			end
 		end
-	end
+	end,
+	OnTooltipShow = function(tooltip)
+		tooltip:AddLine(Private.Name)
+		tooltip:AddLine('\n')
+		tooltip:AddLine(L["Minimap_Tooltip"])
+	end,
+})
 
-	return mostRecentProfile or (profileType and devProfiles[profileType]) or nil
+-- Addon Compartment OnClick TOC func
+function LuckyoneUI_OnAddonCompartmentClick()
+	if Private.ElvUI then
+		ElvUI[1]:ToggleOptions()
+		ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
+	else
+		Settings_OpenToCategory('LuckyoneUI')
+	end
 end
 
 -- Reload popup
-E.PopupDialogs.L1UI_RL = {
+-- _G.StaticPopup_Show('LUCKYONE_RL')
+_G.StaticPopupDialogs['LUCKYONE_RL'] = {
 	text = L["Reload required - continue?"],
 	button1 = ACCEPT,
 	button2 = CANCEL,
@@ -85,32 +95,33 @@ E.PopupDialogs.L1UI_RL = {
 	hideOnEscape = false,
 }
 
--- Version check popup
-E.PopupDialogs.L1UI_VC = {
+-- ElvUI version check popup
+-- _G.StaticPopup_Show('LUCKYONE_VC')
+_G.StaticPopupDialogs['LUCKYONE_VC'] = {
 	text = format('|cffC80000%s|r', L["Your ElvUI is outdated - please update and reload."]),
 	whileDead = 1,
 	hideOnEscape = false,
 }
 
--- Editbox popup from ElvUI\Core\General\StaticPopups.lua
--- Slightly modified for title text and additional chat print
-E.PopupDialogs.L1UI_EDITBOX = {
+-- Editbox popup
+-- _G.StaticPopup_Show('LUCKYONE_EDITBOX', text_arg1, text_arg2, data)
+_G.StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 	text = Private.Name,
 	button1 = OKAY,
 	hasEditBox = 1,
 	OnShow = function(self, data)
-		self.editBox:SetAutoFocus(false)
-		self.editBox.width = self.editBox:GetWidth()
-		self.editBox:Width(310)
-		self.editBox:AddHistoryLine('text')
-		self.editBox.temptxt = data
-		self.editBox:SetText(data)
-		self.editBox:SetJustifyH('CENTER')
+		self.EditBox:SetAutoFocus(false)
+		self.EditBox.width = self.EditBox:GetWidth()
+		self.EditBox:SetWidth(280)
+		self.EditBox:AddHistoryLine('text')
+		self.EditBox.temptxt = data
+		self.EditBox:SetText(data)
+		self.EditBox:SetJustifyH('CENTER')
 		Private:Print(data)
 	end,
 	OnHide = function(self)
-		self.editBox:Width(self.editBox.width or 50)
-		self.editBox.width = nil
+		self.EditBox:SetWidth(self.EditBox.width or 50)
+		self.EditBox.width = nil
 		self.temptxt = nil
 	end,
 	EditBoxOnEnterPressed = function(self)
@@ -130,22 +141,17 @@ E.PopupDialogs.L1UI_EDITBOX = {
 	hideOnEscape = 1,
 }
 
--- Version check
+-- ElvUI version check
 function Private:VersionCheck()
-	if E.version < Private.RequiredElvUI then
-		E:StaticPopup_Show('L1UI_VC')
+	if not Private.ElvUI then return end
+	if ElvUI[1].version < Private.RequiredElvUI then
+		_G.StaticPopup_Show('LUCKYONE_VC')
 		Private:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
 	end
 end
 
--- Addon Compartment OnClick TOC func
-function L1UI_OnAddonCompartmentClick()
-	E:ToggleOptions()
-	E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
-end
-
 -- Weekly Rewards Frame chat commands
-function L1UI:WeeklyRewards()
+function Private.Addon:WeeklyRewards()
 	LoadAddOn('Blizzard_WeeklyRewards')
 	if _G.WeeklyRewardsFrame:IsShown() then
 		_G.WeeklyRewardsFrame:Hide()
@@ -155,34 +161,46 @@ function L1UI:WeeklyRewards()
 end
 
 -- LuckyoneUI chat commands
-function L1UI:Toggles(msg)
-	if msg == 'install' then
-		PI:Queue(L1UI.InstallerData)
+function Private.Addon:Toggles(msg)
+	if msg == 'install' and Private.ElvUI then
+		ElvUI[1]:GetModule('PluginInstaller'):Queue(Private.InstallerData)
 	elseif msg == 'config' then
-		E:ToggleOptions()
-		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
+		if Private.ElvUI then
+			ElvUI[1]:ToggleOptions()
+			ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
+		else
+			Settings_OpenToCategory('LuckyoneUI')
+		end
+	elseif msg == 'minimap' then
+		if Private.Addon.db.global.minimap.hide then
+			icon:Show(Name)
+			Private.Addon.db.global.minimap.hide = false
+		else
+			icon:Hide(Name)
+			Private.Addon.db.global.minimap.hide = true
+		end
 	end
 end
 
--- LuckyoneUI debug mode
-function L1UI:DebugMode(msg)
+-- LuckyoneUI ElvUI debug mode
+function Private.Addon:DebugMode(msg)
 	local switch = strlower(msg)
 	if switch == 'on' then
 		for i = 1, GetNumAddOns() do
 			local name = GetAddOnInfo(i)
-			if not AddOns[name] and E:IsAddOnEnabled(name) then
+			if not AddOns[name] and Private.IsAddOnLoaded(name) then
 				DisableAddOn(name, Private.myName)
-				ElvDB.LuckyoneDisabledAddOns[name] = i
+				Private.Addon.db.DebugDisabledAddOns[name] = i
 			end
 		end
 		SetCVar('scriptErrors', 1)
 		C_UI_Reload()
 	elseif switch == 'off' then
-		if next(ElvDB.LuckyoneDisabledAddOns) then
-			for name in pairs(ElvDB.LuckyoneDisabledAddOns) do
+		if next(Private.Addon.db.DebugDisabledAddOns) then
+			for name in pairs(Private.Addon.db.DebugDisabledAddOns) do
 				EnableAddOn(name, Private.myName)
 			end
-			wipe(ElvDB.LuckyoneDisabledAddOns)
+			wipe(Private.Addon.db.DebugDisabledAddOns)
 			C_UI_Reload()
 		end
 	else
@@ -191,12 +209,14 @@ function L1UI:DebugMode(msg)
 end
 
 -- Register all commands
-function L1UI:LoadCommands()
-	self:RegisterChatCommand('luckydebug', 'DebugMode')
+function Private.Addon:LoadCommands()
 	self:RegisterChatCommand('lucky', 'Toggles')
 	if Private.isRetail then -- Retail chat commands
 		self:RegisterChatCommand('vault', 'WeeklyRewards')
 		self:RegisterChatCommand('weekly', 'WeeklyRewards')
+	end
+	if Private.ElvUI then
+		self:RegisterChatCommand('luckydebug', 'DebugMode')
 	end
 end
 
@@ -271,26 +291,32 @@ function Private:HandleToons()
 end
 
 -- Events
-function L1UI:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
-	if initLogin or not ElvDB.LuckyoneDisabledAddOns then
-		ElvDB.LuckyoneDisabledAddOns = {}
+function Private.Addon:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
+	if initLogin or not Private.Addon.db.DebugDisabledAddOns then
+		Private.Addon.db.DebugDisabledAddOns = {}
 	end
 
-	if initLogin or isReload then
+	if Private.ElvUI and (initLogin or isReload) then
 		Private:VersionCheck()
 	end
 
 	Private:DisabledFrames()
 	Private:EasyDelete()
 	Private:HandleToons()
-	L1UI:LoadCommands()
+	Private:PrivacyOverlay()
+	self:LoadCommands()
 
 	if Private.itsLuckyone then
-		E.global.L1UI.dev = true
+		Private.Addon.db.global.dev = true
 	end
 end
 
--- Register events
-function L1UI:RegisterEvents()
-	L1UI:RegisterEvent('PLAYER_ENTERING_WORLD')
+function Private.Addon:PLAYER_LOGIN()
+	icon:Register(Name, LuckyoneLDB, Private.Addon.db.global.minimap)
+end
+
+-- Register events during addon initialization
+function Private.Addon:RegisterEvents()
+	self:RegisterEvent('PLAYER_ENTERING_WORLD')
+	self:RegisterEvent('PLAYER_LOGIN')
 end

@@ -1,17 +1,12 @@
--- Lua functions
-local unpack = unpack
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
 
 -- API cache
 local SetCVar = C_CVar.SetCVar
 
 -- Global environment
 local _G = _G
-
--- AddOn namespace
-local _, Private = ...
-
--- ElvUI modules
-local E, L = unpack(ElvUI)
 
 -- General CVars
 function Private:Setup_CVars(noPrint, installer)

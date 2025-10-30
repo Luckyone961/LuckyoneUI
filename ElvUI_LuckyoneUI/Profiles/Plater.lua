@@ -1,26 +1,25 @@
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
+
 -- Lua functions
 local tinsert = table.insert
-local unpack = unpack
 
 -- Global environment
 local _G = _G
-
--- AddOn namespace
-local _, Private = ...
-
--- ElvUI modules
-local E, L = unpack(ElvUI)
 
 -- Plater profile
 -- LC: 16/08/2025
 function Private:Setup_Plater(installer)
 	if not Private.IsAddOnLoaded('Plater') then Private:Print('Plater ' .. L["is not installed or enabled."]) return end
 
-	-- Make sure the ElvUI module is off when using Plater
-	E.private.nameplates.enable = false
+	if Private.ElvUI then
+		-- Make sure the ElvUI module is off when using Plater
+		ElvUI[1].private.nameplates.enable = false
+	end
 
 	-- Global db
-	local dev = E.global.L1UI.dev
+	local dev = Private.Addon.db.global.dev
 
 	-- Profile name
 	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version

@@ -1,14 +1,12 @@
--- Lua functions
-local unpack = unpack
-
--- AddOn namespace
+-- Addon namespace
 local _, Private = ...
+local L = Private.Libs.ACL
 
--- ElvUI modules
-local E, L = unpack(ElvUI)
+-- Global environment
+local _G = _G
 
 local function ShowImportBox(link)
-	E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, link)
+	_G.StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, link)
 end
 
 -- WeakAuras

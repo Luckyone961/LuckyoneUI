@@ -19,3 +19,22 @@ $RECYCLE.BIN/
 
 # Vscode local config
 .vscode
+.vs
+
+# Jetbrains local config
+.idea
+
+# Libraries
+ElvUI_LuckyoneUI/Libs/Ace3/AceAddon-3.0
+ElvUI_LuckyoneUI/Libs/Ace3/AceConfig-3.0
+ElvUI_LuckyoneUI/Libs/Ace3/AceConsole-3.0
+ElvUI_LuckyoneUI/Libs/Ace3/AceDB-3.0
+ElvUI_LuckyoneUI/Libs/Ace3/AceDBOptions-3.0
+ElvUI_LuckyoneUI/Libs/Ace3/AceEvent-3.0
+ElvUI_LuckyoneUI/Libs/Ace3/AceGUI-3.0
+ElvUI_LuckyoneUI/Libs/Ace3/AceLocale-3.0
+ElvUI_LuckyoneUI/Libs/Ace3/AceTimer-3.0
+ElvUI_LuckyoneUI/Libs/CallbackHandler-1.0
+ElvUI_LuckyoneUI/Libs/LibDBIcon-1.0
+ElvUI_LuckyoneUI/Libs/LibSharedMedia-3.0
+ElvUI_LuckyoneUI/Libs/LibStub
