@@ -56,7 +56,7 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 		if button == 'LeftButton' then
 			if Private.ElvUI then
 				ElvUI[1]:ToggleOptions()
-				ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
+				ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'LuckyoneUI')
 			else
 				Settings_OpenToCategory('LuckyoneUI')
 			end
@@ -78,7 +78,7 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 function LuckyoneUI_OnAddonCompartmentClick()
 	if Private.ElvUI then
 		ElvUI[1]:ToggleOptions()
-		ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
+		ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'LuckyoneUI')
 	else
 		Settings_OpenToCategory('LuckyoneUI')
 	end
@@ -167,7 +167,7 @@ function Private.Addon:Toggles(msg)
 	elseif msg == 'config' then
 		if Private.ElvUI then
 			ElvUI[1]:ToggleOptions()
-			ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'L1UI')
+			ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'LuckyoneUI')
 		else
 			Settings_OpenToCategory('LuckyoneUI')
 		end
@@ -218,6 +218,38 @@ function Private.Addon:LoadCommands()
 	if Private.ElvUI then
 		self:RegisterChatCommand('luckydebug', 'DebugMode')
 	end
+end
+
+-- ElvUI init
+function Private:CheckElvUI()
+	if not Private.ElvUI then return end
+
+	local E = unpack(ElvUI)
+	local EP = LibStub('LibElvUIPlugin-1.0')
+	local PI = E:GetModule('PluginInstaller')
+
+	-- Skip the ElvUI installer
+	if E.private.install_complete == nil then
+		E.private.install_complete = E.version
+	end
+
+	-- Skip the Shadow & Light installer
+	if (Private.isRetail and E.private.sle) and E.private.sle.install_complete == nil then
+		E.private.sle.install_complete = tonumber(GetAddOnMetadata('ElvUI_SLE', 'Version'))
+	end
+
+	-- Convert old db to avoid forced installer re-run
+	if E.global.LuckyoneUI and E.global.LuckyoneUI.install_version ~= nil then
+		Private.Addon.db.global.install_version = E.global.LuckyoneUI.install_version
+		E.global.LuckyoneUI.install_version = nil
+	end
+
+	-- Queue the LuckyoneUI installer if needed
+	if Private.Addon.db.global.install_version == nil then
+		PI:Queue(Private.InstallerData)
+	end
+
+	EP:RegisterPlugin(Name, Private.BuildConfig)
 end
 
 -- Luckyone characters by GUID
@@ -313,6 +345,7 @@ end
 
 function Private.Addon:PLAYER_LOGIN()
 	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.global.minimap)
+	Private:CheckElvUI()
 end
 
 -- Register events during addon initialization

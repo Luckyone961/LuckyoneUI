@@ -45,6 +45,7 @@ local SUPPORT_STRING = ProcessList(SUPPORT)
 
 -- Build Setup Section
 local function BuildSetupSection()
+	if not Private.ElvUI then return end -- ElvUI section
 	local section = ACH:Group('', nil, 2)
 	section.inline = true
 	section.args.header1 = ACH:Header(Private.Name, 1)
@@ -80,6 +81,7 @@ end
 
 -- Build Auras Section
 local function BuildAurasSection()
+	if not Private.ElvUI then return end -- ElvUI section
 	local section = ACH:Group(L["Buffs and Debuffs"], nil, 4, 'tab')
 	section.args.header = ACH:Header(L["Buffs and Debuffs"], 1)
 	section.args.buffs = ACH:Group(format('|cff3296ff%s|r', L["Buffs"]), nil, 1)
@@ -125,6 +127,7 @@ end
 
 -- Build PrivateDB Section
 local function BuildPrivateDBSection()
+	if not Private.ElvUI then return end -- ElvUI section
 	local section = ACH:Group(L["Character specific"], nil, 5)
 	section.args.header = ACH:Header(L["Character specific"], 1)
 	section.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 2)
@@ -170,7 +173,8 @@ local function BuildCVarsSection()
 end
 
 -- Build Layouts Section
-local function BuildLayoutsSection()
+local function BuildLayoutSection()
+	if not Private.ElvUI then return end -- ElvUI section
 	local section = ACH:Group('ElvUI ' .. L["Layouts"], nil, 8)
 	section.args.header1 = ACH:Header(L["Layout Scale"], 1)
 	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
@@ -242,6 +246,7 @@ end
 
 -- Build Skins Section
 local function BuildSkinsSection()
+	if not Private.ElvUI then return end -- ElvUI section
 	local section = ACH:Group('Skins', nil, 11)
 	section.args.header = ACH:Header('Skins', 1)
 	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.global.skins[info[#info]] end, function(info, value) Private.Addon.db.global.skins[info[#info]] = value _G.StaticPopup_Show(RELOAD_POPUP) end)
@@ -253,6 +258,7 @@ end
 
 -- Build Tags Section
 local function BuildTagsSection()
+	if not Private.ElvUI then return end -- ElvUI section
 	local section = ACH:Group(L["Tags"], nil, 12)
 	section.args.header = ACH:Header(L["Tags"], 1)
 	section.args.spacer = ACH:Spacer(2, 'full')
@@ -262,6 +268,7 @@ end
 
 -- Build Themes Section
 local function BuildThemesSection()
+	if not Private.ElvUI then return end -- ElvUI section
 	local section = ACH:Group(L["Themes"], nil, 13)
 	section.args.header = ACH:Header(L["Themes"], 1)
 	section.args.raid = ACH:Group(L["UnitFrames Color Theme"], nil, 2)
@@ -366,36 +373,33 @@ local function BuildDevSection()
 end
 
 -- LuckyoneUI config panel
-function Private.Addon:BuildConfig()
+function Private:BuildConfig()
 
 	-- Header
 	Private.Config = ACH:Group(Private.Name, nil, 20, (Private.ElvUI and nil) or 'tree')
 
 	-- Add sections
+	Private.Config.args.setup = BuildSetupSection() -- 2
 	Private.Config.args.blizzard = BuildBlizzardSection() -- 3
+	Private.Config.args.auras = BuildAurasSection() -- 4
+	Private.Config.args.privateDB = BuildPrivateDBSection() -- 5
 	Private.Config.args.chat = BuildChatSection() -- 6
 	Private.Config.args.cvars = BuildCVarsSection() -- 7
+	Private.Config.args.layouts = BuildLayoutSection() -- 8
 	Private.Config.args.graphics = BuildGraphicsSection() -- 9
 	Private.Config.args.profiles = BuildProfilesSection() -- 10
+	Private.Config.args.skins = BuildSkinsSection() -- 11
+	Private.Config.args.tags = BuildTagsSection() -- 12
+	Private.Config.args.themes = BuildThemesSection() -- 13
 	Private.Config.args.weakauras = BuildWeakAurasSection() -- 14
 	Private.Config.args.credits = BuildCreditsSection() -- 15
 	Private.Config.args.links = BuildLinksSection() -- 16
 	Private.Config.args.dev = BuildDevSection() -- 17
 
+	-- ElvUI config integration
 	if Private.ElvUI then
-
-		-- Add LuckyoneUI version on top of the ElvUI config
 		ElvUI[1].Options.name = format('%s + %s |cff99ff33%.2f|r', ElvUI[1].Options.name, Private.Name, Private.Version)
-
-		Private.Config.args.setup = BuildSetupSection() -- 2
-		Private.Config.args.auras = BuildAurasSection() -- 4
-		Private.Config.args.privateDB = BuildPrivateDBSection() -- 5
-		Private.Config.args.layouts = BuildLayoutsSection() -- 8
-		Private.Config.args.skins = BuildSkinsSection() -- 11
-		Private.Config.args.tags = BuildTagsSection() -- 12
-		Private.Config.args.themes = BuildThemesSection() -- 13
-
-		ElvUI[1].Options.args.L1UI = Private.Config
+		ElvUI[1].Options.args.LuckyoneUI = Private.Config
 	end
 end
 

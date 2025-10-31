@@ -23,10 +23,10 @@ local WOW_PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
 local Name, Private = ...
 
 -- Create a new AceAddon instance
-local L1UI = LibStub('AceAddon-3.0'):NewAddon(Name, 'AceConsole-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
+local LuckyoneUI = LibStub('AceAddon-3.0'):NewAddon(Name, 'AceConsole-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
 
 -- Core reference
-Private.Addon = L1UI
+Private.Addon = LuckyoneUI
 Private.Config = {}
 
 -- Libraries
@@ -74,55 +74,19 @@ Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
 Private.ElvUI = Private.IsAddOnLoaded('ElvUI')
 Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
 
--- ElvUI init
-local function ElvUI_Initialization()
-	if not Private.ElvUI then return end
-
-	-- ElvUI modules
-	local E = unpack(ElvUI)
-	local EP = LibStub('LibElvUIPlugin-1.0')
-	local PI = E:GetModule('PluginInstaller')
-
-	-- ElvUI installer skip
-	if E.private.install_complete == nil then
-		E.private.install_complete = E.version
-	end
-
-	-- Shadow & Light installer skip
-	if (Private.isRetail and E.private.sle) and E.private.sle.install_complete == nil then
-		E.private.sle.install_complete = tonumber(GetAddOnMetadata('ElvUI_SLE', 'Version'))
-	end
-
-	-- Convert old db to avoid forced installer re-run
-	if E.global.L1UI and E.global.L1UI.install_version ~= nil then
-		Private.Addon.db.global.install_version = E.global.L1UI.install_version
-		E.global.L1UI.install_version = nil
-	end
-
-	-- LuckyoneUI installer queue
-	if Private.Addon.db.global.install_version == nil then
-		PI:Queue(Private.InstallerData)
-	end
-
-	EP:RegisterPlugin(Name, Private.Addon.BuildConfig)
-	E:RegisterModule(Name)
-end
-
 -- Called directly after the addon is fully loaded
 function Private.Addon:OnInitialize()
 
 	-- SavedVariables
 	Private.Addon.db = Private.Libs.ADB:New('LuckyoneDB', Private.Defaults, true)
 
-	if Private.ElvUI then
-		ElvUI_Initialization()
-	else
-		-- Register config
-		Private.Addon:BuildConfig()
+	-- Events
+	Private.Addon:RegisterEvents()
+
+	-- Register config
+	if not Private.ElvUI then
+		Private:BuildConfig()
 		Private.Libs.AC:RegisterOptionsTable('LuckyoneUI', Private.Config)
 		Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI')
 	end
-
-	-- Events
-	Private.Addon:RegisterEvents()
 end
