@@ -10,6 +10,8 @@ local next = next
 local pairs = pairs
 local print = print
 local strlower = string.lower
+local tonumber = tonumber
+local unpack = unpack
 local wipe = table.wipe
 
 -- API cache
@@ -17,6 +19,7 @@ local C_UI_Reload = C_UI.Reload
 local DisableAddOn = C_AddOns.DisableAddOn
 local EnableAddOn = C_AddOns.EnableAddOn
 local GetAddOnInfo = C_AddOns.GetAddOnInfo
+local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local GetNumAddOns = C_AddOns.GetNumAddOns
 local IsShiftKeyDown = IsShiftKeyDown
 local LoadAddOn = C_AddOns.LoadAddOn
