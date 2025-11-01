@@ -10,18 +10,20 @@ local _G = _G
 -- Global strings
 local DELETE_ITEM_CONFIRM_STRING = DELETE_ITEM_CONFIRM_STRING
 
---[[
-	TODO: Add back hiding of the ElvUI movers if ElvUI is loaded
-]]
-
 -- Disabled Blizzard Frames (Loading on init)
 function Private:DisabledFrames()
 	if Private.Addon.db.profile.disabledFrames.AlertFrame then
 		_G.AlertFrame:UnregisterAllEvents()
+		if Private.ElvUI then
+			ElvUI[1]:DisableMover('AlertFrameMover')
+		end
 	end
 
 	if Private.Addon.db.profile.disabledFrames.BossBanner and Private.isRetail then
 		_G.BossBanner:UnregisterAllEvents()
+		if Private.ElvUI then
+			ElvUI[1]:DisableMover('BossBannerMover')
+		end
 	end
 
 	if Private.Addon.db.profile.disabledFrames.ZoneTextFrame then
