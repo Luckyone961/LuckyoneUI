@@ -19,7 +19,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 function Private:Skin_BugSack()
-	if not Private.Addon.db.global.skins.BugSack then return end
+	if not Private.Addon.db.profile.skins.BugSack then return end
 
 	hooksecurefunc(BugSack, 'OpenSack', function()
 		if BugSack.Skinned then return end

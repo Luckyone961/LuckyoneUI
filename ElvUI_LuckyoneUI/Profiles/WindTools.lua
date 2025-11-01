@@ -25,7 +25,7 @@ function Private:Setup_WindTools(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and Private.isRetail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
 	-- 1080p
-	local scaled = Private.Addon.db.global.scaled
+	local scaled = Private.Addon.db.profile.scaled
 
 	-- Get version
 	local version = GetAddOnMetadata('ElvUI_WindTools', 'X-Version')

@@ -17,7 +17,7 @@ local COMMUNITIES_FRAME_DISPLAY_MODES = COMMUNITIES_FRAME_DISPLAY_MODES
 
 -- Privacy overlay for the guild chat, useful for streamers and recordings, based on a outdated WeakAura on Wago
 function Private:PrivacyOverlay()
-	if not Private.Addon.db.global.qualityOfLife.privacyOverlay then return end
+	if not Private.Addon.db.profile.qualityOfLife.privacyOverlay then return end
 	if not Private.IsAddOnLoaded('Blizzard_Communities') then return end
 
 	-- Create the overlay frame

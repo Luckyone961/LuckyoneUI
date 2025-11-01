@@ -51,7 +51,7 @@ end
 -- E.global & Custom DataText
 function Private:Setup_GlobalDB()
 	-- 1080p
-	local scaled = Private.Addon.db.global.scaled
+	local scaled = Private.Addon.db.profile.scaled
 
 	SetCVar('uiScale', (scaled and 0.71111111111111) or 0.53333333333333)
 	SetCVar('useUiScale', 1)
@@ -108,7 +108,7 @@ end
 -- E.private & Media
 function Private:Setup_PrivateDB(includePlugins)
 	-- 1080p
-	local scaled = Private.Addon.db.global.scaled
+	local scaled = Private.Addon.db.profile.scaled
 
 	E.db.general.font = Private.Font
 	E.db.general.fonts.cooldown.outline = Private.Outline
@@ -164,10 +164,10 @@ function Private:Setup_PrivateDB(includePlugins)
 	if Private.Addon.db.global.dev then
 		-- Private keys for the dev profile
 		E.private.general.chatBubbles = 'disabled'
-		Private.Addon.db.global.disabledFrames.AlertFrame = true
-		Private.Addon.db.global.disabledFrames.BossBanner = true
-		Private.Addon.db.global.qualityOfLife.easyDelete = true
-		Private.Addon.db.global.qualityOfLife.privacyOverlay = true
+		Private.Addon.db.profile.disabledFrames.AlertFrame = true
+		Private.Addon.db.profile.disabledFrames.BossBanner = true
+		Private.Addon.db.profile.qualityOfLife.easyDelete = true
+		Private.Addon.db.profile.qualityOfLife.privacyOverlay = true
 
 		-- Enable these modules only if the alternative is not loaded
 		E.private.bags.enable = (not Private.IsAddOnLoaded('Baganator'))
@@ -178,7 +178,7 @@ end
 -- Handler for existing profiles (Quick install on alts)
 function Private:HandleAlts(layout)
 	-- 1080p
-	local scaled = Private.Addon.db.global.scaled
+	local scaled = Private.Addon.db.profile.scaled
 
 	local mostRecentProfile = Private:GetMostRecentProfile(layout)
 
@@ -777,7 +777,7 @@ end
 -- LC: 25/09/2025
 function Private:Setup_ElvUI(layout)
 	-- Global db
-	local scaled = Private.Addon.db.global.scaled
+	local scaled = Private.Addon.db.profile.scaled
 	-- AB conversion
 	E.db.convertPages = true
 	-- Protect movers error

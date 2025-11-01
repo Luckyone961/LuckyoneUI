@@ -66,7 +66,7 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 		elseif button == 'RightButton' then
 			if IsShiftKeyDown() then
 				LDBI:Hide(Name)
-				Private.Addon.db.global.minimap.hide = true
+				Private.Addon.db.profile.minimap.hide = true
 			end
 		end
 	end,
@@ -175,12 +175,12 @@ function Private.Addon:Toggles(msg)
 			Settings_OpenToCategory('LuckyoneUI')
 		end
 	elseif msg == 'minimap' then
-		if Private.Addon.db.global.minimap.hide then
+		if Private.Addon.db.profile.minimap.hide then
 			LDBI:Show(Name)
-			Private.Addon.db.global.minimap.hide = false
+			Private.Addon.db.profile.minimap.hide = false
 		else
 			LDBI:Hide(Name)
-			Private.Addon.db.global.minimap.hide = true
+			Private.Addon.db.profile.minimap.hide = true
 		end
 	end
 end
@@ -347,7 +347,7 @@ function Private.Addon:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 end
 
 function Private.Addon:PLAYER_LOGIN()
-	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.global.minimap)
+	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
 	Private:CheckElvUI()
 end
 

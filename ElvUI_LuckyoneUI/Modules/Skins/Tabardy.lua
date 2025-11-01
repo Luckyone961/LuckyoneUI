@@ -21,7 +21,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 function Private:Skin_Tabardy()
-	if not Private.Addon.db.global.skins.Tabardy then return end
+	if not Private.Addon.db.profile.skins.Tabardy then return end
 
 	local TabardyDesigner = _G.TabardyDesigner
 

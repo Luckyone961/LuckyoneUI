@@ -64,12 +64,12 @@ end
 local function BuildBlizzardSection()
 	local section = ACH:Group(L["Blizzard improvements"], nil, 3)
 	section.args.header = ACH:Header(L["Blizzard improvements"], 1)
-	section.args.disabledFrames = ACH:Group(L["Hide Blizzard Frames"], nil, 2, nil, function(info) return Private.Addon.db.global.disabledFrames[info[#info]] end, function(info, value) Private.Addon.db.global.disabledFrames[info[#info]] = value _G.StaticPopup_Show(RELOAD_POPUP) end)
+	section.args.disabledFrames = ACH:Group(L["Hide Blizzard Frames"], nil, 2, nil, function(info) return Private.Addon.db.profile.disabledFrames[info[#info]] end, function(info, value) Private.Addon.db.profile.disabledFrames[info[#info]] = value _G.StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.disabledFrames.inline = true
 	section.args.disabledFrames.args.AlertFrame = ACH:Toggle(L["Alert Frame"], L["Hide the Loot/Alert Frame"], 1)
 	section.args.disabledFrames.args.BossBanner = ACH:Toggle(L["Boss Banner"], L["Hide the Boss Banner"], 2, nil, nil, nil, nil, nil, nil, not Private.isRetail)
 	section.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle(L["Zone Text"], L["Hide the Zone Text"], 3)
-	section.args.qualityOfLife = ACH:Group(L["Quality of Life"], nil, 3, nil, function(info) return Private.Addon.db.global.qualityOfLife[info[#info]] end, function(info, value) Private.Addon.db.global.qualityOfLife[info[#info]] = value _G.StaticPopup_Show(RELOAD_POPUP) end)
+	section.args.qualityOfLife = ACH:Group(L["Quality of Life"], nil, 3, nil, function(info) return Private.Addon.db.profile.qualityOfLife[info[#info]] end, function(info, value) Private.Addon.db.profile.qualityOfLife[info[#info]] = value _G.StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.qualityOfLife.inline = true
 	section.args.qualityOfLife.args.easyDelete = ACH:Toggle(L["Easy Delete"], L["Automatically fill out the confirmation text to delete items."], 1)
 	section.args.qualityOfLife.args.privacyOverlay = ACH:Toggle(L["Privacy Overlay"], L["Creates an overlay to hide the chat frame in the Communities Frame until you click on it."], 2)
@@ -179,8 +179,8 @@ local function BuildLayoutSection()
 	section.args.header1 = ACH:Header(L["Layout Scale"], 1)
 	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	section.args.scaling.inline = true
-	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
-	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = value end)
+	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.profile.scaled end, function(_, value) Private.Addon.db.profile.scaled = not value end)
+	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.profile.scaled end, function(_, value) Private.Addon.db.profile.scaled = value end)
 	section.args.header2 = ACH:Header('ElvUI ' .. L["Layouts"], 3)
 	section.args.thewarwithin = ACH:Group('The War Within ' .. L["Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 4)
 	section.args.thewarwithin.inline = true
@@ -214,8 +214,8 @@ local function BuildProfilesSection()
 	section.args.header1 = ACH:Header(L["Layout Scale"], 1)
 	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	section.args.scaling.inline = true
-	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
-	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = value end)
+	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.profile.scaled end, function(_, value) Private.Addon.db.profile.scaled = not value end)
+	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.profile.scaled end, function(_, value) Private.Addon.db.profile.scaled = value end)
 	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 3)
 	section.args.plugins.inline = true
 	section.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_AddOnSkins() _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true)
@@ -249,7 +249,7 @@ local function BuildSkinsSection()
 	if not Private.ElvUI then return end -- ElvUI section
 	local section = ACH:Group('Skins', nil, 11)
 	section.args.header = ACH:Header('Skins', 1)
-	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.global.skins[info[#info]] end, function(info, value) Private.Addon.db.global.skins[info[#info]] = value _G.StaticPopup_Show(RELOAD_POPUP) end)
+	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.profile.skins[info[#info]] end, function(info, value) Private.Addon.db.profile.skins[info[#info]] = value _G.StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.addons.inline = true
 	section.args.addons.args.BugSack = ACH:Toggle('BugSack', nil, 1, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('BugSack'))
 	section.args.addons.args.Tabardy = ACH:Toggle('Tabardy', nil, 2, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('Tabardy'))
