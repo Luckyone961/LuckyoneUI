@@ -46,7 +46,7 @@ function Private:PrivacyOverlay()
 
 	-- Show the overlay
 	local function ShowOverlay()
-		if _G.CommunitiesFrame:GetDisplayMode() == COMMUNITIES_FRAME_DISPLAY_MODES.CHAT then
+		if _G.CommunitiesFrame:IsShown() and (_G.CommunitiesFrame:GetDisplayMode() == COMMUNITIES_FRAME_DISPLAY_MODES.CHAT) then
 			PrivacyOverlay:SetAllPoints(_G.CommunitiesFrame.Chat.InsetFrame)
 			PrivacyOverlay:Show()
 		else
@@ -58,9 +58,6 @@ function Private:PrivacyOverlay()
 	local function HideOverlay()
 		PrivacyOverlay:Hide()
 	end
-
-	-- Call once to create the initial overlay
-	ShowOverlay()
 
 	-- Hook the following Blizzard events
 	hooksecurefunc(_G.CommunitiesFrame, 'SetDisplayMode', ShowOverlay)
