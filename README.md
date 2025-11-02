@@ -2,42 +2,55 @@
 [![Discord](https://img.shields.io/badge/Join-Discord-green)](https://discord.gg/xRY4bwA) [![Patreon](https://img.shields.io/badge/Support-Patreon-orange)](https://www.patreon.com/luckyone) [![Donate](https://img.shields.io/badge/Support-Donate-blue)](https://streamlabs.com/luckyone1996/tip) [![Twitch](https://img.shields.io/badge/Support-Twitch-purple)](https://subs.twitch.tv/Luckyone1996)  
 ***
 
-### **Minimalistic plugin and layout installer for ElvUI**  
-• Always up-to-date for the latest ElvUI changes  
-• Custom presets for DPS, Tanks, Healers and Augmentation  
-• Discord server for UI topics, support and social chats  
-• Layouts are specifically built for high Mythic+ and Raiding  
+### **LuckyoneUI: Hybrid standalone AddOn and ElvUI plugin**  
+• Can be used as a standalone AddOn for default UI or as a plugin for ElvUI  
+• Discord server for UI discussions, tech support and social chats  
+• Modern API usage, clean code, no duct tape fixes and fast updates  
 • One of the most optimized UIs out there for the best possible performance  
+• Profiles are built specifically for high Mythic+ and Raiding  
+• Unlike most other projects, there is no bloat - Everything is disabled by default  
+• Updating LuckyoneUI will never auto-apply any profile changes without user confirmation  
 
-### **Features**  
-• All layouts are built on 1440p with full support and scaling for 1080p players  
+### **Standalone features**  
+• All profiles are built on 1440p with full support and scaling for 1080p players  
 • Full support for all current WoW versions such as Retail, Mists and Classic  
-• ElvUI tags for detailed health information, healer-only mana and more  
 • Option to automatically fill out the delete text when destroying items  
 • Options to configure performance related and hidden Blizzard settings  
 • Options to disable annoying Blizzard features like Boss Banners and more  
+• Privacy overlay which hides the chat part of the guild UI until you click it ("Streamer Mode")  
+• Quick chat setup to build clean whisper, guild and party tabs in just one click  
 • Toggles for Blizzards cosmetic on-screen ffx effects and other visuals  
-• WeakAuras import strings for some of the classes I decide to play  
-• WeakAuras import strings for general utility and other features  
-• WeakAuras import strings for Dungeon & Raid pack edits to fit my layout style  
 
-### **Profiles**  
-• **UI:** [ElvUI](https://www.tukui.org/)  
-• **BossMods:** [BigWigs](https://www.curseforge.com/wow/addons/big-wigs), [LittleWigs](https://www.curseforge.com/wow/addons/little-wigs)  
-• **NamePlates:** [Plater](https://www.curseforge.com/wow/addons/plater-nameplates), [ElvUI NamePlates](https://www.tukui.org/)  
-• **AddOns:** [Details](https://www.curseforge.com/wow/addons/details), [OmniCD](https://www.curseforge.com/wow/addons/omnicd), [WarpDeplete](https://www.curseforge.com/wow/addons/warpdeplete)  
-• **Plugins (Recommended):** [Shadow&Light](https://www.curseforge.com/wow/addons/elvui-shadow-light), [WindTools](https://www.curseforge.com/wow/addons/elvui-windtools)  
-• **Plugins (Optional):** [AddOnSkins](https://www.curseforge.com/wow/addons/addonskins), [ProjectAzilroka](https://www.curseforge.com/wow/addons/projectazilroka)  
+### **ElvUI plugin features**  
+• Aura filter setup for all classes, including whitelist and blacklist  
+• Layouts for DPS, Tanks, Healers and Augmentation support  
+• Some clean skins for other third party AddOns  
+• Style filters for nameplates: Questing and priority colors in dungeons and raids  
+• Tags for detailed health information, healer-only mana and much more  
 
-### **Chat commands**  
-• **/lucky install** [Re-Run the installer process]  
+### **Available custom profiles**  
+• **AddOns:** Details, OmniCD, WarpDeplete  
+• **Encounter tools:** BigWigs, LittleWigs  
+• **Nameplates:** Plater, ElvUI  
+• **Plugins:** AddOnSkins, ProjectAzilroka, Shadow&Light, WindTools  
+• **User interface:** ElvUI  
+
+### **Shared media for all your AddOns**  
+• **Fonts:** Expressway, Geist Bold, Geist Light, Geist Medium, Geist Regular, Geist Semi Bold  
+• **Textures:** Luckyone Bubbles, Luckyone Focus  
+
+### **General chat commands**  
 • **/lucky config** [Opens the ingame options]  
+• **/lucky minimap** [Hide or show the minimap icon]  
+• **/vault** and **/weekly** [Open your great vault in retail to check weekly progress]  
+
+### **ElvUI plugin chat commands**  
+• **/lucky install** [Re-Run the plugin installer process]  
 • **/luckydebug on** [Disables all AddOns except ElvUI and LuckyoneUI for troubleshooting]  
 • **/luckydebug off** [Re-Enables all AddOns disabled by the command above]  
-• **/vault** or **/weekly** [Open your great vault to check weekly progress]  
 
 ### **Required AddOns**  
-• LuckyoneUI will always require the most recent version of ElvUI.  
+• When used as a plugin, LuckyoneUI will require the most recent version of ElvUI.  
 • **Download link:** [Get ElvUI on the official website](https://www.tukui.org/)  
 
 ### **Luckyone WeakAuras**  
@@ -54,22 +67,22 @@
 • **Guide link:** [View guide on Wowhead](https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide)  
 
 ### **Website**  
-• Simple static web page without ads for quick access to all important links.  
+• Simple static web page for quick access to all important links.  
 • **Website link:** [Luckyone Development Website](https://luckyone.dev/)  
 
 ***
-### **Installer:**  
+### **[ElvUI Plugin Version] Installer:**  
 ***
 ![LuckyoneUI Installer](https://i.imgur.com/T6Y8ZKN.jpg)  
 ***
-### **Main Layout:**  
+### **[ElvUI Plugin Version] Main Layout:**  
 ***
 ![LuckyoneUI Main Layout](https://i.imgur.com/h87gwkX.jpg)  
 ***
-### **Healing Layout:**  
+### **[ElvUI Plugin Version] Healing Layout:**  
 ***
 ![LuckyoneUI Healing Layout](https://i.imgur.com/Rgliysf.jpg)  
 ***
-### **Augmentation Layout:**  
+### **[ElvUI Plugin Version] Augmentation Layout:**  
 ***
 ![LuckyoneUI Augmentation Layout](https://i.imgur.com/N57uZWX.jpg)  
