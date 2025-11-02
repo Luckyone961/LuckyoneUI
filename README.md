@@ -24,8 +24,8 @@
 ### **ElvUI plugin features**  
 • Aura filter setup for all classes, including whitelist and blacklist  
 • Layouts for DPS, Tanks, Healers and Augmentation support  
-• Some clean skins for third party AddOns (Example: BugSack, Tabardy, etc)  
-• StyleFilters for nameplates support questing and priority colors in dungeons and raids  
+• Some clean skins for other third party AddOns  
+• Style filters for nameplates: Questing and priority colors in dungeons and raids  
 • Tags for detailed health information, healer-only mana and much more  
 
 ### **Available custom profiles**  
