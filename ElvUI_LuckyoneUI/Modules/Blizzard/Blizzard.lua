@@ -39,13 +39,11 @@ function Private:EasyDelete()
 
 	-- Higher quality than green
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', function(frame)
-		local name = Private.isClassic and frame.editBox or frame.EditBox
-		name:SetText(DELETE_ITEM_CONFIRM_STRING)
+		frame.EditBox:SetText(DELETE_ITEM_CONFIRM_STRING)
 	end)
 
 	-- Quests and Quest starters
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', function(frame)
-		local name = Private.isClassic and frame.editBox or frame.EditBox
-		name:SetText(DELETE_ITEM_CONFIRM_STRING)
+		frame.EditBox:SetText(DELETE_ITEM_CONFIRM_STRING)
 	end)
 end

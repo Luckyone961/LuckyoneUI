@@ -3,6 +3,10 @@
 **Retail:**  
 - Updated WindTools profile (Quest progress, Auto turnin, Achievement tracker)  
 
+**Classic:**  
+- Fixed the EasyDelete option  
+- Updated TOC for 1.15.8  
+
 ## Version 3.27 [11-10-2025]
 
 **All WoW Versions:**  
