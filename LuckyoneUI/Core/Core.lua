@@ -41,8 +41,8 @@ local OKAY = OKAY
 local AddOns = {
 	ElvUI = true,
 	ElvUI_Libraries = true,
-	ElvUI_LuckyoneUI = true,
-	ElvUI_Options = true
+	ElvUI_Options = true,
+	LuckyoneUI = true
 }
 
 -- Chat print
@@ -54,7 +54,7 @@ end
 local LuckyoneLDB = LDB:NewDataObject(Name, {
 	type = 'data source',
 	text = Private.Name,
-	icon = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Compartment.png',
+	icon = 'Interface\\AddOns\\LuckyoneUI\\Media\\Textures\\Compartment.png',
 	OnClick = function(_, button)
 		if button == 'LeftButton' then
 			if Private.ElvUI then

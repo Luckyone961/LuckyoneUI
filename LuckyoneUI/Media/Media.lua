@@ -7,18 +7,18 @@ if LSM == nil then return end
 -------------------------------------------------------
 
 -- Fonts
-LSM:Register('font', 'Expressway', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Fonts\Expressway.ttf]])
-LSM:Register('font', 'Geist Bold', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Fonts\Geist-Bold.otf]])
-LSM:Register('font', 'Geist Light', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Fonts\Geist-Light.otf]])
-LSM:Register('font', 'Geist Medium', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Fonts\Geist-Medium.otf]])
-LSM:Register('font', 'Geist Regular', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Fonts\Geist-Regular.otf]])
-LSM:Register('font', 'Geist Semi Bold', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Fonts\Geist-SemiBold.otf]])
+LSM:Register('font', 'Expressway', [[Interface\AddOns\LuckyoneUI\Media\Fonts\Expressway.ttf]])
+LSM:Register('font', 'Geist Bold', [[Interface\AddOns\LuckyoneUI\Media\Fonts\Geist-Bold.otf]])
+LSM:Register('font', 'Geist Light', [[Interface\AddOns\LuckyoneUI\Media\Fonts\Geist-Light.otf]])
+LSM:Register('font', 'Geist Medium', [[Interface\AddOns\LuckyoneUI\Media\Fonts\Geist-Medium.otf]])
+LSM:Register('font', 'Geist Regular', [[Interface\AddOns\LuckyoneUI\Media\Fonts\Geist-Regular.otf]])
+LSM:Register('font', 'Geist Semi Bold', [[Interface\AddOns\LuckyoneUI\Media\Fonts\Geist-SemiBold.otf]])
 
 -- Statusbar Textures
-LSM:Register('statusbar', 'Atrocity', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Statusbar\Atrocity.tga]])
-LSM:Register('statusbar', 'Skullflower', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Statusbar\Skullflower.tga]])
-LSM:Register('statusbar', 'Luckyone Bubbles', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Statusbar\LuckyoneBubbles.tga]])
-LSM:Register('statusbar', 'Luckyone Focus', [[Interface\AddOns\ElvUI_LuckyoneUI\Media\Statusbar\LuckyoneFocus.tga]])
+LSM:Register('statusbar', 'Atrocity', [[Interface\AddOns\LuckyoneUI\Media\Statusbar\Atrocity.tga]])
+LSM:Register('statusbar', 'Skullflower', [[Interface\AddOns\LuckyoneUI\Media\Statusbar\Skullflower.tga]])
+LSM:Register('statusbar', 'Luckyone Bubbles', [[Interface\AddOns\LuckyoneUI\Media\Statusbar\LuckyoneBubbles.tga]])
+LSM:Register('statusbar', 'Luckyone Focus', [[Interface\AddOns\LuckyoneUI\Media\Statusbar\LuckyoneFocus.tga]])
 
 -------------------------------------------------------
 --------------------- Information ---------------------

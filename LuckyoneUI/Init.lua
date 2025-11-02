@@ -46,7 +46,7 @@ Private.Libs = {
 }
 
 -- Logo, Name
-Private.Logo = 'Interface\\AddOns\\ElvUI_LuckyoneUI\\Media\\Textures\\Clover.tga'
+Private.Logo = 'Interface\\AddOns\\LuckyoneUI\\Media\\Textures\\Clover.tga'
 Private.Name = '|cff4beb2cLuckyoneUI|r'
 
 -- Media

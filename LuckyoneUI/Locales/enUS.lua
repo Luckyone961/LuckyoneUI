@@ -1,7 +1,7 @@
 -- Addon namespace
 local _, Private = ...
 
-local L = Private.ElvUI and ElvUI[1].Libs.ACL:NewLocale('ElvUI', 'enUS') or LibStub('AceLocale-3.0'):NewLocale('ElvUI_LuckyoneUI', 'enUS', true, true)
+local L = Private.ElvUI and ElvUI[1].Libs.ACL:NewLocale('ElvUI', 'enUS') or LibStub('AceLocale-3.0'):NewLocale('LuckyoneUI', 'enUS', true, true)
 if not L then return end
 
 -- This is the default locale file, use these strings for reference
