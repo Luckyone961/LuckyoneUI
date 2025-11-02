@@ -1,14 +1,9 @@
--- Lua functions
-local unpack = unpack
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
 
 -- Global environment
 local _G = _G
-
--- AddOn namespace
-local _, Private = ...
-
--- ElvUI modules
-local E, L = unpack(ElvUI)
 
 -- Details profiles
 -- LC: 10/09/2025
@@ -16,7 +11,7 @@ function Private:Setup_Details(installer)
 	if not Private.IsAddOnLoaded('Details') then Private:Print('Details ' .. L["is not installed or enabled."]) return end
 
 	-- Global db
-	local dev, scaled = E.global.L1UI.dev, E.global.L1UI.scaled
+	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.profile.scaled
 
 	-- Profile name
 	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version

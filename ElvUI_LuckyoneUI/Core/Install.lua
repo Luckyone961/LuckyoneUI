@@ -1,6 +1,9 @@
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
+
 -- Lua functions
-local format = format
-local unpack = unpack
+local format = string.format
 
 -- API cache
 local C_UI_Reload = C_UI.Reload
@@ -10,33 +13,27 @@ local PlaySound = PlaySound
 -- Global environment
 local _G = _G
 
--- AddOn namespace
-local _, Private = ...
-
--- ElvUI modules
-local E, L = unpack(ElvUI)
-
 -- Set install version to current LuckyoneUI version
 local function InstallComplete()
-	E.global.L1UI.install_version = Private.Version
+	Private.Addon.db.global.install_version = Private.Version
 	C_UI_Reload()
 end
 
 -- Create step complete frame
 local function InstallStepComplete()
 
-	local Container = CreateFrame('Frame', 'LuckyoneInstallStepComplete', E.UIParent)
-	Container:Size(400, 60)
-	Container:Point('TOP', 0, -200)
+	local Container = CreateFrame('Frame', 'LuckyoneInstallStepComplete', UIParent, 'InsetFrameTemplate')
+	Container:SetSize(400, 60)
+	Container:SetPoint('TOP', 0, -200)
 	Container:Hide()
 	_G.LuckyoneInstallStepComplete = Container
 
 	Container.bg = Container:CreateTexture(nil, 'BACKGROUND')
-	Container.bg:Point('CENTER')
-	Container.bg:Size(400, 60)
+	Container.bg:SetPoint('CENTER')
+	Container.bg:SetSize(400, 60)
 
-	Container.text = Container:CreateFontString(nil, 'ARTWORK', 'ElvUIFontNormal')
-	Container.text:Point('CENTER', 0, 2)
+	Container.text = Container:CreateFontString(nil, 'ARTWORK', 'GameFontNormal')
+	Container.text:SetPoint('CENTER', 0, 2)
 	Container.text:SetTextColor(1, 1, 1)
 	Container.text:SetJustifyH('CENTER')
 
@@ -44,7 +41,7 @@ local function InstallStepComplete()
 
 	function Container:ShowMessage(msg)
 		if hideTimer then
-			E:CancelTimer(hideTimer, true)
+			Private.Addon:CancelTimer(hideTimer, true)
 			hideTimer = nil
 		end
 
@@ -55,7 +52,7 @@ local function InstallStepComplete()
 			self:Show()
 		end
 
-		hideTimer = E:ScheduleTimer(function()
+		hideTimer = Private.Addon:ScheduleTimer(function()
 			self:Hide()
 			hideTimer = nil
 		end, 3)
@@ -64,10 +61,17 @@ end
 
 -- Initialize step complete frame
 InstallStepComplete()
+
+-- ElvUI section
+if not Private.ElvUI then
+	return
+end
+
+_G.LuckyoneInstallStepComplete:StripTextures()
 _G.LuckyoneInstallStepComplete:SetTemplate('Transparent')
 
 -- Installer table
-L1UI.InstallerData = {
+Private.InstallerData = {
 	Title = format('|cff4beb2c%s %s|r', Private.Name, L["Installation"]),
 	Name = Private.Name,
 	tutorialImage = Private.Logo,
@@ -86,10 +90,10 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["1440p = Default | 1080p = Downscaled"] .. '.')
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() E.global.L1UI.scaled = false Private:Print(L["Layout Scale"] .. ' 1440p') _G.LuckyoneInstallStepComplete:ShowMessage(L["Layout Scale"] .. ' 1440p') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() Private.Addon.db.profile.scaled = false Private:Print(L["Layout Scale"] .. ' 1440p') _G.LuckyoneInstallStepComplete:ShowMessage(L["Layout Scale"] .. ' 1440p') end)
 			PluginInstallFrame.Option1:SetText('1440p')
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() E.global.L1UI.scaled = true Private:Print(L["Layout Scale"] .. ' 1080p') _G.LuckyoneInstallStepComplete:ShowMessage(L["Layout Scale"] .. ' 1080p') end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() Private.Addon.db.profile.scaled = true Private:Print(L["Layout Scale"] .. ' 1080p') _G.LuckyoneInstallStepComplete:ShowMessage(L["Layout Scale"] .. ' 1080p') end)
 			PluginInstallFrame.Option2:SetText('1080p')
 		end,
 		[3] = function()
@@ -211,7 +215,7 @@ L1UI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["You have completed the installation process, please click 'Finished' to reload the UI."])
 			PluginInstallFrame.Desc2:SetText(L["Feel free to join our community Discord for support and social chats."])
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('L1UI_EDITBOX', nil, nil, 'https://discord.gg/xRY4bwA') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() _G.StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://discord.gg/xRY4bwA') end)
 			PluginInstallFrame.Option1:SetText('Discord')
 			PluginInstallFrame.Option2:Show()
 			PluginInstallFrame.Option2:SetScript('OnClick', InstallComplete)

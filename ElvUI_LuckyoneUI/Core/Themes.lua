@@ -1,3 +1,12 @@
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
+
+-- ElvUI file
+if not Private.ElvUI then
+	return
+end
+
 -- Lua functions
 local strfind = string.find
 local unpack = unpack
@@ -5,11 +14,8 @@ local unpack = unpack
 -- Global environment
 local _G = _G
 
--- AddOn namespace
-local _, Private = ...
-
 -- ElvUI modules
-local E, L = unpack(ElvUI)
+local E = unpack(ElvUI)
 
 -- Figure out our current profile
 local function Profile()

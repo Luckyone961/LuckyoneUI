@@ -1,3 +1,11 @@
+-- Addon namespace
+local _, Private = ...
+
+-- ElvUI file
+if not Private.ElvUI then
+	return
+end
+
 -- Lua functions
 local ipairs = ipairs
 local unpack = unpack
@@ -12,8 +20,8 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
-function L1UI:Skin_Tabardy()
-	if not E.private.L1UI.skins.Tabardy then return end
+function Private:Skin_Tabardy()
+	if not Private.Addon.db.profile.skins.Tabardy then return end
 
 	local TabardyDesigner = _G.TabardyDesigner
 
@@ -41,4 +49,4 @@ function L1UI:Skin_Tabardy()
 	end)
 end
 
-S:AddCallbackForAddon('Tabardy', 'LuckyoneUI_Tabardy', L1UI.Skin_Tabardy)
+S:AddCallbackForAddon('Tabardy', 'LuckyoneUI_Tabardy', Private.Skin_Tabardy)

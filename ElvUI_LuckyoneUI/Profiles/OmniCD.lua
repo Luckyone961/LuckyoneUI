@@ -1,15 +1,12 @@
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
+
 -- Lua functions
 local pairs = pairs
-local unpack = unpack
 
 -- Global environment
 local _G = _G
-
--- AddOn namespace
-local _, Private = ...
-
--- ElvUI modules
-local E, L = unpack(ElvUI)
 
 -- OmniCD profile
 -- LC: 29/12/2024
@@ -17,7 +14,7 @@ function Private:Setup_OmniCD(layout, installer)
 	if not Private.IsAddOnLoaded('OmniCD') then Private:Print('OmniCD ' .. L["is not installed or enabled."]) return end
 
 	-- Global db
-	local dev, scaled = E.global.L1UI.dev, E.global.L1UI.scaled
+	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.profile.scaled
 
 	-- Profile names
 	local name_main = (dev and 'Luckyone Main') or 'Luckyone Main ' .. Private.Version

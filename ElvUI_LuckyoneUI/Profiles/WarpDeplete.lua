@@ -1,14 +1,9 @@
--- Lua functions
-local unpack = unpack
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
 
 -- Global environment
 local _G = _G
-
--- AddOn namespace
-local _, Private = ...
-
--- ElvUI modules
-local E, L = unpack(ElvUI)
 
 -- WarpDeplete profile
 -- LC: 06/02/2025
@@ -16,7 +11,7 @@ function Private:Setup_WarpDeplete(installer)
 	if not (Private.IsAddOnLoaded('WarpDeplete') and Private.isRetail) then Private:Print('WarpDeplete ' .. L["is not installed or enabled."]) return end
 
 	-- Global db
-	local dev = E.global.L1UI.dev
+	local dev = Private.Addon.db.global.dev
 
 	-- Profile name
 	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version

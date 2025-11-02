@@ -1,6 +1,7 @@
-## Title: |cff1784d1ElvUI|r |cff4beb2cLuckyoneUI|r |cffFF7E40Classic|r
-## Notes: Luckyone's ElvUI Edit
-## Dependencies: ElvUI
+## Title: |cff4beb2cLuckyoneUI|r |cffFF7E40Classic|r
+## Notes: Luckyone's user interface and Addon profiles
+## OptionalDeps: ElvUI
+## SavedVariables: LuckyoneDB
 
 ## DefaultState: enabled
 ## Author: Luckyone
@@ -12,4 +13,13 @@
 ## X-Curse-Project-ID: 363472
 ## X-Wago-ID: Rn6VLGdB
 
-Load.xml
+Libs\Libs.xml
+Locales\Locales.xml
+
+Init.lua
+
+Core\Core.xml
+
+Media\Media.lua
+Modules\Modules.xml
+Profiles\Profiles.xml

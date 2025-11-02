@@ -1,7 +1,10 @@
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
+
 -- Lua functions
 local ipairs = ipairs
 local next = next
-local unpack = unpack
 
 -- API cache
 local SetCVar = C_CVar.SetCVar
@@ -29,12 +32,10 @@ local VoiceTranscriptionFrame_UpdateVoiceTab = VoiceTranscriptionFrame_UpdateVoi
 -- Global strings
 local VOICE = VOICE
 
--- AddOn namespace
-local _, Private = ...
-
--- ElvUI modules
-local E, L = unpack(ElvUI)
-local CH = E:GetModule('Chat')
+-- Constants
+local WHISPER_TAB = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
+local GUILD_TAB = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
+local PARTY_TAB = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER', 'SYSTEM' }
 
 -- Chat setup for tabs, windows and channels
 function Private:Setup_Chat(installer)
@@ -70,8 +71,11 @@ function Private:Setup_Chat(installer)
 	for id, name in next, chats do
 		local frame = _G[name]
 
-		if E.private.chat.enable then
-			CH:FCFTab_UpdateColors(CH:GetTab(frame))
+		if Private.ElvUI then
+			if ElvUI[1].private.chat.enable then
+				local module = ElvUI[1]:GetModule('Chat')
+				module:FCFTab_UpdateColors(module:GetTab(frame))
+			end
 		end
 
 		-- Font size for all tabs
@@ -80,8 +84,10 @@ function Private:Setup_Chat(installer)
 		-- Tabs
 		if id == 1 then
 			FCF_SetWindowName(frame, 'General')
-			frame:ClearAllPoints()
-			frame:Point('BOTTOMLEFT', _G.LeftChatToggleButton, 'TOPLEFT', 1, 3)
+			if Private.ElvUI then
+				frame:ClearAllPoints()
+				frame:Point('BOTTOMLEFT', _G.LeftChatToggleButton, 'TOPLEFT', 1, 3)
+			end
 		elseif id == 2 then
 			FCF_SetWindowName(frame, 'Log')
 		elseif id == 3 then
@@ -101,23 +107,20 @@ function Private:Setup_Chat(installer)
 	end
 
 	-- Whisper tab
-	local whisper = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame4)
-	for _, v in ipairs(whisper) do
+	for _, v in ipairs(WHISPER_TAB) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame4, v)
 	end
 
 	-- Guild tab
-	local guild = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
-	for _, v in ipairs(guild) do
+	for _, v in ipairs(GUILD_TAB) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame5, v)
 	end
 
 	-- Party tab
-	local party = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER', 'SYSTEM' }
 	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame6)
-	for _, v in ipairs(party) do
+	for _, v in ipairs(PARTY_TAB) do
 		ChatFrame_AddMessageGroup(_G.ChatFrame6, v)
 	end
 

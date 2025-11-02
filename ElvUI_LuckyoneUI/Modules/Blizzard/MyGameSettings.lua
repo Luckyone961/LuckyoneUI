@@ -1,14 +1,12 @@
+-- Addon namespace
+local _, Private = ...
+
 -- API cache
 local SetCVar = C_CVar.SetCVar
-
--- AddOn namespace
-local _, Private = ...
 
 -- Full export of all game settings
 -- From top to bottom in ESC > Options
 function Private:SyncSettings()
-
-	local scaled = E.global.L1UI.scaled
 
 	-- Gameplay > Controls > General
 	SetCVar('deselectOnClick', 1)
@@ -164,7 +162,7 @@ function Private:SyncSettings()
 	SetCVar('GxNewResolution', '0x0')
 	SetCVar('RenderScale', 1)
 	SetCVar('useUiScale', 1)
-	SetCVar('uiScale', (scaled and 0.71111111111111) or 0.53333333333333)
+	SetCVar('uiScale', 0.53333333333333)
 	SetCVar('vsync', 0)
 	SetCVar('LowLatencyMode', 1)
 	SetCVar('ffxAntiAliasingMode', 0)

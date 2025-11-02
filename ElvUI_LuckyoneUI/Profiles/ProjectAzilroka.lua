@@ -1,11 +1,9 @@
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
+
 -- Lua functions
 local unpack = unpack
-
--- AddOn namespace
-local _, Private = ...
-
--- ElvUI modules
-local E, L = unpack(ElvUI)
 
 -- ProjectAzilroka profile
 -- LC: 06/02/2025
@@ -62,11 +60,12 @@ function Private:Setup_ProjectAzilroka()
 	PA.db.stAddonManager.FrameWidth = 720
 	PA.db.stAddonManager.NumAddOns = 18
 
-	-- Protect movers error
-	E.db.movers = E.db.movers or {}
-
-	-- Movers
-	E.db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,0,-175'
+	if Private.ElvUI then
+		-- Protect movers error
+		ElvUI[1].db.movers = ElvUI[1].db.movers or {}
+		-- Movers
+		ElvUI[1].db.movers.SquareMinimapButtonBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,0,-175'
+	end
 
 	Private:Print(L["ProjectAzilroka profile has been set."])
 end

@@ -1,3 +1,12 @@
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
+
+-- ElvUI file
+if not Private.ElvUI then
+	return
+end
+
 -- Lua functions
 local unpack = unpack
 
@@ -7,11 +16,8 @@ local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 -- Global environment
 local _G = _G
 
--- AddOn namespace
-local _, Private = ...
-
 -- ElvUI modules
-local E, L, V, P, G = unpack(ElvUI)
+local E, _, V, P, G = unpack(ElvUI)
 
 -- WindTools ProfileDB
 -- LC: 27/10/2025
@@ -19,7 +25,7 @@ function Private:Setup_WindTools(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and Private.isRetail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
 	-- 1080p
-	local scaled = E.global.L1UI.scaled
+	local scaled = Private.Addon.db.profile.scaled
 
 	-- Get version
 	local version = GetAddOnMetadata('ElvUI_WindTools', 'X-Version')

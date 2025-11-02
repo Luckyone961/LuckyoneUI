@@ -1,11 +1,17 @@
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
+
+-- ElvUI file
+if not Private.ElvUI then
+	return
+end
+
 -- Lua functions
 local unpack = unpack
 
--- AddOn namespace
-local _, Private = ...
-
 -- ElvUI modules
-local E, L = unpack(ElvUI)
+local E = unpack(ElvUI)
 
 -- Auras config section: Buffs
 function Private:Setup_Buffs(frame, option)

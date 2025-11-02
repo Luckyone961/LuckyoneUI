@@ -1,11 +1,9 @@
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
+
 -- Lua functions
 local unpack = unpack
-
--- AddOn namespace
-local _, Private = ...
-
--- ElvUI modules
-local _, L = unpack(ElvUI)
 
 -- AddOnSkins profile
 -- LC: 06/02/2025
