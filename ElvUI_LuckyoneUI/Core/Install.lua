@@ -86,18 +86,18 @@ Private.InstallerData = {
 			PluginInstallFrame.Option1:SetText(format('|cffC80000%s', L["Skip and close the installer"]))
 		end,
 		[2] = function()
-			PluginInstallFrame.SubTitle:SetText(L["Layout Scale"])
+			PluginInstallFrame.SubTitle:SetText(L["Layout scale"])
 			PluginInstallFrame.Desc1:SetText(L["1440p = Default | 1080p = Downscaled"] .. '.')
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() Private.Addon.db.profile.scaled = false Private:Print(L["Layout Scale"] .. ' 1440p') _G.LuckyoneInstallStepComplete:ShowMessage(L["Layout Scale"] .. ' 1440p') end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() Private.Addon.db.profile.scaled = false Private:Print(L["Layout scale"] .. ' 1440p') _G.LuckyoneInstallStepComplete:ShowMessage(L["Layout scale"] .. ' 1440p') end)
 			PluginInstallFrame.Option1:SetText('1440p')
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() Private.Addon.db.profile.scaled = true Private:Print(L["Layout Scale"] .. ' 1080p') _G.LuckyoneInstallStepComplete:ShowMessage(L["Layout Scale"] .. ' 1080p') end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() Private.Addon.db.profile.scaled = true Private:Print(L["Layout scale"] .. ' 1080p') _G.LuckyoneInstallStepComplete:ShowMessage(L["Layout scale"] .. ' 1080p') end)
 			PluginInstallFrame.Option2:SetText('1080p')
 		end,
 		[3] = function()
-			PluginInstallFrame.SubTitle:SetText(L["ElvUI Layouts"])
+			PluginInstallFrame.SubTitle:SetText(L["ElvUI layouts"])
 			PluginInstallFrame.Desc1:SetText(L["This step will configure the ElvUI layout of your choice."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Desc3:SetText(format('|cff33937F%s|r', L["Augmentation"]) .. ': ' .. L["No ActionBars and centered Raid Frames"] .. '.')
@@ -224,8 +224,8 @@ Private.InstallerData = {
 	},
 	StepTitles = {
 		[1] = L["Welcome"],
-		[2] = L["Layout Scale"],
-		[3] = L["ElvUI Layouts"],
+		[2] = L["Layout scale"],
+		[3] = L["ElvUI layouts"],
 		[4] = L["ElvUI Filters"],
 		[Private.isRetail and 5] = L["ElvUI plugins"],
 		[Private.isRetail and 6 or 5] = L["Color Theme"],

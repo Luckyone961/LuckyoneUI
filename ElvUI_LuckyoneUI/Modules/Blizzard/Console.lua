@@ -66,6 +66,6 @@ function Private:NameplateCVars(noPrint)
 	end
 
 	if not noPrint then
-		Private:Print(L["NamePlate CVars have been set."])
+		Private:Print(L["Nameplate CVars have been set."])
 	end
 end

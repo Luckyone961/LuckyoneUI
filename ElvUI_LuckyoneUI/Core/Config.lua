@@ -162,11 +162,11 @@ local function BuildCVarsSection()
 	section.args.setup = ACH:Group(L["Setup CVars"], nil, 2)
 	section.args.setup.inline = true
 	section.args.setup.args.generalVars = ACH:Execute(L["General CVars"], nil, 1, function() Private:Setup_CVars() end, nil, true)
-	section.args.setup.args.nameplateVars = ACH:Execute(L["NamePlate CVars"], nil, 2, function() Private:NameplateCVars() end, nil, true)
+	section.args.setup.args.nameplateVars = ACH:Execute(L["Nameplate CVars"], nil, 2, function() Private:NameplateCVars() end, nil, true)
 	section.args.generalDesc = ACH:Group(L["General CVars"], nil, 3)
 	section.args.generalDesc.inline = true
 	section.args.generalDesc.args.cvars = ACH:Description('- alwaysShowActionBars 1\n- AutoPushSpellToActionBar 0\n- cameraDistanceMaxZoomFactor 2.6\n- fstack_preferParentKeys 0\n- lockActionBars 1\n- minimapTrackingShowAll 1\n- screenshotQuality 10\n- showNPETutorials 0\n- showTutorials 0\n- threatWarning 3\n- UberTooltips 1\n', 1, 'medium')
-	section.args.nameplateDesc = ACH:Group(L["NamePlate CVars"], nil, 4)
+	section.args.nameplateDesc = ACH:Group(L["Nameplate CVars"], nil, 4)
 	section.args.nameplateDesc.inline = true
 	section.args.nameplateDesc.args.cvars = ACH:Description('- NamePlateHorizontalScale 1\n- nameplateLargerScale 1\n- nameplateLargeTopInset -1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOtherBottomInset -1\n- nameplateOtherTopInset -1\n- nameplateOverlapH 1\n- nameplateOverlapV 2.2\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateSelfTopInset -1\n- nameplateShowOnlyNames 1\n- NamePlateVerticalScale 1\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1\n', 1, 'medium')
 	return section
@@ -175,14 +175,14 @@ end
 -- Build Layouts Section
 local function BuildLayoutSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group('ElvUI ' .. L["Layouts"], nil, 8)
-	section.args.header1 = ACH:Header(L["Layout Scale"], 1)
+	local section = ACH:Group(L["ElvUI layouts"], nil, 8)
+	section.args.header1 = ACH:Header(L["Layout scale"], 1)
 	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	section.args.scaling.inline = true
 	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.profile.scaled end, function(_, value) Private.Addon.db.profile.scaled = not value end)
 	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.profile.scaled end, function(_, value) Private.Addon.db.profile.scaled = value end)
-	section.args.header2 = ACH:Header('ElvUI ' .. L["Layouts"], 3)
-	section.args.thewarwithin = ACH:Group('The War Within ' .. L["Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 4)
+	section.args.header2 = ACH:Header(L["ElvUI layouts"], 3)
+	section.args.thewarwithin = ACH:Group(L["The War Within layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 4)
 	section.args.thewarwithin.inline = true
 	section.args.thewarwithin.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout('main') _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.thewarwithin.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout('healing') _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true)
@@ -211,7 +211,7 @@ end
 -- Build Profiles Section
 local function BuildProfilesSection()
 	local section = ACH:Group(L["Profiles"], nil, 10)
-	section.args.header1 = ACH:Header(L["Layout Scale"], 1)
+	section.args.header1 = ACH:Header(L["Layout scale"], 1)
 	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	section.args.scaling.inline = true
 	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.profile.scaled end, function(_, value) Private.Addon.db.profile.scaled = not value end)
