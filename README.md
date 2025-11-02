@@ -28,12 +28,11 @@
 • Tags for detailed health information, healer-only mana and much more  
 
 ### **Available custom profiles**  
-• **UI:** [ElvUI](https://www.tukui.org/)  
-• **BossMods:** [BigWigs](https://www.curseforge.com/wow/addons/big-wigs), [LittleWigs](https://www.curseforge.com/wow/addons/little-wigs)  
-• **NamePlates:** [Plater](https://www.curseforge.com/wow/addons/plater-nameplates), [ElvUI NamePlates](https://www.tukui.org/)  
-• **AddOns:** [Details](https://www.curseforge.com/wow/addons/details), [OmniCD](https://www.curseforge.com/wow/addons/omnicd), [WarpDeplete](https://www.curseforge.com/wow/addons/warpdeplete)  
-• **Plugins (Recommended):** [WindTools](https://www.curseforge.com/wow/addons/elvui-windtools), [Shadow&Light](https://www.curseforge.com/wow/addons/elvui-shadow-light)  
-• **Plugins (Optional):** [AddOnSkins](https://www.curseforge.com/wow/addons/addonskins), [ProjectAzilroka](https://www.curseforge.com/wow/addons/projectazilroka)  
+• **AddOns:** Details, OmniCD, WarpDeplete  
+• **Encounter tools:** BigWigs, LittleWigs  
+• **Nameplates:** Plater, ElvUI  
+• **Plugins:** AddOnSkins, ProjectAzilroka, Shadow&Light, WindTools  
+• **User interface:** ElvUI  
 
 ### **Shared media for all your AddOns**  
 • **Fonts:** Expressway, Geist Bold, Geist Light, Geist Medium, Geist Regular, Geist Semi Bold  
