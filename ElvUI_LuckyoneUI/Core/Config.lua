@@ -376,7 +376,7 @@ end
 function Private:BuildConfig()
 
 	-- Header
-	Private.Config = ACH:Group(Private.Name, nil, 20, (Private.ElvUI and nil) or 'tree')
+	Private.Config = ACH:Group((Private.ElvUI and Private.Name) or format('%s %s', Private.Name, Private.Version), nil, 20, (Private.ElvUI and nil) or 'tree')
 
 	-- Add sections
 	Private.Config.args.setup = BuildSetupSection() -- 2

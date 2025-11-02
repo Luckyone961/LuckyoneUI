@@ -27,7 +27,6 @@ local LuckyoneUI = LibStub('AceAddon-3.0'):NewAddon(Name, 'AceConsole-3.0', 'Ace
 
 -- Core reference
 Private.Addon = LuckyoneUI
-Private.Config = {}
 
 -- Libraries
 Private.Libs = {
