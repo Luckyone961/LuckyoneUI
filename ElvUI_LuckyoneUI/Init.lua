@@ -37,12 +37,12 @@ Private.Libs = {
 	AC = LibStub('AceConfig-3.0'),
 	ACD = LibStub('AceConfigDialog-3.0'),
 	ACL = LibStub('AceLocale-3.0'):GetLocale(Name),
-	-- Custom
-	ACH = LibStub('LibAceConfigHelper'),
-	LDB = LibStub('LibDataBroker-1.1'),
-	LDBI = LibStub('LibDBIcon-1.0'),
 	-- Extras
 	LSM = LibStub('LibSharedMedia-3.0'),
+	LDB = LibStub('LibDataBroker-1.1'),
+	LDBI = LibStub('LibDBIcon-1.0'),
+	-- Custom
+	ACH = LibStub('LibAceConfigHelper'),
 }
 
 -- Logo, Name

@@ -12,6 +12,7 @@ local PlaySound = PlaySound
 
 -- Global environment
 local _G = _G
+local UIParent = UIParent
 
 -- Set install version to current LuckyoneUI version
 local function InstallComplete()
