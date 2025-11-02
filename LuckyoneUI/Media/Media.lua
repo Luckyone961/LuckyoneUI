@@ -15,8 +15,6 @@ LSM:Register('font', 'Geist Regular', [[Interface\AddOns\LuckyoneUI\Media\Fonts\
 LSM:Register('font', 'Geist Semi Bold', [[Interface\AddOns\LuckyoneUI\Media\Fonts\Geist-SemiBold.otf]])
 
 -- Statusbar Textures
-LSM:Register('statusbar', 'Atrocity', [[Interface\AddOns\LuckyoneUI\Media\Statusbar\Atrocity.tga]])
-LSM:Register('statusbar', 'Skullflower', [[Interface\AddOns\LuckyoneUI\Media\Statusbar\Skullflower.tga]])
 LSM:Register('statusbar', 'Luckyone Bubbles', [[Interface\AddOns\LuckyoneUI\Media\Statusbar\LuckyoneBubbles.tga]])
 LSM:Register('statusbar', 'Luckyone Focus', [[Interface\AddOns\LuckyoneUI\Media\Statusbar\LuckyoneFocus.tga]])
 

@@ -35,6 +35,10 @@
 • **Plugins (Recommended):** [WindTools](https://www.curseforge.com/wow/addons/elvui-windtools), [Shadow&Light](https://www.curseforge.com/wow/addons/elvui-shadow-light)  
 • **Plugins (Optional):** [AddOnSkins](https://www.curseforge.com/wow/addons/addonskins), [ProjectAzilroka](https://www.curseforge.com/wow/addons/projectazilroka)  
 
+### **Shared media for all your AddOns**  
+• **Fonts:** Expressway, Geist Bold, Geist Light, Geist Medium, Geist Regular, Geist Semi Bold  
+• **Textures:** Luckyone Bubbles, Luckyone Focus  
+
 ### **General chat commands**  
 • **/lucky config** [Opens the ingame options]  
 • **/lucky minimap** [Hide or show the minimap icon]  
