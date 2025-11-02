@@ -106,6 +106,14 @@ _G.StaticPopupDialogs['LUCKYONE_VC'] = {
 	hideOnEscape = false,
 }
 
+-- Incompatible addon popup
+-- _G.StaticPopup_Show('LUCKYONE_INCOMPATIBLE')
+_G.StaticPopupDialogs['LUCKYONE_INCOMPATIBLE'] = {
+	text = format('|cffC80000%s|r', L["LuckyoneUI is now a standalone addon.\nPlease remove the old ElvUI_LuckyoneUI from your AddOns folder."]),
+	whileDead = 1,
+	hideOnEscape = false,
+}
+
 -- Editbox popup
 -- _G.StaticPopup_Show('LUCKYONE_EDITBOX', text_arg1, text_arg2, data)
 _G.StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
@@ -255,6 +263,13 @@ function Private:CheckElvUI()
 	EP:RegisterPlugin(Name, Private.BuildConfig)
 end
 
+-- Incompatible addons
+function Private:CheckIncompatible()
+	if Private.IsAddOnLoaded('ElvUI_LuckyoneUI') then
+		_G.StaticPopup_Show('LUCKYONE_INCOMPATIBLE')
+	end
+end
+
 -- Luckyone characters by GUID
 function Private:HandleToons()
 	local guid = Private.myGUID
@@ -349,6 +364,7 @@ end
 function Private.Addon:PLAYER_LOGIN()
 	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
 	Private:CheckElvUI()
+	Private:CheckIncompatible()
 end
 
 -- Register events during addon initialization

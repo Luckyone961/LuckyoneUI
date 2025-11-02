@@ -125,6 +125,7 @@ L["Layout scale"] = "Escala do Perfil"
 L["Left panel: General - Log - Whisper - Guild - Party."] = "Painel Esquerdo: Geral - Registro - Sussuro - Guilda - Grupo."
 L["Links"] = true
 L["LuckyoneUI Default"] = true
+L["LuckyoneUI is now a standalone addon.\nPlease remove the old ElvUI_LuckyoneUI from your AddOns folder."] = true
 L["Mage"] = "Mago"
 L["Main Layout"] = "Perfil Principal"
 L["Make sure to keep your WeakAuras updated using the WA Companion or Wago App."] = "Tenha certeza que seu WeakAuras está atualizado utilizando o WA Companion ou Wago App."

@@ -125,6 +125,7 @@ L["Layout scale"] = true
 L["Left panel: General - Log - Whisper - Guild - Party."] = true
 L["Links"] = "Ссылки"
 L["LuckyoneUI Default"] = true
+L["LuckyoneUI is now a standalone addon.\nPlease remove the old ElvUI_LuckyoneUI from your AddOns folder."] = true
 L["Mage"] = "Маг"
 L["Main Layout"] = "Основной макет"
 L["Make sure to keep your WeakAuras updated using the WA Companion or Wago App."] = true

@@ -125,6 +125,7 @@ L["Layout scale"] = "Layout Skalierung"
 L["Left panel: General - Log - Whisper - Guild - Party."] = "Linkes Feld: Allgemein – Log – Flüstern – Gilde – Party."
 L["Links"] = true -- No need to translate
 L["LuckyoneUI Default"] = "LuckyoneUI Standard"
+L["LuckyoneUI is now a standalone addon.\nPlease remove the old ElvUI_LuckyoneUI from your AddOns folder."] = "LuckyoneUI ist jetzt ein eigenständiges Addon.\nBitte entferne das alte ElvUI_LuckyoneUI aus dem AddOns Ordner."
 L["Mage"] = "Magier"
 L["Main Layout"] = "Hauptlayout"
 L["Make sure to keep your WeakAuras updated using the WA Companion or Wago App."] = "Sorge dafür, dass Deine WeakAuras mit dem WA Companion oder der Wago App auf dem neuesten Stand bleiben."
