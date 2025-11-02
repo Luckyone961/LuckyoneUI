@@ -9,6 +9,7 @@
 • One of the most optimized UIs out there for the best possible performance  
 • Profiles are built specifically for high Mythic+ and Raiding  
 • Unlike most other projects, there is no bloat - Everything is disabled by default  
+• Updating LuckyoneUI will never auto-apply any profile changes without user confirmation  
 
 ### **Standalone features**  
 • All profiles are built on 1440p with full support and scaling for 1080p players  
