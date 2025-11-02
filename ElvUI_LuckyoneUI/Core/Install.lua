@@ -120,7 +120,7 @@ Private.InstallerData = {
 			PluginInstallFrame.Option1:SetText(L["Setup Aura Filters"])
 		end,
 		[Private.isRetail and 5] = function()
-			PluginInstallFrame.SubTitle:SetText(L["ElvUI Plugins"])
+			PluginInstallFrame.SubTitle:SetText(L["ElvUI plugins"])
 			PluginInstallFrame.Desc1:SetText(L["This step will configure profiles for other ElvUI plugins."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Option1:Show()
@@ -152,7 +152,7 @@ Private.InstallerData = {
 			PluginInstallFrame.Option1:SetText(L["Setup Chat"])
 		end,
 		[Private.isRetail and 8 or 7] = function()
-			PluginInstallFrame.SubTitle:SetText(L["Console Variables"])
+			PluginInstallFrame.SubTitle:SetText(L["Console variables"])
 			PluginInstallFrame.Desc1:SetText(L["This step will configure some of Blizzards console variables."])
 			PluginInstallFrame.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			PluginInstallFrame.Desc3:SetText(L["Examples: Max camera distance, screenshot quality and tutorials."])
@@ -227,10 +227,10 @@ Private.InstallerData = {
 		[2] = L["Layout Scale"],
 		[3] = L["ElvUI Layouts"],
 		[4] = L["ElvUI Filters"],
-		[Private.isRetail and 5] = L["ElvUI Plugins"],
+		[Private.isRetail and 5] = L["ElvUI plugins"],
 		[Private.isRetail and 6 or 5] = L["Color Theme"],
 		[Private.isRetail and 7 or 6] = L["Chat"],
-		[Private.isRetail and 8 or 7] = L["Console Variables"],
+		[Private.isRetail and 8 or 7] = L["Console variables"],
 		[Private.isRetail and 9 or 8] = L["NamePlates"],
 		[Private.isRetail and 10 or 9] = 'BigWigs',
 		[Private.isRetail and 11 or 10] = 'Details',
