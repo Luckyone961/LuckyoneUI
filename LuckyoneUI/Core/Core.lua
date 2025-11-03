@@ -250,9 +250,9 @@ function Private:CheckElvUI()
 	end
 
 	-- Convert old db to avoid forced installer re-run
-	if E.global.LuckyoneUI and E.global.LuckyoneUI.install_version ~= nil then
-		Private.Addon.db.global.install_version = E.global.LuckyoneUI.install_version
-		E.global.LuckyoneUI.install_version = nil
+	if E.global.L1UI and E.global.L1UI.install_version ~= nil then
+		Private.Addon.db.global.install_version = tonumber(E.global.L1UI.install_version)
+		E.global.L1UI.install_version = nil
 	end
 
 	-- Queue the LuckyoneUI installer if needed
