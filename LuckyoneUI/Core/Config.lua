@@ -2,7 +2,6 @@
 local _, Private = ...
 local L = Private.Libs.ACL
 local ACH = Private.Libs.ACH
-local ACD = Private.Libs.ACD
 
 -- Lua functions
 local format = string.format
@@ -15,6 +14,7 @@ local tostring = tostring
 local GetCVar = C_CVar.GetCVar
 local GetCVarBool = C_CVar.GetCVarBool
 local SetCVar = C_CVar.SetCVar
+local HideUIPanel = HideUIPanel
 
 -- Global environment
 local _G = _G
@@ -45,18 +45,20 @@ local SUPPORT_STRING = ProcessList(SUPPORT)
 
 -- Build Setup Section
 local function BuildSetupSection()
-	if not Private.ElvUI then return end -- ElvUI section
 	local section = ACH:Group('', nil, 2)
 	section.inline = true
 	section.args.header1 = ACH:Header(Private.Name, 1)
 	section.args.spacer1 = ACH:Spacer(2, 'full')
-	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 3, function() ElvUI[1]:GetModule('PluginInstaller'):Queue(Private.InstallerData) ElvUI[1]:ToggleOptions() end)
+	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 3, function() Private.Installer:Show(Private.InstallerData) if Private.ElvUI then ElvUI[1]:ToggleOptions() else HideUIPanel(_G.SettingsPanel) end end)
 	section.args.spacer2 = ACH:Spacer(4, 'full')
-	section.args.header2 = ACH:Header(L["Quick setup for alts"], 5)
-	section.args.spacer3 = ACH:Spacer(6, 'full')
-	section.args.altMain = ACH:Execute(L["Alt: "] .. L["DPS & Tanks"], L["This will load your most recent LuckyoneUI profile."], 7, function() Private:HandleAlts('Main') end, nil, true)
-	section.args.altHealing = ACH:Execute(L["Alt: "] .. L["Healing"], L["This will load your most recent LuckyoneUI profile."], 8, function() Private:HandleAlts('Healing') end, nil, true)
-	section.args.altSupport = ACH:Execute(L["Alt: "] .. format('|cff33937F%s', L["Augmentation"]), L["This will load your most recent LuckyoneUI profile."], 9, function() Private:HandleAlts('Support') end, nil, true)
+
+	if Private.ElvUI then
+		section.args.header2 = ACH:Header(L["Quick setup for alts"], 5)
+		section.args.spacer3 = ACH:Spacer(6, 'full')
+		section.args.altMain = ACH:Execute(L["Alt: "] .. L["DPS & Tanks"], L["This will load your most recent LuckyoneUI profile."], 7, function() Private:HandleAlts('Main') end, nil, true)
+		section.args.altHealing = ACH:Execute(L["Alt: "] .. L["Healing"], L["This will load your most recent LuckyoneUI profile."], 8, function() Private:HandleAlts('Healing') end, nil, true)
+		section.args.altSupport = ACH:Execute(L["Alt: "] .. format('|cff33937F%s', L["Augmentation"]), L["This will load your most recent LuckyoneUI profile."], 9, function() Private:HandleAlts('Support') end, nil, true)
+	end
 	return section
 end
 

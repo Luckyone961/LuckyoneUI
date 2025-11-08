@@ -67,6 +67,12 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 			if IsShiftKeyDown() then
 				LDBI:Hide(Name)
 				Private.Addon.db.profile.minimap.hide = true
+			else
+				if Private.Installer and Private.Installer:IsShown() then
+					Private.Installer:Hide()
+				else
+					Private.Installer:Show(Private.InstallerData)
+				end
 			end
 		end
 	end,
@@ -173,8 +179,12 @@ end
 
 -- LuckyoneUI chat commands
 function Private.Addon:Toggles(msg)
-	if msg == 'install' and Private.ElvUI then
-		ElvUI[1]:GetModule('PluginInstaller'):Queue(Private.InstallerData)
+	if msg == 'install' then
+		if Private.Installer and Private.Installer:IsShown() then
+			Private.Installer:Hide()
+		else
+			Private.Installer:Show(Private.InstallerData)
+		end
 	elseif msg == 'config' then
 		if Private.ElvUI then
 			ElvUI[1]:ToggleOptions()
@@ -237,7 +247,6 @@ function Private:CheckElvUI()
 
 	local E = unpack(ElvUI)
 	local EP = LibStub('LibElvUIPlugin-1.0')
-	local PI = E:GetModule('PluginInstaller')
 
 	-- Skip the ElvUI installer
 	if E.private.install_complete == nil then
@@ -253,11 +262,6 @@ function Private:CheckElvUI()
 	if E.global.L1UI and E.global.L1UI.install_version ~= nil then
 		Private.Addon.db.global.install_version = tonumber(E.global.L1UI.install_version)
 		E.global.L1UI.install_version = nil
-	end
-
-	-- Queue the LuckyoneUI installer if needed
-	if Private.Addon.db.global.install_version == nil then
-		PI:Queue(Private.InstallerData)
 	end
 
 	EP:RegisterPlugin(Name, Private.BuildConfig)
@@ -365,6 +369,10 @@ function Private.Addon:PLAYER_LOGIN()
 	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
 	Private:CheckElvUI()
 	Private:CheckIncompatible()
+
+	if Private.Installer and (Private.Addon.db.global.install_version == nil) then
+		Private.Installer:OnLoad()
+	end
 end
 
 -- Register events during addon initialization
