@@ -5,9 +5,8 @@ local LSM = Private.Libs.LSM
 
 -- Lua functions
 local format = string.format
-local pairs = pairs
+local ipairs = ipairs
 local type = type
-local unpack = unpack
 
 -- API cache
 local C_Timer = C_Timer
@@ -104,13 +103,27 @@ end
 -- Layout option buttons based on how many are visible
 local function LayoutOptionButtons()
 	local visibleButtons = {}
-	for i = 1, 4 do
-		if installerFrame['Option' .. i]:IsShown() then
-			visibleButtons[#visibleButtons + 1] = installerFrame['Option' .. i]
-		end
+	local numButtons = 0
+
+	local option1, option2, option3, option4 = installerFrame.Option1, installerFrame.Option2, installerFrame.Option3, installerFrame.Option4
+
+	if option1:IsShown() then
+		numButtons = numButtons + 1
+		visibleButtons[numButtons] = option1
+	end
+	if option2:IsShown() then
+		numButtons = numButtons + 1
+		visibleButtons[numButtons] = option2
+	end
+	if option3:IsShown() then
+		numButtons = numButtons + 1
+		visibleButtons[numButtons] = option3
+	end
+	if option4:IsShown() then
+		numButtons = numButtons + 1
+		visibleButtons[numButtons] = option4
 	end
 
-	local numButtons = #visibleButtons
 	if numButtons == 0 then
 		return
 	end
@@ -120,7 +133,8 @@ local function LayoutOptionButtons()
 	local totalWidth = (numButtons * buttonWidth) + ((numButtons - 1) * spacing)
 	local startX = -(totalWidth / 2) + (buttonWidth / 2)
 
-	for i, button in ipairs(visibleButtons) do
+	for i = 1, numButtons do
+		local button = visibleButtons[i]
 		button:ClearAllPoints()
 		local offsetX = startX + ((i - 1) * (buttonWidth + spacing))
 		button:SetPoint('BOTTOM', installerFrame, 'BOTTOM', offsetX, 60)
@@ -179,15 +193,31 @@ local function SetupReset()
 	installerFrame.Next:Disable()
 	installerFrame.Prev:Disable()
 
-	-- Reset all options
-	for i = 1, 4 do
-		local option = installerFrame['Option' .. i]
-		option:Hide()
-		option:SetScript('OnClick', nil)
-		option:SetText('')
-		option:ClearAllPoints()
-		option:SetSize(160, 30)
-	end
+	local option1, option2, option3, option4 = installerFrame.Option1, installerFrame.Option2, installerFrame.Option3, installerFrame.Option4
+
+	option1:Hide()
+	option1:SetScript('OnClick', nil)
+	option1:SetText('')
+	option1:ClearAllPoints()
+	option1:SetSize(160, 30)
+
+	option2:Hide()
+	option2:SetScript('OnClick', nil)
+	option2:SetText('')
+	option2:ClearAllPoints()
+	option2:SetSize(160, 30)
+
+	option3:Hide()
+	option3:SetScript('OnClick', nil)
+	option3:SetText('')
+	option3:ClearAllPoints()
+	option3:SetSize(160, 30)
+
+	option4:Hide()
+	option4:SetScript('OnClick', nil)
+	option4:SetText('')
+	option4:ClearAllPoints()
+	option4:SetSize(160, 30)
 
 	-- Reset texts
 	installerFrame.SubTitle:SetText('')
@@ -198,15 +228,17 @@ local function SetupReset()
 
 	-- Reset step title
 	if installerFrame.stepFrame then
-		for i = 1, #installerFrame.stepFrame.buttons do
-			installerFrame.stepFrame.buttons[i].text:SetText('')
+		local buttons = installerFrame.stepFrame.buttons
+		for i = 1, #buttons do
+			buttons[i].text:SetText('')
 		end
 	end
 end
 
 local function UpdateProgressBar()
 	local progress = currentPage / maxPage
-	installerFrame.StatusBar:SetValue(currentPage)
+	local statusBar = installerFrame.StatusBar
+	statusBar:SetValue(currentPage)
 
 	-- Red -> Yellow -> Green (50% brightness)
 	local r, g, b
@@ -220,32 +252,32 @@ local function UpdateProgressBar()
 		b = 0
 	end
 
-	installerFrame.StatusBar:SetStatusBarColor(r, g, b)
-	installerFrame.StatusBar.text:SetFormattedText('%d / %d', currentPage, maxPage)
+	statusBar:SetStatusBarColor(r, g, b)
+	statusBar.text:SetFormattedText('%d / %d', currentPage, maxPage)
 end
 
 local function UpdateStepList()
 	if not installerFrame.stepFrame or not installerFrame.StepTitles then return end
 
-	for i = 1, #installerFrame.stepFrame.buttons do
-		local button = installerFrame.stepFrame.buttons[i]
-		local color = STEP_TITLE_COLOR
+	local buttons = installerFrame.stepFrame.buttons
+	local stepTitles = installerFrame.StepTitles
+	local selectedColor = installerFrame.StepTitlesColorSelected or STEP_TITLE_SELECTED_COLOR
+	local normalColor = installerFrame.StepTitlesColor or STEP_TITLE_COLOR
 
-		if i == currentPage then
-			color = installerFrame.StepTitlesColorSelected or STEP_TITLE_SELECTED_COLOR
-		else
-			color = installerFrame.StepTitlesColor or STEP_TITLE_COLOR
-		end
+	for i = 1, #buttons do
+		local button = buttons[i]
+		local color = (i == currentPage) and selectedColor or normalColor
 
 		local stepTitle
-		if type(installerFrame.StepTitles[i]) == 'function' then
-			stepTitle = installerFrame.StepTitles[i]()
+		if type(stepTitles[i]) == 'function' then
+			stepTitle = stepTitles[i]()
 		else
-			stepTitle = installerFrame.StepTitles[i]
+			stepTitle = stepTitles[i]
 		end
 
-		button.text:SetText(stepTitle)
-		button.text:SetTextColor(color[1], color[2], color[3])
+		local text = button.text
+		text:SetText(stepTitle)
+		text:SetTextColor(color[1], color[2], color[3])
 	end
 end
 
@@ -368,15 +400,29 @@ local function CreateMainFrame()
 	frame.Desc4:SetJustifyH('CENTER')
 	frame.Desc4:SetSpacing(2)
 
-	for i = 1, 4 do
-		local button = CreateFrame('Button', 'LuckyoneInstallerOption' .. i, frame)
-		button:SetSize(160, 30)
-		button:Hide()
+	local option1 = CreateFrame('Button', 'LuckyoneInstallerOption1', frame)
+	option1:SetSize(160, 30)
+	option1:Hide()
+	StyleButton(option1)
+	frame.Option1 = option1
 
-		StyleButton(button)
+	local option2 = CreateFrame('Button', 'LuckyoneInstallerOption2', frame)
+	option2:SetSize(160, 30)
+	option2:Hide()
+	StyleButton(option2)
+	frame.Option2 = option2
 
-		frame['Option' .. i] = button
-	end
+	local option3 = CreateFrame('Button', 'LuckyoneInstallerOption3', frame)
+	option3:SetSize(160, 30)
+	option3:Hide()
+	StyleButton(option3)
+	frame.Option3 = option3
+
+	local option4 = CreateFrame('Button', 'LuckyoneInstallerOption4', frame)
+	option4:SetSize(160, 30)
+	option4:Hide()
+	StyleButton(option4)
+	frame.Option4 = option4
 
 	frame.Prev = CreateFrame('Button', 'LuckyoneInstallerPrevButton', frame)
 	frame.Prev:SetSize(110, 25)
@@ -490,11 +536,12 @@ function Installer:Show(data)
 			installerFrame.stepFrame = CreateStepFrame(installerFrame)
 		end
 
-		for i = 1, #installerFrame.stepFrame.buttons do
+		local buttons = installerFrame.stepFrame.buttons
+		for i = 1, #buttons do
 			if i <= maxPage then
-				installerFrame.stepFrame.buttons[i]:Show()
+				buttons[i]:Show()
 			else
-				installerFrame.stepFrame.buttons[i]:Hide()
+				buttons[i]:Hide()
 			end
 		end
 
