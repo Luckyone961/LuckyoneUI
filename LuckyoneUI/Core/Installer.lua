@@ -369,7 +369,7 @@ local function CreateMainFrame()
 	frame.Logo:SetPoint('RIGHT', frame.Title, 'LEFT', 6, 0)
 
 	frame.SubTitle = frame:CreateFontString(nil, 'OVERLAY')
-	frame.SubTitle:SetFont(FONT, 14, FONT_OUTLINE)
+	frame.SubTitle:SetFont(FONT, 16, FONT_OUTLINE)
 	frame.SubTitle:SetPoint('TOP', 0, -45)
 
 	frame.Desc1 = frame:CreateFontString(nil, 'OVERLAY')
