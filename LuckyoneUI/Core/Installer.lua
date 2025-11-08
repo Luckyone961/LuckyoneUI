@@ -273,9 +273,7 @@ local function BuildInstallerData()
 		f.Desc1:SetText(L["You have completed the installation process, please click 'Finished' to reload the UI."])
 		f.Desc2:SetText(L["Feel free to join our community Discord for support and social chats."])
 		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function()
-			_G.StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://discord.gg/xRY4bwA')
-		end)
+		f.Option1:SetScript('OnClick', function() _G.StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://discord.gg/xRY4bwA') end)
 		f.Option1:SetText('Discord')
 		f.Option2:Show()
 		f.Option2:SetScript('OnClick', InstallComplete)
@@ -348,28 +346,22 @@ local function LayoutOptionButtons()
 	local visibleButtons = {}
 	local numButtons = 0
 
-	local option1, option2, option3, option4 = installerFrame.Option1, installerFrame.Option2, installerFrame.Option3, installerFrame.Option4
+	local options = {
+		installerFrame.Option1,
+		installerFrame.Option2,
+		installerFrame.Option3,
+		installerFrame.Option4
+	}
 
-	if option1:IsShown() then
-		numButtons = numButtons + 1
-		visibleButtons[numButtons] = option1
-	end
-	if option2:IsShown() then
-		numButtons = numButtons + 1
-		visibleButtons[numButtons] = option2
-	end
-	if option3:IsShown() then
-		numButtons = numButtons + 1
-		visibleButtons[numButtons] = option3
-	end
-	if option4:IsShown() then
-		numButtons = numButtons + 1
-		visibleButtons[numButtons] = option4
+	for _, option in ipairs(options) do
+		if option:IsShown() then
+			numButtons = numButtons + 1
+			visibleButtons[numButtons] = option
+		end
 	end
 
-	if numButtons == 0 then
-		return
-	end
+	-- Don't even start doing math on empty pages (Welcome text for example)
+	if numButtons == 0 then return end
 
 	local spacing = 4
 	local buttonWidth = 160
@@ -436,33 +428,21 @@ local function SetupReset()
 	installerFrame.Next:Disable()
 	installerFrame.Prev:Disable()
 
-	local option1, option2, option3, option4 = installerFrame.Option1, installerFrame.Option2, installerFrame.Option3, installerFrame.Option4
+	local options = {
+		installerFrame.Option1,
+		installerFrame.Option2,
+		installerFrame.Option3,
+		installerFrame.Option4
+	}
 
-	option1:Hide()
-	option1:SetScript('OnClick', nil)
-	option1:SetText('')
-	option1:ClearAllPoints()
-	option1:SetSize(160, 30)
+	for _, option in ipairs(options) do
+		option:Hide()
+		option:SetScript('OnClick', nil)
+		option:SetText('')
+		option:ClearAllPoints()
+		option:SetSize(160, 30)
+	end
 
-	option2:Hide()
-	option2:SetScript('OnClick', nil)
-	option2:SetText('')
-	option2:ClearAllPoints()
-	option2:SetSize(160, 30)
-
-	option3:Hide()
-	option3:SetScript('OnClick', nil)
-	option3:SetText('')
-	option3:ClearAllPoints()
-	option3:SetSize(160, 30)
-
-	option4:Hide()
-	option4:SetScript('OnClick', nil)
-	option4:SetText('')
-	option4:ClearAllPoints()
-	option4:SetSize(160, 30)
-
-	-- Reset texts
 	installerFrame.SubTitle:SetText('')
 	installerFrame.Desc1:SetText('')
 	installerFrame.Desc2:SetText('')
@@ -587,7 +567,7 @@ end
 
 -- Frame Creation
 local function CreateMainFrame()
-	local frame = CreateFrame('Frame', 'LuckyoneInstallerFrame', UIParent, BackdropTemplateMixin and 'BackdropTemplate')
+	local frame = CreateFrame('Frame', 'LuckyoneInstallerFrame', UIParent, _G.BackdropTemplateMixin and 'BackdropTemplate')
 	frame:SetSize(MAIN_FRAME_WIDTH, MAIN_FRAME_HEIGHT)
 	frame:SetPoint('CENTER', UIParent, 'CENTER', 0, 0)
 	frame:SetFrameStrata('DIALOG')
@@ -704,7 +684,7 @@ local function CreateMainFrame()
 end
 
 local function CreateStepFrame(parent)
-	local frame = CreateFrame('Frame', 'LuckyoneInstallerStepFrame', UIParent, BackdropTemplateMixin and 'BackdropTemplate')
+	local frame = CreateFrame('Frame', 'LuckyoneInstallerStepFrame', UIParent, _G.BackdropTemplateMixin and 'BackdropTemplate')
 	frame:SetSize(STEP_FRAME_WIDTH, MAIN_FRAME_HEIGHT)
 	frame:SetPoint('TOPLEFT', parent, 'TOPRIGHT', 1, 0)
 	frame:SetFrameStrata('DIALOG')
@@ -712,44 +692,13 @@ local function CreateStepFrame(parent)
 
 	ApplyTemplate(frame)
 
-	-- Title
 	frame.title = frame:CreateFontString(nil, 'OVERLAY')
 	frame.title:SetFont(FONT, 14, FONT_OUTLINE)
 	frame.title:SetPoint('TOP', 0, -10)
 	frame.title:SetText('Steps')
 
-	-- Create step buttons
+	-- Buttons dynamically created on show
 	frame.buttons = {}
-	for i = 1, 18 do
-		local button = CreateFrame('Button', nil, frame)
-		button:SetSize(STEP_BUTTON_WIDTH, STEP_BUTTON_HEIGHT)
-		button:SetID(i)
-		button:SetScript('OnClick', StepButton_OnClick)
-		button:Hide()
-
-		if i == 1 then
-			button:SetPoint('TOP', frame.title, 'BOTTOM', 0, -10)
-		else
-			button:SetPoint('TOP', frame.buttons[i - 1], 'BOTTOM', 0, -2)
-		end
-
-		button.bg = button:CreateTexture(nil, 'BACKGROUND')
-		button.bg:SetAllPoints()
-		button.bg:SetColorTexture(0.2, 0.2, 0.2, 0.5)
-
-		button.highlight = button:CreateTexture(nil, 'HIGHLIGHT')
-		button.highlight:SetAllPoints()
-		button.highlight:SetColorTexture(1, 1, 1, 0.15)
-		button:SetHighlightTexture(button.highlight)
-
-		button.text = button:CreateFontString(nil, 'OVERLAY')
-		button.text:SetFont(FONT, 11, FONT_OUTLINE)
-		button.text:SetPoint('CENTER')
-		button.text:SetJustifyH('CENTER')
-		button.text:SetText('')
-
-		frame.buttons[i] = button
-	end
 
 	return frame
 end
@@ -779,12 +728,38 @@ function Installer:Show(data)
 			installerFrame.stepFrame = CreateStepFrame(installerFrame)
 		end
 
-		local buttons = installerFrame.stepFrame.buttons
-		for i = 1, #buttons do
-			if i <= maxPage then
-				buttons[i]:Show()
-			else
-				buttons[i]:Hide()
+		local stepFrame = installerFrame.stepFrame
+		local buttons = stepFrame.buttons
+
+		if #buttons == 0 then
+			for i = 1, maxPage do
+				local button = CreateFrame('Button', nil, stepFrame)
+				button:SetSize(STEP_BUTTON_WIDTH, STEP_BUTTON_HEIGHT)
+				button:SetID(i)
+				button:SetScript('OnClick', StepButton_OnClick)
+
+				if i == 1 then
+					button:SetPoint('TOP', stepFrame.title, 'BOTTOM', 0, -10)
+				else
+					button:SetPoint('TOP', buttons[i - 1], 'BOTTOM', 0, -2)
+				end
+
+				button.bg = button:CreateTexture(nil, 'BACKGROUND')
+				button.bg:SetAllPoints()
+				button.bg:SetColorTexture(0.2, 0.2, 0.2, 0.5)
+
+				button.highlight = button:CreateTexture(nil, 'HIGHLIGHT')
+				button.highlight:SetAllPoints()
+				button.highlight:SetColorTexture(1, 1, 1, 0.15)
+				button:SetHighlightTexture(button.highlight)
+
+				button.text = button:CreateFontString(nil, 'OVERLAY')
+				button.text:SetFont(FONT, 11, FONT_OUTLINE)
+				button.text:SetPoint('CENTER')
+				button.text:SetJustifyH('CENTER')
+				button.text:SetText('')
+
+				buttons[i] = button
 			end
 		end
 
