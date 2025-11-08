@@ -115,7 +115,7 @@ local function LayoutOptionButtons()
 		return
 	end
 
-	local spacing = 8
+	local spacing = 4
 	local buttonWidth = 160
 	local totalWidth = (numButtons * buttonWidth) + ((numButtons - 1) * spacing)
 	local startX = -(totalWidth / 2) + (buttonWidth / 2)
@@ -123,7 +123,7 @@ local function LayoutOptionButtons()
 	for i, button in ipairs(visibleButtons) do
 		button:ClearAllPoints()
 		local offsetX = startX + ((i - 1) * (buttonWidth + spacing))
-		button:SetPoint('BOTTOM', installerFrame, 'BOTTOM', offsetX, 45)
+		button:SetPoint('BOTTOM', installerFrame, 'BOTTOM', offsetX, 60)
 	end
 end
 
@@ -395,8 +395,8 @@ local function CreateMainFrame()
 	frame.Next:SetText(L["Next"])
 
 	frame.StatusBar = CreateFrame('StatusBar', 'LuckyoneInstallerStatusBar', frame)
-	frame.StatusBar:SetPoint('TOPLEFT', frame.Prev, 'TOPRIGHT', 6, -2)
-	frame.StatusBar:SetPoint('BOTTOMRIGHT', frame.Next, 'BOTTOMLEFT', -6, 2)
+	frame.StatusBar:SetPoint('TOPLEFT', frame.Prev, 'TOPRIGHT', 6, 0)
+	frame.StatusBar:SetPoint('BOTTOMRIGHT', frame.Next, 'BOTTOMLEFT', -6, 0)
 	frame.StatusBar:SetStatusBarTexture('Interface\\Buttons\\WHITE8X8')
 	frame.StatusBar:SetMinMaxValues(0, 1)
 	frame.StatusBar:SetValue(0)
@@ -407,7 +407,7 @@ local function CreateMainFrame()
 	frame.StatusBar.bg:SetColorTexture(0.2, 0.2, 0.2, 0.8)
 
 	frame.StatusBar.text = frame.StatusBar:CreateFontString(nil, 'OVERLAY')
-	frame.StatusBar.text:SetFont(FONT, 11, FONT_OUTLINE)
+	frame.StatusBar.text:SetFont(FONT, 12, FONT_OUTLINE)
 	frame.StatusBar.text:SetPoint('CENTER')
 	frame.StatusBar.text:SetText('0 / 0')
 
