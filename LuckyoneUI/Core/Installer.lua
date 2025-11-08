@@ -44,6 +44,249 @@ local installerFrame
 local currentPage = 0
 local maxPage = 0
 
+-- Installer Data
+local function BuildInstallerData()
+	local pages = {}
+	local stepTitles = {}
+	local pageIndex = 1
+
+	-- Page 1: Welcome
+	pages[pageIndex] = function()
+		local f = installerFrame
+		f.SubTitle:SetText(L["Welcome"])
+		f.Desc1:SetText(L["The LuckyoneUI installer will guide you through some steps and apply the profiles of your choice."])
+		f.Desc2:SetText(format('|cff4beb2c%s', L["Your existing profiles will not change. The installer will create a fresh profile."]))
+		f.Desc3:SetText(L["Please read the steps carefully before clicking any buttons."])
+		f.Option1:Show()
+		f.Option1:SetScript('OnClick', InstallComplete)
+		f.Option1:SetText(format('|cffC80000%s', L["Skip and close"]))
+	end
+	stepTitles[pageIndex] = L["Welcome"]
+	pageIndex = pageIndex + 1
+
+	-- Page 2: Layout scale (All versions)
+	pages[pageIndex] = function()
+		local f = installerFrame
+		f.SubTitle:SetText(L["Layout scale"])
+		f.Desc1:SetText(L["1440p = Default | 1080p = Downscaled"] .. '.')
+		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+		f.Option1:Show()
+		f.Option1:SetScript('OnClick', function()
+			Private.Addon.db.profile.scaled = false
+			Private:Print(L["Layout scale"] .. ' 1440p')
+			stepCompleteFrame:ShowMessage(L["Layout scale"] .. ' 1440p')
+		end)
+		f.Option1:SetText('1440p')
+		f.Option2:Show()
+		f.Option2:SetScript('OnClick', function()
+			Private.Addon.db.profile.scaled = true
+			Private:Print(L["Layout scale"] .. ' 1080p')
+			stepCompleteFrame:ShowMessage(L["Layout scale"] .. ' 1080p')
+		end)
+		f.Option2:SetText('1080p')
+	end
+	stepTitles[pageIndex] = L["Layout scale"]
+	pageIndex = pageIndex + 1
+
+	-- Only add ElvUI-specific pages if ElvUI is loaded
+	if Private.ElvUI then
+		-- Page: ElvUI layouts
+		pages[pageIndex] = function()
+			local f = installerFrame
+			f.SubTitle:SetText(L["ElvUI layouts"])
+			f.Desc1:SetText(L["This step will configure the ElvUI layout of your choice."])
+			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+			f.Desc3:SetText(format('|cff33937F%s|r', L["Augmentation"]) .. ': ' .. L["No ActionBars and centered Raid Frames"] .. '.')
+			f.Option1:Show()
+			f.Option1:SetScript('OnClick', function() Private:Setup_Layout('main', true) end)
+			f.Option1:SetText(L["DPS & Tanks"])
+			f.Option2:Show()
+			f.Option2:SetScript('OnClick', function() Private:Setup_Layout('healing', true) end)
+			f.Option2:SetText(L["Healing"])
+			f.Option3:Show()
+			f.Option3:SetScript('OnClick', function() Private:Setup_Layout('support', true) end)
+			f.Option3:SetText(format('|cff33937F%s', L["Augmentation"]))
+		end
+		stepTitles[pageIndex] = L["ElvUI layouts"]
+		pageIndex = pageIndex + 1
+
+		-- Page: ElvUI Filters
+		pages[pageIndex] = function()
+			local f = installerFrame
+			f.SubTitle:SetText(L["ElvUI Filters"])
+			f.Desc1:SetText(L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"])
+			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+			f.Option1:Show()
+			f.Option1:SetScript('OnClick', function() Private:Setup_Filters(true) end)
+			f.Option1:SetText(L["Setup Aura Filters"])
+		end
+		stepTitles[pageIndex] = L["ElvUI Filters"]
+		pageIndex = pageIndex + 1
+
+		-- Retail-only: ElvUI plugins
+		if Private.isRetail then
+			pages[pageIndex] = function()
+				local f = installerFrame
+				f.SubTitle:SetText(L["ElvUI plugins"])
+				f.Desc1:SetText(L["This step will configure profiles for other ElvUI plugins."])
+				f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+				f.Option1:Show()
+				f.Option1:SetScript('OnClick', function() Private:Setup_WindTools(true) end)
+				f.Option1:SetText('|cff5385edWindTools|r')
+				f.Option2:Show()
+				f.Option2:SetScript('OnClick', function() Private:Setup_ShadowAndLight(true) end)
+				f.Option2:SetText('|cff9482c9Shadow & Light|r')
+			end
+			stepTitles[pageIndex] = L["ElvUI plugins"]
+			pageIndex = pageIndex + 1
+		end
+
+		-- Page: Color Theme
+		pages[pageIndex] = function()
+			local f = installerFrame
+			f.SubTitle:SetText(L["Color Theme"])
+			f.Desc1:SetText(L["Select your preferred UnitFrames color theme."])
+			f.Desc2:SetText(format('|cff4beb2c%s', L["Optional step. Dark is applied by default."]))
+			f.Option1:Show()
+			f.Option1:SetScript('OnClick', function() Private:Setup_Theme('dark', true) end)
+			f.Option1:SetText(L["Dark"])
+			f.Option2:Show()
+			f.Option2:SetScript('OnClick', function() Private:Setup_Theme('class', true) end)
+			f.Option2:SetText(L["Class Color"])
+		end
+		stepTitles[pageIndex] = L["Color Theme"]
+		pageIndex = pageIndex + 1
+	end
+
+	-- Page: Chat
+	pages[pageIndex] = function()
+		local f = installerFrame
+		f.SubTitle:SetText(L["Chat"])
+		f.Desc1:SetText(L["This step will configure your two chat panels."])
+		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+		f.Desc3:SetText(L["Left panel: General - Log - Whisper - Guild - Party."])
+		f.Desc4:SetText(L["Right panel: Details! Damage Meter."])
+		f.Option1:Show()
+		f.Option1:SetScript('OnClick', function() Private:Setup_Chat(true) end)
+		f.Option1:SetText(L["Setup Chat"])
+	end
+	stepTitles[pageIndex] = L["Chat"]
+	pageIndex = pageIndex + 1
+
+	-- Page: Console variables
+	pages[pageIndex] = function()
+		local f = installerFrame
+		f.SubTitle:SetText(L["Console variables"])
+		f.Desc1:SetText(L["This step will configure some of Blizzards console variables."])
+		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+		f.Desc3:SetText(L["Examples: Max camera distance, screenshot quality and tutorials."])
+		f.Desc4:SetText(L["The full list of configured CVars can be found in /lucky config."])
+		f.Option1:Show()
+		f.Option1:SetScript('OnClick', function() Private:Setup_CVars(nil, true) end)
+		f.Option1:SetText(L["Setup CVars"])
+	end
+	stepTitles[pageIndex] = L["Console variables"]
+	pageIndex = pageIndex + 1
+
+	-- Page: NamePlates
+	pages[pageIndex] = function()
+		local f = installerFrame
+		f.SubTitle:SetText(L["NamePlates"])
+		f.Desc1:SetText(L["Choose between ElvUI NamePlates and Plater NamePlates."])
+		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+		f.Option1:Show()
+		f.Option1:SetScript('OnClick', function() Private:Setup_Plater(true) end)
+		f.Option1:SetText('Plater')
+		if Private.ElvUI then
+			f.Option2:Show()
+			f.Option2:SetScript('OnClick', function() Private:Setup_NamePlates(true) end)
+			f.Option2:SetText('ElvUI')
+		end
+	end
+	stepTitles[pageIndex] = L["NamePlates"]
+	pageIndex = pageIndex + 1
+
+	-- Page: BigWigs
+	pages[pageIndex] = function()
+		local f = installerFrame
+		f.SubTitle:SetText(L["BigWigs profile"])
+		f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."])
+		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+		f.Option1:Show()
+		f.Option1:SetScript('OnClick', function() Private:Setup_BigWigs('main') end)
+		f.Option1:SetText('BigWigs')
+		f.Option2:Show()
+		f.Option2:SetScript('OnClick', function() Private:Setup_BigWigs('healing') end)
+		f.Option2:SetText(L["BigWigs Healing"])
+	end
+	stepTitles[pageIndex] = 'BigWigs'
+	pageIndex = pageIndex + 1
+
+	-- Page: Details
+	pages[pageIndex] = function()
+		local f = installerFrame
+		f.SubTitle:SetText(L["Details profile"])
+		f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for Details! Damage Meter."])
+		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+		f.Option1:Show()
+		f.Option1:SetScript('OnClick', function() Private:Setup_Details(true) end)
+		f.Option1:SetText(L["Setup Details"])
+	end
+	stepTitles[pageIndex] = 'Details'
+	pageIndex = pageIndex + 1
+
+	-- Retail-only: OmniCD
+	if Private.isRetail then
+		pages[pageIndex] = function()
+			local f = installerFrame
+			f.SubTitle:SetText(L["OmniCD profile"])
+			f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for OmniCD Party CDs."])
+			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+			f.Option1:Show()
+			f.Option1:SetScript('OnClick', function() Private:Setup_OmniCD('main', true) end)
+			f.Option1:SetText('OmniCD')
+			f.Option2:Show()
+			f.Option2:SetScript('OnClick', function() Private:Setup_OmniCD('healing', true) end)
+			f.Option2:SetText(L["OmniCD Healing"])
+		end
+		stepTitles[pageIndex] = 'OmniCD'
+		pageIndex = pageIndex + 1
+
+		-- Retail-only: WarpDeplete
+		pages[pageIndex] = function()
+			local f = installerFrame
+			f.SubTitle:SetText(L["WarpDeplete profile"])
+			f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for WarpDeplete."])
+			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+			f.Option1:Show()
+			f.Option1:SetScript('OnClick', function() Private:Setup_WarpDeplete(true) end)
+			f.Option1:SetText(L["Setup WarpDeplete"])
+		end
+		stepTitles[pageIndex] = 'WarpDeplete'
+		pageIndex = pageIndex + 1
+	end
+
+	-- Final page: Installation Complete
+	pages[pageIndex] = function()
+		local f = installerFrame
+		f.SubTitle:SetText(L["Installation Complete"])
+		f.Desc1:SetText(L["You have completed the installation process, please click 'Finished' to reload the UI."])
+		f.Desc2:SetText(L["Feel free to join our community Discord for support and social chats."])
+		f.Option1:Show()
+		f.Option1:SetScript('OnClick', function()
+			_G.StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://discord.gg/xRY4bwA')
+		end)
+		f.Option1:SetText('Discord')
+		f.Option2:Show()
+		f.Option2:SetScript('OnClick', InstallComplete)
+		f.Option2:SetText(format('|cff4beb2c%s', L["Finished"]))
+	end
+	stepTitles[pageIndex] = L["Installation Complete"]
+
+	return { Title = format('|cff4beb2c%s|r Installation', Private.Name), Pages = pages, StepTitles = stepTitles, StepTitlesColor = STEP_TITLE_COLOR, StepTitlesColorSelected = STEP_TITLE_SELECTED_COLOR }
+end
+Private.InstallerData = BuildInstallerData()
+
 -- Our frame 'skin'
 local function ApplyTemplate(frame)
 	if not frame.SetBackdrop then _G.Mixin(frame, _G.BackdropTemplateMixin) end
@@ -572,257 +815,11 @@ function Installer:IsShown()
 end
 
 function Installer:Initialize()
-	if installerFrame then
-		return
-	end
+	if installerFrame then return end
 
 	CreateStepComplete()
 	installerFrame = CreateMainFrame()
 end
-
--- Installer Data
-local function BuildInstallerData()
-	local pages = {}
-	local stepTitles = {}
-	local pageIndex = 1
-
-	-- Page 1: Welcome
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["Welcome"])
-		f.Desc1:SetText(L["The LuckyoneUI installer will guide you through some steps and apply the profiles of your choice."])
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Your existing profiles will not change. The installer will create a fresh profile."]))
-		f.Desc3:SetText(L["Please read the steps carefully before clicking any buttons."])
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', InstallComplete)
-		f.Option1:SetText(format('|cffC80000%s', L["Skip and close"]))
-	end
-	stepTitles[pageIndex] = L["Welcome"]
-	pageIndex = pageIndex + 1
-
-	-- Page 2: Layout scale (All versions)
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["Layout scale"])
-		f.Desc1:SetText(L["1440p = Default | 1080p = Downscaled"] .. '.')
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function()
-			Private.Addon.db.profile.scaled = false
-			Private:Print(L["Layout scale"] .. ' 1440p')
-			stepCompleteFrame:ShowMessage(L["Layout scale"] .. ' 1440p')
-		end)
-		f.Option1:SetText('1440p')
-		f.Option2:Show()
-		f.Option2:SetScript('OnClick', function()
-			Private.Addon.db.profile.scaled = true
-			Private:Print(L["Layout scale"] .. ' 1080p')
-			stepCompleteFrame:ShowMessage(L["Layout scale"] .. ' 1080p')
-		end)
-		f.Option2:SetText('1080p')
-	end
-	stepTitles[pageIndex] = L["Layout scale"]
-	pageIndex = pageIndex + 1
-
-	-- Only add ElvUI-specific pages if ElvUI is loaded
-	if Private.ElvUI then
-		-- Page: ElvUI layouts
-		pages[pageIndex] = function()
-			local f = installerFrame
-			f.SubTitle:SetText(L["ElvUI layouts"])
-			f.Desc1:SetText(L["This step will configure the ElvUI layout of your choice."])
-			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-			f.Desc3:SetText(format('|cff33937F%s|r', L["Augmentation"]) .. ': ' .. L["No ActionBars and centered Raid Frames"] .. '.')
-			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Setup_Layout('main', true) end)
-			f.Option1:SetText(L["DPS & Tanks"])
-			f.Option2:Show()
-			f.Option2:SetScript('OnClick', function() Private:Setup_Layout('healing', true) end)
-			f.Option2:SetText(L["Healing"])
-			f.Option3:Show()
-			f.Option3:SetScript('OnClick', function() Private:Setup_Layout('support', true) end)
-			f.Option3:SetText(format('|cff33937F%s', L["Augmentation"]))
-		end
-		stepTitles[pageIndex] = L["ElvUI layouts"]
-		pageIndex = pageIndex + 1
-
-		-- Page: ElvUI Filters
-		pages[pageIndex] = function()
-			local f = installerFrame
-			f.SubTitle:SetText(L["ElvUI Filters"])
-			f.Desc1:SetText(L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"])
-			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Setup_Filters(true) end)
-			f.Option1:SetText(L["Setup Aura Filters"])
-		end
-		stepTitles[pageIndex] = L["ElvUI Filters"]
-		pageIndex = pageIndex + 1
-
-		-- Retail-only: ElvUI plugins
-		if Private.isRetail then
-			pages[pageIndex] = function()
-				local f = installerFrame
-				f.SubTitle:SetText(L["ElvUI plugins"])
-				f.Desc1:SetText(L["This step will configure profiles for other ElvUI plugins."])
-				f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-				f.Option1:Show()
-				f.Option1:SetScript('OnClick', function() Private:Setup_WindTools(true) end)
-				f.Option1:SetText('|cff5385edWindTools|r')
-				f.Option2:Show()
-				f.Option2:SetScript('OnClick', function() Private:Setup_ShadowAndLight(true) end)
-				f.Option2:SetText('|cff9482c9Shadow & Light|r')
-			end
-			stepTitles[pageIndex] = L["ElvUI plugins"]
-			pageIndex = pageIndex + 1
-		end
-
-		-- Page: Color Theme
-		pages[pageIndex] = function()
-			local f = installerFrame
-			f.SubTitle:SetText(L["Color Theme"])
-			f.Desc1:SetText(L["Select your preferred UnitFrames color theme."])
-			f.Desc2:SetText(format('|cff4beb2c%s', L["Optional step. Dark is applied by default."]))
-			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Setup_Theme('dark', true) end)
-			f.Option1:SetText(L["Dark"])
-			f.Option2:Show()
-			f.Option2:SetScript('OnClick', function() Private:Setup_Theme('class', true) end)
-			f.Option2:SetText(L["Class Color"])
-		end
-		stepTitles[pageIndex] = L["Color Theme"]
-		pageIndex = pageIndex + 1
-	end
-
-	-- Page: Chat
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["Chat"])
-		f.Desc1:SetText(L["This step will configure your two chat panels."])
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-		f.Desc3:SetText(L["Left panel: General - Log - Whisper - Guild - Party."])
-		f.Desc4:SetText(L["Right panel: Details! Damage Meter."])
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() Private:Setup_Chat(true) end)
-		f.Option1:SetText(L["Setup Chat"])
-	end
-	stepTitles[pageIndex] = L["Chat"]
-	pageIndex = pageIndex + 1
-
-	-- Page: Console variables
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["Console variables"])
-		f.Desc1:SetText(L["This step will configure some of Blizzards console variables."])
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-		f.Desc3:SetText(L["Examples: Max camera distance, screenshot quality and tutorials."])
-		f.Desc4:SetText(L["The full list of configured CVars can be found in /lucky config."])
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() Private:Setup_CVars(nil, true) end)
-		f.Option1:SetText(L["Setup CVars"])
-	end
-	stepTitles[pageIndex] = L["Console variables"]
-	pageIndex = pageIndex + 1
-
-	-- Page: NamePlates
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["NamePlates"])
-		f.Desc1:SetText(L["Choose between ElvUI NamePlates and Plater NamePlates."])
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() Private:Setup_Plater(true) end)
-		f.Option1:SetText('Plater')
-		if Private.ElvUI then
-			f.Option2:Show()
-			f.Option2:SetScript('OnClick', function() Private:Setup_NamePlates(true) end)
-			f.Option2:SetText('ElvUI')
-		end
-	end
-	stepTitles[pageIndex] = L["NamePlates"]
-	pageIndex = pageIndex + 1
-
-	-- Page: BigWigs
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["BigWigs profile"])
-		f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."])
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() Private:Setup_BigWigs('main') end)
-		f.Option1:SetText('BigWigs')
-		f.Option2:Show()
-		f.Option2:SetScript('OnClick', function() Private:Setup_BigWigs('healing') end)
-		f.Option2:SetText(L["BigWigs Healing"])
-	end
-	stepTitles[pageIndex] = 'BigWigs'
-	pageIndex = pageIndex + 1
-
-	-- Page: Details
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["Details profile"])
-		f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for Details! Damage Meter."])
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() Private:Setup_Details(true) end)
-		f.Option1:SetText(L["Setup Details"])
-	end
-	stepTitles[pageIndex] = 'Details'
-	pageIndex = pageIndex + 1
-
-	-- Retail-only: OmniCD
-	if Private.isRetail then
-		pages[pageIndex] = function()
-			local f = installerFrame
-			f.SubTitle:SetText(L["OmniCD profile"])
-			f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for OmniCD Party CDs."])
-			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Setup_OmniCD('main', true) end)
-			f.Option1:SetText('OmniCD')
-			f.Option2:Show()
-			f.Option2:SetScript('OnClick', function() Private:Setup_OmniCD('healing', true) end)
-			f.Option2:SetText(L["OmniCD Healing"])
-		end
-		stepTitles[pageIndex] = 'OmniCD'
-		pageIndex = pageIndex + 1
-
-		-- Retail-only: WarpDeplete
-		pages[pageIndex] = function()
-			local f = installerFrame
-			f.SubTitle:SetText(L["WarpDeplete profile"])
-			f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for WarpDeplete."])
-			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Setup_WarpDeplete(true) end)
-			f.Option1:SetText(L["Setup WarpDeplete"])
-		end
-		stepTitles[pageIndex] = 'WarpDeplete'
-		pageIndex = pageIndex + 1
-	end
-
-	-- Final page: Installation Complete
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["Installation Complete"])
-		f.Desc1:SetText(L["You have completed the installation process, please click 'Finished' to reload the UI."])
-		f.Desc2:SetText(L["Feel free to join our community Discord for support and social chats."])
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function()
-			_G.StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://discord.gg/xRY4bwA')
-		end)
-		f.Option1:SetText('Discord')
-		f.Option2:Show()
-		f.Option2:SetScript('OnClick', InstallComplete)
-		f.Option2:SetText(format('|cff4beb2c%s', L["Finished"]))
-	end
-	stepTitles[pageIndex] = L["Installation Complete"]
-
-	return { Title = format('|cff4beb2c%s|r Installation', Private.Name), Pages = pages, StepTitles = stepTitles, StepTitlesColor = STEP_TITLE_COLOR, StepTitlesColorSelected = STEP_TITLE_SELECTED_COLOR }
-end
-
-Private.InstallerData = BuildInstallerData()
 
 -- Initialize
 function Private.Installer:OnLoad()
