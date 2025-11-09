@@ -94,7 +94,7 @@ function LuckyoneUI_OnAddonCompartmentClick()
 end
 
 -- Reload popup
--- _G.StaticPopup_Show('LUCKYONE_RL')
+-- StaticPopup_Show('LUCKYONE_RL')
 _G.StaticPopupDialogs['LUCKYONE_RL'] = {
 	text = L["Reload required - continue?"],
 	button1 = ACCEPT,
@@ -105,7 +105,7 @@ _G.StaticPopupDialogs['LUCKYONE_RL'] = {
 }
 
 -- ElvUI version check popup
--- _G.StaticPopup_Show('LUCKYONE_VC')
+-- StaticPopup_Show('LUCKYONE_VC')
 _G.StaticPopupDialogs['LUCKYONE_VC'] = {
 	text = format('|cffC80000%s|r', L["Your ElvUI is outdated - please update and reload."]),
 	whileDead = 1,
@@ -113,7 +113,7 @@ _G.StaticPopupDialogs['LUCKYONE_VC'] = {
 }
 
 -- Incompatible addon popup
--- _G.StaticPopup_Show('LUCKYONE_INCOMPATIBLE')
+-- StaticPopup_Show('LUCKYONE_INCOMPATIBLE')
 _G.StaticPopupDialogs['LUCKYONE_INCOMPATIBLE'] = {
 	text = format('|cffC80000%s|r', L["LuckyoneUI is now a standalone addon.\nPlease remove the old ElvUI_LuckyoneUI from your AddOns folder."]),
 	whileDead = 1,
@@ -121,7 +121,7 @@ _G.StaticPopupDialogs['LUCKYONE_INCOMPATIBLE'] = {
 }
 
 -- Editbox popup
--- _G.StaticPopup_Show('LUCKYONE_EDITBOX', text_arg1, text_arg2, data)
+-- StaticPopup_Show('LUCKYONE_EDITBOX', text_arg1, text_arg2, data)
 _G.StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 	text = Private.Name,
 	button1 = OKAY,
@@ -162,7 +162,7 @@ _G.StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 function Private:VersionCheck()
 	if not Private.ElvUI then return end
 	if ElvUI[1].version < Private.RequiredElvUI then
-		_G.StaticPopup_Show('LUCKYONE_VC')
+		StaticPopup_Show('LUCKYONE_VC')
 		Private:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
 	end
 end
@@ -270,7 +270,7 @@ end
 -- Incompatible addons
 function Private:CheckIncompatible()
 	if Private.IsAddOnLoaded('ElvUI_LuckyoneUI') then
-		_G.StaticPopup_Show('LUCKYONE_INCOMPATIBLE')
+		StaticPopup_Show('LUCKYONE_INCOMPATIBLE')
 	end
 end
 

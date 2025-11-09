@@ -18,6 +18,7 @@ local UIFrameFadeOut = UIFrameFadeOut
 -- Global environment
 local _G = _G
 local UIParent = UIParent
+local StaticPopup_Show = _G.StaticPopup_Show
 
 -- Constants: Font + Outline
 local FONT = LSM:Fetch('font', Private.Font)
@@ -276,7 +277,7 @@ local function BuildInstallerData()
 		f.Desc1:SetText(L["You have completed the installation process, please click 'Finished' to reload the UI."])
 		f.Desc2:SetText(L["Feel free to join our community Discord for support and social chats."])
 		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() _G.StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://discord.gg/xRY4bwA') end)
+		f.Option1:SetScript('OnClick', function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://discord.gg/xRY4bwA') end)
 		f.Option1:SetText('Discord')
 		f.Option2:Show()
 		f.Option2:SetScript('OnClick', InstallComplete)

@@ -4,9 +4,10 @@ local L = Private.Libs.ACL
 
 -- Global environment
 local _G = _G
+local StaticPopup_Show = _G.StaticPopup_Show
 
 local function ShowImportBox(link)
-	_G.StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, link)
+	StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, link)
 end
 
 -- WeakAuras

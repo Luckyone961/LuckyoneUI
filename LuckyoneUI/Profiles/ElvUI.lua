@@ -17,6 +17,7 @@ local SetCVar = C_CVar.SetCVar
 
 -- Global environment
 local _G = _G
+local StaticPopup_Show = _G.StaticPopup_Show
 
 -- ElvUI modules
 local E, _, _, P = unpack(ElvUI)
@@ -210,7 +211,7 @@ function Private:HandleAlts(layout)
 	-- Push the update
 	Refresh()
 
-	_G.StaticPopup_Show('LUCKYONE_RL')
+	StaticPopup_Show('LUCKYONE_RL')
 
 	Private:Print(L["Applied profile: "] .. mostRecentProfile)
 end
