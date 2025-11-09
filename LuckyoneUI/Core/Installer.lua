@@ -26,7 +26,7 @@ local FONT_OUTLINE = Private.Outline
 -- Constants: Scalings
 local MAIN_FRAME_HEIGHT = 400
 local MAIN_FRAME_WIDTH = 550
-local STEP_BUTTON_HEIGHT = 20
+local STEP_BUTTON_HEIGHT = 22
 local STEP_BUTTON_WIDTH = 200
 local STEP_FRAME_WIDTH = 220
 
@@ -746,7 +746,7 @@ function Installer:Show(data)
 				button:SetHighlightTexture(button.highlight)
 
 				button.text = button:CreateFontString(nil, 'OVERLAY')
-				button.text:SetFont(FONT, 11, FONT_OUTLINE)
+				button.text:SetFont(FONT, 12, FONT_OUTLINE)
 				button.text:SetPoint('CENTER')
 				button.text:SetJustifyH('CENTER')
 				button.text:SetText('')
