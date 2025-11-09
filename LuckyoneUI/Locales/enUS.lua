@@ -204,6 +204,7 @@ L["Tags"] = true
 L["Tanks"] = true
 L["Target Frame Buffs"] = true
 L["Target Frame Debuffs"] = true
+L["Temporarily hide"] = true
 L["Testers and translation"] = true
 L["The following data will be updated"] = true
 L["The full list of configured CVars can be found in /lucky config."] = true

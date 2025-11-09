@@ -204,6 +204,7 @@ L["Tags"] = "Etiquetas"
 L["Tanks"] = "Tanques"
 L["Target Frame Buffs"] = "Bônus do Quadro de Alvo"
 L["Target Frame Debuffs"] = "Penalidades do Quadro de Alvo"
+L["Temporarily hide"] = true
 L["Testers and translation"] = "Testadores e Tradução"
 L["The following data will be updated"] = true
 L["The full list of configured CVars can be found in /lucky config."] = "A lista completa de CVars configuradas pode ser encontrada em /lucky config."

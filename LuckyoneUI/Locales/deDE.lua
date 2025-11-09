@@ -204,6 +204,7 @@ L["Tags"] = true -- No need to translate
 L["Tanks"] = true -- No need to translate
 L["Target Frame Buffs"] = "Zielfenster Stärkungszauber"
 L["Target Frame Debuffs"] = "Zielfenster Schwächungszauber"
+L["Temporarily hide"] = "Vorübergehend ausblenden"
 L["Testers and translation"] = "Tester und Übersetzer"
 L["The following data will be updated"] = "Folgende Daten werden aktualisiert"
 L["The full list of configured CVars can be found in /lucky config."] = "Die vollständige Liste der konfigurierten CVars findest Du in /lucky config."

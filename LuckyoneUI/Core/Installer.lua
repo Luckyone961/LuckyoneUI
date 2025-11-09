@@ -60,6 +60,9 @@ local function BuildInstallerData()
 		f.Option1:Show()
 		f.Option1:SetScript('OnClick', InstallComplete)
 		f.Option1:SetText(format('|cffC80000%s', L["Skip and close"]))
+		f.Option2:Show()
+		f.Option2:SetScript('OnClick', Installer.Hide)
+		f.Option2:SetText(L["Temporarily hide"])
 	end
 	stepTitles[pageIndex] = L["Welcome"]
 	pageIndex = pageIndex + 1
@@ -511,22 +514,11 @@ function Installer:SetPage(pageNum)
 
 	currentPage = pageNum
 
-	-- Update navigation buttons
-	-- We don't want "Previous" on the first page
-	-- We also don't want "Continue" on the last page
-	if currentPage == maxPage then
-		installerFrame.Next:Hide()
-	else
-		installerFrame.Next:Show()
-		installerFrame.Next:Enable()
-	end
+	installerFrame.Next:Show()
+	installerFrame.Next:Enable()
 
-	if currentPage == 1 then
-		installerFrame.Prev:Hide()
-	else
-		installerFrame.Prev:Show()
-		installerFrame.Prev:Enable()
-	end
+	installerFrame.Prev:Show()
+	installerFrame.Prev:Enable()
 
 	UpdateProgressBar()
 
