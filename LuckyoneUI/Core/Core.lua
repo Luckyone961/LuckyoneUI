@@ -250,6 +250,9 @@ function Private:CheckElvUI()
 
 	-- Skip the ElvUI installer
 	if E.private.install_complete == nil then
+		if E.InstallFrame and E.InstallFrame:IsShown() then
+			E.InstallFrame:Hide()
+		end
 		E.private.install_complete = E.version
 	end
 

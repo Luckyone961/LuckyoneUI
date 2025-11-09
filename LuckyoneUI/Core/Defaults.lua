@@ -6,10 +6,9 @@ Private.Defaults = {
 	global = {
 		dev = false,
 		install_version = nil,
+		scaled = false,
 	},
 	profile = {
-		-- General
-		scaled = false,
 		-- Modules
 		disabledFrames = {
 			AlertFrame = false,

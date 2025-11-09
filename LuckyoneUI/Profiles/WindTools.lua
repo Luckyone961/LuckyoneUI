@@ -20,12 +20,12 @@ local _G = _G
 local E, _, V, P, G = unpack(ElvUI)
 
 -- WindTools ProfileDB
--- LC: 27/10/2025
+-- LC: 09/11/2025
 function Private:Setup_WindTools(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and Private.isRetail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
 	-- 1080p
-	local scaled = Private.Addon.db.profile.scaled
+	local scaled = Private.Addon.db.global.scaled
 
 	-- Get version
 	local version = GetAddOnMetadata('ElvUI_WindTools', 'X-Version')
@@ -75,11 +75,11 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.maps.whoClicked.onlyOnCombat = false
 	E.db.WT.maps.whoClicked.stayTime = 2
 	E.db.WT.maps.whoClicked.yOffset = 19
-	E.db.WT.misc.achievementTracker.show = false
 	E.db.WT.misc.disableTalkingHead = true
 	E.db.WT.misc.exitPhaseDiving.enable = false
 	E.db.WT.misc.gameBar.enable = false
 	E.db.WT.misc.noLootPanel = true
+	E.db.WT.quest.achievementTracker.show = false
 	E.db.WT.quest.progress.enable = false
 	E.db.WT.quest.switchButtons.announcement = false
 	E.db.WT.quest.switchButtons.font.color.b = 1
@@ -161,7 +161,7 @@ function Private:Setup_WindTools(installer)
 end
 
 -- WindTools PrivateDB
--- LC: 27/10/2025
+-- LC: 09/11/2025
 function Private:Setup_Private_WindTools()
 
 	-- Restore defaults
