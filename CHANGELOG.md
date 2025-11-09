@@ -1,4 +1,11 @@
-﻿## Version 3.28 [02-11-2025]
+﻿## Version 3.29 [In Development]
+
+**All WoW Versions:**  
+- ElvUI 14.03+ compatibility  
+- Added a new built-in custom installer which works with and without ElvUI  
+- Fixed installer showing up after login when it shouldn't  
+
+## Version 3.28 [02-11-2025]
 
 **Highlights:**  
 - Added a minimap icon which is enabled by default but can be turned off with one click  
