@@ -167,6 +167,20 @@ function Private:VersionCheck()
 	end
 end
 
+-- Scale helper
+function Private:ApplyScale(native)
+	SetCVar('useUiScale', 1)
+	if native then
+		SetCVar('uiScale', 0.53333333333333)
+		Private.Addon.db.global.scaled = false
+		Private:Print(L["Layout scale"] .. ' 1440p')
+	else
+		SetCVar('uiScale', 0.71111111111111)
+		Private.Addon.db.global.scaled = true
+		Private:Print(L["Layout scale"] .. ' 1080p')
+	end
+end
+
 -- Weekly Rewards Frame chat commands
 function Private.Addon:WeeklyRewards()
 	LoadAddOn('Blizzard_WeeklyRewards')

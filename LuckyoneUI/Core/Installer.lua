@@ -568,18 +568,10 @@ local function BuildInstallerData()
 		f.Desc1:SetText(L["1440p = Default | 1080p = Downscaled"] .. '.')
 		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function()
-			Private.Addon.db.global.scaled = false
-			Private:Print(L["Layout scale"] .. ' 1440p')
-			stepCompleteFrame:ShowMessage(L["Layout scale"] .. ' 1440p')
-		end)
+		f.Option1:SetScript('OnClick', function() Private:ApplyScale(true) stepCompleteFrame:ShowMessage(L["Layout scale"] .. ' 1440p') end)
 		f.Option1:SetText('1440p')
 		f.Option2:Show()
-		f.Option2:SetScript('OnClick', function()
-			Private.Addon.db.global.scaled = true
-			Private:Print(L["Layout scale"] .. ' 1080p')
-			stepCompleteFrame:ShowMessage(L["Layout scale"] .. ' 1080p')
-		end)
+		f.Option2:SetScript('OnClick', function() Private:ApplyScale(false) stepCompleteFrame:ShowMessage(L["Layout scale"] .. ' 1080p') end)
 		f.Option2:SetText('1080p')
 	end
 	stepTitles[pageIndex] = L["Layout scale"]
