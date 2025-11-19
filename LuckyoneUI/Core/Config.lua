@@ -2,7 +2,6 @@
 local _, Private = ...
 local L = Private.Libs.ACL
 local ACH = Private.Libs.ACH
-local ACD = Private.Libs.ACD
 
 -- Lua functions
 local format = string.format
@@ -15,9 +14,12 @@ local tostring = tostring
 local GetCVar = C_CVar.GetCVar
 local GetCVarBool = C_CVar.GetCVarBool
 local SetCVar = C_CVar.SetCVar
+local HideUIPanel = HideUIPanel
 
 -- Global environment
 local _G = _G
+local StaticPopup_Show = _G.StaticPopup_Show
+local SettingsPanel = _G.SettingsPanel
 
 -- Constants
 local RELOAD_POPUP = 'LUCKYONE_RL'
@@ -45,18 +47,20 @@ local SUPPORT_STRING = ProcessList(SUPPORT)
 
 -- Build Setup Section
 local function BuildSetupSection()
-	if not Private.ElvUI then return end -- ElvUI section
 	local section = ACH:Group('', nil, 2)
 	section.inline = true
-	section.args.header1 = ACH:Header(Private.Name, 1)
-	section.args.spacer1 = ACH:Spacer(2, 'full')
-	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 3, function() ElvUI[1]:GetModule('PluginInstaller'):Queue(Private.InstallerData) ElvUI[1]:ToggleOptions() end)
+	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 3, function() Private.Installer:Show(Private.InstallerData) if Private.ElvUI then ElvUI[1]:ToggleOptions() else HideUIPanel(SettingsPanel) end end)
 	section.args.spacer2 = ACH:Spacer(4, 'full')
-	section.args.header2 = ACH:Header(L["Quick setup for alts"], 5)
-	section.args.spacer3 = ACH:Spacer(6, 'full')
-	section.args.altMain = ACH:Execute(L["Alt: "] .. L["DPS & Tanks"], L["This will load your most recent LuckyoneUI profile."], 7, function() Private:HandleAlts('Main') end, nil, true)
-	section.args.altHealing = ACH:Execute(L["Alt: "] .. L["Healing"], L["This will load your most recent LuckyoneUI profile."], 8, function() Private:HandleAlts('Healing') end, nil, true)
-	section.args.altSupport = ACH:Execute(L["Alt: "] .. format('|cff33937F%s', L["Augmentation"]), L["This will load your most recent LuckyoneUI profile."], 9, function() Private:HandleAlts('Support') end, nil, true)
+
+	if Private.ElvUI then
+		section.args.header1 = ACH:Header(Private.Name, 1)
+		section.args.spacer1 = ACH:Spacer(2, 'full')
+		section.args.header2 = ACH:Header(L["Quick setup for alts"], 5)
+		section.args.spacer3 = ACH:Spacer(6, 'full')
+		section.args.altMain = ACH:Execute(L["Alt: "] .. L["DPS & Tanks"], L["This will load your most recent LuckyoneUI profile."], 7, function() Private:HandleAlts('Main') end, nil, true)
+		section.args.altHealing = ACH:Execute(L["Alt: "] .. L["Healing"], L["This will load your most recent LuckyoneUI profile."], 8, function() Private:HandleAlts('Healing') end, nil, true)
+		section.args.altSupport = ACH:Execute(L["Alt: "] .. format('|cff33937F%s', L["Augmentation"]), L["This will load your most recent LuckyoneUI profile."], 9, function() Private:HandleAlts('Support') end, nil, true)
+	end
 	return section
 end
 
@@ -64,18 +68,18 @@ end
 local function BuildBlizzardSection()
 	local section = ACH:Group(L["Blizzard improvements"], nil, 3)
 	section.args.header = ACH:Header(L["Blizzard improvements"], 1)
-	section.args.disabledFrames = ACH:Group(L["Hide Blizzard Frames"], nil, 2, nil, function(info) return Private.Addon.db.profile.disabledFrames[info[#info]] end, function(info, value) Private.Addon.db.profile.disabledFrames[info[#info]] = value _G.StaticPopup_Show(RELOAD_POPUP) end)
+	section.args.disabledFrames = ACH:Group(L["Hide Blizzard Frames"], nil, 2, nil, function(info) return Private.Addon.db.profile.disabledFrames[info[#info]] end, function(info, value) Private.Addon.db.profile.disabledFrames[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.disabledFrames.inline = true
 	section.args.disabledFrames.args.AlertFrame = ACH:Toggle(L["Alert Frame"], L["Hide the Loot/Alert Frame"], 1)
 	section.args.disabledFrames.args.BossBanner = ACH:Toggle(L["Boss Banner"], L["Hide the Boss Banner"], 2, nil, nil, nil, nil, nil, nil, not Private.isRetail)
 	section.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle(L["Zone Text"], L["Hide the Zone Text"], 3)
-	section.args.qualityOfLife = ACH:Group(L["Quality of Life"], nil, 3, nil, function(info) return Private.Addon.db.profile.qualityOfLife[info[#info]] end, function(info, value) Private.Addon.db.profile.qualityOfLife[info[#info]] = value _G.StaticPopup_Show(RELOAD_POPUP) end)
+	section.args.qualityOfLife = ACH:Group(L["Quality of Life"], nil, 3, nil, function(info) return Private.Addon.db.profile.qualityOfLife[info[#info]] end, function(info, value) Private.Addon.db.profile.qualityOfLife[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.qualityOfLife.inline = true
 	section.args.qualityOfLife.args.easyDelete = ACH:Toggle(L["Easy Delete"], L["Automatically fill out the confirmation text to delete items."], 1)
 	section.args.qualityOfLife.args.privacyOverlay = ACH:Toggle(L["Privacy Overlay"], L["Creates an overlay to hide the chat frame in the Communities Frame until you click on it."], 2)
 	section.args.strings = ACH:Group(L["Profile strings"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
 	section.args.strings.inline = true
-	section.args.strings.args.editMode = ACH:Execute(L["Blizzard Edit Mode"], nil, 1, function() _G.StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-BlizzHUD') end)
+	section.args.strings.args.editMode = ACH:Execute(L["Blizzard Edit Mode"], nil, 1, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-BlizzHUD') end)
 	return section
 end
 
@@ -120,7 +124,7 @@ local function BuildAurasSection()
 	section.args.debuffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('boss', 'all') end)
 	section.args.filters = ACH:Group(L["Filters"], nil, 3)
 	section.args.filters.inline = true
-	section.args.filters.args.setup = ACH:Execute(L["Setup Aura Filters"], nil, 1, function() Private:Setup_Filters() _G.StaticPopup_Show(RELOAD_POPUP) end)
+	section.args.filters.args.setup = ACH:Execute(L["Setup Aura Filters"], nil, 1, function() Private:Setup_Filters() StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.filters.args.desc = ACH:Description(L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"], 2, 'medium')
 	return section
 end
@@ -179,14 +183,14 @@ local function BuildLayoutSection()
 	section.args.header1 = ACH:Header(L["Layout scale"], 1)
 	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	section.args.scaling.inline = true
-	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.profile.scaled end, function(_, value) Private.Addon.db.profile.scaled = not value end)
-	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.profile.scaled end, function(_, value) Private.Addon.db.profile.scaled = value end)
+	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
+	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = value end)
 	section.args.header2 = ACH:Header(L["ElvUI layouts"], 3)
 	section.args.thewarwithin = ACH:Group(L["The War Within layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 4)
 	section.args.thewarwithin.inline = true
-	section.args.thewarwithin.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout('main') _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.thewarwithin.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout('healing') _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.thewarwithin.args.support = ACH:Execute(format('|cff33937F%s', L["Augmentation"]), L["No ActionBars and centered Raid Frames"], 3, function() Private:Setup_Layout('support') _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.thewarwithin.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout('main') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.thewarwithin.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout('healing') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.thewarwithin.args.support = ACH:Execute(format('|cff33937F%s', L["Augmentation"]), L["No ActionBars and centered Raid Frames"], 3, function() Private:Setup_Layout('support') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	return section
 end
 
@@ -214,33 +218,33 @@ local function BuildProfilesSection()
 	section.args.header1 = ACH:Header(L["Layout scale"], 1)
 	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	section.args.scaling.inline = true
-	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.profile.scaled end, function(_, value) Private.Addon.db.profile.scaled = not value end)
-	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.profile.scaled end, function(_, value) Private.Addon.db.profile.scaled = value end)
+	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
+	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = value end)
 	section.args.plugins = ACH:Group(L["ElvUI plugins"], nil, 3)
 	section.args.plugins.inline = true
-	section.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_AddOnSkins() _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.plugins.args.pa = ACH:Execute('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_ProjectAzilroka() _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_ShadowAndLight() _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
-	section.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', RESET_DEFAULTS_TEXT, 4, function() Private:Setup_WindTools() _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
+	section.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_AddOnSkins() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.plugins.args.pa = ACH:Execute('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_ProjectAzilroka() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_ShadowAndLight() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
+	section.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', RESET_DEFAULTS_TEXT, 4, function() Private:Setup_WindTools() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.nameplates = ACH:Group(L["Nameplate profiles"], nil, 4)
 	section.args.nameplates.inline = true
-	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_NamePlates() _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
-	section.args.nameplates.args.styleFilters = ACH:Execute('ElvUI StyleFilters', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_StyleFilters() _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
-	section.args.nameplates.args.plater = ACH:Execute('Plater', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_Plater() _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_NamePlates() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
+	section.args.nameplates.args.styleFilters = ACH:Execute('ElvUI StyleFilters', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_StyleFilters() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
+	section.args.nameplates.args.plater = ACH:Execute('Plater', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_Plater() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.addons = ACH:Group(L["Addon profiles"], nil, 5)
 	section.args.addons.inline = true
-	section.args.addons.args.details = ACH:Execute('Details', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_Details() _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_WarpDeplete() _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.details = ACH:Execute('Details', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_Details() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_WarpDeplete() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.header2 = ACH:Header(L["Profiles for DPS & Tanks"], 6)
 	section.args.addonsMain = ACH:Group(L["Addon profiles"], nil, 7)
 	section.args.addonsMain.inline = true
 	section.args.addonsMain.args.bigwigs = ACH:Execute(L["BigWigs Main"], RESET_DEFAULTS_TEXT, 1, function() Private:Setup_BigWigs('main') end, nil, true)
-	section.args.addonsMain.args.omnicd = ACH:Execute(L["OmniCD Main"], RESET_DEFAULTS_TEXT, 2, function() Private:Setup_OmniCD('main') _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.addonsMain.args.omnicd = ACH:Execute(L["OmniCD Main"], RESET_DEFAULTS_TEXT, 2, function() Private:Setup_OmniCD('main') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.header3 = ACH:Header(L["Profiles for Healing"], 8)
 	section.args.addonsHealing = ACH:Group(L["Addon profiles"], nil, 9)
 	section.args.addonsHealing.inline = true
 	section.args.addonsHealing.args.bigwigs = ACH:Execute(L["BigWigs Healing"], RESET_DEFAULTS_TEXT, 1, function() Private:Setup_BigWigs('healing') end, nil, true)
-	section.args.addonsHealing.args.omnicd = ACH:Execute(L["OmniCD Healing"], RESET_DEFAULTS_TEXT, 2, function() Private:Setup_OmniCD('healing') _G.StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.addonsHealing.args.omnicd = ACH:Execute(L["OmniCD Healing"], RESET_DEFAULTS_TEXT, 2, function() Private:Setup_OmniCD('healing') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	return section
 end
 
@@ -249,7 +253,7 @@ local function BuildSkinsSection()
 	if not Private.ElvUI then return end -- ElvUI section
 	local section = ACH:Group('Skins', nil, 11)
 	section.args.header = ACH:Header('Skins', 1)
-	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.profile.skins[info[#info]] end, function(info, value) Private.Addon.db.profile.skins[info[#info]] = value _G.StaticPopup_Show(RELOAD_POPUP) end)
+	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.profile.skins[info[#info]] end, function(info, value) Private.Addon.db.profile.skins[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.addons.inline = true
 	section.args.addons.args.BugSack = ACH:Toggle('BugSack', nil, 1, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('BugSack'))
 	section.args.addons.args.Tabardy = ACH:Toggle('Tabardy', nil, 2, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('Tabardy'))
@@ -367,7 +371,7 @@ local function BuildDevSection()
 	section.args.syncInfo.inline = true
 	section.args.syncInfo.args.desc = ACH:Description('Clicking this button will override every single option of the games ESC > Options with Luckyone\'s settings.\n\nThis includes all of gameplay, accessibility, graphics, audio and network.\n\nIf you decide to use this, copy the command from Step 1 and enter it in your chat, then click Step 2.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r', 1, 'medium')
 	section.args.spacer = ACH:Spacer(7, 'full')
-	section.args.command = ACH:Execute('Step 1', '|cffC80000Do not click without reading the important information!|r', 8, function() _G.StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, '/console cvar_default') end)
+	section.args.command = ACH:Execute('Step 1', '|cffC80000Do not click without reading the important information!|r', 8, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, '/console cvar_default') end)
 	section.args.execute = ACH:Execute('Step 2', '|cffC80000Do not click without reading the important information!|r', 9, function() Private:SyncSettings() end, nil, true)
 	return section
 end

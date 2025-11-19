@@ -67,6 +67,12 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 			if IsShiftKeyDown() then
 				LDBI:Hide(Name)
 				Private.Addon.db.profile.minimap.hide = true
+			else
+				if Private.Installer and Private.Installer:IsShown() then
+					Private.Installer:Hide()
+				else
+					Private.Installer:Show(Private.InstallerData)
+				end
 			end
 		end
 	end,
@@ -88,7 +94,7 @@ function LuckyoneUI_OnAddonCompartmentClick()
 end
 
 -- Reload popup
--- _G.StaticPopup_Show('LUCKYONE_RL')
+-- StaticPopup_Show('LUCKYONE_RL')
 _G.StaticPopupDialogs['LUCKYONE_RL'] = {
 	text = L["Reload required - continue?"],
 	button1 = ACCEPT,
@@ -99,7 +105,7 @@ _G.StaticPopupDialogs['LUCKYONE_RL'] = {
 }
 
 -- ElvUI version check popup
--- _G.StaticPopup_Show('LUCKYONE_VC')
+-- StaticPopup_Show('LUCKYONE_VC')
 _G.StaticPopupDialogs['LUCKYONE_VC'] = {
 	text = format('|cffC80000%s|r', L["Your ElvUI is outdated - please update and reload."]),
 	whileDead = 1,
@@ -107,7 +113,7 @@ _G.StaticPopupDialogs['LUCKYONE_VC'] = {
 }
 
 -- Incompatible addon popup
--- _G.StaticPopup_Show('LUCKYONE_INCOMPATIBLE')
+-- StaticPopup_Show('LUCKYONE_INCOMPATIBLE')
 _G.StaticPopupDialogs['LUCKYONE_INCOMPATIBLE'] = {
 	text = format('|cffC80000%s|r', L["LuckyoneUI is now a standalone addon.\nPlease remove the old ElvUI_LuckyoneUI from your AddOns folder."]),
 	whileDead = 1,
@@ -115,7 +121,7 @@ _G.StaticPopupDialogs['LUCKYONE_INCOMPATIBLE'] = {
 }
 
 -- Editbox popup
--- _G.StaticPopup_Show('LUCKYONE_EDITBOX', text_arg1, text_arg2, data)
+-- StaticPopup_Show('LUCKYONE_EDITBOX', text_arg1, text_arg2, data)
 _G.StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 	text = Private.Name,
 	button1 = OKAY,
@@ -156,8 +162,22 @@ _G.StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 function Private:VersionCheck()
 	if not Private.ElvUI then return end
 	if ElvUI[1].version < Private.RequiredElvUI then
-		_G.StaticPopup_Show('LUCKYONE_VC')
+		StaticPopup_Show('LUCKYONE_VC')
 		Private:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
+	end
+end
+
+-- Scale helper
+function Private:ApplyScale(native)
+	SetCVar('useUiScale', 1)
+	if native then
+		SetCVar('uiScale', 0.53333333333333)
+		Private.Addon.db.global.scaled = false
+		Private:Print(L["Layout scale"] .. ' 1440p')
+	else
+		SetCVar('uiScale', 0.71111111111111)
+		Private.Addon.db.global.scaled = true
+		Private:Print(L["Layout scale"] .. ' 1080p')
 	end
 end
 
@@ -173,8 +193,12 @@ end
 
 -- LuckyoneUI chat commands
 function Private.Addon:Toggles(msg)
-	if msg == 'install' and Private.ElvUI then
-		ElvUI[1]:GetModule('PluginInstaller'):Queue(Private.InstallerData)
+	if msg == 'install' then
+		if Private.Installer and Private.Installer:IsShown() then
+			Private.Installer:Hide()
+		else
+			Private.Installer:Show(Private.InstallerData)
+		end
 	elseif msg == 'config' then
 		if Private.ElvUI then
 			ElvUI[1]:ToggleOptions()
@@ -237,10 +261,12 @@ function Private:CheckElvUI()
 
 	local E = unpack(ElvUI)
 	local EP = LibStub('LibElvUIPlugin-1.0')
-	local PI = E:GetModule('PluginInstaller')
 
 	-- Skip the ElvUI installer
 	if E.private.install_complete == nil then
+		if E.InstallFrame and E.InstallFrame:IsShown() then
+			E.InstallFrame:Hide()
+		end
 		E.private.install_complete = E.version
 	end
 
@@ -250,14 +276,9 @@ function Private:CheckElvUI()
 	end
 
 	-- Convert old db to avoid forced installer re-run
-	if E.global.LuckyoneUI and E.global.LuckyoneUI.install_version ~= nil then
-		Private.Addon.db.global.install_version = E.global.LuckyoneUI.install_version
-		E.global.LuckyoneUI.install_version = nil
-	end
-
-	-- Queue the LuckyoneUI installer if needed
-	if Private.Addon.db.global.install_version == nil then
-		PI:Queue(Private.InstallerData)
+	if E.global.L1UI and E.global.L1UI.install_version ~= nil then
+		Private.Addon.db.global.install_version = tonumber(E.global.L1UI.install_version)
+		E.global.L1UI.install_version = nil
 	end
 
 	EP:RegisterPlugin(Name, Private.BuildConfig)
@@ -266,7 +287,7 @@ end
 -- Incompatible addons
 function Private:CheckIncompatible()
 	if Private.IsAddOnLoaded('ElvUI_LuckyoneUI') then
-		_G.StaticPopup_Show('LUCKYONE_INCOMPATIBLE')
+		StaticPopup_Show('LUCKYONE_INCOMPATIBLE')
 	end
 end
 
@@ -365,6 +386,10 @@ function Private.Addon:PLAYER_LOGIN()
 	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
 	Private:CheckElvUI()
 	Private:CheckIncompatible()
+
+	if Private.Installer and (Private.Addon.db.global.install_version == nil) then
+		Private.Installer:OnLoad()
+	end
 end
 
 -- Register events during addon initialization

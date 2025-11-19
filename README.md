@@ -71,9 +71,9 @@
 • **Website link:** [Luckyone Development Website](https://luckyone.dev/)  
 
 ***
-### **[ElvUI Plugin Version] Installer:**  
+### **Installer:**  
 ***
-![LuckyoneUI Installer](https://i.imgur.com/T6Y8ZKN.jpg)  
+![LuckyoneUI Installer](https://i.imgur.com/leFw1Zk.png)  
 ***
 ### **[ElvUI Plugin Version] Main Layout:**  
 ***

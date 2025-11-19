@@ -17,6 +17,7 @@ local SetCVar = C_CVar.SetCVar
 
 -- Global environment
 local _G = _G
+local StaticPopup_Show = _G.StaticPopup_Show
 
 -- ElvUI modules
 local E, _, _, P = unpack(ElvUI)
@@ -51,7 +52,7 @@ end
 -- E.global & Custom DataText
 function Private:Setup_GlobalDB()
 	-- 1080p
-	local scaled = Private.Addon.db.profile.scaled
+	local scaled = Private.Addon.db.global.scaled
 
 	SetCVar('uiScale', (scaled and 0.71111111111111) or 0.53333333333333)
 	SetCVar('useUiScale', 1)
@@ -108,7 +109,7 @@ end
 -- E.private & Media
 function Private:Setup_PrivateDB(includePlugins)
 	-- 1080p
-	local scaled = Private.Addon.db.profile.scaled
+	local scaled = Private.Addon.db.global.scaled
 
 	E.db.general.font = Private.Font
 	E.db.general.fonts.cooldown.outline = Private.Outline
@@ -178,7 +179,7 @@ end
 -- Handler for existing profiles (Quick install on alts)
 function Private:HandleAlts(layout)
 	-- 1080p
-	local scaled = Private.Addon.db.profile.scaled
+	local scaled = Private.Addon.db.global.scaled
 
 	local mostRecentProfile = Private:GetMostRecentProfile(layout)
 
@@ -210,7 +211,7 @@ function Private:HandleAlts(layout)
 	-- Push the update
 	Refresh()
 
-	_G.StaticPopup_Show('LUCKYONE_RL')
+	StaticPopup_Show('LUCKYONE_RL')
 
 	Private:Print(L["Applied profile: "] .. mostRecentProfile)
 end
@@ -777,7 +778,7 @@ end
 -- LC: 25/09/2025
 function Private:Setup_ElvUI(layout)
 	-- Global db
-	local scaled = Private.Addon.db.profile.scaled
+	local scaled = Private.Addon.db.global.scaled
 	-- AB conversion
 	E.db.convertPages = true
 	-- Protect movers error

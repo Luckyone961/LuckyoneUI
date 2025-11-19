@@ -2,7 +2,7 @@
 	<script file='Defaults.lua'/>
 	<Script file='Config.lua'/>
 	<Script file='Core.lua'/>
-	<Script file='Install.lua'/>
+	<Script file='Installer.lua'/>
 	<Script file='Tags.lua'/>
 	<Script file='Themes.lua'/>
 </Ui>

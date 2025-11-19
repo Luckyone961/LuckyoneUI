@@ -11,7 +11,7 @@ function Private:Setup_Details(installer)
 	if not Private.IsAddOnLoaded('Details') then Private:Print('Details ' .. L["is not installed or enabled."]) return end
 
 	-- Global db
-	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.profile.scaled
+	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.global.scaled
 
 	-- Profile name
 	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version

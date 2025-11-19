@@ -14,7 +14,7 @@ function Private:Setup_OmniCD(layout, installer)
 	if not Private.IsAddOnLoaded('OmniCD') then Private:Print('OmniCD ' .. L["is not installed or enabled."]) return end
 
 	-- Global db
-	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.profile.scaled
+	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.global.scaled
 
 	-- Profile names
 	local name_main = (dev and 'Luckyone Main') or 'Luckyone Main ' .. Private.Version
