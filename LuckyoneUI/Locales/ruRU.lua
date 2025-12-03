@@ -112,6 +112,7 @@ L["Healing Layout"] = "Макет 'Исцеление'"
 L["Healing"] = "Исцеление"
 L["Hide Blizzard Frames"] = "Скрыть рамки Blizzard"
 L["Hide the Boss Banner"] = "Скрыть Баннер босса"
+L["Hide the Housing Alerts for \n\'New Decor Added\'"] = true
 L["Hide the Loot/Alert Frame"] = "Скрыть рамку с добычей/оповещением"
 L["Hide the Zone Text"] = "Скрыть текст локации"
 L["Homepage:"] = true

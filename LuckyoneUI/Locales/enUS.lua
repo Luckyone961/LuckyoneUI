@@ -112,6 +112,7 @@ L["Healing Layout"] = true
 L["Healing"] = true
 L["Hide Blizzard Frames"] = true
 L["Hide the Boss Banner"] = true
+L["Hide the Housing Alerts for \n\'New Decor Added\'"] = true
 L["Hide the Loot/Alert Frame"] = true
 L["Hide the Zone Text"] = true
 L["Homepage:"] = true

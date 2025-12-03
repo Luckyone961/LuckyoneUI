@@ -112,6 +112,7 @@ L["Healing Layout"] = "Heiler Layout"
 L["Healing"] = "Heilung"
 L["Hide Blizzard Frames"] = "Verstecke Blizzard Fenster"
 L["Hide the Boss Banner"] = "Verstecke das Bossbanner"
+L["Hide the Housing Alerts for \n\'New Decor Added\'"] = "Verstecke die Housing-Warnungen für \n\'Neue Dekorationen hinzugefügt\'"
 L["Hide the Loot/Alert Frame"] = "Verstecke das Beute-/Alarm Fenster"
 L["Hide the Zone Text"] = "Verstecke den Zonentext"
 L["Homepage:"] = true -- No need to translate

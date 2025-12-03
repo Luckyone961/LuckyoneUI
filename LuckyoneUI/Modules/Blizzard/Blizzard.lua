@@ -3,6 +3,7 @@ local _, Private = ...
 
 -- API cache
 local hooksecurefunc = hooksecurefunc
+local CreateAndInitFromMixin = CreateAndInitFromMixin
 
 -- Global environment
 local _G = _G
@@ -28,6 +29,11 @@ function Private:DisabledFrames()
 
 	if Private.Addon.db.profile.disabledFrames.ZoneTextFrame then
 		_G.ZoneTextFrame:UnregisterAllEvents()
+	end
+
+	if Private.Addon.db.profile.disabledFrames.HousingDecorAlerts and Private.isRetail then
+		local HousingEventHandler = CreateAndInitFromMixin(_G.HousingEventHandlerMixin)
+		_G.EventRegistry:UnregisterFrameEventAndCallback('NEW_HOUSING_ITEM_ACQUIRED', HousingEventHandler.ShowHousingItemAcquiredAlert, HousingEventHandler)
 	end
 end
 
