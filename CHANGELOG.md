@@ -1,4 +1,12 @@
-﻿## Version 3.29 [19-11-2025]
+﻿## Version 3.30 [In Development]
+
+**All WoW Versions:**  
+- Backend improvements so the import of plugin profiles can no longer fail due to renamed DBs  
+
+**Retail:**  
+- Added new option to hide the "New Decor Added" housing alert toasts in the center of the screen  
+
+## Version 3.29 [19-11-2025]
 
 **All WoW Versions:**  
 - ElvUI 14.03+ compatibility  
