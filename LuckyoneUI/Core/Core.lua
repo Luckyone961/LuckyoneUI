@@ -10,7 +10,9 @@ local next = next
 local pairs = pairs
 local print = print
 local strlower = string.lower
+local tinsert = table.insert
 local tonumber = tonumber
+local type = type
 local unpack = unpack
 local wipe = table.wipe
 
@@ -164,6 +166,34 @@ function Private:VersionCheck()
 	if ElvUI[1].version < Private.RequiredElvUI then
 		StaticPopup_Show('LUCKYONE_VC')
 		Private:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
+	end
+end
+
+-- Skip invalid/renamed db keys and continue profile import
+function Private:DBSetValue(tbl, path, value)
+	if not tbl or type(tbl) ~= 'table' then return end
+
+	local keys = {}
+	for key in path:gmatch('([^.]+)') do -- No dot
+		tinsert(keys, key)
+	end
+
+	if #keys == 0 then return end
+
+	local current = tbl
+	for i = 1, #keys - 1 do
+		local key = keys[i]
+		if not current[key] then
+			current[key] = {}
+		elseif type(current[key]) ~= 'table' then
+			return
+		end
+		current = current[key]
+	end
+
+	local finalKey = keys[#keys]
+	if current and type(current) == 'table' then
+		current[finalKey] = value
 	end
 end
 

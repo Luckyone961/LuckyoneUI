@@ -19,8 +19,12 @@ local _G = _G
 -- ElvUI modules
 local E, _, V, P, G = unpack(ElvUI)
 
+local function Set(tbl, path, value)
+	Private:DBSetValue(tbl, path, value)
+end
+
 -- WindTools ProfileDB
--- LC: 09/11/2025
+-- LC: 20/11/2025
 function Private:Setup_WindTools(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and Private.isRetail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
@@ -40,85 +44,85 @@ function Private:Setup_WindTools(installer)
 	E.private.WT.version = version
 
 	-- Keep this, it won't get exported by default
-	E.db.WT.quest.switchButtons.hideWithObjectiveTracker = true
+	Set(E.db, 'WT.quest.switchButtons.hideWithObjectiveTracker', true)
 
 	-- Global db
-	E.global.WT.core.loginMessage = false
+	Set(E.global, 'WT.core.loginMessage', false)
 
 	-- Private db
 	Private:Setup_Private_WindTools()
 
 	-- Profile db
-	E.db.WT.announcement.combatResurrection.enable = false
-	E.db.WT.announcement.enable = false
-	E.db.WT.announcement.interrupt.enable = false
-	E.db.WT.announcement.keystone.enable = false
-	E.db.WT.announcement.resetInstance.enable = false
-	E.db.WT.announcement.threatTransfer.enable = false
-	E.db.WT.announcement.utility.enable = false
-	E.db.WT.combat.combatAlert.animation = false
-	E.db.WT.combat.combatAlert.enterText = '+Combat'
-	E.db.WT.combat.combatAlert.font.size = 24
-	E.db.WT.combat.combatAlert.leaveText = '-Combat'
-	E.db.WT.combat.combatAlert.speed = 0.5
-	E.db.WT.combat.quickKeystone.enable = false
-	E.db.WT.combat.raidMarkers.enable = false
-	E.db.WT.item.alreadyKnown.enable = false
-	E.db.WT.item.delete.enable = false
-	E.db.WT.item.extraItemsBar.enable = false
-	E.db.WT.item.fastLoot.limit = 0.05
-	E.db.WT.item.inspect.enable = false
-	E.db.WT.item.itemLevel.enable = false
-	E.db.WT.item.trade.enable = false
-	E.db.WT.maps.eventTracker.enable = false
-	E.db.WT.maps.whoClicked.font.size = 12
-	E.db.WT.maps.whoClicked.onlyOnCombat = false
-	E.db.WT.maps.whoClicked.stayTime = 2
-	E.db.WT.maps.whoClicked.yOffset = 19
-	E.db.WT.misc.disableTalkingHead = true
-	E.db.WT.misc.exitPhaseDiving.enable = false
-	E.db.WT.misc.gameBar.enable = false
-	E.db.WT.misc.noLootPanel = true
-	E.db.WT.quest.achievementTracker.show = false
-	E.db.WT.quest.progress.enable = false
-	E.db.WT.quest.switchButtons.announcement = false
-	E.db.WT.quest.switchButtons.font.color.b = 1
-	E.db.WT.quest.switchButtons.font.color.g = 1
-	E.db.WT.quest.turnIn.enable = false
-	E.db.WT.quest.turnIn.mode = 'COMPLETE'
-	E.db.WT.quest.turnIn.pauseModifier = 'ANY'
-	E.db.WT.quest.turnIn.selectReward = false
-	E.db.WT.skins.vignetting.enable = false
-	E.db.WT.social.chatBar.enable = false
-	E.db.WT.social.chatLink.armorCategory = false
-	E.db.WT.social.chatLink.icon = false
-	E.db.WT.social.chatLink.iconHeight = 12
-	E.db.WT.social.chatLink.iconWidth = 12
-	E.db.WT.social.chatLink.level = false
-	E.db.WT.social.chatLink.numericalQualityTier = true
-	E.db.WT.social.chatLink.translateItem = false
-	E.db.WT.social.chatLink.weaponCategory = false
-	E.db.WT.social.chatText.bnetFriendOnline = false
-	E.db.WT.social.chatText.classIcon = false
-	E.db.WT.social.chatText.factionIcon = false
-	E.db.WT.social.chatText.guildMemberStatusInviteLink = false
-	E.db.WT.social.chatText.mergeAchievement = false
-	E.db.WT.social.chatText.roleIconSize = 12
-	E.db.WT.social.chatText.roleIconStyle = 'DEFAULT'
-	E.db.WT.social.contextMenu.enable = false
-	E.db.WT.social.emote.enable = false
-	E.db.WT.social.friendList.hideMaxLevel = false
-	E.db.WT.social.friendList.infoFont.size = 10
-	E.db.WT.social.friendList.nameFont.size = 11
-	E.db.WT.social.friendList.textures.gameIcon = 'FACTION'
-	E.db.WT.social.friendList.useClientColor = false
-	E.db.WT.social.smartTab.enable = false
-	E.db.WT.tooltips.elvUITweaks.betterMythicPlusInfo.enable = false
-	E.db.WT.tooltips.elvUITweaks.raceIcon.enable = false
-	E.db.WT.tooltips.elvUITweaks.specIcon.enable = false
-	E.db.WT.tooltips.groupInfo.mode = 'COMPACT'
-	E.db.WT.tooltips.groupInfo.template = '{{classColorStart}}{{specName}}{{classColorEnd}}{{amountStart}} x {{amount}}{{amountEnd}}'
-	E.db.WT.tooltips.keystone.enable = false
+	Set(E.db, 'WT.announcement.combatResurrection.enable', false)
+	Set(E.db, 'WT.announcement.enable', false)
+	Set(E.db, 'WT.announcement.interrupt.enable', false)
+	Set(E.db, 'WT.announcement.keystone.enable', false)
+	Set(E.db, 'WT.announcement.resetInstance.enable', false)
+	Set(E.db, 'WT.announcement.threatTransfer.enable', false)
+	Set(E.db, 'WT.announcement.utility.enable', false)
+	Set(E.db, 'WT.combat.combatAlert.animation', false)
+	Set(E.db, 'WT.combat.combatAlert.enterText', '+Combat')
+	Set(E.db, 'WT.combat.combatAlert.font.size', 24)
+	Set(E.db, 'WT.combat.combatAlert.leaveText', '-Combat')
+	Set(E.db, 'WT.combat.combatAlert.speed', 0.5)
+	Set(E.db, 'WT.combat.quickKeystone.enable', false)
+	Set(E.db, 'WT.combat.raidMarkers.enable', false)
+	Set(E.db, 'WT.item.alreadyKnown.enable', false)
+	Set(E.db, 'WT.item.delete.enable', false)
+	Set(E.db, 'WT.item.extraItemsBar.enable', false)
+	Set(E.db, 'WT.item.fastLoot.limit', 0.05)
+	Set(E.db, 'WT.item.inspect.enable', false)
+	Set(E.db, 'WT.item.itemLevel.enable', false)
+	Set(E.db, 'WT.item.trade.enable', false)
+	Set(E.db, 'WT.maps.eventTracker.enable', false)
+	Set(E.db, 'WT.maps.whoClicked.font.size', 12)
+	Set(E.db, 'WT.maps.whoClicked.onlyOnCombat', false)
+	Set(E.db, 'WT.maps.whoClicked.stayTime', 2)
+	Set(E.db, 'WT.maps.whoClicked.yOffset', 19)
+	Set(E.db, 'WT.misc.disableTalkingHead', true)
+	Set(E.db, 'WT.misc.exitPhaseDiving.enable', false)
+	Set(E.db, 'WT.misc.gameBar.enable', false)
+	Set(E.db, 'WT.misc.noLootPanel', true)
+	Set(E.db, 'WT.quest.achievementTracker.show', false)
+	Set(E.db, 'WT.quest.progress.enable', false)
+	Set(E.db, 'WT.quest.switchButtons.announcement', false)
+	Set(E.db, 'WT.quest.switchButtons.font.color.b', 1)
+	Set(E.db, 'WT.quest.switchButtons.font.color.g', 1)
+	Set(E.db, 'WT.quest.turnIn.enable', false)
+	Set(E.db, 'WT.quest.turnIn.mode', 'COMPLETE')
+	Set(E.db, 'WT.quest.turnIn.pauseModifier', 'ANY')
+	Set(E.db, 'WT.quest.turnIn.selectReward', false)
+	Set(E.db, 'WT.skins.vignetting.enable', false)
+	Set(E.db, 'WT.social.chatBar.enable', false)
+	Set(E.db, 'WT.social.chatLink.armorCategory', false)
+	Set(E.db, 'WT.social.chatLink.icon', false)
+	Set(E.db, 'WT.social.chatLink.iconHeight', 12)
+	Set(E.db, 'WT.social.chatLink.iconWidth', 12)
+	Set(E.db, 'WT.social.chatLink.level', false)
+	Set(E.db, 'WT.social.chatLink.numericalQualityTier', true)
+	Set(E.db, 'WT.social.chatLink.translateItem', false)
+	Set(E.db, 'WT.social.chatLink.weaponCategory', false)
+	Set(E.db, 'WT.social.chatText.bnetFriendOnline', false)
+	Set(E.db, 'WT.social.chatText.classIcon', false)
+	Set(E.db, 'WT.social.chatText.factionIcon', false)
+	Set(E.db, 'WT.social.chatText.guildMemberStatusInviteLink', false)
+	Set(E.db, 'WT.social.chatText.mergeAchievement', false)
+	Set(E.db, 'WT.social.chatText.roleIconSize', 12)
+	Set(E.db, 'WT.social.chatText.roleIconStyle', 'DEFAULT')
+	Set(E.db, 'WT.social.contextMenu.enable', false)
+	Set(E.db, 'WT.social.emote.enable', false)
+	Set(E.db, 'WT.social.friendList.hideMaxLevel', false)
+	Set(E.db, 'WT.social.friendList.infoFont.size', 10)
+	Set(E.db, 'WT.social.friendList.nameFont.size', 11)
+	Set(E.db, 'WT.social.friendList.textures.gameIcon', 'FACTION')
+	Set(E.db, 'WT.social.friendList.useClientColor', false)
+	Set(E.db, 'WT.social.smartTab.enable', false)
+	Set(E.db, 'WT.tooltips.elvUITweaks.betterMythicPlusInfo.enable', false)
+	Set(E.db, 'WT.tooltips.elvUITweaks.raceIcon.enable', false)
+	Set(E.db, 'WT.tooltips.elvUITweaks.specIcon.enable', false)
+	Set(E.db, 'WT.tooltips.groupInfo.mode', 'COMPACT')
+	Set(E.db, 'WT.tooltips.groupInfo.template', '{{classColorStart}}{{specName}}{{classColorEnd}}{{amountStart}} x {{amount}}{{amountEnd}}')
+	Set(E.db, 'WT.tooltips.keystone.enable', false)
 
 	-- Mailbox favorite list
 	if Private.itsLuckyone then
@@ -161,104 +165,104 @@ function Private:Setup_WindTools(installer)
 end
 
 -- WindTools PrivateDB
--- LC: 09/11/2025
+-- LC: 20/11/2025
 function Private:Setup_Private_WindTools()
 
 	-- Restore defaults
 	E.private.WT = E:CopyTable({}, V.WT)
 
 	-- Private db
-	E.private.WT.item.extendMerchantPages.enable = true
-	E.private.WT.maps.minimapButtons.backdrop = false
-	E.private.WT.maps.minimapButtons.backdropSpacing = 0
-	E.private.WT.maps.minimapButtons.buttonSize = 22
-	E.private.WT.maps.minimapButtons.buttonsPerRow = 7
-	E.private.WT.maps.minimapButtons.expansionLandingPage = true
-	E.private.WT.maps.minimapButtons.spacing = 3
-	E.private.WT.maps.superTracker.enable = false
-	E.private.WT.maps.superTracker.waypointParse.enable = false
-	E.private.WT.maps.worldMap.enable = false
-	E.private.WT.maps.worldMap.reveal.enable = false
-	E.private.WT.maps.worldMap.scale.enable = false
-	E.private.WT.misc.lfgList.icon.pack = 'LYNUI'
-	E.private.WT.misc.lfgList.icon.size = 14
-	E.private.WT.misc.lfgList.line.height = 4
-	E.private.WT.misc.lfgList.line.tex = Private.Texture
-	E.private.WT.misc.lfgList.partyKeystone.enable = false
-	E.private.WT.misc.lfgList.rightPanel.enable = false
-	E.private.WT.misc.moveFrames.elvUIBags = false
-	E.private.WT.misc.moveSpeed = true
-	E.private.WT.misc.pauseToSlash = false
-	E.private.WT.misc.tags = false
-	E.private.WT.quest.objectiveTracker.cosmeticBar.border = 'ONEPIXEL'
-	E.private.WT.quest.objectiveTracker.cosmeticBar.color.mode = 'CLASS'
-	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = Private.Texture
-	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 252
-	E.private.WT.quest.objectiveTracker.enable = true
-	E.private.WT.quest.objectiveTracker.header.classColor = true
-	E.private.WT.quest.objectiveTracker.header.size = 12
-	E.private.WT.quest.objectiveTracker.info.size = 11
-	E.private.WT.quest.objectiveTracker.infoColor.customColorHighlight.b = 1
-	E.private.WT.quest.objectiveTracker.infoColor.customColorHighlight.g = 1
-	E.private.WT.quest.objectiveTracker.infoColor.customColorHighlight.r = 1
-	E.private.WT.quest.objectiveTracker.infoColor.customColorNormal.b = 1
-	E.private.WT.quest.objectiveTracker.infoColor.customColorNormal.g = 1
-	E.private.WT.quest.objectiveTracker.infoColor.customColorNormal.r = 1
-	E.private.WT.quest.objectiveTracker.menuTitle.classColor = true
-	E.private.WT.quest.objectiveTracker.menuTitle.font.size = 12
-	E.private.WT.quest.objectiveTracker.titleColor.classColor = true
-	E.private.WT.skins.actionStatus.size = 12
-	E.private.WT.skins.addons.angryKeystones = false
-	E.private.WT.skins.addons.bigWigs = false
-	E.private.WT.skins.addons.bugSack = false
-	E.private.WT.skins.addons.hekili = false
-	E.private.WT.skins.addons.immersion = false
-	E.private.WT.skins.addons.myslot = false
-	E.private.WT.skins.addons.omniCD = false
-	E.private.WT.skins.addons.omniCDIcon = false
-	E.private.WT.skins.addons.omniCDStatusBar = false
-	E.private.WT.skins.addons.premadeGroupsFilter = false
-	E.private.WT.skins.addons.tinyInspect = false
-	E.private.WT.skins.addons.tomCats = false
-	E.private.WT.skins.addons.warpDeplete = false
-	E.private.WT.skins.addons.weakAuras = false
-	E.private.WT.skins.addons.weakAurasOptions = false
-	E.private.WT.skins.addons.worldQuestTab = false
-	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.name = Private.Font
-	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.size = 12
-	E.private.WT.skins.blizzard.enable = false
-	E.private.WT.skins.elvui.enable = false
-	E.private.WT.skins.ime.label.name = Private.Font
-	E.private.WT.skins.ime.label.size = 12
-	E.private.WT.skins.shadow = false
-	E.private.WT.skins.weakAurasShadow = false
-	E.private.WT.skins.widgets.button.backdrop.classColor = true
-	E.private.WT.skins.widgets.button.backdrop.texture = Private.Texture
-	E.private.WT.skins.widgets.button.selected.backdropAlpha = 1
-	E.private.WT.skins.widgets.button.selected.backdropClassColor = true
-	E.private.WT.skins.widgets.button.selected.borderClassColor = true
-	E.private.WT.skins.widgets.checkBox.classColor = true
-	E.private.WT.skins.widgets.checkBox.texture = Private.Texture
-	E.private.WT.skins.widgets.slider.classColor = true
-	E.private.WT.skins.widgets.slider.texture = Private.Texture
-	E.private.WT.skins.widgets.tab.backdrop.classColor = true
-	E.private.WT.skins.widgets.tab.backdrop.texture = Private.Texture
-	E.private.WT.skins.widgets.tab.selected.backdropAlpha = 1
-	E.private.WT.skins.widgets.tab.selected.backdropClassColor = true
-	E.private.WT.skins.widgets.tab.selected.borderAlpha = 0
-	E.private.WT.skins.widgets.tab.selected.borderClassColor = true
-	E.private.WT.skins.widgets.tab.selected.texture = Private.Texture
-	E.private.WT.skins.widgets.treeGroupButton.backdrop.classColor = true
-	E.private.WT.skins.widgets.treeGroupButton.backdrop.texture = Private.Texture
-	E.private.WT.skins.widgets.treeGroupButton.selected.backdropAlpha = 1
-	E.private.WT.skins.widgets.treeGroupButton.selected.backdropClassColor = true
-	E.private.WT.skins.widgets.treeGroupButton.selected.borderClassColor = true
-	E.private.WT.skins.widgets.treeGroupButton.selected.texture = Private.Texture
-	E.private.WT.tooltips.factionIcon = false
-	E.private.WT.tooltips.petIcon = false
-	E.private.WT.tooltips.petId = false
-	E.private.WT.tooltips.progression.enable = false
-	E.private.WT.tooltips.tierSet = false
-	E.private.WT.tooltips.titleIcon.enable = false
-	E.private.WT.unitFrames.roleIcon.enable = false
+	Set(E.private, 'WT.item.extendMerchantPages.enable', true)
+	Set(E.private, 'WT.maps.minimapButtons.backdrop', false)
+	Set(E.private, 'WT.maps.minimapButtons.backdropSpacing', 0)
+	Set(E.private, 'WT.maps.minimapButtons.buttonSize', 22)
+	Set(E.private, 'WT.maps.minimapButtons.buttonsPerRow', 7)
+	Set(E.private, 'WT.maps.minimapButtons.expansionLandingPage', true)
+	Set(E.private, 'WT.maps.minimapButtons.spacing', 3)
+	Set(E.private, 'WT.maps.superTracker.enable', false)
+	Set(E.private, 'WT.maps.superTracker.waypointParse.enable', false)
+	Set(E.private, 'WT.maps.worldMap.enable', false)
+	Set(E.private, 'WT.maps.worldMap.reveal.enable', false)
+	Set(E.private, 'WT.maps.worldMap.scale.enable', false)
+	Set(E.private, 'WT.misc.lfgList.icon.pack', 'LYNUI')
+	Set(E.private, 'WT.misc.lfgList.icon.size', 14)
+	Set(E.private, 'WT.misc.lfgList.line.height', 4)
+	Set(E.private, 'WT.misc.lfgList.line.tex', Private.Texture)
+	Set(E.private, 'WT.misc.lfgList.partyKeystone.enable', false)
+	Set(E.private, 'WT.misc.lfgList.rightPanel.enable', false)
+	Set(E.private, 'WT.misc.moveFrames.elvUIBags', false)
+	Set(E.private, 'WT.misc.moveSpeed', true)
+	Set(E.private, 'WT.misc.pauseToSlash', false)
+	Set(E.private, 'WT.misc.tags', false)
+	Set(E.private, 'WT.quest.objectiveTracker.cosmeticBar.border', 'ONEPIXEL')
+	Set(E.private, 'WT.quest.objectiveTracker.cosmeticBar.color.mode', 'CLASS')
+	Set(E.private, 'WT.quest.objectiveTracker.cosmeticBar.texture', Private.Texture)
+	Set(E.private, 'WT.quest.objectiveTracker.cosmeticBar.width', 252)
+	Set(E.private, 'WT.quest.objectiveTracker.enable', true)
+	Set(E.private, 'WT.quest.objectiveTracker.header.classColor', true)
+	Set(E.private, 'WT.quest.objectiveTracker.header.size', 12)
+	Set(E.private, 'WT.quest.objectiveTracker.info.size', 11)
+	Set(E.private, 'WT.quest.objectiveTracker.infoColor.customColorHighlight.b', 1)
+	Set(E.private, 'WT.quest.objectiveTracker.infoColor.customColorHighlight.g', 1)
+	Set(E.private, 'WT.quest.objectiveTracker.infoColor.customColorHighlight.r', 1)
+	Set(E.private, 'WT.quest.objectiveTracker.infoColor.customColorNormal.b', 1)
+	Set(E.private, 'WT.quest.objectiveTracker.infoColor.customColorNormal.g', 1)
+	Set(E.private, 'WT.quest.objectiveTracker.infoColor.customColorNormal.r', 1)
+	Set(E.private, 'WT.quest.objectiveTracker.menuTitle.classColor', true)
+	Set(E.private, 'WT.quest.objectiveTracker.menuTitle.font.size', 12)
+	Set(E.private, 'WT.quest.objectiveTracker.titleColor.classColor', true)
+	Set(E.private, 'WT.skins.actionStatus.size', 12)
+	Set(E.private, 'WT.skins.addons.angryKeystones', false)
+	Set(E.private, 'WT.skins.addons.bigWigs', false)
+	Set(E.private, 'WT.skins.addons.bugSack', false)
+	Set(E.private, 'WT.skins.addons.hekili', false)
+	Set(E.private, 'WT.skins.addons.immersion', false)
+	Set(E.private, 'WT.skins.addons.myslot', false)
+	Set(E.private, 'WT.skins.addons.omniCD', false)
+	Set(E.private, 'WT.skins.addons.omniCDIcon', false)
+	Set(E.private, 'WT.skins.addons.omniCDStatusBar', false)
+	Set(E.private, 'WT.skins.addons.premadeGroupsFilter', false)
+	Set(E.private, 'WT.skins.addons.tinyInspect', false)
+	Set(E.private, 'WT.skins.addons.tomCats', false)
+	Set(E.private, 'WT.skins.addons.warpDeplete', false)
+	Set(E.private, 'WT.skins.addons.weakAuras', false)
+	Set(E.private, 'WT.skins.addons.weakAurasOptions', false)
+	Set(E.private, 'WT.skins.addons.worldQuestTab', false)
+	Set(E.private, 'WT.skins.bigWigsSkin.queueTimer.countDown.name', Private.Font)
+	Set(E.private, 'WT.skins.bigWigsSkin.queueTimer.countDown.size', 12)
+	Set(E.private, 'WT.skins.blizzard.enable', false)
+	Set(E.private, 'WT.skins.elvui.enable', false)
+	Set(E.private, 'WT.skins.ime.label.name', Private.Font)
+	Set(E.private, 'WT.skins.ime.label.size', 12)
+	Set(E.private, 'WT.skins.shadow', false)
+	Set(E.private, 'WT.skins.weakAurasShadow', false)
+	Set(E.private, 'WT.skins.widgets.button.backdrop.classColor', true)
+	Set(E.private, 'WT.skins.widgets.button.backdrop.texture', Private.Texture)
+	Set(E.private, 'WT.skins.widgets.button.selected.backdropAlpha', 1)
+	Set(E.private, 'WT.skins.widgets.button.selected.backdropClassColor', true)
+	Set(E.private, 'WT.skins.widgets.button.selected.borderClassColor', true)
+	Set(E.private, 'WT.skins.widgets.checkBox.classColor', true)
+	Set(E.private, 'WT.skins.widgets.checkBox.texture', Private.Texture)
+	Set(E.private, 'WT.skins.widgets.slider.classColor', true)
+	Set(E.private, 'WT.skins.widgets.slider.texture', Private.Texture)
+	Set(E.private, 'WT.skins.widgets.tab.backdrop.classColor', true)
+	Set(E.private, 'WT.skins.widgets.tab.backdrop.texture', Private.Texture)
+	Set(E.private, 'WT.skins.widgets.tab.selected.backdropAlpha', 1)
+	Set(E.private, 'WT.skins.widgets.tab.selected.backdropClassColor', true)
+	Set(E.private, 'WT.skins.widgets.tab.selected.borderAlpha', 0)
+	Set(E.private, 'WT.skins.widgets.tab.selected.borderClassColor', true)
+	Set(E.private, 'WT.skins.widgets.tab.selected.texture', Private.Texture)
+	Set(E.private, 'WT.skins.widgets.treeGroupButton.backdrop.classColor', true)
+	Set(E.private, 'WT.skins.widgets.treeGroupButton.backdrop.texture', Private.Texture)
+	Set(E.private, 'WT.skins.widgets.treeGroupButton.selected.backdropAlpha', 1)
+	Set(E.private, 'WT.skins.widgets.treeGroupButton.selected.backdropClassColor', true)
+	Set(E.private, 'WT.skins.widgets.treeGroupButton.selected.borderClassColor', true)
+	Set(E.private, 'WT.skins.widgets.treeGroupButton.selected.texture', Private.Texture)
+	Set(E.private, 'WT.tooltips.factionIcon', false)
+	Set(E.private, 'WT.tooltips.petIcon', false)
+	Set(E.private, 'WT.tooltips.petId', false)
+	Set(E.private, 'WT.tooltips.progression.enable', false)
+	Set(E.private, 'WT.tooltips.tierSet', false)
+	Set(E.private, 'WT.tooltips.titleIcon.enable', false)
+	Set(E.private, 'WT.unitFrames.roleIcon.enable', false)
 end

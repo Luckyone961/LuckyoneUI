@@ -13,6 +13,7 @@ Private.Defaults = {
 		disabledFrames = {
 			AlertFrame = false,
 			BossBanner = false,
+			HousingDecorAlerts = false,
 			ZoneTextFrame = false,
 		},
 		minimap = {
