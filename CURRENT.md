@@ -1,12 +1,10 @@
-## Version 3.29 [19-11-2025]
+## Version 3.30 [04-12-2025]
 
 **All WoW Versions:**  
-- ElvUI 14.03+ compatibility  
-- Added a new built-in custom installer which works with and without ElvUI  
-- Fixed installer showing up after login when it shouldn't  
+- ElvUI 14.04+ compatibility  
+- Backend improvements so the import of plugin profiles can no longer fail due to renamed DBs  
+- Small updates to the chat installer (Compatibility for new Chat APIs and "General" tab is now "Main")  
 
 **Retail:**  
-- Fixed the WindTools profile import  
-
-**Beta:**  
-- Support for Blizzards forced interface matching, which means the AddOn loads on Beta again  
+- Added new option to hide the "New Decor Added" housing alert toasts in the center of the screen  
+- Updated TOC for patch 11.2.7  

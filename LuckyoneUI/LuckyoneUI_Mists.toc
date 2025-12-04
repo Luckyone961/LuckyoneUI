@@ -5,7 +5,7 @@
 
 ## DefaultState: enabled
 ## Author: Luckyone
-## Version: 3.29
+## Version: 3.30
 
 ## Interface: 50502
 ## X-Required-ElvUI: 14.04
