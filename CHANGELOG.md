@@ -7,6 +7,7 @@
 
 **Retail:**  
 - Added new option to hide the "New Decor Added" housing alert toasts in the center of the screen  
+- Updated TOC for patch 11.2.7  
 
 ## Version 3.29 [19-11-2025]
 
