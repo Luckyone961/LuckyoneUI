@@ -1,6 +1,7 @@
 ﻿## Version 3.30 [In Development]
 
 **All WoW Versions:**  
+- ElvUI 14.04+ compatibility  
 - Backend improvements so the import of plugin profiles can no longer fail due to renamed DBs  
 
 **Retail:**  
