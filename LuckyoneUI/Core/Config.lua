@@ -153,7 +153,7 @@ local function BuildChatSection()
 	section.args.chatSetup.args.chat = ACH:Execute(L["Setup Chat"], nil, 1, function() Private:Setup_Chat() end)
 	section.args.chatDesc = ACH:Group(L["Description"], nil, 3)
 	section.args.chatDesc.inline = true
-	section.args.chatDesc.args.desc = ACH:Description(L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nChat tabs: [ General - Log - Whisper - Guild - Party ]"], 1, 'medium')
+	section.args.chatDesc.args.desc = ACH:Description(L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nChat tabs: [ Main - Log - Whisper - Guild - Party ]"], 1, 'medium')
 	section.args.chatVars = ACH:Group(L["Chat CVars"], nil, 4)
 	section.args.chatVars.inline = true
 	section.args.chatVars.args.desc = ACH:Description('- chatClassColorOverride 0\n- chatMouseScroll 1\n- chatStyle classic\n- colorChatNamesByClass 1\n- whisperMode inline\n- wholeChatWindowClickable 0', 1, 'medium')
