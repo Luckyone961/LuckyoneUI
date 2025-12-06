@@ -64,7 +64,7 @@ end
 function Private:GetMostRecentProfile(profileType)
 	if not Private.ElvUI then return end
 
-	local profiles = E.data:GetProfiles()
+	local profiles = ElvUI[1].data:GetProfiles()
 	local mostRecentNumber, mostRecentProfile
 	local devProfiles = {
 		Main = 'Luckyone Main',
