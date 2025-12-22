@@ -1,7 +1,40 @@
-﻿## Version 3.28 [In Development]
+﻿## Version 3.30 [04-12-2025]
+
+**All WoW Versions:**  
+- ElvUI 14.04+ compatibility  
+- Backend improvements so the import of plugin profiles can no longer fail due to renamed DBs  
+- Small updates to the chat installer (Compatibility for new Chat APIs and "General" tab is now "Main")  
+
+**Retail:**  
+- Added new option to hide the "New Decor Added" housing alert toasts in the center of the screen  
+- Updated TOC for patch 11.2.7  
+
+## Version 3.29 [19-11-2025]
+
+**All WoW Versions:**  
+- ElvUI 14.03+ compatibility  
+- Added a new built-in custom installer which works with and without ElvUI  
+- Fixed installer showing up after login when it shouldn't  
+
+**Retail:**  
+- Fixed the WindTools profile import  
+
+**Beta:**  
+- Support for Blizzards forced interface matching, which means the AddOn loads on Beta again  
+
+## Version 3.28 [02-11-2025]
+
+**Highlights:**  
+- Added a minimap icon which is enabled by default but can be turned off with one click  
+- LuckyoneUI is now an addon instead of a plugin, it works with and without ElvUI  
+- Reworked the README file which is basically the description of the addon  
+- Note there is not many changes in this release but it helps a ton for future features  
 
 **Retail:**  
 - Updated WindTools profile (Quest progress, Auto turnin, Achievement tracker)  
+
+**Mists:**  
+- Updated TOC for 5.5.2  
 
 **Classic:**  
 - Fixed the EasyDelete option  
@@ -1997,4 +2030,4 @@
 
 ## Version 1.00 [17-02-2020]
 
-- ElvUI_LuckyoneUI Release  
+- LuckyoneUI Release  

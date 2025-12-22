@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ../FrameXML/UI.xsd">
+	<Script file='AddOnSkins.lua'/>
+	<Script file='BigWigs.lua'/>
+	<Script file='Details.lua'/>
+	<Script file='ElvUI.lua'/>
+	<Script file='OmniCD.lua'/>
+	<Script file='Plater.lua'/>
+	<Script file='ProjectAzilroka.lua'/>
+	<Script file='ShadowLight.lua'/>
+	<Script file='WarpDeplete.lua'/>
+	<Script file='WeakAuras.lua'/>
+	<Script file='WindTools.lua'/>
+</Ui>

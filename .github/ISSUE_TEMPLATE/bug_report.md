@@ -32,9 +32,9 @@ Step 4:
 < Tell us what happens instead >
 
 
-**Only ElvUI + LuckyoneUI enabled**
+**Only LuckyoneUI enabled**
 < Please provide information about whether or not you can reproduce it >
-< when ElvUI and LuckyoneUI are the only addons enabled >
+< when LuckyoneUI is the only addon enabled >
 
 
 **Blizzard Issue?**
