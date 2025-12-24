@@ -1,4 +1,9 @@
-﻿## Version 3.30 [04-12-2025]
+﻿## Version 3.31 [24-12-2025]
+
+**All WoW Versions:**  
+- Bugfixes, no other changes  
+
+## Version 3.30 [04-12-2025]
 
 **All WoW Versions:**  
 - ElvUI 14.04+ compatibility  
