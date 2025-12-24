@@ -6,6 +6,7 @@ local LDBI = Private.Libs.LDBI
 
 -- Lua functions
 local format = format
+local ipairs = ipairs
 local next = next
 local pairs = pairs
 local print = print
@@ -50,6 +51,35 @@ local AddOns = {
 -- Chat print
 function Private:Print(msg)
 	print(Private.Name .. ': ' .. msg)
+end
+
+-- Gets the number from the profile string
+-- If it matches the specified profile type (Main/Healing/Support) or if no profile type is specified
+local function GetNumber(str, profileType)
+	return (not profileType or str:find(profileType, 1, true)) and tonumber(str:match('%d+%.?%d*')) or nil
+end
+
+-- Find the profile with the highest number
+-- Optionally filtering by the specified profile type
+function Private:GetMostRecentProfile(profileType)
+	if not Private.ElvUI then return end
+
+	local profiles = ElvUI[1].data:GetProfiles()
+	local mostRecentNumber, mostRecentProfile
+	local devProfiles = {
+		Main = 'Luckyone Main',
+		Healing = 'Luckyone Healing',
+		Support = 'Luckyone Support'
+	}
+
+	for _, profile in ipairs(profiles) do
+		local number = GetNumber(profile, profileType)
+		if number and (not mostRecentNumber or number > mostRecentNumber) then
+			mostRecentNumber, mostRecentProfile = number, profile
+		end
+	end
+
+	return mostRecentProfile or (profileType and devProfiles[profileType]) or nil
 end
 
 -- Minimap icon
