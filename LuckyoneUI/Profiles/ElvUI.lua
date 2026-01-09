@@ -188,7 +188,7 @@ function Private:HandleAlts(layout)
 		return
 	end
 
-	if not Private.isClassic then
+	if Private.isRetail or Private.isMists then
 		HandleLibDualSpec()
 	end
 
