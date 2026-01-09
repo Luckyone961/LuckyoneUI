@@ -13,6 +13,8 @@
 ## X-Curse-Project-ID: 363472
 ## X-Wago-ID: Rn6VLGdB
 
+## IconTexture: Interface\AddOns\LuckyoneUI\Media\Textures\Compartment.png
+
 Libs\Libs.xml
 Locales\Locales.xml
 
