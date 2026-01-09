@@ -393,6 +393,9 @@ function Private:HandleToons()
 		['Player-4454-060E3657'] = true, -- [H] Druid
 		['Player-4454-060E364E'] = true, -- [H] Priest
 		['Player-4454-060E361A'] = true, -- [H] Shaman
+	} or Private.isTBC and {
+		-- (6102: TBC PTR)
+		['Player-6102-0040D9D3'] = true, -- [H] Hunter
 	} or Private.isClassic and {
 		-- (6112: Spineshatter)
 		['Player-6112-028A3A6D'] = true, -- [H] Hunter
