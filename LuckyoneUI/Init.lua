@@ -5,6 +5,7 @@ local tonumber = tonumber
 -- API cache
 local C_Timer = C_Timer
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
+local GetBuildInfo = GetBuildInfo
 local GetRealmName = GetRealmName
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 local UnitGUID = UnitGUID
@@ -55,11 +56,15 @@ Private.Font = 'Expressway'
 Private.Outline = 'OUTLINE'
 Private.Texture = 'Minimalist'
 
+-- Build info
+_, _, _, Private.InterfaceVersion = GetBuildInfo()
+
 -- Game flavors
 Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 Private.isTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 Private.isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
+Private.isMidnight = Private.InterfaceVersion >= 120000
 
 -- API checks
 Private.IsAddOnLoaded = IsAddOnLoaded
