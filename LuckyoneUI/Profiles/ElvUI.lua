@@ -2410,7 +2410,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
 
-		if Private.isClassic then
+		if Private.isClassic or Private.isTBC then
 			E.db.unitframe.units.player.power.EnergyManaRegen = true
 		end
 
