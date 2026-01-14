@@ -396,8 +396,9 @@ function Private:HandleToons()
 	} or Private.isTBC and {
 		-- (6412: Spineshatter)
 		['Player-6412-028A3A6D'] = true, -- [H] Hunter
-		['Player-6412-02A2F754'] = true, -- [H] Priest
+		['Player-6412-0336641F'] = true, -- [H] Priest
 		['Player-6412-02A39E0E'] = true, -- [H] Warlock
+		['Player-6412-02BBE8AB'] = true, -- [H] Hunter 2
 	} or Private.isClassic and {
 		-- (5827: Living Flame)
 		['Player-5827-0273D732'] = true, -- [A] Hunter
