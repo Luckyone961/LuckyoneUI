@@ -1,4 +1,10 @@
-## Version 3.31 [24-12-2025]
+## Version 3.32 [14-01-2026]
 
 **All WoW Versions:**  
-- Bugfixes, no other changes  
+- ElvUI 14.06+ compatibility  
+
+**Retail:**  
+- Removed WeakAuras import section in preparation for Midnight  
+
+**TBC:**  
+- Initial support for Burning Crusade Classic Anniversary  

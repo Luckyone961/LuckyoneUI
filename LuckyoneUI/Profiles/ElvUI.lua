@@ -188,7 +188,7 @@ function Private:HandleAlts(layout)
 		return
 	end
 
-	if not Private.isClassic then
+	if Private.isRetail or Private.isMists then
 		HandleLibDualSpec()
 	end
 
@@ -218,7 +218,7 @@ end
 
 -- Setup The War Within layout
 function Private:Setup_Layout(layout, installer)
-	if not Private.isClassic then
+	if Private.isRetail or Private.isMists then
 		HandleLibDualSpec()
 	end
 

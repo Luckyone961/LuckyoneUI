@@ -283,45 +283,9 @@ local function BuildThemesSection()
 	return section
 end
 
--- Build WeakAuras Section
-local function BuildWeakAurasSection()
-	local section = ACH:Group('WeakAuras', nil, 14, nil, nil, nil, nil, not Private.isRetail)
-	section.args.maintained = ACH:Group(L["WeakAuras - Maintained"], nil, 1)
-	section.args.maintained.inline = true
-	section.args.maintained.args.evoker = ACH:Execute(format('|cff33937F%s|r', L["Evoker"]), nil, 1, function() Private:WeakAurasImport('evoker') end)
-	section.args.maintained.args.druid = ACH:Execute(format('|cffFF7C0A%s|r', L["Druid"]), nil, 2, function() Private:WeakAurasImport('druid') end)
-	section.args.maintained.args.spacer = ACH:Spacer(3, 'full')
-	section.args.maintained.args.auraList = ACH:Description('- |cff33937FEvoker|r: Augmentation, Devastation\n- |cffFF7C0ADruid|r: Balance', 5, 'medium')
-	section.args.edits = ACH:Group(L["WeakAuras - Edits of other packs"], nil, 2)
-	section.args.edits.inline = true
-	section.args.edits.args.importButtonRanged = ACH:Execute(L["Ranged DPS"], nil, 1, function() Private:WeakAurasImport('customEditsRanged') end)
-	section.args.edits.args.importButtonMelee = ACH:Execute(L["Melee DPS"], nil, 2, function() Private:WeakAurasImport('customEditsMelee') end)
-	section.args.edits.args.spacer = ACH:Spacer(3, 'full')
-	section.args.edits.args.importButtonTanks = ACH:Execute(L["Tanks"], nil, 4, function() Private:WeakAurasImport('customEditsTanks') end)
-	section.args.edits.args.importButtonHealers = ACH:Execute(L["Healers"], nil, 5, function() Private:WeakAurasImport('customEditsHealers') end)
-	section.args.general = ACH:Group(L["WeakAuras - General"], nil, 3)
-	section.args.general.inline = true
-	section.args.general.args.keys = ACH:Execute('!keys command', nil, 1, function() Private:WeakAurasImport('keys') end)
-	section.args.general.args.elvuiMythicVisibility = ACH:Execute('ElvUI Mythic Handler', nil, 2, function() Private:WeakAurasImport('elvuiMythicVisibility') end, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
-	section.args.general.args.spacerOne = ACH:Spacer(3, 'full')
-	section.args.general.args.externals = ACH:Execute('Externals on You', nil, 4, function() Private:WeakAurasImport('externals') end)
-	section.args.general.args.groupfinderAppTextHide = ACH:Execute('Groupfinder AppText Hide', nil, 5, function() Private:WeakAurasImport('groupfinderAppTextHide') end)
-	section.args.general.args.handleFriendlyNamePlates = ACH:Execute('Handle Friendly Plates', nil, 6, function() Private:WeakAurasImport('handleFriendlyNamePlates') end)
-	section.args.general.args.spacerTwo = ACH:Spacer(7, 'full')
-	section.args.general.args.handleNamePlatesFont = ACH:Execute('Handle Plates Font ', nil, 8, function() Private:WeakAurasImport('handleNamePlatesFont') end)
-	section.args.general.args.playerFrameUtilities = ACH:Execute('Player Frame Utility', nil, 9, function() Private:WeakAurasImport('playerFrameUtilities') end)
-	section.args.general.args.trinket = ACH:Execute('Trinket Tracker', nil, 10, function() Private:WeakAurasImport('trinket') end)
-	section.args.other = ACH:Group(L["WeakAuras - Other"], nil, 4)
-	section.args.other.inline = true
-	section.args.other.args.affixes = ACH:Execute('Affixes', nil, 1, function() Private:WeakAurasImport('affixes') end)
-	section.args.other.args.dungeonCore = ACH:Execute('Season 3 Dungeon', nil, 2, function() Private:WeakAurasImport('dungeonCore') end)
-	section.args.other.args.raidCore = ACH:Execute('Season 3 Raid', nil, 2, function() Private:WeakAurasImport('raidCore') end)
-	return section
-end
-
 -- Build Credits Section
 local function BuildCreditsSection()
-	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 15)
+	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 14)
 	section.args.header = ACH:Header(L["Credits"], 1)
 	section.args.author = ACH:Group(L["Author"], nil, 2)
 	section.args.author.inline = true
@@ -340,7 +304,7 @@ end
 
 -- Build Links Section
 local function BuildLinksSection()
-	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 16)
+	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 15)
 	section.args.header = ACH:Header(L["Links"], 1)
 	section.args.spacer = ACH:Spacer(2, 'full')
 	section.args.website = ACH:Input(L["Addon download:"], nil, 3, nil, 'full', function() return 'https://download.luckyone.dev' end)
@@ -356,7 +320,7 @@ end
 
 -- Build Dev Section
 local function BuildDevSection()
-	local section = ACH:Group(format('|cff4beb2c%s|r', 'Developer'), nil, 17)
+	local section = ACH:Group(format('|cff4beb2c%s|r', 'Developer'), nil, 16)
 	section.args.header1 = ACH:Header('Developer', 1)
 	section.args.toggles = ACH:Group('Toggles', nil, 2)
 	section.args.toggles.inline = true
@@ -396,10 +360,9 @@ function Private:BuildConfig()
 	Private.Config.args.skins = BuildSkinsSection() -- 11
 	Private.Config.args.tags = BuildTagsSection() -- 12
 	Private.Config.args.themes = BuildThemesSection() -- 13
-	Private.Config.args.weakauras = BuildWeakAurasSection() -- 14
-	Private.Config.args.credits = BuildCreditsSection() -- 15
-	Private.Config.args.links = BuildLinksSection() -- 16
-	Private.Config.args.dev = BuildDevSection() -- 17
+	Private.Config.args.credits = BuildCreditsSection() -- 14
+	Private.Config.args.links = BuildLinksSection() -- 15
+	Private.Config.args.dev = BuildDevSection() -- 16
 
 	-- ElvUI config integration
 	if Private.ElvUI then

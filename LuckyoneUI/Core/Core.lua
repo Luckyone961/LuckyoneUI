@@ -393,11 +393,12 @@ function Private:HandleToons()
 		['Player-4454-060E3657'] = true, -- [H] Druid
 		['Player-4454-060E364E'] = true, -- [H] Priest
 		['Player-4454-060E361A'] = true, -- [H] Shaman
-	} or Private.isClassic and {
+	} or Private.isTBC and {
 		-- (6112: Spineshatter)
 		['Player-6112-028A3A6D'] = true, -- [H] Hunter
 		['Player-6112-02A2F754'] = true, -- [H] Priest
 		['Player-6112-02A39E0E'] = true, -- [H] Warlock
+	} or Private.isClassic and {
 		-- (5827: Living Flame)
 		['Player-5827-0273D732'] = true, -- [A] Hunter
 		['Player-5827-0273D63E'] = true, -- [A] Paladin
