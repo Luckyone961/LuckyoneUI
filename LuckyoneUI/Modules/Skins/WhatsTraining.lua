@@ -9,6 +9,9 @@ end
 -- Lua functions
 local unpack = unpack
 
+-- API cache
+local C_Timer = C_Timer
+
 -- ElvUI modules
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
