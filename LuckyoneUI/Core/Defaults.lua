@@ -27,6 +27,7 @@ Private.Defaults = {
 			BugSack = false,
 			LFGBulletinBoard = false,
 			Tabardy = false,
+			WhatsTraining = false,
 		},
 	}
 }

@@ -2,4 +2,5 @@
 	<Script file='BugSack.lua'/>
 	<Script file='LFGBulletinBoard.lua'/>
 	<Script file='Tabardy.lua'/>
+	<Script file='WhatsTraining.lua'/>
 </Ui>

@@ -258,7 +258,8 @@ local function BuildSkinsSection()
 	section.args.addons.inline = true
 	section.args.addons.args.BugSack = ACH:Toggle('BugSack', nil, 1, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('BugSack'))
 	section.args.addons.args.Tabardy = ACH:Toggle('Tabardy', nil, 2, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('Tabardy'))
-	section.args.addons.args.LFGBulletinBoard = ACH:Toggle('LFGBulletinBoard', nil, 3, nil, nil, nil, nil, nil, Private.isRetail or Private.isMists or not Private.IsAddOnLoaded('LFGBulletinBoard'))
+	section.args.addons.args.LFGBulletinBoard = ACH:Toggle('LFGBulletinBoard', nil, 3, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) or not Private.IsAddOnLoaded('LFGBulletinBoard'))
+	section.args.addons.args.WhatsTraining = ACH:Toggle('WhatsTraining', nil, 4, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) or not Private.IsAddOnLoaded('WhatsTraining'))
 	return section
 end
 
