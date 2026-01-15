@@ -25,6 +25,7 @@ Private.Defaults = {
 		},
 		skins = {
 			BugSack = false,
+			LFGBulletinBoard = false,
 			Tabardy = false,
 		},
 	}
