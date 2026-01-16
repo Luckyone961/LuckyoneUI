@@ -25,6 +25,7 @@ Private.Defaults = {
 		},
 		skins = {
 			BugSack = false,
+			LeatrixPlus = false,
 			LFGBulletinBoard = false,
 			NovaWorldBuffs = false,
 			Tabardy = false,

@@ -261,6 +261,7 @@ local function BuildSkinsSection()
 	section.args.addons.args.LFGBulletinBoard = ACH:Toggle('LFGBulletinBoard', nil, 3, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) or not Private.IsAddOnLoaded('LFGBulletinBoard'))
 	section.args.addons.args.WhatsTraining = ACH:Toggle('WhatsTraining', nil, 4, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) or not Private.IsAddOnLoaded('WhatsTraining'))
 	section.args.addons.args.NovaWorldBuffs = ACH:Toggle('NovaWorldBuffs', nil, 5, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) or not Private.IsAddOnLoaded('NovaWorldBuffs'))
+	section.args.addons.args.LeatrixPlus = ACH:Toggle('LeatrixPlus', nil, 6, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) or not Private.IsAddOnLoaded('Leatrix_Plus'))
 	return section
 end
 
