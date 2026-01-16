@@ -19,6 +19,8 @@ function Private:Skin_NovaWorldBuffs()
     if MinimapLayerFrame and not MinimapLayerFrame.isSkinned then
 		-- Main Frame
 		S:HandleFrame(MinimapLayerFrame)
+        NWBVersionDragTooltip:StripTextures()
+        NWBVersionDragTooltip:SetTemplate('Transparent') -- Mouseover tooltip, list of all layers
 
 		-- Move the layer box to the bottom left of the minimap
         MinimapLayerFrame:ClearAllPoints()
