@@ -261,7 +261,8 @@ local function BuildSkinsSection()
 	section.args.addons.args.LFGBulletinBoard = ACH:Toggle('LFGBulletinBoard', 'Skin the full bulletin board frame in ElvUI style', 3, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) or not Private.IsAddOnLoaded('LFGBulletinBoard'))
 	section.args.addons.args.WhatsTraining = ACH:Toggle('WhatsTraining', 'Skin the WhatsTraining page in the Spellbook in ElvUI style', 4, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) or not Private.IsAddOnLoaded('WhatsTraining'))
 	section.args.addons.args.NovaWorldBuffs = ACH:Toggle('NovaWorldBuffs', 'Skin the small layer frame on the Minimap in ElvUI style and move it to the bottom left', 5, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) or not Private.IsAddOnLoaded('NovaWorldBuffs'))
-	section.args.addons.args.LeatrixPlus = ACH:Toggle('LeatrixPlus', 'Skin the two small Head/Cloak toggle checkboxes on the character frame in ElvUI style', 6, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) or not Private.IsAddOnLoaded('Leatrix_Plus'))
+	section.args.addons.args.NovaSpellRankChecker = ACH:Toggle('NovaSpellRankChecker', 'Skin the Spell Rank Checker button in ElvUI style', 6, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) or not Private.IsAddOnLoaded('NovaSpellRankChecker'))
+	section.args.addons.args.LeatrixPlus = ACH:Toggle('LeatrixPlus', 'Skin the two small Head/Cloak toggle checkboxes on the character frame in ElvUI style', 7, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) or not Private.IsAddOnLoaded('Leatrix_Plus'))
 	return section
 end
 

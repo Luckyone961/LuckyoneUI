@@ -27,6 +27,7 @@ Private.Defaults = {
 			BugSack = false,
 			LeatrixPlus = false,
 			LFGBulletinBoard = false,
+			NovaSpellRankChecker = false,
 			NovaWorldBuffs = false,
 			Tabardy = false,
 			WhatsTraining = false,

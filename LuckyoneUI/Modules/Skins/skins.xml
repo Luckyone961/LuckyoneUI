@@ -2,6 +2,7 @@
 	<Script file='BugSack.lua'/>
 	<Script file='LeatrixPlus.lua'/>
 	<Script file='LFGBulletinBoard.lua'/>
+	<Script file='NovaSpellRankChecker.lua'/>
 	<Script file='NovaWorldBuffs.lua'/>
 	<Script file='Tabardy.lua'/>
 	<Script file='WhatsTraining.lua'/>
