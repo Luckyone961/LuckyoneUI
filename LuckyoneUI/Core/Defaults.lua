@@ -26,6 +26,7 @@ Private.Defaults = {
 		skins = {
 			BugSack = false,
 			LFGBulletinBoard = false,
+			NovaWorldBuffs = false,
 			Tabardy = false,
 			WhatsTraining = false,
 		},
