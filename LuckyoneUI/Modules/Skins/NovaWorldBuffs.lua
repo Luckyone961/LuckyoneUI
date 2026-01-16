@@ -14,7 +14,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 function Private:Skin_NovaWorldBuffs()
-	if not Private.Addon.db.profile.skins.NovaWorldBuffs then return end
+	if not (Private.isClassic or Private.isTBC) and not Private.Addon.db.profile.skins.NovaWorldBuffs then return end
 
     if MinimapLayerFrame and not MinimapLayerFrame.isSkinned then
 		-- Main Frame

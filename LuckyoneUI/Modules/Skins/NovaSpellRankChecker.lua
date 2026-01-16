@@ -14,7 +14,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 function Private:Skin_NovaSpellRankChecker()
-	if not Private.Addon.db.profile.skins.NovaSpellRankChecker then return end
+	if not (Private.isClassic or Private.isTBC) and not Private.Addon.db.profile.skins.NovaSpellRankChecker then return end
 
 	if SpellBookFrameButton and not SpellBookFrameButton.isSkinned then
 		-- Skin and resize the spell rank checker button

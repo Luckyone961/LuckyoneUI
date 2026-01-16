@@ -14,7 +14,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 function Private:Skin_LFGBulletinBoard()
-	if not Private.Addon.db.profile.skins.LFGBulletinBoard then return end
+	if not (Private.isClassic or Private.isTBC) and not Private.Addon.db.profile.skins.LFGBulletinBoard then return end
 
 	if GroupBulletinBoardFrame and not GroupBulletinBoardFrame.isSkinned then
 		-- Main Frame
