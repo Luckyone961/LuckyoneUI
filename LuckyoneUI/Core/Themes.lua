@@ -20,7 +20,7 @@ local E = unpack(ElvUI)
 -- Figure out our current profile
 local function Profile()
 	local data = E.data:GetCurrentProfile()
-	return strfind(data, 'Luckyone Main') or strfind(data, 'Luckyone Support') and 1 or strfind(data, 'Luckyone Healing') and 2 or nil
+	return strfind(data, 'Luckyone Main') or (strfind(data, 'Luckyone Support') and 1) or (strfind(data, 'Luckyone Healing') and 2) or nil
 end
 
 -- UnitFrame color themes

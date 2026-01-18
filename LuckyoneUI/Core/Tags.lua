@@ -276,9 +276,9 @@ E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_
 end, Private.isClassic)
 E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"], nil, Private.isClassic)
 
--- Display pet name and happiness status (Classic only)
-E:AddTag('luckyone:pet:name-and-happiness', Private.isClassic and 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE' or 'UNIT_NAME_UPDATE PET_UI_UPDATE', function(unit)
-	if not Private.isClassic then
+-- Display pet name and happiness status (Classic and TBC only)
+E:AddTag('luckyone:pet:name-and-happiness', (Private.isClassic or Private.isTBC) and 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE' or 'UNIT_NAME_UPDATE PET_UI_UPDATE', function(unit)
+	if not Private.isClassic and not Private.isTBC then
 		return 'Pet'
 	else
 		local hasPetUI, isHunterPet = HasPetUI()

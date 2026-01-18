@@ -25,7 +25,13 @@ Private.Defaults = {
 		},
 		skins = {
 			BugSack = false,
+			DejaClassicStats = false,
+			LeatrixPlus = false,
+			LFGBulletinBoard = false,
+			NovaSpellRankChecker = false,
+			NovaWorldBuffs = false,
 			Tabardy = false,
+			WhatsTraining = false,
 		},
 	}
 }

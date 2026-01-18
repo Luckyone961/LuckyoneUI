@@ -1,4 +1,4 @@
-## Title: |cff4beb2cLuckyoneUI|r |cffFF7E40Classic|r
+## Title: |cff4beb2cLuckyoneUI|r |cff67f100TBC|r
 ## Notes: Luckyone's user interface and Addon profiles
 ## OptionalDeps: ElvUI
 ## SavedVariables: LuckyoneDB
@@ -7,11 +7,13 @@
 ## Author: Luckyone
 ## Version: 3.32
 
-## Interface: 11508
+## Interface: 20505
 ## X-Required-ElvUI: 14.07
 
 ## X-Curse-Project-ID: 363472
 ## X-Wago-ID: Rn6VLGdB
+
+## IconTexture: Interface\AddOns\LuckyoneUI\Media\Textures\Compartment.png
 
 Libs\Libs.xml
 Locales\Locales.xml

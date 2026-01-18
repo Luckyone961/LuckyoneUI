@@ -188,7 +188,7 @@ function Private:HandleAlts(layout)
 		return
 	end
 
-	if not Private.isClassic then
+	if Private.isRetail or Private.isMists then
 		HandleLibDualSpec()
 	end
 
@@ -218,7 +218,7 @@ end
 
 -- Setup The War Within layout
 function Private:Setup_Layout(layout, installer)
-	if not Private.isClassic then
+	if Private.isRetail or Private.isMists then
 		HandleLibDualSpec()
 	end
 
@@ -2410,7 +2410,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
 
-		if Private.isClassic then
+		if Private.isClassic or Private.isTBC then
 			E.db.unitframe.units.player.power.EnergyManaRegen = true
 		end
 

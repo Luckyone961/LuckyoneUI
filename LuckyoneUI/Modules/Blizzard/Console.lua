@@ -61,6 +61,10 @@ function Private:NameplateCVars(noPrint)
 		SetCVar('UnitNameEnemyTotem', 1)
 	end
 
+	if Private.isTBC then
+		SetCVar('nameplateMaxDistance', 41)
+	end
+
 	if not Private.isRetail then
 		SetCVar('nameplateNotSelectedAlpha', 1)
 	end
