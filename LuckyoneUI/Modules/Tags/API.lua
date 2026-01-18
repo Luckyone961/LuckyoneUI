@@ -15,17 +15,22 @@ local strmatch = string.match
 local type = type
 local unpack = unpack
 
--- ElvUI modules
-local E = unpack(ElvUI)
-local Tags = ElvUF.Tags
-local Abbrev = Tags.Env.Abbrev
-
-local _COLORS = ElvUF.colors
-local ElvUF_colors_class = ElvUF.colors.class
-local ElvUF_colors_reaction = ElvUF.colors.reaction
+-- API cache
+local UnitClass = UnitClass
+local UnitInPartyIsAI = UnitInPartyIsAI
+local UnitIsPlayer = UnitIsPlayer
+local UnitName = UnitName
+local UnitReaction = UnitReaction
 
 -- Global strings
 local UNKNOWN = UNKNOWN
+
+-- ElvUI modules
+local E = unpack(ElvUI)
+local Abbrev = ElvUF.Tags.Env.Abbrev
+
+local ElvUF_colors_class = ElvUF.colors.class
+local ElvUF_colors_reaction = ElvUF.colors.reaction
 
 function Private.Tags.Hex(r, g, b)
 	if type(r) == 'table' then

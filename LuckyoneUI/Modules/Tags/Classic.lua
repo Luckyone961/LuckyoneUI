@@ -8,13 +8,11 @@ if not Private.ElvUI then
 end
 
 -- Lua functions
-local concat = table.concat
 local floor = floor
 local format = format
 local pairs = pairs
 local strfind = string.find
 local strmatch = string.match
-local type = type
 local unpack = unpack
 
 -- API cache
@@ -48,6 +46,7 @@ local UnitReaction = UnitReaction
 
 -- Global environment
 local _G = _G
+local Enum = Enum
 
 -- Global strings
 local UNKNOWN = UNKNOWN
