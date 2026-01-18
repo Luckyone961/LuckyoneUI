@@ -16,6 +16,7 @@ local type = type
 local unpack = unpack
 
 -- API cache
+local C_ColorUtil_GenerateTextColorCode = Private.isMidnight and C_ColorUtil.GenerateTextColorCode
 local UnitClass = UnitClass
 local UnitInPartyIsAI = UnitInPartyIsAI
 local UnitIsPlayer = UnitIsPlayer
@@ -34,7 +35,9 @@ local ElvUF_colors_reaction = ElvUF.colors.reaction
 
 function Private.Tags.Hex(r, g, b)
 	if type(r) == 'table' then
-		if r.r then
+		if Private.isMidnight then
+			return '|c' .. C_ColorUtil_GenerateTextColorCode(r)
+		elseif(r.r) then
 			r, g, b = r.r, r.g, r.b
 		else
 			r, g, b = unpack(r)
