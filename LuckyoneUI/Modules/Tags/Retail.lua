@@ -7,6 +7,11 @@ if not Private.ElvUI then
 	return
 end
 
+-- Retail only file
+if Private.isClassic or Private.isTBC or Private.isMists then
+	return
+end
+
 -- Lua functions
 local format = string.format
 
@@ -41,3 +46,9 @@ E:AddTag('luckyone:power:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPL
 	return format('%d', UnitPowerPercent(unit, nil, true, ScaleTo100))
 end)
 E:AddTagInfo('luckyone:power:percent', Private.Name, L["Displays percentage power without a percent sign"])
+
+--[[
+	L["Displays percentage health with a percent sign"] = true
+	L["Displays the short value of the current health (Examples: 156.4k, 1.62M, 1.75B)"] = true
+	L["Displays percentage power without a percent sign"] = true
+]]

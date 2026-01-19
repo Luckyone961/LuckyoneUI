@@ -23,9 +23,7 @@ local unpack = unpack
 -- API cache
 local C_PetJournal_GetPetTeamAverageLevel = C_PetJournal.GetPetTeamAverageLevel
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
-local GetPetHappiness = GetPetHappiness
 local GetRelativeDifficultyColor = GetRelativeDifficultyColor
-local HasPetUI = HasPetUI
 local QuestDifficultyColors = QuestDifficultyColors
 local UnitBattlePetLevel = UnitBattlePetLevel
 local UnitClass = UnitClass
@@ -41,7 +39,6 @@ local UnitIsConnected = UnitIsConnected
 local UnitIsDead = UnitIsDead
 local UnitIsGhost = UnitIsGhost
 local UnitIsPlayer = UnitIsPlayer
-local UnitIsUnit = UnitIsUnit
 local UnitIsWildBattlePet = UnitIsWildBattlePet
 local UnitName = UnitName
 local UnitPower = UnitPower
@@ -65,19 +62,6 @@ local _COLORS = ElvUF.colors
 local ElvUF_colors_class = ElvUF.colors.class
 local ElvUF_colors_power = ElvUF.colors.power
 local ElvUF_colors_reaction = ElvUF.colors.reaction
-
-local classificationText = {
-	rare = 'Rare',
-	rareelite = 'Rare Elite',
-	elite = 'Elite',
-	worldboss = 'Boss'
-}
-
--- Display unit classification without 'affix' on minor enemies
-E:AddTag('luckyone:classification', 'UNIT_CLASSIFICATION_CHANGED', function(unit)
-	return classificationText[UnitClassification(unit)] or nil
-end)
-E:AddTagInfo('luckyone:classification', Private.Name, L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"])
 
 -- Display percentage health: 100% 0 decimals | <100% 1 decimal | <10% 2 decimals
 E:AddTag('luckyone:health:percent', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
@@ -192,29 +176,6 @@ E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_
 	end
 end, Private.isClassic)
 E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"], nil, Private.isClassic)
-
--- Display pet name and happiness status (Classic and TBC only)
-E:AddTag('luckyone:pet:name-and-happiness', (Private.isClassic or Private.isTBC) and 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE' or 'UNIT_NAME_UPDATE PET_UI_UPDATE', function(unit)
-	if not Private.isClassic and not Private.isTBC then
-		return 'Pet'
-	else
-		local hasPetUI, isHunterPet = HasPetUI()
-		if hasPetUI and UnitIsUnit('pet', unit) then
-			if isHunterPet then
-				local petHappiness = GetPetHappiness()
-				local happinessColor = _COLORS.happiness[petHappiness]
-				-- Return for Hunters
-				return Private.Tags.Hex(happinessColor) .. _G['PET_HAPPINESS' .. petHappiness]
-			else
-				-- Return for other Pet Classes
-				return 'Pet'
-			end
-		else -- Shadowfiend and others
-			return 'Pet'
-		end
-	end
-end)
-E:AddTagInfo('luckyone:pet:name-and-happiness', Private.Name, L["Displays the pet's name and includes (in Classic only) the full happiness status"])
 
 -- Displays the last (and mostly important) part of the unit's name with class color
 E:AddTag('luckyone:name:last-classcolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)

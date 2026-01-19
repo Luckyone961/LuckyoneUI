@@ -2,4 +2,5 @@
 	<Script file='API.lua'/>
 	<Script file='Classic.lua'/>
 	<Script file='Retail.lua'/>
+	<Script file='Shared.lua'/>
 </Ui>
