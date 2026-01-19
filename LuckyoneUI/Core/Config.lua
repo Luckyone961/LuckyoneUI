@@ -239,12 +239,10 @@ local function BuildProfilesSection()
 	section.args.addonsMain = ACH:Group(L["Addon profiles"], nil, 7)
 	section.args.addonsMain.inline = true
 	section.args.addonsMain.args.bigwigs = ACH:Execute(L["BigWigs Main"], RESET_DEFAULTS_TEXT, 1, function() Private:Setup_BigWigs('main') end, nil, true)
-	section.args.addonsMain.args.omnicd = ACH:Execute(L["OmniCD Main"], RESET_DEFAULTS_TEXT, 2, function() Private:Setup_OmniCD('main') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.header3 = ACH:Header(L["Profiles for Healing"], 8)
 	section.args.addonsHealing = ACH:Group(L["Addon profiles"], nil, 9)
 	section.args.addonsHealing.inline = true
 	section.args.addonsHealing.args.bigwigs = ACH:Execute(L["BigWigs Healing"], RESET_DEFAULTS_TEXT, 1, function() Private:Setup_BigWigs('healing') end, nil, true)
-	section.args.addonsHealing.args.omnicd = ACH:Execute(L["OmniCD Healing"], RESET_DEFAULTS_TEXT, 2, function() Private:Setup_OmniCD('healing') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	return section
 end
 
