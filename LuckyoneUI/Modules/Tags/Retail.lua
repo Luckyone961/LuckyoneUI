@@ -78,12 +78,12 @@ E:AddTagInfo('luckyone:name-nocolor', Private.Name, L["Displays the name with no
 for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long = 20 }) do
 	-- Displays the unit's name with classcolor and a maximum length of 5, 10, 15 and 20 characters (Only works for friendly party/raid members)
 	E:AddTag('luckyone:name:' .. textFormat .. '-color-friendly', 'UNIT_NAME_UPDATE UNIT_FACTION', function(unit)
-		if not UnitIsPlayer(unit) or not UnitInPartyIsAI(unit) then return '' end
+		if not (UnitIsPlayer(unit) or UnitInPartyIsAI(unit)) then return '' end
 		return Private.Tags.getFormattedName(unit, length, true)
 	end)
 	-- Displays the unit's name with no color and a maximum length of 5, 10, 15 and 20 characters (Only works for friendly party/raid members)
 	E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly', 'UNIT_NAME_UPDATE', function(unit)
-		if not UnitIsPlayer(unit) or not UnitInPartyIsAI(unit) then return '' end
+	if not (UnitIsPlayer(unit) or UnitInPartyIsAI(unit)) then return '' end
 		return Private.Tags.getFormattedName(unit, length, false)
 	end)
 
