@@ -5,7 +5,7 @@ local LDB = Private.Libs.LDB
 local LDBI = Private.Libs.LDBI
 
 -- Lua functions
-local format = format
+local format = string.format
 local ipairs = ipairs
 local next = next
 local pairs = pairs

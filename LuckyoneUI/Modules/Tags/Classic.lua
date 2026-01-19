@@ -14,7 +14,7 @@ end
 
 -- Lua functions
 local floor = floor
-local format = format
+local format = string.format
 local pairs = pairs
 local strfind = string.find
 local strmatch = string.match
