@@ -33,6 +33,33 @@ local Abbrev = ElvUF.Tags.Env.Abbrev
 local ElvUF_colors_class = ElvUF.colors.class
 local ElvUF_colors_reaction = ElvUF.colors.reaction
 
+-- Breakpoints for abbreviations
+Private.Tags.abbrevOptions = {
+	breakpointData = {
+		{
+			breakpoint = 1000000000, -- 1B
+			abbreviation = 'B',
+			significandDivisor = 10000000,
+			fractionDivisor = 100,
+			abbreviationIsGlobal = false
+		},
+		{
+			breakpoint = 1000000, -- 1M
+			abbreviation = 'M',
+			significandDivisor = 10000,
+			fractionDivisor = 100,
+			abbreviationIsGlobal = false
+		},
+		{
+			breakpoint = 1000, -- 1K
+			abbreviation = 'k',
+			significandDivisor = 100,
+			fractionDivisor = 10,
+			abbreviationIsGlobal = false
+		}
+	}
+}
+
 function Private.Tags.Hex(r, g, b)
 	if type(r) == 'table' then
 		if Private.isMidnight then
