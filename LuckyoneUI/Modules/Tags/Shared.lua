@@ -20,16 +20,9 @@ local _G = _G
 local E = unpack(ElvUI)
 local _COLORS = ElvUF.colors
 
-local classificationText = {
-	rare = 'Rare',
-	rareelite = 'Rare Elite',
-	elite = 'Elite',
-	worldboss = 'Boss'
-}
-
 -- Display unit classification without 'affix' on minor enemies
 E:AddTag('luckyone:classification', 'UNIT_CLASSIFICATION_CHANGED', function(unit)
-	return classificationText[UnitClassification(unit)] or nil
+	return Private.Tags.classificationText[UnitClassification(unit)] or nil
 end)
 E:AddTagInfo('luckyone:classification', Private.Name, L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"])
 

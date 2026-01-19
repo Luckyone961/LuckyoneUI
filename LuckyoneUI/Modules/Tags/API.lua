@@ -21,6 +21,7 @@ local UnitClass = UnitClass
 local UnitInPartyIsAI = UnitInPartyIsAI
 local UnitIsPlayer = UnitIsPlayer
 local UnitName = UnitName
+local UnitPowerType = UnitPowerType
 local UnitReaction = UnitReaction
 
 -- Global strings
@@ -33,7 +34,6 @@ local Abbrev = ElvUF.Tags.Env.Abbrev
 local ElvUF_colors_class = ElvUF.colors.class
 local ElvUF_colors_reaction = ElvUF.colors.reaction
 
--- Breakpoints for abbreviations
 Private.Tags.abbrevOptions = {
 	breakpointData = {
 		{
@@ -58,6 +58,13 @@ Private.Tags.abbrevOptions = {
 			abbreviationIsGlobal = false
 		}
 	}
+}
+
+Private.Tags.classificationText = {
+	rare = 'Rare',
+	rareelite = 'Rare Elite',
+	elite = 'Elite',
+	worldboss = 'Boss'
 }
 
 function Private.Tags.Hex(r, g, b)
@@ -111,6 +118,28 @@ function Private.Tags.getFormattedName(unit, length, color, abbrev)
 	end
 
 	return colorHex .. name
+end
+
+function Private.Tags.getPowerColor(unit)
+	local _COLORS = ElvUF.colors
+	local pType, pToken, altR, altG, altB = UnitPowerType(unit)
+	local color = _COLORS.power[pToken]
+
+	if not color then
+		if altR then
+			if altR > 1 or altG > 1 or altB > 1 then
+				color = Private.Tags.Hex(altR / 255, altG / 255, altB / 255)
+			else
+				color = Private.Tags.Hex(altR, altG, altB)
+			end
+		else
+			color = Private.Tags.Hex(_COLORS.power[pType] or _COLORS.power.MANA)
+		end
+	else
+		color = Private.Tags.Hex(color)
+	end
+
+	return color
 end
 
 function Private.Tags.getUnitColor(unit)

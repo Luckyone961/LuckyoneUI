@@ -100,7 +100,7 @@ E:AddTag('luckyone:health:percent-with-absorbs:nostatus', 'UNIT_HEALTH UNIT_MAXH
 end, Private.isClassic)
 E:AddTagInfo('luckyone:health:percent-with-absorbs:nostatus', Private.Name, L["Displays the unit's current health as a percentage with absorb values, without decimals and without status"], nil, Private.isClassic)
 
--- Display percentage power with powecolor and hides power at 0
+-- Display percentage power with powercolor and hides power at 0
 E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local min, max = UnitPower(unit), UnitPowerMax(unit)
 	local pType, pToken, altR, altG, altB = UnitPowerType(unit)
@@ -129,8 +129,9 @@ E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percent
 -- Display percentage mana with 0 decimals
 E:AddTag('luckyone:mana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local min = UnitPower(unit, Enum.PowerType.Mana)
+	local max = UnitPowerMax(unit, Enum.PowerType.Mana)
 
-	return E:GetFormattedText('PERCENT', min, UnitPowerMax(unit, Enum.PowerType.Mana), 0, nil)
+	return E:GetFormattedText('PERCENT', min, max, 0, nil)
 end)
 E:AddTagInfo('luckyone:mana:percent', Private.Name, L["Displays percentage mana without decimals"])
 
