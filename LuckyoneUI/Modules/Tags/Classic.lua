@@ -7,6 +7,11 @@ if not Private.ElvUI then
 	return
 end
 
+-- Classic only file
+if Private.isMidnight then -- ToDo: Change me to retail in 12.0
+	return
+end
+
 -- Lua functions
 local floor = floor
 local format = format
