@@ -1039,7 +1039,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.chat.useBTagName = true
 
 	-- Cooldown Text
-	-- ToDo: Midnight
+	E.db.cooldown.font = Private.Font
+	E.db.cooldown.fontSize = 12
+	E.db.cooldown.override = false
 
 	-- DataBars
 	E.db.databars.azerite.enable = false
