@@ -2,13 +2,8 @@
 local _, Private = ...
 local L = Private.Libs.ACL
 
--- ElvUI file
-if not Private.ElvUI then
-	return
-end
-
--- Retail only file
-if Private.isClassic or Private.isTBC or Private.isMists then
+-- ElvUI file (and Retail only)
+if not Private.ElvUI or Private.isClassic or Private.isTBC or Private.isMists then
 	return
 end
 
@@ -25,6 +20,8 @@ local AbbreviateNumbers = AbbreviateNumbers
 local ScaleTo100 = CurveConstants and CurveConstants.ScaleTo100
 local UnitHealth = UnitHealth
 local UnitHealthPercent = UnitHealthPercent
+local UnitInPartyIsAI = UnitInPartyIsAI
+local UnitIsPlayer = UnitIsPlayer
 local UnitPowerPercent = UnitPowerPercent
 
 -- Global environment
@@ -64,7 +61,7 @@ end)
 E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percentage power with no color"])
 
 -- Display name with classcolor/reactioncolor
-E:AddTag('luckyone:name-color', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+E:AddTag('luckyone:name-color', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 	local name = UnitName(unit)
 	local color = Private.Tags.getUnitColor(unit)
 	return color .. name
@@ -77,3 +74,19 @@ E:AddTag('luckyone:name-nocolor', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UN
 	return name
 end)
 E:AddTagInfo('luckyone:name-nocolor', Private.Name, L["Displays the name with no color"])
+
+for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long = 20 }) do
+	-- Displays the unit's name with classcolor and a maximum length of 5, 10, 15 and 20 characters (Only works for friendly party/raid members)
+	E:AddTag('luckyone:name:' .. textFormat .. '-color-friendly', 'UNIT_NAME_UPDATE UNIT_FACTION', function(unit)
+		if not UnitIsPlayer(unit) or not UnitInPartyIsAI(unit) then return '' end
+		return Private.Tags.getFormattedName(unit, length, true)
+	end)
+	-- Displays the unit's name with no color and a maximum length of 5, 10, 15 and 20 characters (Only works for friendly party/raid members)
+	E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly', 'UNIT_NAME_UPDATE', function(unit)
+		if not UnitIsPlayer(unit) or not UnitInPartyIsAI(unit) then return '' end
+		return Private.Tags.getFormattedName(unit, length, false)
+	end)
+
+	E:AddTagInfo('luckyone:name:' .. textFormat .. '-color-friendly', Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters (Only works for friendly party/raid members)"], length))
+	E:AddTagInfo('luckyone:name:' .. textFormat .. '-nocolor-friendly', Private.Name, format(L["Displays the unit's name with no color and a maximum length of %s characters (Only works for friendly party/raid members)"], length))
+end

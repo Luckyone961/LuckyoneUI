@@ -1877,7 +1877,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.health.text_format = ''
 	E.db.unitframe.units.raid1.horizontalSpacing = 1
 	E.db.unitframe.units.raid1.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.raid1.name.text_format = Private.isMidnight and '[luckyone:name-color]' or '[luckyone:name:veryshort-classcolor]'
+	E.db.unitframe.units.raid1.name.text_format = Private.isMidnight and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 	E.db.unitframe.units.raid1.numGroups = 4
 	E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'TOP'
 	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
@@ -1924,7 +1924,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.health.text_format = ''
 	E.db.unitframe.units.raid3.horizontalSpacing = 1
 	E.db.unitframe.units.raid3.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.raid3.name.text_format = Private.isMidnight and '[luckyone:name-color]' or '[luckyone:name:veryshort-classcolor]'
+	E.db.unitframe.units.raid3.name.text_format = Private.isMidnight and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 	E.db.unitframe.units.raid3.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.raid3.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid3.pvpclassificationindicator.enable = false
@@ -2015,7 +2015,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.targettarget.width = 278
 
 		-- Main Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isMidnight and '[luckyone:name-color]' or (Private.isTBC or Private.isMists and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]') or '[luckyone:name:short-classcolor]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isMidnight and '[luckyone:name:short-color-friendly]' or (Private.isTBC or Private.isMists and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]') or '[luckyone:name:short-classcolor]'
 		E.db.unitframe.units.party.debuffs.countFont = Private.Font
 		E.db.unitframe.units.party.debuffs.countXOffset = 2
 		E.db.unitframe.units.party.debuffs.enable = true
@@ -2143,7 +2143,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.party.growthDirection = 'RIGHT_DOWN'
 
 		-- Healing Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-nocolor<%]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
+		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-nocolor]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
 		E.db.unitframe.units.player.castbar.width = (scaled and 505) or 605
 		E.db.unitframe.units.player.power.attachTextTo = 'Power'
 		E.db.unitframe.units.player.power.autoHide = false
@@ -2162,7 +2162,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.targettarget.width = 260
 
 		-- Healing Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isMidnight and '[luckyone:name-color]' or '[luckyone:name:short-classcolor]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isMidnight and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
 		E.db.unitframe.units.party.buffIndicator.size = 14
 		E.db.unitframe.units.party.debuffs.enable = false
 		E.db.unitframe.units.party.height = 65
@@ -2297,7 +2297,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.targettarget.width = 278
 
 		-- Support Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isMidnight and '[luckyone:name-color]' or '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isMidnight and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]'
 		E.db.unitframe.units.party.debuffs.countFont = Private.Font
 		E.db.unitframe.units.party.debuffs.countXOffset = 2
 		E.db.unitframe.units.party.debuffs.enable = true
