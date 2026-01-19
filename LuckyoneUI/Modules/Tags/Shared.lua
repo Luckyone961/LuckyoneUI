@@ -13,6 +13,9 @@ local HasPetUI = HasPetUI
 local UnitIsUnit = UnitIsUnit
 local UnitClassification = UnitClassification
 
+-- Global environment
+local _G = _G
+
 -- ElvUI modules
 local E = unpack(ElvUI)
 local _COLORS = ElvUF.colors

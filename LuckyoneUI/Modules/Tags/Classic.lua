@@ -21,13 +21,12 @@ local strmatch = string.match
 local unpack = unpack
 
 -- API cache
-local C_PetJournal_GetPetTeamAverageLevel = C_PetJournal.GetPetTeamAverageLevel
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
+local GetPetTeamAverageLevel = C_PetJournal and C_PetJournal.GetPetTeamAverageLevel
 local GetRelativeDifficultyColor = GetRelativeDifficultyColor
 local QuestDifficultyColors = QuestDifficultyColors
 local UnitBattlePetLevel = UnitBattlePetLevel
 local UnitClass = UnitClass
-local UnitClassification = UnitClassification
 local UnitEffectiveLevel = UnitEffectiveLevel
 local UnitGetTotalAbsorbs = UnitGetTotalAbsorbs
 local UnitGroupRolesAssigned = UnitGroupRolesAssigned
@@ -143,7 +142,7 @@ E:AddTag('luckyone:level', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 
 	if Private.isRetail and (UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit)) then
 		level = UnitBattlePetLevel(unit)
-		local teamLevel = C_PetJournal_GetPetTeamAverageLevel()
+		local teamLevel = GetPetTeamAverageLevel()
 		color = (teamLevel ~= level) and GetRelativeDifficultyColor(teamLevel, level) or QuestDifficultyColors.difficult
 	else
 		color = GetCreatureDifficultyColor(level)

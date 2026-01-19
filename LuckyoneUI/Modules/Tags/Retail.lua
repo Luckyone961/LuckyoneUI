@@ -12,6 +12,11 @@ if Private.isClassic or Private.isTBC or Private.isMists then
 	return
 end
 
+-- ToDo: Remove me later
+if not Private.isMidnight then
+	return
+end
+
 -- Lua functions
 local format = string.format
 
