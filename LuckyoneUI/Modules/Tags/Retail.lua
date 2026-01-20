@@ -27,6 +27,9 @@ local UnitPowerPercent = UnitPowerPercent
 -- Global environment
 local _G = _G
 
+-- Global strings
+local UNKNOWN = UNKNOWN
+
 -- ElvUI modules
 local E = unpack(ElvUI)
 local _COLORS = ElvUF.colors
@@ -62,7 +65,7 @@ E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percent
 
 -- Display name with classcolor/reactioncolor
 E:AddTag('luckyone:name-color', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
-	local name = UnitName(unit)
+	local name = UnitName(unit) or UNKNOWN
 	local color = Private.Tags.getUnitColor(unit)
 	return color .. name
 end)
@@ -70,7 +73,7 @@ E:AddTagInfo('luckyone:name-color', Private.Name, L["Displays the name with clas
 
 -- Display name with no color
 E:AddTag('luckyone:name-nocolor', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
-	local name = UnitName(unit)
+	local name = UnitName(unit) or UNKNOWN
 	return name
 end)
 E:AddTagInfo('luckyone:name-nocolor', Private.Name, L["Displays the name with no color"])
