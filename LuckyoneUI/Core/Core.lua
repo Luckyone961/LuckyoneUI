@@ -92,6 +92,7 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 			if Private.ElvUI then
 				ElvUI[1]:ToggleOptions()
 				ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'LuckyoneUI')
+				ElvUI[1]:Config_UpdateSize(true)
 			else
 				Settings_OpenToCategory('LuckyoneUI')
 			end
@@ -120,6 +121,7 @@ function LuckyoneUI_OnAddonCompartmentClick()
 	if Private.ElvUI then
 		ElvUI[1]:ToggleOptions()
 		ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'LuckyoneUI')
+		ElvUI[1]:Config_UpdateSize(true)
 	else
 		Settings_OpenToCategory('LuckyoneUI')
 	end
@@ -263,6 +265,7 @@ function Private.Addon:Toggles(msg)
 		if Private.ElvUI then
 			ElvUI[1]:ToggleOptions()
 			ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'LuckyoneUI')
+			ElvUI[1]:Config_UpdateSize(true)
 		else
 			Settings_OpenToCategory('LuckyoneUI')
 		end
