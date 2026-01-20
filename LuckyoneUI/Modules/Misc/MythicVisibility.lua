@@ -6,53 +6,54 @@ if not Private.ElvUI then
 	return
 end
 
---[[
-function(event)
-	if not _G.ElvUI then -- Don't run any code if ElvUI is not enabled
-		return
-	end
+-- API cache
+local GetInstanceInfo = GetInstanceInfo
 
-	local E = unpack(ElvUI)
+-- ElvUI reference
+local E = unpack(ElvUI)
 
-	if not E.Retail then -- Don't run any code if user is not logged in to Retail
-		return
-	end
+-- Update raid visibility based on instance type and difficulty
+local function UpdateRaidVisibility()
+	if not Private.isRetail then return end
 
+	local UF = E:GetModule('UnitFrames')
 	local _, instanceType, difficultyID = GetInstanceInfo()
 
-	local mythicVisibility =
-	(E.db.unitframe.units.raid1.visibility == '[nogroup] hide;show') and
-	(E.db.unitframe.units.raid2.visibility == 'hide')
+	local defaultVisibility = (E.db.unitframe.units.raid1.visibility == '[@raid6,noexists][@raid21,exists] hide;show') and (E.db.unitframe.units.raid2.visibility == '[@raid21,noexists][@raid31,exists] hide;show')
+	local mythicVisibility = (E.db.unitframe.units.raid1.visibility == '[nogroup] hide;show') and (E.db.unitframe.units.raid2.visibility == 'hide')
 
-	local defaultVisibility =
-	(E.db.unitframe.units.raid1.visibility == '[@raid6,noexists][@raid21,exists] hide;show') and
-	(E.db.unitframe.units.raid2.visibility == '[@raid21,noexists][@raid31,exists] hide;show')
+	-- Make sure maxAllowedGroups is enabled
+	if not E.db.unitframe.maxAllowedGroups then
+		E.db.unitframe.maxAllowedGroups = true
+	end
 
-	if event == "WA_DELAYED_PLAYER_ENTERING_WORLD" then -- replace with PLAYER_ENTERING_WORLD and a C_Timer.After delay of ~1sec
-		if instanceType == 'raid' then
-			if difficultyID == 16 then
-				if not mythicVisibility then
-					E.db.unitframe.units.raid1.visibility = '[nogroup] hide;show'
-					E.db.unitframe.units.raid2.visibility = 'hide'
-					aura_env.UF:CreateAndUpdateHeaderGroup('raid1')
-					aura_env.UF:CreateAndUpdateHeaderGroup('raid2')
-				end
-			else
-				if not defaultVisibility then
-					E.db.unitframe.units.raid1.visibility = '[@raid6,noexists][@raid21,exists] hide;show'
-					E.db.unitframe.units.raid2.visibility = '[@raid21,noexists][@raid31,exists] hide;show'
-					aura_env.UF:CreateAndUpdateHeaderGroup('raid1')
-					aura_env.UF:CreateAndUpdateHeaderGroup('raid2')
-				end
+	if instanceType == 'raid' then
+		if difficultyID == 16 then
+			if not mythicVisibility then
+				E.db.unitframe.units.raid1.visibility = '[nogroup] hide;show'
+				E.db.unitframe.units.raid2.visibility = 'hide'
+				UF:CreateAndUpdateHeaderGroup('raid1')
+				UF:CreateAndUpdateHeaderGroup('raid2')
 			end
 		else
 			if not defaultVisibility then
 				E.db.unitframe.units.raid1.visibility = '[@raid6,noexists][@raid21,exists] hide;show'
 				E.db.unitframe.units.raid2.visibility = '[@raid21,noexists][@raid31,exists] hide;show'
-				aura_env.UF:CreateAndUpdateHeaderGroup('raid1')
-				aura_env.UF:CreateAndUpdateHeaderGroup('raid2')
+				UF:CreateAndUpdateHeaderGroup('raid1')
+				UF:CreateAndUpdateHeaderGroup('raid2')
 			end
+		end
+	else
+		if not defaultVisibility then
+			E.db.unitframe.units.raid1.visibility = '[@raid6,noexists][@raid21,exists] hide;show'
+			E.db.unitframe.units.raid2.visibility = '[@raid21,noexists][@raid31,exists] hide;show'
+			UF:CreateAndUpdateHeaderGroup('raid1')
+			UF:CreateAndUpdateHeaderGroup('raid2')
 		end
 	end
 end
-]]
+
+function Private:MythicVisibility()
+	if not (Private.isRetail and Private.Addon.db.profile.misc.mythicVisibility) then return end
+	E:Delay(1, UpdateRaidVisibility)
+end

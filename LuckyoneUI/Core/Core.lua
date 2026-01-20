@@ -437,6 +437,7 @@ function Private.Addon:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	Private:EasyDelete()
 	Private:HandleToons()
 	Private:PrivacyOverlay()
+	Private:MythicVisibility()
 	self:LoadCommands()
 
 	if Private.itsLuckyone then
