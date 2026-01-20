@@ -1991,7 +1991,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.QueueStatusMover = Private.isRetail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-152' or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-150'
 	E.db.movers.ReputationBarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-402,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-466,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
-	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,232,-1'
+	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,253,-1'
 	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,118') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,154'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-80'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
