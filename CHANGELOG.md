@@ -4,6 +4,7 @@
 - ElvUI 14.07+ compatibility  
 
 **Retail:**  
+- Converted some of my custom ElvUI WeakAuras to options in the Developer config tab  
 - New basic text format tags (based on Blizzard restrictions) added  
 - OmniCD profile removed (Cooldown and interrupt tracking is restricted)  
 - Re-running the installer for all layouts and profiles is required  
