@@ -19,8 +19,13 @@ local function UpdateRaidVisibility()
 
 	local _, instanceType, difficultyID = GetInstanceInfo()
 
-	local defaultVisibility = (E.db.unitframe.units.raid1.visibility == '[@raid6,noexists][@raid21,exists] hide;show') and (E.db.unitframe.units.raid2.visibility == '[@raid21,noexists][@raid31,exists] hide;show')
-	local mythicVisibility = (E.db.unitframe.units.raid1.visibility == '[nogroup] hide;show') and (E.db.unitframe.units.raid2.visibility == 'hide')
+	local defaultVisibility =
+	(E.db.unitframe.units.raid1.visibility == '[@raid6,noexists][@raid21,exists] hide;show') and
+	(E.db.unitframe.units.raid2.visibility == '[@raid21,noexists][@raid31,exists] hide;show')
+
+	local mythicVisibility =
+	(E.db.unitframe.units.raid1.visibility == '[nogroup] hide;show') and
+	(E.db.unitframe.units.raid2.visibility == 'hide')
 
 	-- Make sure maxAllowedGroups is enabled
 	if not E.db.unitframe.maxAllowedGroups then
