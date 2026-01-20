@@ -64,5 +64,5 @@ end
 
 function Private:DataTextsTweaks()
 	if not (Private.isRetail and Private.Addon.db.profile.misc.dataTextsTweaks) then return end
-	UpdateDataTextWidth()
+	E:Delay(1, UpdateDataTextWidth)
 end
