@@ -438,6 +438,7 @@ function Private.Addon:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	Private:HandleToons()
 	Private:PrivacyOverlay()
 	Private:MythicVisibility()
+	Private:DataTextsTweaks()
 	self:LoadCommands()
 
 	if Private.itsLuckyone then
@@ -455,8 +456,13 @@ function Private.Addon:PLAYER_LOGIN()
 	end
 end
 
+function Private.Addon:PLAYER_SPECIALIZATION_CHANGED()
+	Private:DataTextsTweaks()
+end
+
 -- Register events during addon initialization
 function Private.Addon:RegisterEvents()
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 	self:RegisterEvent('PLAYER_LOGIN')
+	self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
 end

@@ -11,12 +11,12 @@ local GetInstanceInfo = GetInstanceInfo
 
 -- ElvUI reference
 local E = unpack(ElvUI)
+local UF = E:GetModule('UnitFrames')
 
 -- Update raid visibility based on instance type and difficulty
 local function UpdateRaidVisibility()
 	if not Private.isRetail then return end
 
-	local UF = E:GetModule('UnitFrames')
 	local _, instanceType, difficultyID = GetInstanceInfo()
 
 	local defaultVisibility = (E.db.unitframe.units.raid1.visibility == '[@raid6,noexists][@raid21,exists] hide;show') and (E.db.unitframe.units.raid2.visibility == '[@raid21,noexists][@raid31,exists] hide;show')

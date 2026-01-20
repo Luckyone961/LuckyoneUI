@@ -6,57 +6,63 @@ if not Private.ElvUI then
 	return
 end
 
---[[
-Event: runs on PLAYER_SPECIALIZATION_CHANGED:player
-aura_env.run = function()
-	-- Prevent error just in case we test stuff with ElvUI disabled
-	if not _G.ElvUI then return end
-	-- Sometimes spec change will finish even after entering combat
+-- API cache
+local GetSpecialization = C_SpecializationInfo and C_SpecializationInfo.GetSpecialization
+local GetSpecializationInfo = C_SpecializationInfo and C_SpecializationInfo.GetSpecializationInfo
+local InCombatLockdown = InCombatLockdown
+
+-- ElvUI reference
+local E = unpack(ElvUI)
+local DT = E:GetModule('DataTexts')
+
+-- Healers
+local healers = {
+	[270] = true, -- Mistweaver Monk
+	[264] = true, -- Restoration Shaman
+	[1468] = true, -- Preservation Evoker
+	[257] = true, -- Holy Priest
+	[256] = true, -- Discipline Priest
+	[65] = true, -- Holy Paladin
+	[105] = true, -- Restoration Druid
+}
+
+-- Update ActionBars DataText width based on specialization
+local function UpdateDataTextWidth()
 	if InCombatLockdown() then return end
 
-	-- ElvUI
-	local E = unpack(ElvUI)
-	local scaled = E.global.L1UI.scaled -- 1080p users
+	local scaled = Private.Addon.db.global.scaled -- 1080p users
 	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 
-	-- Just in case any non-Retail andy is trying to import it
-	if not E.Retail then return end
+	-- Only continue if our custom ActionBars DataText exists
+	if not ActionBarsDT then return end
 
-	-- APIs
-	local ID = GetSpecializationInfo(GetSpecialization())
+	-- Get specialization ID
+	local specIndex = GetSpecialization()
+	if not specIndex then return end
 
-	-- Healers
-	local healers = {
-		[270] = true, --Mistweaver Monk
-		[264] = true, --Restoration Shaman
-		[1468] = true, --Preservation Evoker
-		[257] = true, --Holy Priest
-		[256] = true, --Discipline Priest
-		[65] = true, --Holy Paladin
-		[105] = true, --Restoration Druid
-	}
+	-- print('specIndex: ' .. specIndex)
 
-	-- Debug print
-	if aura_env.config.debug then
-		print(ID)
+	local ID = GetSpecializationInfo(specIndex)
+	if not ID then return end
+
+	-- print('ID: ' .. ID)
+
+	-- Augmentation layout values
+	if ID == 1473 then
+		ActionBarsDT.width = (scaled and 404) or 464
+	-- Healer layout values
+	elseif E.db.actionbar.bar1.mouseover and healers[ID] then
+		ActionBarsDT.width = 604
+	else -- Main layout values
+		ActionBarsDT.width = (scaled and 299) or 347
 	end
 
-	-- Only check spec if LuckyoneUI DT exists
-	if ActionBarsDT then
-		-- Augmentation layout values
-		if ID == 1473 then
-			ActionBarsDT.width = (scaled and 404) or 464
-			-- Healer layout values when ActionBars are hidden
-			-- elseif aura_env.config.healers and healers[ID] and E.db.actionbar.bar1.mouseover then
-		elseif aura_env.config.healers and healers[ID] then
-			ActionBarsDT.width = 604
-			-- Main layout values
-		else
-			ActionBarsDT.width = (scaled and 299) or 347
-		end
-	end
+	-- print('new width: ' .. ActionBarsDT.width)
+
+	DT:LoadDataTexts()
 end
 
--- Run on init and after edits to this file
-aura_env.run()
-]]
+function Private:DataTextsTweaks()
+	if not (Private.isRetail and Private.Addon.db.profile.misc.dataTextsTweaks) then return end
+	UpdateDataTextWidth()
+end
