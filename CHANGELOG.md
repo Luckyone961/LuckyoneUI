@@ -1,4 +1,4 @@
-﻿## Version 3.33 [In Development]
+﻿## Version 3.33 [21-01-2026]
 
 **All WoW Versions:**  
 - ElvUI 14.07+ compatibility & ElvUI Midnight PTR build support  
