@@ -69,7 +69,7 @@ Private.Tags.classificationText = {
 
 function Private.Tags.Hex(r, g, b)
 	if type(r) == 'table' then
-		if Private.isMidnight then
+		if Private.isRetail then
 			return '|c' .. GenerateTextColorCode(r)
 		elseif(r.r) then
 			r, g, b = r.r, r.g, r.b

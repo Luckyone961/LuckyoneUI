@@ -2,13 +2,8 @@
 local _, Private = ...
 local L = Private.Libs.ACL
 
--- ElvUI file
-if not Private.ElvUI then
-	return
-end
-
--- Classic only file
-if Private.isMidnight then -- ToDo: Change me to retail in 12.0
+-- ElvUI file (and non-Retail only)
+if not Private.ElvUI or Private.isRetail then
 	return
 end
 

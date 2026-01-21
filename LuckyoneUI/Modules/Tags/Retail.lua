@@ -3,12 +3,7 @@ local _, Private = ...
 local L = Private.Libs.ACL
 
 -- ElvUI file (and Retail only)
-if not Private.ElvUI or Private.isClassic or Private.isTBC or Private.isMists then
-	return
-end
-
--- ToDo: Remove me later
-if not Private.isMidnight then
+if not Private.ElvUI or (Private.isClassic or Private.isTBC or Private.isMists) then
 	return
 end
 

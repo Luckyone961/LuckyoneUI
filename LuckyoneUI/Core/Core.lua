@@ -32,7 +32,8 @@ local SetCVar = C_CVar.SetCVar
 local _G = _G
 
 -- Blizzard functions
-local Settings_OpenToCategory = _G.Settings.OpenToCategory
+local Settings_OpenToCategory = _G.Settings and _G.Settings.OpenToCategory
+local InterfaceOptionsFrame_OpenToCategory = _G.InterfaceOptionsFrame_OpenToCategory
 local StaticPopup_Show = _G.StaticPopup_Show
 
 -- Global strings
@@ -94,7 +95,11 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 				ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'LuckyoneUI')
 				ElvUI[1]:Config_UpdateSize(true)
 			else
-				Settings_OpenToCategory('LuckyoneUI')
+				if Settings_OpenToCategory and Private.SettingsCategoryID then
+					Settings_OpenToCategory(Private.SettingsCategoryID)
+				elseif InterfaceOptionsFrame_OpenToCategory and Private.SettingsFrame then
+					InterfaceOptionsFrame_OpenToCategory(Private.SettingsFrame)
+				end
 			end
 		elseif button == 'RightButton' then
 			if IsShiftKeyDown() then
@@ -123,7 +128,11 @@ function LuckyoneUI_OnAddonCompartmentClick()
 		ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'LuckyoneUI')
 		ElvUI[1]:Config_UpdateSize(true)
 	else
-		Settings_OpenToCategory('LuckyoneUI')
+		if Settings_OpenToCategory and Private.SettingsCategoryID then
+			Settings_OpenToCategory(Private.SettingsCategoryID)
+		elseif InterfaceOptionsFrame_OpenToCategory and Private.SettingsFrame then
+			InterfaceOptionsFrame_OpenToCategory(Private.SettingsFrame)
+		end
 	end
 end
 
@@ -267,7 +276,11 @@ function Private.Addon:Toggles(msg)
 			ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'LuckyoneUI')
 			ElvUI[1]:Config_UpdateSize(true)
 		else
-			Settings_OpenToCategory('LuckyoneUI')
+			if Settings_OpenToCategory and Private.SettingsCategoryID then
+				Settings_OpenToCategory(Private.SettingsCategoryID)
+			elseif InterfaceOptionsFrame_OpenToCategory and Private.SettingsFrame then
+				InterfaceOptionsFrame_OpenToCategory(Private.SettingsFrame)
+			end
 		end
 	elseif msg == 'minimap' then
 		if Private.Addon.db.profile.minimap.hide then
@@ -440,8 +453,12 @@ function Private.Addon:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	Private:EasyDelete()
 	Private:HandleToons()
 	Private:PrivacyOverlay()
-	Private:MythicVisibility()
-	Private:DataTextsTweaks()
+
+	if Private.ElvUI then
+		Private:MythicVisibility()
+		Private:DataTextsTweaks()
+	end
+
 	self:LoadCommands()
 
 	if Private.itsLuckyone then

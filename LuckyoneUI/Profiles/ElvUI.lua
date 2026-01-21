@@ -399,7 +399,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.health.text.yOffset = -20
 	E.db.nameplates.units.ENEMY_NPC.level.enable = false
 	E.db.nameplates.units.ENEMY_NPC.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.name.format = Private.isMidnight and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
+	E.db.nameplates.units.ENEMY_NPC.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
 	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -20
 	E.db.nameplates.units.ENEMY_NPC.pvpindicator.size = 35
@@ -486,7 +486,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.level.format = ''
 	E.db.nameplates.units.ENEMY_PLAYER.markHealers = false
 	E.db.nameplates.units.ENEMY_PLAYER.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.name.format = Private.isMidnight and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
+	E.db.nameplates.units.ENEMY_PLAYER.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
 	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -20
 	E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
@@ -1185,7 +1185,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = Private.isMidnight and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isRetail and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
@@ -1196,7 +1196,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = Private.isMidnight and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
+		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = -3,
 		yOffset = 0
 	}
@@ -1207,7 +1207,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = Private.isMidnight and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
+		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1294,7 +1294,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = Private.isMidnight and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isRetail and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
@@ -1305,7 +1305,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = Private.isMidnight and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
+		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = -3,
 		yOffset = 0
 	}
@@ -1316,7 +1316,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = Private.isMidnight and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
+		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1398,7 +1398,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 12,
-		text_format = Private.isMidnight and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
+		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1409,7 +1409,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = Private.isMidnight and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
+		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1494,7 +1494,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = Private.isMidnight and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
+		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1525,7 +1525,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = Private.isMidnight and '[luckyone:health:current:shortvalue] • [luckyone:health:percent]' or '[health:current:shortvalue] • [luckyone:health:percent]',
+		text_format = Private.isRetail and '[luckyone:health:current:shortvalue] • [luckyone:health:percent]' or '[health:current:shortvalue] • [luckyone:health:percent]',
 		xOffset = -2,
 		yOffset = 0
 	}
@@ -1536,7 +1536,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = Private.isMidnight and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
+		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = 5,
 		yOffset = 0
 	}
@@ -1634,7 +1634,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = Private.isMidnight and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isRetail and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
@@ -1645,7 +1645,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = Private.isMidnight and '[luckyone:name-color]' or '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]',
+		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]',
 		xOffset = -3,
 		yOffset = 0
 	}
@@ -1656,7 +1656,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = Private.isMidnight and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
+		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1737,7 +1737,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 12,
-		text_format = Private.isMidnight and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
+		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1773,7 +1773,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raidpet.health.text_format = ''
 	E.db.unitframe.units.raidpet.horizontalSpacing = 1
 	E.db.unitframe.units.raidpet.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.raidpet.name.text_format = Private.isMidnight and '[luckyone:name-color]' or '[luckyone:name:veryshort-classcolor]'
+	E.db.unitframe.units.raidpet.name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:veryshort-classcolor]'
 	E.db.unitframe.units.raidpet.numGroups = 2
 	E.db.unitframe.units.raidpet.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.raidpet.phaseIndicator.scale = 0.5
@@ -1877,7 +1877,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.health.text_format = ''
 	E.db.unitframe.units.raid1.horizontalSpacing = 1
 	E.db.unitframe.units.raid1.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.raid1.name.text_format = Private.isMidnight and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
+	E.db.unitframe.units.raid1.name.text_format = Private.isRetail and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 	E.db.unitframe.units.raid1.numGroups = 4
 	E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'TOP'
 	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
@@ -1924,7 +1924,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.health.text_format = ''
 	E.db.unitframe.units.raid3.horizontalSpacing = 1
 	E.db.unitframe.units.raid3.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.raid3.name.text_format = Private.isMidnight and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
+	E.db.unitframe.units.raid3.name.text_format = Private.isRetail and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 	E.db.unitframe.units.raid3.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.raid3.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid3.pvpclassificationindicator.enable = false
@@ -2007,7 +2007,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
 
 		-- Main Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isMidnight and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]'
+		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]'
 		E.db.unitframe.units.player.castbar.width = 279
 		E.db.unitframe.units.player.power.autoHide = true
 
@@ -2015,7 +2015,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.targettarget.width = 278
 
 		-- Main Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isMidnight and '[luckyone:name:short-color-friendly]' or (Private.isTBC or Private.isMists and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]') or '[luckyone:name:short-classcolor]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or (Private.isTBC or Private.isMists and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]') or '[luckyone:name:short-classcolor]'
 		E.db.unitframe.units.party.debuffs.countFont = Private.Font
 		E.db.unitframe.units.party.debuffs.countXOffset = 2
 		E.db.unitframe.units.party.debuffs.enable = true
@@ -2162,7 +2162,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.targettarget.width = 260
 
 		-- Healing Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isMidnight and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
 		E.db.unitframe.units.party.buffIndicator.size = 14
 		E.db.unitframe.units.party.debuffs.enable = false
 		E.db.unitframe.units.party.height = 65
@@ -2289,7 +2289,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
 
 		-- Support Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isMidnight and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]'
+		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]'
 		E.db.unitframe.units.player.castbar.width = 279
 		E.db.unitframe.units.player.power.autoHide = true
 
@@ -2297,7 +2297,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.targettarget.width = 278
 
 		-- Support Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isMidnight and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]'
 		E.db.unitframe.units.party.debuffs.countFont = Private.Font
 		E.db.unitframe.units.party.debuffs.countXOffset = 2
 		E.db.unitframe.units.party.debuffs.enable = true
