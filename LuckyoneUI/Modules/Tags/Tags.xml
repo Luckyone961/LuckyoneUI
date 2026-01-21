@@ -1,7 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ../FrameXML/UI.xsd">
-	<script file='Defaults.lua'/>
-	<Script file='Config.lua'/>
-	<Script file='Core.lua'/>
-	<Script file='Installer.lua'/>
-	<Script file='Themes.lua'/>
+	<Script file='API.lua'/>
+	<Script file='Classic.lua'/>
+	<Script file='Retail.lua'/>
+	<Script file='Shared.lua'/>
 </Ui>

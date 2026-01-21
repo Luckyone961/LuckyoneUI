@@ -230,8 +230,7 @@ local function BuildProfilesSection()
 	section.args.nameplates = ACH:Group(L["Nameplate profiles"], nil, 4)
 	section.args.nameplates.inline = true
 	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_NamePlates() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
-	section.args.nameplates.args.styleFilters = ACH:Execute('ElvUI StyleFilters', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_StyleFilters() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
-	section.args.nameplates.args.plater = ACH:Execute('Plater', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_Plater() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.nameplates.args.plater = ACH:Execute('Plater', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_Plater() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.addons = ACH:Group(L["Addon profiles"], nil, 5)
 	section.args.addons.inline = true
 	section.args.addons.args.details = ACH:Execute('Details', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_Details() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
@@ -240,12 +239,10 @@ local function BuildProfilesSection()
 	section.args.addonsMain = ACH:Group(L["Addon profiles"], nil, 7)
 	section.args.addonsMain.inline = true
 	section.args.addonsMain.args.bigwigs = ACH:Execute(L["BigWigs Main"], RESET_DEFAULTS_TEXT, 1, function() Private:Setup_BigWigs('main') end, nil, true)
-	section.args.addonsMain.args.omnicd = ACH:Execute(L["OmniCD Main"], RESET_DEFAULTS_TEXT, 2, function() Private:Setup_OmniCD('main') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.header3 = ACH:Header(L["Profiles for Healing"], 8)
 	section.args.addonsHealing = ACH:Group(L["Addon profiles"], nil, 9)
 	section.args.addonsHealing.inline = true
 	section.args.addonsHealing.args.bigwigs = ACH:Execute(L["BigWigs Healing"], RESET_DEFAULTS_TEXT, 1, function() Private:Setup_BigWigs('healing') end, nil, true)
-	section.args.addonsHealing.args.omnicd = ACH:Execute(L["OmniCD Healing"], RESET_DEFAULTS_TEXT, 2, function() Private:Setup_OmniCD('healing') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	return section
 end
 
@@ -256,8 +253,14 @@ local function BuildSkinsSection()
 	section.args.header = ACH:Header('Skins', 1)
 	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.profile.skins[info[#info]] end, function(info, value) Private.Addon.db.profile.skins[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.addons.inline = true
-	section.args.addons.args.BugSack = ACH:Toggle('BugSack', nil, 1, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('BugSack'))
-	section.args.addons.args.Tabardy = ACH:Toggle('Tabardy', nil, 2, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('Tabardy'))
+	section.args.addons.args.BugSack = ACH:Toggle('BugSack', L["Skin the Addon in ElvUI style"], 1, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('BugSack'))
+	section.args.addons.args.DejaClassicStats = ACH:Toggle('Deja Classic Stats', L["Skin the Addon in ElvUI style"], 2, nil, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) and not Private.IsAddOnLoaded('DejaClassicStats'))
+	section.args.addons.args.LeatrixPlus = ACH:Toggle('Leatrix Plus', L["Skin the two small Head/Cloak toggle checkboxes on the character frame in ElvUI style"], 3, nil, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) and not Private.IsAddOnLoaded('Leatrix_Plus'))
+	section.args.addons.args.LFGBulletinBoard = ACH:Toggle('LFG Bulletin Board', L["Skin the full bulletin board frame in ElvUI style"], 4, nil, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) and not Private.IsAddOnLoaded('LFGBulletinBoard'))
+	section.args.addons.args.NovaSpellRankChecker = ACH:Toggle('Nova Spell Rank Checker', L["Skin the Spell Rank Checker button in ElvUI style"], 5, nil, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) and not Private.IsAddOnLoaded('NovaSpellRankChecker'))
+	section.args.addons.args.NovaWorldBuffs = ACH:Toggle('Nova World Buffs', L["Skin the small layer frame on the Minimap in ElvUI style and move it to the bottom left"], 6, nil, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) and not Private.IsAddOnLoaded('NovaWorldBuffs'))
+	section.args.addons.args.Tabardy = ACH:Toggle('Tabardy', L["Skin the Addon in ElvUI style"], 7, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('Tabardy'))
+	section.args.addons.args.WhatsTraining = ACH:Toggle('WhatsTraining', L["Skin the WhatsTraining page in the Spellbook in ElvUI style"], 8, nil, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) and not Private.IsAddOnLoaded('WhatsTraining'))
 	return section
 end
 
@@ -325,6 +328,8 @@ local function BuildDevSection()
 	section.args.toggles = ACH:Group('Toggles', nil, 2)
 	section.args.toggles.inline = true
 	section.args.toggles.args.dev = ACH:Toggle('Developer Mode', 'Enable this toggle to apply Luckyone\'s personal adjustments during the installation process.\n\nAdditional information section will show up at the bottom of the config after ReloadUI.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r', 1, nil, nil, nil, function() return Private.Addon.db.global.dev end, function(_, value) Private.Addon.db.global.dev = value end)
+	section.args.toggles.args.mythicVisibility = ACH:Toggle('Mythic Visibility', 'Ported version of the ElvUI Mythic RaidFrame Visibility WeakAura', 2, nil, nil, nil, function() return Private.Addon.db.profile.misc.mythicVisibility end, function(_, value) Private.Addon.db.profile.misc.mythicVisibility = value end, not Private.isRetail)
+	section.args.toggles.args.dataTextsTweaks = ACH:Toggle('DataTexts Tweaks', 'Adjusts ActionBars DataText width based on specialization (Augmentation, Healers, DPS/Tanks)', 3, nil, nil, nil, function() return Private.Addon.db.profile.misc.dataTextsTweaks end, function(_, value) Private.Addon.db.profile.misc.dataTextsTweaks = value end, not Private.isRetail)
 	section.args.devInfo = ACH:Group('Information', nil, 3)
 	section.args.devInfo.inline = true
 	section.args.devInfo.args.desc = ACH:Description('While this developer mode is enabled, the following will change:\n\n- Profiles created by the installer will no longer add the version suffix to the profile name.\n- Profile installer make additional database adjustments as listed below.', 1, 'medium')

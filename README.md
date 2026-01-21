@@ -29,7 +29,7 @@
 • Tags for detailed health information, healer-only mana and much more  
 
 ### **Available custom profiles**  
-• **AddOns:** Details, OmniCD, WarpDeplete  
+• **AddOns:** Details, WarpDeplete  
 • **Encounter tools:** BigWigs, LittleWigs  
 • **Nameplates:** Plater, ElvUI  
 • **Plugins:** AddOnSkins, ProjectAzilroka, Shadow&Light, WindTools  

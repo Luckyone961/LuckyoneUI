@@ -64,7 +64,6 @@ Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 Private.isTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 Private.isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
-Private.isMidnight = Private.InterfaceVersion >= 120000
 
 -- API checks
 Private.IsAddOnLoaded = IsAddOnLoaded
@@ -93,6 +92,6 @@ function Private.Addon:OnInitialize()
 	if not Private.ElvUI then
 		Private:BuildConfig()
 		Private.Libs.AC:RegisterOptionsTable('LuckyoneUI', Private.Config)
-		Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI')
+		Private.SettingsFrame, Private.SettingsCategoryID = Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI')
 	end
 end

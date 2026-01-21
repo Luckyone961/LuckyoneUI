@@ -19,13 +19,23 @@ Private.Defaults = {
 		minimap = {
 			hide = false,
 		},
+		misc = {
+			mythicVisibility = false,
+			dataTextsTweaks = false,
+		},
 		qualityOfLife = {
 			easyDelete = false,
 			privacyOverlay = false,
 		},
 		skins = {
 			BugSack = false,
+			DejaClassicStats = false,
+			LeatrixPlus = false,
+			LFGBulletinBoard = false,
+			NovaSpellRankChecker = false,
+			NovaWorldBuffs = false,
 			Tabardy = false,
+			WhatsTraining = false,
 		},
 	}
 }

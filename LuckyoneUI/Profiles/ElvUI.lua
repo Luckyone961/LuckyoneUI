@@ -40,15 +40,6 @@ local function Refresh()
 	E:Config_UpdateSize(true)
 end
 
--- Wipe any existing Luckyone filters
-local function Cleanup()
-	for filterName, _ in pairs(E.global.nameplates.filters) do
-		if filterName:match('^Luckyone_') then
-			E.global.nameplates.filters[filterName] = nil
-		end
-	end
-end
-
 -- E.global & Custom DataText
 function Private:Setup_GlobalDB()
 	-- 1080p
@@ -256,238 +247,6 @@ function Private:Setup_Layout(layout, installer)
 	Private:Print(L["Layout has been set."])
 end
 
--- Custom StyleFilters
-function Private:Setup_StyleFilters(skipVars)
-	if not E.private.nameplates.enable then return end
-
-	-- Wipe old filters
-	Cleanup()
-
-	-- Base filters
-	local baseFilters = {
-		'Luckyone_Quest_H',
-		'Luckyone_Quest_N',
-	}
-
-	-- NonClassic specific filters
-	local nonClassicFilters = {
-		'Luckyone_Focus',
-	}
-
-	-- Retail specific filters
-	local retailFilters = {
-		-- Global
-		'Luckyone_SPECIAL',
-		-- Raid
-		'Luckyone_MF',
-		-- Dungeons
-		'Luckyone_ARAK',
-		'Luckyone_EDA',
-		'Luckyone_HOA',
-		'Luckyone_PSF',
-		'Luckyone_FLOOD',
-		'Luckyone_GMBT',
-		'Luckyone_STRT',
-		'Luckyone_DAWN',
-	}
-
-	-- Create base filters
-	for _, filterName in ipairs(baseFilters) do
-		E.global.nameplates.filters[filterName] = {}
-		E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
-		E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
-	end
-
-	-- Disable alpha fading and scaling for ElvUI_Target and ElvUI_NonTarget
-	E.global.nameplates.filters.ElvUI_NonTarget.actions.alpha = -1
-	E.global.nameplates.filters.ElvUI_Target.actions.scale = 1
-
-	-- Turn off both default filters
-	E.db.nameplates.filters.ElvUI_NonTarget.triggers.enable = false
-	E.db.nameplates.filters.ElvUI_Target.triggers.enable = false
-
-	-- Quest Hostile
-	E.global.nameplates.filters.Luckyone_Quest_H.actions.health.colors.color.b = 0
-	E.global.nameplates.filters.Luckyone_Quest_H.actions.health.colors.color.g = 0.37
-	E.global.nameplates.filters.Luckyone_Quest_H.actions.health.colors.enable = true
-	E.global.nameplates.filters.Luckyone_Quest_H.triggers.isNotTapDenied = true
-	E.global.nameplates.filters.Luckyone_Quest_H.triggers.isQuest = true
-	E.global.nameplates.filters.Luckyone_Quest_H.triggers.outOfCombatUnit = true
-	E.global.nameplates.filters.Luckyone_Quest_H.triggers.priority = 2
-	E.global.nameplates.filters.Luckyone_Quest_H.triggers.reactionType.enable = true
-	E.global.nameplates.filters.Luckyone_Quest_H.triggers.reactionType.hostile = true
-
-	-- Quest Neutral
-	E.global.nameplates.filters.Luckyone_Quest_N.actions.health.colors.color.b = 0
-	E.global.nameplates.filters.Luckyone_Quest_N.actions.health.colors.color.g = 0.65
-	E.global.nameplates.filters.Luckyone_Quest_N.actions.health.colors.enable = true
-	E.global.nameplates.filters.Luckyone_Quest_N.triggers.isNotTapDenied = true
-	E.global.nameplates.filters.Luckyone_Quest_N.triggers.isQuest = true
-	E.global.nameplates.filters.Luckyone_Quest_N.triggers.outOfCombatUnit = true
-	E.global.nameplates.filters.Luckyone_Quest_N.triggers.priority = 2
-	E.global.nameplates.filters.Luckyone_Quest_N.triggers.reactionType.enable = true
-	E.global.nameplates.filters.Luckyone_Quest_N.triggers.reactionType.neutral = true
-
-	if not Private.isClassic then
-
-		-- Create NonClassic specific filters
-		for _, filterName in ipairs(nonClassicFilters) do
-			E.global.nameplates.filters[filterName] = {}
-			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
-			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
-		end
-
-		-- Focus target [FOCUS]
-		E.global.nameplates.filters.Luckyone_Focus.actions.health.texture.enable = true
-		E.global.nameplates.filters.Luckyone_Focus.actions.health.texture.texture = 'Luckyone Focus'
-		E.global.nameplates.filters.Luckyone_Focus.triggers.isFocus = true
-		E.global.nameplates.filters.Luckyone_Focus.triggers.priority = 2
-	end
-
-	if Private.isRetail then
-
-		-- Create retail specific filters
-		for _, filterName in ipairs(retailFilters) do
-			E.global.nameplates.filters[filterName] = {}
-			E.NamePlates:StyleFilterCopyDefaults(E.global.nameplates.filters[filterName])
-			E.db.nameplates.filters[filterName] = { triggers = { enable = true } }
-		end
-
-		-- Special coloring [SPECIAL]
-		E.global.nameplates.filters.Luckyone_SPECIAL.actions.health.colors.enable = true
-		E.global.nameplates.filters.Luckyone_SPECIAL.actions.health.colors.color.r = 1
-		E.global.nameplates.filters.Luckyone_SPECIAL.actions.health.colors.color.g = 0.25
-		E.global.nameplates.filters.Luckyone_SPECIAL.actions.health.colors.color.b = 0.99
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['231176'] = true -- Scaffolding [FLOOD]
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['179733'] = true -- Invigorating Fish Stick [GMBT]
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['180433'] = true -- Wandering Pulsar [GMBT]
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['175576'] = true -- Containment Cell [STRT]
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['177237'] = true -- Chains of Damnation [STRT]
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['244302'] = true -- Binding Javelin [EDA]
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.names['240952'] = true -- Evoked Spirit [EDA]
-		E.global.nameplates.filters.Luckyone_SPECIAL.triggers.priority = 2
-
-		-- Manaforge Omega [MF]
-		E.global.nameplates.filters.Luckyone_MF.actions.health.colors.enable = true
-		E.global.nameplates.filters.Luckyone_MF.actions.health.colors.color.r = 1
-		E.global.nameplates.filters.Luckyone_MF.actions.health.colors.color.g = 0.25
-		E.global.nameplates.filters.Luckyone_MF.actions.health.colors.color.b = 0.99
-		E.global.nameplates.filters.Luckyone_MF.triggers.instanceType['raid'] = true
-		E.global.nameplates.filters.Luckyone_MF.triggers.names['241800'] = true -- Manaforged Titan [Nexus-King Salhadaar]
-		E.global.nameplates.filters.Luckyone_MF.triggers.names['242587'] = true -- Living Mass [Dimensius]
-		E.global.nameplates.filters.Luckyone_MF.triggers.priority = 2
-
-		-- Ara-Kara, City of Echoes [ARAK]
-		E.global.nameplates.filters.Luckyone_ARAK.actions.health.colors.enable = true
-		E.global.nameplates.filters.Luckyone_ARAK.actions.health.colors.color.g = 0.75
-		E.global.nameplates.filters.Luckyone_ARAK.actions.health.colors.color.r = 0
-		E.global.nameplates.filters.Luckyone_ARAK.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_ARAK.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_ARAK.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_ARAK.triggers.names['216293'] = true -- Trilling Attendant
-		E.global.nameplates.filters.Luckyone_ARAK.triggers.names['218961'] = true -- Starved Crawler
-		E.global.nameplates.filters.Luckyone_ARAK.triggers.names['223253'] = true -- Bloodstained Webmage
-		E.global.nameplates.filters.Luckyone_ARAK.triggers.names['216340'] = true -- Sentry Stagshell
-		E.global.nameplates.filters.Luckyone_ARAK.triggers.names['216364'] = true -- Blood Overseer
-		E.global.nameplates.filters.Luckyone_ARAK.triggers.priority = 2
-
-		-- Eco-Dome Al'dani [EDA]
-		E.global.nameplates.filters.Luckyone_EDA.actions.health.colors.enable = true
-		E.global.nameplates.filters.Luckyone_EDA.actions.health.colors.color.g = 0.75
-		E.global.nameplates.filters.Luckyone_EDA.actions.health.colors.color.r = 0
-		E.global.nameplates.filters.Luckyone_EDA.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_EDA.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_EDA.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_EDA.triggers.names['234957'] = true -- Wastelander Ritualist
-		E.global.nameplates.filters.Luckyone_EDA.triggers.names['234955'] = true -- Wastelander Pactspeaker
-		E.global.nameplates.filters.Luckyone_EDA.triggers.priority = 2
-
-		-- Halls of Atonement [HOA]
-		E.global.nameplates.filters.Luckyone_HOA.actions.health.colors.enable = true
-		E.global.nameplates.filters.Luckyone_HOA.actions.health.colors.color.g = 0.75
-		E.global.nameplates.filters.Luckyone_HOA.actions.health.colors.color.r = 0
-		E.global.nameplates.filters.Luckyone_HOA.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_HOA.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_HOA.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_HOA.triggers.names['165414'] = true -- Depraved Obliterator
-		E.global.nameplates.filters.Luckyone_HOA.triggers.names['164562'] = true -- Depraved Houndmaster
-		E.global.nameplates.filters.Luckyone_HOA.triggers.priority = 2
-
-		-- Priory of the Sacred Flame [PSF]
-		E.global.nameplates.filters.Luckyone_PSF.actions.health.colors.enable = true
-		E.global.nameplates.filters.Luckyone_PSF.actions.health.colors.color.g = 0.75
-		E.global.nameplates.filters.Luckyone_PSF.actions.health.colors.color.r = 0
-		E.global.nameplates.filters.Luckyone_PSF.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_PSF.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_PSF.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_PSF.triggers.names['206697'] = true -- Devout Priest
-		E.global.nameplates.filters.Luckyone_PSF.triggers.names['206698'] = true -- Fanatical Conjuror
-		E.global.nameplates.filters.Luckyone_PSF.triggers.names['221760'] = true -- Risen Mage
-		E.global.nameplates.filters.Luckyone_PSF.triggers.priority = 2
-
-		-- Operation: Floodgate [FLOOD]
-		E.global.nameplates.filters.Luckyone_FLOOD.actions.health.colors.enable = true
-		E.global.nameplates.filters.Luckyone_FLOOD.actions.health.colors.color.g = 0.75
-		E.global.nameplates.filters.Luckyone_FLOOD.actions.health.colors.color.r = 0
-		E.global.nameplates.filters.Luckyone_FLOOD.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_FLOOD.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_FLOOD.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_FLOOD.triggers.names['229686'] = true -- Venture Co. Surveyor
-		E.global.nameplates.filters.Luckyone_FLOOD.triggers.names['229251'] = true -- Venture Co. Architect
-		E.global.nameplates.filters.Luckyone_FLOOD.triggers.names['229212'] = true -- Darkfuse Demolitionist
-		E.global.nameplates.filters.Luckyone_FLOOD.triggers.names['231312'] = true -- Venture Co. Electrician
-		E.global.nameplates.filters.Luckyone_FLOOD.triggers.priority = 2
-
-		-- Tazavesh: So'leah's Gambit [GMBT]
-		E.global.nameplates.filters.Luckyone_GMBT.actions.health.colors.enable = true
-		E.global.nameplates.filters.Luckyone_GMBT.actions.health.colors.color.g = 0.75
-		E.global.nameplates.filters.Luckyone_GMBT.actions.health.colors.color.r = 0
-		E.global.nameplates.filters.Luckyone_GMBT.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_GMBT.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_GMBT.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_GMBT.triggers.names['178142'] = true -- Murkbrine Fishmancer
-		E.global.nameplates.filters.Luckyone_GMBT.triggers.names['176551'] = true -- Vault Purifier
-		E.global.nameplates.filters.Luckyone_GMBT.triggers.names['179388'] = true -- Hourglass Tidesage
-		E.global.nameplates.filters.Luckyone_GMBT.triggers.names['180431'] = true -- Focused Ritualist
-		E.global.nameplates.filters.Luckyone_GMBT.triggers.priority = 2
-
-		-- Tazavesh: Streets of Wonder [STRT]
-		E.global.nameplates.filters.Luckyone_STRT.actions.health.colors.enable = true
-		E.global.nameplates.filters.Luckyone_STRT.actions.health.colors.color.g = 0.75
-		E.global.nameplates.filters.Luckyone_STRT.actions.health.colors.color.r = 0
-		E.global.nameplates.filters.Luckyone_STRT.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_STRT.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_STRT.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_STRT.triggers.names['177817'] = true -- Support Officer
-		E.global.nameplates.filters.Luckyone_STRT.triggers.names['180336'] = true -- Cartel Wiseguy
-		E.global.nameplates.filters.Luckyone_STRT.triggers.names['176395'] = true -- Overloaded Mailemental
-		E.global.nameplates.filters.Luckyone_STRT.triggers.names['179841'] = true -- Veteran Sparkcaster
-		E.global.nameplates.filters.Luckyone_STRT.triggers.priority = 2
-
-		-- The Dawnbreaker [DAWN]
-		E.global.nameplates.filters.Luckyone_DAWN.actions.health.colors.enable = true
-		E.global.nameplates.filters.Luckyone_DAWN.actions.health.colors.color.g = 0.75
-		E.global.nameplates.filters.Luckyone_DAWN.actions.health.colors.color.r = 0
-		E.global.nameplates.filters.Luckyone_DAWN.triggers.instanceDifficulty.dungeon['mythic'] = true
-		E.global.nameplates.filters.Luckyone_DAWN.triggers.instanceDifficulty.dungeon['mythic+'] = true
-		E.global.nameplates.filters.Luckyone_DAWN.triggers.instanceType['party'] = true
-		E.global.nameplates.filters.Luckyone_DAWN.triggers.names['213892'] = true -- Nightfall Shadowmage
-		E.global.nameplates.filters.Luckyone_DAWN.triggers.names['214761'] = true -- Nightfall Ritualist
-		E.global.nameplates.filters.Luckyone_DAWN.triggers.names['213893'] = true -- Nightfall Darkcaster
-		E.global.nameplates.filters.Luckyone_DAWN.triggers.priority = 2
-	end
-
-	-- Set NamePlate CVars
-	if not skipVars then
-		Private:NameplateCVars(true)
-	end
-
-	Private:Print(L["NamePlate StyleFilters and CVars have been set."])
-end
-
 -- NamePlate Setup for ElvUI
 function Private:Setup_NamePlates(installer)
 	-- Make sure to enable the module
@@ -496,8 +255,8 @@ function Private:Setup_NamePlates(installer)
 	-- Restore defaults
 	E.db.nameplates = E:CopyTable({}, P.nameplates)
 
-	-- Setup StyleFilters (includes NamePlate CVars)
-	Private:Setup_StyleFilters()
+	-- NamePlates CVars
+	Private:NameplateCVars()
 
 	-- NamePlates colors
 	E.db.nameplates.colors.auraByType = false
@@ -540,7 +299,6 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.colors.threat.soloColor.r = 0.5
 
 	-- NamePlates general
-	E.db.nameplates.cooldown.override = false
 	E.db.nameplates.fadeIn = false
 	E.db.nameplates.lowHealthThreshold = 0
 	E.db.nameplates.overlapH = 1
@@ -641,7 +399,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.health.text.yOffset = -20
 	E.db.nameplates.units.ENEMY_NPC.level.enable = false
 	E.db.nameplates.units.ENEMY_NPC.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.name.format = '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
+	E.db.nameplates.units.ENEMY_NPC.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
 	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -20
 	E.db.nameplates.units.ENEMY_NPC.pvpindicator.size = 35
@@ -725,10 +483,10 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.position = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.yOffset = -20
 	E.db.nameplates.units.ENEMY_PLAYER.level.enable = false
-	E.db.nameplates.units.ENEMY_PLAYER.level.format = '[luckyone:level]'
+	E.db.nameplates.units.ENEMY_PLAYER.level.format = ''
 	E.db.nameplates.units.ENEMY_PLAYER.markHealers = false
 	E.db.nameplates.units.ENEMY_PLAYER.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.name.format = '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
+	E.db.nameplates.units.ENEMY_PLAYER.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
 	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -20
 	E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
@@ -770,7 +528,7 @@ function Private:Setup_NamePlates(installer)
 	end
 
 	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["NamePlate StyleFilters and CVars have been set."])
+		_G.LuckyoneInstallStepComplete:ShowMessage(L["NamePlate profile and CVars have been set."])
 	end
 end
 
@@ -1134,7 +892,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.actionbar.barPet.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.barPet.hotkeyTextYOffset = -1
 	E.db.actionbar.barPet.point = 'TOPLEFT'
-	E.db.actionbar.cooldown.override = false
 	E.db.actionbar.countTextPosition = 'BOTTOM'
 	E.db.actionbar.countTextYOffset = 1
 	E.db.actionbar.extraActionButton.clean = true
@@ -1282,20 +1039,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.chat.useBTagName = true
 
 	-- Cooldown Text
-	E.db.cooldown.checkSeconds = true
-	E.db.cooldown.fonts.font = Private.Font
-	E.db.cooldown.fonts.fontSize = 16
-	E.db.cooldown.hhmmColor.b = 1
-	E.db.cooldown.hhmmColor.g = 1
-	E.db.cooldown.hhmmColor.r = 0.4
-	E.db.cooldown.mmssColor.b = 1
-	E.db.cooldown.mmssColor.g = 1
-	E.db.cooldown.mmssColor.r = 1
-	E.db.cooldown.mmssThreshold = 120
-	E.db.cooldown.secondsColor.b = 1
-	E.db.cooldown.showModRate = true
-	E.db.cooldown.targetAura = false
-	E.db.cooldown.threshold = 4
+	E.db.cooldown.font = Private.Font
+	E.db.cooldown.fontSize = 12
+	E.db.cooldown.override = false
 
 	-- DataBars
 	E.db.databars.azerite.enable = false
@@ -1419,8 +1165,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.colors.transparentHealth = true
 	E.db.unitframe.colors.transparentPower = true
 	E.db.unitframe.colors.useDeadBackdrop = true
-	E.db.unitframe.cooldown.fonts.font = Private.Font
-	E.db.unitframe.cooldown.override = false
 	E.db.unitframe.font = Private.Font
 	E.db.unitframe.fontOutline = Private.Outline
 	E.db.unitframe.fontSize = 11
@@ -1441,7 +1185,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isRetail and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
@@ -1452,7 +1196,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = '[luckyone:name:last-classcolor]',
+		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = -3,
 		yOffset = 0
 	}
@@ -1463,7 +1207,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = '[luckyone:power:percent-color]',
+		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1550,7 +1294,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isRetail and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
@@ -1561,7 +1305,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = '[luckyone:name:last-classcolor]',
+		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = -3,
 		yOffset = 0
 	}
@@ -1572,7 +1316,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = '[luckyone:power:percent-color]',
+		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1654,7 +1398,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 12,
-		text_format = '[luckyone:name:last-classcolor]',
+		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1665,7 +1409,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = '[luckyone:power:percent-color]',
+		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1750,7 +1494,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = '[luckyone:power:percent-color]',
+		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1781,7 +1525,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = '[health:current:shortvalue] • [luckyone:health:percent]',
+		text_format = Private.isRetail and '[luckyone:health:current:shortvalue] • [luckyone:health:percent]' or '[health:current:shortvalue] • [luckyone:health:percent]',
 		xOffset = -2,
 		yOffset = 0
 	}
@@ -1792,7 +1536,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = '[luckyone:name:last-classcolor]',
+		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = 5,
 		yOffset = 0
 	}
@@ -1890,7 +1634,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isRetail and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
@@ -1901,7 +1645,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]',
+		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]',
 		xOffset = -3,
 		yOffset = 0
 	}
@@ -1912,7 +1656,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = '[luckyone:power:percent-color]',
+		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1993,7 +1737,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 12,
-		text_format = '[luckyone:name:last-classcolor]',
+		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -2029,7 +1773,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raidpet.health.text_format = ''
 	E.db.unitframe.units.raidpet.horizontalSpacing = 1
 	E.db.unitframe.units.raidpet.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.raidpet.name.text_format = '[luckyone:name:veryshort-classcolor]'
+	E.db.unitframe.units.raidpet.name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:veryshort-classcolor]'
 	E.db.unitframe.units.raidpet.numGroups = 2
 	E.db.unitframe.units.raidpet.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.raidpet.phaseIndicator.scale = 0.5
@@ -2133,7 +1877,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.health.text_format = ''
 	E.db.unitframe.units.raid1.horizontalSpacing = 1
 	E.db.unitframe.units.raid1.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.raid1.name.text_format = '[luckyone:name:veryshort-classcolor]'
+	E.db.unitframe.units.raid1.name.text_format = Private.isRetail and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 	E.db.unitframe.units.raid1.numGroups = 4
 	E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'TOP'
 	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
@@ -2180,7 +1924,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.health.text_format = ''
 	E.db.unitframe.units.raid3.horizontalSpacing = 1
 	E.db.unitframe.units.raid3.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.raid3.name.text_format = '[luckyone:name:veryshort-classcolor]'
+	E.db.unitframe.units.raid3.name.text_format = Private.isRetail and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 	E.db.unitframe.units.raid3.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.raid3.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid3.pvpclassificationindicator.enable = false
@@ -2247,7 +1991,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.QueueStatusMover = Private.isRetail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-152' or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-150'
 	E.db.movers.ReputationBarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-402,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-466,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
-	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,232,-1'
+	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,253,-1'
 	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,118') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,154'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-80'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
@@ -2263,7 +2007,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
 
 		-- Main Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = '[luckyone:power:percent-color]'
+		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]'
 		E.db.unitframe.units.player.castbar.width = 279
 		E.db.unitframe.units.player.power.autoHide = true
 
@@ -2271,7 +2015,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.targettarget.width = 278
 
 		-- Main Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = not Private.isClassic and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]' or '[luckyone:name:short-classcolor]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or (Private.isTBC or Private.isMists and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]') or '[luckyone:name:short-classcolor]'
 		E.db.unitframe.units.party.debuffs.countFont = Private.Font
 		E.db.unitframe.units.party.debuffs.countXOffset = 2
 		E.db.unitframe.units.party.debuffs.enable = true
@@ -2399,7 +2143,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.party.growthDirection = 'RIGHT_DOWN'
 
 		-- Healing Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-nocolor<%]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
+		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-nocolor]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
 		E.db.unitframe.units.player.castbar.width = (scaled and 505) or 605
 		E.db.unitframe.units.player.power.attachTextTo = 'Power'
 		E.db.unitframe.units.player.power.autoHide = false
@@ -2410,7 +2154,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
 
-		if Private.isClassic then
+		if Private.isClassic or Private.isTBC then
 			E.db.unitframe.units.player.power.EnergyManaRegen = true
 		end
 
@@ -2418,7 +2162,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.targettarget.width = 260
 
 		-- Healing Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[luckyone:name:short-classcolor]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
 		E.db.unitframe.units.party.buffIndicator.size = 14
 		E.db.unitframe.units.party.debuffs.enable = false
 		E.db.unitframe.units.party.height = 65
@@ -2545,7 +2289,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
 
 		-- Support Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = '[luckyone:power:percent-color]'
+		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]'
 		E.db.unitframe.units.player.castbar.width = 279
 		E.db.unitframe.units.player.power.autoHide = true
 
@@ -2553,7 +2297,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.targettarget.width = 278
 
 		-- Support Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]'
 		E.db.unitframe.units.party.debuffs.countFont = Private.Font
 		E.db.unitframe.units.party.debuffs.countXOffset = 2
 		E.db.unitframe.units.party.debuffs.enable = true
