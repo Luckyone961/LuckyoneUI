@@ -9,7 +9,7 @@
 - OmniCD profile removed (Cooldown and interrupt tracking is restricted)  
 - Re-running the installer for all layouts and profiles is required  
 - This version is the initial support for Midnight patch 12.0 (WIP!)  
-- Updated Plater profile for Midnight  
+- Updated Plater profile for Midnight (WIP! I still use ElvUI Nameplates)  
 
 **TBC:**  
 - Fixed energy and mp5 ticks not getting enabled for fresh installs  
