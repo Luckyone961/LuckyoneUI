@@ -5,9 +5,9 @@
 
 ## DefaultState: enabled
 ## Author: Luckyone
-## Version: 3.32
+## Version: 3.33
 
-## Interface: 120000, 110207
+## Interface: 120000
 ## X-Required-ElvUI: 14.07
 
 ## X-Curse-Project-ID: 363472

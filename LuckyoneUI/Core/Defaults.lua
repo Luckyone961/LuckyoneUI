@@ -19,6 +19,10 @@ Private.Defaults = {
 		minimap = {
 			hide = false,
 		},
+		misc = {
+			mythicVisibility = false,
+			dataTextsTweaks = false,
+		},
 		qualityOfLife = {
 			easyDelete = false,
 			privacyOverlay = false,
