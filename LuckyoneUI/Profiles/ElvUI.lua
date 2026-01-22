@@ -137,6 +137,7 @@ function Private:Setup_PrivateDB(includePlugins)
 
 	E.private.install_complete = E.version
 
+	E.private.skins.blizzard.cooldownManager = false
 	E.private.skins.parchmentRemoverEnable = true
 
 	if includePlugins and Private.isRetail then
@@ -153,17 +154,30 @@ function Private:Setup_PrivateDB(includePlugins)
 		E.private.general.classColors = true
 	end
 
+	-- DB keys for the dev profiles
 	if Private.Addon.db.global.dev then
-		-- Private keys for the dev profile
+
+		-- ElvUI settings
+		E.private.bags.enable = (not Private.IsAddOnLoaded('Baganator'))
 		E.private.general.chatBubbles = 'disabled'
+		E.private.nameplates.enable = (not Private.IsAddOnLoaded('Plater'))
+
+		-- LuckyoneUI settings
 		Private.Addon.db.profile.disabledFrames.AlertFrame = true
 		Private.Addon.db.profile.disabledFrames.BossBanner = true
+		Private.Addon.db.profile.disabledFrames.HousingDecorAlerts = true
+		Private.Addon.db.profile.misc.mythicVisibility = true
+		Private.Addon.db.profile.misc.dataTextsTweaks = true
 		Private.Addon.db.profile.qualityOfLife.easyDelete = true
 		Private.Addon.db.profile.qualityOfLife.privacyOverlay = true
-
-		-- Enable these modules only if the alternative is not loaded
-		E.private.bags.enable = (not Private.IsAddOnLoaded('Baganator'))
-		E.private.nameplates.enable = (not Private.IsAddOnLoaded('Plater'))
+		Private.Addon.db.profile.skins.BugSack = true
+		Private.Addon.db.profile.skins.DejaClassicStats = true
+		Private.Addon.db.profile.skins.LeatrixPlus = true
+		Private.Addon.db.profile.skins.LFGBulletinBoard = true
+		Private.Addon.db.profile.skins.NovaSpellRankChecker = true
+		Private.Addon.db.profile.skins.NovaWorldBuffs = true
+		Private.Addon.db.profile.skins.Tabardy = true
+		Private.Addon.db.profile.skins.WhatsTraining = true
 	end
 end
 
