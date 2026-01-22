@@ -324,6 +324,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.auras.countXOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.auras.countYOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.auras.desaturate = false
+	E.db.nameplates.units.ENEMY_NPC.auras.enable = not Private.isRetail
 	E.db.nameplates.units.ENEMY_NPC.auras.height = 24
 	E.db.nameplates.units.ENEMY_NPC.auras.keepSizeRatio = false
 	E.db.nameplates.units.ENEMY_NPC.auras.numAuras = 3
@@ -352,7 +353,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Dispellable'
 	E.db.nameplates.units.ENEMY_NPC.buffs.size = 22
 	E.db.nameplates.units.ENEMY_NPC.buffs.xOffset = 1
-	E.db.nameplates.units.ENEMY_NPC.buffs.yOffset = -3
+	E.db.nameplates.units.ENEMY_NPC.buffs.yOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.castbar.anchorPoint = 'BOTTOMLEFT'
 	E.db.nameplates.units.ENEMY_NPC.castbar.castTimeFormat = 'REMAINING'
 	E.db.nameplates.units.ENEMY_NPC.castbar.channelTimeFormat = 'REMAINING'
@@ -423,6 +424,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countXOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countYOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.auras.desaturate = false
+	E.db.nameplates.units.ENEMY_PLAYER.auras.enable = not Private.isRetail
 	E.db.nameplates.units.ENEMY_PLAYER.auras.height = 24
 	E.db.nameplates.units.ENEMY_PLAYER.auras.keepSizeRatio = false
 	E.db.nameplates.units.ENEMY_PLAYER.auras.numAuras = 3
@@ -450,7 +452,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Dispellable'
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 22
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.xOffset = 1
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.yOffset = -3
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.yOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.anchorPoint = 'BOTTOMLEFT'
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.castTimeFormat = 'REMAINING'
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.channelTimeFormat = 'REMAINING'
