@@ -24,7 +24,6 @@ local function Set(tbl, path, value)
 end
 
 -- WindTools ProfileDB
--- LC: 20/11/2025
 function Private:Setup_WindTools(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and Private.isRetail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
@@ -165,7 +164,6 @@ function Private:Setup_WindTools(installer)
 end
 
 -- WindTools PrivateDB
--- LC: 20/11/2025
 function Private:Setup_Private_WindTools()
 
 	-- Restore defaults

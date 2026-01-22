@@ -13,7 +13,6 @@ local function CallbackFunction(accepted)
 end
 
 -- BigWigs profiles
--- LC: 23/09/2025
 function Private:Setup_BigWigs(layout)
 	if not BigWigsAPI then Private:Print('BigWigs ' .. L["is not installed or enabled."]) return end
 

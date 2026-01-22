@@ -149,8 +149,8 @@ function Private:Setup_PrivateDB(includePlugins)
 		end
 	end
 
+	-- This will make sure Shaman is blue instead of pink in Era/HC/SoD
 	if Private.isClassic then
-		-- This will make sure Shaman is blue instead of pink
 		E.private.general.classColors = true
 	end
 
@@ -560,7 +560,6 @@ function Private:Setup_NamePlates(installer)
 end
 
 -- ElvUI profile
--- LC: 25/09/2025
 function Private:Setup_ElvUI(layout)
 	-- Global db
 	local scaled = Private.Addon.db.global.scaled

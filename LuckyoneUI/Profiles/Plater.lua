@@ -9,7 +9,6 @@ local tinsert = table.insert
 local _G = _G
 
 -- Plater profile
--- LC: 21/01/2026
 function Private:Setup_Plater(installer)
 	if not Private.IsAddOnLoaded('Plater') then Private:Print('Plater ' .. L["is not installed or enabled."]) return end
 

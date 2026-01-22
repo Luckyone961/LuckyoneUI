@@ -6,7 +6,6 @@ local L = Private.Libs.ACL
 local _G = _G
 
 -- WarpDeplete profile
--- LC: 06/02/2025
 function Private:Setup_WarpDeplete(installer)
 	if not (Private.IsAddOnLoaded('WarpDeplete') and Private.isRetail) then Private:Print('WarpDeplete ' .. L["is not installed or enabled."]) return end
 
