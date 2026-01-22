@@ -349,9 +349,9 @@ local function BuildDevSection()
 	section.args.devInfo = ACH:Group('Information', nil, 3)
 	section.args.devInfo.inline = true
 	section.args.devInfo.args.desc = ACH:Description('While this developer mode is enabled, the following will change:\n\n- Profiles created by the installer will no longer add the version suffix to the profile name.\n- Profile installer make additional database adjustments as listed below.', 1, 'medium')
-	section.args.db = ACH:Group('Developer Mode Changes', nil, 4)
+	section.args.db = ACH:Group('Database adjustments', nil, 4)
 	section.args.db.inline = true
-	section.args.db.args.desc = ACH:Description('- ElvUI chat bubble skinning disabled (To use texture replacements)\n- ElvUI bags module disabled (To use Baganator)\n- LuckyoneUI Alert Frame hider enabled\n- LuckyoneUI Boss Banner hider enabled\n- LuckyoneUI Easy Delete enabled\n- LuckyoneUI Privacy Overlay enabled', 1, 'medium')
+	section.args.db.args.desc = ACH:Description('- Chat bubble skinning disabled (To use texture replacements)\n- Bags module disabled (To use Baganator)\n- Alert Frame hider enabled\n- Boss Banner hider enabled\n- Housing Decor Alerts hider enabled\n- Easy Delete enabled\n- Privacy Overlay enabled\n- Mythic Raidframe Visibility enabled\n- DataTexts Tweaks enabled\n- All LuckyoneUI custom skins enabled', 1, 'medium')
 	section.args.header2 = ACH:Header('Luckyone\'s Private Section', 5)
 	section.args.syncInfo = ACH:Group('Important information', nil, 6)
 	section.args.syncInfo.inline = true
@@ -372,15 +372,10 @@ function Private:BuildConfig()
 	Private.Config.args.setup = BuildSetupSection() -- 2
 	Private.Config.args.blizzard = BuildBlizzardSection() -- 5
 
-	if not Private.isRetail then
-		Private.Config.args.auras = BuildAurasSection() -- 10
-	end
-
 	Private.Config.args.privateDB = BuildPrivateDBSection() -- 15
 	Private.Config.args.chat = BuildChatSection() -- 20
 	Private.Config.args.cvars = BuildCVarsSection() -- 25
 	Private.Config.args.layouts = BuildLayoutSection() -- 30
-	Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 35
 	Private.Config.args.graphics = BuildGraphicsSection() -- 40
 	Private.Config.args.profiles = BuildProfilesSection() -- 45
 	Private.Config.args.skins = BuildSkinsSection() -- 50
@@ -394,6 +389,12 @@ function Private:BuildConfig()
 	if Private.ElvUI then
 		ElvUI[1].Options.name = format('%s + %s |cff99ff33%.2f|r', ElvUI[1].Options.name, Private.Name, Private.Version)
 		ElvUI[1].Options.args.LuckyoneUI = Private.Config
+
+		if not Private.isRetail then
+			Private.Config.args.auras = BuildAurasSection() -- 10
+		else
+			Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 35
+		end
 	end
 end
 
