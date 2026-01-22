@@ -388,7 +388,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeToHold = 2
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeXOffset = -1
 	E.db.nameplates.units.ENEMY_NPC.castbar.width = 197
-	E.db.nameplates.units.ENEMY_NPC.castbar.xOffset = 13
+	E.db.nameplates.units.ENEMY_NPC.castbar.xOffset = -17
 	E.db.nameplates.units.ENEMY_NPC.castbar.yOffset = 3
 	E.db.nameplates.units.ENEMY_NPC.debuffs.anchorPoint = 'LEFT'
 	E.db.nameplates.units.ENEMY_NPC.debuffs.attachTo = 'HEALTH'
@@ -483,7 +483,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeToHold = 2
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeXOffset = -1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.width = 197
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.xOffset = 13
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.xOffset = -17
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.yOffset = 3
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.anchorPoint = 'LEFT'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.attachTo = 'HEALTH'
