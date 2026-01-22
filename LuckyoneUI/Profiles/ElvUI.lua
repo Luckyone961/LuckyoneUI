@@ -299,14 +299,11 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.colors.threat.soloColor.r = 0.5
 
 	-- NamePlates general
+	E.db.nameplates.clickSize.width = 210
 	E.db.nameplates.fadeIn = false
 	E.db.nameplates.lowHealthThreshold = 0
 	E.db.nameplates.overlapH = 1
 	E.db.nameplates.overlapV = 2.2
-	E.db.nameplates.plateSize.enemyWidth = 210
-	E.db.nameplates.plateSize.friendlyHeight = 8
-	E.db.nameplates.plateSize.friendlyWidth = 210
-	E.db.nameplates.plateSize.personalWidth = 210
 	E.db.nameplates.statusbar = Private.Texture
 	E.db.nameplates.threat.useSoloColor = true
 
@@ -321,6 +318,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.TARGET.glowStyle = 'style2'
 
 	-- Enemy NPC
+	E.db.nameplates.units.ENEMY_NPC.auras.attachTo = 'HEALTH'
 	E.db.nameplates.units.ENEMY_NPC.auras.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.auras.countFontSize = 12
 	E.db.nameplates.units.ENEMY_NPC.auras.countXOffset = 1
@@ -339,6 +337,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.yOffset = 13
 	E.db.nameplates.units.ENEMY_NPC.auras.yOffset = -1
 	E.db.nameplates.units.ENEMY_NPC.buffs.anchorPoint = 'TOPRIGHT'
+	E.db.nameplates.units.ENEMY_NPC.buffs.attachTo = 'HEALTH'
 	E.db.nameplates.units.ENEMY_NPC.buffs.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.buffs.countFontSize = 12
 	E.db.nameplates.units.ENEMY_NPC.buffs.countPosition = 'TOP'
@@ -377,6 +376,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.castbar.xOffset = 13
 	E.db.nameplates.units.ENEMY_NPC.castbar.yOffset = 3
 	E.db.nameplates.units.ENEMY_NPC.debuffs.anchorPoint = 'LEFT'
+	E.db.nameplates.units.ENEMY_NPC.debuffs.attachTo = 'HEALTH'
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countFontSize = 12
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countPosition = 'TOP'
@@ -395,13 +395,17 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.health.height = 22
 	E.db.nameplates.units.ENEMY_NPC.health.text.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.health.text.format = '[luckyone:health:percent]'
+	E.db.nameplates.units.ENEMY_NPC.health.text.parent = 'Health'
 	E.db.nameplates.units.ENEMY_NPC.health.text.position = 'TOPRIGHT'
-	E.db.nameplates.units.ENEMY_NPC.health.text.yOffset = -20
+	E.db.nameplates.units.ENEMY_NPC.health.text.xOffset = -1
+	E.db.nameplates.units.ENEMY_NPC.health.text.yOffset = -16
+	E.db.nameplates.units.ENEMY_NPC.health.width = 210
 	E.db.nameplates.units.ENEMY_NPC.level.enable = false
 	E.db.nameplates.units.ENEMY_NPC.name.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
-	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 2
-	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -20
+	E.db.nameplates.units.ENEMY_NPC.name.parent = 'Health'
+	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -16
 	E.db.nameplates.units.ENEMY_NPC.pvpindicator.size = 35
 	E.db.nameplates.units.ENEMY_NPC.questIcon.enable = false
 	E.db.nameplates.units.ENEMY_NPC.questIcon.font = Private.Font
@@ -413,6 +417,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
 
 	-- Enemy Player
+	E.db.nameplates.units.ENEMY_PLAYER.auras.attachTo = 'HEALTH'
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countFontSize = 12
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countXOffset = 1
@@ -431,6 +436,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.yOffset = 13
 	E.db.nameplates.units.ENEMY_PLAYER.auras.yOffset = -1
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.anchorPoint = 'TOPRIGHT'
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.attachTo = 'HEALTH'
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.countFontSize = 12
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.countPosition = 'TOP'
@@ -464,6 +470,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.xOffset = 13
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.yOffset = 3
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.anchorPoint = 'LEFT'
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.attachTo = 'HEALTH'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFontSize = 12
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countPosition = 'TOP'
@@ -480,15 +487,19 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.health.height = 22
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.format = '[luckyone:health:percent]'
+	E.db.nameplates.units.ENEMY_PLAYER.health.text.parent = 'Health'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.position = 'TOPRIGHT'
-	E.db.nameplates.units.ENEMY_PLAYER.health.text.yOffset = -20
+	E.db.nameplates.units.ENEMY_PLAYER.health.text.xOffset = -1
+	E.db.nameplates.units.ENEMY_PLAYER.health.text.yOffset = -16
+	E.db.nameplates.units.ENEMY_PLAYER.health.width = 210
 	E.db.nameplates.units.ENEMY_PLAYER.level.enable = false
 	E.db.nameplates.units.ENEMY_PLAYER.level.format = ''
 	E.db.nameplates.units.ENEMY_PLAYER.markHealers = false
 	E.db.nameplates.units.ENEMY_PLAYER.name.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
-	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
-	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -20
+	E.db.nameplates.units.ENEMY_PLAYER.name.parent = 'Health'
+	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -16
 	E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
 	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.position = 'CENTER'
 	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.size = 16
