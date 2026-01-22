@@ -1,4 +1,13 @@
-﻿## Version 3.33 [21-01-2026]
+﻿## Version 3.34 [In Development]
+
+**All WoW Versions:**  
+- Updated deDE locales (Credits: Dlarge)  
+- Updated ElvUI Nameplates profile for the latest changes  
+
+**Retail:**  
+- Updated the new Midnight percentage health text format tag  
+
+## Version 3.33 [21-01-2026]
 
 **All WoW Versions:**  
 - ElvUI 14.07+ compatibility & ElvUI Midnight PTR build support  
