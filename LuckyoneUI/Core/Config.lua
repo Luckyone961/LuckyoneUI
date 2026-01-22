@@ -177,8 +177,8 @@ local function BuildCVarsSection()
 	return section
 end
 
--- Build Layouts Section
-local function BuildLayoutSection()
+-- Build ElvUI Layouts Section
+local function BuildElvUILayoutSection()
 	if not Private.ElvUI then return end -- ElvUI section
 	local section = ACH:Group(L["ElvUI layouts"], nil, 30)
 	section.args.header1 = ACH:Header(L["Layout scale"], 1)
@@ -195,10 +195,22 @@ local function BuildLayoutSection()
 	return section
 end
 
+-- Build ElvUI Themes Section
+local function BuildElvUIThemesSection()
+	if not Private.ElvUI then return end -- ElvUI section
+	local section = ACH:Group(L["Themes"], nil, 35)
+	section.args.header = ACH:Header(L["Themes"], 1)
+	section.args.raid = ACH:Group(L["UnitFrames Color Theme"], nil, 2)
+	section.args.raid.inline = true
+	section.args.raid.args.dark = ACH:Execute(L["Dark"], L["Dark Style (Default)"], 1, function() Private:Setup_Theme('dark') end, nil, true)
+	section.args.raid.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() Private:Setup_Theme('class') end, nil, true)
+	return section
+end
+
 -- Build ElvUI Tweaks Section
 local function BuildElvUITweaksSection()
-	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["ElvUI tweaks"], nil, 35)
+	if not Private.ElvUI or (Private.isClassic or Private.isTBC or Private.isMists) then return end -- ElvUI section (Retail only)
+	local section = ACH:Group(L["ElvUI tweaks"], nil, 40)
 	section.args.header = ACH:Header(L["ElvUI tweaks"], 1)
 	section.args.toggles = ACH:Group(L["Toggles"], nil, 2)
 	section.args.toggles.inline = true
@@ -215,7 +227,7 @@ end
 
 -- Build Graphics Section
 local function BuildGraphicsSection()
-	local section = ACH:Group(L["Graphics"], nil, 40)
+	local section = ACH:Group(L["Graphics"], nil, 45)
 	section.args.header = ACH:Header(L["Graphics"], 1)
 	section.args.toggles = ACH:Group(L["General"], nil, 2)
 	section.args.toggles.inline = true
@@ -233,7 +245,7 @@ end
 
 -- Build Profiles Section
 local function BuildProfilesSection()
-	local section = ACH:Group(L["Profiles"], nil, 45)
+	local section = ACH:Group(L["Profiles"], nil, 50)
 	section.args.header1 = ACH:Header(L["Layout scale"], 1)
 	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	section.args.scaling.inline = true
@@ -267,7 +279,7 @@ end
 -- Build Skins Section
 local function BuildSkinsSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group('Skins', nil, 50)
+	local section = ACH:Group('Skins', nil, 55)
 	section.args.header = ACH:Header('Skins', 1)
 	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.profile.skins[info[#info]] end, function(info, value) Private.Addon.db.profile.skins[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.addons.inline = true
@@ -285,22 +297,10 @@ end
 -- Build Tags Section
 local function BuildTagsSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["Tags"], nil, 55)
+	local section = ACH:Group(L["Tags"], nil, 60)
 	section.args.header = ACH:Header(L["Tags"], 1)
 	section.args.spacer = ACH:Spacer(2, 'full')
 	section.args.shortcut = ACH:Execute(L["Available Tags"], nil, 3, function() ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', Private.Name) end)
-	return section
-end
-
--- Build Themes Section
-local function BuildThemesSection()
-	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["Themes"], nil, 60)
-	section.args.header = ACH:Header(L["Themes"], 1)
-	section.args.raid = ACH:Group(L["UnitFrames Color Theme"], nil, 2)
-	section.args.raid.inline = true
-	section.args.raid.args.dark = ACH:Execute(L["Dark"], L["Dark Style (Default)"], 1, function() Private:Setup_Theme('dark') end, nil, true)
-	section.args.raid.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() Private:Setup_Theme('class') end, nil, true)
 	return section
 end
 
@@ -372,15 +372,17 @@ function Private:BuildConfig()
 	Private.Config.args.setup = BuildSetupSection() -- 2
 	Private.Config.args.blizzard = BuildBlizzardSection() -- 5
 
+	Private.Config.args.auras = BuildAurasSection() -- 10
 	Private.Config.args.privateDB = BuildPrivateDBSection() -- 15
 	Private.Config.args.chat = BuildChatSection() -- 20
 	Private.Config.args.cvars = BuildCVarsSection() -- 25
-	Private.Config.args.layouts = BuildLayoutSection() -- 30
-	Private.Config.args.graphics = BuildGraphicsSection() -- 40
-	Private.Config.args.profiles = BuildProfilesSection() -- 45
-	Private.Config.args.skins = BuildSkinsSection() -- 50
-	Private.Config.args.tags = BuildTagsSection() -- 55
-	Private.Config.args.themes = BuildThemesSection() -- 60
+	Private.Config.args.elvuiLayouts = BuildElvUILayoutSection() -- 30
+	Private.Config.args.elvuiThemes = BuildElvUIThemesSection() -- 35
+	Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 40
+	Private.Config.args.graphics = BuildGraphicsSection() -- 45
+	Private.Config.args.profiles = BuildProfilesSection() -- 50
+	Private.Config.args.skins = BuildSkinsSection() -- 55
+	Private.Config.args.tags = BuildTagsSection() -- 60
 	Private.Config.args.credits = BuildCreditsSection() -- 65
 	Private.Config.args.links = BuildLinksSection() -- 70
 	Private.Config.args.dev = BuildDevSection() -- 100
@@ -389,12 +391,6 @@ function Private:BuildConfig()
 	if Private.ElvUI then
 		ElvUI[1].Options.name = format('%s + %s |cff99ff33%.2f|r', ElvUI[1].Options.name, Private.Name, Private.Version)
 		ElvUI[1].Options.args.LuckyoneUI = Private.Config
-
-		if not Private.isRetail then
-			Private.Config.args.auras = BuildAurasSection() -- 10
-		else
-			Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 35
-		end
 	end
 end
 
