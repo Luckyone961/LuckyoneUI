@@ -31,10 +31,10 @@ local _COLORS = ElvUF.colors
 
 -- Display percentage health
 E:AddTag('luckyone:health:percent', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
-	local percent = format('%d%%', UnitHealthPercent(unit, true, ScaleTo100))
+	local percent = format('%d', UnitHealthPercent(unit, true, ScaleTo100))
 	return percent
 end)
-E:AddTagInfo('luckyone:health:percent', Private.Name, L["Displays percentage health with a percent sign"])
+E:AddTagInfo('luckyone:health:percent', Private.Name, L["Displays percentage health without decimals"])
 
 -- Display current health abbreviated
 E:AddTag('luckyone:health:current:shortvalue', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
@@ -49,14 +49,14 @@ E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT
 	local color = Private.Tags.getPowerColor(unit)
 	return color .. percent
 end)
-E:AddTagInfo('luckyone:power:percent-color', Private.Name, L["Displays percentage power with powercolor"])
+E:AddTagInfo('luckyone:power:percent-color', Private.Name, L["Displays percentage power without decimals with powercolor"])
 
 -- Display percentage power with no color
 E:AddTag('luckyone:power:percent-nocolor', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local percent = format('%d', UnitPowerPercent(unit, nil, true, ScaleTo100))
 	return percent
 end)
-E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percentage power with no color"])
+E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percentage power without decimals with no color"])
 
 -- Display name with classcolor/reactioncolor
 E:AddTag('luckyone:name-color', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
