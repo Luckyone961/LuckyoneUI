@@ -1054,7 +1054,6 @@ function Private:Setup_ElvUI(layout)
 	-- Cooldown Text
 	E.db.cooldown.font = Private.Font
 	E.db.cooldown.fontSize = 12
-	E.db.cooldown.override = false
 
 	-- DataBars
 	E.db.databars.azerite.enable = false
