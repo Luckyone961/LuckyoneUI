@@ -244,11 +244,11 @@ function Private:ApplyScale(native)
 	if native then
 		SetCVar('uiScale', 0.53333333333333)
 		Private.Addon.db.global.scaled = false
-		Private:Print(L["Layout scale"] .. ' 1440p')
+		Private:Print(L["Layout Scale"] .. ' 1440p')
 	else
 		SetCVar('uiScale', 0.71111111111111)
 		Private.Addon.db.global.scaled = true
-		Private:Print(L["Layout scale"] .. ' 1080p')
+		Private:Print(L["Layout Scale"] .. ' 1080p')
 	end
 end
 

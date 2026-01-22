@@ -564,17 +564,17 @@ local function BuildInstallerData()
 	-- Page 2: Layout scale (All versions)
 	pages[pageIndex] = function()
 		local f = installerFrame
-		f.SubTitle:SetText(L["Layout scale"])
+		f.SubTitle:SetText(L["Layout Scale"])
 		f.Desc1:SetText(L["1440p = Default | 1080p = Downscaled"] .. '.')
 		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() Private:ApplyScale(true) stepCompleteFrame:ShowMessage(L["Layout scale"] .. ' 1440p') end)
+		f.Option1:SetScript('OnClick', function() Private:ApplyScale(true) stepCompleteFrame:ShowMessage(L["Layout Scale"] .. ' 1440p') end)
 		f.Option1:SetText('1440p')
 		f.Option2:Show()
-		f.Option2:SetScript('OnClick', function() Private:ApplyScale(false) stepCompleteFrame:ShowMessage(L["Layout scale"] .. ' 1080p') end)
+		f.Option2:SetScript('OnClick', function() Private:ApplyScale(false) stepCompleteFrame:ShowMessage(L["Layout Scale"] .. ' 1080p') end)
 		f.Option2:SetText('1080p')
 	end
-	stepTitles[pageIndex] = L["Layout scale"]
+	stepTitles[pageIndex] = L["Layout Scale"]
 	pageIndex = pageIndex + 1
 
 	-- Only add ElvUI-specific pages if ElvUI is loaded
@@ -582,7 +582,7 @@ local function BuildInstallerData()
 		-- Page: ElvUI layouts
 		pages[pageIndex] = function()
 			local f = installerFrame
-			f.SubTitle:SetText(L["ElvUI layouts"])
+			f.SubTitle:SetText(L["ElvUI Layouts"])
 			f.Desc1:SetText(L["This step will configure the ElvUI layout of your choice."])
 			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			f.Desc3:SetText(format('|cff33937F%s|r', L["Augmentation"]) .. ': ' .. L["No ActionBars and centered Raid Frames"] .. '.')
@@ -596,7 +596,7 @@ local function BuildInstallerData()
 			f.Option3:SetScript('OnClick', function() Private:Setup_Layout('support', true) end)
 			f.Option3:SetText(format('|cff33937F%s', L["Augmentation"]))
 		end
-		stepTitles[pageIndex] = L["ElvUI layouts"]
+		stepTitles[pageIndex] = L["ElvUI Layouts"]
 		pageIndex = pageIndex + 1
 
 		-- Page: ElvUI Filters
@@ -616,7 +616,7 @@ local function BuildInstallerData()
 		if Private.isRetail then
 			pages[pageIndex] = function()
 				local f = installerFrame
-				f.SubTitle:SetText(L["ElvUI plugins"])
+				f.SubTitle:SetText(L["ElvUI Plugins"])
 				f.Desc1:SetText(L["This step will configure profiles for other ElvUI plugins."])
 				f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 				f.Option1:Show()
@@ -626,7 +626,7 @@ local function BuildInstallerData()
 				f.Option2:SetScript('OnClick', function() Private:Setup_ShadowAndLight(true) end)
 				f.Option2:SetText('|cff9482c9Shadow & Light|r')
 			end
-			stepTitles[pageIndex] = L["ElvUI plugins"]
+			stepTitles[pageIndex] = L["ElvUI Plugins"]
 			pageIndex = pageIndex + 1
 		end
 
@@ -665,7 +665,7 @@ local function BuildInstallerData()
 	-- Page: Console variables
 	pages[pageIndex] = function()
 		local f = installerFrame
-		f.SubTitle:SetText(L["Console variables"])
+		f.SubTitle:SetText(L["Console Variables"])
 		f.Desc1:SetText(L["This step will configure some of Blizzards console variables."])
 		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 		f.Desc3:SetText(L["Examples: Max camera distance, screenshot quality and tutorials."])
@@ -674,7 +674,7 @@ local function BuildInstallerData()
 		f.Option1:SetScript('OnClick', function() Private:Setup_CVars(nil, true) end)
 		f.Option1:SetText(L["Setup CVars"])
 	end
-	stepTitles[pageIndex] = L["Console variables"]
+	stepTitles[pageIndex] = L["Console Variables"]
 	pageIndex = pageIndex + 1
 
 	-- Page: NamePlates
