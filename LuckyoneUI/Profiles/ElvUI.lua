@@ -419,7 +419,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.name.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
 	E.db.nameplates.units.ENEMY_NPC.name.parent = 'Health'
-	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -16
 	E.db.nameplates.units.ENEMY_NPC.pvpindicator.size = 35
 	E.db.nameplates.units.ENEMY_NPC.questIcon.enable = false
@@ -514,7 +514,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.name.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
 	E.db.nameplates.units.ENEMY_PLAYER.name.parent = 'Health'
-	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -16
 	E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
 	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.position = 'CENTER'
