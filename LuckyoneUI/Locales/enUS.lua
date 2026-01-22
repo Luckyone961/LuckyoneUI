@@ -248,5 +248,5 @@ L["Wowhead guide:"] = true
 L["You have completed the installation process, please click 'Finished' to reload the UI."] = true
 L["Your ElvUI is outdated - please update and reload."] = true
 L["Your existing profiles will not change. The installer will create a fresh profile."] = true
-L["Your Raid 1 frames will be enabled if you enter mythic difficulty (Triggers after loading screen)\nYour Raid 2 frames will be disabled if you enter mythic difficulty (Triggers after loading screen)\n\nAdditionally the maxAllowedGroups setting will be enabled and the visibility state gets modified\nBenched people in groups 5-8 while not show up when you're Mythic raiding\n\nAll changes mentioned above will revert back to default upon leaving the raid"] = true
+L["Your Raid 1 frames will be enabled if you enter Mythic difficulty (Triggers after loading screen)\nYour Raid 2 frames will be disabled if you enter Mythic difficulty (Triggers after loading screen)\n\nAdditionally the maxAllowedGroups setting will be enabled and the visibility state gets modified\nBenched people in groups 5-8 while not show up when you're Mythic raiding\n\nAll changes mentioned above will revert back to default upon leaving the raid"] = true
 L["Zone Text"] = true
