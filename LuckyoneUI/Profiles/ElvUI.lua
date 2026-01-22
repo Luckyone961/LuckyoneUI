@@ -409,7 +409,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.eliteIcon.xOffset = 3
 	E.db.nameplates.units.ENEMY_NPC.health.height = 22
 	E.db.nameplates.units.ENEMY_NPC.health.text.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.health.text.format = '[luckyone:health:percent]'
+	E.db.nameplates.units.ENEMY_NPC.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
 	E.db.nameplates.units.ENEMY_NPC.health.text.parent = 'Health'
 	E.db.nameplates.units.ENEMY_NPC.health.text.position = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_NPC.health.text.xOffset = -1
@@ -502,7 +502,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = -1
 	E.db.nameplates.units.ENEMY_PLAYER.health.height = 22
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.health.text.format = '[luckyone:health:percent]'
+	E.db.nameplates.units.ENEMY_PLAYER.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.parent = 'Health'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.position = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.xOffset = -1
@@ -526,7 +526,7 @@ function Private:Setup_NamePlates(installer)
 	-- Friendly NPC
 	E.db.nameplates.units.FRIENDLY_NPC.buffs.enable = false
 	E.db.nameplates.units.FRIENDLY_NPC.debuffs.enable = false
-	E.db.nameplates.units.FRIENDLY_NPC.health.text.format = '[luckyone:health:percent]'
+	E.db.nameplates.units.FRIENDLY_NPC.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
 	E.db.nameplates.units.FRIENDLY_NPC.name.font = Private.Font
 	E.db.nameplates.units.FRIENDLY_NPC.name.fontSize = 14
 	E.db.nameplates.units.FRIENDLY_NPC.name.yOffset = 0
@@ -539,7 +539,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.FRIENDLY_PLAYER.auras.enable = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.buffs.enable = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.debuffs.enable = false
-	E.db.nameplates.units.FRIENDLY_PLAYER.health.text.format = '[luckyone:health:percent]'
+	E.db.nameplates.units.FRIENDLY_PLAYER.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
 	E.db.nameplates.units.FRIENDLY_PLAYER.markHealers = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.markTanks = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.name.font = Private.Font
@@ -1210,7 +1210,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isRetail and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
@@ -1319,7 +1319,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isRetail and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
@@ -1550,7 +1550,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:health:current:shortvalue] • [luckyone:health:percent]' or '[health:current:shortvalue] • [luckyone:health:percent]',
+		text_format = Private.isRetail and '[luckyone:health:current:shortvalue] • [luckyone:health:percent<%]' or '[health:current:shortvalue] • [luckyone:health:percent]',
 		xOffset = -2,
 		yOffset = 0
 	}
@@ -1659,7 +1659,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isRetail and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
