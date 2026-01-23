@@ -46,11 +46,8 @@ local function UpdateDataTextWidth()
 
 	-- print('ID: ' .. ID)
 
-	-- Augmentation layout values
-	if ID == 1473 then
-		ActionBarsDT.width = 464
 	-- Healer layout values
-	elseif E.db.actionbar.bar1.mouseover and healers[ID] then
+	if healers[ID] then
 		ActionBarsDT.width = 604
 	else -- Main layout values
 		ActionBarsDT.width = 347

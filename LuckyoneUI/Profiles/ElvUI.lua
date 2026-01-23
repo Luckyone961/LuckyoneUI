@@ -194,12 +194,8 @@ function Private:HandleAlts(layout)
 	-- Load the most recent profile
 	E.data:SetProfile(mostRecentProfile)
 
-	-- Fix our custom DataTexts
-	if layout == 'Main' or layout == 'Healing' then
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 347
-	elseif layout == 'Support' then
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 464
-	end
+	-- Fix our custom DataText
+	E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 347
 
 	-- PrivateDB for ElvUI, Shadow&Light, WindTools
 	Private:Setup_PrivateDB(true)
@@ -226,8 +222,6 @@ function Private:Setup_Layout(layout, installer)
 		E.data:SetProfile(Private.Addon.db.global.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version)
 	elseif layout == 'healing' then
 		E.data:SetProfile(Private.Addon.db.global.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version)
-	elseif layout == 'support' then
-		E.data:SetProfile(Private.Addon.db.global.dev and 'Luckyone Support' or 'Luckyone Support ' .. Private.Version)
 	end
 
 	-- E.global & Custom DataText
@@ -241,8 +235,6 @@ function Private:Setup_Layout(layout, installer)
 		Private:Setup_ElvUI('main')
 	elseif layout == 'healing' then
 		Private:Setup_ElvUI('healing')
-	elseif layout == 'support' then
-		Private:Setup_ElvUI('support')
 	end
 
 	-- Push the update
@@ -2311,130 +2303,5 @@ function Private:Setup_ElvUI(layout)
 			E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 			E.db.unitframe.units.player.power.powerPrediction = false
 		end
-
-	elseif layout == 'support' then
-
-		-- Support growth direction
-		E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
-
-		-- Support Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]'
-		E.db.unitframe.units.player.castbar.width = 279
-		E.db.unitframe.units.player.power.autoHide = true
-
-		-- Support TargetTarget
-		E.db.unitframe.units.targettarget.width = 278
-
-		-- Support Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]'
-		E.db.unitframe.units.party.debuffs.countFont = Private.Font
-		E.db.unitframe.units.party.debuffs.countXOffset = 2
-		E.db.unitframe.units.party.debuffs.enable = true
-		E.db.unitframe.units.party.debuffs.maxDuration = 0
-		E.db.unitframe.units.party.debuffs.perrow = 2
-		E.db.unitframe.units.party.debuffs.sizeOverride = 40
-		E.db.unitframe.units.party.debuffs.xOffset = 1
-		E.db.unitframe.units.party.debuffs.yOffset = -1
-		E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
-		E.db.unitframe.units.party.raidicon.size = 14
-		E.db.unitframe.units.party.raidicon.xOffset = -3
-		E.db.unitframe.units.party.raidicon.yOffset = 0
-		E.db.unitframe.units.party.roleIcon.damager = false
-		E.db.unitframe.units.party.roleIcon.position = 'LEFT'
-		E.db.unitframe.units.party.roleIcon.size = 14
-		E.db.unitframe.units.party.roleIcon.xOffset = 0
-		E.db.unitframe.units.party.showPlayer = false
-		E.db.unitframe.units.party.width = 210
-
-		-- Support Raid1
-		E.db.unitframe.units.raid1.height = 40
-		E.db.unitframe.units.raid1.raidicon.attachTo = 'TOPRIGHT'
-		E.db.unitframe.units.raid1.raidicon.attachToObject = 'Health'
-		E.db.unitframe.units.raid1.raidicon.size = 12
-		E.db.unitframe.units.raid1.raidicon.xOffset = 1
-		E.db.unitframe.units.raid1.raidicon.yOffset = 1
-		E.db.unitframe.units.raid1.rdebuffs.font = Private.Font
-		E.db.unitframe.units.raid1.rdebuffs.fontSize = 9
-		E.db.unitframe.units.raid1.rdebuffs.size = 14
-		E.db.unitframe.units.raid1.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.raid1.rdebuffs.stack.xOffset = -10
-		E.db.unitframe.units.raid1.rdebuffs.stack.yOffset = 0
-		E.db.unitframe.units.raid1.rdebuffs.xOffset = 38
-		E.db.unitframe.units.raid1.rdebuffs.yOffset = 13
-		E.db.unitframe.units.raid1.roleIcon.size = 12
-		E.db.unitframe.units.raid1.width = 92
-
-		-- Support Raid2
-		E.db.unitframe.units.raid2.height = 40
-		E.db.unitframe.units.raid2.raidicon.attachTo = 'TOPRIGHT'
-		E.db.unitframe.units.raid2.raidicon.attachToObject = 'Health'
-		E.db.unitframe.units.raid2.raidicon.size = 12
-		E.db.unitframe.units.raid2.raidicon.xOffset = 1
-		E.db.unitframe.units.raid2.raidicon.yOffset = 1
-		E.db.unitframe.units.raid2.rdebuffs.font = Private.Font
-		E.db.unitframe.units.raid2.rdebuffs.fontSize = 9
-		E.db.unitframe.units.raid2.rdebuffs.size = 14
-		E.db.unitframe.units.raid2.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.raid2.rdebuffs.stack.xOffset = -10
-		E.db.unitframe.units.raid2.rdebuffs.stack.yOffset = 0
-		E.db.unitframe.units.raid2.rdebuffs.xOffset = 38
-		E.db.unitframe.units.raid2.rdebuffs.yOffset = 13
-		E.db.unitframe.units.raid2.roleIcon.size = 12
-		E.db.unitframe.units.raid2.width = 92
-
-		-- Support Raid3
-		E.db.unitframe.units.raid3.height = 30
-		E.db.unitframe.units.raid3.raidicon.attachTo = 'TOPRIGHT'
-		E.db.unitframe.units.raid3.raidicon.attachToObject = 'Health'
-		E.db.unitframe.units.raid3.raidicon.size = 12
-		E.db.unitframe.units.raid3.raidicon.xOffset = 1
-		E.db.unitframe.units.raid3.raidicon.yOffset = 1
-		E.db.unitframe.units.raid3.rdebuffs.enable = true
-		E.db.unitframe.units.raid3.rdebuffs.font = Private.Font
-		E.db.unitframe.units.raid3.rdebuffs.fontSize = 9
-		E.db.unitframe.units.raid3.rdebuffs.size = 14
-		E.db.unitframe.units.raid3.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.raid3.rdebuffs.stack.xOffset = -10
-		E.db.unitframe.units.raid3.rdebuffs.stack.yOffset = 0
-		E.db.unitframe.units.raid3.rdebuffs.xOffset = 38
-		E.db.unitframe.units.raid3.rdebuffs.yOffset = 8
-		E.db.unitframe.units.raid3.roleIcon.attachTo = 'Frame'
-		E.db.unitframe.units.raid3.roleIcon.damager = false
-		E.db.unitframe.units.raid3.roleIcon.enable = true
-		E.db.unitframe.units.raid3.roleIcon.position = 'LEFT'
-		E.db.unitframe.units.raid3.roleIcon.size = 12
-		E.db.unitframe.units.raid3.roleIcon.xOffset = 0
-		E.db.unitframe.units.raid3.roleIcon.yOffset = 0
-		E.db.unitframe.units.raid3.width = 92
-
-		-- Special misc
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 464
-		E.db.actionbar.bar1.mouseover = true
-		E.db.actionbar.bar2.mouseover = true
-		E.db.actionbar.bar3.mouseover = true
-		E.db.actionbar.barPet.mouseover = true
-
-		-- Support movers
-		E.db.movers.BossButton = 'BOTTOM,ElvUIParent,BOTTOM,-260,209'
-		E.db.movers.ElvAB_1 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
-		E.db.movers.ElvAB_2 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,248'
-		E.db.movers.ElvAB_3 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,219'
-		E.db.movers.ElvUF_FocusMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-660,580'
-		E.db.movers.ElvUF_PartyMover = 'TOPLEFT,ElvUIParent,TOPLEFT,600,-480'
-		E.db.movers.ElvUF_PetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,781,474'
-		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,416'
-		E.db.movers.ElvUF_PlayerMover = 'BOTTOM,ElvUIParent,BOTTOM,-288,474'
-		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
-		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
-		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
-		E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,438'
-		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,288,453'
-		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,288,474'
-		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,422'
-		E.db.movers.PetAB = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,277'
-		E.db.movers.PowerBarContainerMover = 'BOTTOM,ElvUIParent,BOTTOM,0,376'
-		E.db.movers.PrivateAurasMover = 'TOP,ElvUIParent,TOP,330,-408'
-		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,-401,566'
-		E.db.movers.ZoneAbility = 'BOTTOM,ElvUIParent,BOTTOM,260,209'
 	end
 end
