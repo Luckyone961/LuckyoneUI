@@ -1065,8 +1065,28 @@ function Private:Setup_ElvUI(layout)
 	E.db.chat.useBTagName = true
 
 	-- Cooldown Text
-	E.db.cooldown.font = Private.Font
-	E.db.cooldown.fontSize = 12
+	E.db.cooldown.actionbar.fontSize = 12
+	E.db.cooldown.actionbar.offsetX = 1
+	E.db.cooldown.aurabars.fontSize = 12
+	E.db.cooldown.auras.fontSize = 12
+	E.db.cooldown.auras.offsetX = 1
+	E.db.cooldown.auras.offsetY = -7
+	E.db.cooldown.bags.fontSize = 12
+	E.db.cooldown.bags.offsetX = 1
+	E.db.cooldown.bossbutton.fontSize = 14
+	E.db.cooldown.bossbutton.offsetX = 1
+	E.db.cooldown.cdmanager.fontSize = 14
+	E.db.cooldown.cdmanager.offsetX = 1
+	E.db.cooldown.global.fontSize = 12
+	E.db.cooldown.global.offsetX = 1
+	E.db.cooldown.nameplates.fontSize = 12
+	E.db.cooldown.nameplates.offsetX = 1
+	E.db.cooldown.totemtracker.fontSize = 14
+	E.db.cooldown.totemtracker.offsetX = 1
+	E.db.cooldown.unitframe.fontSize = 12
+	E.db.cooldown.unitframe.offsetX = 1
+	E.db.cooldown.zonebutton.fontSize = 14
+	E.db.cooldown.zonebutton.offsetX = 1
 
 	-- DataBars
 	E.db.databars.azerite.enable = false
