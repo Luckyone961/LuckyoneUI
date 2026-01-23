@@ -84,7 +84,7 @@ function Private:Setup_GlobalDB()
 	MiniMapDT.border = false
 	MiniMapDT.fonts.enable = true
 	MiniMapDT.fonts.font = Private.Font
-	MiniMapDT.fonts.fontSize = 14
+	MiniMapDT.fonts.fontSize = 16
 	MiniMapDT.frameStrata = 'HIGH'
 	MiniMapDT.height = 18
 	MiniMapDT.name = 'Luckyone_MiniMap_DT'
@@ -1999,7 +1999,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-104'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
-	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-56,-156'
+	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-74,-182'
 	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,204,1'
 	E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 	E.db.movers.ElvAB_2 = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,64') or 'BOTTOM,ElvUIParent,BOTTOM,0,72'
