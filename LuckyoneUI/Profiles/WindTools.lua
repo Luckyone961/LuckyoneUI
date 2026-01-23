@@ -144,6 +144,7 @@ function Private:Setup_WindTools(installer)
 		E.global.WT.item.contacts.alts['Laughing Skull']['Alliance'] = {
 			['Luckyone'] = 'DRUID',
 			['Luckymonkas'] = 'MONK',
+			['Taylorswift'] = 'DEMONHUNTER',
 		}
 		E.global.WT.item.contacts.updateAlts = false
 	end
