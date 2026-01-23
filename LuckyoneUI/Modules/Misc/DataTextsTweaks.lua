@@ -30,7 +30,6 @@ local healers = {
 local function UpdateDataTextWidth()
 	if InCombatLockdown() then return end
 
-	local scaled = Private.Addon.db.global.scaled -- 1080p users
 	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 
 	-- Only continue if our custom ActionBars DataText exists
@@ -49,12 +48,12 @@ local function UpdateDataTextWidth()
 
 	-- Augmentation layout values
 	if ID == 1473 then
-		ActionBarsDT.width = (scaled and 404) or 464
+		ActionBarsDT.width = 464
 	-- Healer layout values
 	elseif E.db.actionbar.bar1.mouseover and healers[ID] then
 		ActionBarsDT.width = 604
 	else -- Main layout values
-		ActionBarsDT.width = (scaled and 299) or 347
+		ActionBarsDT.width = 347
 	end
 
 	-- print('new width: ' .. ActionBarsDT.width)
