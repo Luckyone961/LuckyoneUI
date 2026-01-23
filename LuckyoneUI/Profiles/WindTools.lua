@@ -153,7 +153,7 @@ function Private:Setup_WindTools(installer)
 
 	-- Movers
 	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,405') or 'BOTTOM,ElvUIParent,BOTTOM,0,590'
-	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-177'
+	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-202'
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-110'
 
 	if installer then
@@ -174,7 +174,7 @@ function Private:Setup_Private_WindTools()
 	Set(E.private, 'WT.maps.minimapButtons.backdrop', false)
 	Set(E.private, 'WT.maps.minimapButtons.backdropSpacing', 0)
 	Set(E.private, 'WT.maps.minimapButtons.buttonSize', 22)
-	Set(E.private, 'WT.maps.minimapButtons.buttonsPerRow', 7)
+	Set(E.private, 'WT.maps.minimapButtons.buttonsPerRow', 8)
 	Set(E.private, 'WT.maps.minimapButtons.expansionLandingPage', true)
 	Set(E.private, 'WT.maps.minimapButtons.spacing', 3)
 	Set(E.private, 'WT.maps.superTracker.enable', false)
