@@ -64,16 +64,16 @@ function Private:Setup_GlobalDB()
 	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 	ActionBarsDT.fonts.enable = true
 	ActionBarsDT.fonts.font = Private.Font
-	ActionBarsDT.fonts.fontSize = 10
+	ActionBarsDT.fonts.fontSize = 12
 	ActionBarsDT.frameStrata = 'BACKGROUND'
-	ActionBarsDT.height = 12
+	ActionBarsDT.height = 14
 	ActionBarsDT.name = 'Luckyone_ActionBars_DT'
 	ActionBarsDT.panelTransparency = true
 	ActionBarsDT.tooltipAnchor = 'ANCHOR_TOP'
 	ActionBarsDT.tooltipXOffset = 0
 	ActionBarsDT.tooltipYOffset = 5
 	ActionBarsDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
-	ActionBarsDT.width = 347
+	ActionBarsDT.width = 395
 
 	DT:BuildPanelFrame('Luckyone_MiniMap_DT')
 
@@ -195,7 +195,7 @@ function Private:HandleAlts(layout)
 	E.data:SetProfile(mostRecentProfile)
 
 	-- Fix our custom DataText
-	E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 347
+	E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
 
 	-- PrivateDB for ElvUI, Shadow&Light, WindTools
 	Private:Setup_PrivateDB(true)
@@ -579,7 +579,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.customGlow.useColor = true
 	E.db.general.durabilityScale = 0.5
 	E.db.general.enhancedPvpMessages = false
-	E.db.general.gameMenuScale = 0.8
+	E.db.general.gameMenuScale = 0.9
 	E.db.general.guildBank.countFont = Private.Font
 	E.db.general.guildBank.countFontOutline = Private.Outline
 	E.db.general.guildBank.itemLevelFont = Private.Font
@@ -629,266 +629,46 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.talkingHeadFrameScale = 1
 	E.db.general.vehicleSeatIndicatorSize = 64
 
-	-- ActionBars
-	E.db.actionbar.bar1.buttonSize = 28
-	E.db.actionbar.bar1.buttonSpacing = 1
-	E.db.actionbar.bar1.countFont = Private.Font
-	E.db.actionbar.bar1.countFontOutline = Private.Outline
-	E.db.actionbar.bar1.countFontSize = 9
-	E.db.actionbar.bar1.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar1.hotkeyFont = Private.Font
-	E.db.actionbar.bar1.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.bar1.hotkeyFontSize = 9
-	E.db.actionbar.bar1.hotkeyTextPosition = 'TOP'
-	E.db.actionbar.bar1.hotkeyTextYOffset = -1
-	E.db.actionbar.bar1.macroFont = Private.Font
-	E.db.actionbar.bar1.macroFontOutline = Private.Outline
-	E.db.actionbar.bar1.macroFontSize = 9
-	E.db.actionbar.bar1.macrotext = true
-	E.db.actionbar.bar1.macroTextPosition = 'BOTTOM'
-	E.db.actionbar.bar1.macroTextYOffset = 1
-	E.db.actionbar.bar1.professionQuality.enable = false
-	E.db.actionbar.bar1.targetReticle = false
-	E.db.actionbar.bar2.buttonSize = 28
-	E.db.actionbar.bar2.buttonSpacing = 1
-	E.db.actionbar.bar2.countFont = Private.Font
-	E.db.actionbar.bar2.countFontOutline = Private.Outline
-	E.db.actionbar.bar2.countFontSize = 9
-	E.db.actionbar.bar2.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar2.enabled = true
-	E.db.actionbar.bar2.hotkeyFont = Private.Font
-	E.db.actionbar.bar2.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.bar2.hotkeyFontSize = 9
-	E.db.actionbar.bar2.hotkeyTextPosition = 'TOP'
-	E.db.actionbar.bar2.hotkeyTextYOffset = -1
-	E.db.actionbar.bar2.macroFont = Private.Font
-	E.db.actionbar.bar2.macroFontOutline = Private.Outline
-	E.db.actionbar.bar2.macroFontSize = 9
-	E.db.actionbar.bar2.macrotext = true
-	E.db.actionbar.bar2.macroTextPosition = 'BOTTOM'
-	E.db.actionbar.bar2.macroTextYOffset = 1
-	E.db.actionbar.bar2.professionQuality.enable = false
-	E.db.actionbar.bar2.targetReticle = false
-	E.db.actionbar.bar3.buttons = 12
-	E.db.actionbar.bar3.buttonSize = 28
-	E.db.actionbar.bar3.buttonSpacing = 1
-	E.db.actionbar.bar3.buttonsPerRow = 12
-	E.db.actionbar.bar3.countFont = Private.Font
-	E.db.actionbar.bar3.countFontOutline = Private.Outline
-	E.db.actionbar.bar3.countFontSize = 9
-	E.db.actionbar.bar3.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar3.hotkeyFont = Private.Font
-	E.db.actionbar.bar3.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.bar3.hotkeyFontSize = 9
-	E.db.actionbar.bar3.hotkeyTextPosition = 'TOP'
-	E.db.actionbar.bar3.hotkeyTextYOffset = -1
-	E.db.actionbar.bar3.macroFont = Private.Font
-	E.db.actionbar.bar3.macroFontOutline = Private.Outline
-	E.db.actionbar.bar3.macroFontSize = 9
-	E.db.actionbar.bar3.macrotext = true
-	E.db.actionbar.bar3.macroTextPosition = 'BOTTOM'
-	E.db.actionbar.bar3.macroTextYOffset = 1
-	E.db.actionbar.bar3.professionQuality.enable = false
-	E.db.actionbar.bar3.targetReticle = false
-	E.db.actionbar.bar4.backdrop = false
-	E.db.actionbar.bar4.buttons = 7
-	E.db.actionbar.bar4.buttonSize = 26
-	E.db.actionbar.bar4.buttonSpacing = 1
-	E.db.actionbar.bar4.countFont = Private.Font
-	E.db.actionbar.bar4.countFontOutline = Private.Outline
-	E.db.actionbar.bar4.countFontSize = 9
-	E.db.actionbar.bar4.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar4.enabled = not Private.isRetail
-	E.db.actionbar.bar4.hotkeyFont = Private.Font
-	E.db.actionbar.bar4.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.bar4.hotkeyFontSize = 9
-	E.db.actionbar.bar4.hotkeyTextPosition = 'TOP'
-	E.db.actionbar.bar4.hotkeyTextYOffset = -1
-	E.db.actionbar.bar4.macroFont = Private.Font
-	E.db.actionbar.bar4.macroFontOutline = Private.Outline
-	E.db.actionbar.bar4.macroFontSize = 9
-	E.db.actionbar.bar4.macrotext = true
-	E.db.actionbar.bar4.macroTextPosition = 'BOTTOM'
-	E.db.actionbar.bar4.macroTextYOffset = 1
-	E.db.actionbar.bar4.point = 'BOTTOMLEFT'
-	E.db.actionbar.bar4.professionQuality.enable = false
-	E.db.actionbar.bar4.targetReticle = false
-	E.db.actionbar.bar5.buttons = 12
-	E.db.actionbar.bar5.buttonSize = 28
-	E.db.actionbar.bar5.buttonSpacing = 1
+	-- Prepare all ActionBars
+	for i = 1, 15 do
+		if i ~= 11 and i ~= 12 then
+			E.db.actionbar['bar'..i].backdrop = false
+			E.db.actionbar['bar'..i].buttons = 12
+			E.db.actionbar['bar'..i].buttonSpacing = 1
+			E.db.actionbar['bar'..i].buttonsPerRow = 12
+			E.db.actionbar['bar'..i].countFont = Private.Font
+			E.db.actionbar['bar'..i].countFontOutline = Private.Outline
+			E.db.actionbar['bar'..i].countTextPosition = 'BOTTOM'
+			E.db.actionbar['bar'..i].countTextXOffset = 1
+			E.db.actionbar['bar'..i].countTextYOffset = 1
+			E.db.actionbar['bar'..i].enabled = true
+			E.db.actionbar['bar'..i].hotkeyFont = Private.Font
+			E.db.actionbar['bar'..i].hotkeyFontOutline = Private.Outline
+			E.db.actionbar['bar'..i].hotkeyTextPosition = 'TOP'
+			E.db.actionbar['bar'..i].hotkeyTextXOffset = 1
+			E.db.actionbar['bar'..i].hotkeyTextYOffset = -1
+			E.db.actionbar['bar'..i].macroFont = Private.Font
+			E.db.actionbar['bar'..i].macroFontOutline = Private.Outline
+			E.db.actionbar['bar'..i].macrotext = true
+			E.db.actionbar['bar'..i].macroTextPosition = 'BOTTOM'
+			E.db.actionbar['bar'..i].macroTextXOffset = 1
+			E.db.actionbar['bar'..i].macroTextYOffset = 1
+			E.db.actionbar['bar'..i].professionQuality.enable = false
+			E.db.actionbar['bar'..i].targetReticle = false
+		end
+	end
+
+	-- Side ActionBar is vertical and on mouseover
 	E.db.actionbar.bar5.buttonsPerRow = 1
-	E.db.actionbar.bar5.countFont = Private.Font
-	E.db.actionbar.bar5.countFontOutline = Private.Outline
-	E.db.actionbar.bar5.countFontSize = 9
-	E.db.actionbar.bar5.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar5.enabled = true
-	E.db.actionbar.bar5.hotkeyFont = Private.Font
-	E.db.actionbar.bar5.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.bar5.hotkeyFontSize = 9
-	E.db.actionbar.bar5.hotkeyTextPosition = 'TOP'
-	E.db.actionbar.bar5.hotkeyTextYOffset = -1
-	E.db.actionbar.bar5.macroFont = Private.Font
-	E.db.actionbar.bar5.macroFontOutline = Private.Outline
-	E.db.actionbar.bar5.macroFontSize = 9
-	E.db.actionbar.bar5.macrotext = true
-	E.db.actionbar.bar5.macroTextPosition = 'BOTTOM'
-	E.db.actionbar.bar5.macroTextYOffset = 1
 	E.db.actionbar.bar5.mouseover = true
-	E.db.actionbar.bar5.professionQuality.enable = false
-	E.db.actionbar.bar5.targetReticle = false
-	E.db.actionbar.bar6.buttonSize = 28
-	E.db.actionbar.bar6.buttonSpacing = 1
-	E.db.actionbar.bar6.countFont = Private.Font
-	E.db.actionbar.bar6.countFontOutline = Private.Outline
-	E.db.actionbar.bar6.countFontSize = 9
-	E.db.actionbar.bar6.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar6.enabled = false
-	E.db.actionbar.bar6.hotkeyFont = Private.Font
-	E.db.actionbar.bar6.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.bar6.hotkeyFontSize = 9
-	E.db.actionbar.bar6.hotkeyTextPosition = 'TOP'
-	E.db.actionbar.bar6.hotkeyTextYOffset = -1
-	E.db.actionbar.bar6.macroFont = Private.Font
-	E.db.actionbar.bar6.macroFontOutline = Private.Outline
-	E.db.actionbar.bar6.macroFontSize = 9
-	E.db.actionbar.bar6.macrotext = true
-	E.db.actionbar.bar6.macroTextPosition = 'BOTTOM'
-	E.db.actionbar.bar6.macroTextYOffset = 1
-	E.db.actionbar.bar6.professionQuality.enable = false
-	E.db.actionbar.bar6.targetReticle = false
-	E.db.actionbar.bar7.buttonSize = 28
-	E.db.actionbar.bar7.buttonSpacing = 1
-	E.db.actionbar.bar7.countFont = Private.Font
-	E.db.actionbar.bar7.countFontOutline = Private.Outline
-	E.db.actionbar.bar7.countFontSize = 9
-	E.db.actionbar.bar7.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar7.hotkeyFont = Private.Font
-	E.db.actionbar.bar7.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.bar7.hotkeyFontSize = 9
-	E.db.actionbar.bar7.hotkeyTextPosition = 'TOP'
-	E.db.actionbar.bar7.hotkeyTextYOffset = -1
-	E.db.actionbar.bar7.macroFont = Private.Font
-	E.db.actionbar.bar7.macroFontOutline = Private.Outline
-	E.db.actionbar.bar7.macroFontSize = 9
-	E.db.actionbar.bar7.macrotext = true
-	E.db.actionbar.bar7.macroTextPosition = 'BOTTOM'
-	E.db.actionbar.bar7.macroTextYOffset = 1
-	E.db.actionbar.bar7.professionQuality.enable = false
-	E.db.actionbar.bar7.targetReticle = false
-	E.db.actionbar.bar8.buttonSize = 28
-	E.db.actionbar.bar8.buttonSpacing = 1
-	E.db.actionbar.bar8.countFont = Private.Font
-	E.db.actionbar.bar8.countFontOutline = Private.Outline
-	E.db.actionbar.bar8.countFontSize = 9
-	E.db.actionbar.bar8.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar8.hotkeyFont = Private.Font
-	E.db.actionbar.bar8.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.bar8.hotkeyFontSize = 9
-	E.db.actionbar.bar8.hotkeyTextPosition = 'TOP'
-	E.db.actionbar.bar8.hotkeyTextYOffset = -1
-	E.db.actionbar.bar8.macroFont = Private.Font
-	E.db.actionbar.bar8.macroFontOutline = Private.Outline
-	E.db.actionbar.bar8.macroFontSize = 9
-	E.db.actionbar.bar8.macrotext = true
-	E.db.actionbar.bar8.macroTextPosition = 'BOTTOM'
-	E.db.actionbar.bar8.macroTextYOffset = 1
-	E.db.actionbar.bar8.professionQuality.enable = false
-	E.db.actionbar.bar8.targetReticle = false
-	E.db.actionbar.bar9.buttonSize = 28
-	E.db.actionbar.bar9.buttonSpacing = 1
-	E.db.actionbar.bar9.countFont = Private.Font
-	E.db.actionbar.bar9.countFontOutline = Private.Outline
-	E.db.actionbar.bar9.countFontSize = 9
-	E.db.actionbar.bar9.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar9.hotkeyFont = Private.Font
-	E.db.actionbar.bar9.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.bar9.hotkeyFontSize = 9
-	E.db.actionbar.bar9.hotkeyTextPosition = 'TOP'
-	E.db.actionbar.bar9.hotkeyTextYOffset = -1
-	E.db.actionbar.bar9.macroFont = Private.Font
-	E.db.actionbar.bar9.macroFontOutline = Private.Outline
-	E.db.actionbar.bar9.macroFontSize = 9
-	E.db.actionbar.bar9.macrotext = true
-	E.db.actionbar.bar9.macroTextPosition = 'BOTTOM'
-	E.db.actionbar.bar9.macroTextYOffset = 1
-	E.db.actionbar.bar9.professionQuality.enable = false
-	E.db.actionbar.bar9.targetReticle = false
-	E.db.actionbar.bar10.buttonSize = 28
-	E.db.actionbar.bar10.buttonSpacing = 1
-	E.db.actionbar.bar10.countFont = Private.Font
-	E.db.actionbar.bar10.countFontOutline = Private.Outline
-	E.db.actionbar.bar10.countFontSize = 9
-	E.db.actionbar.bar10.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar10.hotkeyFont = Private.Font
-	E.db.actionbar.bar10.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.bar10.hotkeyFontSize = 9
-	E.db.actionbar.bar10.hotkeyTextPosition = 'TOP'
-	E.db.actionbar.bar10.hotkeyTextYOffset = -1
-	E.db.actionbar.bar10.macroFont = Private.Font
-	E.db.actionbar.bar10.macroFontOutline = Private.Outline
-	E.db.actionbar.bar10.macroFontSize = 9
-	E.db.actionbar.bar10.macrotext = true
-	E.db.actionbar.bar10.macroTextPosition = 'BOTTOM'
-	E.db.actionbar.bar10.macroTextYOffset = 1
-	E.db.actionbar.bar10.professionQuality.enable = false
-	E.db.actionbar.bar10.targetReticle = false
-	E.db.actionbar.bar13.buttonSize = 28
-	E.db.actionbar.bar13.buttonSpacing = 1
-	E.db.actionbar.bar13.countFont = Private.Font
-	E.db.actionbar.bar13.countFontOutline = Private.Outline
-	E.db.actionbar.bar13.countFontSize = 9
-	E.db.actionbar.bar13.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar13.hotkeyFont = Private.Font
-	E.db.actionbar.bar13.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.bar13.hotkeyFontSize = 9
-	E.db.actionbar.bar13.hotkeyTextPosition = 'TOP'
-	E.db.actionbar.bar13.hotkeyTextYOffset = -1
-	E.db.actionbar.bar13.macroFont = Private.Font
-	E.db.actionbar.bar13.macroFontOutline = Private.Outline
-	E.db.actionbar.bar13.macroFontSize = 9
-	E.db.actionbar.bar13.macrotext = true
-	E.db.actionbar.bar13.macroTextPosition = 'BOTTOM'
-	E.db.actionbar.bar13.macroTextYOffset = 1
-	E.db.actionbar.bar13.professionQuality.enable = false
-	E.db.actionbar.bar13.targetReticle = false
-	E.db.actionbar.bar14.buttonSize = 28
-	E.db.actionbar.bar14.buttonSpacing = 1
-	E.db.actionbar.bar14.countFont = Private.Font
-	E.db.actionbar.bar14.countFontOutline = Private.Outline
-	E.db.actionbar.bar14.countFontSize = 9
-	E.db.actionbar.bar14.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar14.hotkeyFont = Private.Font
-	E.db.actionbar.bar14.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.bar14.hotkeyFontSize = 9
-	E.db.actionbar.bar14.hotkeyTextPosition = 'TOP'
-	E.db.actionbar.bar14.hotkeyTextYOffset = -1
-	E.db.actionbar.bar14.macroFont = Private.Font
-	E.db.actionbar.bar14.macroFontOutline = Private.Outline
-	E.db.actionbar.bar14.macroFontSize = 9
-	E.db.actionbar.bar14.macrotext = true
-	E.db.actionbar.bar14.macroTextPosition = 'BOTTOM'
-	E.db.actionbar.bar14.macroTextYOffset = 1
-	E.db.actionbar.bar14.professionQuality.enable = false
-	E.db.actionbar.bar14.targetReticle = false
-	E.db.actionbar.bar15.buttonSize = 28
-	E.db.actionbar.bar15.buttonSpacing = 1
-	E.db.actionbar.bar15.countFont = Private.Font
-	E.db.actionbar.bar15.countFontOutline = Private.Outline
-	E.db.actionbar.bar15.countFontSize = 9
-	E.db.actionbar.bar15.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar15.hotkeyFont = Private.Font
-	E.db.actionbar.bar15.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.bar15.hotkeyFontSize = 9
-	E.db.actionbar.bar15.hotkeyTextPosition = 'TOP'
-	E.db.actionbar.bar15.hotkeyTextYOffset = -1
-	E.db.actionbar.bar15.macroFont = Private.Font
-	E.db.actionbar.bar15.macroFontOutline = Private.Outline
-	E.db.actionbar.bar15.macroFontSize = 9
-	E.db.actionbar.bar15.macrotext = true
-	E.db.actionbar.bar15.macroTextPosition = 'BOTTOM'
-	E.db.actionbar.bar15.macroTextYOffset = 1
-	E.db.actionbar.bar15.professionQuality.enable = false
-	E.db.actionbar.bar15.targetReticle = false
+
+	-- Turn off all ActionBars except the ones we use by default
+	for i = 1, 15 do
+		if i ~= 1 and i ~= 2 and i ~= 3 and i ~= 5 and i ~= 11 and i ~= 12 then
+			E.db.actionbar['bar'..i].enabled = false
+		end
+	end
+
 	E.db.actionbar.barPet.backdrop = false
 	E.db.actionbar.barPet.buttonSize = 28
 	E.db.actionbar.barPet.buttonSpacing = 1
@@ -1977,19 +1757,19 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-68,-180'
 	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,204,1'
-	E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
-	E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,72'
-	E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,43'
+	E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
+	E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,82'
+	E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,49'
 	E.db.movers.ElvAB_4 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,466,1'
-	E.db.movers.ElvAB_5 = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-546'
-	E.db.movers.ElvAB_6 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-541'
+	E.db.movers.ElvAB_5 = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,522'
+	E.db.movers.ElvAB_6 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-545'
 	E.db.movers.ElvAB_7 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-512'
-	E.db.movers.ElvAB_8 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-483'
-	E.db.movers.ElvAB_9 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-454'
-	E.db.movers.ElvAB_10 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-425'
-	E.db.movers.ElvAB_13 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-396'
-	E.db.movers.ElvAB_14 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-367'
-	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-338'
+	E.db.movers.ElvAB_8 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-479'
+	E.db.movers.ElvAB_9 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-446'
+	E.db.movers.ElvAB_10 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-413'
+	E.db.movers.ElvAB_13 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-380'
+	E.db.movers.ElvAB_14 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-347'
+	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-314'
 	E.db.movers.ElvUIBagMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,192'
 	E.db.movers.ElvUIBankMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
 	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-111'
@@ -2005,7 +1785,8 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-79'
 	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-98'
 	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
-	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,101'
+	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,115'
+	E.db.movers.PowerBarContainerMover = 'TOP,UIParent,TOP,0,-132'
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-200'
 	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-24'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
@@ -2017,7 +1798,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-67'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
 	E.db.movers.VehicleSeatMover = Private.isRetail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,493,1'
-	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-81'
+	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-82'
 
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
 	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
@@ -2137,7 +1918,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.width = 92
 
 		-- Main misc
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 347
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
 
 		-- Main movers
 		E.db.movers.BossButton = 'BOTTOM,ElvUIParent,BOTTOM,-260,209'
@@ -2153,7 +1934,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,288,453'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,288,474'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,422'
-		E.db.movers.PowerBarContainerMover = 'BOTTOM,ElvUIParent,BOTTOM,0,376'
 		E.db.movers.PrivateAurasMover = 'TOP,ElvUIParent,TOP,330,-408'
 		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,-401,566'
 		E.db.movers.ZoneAbility = 'BOTTOM,ElvUIParent,BOTTOM,260,209'
@@ -2271,7 +2051,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.width = 120
 
 		-- Healing misc
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 347
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
 
 		-- Healing movers
 		E.db.movers.BossButton = 'BOTTOM,ElvUIParent,BOTTOM,-330,241'
@@ -2288,7 +2068,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_TargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-716,474'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-716,430'
 		E.db.movers.PlayerPowerBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,717,455'
-		E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-110'
 		E.db.movers.PrivateAurasMover = 'TOP,ElvUIParent,TOP,330,-408'
 		E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,718,566'
 		E.db.movers.ZoneAbility = 'BOTTOM,ElvUIParent,BOTTOM,330,241'

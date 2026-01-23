@@ -23,7 +23,7 @@ local healers = {
 	[257] = true, -- Holy Priest
 	[256] = true, -- Discipline Priest
 	[65] = true, -- Holy Paladin
-	[105] = true, -- Restoration Druid
+	[105] = true -- Restoration Druid
 }
 
 -- Update ActionBars DataText width based on specialization
@@ -50,7 +50,7 @@ local function UpdateDataTextWidth()
 	if healers[ID] then
 		ActionBarsDT.width = 604
 	else -- Main layout values
-		ActionBarsDT.width = 347
+		ActionBarsDT.width = 395
 	end
 
 	-- print('new width: ' .. ActionBarsDT.width)
