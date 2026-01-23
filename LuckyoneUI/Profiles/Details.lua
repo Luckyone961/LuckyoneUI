@@ -6,7 +6,6 @@ local L = Private.Libs.ACL
 local _G = _G
 
 -- Details profiles
--- LC: 10/09/2025
 function Private:Setup_Details(installer)
 	if not Private.IsAddOnLoaded('Details') then Private:Print('Details ' .. L["is not installed or enabled."]) return end
 

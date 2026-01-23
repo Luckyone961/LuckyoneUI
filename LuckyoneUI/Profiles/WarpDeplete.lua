@@ -6,7 +6,6 @@ local L = Private.Libs.ACL
 local _G = _G
 
 -- WarpDeplete profile
--- LC: 06/02/2025
 function Private:Setup_WarpDeplete(installer)
 	if not (Private.IsAddOnLoaded('WarpDeplete') and Private.isRetail) then Private:Print('WarpDeplete ' .. L["is not installed or enabled."]) return end
 
@@ -38,8 +37,8 @@ function Private:Setup_WarpDeplete(installer)
 		['forcesOverlayTexture'] = Private.Texture,
 		['forcesTexture'] = Private.Texture,
 		['frameAnchor'] = 'TOPRIGHT',
-		['frameX'] = 18.99979209899902,
-		['frameY'] = -185.0000457763672,
+		['frameX'] = 20,
+		['frameY'] = -211,
 		['keyDetailsFont'] = Private.Font,
 		['keyDetailsFontSize'] = 10,
 		['keyFont'] = Private.Font,

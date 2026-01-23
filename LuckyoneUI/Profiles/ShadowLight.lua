@@ -24,7 +24,6 @@ local function Set(tbl, path, value)
 end
 
 -- Shadow & Light ProfileDB
--- LC: 20/11/2025
 function Private:Setup_ShadowAndLight(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_SLE') and Private.isRetail) then Private:Print('|cff9482c9Shadow & Light|r ' .. L["is not installed or enabled."]) return end
 
@@ -129,7 +128,6 @@ function Private:Setup_ShadowAndLight(installer)
 end
 
 -- Shadow & Light PrivateDB
--- LC: 20/11/2025
 function Private:Setup_Private_ShadowAndLight()
 
 	-- Get version

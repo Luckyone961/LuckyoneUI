@@ -6,7 +6,6 @@ local L = Private.Libs.ACL
 local unpack = unpack
 
 -- AddOnSkins profile
--- LC: 06/02/2025
 function Private:Setup_AddOnSkins()
 	if not Private.IsAddOnLoaded('AddOnSkins') then Private:Print('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r ' .. L["is not installed or enabled."]) return end
 

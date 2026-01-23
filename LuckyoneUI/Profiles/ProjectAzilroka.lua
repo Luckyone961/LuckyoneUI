@@ -6,7 +6,6 @@ local L = Private.Libs.ACL
 local unpack = unpack
 
 -- ProjectAzilroka profile
--- LC: 06/02/2025
 function Private:Setup_ProjectAzilroka()
 	if not Private.IsAddOnLoaded('ProjectAzilroka') then Private:Print('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r ' .. L["is not installed or enabled."]) return end
 

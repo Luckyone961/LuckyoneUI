@@ -84,7 +84,7 @@ function Private:Setup_GlobalDB()
 	MiniMapDT.border = false
 	MiniMapDT.fonts.enable = true
 	MiniMapDT.fonts.font = Private.Font
-	MiniMapDT.fonts.fontSize = 14
+	MiniMapDT.fonts.fontSize = 16
 	MiniMapDT.frameStrata = 'HIGH'
 	MiniMapDT.height = 18
 	MiniMapDT.name = 'Luckyone_MiniMap_DT'
@@ -137,6 +137,7 @@ function Private:Setup_PrivateDB(includePlugins)
 
 	E.private.install_complete = E.version
 
+	E.private.skins.blizzard.cooldownManager = false
 	E.private.skins.parchmentRemoverEnable = true
 
 	if includePlugins and Private.isRetail then
@@ -148,22 +149,35 @@ function Private:Setup_PrivateDB(includePlugins)
 		end
 	end
 
+	-- This will make sure Shaman is blue instead of pink in Era/HC/SoD
 	if Private.isClassic then
-		-- This will make sure Shaman is blue instead of pink
 		E.private.general.classColors = true
 	end
 
+	-- DB keys for the dev profiles
 	if Private.Addon.db.global.dev then
-		-- Private keys for the dev profile
+
+		-- ElvUI settings
+		E.private.bags.enable = (not Private.IsAddOnLoaded('Baganator'))
 		E.private.general.chatBubbles = 'disabled'
+		E.private.nameplates.enable = (not Private.IsAddOnLoaded('Plater'))
+
+		-- LuckyoneUI settings
 		Private.Addon.db.profile.disabledFrames.AlertFrame = true
 		Private.Addon.db.profile.disabledFrames.BossBanner = true
+		Private.Addon.db.profile.disabledFrames.HousingDecorAlerts = true
+		Private.Addon.db.profile.misc.mythicVisibility = true
+		Private.Addon.db.profile.misc.dataTextsTweaks = true
 		Private.Addon.db.profile.qualityOfLife.easyDelete = true
 		Private.Addon.db.profile.qualityOfLife.privacyOverlay = true
-
-		-- Enable these modules only if the alternative is not loaded
-		E.private.bags.enable = (not Private.IsAddOnLoaded('Baganator'))
-		E.private.nameplates.enable = (not Private.IsAddOnLoaded('Plater'))
+		Private.Addon.db.profile.skins.BugSack = true
+		Private.Addon.db.profile.skins.DejaClassicStats = true
+		Private.Addon.db.profile.skins.LeatrixPlus = true
+		Private.Addon.db.profile.skins.LFGBulletinBoard = true
+		Private.Addon.db.profile.skins.NovaSpellRankChecker = true
+		Private.Addon.db.profile.skins.NovaWorldBuffs = true
+		Private.Addon.db.profile.skins.Tabardy = true
+		Private.Addon.db.profile.skins.WhatsTraining = true
 	end
 end
 
@@ -324,6 +338,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.auras.countXOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.auras.countYOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.auras.desaturate = false
+	E.db.nameplates.units.ENEMY_NPC.auras.enable = not Private.isRetail
 	E.db.nameplates.units.ENEMY_NPC.auras.height = 24
 	E.db.nameplates.units.ENEMY_NPC.auras.keepSizeRatio = false
 	E.db.nameplates.units.ENEMY_NPC.auras.numAuras = 3
@@ -352,7 +367,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Dispellable'
 	E.db.nameplates.units.ENEMY_NPC.buffs.size = 22
 	E.db.nameplates.units.ENEMY_NPC.buffs.xOffset = 1
-	E.db.nameplates.units.ENEMY_NPC.buffs.yOffset = -3
+	E.db.nameplates.units.ENEMY_NPC.buffs.yOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.castbar.anchorPoint = 'BOTTOMLEFT'
 	E.db.nameplates.units.ENEMY_NPC.castbar.castTimeFormat = 'REMAINING'
 	E.db.nameplates.units.ENEMY_NPC.castbar.channelTimeFormat = 'REMAINING'
@@ -373,7 +388,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeToHold = 2
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeXOffset = -1
 	E.db.nameplates.units.ENEMY_NPC.castbar.width = 197
-	E.db.nameplates.units.ENEMY_NPC.castbar.xOffset = 13
+	E.db.nameplates.units.ENEMY_NPC.castbar.xOffset = -17
 	E.db.nameplates.units.ENEMY_NPC.castbar.yOffset = 3
 	E.db.nameplates.units.ENEMY_NPC.debuffs.anchorPoint = 'LEFT'
 	E.db.nameplates.units.ENEMY_NPC.debuffs.attachTo = 'HEALTH'
@@ -394,7 +409,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.eliteIcon.xOffset = 3
 	E.db.nameplates.units.ENEMY_NPC.health.height = 22
 	E.db.nameplates.units.ENEMY_NPC.health.text.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.health.text.format = '[luckyone:health:percent]'
+	E.db.nameplates.units.ENEMY_NPC.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
 	E.db.nameplates.units.ENEMY_NPC.health.text.parent = 'Health'
 	E.db.nameplates.units.ENEMY_NPC.health.text.position = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_NPC.health.text.xOffset = -1
@@ -404,7 +419,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.name.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
 	E.db.nameplates.units.ENEMY_NPC.name.parent = 'Health'
-	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -16
 	E.db.nameplates.units.ENEMY_NPC.pvpindicator.size = 35
 	E.db.nameplates.units.ENEMY_NPC.questIcon.enable = false
@@ -423,6 +438,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countXOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countYOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.auras.desaturate = false
+	E.db.nameplates.units.ENEMY_PLAYER.auras.enable = not Private.isRetail
 	E.db.nameplates.units.ENEMY_PLAYER.auras.height = 24
 	E.db.nameplates.units.ENEMY_PLAYER.auras.keepSizeRatio = false
 	E.db.nameplates.units.ENEMY_PLAYER.auras.numAuras = 3
@@ -450,7 +466,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Dispellable'
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 22
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.xOffset = 1
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.yOffset = -3
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.yOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.anchorPoint = 'BOTTOMLEFT'
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.castTimeFormat = 'REMAINING'
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.channelTimeFormat = 'REMAINING'
@@ -467,7 +483,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeToHold = 2
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeXOffset = -1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.width = 197
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.xOffset = 13
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.xOffset = -17
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.yOffset = 3
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.anchorPoint = 'LEFT'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.attachTo = 'HEALTH'
@@ -486,7 +502,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = -1
 	E.db.nameplates.units.ENEMY_PLAYER.health.height = 22
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.health.text.format = '[luckyone:health:percent]'
+	E.db.nameplates.units.ENEMY_PLAYER.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.parent = 'Health'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.position = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.xOffset = -1
@@ -498,7 +514,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.name.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
 	E.db.nameplates.units.ENEMY_PLAYER.name.parent = 'Health'
-	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -16
 	E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
 	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.position = 'CENTER'
@@ -510,7 +526,7 @@ function Private:Setup_NamePlates(installer)
 	-- Friendly NPC
 	E.db.nameplates.units.FRIENDLY_NPC.buffs.enable = false
 	E.db.nameplates.units.FRIENDLY_NPC.debuffs.enable = false
-	E.db.nameplates.units.FRIENDLY_NPC.health.text.format = '[luckyone:health:percent]'
+	E.db.nameplates.units.FRIENDLY_NPC.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
 	E.db.nameplates.units.FRIENDLY_NPC.name.font = Private.Font
 	E.db.nameplates.units.FRIENDLY_NPC.name.fontSize = 14
 	E.db.nameplates.units.FRIENDLY_NPC.name.yOffset = 0
@@ -523,7 +539,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.FRIENDLY_PLAYER.auras.enable = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.buffs.enable = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.debuffs.enable = false
-	E.db.nameplates.units.FRIENDLY_PLAYER.health.text.format = '[luckyone:health:percent]'
+	E.db.nameplates.units.FRIENDLY_PLAYER.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
 	E.db.nameplates.units.FRIENDLY_PLAYER.markHealers = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.markTanks = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.name.font = Private.Font
@@ -544,7 +560,6 @@ function Private:Setup_NamePlates(installer)
 end
 
 -- ElvUI profile
--- LC: 25/09/2025
 function Private:Setup_ElvUI(layout)
 	-- Global db
 	local scaled = Private.Addon.db.global.scaled
@@ -617,9 +632,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.minimap.icons.tracking.scale = 1
 	E.db.general.minimap.icons.tracking.xOffset = 1
 	E.db.general.minimap.icons.tracking.yOffset = 0
-	E.db.general.minimap.locationFontSize = 11
+	E.db.general.minimap.locationFontSize = 12
 	E.db.general.minimap.locationText = 'SHOW'
-	E.db.general.minimap.size = 172
+	E.db.general.minimap.size = 197
 	E.db.general.objectiveFrameAutoHide = false
 	E.db.general.objectiveFrameHeight = 600
 	E.db.general.privateAuras.icon.size = 64
@@ -980,31 +995,23 @@ function Private:Setup_ElvUI(layout)
 	E.db.auras.buffs.countXOffset = 1
 	E.db.auras.buffs.countYOffset = 2
 	E.db.auras.buffs.fadeThreshold = -1
-	E.db.auras.buffs.horizontalSpacing = 1
+	E.db.auras.buffs.horizontalSpacing = 2
 	E.db.auras.buffs.seperateOwn = 0
-	E.db.auras.buffs.size = 22
+	E.db.auras.buffs.size = 24
 	E.db.auras.buffs.sortMethod = 'INDEX'
-	E.db.auras.buffs.timeFont = Private.Font
-	E.db.auras.buffs.timeFontOutline = Private.Outline
-	E.db.auras.buffs.timeXOffset = 1
-	E.db.auras.buffs.timeYOffset = -1
-	E.db.auras.buffs.verticalSpacing = 12
+	E.db.auras.buffs.verticalSpacing = 14
 	E.db.auras.debuffs.countFont = Private.Font
 	E.db.auras.debuffs.countFontOutline = Private.Outline
 	E.db.auras.debuffs.countFontSize = 12
 	E.db.auras.debuffs.countXOffset = 1
 	E.db.auras.debuffs.countYOffset = 2
 	E.db.auras.debuffs.fadeThreshold = -1
-	E.db.auras.debuffs.horizontalSpacing = 1
+	E.db.auras.debuffs.horizontalSpacing = 2
 	E.db.auras.debuffs.maxWraps = 2
 	E.db.auras.debuffs.seperateOwn = 0
-	E.db.auras.debuffs.size = 22
+	E.db.auras.debuffs.size = 24
 	E.db.auras.debuffs.sortMethod = 'INDEX'
-	E.db.auras.debuffs.timeFont = Private.Font
-	E.db.auras.debuffs.timeFontOutline = Private.Outline
-	E.db.auras.debuffs.timeXOffset = 1
-	E.db.auras.debuffs.timeYOffset = -1
-	E.db.auras.debuffs.verticalSpacing = 12
+	E.db.auras.debuffs.verticalSpacing = 14
 
 	-- Chat
 	E.db.chat.customTimeColor.b = 1
@@ -1050,9 +1057,28 @@ function Private:Setup_ElvUI(layout)
 	E.db.chat.useBTagName = true
 
 	-- Cooldown Text
-	E.db.cooldown.font = Private.Font
-	E.db.cooldown.fontSize = 12
-	E.db.cooldown.override = false
+	E.db.cooldown.actionbar.fontSize = 12
+	E.db.cooldown.actionbar.offsetX = 1
+	E.db.cooldown.aurabars.fontSize = 12
+	E.db.cooldown.auras.fontSize = 12
+	E.db.cooldown.auras.offsetX = 1
+	E.db.cooldown.auras.offsetY = -7
+	E.db.cooldown.bags.fontSize = 12
+	E.db.cooldown.bags.offsetX = 1
+	E.db.cooldown.bossbutton.fontSize = 14
+	E.db.cooldown.bossbutton.offsetX = 1
+	E.db.cooldown.cdmanager.fontSize = 14
+	E.db.cooldown.cdmanager.offsetX = 1
+	E.db.cooldown.global.fontSize = 12
+	E.db.cooldown.global.offsetX = 1
+	E.db.cooldown.nameplates.fontSize = 12
+	E.db.cooldown.nameplates.offsetX = 1
+	E.db.cooldown.totemtracker.fontSize = 14
+	E.db.cooldown.totemtracker.offsetX = 1
+	E.db.cooldown.unitframe.fontSize = 12
+	E.db.cooldown.unitframe.offsetX = 1
+	E.db.cooldown.zonebutton.fontSize = 14
+	E.db.cooldown.zonebutton.offsetX = 1
 
 	-- DataBars
 	E.db.databars.azerite.enable = false
@@ -1196,7 +1222,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isRetail and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
@@ -1305,7 +1331,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isRetail and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
@@ -1536,7 +1562,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:health:current:shortvalue] • [luckyone:health:percent]' or '[health:current:shortvalue] • [luckyone:health:percent]',
+		text_format = Private.isRetail and '[luckyone:health:current:shortvalue] • [luckyone:health:percent<%]' or '[health:current:shortvalue] • [luckyone:health:percent]',
 		xOffset = -2,
 		yOffset = 0
 	}
@@ -1645,7 +1671,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:health:percent] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isRetail and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
@@ -1956,16 +1982,16 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.AddonCompartmentMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66'
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-202'
 	E.db.movers.AltPowerBarMover = 'TOP,ElvUIParent,TOP,0,-22'
-	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-200,-330') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-420,-240'
+	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-200,-330') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
 	E.db.movers.BagsMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
-	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-173'
+	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-201,-193'
 	E.db.movers.BNETMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,156') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
-	E.db.movers.BossHeaderMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-200,296') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-420,-240'
-	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-1'
-	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-104'
+	E.db.movers.BossHeaderMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-200,296') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
+	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-1'
+	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-116'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
-	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-56,-156'
+	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-74,-182'
 	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,204,1'
 	E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 	E.db.movers.ElvAB_2 = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,64') or 'BOTTOM,ElvUIParent,BOTTOM,0,72'
@@ -1982,10 +2008,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-338'
 	E.db.movers.ElvUIBagMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,156') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,192'
 	E.db.movers.ElvUIBankMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,156') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
-	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-100'
+	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-111'
 	E.db.movers.ExperienceBarMover = 'TOP,ElvUIParent,TOP,0,-1'
 	E.db.movers.FocusPowerBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-660,580'
-	E.db.movers.GMMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-453,-1'
+	E.db.movers.GMMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-515,-1'
 	E.db.movers.LeftChatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1'
 	E.db.movers.LootFrameMover = 'TOP,ElvUIParent,TOP,0,-88'
 	E.db.movers.LossControlMover = (scaled and 'TOP,ElvUIParent,TOP,0,-460') or 'TOP,ElvUIParent,TOP,0,-640'
@@ -1999,12 +2025,12 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-200'
 	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-24'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
-	E.db.movers.QueueStatusMover = Private.isRetail and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-152' or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-150'
+	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-178'
 	E.db.movers.ReputationBarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-402,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-466,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,253,-1'
 	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,118') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,154'
-	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-80'
+	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-67'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
 	E.db.movers.VehicleSeatMover = Private.isRetail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,493,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'

@@ -77,7 +77,6 @@ function Private:SyncSettings()
 
 	-- Gameplay > Action Bars > General
 	SetCVar('enableMultiActionBars', 0)
-	SetCVar('countdownForCooldowns', 0)
 
 	-- Gameplay > Combat > General
 	SetCVar('nameplateShowSelf', 0)
