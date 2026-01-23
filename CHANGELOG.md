@@ -1,11 +1,17 @@
 ﻿## Version 3.34 [In Development]
 
 **All WoW Versions:**  
+- Added db for the new ElvUI Cooldown Text module to all layouts  
+- Reworked /lucky config  
+- Updated CVars setup  
 - Updated deDE locales (Credits: Dlarge)  
+- Updated ElvUI layouts (Minimap, Buffs, Debuffs)  
 - Updated ElvUI Nameplates profile for the latest changes  
 
 **Retail:**  
 - Updated the new Midnight percentage health text format tag  
+- Updated WarpDeplete profile  
+- Updated WindTools profile (Minimap buttons)  
 
 ## Version 3.33 [21-01-2026]
 
