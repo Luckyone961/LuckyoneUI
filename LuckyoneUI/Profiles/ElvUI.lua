@@ -1750,6 +1750,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-201,-193'
 	E.db.movers.BNETMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
+	E.db.movers.BossButton = 'BOTTOM,ElvUIParent,BOTTOM,0,360'
 	E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-116'
@@ -1919,7 +1920,6 @@ function Private:Setup_ElvUI(layout)
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
 
 		-- Main movers
-		E.db.movers.BossButton = 'BOTTOM,ElvUIParent,BOTTOM,-260,209'
 		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,82'
 		E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,49'
@@ -2056,7 +2056,6 @@ function Private:Setup_ElvUI(layout)
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
 
 		-- Healing movers
-		E.db.movers.BossButton = 'BOTTOM,ElvUIParent,BOTTOM,-330,241'
 		E.db.movers.ElvAB_1 = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210"
 		E.db.movers.ElvAB_2 = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276"
 		E.db.movers.ElvAB_3 = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243"
