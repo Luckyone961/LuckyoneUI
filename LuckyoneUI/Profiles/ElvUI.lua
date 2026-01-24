@@ -1968,9 +1968,9 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid1.rdebuffs.fontSize = 9
 		E.db.unitframe.units.raid1.rdebuffs.size = 18
 		E.db.unitframe.units.raid1.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.raid1.rdebuffs.stack.xOffset = 14
+		E.db.unitframe.units.raid1.rdebuffs.stack.xOffset = -10
 		E.db.unitframe.units.raid1.rdebuffs.stack.yOffset = 0
-		E.db.unitframe.units.raid1.rdebuffs.xOffset = 62
+		E.db.unitframe.units.raid1.rdebuffs.xOffset = 60
 		E.db.unitframe.units.raid1.rdebuffs.yOffset = 27
 		E.db.unitframe.units.raid1.roleIcon.attachTo = 'Frame'
 		E.db.unitframe.units.raid1.roleIcon.damager = false
@@ -1991,9 +1991,9 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.rdebuffs.fontSize = 9
 		E.db.unitframe.units.raid2.rdebuffs.size = 18
 		E.db.unitframe.units.raid2.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.raid2.rdebuffs.stack.xOffset = 14
+		E.db.unitframe.units.raid2.rdebuffs.stack.xOffset = -10
 		E.db.unitframe.units.raid2.rdebuffs.stack.yOffset = 0
-		E.db.unitframe.units.raid2.rdebuffs.xOffset = 62
+		E.db.unitframe.units.raid2.rdebuffs.xOffset = 60
 		E.db.unitframe.units.raid2.rdebuffs.yOffset = 20
 		E.db.unitframe.units.raid2.roleIcon.attachTo = 'Frame'
 		E.db.unitframe.units.raid2.roleIcon.damager = false
@@ -2014,9 +2014,9 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.rdebuffs.fontSize = 9
 		E.db.unitframe.units.raid3.rdebuffs.size = 14
 		E.db.unitframe.units.raid3.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.raid3.rdebuffs.stack.xOffset = 12
+		E.db.unitframe.units.raid3.rdebuffs.stack.xOffset = -10
 		E.db.unitframe.units.raid3.rdebuffs.stack.yOffset = 0
-		E.db.unitframe.units.raid3.rdebuffs.xOffset = 62
+		E.db.unitframe.units.raid3.rdebuffs.xOffset = 60
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 11
 		E.db.unitframe.units.raid3.roleIcon.attachTo = 'Frame'
 		E.db.unitframe.units.raid3.roleIcon.damager = false
