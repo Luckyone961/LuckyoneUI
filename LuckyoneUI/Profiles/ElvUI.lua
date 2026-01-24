@@ -86,15 +86,15 @@ function Private:Setup_GlobalDB()
 	MiniMapDT.fonts.font = Private.Font
 	MiniMapDT.fonts.fontSize = 16
 	MiniMapDT.frameStrata = 'HIGH'
-	MiniMapDT.height = 18
+	MiniMapDT.height = 20
 	MiniMapDT.name = 'Luckyone_MiniMap_DT'
 	MiniMapDT.numPoints = 1
 	MiniMapDT.panelTransparency = true
 	MiniMapDT.tooltipAnchor = 'ANCHOR_BOTTOMLEFT'
-	MiniMapDT.tooltipXOffset = -41
-	MiniMapDT.tooltipYOffset = -29
+	MiniMapDT.tooltipXOffset = -50
+	MiniMapDT.tooltipYOffset = -28
 	MiniMapDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
-	MiniMapDT.width = 56
+	MiniMapDT.width = 60
 end
 
 -- E.private & Media
@@ -1985,13 +1985,13 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-200,-330') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
 	E.db.movers.BagsMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-201,-193'
-	E.db.movers.BNETMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,156') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
+	E.db.movers.BNETMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
 	E.db.movers.BossHeaderMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-200,296') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-116'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
-	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-74,-182'
+	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-68,-180'
 	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,204,1'
 	E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
 	E.db.movers.ElvAB_2 = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,64') or 'BOTTOM,ElvUIParent,BOTTOM,0,72'
@@ -2033,7 +2033,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-67'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
 	E.db.movers.VehicleSeatMover = Private.isRetail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,493,1'
-	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
+	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-81'
 
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
 	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
