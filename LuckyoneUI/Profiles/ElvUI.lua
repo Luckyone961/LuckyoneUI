@@ -1377,11 +1377,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.castbar.customColor.useCustomBackdrop = true
 	E.db.unitframe.units.player.castbar.customTextFont.enable = true
 	E.db.unitframe.units.player.castbar.customTextFont.font = Private.Font
-	E.db.unitframe.units.player.castbar.customTextFont.fontSize = 14
+	E.db.unitframe.units.player.castbar.customTextFont.fontSize = 12
 	E.db.unitframe.units.player.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.player.castbar.customTimeFont.font = Private.Font
-	E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 14
-	E.db.unitframe.units.player.castbar.height = 30
+	E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 12
 	E.db.unitframe.units.player.castbar.hideName = true
 	E.db.unitframe.units.player.castbar.latency = false
 	E.db.unitframe.units.player.castbar.spark = true
@@ -1480,7 +1479,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.target.castbar.customTimeFont.font = Private.Font
 	E.db.unitframe.units.target.castbar.customTimeFont.fontSize = 11
-	E.db.unitframe.units.target.castbar.height = 20
+	E.db.unitframe.units.target.castbar.height = 22
 	E.db.unitframe.units.target.castbar.strataAndLevel.useCustomLevel = true
 	E.db.unitframe.units.target.castbar.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.target.castbar.textColor.b = 1
@@ -1812,7 +1811,8 @@ function Private:Setup_ElvUI(layout)
 
 		-- Main Player
 		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]'
-		E.db.unitframe.units.player.castbar.width = 279
+		E.db.unitframe.units.player.castbar.height = 22
+		E.db.unitframe.units.player.castbar.width = 315
 		E.db.unitframe.units.player.power.autoHide = true
 
 		-- Main TargetTarget
@@ -1933,7 +1933,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,438'
-		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,320,479'
+		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,320,477'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,320,500'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,422'
 		E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,706,520'
@@ -1946,6 +1946,7 @@ function Private:Setup_ElvUI(layout)
 
 		-- Healing Player
 		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-nocolor]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
+		E.db.unitframe.units.player.castbar.height = 30
 		E.db.unitframe.units.player.castbar.width = 605
 		E.db.unitframe.units.player.power.attachTextTo = 'Power'
 		E.db.unitframe.units.player.power.autoHide = false
@@ -2072,15 +2073,5 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,718,566'
 		E.db.movers.ZoneAbility = 'BOTTOM,ElvUIParent,BOTTOM,330,241'
 
-		if Private.itsLuckyone then
-			E.db.actionbar.bar1.mouseover = true
-			E.db.actionbar.bar2.mouseover = true
-			E.db.actionbar.bar3.mouseover = true
-			E.db.movers.ElvAB_1 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,190'
-			E.db.movers.ElvAB_2 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,248'
-			E.db.movers.ElvAB_3 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,219'
-			E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,14'
-			E.db.unitframe.units.player.power.powerPrediction = false
-		end
 	end
 end
