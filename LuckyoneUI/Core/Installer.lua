@@ -562,6 +562,7 @@ local function BuildInstallerData()
 	pageIndex = pageIndex + 1
 
 	-- Page 2: Layout scale (All versions)
+	--[[
 	pages[pageIndex] = function()
 		local f = installerFrame
 		f.SubTitle:SetText(L["Layout Scale"])
@@ -576,6 +577,7 @@ local function BuildInstallerData()
 	end
 	stepTitles[pageIndex] = L["Layout Scale"]
 	pageIndex = pageIndex + 1
+	]]
 
 	-- Only add ElvUI-specific pages if ElvUI is loaded
 	if Private.ElvUI then
@@ -585,16 +587,12 @@ local function BuildInstallerData()
 			f.SubTitle:SetText(L["ElvUI Layouts"])
 			f.Desc1:SetText(L["This step will configure the ElvUI layout of your choice."])
 			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-			f.Desc3:SetText(format('|cff33937F%s|r', L["Augmentation"]) .. ': ' .. L["No ActionBars and centered Raid Frames"] .. '.')
 			f.Option1:Show()
 			f.Option1:SetScript('OnClick', function() Private:Setup_Layout('main', true) end)
 			f.Option1:SetText(L["DPS & Tanks"])
 			f.Option2:Show()
 			f.Option2:SetScript('OnClick', function() Private:Setup_Layout('healing', true) end)
 			f.Option2:SetText(L["Healing"])
-			f.Option3:Show()
-			f.Option3:SetScript('OnClick', function() Private:Setup_Layout('support', true) end)
-			f.Option3:SetText(format('|cff33937F%s', L["Augmentation"]))
 		end
 		stepTitles[pageIndex] = L["ElvUI Layouts"]
 		pageIndex = pageIndex + 1

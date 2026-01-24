@@ -12,12 +12,11 @@ L["1440p = Default | 1080p = Downscaled"] = "1440p = Padrão | 1080p = Reduzida"
 L["Addon download:"] = "Download do Addon:"
 L["Addon Profiles"] = "Perfis dos Addons"
 L["AddOnSkins profile has been set."] = "Perfil do AddOnSkins foi configurado."
-L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Augmentation support layout will match the default width of my Raidframes\nThe Healing layout will match the default width of my Raidframes (*advanced)\n\n*only if you have your Action Bars set to be hidden until mouseover like myself\n\nAll changes mentioned above will trigger upon changing your specialization\nIt also assumes you have properly setup specialization-based profile loading in ElvUI profiles"] = true
+L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your specialization\nIt also assumes you have properly setup specialization-based profile loading in ElvUI profiles"] = true
 L["Alert Frame"] = "Painel de Alerta"
 L["Alt: "] = true
 L["Applied profile: "] = "Perfil aplicado: "
 L["Archive - Old Layouts"] = "Arquivo - Perfis Antigos"
-L["Augmentation"] = "Augmentação"
 L["Author"] = "Autor"
 L["Automatically fill out the confirmation text to delete items."] = "Automaticamente preencher o texto de confirmação para deletar items."
 L["BigWigs Healing"] = "BigWigs Curar"
