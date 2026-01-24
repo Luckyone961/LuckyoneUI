@@ -26,6 +26,18 @@ E:AddTag('luckyone:classification', 'UNIT_CLASSIFICATION_CHANGED', function(unit
 end)
 E:AddTagInfo('luckyone:classification', Private.Name, L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"])
 
+-- Displays the unit's target name with class color
+E:AddTag('luckyone:target:name-classcolor', 'UNIT_TARGET UNIT_FACTION', function(unit)
+	return Private.Tags.formatTargetName(unit, false, true)
+end)
+E:AddTagInfo('luckyone:target:name-classcolor', Private.Name, L["Displays the unit's target name with class color"])
+
+-- Displays the unit's target name with no color
+E:AddTag('luckyone:target:name-nocolor', 'UNIT_TARGET', function(unit)
+	return Private.Tags.formatTargetName(unit, false, false)
+end)
+E:AddTagInfo('luckyone:target:name-nocolor', Private.Name, L["Displays the unit's target name with no color"])
+
 -- Display pet name and happiness status (Classic and TBC only)
 E:AddTag('luckyone:pet:name-and-happiness', (Private.isClassic or Private.isTBC) and 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE' or 'UNIT_NAME_UPDATE PET_UI_UPDATE', function(unit)
 	if Private.isRetail or Private.isMists then
