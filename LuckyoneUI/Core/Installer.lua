@@ -562,6 +562,7 @@ local function BuildInstallerData()
 	pageIndex = pageIndex + 1
 
 	-- Page 2: Layout scale (All versions)
+	--[[
 	pages[pageIndex] = function()
 		local f = installerFrame
 		f.SubTitle:SetText(L["Layout Scale"])
@@ -576,6 +577,7 @@ local function BuildInstallerData()
 	end
 	stepTitles[pageIndex] = L["Layout Scale"]
 	pageIndex = pageIndex + 1
+	]]
 
 	-- Only add ElvUI-specific pages if ElvUI is loaded
 	if Private.ElvUI then
