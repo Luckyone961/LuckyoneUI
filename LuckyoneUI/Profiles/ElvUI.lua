@@ -1781,7 +1781,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-79'
 	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-98'
 	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
-	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,115'
 	E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-132'
 	E.db.movers.PrivateAurasMover = 'TOP,ElvUIParent,TOP,330,-408'
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-200'
@@ -1936,6 +1935,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,320,477'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,320,500'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,422'
+		E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,115'
 		E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,706,520'
 		E.db.movers.ZoneAbility = 'BOTTOM,ElvUIParent,BOTTOM,260,209'
 
@@ -2072,9 +2072,15 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-717,453'
 		E.db.movers.ElvUF_TargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-716,474'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-716,430'
+		E.db.movers.PetAB = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
 		E.db.movers.PlayerPowerBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,717,455'
 		E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,718,566'
 		E.db.movers.ZoneAbility = 'BOTTOM,ElvUIParent,BOTTOM,330,241'
 
+		if Private.itsLuckyone then
+			E.db.actionbar.bar1.mouseover = true
+			E.db.actionbar.bar2.mouseover = true
+			E.db.actionbar.bar3.mouseover = true
+		end
 	end
 end
