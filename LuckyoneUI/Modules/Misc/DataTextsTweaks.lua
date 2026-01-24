@@ -48,7 +48,7 @@ local function UpdateDataTextWidth()
 
 	-- Healer layout values
 	if healers[ID] then
-		ActionBarsDT.width = 604
+		ActionBarsDT.width = 704
 	else -- Main layout values
 		ActionBarsDT.width = 395
 	end
