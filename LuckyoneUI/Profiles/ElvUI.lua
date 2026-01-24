@@ -1306,7 +1306,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.pet.fader.smooth = 0
 	E.db.unitframe.units.pet.healPrediction.absorbStyle = 'WRAPPED'
 	E.db.unitframe.units.pet.health.colorHappiness = false
-	E.db.unitframe.units.pet.height = 46
+	E.db.unitframe.units.pet.height = 50
 	E.db.unitframe.units.pet.name.text_format = ''
 	E.db.unitframe.units.pet.orientation = 'LEFT'
 	E.db.unitframe.units.pet.power.autoHide = true
@@ -1315,7 +1315,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.pet.power.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.pet.raidicon.enable = false
 	E.db.unitframe.units.pet.threatStyle = 'NONE'
-	E.db.unitframe.units.pet.width = 80
+	E.db.unitframe.units.pet.width = 90
 
 	-- Shared Player
 	E.db.unitframe.units.player.customTexts = {}
@@ -1410,7 +1410,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.disableMouseoverGlow = true
 	E.db.unitframe.units.player.healPrediction.absorbStyle = 'WRAPPED'
 	E.db.unitframe.units.player.health.text_format = ''
-	E.db.unitframe.units.player.height = 46
+	E.db.unitframe.units.player.height = 50
 	E.db.unitframe.units.player.partyIndicator.enable = false
 	E.db.unitframe.units.player.power.enable = false
 	E.db.unitframe.units.player.power.height = 4
@@ -1507,7 +1507,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.fader.smooth = 0
 	E.db.unitframe.units.target.healPrediction.absorbStyle = 'WRAPPED'
 	E.db.unitframe.units.target.health.text_format = ''
-	E.db.unitframe.units.target.height = 46
+	E.db.unitframe.units.target.height = 50
 	E.db.unitframe.units.target.middleClickFocus = false
 	E.db.unitframe.units.target.name.text_format = ''
 	E.db.unitframe.units.target.orientation = 'LEFT'
@@ -1787,6 +1787,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,115'
 	E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-132'
+	E.db.movers.PrivateAurasMover = 'TOP,ElvUIParent,TOP,330,-408'
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-200'
 	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-24'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
@@ -1798,7 +1799,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-67'
 	E.db.movers.TorghastChoiceToggle = 'TOP,ElvUIParent,TOP,0,-598'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
-	E.db.movers.VehicleSeatMover = Private.isRetail and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1' or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,493,1'
+	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-82'
 
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
@@ -1923,20 +1924,19 @@ function Private:Setup_ElvUI(layout)
 
 		-- Main movers
 		E.db.movers.BossButton = 'BOTTOM,ElvUIParent,BOTTOM,-260,209'
-		E.db.movers.ElvUF_FocusMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-660,580'
-		E.db.movers.ElvUF_PartyMover = 'TOPLEFT,ElvUIParent,TOPLEFT,600,-480'
-		E.db.movers.ElvUF_PetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,781,474'
-		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,416'
-		E.db.movers.ElvUF_PlayerMover = 'BOTTOM,ElvUIParent,BOTTOM,-288,474'
+		E.db.movers.ElvUF_FocusMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-628,630'
+		E.db.movers.ElvUF_PartyMover = 'TOPLEFT,ElvUIParent,TOPLEFT,590,-400'
+		E.db.movers.ElvUF_PetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,739,500'
+		E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,414'
+		E.db.movers.ElvUF_PlayerMover = 'BOTTOM,ElvUIParent,BOTTOM,-320,500'
 		E.db.movers.ElvUF_Raid1Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,438'
-		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,288,453'
-		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,288,474'
+		E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,320,479'
+		E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,320,500'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,422'
-		E.db.movers.PrivateAurasMover = 'TOP,ElvUIParent,TOP,330,-408'
-		E.db.movers.VehicleLeaveButton = 'BOTTOM,ElvUIParent,BOTTOM,-401,566'
+		E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,706,520'
 		E.db.movers.ZoneAbility = 'BOTTOM,ElvUIParent,BOTTOM,260,209'
 
 	elseif layout == 'healing' then
@@ -2069,7 +2069,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_TargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-716,474'
 		E.db.movers.ElvUF_TargetTargetMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-716,430'
 		E.db.movers.PlayerPowerBarMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,717,455'
-		E.db.movers.PrivateAurasMover = 'TOP,ElvUIParent,TOP,330,-408'
 		E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,718,566'
 		E.db.movers.ZoneAbility = 'BOTTOM,ElvUIParent,BOTTOM,330,241'
 
