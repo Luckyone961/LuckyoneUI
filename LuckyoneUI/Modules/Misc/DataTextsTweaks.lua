@@ -47,7 +47,7 @@ local function UpdateDataTextWidth()
 	-- print('ID: ' .. ID)
 
 	-- Healer layout values
-	if healers[ID] then
+	if healers[ID] or (Private.itsLuckyone and ID == 1473) then
 		ActionBarsDT.width = 704
 	else -- Main layout values
 		ActionBarsDT.width = 395

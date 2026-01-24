@@ -1387,6 +1387,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.player.castbar.customTimeFont.font = Private.Font
 	E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 12
+	E.db.unitframe.units.player.castbar.height = 22
 	E.db.unitframe.units.player.castbar.hideName = true
 	E.db.unitframe.units.player.castbar.latency = false
 	E.db.unitframe.units.player.castbar.spark = true
@@ -1399,6 +1400,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.castbar.tickColor.r = 1
 	E.db.unitframe.units.player.castbar.tickWidth = 2
 	E.db.unitframe.units.player.castbar.timeToHold = 2
+	E.db.unitframe.units.player.castbar.width = 315
 	E.db.unitframe.units.player.castbar.xOffsetText = 2
 	E.db.unitframe.units.player.castbar.xOffsetTime = -2
 	E.db.unitframe.units.player.classbar.enable = false
@@ -1943,13 +1945,10 @@ function Private:Setup_ElvUI(layout)
 
 		-- Healing Player
 		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-nocolor]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
-		E.db.unitframe.units.player.castbar.height = 30
-		E.db.unitframe.units.player.castbar.width = 605
 		E.db.unitframe.units.player.power.attachTextTo = 'Power'
 		E.db.unitframe.units.player.power.autoHide = false
 		E.db.unitframe.units.player.power.detachedWidth = 260
 		E.db.unitframe.units.player.power.detachFromFrame = true
-		E.db.unitframe.units.player.power.enable = true
 		E.db.unitframe.units.player.power.height = 18
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
