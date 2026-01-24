@@ -1617,10 +1617,11 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raidpet.width = 92
 
 	-- Shared growth directions
-	E.db.unitframe.units.raidpet.growthDirection = 'RIGHT_DOWN'
+	E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
 	E.db.unitframe.units.raid1.growthDirection = 'RIGHT_DOWN'
 	E.db.unitframe.units.raid2.growthDirection = 'RIGHT_DOWN'
 	E.db.unitframe.units.raid3.growthDirection = 'RIGHT_DOWN'
+	E.db.unitframe.units.raidpet.growthDirection = 'RIGHT_DOWN'
 
 	-- Shared Party
 	E.db.unitframe.units.party.customTexts = {}
@@ -1819,9 +1820,6 @@ function Private:Setup_ElvUI(layout)
 
 	if layout == 'main' then
 
-		-- Main growth direction
-		E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
-
 		-- Main Player
 		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]'
 		E.db.unitframe.units.player.castbar.height = 22
@@ -1946,9 +1944,6 @@ function Private:Setup_ElvUI(layout)
 
 	elseif layout == 'healing' then
 
-		-- Healing growth direction
-		E.db.unitframe.units.party.growthDirection = 'RIGHT_DOWN'
-
 		-- Healing Player
 		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-nocolor]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
 		E.db.unitframe.units.player.castbar.height = 30
@@ -2070,9 +2065,9 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvAB_1 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvAB_2 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
 		E.db.movers.ElvAB_3 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
-		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParentUIParent,BOTTOM,0,16'
-		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParentUIParent,BOTTOM,0,16'
-		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParentUIParent,BOTTOM,0,16'
+		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
+		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
+		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.PetAB = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
 
 		if Private.itsLuckyone then
