@@ -800,7 +800,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.chat.panelColor.r = 0.05
 	E.db.chat.panelHeight = 208
 	E.db.chat.panelHeightRight = 208
-	E.db.chat.panelWidth = 486
+	E.db.chat.panelWidth = 484
 	E.db.chat.panelWidthRight = 486
 	E.db.chat.separateSizes = true
 	E.db.chat.showHistory.CHANNEL = false
@@ -1869,10 +1869,10 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid1.rdebuffs.stack.position = 'CENTER'
 		E.db.unitframe.units.raid1.rdebuffs.stack.xOffset = -10
 		E.db.unitframe.units.raid1.rdebuffs.stack.yOffset = 0
-		E.db.unitframe.units.raid1.rdebuffs.xOffset = 38
+		E.db.unitframe.units.raid1.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid1.rdebuffs.yOffset = 13
 		E.db.unitframe.units.raid1.roleIcon.size = 12
-		E.db.unitframe.units.raid1.width = 92
+		E.db.unitframe.units.raid1.width = 96
 
 		-- Main Raid2
 		E.db.unitframe.units.raid2.height = 40
@@ -1887,10 +1887,10 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.rdebuffs.stack.position = 'CENTER'
 		E.db.unitframe.units.raid2.rdebuffs.stack.xOffset = -10
 		E.db.unitframe.units.raid2.rdebuffs.stack.yOffset = 0
-		E.db.unitframe.units.raid2.rdebuffs.xOffset = 38
+		E.db.unitframe.units.raid2.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid2.rdebuffs.yOffset = 13
 		E.db.unitframe.units.raid2.roleIcon.size = 12
-		E.db.unitframe.units.raid2.width = 92
+		E.db.unitframe.units.raid2.width = 96
 
 		-- Main Raid3
 		E.db.unitframe.units.raid3.height = 30
@@ -1906,7 +1906,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.rdebuffs.stack.position = 'CENTER'
 		E.db.unitframe.units.raid3.rdebuffs.stack.xOffset = -10
 		E.db.unitframe.units.raid3.rdebuffs.stack.yOffset = 0
-		E.db.unitframe.units.raid3.rdebuffs.xOffset = 38
+		E.db.unitframe.units.raid3.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 8
 		E.db.unitframe.units.raid3.roleIcon.attachTo = 'Frame'
 		E.db.unitframe.units.raid3.roleIcon.damager = false
@@ -1915,7 +1915,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.roleIcon.size = 12
 		E.db.unitframe.units.raid3.roleIcon.xOffset = 0
 		E.db.unitframe.units.raid3.roleIcon.yOffset = 0
-		E.db.unitframe.units.raid3.width = 92
+		E.db.unitframe.units.raid3.width = 96
 
 		-- Main misc
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
