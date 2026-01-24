@@ -1634,7 +1634,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 12,
-		text_format = '',
+		text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1846,9 +1846,6 @@ function Private:Setup_ElvUI(layout)
 		-- Main TargetTarget
 		E.db.unitframe.units.targettarget.width = 278
 
-		-- Main Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or (Private.isTBC or Private.isMists and '[luckyone:name:short-classcolor]|r[ - >luckyone:healermana:percent]') or '[luckyone:name:short-classcolor]'
-
 		-- Main Party (Classic Only)
 		if Private.isClassic then
 			E.db.unitframe.units.party.customTexts.Luckyone_Power = {
@@ -1959,10 +1956,6 @@ function Private:Setup_ElvUI(layout)
 
 		-- Healing TargetTarget
 		E.db.unitframe.units.targettarget.width = 260
-
-		-- Healing Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
-
 
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
