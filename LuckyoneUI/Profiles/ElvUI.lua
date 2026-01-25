@@ -43,6 +43,9 @@ end
 -- E.global & Custom DataText
 function Private:Setup_GlobalDB()
 
+	-- 1080p
+	local scaled = Private.Addon.db.global.scaled
+
 	SetCVar('uiScale', 0.53333333333333)
 	SetCVar('useUiScale', 1)
 	E.global.general.UIScale = 0.53333333333333
@@ -73,7 +76,7 @@ function Private:Setup_GlobalDB()
 	ActionBarsDT.tooltipXOffset = 0
 	ActionBarsDT.tooltipYOffset = 5
 	ActionBarsDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
-	ActionBarsDT.width = 395
+	ActionBarsDT.width = (scaled and 398) or 395
 
 	DT:BuildPanelFrame('Luckyone_MiniMap_DT')
 
@@ -180,6 +183,9 @@ end
 -- Handler for existing profiles (Quick install on alts)
 function Private:HandleAlts(layout)
 
+	-- 1080p
+	local scaled = Private.Addon.db.global.scaled
+
 	local mostRecentProfile = Private:GetMostRecentProfile(layout)
 
 	if not mostRecentProfile then
@@ -196,7 +202,7 @@ function Private:HandleAlts(layout)
 
 	-- Fix our custom DataText
 	if layout == 'main' then
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 398) or 395
 	elseif layout == 'healing' then
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704
 	end
@@ -551,6 +557,10 @@ end
 
 -- ElvUI profile
 function Private:Setup_ElvUI(layout)
+
+	-- 1080p
+	local scaled = Private.Addon.db.global.scaled
+
 	-- AB conversion
 	E.db.convertPages = true
 	-- Protect movers error
@@ -807,7 +817,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.chat.panelColor.r = 0.05
 	E.db.chat.panelHeight = 208
 	E.db.chat.panelHeightRight = 208
-	E.db.chat.panelWidth = 484
+	E.db.chat.panelWidth = (scaled and 485) or 484
 	E.db.chat.panelWidthRight = 486
 	E.db.chat.separateSizes = true
 	E.db.chat.showHistory.CHANNEL = false
@@ -1495,7 +1505,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.castbar.textColor.g = 1
 	E.db.unitframe.units.target.castbar.textColor.r = 1
 	E.db.unitframe.units.target.castbar.timeToHold = 2
-	E.db.unitframe.units.target.castbar.width = 261
+	E.db.unitframe.units.target.castbar.width = (scaled and 260) or 261
 	E.db.unitframe.units.target.castbar.xOffsetText = 2
 	E.db.unitframe.units.target.castbar.xOffsetTime = -2
 	E.db.unitframe.units.target.CombatIcon.enable = false
@@ -1655,7 +1665,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.party.debuffs.sizeOverride = 31
 	E.db.unitframe.units.party.debuffs.xOffset = 1
-	E.db.unitframe.units.party.debuffs.yOffset = -1
+	E.db.unitframe.units.party.debuffs.yOffset = (scaled and 0) or -1
 	E.db.unitframe.units.party.disableFocusGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.fader.minAlpha = 0.5
@@ -1783,8 +1793,8 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
 	E.db.movers.BossButton = 'BOTTOM,ElvUIParent,BOTTOM,0,396'
 	E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
-	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-1'
-	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-116'
+	E.db.movers.BuffsMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-203,-1') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-1'
+	E.db.movers.DebuffsMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-203,-116') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-116'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-68,-180'
 	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,204,1'
@@ -1803,7 +1813,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ElvUF_PetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,739,500'
 	E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,552'
 	E.db.movers.ElvUF_PlayerMover = 'BOTTOM,ElvUIParent,BOTTOM,-320,500'
-	E.db.movers.ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,320,477'
+	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,318,475') or 'BOTTOM,ElvUIParent,BOTTOM,320,477'
 	E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,320,500'
 	E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,422'
 	E.db.movers.ElvUIBagMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,210'
@@ -1934,7 +1944,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.width = 96
 
 		-- Main misc
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 398) or 395
 
 		-- Main movers
 		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
