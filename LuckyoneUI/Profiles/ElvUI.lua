@@ -1797,7 +1797,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.DebuffsMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-203,-116') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-116'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-68,-180'
-	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,204,1'
+	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,232,1'
 	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-314'
 	E.db.movers.ElvAB_4 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-578'
 	E.db.movers.ElvAB_5 = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,522'
@@ -1845,7 +1845,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.TorghastChoiceToggle = 'TOP,ElvUIParent,TOP,0,-598'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
 	E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,706,520'
-	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,427,1'
+	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-82'
 	E.db.movers.ZoneAbility = 'BOTTOM,ElvUIParent,BOTTOM,0,348'
 
