@@ -26,6 +26,11 @@ local healers = {
 	[105] = true -- Restoration Druid
 }
 
+local function Profile()
+	local data = E.data:GetCurrentProfile()
+	return strfind(data, 'Luckyone Main') and 1 or strfind(data, 'Luckyone Healing') and 2 or nil
+end
+
 -- Update ActionBars DataText width based on specialization
 local function UpdateDataTextWidth()
 	if InCombatLockdown() then return end
@@ -50,7 +55,7 @@ local function UpdateDataTextWidth()
 	-- print('ID: ' .. ID)
 
 	-- Healer layout values
-	if healers[ID] or (Private.itsLuckyone and ID == 1473) then
+	if healers[ID] or (Private.itsLuckyone and ID == 1473 and Profile() == 2) then
 		ActionBarsDT.width = 704
 	else -- Main layout values
 		ActionBarsDT.width = (scaled and 398) or 395
