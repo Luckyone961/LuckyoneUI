@@ -1,4 +1,4 @@
-﻿## Version 3.34 [In Development]
+﻿## Version 4.00 [25-01-2026]
 
 **Highlights:**  
 - All of the below mentioned is WIP and you can expect tweaks in future versions  
