@@ -1639,14 +1639,20 @@ function Private:Setup_ElvUI(layout)
 		yOffset = 0
 	}
 
+	E.db.unitframe.units.party.buffs.anchorPoint = 'TOPLEFT'
+	E.db.unitframe.units.party.buffs.clickThrough = true
+	E.db.unitframe.units.party.buffs.enable = Private.isRetail
+	E.db.unitframe.units.party.buffs.sizeOverride = 20
+	E.db.unitframe.units.party.buffs.yOffset = -21
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.debuffs.countFont = Private.Font
 	E.db.unitframe.units.party.debuffs.countXOffset = 2
 	E.db.unitframe.units.party.debuffs.enable = true
 	E.db.unitframe.units.party.debuffs.maxDuration = 0
-	E.db.unitframe.units.party.debuffs.perrow = 2
+	E.db.unitframe.units.party.debuffs.numrows = 2
+	E.db.unitframe.units.party.debuffs.perrow = 4
 	E.db.unitframe.units.party.debuffs.priority = 'Dispellable,RaidDebuffs'
-	E.db.unitframe.units.party.debuffs.sizeOverride = 40
+	E.db.unitframe.units.party.debuffs.sizeOverride = 31
 	E.db.unitframe.units.party.debuffs.xOffset = 1
 	E.db.unitframe.units.party.debuffs.yOffset = -1
 	E.db.unitframe.units.party.disableFocusGlow = true
@@ -1656,7 +1662,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.healPrediction.absorbStyle = 'WRAPPED'
 	E.db.unitframe.units.party.healPrediction.enable = true
 	E.db.unitframe.units.party.health.text_format = ''
-	E.db.unitframe.units.party.height = 40
+	E.db.unitframe.units.party.height = 64
 	E.db.unitframe.units.party.horizontalSpacing = 1
 	E.db.unitframe.units.party.name.text_format = ''
 	E.db.unitframe.units.party.phaseIndicator.anchorPoint = 'LEFT'
@@ -1684,7 +1690,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.summonIcon.xOffset = -15
 	E.db.unitframe.units.party.threatStyle = 'NONE'
 	E.db.unitframe.units.party.verticalSpacing = 1
-	E.db.unitframe.units.party.width = 210
+	E.db.unitframe.units.party.width = 220
 
 	-- Shared Raid1
 	E.db.unitframe.units.raid1.buffIndicator.countFont = Private.Font
