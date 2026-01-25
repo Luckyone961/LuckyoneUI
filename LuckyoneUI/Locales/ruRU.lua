@@ -85,13 +85,13 @@ L["Displays the unit's current health as a percentage with absorb values, withou
 L["Displays the unit's level with difficultycolor if the player is not max level"] = true
 L["Displays the unit's Mana with manacolor (Role: Healer)"] = "Отображает ману юнита (Роль: Исцеление)"
 L["Displays the unit's Mana with manacolor in percent (Role: Healer)"] = "Отображает ману юнита в процентах (Роль: Исцеление)"
-L["Displays the unit's name with classcolor and a maximum length of %s characters (Only works for friendly party/raid members)"] = true
+L["Displays the unit's name with classcolor and a maximum length of %s characters (friendly only) or full name (if enemy)"] = true
 L["Displays the unit's name with classcolor and a maximum length of %s characters and abbreviates long names"] = true
 L["Displays the unit's name with classcolor and a maximum length of 10 characters"] = true
 L["Displays the unit's name with classcolor and a maximum length of 15 characters"] = true
 L["Displays the unit's name with classcolor and a maximum length of 20 characters"] = true
 L["Displays the unit's name with classcolor and a maximum length of 5 characters"] = true
-L["Displays the unit's name with no color and a maximum length of %s characters (Only works for friendly party/raid members)"] = true
+L["Displays the unit's name with no color and a maximum length of %s characters (friendly only) or full name (if enemy)"] = true
 L["Displays the unit's name with no color and a maximum length of %s characters and abbreviates long names"] = true
 L["Displays the unit's name with no color and a maximum length of 10 characters"] = true
 L["Displays the unit's name with no color and a maximum length of 15 characters"] = true

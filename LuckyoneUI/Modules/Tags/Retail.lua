@@ -75,17 +75,19 @@ end)
 E:AddTagInfo('luckyone:name-nocolor', Private.Name, L["Displays the name with no color"])
 
 for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long = 20 }) do
-	-- Displays the unit's name with classcolor and a maximum length of 5, 10, 15 and 20 characters (Only works for friendly party/raid members)
-	E:AddTag('luckyone:name:' .. textFormat .. '-color-friendly', 'UNIT_NAME_UPDATE UNIT_FACTION', function(unit)
-		if not UnitIsFriend(unit, 'player') and not (UnitIsPlayer(unit) or UnitInPartyIsAI(unit)) then return UNKNOWN end
-		return Private.Tags.getFormattedName(unit, length, true)
+	-- Displays the unit's name with classcolor and a maximum length of 5, 10, 15 and 20 characters (friendly only) or full name (if enemy)
+	E:AddTag('luckyone:name:' .. textFormat .. '-color-friendly', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+		local friend = UnitIsFriend(unit, 'player')
+		local name = UnitName(unit) or UNKNOWN
+		return (friend and Private.Tags.getFormattedName(unit, length, true)) or name
 	end)
-	-- Displays the unit's name with no color and a maximum length of 5, 10, 15 and 20 characters (Only works for friendly party/raid members)
-	E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly', 'UNIT_NAME_UPDATE', function(unit)
-	if not UnitIsFriend(unit, 'player') and not (UnitIsPlayer(unit) or UnitInPartyIsAI(unit)) then return UNKNOWN end
-		return Private.Tags.getFormattedName(unit, length, false)
+	-- Displays the unit's name with no color and a maximum length of 5, 10, 15 and 20 characters (friendly only) or full name (if enemy)
+	E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+		local friend = UnitIsFriend(unit, 'player')
+		local name = UnitName(unit) or UNKNOWN
+		return (friend and Private.Tags.getFormattedName(unit, length, false)) or name
 	end)
 
-	E:AddTagInfo('luckyone:name:' .. textFormat .. '-color-friendly', Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters (Only works for friendly party/raid members)"], length))
-	E:AddTagInfo('luckyone:name:' .. textFormat .. '-nocolor-friendly', Private.Name, format(L["Displays the unit's name with no color and a maximum length of %s characters (Only works for friendly party/raid members)"], length))
+	E:AddTagInfo('luckyone:name:' .. textFormat .. '-color-friendly', Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters (friendly only) or full name (if enemy)"], length))
+	E:AddTagInfo('luckyone:name:' .. textFormat .. '-nocolor-friendly', Private.Name, format(L["Displays the unit's name with no color and a maximum length of %s characters (friendly only) or full name (if enemy)"], length))
 end

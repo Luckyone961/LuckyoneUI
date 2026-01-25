@@ -85,13 +85,13 @@ L["Displays the unit's current health as a percentage with absorb values, withou
 L["Displays the unit's level with difficultycolor if the player is not max level"] = "Mostra o nível da unidade com cores de dificuldade se o jogador não estiver no nível máximo"
 L["Displays the unit's Mana with manacolor (Role: Healer)"] = "Exibe o Mana da unidade (Função: Curador)"
 L["Displays the unit's Mana with manacolor in percent (Role: Healer)"] = "Exibe o Mana da unidade em porcentagem (Função: Curador)"
-L["Displays the unit's name with classcolor and a maximum length of %s characters (Only works for friendly party/raid members)"] = true
+L["Displays the unit's name with classcolor and a maximum length of %s characters (friendly only) or full name (if enemy)"] = true
 L["Displays the unit's name with classcolor and a maximum length of %s characters and abbreviates long names"] = "Mostra o nome da unidade com cores de classe e um tamanho máximo de %s caracteres e abrevia nomes longos"
 L["Displays the unit's name with classcolor and a maximum length of 10 characters"] = "Mostra o nome da unidade com cores de classe e um tamanho máximo de 10 caracteres"
 L["Displays the unit's name with classcolor and a maximum length of 15 characters"] = "Mostra o nome da unidade com cores de classe e um tamanho máximo de 15 caracteres"
 L["Displays the unit's name with classcolor and a maximum length of 20 characters"] = "Mostra o nome da unidade com cores de classe e um tamanho máximo de 20 caracteres"
 L["Displays the unit's name with classcolor and a maximum length of 5 characters"] = "Mostra o nome da unidade com cores de classe e um tamanho máximo de 5 caracteres"
-L["Displays the unit's name with no color and a maximum length of %s characters (Only works for friendly party/raid members)"] = true
+L["Displays the unit's name with no color and a maximum length of %s characters (friendly only) or full name (if enemy)"] = true
 L["Displays the unit's name with no color and a maximum length of %s characters and abbreviates long names"] = "Mostra o nome dade unidade sem cores e um tamanho máximo de %s caracteres e abrevia nomes longos"
 L["Displays the unit's name with no color and a maximum length of 10 characters"] = "Mostra o nome dade unidade sem cores e um tamanho máximo de 10 caracteres"
 L["Displays the unit's name with no color and a maximum length of 15 characters"] = "Mostra o nome dade unidade sem cores e um tamanho máximo de 15 caracteres"
