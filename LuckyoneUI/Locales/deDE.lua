@@ -134,6 +134,7 @@ L["Install"] = "Installieren"
 L["Installation Complete"] = "Installation Vollständig"
 L["Installation"] = true -- No need to translate
 L["is not installed or enabled."] = "ist nicht installiert oder aktiviert."
+L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor pixel offsets."] = "Beachte, dass ich auf 1440p spiele.\nDas 1080p Layout könnte einige minimale Pixelverschiebungen haben."
 L["Layout has been set."] = "Layout wurde festgelegt."
 L["Layout Scale"] = "Layout Skalierung"
 L["Left panel: General - Log - Whisper - Guild - Party."] = "Linkes Feld: Allgemein – Log – Flüstern – Gilde – Party."

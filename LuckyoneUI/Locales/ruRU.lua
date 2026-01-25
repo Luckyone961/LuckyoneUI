@@ -134,6 +134,7 @@ L["Install"] = "Установить"
 L["Installation Complete"] = "Установка завершена"
 L["Installation"] = "Установка"
 L["is not installed or enabled."] = true
+L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor pixel offsets."] = true
 L["Layout has been set."] = "Макет установлен."
 L["Layout Scale"] = true
 L["Left panel: General - Log - Whisper - Guild - Party."] = true

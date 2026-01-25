@@ -134,6 +134,7 @@ L["Install"] = "Instalar"
 L["Installation Complete"] = "Instalação Completa"
 L["Installation"] = "Instalação"
 L["is not installed or enabled."] = "não está instalado ou habilitado."
+L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor pixel offsets."] = true
 L["Layout has been set."] = "Perfil foi configurado."
 L["Layout Scale"] = "Escala do Perfil"
 L["Left panel: General - Log - Whisper - Guild - Party."] = "Painel Esquerdo: Geral - Registro - Sussuro - Guilda - Grupo."
