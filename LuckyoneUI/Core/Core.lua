@@ -55,7 +55,7 @@ function Private:Print(msg)
 end
 
 -- Gets the number from the profile string
--- If it matches the specified profile type (Main/Healing/Support) or if no profile type is specified
+-- If it matches the specified profile type (Main/Healing) or if no profile type is specified
 local function GetNumber(str, profileType)
 	return (not profileType or str:find(profileType, 1, true)) and tonumber(str:match('%d+%.?%d*')) or nil
 end
@@ -69,8 +69,7 @@ function Private:GetMostRecentProfile(profileType)
 	local mostRecentNumber, mostRecentProfile
 	local devProfiles = {
 		Main = 'Luckyone Main',
-		Healing = 'Luckyone Healing',
-		Support = 'Luckyone Support'
+		Healing = 'Luckyone Healing'
 	}
 
 	for _, profile in ipairs(profiles) do
@@ -244,11 +243,11 @@ function Private:ApplyScale(native)
 	if native then
 		SetCVar('uiScale', 0.53333333333333)
 		Private.Addon.db.global.scaled = false
-		Private:Print(L["Layout scale"] .. ' 1440p')
+		Private:Print(L["Layout Scale"] .. ' 1440p')
 	else
 		SetCVar('uiScale', 0.71111111111111)
 		Private.Addon.db.global.scaled = true
-		Private:Print(L["Layout scale"] .. ' 1080p')
+		Private:Print(L["Layout Scale"] .. ' 1080p')
 	end
 end
 

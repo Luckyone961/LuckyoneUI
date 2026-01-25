@@ -24,7 +24,6 @@ local function Set(tbl, path, value)
 end
 
 -- WindTools ProfileDB
--- LC: 20/11/2025
 function Private:Setup_WindTools(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and Private.isRetail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
@@ -145,6 +144,7 @@ function Private:Setup_WindTools(installer)
 		E.global.WT.item.contacts.alts['Laughing Skull']['Alliance'] = {
 			['Luckyone'] = 'DRUID',
 			['Luckymonkas'] = 'MONK',
+			['Taylorswift'] = 'DEMONHUNTER',
 		}
 		E.global.WT.item.contacts.updateAlts = false
 	end
@@ -153,8 +153,8 @@ function Private:Setup_WindTools(installer)
 	E.db.movers = E.db.movers or {}
 
 	-- Movers
-	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,405') or 'BOTTOM,ElvUIParent,BOTTOM,0,590'
-	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-177'
+	E.db.movers.WTCombatAlertFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,0,640'
+	E.db.movers.WTMinimapButtonBarAnchor = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-204') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-202'
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-110'
 
 	if installer then
@@ -165,7 +165,6 @@ function Private:Setup_WindTools(installer)
 end
 
 -- WindTools PrivateDB
--- LC: 20/11/2025
 function Private:Setup_Private_WindTools()
 
 	-- Restore defaults
@@ -176,7 +175,7 @@ function Private:Setup_Private_WindTools()
 	Set(E.private, 'WT.maps.minimapButtons.backdrop', false)
 	Set(E.private, 'WT.maps.minimapButtons.backdropSpacing', 0)
 	Set(E.private, 'WT.maps.minimapButtons.buttonSize', 22)
-	Set(E.private, 'WT.maps.minimapButtons.buttonsPerRow', 7)
+	Set(E.private, 'WT.maps.minimapButtons.buttonsPerRow', 8)
 	Set(E.private, 'WT.maps.minimapButtons.expansionLandingPage', true)
 	Set(E.private, 'WT.maps.minimapButtons.spacing', 3)
 	Set(E.private, 'WT.maps.superTracker.enable', false)
@@ -215,7 +214,6 @@ function Private:Setup_Private_WindTools()
 	Set(E.private, 'WT.skins.addons.angryKeystones', false)
 	Set(E.private, 'WT.skins.addons.bigWigs', false)
 	Set(E.private, 'WT.skins.addons.bugSack', false)
-	Set(E.private, 'WT.skins.addons.hekili', false)
 	Set(E.private, 'WT.skins.addons.immersion', false)
 	Set(E.private, 'WT.skins.addons.myslot', false)
 	Set(E.private, 'WT.skins.addons.premadeGroupsFilter', false)
@@ -230,7 +228,6 @@ function Private:Setup_Private_WindTools()
 	Set(E.private, 'WT.skins.ime.label.name', Private.Font)
 	Set(E.private, 'WT.skins.ime.label.size', 12)
 	Set(E.private, 'WT.skins.shadow', false)
-	Set(E.private, 'WT.skins.weakAurasShadow', false)
 	Set(E.private, 'WT.skins.widgets.button.backdrop.classColor', true)
 	Set(E.private, 'WT.skins.widgets.button.backdrop.texture', Private.Texture)
 	Set(E.private, 'WT.skins.widgets.button.selected.backdropAlpha', 1)

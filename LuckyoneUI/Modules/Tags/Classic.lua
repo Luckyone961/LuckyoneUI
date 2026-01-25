@@ -211,17 +211,6 @@ E:AddTag('luckyone:target:last-nocolor', 'UNIT_TARGET', function(unit)
 end)
 E:AddTagInfo('luckyone:target:last-nocolor', Private.Name, L["Displays the last part of the unit's target name with no color"])
 
--- Displays the unit's target name with class color
-E:AddTag('luckyone:target:name-classcolor', 'UNIT_TARGET UNIT_FACTION', function(unit)
-	return Private.Tags.formatTargetName(unit, false, true)
-end)
-E:AddTagInfo('luckyone:target:name-classcolor', Private.Name, L["Displays the unit's target name with class color"])
-
--- Displays the unit's target name with no color
-E:AddTag('luckyone:target:name-nocolor', 'UNIT_TARGET', function(unit)
-	return Private.Tags.formatTargetName(unit, false, false)
-end)
-E:AddTagInfo('luckyone:target:name-nocolor', Private.Name, L["Displays the unit's target name with no color"])
 
 for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long = 20 }) do
 	-- Displays the unit's name with classcolor and a maximum length of 5, 10, 15 and 20 characters

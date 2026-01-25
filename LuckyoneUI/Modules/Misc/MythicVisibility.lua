@@ -6,6 +6,9 @@ if not Private.ElvUI then
 	return
 end
 
+-- Lua functions
+local unpack = unpack
+
 -- API cache
 local GetInstanceInfo = GetInstanceInfo
 

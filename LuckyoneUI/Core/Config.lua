@@ -59,15 +59,14 @@ local function BuildSetupSection()
 		section.args.spacer3 = ACH:Spacer(6, 'full')
 		section.args.altMain = ACH:Execute(L["Alt: "] .. L["DPS & Tanks"], L["This will load your most recent LuckyoneUI profile."], 7, function() Private:HandleAlts('Main') end, nil, true)
 		section.args.altHealing = ACH:Execute(L["Alt: "] .. L["Healing"], L["This will load your most recent LuckyoneUI profile."], 8, function() Private:HandleAlts('Healing') end, nil, true)
-		section.args.altSupport = ACH:Execute(L["Alt: "] .. format('|cff33937F%s', L["Augmentation"]), L["This will load your most recent LuckyoneUI profile."], 9, function() Private:HandleAlts('Support') end, nil, true)
 	end
 	return section
 end
 
 -- Build Blizzard Section
 local function BuildBlizzardSection()
-	local section = ACH:Group(L["Blizzard improvements"], nil, 3)
-	section.args.header = ACH:Header(L["Blizzard improvements"], 1)
+	local section = ACH:Group(L["Blizzard Improvements"], nil, 5)
+	section.args.header = ACH:Header(L["Blizzard Improvements"], 1)
 	section.args.disabledFrames = ACH:Group(L["Hide Blizzard Frames"], nil, 2, nil, function(info) return Private.Addon.db.profile.disabledFrames[info[#info]] end, function(info, value) Private.Addon.db.profile.disabledFrames[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.disabledFrames.inline = true
 	section.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle(L["Zone Text"], L["Hide the Zone Text"], 1)
@@ -86,8 +85,8 @@ end
 
 -- Build Auras Section
 local function BuildAurasSection()
-	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["Buffs and Debuffs"], nil, 4, 'tab')
+	if not Private.ElvUI or Private.isRetail then return end -- ElvUI section (non-Retail only)
+	local section = ACH:Group(L["Buffs and Debuffs"], nil, 10, 'tab')
 	section.args.header = ACH:Header(L["Buffs and Debuffs"], 1)
 	section.args.buffs = ACH:Group(format('|cff3296ff%s|r', L["Buffs"]), nil, 1)
 	section.args.buffs.args.player = ACH:Group(L["Player Frame Buffs"], nil, 1)
@@ -133,8 +132,8 @@ end
 -- Build PrivateDB Section
 local function BuildPrivateDBSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["Character specific"], nil, 5)
-	section.args.header = ACH:Header(L["Character specific"], 1)
+	local section = ACH:Group(L["Character Specific"], nil, 15)
+	section.args.header = ACH:Header(L["Character Specific"], 1)
 	section.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 2)
 	section.args.defaults.inline = true
 	section.args.defaults.args.private = ACH:Execute(L["Restore Defaults"], nil, 1, function() Private:Setup_PrivateDB(true) ElvUI[1]:UpdateMediaItems(true) end, nil, true)
@@ -146,7 +145,7 @@ end
 
 -- Build Chat Section
 local function BuildChatSection()
-	local section = ACH:Group(L["Chat"], nil, 6)
+	local section = ACH:Group(L["Chat"], nil, 20)
 	section.args.header = ACH:Header(L["Chat"], 1)
 	section.args.chatSetup = ACH:Group(L["Setup Chat"], nil, 2)
 	section.args.chatSetup.inline = true
@@ -162,42 +161,71 @@ end
 
 -- Build CVars Section
 local function BuildCVarsSection()
-	local section = ACH:Group(L["Console variables"], nil, 7)
-	section.args.header = ACH:Header(L["Console variables"], 1)
+	local section = ACH:Group(L["Console Variables"], nil, 25)
+	section.args.header = ACH:Header(L["Console Variables"], 1)
 	section.args.setup = ACH:Group(L["Setup CVars"], nil, 2)
 	section.args.setup.inline = true
 	section.args.setup.args.generalVars = ACH:Execute(L["General CVars"], nil, 1, function() Private:Setup_CVars() end, nil, true)
 	section.args.setup.args.nameplateVars = ACH:Execute(L["Nameplate CVars"], nil, 2, function() Private:NameplateCVars() end, nil, true)
 	section.args.generalDesc = ACH:Group(L["General CVars"], nil, 3)
 	section.args.generalDesc.inline = true
-	section.args.generalDesc.args.cvars = ACH:Description('- alwaysShowActionBars 1\n- AutoPushSpellToActionBar 0\n- cameraDistanceMaxZoomFactor 2.6\n- fstack_preferParentKeys 0\n- lockActionBars 1\n- minimapTrackingShowAll 1\n- screenshotQuality 10\n- showNPETutorials 0\n- showTutorials 0\n- threatWarning 3\n- UberTooltips 1\n', 1, 'medium')
+	section.args.generalDesc.args.cvars = ACH:Description('- alwaysShowActionBars 1\n- AutoPushSpellToActionBar 0\n- cameraDistanceMaxZoomFactor 2.6\n- countdownForCooldowns 1\n- fstack_preferParentKeys 0\n- lockActionBars 1\n- minimapTrackingShowAll 1\n- screenshotQuality 10\n- showNPETutorials 0\n- showTutorials 0\n- threatWarning 3\n- UberTooltips 1\n', 1, 'medium')
 	section.args.nameplateDesc = ACH:Group(L["Nameplate CVars"], nil, 4)
 	section.args.nameplateDesc.inline = true
 	section.args.nameplateDesc.args.cvars = ACH:Description('- NamePlateHorizontalScale 1\n- nameplateLargerScale 1\n- nameplateLargeTopInset -1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 1\n- nameplateOtherBottomInset -1\n- nameplateOtherTopInset -1\n- nameplateOverlapH 1\n- nameplateOverlapV 2.2\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateSelfTopInset -1\n- nameplateShowOnlyNames 1\n- NamePlateVerticalScale 1\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1\n', 1, 'medium')
 	return section
 end
 
--- Build Layouts Section
-local function BuildLayoutSection()
+-- Build ElvUI Layouts Section
+local function BuildElvUILayoutSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["ElvUI layouts"], nil, 8)
-	section.args.header1 = ACH:Header(L["Layout scale"], 1)
+	local section = ACH:Group(L["ElvUI Layouts"], nil, 30)
+	section.args.header1 = ACH:Header(L["Layout Scale"], 1)
 	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	section.args.scaling.inline = true
 	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
 	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = value end)
-	section.args.header2 = ACH:Header(L["ElvUI layouts"], 3)
-	section.args.thewarwithin = ACH:Group(L["The War Within layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 4)
-	section.args.thewarwithin.inline = true
-	section.args.thewarwithin.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout('main') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.thewarwithin.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout('healing') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.thewarwithin.args.support = ACH:Execute(format('|cff33937F%s', L["Augmentation"]), L["No ActionBars and centered Raid Frames"], 3, function() Private:Setup_Layout('support') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.header2 = ACH:Header(L["ElvUI Layouts"], 3)
+	section.args.midnight = ACH:Group(L["Midnight Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 4)
+	section.args.midnight.inline = true
+	section.args.midnight.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout('main') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.midnight.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout('healing') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	return section
+end
+
+-- Build ElvUI Themes Section
+local function BuildElvUIThemesSection()
+	if not Private.ElvUI then return end -- ElvUI section
+	local section = ACH:Group(L["ElvUI Themes"], nil, 35)
+	section.args.header = ACH:Header(L["ElvUI Themes"], 1)
+	section.args.raid = ACH:Group(L["UnitFrames Color Theme"], nil, 2)
+	section.args.raid.inline = true
+	section.args.raid.args.dark = ACH:Execute(L["Dark"], L["Dark Style (Default)"], 1, function() Private:Setup_Theme('dark') end, nil, true)
+	section.args.raid.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() Private:Setup_Theme('class') end, nil, true)
+	return section
+end
+
+-- Build ElvUI Tweaks Section
+local function BuildElvUITweaksSection()
+	if not Private.ElvUI or (Private.isClassic or Private.isTBC or Private.isMists) then return end -- ElvUI section (Retail only)
+	local section = ACH:Group(L["ElvUI Tweaks"], nil, 40)
+	section.args.header = ACH:Header(L["ElvUI Tweaks"], 1)
+	section.args.toggles = ACH:Group(L["Toggles"], nil, 2)
+	section.args.toggles.inline = true
+	section.args.toggles.args.mythicVisibility = ACH:Toggle(L["Mythic Raidframe Visibility"], L["Feature explained in the description below"], 1, nil, nil, nil, function() return Private.Addon.db.profile.misc.mythicVisibility end, function(_, value) Private.Addon.db.profile.misc.mythicVisibility = value end, not Private.isRetail)
+	section.args.toggles.args.dataTextsTweaks = ACH:Toggle(L["DataTexts Tweaks"], L["Feature explained in the description below"], 2, nil, nil, nil, function() return Private.Addon.db.profile.misc.dataTextsTweaks end, function(_, value) Private.Addon.db.profile.misc.dataTextsTweaks = value end, not Private.isRetail)
+	section.args.mythicVisibilityDesc = ACH:Group(L["Mythic Raidframe Visibility explained"], nil, 3)
+	section.args.mythicVisibilityDesc.inline = true
+	section.args.mythicVisibilityDesc.args.desc = ACH:Description(L["Your Raid 1 frames will be enabled if you enter Mythic difficulty (Triggers after loading screen)\nYour Raid 2 frames will be disabled if you enter Mythic difficulty (Triggers after loading screen)\n\nAdditionally the maxAllowedGroups setting will be enabled and the visibility state gets modified\nBenched people in groups 5-8 while not show up when you're Mythic raiding\n\nAll changes mentioned above will revert back to default upon leaving the raid"], 1, 'medium')
+	section.args.dataTextsTweaksDesc = ACH:Group(L["DataTexts Tweaks explained"], nil, 4)
+	section.args.dataTextsTweaksDesc.inline = true
+	section.args.dataTextsTweaksDesc.args.desc = ACH:Description(L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your specialization\nIt also assumes you have properly setup specialization-based profile loading in ElvUI profiles"], 1, 'medium')
 	return section
 end
 
 -- Build Graphics Section
 local function BuildGraphicsSection()
-	local section = ACH:Group(L["Graphics"], nil, 9)
+	local section = ACH:Group(L["Graphics"], nil, 45)
 	section.args.header = ACH:Header(L["Graphics"], 1)
 	section.args.toggles = ACH:Group(L["General"], nil, 2)
 	section.args.toggles.inline = true
@@ -215,32 +243,32 @@ end
 
 -- Build Profiles Section
 local function BuildProfilesSection()
-	local section = ACH:Group(L["Profiles"], nil, 10)
-	section.args.header1 = ACH:Header(L["Layout scale"], 1)
+	local section = ACH:Group(L["Profiles"], nil, 50)
+	section.args.header1 = ACH:Header(L["Layout Scale"], 1)
 	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	section.args.scaling.inline = true
 	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
 	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = value end)
-	section.args.plugins = ACH:Group(L["ElvUI plugins"], nil, 3)
+	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 3)
 	section.args.plugins.inline = true
 	section.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_AddOnSkins() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.plugins.args.pa = ACH:Execute('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_ProjectAzilroka() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_ShadowAndLight() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', RESET_DEFAULTS_TEXT, 4, function() Private:Setup_WindTools() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
-	section.args.nameplates = ACH:Group(L["Nameplate profiles"], nil, 4)
+	section.args.nameplates = ACH:Group(L["Nameplate Profiles"], nil, 4)
 	section.args.nameplates.inline = true
 	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_NamePlates() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.nameplates.args.plater = ACH:Execute('Plater', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_Plater() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.addons = ACH:Group(L["Addon profiles"], nil, 5)
+	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 5)
 	section.args.addons.inline = true
 	section.args.addons.args.details = ACH:Execute('Details', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_Details() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_WarpDeplete() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.header2 = ACH:Header(L["Profiles for DPS & Tanks"], 6)
-	section.args.addonsMain = ACH:Group(L["Addon profiles"], nil, 7)
+	section.args.addonsMain = ACH:Group(L["Addon Profiles"], nil, 7)
 	section.args.addonsMain.inline = true
 	section.args.addonsMain.args.bigwigs = ACH:Execute(L["BigWigs Main"], RESET_DEFAULTS_TEXT, 1, function() Private:Setup_BigWigs('main') end, nil, true)
 	section.args.header3 = ACH:Header(L["Profiles for Healing"], 8)
-	section.args.addonsHealing = ACH:Group(L["Addon profiles"], nil, 9)
+	section.args.addonsHealing = ACH:Group(L["Addon Profiles"], nil, 9)
 	section.args.addonsHealing.inline = true
 	section.args.addonsHealing.args.bigwigs = ACH:Execute(L["BigWigs Healing"], RESET_DEFAULTS_TEXT, 1, function() Private:Setup_BigWigs('healing') end, nil, true)
 	return section
@@ -249,7 +277,7 @@ end
 -- Build Skins Section
 local function BuildSkinsSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group('Skins', nil, 11)
+	local section = ACH:Group('Skins', nil, 55)
 	section.args.header = ACH:Header('Skins', 1)
 	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.profile.skins[info[#info]] end, function(info, value) Private.Addon.db.profile.skins[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.addons.inline = true
@@ -267,28 +295,16 @@ end
 -- Build Tags Section
 local function BuildTagsSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["Tags"], nil, 12)
+	local section = ACH:Group(L["Tags"], nil, 60)
 	section.args.header = ACH:Header(L["Tags"], 1)
 	section.args.spacer = ACH:Spacer(2, 'full')
 	section.args.shortcut = ACH:Execute(L["Available Tags"], nil, 3, function() ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', Private.Name) end)
 	return section
 end
 
--- Build Themes Section
-local function BuildThemesSection()
-	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["Themes"], nil, 13)
-	section.args.header = ACH:Header(L["Themes"], 1)
-	section.args.raid = ACH:Group(L["UnitFrames Color Theme"], nil, 2)
-	section.args.raid.inline = true
-	section.args.raid.args.dark = ACH:Execute(L["Dark"], L["Dark Style (Default)"], 1, function() Private:Setup_Theme('dark') end, nil, true)
-	section.args.raid.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() Private:Setup_Theme('class') end, nil, true)
-	return section
-end
-
 -- Build Credits Section
 local function BuildCreditsSection()
-	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 14)
+	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 65)
 	section.args.header = ACH:Header(L["Credits"], 1)
 	section.args.author = ACH:Group(L["Author"], nil, 2)
 	section.args.author.inline = true
@@ -296,7 +312,7 @@ local function BuildCreditsSection()
 	section.args.coding = ACH:Group(L["Coding"], nil, 3)
 	section.args.coding.inline = true
 	section.args.coding.args.desc = ACH:Description(CODING_STRING, 1, 'medium')
-	section.args.testers = ACH:Group(L["Testers and translation"], nil, 4)
+	section.args.testers = ACH:Group(L["Testers and Translation"], nil, 4)
 	section.args.testers.inline = true
 	section.args.testers.args.desc = ACH:Description(TESTER_STRING, 1, 'medium')
 	section.args.supporter = ACH:Group(L["Supporters"], nil, 5)
@@ -307,7 +323,7 @@ end
 
 -- Build Links Section
 local function BuildLinksSection()
-	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 15)
+	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 70)
 	section.args.header = ACH:Header(L["Links"], 1)
 	section.args.spacer = ACH:Spacer(2, 'full')
 	section.args.website = ACH:Input(L["Addon download:"], nil, 3, nil, 'full', function() return 'https://download.luckyone.dev' end)
@@ -323,19 +339,17 @@ end
 
 -- Build Dev Section
 local function BuildDevSection()
-	local section = ACH:Group(format('|cff4beb2c%s|r', 'Developer'), nil, 16)
+	local section = ACH:Group(format('|cff4beb2c%s|r', 'Developer'), nil, 100)
 	section.args.header1 = ACH:Header('Developer', 1)
-	section.args.toggles = ACH:Group('Toggles', nil, 2)
+	section.args.toggles = ACH:Group(L["Toggles"], nil, 2)
 	section.args.toggles.inline = true
 	section.args.toggles.args.dev = ACH:Toggle('Developer Mode', 'Enable this toggle to apply Luckyone\'s personal adjustments during the installation process.\n\nAdditional information section will show up at the bottom of the config after ReloadUI.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r', 1, nil, nil, nil, function() return Private.Addon.db.global.dev end, function(_, value) Private.Addon.db.global.dev = value end)
-	section.args.toggles.args.mythicVisibility = ACH:Toggle('Mythic Visibility', 'Ported version of the ElvUI Mythic RaidFrame Visibility WeakAura', 2, nil, nil, nil, function() return Private.Addon.db.profile.misc.mythicVisibility end, function(_, value) Private.Addon.db.profile.misc.mythicVisibility = value end, not Private.isRetail)
-	section.args.toggles.args.dataTextsTweaks = ACH:Toggle('DataTexts Tweaks', 'Adjusts ActionBars DataText width based on specialization (Augmentation, Healers, DPS/Tanks)', 3, nil, nil, nil, function() return Private.Addon.db.profile.misc.dataTextsTweaks end, function(_, value) Private.Addon.db.profile.misc.dataTextsTweaks = value end, not Private.isRetail)
 	section.args.devInfo = ACH:Group('Information', nil, 3)
 	section.args.devInfo.inline = true
 	section.args.devInfo.args.desc = ACH:Description('While this developer mode is enabled, the following will change:\n\n- Profiles created by the installer will no longer add the version suffix to the profile name.\n- Profile installer make additional database adjustments as listed below.', 1, 'medium')
-	section.args.db = ACH:Group('Developer Mode Changes', nil, 4)
+	section.args.db = ACH:Group('Database adjustments', nil, 4)
 	section.args.db.inline = true
-	section.args.db.args.desc = ACH:Description('- ElvUI chat bubble skinning disabled (To use texture replacements)\n- ElvUI bags module disabled (To use Baganator)\n- LuckyoneUI Alert Frame hider enabled\n- LuckyoneUI Boss Banner hider enabled\n- LuckyoneUI Easy Delete enabled\n- LuckyoneUI Privacy Overlay enabled', 1, 'medium')
+	section.args.db.args.desc = ACH:Description('- Chat bubble skinning disabled (To use texture replacements)\n- Bags module disabled (To use Baganator)\n- Alert Frame hider enabled\n- Boss Banner hider enabled\n- Housing Decor Alerts hider enabled\n- Easy Delete enabled\n- Privacy Overlay enabled\n- Mythic Raidframe Visibility enabled\n- DataTexts Tweaks enabled\n- All LuckyoneUI custom skins enabled', 1, 'medium')
 	section.args.header2 = ACH:Header('Luckyone\'s Private Section', 5)
 	section.args.syncInfo = ACH:Group('Important information', nil, 6)
 	section.args.syncInfo.inline = true
@@ -354,20 +368,22 @@ function Private:BuildConfig()
 
 	-- Add sections
 	Private.Config.args.setup = BuildSetupSection() -- 2
-	Private.Config.args.blizzard = BuildBlizzardSection() -- 3
-	Private.Config.args.auras = BuildAurasSection() -- 4
-	Private.Config.args.privateDB = BuildPrivateDBSection() -- 5
-	Private.Config.args.chat = BuildChatSection() -- 6
-	Private.Config.args.cvars = BuildCVarsSection() -- 7
-	Private.Config.args.layouts = BuildLayoutSection() -- 8
-	Private.Config.args.graphics = BuildGraphicsSection() -- 9
-	Private.Config.args.profiles = BuildProfilesSection() -- 10
-	Private.Config.args.skins = BuildSkinsSection() -- 11
-	Private.Config.args.tags = BuildTagsSection() -- 12
-	Private.Config.args.themes = BuildThemesSection() -- 13
-	Private.Config.args.credits = BuildCreditsSection() -- 14
-	Private.Config.args.links = BuildLinksSection() -- 15
-	Private.Config.args.dev = BuildDevSection() -- 16
+	Private.Config.args.blizzard = BuildBlizzardSection() -- 5
+
+	Private.Config.args.auras = BuildAurasSection() -- 10
+	Private.Config.args.privateDB = BuildPrivateDBSection() -- 15
+	Private.Config.args.chat = BuildChatSection() -- 20
+	Private.Config.args.cvars = BuildCVarsSection() -- 25
+	Private.Config.args.elvuiLayouts = BuildElvUILayoutSection() -- 30
+	Private.Config.args.elvuiThemes = BuildElvUIThemesSection() -- 35
+	Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 40
+	Private.Config.args.graphics = BuildGraphicsSection() -- 45
+	Private.Config.args.profiles = BuildProfilesSection() -- 50
+	Private.Config.args.skins = BuildSkinsSection() -- 55
+	Private.Config.args.tags = BuildTagsSection() -- 60
+	Private.Config.args.credits = BuildCreditsSection() -- 65
+	Private.Config.args.links = BuildLinksSection() -- 70
+	Private.Config.args.dev = BuildDevSection() -- 100
 
 	-- ElvUI config integration
 	if Private.ElvUI then
