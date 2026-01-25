@@ -8,7 +8,6 @@ if not Private.ElvUI then
 end
 
 -- Lua functions
-local strfind = string.find
 local unpack = unpack
 
 -- Global environment
@@ -17,19 +16,9 @@ local _G = _G
 -- ElvUI modules
 local E = unpack(ElvUI)
 
--- Figure out our current profile
---[[
-local function Profile()
-	local data = E.data:GetCurrentProfile()
-	return strfind(data, 'Luckyone Main') and 1 or strfind(data, 'Luckyone Healing') and 2 or nil
-end
-]]
 
 -- UnitFrame color themes
 function Private:Setup_Theme(theme, installer)
-
-	-- Get current layout
-	-- local profile = Profile()
 
 	if theme == 'dark' then
 
