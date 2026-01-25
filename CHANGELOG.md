@@ -1,12 +1,20 @@
 ﻿## Version 3.34 [In Development]
 
+**Highlights:**  
+- All of the below mentioned is WIP and you can expect tweaks in future versions  
+- Everything is slightly bigger now (Minimap, Chats, Actionbars, etc)  
+- Improved DPS & Tanks layout  
+- Removed Support layout  
+- Reworked Healing layout  
+- Scaling for 1080p and 1440p is now the same (Feedback is helpful here)  
+
 **All WoW Versions:**  
 - Added db for the new ElvUI Cooldown Text module to all layouts  
 - Reworked /lucky config  
+- Updated BigWigs profile  
 - Updated CVars setup  
 - Updated deDE locales (Credits: Dlarge)  
-- Updated ElvUI layouts (Minimap, Buffs, Debuffs)  
-- Updated ElvUI Nameplates profile for the latest changes  
+- Updated Details profile  
 
 **Retail:**  
 - Updated the new Midnight percentage health text format tag  
