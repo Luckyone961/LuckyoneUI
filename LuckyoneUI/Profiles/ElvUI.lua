@@ -638,6 +638,7 @@ function Private:Setup_ElvUI(layout)
 		if i ~= 11 and i ~= 12 then
 			E.db.actionbar['bar'..i].backdrop = false
 			E.db.actionbar['bar'..i].buttons = 12
+			E.db.actionbar['bar'..i].buttonSize = 32
 			E.db.actionbar['bar'..i].buttonSpacing = 1
 			E.db.actionbar['bar'..i].buttonsPerRow = 12
 			E.db.actionbar['bar'..i].countFont = Private.Font
