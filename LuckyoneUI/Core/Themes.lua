@@ -16,7 +16,6 @@ local _G = _G
 -- ElvUI modules
 local E = unpack(ElvUI)
 
-
 -- UnitFrame color themes
 function Private:Setup_Theme(theme, installer)
 
