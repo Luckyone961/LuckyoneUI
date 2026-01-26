@@ -204,7 +204,7 @@ function Private:HandleAlts(layout)
 	if layout == 'main' then
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
 	elseif layout == 'healing' then
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = scaled and 434 or 704
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704
 	end
 
 	-- PrivateDB for ElvUI, Shadow&Light, WindTools
@@ -815,10 +815,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.chat.panelColor.b = 0.05
 	E.db.chat.panelColor.g = 0.05
 	E.db.chat.panelColor.r = 0.05
-	E.db.chat.panelHeight = 208
-	E.db.chat.panelHeightRight = 208
-	E.db.chat.panelWidth = (scaled and 485) or 484
-	E.db.chat.panelWidthRight = 486
+	E.db.chat.panelHeight = (scaled and 170) or 208
+	E.db.chat.panelHeightRight = (scaled and 170) or 208
+	E.db.chat.panelWidth = (scaled and 434) or 484
+	E.db.chat.panelWidthRight = (scaled and 440) or 486
 	E.db.chat.separateSizes = true
 	E.db.chat.showHistory.CHANNEL = false
 	E.db.chat.showHistory.EMOTE = false
@@ -1977,7 +1977,7 @@ function Private:Setup_ElvUI(layout)
 
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
-		E.db.unitframe.units.raid1.height = 70
+		E.db.unitframe.units.raid1.height = (scaled and 60) or 70
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid1.raidicon.size = 14
 		E.db.unitframe.units.raid1.raidicon.xOffset = -2
@@ -2000,7 +2000,7 @@ function Private:Setup_ElvUI(layout)
 
 		-- Healing Raid2
 		E.db.unitframe.units.raid2.buffIndicator.size = 14
-		E.db.unitframe.units.raid2.height = 54
+		E.db.unitframe.units.raid2.height = (scaled and 44) or 54
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid2.raidicon.size = 14
 		E.db.unitframe.units.raid2.raidicon.xOffset = -2
@@ -2022,7 +2022,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.width = 140
 
 		-- Healing Raid3
-		E.db.unitframe.units.raid3.height = 36
+		E.db.unitframe.units.raid3.height = (scaled and 32) or 36
 		E.db.unitframe.units.raid3.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid3.raidicon.size = 12
 		E.db.unitframe.units.raid3.raidicon.xOffset = -2
@@ -2046,7 +2046,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.width = 140
 
 		-- Healing misc
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 434) or 704
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704
 
 		-- Healing movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,263') or 'BOTTOM,ElvUIParent,BOTTOM,0,396'
