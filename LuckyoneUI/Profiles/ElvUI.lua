@@ -705,7 +705,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.actionbar.extraActionButton.hotkeyFontSize = 9
 	E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.extraActionButton.hotkeyTextYOffset = -1
-	E.db.actionbar.extraActionButton.scale = 0.9
+	E.db.actionbar.extraActionButton.scale = 0.89
 	E.db.actionbar.flyoutSize = 32
 	E.db.actionbar.font = Private.Font
 	E.db.actionbar.fontOutline = Private.Outline
@@ -733,7 +733,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.actionbar.vehicleExitButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.vehicleExitButton.hotkeyTextYOffset = -1
 	E.db.actionbar.zoneActionButton.clean = true
-	E.db.actionbar.zoneActionButton.scale = 0.9
+	E.db.actionbar.zoneActionButton.scale = 0.89
 
 	-- Bags
 	E.db.bags.autoToggle.guildBank = true
