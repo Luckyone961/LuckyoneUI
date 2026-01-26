@@ -37,9 +37,9 @@ local function UpdateDataTextWidth()
 
 	-- Main layout values
 	if profile == 1 then
-		ActionBarsDT.width = scaled and 398 or 395
+		ActionBarsDT.width = 395
 	elseif profile == 2 then -- Healer layout values
-		ActionBarsDT.width = 704
+		ActionBarsDT.width = scaled and 434 or 704
 	else
 		Private:Print('Unknown profile, not adjusting DataText width.')
 		return
