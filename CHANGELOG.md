@@ -3,6 +3,10 @@
 **All WoW Versions:**  
 - Another full pass of updates for the 1080p profiles (Scaling & positioning)  
 
+**Retail:**  
+- Added 1080p Edit Mode string (Chat, Talking Head, Quest Tracker) positioning  
+- Updated 1440p Edit Mode string (Chat, Talking Head, Quest Tracker) positioning  
+
 ## Version 4.00 [25-01-2026]
 
 **Highlights:**  
