@@ -46,9 +46,9 @@ function Private:Setup_GlobalDB()
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
 
-	SetCVar('uiScale', scaled and 0.71111111111111 or 0.53333333333333)
+	SetCVar('uiScale', (scaled and 0.71111111111111) or 0.53333333333333)
 	SetCVar('useUiScale', 1)
-	E.global.general.UIScale = scaled and 0.71111111111111 or 0.53333333333333
+	E.global.general.UIScale = (scaled and 0.71111111111111) or 0.53333333333333
 
 	E.global.datatexts.settings.Combat.NoLabel = true
 	E.global.datatexts.settings.Combat.TimeFull = false
@@ -1791,7 +1791,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-201,-193'
 	E.db.movers.BNETMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
-	E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,269') or 'BOTTOM,ElvUIParent,BOTTOM,0,396'
 	E.db.movers.BossHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-301,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
 	E.db.movers.BuffsMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-203,-1') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-1'
 	E.db.movers.DebuffsMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-203,-116') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-116'
@@ -1848,7 +1847,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,450,413') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,706,520'
 	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-82'
-	E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,348'
 
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
 	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
@@ -1948,6 +1946,7 @@ function Private:Setup_ElvUI(layout)
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
 
 		-- Main movers
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,269') or 'BOTTOM,ElvUIParent,BOTTOM,0,396'
 		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,82'
 		E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,49'
@@ -1955,6 +1954,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,115'
+		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,348'
 
 	elseif layout == 'healing' then
 
@@ -2046,16 +2046,18 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.width = 140
 
 		-- Healing misc
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = scaled and 434 or 704
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 434) or 704
 
 		-- Healing movers
-		E.db.movers.ElvAB_1 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.ElvAB_2 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
-		E.db.movers.ElvAB_3 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,263') or 'BOTTOM,ElvUIParent,BOTTOM,0,396'
+		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
+		E.db.movers.ElvAB_2 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
+		E.db.movers.ElvAB_3 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
 		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-		E.db.movers.PetAB = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
+		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
+		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-26,263') or 'BOTTOM,ElvUIParent,BOTTOM,0,348'
 
 		if Private.itsLuckyone then
 			E.db.actionbar.bar1.mouseover = true
