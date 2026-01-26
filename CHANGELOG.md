@@ -2,6 +2,7 @@
 
 **All WoW Versions:**  
 - Another full pass of updates for the 1080p profiles (Scaling & positioning)  
+- Disabled the black "edge" for cooldown swipes across the UI by default  
 
 **Retail:**  
 - Added 1080p Edit Mode string (Chat, Talking Head, Quest Tracker) positioning  
