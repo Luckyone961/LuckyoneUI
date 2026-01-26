@@ -81,6 +81,9 @@ local function BuildBlizzardSection()
 	section.args.strings.inline = true
 	section.args.strings.args.editMode = ACH:Execute(L["Blizzard Edit Mode (1440p)"], nil, 1, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-BlizzHUD') end)
 	section.args.strings.args.editModeScaled = ACH:Execute(L["Blizzard Edit Mode (1080p)"], nil, 2, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-BlizzHUD-1080') end)
+	section.args.performance = ACH:Group(L["Performance Tweaks"], nil, 5, nil, nil, nil, nil, not Private.isRetail)
+	section.args.performance.inline = true
+	section.args.performance.args.performance = ACH:Execute(L["Untrack Hidden Quests"], L["People found out some characters have a big amount of hidden quests which will cause performance issues. This button will untrack all your quests, including the hidden ones and might give you an increase in average FPS."], 1, function() Private:UntrackAllQuests() end)
 	return section
 end
 

@@ -1,9 +1,13 @@
 -- Addon namespace
 local _, Private = ...
+local L = Private.Libs.ACL
 
 -- API cache
-local hooksecurefunc = hooksecurefunc
 local CreateAndInitFromMixin = CreateAndInitFromMixin
+local GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
+local GetQuestInfo = C_QuestLog.GetInfo
+local hooksecurefunc = hooksecurefunc
+local RemoveQuestWatch = C_QuestLog.RemoveQuestWatch
 
 -- Global environment
 local _G = _G
@@ -50,4 +54,21 @@ function Private:EasyDelete()
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', function(frame)
 		frame.EditBox:SetText(DELETE_ITEM_CONFIRM_STRING)
 	end)
+end
+
+-- Untrack All Quests
+-- Source and Credits:
+-- https://www.reddit.com/r/WowUI/comments/1qk96mg/otherfixworkaroundhidden_tracked_quests_caused_60/
+function Private:UntrackAllQuests()
+	if not C_QuestLog then return end
+
+	local numShownEntries = GetNumQuestLogEntries()
+	for i = 1, numShownEntries do
+		local info = GetQuestInfo(i)
+		if info and info.questID and info.questID > 0 then
+			RemoveQuestWatch(info.questID)
+		end
+	end
+
+	Private:Print(L["Successfully untracked all quests (including hidden ones)"])
 end
