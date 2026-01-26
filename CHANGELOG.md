@@ -1,4 +1,9 @@
-﻿## Version 4.00 [25-01-2026]
+﻿## Version 4.01 [In Development]
+
+**All WoW Versions:**  
+- Another full pass of updates for the 1080p profiles (Scaling & positioning)  
+
+## Version 4.00 [25-01-2026]
 
 **Highlights:**  
 - All of the below mentioned is WIP and you can expect tweaks in future versions  
