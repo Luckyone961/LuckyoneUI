@@ -702,7 +702,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.actionbar.extraActionButton.clean = true
 	E.db.actionbar.extraActionButton.hotkeyFont = Private.Font
 	E.db.actionbar.extraActionButton.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.extraActionButton.hotkeyFontSize = 9
+	E.db.actionbar.extraActionButton.hotkeyFontSize = 12
 	E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.extraActionButton.hotkeyTextYOffset = -1
 	E.db.actionbar.extraActionButton.scale = 0.89
