@@ -105,7 +105,7 @@ function Private:Setup_Chat(installer)
 		end
 
 		-- Font size for all tabs
-		FCF_SetChatWindowFontSize(nil, frame, 11)
+		FCF_SetChatWindowFontSize(nil, frame, 12)
 
 		-- Tabs
 		if id == 1 then

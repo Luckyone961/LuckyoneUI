@@ -566,7 +566,8 @@ local function BuildInstallerData()
 		local f = installerFrame
 		f.SubTitle:SetText(L["Layout Scale"])
 		f.Desc1:SetText(L["1440p = Default | 1080p = Downscaled"] .. '.')
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+		f.Desc2:SetText(format('|cffC80000%s', L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor pixel offsets."]))
+		f.Desc3:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 		f.Option1:Show()
 		f.Option1:SetScript('OnClick', function() Private:ApplyScale(true) stepCompleteFrame:ShowMessage(L["Layout Scale"] .. ' 1440p') end)
 		f.Option1:SetText('1440p')
@@ -585,32 +586,30 @@ local function BuildInstallerData()
 			f.SubTitle:SetText(L["ElvUI Layouts"])
 			f.Desc1:SetText(L["This step will configure the ElvUI layout of your choice."])
 			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-			f.Desc3:SetText(format('|cff33937F%s|r', L["Augmentation"]) .. ': ' .. L["No ActionBars and centered Raid Frames"] .. '.')
 			f.Option1:Show()
 			f.Option1:SetScript('OnClick', function() Private:Setup_Layout('main', true) end)
 			f.Option1:SetText(L["DPS & Tanks"])
 			f.Option2:Show()
 			f.Option2:SetScript('OnClick', function() Private:Setup_Layout('healing', true) end)
 			f.Option2:SetText(L["Healing"])
-			f.Option3:Show()
-			f.Option3:SetScript('OnClick', function() Private:Setup_Layout('support', true) end)
-			f.Option3:SetText(format('|cff33937F%s', L["Augmentation"]))
 		end
 		stepTitles[pageIndex] = L["ElvUI Layouts"]
 		pageIndex = pageIndex + 1
 
-		-- Page: ElvUI Filters
-		pages[pageIndex] = function()
-			local f = installerFrame
-			f.SubTitle:SetText(L["ElvUI Filters"])
-			f.Desc1:SetText(L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"])
-			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Setup_Filters(true) end)
-			f.Option1:SetText(L["Setup Aura Filters"])
+		if not Private.isRetail then
+			-- Page: ElvUI Filters
+			pages[pageIndex] = function()
+				local f = installerFrame
+				f.SubTitle:SetText(L["ElvUI Filters"])
+				f.Desc1:SetText(L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"])
+				f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+				f.Option1:Show()
+				f.Option1:SetScript('OnClick', function() Private:Setup_Filters(true) end)
+				f.Option1:SetText(L["Setup Aura Filters"])
+			end
+			stepTitles[pageIndex] = L["ElvUI Filters"]
+			pageIndex = pageIndex + 1
 		end
-		stepTitles[pageIndex] = L["ElvUI Filters"]
-		pageIndex = pageIndex + 1
 
 		-- Retail-only: ElvUI plugins
 		if Private.isRetail then

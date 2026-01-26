@@ -1,9 +1,7 @@
 -- Lua functions
-local print = print
 local tonumber = tonumber
 
 -- API cache
-local C_Timer = C_Timer
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local GetBuildInfo = GetBuildInfo
 local GetRealmName = GetRealmName
@@ -57,6 +55,7 @@ Private.Outline = 'OUTLINE'
 Private.Texture = 'Minimalist'
 
 -- Build info
+local _
 _, _, _, Private.InterfaceVersion = GetBuildInfo()
 
 -- Game flavors

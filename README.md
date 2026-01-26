@@ -12,8 +12,8 @@
 • Updating LuckyoneUI will never auto-apply any profile changes without user confirmation  
 
 ### **Standalone features**  
-• All profiles are built on 1440p with full support and scaling for 1080p players  
-• Full support for all current WoW versions such as Retail, Mists and Classic  
+• All profiles are built on 1440p screen resolution  
+• Full support for all current WoW versions such as Retail, Mists, Anniversary and Era  
 • Option to automatically fill out the delete text when destroying items  
 • Options to configure performance related and hidden Blizzard settings  
 • Options to disable annoying Blizzard features like Boss Banners and more  
@@ -22,17 +22,16 @@
 • Toggles for Blizzards cosmetic on-screen ffx effects and other visuals  
 
 ### **ElvUI plugin features**  
-• Aura filter setup for all classes, including whitelist and blacklist  
-• Layouts for DPS, Tanks, Healers and Augmentation support  
+• Aura filter setup for all classes and WoW versions  
+• Layouts for DPS, Tanks and Healers  
 • Some clean skins for other third party AddOns  
-• Style filters for nameplates: Questing and priority colors in dungeons and raids  
-• Tags for detailed health information, healer-only mana and much more  
+• Custom text format Tags for detailed health information, short names and much more  
 
 ### **Available custom profiles**  
-• **AddOns:** Details, WarpDeplete  
-• **Encounter tools:** BigWigs, LittleWigs  
-• **Nameplates:** Plater, ElvUI  
-• **Plugins:** AddOnSkins, ProjectAzilroka, Shadow&Light, WindTools  
+• **AddOns:** Details and WarpDeplete  
+• **Encounter tools:** BigWigs and LittleWigs  
+• **Nameplates:** Plater and ElvUI  
+• **Plugins:** Shadow&Light and WindTools  
 • **User interface:** ElvUI  
 
 ### **Shared media for all your AddOns**  
@@ -53,10 +52,6 @@
 • When used as a plugin, LuckyoneUI will require the most recent version of ElvUI.  
 • **Download link:** [Get ElvUI on the official website](https://www.tukui.org/)  
 
-### **Luckyone WeakAuras**  
-• All my public import strings will be shared and updated on Wago.  
-• **Profile link:** [Luckyone on Wago](https://wago.io/p/Luckyone)  
-
 ### **Luckyone on Twitch and YouTube**  
 • Raiding and Mythic+ content. Evoker and Druid PoV most of the time.  
 • **Twitch link:** [Luckyone1996 on Twitch](https://www.twitch.tv/Luckyone1996)  
@@ -73,16 +68,13 @@
 ***
 ### **Installer:**  
 ***
-![LuckyoneUI Installer](https://i.imgur.com/leFw1Zk.png)  
+![LuckyoneUI Installer](https://i.imgur.com/vSdTjzI.jpeg)  
 ***
 ### **[ElvUI Plugin Version] Main Layout:**  
 ***
-![LuckyoneUI Main Layout](https://i.imgur.com/h87gwkX.jpg)  
+![LuckyoneUI Main Layout](https://i.imgur.com/cpv4RVu.jpeg)  
 ***
 ### **[ElvUI Plugin Version] Healing Layout:**  
 ***
-![LuckyoneUI Healing Layout](https://i.imgur.com/Rgliysf.jpg)  
+![LuckyoneUI Healing Layout](https://i.imgur.com/JkgNXXu.jpeg)  
 ***
-### **[ElvUI Plugin Version] Augmentation Layout:**  
-***
-![LuckyoneUI Augmentation Layout](https://i.imgur.com/N57uZWX.jpg)  

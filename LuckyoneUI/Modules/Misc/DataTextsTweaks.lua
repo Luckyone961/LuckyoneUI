@@ -6,58 +6,44 @@ if not Private.ElvUI then
 	return
 end
 
+-- Lua functions
+local strfind = string.find
+local unpack = unpack
+
 -- API cache
-local GetSpecialization = C_SpecializationInfo and C_SpecializationInfo.GetSpecialization
-local GetSpecializationInfo = C_SpecializationInfo and C_SpecializationInfo.GetSpecializationInfo
 local InCombatLockdown = InCombatLockdown
 
 -- ElvUI reference
 local E = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
 
--- Healers
-local healers = {
-	[270] = true, -- Mistweaver Monk
-	[264] = true, -- Restoration Shaman
-	[1468] = true, -- Preservation Evoker
-	[257] = true, -- Holy Priest
-	[256] = true, -- Discipline Priest
-	[65] = true, -- Holy Paladin
-	[105] = true, -- Restoration Druid
-}
+local function Profile()
+	local data = E.data:GetCurrentProfile()
+	return strfind(data, 'Luckyone Main') and 1 or strfind(data, 'Luckyone Healing') and 2 or nil
+end
 
--- Update ActionBars DataText width based on specialization
+-- Update ActionBars DataText width based on active LuckyoneUI profile
 local function UpdateDataTextWidth()
 	if InCombatLockdown() then return end
 
-	local scaled = Private.Addon.db.global.scaled -- 1080p users
-	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
+	local datatexts = E.global.datatexts
+	if not datatexts or not datatexts.customPanels then return end
 
-	-- Only continue if our custom ActionBars DataText exists
+	local ActionBarsDT = datatexts.customPanels.Luckyone_ActionBars_DT
 	if not ActionBarsDT then return end
 
-	-- Get specialization ID
-	local specIndex = GetSpecialization()
-	if not specIndex then return end
+	local profile = Profile()
+	local scaled = Private.Addon.db.global.scaled
 
-	-- print('specIndex: ' .. specIndex)
-
-	local ID = GetSpecializationInfo(specIndex)
-	if not ID then return end
-
-	-- print('ID: ' .. ID)
-
-	-- Augmentation layout values
-	if ID == 1473 then
-		ActionBarsDT.width = (scaled and 404) or 464
-	-- Healer layout values
-	elseif E.db.actionbar.bar1.mouseover and healers[ID] then
-		ActionBarsDT.width = 604
-	else -- Main layout values
-		ActionBarsDT.width = (scaled and 299) or 347
+	-- Main layout values
+	if profile == 1 then
+		ActionBarsDT.width = 395
+	elseif profile == 2 then -- Healer layout values
+		ActionBarsDT.width = 704
+	else
+		Private:Print('Unknown profile, not adjusting DataText width.')
+		return
 	end
-
-	-- print('new width: ' .. ActionBarsDT.width)
 
 	DT:LoadDataTexts()
 end
