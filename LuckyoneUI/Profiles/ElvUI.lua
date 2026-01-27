@@ -742,10 +742,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.bags.bagBar.size = 23
 	E.db.bags.bagBar.spacing = 0
 	E.db.bags.bagSize = 32
-	E.db.bags.bagWidth = 486
+	E.db.bags.bagWidth = (scaled and 440) or 486
 	E.db.bags.bankCombined = true
-	E.db.bags.bankSize = 32
-	E.db.bags.bankWidth = 710
+	E.db.bags.bankSize = (scaled and 30) or 32
+	E.db.bags.bankWidth = (scaled and 760) or 710
 	E.db.bags.clearSearchOnClose = true
 	E.db.bags.countFont = Private.Font
 	E.db.bags.countFontOutline = Private.Outline
