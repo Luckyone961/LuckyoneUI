@@ -9,8 +9,8 @@ local _G = _G
 function Private:Setup_WarpDeplete(installer)
 	if not (Private.IsAddOnLoaded('WarpDeplete') and Private.isRetail) then Private:Print('WarpDeplete ' .. L["is not installed or enabled."]) return end
 
-	-- Global db
-	local dev = Private.Addon.db.global.dev
+	-- Global dbs
+	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.global.scaled
 
 	-- Profile name
 	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version
@@ -29,7 +29,7 @@ function Private:Setup_WarpDeplete(installer)
 		['bar3Texture'] = Private.Texture,
 		['barHeight'] = 16,
 		['barPadding'] = 4,
-		['barWidth'] = 300,
+		['barWidth'] = scaled and 240 or 300,
 		['deathsFont'] = Private.Font,
 		['deathsFontSize'] = 15,
 		['forcesFont'] = Private.Font,
