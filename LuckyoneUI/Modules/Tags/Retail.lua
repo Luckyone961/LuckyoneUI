@@ -15,9 +15,7 @@ local AbbreviateNumbers = AbbreviateNumbers
 local ScaleTo100 = CurveConstants and CurveConstants.ScaleTo100
 local UnitHealth = UnitHealth
 local UnitHealthPercent = UnitHealthPercent
-local UnitInPartyIsAI = UnitInPartyIsAI
 local UnitIsFriend = UnitIsFriend
-local UnitIsPlayer = UnitIsPlayer
 local UnitPowerPercent = UnitPowerPercent
 
 -- Global environment
@@ -28,7 +26,6 @@ local UNKNOWN = UNKNOWN
 
 -- ElvUI modules
 local E = unpack(ElvUI)
-local _COLORS = ElvUF.colors
 
 -- Display percentage health
 E:AddTag('luckyone:health:percent', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)

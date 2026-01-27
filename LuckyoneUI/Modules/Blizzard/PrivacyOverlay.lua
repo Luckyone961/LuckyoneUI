@@ -1,9 +1,6 @@
 -- Addon namespace
 local _, Private = ...
 
--- Lua functions
-local unpack = unpack
-
 -- API cache
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc

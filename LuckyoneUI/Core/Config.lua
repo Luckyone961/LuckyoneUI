@@ -11,7 +11,6 @@ local tinsert = table.insert
 local tostring = tostring
 
 -- API cache
-local GetCVar = C_CVar.GetCVar
 local GetCVarBool = C_CVar.GetCVarBool
 local SetCVar = C_CVar.SetCVar
 local HideUIPanel = HideUIPanel

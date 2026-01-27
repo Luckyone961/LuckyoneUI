@@ -183,9 +183,6 @@ end
 -- Handler for existing profiles (Quick install on alts)
 function Private:HandleAlts(layout)
 
-	-- 1080p
-	local scaled = Private.Addon.db.global.scaled
-
 	local mostRecentProfile = Private:GetMostRecentProfile(layout)
 
 	if not mostRecentProfile then
