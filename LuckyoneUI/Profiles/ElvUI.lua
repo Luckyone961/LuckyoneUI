@@ -419,9 +419,8 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.questIcon.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.questIcon.size = 25
 	E.db.nameplates.units.ENEMY_NPC.questIcon.textPosition = 'CENTER'
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'CENTER'
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.size = 16
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 0
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'RIGHT'
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 32
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
 
 	-- Enemy Player
@@ -510,10 +509,9 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -16
 	E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.position = 'CENTER'
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.size = 16
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.xOffset = 0
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.yOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'RIGHT'
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 32
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.title.format = ''
 
 	-- Friendly NPC
