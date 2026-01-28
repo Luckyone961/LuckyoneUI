@@ -183,9 +183,6 @@ end
 -- Handler for existing profiles (Quick install on alts)
 function Private:HandleAlts(layout)
 
-	-- 1080p
-	local scaled = Private.Addon.db.global.scaled
-
 	local mostRecentProfile = Private:GetMostRecentProfile(layout)
 
 	if not mostRecentProfile then
@@ -422,9 +419,8 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.questIcon.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.questIcon.size = 25
 	E.db.nameplates.units.ENEMY_NPC.questIcon.textPosition = 'CENTER'
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'CENTER'
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.size = 16
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 0
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'RIGHT'
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 32
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
 
 	-- Enemy Player
@@ -513,10 +509,9 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -16
 	E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.position = 'CENTER'
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.size = 16
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.xOffset = 0
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.yOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'RIGHT'
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 32
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.title.format = ''
 
 	-- Friendly NPC
@@ -702,10 +697,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.actionbar.extraActionButton.clean = true
 	E.db.actionbar.extraActionButton.hotkeyFont = Private.Font
 	E.db.actionbar.extraActionButton.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.extraActionButton.hotkeyFontSize = 9
+	E.db.actionbar.extraActionButton.hotkeyFontSize = 12
 	E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.extraActionButton.hotkeyTextYOffset = -1
-	E.db.actionbar.extraActionButton.scale = 0.9
+	E.db.actionbar.extraActionButton.scale = 0.89
 	E.db.actionbar.flyoutSize = 32
 	E.db.actionbar.font = Private.Font
 	E.db.actionbar.fontOutline = Private.Outline
@@ -733,7 +728,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.actionbar.vehicleExitButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.vehicleExitButton.hotkeyTextYOffset = -1
 	E.db.actionbar.zoneActionButton.clean = true
-	E.db.actionbar.zoneActionButton.scale = 0.9
+	E.db.actionbar.zoneActionButton.scale = 0.89
 
 	-- Bags
 	E.db.bags.autoToggle.guildBank = true
@@ -742,10 +737,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.bags.bagBar.size = 23
 	E.db.bags.bagBar.spacing = 0
 	E.db.bags.bagSize = 32
-	E.db.bags.bagWidth = 486
+	E.db.bags.bagWidth = (scaled and 440) or 486
 	E.db.bags.bankCombined = true
-	E.db.bags.bankSize = 32
-	E.db.bags.bankWidth = 710
+	E.db.bags.bankSize = (scaled and 30) or 32
+	E.db.bags.bankWidth = (scaled and 760) or 710
 	E.db.bags.clearSearchOnClose = true
 	E.db.bags.countFont = Private.Font
 	E.db.bags.countFontOutline = Private.Outline
@@ -838,26 +833,36 @@ function Private:Setup_ElvUI(layout)
 	E.db.chat.useBTagName = true
 
 	-- Cooldown Text
+	E.db.cooldown.actionbar.colors.edge.a = 0
 	E.db.cooldown.actionbar.fontSize = 12
 	E.db.cooldown.actionbar.offsetX = 1
 	E.db.cooldown.aurabars.fontSize = 12
+	E.db.cooldown.auras.colors.edge.a = 0
 	E.db.cooldown.auras.fontSize = 12
 	E.db.cooldown.auras.offsetX = 1
 	E.db.cooldown.auras.offsetY = -7
+	E.db.cooldown.bags.colors.edge.a = 0
 	E.db.cooldown.bags.fontSize = 12
 	E.db.cooldown.bags.offsetX = 1
+	E.db.cooldown.bossbutton.colors.edge.a = 0
 	E.db.cooldown.bossbutton.fontSize = 14
 	E.db.cooldown.bossbutton.offsetX = 1
+	E.db.cooldown.cdmanager.colors.edge.a = 0
 	E.db.cooldown.cdmanager.fontSize = 14
 	E.db.cooldown.cdmanager.offsetX = 1
+	E.db.cooldown.global.colors.edge.a = 0
 	E.db.cooldown.global.fontSize = 12
 	E.db.cooldown.global.offsetX = 1
+	E.db.cooldown.nameplates.colors.edge.a = 0
 	E.db.cooldown.nameplates.fontSize = 12
 	E.db.cooldown.nameplates.offsetX = 1
+	E.db.cooldown.totemtracker.colors.edge.a = 0
 	E.db.cooldown.totemtracker.fontSize = 14
 	E.db.cooldown.totemtracker.offsetX = 1
+	E.db.cooldown.unitframe.colors.edge.a = 0
 	E.db.cooldown.unitframe.fontSize = 12
 	E.db.cooldown.unitframe.offsetX = 1
+	E.db.cooldown.zonebutton.colors.edge.a = 0
 	E.db.cooldown.zonebutton.fontSize = 14
 	E.db.cooldown.zonebutton.offsetX = 1
 
@@ -1792,8 +1797,8 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.BNETMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
 	E.db.movers.BossHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-301,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
-	E.db.movers.BuffsMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-203,-1') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-1'
-	E.db.movers.DebuffsMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-203,-116') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-116'
+	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-1'
+	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-116'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-68,-180'
 	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,232,1'
@@ -1809,7 +1814,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-314'
 	E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-338,440') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-628,630'
 	E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,300,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,590,-400'
-	E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,449,360') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,739,500'
+	E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,451,360') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,739,500'
 	E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,411') or 'BOTTOM,ElvUIParent,BOTTOM,0,552'
 	E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,360') or 'BOTTOM,ElvUIParent,BOTTOM,-320,500'
 	E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,458'

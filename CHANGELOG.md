@@ -2,6 +2,13 @@
 
 **All WoW Versions:**  
 - Another full pass of updates for the 1080p profiles (Scaling & positioning)  
+- Disabled the black "edge" for cooldown swipes across the UI by default  
+
+**Retail:**  
+- Added 1080p Edit Mode string (Chat, Talking Head, Quest Tracker) positioning  
+- Added 1440p Edit Mode string (Chat, Talking Head, Quest Tracker) positioning  
+- New chat command /lucky untrack as a shortcut for the below mentioned  
+- New button to remove all hidden tracked quests to boost fps (Credits: LootFever and reddit user careseite)  
 
 ## Version 4.00 [25-01-2026]
 
