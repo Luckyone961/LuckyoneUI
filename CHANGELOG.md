@@ -1,6 +1,7 @@
 ﻿## Version 4.01 [In Development]
 
 **All WoW Versions:**  
+- ElvUI 15.02+ compatibility  
 - Another full pass of updates for the 1080p profiles (Scaling & positioning)  
 - Disabled the black "edge" for cooldown swipes across the UI by default  
 - Updated BigWigs profile strings  
