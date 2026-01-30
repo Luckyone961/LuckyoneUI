@@ -5,7 +5,7 @@
 
 ## DefaultState: enabled
 ## Author: Luckyone
-## Version: 4.00
+## Version: 4.01
 
 ## Interface: 120000
 ## X-Required-ElvUI: 15.02
