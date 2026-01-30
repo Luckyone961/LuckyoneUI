@@ -834,6 +834,8 @@ function Private:Setup_ElvUI(layout)
 
 	-- Cooldown Text
 	E.db.cooldown.actionbar.colors.edge.a = 0
+	E.db.cooldown.actionbar.colors.edgeCharge.a = 0
+	E.db.cooldown.actionbar.colors.edgeLOC.a = 0
 	E.db.cooldown.actionbar.fontSize = 12
 	E.db.cooldown.actionbar.hideBling = true
 	E.db.cooldown.actionbar.offsetX = 1
