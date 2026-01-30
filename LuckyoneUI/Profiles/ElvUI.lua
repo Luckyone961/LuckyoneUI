@@ -1491,7 +1491,7 @@ function Private:Setup_ElvUI(layout)
 		enable = true,
 		font = Private.Font,
 		fontOutline = Private.Outline,
-		justifyH = 'CENTER',
+		justifyH = 'RIGHT',
 		size = 12,
 		text_format = Private.isRetail and '[luckyone:power:percent-color<%]' or '[luckyone:power:percent-color]',
 		xOffset = -3,
