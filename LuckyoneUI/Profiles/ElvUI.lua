@@ -1482,20 +1482,20 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]',
-		xOffset = -3,
-		yOffset = 0
+		text_format = Private.isRetail and '[luckyone:name-color][ |r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]',
+		xOffset = -2,
+		yOffset = 14
 	}
 	E.db.unitframe.units.target.customTexts.Luckyone_Power = {
-		attachTextTo = 'Power',
+		attachTextTo = 'Frame',
 		enable = true,
 		font = Private.Font,
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
-		size = 11,
-		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
-		xOffset = 0,
-		yOffset = 0
+		size = 12,
+		text_format = Private.isRetail and '[luckyone:power:percent-color<%]' or '[luckyone:power:percent-color]',
+		xOffset = -3,
+		yOffset = -12
 	}
 
 	E.db.unitframe.units.target.aurabar.enable = false
@@ -1549,7 +1549,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.orientation = 'LEFT'
 	E.db.unitframe.units.target.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.target.power.autoHide = true
-	E.db.unitframe.units.target.power.detachedWidth = 260
+	E.db.unitframe.units.target.power.enable = false
 	E.db.unitframe.units.target.power.height = 4
 	E.db.unitframe.units.target.power.strataAndLevel.frameStrata = 'MEDIUM'
 	E.db.unitframe.units.target.power.strataAndLevel.useCustomStrata = true

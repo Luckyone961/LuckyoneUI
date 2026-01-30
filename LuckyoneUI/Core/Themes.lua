@@ -75,7 +75,7 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.raid2.name.text_format = Private.isRetail and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 		E.db.unitframe.units.raid3.name.text_format = Private.isRetail and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 		E.db.unitframe.units.raidpet.name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:veryshort-classcolor]'
-		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]'
+		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color][ |r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]'
 
 	elseif theme == 'class' then
@@ -131,7 +131,7 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.raid2.name.text_format = Private.isRetail and '[luckyone:name:veryshort-nocolor-friendly]' or '[luckyone:name:veryshort-nocolor]'
 		E.db.unitframe.units.raid3.name.text_format = Private.isRetail and '[luckyone:name:veryshort-nocolor-friendly]' or '[luckyone:name:veryshort-nocolor]'
 		E.db.unitframe.units.raidpet.name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:veryshort-nocolor]'
-		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor][ |r» >luckyone:target:last-classcolor]'
+		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor][ |r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-nocolor][ |r» >luckyone:target:last-classcolor]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
 
 	end
