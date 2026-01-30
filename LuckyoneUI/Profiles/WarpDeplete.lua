@@ -37,7 +37,7 @@ function Private:Setup_WarpDeplete(installer)
 		['forcesOverlayTexture'] = Private.Texture,
 		['forcesTexture'] = Private.Texture,
 		['frameAnchor'] = 'TOPRIGHT',
-		['frameX'] = 20,
+		['frameX'] = 19,
 		['frameY'] = -211,
 		['keyDetailsFont'] = Private.Font,
 		['keyDetailsFontSize'] = 10,
