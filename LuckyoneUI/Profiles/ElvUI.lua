@@ -1586,11 +1586,12 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.targettarget.fader.smooth = 0
 	E.db.unitframe.units.targettarget.healPrediction.absorbStyle = 'WRAPPED'
 	E.db.unitframe.units.targettarget.healPrediction.enable = true
-	E.db.unitframe.units.targettarget.height = 24
+	E.db.unitframe.units.targettarget.height = 22
 	E.db.unitframe.units.targettarget.name.text_format = ''
 	E.db.unitframe.units.targettarget.orientation = 'LEFT'
 	E.db.unitframe.units.targettarget.power.enable = false
 	E.db.unitframe.units.targettarget.raidicon.enable = false
+	E.db.unitframe.units.targettarget.width = 140
 
 	-- Shared Raidpet
 	E.db.unitframe.units.raidpet.buffIndicator.countFont = Private.Font
@@ -1833,7 +1834,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,458'
 	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,337') or 'BOTTOM,ElvUIParent,BOTTOM,320,477'
 	E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,360') or 'BOTTOM,ElvUIParent,BOTTOM,320,500'
-	E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,422'
+	E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,380,454'
 	E.db.movers.ElvUIBagMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,172') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,210'
 	E.db.movers.ElvUIBankMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-111'
@@ -1876,9 +1877,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.castbar.height = 22
 		E.db.unitframe.units.player.castbar.width = 315
 		E.db.unitframe.units.player.power.autoHide = true
-
-		-- Main TargetTarget
-		E.db.unitframe.units.targettarget.width = 278
 
 		-- Main Party (Classic Only)
 		if Private.isClassic then
@@ -1989,9 +1987,6 @@ function Private:Setup_ElvUI(layout)
 		if Private.isClassic or Private.isTBC then
 			E.db.unitframe.units.player.power.EnergyManaRegen = true
 		end
-
-		-- Healing TargetTarget
-		E.db.unitframe.units.targettarget.width = 260
 
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
