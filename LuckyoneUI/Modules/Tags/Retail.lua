@@ -11,13 +11,10 @@ end
 local format = string.format
 
 -- API cache
-local AbbreviateNumbers = AbbreviateNumbers
 local ScaleTo100 = CurveConstants and CurveConstants.ScaleTo100
 local UnitHealth = UnitHealth
 local UnitHealthPercent = UnitHealthPercent
-local UnitInPartyIsAI = UnitInPartyIsAI
 local UnitIsFriend = UnitIsFriend
-local UnitIsPlayer = UnitIsPlayer
 local UnitPowerPercent = UnitPowerPercent
 
 -- Global environment
@@ -28,7 +25,6 @@ local UNKNOWN = UNKNOWN
 
 -- ElvUI modules
 local E = unpack(ElvUI)
-local _COLORS = ElvUF.colors
 
 -- Display percentage health
 E:AddTag('luckyone:health:percent', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
@@ -40,7 +36,7 @@ E:AddTagInfo('luckyone:health:percent', Private.Name, L["Displays percentage hea
 -- Display current health abbreviated
 E:AddTag('luckyone:health:current:shortvalue', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
 	local currentHealth = UnitHealth(unit)
-	return AbbreviateNumbers(currentHealth, Private.Tags.abbrevOptions)
+	return E:AbbreviateNumbers(currentHealth, E.Abbreviate.short)
 end)
 E:AddTagInfo('luckyone:health:current:shortvalue', Private.Name, L["Displays the short value of the current health (Examples: 156.4k, 1.62M, 1.75B)"])
 

@@ -33,11 +33,10 @@ local function UpdateDataTextWidth()
 	if not ActionBarsDT then return end
 
 	local profile = Profile()
-	local scaled = Private.Addon.db.global.scaled
 
 	-- Main layout values
 	if profile == 1 then
-		ActionBarsDT.width = scaled and 398 or 395
+		ActionBarsDT.width = 395
 	elseif profile == 2 then -- Healer layout values
 		ActionBarsDT.width = 704
 	else

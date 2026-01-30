@@ -34,32 +34,6 @@ local Abbrev = ElvUF.Tags.Env.Abbrev
 local ElvUF_colors_class = ElvUF.colors.class
 local ElvUF_colors_reaction = ElvUF.colors.reaction
 
-Private.Tags.abbrevOptions = {
-	breakpointData = {
-		{
-			breakpoint = 1000000000, -- 1B
-			abbreviation = 'B',
-			significandDivisor = 10000000,
-			fractionDivisor = 100,
-			abbreviationIsGlobal = false
-		},
-		{
-			breakpoint = 1000000, -- 1M
-			abbreviation = 'M',
-			significandDivisor = 10000,
-			fractionDivisor = 100,
-			abbreviationIsGlobal = false
-		},
-		{
-			breakpoint = 1000, -- 1K
-			abbreviation = 'k',
-			significandDivisor = 100,
-			fractionDivisor = 10,
-			abbreviationIsGlobal = false
-		}
-	}
-}
-
 Private.Tags.classificationText = {
 	rare = 'Rare',
 	rareelite = 'Rare Elite',

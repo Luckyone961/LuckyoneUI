@@ -1,22 +1,15 @@
-## Version 4.00 [25-01-2026]
-
-**Highlights:**  
-- All of the below mentioned is WIP and you can expect tweaks in future versions  
-- Everything is slightly bigger now (Minimap, Chats, Actionbars, etc)  
-- Improved DPS & Tanks layout  
-- Removed Support layout  
-- Reworked Healing layout  
-- Scaling for 1080p and 1440p is now the same (Feedback is helpful here)  
+## Version 4.01 [30-01-2026]
 
 **All WoW Versions:**  
-- Added db for the new ElvUI Cooldown Text module to all layouts  
-- Reworked /lucky config  
-- Updated BigWigs profile  
-- Updated CVars setup  
-- Updated deDE locales (Credits: Dlarge)  
-- Updated Details profile  
+- ElvUI 15.02+ compatibility  
+- Another full pass of updates for the 1080p profiles (Scaling & positioning)  
+- Disabled the black "edge" for cooldown swipes across the UI by default  
+- Updated BigWigs profile strings  
+- Updated Plater profile string (I still use ElvUI Nameplates)  
 
 **Retail:**  
-- Updated the new Midnight percentage health text format tag  
-- Updated WarpDeplete profile  
-- Updated WindTools profile (Minimap buttons)  
+- Added 1080p Edit Mode string (Chat, Talking Head, Quest Tracker) positioning  
+- Added 1440p Edit Mode string (Chat, Talking Head, Quest Tracker) positioning  
+- New chat command /lucky untrack as a shortcut for the below mentioned  
+- New button to remove all hidden tracked quests to boost fps (Credits: LootFever and reddit user careseite)  
+- Small adjustments for Extra Action Button and Zone Ability Button  

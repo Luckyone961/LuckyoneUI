@@ -46,9 +46,9 @@ function Private:Setup_GlobalDB()
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
 
-	SetCVar('uiScale', 0.53333333333333)
+	SetCVar('uiScale', (scaled and 0.71111111111111) or 0.53333333333333)
 	SetCVar('useUiScale', 1)
-	E.global.general.UIScale = 0.53333333333333
+	E.global.general.UIScale = (scaled and 0.71111111111111) or 0.53333333333333
 
 	E.global.datatexts.settings.Combat.NoLabel = true
 	E.global.datatexts.settings.Combat.TimeFull = false
@@ -76,7 +76,7 @@ function Private:Setup_GlobalDB()
 	ActionBarsDT.tooltipXOffset = 0
 	ActionBarsDT.tooltipYOffset = 5
 	ActionBarsDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
-	ActionBarsDT.width = (scaled and 398) or 395
+	ActionBarsDT.width = 395
 
 	DT:BuildPanelFrame('Luckyone_MiniMap_DT')
 
@@ -183,9 +183,6 @@ end
 -- Handler for existing profiles (Quick install on alts)
 function Private:HandleAlts(layout)
 
-	-- 1080p
-	local scaled = Private.Addon.db.global.scaled
-
 	local mostRecentProfile = Private:GetMostRecentProfile(layout)
 
 	if not mostRecentProfile then
@@ -202,7 +199,7 @@ function Private:HandleAlts(layout)
 
 	-- Fix our custom DataText
 	if layout == 'main' then
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 398) or 395
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
 	elseif layout == 'healing' then
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704
 	end
@@ -422,9 +419,8 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.questIcon.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.questIcon.size = 25
 	E.db.nameplates.units.ENEMY_NPC.questIcon.textPosition = 'CENTER'
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'CENTER'
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.size = 16
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 0
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'RIGHT'
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 32
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
 
 	-- Enemy Player
@@ -513,10 +509,9 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -16
 	E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.position = 'CENTER'
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.size = 16
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.xOffset = 0
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.yOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'RIGHT'
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 32
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.title.format = ''
 
 	-- Friendly NPC
@@ -702,10 +697,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.actionbar.extraActionButton.clean = true
 	E.db.actionbar.extraActionButton.hotkeyFont = Private.Font
 	E.db.actionbar.extraActionButton.hotkeyFontOutline = Private.Outline
-	E.db.actionbar.extraActionButton.hotkeyFontSize = 9
+	E.db.actionbar.extraActionButton.hotkeyFontSize = 12
 	E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.extraActionButton.hotkeyTextYOffset = -1
-	E.db.actionbar.extraActionButton.scale = 0.9
+	E.db.actionbar.extraActionButton.scale = 0.89
 	E.db.actionbar.flyoutSize = 32
 	E.db.actionbar.font = Private.Font
 	E.db.actionbar.fontOutline = Private.Outline
@@ -733,7 +728,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.actionbar.vehicleExitButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.vehicleExitButton.hotkeyTextYOffset = -1
 	E.db.actionbar.zoneActionButton.clean = true
-	E.db.actionbar.zoneActionButton.scale = 0.9
+	E.db.actionbar.zoneActionButton.scale = 0.89
 
 	-- Bags
 	E.db.bags.autoToggle.guildBank = true
@@ -742,10 +737,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.bags.bagBar.size = 23
 	E.db.bags.bagBar.spacing = 0
 	E.db.bags.bagSize = 32
-	E.db.bags.bagWidth = 486
+	E.db.bags.bagWidth = (scaled and 440) or 486
 	E.db.bags.bankCombined = true
-	E.db.bags.bankSize = 32
-	E.db.bags.bankWidth = 710
+	E.db.bags.bankSize = (scaled and 30) or 32
+	E.db.bags.bankWidth = (scaled and 760) or 710
 	E.db.bags.clearSearchOnClose = true
 	E.db.bags.countFont = Private.Font
 	E.db.bags.countFontOutline = Private.Outline
@@ -815,10 +810,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.chat.panelColor.b = 0.05
 	E.db.chat.panelColor.g = 0.05
 	E.db.chat.panelColor.r = 0.05
-	E.db.chat.panelHeight = 208
-	E.db.chat.panelHeightRight = 208
-	E.db.chat.panelWidth = (scaled and 485) or 484
-	E.db.chat.panelWidthRight = 486
+	E.db.chat.panelHeight = (scaled and 170) or 208
+	E.db.chat.panelHeightRight = (scaled and 170) or 208
+	E.db.chat.panelWidth = (scaled and 434) or 484
+	E.db.chat.panelWidthRight = (scaled and 440) or 486
 	E.db.chat.separateSizes = true
 	E.db.chat.showHistory.CHANNEL = false
 	E.db.chat.showHistory.EMOTE = false
@@ -838,26 +833,36 @@ function Private:Setup_ElvUI(layout)
 	E.db.chat.useBTagName = true
 
 	-- Cooldown Text
+	E.db.cooldown.actionbar.colors.edge.a = 0
 	E.db.cooldown.actionbar.fontSize = 12
 	E.db.cooldown.actionbar.offsetX = 1
 	E.db.cooldown.aurabars.fontSize = 12
+	E.db.cooldown.auras.colors.edge.a = 0
 	E.db.cooldown.auras.fontSize = 12
 	E.db.cooldown.auras.offsetX = 1
 	E.db.cooldown.auras.offsetY = -7
+	E.db.cooldown.bags.colors.edge.a = 0
 	E.db.cooldown.bags.fontSize = 12
 	E.db.cooldown.bags.offsetX = 1
+	E.db.cooldown.bossbutton.colors.edge.a = 0
 	E.db.cooldown.bossbutton.fontSize = 14
 	E.db.cooldown.bossbutton.offsetX = 1
+	E.db.cooldown.cdmanager.colors.edge.a = 0
 	E.db.cooldown.cdmanager.fontSize = 14
 	E.db.cooldown.cdmanager.offsetX = 1
+	E.db.cooldown.global.colors.edge.a = 0
 	E.db.cooldown.global.fontSize = 12
 	E.db.cooldown.global.offsetX = 1
+	E.db.cooldown.nameplates.colors.edge.a = 0
 	E.db.cooldown.nameplates.fontSize = 12
 	E.db.cooldown.nameplates.offsetX = 1
+	E.db.cooldown.totemtracker.colors.edge.a = 0
 	E.db.cooldown.totemtracker.fontSize = 14
 	E.db.cooldown.totemtracker.offsetX = 1
+	E.db.cooldown.unitframe.colors.edge.a = 0
 	E.db.cooldown.unitframe.fontSize = 12
 	E.db.cooldown.unitframe.offsetX = 1
+	E.db.cooldown.zonebutton.colors.edge.a = 0
 	E.db.cooldown.zonebutton.fontSize = 14
 	E.db.cooldown.zonebutton.offsetX = 1
 
@@ -875,7 +880,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.databars.petExperience.enable = false
 	E.db.databars.reputation.enable = true
 	E.db.databars.reputation.font = Private.Font
-	E.db.databars.reputation.height = 208
+	E.db.databars.reputation.height = (scaled and 170) or 208
 	E.db.databars.reputation.orientation = 'VERTICAL'
 	E.db.databars.reputation.width = 12
 	E.db.databars.threat.enable = false
@@ -1786,21 +1791,19 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.AddonCompartmentMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66'
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-202'
 	E.db.movers.AltPowerBarMover = 'TOP,ElvUIParent,TOP,0,-22'
-	E.db.movers.ArenaHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
-	E.db.movers.BagsMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1'
+	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-301,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
+	E.db.movers.BagsMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1' -- Check back from 1080p healing export
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-201,-193'
 	E.db.movers.BNETMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
-	E.db.movers.BossButton = 'BOTTOM,ElvUIParent,BOTTOM,0,396'
-	E.db.movers.BossHeaderMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
-	E.db.movers.BuffsMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-203,-1') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-1'
-	E.db.movers.DebuffsMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-203,-116') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-116'
+	E.db.movers.BossHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-301,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
+	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-1'
+	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-116'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-68,-180'
 	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,232,1'
-	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-314'
 	E.db.movers.ElvAB_4 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-578'
-	E.db.movers.ElvAB_5 = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,522'
+	E.db.movers.ElvAB_5 = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,343') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,522'
 	E.db.movers.ElvAB_6 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-545'
 	E.db.movers.ElvAB_7 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-512'
 	E.db.movers.ElvAB_8 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-479'
@@ -1808,24 +1811,25 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ElvAB_10 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-413'
 	E.db.movers.ElvAB_13 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-380'
 	E.db.movers.ElvAB_14 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-347'
-	E.db.movers.ElvUF_FocusMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-628,630'
-	E.db.movers.ElvUF_PartyMover = 'TOPLEFT,ElvUIParent,TOPLEFT,590,-400'
-	E.db.movers.ElvUF_PetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,739,500'
-	E.db.movers.ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,552'
-	E.db.movers.ElvUF_PlayerMover = 'BOTTOM,ElvUIParent,BOTTOM,-320,500'
+	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-314'
+	E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-338,440') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-628,630'
+	E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,300,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,590,-400'
+	E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,451,360') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,739,500'
+	E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,411') or 'BOTTOM,ElvUIParent,BOTTOM,0,552'
+	E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,360') or 'BOTTOM,ElvUIParent,BOTTOM,-320,500'
 	E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,458'
-	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,318,475') or 'BOTTOM,ElvUIParent,BOTTOM,320,477'
-	E.db.movers.ElvUF_TargetMover = 'BOTTOM,ElvUIParent,BOTTOM,320,500'
+	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,337') or 'BOTTOM,ElvUIParent,BOTTOM,320,477'
+	E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,360') or 'BOTTOM,ElvUIParent,BOTTOM,320,500'
 	E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,422'
-	E.db.movers.ElvUIBagMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,210'
-	E.db.movers.ElvUIBankMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
+	E.db.movers.ElvUIBagMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,172') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,210'
+	E.db.movers.ElvUIBankMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-111'
 	E.db.movers.ExperienceBarMover = 'TOP,ElvUIParent,TOP,0,-1'
 	E.db.movers.FocusPowerBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-660,580'
 	E.db.movers.GMMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-515,-1'
 	E.db.movers.LeftChatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1'
 	E.db.movers.LootFrameMover = 'TOP,ElvUIParent,TOP,0,-88'
-	E.db.movers.LossControlMover = 'TOP,ElvUIParent,TOP,0,-640'
+	E.db.movers.LossControlMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,490') or 'TOP,ElvUIParent,TOP,0,-640'
 	E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
 	E.db.movers.MinimapMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1'
 	E.db.movers.MirrorTimer1Mover = 'TOP,ElvUIParent,TOP,0,-60'
@@ -1833,22 +1837,21 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-98'
 	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-132'
-	E.db.movers.PrivateAurasMover = 'TOP,ElvUIParent,TOP,221,-640'
-	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-200'
+	E.db.movers.PrivateAurasMover = (scaled and 'TOP,ElvUIParent,TOP,212,-474') or 'TOP,ElvUIParent,TOP,221,-640'
+	E.db.movers.PrivateRaidWarningMover = (scaled and 'TOP,ElvUIParent,TOP,0,-154') or 'TOP,ElvUIParent,TOP,0,-200'
 	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-24'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-178'
-	E.db.movers.ReputationBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-488,1'
+	E.db.movers.ReputationBarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-442,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-488,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,253,-1'
-	E.db.movers.TooltipMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,172'
+	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,134') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,172'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-67'
 	E.db.movers.TorghastChoiceToggle = 'TOP,ElvUIParent,TOP,0,-598'
 	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
-	E.db.movers.VehicleLeaveButton = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,706,520'
+	E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,450,413') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,706,520'
 	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-82'
-	E.db.movers.ZoneAbility = 'BOTTOM,ElvUIParent,BOTTOM,0,348'
 
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
 	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
@@ -1899,7 +1902,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid1.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid1.rdebuffs.yOffset = 13
 		E.db.unitframe.units.raid1.roleIcon.size = 12
-		E.db.unitframe.units.raid1.width = 96
+		E.db.unitframe.units.raid1.width = (scaled and 86) or 96
 
 		-- Main Raid2
 		E.db.unitframe.units.raid2.height = 40
@@ -1917,7 +1920,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid2.rdebuffs.yOffset = 13
 		E.db.unitframe.units.raid2.roleIcon.size = 12
-		E.db.unitframe.units.raid2.width = 96
+		E.db.unitframe.units.raid2.width = (scaled and 86) or 96
 
 		-- Main Raid3
 		E.db.unitframe.units.raid3.height = 30
@@ -1942,19 +1945,21 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.roleIcon.size = 12
 		E.db.unitframe.units.raid3.roleIcon.xOffset = 0
 		E.db.unitframe.units.raid3.roleIcon.yOffset = 0
-		E.db.unitframe.units.raid3.width = 96
+		E.db.unitframe.units.raid3.width = (scaled and 86) or 96
 
 		-- Main misc
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (scaled and 398) or 395
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
 
 		-- Main movers
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,269') or 'BOTTOM,ElvUIParent,BOTTOM,0,396'
 		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,82'
 		E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,49'
-		E.db.movers.ElvUF_Raid1Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.ElvUF_Raid2Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.ElvUF_Raid3Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
+		E.db.movers.ElvUF_Raid1Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
+		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
+		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,115'
+		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,348'
 
 	elseif layout == 'healing' then
 
@@ -1977,7 +1982,7 @@ function Private:Setup_ElvUI(layout)
 
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
-		E.db.unitframe.units.raid1.height = 70
+		E.db.unitframe.units.raid1.height = (scaled and 60) or 70
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid1.raidicon.size = 14
 		E.db.unitframe.units.raid1.raidicon.xOffset = -2
@@ -2000,7 +2005,7 @@ function Private:Setup_ElvUI(layout)
 
 		-- Healing Raid2
 		E.db.unitframe.units.raid2.buffIndicator.size = 14
-		E.db.unitframe.units.raid2.height = 54
+		E.db.unitframe.units.raid2.height = (scaled and 44) or 54
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid2.raidicon.size = 14
 		E.db.unitframe.units.raid2.raidicon.xOffset = -2
@@ -2022,7 +2027,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.width = 140
 
 		-- Healing Raid3
-		E.db.unitframe.units.raid3.height = 36
+		E.db.unitframe.units.raid3.height = (scaled and 32) or 36
 		E.db.unitframe.units.raid3.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid3.raidicon.size = 12
 		E.db.unitframe.units.raid3.raidicon.xOffset = -2
@@ -2049,13 +2054,15 @@ function Private:Setup_ElvUI(layout)
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704
 
 		-- Healing movers
-		E.db.movers.ElvAB_1 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.ElvAB_2 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
-		E.db.movers.ElvAB_3 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,263') or 'BOTTOM,ElvUIParent,BOTTOM,0,396'
+		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
+		E.db.movers.ElvAB_2 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
+		E.db.movers.ElvAB_3 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
 		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-		E.db.movers.PetAB = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
+		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
+		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-26,263') or 'BOTTOM,ElvUIParent,BOTTOM,0,348'
 
 		if Private.itsLuckyone then
 			E.db.actionbar.bar1.mouseover = true

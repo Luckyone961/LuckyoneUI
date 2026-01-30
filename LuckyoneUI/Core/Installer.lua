@@ -9,11 +9,9 @@ local ipairs = ipairs
 local type = type
 
 -- API cache
-local C_Timer = C_Timer
 local C_UI_Reload = C_UI.Reload
 local CreateFrame = CreateFrame
 local PlaySound = PlaySound
-local UIFrameFadeOut = UIFrameFadeOut
 
 -- Global environment
 local _G = _G

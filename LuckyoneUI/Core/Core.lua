@@ -289,6 +289,8 @@ function Private.Addon:Toggles(msg)
 			LDBI:Hide(Name)
 			Private.Addon.db.profile.minimap.hide = true
 		end
+	elseif msg == 'untrack' then
+		Private:UntrackAllQuests()
 	end
 end
 

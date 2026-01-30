@@ -49,8 +49,6 @@ local UNKNOWN = UNKNOWN
 
 -- ElvUI modules
 local E = unpack(ElvUI)
-local Tags = ElvUF.Tags
-local Abbrev = Tags.Env.Abbrev
 
 local _COLORS = ElvUF.colors
 local ElvUF_colors_class = ElvUF.colors.class
