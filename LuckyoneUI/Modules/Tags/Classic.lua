@@ -146,7 +146,7 @@ E:AddTag('luckyone:level', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 end)
 E:AddTagInfo('luckyone:level', Private.Name, L["Displays the unit's level with difficultycolor if the player is not max level"])
 
--- Display mana (current) if the unit is flagged healer (Retail and Mists only)
+-- Display mana (current) if the unit is flagged healer
 E:AddTag('luckyone:healermana:current', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local role = UnitGroupRolesAssigned(unit)
 
@@ -154,10 +154,10 @@ E:AddTag('luckyone:healermana:current', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_
 		local color = ElvUF_colors_power.MANA
 		return Private.Tags.Hex(color.r, color.g, color.b) .. UnitPower(unit, Enum.PowerType.Mana)
 	end
-end, Private.isClassic)
-E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana with manacolor (Role: Healer)"], nil, Private.isClassic)
+end)
+E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana with manacolor (Role: Healer)"])
 
--- Display mana (percent) if the unit is flagged healer (Retail and Mists only)
+-- Display mana (percent) if the unit is flagged healer
 E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local role = UnitGroupRolesAssigned(unit)
 	if role == 'HEALER' then
@@ -167,8 +167,8 @@ E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_
 
 		return Private.Tags.Hex(color.r, color.g, color.b) .. E:GetFormattedText('PERCENT', min, max, 0, nil)
 	end
-end, Private.isClassic)
-E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"], nil, Private.isClassic)
+end)
+E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"])
 
 -- Displays the last (and mostly important) part of the unit's name with class color
 E:AddTag('luckyone:name:last-classcolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)

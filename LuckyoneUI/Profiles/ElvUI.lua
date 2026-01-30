@@ -1043,7 +1043,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
+		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1152,7 +1152,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
+		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1245,7 +1245,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
+		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1330,7 +1330,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
+		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1383,7 +1383,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = '',
+		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1493,7 +1493,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:power:percent-color<%]' or '[luckyone:power:percent-color]',
+		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = -3,
 		yOffset = -12
 	}
@@ -1873,7 +1873,6 @@ function Private:Setup_ElvUI(layout)
 	if layout == 'main' then
 
 		-- Main Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]'
 		E.db.unitframe.units.player.castbar.height = 22
 		E.db.unitframe.units.player.castbar.width = 315
 		E.db.unitframe.units.player.power.autoHide = true
@@ -1956,7 +1955,6 @@ function Private:Setup_ElvUI(layout)
 	elseif layout == 'healing' then
 
 		-- Healing Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-nocolor]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
 		E.db.unitframe.units.player.power.attachTextTo = 'Power'
 		E.db.unitframe.units.player.power.autoHide = false
 		E.db.unitframe.units.player.power.detachedWidth = 260

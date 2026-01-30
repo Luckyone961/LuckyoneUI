@@ -12,9 +12,11 @@ local format = string.format
 
 -- API cache
 local ScaleTo100 = CurveConstants and CurveConstants.ScaleTo100
+local UnitGroupRolesAssigned = UnitGroupRolesAssigned
 local UnitHealth = UnitHealth
 local UnitHealthPercent = UnitHealthPercent
 local UnitIsFriend = UnitIsFriend
+local UnitName = UnitName
 local UnitPowerPercent = UnitPowerPercent
 
 -- Global environment
@@ -54,6 +56,17 @@ E:AddTag('luckyone:power:percent-nocolor', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UN
 	return percent
 end)
 E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percentage power without decimals with no color"])
+
+-- Display mana (percent) if the unit is flagged healer (Retail and Mists only)
+E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
+	local role = UnitGroupRolesAssigned(unit)
+	if role == 'HEALER' then
+		local percent = format('%d', UnitPowerPercent(unit, nil, true, ScaleTo100))
+		local color = Private.Tags.getPowerColor(unit)
+		return color .. percent
+	end
+end)
+E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"])
 
 -- Display name with classcolor/reactioncolor
 E:AddTag('luckyone:name-color', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
