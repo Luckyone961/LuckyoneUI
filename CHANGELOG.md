@@ -3,6 +3,7 @@
 **All WoW Versions:**  
 - Hide Cooldown Bling option is now enabled by default for all modules  
 - Reworked Target frame to include TargetTarget text and power text without a bar  
+- Updated CVars and Nameplate CVars setup buttons and config descriptions  
 
 ## Version 4.01 [30-01-2026]
 

@@ -118,7 +118,6 @@ function Private:SyncSettings()
 	SetCVar('UnitNameFriendlyGuardianName', 0)
 	SetCVar('UnitNameFriendlyTotemName', 0)
 	SetCVar('UnitNameFriendlyMinionName', 0)
-	SetCVar('UnitNameEnemyTotemName', 1)
 
 	-- Gameplay > Interface > Nameplates > Nameplates
 	SetCVar('nameplateShowAll', 1)
