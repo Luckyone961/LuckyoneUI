@@ -1878,25 +1878,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.castbar.width = 315
 		E.db.unitframe.units.player.power.autoHide = true
 
-		-- Main Party (Classic Only)
-		if Private.isClassic then
-			E.db.unitframe.units.party.customTexts.Luckyone_Power = {
-				attachTextTo = 'Power',
-				enable = true,
-				font = Private.Font,
-				fontOutline = Private.Outline,
-				justifyH = 'CENTER',
-				size = 11,
-				text_format = '[luckyone:power:percent-color<%]',
-				xOffset = 88,
-				yOffset = 20
-			}
-			E.db.unitframe.units.party.power.autoHide = true
-			E.db.unitframe.units.party.power.enable = true
-			E.db.unitframe.units.party.power.height = 4
-			E.db.unitframe.units.party.power.text_format = ''
-		end
-
 		-- Main Raid1
 		E.db.unitframe.units.raid1.height = 40
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'TOPRIGHT'
@@ -1984,7 +1965,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
 
-		if Private.isClassic or Private.isTBC then
+		if (Private.isClassic or Private.isTBC) then
 			E.db.unitframe.units.player.power.EnergyManaRegen = true
 		end
 
