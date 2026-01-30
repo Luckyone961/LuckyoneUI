@@ -842,6 +842,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.cooldown.aurabars.fontSize = 12
 	E.db.cooldown.aurabars.hideBling = true
 	E.db.cooldown.auras.colors.edge.a = 0
+	E.db.cooldown.auras.colors.swipe.a = 0
 	E.db.cooldown.auras.fontSize = 12
 	E.db.cooldown.auras.hideBling = true
 	E.db.cooldown.auras.offsetX = 1
@@ -1878,7 +1879,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.power.autoHide = true
 
 		-- Main Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. '[ |r- >luckyone:healermana:percent<%]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. '[ ||r- >luckyone:healermana:percent<%]'
 
 		-- Main Raid1
 		E.db.unitframe.units.raid1.height = 40
