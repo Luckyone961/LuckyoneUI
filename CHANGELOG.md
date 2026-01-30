@@ -1,4 +1,9 @@
-﻿## Version 4.01 [30-01-2026]
+﻿## Version 4.02 [In Development]
+
+**All WoW Versions:**  
+- Hide Cooldown Bling option is now enabled by default for all modules  
+
+## Version 4.01 [30-01-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.02+ compatibility  
