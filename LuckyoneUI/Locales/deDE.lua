@@ -250,6 +250,7 @@ L["Welcome"] = "Willkommen"
 L["WindTools profile has been set."] = "WindTools Profil wurde festgelegt."
 L["Wowhead guide:"] = true -- No need to translate
 L["You have completed the installation process, please click 'Finished' to reload the UI."] = "Du hast den Installationsvorgang abgeschlossen, bitte klicke auf 'Fertig', um die Benutzeroberfläche neu zu laden."
+L["Your chat will keep disappearing unless you move it in Blizzard's Edit Mode and save the profile there."] = "Dein Chat wird verschwinden, wenn du ihn nicht in Blizzards Edit Mode platzierst und das Profil dort speicherst."
 L["Your ElvUI is outdated - please update and reload."] = "Deine ElvUI Version ist veraltet - bitte aktualisieren und dann /reload."
 L["Your existing profiles will not change. The installer will create a fresh profile."] = "Deine vorhandenen Profile werden nicht geändert. Das Installationsprogramm erstellt ein neues Profil."
 L["Your Raid 1 frames will be enabled if you enter Mythic difficulty (Triggers after loading screen)\nYour Raid 2 frames will be disabled if you enter Mythic difficulty (Triggers after loading screen)\n\nAdditionally the maxAllowedGroups setting will be enabled and the visibility state gets modified\nBenched people in groups 5-8 while not show up when you're Mythic raiding\n\nAll changes mentioned above will revert back to default upon leaving the raid"] = true
