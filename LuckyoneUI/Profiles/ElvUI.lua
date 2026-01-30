@@ -1829,7 +1829,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-338,440') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-628,630'
 	E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,300,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,590,-400'
 	E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,451,360') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,739,500'
-	E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,411') or 'BOTTOM,ElvUIParent,BOTTOM,0,552'
+	E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,411') or 'BOTTOM,ElvUIParent,BOTTOM,0,551'
 	E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,360') or 'BOTTOM,ElvUIParent,BOTTOM,-320,500'
 	E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,458'
 	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,337') or 'BOTTOM,ElvUIParent,BOTTOM,320,477'
