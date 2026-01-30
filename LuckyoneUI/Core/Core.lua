@@ -10,6 +10,7 @@ local ipairs = ipairs
 local next = next
 local pairs = pairs
 local print = print
+local strfind = string.find
 local strlower = string.lower
 local tinsert = table.insert
 local tonumber = tonumber
@@ -80,6 +81,12 @@ function Private:GetMostRecentProfile(profileType)
 	end
 
 	return mostRecentProfile or (profileType and devProfiles[profileType]) or nil
+end
+
+function Private:GetActiveProfile()
+	if not Private.ElvUI then return end
+	local data = ElvUI[1].data:GetCurrentProfile()
+	return strfind(data, 'Luckyone Main') and 1 or strfind(data, 'Luckyone Healing') and 2 or nil
 end
 
 -- Minimap icon
