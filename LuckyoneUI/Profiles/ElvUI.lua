@@ -1512,10 +1512,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.buffs.yOffset = 1
 	E.db.unitframe.units.target.castbar.customTextFont.enable = true
 	E.db.unitframe.units.target.castbar.customTextFont.font = Private.Font
-	E.db.unitframe.units.target.castbar.customTextFont.fontSize = 11
+	E.db.unitframe.units.target.castbar.customTextFont.fontSize = 12
 	E.db.unitframe.units.target.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.target.castbar.customTimeFont.font = Private.Font
-	E.db.unitframe.units.target.castbar.customTimeFont.fontSize = 11
+	E.db.unitframe.units.target.castbar.customTimeFont.fontSize = 12
 	E.db.unitframe.units.target.castbar.height = 22
 	E.db.unitframe.units.target.castbar.strataAndLevel.useCustomLevel = true
 	E.db.unitframe.units.target.castbar.strataAndLevel.useCustomStrata = true
