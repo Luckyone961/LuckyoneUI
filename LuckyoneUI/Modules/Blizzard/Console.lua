@@ -27,6 +27,13 @@ function Private:Setup_CVars(noPrint, installer)
 		SetCVar('alwaysShowActionBars', 1)
 	end
 
+	if Private.itsLuckyone then
+		SetCVar('floatingCombatTextCombatDamage_v2', 0)
+		SetCVar('floatingCombatTextCombatDamage', 0)
+		SetCVar('floatingCombatTextCombatHealing_v2', 0)
+		SetCVar('floatingCombatTextCombatHealing', 0)
+	end
+
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["CVars have been set."])
 	end
