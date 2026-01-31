@@ -1,14 +1,14 @@
 ﻿## Version 4.02 [In Development]
 
 **All WoW Versions:**  
-- Added healermana text back on party frames for the DPS & Tank layout  
+- Added healermana text on party frames for the DPS & Tank layout  
 - Chat installer print will now remind you to create and save an editmode profile  
-- Disabled the dark cooldown spiral for buffs and debuffs at the minimap  
 - Fixed default position for the bag bar in case someone enables it  
-- Hide Cooldown Bling option is now enabled by default for all modules  
 - Reworked Target frame to include TargetTarget text and power text without a bar  
 - Target frame castbar font size now matches the player frame castbar font size  
+- Updated cooldown and duration swipes, edges and blings for most elements  
 - Updated CVars and Nameplate CVars setup buttons and config descriptions  
+- Updated positioning and growth of party frame debuffs  
 
 **Retail:**  
 - Fixed error API.lua:65: attempt to compare local 'name' (a secret value)  
