@@ -57,7 +57,7 @@ E:AddTag('luckyone:power:percent-nocolor', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UN
 end)
 E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percentage power without decimals with no color"])
 
--- Display mana (percent) if the unit is flagged healer (Retail and Mists only)
+-- Display mana (percent) if the unit is flagged healer
 E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local role = UnitGroupRolesAssigned(unit)
 	if role == 'HEALER' then
