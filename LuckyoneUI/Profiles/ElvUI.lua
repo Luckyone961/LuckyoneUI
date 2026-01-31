@@ -841,6 +841,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.cooldown.actionbar.offsetX = 1
 	E.db.cooldown.aurabars.fontSize = 12
 	E.db.cooldown.aurabars.hideBling = true
+	E.db.cooldown.auraindicator.reverse = true
 	E.db.cooldown.auras.colors.edge.a = 0
 	E.db.cooldown.auras.colors.swipe.a = 0
 	E.db.cooldown.auras.fontSize = 12
@@ -867,14 +868,17 @@ function Private:Setup_ElvUI(layout)
 	E.db.cooldown.nameplates.fontSize = 12
 	E.db.cooldown.nameplates.hideBling = true
 	E.db.cooldown.nameplates.offsetX = 1
+	E.db.cooldown.nameplates.reverse = true
 	E.db.cooldown.totemtracker.colors.edge.a = 0
 	E.db.cooldown.totemtracker.fontSize = 14
 	E.db.cooldown.totemtracker.hideBling = true
 	E.db.cooldown.totemtracker.offsetX = 1
+	E.db.cooldown.totemtracker.reverse = true
 	E.db.cooldown.unitframe.colors.edge.a = 0
 	E.db.cooldown.unitframe.fontSize = 12
 	E.db.cooldown.unitframe.hideBling = true
 	E.db.cooldown.unitframe.offsetX = 1
+	E.db.cooldown.unitframe.reverse = true
 	E.db.cooldown.zonebutton.colors.edge.a = 0
 	E.db.cooldown.zonebutton.fontSize = 14
 	E.db.cooldown.zonebutton.hideBling = true
