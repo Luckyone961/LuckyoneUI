@@ -1871,6 +1871,17 @@ function Private:Setup_ElvUI(layout)
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
 	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
 
+	-- Custom nonRetail changes
+	if Private.itsLuckyone and not Private.isRetail then
+		-- Extra bar next to the left chat panel
+		E.db.actionbar.bar4.enable = true
+		E.db.actionbar.bar4.buttons = 8
+		E.db.actionbar.bar4.buttonsPerRow = 1
+		E.db.actionbar.bar4.buttonSize = 25
+		E.db.actionbar.bar4.point = 'BOTTOMRIGHT'
+		E.db.movers.ElvAB_4 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,2'
+	end
+
 	if layout == 'main' then
 
 		-- Main Player
@@ -2063,16 +2074,5 @@ function Private:Setup_ElvUI(layout)
 			E.db.actionbar.bar2.mouseover = true
 			E.db.actionbar.bar3.mouseover = true
 		end
-	end
-
-	-- Custom nonRetail changes
-	if Private.itsLuckyone and not Private.isRetail then
-		-- Extra bar next to the left chat panel
-		E.db.actionbar.bar4.enable = true
-		E.db.actionbar.bar4.buttons = 8
-		E.db.actionbar.bar4.buttonsPerRow = 1
-		E.db.actionbar.bar4.buttonSize = 25
-		E.db.actionbar.bar4.point = 'BOTTOMRIGHT'
-		E.db.movers.ElvAB_4 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,2'
 	end
 end
