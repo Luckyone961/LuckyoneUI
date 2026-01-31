@@ -10,6 +10,9 @@
 - Target frame castbar font size now matches the player frame castbar font size  
 - Updated CVars and Nameplate CVars setup buttons and config descriptions  
 
+**Retail:**  
+- Fixed error API.lua:65: attempt to compare local 'name' (a secret value)  
+
 ## Version 4.01 [30-01-2026]
 
 **All WoW Versions:**  
