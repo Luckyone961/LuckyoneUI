@@ -11,7 +11,6 @@ local _G = _G
 -- General CVars
 function Private:Setup_CVars(noPrint, installer)
 
-	SetCVar('alwaysShowActionBars', 1)
 	SetCVar('AutoPushSpellToActionBar', 0)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('countdownForCooldowns', 1)
@@ -23,6 +22,10 @@ function Private:Setup_CVars(noPrint, installer)
 	SetCVar('showTutorials', 0)
 	SetCVar('threatWarning', 3)
 	SetCVar('UberTooltips', 1)
+
+	if not Private.isRetail then
+		SetCVar('alwaysShowActionBars', 1)
+	end
 
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["CVars have been set."])
@@ -36,38 +39,36 @@ end
 -- NamePlate CVars
 function Private:NameplateCVars(noPrint)
 
-	SetCVar('NamePlateHorizontalScale', 1)
 	SetCVar('nameplateLargerScale', 1)
-	SetCVar('nameplateLargeTopInset', -1)
 	SetCVar('nameplateMinAlpha', 1)
 	SetCVar('nameplateMinScale', 1)
-	SetCVar('nameplateMotion', 1)
 	SetCVar('nameplateOccludedAlphaMult', 1)
-	SetCVar('nameplateOtherBottomInset', -1)
-	SetCVar('nameplateOtherTopInset', -1)
 	SetCVar('nameplateOverlapH', 1)
 	SetCVar('nameplateOverlapV', 2.2)
 	SetCVar('nameplateSelectedScale', 1)
 	SetCVar('nameplateSelfAlpha', 1)
-	SetCVar('nameplateSelfTopInset', -1)
-	SetCVar('nameplateShowOnlyNames', 1)
-	SetCVar('NamePlateVerticalScale', 1)
 
 	SetCVar('UnitNameEnemyGuardianName', 1)
 	SetCVar('UnitNameEnemyMinionName', 1)
 	SetCVar('UnitNameEnemyPetName', 1)
 	SetCVar('UnitNameEnemyPlayerName', 1)
+	SetCVar('UnitNameEnemyTotemName', 1)
 
-	if not Private.isClassic then
-		SetCVar('UnitNameEnemyTotem', 1)
-	end
+	SetCVar('nameplateMaxDistance', (Private.isRetail and 100) or 41)
 
-	if Private.isTBC then
-		SetCVar('nameplateMaxDistance', 41)
-	end
-
-	if not Private.isRetail then
+	if Private.isRetail then
+		SetCVar('nameplateShowOnlyNameForFriendlyPlayerUnits', 1)
+		SetCVar('nameplateUseClassColorForFriendlyPlayerUnitNames', 1)
+	else
+		SetCVar('NamePlateHorizontalScale', 1)
+		SetCVar('nameplateLargeTopInset', -1)
+		SetCVar('nameplateMotion', 1)
 		SetCVar('nameplateNotSelectedAlpha', 1)
+		SetCVar('nameplateOtherBottomInset', -1)
+		SetCVar('nameplateOtherTopInset', -1)
+		SetCVar('nameplateSelfTopInset', -1)
+		SetCVar('nameplateShowOnlyNames', 1)
+		SetCVar('NamePlateVerticalScale', 1)
 	end
 
 	if not noPrint then

@@ -834,12 +834,15 @@ function Private:Setup_ElvUI(layout)
 
 	-- Cooldown Text
 	E.db.cooldown.actionbar.colors.edge.a = 0
+	E.db.cooldown.actionbar.colors.edgeCharge.a = 0
+	E.db.cooldown.actionbar.colors.edgeLOC.a = 0
 	E.db.cooldown.actionbar.fontSize = 12
 	E.db.cooldown.actionbar.hideBling = true
 	E.db.cooldown.actionbar.offsetX = 1
 	E.db.cooldown.aurabars.fontSize = 12
 	E.db.cooldown.aurabars.hideBling = true
 	E.db.cooldown.auras.colors.edge.a = 0
+	E.db.cooldown.auras.colors.swipe.a = 0
 	E.db.cooldown.auras.fontSize = 12
 	E.db.cooldown.auras.hideBling = true
 	E.db.cooldown.auras.offsetX = 1
@@ -1041,7 +1044,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
+		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1150,7 +1153,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
+		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1243,7 +1246,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
+		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1328,7 +1331,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
+		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1381,7 +1384,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = '',
+		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1480,20 +1483,20 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]',
-		xOffset = -3,
-		yOffset = 0
+		text_format = Private.isRetail and '[luckyone:name-color][ |r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]',
+		xOffset = -2,
+		yOffset = 14
 	}
 	E.db.unitframe.units.target.customTexts.Luckyone_Power = {
-		attachTextTo = 'Power',
+		attachTextTo = 'Frame',
 		enable = true,
 		font = Private.Font,
 		fontOutline = Private.Outline,
-		justifyH = 'CENTER',
-		size = 11,
-		text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]',
-		xOffset = 0,
-		yOffset = 0
+		justifyH = 'RIGHT',
+		size = 12,
+		text_format = '[luckyone:power:percent-color<%]',
+		xOffset = -3,
+		yOffset = -12
 	}
 
 	E.db.unitframe.units.target.aurabar.enable = false
@@ -1510,10 +1513,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.buffs.yOffset = 1
 	E.db.unitframe.units.target.castbar.customTextFont.enable = true
 	E.db.unitframe.units.target.castbar.customTextFont.font = Private.Font
-	E.db.unitframe.units.target.castbar.customTextFont.fontSize = 11
+	E.db.unitframe.units.target.castbar.customTextFont.fontSize = 12
 	E.db.unitframe.units.target.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.target.castbar.customTimeFont.font = Private.Font
-	E.db.unitframe.units.target.castbar.customTimeFont.fontSize = 11
+	E.db.unitframe.units.target.castbar.customTimeFont.fontSize = 12
 	E.db.unitframe.units.target.castbar.height = 22
 	E.db.unitframe.units.target.castbar.strataAndLevel.useCustomLevel = true
 	E.db.unitframe.units.target.castbar.strataAndLevel.useCustomStrata = true
@@ -1547,7 +1550,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.orientation = 'LEFT'
 	E.db.unitframe.units.target.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.target.power.autoHide = true
-	E.db.unitframe.units.target.power.detachedWidth = 260
+	E.db.unitframe.units.target.power.enable = false
 	E.db.unitframe.units.target.power.height = 4
 	E.db.unitframe.units.target.power.strataAndLevel.frameStrata = 'MEDIUM'
 	E.db.unitframe.units.target.power.strataAndLevel.useCustomStrata = true
@@ -1584,11 +1587,12 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.targettarget.fader.smooth = 0
 	E.db.unitframe.units.targettarget.healPrediction.absorbStyle = 'WRAPPED'
 	E.db.unitframe.units.targettarget.healPrediction.enable = true
-	E.db.unitframe.units.targettarget.height = 24
+	E.db.unitframe.units.targettarget.height = 22
 	E.db.unitframe.units.targettarget.name.text_format = ''
 	E.db.unitframe.units.targettarget.orientation = 'LEFT'
 	E.db.unitframe.units.targettarget.power.enable = false
 	E.db.unitframe.units.targettarget.raidicon.enable = false
+	E.db.unitframe.units.targettarget.width = 140
 
 	-- Shared Raidpet
 	E.db.unitframe.units.raidpet.buffIndicator.countFont = Private.Font
@@ -1661,7 +1665,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]',
+		text_format = '',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1803,7 +1807,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-202'
 	E.db.movers.AltPowerBarMover = 'TOP,ElvUIParent,TOP,0,-22'
 	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-301,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
-	E.db.movers.BagsMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-416,1' -- Check back from 1080p healing export
+	E.db.movers.BagsMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-455,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-501,1'
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-201,-193'
 	E.db.movers.BNETMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
@@ -1826,12 +1830,12 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-338,440') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-628,630'
 	E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,300,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,590,-400'
 	E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,451,360') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,739,500'
-	E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,411') or 'BOTTOM,ElvUIParent,BOTTOM,0,552'
+	E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,411') or 'BOTTOM,ElvUIParent,BOTTOM,0,551'
 	E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,360') or 'BOTTOM,ElvUIParent,BOTTOM,-320,500'
 	E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,458'
 	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,337') or 'BOTTOM,ElvUIParent,BOTTOM,320,477'
 	E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,360') or 'BOTTOM,ElvUIParent,BOTTOM,320,500'
-	E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,0,422'
+	E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,380,454'
 	E.db.movers.ElvUIBagMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,172') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,210'
 	E.db.movers.ElvUIBankMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-111'
@@ -1867,35 +1871,26 @@ function Private:Setup_ElvUI(layout)
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
 	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
 
+	-- Custom nonRetail changes
+	if Private.itsLuckyone and not Private.isRetail then
+		-- Extra bar next to the left chat panel
+		E.db.actionbar.bar4.enable = true
+		E.db.actionbar.bar4.buttons = 8
+		E.db.actionbar.bar4.buttonsPerRow = 1
+		E.db.actionbar.bar4.buttonSize = 25
+		E.db.actionbar.bar4.point = 'BOTTOMRIGHT'
+		E.db.movers.ElvAB_4 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,2'
+	end
+
 	if layout == 'main' then
 
 		-- Main Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-color]' or '[luckyone:power:percent-color]'
 		E.db.unitframe.units.player.castbar.height = 22
 		E.db.unitframe.units.player.castbar.width = 315
 		E.db.unitframe.units.player.power.autoHide = true
 
-		-- Main TargetTarget
-		E.db.unitframe.units.targettarget.width = 278
-
-		-- Main Party (Classic Only)
-		if Private.isClassic then
-			E.db.unitframe.units.party.customTexts.Luckyone_Power = {
-				attachTextTo = 'Power',
-				enable = true,
-				font = Private.Font,
-				fontOutline = Private.Outline,
-				justifyH = 'CENTER',
-				size = 11,
-				text_format = '[luckyone:power:percent-color<%]',
-				xOffset = 88,
-				yOffset = 20
-			}
-			E.db.unitframe.units.party.power.autoHide = true
-			E.db.unitframe.units.party.power.enable = true
-			E.db.unitframe.units.party.power.height = 4
-			E.db.unitframe.units.party.power.text_format = ''
-		end
+		-- Main Party
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. '[ ||r- >luckyone:healermana:percent<%]'
 
 		-- Main Raid1
 		E.db.unitframe.units.raid1.height = 40
@@ -1975,7 +1970,6 @@ function Private:Setup_ElvUI(layout)
 	elseif layout == 'healing' then
 
 		-- Healing Player
-		E.db.unitframe.units.player.customTexts.Luckyone_Power.text_format = Private.isRetail and '[luckyone:power:percent-nocolor]' or '[curpp< • ][luckyone:power:percent-nocolor<%]'
 		E.db.unitframe.units.player.power.attachTextTo = 'Power'
 		E.db.unitframe.units.player.power.autoHide = false
 		E.db.unitframe.units.player.power.detachedWidth = 260
@@ -1984,12 +1978,12 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
 
-		if Private.isClassic or Private.isTBC then
+		if (Private.isClassic or Private.isTBC) then
 			E.db.unitframe.units.player.power.EnergyManaRegen = true
 		end
 
-		-- Healing TargetTarget
-		E.db.unitframe.units.targettarget.width = 260
+		-- Healing Party
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
 
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 14

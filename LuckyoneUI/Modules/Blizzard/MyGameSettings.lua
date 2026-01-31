@@ -8,6 +8,14 @@ local SetCVar = C_CVar.SetCVar
 -- From top to bottom in ESC > Options
 function Private:SyncSettings()
 
+	-- 1080p
+	local scaled = Private.Addon.db.global.scaled
+
+	-- LuckyoneUI modules
+	Private:Setup_Chat()
+	Private:Setup_CVars(true)
+	Private:NameplateCVars(true)
+
 	-- Gameplay > Controls > General
 	SetCVar('deselectOnClick', 1)
 	SetCVar('autoDismountFlying', 1)
@@ -33,41 +41,14 @@ function Private:SyncSettings()
 	SetCVar('cameraPitchSmoothSpeed', 67.5)
 	SetCVar('cameraSmoothStyle', 0)
 
-	-- Gameplay > Interface > Names
-	SetCVar('UnitNameOwn', 1)
-	SetCVar('UnitNameFriendlySpecialNPCName', 1)
-	SetCVar('ShowQuestUnitCircles', 0)
-	SetCVar('UnitNameNonCombatCreatureName', 0)
-	SetCVar('UnitNameFriendlyPlayerName', 1)
-	SetCVar('UnitNameFriendlyPetName', 0)
-	SetCVar('UnitNameFriendlyGuardianName', 0)
-	SetCVar('UnitNameFriendlyTotemName', 0)
-	SetCVar('UnitNameFriendlyMinionName', 0)
-
-	-- Gameplay > Interface > Nameplates
-	SetCVar('nameplateShowAll', 1)
-	SetCVar('NamePlateClassificationScale', 1)
-	SetCVar('nameplateShowEnemies', 1)
-	SetCVar('nameplateShowEnemyPets', 1)
-	SetCVar('nameplateShowEnemyGuardians', 1)
-	SetCVar('nameplateShowEnemyTotems', 1)
-	SetCVar('nameplateShowEnemyMinions', 1)
-	SetCVar('nameplateShowEnemyMinus', 1)
-	SetCVar('nameplateShowFriends', 0)
-	SetCVar('nameplateShowFriendlyPets', 0)
-	SetCVar('nameplateShowFriendlyGuardians', 0)
-	SetCVar('nameplateShowFriendlyTotems', 0)
-	SetCVar('nameplateShowFriendlyMinions', 0)
-	SetCVar('ShowNamePlateLoseAggroFlash', 0)
-
 	-- Gameplay > Interface > Display
-	SetCVar('hideAdventureJournalAlerts', 1)
 	SetCVar('showInGameNavigation', 1)
 	SetCVar('Outline', 2)
 	SetCVar('statusTextDisplay', 'BOTH')
 	SetCVar('statusText', 1)
 	SetCVar('chatBubbles', 1)
 	SetCVar('chatBubblesParty', 1)
+	SetCVar('chatBubblesRaid', 0)
 	SetCVar('instantQuestText', 1)
 	SetCVar('ReplaceOtherPlayerPortraits', 1)
 	SetCVar('ReplaceMyPlayerPortrait', 1)
@@ -80,8 +61,9 @@ function Private:SyncSettings()
 
 	-- Gameplay > Combat > General
 	SetCVar('nameplateShowSelf', 0)
+	SetCVar('findYourselfModeIcon', 0)
 	SetCVar('findYourselfModeOutline', 1)
-	SetCVar('findYourselfModeCircle', 0)
+	SetCVar('occludedSilhouettePlayer', 1)
 	SetCVar('showTargetOfTarget', 1)
 	SetCVar('doNotFlashLowHealthWarning', 1)
 	SetCVar('lossOfControl', 1)
@@ -103,7 +85,7 @@ function Private:SyncSettings()
 	SetCVar('blockChannelInvites', 1)
 	SetCVar('showToastOnline', 0)
 	SetCVar('showToastOffline', 0)
-	SetCVar('showToastBroadcast', 1)
+	SetCVar('showToastBroadcast', 0)
 	SetCVar('showToastFriendRequest', 1)
 	SetCVar('showToastWindow', 0)
 	SetCVar('autoAcceptQuickJoinRequests', 0)
@@ -117,32 +99,71 @@ function Private:SyncSettings()
 
 	-- Gameplay > Gameplay Enhancements
 	SetCVar('assistedCombatHighlight', 0)
-	SetCVar('cooldownViewerEnabled', 0)
+	SetCVar('combatWarningsEnabled', 1)
+	SetCVar('encounterWarningsEnabled', 0)
+	SetCVar('encounterTimelineEnabled', 0)
+	SetCVar('cooldownViewerEnabled', 1)
+	SetCVar('externalDefensivesEnabled', 1)
+	SetCVar('damageMeterEnabled', 0)
+	SetCVar('spellDiminishPVPEnemiesEnabled', 0)
+
+	-- Gameplay > Interface > Nameplates > Names
+	SetCVar('UnitNameOwn', 1)
+	SetCVar('UnitNameFriendlySpecialNPCName', 1)
+	SetCVar('ShowQuestUnitCircles', 0)
+	SetCVar('UnitNameNPC', 1)
+	SetCVar('UnitNameNonCombatCreatureName', 0)
+	SetCVar('UnitNameFriendlyPlayerName', 1)
+	SetCVar('UnitNameFriendlyPetName', 0)
+	SetCVar('UnitNameFriendlyGuardianName', 0)
+	SetCVar('UnitNameFriendlyTotemName', 0)
+	SetCVar('UnitNameFriendlyMinionName', 0)
+
+	-- Gameplay > Interface > Nameplates > Nameplates
+	SetCVar('nameplateShowAll', 1)
+	SetCVar('NamePlateClassificationScale', 1)
+	SetCVar('nameplateShowEnemies', 1)
+	SetCVar('nameplateShowEnemyPets', 1)
+	SetCVar('nameplateShowEnemyGuardians', 1)
+	SetCVar('nameplateShowEnemyTotems', 1)
+	SetCVar('nameplateShowEnemyMinions', 1)
+	SetCVar('nameplateShowEnemyMinus', 1)
+	SetCVar('nameplateShowFriends', 0)
+	SetCVar('nameplateShowFriendlyPets', 0)
+	SetCVar('nameplateShowFriendlyGuardians', 0)
+	SetCVar('nameplateShowFriendlyTotems', 0)
+	SetCVar('nameplateShowFriendlyMinions', 0)
+	SetCVar('nameplateShowOffscreen', 0)
+	SetCVar('ShowNamePlateLoseAggroFlash', 0)
+
+	-- Accessibility > Interface
+	SetCVar('userFontScale', 1)
+	SetCVar('questTextContrast', 0)
 
 	-- Accessibility > General
 	SetCVar('enableMovePad', 0)
 	SetCVar('overrideScreenFlash', 1)
-	SetCVar('userFontScale', 1)
-	SetCVar('questTextContrast', 0)
-	SetCVar('WorldTextMinSize', 10)
+	SetCVar('WorldTextMinSize', 12)
 	SetCVar('CameraKeepCharacterCentered', 0)
 	SetCVar('CameraReduceUnexpectedMovement', 1)
 	SetCVar('ShakeStrengthCamera', 0.25)
 	SetCVar('ShakeStrengthUI', 0.25)
 	SetCVar('cursorSizePreferred', -1)
-	SetCVar('occludedSilhouettePlayer', 1)
 	SetCVar('SoftTargetTooltipEnemy', 0)
 	SetCVar('SoftTargetTooltipInteract', 0)
 	SetCVar('SoftTargetIconEnemy', 0)
 	SetCVar('SoftTargetIconGameObject', 0)
 	SetCVar('SoftTargetLowPriorityIcons', 0)
 
-	-- Accessibility > Colorblind Mode
+	-- Accessibility > Colors
 	SetCVar('colorblindMode', 0)
 	SetCVar('colorblindSimulator', 0)
 
-	-- Accessibility > Text To Speech
+	-- Accessibility > Audio Assist > Chat Text to Speech
 	SetCVar('remoteTextToSpeech', 0)
+
+	-- Accessibility > Audio Assist > Combat Audio Alerts
+	SetCVar('CAAEnabled', 0)
 
 	-- Accessibility > Mounts
 	SetCVar('motionSicknessLandscapeDarkening', 0)
@@ -150,6 +171,11 @@ function Private:SyncSettings()
 	SetCVar('DisableAdvancedFlyingVelocityVFX', 1)
 	SetCVar('advFlyPitchControl', 3)
 	SetCVar('advFlyPitchControlGroundDebounce', 0)
+	SetCVar('advFlyPitchControlCameraChase', 20)
+	SetCVar('advFlyKeyboardMinPitchFactor', 2.5)
+	SetCVar('advFlyKeyboardMaxPitchFactor', 5)
+	SetCVar('advFlyKeyboardMinTurnFactor', 5)
+	SetCVar('advFlyKeyboardMaxTurnFactor', 8)
 
 	-- Accessibility > Subtitles
 	SetCVar('movieSubtitle', 1)
@@ -161,9 +187,9 @@ function Private:SyncSettings()
 	SetCVar('GxNewResolution', '0x0')
 	SetCVar('RenderScale', 1)
 	SetCVar('useUiScale', 1)
-	SetCVar('uiScale', 0.53333333333333)
+	SetCVar('uiScale', (scaled and 0.71111111111111) or 0.53333333333333)
 	SetCVar('vsync', 0)
-	SetCVar('LowLatencyMode', 1)
+	SetCVar('LowLatencyMode', 2)
 	SetCVar('ffxAntiAliasingMode', 0)
 	SetCVar('cameraFov', 90)
 
@@ -302,7 +328,7 @@ function Private:SyncSettings()
 	SetCVar('Sound_MusicVolume', 0)
 	SetCVar('Sound_SFXVolume', 0.1)
 	SetCVar('Sound_AmbienceVolume', 0)
-	SetCVar('Sound_DialogVolume', 0.3)
+	SetCVar('Sound_DialogVolume', 0.2)
 	SetCVar('Sound_EnableMusic', 0)
 	SetCVar('Sound_ZoneMusicNoDelay', 0)
 	SetCVar('Sound_EnablePetBattleMusic', 0)
@@ -334,33 +360,27 @@ function Private:SyncSettings()
 	-- Hidden & Unlisted
 	SetCVar('assaoSharpness', 1)
 	SetCVar('cameraIndirectOffset', 10)
-	SetCVar('checkAddonVersion', 0)
+	SetCVar('checkAddonVersion', 1)
 	SetCVar('ffxDeath', 0)
 	SetCVar('ffxGlow', 0)
 	SetCVar('ffxNether', 0)
 	SetCVar('ffxVenari', 0)
 	SetCVar('ffxLingeringVenari', 0)
 	SetCVar('floatingCombatTextCombatDamage', 0)
+	SetCVar('floatingCombatTextCombatDamage_v2', 0)
 	SetCVar('floatingCombatTextCombatHealing', 0)
+	SetCVar('floatingCombatTextCombatHealing_v2', 0)
 	SetCVar('GxAllowCachelessShaderMode', 0)
 	SetCVar('maxFPSLoading', 30)
 	SetCVar('RAIDweatherDensity', 0)
-	SetCVar('rawMouseEnable', 1)
+	SetCVar('rawMouseEnable', 0)
 	SetCVar('ResampleAlwaysSharpen', 1)
-	SetCVar('seenCharacterSelectAddGroupHelpTip', 1)
-	SetCVar('seenCharacterSelectNavBarCampsHelpTip', 1)
-	SetCVar('seenCharacterSelectWarbandHelpTip', 1)
-	SetCVar('showPhotosensitivityWarning', 10)
+	SetCVar('showPhotosensitivityWarning', 11)
 	SetCVar('SpellQueueWindow', 180)
 	SetCVar('threatPlaySounds', 0)
 	SetCVar('timeMgrUseLocalTime', 1)
 	SetCVar('UnitNamePlayerGuild', 0)
 	SetCVar('UnitNamePlayerPVPTitle', 0)
-
-	-- LuckyoneUI modules
-	Private:Setup_Chat()
-	Private:Setup_CVars(true)
-	Private:NameplateCVars(true)
 
 	Private:Print('Synced game settings.')
 end
