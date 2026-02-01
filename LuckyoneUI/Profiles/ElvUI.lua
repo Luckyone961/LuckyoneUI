@@ -1163,17 +1163,18 @@ function Private:Setup_ElvUI(layout)
 	}
 
 	E.db.unitframe.units.boss.buffIndicator.enable = false
+	E.db.unitframe.units.boss.buffs.anchorPoint = 'RIGHT'
 	E.db.unitframe.units.boss.buffs.countFont = Private.Font
 	E.db.unitframe.units.boss.buffs.countFontSize = 10
 	E.db.unitframe.units.boss.buffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.boss.buffs.countXOffset = 2
 	E.db.unitframe.units.boss.buffs.countYOffset = 0
 	E.db.unitframe.units.boss.buffs.growthY = 'DOWN'
-	E.db.unitframe.units.boss.buffs.perrow = 5
+	E.db.unitframe.units.boss.buffs.perrow = 2
 	E.db.unitframe.units.boss.buffs.priority = 'Dispellable,RaidBuffsElvUI'
-	E.db.unitframe.units.boss.buffs.sizeOverride = 20
-	E.db.unitframe.units.boss.buffs.xOffset = -1
-	E.db.unitframe.units.boss.buffs.yOffset = -10
+	E.db.unitframe.units.boss.buffs.sizeOverride = 41
+	E.db.unitframe.units.boss.buffs.xOffset = 1
+	E.db.unitframe.units.boss.buffs.yOffset = 1
 	E.db.unitframe.units.boss.castbar.customTextFont.enable = true
 	E.db.unitframe.units.boss.castbar.customTextFont.font = Private.Font
 	E.db.unitframe.units.boss.castbar.customTextFont.fontSize = 9
@@ -1192,7 +1193,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.boss.castbar.width = 211
 	E.db.unitframe.units.boss.castbar.xOffsetText = 2
 	E.db.unitframe.units.boss.castbar.xOffsetTime = -2
-	E.db.unitframe.units.boss.debuffs.anchorPoint = 'TOPLEFT'
 	E.db.unitframe.units.boss.debuffs.countFont = Private.Font
 	E.db.unitframe.units.boss.debuffs.countFontSize = 10
 	E.db.unitframe.units.boss.debuffs.countPosition = 'TOPRIGHT'
@@ -1200,9 +1200,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.boss.debuffs.countYOffset = 0
 	E.db.unitframe.units.boss.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.boss.debuffs.growthY = 'DOWN'
-	E.db.unitframe.units.boss.debuffs.perrow = 5
+	E.db.unitframe.units.boss.debuffs.perrow = 4
 	E.db.unitframe.units.boss.debuffs.priority = Private.isRetail and 'blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
-	E.db.unitframe.units.boss.debuffs.sizeOverride = 20
+	E.db.unitframe.units.boss.debuffs.sizeOverride = 41
 	E.db.unitframe.units.boss.debuffs.xOffset = -1
 	E.db.unitframe.units.boss.debuffs.yOffset = 1
 	E.db.unitframe.units.boss.disableFocusGlow = true
