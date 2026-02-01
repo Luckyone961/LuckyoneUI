@@ -93,12 +93,12 @@ E:AddTag('luckyone:health:percent-with-absorbs:nostatus', 'UNIT_HEALTH UNIT_MAXH
 end, Private.isClassic)
 E:AddTagInfo('luckyone:health:percent-with-absorbs:nostatus', Private.Name, L["Displays the unit's current health as a percentage with absorb values, without decimals and without status"], nil, Private.isClassic)
 
--- Display percentage power with powercolor and hides power at 0
+-- Display percentage power with powercolor
 E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local min, max = UnitPower(unit), UnitPowerMax(unit)
 	local pType, pToken, altR, altG, altB = UnitPowerType(unit)
 	local color = _COLORS.power[pToken] or (altR and (altR > 1 or altG > 1 or altB > 1) and Private.Tags.Hex(altR / 255, altG / 255, altB / 255)) or Private.Tags.Hex(_COLORS.power[pType] or _COLORS.power.MANA)
-	local percentage = (min == 0 or max == 0) and '' or floor(min / max * 100 + .5)
+	local percentage = floor(min / max * 100 + .5)
 
 	if altR and not _COLORS.power[pToken] then
 		if altR <= 1 and altG <= 1 and altB <= 1 then
@@ -108,16 +108,20 @@ E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT
 		color = Private.Tags.Hex(color)
 	end
 
-	return color .. percentage
+	if percentage ~= 0 then
+		return color .. percentage
+	end
 end)
-E:AddTagInfo('luckyone:power:percent-color', Private.Name, L["Displays percentage power with powercolor and hides power at 0"])
+E:AddTagInfo('luckyone:power:percent-color', Private.Name, L["Displays percentage power without decimals with powercolor"])
 
--- Display percentage power with no color and hides power at 0
+-- Display percentage power with no color
 E:AddTag('luckyone:power:percent-nocolor', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local min, max = UnitPower(unit), UnitPowerMax(unit)
-	return (min == 0) and '' or floor(min / max * 100 + .5)
+	if min ~= 0 then
+		return floor(min / max * 100 + .5)
+	end
 end)
-E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percentage power with no color and hides power at 0"])
+E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percentage power without decimals with no color"])
 
 -- Display percentage mana with 0 decimals
 E:AddTag('luckyone:mana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)

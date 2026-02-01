@@ -62,6 +62,10 @@ end
 function Private.Tags.getFormattedName(unit, length, color, abbrev)
 	local name = UnitName(unit) or UNKNOWN
 
+	if E:IsSecretValue(name) then
+		return name
+	end
+
 	if name ~= UNKNOWN then
 		if abbrev then
 			name = Abbrev(name)

@@ -265,6 +265,10 @@ function Private:Setup_NamePlates(installer)
 	-- NamePlates CVars
 	Private:NameplateCVars()
 
+	if Private.isRetail then
+		E.db.nameplates.persistentFriendlyNP = true
+	end
+
 	-- NamePlates colors
 	E.db.nameplates.colors.auraByType = false
 	E.db.nameplates.colors.castbarDesaturate = false
@@ -841,6 +845,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.cooldown.actionbar.offsetX = 1
 	E.db.cooldown.aurabars.fontSize = 12
 	E.db.cooldown.aurabars.hideBling = true
+	E.db.cooldown.auraindicator.reverse = true
 	E.db.cooldown.auras.colors.edge.a = 0
 	E.db.cooldown.auras.colors.swipe.a = 0
 	E.db.cooldown.auras.fontSize = 12
@@ -867,14 +872,17 @@ function Private:Setup_ElvUI(layout)
 	E.db.cooldown.nameplates.fontSize = 12
 	E.db.cooldown.nameplates.hideBling = true
 	E.db.cooldown.nameplates.offsetX = 1
+	E.db.cooldown.nameplates.reverse = true
 	E.db.cooldown.totemtracker.colors.edge.a = 0
 	E.db.cooldown.totemtracker.fontSize = 14
 	E.db.cooldown.totemtracker.hideBling = true
 	E.db.cooldown.totemtracker.offsetX = 1
+	E.db.cooldown.totemtracker.reverse = true
 	E.db.cooldown.unitframe.colors.edge.a = 0
 	E.db.cooldown.unitframe.fontSize = 12
 	E.db.cooldown.unitframe.hideBling = true
 	E.db.cooldown.unitframe.offsetX = 1
+	E.db.cooldown.unitframe.reverse = true
 	E.db.cooldown.zonebutton.colors.edge.a = 0
 	E.db.cooldown.zonebutton.fontSize = 14
 	E.db.cooldown.zonebutton.hideBling = true
@@ -1049,6 +1057,7 @@ function Private:Setup_ElvUI(layout)
 		yOffset = 0
 	}
 
+	E.db.unitframe.units.arena.buffs.anchorPoint = 'RIGHT'
 	E.db.unitframe.units.arena.buffs.countFont = Private.Font
 	E.db.unitframe.units.arena.buffs.countFontSize = 10
 	E.db.unitframe.units.arena.buffs.countPosition = 'TOPRIGHT'
@@ -1056,11 +1065,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.buffs.countYOffset = 0
 	E.db.unitframe.units.arena.buffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.buffs.maxDuration = 0
-	E.db.unitframe.units.arena.buffs.perrow = 5
 	E.db.unitframe.units.arena.buffs.priority = 'Whitelist,TurtleBuffs,Dispellable'
-	E.db.unitframe.units.arena.buffs.sizeOverride = 20
-	E.db.unitframe.units.arena.buffs.xOffset = -1
-	E.db.unitframe.units.arena.buffs.yOffset = -10
+	E.db.unitframe.units.arena.buffs.sizeOverride = 41
+	E.db.unitframe.units.arena.buffs.xOffset = 43
+	E.db.unitframe.units.arena.buffs.yOffset = 1
 	E.db.unitframe.units.arena.castbar.customTextFont.enable = true
 	E.db.unitframe.units.arena.castbar.customTextFont.font = Private.Font
 	E.db.unitframe.units.arena.castbar.customTextFont.fontSize = 9
@@ -1078,7 +1086,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.castbar.width = 211
 	E.db.unitframe.units.arena.castbar.xOffsetText = 2
 	E.db.unitframe.units.arena.castbar.xOffsetTime = -2
-	E.db.unitframe.units.arena.debuffs.anchorPoint = 'TOPLEFT'
 	E.db.unitframe.units.arena.debuffs.countFont = Private.Font
 	E.db.unitframe.units.arena.debuffs.countFontSize = 10
 	E.db.unitframe.units.arena.debuffs.countPosition = 'TOPRIGHT'
@@ -1088,9 +1095,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.arena.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.debuffs.maxDuration = 0
-	E.db.unitframe.units.arena.debuffs.perrow = 5
+	E.db.unitframe.units.arena.debuffs.perrow = 4
 	E.db.unitframe.units.arena.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
-	E.db.unitframe.units.arena.debuffs.sizeOverride = 20
+	E.db.unitframe.units.arena.debuffs.sizeOverride = 41
 	E.db.unitframe.units.arena.debuffs.xOffset = -1
 	E.db.unitframe.units.arena.debuffs.yOffset = 1
 	E.db.unitframe.units.arena.disableFocusGlow = true
@@ -1159,17 +1166,18 @@ function Private:Setup_ElvUI(layout)
 	}
 
 	E.db.unitframe.units.boss.buffIndicator.enable = false
+	E.db.unitframe.units.boss.buffs.anchorPoint = 'RIGHT'
 	E.db.unitframe.units.boss.buffs.countFont = Private.Font
 	E.db.unitframe.units.boss.buffs.countFontSize = 10
 	E.db.unitframe.units.boss.buffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.boss.buffs.countXOffset = 2
 	E.db.unitframe.units.boss.buffs.countYOffset = 0
 	E.db.unitframe.units.boss.buffs.growthY = 'DOWN'
-	E.db.unitframe.units.boss.buffs.perrow = 5
+	E.db.unitframe.units.boss.buffs.perrow = 2
 	E.db.unitframe.units.boss.buffs.priority = 'Dispellable,RaidBuffsElvUI'
-	E.db.unitframe.units.boss.buffs.sizeOverride = 20
-	E.db.unitframe.units.boss.buffs.xOffset = -1
-	E.db.unitframe.units.boss.buffs.yOffset = -10
+	E.db.unitframe.units.boss.buffs.sizeOverride = 41
+	E.db.unitframe.units.boss.buffs.xOffset = 1
+	E.db.unitframe.units.boss.buffs.yOffset = 1
 	E.db.unitframe.units.boss.castbar.customTextFont.enable = true
 	E.db.unitframe.units.boss.castbar.customTextFont.font = Private.Font
 	E.db.unitframe.units.boss.castbar.customTextFont.fontSize = 9
@@ -1188,7 +1196,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.boss.castbar.width = 211
 	E.db.unitframe.units.boss.castbar.xOffsetText = 2
 	E.db.unitframe.units.boss.castbar.xOffsetTime = -2
-	E.db.unitframe.units.boss.debuffs.anchorPoint = 'TOPLEFT'
 	E.db.unitframe.units.boss.debuffs.countFont = Private.Font
 	E.db.unitframe.units.boss.debuffs.countFontSize = 10
 	E.db.unitframe.units.boss.debuffs.countPosition = 'TOPRIGHT'
@@ -1196,9 +1203,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.boss.debuffs.countYOffset = 0
 	E.db.unitframe.units.boss.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.boss.debuffs.growthY = 'DOWN'
-	E.db.unitframe.units.boss.debuffs.perrow = 5
+	E.db.unitframe.units.boss.debuffs.perrow = 4
 	E.db.unitframe.units.boss.debuffs.priority = Private.isRetail and 'blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
-	E.db.unitframe.units.boss.debuffs.sizeOverride = 20
+	E.db.unitframe.units.boss.debuffs.sizeOverride = 41
 	E.db.unitframe.units.boss.debuffs.xOffset = -1
 	E.db.unitframe.units.boss.debuffs.yOffset = 1
 	E.db.unitframe.units.boss.disableFocusGlow = true
@@ -1676,8 +1683,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.buffs.sizeOverride = 20
 	E.db.unitframe.units.party.buffs.yOffset = -21
 	E.db.unitframe.units.party.classbar.enable = false
+	E.db.unitframe.units.party.debuffs.anchorPoint = 'TOPRIGHT'
 	E.db.unitframe.units.party.debuffs.countFont = Private.Font
 	E.db.unitframe.units.party.debuffs.countXOffset = 2
+	E.db.unitframe.units.party.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.party.debuffs.enable = true
 	E.db.unitframe.units.party.debuffs.maxDuration = 0
 	E.db.unitframe.units.party.debuffs.numrows = 2
@@ -1685,7 +1694,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.party.debuffs.sizeOverride = 31
 	E.db.unitframe.units.party.debuffs.xOffset = 1
-	E.db.unitframe.units.party.debuffs.yOffset = (scaled and 0) or -1
+	E.db.unitframe.units.party.debuffs.yOffset = 1
 	E.db.unitframe.units.party.disableFocusGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.fader.minAlpha = 0.5
