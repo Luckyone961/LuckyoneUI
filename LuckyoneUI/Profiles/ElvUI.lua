@@ -265,6 +265,10 @@ function Private:Setup_NamePlates(installer)
 	-- NamePlates CVars
 	Private:NameplateCVars()
 
+	if Private.isRetail then
+		E.db.nameplates.persistentFriendlyNP = true
+	end
+
 	-- NamePlates colors
 	E.db.nameplates.colors.auraByType = false
 	E.db.nameplates.colors.castbarDesaturate = false
