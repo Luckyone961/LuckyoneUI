@@ -12,6 +12,7 @@
 
 **Retail:**  
 - Fixed error API.lua:65: attempt to compare local 'name' (a secret value)  
+- Updated Arena frame auras (Buffs, Debuffs, Position, Growth, Limit)  
 - Updated Boss frame auras (Buffs, Debuffs, Position, Growth, Limit)  
 
 ## Version 4.01 [30-01-2026]

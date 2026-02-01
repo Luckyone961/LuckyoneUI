@@ -1053,6 +1053,7 @@ function Private:Setup_ElvUI(layout)
 		yOffset = 0
 	}
 
+	E.db.unitframe.units.arena.buffs.anchorPoint = 'RIGHT'
 	E.db.unitframe.units.arena.buffs.countFont = Private.Font
 	E.db.unitframe.units.arena.buffs.countFontSize = 10
 	E.db.unitframe.units.arena.buffs.countPosition = 'TOPRIGHT'
@@ -1060,11 +1061,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.buffs.countYOffset = 0
 	E.db.unitframe.units.arena.buffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.buffs.maxDuration = 0
-	E.db.unitframe.units.arena.buffs.perrow = 5
 	E.db.unitframe.units.arena.buffs.priority = 'Whitelist,TurtleBuffs,Dispellable'
-	E.db.unitframe.units.arena.buffs.sizeOverride = 20
-	E.db.unitframe.units.arena.buffs.xOffset = -1
-	E.db.unitframe.units.arena.buffs.yOffset = -10
+	E.db.unitframe.units.arena.buffs.sizeOverride = 41
+	E.db.unitframe.units.arena.buffs.xOffset = 43
+	E.db.unitframe.units.arena.buffs.yOffset = 1
 	E.db.unitframe.units.arena.castbar.customTextFont.enable = true
 	E.db.unitframe.units.arena.castbar.customTextFont.font = Private.Font
 	E.db.unitframe.units.arena.castbar.customTextFont.fontSize = 9
@@ -1082,7 +1082,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.castbar.width = 211
 	E.db.unitframe.units.arena.castbar.xOffsetText = 2
 	E.db.unitframe.units.arena.castbar.xOffsetTime = -2
-	E.db.unitframe.units.arena.debuffs.anchorPoint = 'TOPLEFT'
 	E.db.unitframe.units.arena.debuffs.countFont = Private.Font
 	E.db.unitframe.units.arena.debuffs.countFontSize = 10
 	E.db.unitframe.units.arena.debuffs.countPosition = 'TOPRIGHT'
@@ -1092,9 +1091,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.arena.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.debuffs.maxDuration = 0
-	E.db.unitframe.units.arena.debuffs.perrow = 5
+	E.db.unitframe.units.arena.debuffs.perrow = 4
 	E.db.unitframe.units.arena.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
-	E.db.unitframe.units.arena.debuffs.sizeOverride = 20
+	E.db.unitframe.units.arena.debuffs.sizeOverride = 41
 	E.db.unitframe.units.arena.debuffs.xOffset = -1
 	E.db.unitframe.units.arena.debuffs.yOffset = 1
 	E.db.unitframe.units.arena.disableFocusGlow = true
