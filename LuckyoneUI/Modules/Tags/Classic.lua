@@ -96,6 +96,8 @@ E:AddTagInfo('luckyone:health:percent-with-absorbs:nostatus', Private.Name, L["D
 -- Display percentage power with powercolor
 E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local min, max = UnitPower(unit), UnitPowerMax(unit)
+	if max == 0 then return end
+
 	local pType, pToken, altR, altG, altB = UnitPowerType(unit)
 	local color = _COLORS.power[pToken] or (altR and (altR > 1 or altG > 1 or altB > 1) and Private.Tags.Hex(altR / 255, altG / 255, altB / 255)) or Private.Tags.Hex(_COLORS.power[pType] or _COLORS.power.MANA)
 	local percentage = floor(min / max * 100 + .5)
@@ -117,7 +119,7 @@ E:AddTagInfo('luckyone:power:percent-color', Private.Name, L["Displays percentag
 -- Display percentage power with no color
 E:AddTag('luckyone:power:percent-nocolor', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local min, max = UnitPower(unit), UnitPowerMax(unit)
-	if min ~= 0 then
+	if min ~= 0 and max ~= 0 then
 		return floor(min / max * 100 + .5)
 	end
 end)
@@ -168,6 +170,7 @@ E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_
 		local color = ElvUF_colors_power.MANA
 		local min = UnitPower(unit, Enum.PowerType.Mana)
 		local max = UnitPowerMax(unit, Enum.PowerType.Mana)
+		if max == 0 then return end
 
 		return Private.Tags.Hex(color.r, color.g, color.b) .. E:GetFormattedText('PERCENT', min, max, 0, nil)
 	end

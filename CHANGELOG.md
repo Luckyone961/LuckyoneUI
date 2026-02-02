@@ -19,6 +19,7 @@
 
 **TBC:**  
 - Fixed custom skins loading even when the option was disabled  
+- Fixed power sometimes displaying inf% for people out of range  
 
 ## Version 4.01 [30-01-2026]
 
