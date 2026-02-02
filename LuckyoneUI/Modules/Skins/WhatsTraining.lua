@@ -17,7 +17,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 function Private:Skin_WhatsTraining()
-	if not (Private.isClassic or Private.isTBC) and not Private.Addon.db.profile.skins.WhatsTraining then return end
+	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.WhatsTraining then return end
 
 	if WhatsTrainingFrame and not WhatsTrainingFrame.isSkinned then
 		-- Main Frame

@@ -17,6 +17,9 @@
 - Updated Arena frame auras (Buffs, Debuffs, Position, Growth, Limit)  
 - Updated Boss frame auras (Buffs, Debuffs, Position, Growth, Limit)  
 
+**TBC:**  
+- Fixed custom skins loading even when the option was disabled  
+
 ## Version 4.01 [30-01-2026]
 
 **All WoW Versions:**  

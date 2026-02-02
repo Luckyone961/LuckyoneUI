@@ -18,7 +18,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 function Private:Skin_LeatrixPlus()
-	if not (Private.isClassic or Private.isTBC) and not Private.Addon.db.profile.skins.LeatrixPlus then return end
+	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.LeatrixPlus then return end
 
 	for _, checkbox in pairs({ PaperDollFrame:GetChildren() }) do
 		-- Find the head/cloak toggle checkboxes on the character frame

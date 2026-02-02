@@ -21,7 +21,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 function Private:Skin_DejaClassicStats()
-	if not (Private.isClassic or Private.isTBC) and not Private.Addon.db.profile.skins.DejaClassicStats then return end
+	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.DejaClassicStats then return end
 
 	if DejaClassicStatsFrame and not DejaClassicStatsFrame.isSkinned then
 		-- Main Frame
