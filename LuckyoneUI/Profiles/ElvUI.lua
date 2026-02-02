@@ -1735,9 +1735,29 @@ function Private:Setup_ElvUI(layout)
 	-- Shared Raid1
 	E.db.unitframe.units.raid1.buffIndicator.countFont = Private.Font
 	E.db.unitframe.units.raid1.buffIndicator.countFontSize = 10
-	E.db.unitframe.units.raid1.buffIndicator.size = 6
+	E.db.unitframe.units.raid1.buffs.anchorPoint = 'TOPLEFT'
+	E.db.unitframe.units.raid1.buffs.clickThrough = true
+	E.db.unitframe.units.raid1.buffs.countFont = Private.Font
+	E.db.unitframe.units.raid1.buffs.countFontSize = 10
+	E.db.unitframe.units.raid1.buffs.countPosition = 'TOPRIGHT'
+	E.db.unitframe.units.raid1.buffs.countXOffset = 2
+	E.db.unitframe.units.raid1.buffs.countYOffset = 0
+	E.db.unitframe.units.raid1.buffs.growthY = 'DOWN'
+	E.db.unitframe.units.raid1.buffs.perrow = 5
+	E.db.unitframe.units.raid1.buffs.sizeOverride = 18
+	E.db.unitframe.units.raid1.buffs.yOffset = 1
 	E.db.unitframe.units.raid1.classbar.enable = false
+	E.db.unitframe.units.raid1.debuffs.anchorPoint = 'BOTTOMLEFT'
+	E.db.unitframe.units.raid1.debuffs.countFont = Private.Font
+	E.db.unitframe.units.raid1.debuffs.countFontSize = 10
+	E.db.unitframe.units.raid1.debuffs.countPosition = 'TOPRIGHT'
+	E.db.unitframe.units.raid1.debuffs.countXOffset = 2
+	E.db.unitframe.units.raid1.debuffs.countYOffset = 0
+	E.db.unitframe.units.raid1.debuffs.isAuraRaid = true
+	E.db.unitframe.units.raid1.debuffs.perrow = 5
 	E.db.unitframe.units.raid1.debuffs.priority = 'Dispellable,RaidDebuffs'
+	E.db.unitframe.units.raid1.debuffs.sizeOverride = 18
+	E.db.unitframe.units.raid1.debuffs.yOffset = -1
 	E.db.unitframe.units.raid1.disableFocusGlow = true
 	E.db.unitframe.units.raid1.disableTargetGlow = true
 	E.db.unitframe.units.raid1.fader.minAlpha = 0.5
@@ -1805,6 +1825,13 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.readycheckIcon.yOffset = 0
 	E.db.unitframe.units.raid3.resurrectIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.raid3.resurrectIcon.size = 18
+	E.db.unitframe.units.raid3.roleIcon.attachTo = 'Frame'
+	E.db.unitframe.units.raid3.roleIcon.damager = false
+	E.db.unitframe.units.raid3.roleIcon.enable = true
+	E.db.unitframe.units.raid3.roleIcon.position = 'LEFT'
+	E.db.unitframe.units.raid3.roleIcon.size = 12
+	E.db.unitframe.units.raid3.roleIcon.xOffset = 0
+	E.db.unitframe.units.raid3.roleIcon.yOffset = 0
 	E.db.unitframe.units.raid3.summonIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.raid3.summonIcon.size = 18
 	E.db.unitframe.units.raid3.threatStyle = 'NONE'
@@ -1815,12 +1842,12 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.AddonCompartmentMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66'
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-202'
 	E.db.movers.AltPowerBarMover = 'TOP,ElvUIParent,TOP,0,-22'
-	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-301,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
+	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-340,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-390,-280'
 	E.db.movers.BagsMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-455,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-501,1'
 	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-201,-193'
 	E.db.movers.BNETMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
-	E.db.movers.BossHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-301,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-322,-280'
+	E.db.movers.BossHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-340,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-390,-280'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-116'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
@@ -1880,17 +1907,6 @@ function Private:Setup_ElvUI(layout)
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
 	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
 
-	-- Custom nonRetail changes
-	if Private.itsLuckyone and not Private.isRetail then
-		-- Extra bar next to the left chat panel
-		E.db.actionbar.bar4.enable = true
-		E.db.actionbar.bar4.buttons = 8
-		E.db.actionbar.bar4.buttonsPerRow = 1
-		E.db.actionbar.bar4.buttonSize = 25
-		E.db.actionbar.bar4.point = 'BOTTOMRIGHT'
-		E.db.movers.ElvAB_4 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,2'
-	end
-
 	if layout == 'main' then
 
 		-- Main Player
@@ -1902,6 +1918,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. '[ ||r- >luckyone:healermana:percent<%]'
 
 		-- Main Raid1
+		E.db.unitframe.units.raid1.buffIndicator.size = 6
 		E.db.unitframe.units.raid1.height = 40
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid1.raidicon.attachToObject = 'Health'
@@ -1953,13 +1970,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.rdebuffs.stack.yOffset = 0
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 8
-		E.db.unitframe.units.raid3.roleIcon.attachTo = 'Frame'
-		E.db.unitframe.units.raid3.roleIcon.damager = false
-		E.db.unitframe.units.raid3.roleIcon.enable = true
-		E.db.unitframe.units.raid3.roleIcon.position = 'LEFT'
-		E.db.unitframe.units.raid3.roleIcon.size = 12
-		E.db.unitframe.units.raid3.roleIcon.xOffset = 0
-		E.db.unitframe.units.raid3.roleIcon.yOffset = 0
 		E.db.unitframe.units.raid3.width = (scaled and 86) or 96
 
 		-- Main misc
@@ -1996,6 +2006,8 @@ function Private:Setup_ElvUI(layout)
 
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
+		E.db.unitframe.units.raid1.buffs.enable = Private.isRetail
+		E.db.unitframe.units.raid1.debuffs.enable = Private.isRetail
 		E.db.unitframe.units.raid1.height = (scaled and 60) or 70
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid1.raidicon.size = 14
@@ -2009,16 +2021,13 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid1.rdebuffs.stack.yOffset = 0
 		E.db.unitframe.units.raid1.rdebuffs.xOffset = 60
 		E.db.unitframe.units.raid1.rdebuffs.yOffset = 27
-		E.db.unitframe.units.raid1.roleIcon.attachTo = 'Frame'
-		E.db.unitframe.units.raid1.roleIcon.damager = false
-		E.db.unitframe.units.raid1.roleIcon.position = 'LEFT'
 		E.db.unitframe.units.raid1.roleIcon.size = 16
-		E.db.unitframe.units.raid1.roleIcon.xOffset = 0
-		E.db.unitframe.units.raid1.roleIcon.yOffset = 0
 		E.db.unitframe.units.raid1.width = 140
 
 		-- Healing Raid2
 		E.db.unitframe.units.raid2.buffIndicator.size = 14
+		E.db.unitframe.units.raid2.buffs.enable = Private.isRetail
+		E.db.unitframe.units.raid2.debuffs.enable = Private.isRetail
 		E.db.unitframe.units.raid2.height = (scaled and 44) or 54
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid2.raidicon.size = 14
@@ -2032,12 +2041,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.rdebuffs.stack.yOffset = 0
 		E.db.unitframe.units.raid2.rdebuffs.xOffset = 60
 		E.db.unitframe.units.raid2.rdebuffs.yOffset = 20
-		E.db.unitframe.units.raid2.roleIcon.attachTo = 'Frame'
-		E.db.unitframe.units.raid2.roleIcon.damager = false
-		E.db.unitframe.units.raid2.roleIcon.position = 'LEFT'
 		E.db.unitframe.units.raid2.roleIcon.size = 16
-		E.db.unitframe.units.raid2.roleIcon.xOffset = 0
-		E.db.unitframe.units.raid2.roleIcon.yOffset = 0
 		E.db.unitframe.units.raid2.width = 140
 
 		-- Healing Raid3
@@ -2055,13 +2059,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.rdebuffs.stack.yOffset = 0
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 60
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 11
-		E.db.unitframe.units.raid3.roleIcon.attachTo = 'Frame'
-		E.db.unitframe.units.raid3.roleIcon.damager = false
-		E.db.unitframe.units.raid3.roleIcon.enable = true
-		E.db.unitframe.units.raid3.roleIcon.position = 'LEFT'
-		E.db.unitframe.units.raid3.roleIcon.size = 12
-		E.db.unitframe.units.raid3.roleIcon.xOffset = 0
-		E.db.unitframe.units.raid3.roleIcon.yOffset = 0
 		E.db.unitframe.units.raid3.width = 140
 
 		-- Healing misc
@@ -2083,5 +2080,16 @@ function Private:Setup_ElvUI(layout)
 			E.db.actionbar.bar2.mouseover = true
 			E.db.actionbar.bar3.mouseover = true
 		end
+	end
+
+	-- Custom nonRetail changes
+	if Private.itsLuckyone and not Private.isRetail then
+		-- Extra bar next to the left chat panel
+		E.db.actionbar.bar4.enable = true
+		E.db.actionbar.bar4.buttons = 8
+		E.db.actionbar.bar4.buttonsPerRow = 1
+		E.db.actionbar.bar4.buttonSize = 25
+		E.db.actionbar.bar4.point = 'BOTTOMRIGHT'
+		E.db.movers.ElvAB_4 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,2'
 	end
 end
