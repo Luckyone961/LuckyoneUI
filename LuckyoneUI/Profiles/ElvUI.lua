@@ -1389,7 +1389,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 11,
-		text_format = '[luckyone:power:percent-color<%]',
+		text_format = '[luckyone:power:percent-nocolor<%]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1455,9 +1455,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.height = 50
 	E.db.unitframe.units.player.partyIndicator.enable = false
 	E.db.unitframe.units.player.power.enable = false
-	E.db.unitframe.units.player.power.height = 4
-	E.db.unitframe.units.player.power.strataAndLevel.frameStrata = 'MEDIUM'
-	E.db.unitframe.units.player.power.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.player.power.text_format = ''
 	E.db.unitframe.units.player.pvp.text_format = ''
 	E.db.unitframe.units.player.pvpIcon.scale = 0.85
@@ -1893,6 +1890,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-79'
 	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-98'
 	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
+	E.db.movers.PlayerPowerBarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-287,341') or 'BOTTOM,ElvUIParent,BOTTOM,-320,481'
 	E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-132'
 	E.db.movers.PrivateAurasMover = (scaled and 'TOP,ElvUIParent,TOP,212,-474') or 'TOP,ElvUIParent,TOP,221,-640'
 	E.db.movers.PrivateRaidWarningMover = (scaled and 'TOP,ElvUIParent,TOP,0,-154') or 'TOP,ElvUIParent,TOP,0,-200'
@@ -1918,7 +1916,6 @@ function Private:Setup_ElvUI(layout)
 		-- Main Player
 		E.db.unitframe.units.player.castbar.height = 22
 		E.db.unitframe.units.player.castbar.width = 315
-		E.db.unitframe.units.player.power.autoHide = true
 
 		-- Main Party
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. (not Private.isRetail and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]')
@@ -1999,9 +1996,12 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.power.autoHide = false
 		E.db.unitframe.units.player.power.detachedWidth = 260
 		E.db.unitframe.units.player.power.detachFromFrame = true
+		E.db.unitframe.units.player.power.enable = true
 		E.db.unitframe.units.player.power.height = 18
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
+		E.db.unitframe.units.player.power.strataAndLevel.frameStrata = 'MEDIUM'
+		E.db.unitframe.units.player.power.strataAndLevel.useCustomStrata = true
 
 		if (Private.isClassic or Private.isTBC) then
 			E.db.unitframe.units.player.power.EnergyManaRegen = true
