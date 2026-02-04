@@ -4,18 +4,18 @@
 - Added healermana text on party frames for the DPS & Tank layout  
 - Chat installer print will now remind you to create and save an editmode profile  
 - Fixed default position for the bag bar in case someone enables it  
-- Reworked Target frame to include TargetTarget text and power text without a bar  
-- Target frame castbar font size now matches the player frame castbar font size  
+- Reworked Target Frame (Added TargetTarget text and moved text positions)  
 - Updated cooldown and duration swipes, edges and blings for most elements  
 - Updated CVars and Nameplate CVars setup buttons and config descriptions  
-- Updated positioning and growth of party frame debuffs  
+- Updated Party Frames (Debuffs anchorpoint, growth, height)  
+- Tweaked some more values in the 1080p profiles (Positioning)  
 
 **Retail:**  
-- Added initial setup for Raid frame auras (Healing layout)  
+- Added initial Buffs and Debuffs setup for Raid Frames (Healing Layout)  
 - Enabled the new ElvUI Nameplates option "Lock Friendly NPC Plates" by default  
-- Fixed error API.lua:65: attempt to compare local 'name' (a secret value)  
-- Reworked Arena Frames  
-- Reworked Boss Frames  
+- Fixed error in API.lua:65 attempt to compare local 'name' (a secret value)  
+- Reworked Arena Frames (Style will match the new Target Frame)  
+- Reworked Boss Frames (Style will match the new Target Frame)  
 
 **TBC:**  
 - Fixed custom skins loading even when the option was disabled  
