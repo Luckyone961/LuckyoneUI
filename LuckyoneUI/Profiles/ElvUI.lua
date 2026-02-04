@@ -1700,7 +1700,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.healPrediction.absorbStyle = 'WRAPPED'
 	E.db.unitframe.units.party.healPrediction.enable = true
 	E.db.unitframe.units.party.health.text_format = ''
-	E.db.unitframe.units.party.height = 64
+	E.db.unitframe.units.party.height = 63
 	E.db.unitframe.units.party.horizontalSpacing = 1
 	E.db.unitframe.units.party.name.text_format = ''
 	E.db.unitframe.units.party.phaseIndicator.anchorPoint = 'LEFT'
