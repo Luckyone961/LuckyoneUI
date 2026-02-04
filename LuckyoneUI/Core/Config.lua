@@ -356,10 +356,9 @@ local function BuildDevSection()
 	section.args.header2 = ACH:Header('Luckyone\'s Private Section', 5)
 	section.args.syncInfo = ACH:Group('Important information', nil, 6)
 	section.args.syncInfo.inline = true
-	section.args.syncInfo.args.desc = ACH:Description('Clicking this button will override every single option of the games ESC > Options with Luckyone\'s settings.\n\nThis includes all of gameplay, accessibility, graphics, audio and network.\n\nIf you decide to use this, copy the command from Step 1 and enter it in your chat, then click Step 2.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r', 1, 'medium')
+	section.args.syncInfo.args.desc = ACH:Description('Clicking this button will override every single option of the games ESC > Options with Luckyone\'s settings.\n\nThis includes all of gameplay, accessibility, graphics, audio and network.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r', 1, 'medium')
 	section.args.spacer = ACH:Spacer(7, 'full')
-	section.args.command = ACH:Execute('Step 1', '|cffC80000Do not click without reading the important information!|r', 8, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, '/console cvar_default') end)
-	section.args.execute = ACH:Execute('Step 2', '|cffC80000Do not click without reading the important information!|r', 9, function() Private:SyncSettings() end, nil, true)
+	section.args.execute = ACH:Execute('Sync Game Settings', '|cffC80000Do not click without reading the important information!|r', 8, function() Private:SyncSettings() end, nil, true)
 	return section
 end
 
