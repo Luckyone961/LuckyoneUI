@@ -14,7 +14,7 @@
 - Added initial setup for Raid frame auras (Healing layout)  
 - Enabled the new ElvUI Nameplates option "Lock Friendly NPC Plates" by default  
 - Fixed error API.lua:65: attempt to compare local 'name' (a secret value)  
-- Updated Arena frame auras (Buffs, Debuffs, Position, Growth, Limit)  
+- Reworked Arena Frames  
 - Reworked Boss Frames  
 
 **TBC:**  
