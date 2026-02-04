@@ -36,7 +36,7 @@ function Private:PrivacyOverlay()
 
 	-- Make sure we can click the overlay to show the chat
 	PrivacyOverlay:EnableMouse(true)
-	PrivacyOverlay:RegisterForClicks('AnyUp')
+	PrivacyOverlay:RegisterForClicks('AnyDown', 'AnyUp')
 	PrivacyOverlay:SetScript('OnClick', function(...)
 			PrivacyOverlay:Hide()
 	end)
