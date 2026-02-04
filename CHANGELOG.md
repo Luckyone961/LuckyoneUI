@@ -7,6 +7,7 @@
 - Reworked Target Frame (Added TargetTarget text and moved text positions)  
 - Updated cooldown and duration swipes, edges and blings for most elements  
 - Updated CVars and Nameplate CVars setup buttons and config descriptions  
+- Updated BigWigs profile strings (Messages Y-Offset, Bars anchorpoint)  
 - Updated Party Frames (Debuffs anchorpoint, growth, height)  
 - Tweaked some more values in the 1080p profiles (Positioning)  
 
