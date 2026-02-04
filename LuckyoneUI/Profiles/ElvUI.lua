@@ -1677,15 +1677,23 @@ function Private:Setup_ElvUI(layout)
 
 	E.db.unitframe.units.party.buffs.anchorPoint = 'TOPLEFT'
 	E.db.unitframe.units.party.buffs.clickThrough = true
+	E.db.unitframe.units.party.buffs.countFont = Private.Font
+	E.db.unitframe.units.party.buffs.countFontSize = 10
+	E.db.unitframe.units.party.buffs.countPosition = 'TOPRIGHT'
+	E.db.unitframe.units.party.buffs.countXOffset = 1
+	E.db.unitframe.units.party.buffs.countYOffset = -1
 	E.db.unitframe.units.party.buffs.enable = Private.isRetail
 	E.db.unitframe.units.party.buffs.sizeOverride = 20
 	E.db.unitframe.units.party.buffs.yOffset = -21
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.debuffs.anchorPoint = 'TOPRIGHT'
 	E.db.unitframe.units.party.debuffs.countFont = Private.Font
-	E.db.unitframe.units.party.debuffs.countXOffset = 2
-	E.db.unitframe.units.party.debuffs.growthY = 'DOWN'
+	E.db.unitframe.units.party.debuffs.countFontSize = 10
+	E.db.unitframe.units.party.debuffs.countPosition = 'TOPRIGHT'
+	E.db.unitframe.units.party.debuffs.countXOffset = 1
+	E.db.unitframe.units.party.debuffs.countYOffset = -1
 	E.db.unitframe.units.party.debuffs.enable = true
+	E.db.unitframe.units.party.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.party.debuffs.maxDuration = 0
 	E.db.unitframe.units.party.debuffs.numrows = 2
 	E.db.unitframe.units.party.debuffs.perrow = 4
