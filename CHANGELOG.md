@@ -18,6 +18,7 @@
 - Fixed error in API.lua:65 attempt to compare local 'name' (a secret value)  
 - Reworked Arena Frames (Style will match the new Target Frame)  
 - Reworked Boss Frames (Style will match the new Target Frame)  
+- Updated WindTools profile (Skins)  
 
 **TBC:**  
 - Fixed custom skins loading even when the option was disabled  
