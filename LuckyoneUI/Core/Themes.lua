@@ -67,16 +67,19 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.player.castbar.customColor.colorBackdrop.r = 0.54
 		E.db.unitframe.units.player.castbar.customColor.enable = true
 
-		-- Text colors
+		-- Text colors [Group Units]
 		E.db.unitframe.units.arena.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]'
 		E.db.unitframe.units.boss.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]'
-		E.db.unitframe.units.focus.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]'
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. (profile == 1 and (not Private.isRetail and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]') or '')
-		E.db.unitframe.units.player.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]')
+			.. (profile == 1 and (not Private.isRetail and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]') or '')
 		E.db.unitframe.units.raid1.name.text_format = Private.isRetail and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 		E.db.unitframe.units.raid2.name.text_format = Private.isRetail and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 		E.db.unitframe.units.raid3.name.text_format = Private.isRetail and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 		E.db.unitframe.units.raidpet.name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:veryshort-classcolor]'
+
+		-- Text colors [Individual Units]
+		E.db.unitframe.units.focus.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]'
+		E.db.unitframe.units.player.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]'
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color][ |r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]'
 
@@ -123,19 +126,21 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.player.castbar.customColor.colorBackdrop.r = 0.05
 		E.db.unitframe.units.player.castbar.customColor.enable = false
 
-		-- Text colors
+		-- Text colors [Group Units]
 		E.db.unitframe.units.arena.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
 		E.db.unitframe.units.boss.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
-		E.db.unitframe.units.focus.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-nocolor-friendly]' or '[luckyone:name:short-nocolor]') .. (profile == 1 and (not Private.isRetail and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]') or '')
-		E.db.unitframe.units.player.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-nocolor-friendly]' or '[luckyone:name:short-nocolor]')
+			.. (profile == 1 and (not Private.isRetail and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]') or '')
 		E.db.unitframe.units.raid1.name.text_format = Private.isRetail and '[luckyone:name:veryshort-nocolor-friendly]' or '[luckyone:name:veryshort-nocolor]'
 		E.db.unitframe.units.raid2.name.text_format = Private.isRetail and '[luckyone:name:veryshort-nocolor-friendly]' or '[luckyone:name:veryshort-nocolor]'
 		E.db.unitframe.units.raid3.name.text_format = Private.isRetail and '[luckyone:name:veryshort-nocolor-friendly]' or '[luckyone:name:veryshort-nocolor]'
 		E.db.unitframe.units.raidpet.name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:veryshort-nocolor]'
+
+		-- Text colors [Individual Units]
+		E.db.unitframe.units.focus.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
+		E.db.unitframe.units.player.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
 		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor][ |r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-nocolor][ |r» >luckyone:target:last-classcolor]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
-
 	end
 
 	E:UpdateMediaItems(true)
