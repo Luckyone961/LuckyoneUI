@@ -21,6 +21,7 @@ Private.Defaults = {
 		},
 		misc = {
 			mythicVisibility = false,
+			nameplateClassification = false,
 			dataTextsTweaks = false,
 		},
 		qualityOfLife = {
