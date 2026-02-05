@@ -1,15 +1,26 @@
-## Version 4.01 [30-01-2026]
+## Version 4.02 [05-02-2026]
 
 **All WoW Versions:**  
-- ElvUI 15.02+ compatibility  
-- Another full pass of updates for the 1080p profiles (Scaling & positioning)  
-- Disabled the black "edge" for cooldown swipes across the UI by default  
-- Updated BigWigs profile strings  
-- Updated Plater profile string (I still use ElvUI Nameplates)  
+- ElvUI 15.03+ compatibility  
+- Added back a updated version of the player mana bar (Healing Layout)  
+- Added healermana text on party frames for the DPS & Tank layout  
+- Chat installer print will now remind you to create and save an editmode profile  
+- Fixed default position for the bag bar in case someone enables it  
+- Reworked Target Frame (Added TargetTarget text and moved text positions)  
+- Tweaked some more values in the 1080p profiles (Positioning)  
+- Updated BigWigs profile strings (Messages Y-Offset, Bars anchorpoint)  
+- Updated cooldown and duration swipes, edges and blings for most elements  
+- Updated CVars and Nameplate CVars setup buttons and config descriptions  
+- Updated Party Frames (Debuffs anchorpoint, growth, height)  
 
 **Retail:**  
-- Added 1080p Edit Mode string (Chat, Talking Head, Quest Tracker) positioning  
-- Added 1440p Edit Mode string (Chat, Talking Head, Quest Tracker) positioning  
-- New chat command /lucky untrack as a shortcut for the below mentioned  
-- New button to remove all hidden tracked quests to boost fps (Credits: LootFever and reddit user careseite)  
-- Small adjustments for Extra Action Button and Zone Ability Button  
+- Added initial Buffs and Debuffs setup for Raid Frames (Healing Layout)  
+- Enabled the new ElvUI Nameplates option "Lock Friendly NPC Plates" by default  
+- Fixed error in API.lua:65 attempt to compare local 'name' (a secret value)  
+- Reworked Arena Frames (Style will match the new Target Frame)  
+- Reworked Boss Frames (Style will match the new Target Frame)  
+- Updated WindTools profile (Skins)  
+
+**TBC:**  
+- Fixed custom skins loading even when the option was disabled  
+- Fixed power sometimes displaying inf% for people out of range  

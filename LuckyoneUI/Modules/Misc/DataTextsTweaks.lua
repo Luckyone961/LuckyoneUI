@@ -7,7 +7,6 @@ if not Private.ElvUI then
 end
 
 -- Lua functions
-local strfind = string.find
 local unpack = unpack
 
 -- API cache
@@ -16,11 +15,6 @@ local InCombatLockdown = InCombatLockdown
 -- ElvUI reference
 local E = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
-
-local function Profile()
-	local data = E.data:GetCurrentProfile()
-	return strfind(data, 'Luckyone Main') and 1 or strfind(data, 'Luckyone Healing') and 2 or nil
-end
 
 -- Update ActionBars DataText width based on active LuckyoneUI profile
 local function UpdateDataTextWidth()
@@ -32,7 +26,7 @@ local function UpdateDataTextWidth()
 	local ActionBarsDT = datatexts.customPanels.Luckyone_ActionBars_DT
 	if not ActionBarsDT then return end
 
-	local profile = Profile()
+	local profile = Private:GetActiveProfile()
 
 	-- Main layout values
 	if profile == 1 then
