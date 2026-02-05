@@ -1,6 +1,7 @@
 ﻿## Version 4.02 [In Development]
 
 **All WoW Versions:**  
+- ElvUI 15.03+ compatibility  
 - Added back a updated version of the player mana bar (Healing Layout)  
 - Added healermana text on party frames for the DPS & Tank layout  
 - Chat installer print will now remind you to create and save an editmode profile  
