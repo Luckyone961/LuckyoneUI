@@ -2,6 +2,10 @@
 
 **All WoW Versions:**  
 - Fixed a bug which caused color coding to not be included when copy-pasting text formats  
+- Updated default value for the nameplateOverlapV CVar (from 2.2 to 1.6)  
+
+**Retail:**  
+- Added new option for instance-only nameplate classification coloring in the ElvUI Tweaks config tab  
 
 ## Version 4.02 [05-02-2026]
 

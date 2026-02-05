@@ -51,7 +51,7 @@ function Private:NameplateCVars(noPrint)
 	SetCVar('nameplateMinScale', 1)
 	SetCVar('nameplateOccludedAlphaMult', 1)
 	SetCVar('nameplateOverlapH', 1)
-	SetCVar('nameplateOverlapV', 2.2)
+	SetCVar('nameplateOverlapV', 1.6)
 	SetCVar('nameplateSelectedScale', 1)
 	SetCVar('nameplateSelfAlpha', 1)
 
