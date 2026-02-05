@@ -493,5 +493,8 @@ function Private.Addon:RegisterEvents()
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 	self:RegisterEvent('PLAYER_LOGIN')
 	self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
-	Private:MiscTweaks()
+
+	if Private.ElvUI then
+		Private:MiscTweaks()
+	end
 end
