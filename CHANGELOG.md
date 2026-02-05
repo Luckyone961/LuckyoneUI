@@ -1,4 +1,9 @@
-﻿## Version 4.02 [05-02-2026]
+﻿## Version 4.03 [In Development]
+
+**All WoW Versions:**  
+- Fixed a bug which caused color coding to not be included when copy-pasting text formats  
+
+## Version 4.02 [05-02-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.03+ compatibility  
