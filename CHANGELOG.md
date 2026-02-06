@@ -1,21 +1,38 @@
-﻿## Version 4.02 [In Development]
+﻿## Version 4.03 [In Development]
 
 **All WoW Versions:**  
+- Fixed a bug which caused color coding to not be included when copy-pasting text formats  
+- Updated default value for the nameplateOverlapV CVar (from 2.2 to 1.6)  
+
+**Retail:**  
+- Added new option for instance-only nameplate classification coloring in the ElvUI Tweaks config tab  
+
+## Version 4.02 [05-02-2026]
+
+**All WoW Versions:**  
+- ElvUI 15.03+ compatibility  
+- Added back a updated version of the player mana bar (Healing Layout)  
 - Added healermana text on party frames for the DPS & Tank layout  
 - Chat installer print will now remind you to create and save an editmode profile  
 - Fixed default position for the bag bar in case someone enables it  
-- Reworked Target frame to include TargetTarget text and power text without a bar  
-- Target frame castbar font size now matches the player frame castbar font size  
+- Reworked Target Frame (Added TargetTarget text and moved text positions)  
+- Tweaked some more values in the 1080p profiles (Positioning)  
+- Updated BigWigs profile strings (Messages Y-Offset, Bars anchorpoint)  
 - Updated cooldown and duration swipes, edges and blings for most elements  
 - Updated CVars and Nameplate CVars setup buttons and config descriptions  
-- Updated positioning and growth of party frame debuffs  
+- Updated Party Frames (Debuffs anchorpoint, growth, height)  
 
 **Retail:**  
-- Added initial setup for Raid frame auras (Healing layout)  
+- Added initial Buffs and Debuffs setup for Raid Frames (Healing Layout)  
 - Enabled the new ElvUI Nameplates option "Lock Friendly NPC Plates" by default  
-- Fixed error API.lua:65: attempt to compare local 'name' (a secret value)  
-- Updated Arena frame auras (Buffs, Debuffs, Position, Growth, Limit)  
-- Updated Boss frame auras (Buffs, Debuffs, Position, Growth, Limit)  
+- Fixed error in API.lua:65 attempt to compare local 'name' (a secret value)  
+- Reworked Arena Frames (Style will match the new Target Frame)  
+- Reworked Boss Frames (Style will match the new Target Frame)  
+- Updated WindTools profile (Skins)  
+
+**TBC:**  
+- Fixed custom skins loading even when the option was disabled  
+- Fixed power sometimes displaying inf% for people out of range  
 
 ## Version 4.01 [30-01-2026]
 
