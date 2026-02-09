@@ -465,6 +465,7 @@ function Private.Addon:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	if Private.ElvUI then
 		Private:MythicVisibility()
 		Private:DataTextsTweaks()
+		Private:UpdateNameplateClassification()
 	end
 
 	self:LoadCommands()
