@@ -3,7 +3,11 @@
 **All WoW Versions:**  
 - Added new option for instance-only nameplate classification coloring in the ElvUI Tweaks config tab  
 - Fixed a bug which caused color coding to not be included when copy-pasting text formats  
-- Updated default value for the nameplateOverlapV CVar (from 2.2 to 1.6)  
+- Updated deDE locales (Credits: Dlarge)  
+- Updated the default value for the CVar nameplateOverlapV (from 2.2 to 1.6)  
+
+**Retail:**  
+- Updated TOC for patch 12.0.1  
 
 ## Version 4.02 [05-02-2026]
 
