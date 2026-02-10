@@ -1756,7 +1756,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.debuffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.raid1.debuffs.countXOffset = 2
 	E.db.unitframe.units.raid1.debuffs.countYOffset = 0
-	E.db.unitframe.units.raid1.debuffs.isAuraRaid = true
 	E.db.unitframe.units.raid1.debuffs.perrow = 5
 	E.db.unitframe.units.raid1.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid1.debuffs.sizeOverride = 18
