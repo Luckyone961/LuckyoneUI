@@ -5,10 +5,10 @@
 
 ## DefaultState: enabled
 ## Author: Luckyone
-## Version: 4.02
+## Version: 4.03
 
 ## Interface: 50502
-## X-Required-ElvUI: 15.04
+## X-Required-ElvUI: 15.05
 
 ## X-Curse-Project-ID: 363472
 ## X-Wago-ID: Rn6VLGdB

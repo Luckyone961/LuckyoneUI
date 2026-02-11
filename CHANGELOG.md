@@ -1,4 +1,4 @@
-﻿## Version 4.03 [In Development]
+﻿## Version 4.03 [11-02-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.05+ compatibility  
