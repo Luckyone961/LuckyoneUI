@@ -3,6 +3,7 @@ local Name, Private = ...
 local L = Private.Libs.ACL
 local LDB = Private.Libs.LDB
 local LDBI = Private.Libs.LDBI
+local Core = Private.Modules.Core
 
 -- Lua functions
 local format = string.format
@@ -447,35 +448,12 @@ function Private:HandleToons()
 	Private.itsLuckyone = toons[guid]
 end
 
--- Events
-function Private.Addon:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
-	if initLogin or not Private.Addon.db.global.DebugDisabledAddOns then
-		Private.Addon.db.global.DebugDisabledAddOns = {}
-	end
-
-	if Private.ElvUI and (initLogin or isReload) then
-		Private:VersionCheck()
-	end
-
-	Private:DisabledFrames()
-	Private:EasyDelete()
-	Private:HandleToons()
-	Private:PrivacyOverlay()
-
-	if Private.ElvUI then
-		Private:MythicVisibility()
-		Private:DataTextsTweaks()
-		Private:UpdateNameplateClassification()
-	end
-
-	self:LoadCommands()
-
-	if Private.itsLuckyone then
-		Private.Addon.db.global.dev = true
-	end
+function Core:OnEnable()
+	self:RegisterEvent('PLAYER_LOGIN')
+	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
 
-function Private.Addon:PLAYER_LOGIN()
+function Core:PLAYER_LOGIN()
 	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
 	Private:CheckElvUI()
 	Private:CheckIncompatible()
@@ -485,17 +463,19 @@ function Private.Addon:PLAYER_LOGIN()
 	end
 end
 
-function Private.Addon:PLAYER_SPECIALIZATION_CHANGED()
-	Private:DataTextsTweaks()
-end
+function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
+	if initLogin or not Private.Addon.db.global.DebugDisabledAddOns then
+		Private.Addon.db.global.DebugDisabledAddOns = {}
+	end
 
--- Register events during addon initialization
-function Private.Addon:RegisterEvents()
-	self:RegisterEvent('PLAYER_ENTERING_WORLD')
-	self:RegisterEvent('PLAYER_LOGIN')
-	self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
+	if Private.ElvUI and (initLogin or isReload) then
+		Private:VersionCheck()
+	end
 
-	if Private.ElvUI then
-		Private:MiscTweaks()
+	Private:HandleToons()
+	Private.Addon:LoadCommands()
+
+	if Private.itsLuckyone then
+		Private.Addon.db.global.dev = true
 	end
 end
