@@ -8,6 +8,7 @@
 - Updated the default value for the CVar nameplateOverlapV (from 2.2 to 1.6)  
 
 **Retail:**  
+- Initial default filters based on new patch 12.0.1 APIs (Will tweak further if needed)  
 - Updated TOC for patch 12.0.1  
 
 ## Version 4.02 [05-02-2026]
