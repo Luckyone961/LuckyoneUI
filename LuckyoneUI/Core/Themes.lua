@@ -80,7 +80,7 @@ function Private:Setup_Theme(theme, installer)
 		-- Text colors [Individual Units]
 		E.db.unitframe.units.focus.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]'
 		E.db.unitframe.units.player.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]'
-		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color][ |r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]'
+		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color][ ||r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-classcolor][ ||r» >luckyone:target:last-classcolor]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]'
 
 	elseif theme == 'class' then
@@ -139,7 +139,7 @@ function Private:Setup_Theme(theme, installer)
 		-- Text colors [Individual Units]
 		E.db.unitframe.units.focus.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
 		E.db.unitframe.units.player.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
-		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor][ |r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-nocolor][ |r» >luckyone:target:last-classcolor]'
+		E.db.unitframe.units.target.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor][ ||r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-nocolor][ ||r» >luckyone:target:last-classcolor]'
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
 	end
 

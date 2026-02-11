@@ -314,7 +314,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.fadeIn = false
 	E.db.nameplates.lowHealthThreshold = 0
 	E.db.nameplates.overlapH = 1
-	E.db.nameplates.overlapV = 2.2
+	E.db.nameplates.overlapV = 1.6
 	E.db.nameplates.statusbar = Private.Texture
 	E.db.nameplates.threat.useSoloColor = true
 
@@ -1485,7 +1485,7 @@ function Private:Setup_ElvUI(layout)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:name-color][ |r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-classcolor][ |r» >luckyone:target:last-classcolor]',
+		text_format = Private.isRetail and '[luckyone:name-color][ ||r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-classcolor][ ||r» >luckyone:target:last-classcolor]',
 		xOffset = -2,
 		yOffset = 14
 	}
@@ -1756,7 +1756,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.debuffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.raid1.debuffs.countXOffset = 2
 	E.db.unitframe.units.raid1.debuffs.countYOffset = 0
-	E.db.unitframe.units.raid1.debuffs.isAuraRaid = true
 	E.db.unitframe.units.raid1.debuffs.perrow = 5
 	E.db.unitframe.units.raid1.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid1.debuffs.sizeOverride = 18

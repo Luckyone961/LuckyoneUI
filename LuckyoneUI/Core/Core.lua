@@ -465,6 +465,7 @@ function Private.Addon:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	if Private.ElvUI then
 		Private:MythicVisibility()
 		Private:DataTextsTweaks()
+		Private:UpdateNameplateClassification()
 	end
 
 	self:LoadCommands()
@@ -493,4 +494,8 @@ function Private.Addon:RegisterEvents()
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 	self:RegisterEvent('PLAYER_LOGIN')
 	self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
+
+	if Private.ElvUI then
+		Private:MiscTweaks()
+	end
 end
