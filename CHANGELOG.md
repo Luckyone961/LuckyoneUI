@@ -1,6 +1,7 @@
 ﻿## Version 4.03 [In Development]
 
 **All WoW Versions:**  
+- ElvUI 15.04+ compatibility  
 - Added new option for instance-only nameplate classification coloring in the ElvUI Tweaks config tab  
 - Fixed a bug which caused color coding to not be included when copy-pasting text formats  
 - Updated deDE locales (Credits: Dlarge)  
