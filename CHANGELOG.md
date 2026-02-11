@@ -1,4 +1,12 @@
-﻿## Version 4.03 [11-02-2026]
+﻿## Version 4.04 [In Development]
+
+**TBC:**  
+- Added layout setup for Party Pet Frames  
+
+**Classic:**  
+- Added layout setup for Party Pet Frames  
+
+## Version 4.03 [11-02-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.05+ compatibility  
