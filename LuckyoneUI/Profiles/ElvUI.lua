@@ -2097,4 +2097,25 @@ function Private:Setup_ElvUI(layout)
 		E.db.actionbar.bar4.point = 'BOTTOMRIGHT'
 		E.db.movers.ElvAB_4 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,2'
 	end
+
+	-- ToDo: Remove me after ElvUI 15.05 is released
+	if Private.isRetail then
+		E.db.unitframe.units.boss.buffs.isAuraRaid = false
+		E.db.unitframe.units.boss.buffs.isAuraRaidPlayer = false
+		E.db.unitframe.units.boss.buffs.isAuraRaidPlayerDispellable = true
+		E.db.unitframe.units.party.buffs.isAuraBigDefensivePlayer = true
+		E.db.unitframe.units.party.buffs.isAuraExternalDefensive = true
+		E.db.unitframe.units.party.buffs.isAuraExternalDefensivePlayer = true
+		E.db.unitframe.units.raid1.buffs.isAuraBigDefensivePlayer = true
+		E.db.unitframe.units.raid1.buffs.isAuraExternalDefensive = true
+		E.db.unitframe.units.raid1.buffs.isAuraExternalDefensivePlayer = true
+		E.db.unitframe.units.raid2.buffs.isAuraBigDefensivePlayer = true
+		E.db.unitframe.units.raid2.buffs.isAuraExternalDefensive = true
+		E.db.unitframe.units.raid2.buffs.isAuraExternalDefensivePlayer = true
+		E.db.unitframe.units.raid3.buffs.isAuraBigDefensivePlayer = true
+		E.db.unitframe.units.raid3.buffs.isAuraExternalDefensive = true
+		E.db.unitframe.units.raid3.buffs.isAuraExternalDefensivePlayer = true
+		E.db.unitframe.units.target.buffs.isAuraPlayer = false
+		E.db.unitframe.units.target.buffs.isAuraRaid = false
+	end
 end
