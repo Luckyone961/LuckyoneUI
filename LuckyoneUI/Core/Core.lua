@@ -448,11 +448,6 @@ function Private:HandleToons()
 	Private.itsLuckyone = toons[guid]
 end
 
-function Core:OnEnable()
-	self:RegisterEvent('PLAYER_LOGIN')
-	self:RegisterEvent('PLAYER_ENTERING_WORLD')
-end
-
 function Core:PLAYER_LOGIN()
 	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
 	Private:CheckElvUI()
@@ -478,4 +473,9 @@ function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	if Private.itsLuckyone then
 		Private.Addon.db.global.dev = true
 	end
+end
+
+function Core:OnEnable()
+	self:RegisterEvent('PLAYER_LOGIN')
+	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end

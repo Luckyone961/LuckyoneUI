@@ -74,12 +74,12 @@ function Private:UntrackAllQuests()
 	Private:Print(L["Successfully untracked all quests (including hidden ones)"])
 end
 
-function Blizzard:OnEnable()
-	self:RegisterEvent('PLAYER_ENTERING_WORLD')
-end
-
 function Blizzard:PLAYER_ENTERING_WORLD()
 	Private:DisabledFrames()
 	Private:EasyDelete()
 	Private:PrivacyOverlay()
+end
+
+function Blizzard:OnEnable()
+	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
