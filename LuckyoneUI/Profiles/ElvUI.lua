@@ -1013,6 +1013,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.font = Private.Font
 	E.db.unitframe.fontOutline = Private.Outline
 	E.db.unitframe.fontSize = 11
+	E.db.unitframe.multiplier = 0.1
 	E.db.unitframe.statusbar = Private.Texture
 	E.db.unitframe.targetOnMouseDown = true
 	E.db.unitframe.targetSound = true
