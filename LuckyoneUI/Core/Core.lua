@@ -448,16 +448,6 @@ function Private:HandleToons()
 	Private.itsLuckyone = toons[guid]
 end
 
-function Core:PLAYER_LOGIN()
-	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
-	Private:CheckElvUI()
-	Private:CheckIncompatible()
-
-	if Private.Installer and (Private.Addon.db.global.install_version == nil) then
-		Private.Installer:OnLoad()
-	end
-end
-
 function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	if initLogin or not Private.Addon.db.global.DebugDisabledAddOns then
 		Private.Addon.db.global.DebugDisabledAddOns = {}
@@ -476,6 +466,13 @@ function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 end
 
 function Core:OnEnable()
-	self:RegisterEvent('PLAYER_LOGIN')
+	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
+	Private:CheckElvUI()
+	Private:CheckIncompatible()
+
+	if Private.Installer and (Private.Addon.db.global.install_version == nil) then
+		Private.Installer:OnLoad()
+	end
+
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
