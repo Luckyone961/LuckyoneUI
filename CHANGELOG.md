@@ -1,5 +1,8 @@
 ﻿## Version 4.04 [In Development]
 
+**Retail:**  
+- Adjusted profile defaults for new ElvUI overAbsorb code  
+
 **TBC:**  
 - Added layout setup for Party Pet Frames  
 

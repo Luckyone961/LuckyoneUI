@@ -1108,7 +1108,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.disableTargetGlow = true
 	E.db.unitframe.units.arena.fader.minAlpha = 0.5
 	E.db.unitframe.units.arena.fader.smooth = 0
-	E.db.unitframe.units.arena.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.arena.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.arena.health.attachTextTo = 'Frame'
 	E.db.unitframe.units.arena.health.text_format = ''
 	E.db.unitframe.units.arena.height = 49
@@ -1216,7 +1216,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.boss.disableTargetGlow = true
 	E.db.unitframe.units.boss.fader.minAlpha = 0.5
 	E.db.unitframe.units.boss.fader.smooth = 0
-	E.db.unitframe.units.boss.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.boss.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.boss.healPrediction.enable = true
 	E.db.unitframe.units.boss.health.text_format = ''
 	E.db.unitframe.units.boss.height = 49
@@ -1302,7 +1302,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.focus.disableTargetGlow = true
 	E.db.unitframe.units.focus.fader.minAlpha = 0.5
 	E.db.unitframe.units.focus.fader.smooth = 0
-	E.db.unitframe.units.focus.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.focus.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.focus.height = 40
 	E.db.unitframe.units.focus.name.text_format = ''
 	E.db.unitframe.units.focus.orientation = 'LEFT'
@@ -1346,7 +1346,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.pet.disableMouseoverGlow = true
 	E.db.unitframe.units.pet.fader.minAlpha = 0.5
 	E.db.unitframe.units.pet.fader.smooth = 0
-	E.db.unitframe.units.pet.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.pet.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.pet.health.colorHappiness = false
 	E.db.unitframe.units.pet.height = 50
 	E.db.unitframe.units.pet.name.text_format = ''
@@ -1451,7 +1451,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.debuffs.numrows = 2
 	E.db.unitframe.units.player.debuffs.perrow = 12
 	E.db.unitframe.units.player.disableMouseoverGlow = true
-	E.db.unitframe.units.player.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.player.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.player.health.text_format = ''
 	E.db.unitframe.units.player.height = 50
 	E.db.unitframe.units.player.partyIndicator.enable = false
@@ -1545,7 +1545,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.disableMouseoverGlow = true
 	E.db.unitframe.units.target.fader.minAlpha = 0.5
 	E.db.unitframe.units.target.fader.smooth = 0
-	E.db.unitframe.units.target.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.target.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.target.health.text_format = ''
 	E.db.unitframe.units.target.height = 50
 	E.db.unitframe.units.target.middleClickFocus = false
@@ -1588,7 +1588,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.targettarget.disableMouseoverGlow = true
 	E.db.unitframe.units.targettarget.fader.minAlpha = 0.5
 	E.db.unitframe.units.targettarget.fader.smooth = 0
-	E.db.unitframe.units.targettarget.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.targettarget.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.targettarget.healPrediction.enable = true
 	E.db.unitframe.units.targettarget.height = 22
 	E.db.unitframe.units.targettarget.name.text_format = ''
@@ -1610,7 +1610,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raidpet.disableFocusGlow = true
 	E.db.unitframe.units.raidpet.disableTargetGlow = true
 	E.db.unitframe.units.raidpet.enable = Private.isClassic
-	E.db.unitframe.units.raidpet.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.raidpet.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.raidpet.healPrediction.enable = true
 	E.db.unitframe.units.raidpet.health.text_format = ''
 	E.db.unitframe.units.raidpet.horizontalSpacing = 1
@@ -1703,7 +1703,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.fader.minAlpha = 0.5
 	E.db.unitframe.units.party.fader.smooth = 0
-	E.db.unitframe.units.party.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.party.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.party.healPrediction.enable = true
 	E.db.unitframe.units.party.health.text_format = ''
 	E.db.unitframe.units.party.height = 63
@@ -1777,7 +1777,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.disableTargetGlow = true
 	E.db.unitframe.units.raid1.fader.minAlpha = 0.5
 	E.db.unitframe.units.raid1.fader.smooth = 0
-	E.db.unitframe.units.raid1.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.raid1.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.raid1.healPrediction.enable = true
 	E.db.unitframe.units.raid1.health.text_format = ''
 	E.db.unitframe.units.raid1.horizontalSpacing = 1
@@ -1825,7 +1825,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.disableTargetGlow = true
 	E.db.unitframe.units.raid3.fader.minAlpha = 0.5
 	E.db.unitframe.units.raid3.fader.smooth = 0
-	E.db.unitframe.units.raid3.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.raid3.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.raid3.health.text_format = ''
 	E.db.unitframe.units.raid3.horizontalSpacing = 1
 	E.db.unitframe.units.raid3.name.attachTextTo = 'Frame'
