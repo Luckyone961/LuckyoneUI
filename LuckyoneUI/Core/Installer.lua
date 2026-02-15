@@ -747,6 +747,22 @@ local function BuildInstallerData()
 		end
 		stepTitles[pageIndex] = 'WarpDeplete'
 		pageIndex = pageIndex + 1
+
+		-- Edit Mode import guide
+		pages[pageIndex] = function()
+			local f = installerFrame
+			f.SubTitle:SetText(L["Blizzard Edit Mode"])
+			f.Desc1:SetText(format('|cff4beb2c%s|r', L["Step 1:"]) .. '\n\n' .. L["Click the first button for the import.\nUse CTRL+C to copy the string from the popup."])
+			f.Desc2:SetText(format('|cff4beb2c%s|r', L["Step 2:"]) .. '\n\n' .. L["Enter Edit Mode and select Import on the Dropdown.\nUse CTRL+V to paste string, then pick a name and click import."])
+			f.Option1:Show()
+			f.Option1:SetScript('OnClick', function() Private:Return_EditModeString() end)
+			f.Option1:SetText(L["Copy Import String"])
+			f.Option2:Show()
+			f.Option2:SetScript('OnClick', function() Private:ToggleEditMode() end)
+			f.Option2:SetText(format('|cff4beb2c%s|r', L["Enter Edit Mode"]))
+		end
+		stepTitles[pageIndex] = L["Blizzard Edit Mode"]
+		pageIndex = pageIndex + 1
 	end
 
 	-- Final page: Installation Complete

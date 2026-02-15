@@ -184,7 +184,6 @@ _G.StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 		self.EditBox.temptxt = data
 		self.EditBox:SetText(data)
 		self.EditBox:SetJustifyH('CENTER')
-		Private:Print(data)
 	end,
 	OnHide = function(self)
 		self.EditBox:SetWidth(self.EditBox.width or 50)
