@@ -721,8 +721,21 @@ local function BuildInstallerData()
 	stepTitles[pageIndex] = 'Details'
 	pageIndex = pageIndex + 1
 
-	-- Retail-only: WarpDeplete
+	-- Retail-only: BetterCooldownManager & WarpDeplete
 	if Private.isRetail then
+		pages[pageIndex] = function()
+			local f = installerFrame
+			f.SubTitle:SetText(L["BetterCooldownManager profile"])
+			f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for BetterCooldownManager."])
+			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+			f.Desc3:SetText(L["Note: If the position is wrong after the UI reload, use X and Y offset in /bcdm to adjust it."])
+			f.Option1:Show()
+			f.Option1:SetScript('OnClick', function() Private:Setup_BetterCooldownManager(true) end)
+			f.Option1:SetText(L["Setup BCDM"])
+		end
+		stepTitles[pageIndex] = 'BetterCooldownManager'
+		pageIndex = pageIndex + 1
+
 		pages[pageIndex] = function()
 			local f = installerFrame
 			f.SubTitle:SetText(L["WarpDeplete profile"])
