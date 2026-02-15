@@ -1007,7 +1007,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.colors.tapped.r = 0.54
 	E.db.unitframe.colors.transparentCastbar = false
 	E.db.unitframe.colors.transparentHealth = true
-	E.db.unitframe.colors.transparentPower = true
 	E.db.unitframe.colors.useDeadBackdrop = true
 	E.db.unitframe.font = Private.Font
 	E.db.unitframe.fontOutline = Private.Outline
@@ -1058,6 +1057,7 @@ function Private:Setup_ElvUI(layout)
 	}
 
 	E.db.unitframe.units.arena.buffs.anchorPoint = 'TOPRIGHT'
+	E.db.unitframe.units.arena.buffs.clickThrough = true
 	E.db.unitframe.units.arena.buffs.countFont = Private.Font
 	E.db.unitframe.units.arena.buffs.countFontSize = 10
 	E.db.unitframe.units.arena.buffs.countPosition = 'TOPRIGHT'
@@ -1088,6 +1088,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.castbar.xOffsetText = 2
 	E.db.unitframe.units.arena.castbar.xOffsetTime = -2
 	E.db.unitframe.units.arena.debuffs.anchorPoint = 'TOPLEFT'
+	E.db.unitframe.units.arena.debuffs.clickThrough = true
 	E.db.unitframe.units.arena.debuffs.countFont = Private.Font
 	E.db.unitframe.units.arena.debuffs.countFontSize = 10
 	E.db.unitframe.units.arena.debuffs.countPosition = 'TOPRIGHT'
@@ -1168,6 +1169,7 @@ function Private:Setup_ElvUI(layout)
 
 	E.db.unitframe.units.boss.buffIndicator.enable = false
 	E.db.unitframe.units.boss.buffs.anchorPoint = 'TOPRIGHT'
+	E.db.unitframe.units.boss.buffs.clickThrough = true
 	E.db.unitframe.units.boss.buffs.countFont = Private.Font
 	E.db.unitframe.units.boss.buffs.countFontSize = 10
 	E.db.unitframe.units.boss.buffs.countPosition = 'TOPRIGHT'
@@ -1198,6 +1200,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.boss.castbar.xOffsetText = 2
 	E.db.unitframe.units.boss.castbar.xOffsetTime = -2
 	E.db.unitframe.units.boss.debuffs.anchorPoint = 'TOPLEFT'
+	E.db.unitframe.units.boss.debuffs.clickThrough = true
 	E.db.unitframe.units.boss.debuffs.countFont = Private.Font
 	E.db.unitframe.units.boss.debuffs.countFontSize = 10
 	E.db.unitframe.units.boss.debuffs.countPosition = 'TOPRIGHT'
@@ -1307,6 +1310,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.focus.orientation = 'LEFT'
 	E.db.unitframe.units.focus.power.autoHide = true
 	E.db.unitframe.units.focus.power.detachedWidth = 200
+	E.db.unitframe.units.focus.power.enable = false
 	E.db.unitframe.units.focus.power.height = 4
 	E.db.unitframe.units.focus.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.focus.raidicon.size = 40
@@ -1352,6 +1356,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.pet.orientation = 'LEFT'
 	E.db.unitframe.units.pet.power.autoHide = true
 	E.db.unitframe.units.pet.power.height = 4
+	E.db.unitframe.units.pet.power.enable = false
 	E.db.unitframe.units.pet.power.strataAndLevel.frameStrata = 'MEDIUM'
 	E.db.unitframe.units.pet.power.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.pet.raidicon.enable = false
