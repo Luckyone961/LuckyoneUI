@@ -2,6 +2,7 @@
 
 **Retail:**  
 - Adjusted profile defaults for new ElvUI overAbsorb code  
+- Updated BigWigs profiles (Bar width matches Player Frame again)  
 
 **TBC:**  
 - Added layout setup for Party Pet Frames  
