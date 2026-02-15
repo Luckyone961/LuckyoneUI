@@ -24,5 +24,5 @@ function Private:Setup_BetterCooldownManager(installer)
 	BCDMG:ImportBCDM(importString, name)
 
 	Private:Print(L["BetterCooldownManager profile has been set."])
-	Private:Print(L["Note: If the position is wrong after the UI reload, use X and Y offset in /bcdm to adjust it."])
+	Private:Print(L["Note: If the position is wrong after the UI reload, use X and Y offset in the /bcdm Essential tab to adjust it."])
 end
