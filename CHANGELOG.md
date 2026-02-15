@@ -1,5 +1,8 @@
 ﻿## Version 4.04 [In Development]
 
+**All WoW Versions:**  
+- Updated color themes code (Correctly set color multiplier on theme swap)  
+
 **Retail:**  
 - Adjusted profile defaults for new ElvUI overAbsorb code  
 - Updated BigWigs profiles (Bar width matches Player Frame again)  

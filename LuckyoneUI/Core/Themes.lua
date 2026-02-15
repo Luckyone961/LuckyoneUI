@@ -23,6 +23,9 @@ function Private:Setup_Theme(theme, installer)
 
 	if theme == 'dark' then
 
+		-- Multiplier
+		E.db.unitframe.multiplier = 0.1
+
 		-- Frame colors
 		E.db.unitframe.colors.classbackdrop = false
 		E.db.unitframe.colors.customhealthbackdrop = true
@@ -84,6 +87,9 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]'
 
 	elseif theme == 'class' then
+
+		-- Multiplier
+		E.db.unitframe.multiplier = 0.35
 
 		-- Frame colors
 		E.db.unitframe.colors.classbackdrop = true
