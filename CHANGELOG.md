@@ -6,6 +6,7 @@
 **Retail:**  
 - Adjusted profile defaults for new ElvUI overAbsorb code  
 - Updated BigWigs profiles (Bar width matches Player Frame again)  
+- Updated ElvUI Nameplates (Friendly players name-only and class colored in instances)  
 
 **TBC:**  
 - Added layout setup for Party Pet Frames  

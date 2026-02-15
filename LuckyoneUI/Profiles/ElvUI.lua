@@ -265,10 +265,6 @@ function Private:Setup_NamePlates(installer)
 	-- NamePlates CVars
 	Private:NameplateCVars()
 
-	if Private.isRetail then
-		E.db.nameplates.persistentFriendlyNP = true
-	end
-
 	-- NamePlates colors
 	E.db.nameplates.colors.auraByType = false
 	E.db.nameplates.colors.castbarDesaturate = false
@@ -319,8 +315,11 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.threat.useSoloColor = true
 
 	-- NamePlates misc
+	E.db.nameplates.visibility.classColorFriendlyPlayerNames = true
 	E.db.nameplates.visibility.enemy.guardians = true
 	E.db.nameplates.visibility.enemy.minions = true
+	E.db.nameplates.visibility.friendly.npcs = false
+	E.db.nameplates.visibility.showOnlyNames = true
 	E.db.nameplates.widgets.below = false
 
 	-- Target indicator
