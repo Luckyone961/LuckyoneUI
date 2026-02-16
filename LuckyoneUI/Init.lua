@@ -1,4 +1,5 @@
 -- Lua functions
+local select = select
 local tonumber = tonumber
 
 -- API cache
@@ -55,8 +56,7 @@ Private.Outline = 'OUTLINE'
 Private.Texture = 'Minimalist'
 
 -- Build info
-local _
-_, _, _, Private.InterfaceVersion = GetBuildInfo()
+Private.InterfaceVersion = select(4, GetBuildInfo())
 
 -- Game flavors
 Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC

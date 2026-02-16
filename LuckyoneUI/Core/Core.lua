@@ -90,6 +90,30 @@ function Private:GetActiveProfile()
 	return strfind(data, 'Luckyone Main') and 1 or strfind(data, 'Luckyone Healing') and 2 or nil
 end
 
+-- Open settings helper
+function Private:OpenSettings()
+	if Private.ElvUI then
+		ElvUI[1]:ToggleOptions()
+		ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'LuckyoneUI')
+		ElvUI[1]:Config_UpdateSize(true)
+	else
+		if Settings_OpenToCategory and Private.SettingsCategoryID then
+			Settings_OpenToCategory(Private.SettingsCategoryID)
+		elseif InterfaceOptionsFrame_OpenToCategory and Private.SettingsFrame then
+			InterfaceOptionsFrame_OpenToCategory(Private.SettingsFrame)
+		end
+	end
+end
+
+-- Installer toggle helper
+function Private:ToggleInstaller()
+	if Private.Installer and Private.Installer:IsShown() then
+		Private.Installer:Hide()
+	else
+		Private.Installer:Show(Private.InstallerData)
+	end
+end
+
 -- Minimap icon
 local LuckyoneLDB = LDB:NewDataObject(Name, {
 	type = 'data source',
@@ -97,27 +121,13 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 	icon = 'Interface\\AddOns\\LuckyoneUI\\Media\\Textures\\Compartment.png',
 	OnClick = function(_, button)
 		if button == 'LeftButton' then
-			if Private.ElvUI then
-				ElvUI[1]:ToggleOptions()
-				ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'LuckyoneUI')
-				ElvUI[1]:Config_UpdateSize(true)
-			else
-				if Settings_OpenToCategory and Private.SettingsCategoryID then
-					Settings_OpenToCategory(Private.SettingsCategoryID)
-				elseif InterfaceOptionsFrame_OpenToCategory and Private.SettingsFrame then
-					InterfaceOptionsFrame_OpenToCategory(Private.SettingsFrame)
-				end
-			end
+			Private:OpenSettings()
 		elseif button == 'RightButton' then
 			if IsShiftKeyDown() then
 				LDBI:Hide(Name)
 				Private.Addon.db.profile.minimap.hide = true
 			else
-				if Private.Installer and Private.Installer:IsShown() then
-					Private.Installer:Hide()
-				else
-					Private.Installer:Show(Private.InstallerData)
-				end
+				Private:ToggleInstaller()
 			end
 		end
 	end,
@@ -130,17 +140,7 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 
 -- Addon Compartment OnClick TOC func
 function LuckyoneUI_OnAddonCompartmentClick()
-	if Private.ElvUI then
-		ElvUI[1]:ToggleOptions()
-		ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'LuckyoneUI')
-		ElvUI[1]:Config_UpdateSize(true)
-	else
-		if Settings_OpenToCategory and Private.SettingsCategoryID then
-			Settings_OpenToCategory(Private.SettingsCategoryID)
-		elseif InterfaceOptionsFrame_OpenToCategory and Private.SettingsFrame then
-			InterfaceOptionsFrame_OpenToCategory(Private.SettingsFrame)
-		end
-	end
+	Private:OpenSettings()
 end
 
 -- Reload popup
@@ -271,30 +271,16 @@ end
 -- LuckyoneUI chat commands
 function Private.Addon:Toggles(msg)
 	if msg == 'install' then
-		if Private.Installer and Private.Installer:IsShown() then
-			Private.Installer:Hide()
-		else
-			Private.Installer:Show(Private.InstallerData)
-		end
+		Private:ToggleInstaller()
 	elseif msg == 'config' then
-		if Private.ElvUI then
-			ElvUI[1]:ToggleOptions()
-			ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'LuckyoneUI')
-			ElvUI[1]:Config_UpdateSize(true)
-		else
-			if Settings_OpenToCategory and Private.SettingsCategoryID then
-				Settings_OpenToCategory(Private.SettingsCategoryID)
-			elseif InterfaceOptionsFrame_OpenToCategory and Private.SettingsFrame then
-				InterfaceOptionsFrame_OpenToCategory(Private.SettingsFrame)
-			end
-		end
+		Private:OpenSettings()
 	elseif msg == 'minimap' then
-		if Private.Addon.db.profile.minimap.hide then
-			LDBI:Show(Name)
-			Private.Addon.db.profile.minimap.hide = false
-		else
+		local hide = not Private.Addon.db.profile.minimap.hide
+		Private.Addon.db.profile.minimap.hide = hide
+		if hide then
 			LDBI:Hide(Name)
-			Private.Addon.db.profile.minimap.hide = true
+		else
+			LDBI:Show(Name)
 		end
 	elseif msg == 'untrack' then
 		Private:UntrackAllQuests()
@@ -376,75 +362,74 @@ function Private:CheckIncompatible()
 end
 
 -- Luckyone characters by GUID
-function Private:HandleToons()
-	local guid = Private.myGUID
-	local toons = Private.isRetail and {
-		-- (1598: LaughingSkull)
-		['Player-1598-0F5E4639'] = true, -- [A] Druid
-		['Player-1598-0F3E51B0'] = true, -- [A] Druid 2
-		['Player-1598-0FBCD9A2'] = true, -- [A] DH
-		['Player-1598-0F46FF5A'] = true, -- [H] Evoker
-		['Player-1598-0F92E2B9'] = true, -- [H] Evoker 2
-		['Player-1598-0BFF3341'] = true, -- [H] DH
-		['Player-1598-0BD22704'] = true, -- [H] Priest
-		['Player-1598-0BEFA545'] = true, -- [H] Monk
-		['Player-1598-0E1A06DE'] = true, -- [H] Rogue
-		['Player-1598-0BF2E377'] = true, -- [H] Hunter
-		['Player-1598-0BF18248'] = true, -- [H] DK
-		['Player-1598-0BFABB95'] = true, -- [H] Mage
-		['Player-1598-0E67511D'] = true, -- [H] Paladin
-		['Player-1598-0C0DD01B'] = true, -- [H] Warlock
-		['Player-1598-0BF8013A'] = true, -- [H] Warrior
-		['Player-1598-0BF56103'] = true, -- [H] Shaman
-		['Player-1598-0F87B5AA'] = true, -- [A] Priest
-	} or Private.isMists and {
-		-- (4454: Garalon + Shek'zeer)
-		['Player-4454-060E2FD9'] = true, -- [H] Mage
-		['Player-4454-060E336E'] = true, -- [H] Hunter
-		['Player-4454-060E339A'] = true, -- [H] Monk
-		['Player-4454-060E4058'] = true, -- [A] Druid
-		['Player-4454-060E4064'] = true, -- [A] Priest
-		['Player-4454-060E406B'] = true, -- [A] Warlock
-		['Player-4454-060E4071'] = true, -- [A] Shaman
-		['Player-4454-060E4076'] = true, -- [A] Warrior
-		['Player-4454-060E4089'] = true, -- [A] Rogue
-		['Player-4454-060E4091'] = true, -- [A] Paladin
-		['Player-4454-060E4086'] = true, -- [A] DK
-		['Player-4454-060E45B6'] = true, -- [A] Mage
-		['Player-4454-060E45EA'] = true, -- [A] Hunter
-		-- (4440: Everlook)
-		['Player-4440-037C7E29'] = true, -- [A] DK
-		['Player-4454-060E3657'] = true, -- [H] Druid
-		['Player-4454-060E364E'] = true, -- [H] Priest
-		['Player-4454-060E361A'] = true, -- [H] Shaman
-	} or Private.isTBC and {
-		-- (6412: Spineshatter)
-		['Player-6412-028A3A6D'] = true, -- [H] Hunter
-		['Player-6412-0336641F'] = true, -- [H] Priest
-		['Player-6412-02A39E0E'] = true, -- [H] Warlock
-		['Player-6412-02BBE8AB'] = true, -- [H] Hunter 2
-	} or Private.isClassic and {
-		-- (5827: Living Flame)
-		['Player-5827-0273D732'] = true, -- [A] Hunter
-		['Player-5827-0273D63E'] = true, -- [A] Paladin
-		['Player-5827-0273D63D'] = true, -- [A] Warlock
-		['Player-5827-0273D649'] = true, -- [A] Mage
-		['Player-5827-0273D661'] = true, -- [A] Priest
-		['Player-5827-0273D65D'] = true, -- [A] Druid
-		['Player-5827-0273D63F'] = true, -- [A] Rogue
-		['Player-5827-0273D638'] = true, -- [A] Warrior
-		['Player-5827-02331C4B'] = true, -- [H] Shaman
-		-- (5261: Nek'Rosh)
-		['Player-5261-01ADAC25'] = true, -- [H] Rogue
-		['Player-5261-019F4B67'] = true, -- [H] Hunter
-		['Player-5261-01B3C53A'] = true, -- [H] Mage
-		['Player-5261-01B50AC4'] = true, -- [H] Druid
-		-- (5233: Firemaw)
-		['Player-5233-01D22A72'] = true, -- [H] Hunter
-		['Player-5233-01D27011'] = true, -- [H] Druid
-	}
+local Toons = Private.isRetail and {
+	-- (1598: LaughingSkull)
+	['Player-1598-0F5E4639'] = true, -- [A] Druid
+	['Player-1598-0F3E51B0'] = true, -- [A] Druid 2
+	['Player-1598-0FBCD9A2'] = true, -- [A] DH
+	['Player-1598-0F46FF5A'] = true, -- [H] Evoker
+	['Player-1598-0F92E2B9'] = true, -- [H] Evoker 2
+	['Player-1598-0BFF3341'] = true, -- [H] DH
+	['Player-1598-0BD22704'] = true, -- [H] Priest
+	['Player-1598-0BEFA545'] = true, -- [H] Monk
+	['Player-1598-0E1A06DE'] = true, -- [H] Rogue
+	['Player-1598-0BF2E377'] = true, -- [H] Hunter
+	['Player-1598-0BF18248'] = true, -- [H] DK
+	['Player-1598-0BFABB95'] = true, -- [H] Mage
+	['Player-1598-0E67511D'] = true, -- [H] Paladin
+	['Player-1598-0C0DD01B'] = true, -- [H] Warlock
+	['Player-1598-0BF8013A'] = true, -- [H] Warrior
+	['Player-1598-0BF56103'] = true, -- [H] Shaman
+	['Player-1598-0F87B5AA'] = true, -- [A] Priest
+} or Private.isMists and {
+	-- (4454: Garalon + Shek'zeer)
+	['Player-4454-060E2FD9'] = true, -- [H] Mage
+	['Player-4454-060E336E'] = true, -- [H] Hunter
+	['Player-4454-060E339A'] = true, -- [H] Monk
+	['Player-4454-060E4058'] = true, -- [A] Druid
+	['Player-4454-060E4064'] = true, -- [A] Priest
+	['Player-4454-060E406B'] = true, -- [A] Warlock
+	['Player-4454-060E4071'] = true, -- [A] Shaman
+	['Player-4454-060E4076'] = true, -- [A] Warrior
+	['Player-4454-060E4089'] = true, -- [A] Rogue
+	['Player-4454-060E4091'] = true, -- [A] Paladin
+	['Player-4454-060E4086'] = true, -- [A] DK
+	['Player-4454-060E45B6'] = true, -- [A] Mage
+	['Player-4454-060E45EA'] = true, -- [A] Hunter
+	-- (4440: Everlook)
+	['Player-4440-037C7E29'] = true, -- [A] DK
+	['Player-4454-060E3657'] = true, -- [H] Druid
+	['Player-4454-060E364E'] = true, -- [H] Priest
+	['Player-4454-060E361A'] = true, -- [H] Shaman
+} or Private.isTBC and {
+	-- (6412: Spineshatter)
+	['Player-6412-028A3A6D'] = true, -- [H] Hunter
+	['Player-6412-0336641F'] = true, -- [H] Priest
+	['Player-6412-02A39E0E'] = true, -- [H] Warlock
+	['Player-6412-02BBE8AB'] = true, -- [H] Hunter 2
+} or Private.isClassic and {
+	-- (5827: Living Flame)
+	['Player-5827-0273D732'] = true, -- [A] Hunter
+	['Player-5827-0273D63E'] = true, -- [A] Paladin
+	['Player-5827-0273D63D'] = true, -- [A] Warlock
+	['Player-5827-0273D649'] = true, -- [A] Mage
+	['Player-5827-0273D661'] = true, -- [A] Priest
+	['Player-5827-0273D65D'] = true, -- [A] Druid
+	['Player-5827-0273D63F'] = true, -- [A] Rogue
+	['Player-5827-0273D638'] = true, -- [A] Warrior
+	['Player-5827-02331C4B'] = true, -- [H] Shaman
+	-- (5261: Nek'Rosh)
+	['Player-5261-01ADAC25'] = true, -- [H] Rogue
+	['Player-5261-019F4B67'] = true, -- [H] Hunter
+	['Player-5261-01B3C53A'] = true, -- [H] Mage
+	['Player-5261-01B50AC4'] = true, -- [H] Druid
+	-- (5233: Firemaw)
+	['Player-5233-01D22A72'] = true, -- [H] Hunter
+	['Player-5233-01D27011'] = true, -- [H] Druid
+}
 
-	Private.itsLuckyone = toons[guid]
+function Private:HandleToons()
+	Private.itsLuckyone = Toons and Toons[Private.myGUID]
 end
 
 function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
@@ -457,7 +442,6 @@ function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	end
 
 	Private:HandleToons()
-	Private.Addon:LoadCommands()
 
 	if Private.itsLuckyone then
 		Private.Addon.db.global.dev = true
@@ -466,6 +450,7 @@ end
 
 function Core:OnEnable()
 	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
+	Private.Addon:LoadCommands()
 	Private:CheckElvUI()
 	Private:CheckIncompatible()
 
