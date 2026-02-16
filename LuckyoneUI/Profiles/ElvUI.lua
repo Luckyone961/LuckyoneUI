@@ -668,6 +668,7 @@ function Private:Setup_ElvUI(layout)
 			E.db.actionbar['bar'..i].macroTextXOffset = 1
 			E.db.actionbar['bar'..i].macroTextYOffset = 1
 			E.db.actionbar['bar'..i].professionQuality.enable = false
+			E.db.actionbar['bar'..i].spellCastVFX = false
 			E.db.actionbar['bar'..i].targetReticle = false
 		end
 	end

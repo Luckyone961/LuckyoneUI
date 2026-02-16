@@ -1,8 +1,9 @@
 ﻿## Version 4.04 [In Development]
 
 **All WoW Versions:**  
-- Updated Arena Frames (Buffs+Debuffs now ignore mouse events)  
-- Updated Boss Frames (Buffs+Debuffs now ignore mouse events)  
+- Updated Action Bars (Disabled the new Spell Cast VFX by default)  
+- Updated Arena Frames (Buffs & Debuffs now ignore mouse events)  
+- Updated Boss Frames (Buffs & Debuffs now ignore mouse events)  
 - Updated color themes code (Correctly set color multiplier on theme swap)  
 
 **Retail:**  
