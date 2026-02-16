@@ -1865,7 +1865,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.AltPowerBarMover = 'TOP,ElvUIParent,TOP,0,-22'
 	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-342,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-402,-280'
 	E.db.movers.BagsMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-455,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-501,1'
-	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-201,-193'
+	E.db.movers.BelowMinimapContainerMover = 'TOP,ElvUIParent,TOP,0,-36'
 	E.db.movers.BNETMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
 	E.db.movers.BossHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-342,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-402,-280'
