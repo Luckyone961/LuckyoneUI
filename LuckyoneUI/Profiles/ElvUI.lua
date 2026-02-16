@@ -306,6 +306,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.colors.threat.soloColor.r = 0.5
 
 	-- NamePlates general
+	E.db.nameplates.classColorNames = true
 	E.db.nameplates.clickSize.width = 210
 	E.db.nameplates.fadeIn = false
 	E.db.nameplates.lowHealthThreshold = 0
@@ -315,7 +316,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.threat.useSoloColor = true
 
 	-- NamePlates misc
-	E.db.nameplates.visibility.classColorFriendlyPlayerNames = true
+	E.db.nameplates.classColorNames = true
 	E.db.nameplates.visibility.enemy.guardians = true
 	E.db.nameplates.visibility.enemy.minions = true
 	E.db.nameplates.visibility.friendly.npcs = false
