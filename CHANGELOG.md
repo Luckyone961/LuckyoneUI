@@ -9,7 +9,7 @@
 - Added BetterCooldownManager import to installer and config  
 - Added Blizzard Edit Mode import guide to installer and config  
 - Adjusted profile defaults for new ElvUI overAbsorb code  
-- Updated BigWigs profiles (Bar width matches Player Frame again)  
+- Updated BigWigs profiles (Bar fixes & Disabled Private Aura anchor)  
 - Updated ElvUI Nameplates (Friendly players name-only and class colored in instances)  
 
 **TBC:**  
