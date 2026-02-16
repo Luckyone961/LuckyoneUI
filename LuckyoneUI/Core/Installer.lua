@@ -721,8 +721,20 @@ local function BuildInstallerData()
 	stepTitles[pageIndex] = 'Details'
 	pageIndex = pageIndex + 1
 
-	-- Retail-only: BetterCooldownManager & WarpDeplete
+	-- Retail-only: WarpDeplete & BetterCooldownManager
 	if Private.isRetail then
+		pages[pageIndex] = function()
+			local f = installerFrame
+			f.SubTitle:SetText(L["WarpDeplete profile"])
+			f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for WarpDeplete."])
+			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+			f.Option1:Show()
+			f.Option1:SetScript('OnClick', function() Private:Setup_WarpDeplete(true) end)
+			f.Option1:SetText(L["Setup WarpDeplete"])
+		end
+		stepTitles[pageIndex] = 'WarpDeplete'
+		pageIndex = pageIndex + 1
+
 		pages[pageIndex] = function()
 			local f = installerFrame
 			f.SubTitle:SetText(L["BetterCooldownManager profile"])
@@ -734,18 +746,6 @@ local function BuildInstallerData()
 			f.Option1:SetText(L["Setup BCDM"])
 		end
 		stepTitles[pageIndex] = 'BetterCooldownManager'
-		pageIndex = pageIndex + 1
-
-		pages[pageIndex] = function()
-			local f = installerFrame
-			f.SubTitle:SetText(L["WarpDeplete profile"])
-			f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for WarpDeplete."])
-			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Setup_WarpDeplete(true) end)
-			f.Option1:SetText(L["Setup WarpDeplete"])
-		end
-		stepTitles[pageIndex] = 'WarpDeplete'
 		pageIndex = pageIndex + 1
 
 		-- Edit Mode import guide
