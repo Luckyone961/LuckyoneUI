@@ -93,10 +93,7 @@ end
 if not Private.isRetail then
 	E:AddTag('luckyone:health:percent-with-absorbs', 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_ABSORB_AMOUNT_CHANGED UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
 		local status = UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
-
-		if status then
-			return status
-		end
+		if status then return status end
 
 		local absorb = UnitGetTotalAbsorbs(unit) or 0
 		if absorb == 0 then
@@ -341,9 +338,33 @@ if Private.isRetail then
 
 			return (friend and Private.Tags.getFormattedName(unit, length, false)) or name
 		end)
+		-- Displays the unit's name (or status) with classcolor and a maximum length (friendly only) or full name (if enemy)
+		E:AddTag('luckyone:name:' .. textFormat .. '-color-friendly:status', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
+			local status = UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
+			if status then return status end
+
+			local friend = UnitIsFriend(unit, 'player')
+			local name = UnitName(unit) or UNKNOWN
+			if E:IsSecretValue(name) then return name end
+
+			return (friend and Private.Tags.getFormattedName(unit, length, true)) or name
+		end)
+		-- Displays the unit's name (or status) with no color and a maximum length (friendly only) or full name (if enemy)
+		E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly:status', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
+			local status = UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
+			if status then return status end
+
+			local friend = UnitIsFriend(unit, 'player')
+			local name = UnitName(unit) or UNKNOWN
+			if E:IsSecretValue(name) then return name end
+
+			return (friend and Private.Tags.getFormattedName(unit, length, false)) or name
+		end)
 
 		E:AddTagInfo('luckyone:name:' .. textFormat .. '-color-friendly', Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters (friendly only) or full name (if enemy)"], length))
 		E:AddTagInfo('luckyone:name:' .. textFormat .. '-nocolor-friendly', Private.Name, format(L["Displays the unit's name with no color and a maximum length of %s characters (friendly only) or full name (if enemy)"], length))
+		E:AddTagInfo('luckyone:name:' .. textFormat .. '-color-friendly:status', Private.Name, format(L["Displays the unit's status (dead, ghost, offline) and name with classcolor and a maximum length of %s characters (friendly only) or full name (if enemy)"], length))
+		E:AddTagInfo('luckyone:name:' .. textFormat .. '-nocolor-friendly:status', Private.Name, format(L["Displays the unit's status (dead, ghost, offline) and name with no color and a maximum length of %s characters (friendly only) or full name (if enemy)"], length))
 	end
 else
 	for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long = 20 }) do
