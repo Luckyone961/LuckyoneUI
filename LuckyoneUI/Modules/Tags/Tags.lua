@@ -177,11 +177,10 @@ end
 if not Private.isRetail then
 	E:AddTag('luckyone:healermana:current', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 		local role = UnitGroupRolesAssigned(unit)
+		if role ~= 'HEALER' then return end
 
-		if role == 'HEALER' then
-			local color = ElvUF_colors_power.MANA
-			return Hex(color.r, color.g, color.b) .. UnitPower(unit, Enum.PowerType.Mana)
-		end
+		local color = ElvUF_colors_power.MANA
+		return Hex(color.r, color.g, color.b) .. UnitPower(unit, Enum.PowerType.Mana)
 	end)
 	E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana with manacolor (Role: Healer)"])
 end
@@ -189,19 +188,19 @@ end
 -- Display mana (percent) if the unit is flagged healer
 E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 	local role = UnitGroupRolesAssigned(unit)
-	if role == 'HEALER' then
-		if Private.isRetail then
-			local percent = format('%d', UnitPowerPercent(unit, nil, true, ScaleTo100))
-			local color = Private.Tags.getPowerColor(unit)
-			return color .. percent
-		else
-			local color = ElvUF_colors_power.MANA
-			local min = UnitPower(unit, Enum.PowerType.Mana)
-			local max = UnitPowerMax(unit, Enum.PowerType.Mana)
-			if max == 0 then return end
+	if role ~= 'HEALER' then return end
 
-			return Hex(color.r, color.g, color.b) .. E:GetFormattedText('PERCENT', min, max, 0, nil)
-		end
+	if Private.isRetail then
+		local percent = format('%d', UnitPowerPercent(unit, nil, true, ScaleTo100))
+		local color = Private.Tags.getPowerColor(unit)
+		return color .. percent
+	else
+		local color = ElvUF_colors_power.MANA
+		local min = UnitPower(unit, Enum.PowerType.Mana)
+		local max = UnitPowerMax(unit, Enum.PowerType.Mana)
+		if max == 0 then return end -- Avoid the "%inf" on frames
+
+		return Hex(color.r, color.g, color.b) .. E:GetFormattedText('PERCENT', min, max, 0, nil)
 	end
 end)
 E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"])
