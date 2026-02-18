@@ -101,6 +101,8 @@ L["Displays the unit's name with no color and a maximum length of 10 characters"
 L["Displays the unit's name with no color and a maximum length of 15 characters"] = "Zeigt den Namen der Einheit ohne Farbe und mit einer maximalen Länge von 15 Zeichen an"
 L["Displays the unit's name with no color and a maximum length of 20 characters"] = "Zeigt den Namen der Einheit ohne Farbe und mit einer maximalen Länge von 20 Zeichen an"
 L["Displays the unit's name with no color and a maximum length of 5 characters"] = "Zeigt den Namen der Einheit ohne Farbe und mit einer maximalen Länge von 5 Zeichen an"
+L["Displays the unit's status (dead, ghost, offline) and name with classcolor and a maximum length of %s characters (friendly only) or full name (if enemy)"] = true
+L["Displays the unit's status (dead, ghost, offline) and name with no color and a maximum length of %s characters (friendly only) or full name (if enemy)"] = true
 L["Displays the unit's target name with class color"] = "Zeigt den Namen des Einheitsziels mit Klassenfarbe an"
 L["Displays the unit's target name with no color"] = "Zeigt den Namen des Einheitsziels ohne Farbe an"
 L["DPS & Tanks"] = true -- No need to translate
