@@ -13,6 +13,7 @@
 - Adjusted profile defaults for new ElvUI overAbsorb code  
 - Updated BigWigs profiles (Bar fixes & Disabled Private Aura anchor)  
 - Updated ElvUI Nameplates (Friendly players name-only and class colored in instances)  
+- Updated ElvUI Private Auras (Size, Position, Growth direction)  
 
 **TBC:**  
 - Added layout setup for Party Pet Frames  

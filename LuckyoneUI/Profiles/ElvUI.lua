@@ -634,8 +634,13 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.minimap.size = 197
 	E.db.general.objectiveFrameAutoHide = false
 	E.db.general.objectiveFrameHeight = 600
-	E.db.general.privateAuras.icon.size = 64
-	E.db.general.privateRaidWarning.scale = 2
+	E.db.general.privateAuras.borderScale = 4.5
+	E.db.general.privateAuras.countdownNumbers = true
+	E.db.general.privateAuras.duration.enable = false
+	E.db.general.privateAuras.icon.amount = 5
+	E.db.general.privateAuras.icon.offset = 10
+	E.db.general.privateAuras.icon.size = 60
+	E.db.general.privateRaidWarning.scale = 1.5
 	E.db.general.queueStatus.scale = 0.3
 	E.db.general.tagUpdateRate = 0.33
 	E.db.general.talkingHeadFrameBackdrop = true
@@ -1910,8 +1915,8 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.PlayerPowerBarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-287,341') or 'BOTTOM,ElvUIParent,BOTTOM,-320,481'
 	E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-132'
-	E.db.movers.PrivateAurasMover = (scaled and 'TOP,ElvUIParent,TOP,212,-474') or 'TOP,ElvUIParent,TOP,221,-640'
-	E.db.movers.PrivateRaidWarningMover = (scaled and 'TOP,ElvUIParent,TOP,0,-154') or 'TOP,ElvUIParent,TOP,0,-200'
+	E.db.movers.PrivateAurasMover = 'BOTTOM,ElvUIParent,BOTTOM,-223,620' -- ToDo: Test 1080p x/y offsets
+	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-200'
 	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-24'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-178'
