@@ -1803,12 +1803,8 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'TOP'
 	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid1.power.enable = false
-	E.db.unitframe.units.raid1.privateAuras.icon.amount = 3
-	E.db.unitframe.units.raid1.privateAuras.icon.offset = 2
 	E.db.unitframe.units.raid1.privateAuras.icon.point = 'TOP'
-	E.db.unitframe.units.raid1.privateAuras.icon.size = 20
 	E.db.unitframe.units.raid1.privateAuras.parent.offsetX = -3
-	E.db.unitframe.units.raid1.privateAuras.parent.offsetY = 22
 	E.db.unitframe.units.raid1.privateAuras.parent.point = 'BOTTOMRIGHT'
 	E.db.unitframe.units.raid1.pvpclassificationindicator.enable = false
 	E.db.unitframe.units.raid1.raidRoleIcons.combatHide = true
@@ -1833,7 +1829,6 @@ function Private:Setup_ElvUI(layout)
 	-- Shared Raid2
 	E:CopyTable(E.db.unitframe.units.raid2, E.db.unitframe.units.raid1)
 	E.db.unitframe.units.raid2.numGroups = Private.isRetail and 6 or 5
-	E.db.unitframe.units.raid2.privateAuras.icon.amount = 2
 	E.db.unitframe.units.raid2.visibility = Private.isRetail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
 
 	-- Shared Raid3
@@ -1857,7 +1852,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.raid3.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid3.privateAuras.enable = false
-	E.db.unitframe.units.raid3.privateAuras.icon.amount = 3
 	E.db.unitframe.units.raid3.privateAuras.parent.offsetX = -20
 	E.db.unitframe.units.raid3.privateAuras.parent.point = 'RIGHT'
 	E.db.unitframe.units.raid3.pvpclassificationindicator.enable = false
@@ -2015,6 +2009,12 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 8
 		E.db.unitframe.units.raid3.width = (scaled and 86) or 96
 
+		-- Main Private Auras
+		E.db.unitframe.units.raid1.privateAuras.icon.size = 16
+		E.db.unitframe.units.raid1.privateAuras.parent.offsetY = 18
+		E.db.unitframe.units.raid2.privateAuras.icon.size = 16
+		E.db.unitframe.units.raid2.privateAuras.parent.offsetY = 18
+
 		-- Main misc
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
 
@@ -2106,6 +2106,12 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 60
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 11
 		E.db.unitframe.units.raid3.width = 140
+
+		-- Main Private Auras
+		E.db.unitframe.units.raid1.privateAuras.icon.size = 20
+		E.db.unitframe.units.raid1.privateAuras.parent.offsetY = 22
+		E.db.unitframe.units.raid2.privateAuras.icon.size = 20
+		E.db.unitframe.units.raid2.privateAuras.parent.offsetY = 22
 
 		-- Healing misc
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704
