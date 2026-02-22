@@ -1736,6 +1736,11 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.party.phaseIndicator.xOffset = 15
 	E.db.unitframe.units.party.power.enable = false
+	E.db.unitframe.units.party.privateAuras.icon.amount = 3
+	E.db.unitframe.units.party.privateAuras.icon.point = 'RIGHT'
+	E.db.unitframe.units.party.privateAuras.parent.offsetX = 2
+	E.db.unitframe.units.party.privateAuras.parent.offsetY = 23
+	E.db.unitframe.units.party.privateAuras.parent.point = 'BOTTOMLEFT'
 	E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.party.raidicon.size = 14
 	E.db.unitframe.units.party.raidicon.xOffset = -3
@@ -1798,6 +1803,13 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'TOP'
 	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid1.power.enable = false
+	E.db.unitframe.units.raid1.privateAuras.icon.amount = 3
+	E.db.unitframe.units.raid1.privateAuras.icon.offset = 2
+	E.db.unitframe.units.raid1.privateAuras.icon.point = 'TOP'
+	E.db.unitframe.units.raid1.privateAuras.icon.size = 20
+	E.db.unitframe.units.raid1.privateAuras.parent.offsetX = -3
+	E.db.unitframe.units.raid1.privateAuras.parent.offsetY = 22
+	E.db.unitframe.units.raid1.privateAuras.parent.point = 'BOTTOMRIGHT'
 	E.db.unitframe.units.raid1.pvpclassificationindicator.enable = false
 	E.db.unitframe.units.raid1.raidRoleIcons.combatHide = true
 	E.db.unitframe.units.raid1.raidRoleIcons.scale = 0.8
@@ -1821,6 +1833,7 @@ function Private:Setup_ElvUI(layout)
 	-- Shared Raid2
 	E:CopyTable(E.db.unitframe.units.raid2, E.db.unitframe.units.raid1)
 	E.db.unitframe.units.raid2.numGroups = Private.isRetail and 6 or 5
+	E.db.unitframe.units.raid2.privateAuras.icon.amount = 2
 	E.db.unitframe.units.raid2.visibility = Private.isRetail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
 
 	-- Shared Raid3
@@ -1843,6 +1856,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.name.text_format = Private.isRetail and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 	E.db.unitframe.units.raid3.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.raid3.phaseIndicator.scale = 0.5
+	E.db.unitframe.units.raid3.privateAuras.enable = false
+	E.db.unitframe.units.raid3.privateAuras.icon.amount = 3
+	E.db.unitframe.units.raid3.privateAuras.parent.offsetX = -20
+	E.db.unitframe.units.raid3.privateAuras.parent.point = 'RIGHT'
 	E.db.unitframe.units.raid3.pvpclassificationindicator.enable = false
 	E.db.unitframe.units.raid3.raidRoleIcons.combatHide = true
 	E.db.unitframe.units.raid3.raidRoleIcons.scale = 0.8

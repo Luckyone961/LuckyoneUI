@@ -7,13 +7,14 @@
 - Updated color themes code (Correctly set color multiplier on theme swap)  
 
 **Retail:**  
+- Added :status versions of the luckyone friendly abbrev name Tags  
 - Added BetterCooldownManager import to installer and config  
 - Added Blizzard Edit Mode import guide to installer and config  
-- Added :status versions of the luckyone friendly abbrev name Tags  
 - Adjusted profile defaults for new ElvUI overAbsorb code  
 - Updated BigWigs profiles (Bar fixes & Disabled Private Aura anchor)  
 - Updated ElvUI Nameplates (Friendly players name-only and class colored in instances)  
-- Updated ElvUI Private Auras (Size, Position, Growth direction)  
+- Updated ElvUI Party & Raid Private Auras (Size, Position, Growth direction)  
+- Updated ElvUI Player Private Auras (Size, Position, Growth direction)  
 
 **TBC:**  
 - Added layout setup for Party Pet Frames  
