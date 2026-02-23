@@ -419,10 +419,15 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -16
 	E.db.nameplates.units.ENEMY_NPC.pvpindicator.size = 35
-	E.db.nameplates.units.ENEMY_NPC.questIcon.enable = false
+	E.db.nameplates.units.ENEMY_NPC.questIcon.enable = Private.isRetail
 	E.db.nameplates.units.ENEMY_NPC.questIcon.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.questIcon.size = 25
+	E.db.nameplates.units.ENEMY_NPC.questIcon.position = 'TOP'
+	E.db.nameplates.units.ENEMY_NPC.questIcon.size = 34
+	E.db.nameplates.units.ENEMY_NPC.questIcon.spacing = 2
 	E.db.nameplates.units.ENEMY_NPC.questIcon.textPosition = 'CENTER'
+	E.db.nameplates.units.ENEMY_NPC.questIcon.textXOffset = 3
+	E.db.nameplates.units.ENEMY_NPC.questIcon.textYOffset = 0
+	E.db.nameplates.units.ENEMY_NPC.questIcon.yOffset = -2
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'RIGHT'
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 32
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1

@@ -6,12 +6,14 @@
 - Updated Boss Frames (Buffs & Debuffs now ignore mouse events)  
 - Updated color themes code (Correctly set color multiplier on theme swap)  
 - Updated Details profile (Removed combat timer next to the window header)  
+- Updated Experience bar slightly (Height, Width)  
 
 **Retail:**  
 - Added :status versions of the luckyone friendly abbrev name Tags  
 - Added BetterCooldownManager import to installer and config  
 - Added Blizzard Edit Mode import guide to installer and config  
 - Adjusted profile defaults for new ElvUI overAbsorb code  
+- Enabled Quest progress icon & text on ElvUI Nameplates  
 - Updated BigWigs profiles (Bar fixes & Disabled Private Aura anchor)  
 - Updated ElvUI Nameplates (Friendly players name-only and class colored in instances)  
 - Updated ElvUI Party & Raid Private Auras (Size, Position, Growth direction)  
