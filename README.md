@@ -15,7 +15,7 @@
 • Updating the Addon will never auto-apply changes. Only if you manually re-run the ingame installer.  
 
 ### **Custom options**  
-• Add a privacy overlay (streamer mode) on your guild community frame (click to show chat).  
+• Add a privacy overlay (streamer mode) on your guild community frame (Click to show chat).  
 • Automatically fill out the delete text when destroying items.  
 • Build a clean custom chat with tabs in one click (Main, Log, Whisper, Guild, Party tabs).  
 • Configure hidden Blizzard console variables in a user friendly options interface.  
