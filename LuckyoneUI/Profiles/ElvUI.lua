@@ -422,7 +422,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.questIcon.enable = Private.isRetail
 	E.db.nameplates.units.ENEMY_NPC.questIcon.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.questIcon.position = 'TOP'
-	E.db.nameplates.units.ENEMY_NPC.questIcon.size = 34
+	E.db.nameplates.units.ENEMY_NPC.questIcon.size = 30
 	E.db.nameplates.units.ENEMY_NPC.questIcon.spacing = 2
 	E.db.nameplates.units.ENEMY_NPC.questIcon.textPosition = 'CENTER'
 	E.db.nameplates.units.ENEMY_NPC.questIcon.textXOffset = 3
