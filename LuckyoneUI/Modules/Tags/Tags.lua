@@ -25,6 +25,7 @@ local UnitGroupRolesAssigned = UnitGroupRolesAssigned
 local UnitHealth = UnitHealth
 local UnitHealthMax = UnitHealthMax
 local UnitHealthPercent = UnitHealthPercent
+local UnitInPartyIsAI = UnitInPartyIsAI
 local UnitIsConnected = UnitIsConnected
 local UnitIsDead = UnitIsDead
 local UnitIsFriend = UnitIsFriend
@@ -188,6 +189,7 @@ E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_
 	if role ~= 'HEALER' then return end
 
 	if Private.isRetail then
+		if UnitInPartyIsAI(unit) then return end -- Exclude NPC Healers (Delve companion etc)
 		local percent = format('%d', UnitPowerPercent(unit, nil, true, ScaleTo100))
 		local color = Private.Tags.getPowerColor(unit)
 		return color .. percent
