@@ -425,7 +425,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.questIcon.size = 30
 	E.db.nameplates.units.ENEMY_NPC.questIcon.spacing = 2
 	E.db.nameplates.units.ENEMY_NPC.questIcon.textPosition = 'CENTER'
-	E.db.nameplates.units.ENEMY_NPC.questIcon.textXOffset = 3
+	E.db.nameplates.units.ENEMY_NPC.questIcon.textXOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.questIcon.textYOffset = 0
 	E.db.nameplates.units.ENEMY_NPC.questIcon.yOffset = -2
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'RIGHT'
