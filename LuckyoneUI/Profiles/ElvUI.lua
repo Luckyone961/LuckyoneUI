@@ -899,12 +899,12 @@ function Private:Setup_ElvUI(layout)
 	E.db.databars.azerite.enable = false
 	E.db.databars.experience.font = Private.Font
 	E.db.databars.experience.fontOutline = Private.Outline
-	E.db.databars.experience.height = 20
+	E.db.databars.experience.height = 22
 	E.db.databars.experience.orientation = 'HORIZONTAL'
 	E.db.databars.experience.questCompletedOnly = true
 	E.db.databars.experience.showLevel = true
 	E.db.databars.experience.textFormat = 'PERCENT'
-	E.db.databars.experience.width = 420
+	E.db.databars.experience.width = 500
 	E.db.databars.honor.enable = false
 	E.db.databars.petExperience.enable = false
 	E.db.databars.reputation.enable = true
