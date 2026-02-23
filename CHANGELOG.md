@@ -5,6 +5,7 @@
 - Updated Arena Frames (Buffs & Debuffs now ignore mouse events)  
 - Updated Boss Frames (Buffs & Debuffs now ignore mouse events)  
 - Updated color themes code (Correctly set color multiplier on theme swap)  
+- Updated Details profile (Removed combat timer next to the window header)  
 
 **Retail:**  
 - Added :status versions of the luckyone friendly abbrev name Tags  
