@@ -18,9 +18,11 @@
 
 **TBC:**  
 - Added layout setup for Party Pet Frames  
+- Disabled the returning "Target Aura" feature on Action Bars by default  
 
 **Classic:**  
 - Added layout setup for Party Pet Frames  
+- Disabled the returning "Target Aura" feature on Action Bars by default  
 
 ## Version 4.03 [11-02-2026]
 

@@ -879,6 +879,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.cooldown.nameplates.hideBling = true
 	E.db.cooldown.nameplates.offsetX = 1
 	E.db.cooldown.nameplates.reverse = true
+	E.db.cooldown.targetaura.enable = false
 	E.db.cooldown.totemtracker.colors.edge.a = 0
 	E.db.cooldown.totemtracker.fontSize = 14
 	E.db.cooldown.totemtracker.hideBling = true
