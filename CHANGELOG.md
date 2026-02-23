@@ -16,6 +16,7 @@
 - Updated ElvUI Nameplates (Friendly players name-only and class colored in instances)  
 - Updated ElvUI Party & Raid Private Auras (Size, Position, Growth direction)  
 - Updated ElvUI Player Private Auras (Size, Position, Growth direction)  
+- Updated WindTools profile (Disabled UI errors replacement, adjusted some quest fonts)  
 
 **TBC:**  
 - Added layout setup for Party Pet Frames  
