@@ -210,7 +210,6 @@ E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's
 if Private.isRetail then
 	E:AddTag('luckyone:name-color', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 		local name = UnitName(unit) or UNKNOWN
-		if E:IsSecretValue(name) then return name end
 
 		local color = Private.Tags.getUnitColor(unit)
 		return color .. name
