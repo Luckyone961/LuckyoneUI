@@ -856,6 +856,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.cooldown.actionbar.offsetX = 1
 	E.db.cooldown.aurabars.fontSize = 12
 	E.db.cooldown.aurabars.hideBling = true
+	E.db.cooldown.auraindicator.colors.edge.a = 0
+	E.db.cooldown.auraindicator.fontSize = 12
+	E.db.cooldown.auraindicator.hideBling = true
+	E.db.cooldown.auraindicator.hideNumbers = false
 	E.db.cooldown.auraindicator.reverse = true
 	E.db.cooldown.auras.colors.edge.a = 0
 	E.db.cooldown.auras.colors.swipe.a = 0
