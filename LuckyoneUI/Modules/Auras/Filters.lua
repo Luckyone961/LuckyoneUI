@@ -101,11 +101,13 @@ function Private:Setup_Filters_Retail()
 			156910, -- Beacon of Faith
 			200025, -- Beacon of Virtue
 			156322, -- Eternal Flame
+			1244893, -- Beacon of the Savior
 		},
 		PRIEST = {
 			-- Discipline
 			17, -- Power Word: Shield
 			194384, -- Atonement
+			1253593, -- Void Shield
 			-- Holy
 			139, -- Renew
 			41635, -- Prayer of Mending
@@ -118,8 +120,6 @@ function Private:Setup_Filters_Retail()
 			383648, -- Earth Shield (Elemental Orbit)
 		},
 		-- ToDo
-		-- 1244893, -- Beacon of the Savior (Holy Paladin)
-		-- 1253593, -- Void Shield (Discipline Priest)
 		-- 410263, -- Inferno's Blessing (Augmentation Evoker)
 		-- 410686, -- Symbiotic Bloom (Augmentation Evoker)
 		-- 413984, -- Shifting Sands (Augmentation Evoker)
@@ -337,6 +337,13 @@ function Private:Setup_Filters_Retail()
 		["xOffset"] = 1,
 	}
 	classes['PALADIN'][156322]['enabled'] = false -- Eternal Flame
+	classes['PALADIN'][1244893] = { -- Beacon of the Savior
+		['point'] = 'RIGHT',
+		['displayText'] = true,
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 1,
+	}
 
 	-- Discipline
 	classes['PRIEST'][17] = { -- Power Word: Shield
@@ -352,6 +359,13 @@ function Private:Setup_Filters_Retail()
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
 		["xOffset"] = -1,
+	}
+	classes['PRIEST'][1253593] = { -- Void Shield
+		["point"] = "TOP",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
 	}
 	-- Holy
 	classes['PRIEST'][139] = { -- Renew
