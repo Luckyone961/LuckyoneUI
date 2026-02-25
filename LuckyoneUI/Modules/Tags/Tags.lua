@@ -93,7 +93,7 @@ end
 -- Display percentage health with absorb values, without decimals (Classic only, hidden on Vanilla)
 if not Private.isRetail then
 	E:AddTag('luckyone:health:percent-with-absorbs', 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_ABSORB_AMOUNT_CHANGED UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
-		local status = UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
+		local status = UnitIsDead(unit) and L["DEAD"] or UnitIsGhost(unit) and L["GHOST"] or not UnitIsConnected(unit) and L["OFFLINE"]
 		if status then return status end
 
 		local absorb = UnitGetTotalAbsorbs(unit) or 0
@@ -341,7 +341,7 @@ if Private.isRetail then
 		end)
 		-- Displays the unit's name (or status) with classcolor and a maximum length (friendly only) or full name (if enemy)
 		E:AddTag('luckyone:name:' .. textFormat .. '-color-friendly:status', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
-			local status = UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
+			local status = UnitIsDead(unit) and L["DEAD"] or UnitIsGhost(unit) and L["GHOST"] or not UnitIsConnected(unit) and L["OFFLINE"]
 			if status then return status end
 
 			local friend = UnitIsFriend(unit, 'player')
@@ -352,7 +352,7 @@ if Private.isRetail then
 		end)
 		-- Displays the unit's name (or status) with no color and a maximum length (friendly only) or full name (if enemy)
 		E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly:status', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
-			local status = UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
+			local status = UnitIsDead(unit) and L["DEAD"] or UnitIsGhost(unit) and L["GHOST"] or not UnitIsConnected(unit) and L["OFFLINE"]
 			if status then return status end
 
 			local friend = UnitIsFriend(unit, 'player')
