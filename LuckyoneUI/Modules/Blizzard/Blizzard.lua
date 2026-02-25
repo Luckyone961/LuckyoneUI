@@ -1,6 +1,7 @@
 -- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
+local Blizzard = Private.Modules.Blizzard
 
 -- API cache
 local CreateAndInitFromMixin = CreateAndInitFromMixin
@@ -71,4 +72,14 @@ function Private:UntrackAllQuests()
 	end
 
 	Private:Print(L["Successfully untracked all quests (including hidden ones)"])
+end
+
+function Blizzard:PLAYER_ENTERING_WORLD()
+	Private:DisabledFrames()
+	Private:EasyDelete()
+	Private:PrivacyOverlay()
+end
+
+function Blizzard:OnEnable()
+	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end

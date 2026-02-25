@@ -265,10 +265,6 @@ function Private:Setup_NamePlates(installer)
 	-- NamePlates CVars
 	Private:NameplateCVars()
 
-	if Private.isRetail then
-		E.db.nameplates.persistentFriendlyNP = true
-	end
-
 	-- NamePlates colors
 	E.db.nameplates.colors.auraByType = false
 	E.db.nameplates.colors.castbarDesaturate = false
@@ -310,6 +306,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.colors.threat.soloColor.r = 0.5
 
 	-- NamePlates general
+	E.db.nameplates.classColorNames = true
 	E.db.nameplates.clickSize.width = 210
 	E.db.nameplates.fadeIn = false
 	E.db.nameplates.lowHealthThreshold = 0
@@ -319,8 +316,11 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.threat.useSoloColor = true
 
 	-- NamePlates misc
+	E.db.nameplates.classColorNames = true
 	E.db.nameplates.visibility.enemy.guardians = true
 	E.db.nameplates.visibility.enemy.minions = true
+	E.db.nameplates.visibility.friendly.npcs = false
+	E.db.nameplates.visibility.showOnlyNames = true
 	E.db.nameplates.widgets.below = false
 
 	-- Target indicator
@@ -419,10 +419,15 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -16
 	E.db.nameplates.units.ENEMY_NPC.pvpindicator.size = 35
-	E.db.nameplates.units.ENEMY_NPC.questIcon.enable = false
+	E.db.nameplates.units.ENEMY_NPC.questIcon.enable = Private.isRetail
 	E.db.nameplates.units.ENEMY_NPC.questIcon.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.questIcon.size = 25
+	E.db.nameplates.units.ENEMY_NPC.questIcon.position = 'TOP'
+	E.db.nameplates.units.ENEMY_NPC.questIcon.size = 30
+	E.db.nameplates.units.ENEMY_NPC.questIcon.spacing = 2
 	E.db.nameplates.units.ENEMY_NPC.questIcon.textPosition = 'CENTER'
+	E.db.nameplates.units.ENEMY_NPC.questIcon.textXOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.questIcon.textYOffset = 0
+	E.db.nameplates.units.ENEMY_NPC.questIcon.yOffset = -2
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'RIGHT'
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 32
 	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
@@ -634,8 +639,13 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.minimap.size = 197
 	E.db.general.objectiveFrameAutoHide = false
 	E.db.general.objectiveFrameHeight = 600
-	E.db.general.privateAuras.icon.size = 64
-	E.db.general.privateRaidWarning.scale = 2
+	E.db.general.privateAuras.borderScale = 4.5
+	E.db.general.privateAuras.countdownNumbers = true
+	E.db.general.privateAuras.duration.enable = false
+	E.db.general.privateAuras.icon.amount = 5
+	E.db.general.privateAuras.icon.offset = 10
+	E.db.general.privateAuras.icon.size = 60
+	E.db.general.privateRaidWarning.scale = 1.5
 	E.db.general.queueStatus.scale = 0.3
 	E.db.general.tagUpdateRate = 0.33
 	E.db.general.talkingHeadFrameBackdrop = true
@@ -668,6 +678,7 @@ function Private:Setup_ElvUI(layout)
 			E.db.actionbar['bar'..i].macroTextXOffset = 1
 			E.db.actionbar['bar'..i].macroTextYOffset = 1
 			E.db.actionbar['bar'..i].professionQuality.enable = false
+			E.db.actionbar['bar'..i].spellCastVFX = false
 			E.db.actionbar['bar'..i].targetReticle = false
 		end
 	end
@@ -873,6 +884,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.cooldown.nameplates.hideBling = true
 	E.db.cooldown.nameplates.offsetX = 1
 	E.db.cooldown.nameplates.reverse = true
+	E.db.cooldown.targetaura.enable = false
 	E.db.cooldown.totemtracker.colors.edge.a = 0
 	E.db.cooldown.totemtracker.fontSize = 14
 	E.db.cooldown.totemtracker.hideBling = true
@@ -892,12 +904,12 @@ function Private:Setup_ElvUI(layout)
 	E.db.databars.azerite.enable = false
 	E.db.databars.experience.font = Private.Font
 	E.db.databars.experience.fontOutline = Private.Outline
-	E.db.databars.experience.height = 20
+	E.db.databars.experience.height = 22
 	E.db.databars.experience.orientation = 'HORIZONTAL'
 	E.db.databars.experience.questCompletedOnly = true
 	E.db.databars.experience.showLevel = true
 	E.db.databars.experience.textFormat = 'PERCENT'
-	E.db.databars.experience.width = 420
+	E.db.databars.experience.width = 500
 	E.db.databars.honor.enable = false
 	E.db.databars.petExperience.enable = false
 	E.db.databars.reputation.enable = true
@@ -1008,11 +1020,11 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.colors.tapped.r = 0.54
 	E.db.unitframe.colors.transparentCastbar = false
 	E.db.unitframe.colors.transparentHealth = true
-	E.db.unitframe.colors.transparentPower = true
 	E.db.unitframe.colors.useDeadBackdrop = true
 	E.db.unitframe.font = Private.Font
 	E.db.unitframe.fontOutline = Private.Outline
 	E.db.unitframe.fontSize = 11
+	E.db.unitframe.multiplier = 0.1
 	E.db.unitframe.statusbar = Private.Texture
 	E.db.unitframe.targetOnMouseDown = true
 	E.db.unitframe.targetSound = true
@@ -1058,6 +1070,7 @@ function Private:Setup_ElvUI(layout)
 	}
 
 	E.db.unitframe.units.arena.buffs.anchorPoint = 'TOPRIGHT'
+	E.db.unitframe.units.arena.buffs.clickThrough = true
 	E.db.unitframe.units.arena.buffs.countFont = Private.Font
 	E.db.unitframe.units.arena.buffs.countFontSize = 10
 	E.db.unitframe.units.arena.buffs.countPosition = 'TOPRIGHT'
@@ -1088,6 +1101,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.castbar.xOffsetText = 2
 	E.db.unitframe.units.arena.castbar.xOffsetTime = -2
 	E.db.unitframe.units.arena.debuffs.anchorPoint = 'TOPLEFT'
+	E.db.unitframe.units.arena.debuffs.clickThrough = true
 	E.db.unitframe.units.arena.debuffs.countFont = Private.Font
 	E.db.unitframe.units.arena.debuffs.countFontSize = 10
 	E.db.unitframe.units.arena.debuffs.countPosition = 'TOPRIGHT'
@@ -1107,7 +1121,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.disableTargetGlow = true
 	E.db.unitframe.units.arena.fader.minAlpha = 0.5
 	E.db.unitframe.units.arena.fader.smooth = 0
-	E.db.unitframe.units.arena.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.arena.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.arena.health.attachTextTo = 'Frame'
 	E.db.unitframe.units.arena.health.text_format = ''
 	E.db.unitframe.units.arena.height = 49
@@ -1168,6 +1182,7 @@ function Private:Setup_ElvUI(layout)
 
 	E.db.unitframe.units.boss.buffIndicator.enable = false
 	E.db.unitframe.units.boss.buffs.anchorPoint = 'TOPRIGHT'
+	E.db.unitframe.units.boss.buffs.clickThrough = true
 	E.db.unitframe.units.boss.buffs.countFont = Private.Font
 	E.db.unitframe.units.boss.buffs.countFontSize = 10
 	E.db.unitframe.units.boss.buffs.countPosition = 'TOPRIGHT'
@@ -1198,6 +1213,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.boss.castbar.xOffsetText = 2
 	E.db.unitframe.units.boss.castbar.xOffsetTime = -2
 	E.db.unitframe.units.boss.debuffs.anchorPoint = 'TOPLEFT'
+	E.db.unitframe.units.boss.debuffs.clickThrough = true
 	E.db.unitframe.units.boss.debuffs.countFont = Private.Font
 	E.db.unitframe.units.boss.debuffs.countFontSize = 10
 	E.db.unitframe.units.boss.debuffs.countPosition = 'TOPRIGHT'
@@ -1215,7 +1231,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.boss.disableTargetGlow = true
 	E.db.unitframe.units.boss.fader.minAlpha = 0.5
 	E.db.unitframe.units.boss.fader.smooth = 0
-	E.db.unitframe.units.boss.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.boss.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.boss.healPrediction.enable = true
 	E.db.unitframe.units.boss.health.text_format = ''
 	E.db.unitframe.units.boss.height = 49
@@ -1301,12 +1317,13 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.focus.disableTargetGlow = true
 	E.db.unitframe.units.focus.fader.minAlpha = 0.5
 	E.db.unitframe.units.focus.fader.smooth = 0
-	E.db.unitframe.units.focus.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.focus.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.focus.height = 40
 	E.db.unitframe.units.focus.name.text_format = ''
 	E.db.unitframe.units.focus.orientation = 'LEFT'
 	E.db.unitframe.units.focus.power.autoHide = true
 	E.db.unitframe.units.focus.power.detachedWidth = 200
+	E.db.unitframe.units.focus.power.enable = false
 	E.db.unitframe.units.focus.power.height = 4
 	E.db.unitframe.units.focus.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.focus.raidicon.size = 40
@@ -1345,13 +1362,14 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.pet.disableMouseoverGlow = true
 	E.db.unitframe.units.pet.fader.minAlpha = 0.5
 	E.db.unitframe.units.pet.fader.smooth = 0
-	E.db.unitframe.units.pet.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.pet.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.pet.health.colorHappiness = false
 	E.db.unitframe.units.pet.height = 50
 	E.db.unitframe.units.pet.name.text_format = ''
 	E.db.unitframe.units.pet.orientation = 'LEFT'
 	E.db.unitframe.units.pet.power.autoHide = true
 	E.db.unitframe.units.pet.power.height = 4
+	E.db.unitframe.units.pet.power.enable = false
 	E.db.unitframe.units.pet.power.strataAndLevel.frameStrata = 'MEDIUM'
 	E.db.unitframe.units.pet.power.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.pet.raidicon.enable = false
@@ -1450,7 +1468,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.debuffs.numrows = 2
 	E.db.unitframe.units.player.debuffs.perrow = 12
 	E.db.unitframe.units.player.disableMouseoverGlow = true
-	E.db.unitframe.units.player.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.player.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.player.health.text_format = ''
 	E.db.unitframe.units.player.height = 50
 	E.db.unitframe.units.player.partyIndicator.enable = false
@@ -1544,7 +1562,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.disableMouseoverGlow = true
 	E.db.unitframe.units.target.fader.minAlpha = 0.5
 	E.db.unitframe.units.target.fader.smooth = 0
-	E.db.unitframe.units.target.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.target.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.target.health.text_format = ''
 	E.db.unitframe.units.target.height = 50
 	E.db.unitframe.units.target.middleClickFocus = false
@@ -1587,7 +1605,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.targettarget.disableMouseoverGlow = true
 	E.db.unitframe.units.targettarget.fader.minAlpha = 0.5
 	E.db.unitframe.units.targettarget.fader.smooth = 0
-	E.db.unitframe.units.targettarget.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.targettarget.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.targettarget.healPrediction.enable = true
 	E.db.unitframe.units.targettarget.height = 22
 	E.db.unitframe.units.targettarget.name.text_format = ''
@@ -1609,7 +1627,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raidpet.disableFocusGlow = true
 	E.db.unitframe.units.raidpet.disableTargetGlow = true
 	E.db.unitframe.units.raidpet.enable = Private.isClassic
-	E.db.unitframe.units.raidpet.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.raidpet.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.raidpet.healPrediction.enable = true
 	E.db.unitframe.units.raidpet.health.text_format = ''
 	E.db.unitframe.units.raidpet.horizontalSpacing = 1
@@ -1702,16 +1720,33 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.fader.minAlpha = 0.5
 	E.db.unitframe.units.party.fader.smooth = 0
-	E.db.unitframe.units.party.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.party.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.party.healPrediction.enable = true
 	E.db.unitframe.units.party.health.text_format = ''
 	E.db.unitframe.units.party.height = 63
 	E.db.unitframe.units.party.horizontalSpacing = 1
 	E.db.unitframe.units.party.name.text_format = ''
+	E.db.unitframe.units.party.petsGroup.anchorPoint = 'LEFT'
+	E.db.unitframe.units.party.petsGroup.enable = (Private.isClassic or Private.isTBC)
+	E.db.unitframe.units.party.petsGroup.healPrediction.enable = true
+	E.db.unitframe.units.party.petsGroup.height = 31
+	E.db.unitframe.units.party.petsGroup.name.attachTextTo = 'Frame'
+	E.db.unitframe.units.party.petsGroup.raidicon.attachTo = 'LEFT'
+	E.db.unitframe.units.party.petsGroup.raidicon.size = 22
+	E.db.unitframe.units.party.petsGroup.raidicon.xOffset = -24
+	E.db.unitframe.units.party.petsGroup.raidicon.yOffset = 0
+	E.db.unitframe.units.party.petsGroup.threatStyle = 'NONE'
+	E.db.unitframe.units.party.petsGroup.xOffset = -1
+	E.db.unitframe.units.party.petsGroup.yOffset = 16
 	E.db.unitframe.units.party.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.party.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.party.phaseIndicator.xOffset = 15
 	E.db.unitframe.units.party.power.enable = false
+	E.db.unitframe.units.party.privateAuras.icon.amount = 3
+	E.db.unitframe.units.party.privateAuras.icon.point = 'RIGHT'
+	E.db.unitframe.units.party.privateAuras.parent.offsetX = 2
+	E.db.unitframe.units.party.privateAuras.parent.offsetY = 23
+	E.db.unitframe.units.party.privateAuras.parent.point = 'BOTTOMLEFT'
 	E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.party.raidicon.size = 14
 	E.db.unitframe.units.party.raidicon.xOffset = -3
@@ -1764,7 +1799,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.disableTargetGlow = true
 	E.db.unitframe.units.raid1.fader.minAlpha = 0.5
 	E.db.unitframe.units.raid1.fader.smooth = 0
-	E.db.unitframe.units.raid1.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.raid1.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.raid1.healPrediction.enable = true
 	E.db.unitframe.units.raid1.health.text_format = ''
 	E.db.unitframe.units.raid1.horizontalSpacing = 1
@@ -1774,6 +1809,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'TOP'
 	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid1.power.enable = false
+	E.db.unitframe.units.raid1.privateAuras.icon.point = 'TOP'
+	E.db.unitframe.units.raid1.privateAuras.parent.offsetX = -3
+	E.db.unitframe.units.raid1.privateAuras.parent.point = 'BOTTOMRIGHT'
 	E.db.unitframe.units.raid1.pvpclassificationindicator.enable = false
 	E.db.unitframe.units.raid1.raidRoleIcons.combatHide = true
 	E.db.unitframe.units.raid1.raidRoleIcons.scale = 0.8
@@ -1812,13 +1850,16 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.disableTargetGlow = true
 	E.db.unitframe.units.raid3.fader.minAlpha = 0.5
 	E.db.unitframe.units.raid3.fader.smooth = 0
-	E.db.unitframe.units.raid3.healPrediction.absorbStyle = 'WRAPPED'
+	E.db.unitframe.units.raid3.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.raid3.health.text_format = ''
 	E.db.unitframe.units.raid3.horizontalSpacing = 1
 	E.db.unitframe.units.raid3.name.attachTextTo = 'Frame'
 	E.db.unitframe.units.raid3.name.text_format = Private.isRetail and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 	E.db.unitframe.units.raid3.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.raid3.phaseIndicator.scale = 0.5
+	E.db.unitframe.units.raid3.privateAuras.enable = false
+	E.db.unitframe.units.raid3.privateAuras.parent.offsetX = -20
+	E.db.unitframe.units.raid3.privateAuras.parent.point = 'RIGHT'
 	E.db.unitframe.units.raid3.pvpclassificationindicator.enable = false
 	E.db.unitframe.units.raid3.raidRoleIcons.combatHide = true
 	E.db.unitframe.units.raid3.raidRoleIcons.scale = 0.8
@@ -1846,7 +1887,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.AltPowerBarMover = 'TOP,ElvUIParent,TOP,0,-22'
 	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-342,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-402,-280'
 	E.db.movers.BagsMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-455,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-501,1'
-	E.db.movers.BelowMinimapContainerMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-201,-193'
+	E.db.movers.BelowMinimapContainerMover = 'TOP,ElvUIParent,TOP,0,-36'
 	E.db.movers.BNETMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
 	E.db.movers.BossHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-342,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-402,-280'
@@ -1885,14 +1926,14 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.LossControlMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,490') or 'TOP,ElvUIParent,TOP,0,-640'
 	E.db.movers.MicrobarMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-1'
 	E.db.movers.MinimapMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-1,-1'
-	E.db.movers.MirrorTimer1Mover = 'TOP,ElvUIParent,TOP,0,-60'
-	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-79'
-	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-98'
+	E.db.movers.MirrorTimer1Mover = 'TOP,ElvUIParent,TOP,0,-112'
+	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-131'
+	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-150'
 	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
-	E.db.movers.PlayerPowerBarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-287,341') or 'BOTTOM,ElvUIParent,BOTTOM,-320,481'
+	E.db.movers.PlayerPowerBarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,341') or 'BOTTOM,ElvUIParent,BOTTOM,-320,481'
 	E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-132'
-	E.db.movers.PrivateAurasMover = (scaled and 'TOP,ElvUIParent,TOP,212,-474') or 'TOP,ElvUIParent,TOP,221,-640'
-	E.db.movers.PrivateRaidWarningMover = (scaled and 'TOP,ElvUIParent,TOP,0,-154') or 'TOP,ElvUIParent,TOP,0,-200'
+	E.db.movers.PrivateAurasMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-200,460') or 'BOTTOM,ElvUIParent,BOTTOM,-223,620'
+	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-200'
 	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-24'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-178'
@@ -1973,6 +2014,12 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 8
 		E.db.unitframe.units.raid3.width = (scaled and 86) or 96
+
+		-- Main Private Auras
+		E.db.unitframe.units.raid1.privateAuras.icon.size = 16
+		E.db.unitframe.units.raid1.privateAuras.parent.offsetY = 18
+		E.db.unitframe.units.raid2.privateAuras.icon.size = 16
+		E.db.unitframe.units.raid2.privateAuras.parent.offsetY = 18
 
 		-- Main misc
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
@@ -2065,6 +2112,12 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 60
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 11
 		E.db.unitframe.units.raid3.width = 140
+
+		-- Main Private Auras
+		E.db.unitframe.units.raid1.privateAuras.icon.size = 20
+		E.db.unitframe.units.raid1.privateAuras.parent.offsetY = 22
+		E.db.unitframe.units.raid2.privateAuras.icon.size = 20
+		E.db.unitframe.units.raid2.privateAuras.parent.offsetY = 22
 
 		-- Healing misc
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704

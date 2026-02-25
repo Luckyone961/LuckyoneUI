@@ -619,9 +619,9 @@ local function BuildInstallerData()
 				f.Option1:Show()
 				f.Option1:SetScript('OnClick', function() Private:Setup_WindTools(true) end)
 				f.Option1:SetText('|cff5385edWindTools|r')
-				f.Option2:Show()
-				f.Option2:SetScript('OnClick', function() Private:Setup_ShadowAndLight(true) end)
-				f.Option2:SetText('|cff9482c9Shadow & Light|r')
+				-- f.Option2:Show()
+				-- f.Option2:SetScript('OnClick', function() Private:Setup_ShadowAndLight(true) end)
+				-- f.Option2:SetText('|cff9482c9Shadow & Light|r')
 			end
 			stepTitles[pageIndex] = L["ElvUI Plugins"]
 			pageIndex = pageIndex + 1
@@ -721,7 +721,7 @@ local function BuildInstallerData()
 	stepTitles[pageIndex] = 'Details'
 	pageIndex = pageIndex + 1
 
-	-- Retail-only: WarpDeplete
+	-- Retail-only: WarpDeplete & BetterCooldownManager
 	if Private.isRetail then
 		pages[pageIndex] = function()
 			local f = installerFrame
@@ -733,6 +733,35 @@ local function BuildInstallerData()
 			f.Option1:SetText(L["Setup WarpDeplete"])
 		end
 		stepTitles[pageIndex] = 'WarpDeplete'
+		pageIndex = pageIndex + 1
+
+		pages[pageIndex] = function()
+			local f = installerFrame
+			f.SubTitle:SetText(L["BetterCooldownManager profile"])
+			f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for BetterCooldownManager."])
+			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+			f.Desc3:SetText(L["Note: If the position is wrong after the UI reload, use X and Y offset in the /bcdm Essential tab to adjust it."])
+			f.Option1:Show()
+			f.Option1:SetScript('OnClick', function() Private:Setup_BetterCooldownManager(true) end)
+			f.Option1:SetText(L["Setup BCDM"])
+		end
+		stepTitles[pageIndex] = 'BetterCooldownManager'
+		pageIndex = pageIndex + 1
+
+		-- Edit Mode import guide
+		pages[pageIndex] = function()
+			local f = installerFrame
+			f.SubTitle:SetText(L["Blizzard Edit Mode"])
+			f.Desc1:SetText(format('|cff4beb2c%s|r', L["Step 1:"]) .. '\n\n' .. L["Click the first button for the import.\nUse CTRL+C to copy the string from the popup."])
+			f.Desc2:SetText(format('|cff4beb2c%s|r', L["Step 2:"]) .. '\n\n' .. L["Enter Edit Mode and select Import on the Dropdown.\nUse CTRL+V to paste string, then pick a name and click import."])
+			f.Option1:Show()
+			f.Option1:SetScript('OnClick', function() Private:Return_EditModeString() end)
+			f.Option1:SetText(L["Copy Import String"])
+			f.Option2:Show()
+			f.Option2:SetScript('OnClick', function() Private:ToggleEditMode() end)
+			f.Option2:SetText(format('|cff4beb2c%s|r', L["Enter Edit Mode"]))
+		end
+		stepTitles[pageIndex] = L["Blizzard Edit Mode"]
 		pageIndex = pageIndex + 1
 	end
 

@@ -1,4 +1,5 @@
 -- Lua functions
+local select = select
 local tonumber = tonumber
 
 -- API cache
@@ -55,8 +56,7 @@ Private.Outline = 'OUTLINE'
 Private.Texture = 'Minimalist'
 
 -- Build info
-local _
-_, _, _, Private.InterfaceVersion = GetBuildInfo()
+Private.InterfaceVersion = select(4, GetBuildInfo())
 
 -- Game flavors
 Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
@@ -78,14 +78,18 @@ Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
 Private.ElvUI = Private.IsAddOnLoaded('ElvUI')
 Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
 
+-- Modules
+Private.Modules = {
+	Core = Private.Addon:NewModule('Core', 'AceEvent-3.0'),
+	Blizzard = Private.Addon:NewModule('Blizzard', 'AceEvent-3.0'),
+	Misc = Private.ElvUI and Private.Addon:NewModule('Misc', 'AceEvent-3.0') or nil,
+}
+
 -- Called directly after the addon is fully loaded
 function Private.Addon:OnInitialize()
 
 	-- SavedVariables
 	Private.Addon.db = Private.Libs.ADB:New('LuckyoneDB', Private.Defaults, true)
-
-	-- Events
-	Private.Addon:RegisterEvents()
 
 	-- Register config
 	if not Private.ElvUI then

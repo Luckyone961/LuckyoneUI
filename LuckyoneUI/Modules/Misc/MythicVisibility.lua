@@ -7,6 +7,7 @@ if not Private.ElvUI then
 end
 
 -- Lua functions
+local ipairs = ipairs
 local unpack = unpack
 
 -- API cache
@@ -16,49 +17,58 @@ local GetInstanceInfo = GetInstanceInfo
 local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 
--- Update raid visibility based on instance type and difficulty
+-- Profile defaults
+local DefaultVisibility = {
+	party = '[@raid6,exists][@party1,noexists] hide;show',
+	raid1 = '[@raid6,noexists][@raid21,exists] hide;show',
+	raid2 = '[@raid21,noexists][@raid31,exists] hide;show',
+	raid3 = '[@raid31,noexists] hide;show',
+}
+
+-- Force Raid1 in Mythic difficulty
+local MythicVisibility = {
+	party = 'hide',
+	raid1 = '[nogroup] hide;show',
+	raid2 = 'hide',
+	raid3 = 'hide',
+}
+
+local function HasVisibility(preset)
+	local units = E.db.unitframe.units
+	return units.party.visibility == preset.party
+		and units.raid1.visibility == preset.raid1
+		and units.raid2.visibility == preset.raid2
+		and units.raid3.visibility == preset.raid3
+end
+
+local function ApplyVisibility(preset)
+	if HasVisibility(preset) then return end
+
+	local units = E.db.unitframe.units
+	units.party.visibility = preset.party
+	units.raid1.visibility = preset.raid1
+	units.raid2.visibility = preset.raid2
+	units.raid3.visibility = preset.raid3
+
+	-- Only update headers if ElvUI frames are actually enabled
+	for _, frame in ipairs({'party', 'raid1', 'raid2', 'raid3'}) do
+		if units[frame].enable then
+			UF:CreateAndUpdateHeaderGroup(frame)
+		end
+	end
+end
+
+-- Update visibility for group unitframes based on instance type and difficulty
 local function UpdateRaidVisibility()
 	if not Private.isRetail then return end
 
-	local _, instanceType, difficultyID = GetInstanceInfo()
-
-	local defaultVisibility =
-	(E.db.unitframe.units.raid1.visibility == '[@raid6,noexists][@raid21,exists] hide;show') and
-	(E.db.unitframe.units.raid2.visibility == '[@raid21,noexists][@raid31,exists] hide;show')
-
-	local mythicVisibility =
-	(E.db.unitframe.units.raid1.visibility == '[nogroup] hide;show') and
-	(E.db.unitframe.units.raid2.visibility == 'hide')
-
 	-- Make sure maxAllowedGroups is enabled
-	if not E.db.unitframe.maxAllowedGroups then
-		E.db.unitframe.maxAllowedGroups = true
-	end
+	E.db.unitframe.maxAllowedGroups = true
 
-	if instanceType == 'raid' then
-		if difficultyID == 16 then
-			if not mythicVisibility then
-				E.db.unitframe.units.raid1.visibility = '[nogroup] hide;show'
-				E.db.unitframe.units.raid2.visibility = 'hide'
-				UF:CreateAndUpdateHeaderGroup('raid1')
-				UF:CreateAndUpdateHeaderGroup('raid2')
-			end
-		else
-			if not defaultVisibility then
-				E.db.unitframe.units.raid1.visibility = '[@raid6,noexists][@raid21,exists] hide;show'
-				E.db.unitframe.units.raid2.visibility = '[@raid21,noexists][@raid31,exists] hide;show'
-				UF:CreateAndUpdateHeaderGroup('raid1')
-				UF:CreateAndUpdateHeaderGroup('raid2')
-			end
-		end
-	else
-		if not defaultVisibility then
-			E.db.unitframe.units.raid1.visibility = '[@raid6,noexists][@raid21,exists] hide;show'
-			E.db.unitframe.units.raid2.visibility = '[@raid21,noexists][@raid31,exists] hide;show'
-			UF:CreateAndUpdateHeaderGroup('raid1')
-			UF:CreateAndUpdateHeaderGroup('raid2')
-		end
-	end
+	local _, instanceType, difficultyID = GetInstanceInfo()
+	local isMythicRaid = (instanceType == 'raid' and difficultyID == 16)
+
+	ApplyVisibility(isMythicRaid and MythicVisibility or DefaultVisibility)
 end
 
 function Private:MythicVisibility()

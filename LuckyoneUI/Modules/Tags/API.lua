@@ -32,7 +32,11 @@ local E = unpack(ElvUI)
 local Abbrev = ElvUF.Tags.Env.Abbrev
 
 local ElvUF_colors_class = ElvUF.colors.class
+local ElvUF_colors_power = ElvUF.colors.power
 local ElvUF_colors_reaction = ElvUF.colors.reaction
+
+-- Constants
+local DEFAULT_COLOR = '|cFFcccccc'
 
 Private.Tags.classificationText = {
 	rare = 'Rare',
@@ -45,7 +49,7 @@ function Private.Tags.Hex(r, g, b)
 	if type(r) == 'table' then
 		if Private.isRetail then
 			return '|c' .. GenerateTextColorCode(r)
-		elseif(r.r) then
+		elseif r.r then
 			r, g, b = r.r, r.g, r.b
 		else
 			r, g, b = unpack(r)
@@ -57,6 +61,30 @@ function Private.Tags.Hex(r, g, b)
 	end
 
 	return '|cffFFFFFF'
+end
+
+local Hex = Private.Tags.Hex
+
+function Private.Tags.getUnitColor(unit)
+	if UnitIsPlayer(unit) or (Private.isRetail and UnitInPartyIsAI(unit)) then
+		local _, unitClass = UnitClass(unit)
+		if unitClass then
+			local cs = ElvUF_colors_class[unitClass]
+			if cs then
+				return Hex(cs.r, cs.g, cs.b)
+			end
+		end
+	else
+		local reaction = UnitReaction(unit, 'player')
+		if reaction then
+			local cr = ElvUF_colors_reaction[reaction]
+			if cr then
+				return Hex(cr.r, cr.g, cr.b)
+			end
+		end
+	end
+
+	return DEFAULT_COLOR
 end
 
 function Private.Tags.getFormattedName(unit, length, color, abbrev)
@@ -75,65 +103,25 @@ function Private.Tags.getFormattedName(unit, length, color, abbrev)
 
 	if not color then return name end
 
-	local colorHex = '|cFFcccccc' -- Default color
-
-	if UnitIsPlayer(unit) or (Private.isRetail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		if unitClass then
-			local cs = ElvUF_colors_class[unitClass]
-			if cs then
-				colorHex = Private.Tags.Hex(cs.r, cs.g, cs.b)
-			end
-		end
-	else
-		local reaction = UnitReaction(unit, 'player')
-		if reaction then
-			local cr = ElvUF_colors_reaction[reaction]
-			if cr then
-				colorHex = Private.Tags.Hex(cr.r, cr.g, cr.b)
-			end
-		end
-	end
-
-	return colorHex .. name
+	return Private.Tags.getUnitColor(unit) .. name
 end
 
 function Private.Tags.getPowerColor(unit)
-	local _COLORS = ElvUF.colors
 	local pType, pToken, altR, altG, altB = UnitPowerType(unit)
-	local color = _COLORS.power[pToken]
+	local color = ElvUF_colors_power[pToken]
 
 	if not color then
 		if altR then
 			if altR > 1 or altG > 1 or altB > 1 then
-				color = Private.Tags.Hex(altR / 255, altG / 255, altB / 255)
+				color = Hex(altR / 255, altG / 255, altB / 255)
 			else
-				color = Private.Tags.Hex(altR, altG, altB)
+				color = Hex(altR, altG, altB)
 			end
 		else
-			color = Private.Tags.Hex(_COLORS.power[pType] or _COLORS.power.MANA)
+			color = Hex(ElvUF_colors_power[pType] or ElvUF_colors_power.MANA)
 		end
 	else
-		color = Private.Tags.Hex(color)
-	end
-
-	return color
-end
-
-function Private.Tags.getUnitColor(unit)
-	local color = '|cFFcccccc'
-
-	if UnitIsPlayer(unit) or (Private.isRetail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		local cs = ElvUF_colors_class[unitClass]
-		if cs then
-			color = Private.Tags.Hex(cs.r, cs.g, cs.b)
-		end
-	else
-		local cr = ElvUF_colors_reaction[UnitReaction(unit, 'player')]
-		if cr then
-			color = Private.Tags.Hex(cr.r, cr.g, cr.b)
-		end
+		color = Hex(color)
 	end
 
 	return color
@@ -149,8 +137,8 @@ function Private.Tags.formatTargetName(unit, lastPartOnly, withColor)
 	local targetName = UnitName(unit..'target')
 	if not targetName then return end
 
-	if lastPartOnly and strfind(targetName, '%s') then
-		targetName = strmatch(targetName, '([%S]+)$')
+	if lastPartOnly then
+		targetName = Private.Tags.getLastNamePart(targetName)
 	end
 
 	return withColor and (Private.Tags.getUnitColor(unit..'target')..targetName) or targetName

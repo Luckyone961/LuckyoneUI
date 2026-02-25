@@ -27,15 +27,12 @@ local function UpdateDataTextWidth()
 	if not ActionBarsDT then return end
 
 	local profile = Private:GetActiveProfile()
+	if not profile then return end
 
-	-- Main layout values
 	if profile == 1 then
-		ActionBarsDT.width = 395
-	elseif profile == 2 then -- Healer layout values
-		ActionBarsDT.width = 704
-	else
-		Private:Print('Unknown profile, not adjusting DataText width.')
-		return
+		ActionBarsDT.width = 395 -- Main layout default value
+	elseif profile == 2 then
+		ActionBarsDT.width = 704 -- Healer layout default value
 	end
 
 	DT:LoadDataTexts()

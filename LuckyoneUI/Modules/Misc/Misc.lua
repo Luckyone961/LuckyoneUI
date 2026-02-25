@@ -1,5 +1,6 @@
 -- Addon namespace
 local _, Private = ...
+local Misc = Private.Modules.Misc
 
 -- ElvUI file
 if not Private.ElvUI then
@@ -23,16 +24,28 @@ function Private:UpdateNameplateClassification()
 	E.db.nameplates.units.ENEMY_NPC.health.useClassificationColor = IsInInstance()
 end
 
-function Private:NameplateClassification()
-	if not E.private.nameplates.enable then return end
-	if not Private.Addon.db.profile.misc.nameplateClassification then return end
-
-	-- Only register zone change events here - PLAYER_ENTERING_WORLD is handled in Core
-	Private.Addon:RegisterEvent('ZONE_CHANGED', function() Private:UpdateNameplateClassification() end)
-	Private.Addon:RegisterEvent('ZONE_CHANGED_INDOORS', function() Private:UpdateNameplateClassification() end)
-	Private.Addon:RegisterEvent('ZONE_CHANGED_NEW_AREA', function() Private:UpdateNameplateClassification() end)
+function Misc:PLAYER_ENTERING_WORLD()
+	Private:MythicVisibility()
+	Private:DataTextsTweaks()
+	Private:UpdateNameplateClassification()
 end
 
-function Private:MiscTweaks()
-	Private:NameplateClassification()
+function Misc:PLAYER_SPECIALIZATION_CHANGED()
+	Private:DataTextsTweaks()
+end
+
+function Misc:OnZoneChanged()
+	Private:UpdateNameplateClassification()
+end
+
+function Misc:OnEnable()
+	self:RegisterEvent('PLAYER_ENTERING_WORLD')
+	self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
+
+	-- Nameplate classification zone tracking
+	if E.private.nameplates.enable and Private.Addon.db.profile.misc.nameplateClassification then
+		self:RegisterEvent('ZONE_CHANGED', 'OnZoneChanged')
+		self:RegisterEvent('ZONE_CHANGED_INDOORS', 'OnZoneChanged')
+		self:RegisterEvent('ZONE_CHANGED_NEW_AREA', 'OnZoneChanged')
+	end
 end

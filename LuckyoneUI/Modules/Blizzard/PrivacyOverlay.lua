@@ -34,31 +34,31 @@ function Private:PrivacyOverlay()
 	PrivacyOverlay.text:SetHeight(20)
 	PrivacyOverlay.text:SetPoint('CENTER', PrivacyOverlay, 'CENTER', 0, 0)
 
+	-- Anchor the overlay once
+	PrivacyOverlay:SetAllPoints(_G.CommunitiesFrame.Chat.InsetFrame)
+
 	-- Make sure we can click the overlay to show the chat
 	PrivacyOverlay:EnableMouse(true)
 	PrivacyOverlay:RegisterForClicks('AnyDown', 'AnyUp')
-	PrivacyOverlay:SetScript('OnClick', function(...)
-			PrivacyOverlay:Hide()
+	PrivacyOverlay:SetScript('OnClick', function(self)
+		self:Hide()
 	end)
 
-	-- Show the overlay
+	-- Show or hide the overlay based on display mode
 	local function ShowOverlay()
 		if _G.CommunitiesFrame:IsShown() and (_G.CommunitiesFrame:GetDisplayMode() == COMMUNITIES_FRAME_DISPLAY_MODES.CHAT) then
-			PrivacyOverlay:SetAllPoints(_G.CommunitiesFrame.Chat.InsetFrame)
 			PrivacyOverlay:Show()
 		else
 			PrivacyOverlay:Hide()
 		end
 	end
 
-	-- Hide the overlay
-	local function HideOverlay()
-		PrivacyOverlay:Hide()
-	end
+	-- Hide after creation
+	PrivacyOverlay:Hide()
 
 	-- Hook the following Blizzard events
 	hooksecurefunc(_G.CommunitiesFrame, 'SetDisplayMode', ShowOverlay)
 	hooksecurefunc(_G.CommunitiesFrame, 'Show', ShowOverlay)
-	hooksecurefunc(_G.CommunitiesFrame, 'Hide', HideOverlay)
+	hooksecurefunc(_G.CommunitiesFrame, 'Hide', function() PrivacyOverlay:Hide() end)
 	hooksecurefunc(_G.CommunitiesFrame, 'OnClubSelected', ShowOverlay)
 end
