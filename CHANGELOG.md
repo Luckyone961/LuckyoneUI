@@ -1,6 +1,7 @@
 ﻿## Version 4.04 [In Development]
 
 **All WoW Versions:**  
+- ElvUI 15.06+ compatibility  
 - Updated Action Bars (Disabled the new Spell Cast VFX by default)  
 - Updated Arena Frames (Buffs & Debuffs now ignore mouse events)  
 - Updated Boss Frames (Buffs & Debuffs now ignore mouse events)  
