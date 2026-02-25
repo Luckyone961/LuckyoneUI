@@ -24,7 +24,9 @@ end
 
 -- Aura filters: Installer Function
 function Private:Setup_Filters(installer)
-	if Private.isMists then
+	if Private.isRetail then
+		Private:Setup_Filters_Retail()
+	elseif Private.isMists then
 		Private:Setup_Filters_Mists()
 	elseif Private.isTBC then
 		Private:Setup_Filters_TBC()
@@ -37,6 +39,363 @@ function Private:Setup_Filters(installer)
 	end
 
 	Private:Print(L["Custom ElvUI aura filters loaded."])
+end
+
+-- Aura filters: Retail
+function Private:Setup_Filters_Retail()
+	if not Private.isRetail then return end
+
+	-- General vars
+	local unitframe = E.global['unitframe'] or {}
+	local aurawatch = unitframe['aurawatch'] or {}
+	local auraHighlight = unitframe['AuraHighlightColors'] or {}
+
+	-- Classes setup
+	local classes = {
+		-- Healers
+		DRUID = aurawatch['DRUID'] or {},
+		EVOKER = aurawatch['EVOKER'] or {},
+		MONK = aurawatch['MONK'] or {},
+		PALADIN = aurawatch['PALADIN'] or {},
+		PRIEST = aurawatch['PRIEST'] or {},
+		SHAMAN = aurawatch['SHAMAN'] or {},
+		-- Others
+		HUNTER = aurawatch['HUNTER'] or {},
+		ROGUE = aurawatch['ROGUE'] or {},
+		WARRIOR = aurawatch['WARRIOR'] or {}
+	}
+
+	local ids = {
+		DRUID = {
+			-- Restoration
+			774, -- Rejuvenation
+			8936, -- Regrowth
+			33763, -- Lifebloom
+			48438, -- Wild Growth
+			155777, -- Germination
+		},
+		EVOKER = {
+			-- Preservation
+			355941, -- Dream Breath
+			376788, -- Dream Breath (Echo)
+			363502, -- Dream Flight
+			366155, -- Reversion
+			367364, -- Reversion (Echo)
+			373267, -- Life Bind
+			364343, -- Echo
+			-- Augmentation
+			360827, -- Blistering Scales
+			410089, -- Prescience
+			395152, -- Ebon Might
+		},
+		MONK = {
+			-- Mistweaver
+			115175, -- Soothing Mist
+			119611, -- Renewing Mist
+			450769, -- Aspect of Harmony
+			124682, -- Enveloping Mist
+		},
+		PALADIN = {
+			-- Holy
+			53563, -- Beacon of Light
+			156910, -- Beacon of Faith
+			200025, -- Beacon of Virtue
+			156322, -- Eternal Flame
+		},
+		PRIEST = {
+			-- Discipline
+			17, -- Power Word: Shield
+			194384, -- Atonement
+			-- Holy
+			139, -- Renew
+			41635, -- Prayer of Mending
+			77489, -- Echo of Light
+		},
+		SHAMAN = {
+			-- Restoration
+			974, -- Earth Shield
+			61295, -- Riptide
+			383648, -- Earth Shield (Elemental Orbit)
+		},
+		-- ToDo
+		-- 1244893, -- Beacon of the Savior (Holy Paladin)
+		-- 1253593, -- Void Shield (Discipline Priest)
+		-- 410263, -- Inferno's Blessing (Augmentation Evoker)
+		-- 410686, -- Symbiotic Bloom (Augmentation Evoker)
+		-- 413984, -- Shifting Sands (Augmentation Evoker)
+	}
+
+	for class, classIDs in pairs(ids) do
+		Add(classes[class], classIDs, { enable = true, color = {} })
+	end
+
+	-- Restoration
+	classes['DRUID'][774] = { -- Rejuvenation
+		['point'] = 'TOPLEFT',
+		['displayText'] = true,
+		['yOffset'] = 1,
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = -1,
+	}
+	classes['DRUID'][8936] = { -- Regrowth
+		['point'] = 'TOPRIGHT',
+		['displayText'] = true,
+		['yOffset'] = 1,
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = -16,
+	}
+	classes['DRUID'][33763] = { -- Lifebloom
+		['displayText'] = true,
+		['yOffset'] = 1,
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 33,
+	}
+	classes['DRUID'][48438] = { -- Wild Growth
+		['point'] = 'TOPRIGHT',
+		['displayText'] = true,
+		['yOffset'] = 1,
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 1,
+	}
+	classes['DRUID'][155777] = { -- Germination
+		['point'] = 'TOPLEFT',
+		['displayText'] = true,
+		['yOffset'] = 1,
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 16,
+	}
+
+	-- Preservation
+	classes['EVOKER'][355941] = { -- Dream Breath
+		['displayText'] = true,
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 1,
+		['yOffset'] = 1,
+	}
+	classes['EVOKER'][376788] = { -- Dream Breath (Echo)
+		['displayText'] = true,
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = -16,
+		['yOffset'] = 1,
+	}
+	classes['EVOKER'][363502] = { -- Dream Flight
+		['displayText'] = true,
+		['point'] = 'BOTTOMRIGHT',
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 1,
+		['yOffset'] = -1,
+	}
+	classes['EVOKER'][366155] = { -- Reversion
+		['displayText'] = true,
+		['point'] = 'TOP',
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 17,
+		['yOffset'] = 1,
+	}
+	classes['EVOKER'][367364] = { -- Reversion (Echo)
+		['displayText'] = true,
+		['point'] = 'TOP',
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 0,
+		['yOffset'] = 1,
+	}
+	classes['EVOKER'][373267] = { -- Life Bind
+		['displayText'] = true,
+		['point'] = 'TOPLEFT',
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 16,
+		['yOffset'] = 1,
+	}
+	classes['EVOKER'][364343] = { -- Echo
+		['color'] = {
+			['a'] = 1,
+			['r'] = 1,
+			['g'] = 1,
+			['b'] = 1,
+		},
+		['displayText'] = true,
+		['yOffset'] = 2,
+		['sizeOffset'] = 6,
+		['style'] = 'timerOnly',
+		['xOffset'] = -17,
+	}
+	auraHighlight[364343] = { -- Echo
+		['enable'] = true,
+		['ownOnly'] = true,
+		['style'] = 'FILL',
+		['color'] = {
+			['a'] = 0.45,
+			['b'] = 0.51,
+			['g'] = 0.96,
+			['r'] = 0.51,
+		},
+	}
+	-- Augmentation
+	classes['EVOKER'][360827] = { -- Blistering Scales
+		['countAnchor'] = 'BOTTOM',
+		['point'] = 'TOPLEFT',
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = -1,
+		['yOffset'] = 1,
+	}
+	classes['EVOKER'][410089] = { -- Prescience
+		['color'] = {
+			['a'] = 1,
+			['b'] = 1,
+			['g'] = 1,
+			['r'] = 1,
+		},
+		['displayText'] = true,
+		['point'] = 'TOPRIGHT',
+		['sizeOffset'] = 6,
+		['style'] = 'timerOnly',
+	}
+	auraHighlight[410089] = { -- Prescience
+		['enable'] = true,
+		['ownOnly'] = true,
+		['style'] = 'FILL',
+		['color'] = {
+			['a'] = 0.65,
+			['r'] = 0.80,
+			['g'] = 0.59,
+			['b'] = 0.34,
+		},
+	}
+	classes['EVOKER'][395152]['enabled'] = false -- Ebon Might (Others)
+
+	-- Monk
+	classes['MONK'][115175] = { -- Soothing Mist
+		['point'] = 'BOTTOMLEFT',
+		['xOffset'] = -1,
+		['displayText'] = true,
+		['yOffset'] = -1,
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+	}
+	classes['MONK'][119611] = { -- Renewing Mist
+		['displayText'] = true,
+		['yOffset'] = 1,
+		['countY'] = 0,
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = -1,
+		['cooldownY'] = 0,
+	}
+	classes['MONK'][450769] = { -- Aspect of Harmony
+		['displayText'] = true,
+		['yOffset'] = 1,
+		['countY'] = 0,
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = -1,
+		['cooldownY'] = 0,
+	}
+	classes['MONK'][124682] = { -- Enveloping Mist
+		['point'] = 'TOPLEFT',
+		['displayText'] = true,
+		['yOffset'] = 1,
+		['countY'] = 0,
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['countX'] = 0,
+		['xOffset'] = 16,
+		['cooldownY'] = 0,
+	}
+
+	-- Holy
+	classes['PALADIN'][53563] = { -- Beacon of Light
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes['PALADIN'][156910] = { -- Beacon of Faith
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes['PALADIN'][200025] = { -- Beacon of Virtue
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 1,
+	}
+	classes['PALADIN'][156322]['enabled'] = false -- Eternal Flame
+
+	-- Discipline
+	classes['PRIEST'][17] = { -- Power Word: Shield
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 16,
+	}
+	classes['PRIEST'][194384] = { -- Atonement
+		["point"] = "TOPLEFT",
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
+	}
+	-- Holy
+	classes['PRIEST'][139] = { -- Renew
+		["point"] = "TOPRIGHT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -16,
+	}
+	classes['PRIEST'][41635] = { -- Prayer of Mending
+		["point"] = "TOP",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+	}
+	classes['PRIEST'][77489]['enabled'] = false -- Echo of Light
+
+	-- Restoration
+	classes['SHAMAN'][974] = { -- Earth Shield
+		["point"] = "TOPLEFT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 16,
+	}
+	classes['SHAMAN'][61295] = { -- Riptide
+		["point"] = "TOPLEFT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
+	}
+	classes['SHAMAN'][383648] = { -- Earth Shield (Elemental Orbit)
+		["point"] = "TOPLEFT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 16,
+	}
 end
 
 -- Aura filters: Mists of Pandaria

@@ -62,9 +62,9 @@ local function BuildSetupSection()
 	return section
 end
 
--- Build Blizzard Section
-local function BuildBlizzardSection()
-	local section = ACH:Group(L["Blizzard Improvements"], nil, 5)
+-- Build General Section
+local function BuildGeneralSection()
+	local section = ACH:Group(L["General"], nil, 5)
 	section.args.header = ACH:Header(L["Blizzard Improvements"], 1)
 	section.args.disabledFrames = ACH:Group(L["Hide Blizzard Frames"], nil, 2, nil, function(info) return Private.Addon.db.profile.disabledFrames[info[#info]] end, function(info, value) Private.Addon.db.profile.disabledFrames[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.disabledFrames.inline = true
@@ -88,47 +88,15 @@ end
 
 -- Build Auras Section
 local function BuildAurasSection()
-	if not Private.ElvUI or Private.isRetail then return end -- ElvUI section (non-Retail only)
-	local section = ACH:Group(L["Buffs and Debuffs"], nil, 10, 'tab')
-	section.args.header = ACH:Header(L["Buffs and Debuffs"], 1)
-	section.args.buffs = ACH:Group(format('|cff3296ff%s|r', L["Buffs"]), nil, 1)
-	section.args.buffs.args.player = ACH:Group(L["Player Frame Buffs"], nil, 1)
-	section.args.buffs.args.player.inline = true
-	section.args.buffs.args.player.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('player', 'min') end)
-	section.args.buffs.args.player.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('player', 'all') end)
-	section.args.buffs.args.target = ACH:Group(L["Target Frame Buffs"], nil, 2)
-	section.args.buffs.args.target.inline = true
-	section.args.buffs.args.target.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('target', 'min') end)
-	section.args.buffs.args.target.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('target', 'all') end)
-	section.args.buffs.args.focus = ACH:Group(L["Focus Frame Buffs"], nil, 3, nil, nil, nil, nil, Private.isClassic)
-	section.args.buffs.args.focus.inline = true
-	section.args.buffs.args.focus.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('focus', 'min') end)
-	section.args.buffs.args.focus.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('focus', 'all') end)
-	section.args.buffs.args.boss = ACH:Group(L["Boss Frame Buffs"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
-	section.args.buffs.args.boss.inline = true
-	section.args.buffs.args.boss.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Buffs('boss', 'min') end)
-	section.args.buffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Buffs('boss', 'all') end)
-	section.args.debuffs = ACH:Group(format('|cffC80000%s|r', L["Debuffs"]), nil, 2)
-	section.args.debuffs.args.player = ACH:Group(L["Player Frame Debuffs"], nil, 1)
-	section.args.debuffs.args.player.inline = true
-	section.args.debuffs.args.player.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('player', 'min') end)
-	section.args.debuffs.args.player.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('player', 'all') end)
-	section.args.debuffs.args.target = ACH:Group(L["Target Frame Debuffs"], nil, 2)
-	section.args.debuffs.args.target.inline = true
-	section.args.debuffs.args.target.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('target', 'min') end)
-	section.args.debuffs.args.target.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('target', 'all') end)
-	section.args.debuffs.args.focus = ACH:Group(L["Focus Frame Debuffs"], nil, 3, nil, nil, nil, nil, Private.isClassic)
-	section.args.debuffs.args.focus.inline = true
-	section.args.debuffs.args.focus.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('focus', 'min') end)
-	section.args.debuffs.args.focus.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('focus', 'all') end)
-	section.args.debuffs.args.boss = ACH:Group(L["Boss Frame Debuffs"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
-	section.args.debuffs.args.boss.inline = true
-	section.args.debuffs.args.boss.args.min = ACH:Execute(L["LuckyoneUI Default"], L["Minimalistic. Only important auras."], 1, function() Private:Setup_Debuffs('boss', 'min') end)
-	section.args.debuffs.args.boss.args.all = ACH:Execute(L["Show All"], L["Show all auras except blacklisted."], 2, function() Private:Setup_Debuffs('boss', 'all') end)
-	section.args.filters = ACH:Group(L["Filters"], nil, 3)
+	if not Private.ElvUI then return end -- ElvUI section
+	local section = ACH:Group(L["Auras"], nil, 10)
+	section.args.header = ACH:Header(L["Auras"], 1)
+	section.args.filters = ACH:Group(L["Filters"], nil, 2)
 	section.args.filters.inline = true
-	section.args.filters.args.setup = ACH:Execute(L["Setup Aura Filters"], nil, 1, function() Private:Setup_Filters() StaticPopup_Show(RELOAD_POPUP) end)
-	section.args.filters.args.desc = ACH:Description(L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"], 2, 'medium')
+	section.args.filters.args.setup = ACH:Execute((Private.isRetail and L["Setup Aura Indicators"]) or L["Setup Aura Filters"], nil, 1, function() Private:Setup_Filters() StaticPopup_Show(RELOAD_POPUP) end)
+	section.args.Desc = ACH:Group(L["Description"], nil, 3)
+	section.args.Desc.inline = true
+	section.args.Desc.args.cvars = ACH:Description((Private.isRetail and L["This will apply Luckyones Aura Indicator edit and set the style to Textured."]) or L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"], 2, 'medium')
 	return section
 end
 
@@ -372,7 +340,7 @@ function Private:BuildConfig()
 
 	-- Add sections
 	Private.Config.args.setup = BuildSetupSection() -- 2
-	Private.Config.args.blizzard = BuildBlizzardSection() -- 5
+	Private.Config.args.blizzard = BuildGeneralSection() -- 5
 
 	Private.Config.args.auras = BuildAurasSection() -- 10
 	Private.Config.args.privateDB = BuildPrivateDBSection() -- 15

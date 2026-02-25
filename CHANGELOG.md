@@ -1,4 +1,11 @@
-﻿## Version 4.04 [25-02-2026]
+﻿## Version 4.05 [In Development]
+
+**Retail:**  
+- Added setup button for whitelisted aura indicators into the Auras tab of the config  
+- Fixed the new :status Tags sometimes not updating correctly  
+- Text of the new :status Tags is now capslock (DEAD, GHOST, OFFLINE)  
+
+## Version 4.04 [25-02-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.06+ compatibility  
