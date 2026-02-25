@@ -340,7 +340,7 @@ if Private.isRetail then
 			return (friend and Private.Tags.getFormattedName(unit, length, false)) or name
 		end)
 		-- Displays the unit's name (or status) with classcolor and a maximum length (friendly only) or full name (if enemy)
-		E:AddTag('luckyone:name:' .. textFormat .. '-color-friendly:status', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
+		E:AddTag('luckyone:name:' .. textFormat .. '-color-friendly:status', 'UNIT_HEALTH UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT PLAYER_UPDATE_RESTING UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
 			local status = UnitIsDead(unit) and L["DEAD"] or UnitIsGhost(unit) and L["GHOST"] or not UnitIsConnected(unit) and L["OFFLINE"]
 			if status then return status end
 
@@ -351,7 +351,7 @@ if Private.isRetail then
 			return (friend and Private.Tags.getFormattedName(unit, length, true)) or name
 		end)
 		-- Displays the unit's name (or status) with no color and a maximum length (friendly only) or full name (if enemy)
-		E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly:status', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
+		E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly:status', 'UNIT_HEALTH UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT PLAYER_UPDATE_RESTING UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
 			local status = UnitIsDead(unit) and L["DEAD"] or UnitIsGhost(unit) and L["GHOST"] or not UnitIsConnected(unit) and L["OFFLINE"]
 			if status then return status end
 
