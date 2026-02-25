@@ -1697,7 +1697,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.buffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.party.buffs.countXOffset = 1
 	E.db.unitframe.units.party.buffs.countYOffset = -1
-	E.db.unitframe.units.party.buffs.enable = Private.isRetail
+	E.db.unitframe.units.party.buffs.enable = false
 	E.db.unitframe.units.party.buffs.sizeOverride = 20
 	E.db.unitframe.units.party.buffs.yOffset = -21
 	E.db.unitframe.units.party.classbar.enable = false
@@ -1780,6 +1780,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.buffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.raid1.buffs.countXOffset = 2
 	E.db.unitframe.units.raid1.buffs.countYOffset = 0
+	E.db.unitframe.units.raid1.buffs.enable = false
 	E.db.unitframe.units.raid1.buffs.growthY = 'DOWN'
 	E.db.unitframe.units.raid1.buffs.perrow = 5
 	E.db.unitframe.units.raid1.buffs.sizeOverride = 18
@@ -1841,6 +1842,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.buffIndicator.countFont = Private.Font
 	E.db.unitframe.units.raid3.buffIndicator.countFontSize = 10
 	E.db.unitframe.units.raid3.buffIndicator.size = 6
+	E.db.unitframe.units.raid3.buffs.enable = false
 	E.db.unitframe.units.raid3.classbar.enable = false
 	E.db.unitframe.units.raid3.debuffs.countFont = Private.Font
 	E.db.unitframe.units.raid3.debuffs.desaturate = false
@@ -2058,7 +2060,6 @@ function Private:Setup_ElvUI(layout)
 
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
-		E.db.unitframe.units.raid1.buffs.enable = Private.isRetail
 		E.db.unitframe.units.raid1.debuffs.enable = Private.isRetail
 		E.db.unitframe.units.raid1.height = (scaled and 60) or 70
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'RIGHT'
@@ -2078,7 +2079,6 @@ function Private:Setup_ElvUI(layout)
 
 		-- Healing Raid2
 		E.db.unitframe.units.raid2.buffIndicator.size = 14
-		E.db.unitframe.units.raid2.buffs.enable = Private.isRetail
 		E.db.unitframe.units.raid2.debuffs.enable = Private.isRetail
 		E.db.unitframe.units.raid2.height = (scaled and 44) or 54
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'RIGHT'
