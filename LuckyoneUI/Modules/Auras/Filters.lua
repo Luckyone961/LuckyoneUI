@@ -126,7 +126,7 @@ function Private:Setup_Filters_Retail()
 	}
 
 	for class, classIDs in pairs(ids) do
-		Add(classes[class], classIDs, { enable = true, color = {} })
+		Add(classes[class], classIDs, { enabled = true, color = {} })
 	end
 
 	-- Restoration
