@@ -120,6 +120,7 @@ function Private:Setup_Filters_Retail()
 			383648, -- Earth Shield (Elemental Orbit)
 			207400, -- Ancestral Vigor
 			382024, -- Earthliving Weapon
+			444490, -- Hydrobubble
 		},
 		-- ToDo
 		-- 410263, -- Inferno's Blessing (Augmentation Evoker)
@@ -427,6 +428,7 @@ function Private:Setup_Filters_Retail()
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
 	}
+	classes['SHAMAN'][444490]['enabled'] = false -- Hydrobubble
 end
 
 -- Aura filters: Mists of Pandaria
