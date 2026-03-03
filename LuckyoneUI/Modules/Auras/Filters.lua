@@ -118,6 +118,8 @@ function Private:Setup_Filters_Retail()
 			974, -- Earth Shield
 			61295, -- Riptide
 			383648, -- Earth Shield (Elemental Orbit)
+			207400, -- Ancestral Vigor
+			382024, -- Earthliving Weapon
 		},
 		-- ToDo
 		-- 410263, -- Inferno's Blessing (Augmentation Evoker)
@@ -409,6 +411,21 @@ function Private:Setup_Filters_Retail()
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
 		["xOffset"] = 16,
+	}
+	classes['SHAMAN'][207400] = { -- Ancestral Vigor
+		['point'] = 'TOPRIGHT',
+		['displayText'] = true,
+		['yOffset'] = 1,
+		['sizeOffset'] = 2,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 1,
+	}
+	classes['SHAMAN'][382024] = {  -- Earthliving Weapon
+		["point"] = "TOP",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
 	}
 end
 
