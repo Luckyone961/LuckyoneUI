@@ -1694,6 +1694,8 @@ function Private:Setup_ElvUI(layout)
 		yOffset = 0
 	}
 
+	E.db.unitframe.units.party.buffIndicator.countFont = Private.Font
+	E.db.unitframe.units.party.buffIndicator.size = 14
 	E.db.unitframe.units.party.buffs.anchorPoint = 'TOPLEFT'
 	E.db.unitframe.units.party.buffs.clickThrough = true
 	E.db.unitframe.units.party.buffs.countFont = Private.Font
@@ -1845,7 +1847,6 @@ function Private:Setup_ElvUI(layout)
 	-- Shared Raid3
 	E.db.unitframe.units.raid3.buffIndicator.countFont = Private.Font
 	E.db.unitframe.units.raid3.buffIndicator.countFontSize = 10
-	E.db.unitframe.units.raid3.buffIndicator.size = 6
 	E.db.unitframe.units.raid3.buffs.enable = false
 	E.db.unitframe.units.raid3.classbar.enable = false
 	E.db.unitframe.units.raid3.debuffs.countFont = Private.Font
@@ -1967,7 +1968,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. (not Private.isRetail and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]')
 
 		-- Main Raid1
-		E.db.unitframe.units.raid1.buffIndicator.size = 6
+		E.db.unitframe.units.raid1.buffIndicator.size = 10
 		E.db.unitframe.units.raid1.height = 40
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid1.raidicon.attachToObject = 'Health'
@@ -1986,6 +1987,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid1.width = (scaled and 86) or 96
 
 		-- Main Raid2
+		E.db.unitframe.units.raid2.buffIndicator.size = 10
 		E.db.unitframe.units.raid2.height = 40
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid2.raidicon.attachToObject = 'Health'
@@ -2004,6 +2006,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.width = (scaled and 86) or 96
 
 		-- Main Raid3
+		E.db.unitframe.units.raid3.buffIndicator.size = 8
 		E.db.unitframe.units.raid3.height = 30
 		E.db.unitframe.units.raid3.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid3.raidicon.attachToObject = 'Health'
@@ -2101,6 +2104,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.width = 140
 
 		-- Healing Raid3
+		E.db.unitframe.units.raid3.buffIndicator.size = 10
 		E.db.unitframe.units.raid3.height = (scaled and 32) or 36
 		E.db.unitframe.units.raid3.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid3.raidicon.size = 12
