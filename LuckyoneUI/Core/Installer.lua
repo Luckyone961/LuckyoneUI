@@ -23,8 +23,8 @@ local FONT = LSM:Fetch('font', Private.Font)
 local FONT_OUTLINE = Private.Outline
 
 -- Constants: Scalings
-local MAIN_FRAME_HEIGHT = 400
-local MAIN_FRAME_WIDTH = 550
+local MAIN_FRAME_HEIGHT = 440
+local MAIN_FRAME_WIDTH = 600
 local STEP_BUTTON_HEIGHT = 22
 local STEP_BUTTON_WIDTH = 200
 local STEP_FRAME_WIDTH = 220
@@ -594,20 +594,18 @@ local function BuildInstallerData()
 		stepTitles[pageIndex] = L["ElvUI Layouts"]
 		pageIndex = pageIndex + 1
 
-		if not Private.isRetail then
-			-- Page: ElvUI Filters
-			pages[pageIndex] = function()
-				local f = installerFrame
-				f.SubTitle:SetText(L["ElvUI Filters"])
-				f.Desc1:SetText(L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"])
-				f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-				f.Option1:Show()
-				f.Option1:SetScript('OnClick', function() Private:Setup_Filters(true) end)
-				f.Option1:SetText(L["Setup Aura Filters"])
-			end
-			stepTitles[pageIndex] = L["ElvUI Filters"]
-			pageIndex = pageIndex + 1
+		-- Page: ElvUI Filters
+		pages[pageIndex] = function()
+			local f = installerFrame
+			f.SubTitle:SetText(L["ElvUI Filters"])
+			f.Desc1:SetText((Private.isRetail and L["This will apply Luckyones Aura Indicator edit and set the style to Textured."]) or L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"])
+			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+			f.Option1:Show()
+			f.Option1:SetScript('OnClick', function() Private:Setup_Filters(true) end)
+			f.Option1:SetText((Private.isRetail and L["Setup Aura Indicators"]) or L["Setup Aura Filters"])
 		end
+		stepTitles[pageIndex] = L["ElvUI Filters"]
+		pageIndex = pageIndex + 1
 
 		-- Retail-only: ElvUI plugins
 		if Private.isRetail then
