@@ -150,11 +150,19 @@ function Private:Setup_Filters_Retail()
 		['xOffset'] = -16,
 	}
 	classes['DRUID'][33763] = { -- Lifebloom
-		['displayText'] = true,
-		['yOffset'] = 1,
-		['sizeOffset'] = 2,
-		['style'] = 'texturedIcon',
-		['xOffset'] = 33,
+		["color"] = {
+			["a"] = 1,
+			["r"] = 1,
+			["g"] = 1,
+			["b"] = 1,
+		},
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["countAnchor"] = "RIGHT",
+		["sizeOffset"] = 2,
+		["style"] = "timerOnly",
+		["countX"] = 13,
+		["xOffset"] = 33,
 	}
 	classes['DRUID'][48438] = { -- Wild Growth
 		['point'] = 'TOPRIGHT',
@@ -171,6 +179,17 @@ function Private:Setup_Filters_Retail()
 		['sizeOffset'] = 2,
 		['style'] = 'texturedIcon',
 		['xOffset'] = 16,
+	}
+	auraHighlight[33763] = { -- Lifebloom
+		["enable"] = true,
+		["ownOnly"] = true,
+		["style"] = "FILL",
+		["color"] = {
+			["a"] = 0.45,
+			["b"] = 0.51,
+			["g"] = 0.96,
+			["r"] = 0.51,
+		},
 	}
 
 	-- Preservation

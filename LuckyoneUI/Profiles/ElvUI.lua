@@ -1456,7 +1456,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.castbar.tickColor.g = 1
 	E.db.unitframe.units.player.castbar.tickColor.r = 1
 	E.db.unitframe.units.player.castbar.tickWidth = 2
-	E.db.unitframe.units.player.castbar.timeToHold = 2
+	E.db.unitframe.units.player.castbar.timeToHold = 0
 	E.db.unitframe.units.player.castbar.width = 315
 	E.db.unitframe.units.player.castbar.xOffsetText = 2
 	E.db.unitframe.units.player.castbar.xOffsetTime = -2

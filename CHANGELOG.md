@@ -1,4 +1,12 @@
-﻿## Version 4.05 [04-03-2026]
+﻿## Version 4.06 [In Development]
+
+**All WoW Versions:**  
+- Disabled time to hold on player castbar (was 2 seconds)  
+
+**Retail:**  
+- Updated aura indicators (Resto Druid)  
+
+## Version 4.05 [04-03-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.08+ compatibility  
