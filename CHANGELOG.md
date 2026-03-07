@@ -7,6 +7,7 @@
 **Retail:**  
 - Added profile import for the AyijeCDM AddOn  
 - Updated aura indicators (Resto Druid)  
+- Updated BetterCooldownManager import  
 
 ## Version 4.05 [04-03-2026]
 
