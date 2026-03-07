@@ -6,7 +6,7 @@ local L = Private.Libs.ACL
 local _G = _G
 
 -- BetterCooldownManager profiles
-function Private:Setup_BetterCooldownManager(installer)
+function Private:Setup_BCDM(installer)
 	if not Private.IsAddOnLoaded('BetterCooldownManager') then Private:Print('BetterCooldownManager ' .. L["is not installed or enabled."]) return end
 
 	-- Global dbs

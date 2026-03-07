@@ -234,7 +234,7 @@ local function BuildProfilesSection()
 	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 5)
 	section.args.addons.inline = true
 	section.args.addons.args.details = ACH:Execute('Details', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_Details() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.addons.args.betterCooldownManager = ACH:Execute('BetterCooldownManager', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_BetterCooldownManager() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.betterCooldownManager = ACH:Execute('BetterCooldownManager', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_BCDM() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_WarpDeplete() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.header2 = ACH:Header(L["Profiles for DPS & Tanks"], 6)
 	section.args.addonsMain = ACH:Group(L["Addon Profiles"], nil, 7)
