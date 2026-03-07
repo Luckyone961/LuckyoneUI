@@ -1,0 +1,56 @@
+-- Addon namespace
+local _, Private = ...
+local L = Private.Libs.ACL
+
+-- Global environment
+local _G = _G
+
+-- BetterCooldownManager profile
+function Private:Setup_BCDM(installer)
+	if not Private.IsAddOnLoaded('BetterCooldownManager') then Private:Print('BetterCooldownManager ' .. L["is not installed or enabled."]) return end
+
+	-- Global db
+	local dev = Private.Addon.db.global.dev
+
+	-- Profile name
+	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version
+
+	-- Profile string
+	local importString = '!BCDM_TZ1w3TjUw4FrTlqiaXJyBCSx1g8bWjTZd0sSjXSghtoy5jn9H53(zlbcey8LKjjTDozTstXOl7pTVVLKtKAuyuW95z3KUoH9y)4T0EX5ShD2eF96KLrxhf0lEXFEBE2Unl7NToBhRzx1OHyIjgtW6ycXcBIuIU5d6ArUOOH6k6QkwgicbBOqueTObTanGigevvnne0wzl4OHevfdSPLQkwxLOJkBHgfmj(XSD0cAge6nJrHaNTBt2qtJx3plB9YSh2CzAYdj5mAu0hCKRsKRo8GcBsgMhFxsanpMgdZO3vrbxLUKUcMlaDbflREp2FD82TSv80y6Iv8E4DJ9MfRYYJ6ffmkj92vuymaact(ovWXctVJZ9AGu)XxmkKJ1YNGL5hqLaJHOSn0G0FKaDgjqqXqz)G4)wJ9BkR3b3NSETBCbDAo0guDIZWcIw8aNPxrYPXFV)Q484f0K8TqlNMUWGgViBJS(qVkkwqd(sjpPd9dtnSPc2cRzzyPyQJysutU(XbAr7GTGRye3Uo7641manFBYf8pmRu)fKBnEbNDfmi5M4DR5JvORmnEt8TjCTC7LltPPzBafPDBPz3XE3NssU3E79jlO(XqBSvmJjuQWOrQf(TvnRL51FGZlzlGpO(0f77R2ErE2d0vdsZb4b4wODXrOq)Kbr2NlOdtmhCF8I0n3YXjxvAld(JM7g64ZEkyU)LJV0EsexEo12)tWVCdgnEwXB65yheof(NJ)x4VbE3v2((J94dF48Yxhy7pnO4Pz(EHo9dh75kgGV3fZDyD3BE4e7Rkhqa7NXU2v9eatVWjoHveAQ9f8HnCSVtrpg67fekiyFBxhrxbMUdVLGrEtkHuWi7bELuBW4G(JNnzC9iGwHvkBe(Wi98LWHZeNPoUHcUIJ7iB3(8xvHmp3pXg60XbHx5yFjNzYyx(oxvWTk(8vJDhCL9Kpv(5cM3eV(8bBpC4KX1mQGbao8N34faD8M4DrfhH)MAP3LoUx4WWwr)hzFPxFXqV0BUFnzh4yho6tUCvgyG9M45nypw6C3kMhBi(ZhpOt(ZqhFbVPN9KA6FXCB)bJTRK7agkw5m4aCfPPygmPo(xk9g75xWz6YkoZGzFW4sHuO)4EZR7FTCEpfoAld0(oCggZ801d0ayXkeVRkCHsjMfXxyeTp8ys(OS80FawVXRx)iZxtB3ex3YielBeIXhgmIh14yG5PaPWJ8j51HnEHxhjxiTN1ZZh0PD6x4SN55lmpDZFMWPRugbVMUiPNLBpESNg(1oUhWY1bZVNlcJGqmm0LU1gMV)IVsxZr64nlt(EL)xVBUzBcT3JZIZbDGYzV3HfLhlTK9u1(GkQuBBmn5oUB5OF7c)uihylGTvbwOpfbZHyXJsxM8hj5zSmwUnHNv2Z2A(9y7VhB)9y7ShFp2oSG2DZnLf5EWkBv0iqjikiOquDKfRkeDELlhOfTd2szLlvUvAuiNunvp3A6oLxMb7YJ5otoBY1zHRNpfPvLwRTFP196Wj38zsvwJB6pR76WBa3EEHHEtBk5BUdaQFKlbE(fY(YRoqlczg9BxejPW9fwM)AfONzAZd)1akirk8fn3IdJ2lvX9ZZUTnY5X9pf)Udr)HuT71FW0VgKa4CzC(JZYGKkzUW2xzhSG4Z9fjBsYllFPmx0QTS6yW6yvx0DnlQ1UgcweVoP3JvSZEc7U)ids)YvbmezBrZdTmddF8(eWhF63twdbj2rZweVTqcKN8F3LSzXJSXI0ljqbwGfr3RHkxUFUqJJlncaToA6I1G(LRk4w6lsTXIVKNTG7DMcDZEt6DmyvnEfj3ONjT)s9yPILgm)HRsx8NBs2ULppts3WWJEhl0ZGenwEts2ClF7mbvLS8LqjhxV3IS3okTWf4zm7nqKkaPc7l(CxQEaCL0TmHOnWC8(RKCOcQcr(CA66u6JCs9CQDgz8tZM8jVBZcJuPY6eA91Ey23KKHcUNQMg1834nFsjabLblogv(ig1webzBDXf8KV4DvATO8rDRQ(5Aw0JH6iKPPcrbb)yqis7xpw3s1sr30qxNqSSq17xVPILLPfejhJSiiSs1(1xabNai15(oF13P)iBFEQ8fWwVe16c8udhCdMVYhTmk7dwATvmDd(AFVP98(6mVXUHb18KMZE9WCvnK5gdnrSffaEiySjSYyOh3EmwLShIIkr1eROd9xLOBuZEmTuriftffdnf4bsn7HGnn1mW6MilvnddCZTRg0geq20SeYQOYvlstc2cmyGreddtIUPIPbcHLWaw10WcRQPRRAQsWvyqwJWFUBBzbiBrQidvfdlyg1nAi17SfTd2sfCvfWfrmbgl2qhJ00k6hMp36AgGIeaAldt4)0RsmQnCzs16QsAiFf6YiP0OfLY0rhLMyrTpYQzi99No2AbvlJuBqwl0EMAG64eOMloMN6naQrk0PdxjnH8KYkYo5ABeuL5xoluZJyLENKtdxHiXubufXenfq1uLuPREaXn(GIBwAeUiz08e1x4tGwJjGyORb9qtfHzkfyj3mDODZNGw2ZAeKMPQjbmQHCRjYgb8yT75kCiXeHnqQkkalXaiI4yfDvnR4yD6IJTGnGvJUc2qfRcA461CmILg4RuxXshSvXMOQzLi81Yoblmsvf6KGS4Yj1cWp4d2sdS1XsCrcWxakbnysubYwdvsd24bodvMAcV3AIfw3E)qCgK2ETtQPNAdU(bL71AJSWY8OzShGWcF)(CijNhG8b4Vz464Bl2Ai2UZeeSkEzZKaVwuEWxksNP4dFMrHMrSvQXF5MLxHbwkc7aYwadrHCGHAkKpx860Tu569B8EOfwsFvfkhCxwgDfKGnRAKITsAVuVBMcB3fQkk(fsRKY3J5dSFdVONu6Hpj93SYBRsxts(2mZTGvzpaCLBVnjFWSGJvZ3ENoY5Sjep1Z7p4H47dZeY2zzB5hkmRfw1PHqs78UvjpHmx5nwMVQQU45RsPRGLrP3zUXy1O4L5CKA8o)70q5ISlDXRRsDNo)(LGA32F(6DT1go((pjx1B5Jvr3rVcY(gcUk7CwVFPev16jgNYtHqh5nZuL24()Ck3CNhSihewKdclslpiNRRZxrsxPH8lU3SgUOoSNSteIQTlnTxcxA8TT6i7wv56tQY4wzsmmp9h)93(p7IxYw8)93cdFdZO4Nrv6S3skNmDr)mR73Rwj3s1o)rr)e03IizD88Qm3QQpwI(yvo7g196PwWm71cks2BD3v9WhNrvN5B7LIYhjnN33lCTQJVefUkgyPDy7IpLKd89I0vRl4hTxrGkvUrRQlcMcSmTabBDHBmUzLGxO5zfTxrym1wjI2SIj3A9)2LWYihsct1w9McxiiHXPLv0jkTPxcLMK)3FR360F8J48LnlWzVwpDzooltPtZwMiDdjzbu82WcpaP7K(d(G7VkEZTjIWnEBgVzlnEZIKbP3Ct6IDRP8n5T5ykcrSTy9gWJoWdiW0oc4gvXPlR7uGBwouDg0eegkplDb7PPpsxv80KH(8rX9sFw3QZZyhKlcCvVjYn(Cv4HZkh0N3jyT3PPvUb4KiPB2XZ4C(FYxNJN5PY)(154L76C8p7c88lWn74zELGODLU7bUzu0gPo2XjlwFcBSglpNXXF2zI8rjkFmzToHUJyMxf97yhZy7Z1Jg98pnw9NAvfTpnwMp(2NgBZd0JkFZpFYxtMxIAVE7kW832lPY)hDtIOTUAS7DntFMHzp0vr5WHFFBZE4mCak0gEpbhUX87j48Eco)7mbNo(cy07P)ft4eMLNbG6(lCHKhY6VGf03yNr0OMFFDK(A30MOh)RDJPEru4oqF7SVop0RDEOVX1wS(sp9p(YawMuH8LF863(vN4MUkDRrFMQP)lkUT0vKtcXgrVixaTFkAX0UpqYErpHdK8vip)3Ukk(f(Ch1o1X)ioiNJFuTKJ4tQ(OARpfLtR001FXbEx94W3Oe5Aq76pbbVEvJ9Q8NGGZ4BLa9SkkUtVML(yppFMvEXOrr)V)'
+
+	-- Profile import
+	local BCDMG = _G.BCDMG
+	BCDMG:ImportBCDM(importString, name)
+
+	if installer then
+		_G.LuckyoneInstallStepComplete:ShowMessage(L["BetterCooldownManager profile has been set."])
+	end
+
+	Private:Print(L["BetterCooldownManager profile has been set."])
+	Private:Print(L["Note: If the position is wrong after the UI reload, use X and Y offset in the /bcdm Essential tab to adjust it."])
+end
+
+-- AyijeCDM profile
+function Private:Setup_ACDM(installer)
+	if not Private.IsAddOnLoaded('AyijeCDM') then Private:Print('AyijeCDM ' .. L["is not installed or enabled."]) return end
+
+	-- Global db
+	local dev = Private.Addon.db.global.dev
+
+	-- Profile name
+	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version
+
+	-- Profile string
+	local importString = ''
+
+	-- Profile import
+	-- local BCDMG = _G.BCDMG
+	-- BCDMG:ImportBCDM(importString, name)
+
+	if installer then
+		_G.LuckyoneInstallStepComplete:ShowMessage(L["AyijeCDM profile has been set."])
+	end
+
+	Private:Print(L["AyijeCDM profile has been set."])
+	Private:Print(L["Note: If the position is wrong after the UI reload, use X and Y offset in the /acdm Positions tab to adjust it."])
+end
