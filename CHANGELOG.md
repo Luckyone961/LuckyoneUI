@@ -2,6 +2,7 @@
 
 **All WoW Versions:**  
 - Disabled time to hold on player castbar (was 2 seconds)  
+- Fixed some profile bugs for Plater Nameplate users  
 
 **Retail:**  
 - Added profile import for the AyijeCDM AddOn  
