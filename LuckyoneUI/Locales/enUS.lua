@@ -119,6 +119,7 @@ L["Feel free to join our community Discord for support and social chats."] = tru
 L["Field of View"] = true
 L["Finished"] = true
 L["Fonts and Textures"] = true
+L["For position adjustments use /bcdm or /acdm X and Y offset options."] = true
 L["General CVars"] = true
 L["General"] = true
 L["GHOST"] = true

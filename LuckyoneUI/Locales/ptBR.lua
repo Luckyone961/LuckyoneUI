@@ -119,6 +119,7 @@ L["Feel free to join our community Discord for support and social chats."] = "Si
 L["Field of View"] = "Campo de Visão"
 L["Finished"] = "Finalizado"
 L["Fonts and Textures"] = "Fontes e Texturas"
+L["For position adjustments use /bcdm or /acdm X and Y offset options."] = true
 L["General CVars"] = "CVars Gerais"
 L["General"] = "Geral"
 L["GHOST"] = "FANTASMA"

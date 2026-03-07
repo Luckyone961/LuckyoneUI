@@ -119,6 +119,7 @@ L["Feel free to join our community Discord for support and social chats."] = "Tr
 L["Field of View"] = "Sichtfeld"
 L["Finished"] = "Fertig"
 L["Fonts and Textures"] = "Schriftarten und Texturen"
+L["For position adjustments use /bcdm or /acdm X and Y offset options."] = "Um die Positionen anzupassen, nutze /bcdm oder /acdm X und Y offset Optionen."
 L["General CVars"] = "Allgemeine CVars"
 L["General"] = "Allgemein"
 L["GHOST"] = "GEIST"

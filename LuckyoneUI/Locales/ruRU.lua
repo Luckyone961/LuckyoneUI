@@ -119,6 +119,7 @@ L["Feel free to join our community Discord for support and social chats."] = tru
 L["Field of View"] = "Поле зрения"
 L["Finished"] = "Готово"
 L["Fonts and Textures"] = "Шрифты и текстуры"
+L["For position adjustments use /bcdm or /acdm X and Y offset options."] = true
 L["General CVars"] = "Основные CVars"
 L["General"] = "Общее"
 L["GHOST"] = true
