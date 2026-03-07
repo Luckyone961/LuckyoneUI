@@ -32,7 +32,7 @@ end
 
 -- AyijeCDM profile
 function Private:Setup_ACDM(installer)
-	if not Private.IsAddOnLoaded('AyijeCDM') then Private:Print('AyijeCDM ' .. L["is not installed or enabled."]) return end
+	if not Private.IsAddOnLoaded('Ayije_CDM') then Private:Print('AyijeCDM ' .. L["is not installed or enabled."]) return end
 
 	-- Global db
 	local dev = Private.Addon.db.global.dev
@@ -46,6 +46,11 @@ function Private:Setup_ACDM(installer)
 	-- Profile import
 	local ACDM_API = _G.Ayije_CDM_API
 	ACDM_API:ImportProfile(importString, name)
+
+	-- Disable ElvUI castbar if ACDM is used
+	if Private.ElvUI then
+		ElvUI[1].db.unitframe.units.player.castbar.enable = false
+	end
 
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["AyijeCDM profile has been set."])

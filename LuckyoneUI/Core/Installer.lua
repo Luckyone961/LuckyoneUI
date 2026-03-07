@@ -742,9 +742,9 @@ local function BuildInstallerData()
 			f.Option1:Show()
 			f.Option1:SetScript('OnClick', function() Private:Setup_BCDM(true) end)
 			f.Option1:SetText('BetterCooldownManager')
-			-- f.Option2:Show()
-			-- f.Option2:SetScript('OnClick', function() Private:Setup_ACDM(true) end)
-			-- f.Option2:SetText('AyijeCDM')
+			f.Option2:Show()
+			f.Option2:SetScript('OnClick', function() Private:Setup_ACDM(true) end)
+			f.Option2:SetText('AyijeCDM')
 		end
 		stepTitles[pageIndex] = L["Cooldown Manager"]
 		pageIndex = pageIndex + 1
