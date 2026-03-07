@@ -151,7 +151,7 @@ end
 local function BuildElvUILayoutSection()
 	if not Private.ElvUI then return end -- ElvUI section
 	local section = ACH:Group(L["ElvUI Layouts"], nil, 30)
-	section.args.header1 = ACH:Header(L["Layout Scale"], 1)
+	section.args.header1 = ACH:Header(L["LuckyoneUI Scale"], 1)
 	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	section.args.scaling.inline = true
 	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
@@ -216,32 +216,29 @@ end
 -- Build Profiles Section
 local function BuildProfilesSection()
 	local section = ACH:Group(L["Profiles"], nil, 50)
-	section.args.header1 = ACH:Header(L["Layout Scale"], 1)
-	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
-	section.args.scaling.inline = true
-	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
-	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = value end)
-	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 3)
+	section.args.header1 = ACH:Header(L["Profiles"], 1)
+	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 2)
 	section.args.plugins.inline = true
 	section.args.plugins.args.as = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_AddOnSkins() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.plugins.args.pa = ACH:Execute('|cff16C3F2Project|r|cFFFFFFFFAzilroka|r', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_ProjectAzilroka() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_ShadowAndLight() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', RESET_DEFAULTS_TEXT, 4, function() Private:Setup_WindTools() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
-	section.args.nameplates = ACH:Group(L["Nameplate Profiles"], nil, 4)
+	section.args.nameplates = ACH:Group(L["Nameplate Profiles"], nil, 3)
 	section.args.nameplates.inline = true
 	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_NamePlates() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.nameplates.args.plater = ACH:Execute('Plater', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_Plater() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 5)
+	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 4)
 	section.args.addons.inline = true
 	section.args.addons.args.details = ACH:Execute('Details', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_Details() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.addons.args.betterCooldownManager = ACH:Execute('BetterCooldownManager', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_BCDM() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_WarpDeplete() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.header2 = ACH:Header(L["Profiles for DPS & Tanks"], 6)
-	section.args.addonsMain = ACH:Group(L["Addon Profiles"], nil, 7)
+	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_WarpDeplete() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.bcdm = ACH:Execute('BetterCooldownManager', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_BCDM() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	-- section.args.addons.args.acdm = ACH:Execute('AyijeCDM', RESET_DEFAULTS_TEXT, 4, function() Private:Setup_ACDM() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.header2 = ACH:Header(L["Profiles for DPS & Tanks"], 5)
+	section.args.addonsMain = ACH:Group(L["Addon Profiles"], nil, 6)
 	section.args.addonsMain.inline = true
 	section.args.addonsMain.args.bigwigs = ACH:Execute(L["BigWigs Main"], RESET_DEFAULTS_TEXT, 1, function() Private:Setup_BigWigs('main') end, nil, true)
-	section.args.header3 = ACH:Header(L["Profiles for Healing"], 8)
-	section.args.addonsHealing = ACH:Group(L["Addon Profiles"], nil, 9)
+	section.args.header3 = ACH:Header(L["Profiles for Healing"], 7)
+	section.args.addonsHealing = ACH:Group(L["Addon Profiles"], nil, 8)
 	section.args.addonsHealing.inline = true
 	section.args.addonsHealing.args.bigwigs = ACH:Execute(L["BigWigs Healing"], RESET_DEFAULTS_TEXT, 1, function() Private:Setup_BigWigs('healing') end, nil, true)
 	return section

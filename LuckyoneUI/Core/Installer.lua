@@ -562,18 +562,18 @@ local function BuildInstallerData()
 	-- Page 2: Layout scale (All versions)
 	pages[pageIndex] = function()
 		local f = installerFrame
-		f.SubTitle:SetText(L["Layout Scale"])
+		f.SubTitle:SetText(L["LuckyoneUI Scale"])
 		f.Desc1:SetText(L["1440p = Default | 1080p = Downscaled"] .. '.')
 		f.Desc2:SetText(format('|cffC80000%s', L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor pixel offsets."]))
 		f.Desc3:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() Private:ApplyScale(true) stepCompleteFrame:ShowMessage(L["Layout Scale"] .. ' 1440p') end)
+		f.Option1:SetScript('OnClick', function() Private:ApplyScale(true) stepCompleteFrame:ShowMessage(L["LuckyoneUI Scale"] .. ' 1440p') end)
 		f.Option1:SetText('1440p')
 		f.Option2:Show()
-		f.Option2:SetScript('OnClick', function() Private:ApplyScale(false) stepCompleteFrame:ShowMessage(L["Layout Scale"] .. ' 1080p') end)
+		f.Option2:SetScript('OnClick', function() Private:ApplyScale(false) stepCompleteFrame:ShowMessage(L["LuckyoneUI Scale"] .. ' 1080p') end)
 		f.Option2:SetText('1080p')
 	end
-	stepTitles[pageIndex] = L["Layout Scale"]
+	stepTitles[pageIndex] = L["LuckyoneUI Scale"]
 	pageIndex = pageIndex + 1
 
 	-- Only add ElvUI-specific pages if ElvUI is loaded
