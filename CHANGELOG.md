@@ -1,6 +1,7 @@
 ﻿## Version 4.06 [In Development]
 
 **All WoW Versions:**  
+- Changed back the default ElvUI castbar position to the bottom of the class HUD  
 - Disabled time to hold on player castbar (was 2 seconds)  
 - Fixed some profile bugs for Plater Nameplate users  
 
