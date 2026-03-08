@@ -299,12 +299,12 @@ function Private:Setup_Filters_Retail()
 
 	-- Monk
 	classes['MONK'][115175] = { -- Soothing Mist
-		['point'] = 'TOPRIGHT',
+		['point'] = 'TOPLEFT',
 		['displayText'] = true,
 		['yOffset'] = 1,
 		['sizeOffset'] = 2,
 		['style'] = 'texturedIcon',
-		['xOffset'] = 1,
+		['xOffset'] = 33,
 	}
 	classes['MONK'][119611] = { -- Renewing Mist
 		['displayText'] = true,
