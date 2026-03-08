@@ -673,7 +673,7 @@ function Private:Setup_ElvUI(layout)
 			E.db.actionbar['bar'..i].hotkeyTextYOffset = -1
 			E.db.actionbar['bar'..i].macroFont = Private.Font
 			E.db.actionbar['bar'..i].macroFontOutline = Private.Outline
-			E.db.actionbar['bar'..i].macrotext = true
+			E.db.actionbar['bar'..i].macrotext = false
 			E.db.actionbar['bar'..i].macroTextPosition = 'BOTTOM'
 			E.db.actionbar['bar'..i].macroTextXOffset = 1
 			E.db.actionbar['bar'..i].macroTextYOffset = 1
