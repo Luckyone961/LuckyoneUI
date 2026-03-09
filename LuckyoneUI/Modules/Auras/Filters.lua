@@ -87,6 +87,9 @@ function Private:Setup_Filters_Retail()
 			360827, -- Blistering Scales
 			410089, -- Prescience
 			395152, -- Ebon Might
+			410263, -- Inferno's Blessing
+			410686, -- Symbiotic Bloom
+			413984, -- Shifting Sands
 		},
 		MONK = {
 			-- Mistweaver
@@ -122,10 +125,6 @@ function Private:Setup_Filters_Retail()
 			382024, -- Earthliving Weapon
 			444490, -- Hydrobubble
 		},
-		-- ToDo
-		-- 410263, -- Inferno's Blessing (Augmentation Evoker)
-		-- 410686, -- Symbiotic Bloom (Augmentation Evoker)
-		-- 413984, -- Shifting Sands (Augmentation Evoker)
 	}
 
 	for class, classIDs in pairs(ids) do
@@ -296,6 +295,9 @@ function Private:Setup_Filters_Retail()
 		},
 	}
 	classes['EVOKER'][395152]['enabled'] = false -- Ebon Might (Others)
+	classes['EVOKER'][410263]['enabled'] = false -- Inferno's Blessing
+	classes['EVOKER'][410686]['enabled'] = false -- Symbiotic Bloom
+	classes['EVOKER'][413984]['enabled'] = false -- Shifting Sands
 
 	-- Monk
 	classes['MONK'][115175] = { -- Soothing Mist
