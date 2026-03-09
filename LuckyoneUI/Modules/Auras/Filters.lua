@@ -247,8 +247,8 @@ function Private:Setup_Filters_Retail()
 			['b'] = 1,
 		},
 		['displayText'] = true,
-		['yOffset'] = 2,
-		['sizeOffset'] = 6,
+		['yOffset'] = 1,
+		['sizeOffset'] = 2,
 		['style'] = 'timerOnly',
 		['xOffset'] = -17,
 	}
@@ -386,13 +386,17 @@ function Private:Setup_Filters_Retail()
 	}
 	classes['PRIEST'][194384] = { -- Atonement
 		["point"] = "TOPLEFT",
+		["color"] = {
+			["a"] = 1,
+			["b"] = 1,
+		},
+		["displayText"] = true,
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
-		["style"] = "texturedIcon",
-		["xOffset"] = -1,
+		["style"] = "timerOnly",
+		["xOffset"] = 33,
 	}
 	classes['PRIEST'][1253593] = { -- Void Shield
-		["point"] = "TOP",
 		["displayText"] = true,
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
@@ -400,12 +404,12 @@ function Private:Setup_Filters_Retail()
 	}
 	-- Holy
 	classes['PRIEST'][139] = { -- Renew
-		["point"] = "TOPRIGHT",
+		["point"] = "TOPLEFT",
 		["displayText"] = true,
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
-		["xOffset"] = -16,
+		["xOffset"] = -1,
 	}
 	classes['PRIEST'][41635] = { -- Prayer of Mending
 		["point"] = "TOP",
