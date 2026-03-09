@@ -4,7 +4,7 @@
 - Changed back the default ElvUI castbar position to the bottom of the class HUD  
 - Disabled actionbar macro text by default  
 - Disabled time to hold on player castbar (was 2 seconds)  
-- Fixed some profile bugs for Plater Nameplate users  
+- Updated Plater profile (Fixed clickable area, moved CC icon out of the health bar)  
 
 **Retail:**  
 - Added profile import for the AyijeCDM AddOn  
