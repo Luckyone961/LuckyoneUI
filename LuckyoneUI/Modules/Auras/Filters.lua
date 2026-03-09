@@ -338,33 +338,42 @@ function Private:Setup_Filters_Retail()
 
 	-- Holy
 	classes['PALADIN'][53563] = { -- Beacon of Light
+		["point"] = "TOPLEFT",
 		["displayText"] = true,
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
-		["xOffset"] = 1,
+		["xOffset"] = -1,
 	}
 	classes['PALADIN'][156910] = { -- Beacon of Faith
+		["point"] = "TOPLEFT",
 		["displayText"] = true,
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
-		["xOffset"] = 1,
+		["xOffset"] = -1,
 	}
 	classes['PALADIN'][200025] = { -- Beacon of Virtue
+		["point"] = "TOPLEFT",
 		["displayText"] = true,
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
-		["xOffset"] = 1,
+		["xOffset"] = -1,
 	}
-	classes['PALADIN'][156322]['enabled'] = false -- Eternal Flame
+	classes['PALADIN'][156322] = { -- Eternal Flame
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 16,
+	}
 	classes['PALADIN'][1244893] = { -- Beacon of the Savior
-		['point'] = 'RIGHT',
-		['displayText'] = true,
-		['sizeOffset'] = 2,
-		['style'] = 'texturedIcon',
-		['xOffset'] = 1,
+		["point"] = "TOP",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
 	}
 
 	-- Discipline
