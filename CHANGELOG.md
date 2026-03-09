@@ -8,7 +8,7 @@
 
 **Retail:**  
 - Added profile import for the AyijeCDM AddOn  
-- Updated aura indicators (Resto Druid, Mistweaver Monk, Holy Paladin)  
+- Updated aura indicators (All healer specs)  
 - Updated BetterCooldownManager import  
 - Updated WindTools profile (Auto skip cutscenes)  
 
