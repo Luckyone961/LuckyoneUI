@@ -10,6 +10,7 @@
 - Added profile import for the AyijeCDM AddOn  
 - Updated aura indicators (Resto Druid, Mistweaver Monk)  
 - Updated BetterCooldownManager import  
+- Updated WindTools profile (Auto skip cutscenes)  
 
 ## Version 4.05 [04-03-2026]
 
