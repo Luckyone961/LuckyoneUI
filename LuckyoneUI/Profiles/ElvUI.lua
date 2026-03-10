@@ -1707,7 +1707,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.buffs.isAuraRaidInCombatPlayer = false
 	E.db.unitframe.units.party.buffs.perrow = 3
 	E.db.unitframe.units.party.buffs.sizeOverride = 20
-	E.db.unitframe.units.party.buffs.yOffset = 20 -- 1080p?
+	E.db.unitframe.units.party.buffs.yOffset = 20
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.debuffs.anchorPoint = 'TOPRIGHT'
 	E.db.unitframe.units.party.debuffs.countFont = Private.Font
@@ -1795,7 +1795,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.buffs.isAuraRaidInCombatPlayer = false
 	E.db.unitframe.units.raid1.buffs.perrow = 1
 	E.db.unitframe.units.raid1.buffs.sizeOverride = 18
-	E.db.unitframe.units.raid1.buffs.yOffset = 18 -- 1080p?
+	E.db.unitframe.units.raid1.buffs.yOffset = 18
 	E.db.unitframe.units.raid1.classbar.enable = false
 	E.db.unitframe.units.raid1.debuffs.anchorPoint = 'BOTTOMLEFT'
 	E.db.unitframe.units.raid1.debuffs.countFont = Private.Font
@@ -1921,7 +1921,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-338,440') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-628,630'
 	E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,322,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,610,-400'
 	E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,451,360') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,739,500'
-	E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,411') or 'BOTTOM,ElvUIParent,BOTTOM,0,446' -- 1080p?
+	E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,306') or 'BOTTOM,ElvUIParent,BOTTOM,0,446'
 	E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,360') or 'BOTTOM,ElvUIParent,BOTTOM,-320,500'
 	E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,458'
 	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,337') or 'BOTTOM,ElvUIParent,BOTTOM,320,477'
@@ -1944,7 +1944,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.PlayerPowerBarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,341') or 'BOTTOM,ElvUIParent,BOTTOM,-320,481'
 	E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-170'
-	E.db.movers.PrivateAurasMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-200,460') or 'BOTTOM,ElvUIParent,BOTTOM,-223,660' -- 1080p?
+	E.db.movers.PrivateAurasMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-194,480') or 'BOTTOM,ElvUIParent,BOTTOM,-223,660'
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-200'
 	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-24'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
