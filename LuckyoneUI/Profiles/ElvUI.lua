@@ -1695,16 +1695,19 @@ function Private:Setup_ElvUI(layout)
 
 	E.db.unitframe.units.party.buffIndicator.countFont = Private.Font
 	E.db.unitframe.units.party.buffIndicator.size = 14
-	E.db.unitframe.units.party.buffs.anchorPoint = 'TOPLEFT'
+	E.db.unitframe.units.party.buffs.anchorPoint = 'BOTTOM'
 	E.db.unitframe.units.party.buffs.clickThrough = true
 	E.db.unitframe.units.party.buffs.countFont = Private.Font
 	E.db.unitframe.units.party.buffs.countFontSize = 10
 	E.db.unitframe.units.party.buffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.party.buffs.countXOffset = 1
 	E.db.unitframe.units.party.buffs.countYOffset = -1
-	E.db.unitframe.units.party.buffs.enable = false
+	E.db.unitframe.units.party.buffs.enable = Private.isRetail
+	E.db.unitframe.units.party.buffs.growthX = 'LEFT'
+	E.db.unitframe.units.party.buffs.isAuraRaidInCombatPlayer = false
+	E.db.unitframe.units.party.buffs.perrow = 3
 	E.db.unitframe.units.party.buffs.sizeOverride = 20
-	E.db.unitframe.units.party.buffs.yOffset = -21
+	E.db.unitframe.units.party.buffs.yOffset = 20 -- 1080p?
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.debuffs.anchorPoint = 'TOPRIGHT'
 	E.db.unitframe.units.party.debuffs.countFont = Private.Font

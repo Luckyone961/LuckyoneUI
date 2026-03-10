@@ -8,7 +8,8 @@
 
 **Retail:**  
 - Added profile import for the AyijeCDM AddOn  
-- Updated aura indicators (All healer specs)  
+- Reworked party buffs to show externals and big defensives only  
+- Updated aura indicators for hots and shields (All healer specs)  
 - Updated BetterCooldownManager import  
 - Updated WindTools profile (Auto skip cutscenes)  
 
