@@ -29,7 +29,6 @@ function Private:Setup_BCDM(installer)
 	-- Profile import
 	local BCDMG = _G.BCDMG
 	BCDMG:ImportBCDM(importString, name)
-	SetElvDB()
 
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["BetterCooldownManager profile has been set."])
@@ -37,6 +36,8 @@ function Private:Setup_BCDM(installer)
 
 	Private:Print(L["BetterCooldownManager profile has been set."])
 	Private:Print(L["Note: If the position is wrong after the UI reload, use X and Y offset in the /bcdm Essential tab to adjust it."])
+
+	SetElvDB()
 end
 
 -- AyijeCDM profile
@@ -56,7 +57,6 @@ function Private:Setup_ACDM(installer)
 	-- Profile import
 	local ACDM_API = _G.Ayije_CDM_API
 	ACDM_API:ImportProfile(importString, name)
-	SetElvDB()
 
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["AyijeCDM profile has been set."])
@@ -64,4 +64,6 @@ function Private:Setup_ACDM(installer)
 
 	Private:Print(L["AyijeCDM profile has been set."])
 	Private:Print(L["Note: If the position is wrong after the UI reload, use X and Y offset in the /acdm Positions tab to adjust it."])
+
+	SetElvDB()
 end
