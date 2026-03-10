@@ -5,9 +5,11 @@ local L = Private.Libs.ACL
 -- Global environment
 local _G = _G
 
-local function elvCastbarCheck()
+-- Disable ElvUI castbar and player power(healers)
+local function SetElvDB()
 	if not Private.ElvUI then return end
 	ElvUI[1].db.unitframe.units.player.castbar.enable = false
+	ElvUI[1].db.unitframe.units.player.power.enable = false
 end
 
 -- BetterCooldownManager profile
@@ -26,7 +28,7 @@ function Private:Setup_BCDM(installer)
 	-- Profile import
 	local BCDMG = _G.BCDMG
 	BCDMG:ImportBCDM(importString, name)
-	elvCastbarCheck()
+	SetElvDB()
 
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["BetterCooldownManager profile has been set."])
@@ -52,7 +54,7 @@ function Private:Setup_ACDM(installer)
 	-- Profile import
 	local ACDM_API = _G.Ayije_CDM_API
 	ACDM_API:ImportProfile(importString, name)
-	elvCastbarCheck()
+	SetElvDB()
 
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["AyijeCDM profile has been set."])
