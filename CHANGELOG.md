@@ -1,4 +1,9 @@
-﻿## Version 4.06 [10-03-2026]
+﻿## Version 4.07 [In Development]
+
+**Retail:**  
+- Updated WindTools profile (No longer auto skip cutscenes except for myself)  
+
+## Version 4.06 [10-03-2026]
 
 **All WoW Versions:**  
 - Changed back the default ElvUI castbar position to the bottom of the class HUD  
