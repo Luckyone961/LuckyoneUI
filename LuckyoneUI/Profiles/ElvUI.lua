@@ -1781,7 +1781,7 @@ function Private:Setup_ElvUI(layout)
 	-- Shared Raid1
 	E.db.unitframe.units.raid1.buffIndicator.countFont = Private.Font
 	E.db.unitframe.units.raid1.buffIndicator.countFontSize = 10
-	E.db.unitframe.units.raid1.buffs.anchorPoint = 'TOPLEFT'
+	E.db.unitframe.units.raid1.buffs.anchorPoint = 'BOTTOM'
 	E.db.unitframe.units.raid1.buffs.clickThrough = true
 	E.db.unitframe.units.raid1.buffs.countFont = Private.Font
 	E.db.unitframe.units.raid1.buffs.countFontSize = 10
@@ -1790,9 +1790,12 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.buffs.countYOffset = 0
 	E.db.unitframe.units.raid1.buffs.enable = false
 	E.db.unitframe.units.raid1.buffs.growthY = 'DOWN'
-	E.db.unitframe.units.raid1.buffs.perrow = 5
+	E.db.unitframe.units.raid1.buffs.isAuraBigDefensive = false
+	E.db.unitframe.units.raid1.buffs.isAuraBigDefensivePlayer = false
+	E.db.unitframe.units.raid1.buffs.isAuraRaidInCombatPlayer = false
+	E.db.unitframe.units.raid1.buffs.perrow = 1
 	E.db.unitframe.units.raid1.buffs.sizeOverride = 18
-	E.db.unitframe.units.raid1.buffs.yOffset = 1
+	E.db.unitframe.units.raid1.buffs.yOffset = 18 -- 1080p?
 	E.db.unitframe.units.raid1.classbar.enable = false
 	E.db.unitframe.units.raid1.debuffs.anchorPoint = 'BOTTOMLEFT'
 	E.db.unitframe.units.raid1.debuffs.countFont = Private.Font
@@ -1800,7 +1803,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.debuffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.raid1.debuffs.countXOffset = 2
 	E.db.unitframe.units.raid1.debuffs.countYOffset = 0
-	E.db.unitframe.units.raid1.debuffs.perrow = 5
+	E.db.unitframe.units.raid1.debuffs.perrow = 2
 	E.db.unitframe.units.raid1.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid1.debuffs.sizeOverride = 18
 	E.db.unitframe.units.raid1.debuffs.yOffset = -1
@@ -2065,6 +2068,7 @@ function Private:Setup_ElvUI(layout)
 
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
+		E.db.unitframe.units.raid1.buffs.enable = Private.isRetail
 		E.db.unitframe.units.raid1.debuffs.enable = Private.isRetail
 		E.db.unitframe.units.raid1.height = (scaled and 60) or 70
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'RIGHT'
@@ -2084,6 +2088,7 @@ function Private:Setup_ElvUI(layout)
 
 		-- Healing Raid2
 		E.db.unitframe.units.raid2.buffIndicator.size = 14
+		E.db.unitframe.units.raid2.buffs.enable = Private.isRetail
 		E.db.unitframe.units.raid2.debuffs.enable = Private.isRetail
 		E.db.unitframe.units.raid2.height = (scaled and 44) or 54
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'RIGHT'
