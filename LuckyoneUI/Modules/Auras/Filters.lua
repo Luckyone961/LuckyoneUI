@@ -87,6 +87,9 @@ function Private:Setup_Filters_Retail()
 			360827, -- Blistering Scales
 			410089, -- Prescience
 			395152, -- Ebon Might
+			410263, -- Inferno's Blessing
+			410686, -- Symbiotic Bloom
+			413984, -- Shifting Sands
 		},
 		MONK = {
 			-- Mistweaver
@@ -122,10 +125,6 @@ function Private:Setup_Filters_Retail()
 			382024, -- Earthliving Weapon
 			444490, -- Hydrobubble
 		},
-		-- ToDo
-		-- 410263, -- Inferno's Blessing (Augmentation Evoker)
-		-- 410686, -- Symbiotic Bloom (Augmentation Evoker)
-		-- 413984, -- Shifting Sands (Augmentation Evoker)
 	}
 
 	for class, classIDs in pairs(ids) do
@@ -150,11 +149,19 @@ function Private:Setup_Filters_Retail()
 		['xOffset'] = -16,
 	}
 	classes['DRUID'][33763] = { -- Lifebloom
-		['displayText'] = true,
-		['yOffset'] = 1,
-		['sizeOffset'] = 2,
-		['style'] = 'texturedIcon',
-		['xOffset'] = 33,
+		["color"] = {
+			["a"] = 1,
+			["r"] = 1,
+			["g"] = 1,
+			["b"] = 1,
+		},
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["countAnchor"] = "RIGHT",
+		["sizeOffset"] = 2,
+		["style"] = "timerOnly",
+		["countX"] = 13,
+		["xOffset"] = 33,
 	}
 	classes['DRUID'][48438] = { -- Wild Growth
 		['point'] = 'TOPRIGHT',
@@ -171,6 +178,17 @@ function Private:Setup_Filters_Retail()
 		['sizeOffset'] = 2,
 		['style'] = 'texturedIcon',
 		['xOffset'] = 16,
+	}
+	auraHighlight[33763] = { -- Lifebloom
+		["enable"] = true,
+		["ownOnly"] = true,
+		["style"] = "FILL",
+		["color"] = {
+			["a"] = 0.45,
+			["b"] = 0.51,
+			["g"] = 0.96,
+			["r"] = 0.51,
+		},
 	}
 
 	-- Preservation
@@ -228,8 +246,8 @@ function Private:Setup_Filters_Retail()
 			['b'] = 1,
 		},
 		['displayText'] = true,
-		['yOffset'] = 2,
-		['sizeOffset'] = 6,
+		['yOffset'] = 1,
+		['sizeOffset'] = 2,
 		['style'] = 'timerOnly',
 		['xOffset'] = -17,
 	}
@@ -277,15 +295,18 @@ function Private:Setup_Filters_Retail()
 		},
 	}
 	classes['EVOKER'][395152]['enabled'] = false -- Ebon Might (Others)
+	classes['EVOKER'][410263]['enabled'] = false -- Inferno's Blessing
+	classes['EVOKER'][410686]['enabled'] = false -- Symbiotic Bloom
+	classes['EVOKER'][413984]['enabled'] = false -- Shifting Sands
 
 	-- Monk
 	classes['MONK'][115175] = { -- Soothing Mist
-		['point'] = 'BOTTOMLEFT',
-		['xOffset'] = -1,
+		['point'] = 'TOPLEFT',
 		['displayText'] = true,
-		['yOffset'] = -1,
+		['yOffset'] = 1,
 		['sizeOffset'] = 2,
 		['style'] = 'texturedIcon',
+		['xOffset'] = 33,
 	}
 	classes['MONK'][119611] = { -- Renewing Mist
 		['displayText'] = true,
@@ -319,33 +340,42 @@ function Private:Setup_Filters_Retail()
 
 	-- Holy
 	classes['PALADIN'][53563] = { -- Beacon of Light
+		["point"] = "TOPLEFT",
 		["displayText"] = true,
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
-		["xOffset"] = 1,
+		["xOffset"] = -1,
 	}
 	classes['PALADIN'][156910] = { -- Beacon of Faith
+		["point"] = "TOPLEFT",
 		["displayText"] = true,
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
-		["xOffset"] = 1,
+		["xOffset"] = -1,
 	}
 	classes['PALADIN'][200025] = { -- Beacon of Virtue
+		["point"] = "TOPLEFT",
 		["displayText"] = true,
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
-		["xOffset"] = 1,
+		["xOffset"] = -1,
 	}
-	classes['PALADIN'][156322]['enabled'] = false -- Eternal Flame
+	classes['PALADIN'][156322] = { -- Eternal Flame
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 16,
+	}
 	classes['PALADIN'][1244893] = { -- Beacon of the Savior
-		['point'] = 'RIGHT',
-		['displayText'] = true,
-		['sizeOffset'] = 2,
-		['style'] = 'texturedIcon',
-		['xOffset'] = 1,
+		["point"] = "TOP",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
 	}
 
 	-- Discipline
@@ -358,13 +388,28 @@ function Private:Setup_Filters_Retail()
 	}
 	classes['PRIEST'][194384] = { -- Atonement
 		["point"] = "TOPLEFT",
+		["color"] = {
+			["a"] = 1,
+			["b"] = 1,
+		},
+		["displayText"] = true,
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
-		["style"] = "texturedIcon",
-		["xOffset"] = -1,
+		["style"] = "timerOnly",
+		["xOffset"] = 33,
+	}
+	auraHighlight[194384] = {
+		["enable"] = true,
+		["ownOnly"] = true,
+		["style"] = "FILL",
+		["color"] = {
+			["a"] = 0.65,
+			["b"] = 0.34,
+			["g"] = 0.59,
+			["r"] = 0.80,
+		},
 	}
 	classes['PRIEST'][1253593] = { -- Void Shield
-		["point"] = "TOP",
 		["displayText"] = true,
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
@@ -372,12 +417,12 @@ function Private:Setup_Filters_Retail()
 	}
 	-- Holy
 	classes['PRIEST'][139] = { -- Renew
-		["point"] = "TOPRIGHT",
+		["point"] = "TOPLEFT",
 		["displayText"] = true,
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
-		["xOffset"] = -16,
+		["xOffset"] = -1,
 	}
 	classes['PRIEST'][41635] = { -- Prayer of Mending
 		["point"] = "TOP",

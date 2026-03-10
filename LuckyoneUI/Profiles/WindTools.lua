@@ -154,7 +154,7 @@ function Private:Setup_WindTools(installer)
 	E.db.movers = E.db.movers or {}
 
 	-- Movers
-	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,450') or 'BOTTOM,ElvUIParent,BOTTOM,0,640'
+	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,450') or 'BOTTOM,ElvUIParent,BOTTOM,0,660'
 	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-202'
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-110'
 
@@ -193,6 +193,7 @@ function Private:Setup_Private_WindTools()
 	Set(E.private, 'WT.misc.moveFrames.elvUIBags', false)
 	Set(E.private, 'WT.misc.moveSpeed', true)
 	Set(E.private, 'WT.misc.pauseToSlash', false)
+	Set(E.private, 'WT.misc.skipCutScene', true)
 	Set(E.private, 'WT.misc.tags', false)
 	Set(E.private, 'WT.quest.objectiveTracker.cosmeticBar.border', 'ONEPIXEL')
 	Set(E.private, 'WT.quest.objectiveTracker.cosmeticBar.color.mode', 'CLASS')
