@@ -378,9 +378,6 @@ function Private:Setup_Filters_Retail()
 		["style"] = "texturedIcon",
 	}
 
-	-- ToDo:
-	-- Overlap Prayer + Void Shield
-
 	-- Discipline
 	classes['PRIEST'][17] = { -- Power Word: Shield
 		["displayText"] = true,
@@ -417,6 +414,7 @@ function Private:Setup_Filters_Retail()
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
+		["xOffset"] = 17,
 	}
 	-- Holy
 	classes['PRIEST'][139] = { -- Renew
