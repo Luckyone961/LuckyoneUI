@@ -1,5 +1,9 @@
 ﻿## Version 4.07 [In Development]
 
+**All WoW Versions:**  
+- Removed AddOnSkins profile (Outdated)  
+- Removed ProjectAzilroka profile (Outdated)  
+
 **Retail:**  
 - Added BuffReminders profile to /lucky config  
 - Updated WindTools profile (No longer auto skip cutscenes except for myself)  
