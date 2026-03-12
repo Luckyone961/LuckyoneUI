@@ -11,7 +11,6 @@ if not L then return end
 L["1440p = Default | 1080p = Downscaled"] = true
 L["Addon download:"] = true
 L["Addon Profiles"] = true
-L["AddOnSkins profile has been set."] = true
 L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your specialization\nIt also assumes you have properly setup specialization-based profile loading in ElvUI profiles"] = true
 L["Alert Frame"] = true
 L["Alt: "] = true
@@ -188,7 +187,6 @@ L["Profile strings"] = true
 L["Profiles for DPS & Tanks"] = true
 L["Profiles for Healing"] = true
 L["Profiles"] = true
-L["ProjectAzilroka profile has been set."] = true
 L["Quality of Life"] = true
 L["Quick setup for alts"] = true
 L["Raidframe Style"] = true
