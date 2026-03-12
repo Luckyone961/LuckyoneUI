@@ -3,6 +3,7 @@
 **All WoW Versions:**  
 - Removed AddOnSkins profile (Outdated)  
 - Removed ProjectAzilroka profile (Outdated)  
+- Updated BigWigs profiles (Removed boss defeat message and victory sound)  
 
 **Retail:**  
 - Added BuffReminders profile to /lucky config  
