@@ -4,6 +4,7 @@
 - Removed AddOnSkins profile (Outdated)  
 - Removed ProjectAzilroka profile (Outdated)  
 - Updated BigWigs profiles (Removed boss defeat message and victory sound)  
+- Updated WarpDeplete profile (Font size 11 > 12)  
 
 **Retail:**  
 - Added BuffReminders profile to /lucky config  
