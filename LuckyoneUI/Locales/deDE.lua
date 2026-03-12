@@ -31,6 +31,7 @@ L["Blizzard Edit Mode"] = true
 L["Blizzard Improvements"] = "Blizzard Verbesserungen"
 L["Boss Banner"] = true -- No need to translate
 L["BossMods Profiles"] = "BossMods Profile"
+L["BuffReminders profile has been set."] = "BuffReminders Profil wurde festgelegt."
 L["Changelog:"] = "Änderungsprotokoll:"
 L["Character Specific"] = "Charakterspezifisch"
 L["Chat CVars"] = true -- No need to translate

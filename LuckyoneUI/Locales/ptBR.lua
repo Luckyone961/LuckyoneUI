@@ -31,6 +31,7 @@ L["Blizzard Edit Mode"] = true
 L["Blizzard Improvements"] = "Melhorias na Blizzard"
 L["Boss Banner"] = "Painel do Chefe"
 L["BossMods Profiles"] = "Perfis dos BossMods"
+L["BuffReminders profile has been set."] = true
 L["Changelog:"] = "Mudanças:"
 L["Character Specific"] = true
 L["Chat CVars"] = "CVars de Chat"

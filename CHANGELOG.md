@@ -1,6 +1,7 @@
 ﻿## Version 4.07 [In Development]
 
 **Retail:**  
+- Added BuffReminders profile to /lucky config  
 - Updated WindTools profile (No longer auto skip cutscenes except for myself)  
 
 ## Version 4.06 [10-03-2026]
