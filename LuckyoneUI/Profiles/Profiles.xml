@@ -5,6 +5,7 @@
 	<Script file='Details.lua'/>
 	<Script file='EditMode.lua'/>
 	<Script file='ElvUI.lua'/>
+	<Script file='PermoksAccountManager.lua'/>
 	<Script file='Plater.lua'/>
 	<Script file='ShadowLight.lua'/>
 	<Script file='WarpDeplete.lua'/>

@@ -176,6 +176,7 @@ L["Outdated"] = "Veraltet"
 L["Paladin"] = true -- No need to translate
 L["People found out some characters have a big amount of hidden quests which will cause performance issues. This button will untrack all your quests, including the hidden ones and might give you an increase in average FPS."] = true
 L["Performance"] = "Leistung"
+L["PermoksAccountManager profile has been set."] = "PermoksAccountManager Profil wurde festgelegt."
 L["Plater profile has been set."] = "Plater Profil wurde festgelegt."
 L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."] = "Bitte klicke auf die Schaltfläche unten, um Luckyones Profile für BigWigs und LittleWigs anzuwenden."
 L["Please click the button below to apply Luckyones profile for Details! Damage Meter."] = "Bitte klicke auf die Schaltfläche unten, um Luckyones Profile für Details! Damage Meter anzuwenden."
