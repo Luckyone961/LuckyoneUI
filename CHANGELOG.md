@@ -3,6 +3,7 @@
 **All WoW Versions:**  
 - Removed AddOnSkins profile (Outdated)  
 - Removed ProjectAzilroka profile (Outdated)  
+- Removed option for instance-only nameplate classification coloring (its in ElvUI 15.09 and later)  
 - Updated BigWigs profiles (Removed boss defeat message and victory sound)  
 - Updated WarpDeplete profile (Font size 11 > 12)  
 
