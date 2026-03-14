@@ -19,9 +19,5 @@ function Private:Setup_BuffReminders()
 	local BuffReminders = _G.BuffReminders
 	BuffReminders:Import(importString, name)
 
-	-- Not exported in string?
-	BuffRemindersDB['profiles'][name] = BuffRemindersDB['profiles'][name] or {}
-	BuffRemindersDB['profiles'][name]['buffTrackingMode'] = 'my_buffs'
-
 	Private:Print(L["BuffReminders profile has been set."])
 end
