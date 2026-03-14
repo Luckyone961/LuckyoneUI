@@ -9,6 +9,7 @@
 **Retail:**  
 - Added BuffReminders profile to /lucky config  
 - Added PermoksAccountManager profile to /lucky config  
+- Adjusted PowerBarWidget anchor (Preys etc)  
 - Fixed priest aura indicator overlap (Void Shield / Prayer of Mending)  
 - Updated WindTools profile (No longer auto skip cutscenes except for myself)  
 
