@@ -411,6 +411,8 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.health.text.position = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_NPC.health.text.xOffset = -1
 	E.db.nameplates.units.ENEMY_NPC.health.text.yOffset = -16
+	E.db.nameplates.units.ENEMY_NPC.health.useClassificationColor = true
+	E.db.nameplates.units.ENEMY_NPC.health.useClassificationColorInInstance = true
 	E.db.nameplates.units.ENEMY_NPC.health.width = 210
 	E.db.nameplates.units.ENEMY_NPC.level.enable = false
 	E.db.nameplates.units.ENEMY_NPC.name.font = Private.Font
