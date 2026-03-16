@@ -696,15 +696,15 @@ function Private:Setup_ElvUI(layout)
 		end
 	end
 
-	-- Player frame consumable bar
-	E.db.actionbar.bar6.buttons = 4
-	E.db.actionbar.bar6.buttonSize = 28
-	E.db.actionbar.bar6.buttonsPerRow = 4
-	E.db.actionbar.bar6.countFontSize = 12
-	E.db.actionbar.bar6.countTextYOffset = -5
-	E.db.actionbar.bar6.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar6.hotkeytext = false
-	E.db.actionbar.bar6.point = 'TOPRIGHT'
+	-- Player Frame ActionBar for consumables and trinket
+	E.db.actionbar.bar15.buttons = 4
+	E.db.actionbar.bar15.buttonSize = 28
+	E.db.actionbar.bar15.buttonsPerRow = 4
+	E.db.actionbar.bar15.countFontSize = 12
+	E.db.actionbar.bar15.countTextYOffset = -5
+	E.db.actionbar.bar15.countTextPosition = 'BOTTOM'
+	E.db.actionbar.bar15.hotkeytext = false
+	E.db.actionbar.bar15.point = 'TOPRIGHT'
 
 	E.db.actionbar.barPet.backdrop = false
 	E.db.actionbar.barPet.buttonSize = 28
