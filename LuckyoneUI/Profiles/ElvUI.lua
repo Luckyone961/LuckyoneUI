@@ -690,7 +690,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.actionbar.bar5.mouseover = true
 
 	-- Turn off all ActionBars except the ones we use by default
-	for i = 1, 15 do
+	for i = 1, 14 do
 		if i ~= 1 and i ~= 2 and i ~= 3 and i ~= 5 and i ~= 11 and i ~= 12 then
 			E.db.actionbar['bar'..i].enabled = false
 		end
@@ -701,10 +701,11 @@ function Private:Setup_ElvUI(layout)
 	E.db.actionbar.bar15.buttonSize = 28
 	E.db.actionbar.bar15.buttonsPerRow = 4
 	E.db.actionbar.bar15.countFontSize = 12
-	E.db.actionbar.bar15.countTextYOffset = -5
 	E.db.actionbar.bar15.countTextPosition = 'BOTTOM'
+	E.db.actionbar.bar15.countTextYOffset = -5
 	E.db.actionbar.bar15.hotkeytext = false
 	E.db.actionbar.bar15.point = 'TOPRIGHT'
+	E.db.actionbar.bar15.showGrid = false
 
 	E.db.actionbar.barPet.backdrop = false
 	E.db.actionbar.barPet.buttonSize = 28
@@ -1929,7 +1930,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ElvAB_10 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-413'
 	E.db.movers.ElvAB_13 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-380'
 	E.db.movers.ElvAB_14 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-347'
-	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-314'
+	E.db.movers.ElvAB_15 = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-215,411' or 'BOTTOM,ElvUIParent,BOTTOM,-247,551')
 	E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-338,440') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-628,630'
 	E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,322,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,610,-400'
 	E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,451,360') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,739,500'

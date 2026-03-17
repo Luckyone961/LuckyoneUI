@@ -1,9 +1,10 @@
 ﻿## Version 4.07 [In Development]
 
 **All WoW Versions:**  
+- Added a new 4 slot actionbar to the player frame for consumable and trinket tracking  
 - Removed AddOnSkins profile (Outdated)  
-- Removed ProjectAzilroka profile (Outdated)  
 - Removed option for instance-only nameplate classification coloring (its in ElvUI 15.09 and later)  
+- Removed ProjectAzilroka profile (Outdated)  
 - Updated BigWigs profiles (Removed boss defeat message and victory sound)  
 - Updated WarpDeplete profile (Font size 11 > 12)  
 
