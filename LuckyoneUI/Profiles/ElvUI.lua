@@ -1930,7 +1930,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ElvAB_10 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-413'
 	E.db.movers.ElvAB_13 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-380'
 	E.db.movers.ElvAB_14 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-347'
-	E.db.movers.ElvAB_15 = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-215,411' or 'BOTTOM,ElvUIParent,BOTTOM,-247,551')
+	E.db.movers.ElvAB_15 = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-215,411') or 'BOTTOM,ElvUIParent,BOTTOM,-247,551'
 	E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-338,440') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-628,630'
 	E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,322,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,610,-400'
 	E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,451,360') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,739,500'
