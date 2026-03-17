@@ -9,6 +9,7 @@
 - Updated WarpDeplete profile (Font size 11 > 12)  
 
 **Retail:**  
+- Abbreviate enchant names on the character frame by default  
 - Added BuffReminders profile to /lucky config  
 - Added PermoksAccountManager profile to /lucky config  
 - Adjusted PowerBarWidget anchor (Preys etc)  

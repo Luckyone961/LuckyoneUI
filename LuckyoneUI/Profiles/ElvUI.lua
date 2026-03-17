@@ -604,7 +604,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.guildBank.countFontOutline = Private.Outline
 	E.db.general.guildBank.itemLevelFont = Private.Font
 	E.db.general.guildBank.itemLevelFontOutline = Private.Outline
-	E.db.general.itemLevel.enchantAbbrev = false
 	E.db.general.itemLevel.itemLevelFont = Private.Font
 	E.db.general.itemLevel.itemLevelFontSize = 10
 	E.db.general.itemLevel.totalLevelFont = Private.Font
