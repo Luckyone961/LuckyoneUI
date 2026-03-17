@@ -6,11 +6,13 @@ local L = Private.Libs.ACL
 local _G = _G
 
 -- Disable ElvUI castbar and player power(healers)
-local function SetElvDB()
-	if not Private.ElvUI then return end
-	ElvUI[1].db.unitframe.units.player.castbar.enable = false
-	ElvUI[1].db.unitframe.units.player.power.enable = false
-end
+--[[
+	local function SetElvDB()
+		if not Private.ElvUI then return end
+		ElvUI[1].db.unitframe.units.player.castbar.enable = false
+		ElvUI[1].db.unitframe.units.player.power.enable = false
+	end
+]]
 
 -- BetterCooldownManager profile
 function Private:Setup_BCDM(installer)
