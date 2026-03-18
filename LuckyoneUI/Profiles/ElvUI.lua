@@ -1256,6 +1256,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.boss.orientation = 'LEFT'
 	E.db.unitframe.units.boss.power.enable = false
 	E.db.unitframe.units.boss.power.text_format = ''
+	E.db.unitframe.units.boss.privateAuras.enable = false
 	E.db.unitframe.units.boss.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.boss.raidicon.size = 40
 	E.db.unitframe.units.boss.raidicon.xOffset = 42
