@@ -1984,6 +1984,7 @@ function Private:Setup_ElvUI(layout)
 		-- Main Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 10
 		E.db.unitframe.units.raid1.height = 40
+		E.db.unitframe.units.raid1.privateAuras.enable = false
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid1.raidicon.attachToObject = 'Health'
 		E.db.unitframe.units.raid1.raidicon.size = 12
@@ -2003,6 +2004,7 @@ function Private:Setup_ElvUI(layout)
 		-- Main Raid2
 		E.db.unitframe.units.raid2.buffIndicator.size = 10
 		E.db.unitframe.units.raid2.height = 40
+		E.db.unitframe.units.raid2.privateAuras.enable = false
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid2.raidicon.attachToObject = 'Health'
 		E.db.unitframe.units.raid2.raidicon.size = 12
