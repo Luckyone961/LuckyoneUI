@@ -16,6 +16,7 @@
 - Fixed priest aura indicator overlap (Void Shield / Prayer of Mending)  
 - Updated AyijeCDM profile (Castbar off by default but still configured and ready to use)  
 - Updated BetterCooldownManager profile (Castbar off by default but still configured and ready to use)  
+- Updated Private Auras slightly (Icon size, border scale, anchor position)  
 - Updated WindTools profile (No longer auto skip cutscenes except for myself)  
 
 ## Version 4.06 [10-03-2026]
