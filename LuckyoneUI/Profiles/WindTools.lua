@@ -193,7 +193,6 @@ function Private:Setup_Private_WindTools()
 	Set(E.private, 'WT.misc.moveFrames.elvUIBags', false)
 	Set(E.private, 'WT.misc.moveSpeed', true)
 	Set(E.private, 'WT.misc.pauseToSlash', false)
-	Set(E.private, 'WT.misc.skipCutScene', true)
 	Set(E.private, 'WT.misc.tags', false)
 	Set(E.private, 'WT.quest.objectiveTracker.cosmeticBar.border', 'ONEPIXEL')
 	Set(E.private, 'WT.quest.objectiveTracker.cosmeticBar.color.mode', 'CLASS')
@@ -255,4 +254,8 @@ function Private:Setup_Private_WindTools()
 	Set(E.private, 'WT.tooltips.tierSet', false)
 	Set(E.private, 'WT.tooltips.titleIcon.enable', false)
 	Set(E.private, 'WT.unitFrames.roleIcon.enable', false)
+
+	if Private.itsLuckyone then
+		Set(E.private, 'WT.misc.skipCutScene', true)
+	end
 end

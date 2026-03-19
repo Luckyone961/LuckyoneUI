@@ -414,6 +414,7 @@ function Private:Setup_Filters_Retail()
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
+		["xOffset"] = 17,
 	}
 	-- Holy
 	classes['PRIEST'][139] = { -- Renew
