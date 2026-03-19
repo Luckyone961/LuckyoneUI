@@ -702,6 +702,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.actionbar.bar15.countFontSize = 12
 	E.db.actionbar.bar15.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar15.countTextYOffset = -5
+	E.db.actionbar.bar15.enabled = true
 	E.db.actionbar.bar15.hotkeytext = false
 	E.db.actionbar.bar15.point = 'TOPRIGHT'
 	E.db.actionbar.bar15.showGrid = false
