@@ -1,4 +1,9 @@
-﻿## Version 4.07 [19-03-2026]
+﻿## Version 4.08 [In Development]
+
+**Retail:**  
+- Updated PermoksAccountManager profile (Added weekly nightmare preys to checklist tab)  
+
+## Version 4.07 [19-03-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.09+ compatibility  
