@@ -607,7 +607,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.itemLevel.itemLevelFont = Private.Font
 	E.db.general.itemLevel.itemLevelFontSize = 10
 	E.db.general.itemLevel.totalLevelFont = Private.Font
-	E.db.general.itemLevel.totalLevelFontSize = 22
+	E.db.general.itemLevel.totalLevelFontSize = 14
 	E.db.general.loginmessage = false
 	E.db.general.lootRoll.buttonSize = 22
 	E.db.general.lootRoll.spacing = 3

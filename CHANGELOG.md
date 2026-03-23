@@ -1,5 +1,8 @@
 ﻿## Version 4.08 [In Development]
 
+**All WoW Versions:**  
+- Reduced default font size for inspect target item level text  
+
 **Retail:**  
 - Updated PermoksAccountManager profile (Added weekly nightmare preys to checklist tab)  
 
