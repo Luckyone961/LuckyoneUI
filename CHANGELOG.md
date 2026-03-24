@@ -1,7 +1,7 @@
 ﻿## Version 4.08 [In Development]
 
 **Retail:**  
-- Updated PermoksAccountManager profile (Added weekly nightmare preys to checklist tab)  
+- Updated PermoksAccountManager profile  
 
 ## Version 4.07 [19-03-2026]
 
