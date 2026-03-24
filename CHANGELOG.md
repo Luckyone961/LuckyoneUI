@@ -1,6 +1,7 @@
 ﻿## Version 4.08 [In Development]
 
 **Retail:**  
+- Updated BuffReminders profile  
 - Updated PermoksAccountManager profile  
 
 ## Version 4.07 [19-03-2026]
