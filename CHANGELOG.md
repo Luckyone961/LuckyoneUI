@@ -1,5 +1,8 @@
 ﻿## Version 4.08 [In Development]
 
+**All WoW Versions:**  
+- Updated game tooltip default font size (11 > 12)  
+
 **Retail:**  
 - Updated BuffReminders profile  
 - Updated PermoksAccountManager profile  

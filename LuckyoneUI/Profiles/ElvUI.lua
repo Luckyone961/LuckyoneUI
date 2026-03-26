@@ -983,7 +983,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.tooltip.fontOutline = Private.Outline
 	E.db.tooltip.headerFont = Private.Font
 	E.db.tooltip.headerFontOutline = Private.Outline
-	E.db.tooltip.headerFontSize = 11
+	E.db.tooltip.headerFontSize = 12
 	E.db.tooltip.healthBar.font = Private.Font
 	E.db.tooltip.healthBar.fontOutline = Private.Outline
 	E.db.tooltip.healthBar.fontSize = 10
@@ -996,9 +996,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.tooltip.role = false
 	E.db.tooltip.showElvUIUsers = true
 	E.db.tooltip.showMount = false
-	E.db.tooltip.smallTextFontSize = 10
+	E.db.tooltip.smallTextFontSize = 12
 	E.db.tooltip.targetInfo = false
-	E.db.tooltip.textFontSize = 11
+	E.db.tooltip.textFontSize = 12
 
 	-- Shared UnitFrames
 	E.db.unitframe.colors.castbar_backdrop.b = 0.05
