@@ -1,11 +1,13 @@
 ﻿## Version 4.08 [In Development]
 
 **All WoW Versions:**  
+- Good threat color on nameplates will no longer override classification colors  
 - Updated game tooltip default font size (11 > 12)  
 
 **Retail:**  
 - Updated BuffReminders profile  
 - Updated PermoksAccountManager profile  
+- Use Blizzard auras by default for Nameplates (Disables custom filtering)  
 
 ## Version 4.07 [19-03-2026]
 
