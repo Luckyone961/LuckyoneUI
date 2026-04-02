@@ -106,7 +106,6 @@ L["DPS & Tanks"] = "DPS & Tanques"
 L["Druid"] = "Druída"
 L["Easy Delete"] = "Delete Fácil"
 L["ElvUI Layouts"] = "Perfis do ElvUI"
-L["ElvUI Layouts"] = true
 L["ElvUI Plugins"] = "Plugins do ElvUI"
 L["ElvUI Themes"] = true
 L["ElvUI Tweaks"] = true
