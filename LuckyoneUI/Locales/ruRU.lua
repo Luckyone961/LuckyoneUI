@@ -106,7 +106,6 @@ L["DPS & Tanks"] = "Урон и Танк"
 L["Druid"] = "Друид"
 L["Easy Delete"] = true
 L["ElvUI Layouts"] = true
-L["ElvUI Layouts"] = true
 L["ElvUI Plugins"] = "Плагины ElvUI"
 L["ElvUI Themes"] = true
 L["ElvUI Tweaks"] = true

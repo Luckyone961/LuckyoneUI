@@ -106,7 +106,6 @@ L["DPS & Tanks"] = true -- No need to translate
 L["Druid"] = "Druide"
 L["Easy Delete"] = "Einfaches Löschen"
 L["ElvUI Layouts"] = true -- No need to translate
-L["ElvUI Layouts"] = true -- No need to translate
 L["ElvUI Plugins"] = true -- No need to translate
 L["ElvUI Themes"] = true -- No need to translate
 L["ElvUI Tweaks"] = true -- No need to translate
