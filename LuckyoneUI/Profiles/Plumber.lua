@@ -2,14 +2,13 @@
 local _, Private = ...
 local L = Private.Libs.ACL
 
--- Global environment
-local _G = _G
-
 -- Plumber profile
 function Private:Setup_Plumber()
 	if not Private.IsAddOnLoaded('Plumber') then Private:Print('Plumber ' .. L["is not installed or enabled."]) return end
 
-	if not PlumberDB then PlumberDB = {} end
+	if not PlumberDB then
+		PlumberDB = {}
+	end
 
 	PlumberDB.AlternativePlayerChoiceUI = true
 	PlumberDB.AppearanceTab = true
