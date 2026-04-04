@@ -179,6 +179,7 @@ L["Please click the button below to apply Luckyones profile for BigWigs and Litt
 L["Please click the button below to apply Luckyones profile for Details! Damage Meter."] = true
 L["Please click the button below to apply Luckyones profile for WarpDeplete."] = true
 L["Please read the steps carefully before clicking any buttons."] = true
+L["Plumber profile has been set."] = true
 L["Previous"] = true
 L["Priest"] = true
 L["Privacy Overlay"] = true

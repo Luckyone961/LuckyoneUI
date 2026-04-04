@@ -179,6 +179,7 @@ L["Please click the button below to apply Luckyones profile for BigWigs and Litt
 L["Please click the button below to apply Luckyones profile for Details! Damage Meter."] = "Merci de cliquer sur le bouton ci-dessous pour appliquer le profil Luckyone pour Details! Damage Meter."
 L["Please click the button below to apply Luckyones profile for WarpDeplete."] = "Merci de cliquer sur le bouton ci-dessous pour appliquer le profil Luckyone pour WarpDeplete."
 L["Please read the steps carefully before clicking any buttons."] = "Merci de lire attentivement les étapes avant de cliquer sur n'importe quel bouton."
+L["Plumber profile has been set."] = true
 L["Previous"] = "Précédent"
 L["Priest"] = "Prêtre"
 L["Privacy Overlay"] = true

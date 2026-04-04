@@ -232,6 +232,7 @@ local function BuildProfilesSection()
 	section.args.addons.args.acdm = ACH:Execute('AyijeCDM', RESET_DEFAULTS_TEXT, 4, function() Private:Setup_ACDM() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.addons.args.buffReminders = ACH:Execute('BuffReminders', RESET_DEFAULTS_TEXT, 5, function() Private:Setup_BuffReminders() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.addons.args.permoksAccountManager = ACH:Execute('PermoksAccountManager', RESET_DEFAULTS_TEXT, 6, function() Private:Setup_PermoksAccountManager() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.plumber = ACH:Execute('Plumber', RESET_DEFAULTS_TEXT, 7, function() Private:Setup_Plumber() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.header2 = ACH:Header(L["Profiles for DPS & Tanks"], 5)
 	section.args.addonsMain = ACH:Group(L["Addon Profiles"], nil, 6)
 	section.args.addonsMain.inline = true
