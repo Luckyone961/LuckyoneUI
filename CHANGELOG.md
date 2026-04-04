@@ -1,6 +1,7 @@
 ﻿## Version 4.08 [In Development]
 
 **All WoW Versions:**  
+- Added frFR locales (Credits: Oniria)  
 - Good threat color on nameplates will no longer override classification colors  
 - Updated game tooltip default font size (11 > 12)  
 
