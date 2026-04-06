@@ -8,8 +8,8 @@
 **Retail:**  
 - Added Plumber profile to /lucky config  
 - Updated BuffReminders profile  
+- Updated ElvUI nameplates to use Blizzard Auras + display CC on the right side  
 - Updated PermoksAccountManager profile  
-- Use Blizzard auras by default for Nameplates (Disables custom filtering)  
 
 ## Version 4.07 [19-03-2026]
 

@@ -337,7 +337,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.auras.countXOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.auras.countYOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.auras.desaturate = false
-	E.db.nameplates.units.ENEMY_NPC.auras.enable = not Private.isRetail
+	E.db.nameplates.units.ENEMY_NPC.auras.enable = true
 	E.db.nameplates.units.ENEMY_NPC.auras.height = 24
 	E.db.nameplates.units.ENEMY_NPC.auras.keepSizeRatio = false
 	E.db.nameplates.units.ENEMY_NPC.auras.numAuras = 3
