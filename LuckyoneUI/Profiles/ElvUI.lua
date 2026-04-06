@@ -1194,7 +1194,7 @@ function Private:Setup_ElvUI(layout)
 		justifyH = 'RIGHT',
 		size = 12,
 		text_format = '[luckyone:power:percent-color<%]',
-		xOffset = -2,
+		xOffset = -3,
 		yOffset = -12
 	}
 
@@ -1533,7 +1533,7 @@ function Private:Setup_ElvUI(layout)
 		justifyH = 'RIGHT',
 		size = 12,
 		text_format = '[luckyone:power:percent-color<%]',
-		xOffset = -2,
+		xOffset = -3,
 		yOffset = -12
 	}
 
