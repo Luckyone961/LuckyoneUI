@@ -380,7 +380,6 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.castbar.iconSize = 16
 	E.db.nameplates.units.ENEMY_NPC.castbar.targetAnchorPoint = 'RIGHT'
 	E.db.nameplates.units.ENEMY_NPC.castbar.targetFont = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.castbar.targetStyle = 'SEPARATE'
 	E.db.nameplates.units.ENEMY_NPC.castbar.targetXOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.castbar.textPosition = 'ONBAR'
 	E.db.nameplates.units.ENEMY_NPC.castbar.textXOffset = 4
@@ -443,7 +442,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countXOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countYOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.auras.desaturate = false
-	E.db.nameplates.units.ENEMY_PLAYER.auras.enable = not Private.isRetail
+	E.db.nameplates.units.ENEMY_PLAYER.auras.enable = true
 	E.db.nameplates.units.ENEMY_PLAYER.auras.height = 24
 	E.db.nameplates.units.ENEMY_PLAYER.auras.keepSizeRatio = false
 	E.db.nameplates.units.ENEMY_PLAYER.auras.numAuras = 3
@@ -483,6 +482,8 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconOffsetY = -1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconPosition = 'LEFT'
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconSize = 16
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.targetAnchorPoint = 'RIGHT'
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.targetXOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.textPosition = 'ONBAR'
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.textXOffset = 4
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeToHold = 2
