@@ -13,6 +13,9 @@
 - Updated PermoksAccountManager profile  
 - Updated Private Aura x offset for the latest ElvUI changes (Party frames)  
 
+**Mists:**  
+- Updated TOC for 5.5.3  
+
 ## Version 4.07 [19-03-2026]
 
 **All WoW Versions:**  
