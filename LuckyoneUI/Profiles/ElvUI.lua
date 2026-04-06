@@ -310,8 +310,8 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.clickSize.width = 210
 	E.db.nameplates.fadeIn = false
 	E.db.nameplates.lowHealthThreshold = 0
-	E.db.nameplates.overlapH = 1
-	E.db.nameplates.overlapV = 1.6
+	E.db.nameplates.overlapH = 1.2
+	E.db.nameplates.overlapV = 1.9
 	E.db.nameplates.statusbar = Private.Texture
 	E.db.nameplates.threat.useSoloColor = true
 	E.db.nameplates.threat.skipGoodColor = true
@@ -364,7 +364,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.buffs.maxDuration = 300
 	E.db.nameplates.units.ENEMY_NPC.buffs.numAuras = 4
 	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Dispellable'
-	E.db.nameplates.units.ENEMY_NPC.buffs.size = 22
+	E.db.nameplates.units.ENEMY_NPC.buffs.size = 24
 	E.db.nameplates.units.ENEMY_NPC.buffs.xOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.buffs.yOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.castbar.anchorPoint = 'BOTTOMLEFT'
@@ -468,7 +468,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.growthX = 'LEFT'
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.numAuras = 4
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Dispellable'
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 22
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 24
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.xOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.yOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.anchorPoint = 'BOTTOMLEFT'
