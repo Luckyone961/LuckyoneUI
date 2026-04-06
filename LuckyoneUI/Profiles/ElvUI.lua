@@ -1768,7 +1768,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.power.enable = false
 	E.db.unitframe.units.party.privateAuras.icon.amount = 3
 	E.db.unitframe.units.party.privateAuras.icon.point = 'RIGHT'
-	E.db.unitframe.units.party.privateAuras.parent.offsetX = 2
+	E.db.unitframe.units.party.privateAuras.parent.offsetX = 22
 	E.db.unitframe.units.party.privateAuras.parent.offsetY = 23
 	E.db.unitframe.units.party.privateAuras.parent.point = 'BOTTOMLEFT'
 	E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
