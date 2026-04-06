@@ -2,14 +2,15 @@
 
 **All WoW Versions:**  
 - Added frFR locales (Credits: Oniria)  
-- Good threat color on nameplates will no longer override classification colors  
+- Updated CVar values (Nameplate overlap H, Nameplate overlap V)  
+- Updated ElvUI Nameplates (Castbar, Cast target, Buff size, CC icons)  
 - Updated game tooltip default font size (11 > 12)  
 
 **Retail:**  
 - Added Plumber profile to /lucky config  
 - Updated BuffReminders profile  
-- Updated ElvUI nameplates to use Blizzard Auras + display CC on the right side  
 - Updated PermoksAccountManager profile  
+- Updated Private Aura x offset for the latest ElvUI changes (Party frames)  
 
 ## Version 4.07 [19-03-2026]
 
