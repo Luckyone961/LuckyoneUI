@@ -7,6 +7,7 @@
 - Updated game tooltip default font size (11 > 12)  
 
 **Retail:**  
+- Absorbs color displayed on full health again (Overabsorb)  
 - Added Plumber profile to /lucky config  
 - Updated BuffReminders profile  
 - Updated PermoksAccountManager profile  

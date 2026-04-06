@@ -1016,6 +1016,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.colors.customhealthbackdrop = true
 	E.db.unitframe.colors.custompowerbackdrop = true
 	E.db.unitframe.colors.frameGlow.mouseoverGlow.texture = Private.Texture
+	E.db.unitframe.colors.healPrediction.maxOverflow = 1
 	E.db.unitframe.colors.healPrediction.overabsorbs.b = 1
 	E.db.unitframe.colors.healPrediction.overabsorbs.r = 0
 	E.db.unitframe.colors.health_backdrop_dead.b = 0.14
