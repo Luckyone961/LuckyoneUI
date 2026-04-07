@@ -311,7 +311,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.fadeIn = false
 	E.db.nameplates.lowHealthThreshold = 0
 	E.db.nameplates.overlapH = 1.2
-	E.db.nameplates.overlapV = 1.9
+	E.db.nameplates.overlapV = 1.6
 	E.db.nameplates.statusbar = Private.Texture
 	E.db.nameplates.threat.useSoloColor = true
 	E.db.nameplates.threat.skipGoodColor = true
