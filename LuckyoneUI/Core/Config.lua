@@ -30,7 +30,7 @@ Private.Credits = {}
 local AUTHOR = { '|cff33937FLucky|r - LaughingSkull', '|cffFF7D0ALuckyone|r - LaughingSkull' }
 local CODING = { '|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|r', '|cffFF7D0AMerathilis|r' }
 local SUPPORT = { '|cffe6cc80Calmcacil|r', '|cffe6cc80DaPaKnat|r', '|cffe6cc80Debeleus|r', '|cffe6cc80DevinDog|r', '|cffe6cc80Dukes|r', '|cffe6cc80Garbar|r', '|cffe6cc80Kenneth|r', '|cffe6cc80Liam|r', '|cffe6cc80Littlesack|r', '|cffe6cc80Lox|r', '|cffe6cc80Midnatt|r', '|cffe6cc80MonkeyHack|r', '|cffe6cc80Onlyne|r', '|cffe6cc80ShowNoMercy|r', '|cffe6cc80Treelyté|r', '|cffe6cc80Triplebeamdreams|r', '|cffe6cc80Tykk|r', '|cffe6cc80Logan|r' }
-local TESTERS = { '|cff00FF96AltBridge|r', '|cffABD473Badbrain|r', '|cff00FF96Doctorio|r', '|cffC41F3BKringel|r', '|cffF58CBAIllusion|r', '|cffABD473Dlarge|r', '|cffe6cc80Hollicsh|r', '|cff3FC7EBEltreum|r' }
+local TESTERS = { '|cff00FF96AltBridge|r', '|cffABD473Badbrain|r', '|cff00FF96Doctorio|r', '|cffC41F3BKringel|r', '|cffF58CBAIllusion|r', '|cffABD473Dlarge|r', '|cffe6cc80Hollicsh|r', '|cff3FC7EBEltreum|r', '|cffe6cc80Oniria|r' }
 
 local function ProcessList(list)
 	for _, name in pairs(list) do
@@ -143,7 +143,7 @@ local function BuildCVarsSection()
 	section.args.generalDesc.args.cvars = ACH:Description('- AutoPushSpellToActionBar 0\n- cameraDistanceMaxZoomFactor 2.6\n- countdownForCooldowns 1\n- fstack_preferParentKeys 0\n- lockActionBars 1\n- minimapTrackingShowAll 1\n- screenshotQuality 10\n- showNPETutorials 0\n- showTutorials 0\n- threatWarning 3\n- UberTooltips 1\n', 1, 'medium')
 	section.args.nameplateDesc = ACH:Group(L["Nameplate CVars"], nil, 4)
 	section.args.nameplateDesc.inline = true
-	section.args.nameplateDesc.args.cvars = ACH:Description('- nameplateLargerScale 1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1\n- UnitNameEnemyTotemName 1', 1, 'medium')
+	section.args.nameplateDesc.args.cvars = ACH:Description('- nameplateLargerScale 1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1.2\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1\n- UnitNameEnemyTotemName 1', 1, 'medium')
 	return section
 end
 
@@ -232,6 +232,7 @@ local function BuildProfilesSection()
 	section.args.addons.args.acdm = ACH:Execute('AyijeCDM', RESET_DEFAULTS_TEXT, 4, function() Private:Setup_ACDM() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.addons.args.buffReminders = ACH:Execute('BuffReminders', RESET_DEFAULTS_TEXT, 5, function() Private:Setup_BuffReminders() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.addons.args.permoksAccountManager = ACH:Execute('PermoksAccountManager', RESET_DEFAULTS_TEXT, 6, function() Private:Setup_PermoksAccountManager() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.plumber = ACH:Execute('Plumber', RESET_DEFAULTS_TEXT, 7, function() Private:Setup_Plumber() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.header2 = ACH:Header(L["Profiles for DPS & Tanks"], 5)
 	section.args.addonsMain = ACH:Group(L["Addon Profiles"], nil, 6)
 	section.args.addonsMain.inline = true

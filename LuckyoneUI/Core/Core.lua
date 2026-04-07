@@ -87,7 +87,7 @@ end
 function Private:GetActiveProfile()
 	if not Private.ElvUI then return end
 	local data = ElvUI[1].data:GetCurrentProfile()
-	return strfind(data, 'Luckyone Main') and 1 or strfind(data, 'Luckyone Healing') and 2 or nil
+	return strfind(data, 'Luckyone Main') and 1 or strfind(data, 'Luckyone Healing') and 2 or strfind(data, 'Luckyone Support') and 3 or nil
 end
 
 -- Open settings helper

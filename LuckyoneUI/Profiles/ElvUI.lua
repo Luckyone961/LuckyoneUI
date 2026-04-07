@@ -310,10 +310,12 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.clickSize.width = 210
 	E.db.nameplates.fadeIn = false
 	E.db.nameplates.lowHealthThreshold = 0
-	E.db.nameplates.overlapH = 1
+	E.db.nameplates.overlapH = 1.2
 	E.db.nameplates.overlapV = 1.6
 	E.db.nameplates.statusbar = Private.Texture
 	E.db.nameplates.threat.useSoloColor = true
+	E.db.nameplates.threat.skipGoodColor = true
+	E.db.nameplates.useBlizzardAuras = Private.isRetail -- Use filter prio in nonRetail
 
 	-- NamePlates misc
 	E.db.nameplates.classColorNames = true
@@ -332,15 +334,14 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.auras.attachTo = 'HEALTH'
 	E.db.nameplates.units.ENEMY_NPC.auras.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.auras.countFontSize = 12
+	E.db.nameplates.units.ENEMY_NPC.auras.countPosition = 'TOP'
 	E.db.nameplates.units.ENEMY_NPC.auras.countXOffset = 1
-	E.db.nameplates.units.ENEMY_NPC.auras.countYOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.auras.countYOffset = 14
 	E.db.nameplates.units.ENEMY_NPC.auras.desaturate = false
-	E.db.nameplates.units.ENEMY_NPC.auras.enable = not Private.isRetail
 	E.db.nameplates.units.ENEMY_NPC.auras.height = 24
-	E.db.nameplates.units.ENEMY_NPC.auras.keepSizeRatio = false
-	E.db.nameplates.units.ENEMY_NPC.auras.numAuras = 3
+	E.db.nameplates.units.ENEMY_NPC.auras.numAuras = 4
 	E.db.nameplates.units.ENEMY_NPC.auras.priority = Private.isRetail and 'ImportantCC' or 'CCDebuffs'
-	E.db.nameplates.units.ENEMY_NPC.auras.size = 30
+	E.db.nameplates.units.ENEMY_NPC.auras.size = 24
 	E.db.nameplates.units.ENEMY_NPC.auras.sortMethod = 'INDEX'
 	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.fontSize = 11
@@ -362,7 +363,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.buffs.maxDuration = 300
 	E.db.nameplates.units.ENEMY_NPC.buffs.numAuras = 4
 	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Dispellable'
-	E.db.nameplates.units.ENEMY_NPC.buffs.size = 22
+	E.db.nameplates.units.ENEMY_NPC.buffs.size = 24
 	E.db.nameplates.units.ENEMY_NPC.buffs.xOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.buffs.yOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.castbar.anchorPoint = 'BOTTOMLEFT'
@@ -371,17 +372,16 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.castbar.displayTarget = true
 	E.db.nameplates.units.ENEMY_NPC.castbar.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.castbar.fontSize = 10
-	E.db.nameplates.units.ENEMY_NPC.castbar.height = 14
-	E.db.nameplates.units.ENEMY_NPC.castbar.iconOffsetX = 2
+	E.db.nameplates.units.ENEMY_NPC.castbar.height = 16
+	E.db.nameplates.units.ENEMY_NPC.castbar.iconOffsetX = 4
 	E.db.nameplates.units.ENEMY_NPC.castbar.iconOffsetY = -1
 	E.db.nameplates.units.ENEMY_NPC.castbar.iconPosition = 'LEFT'
-	E.db.nameplates.units.ENEMY_NPC.castbar.iconSize = 16
+	E.db.nameplates.units.ENEMY_NPC.castbar.iconSize = 18
 	E.db.nameplates.units.ENEMY_NPC.castbar.targetAnchorPoint = 'RIGHT'
 	E.db.nameplates.units.ENEMY_NPC.castbar.targetFont = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.castbar.targetStyle = 'SEPARATE'
 	E.db.nameplates.units.ENEMY_NPC.castbar.targetXOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.castbar.textPosition = 'ONBAR'
-	E.db.nameplates.units.ENEMY_NPC.castbar.textXOffset = 4
+	E.db.nameplates.units.ENEMY_NPC.castbar.textXOffset = 6
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeToHold = 2
 	E.db.nameplates.units.ENEMY_NPC.castbar.timeXOffset = -1
 	E.db.nameplates.units.ENEMY_NPC.castbar.width = 197
@@ -438,15 +438,14 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.auras.attachTo = 'HEALTH'
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countFont = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countFontSize = 12
+	E.db.nameplates.units.ENEMY_PLAYER.auras.countPosition = 'TOP'
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countXOffset = 1
-	E.db.nameplates.units.ENEMY_PLAYER.auras.countYOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.auras.countYOffset = 14
 	E.db.nameplates.units.ENEMY_PLAYER.auras.desaturate = false
-	E.db.nameplates.units.ENEMY_PLAYER.auras.enable = not Private.isRetail
 	E.db.nameplates.units.ENEMY_PLAYER.auras.height = 24
-	E.db.nameplates.units.ENEMY_PLAYER.auras.keepSizeRatio = false
-	E.db.nameplates.units.ENEMY_PLAYER.auras.numAuras = 3
+	E.db.nameplates.units.ENEMY_PLAYER.auras.numAuras = 4
 	E.db.nameplates.units.ENEMY_PLAYER.auras.priority = Private.isRetail and 'ImportantCC' or 'CCDebuffs'
-	E.db.nameplates.units.ENEMY_PLAYER.auras.size = 30
+	E.db.nameplates.units.ENEMY_PLAYER.auras.size = 24
 	E.db.nameplates.units.ENEMY_PLAYER.auras.sortMethod = 'INDEX'
 	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.fontSize = 11
@@ -467,7 +466,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.growthX = 'LEFT'
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.numAuras = 4
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Dispellable'
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 22
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 24
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.xOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.yOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.anchorPoint = 'BOTTOMLEFT'
@@ -476,13 +475,15 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.displayTarget = true
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.fontSize = 10
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.height = 14
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconOffsetX = 2
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.height = 16
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconOffsetX = 4
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconOffsetY = -1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconPosition = 'LEFT'
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconSize = 16
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconSize = 18
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.targetAnchorPoint = 'RIGHT'
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.targetXOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.textPosition = 'ONBAR'
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.textXOffset = 4
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.textXOffset = 6
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeToHold = 2
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeXOffset = -1
 	E.db.nameplates.units.ENEMY_PLAYER.castbar.width = 197
@@ -702,6 +703,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.actionbar.bar15.countFontSize = 12
 	E.db.actionbar.bar15.countTextPosition = 'BOTTOM'
 	E.db.actionbar.bar15.countTextYOffset = -5
+	E.db.actionbar.bar15.enabled = true
 	E.db.actionbar.bar15.hotkeytext = false
 	E.db.actionbar.bar15.point = 'TOPRIGHT'
 	E.db.actionbar.bar15.showGrid = false
@@ -982,7 +984,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.tooltip.fontOutline = Private.Outline
 	E.db.tooltip.headerFont = Private.Font
 	E.db.tooltip.headerFontOutline = Private.Outline
-	E.db.tooltip.headerFontSize = 11
+	E.db.tooltip.headerFontSize = 12
 	E.db.tooltip.healthBar.font = Private.Font
 	E.db.tooltip.healthBar.fontOutline = Private.Outline
 	E.db.tooltip.healthBar.fontSize = 10
@@ -995,9 +997,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.tooltip.role = false
 	E.db.tooltip.showElvUIUsers = true
 	E.db.tooltip.showMount = false
-	E.db.tooltip.smallTextFontSize = 10
+	E.db.tooltip.smallTextFontSize = 12
 	E.db.tooltip.targetInfo = false
-	E.db.tooltip.textFontSize = 11
+	E.db.tooltip.textFontSize = 12
 
 	-- Shared UnitFrames
 	E.db.unitframe.colors.castbar_backdrop.b = 0.05
@@ -1014,6 +1016,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.colors.customhealthbackdrop = true
 	E.db.unitframe.colors.custompowerbackdrop = true
 	E.db.unitframe.colors.frameGlow.mouseoverGlow.texture = Private.Texture
+	E.db.unitframe.colors.healPrediction.maxOverflow = 1
 	E.db.unitframe.colors.healPrediction.overabsorbs.b = 1
 	E.db.unitframe.colors.healPrediction.overabsorbs.r = 0
 	E.db.unitframe.colors.health_backdrop_dead.b = 0.14
@@ -1765,7 +1768,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.power.enable = false
 	E.db.unitframe.units.party.privateAuras.icon.amount = 3
 	E.db.unitframe.units.party.privateAuras.icon.point = 'RIGHT'
-	E.db.unitframe.units.party.privateAuras.parent.offsetX = 2
+	E.db.unitframe.units.party.privateAuras.parent.offsetX = 22
 	E.db.unitframe.units.party.privateAuras.parent.offsetY = 23
 	E.db.unitframe.units.party.privateAuras.parent.point = 'BOTTOMLEFT'
 	E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'

@@ -106,7 +106,6 @@ L["DPS & Tanks"] = true
 L["Druid"] = true
 L["Easy Delete"] = true
 L["ElvUI Layouts"] = true
-L["ElvUI Layouts"] = true
 L["ElvUI Plugins"] = true
 L["ElvUI Themes"] = true
 L["ElvUI Tweaks"] = true
@@ -180,6 +179,7 @@ L["Please click the button below to apply Luckyones profile for BigWigs and Litt
 L["Please click the button below to apply Luckyones profile for Details! Damage Meter."] = true
 L["Please click the button below to apply Luckyones profile for WarpDeplete."] = true
 L["Please read the steps carefully before clicking any buttons."] = true
+L["Plumber profile has been set."] = true
 L["Previous"] = true
 L["Priest"] = true
 L["Privacy Overlay"] = true

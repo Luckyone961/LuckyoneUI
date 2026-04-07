@@ -7,6 +7,7 @@
 	<Script file='ElvUI.lua'/>
 	<Script file='PermoksAccountManager.lua'/>
 	<Script file='Plater.lua'/>
+	<Script file='Plumber.lua'/>
 	<Script file='ShadowLight.lua'/>
 	<Script file='WarpDeplete.lua'/>
 	<Script file='WindTools.lua'/>

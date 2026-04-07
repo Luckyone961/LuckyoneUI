@@ -106,7 +106,6 @@ L["DPS & Tanks"] = "DPS & Tanques"
 L["Druid"] = "Druída"
 L["Easy Delete"] = "Delete Fácil"
 L["ElvUI Layouts"] = "Perfis do ElvUI"
-L["ElvUI Layouts"] = true
 L["ElvUI Plugins"] = "Plugins do ElvUI"
 L["ElvUI Themes"] = true
 L["ElvUI Tweaks"] = true
@@ -180,6 +179,7 @@ L["Please click the button below to apply Luckyones profile for BigWigs and Litt
 L["Please click the button below to apply Luckyones profile for Details! Damage Meter."] = "Por favor clique no botão abaixo para aplicar o perfil do Luckyone para o Details! Damage Meter."
 L["Please click the button below to apply Luckyones profile for WarpDeplete."] = "Por favor clique no botão abaixo para aplicar o perfil do Luckyone para o WarpDeplete."
 L["Please read the steps carefully before clicking any buttons."] = "Por favor leia os passos com cuidado antes de clicar em um botão."
+L["Plumber profile has been set."] = true
 L["Previous"] = true
 L["Priest"] = "Sacerdote"
 L["Privacy Overlay"] = "Sobreposição de Privacidade"

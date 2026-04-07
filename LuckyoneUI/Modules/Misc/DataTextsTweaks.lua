@@ -33,6 +33,8 @@ local function UpdateDataTextWidth()
 		ActionBarsDT.width = 395 -- Main layout default value
 	elseif profile == 2 then
 		ActionBarsDT.width = 704 -- Healer layout default value
+	elseif profile == 3 then
+		ActionBarsDT.width = 484 -- Support layout default value
 	end
 
 	DT:LoadDataTexts()
