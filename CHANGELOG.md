@@ -1,4 +1,9 @@
-﻿## Version 4.08 [07-04-2026]
+﻿## Version 4.09 [In Development]
+
+**Retail:**  
+- Updated BetterCooldownManager (Fixes the initial position for 1080p users)  
+
+## Version 4.08 [07-04-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.11+ compatibility  
