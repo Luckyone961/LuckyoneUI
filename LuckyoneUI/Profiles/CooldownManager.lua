@@ -31,7 +31,7 @@ function Private:Setup_BCDM(installer)
 
 	if scaled then
 		-- 1080p need a different Y offset position
-		_G.BCDMDB.profiles[name].CooldownManager.Essential.Layout = { nil, nil, nil, -203 }
+		_G.BCDMDB.profiles[name].CooldownManager.Essential.Layout = { nil, nil, nil, -163 }
 	end
 
 	if installer then
