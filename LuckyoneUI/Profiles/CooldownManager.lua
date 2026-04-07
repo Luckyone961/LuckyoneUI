@@ -16,8 +16,8 @@ end
 function Private:Setup_BCDM(installer)
 	if not Private.IsAddOnLoaded('BetterCooldownManager') then Private:Print('BetterCooldownManager ' .. L["is not installed or enabled."]) return end
 
-	-- Global db
-	local dev = Private.Addon.db.global.dev
+	-- Global dbs
+	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.global.scaled
 
 	-- Profile name
 	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version
@@ -28,6 +28,11 @@ function Private:Setup_BCDM(installer)
 	-- Profile import
 	local BCDMG = _G.BCDMG
 	BCDMG:ImportBCDM(importString, name)
+
+	if scaled then
+		-- 1080p need a different Y offset position
+		_G.BCDMDB.profiles[name].CooldownManager.Essential.Layout = { nil, nil, nil, -203 }
+	end
 
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["BetterCooldownManager profile has been set."])
