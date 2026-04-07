@@ -5,13 +5,6 @@ local L = Private.Libs.ACL
 -- Global environment
 local _G = _G
 
--- Disable ElvUI castbar and player power(healers)
-local function SetElvDB()
-	if not Private.ElvUI then return end
-	-- ElvUI[1].db.unitframe.units.player.castbar.enable = false
-	ElvUI[1].db.unitframe.units.player.power.enable = false
-end
-
 -- BetterCooldownManager profile
 function Private:Setup_BCDM(installer)
 	if not Private.IsAddOnLoaded('BetterCooldownManager') then Private:Print('BetterCooldownManager ' .. L["is not installed or enabled."]) return end
@@ -41,7 +34,9 @@ function Private:Setup_BCDM(installer)
 	Private:Print(L["BetterCooldownManager profile has been set."])
 	Private:Print(L["Note: If the position is wrong after the UI reload, use X and Y offset in the /bcdm Essential tab to adjust it."])
 
-	SetElvDB()
+	if Private.ElvUI then
+		ElvUI[1].db.unitframe.units.player.power.enable = false
+	end
 end
 
 -- AyijeCDM profile
@@ -68,5 +63,7 @@ function Private:Setup_ACDM(installer)
 	Private:Print(L["AyijeCDM profile has been set."])
 	Private:Print(L["Note: If the position is wrong after the UI reload, use X and Y offset in the /acdm Positions tab to adjust it."])
 
-	SetElvDB()
+	if Private.ElvUI then
+		ElvUI[1].db.unitframe.units.player.power.enable = false
+	end
 end
