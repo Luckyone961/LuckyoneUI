@@ -1,6 +1,7 @@
 ﻿## Version 4.08 [In Development]
 
 **All WoW Versions:**  
+- ElvUI 15.11+ compatibility  
 - Added frFR locales (Credits: Oniria)  
 - Updated CVar values (Nameplate overlap H, Nameplate overlap V)  
 - Updated ElvUI Nameplates (Castbar, Cast target, Buff size, CC icons)  
