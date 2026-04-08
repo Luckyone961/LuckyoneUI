@@ -2,6 +2,7 @@
 
 **Retail:**  
 - Updated BetterCooldownManager (Fixes the initial position for 1080p users)  
+- Updated BuffReminders profile (Y Offset)  
 
 ## Version 4.08 [07-04-2026]
 
