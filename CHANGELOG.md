@@ -4,6 +4,7 @@
 - Fixed Private Aura positions (Raid1, Raid2, Raid3)  
 - Updated BetterCooldownManager (Fixes the initial position for 1080p users)  
 - Updated BuffReminders profile (Y Offset)  
+- Updated WarpDeplete profile (Skins)  
 
 ## Version 4.08 [07-04-2026]
 
