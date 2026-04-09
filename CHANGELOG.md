@@ -1,6 +1,7 @@
 ﻿## Version 4.09 [In Development]
 
 **Retail:**  
+- Fixed Private Aura positions (Raid1, Raid2, Raid3)  
 - Updated BetterCooldownManager (Fixes the initial position for 1080p users)  
 - Updated BuffReminders profile (Y Offset)  
 
