@@ -2,6 +2,7 @@
 
 **All WoW Versions:**  
 - Added back the Augmentation/Support layout (Centered Raidframes, No Actionbars)  
+- Updated ElvUI Nameplates (Pixel fixes for Castbar + Castbar icon)  
 
 **Retail:**  
 - Fixed Private Aura positions (Raid1, Raid2, Raid3)  
