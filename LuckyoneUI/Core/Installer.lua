@@ -590,6 +590,9 @@ local function BuildInstallerData()
 			f.Option2:Show()
 			f.Option2:SetScript('OnClick', function() Private:Setup_Layout('healing', true) end)
 			f.Option2:SetText(L["Healing"])
+			f.Option3:Show()
+			f.Option3:SetScript('OnClick', function() Private:Setup_Layout('support', true) end)
+			f.Option3:SetText(format('|cff33937F%s', L["Augmentation"]))
 		end
 		stepTitles[pageIndex] = L["ElvUI Layouts"]
 		pageIndex = pageIndex + 1

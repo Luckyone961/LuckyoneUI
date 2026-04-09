@@ -16,6 +16,7 @@ L["Alert Frame"] = "Painel de Alerta"
 L["Alt: "] = true
 L["Applied profile: "] = "Perfil aplicado: "
 L["Archive - Old Layouts"] = "Arquivo - Perfis Antigos"
+L["Augmentation"] = true
 L["Auras"] = true
 L["Author"] = "Autor"
 L["Automatically fill out the confirmation text to delete items."] = "Automaticamente preencher o texto de confirmação para deletar items."

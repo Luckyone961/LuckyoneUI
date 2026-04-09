@@ -16,6 +16,7 @@ L["Alert Frame"] = "Alarmfenster"
 L["Alt: "] = "Twink: "
 L["Applied profile: "] = "Folgendes Profil wurde geladen: "
 L["Archive - Old Layouts"] = "Archiv - Alte Layouts"
+L["Augmentation"] = true
 L["Auras"] = true
 L["Author"] = "Autor"
 L["Automatically fill out the confirmation text to delete items."] = "Fülle automatisch den Bestätigungstext zum Löschen von Gegenständen aus."

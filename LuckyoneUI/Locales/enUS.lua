@@ -16,6 +16,7 @@ L["Alert Frame"] = true
 L["Alt: "] = true
 L["Applied profile: "] = true
 L["Archive - Old Layouts"] = true
+L["Augmentation"] = true
 L["Auras"] = true
 L["Author"] = true
 L["Automatically fill out the confirmation text to delete items."] = true

@@ -161,6 +161,7 @@ local function BuildElvUILayoutSection()
 	section.args.midnight.inline = true
 	section.args.midnight.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout('main') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.midnight.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout('healing') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.midnight.args.support = ACH:Execute(format('|cff33937F%s', L["Augmentation"]), nil, 3, function() Private:Setup_Layout('support') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	return section
 end
 

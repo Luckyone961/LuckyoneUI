@@ -16,6 +16,7 @@ L["Alert Frame"] = "Рамка оповещения"
 L["Alt: "] = true
 L["Applied profile: "] = true
 L["Archive - Old Layouts"] = true
+L["Augmentation"] = true
 L["Auras"] = true
 L["Author"] = "Автор"
 L["Automatically fill out the confirmation text to delete items."] = "Автоматически заполнять текст подтверждения для удаления элементов."

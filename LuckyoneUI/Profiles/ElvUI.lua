@@ -199,9 +199,11 @@ function Private:HandleAlts(layout)
 
 	-- Fix our custom DataText
 	if layout == 'main' then
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395 -- (Profile == 1)
 	elseif layout == 'healing' then
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704 -- (Profile == 2)
+	elseif layout == 'support' then
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 484 -- (Profile == 3)
 	end
 
 	-- PrivateDB for ElvUI, Shadow&Light, WindTools
@@ -229,6 +231,8 @@ function Private:Setup_Layout(layout, installer)
 		E.data:SetProfile(Private.Addon.db.global.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version)
 	elseif layout == 'healing' then
 		E.data:SetProfile(Private.Addon.db.global.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version)
+	elseif layout == 'support' then
+		E.data:SetProfile(Private.Addon.db.global.dev and 'Luckyone Support' or 'Luckyone Support ' .. Private.Version)
 	end
 
 	-- E.global & Custom DataText
@@ -242,6 +246,8 @@ function Private:Setup_Layout(layout, installer)
 		Private:Setup_ElvUI('main')
 	elseif layout == 'healing' then
 		Private:Setup_ElvUI('healing')
+	elseif layout == 'support' then
+		Private:Setup_ElvUI('support')
 	end
 
 	-- Push the update
@@ -2172,6 +2178,20 @@ function Private:Setup_ElvUI(layout)
 			E.db.actionbar.bar2.mouseover = true
 			E.db.actionbar.bar3.mouseover = true
 		end
+	elseif layout == 'support' then
+
+		-- Support misc
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 484
+
+		-- Support movers
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,263') or 'BOTTOM,ElvUIParent,BOTTOM,0,396'
+		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
+		E.db.movers.ElvAB_2 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
+		E.db.movers.ElvAB_3 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
+		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
+		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
+		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
+		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
 	end
 
 	-- Custom nonRetail changes
