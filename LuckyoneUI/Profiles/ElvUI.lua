@@ -2192,6 +2192,12 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
+
+		if Private.itsLuckyone then
+			E.db.actionbar.bar1.mouseover = true
+			E.db.actionbar.bar2.mouseover = true
+			E.db.actionbar.bar3.mouseover = true
+		end
 	end
 
 	-- Custom nonRetail changes
