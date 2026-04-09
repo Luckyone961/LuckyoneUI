@@ -410,8 +410,10 @@ function Private:Setup_Filters_Retail()
 		["point"] = "TOP",
 		["displayText"] = true,
 		["yOffset"] = 1,
+		["countY"] = 2,
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
+		["countX"] = 14,
 	}
 	classes['PRIEST'][77489]['enabled'] = false -- Echo of Light
 
