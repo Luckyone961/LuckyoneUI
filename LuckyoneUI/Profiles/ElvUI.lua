@@ -1984,7 +1984,7 @@ function Private:Setup_ElvUI(layout)
 	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
 	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
 
-	if layout == 'main' then
+	if layout == 'main' or layout == 'support' then
 
 		-- Main Party
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. (not Private.isRetail and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]')
@@ -2056,19 +2056,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.privateAuras.parent.offsetX = 5
 		E.db.unitframe.units.raid2.privateAuras.parent.offsetY = 26
 
-		-- Main misc
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395
-
-		-- Main movers
-		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,269') or 'BOTTOM,ElvUIParent,BOTTOM,0,396'
-		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-		E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,82'
-		E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,49'
-		E.db.movers.ElvUF_Raid1Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,115'
-		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,348'
 
 	elseif layout == 'healing' then
 
@@ -2157,8 +2144,23 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.privateAuras.parent.offsetX = 7
 		E.db.unitframe.units.raid2.privateAuras.parent.offsetY = 32
 
-		-- Healing misc
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704
+	end
+
+	-- Layout specific movers
+	if layout == 'main' then
+
+		-- Main movers
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,269') or 'BOTTOM,ElvUIParent,BOTTOM,0,396'
+		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
+		E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,82'
+		E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,49'
+		E.db.movers.ElvUF_Raid1Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
+		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
+		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
+		E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,115'
+		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,348'
+
+	elseif layout == 'healing' then
 
 		-- Healing movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,263') or 'BOTTOM,ElvUIParent,BOTTOM,0,396'
@@ -2171,15 +2173,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-26,263') or 'BOTTOM,ElvUIParent,BOTTOM,0,348'
 
-		if Private.itsLuckyone then
-			E.db.actionbar.bar1.mouseover = true
-			E.db.actionbar.bar2.mouseover = true
-			E.db.actionbar.bar3.mouseover = true
-		end
 	elseif layout == 'support' then
-
-		-- Support misc
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 484
 
 		-- Support movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,263') or 'BOTTOM,ElvUIParent,BOTTOM,0,396'
@@ -2190,12 +2184,16 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
+	end
 
-		if Private.itsLuckyone then
-			E.db.actionbar.bar1.mouseover = true
-			E.db.actionbar.bar2.mouseover = true
-			E.db.actionbar.bar3.mouseover = true
-		end
+	-- Initial DT width
+	E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (layout == 'main' and 395) or (layout == 'healing' and 704) or (layout == 'support' and 484)
+
+	-- Custom AB changes
+	if Private.itsLuckyone then
+		E.db.actionbar.bar1.mouseover = true
+		E.db.actionbar.bar2.mouseover = true
+		E.db.actionbar.bar3.mouseover = true
 	end
 
 	-- Custom nonRetail changes
