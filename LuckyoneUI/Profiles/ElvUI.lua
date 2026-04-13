@@ -2217,6 +2217,13 @@ function Private:Setup_ElvUI(layout)
 	-- Initial DT width
 	E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (layout == 'main' and 395) or (layout == 'healing' and 704) or (layout == 'support' and 484)
 
+	-- Custom AB changes
+	if Private.itsLuckyone and (layout == 'healing' or layout == 'support') then
+		E.db.actionbar.bar1.mouseover = true
+		E.db.actionbar.bar2.mouseover = true
+		E.db.actionbar.bar3.mouseover = true
+	end
+
 	-- Custom nonRetail changes
 	-- Extra bar next to the left chat panel
 	if Private.itsLuckyone and not Private.isRetail then
