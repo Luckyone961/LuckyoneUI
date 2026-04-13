@@ -22,8 +22,8 @@ function Private:Setup_BCDM(installer)
 	local BCDMG = _G.BCDMG
 	BCDMG:ImportBCDM(importString, name)
 
+	-- 1080p need a different Y offset position
 	if scaled then
-		-- 1080p need a different Y offset position
 		_G.BCDMDB.profiles[name].CooldownManager.Essential.Layout = { nil, nil, nil, -163 }
 	end
 
@@ -33,10 +33,6 @@ function Private:Setup_BCDM(installer)
 
 	Private:Print(L["BetterCooldownManager profile has been set."])
 	Private:Print(L["Note: If the position is wrong after the UI reload, use X and Y offset in the /bcdm Essential tab to adjust it."])
-
-	if Private.ElvUI then
-		ElvUI[1].db.unitframe.units.player.power.enable = false
-	end
 end
 
 -- AyijeCDM profile
@@ -62,8 +58,4 @@ function Private:Setup_ACDM(installer)
 
 	Private:Print(L["AyijeCDM profile has been set."])
 	Private:Print(L["Note: If the position is wrong after the UI reload, use X and Y offset in the /acdm Positions tab to adjust it."])
-
-	if Private.ElvUI then
-		ElvUI[1].db.unitframe.units.player.power.enable = false
-	end
 end

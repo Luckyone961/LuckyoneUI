@@ -2,6 +2,7 @@
 
 **All WoW Versions:**  
 - Added back the Augmentation/Support layout (Centered Raidframes, No Actionbars)  
+- Healing layout player power is now only enabled if no CDM addon is loaded  
 - Updated ElvUI Nameplates (Pixel fixes for Castbar + Castbar icon)  
 
 **Retail:**  
