@@ -5,6 +5,7 @@
 - Added Chattynator profile to /lucky config  
 - Healing layout player power is now only enabled if no CDM addon is loaded  
 - Updated ElvUI Nameplates (Pixel fixes for Castbar + Castbar icon)  
+- Voicechat button on the chat is now hidden by default  
 
 **Retail:**  
 - Fixed Private Aura positions (Raid1, Raid2, Raid3)  

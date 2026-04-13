@@ -835,6 +835,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.chat.font = Private.Font
 	E.db.chat.fontOutline = Private.Outline
 	E.db.chat.hideChatToggles = true
+	E.db.chat.hideVoiceButtons = true
 	E.db.chat.historySize = 200
 	E.db.chat.lfgIcons = false
 	E.db.chat.maxLines = 500
