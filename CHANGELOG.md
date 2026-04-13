@@ -5,6 +5,7 @@
 - Added Chattynator profile to /lucky config  
 - Healing layout player power is now only enabled if no CDM addon is loaded  
 - Updated ElvUI Nameplates (Pixel fixes for Castbar + Castbar icon)  
+- Updated Profile section of /lucky config  
 - Voicechat button on the chat is now hidden by default  
 
 **Retail:**  
