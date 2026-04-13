@@ -121,6 +121,7 @@ local function BuildChatSection()
 	section.args.chatSetup = ACH:Group(L["Setup Chat"], nil, 2)
 	section.args.chatSetup.inline = true
 	section.args.chatSetup.args.chat = ACH:Execute(L["Setup Chat"], nil, 1, function() Private:Setup_Chat() end)
+	section.args.chatSetup.args.chattynator = ACH:Execute(L["Use Chattynator Addon"], nil, 2, function() Private:Setup_Chattynator() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.chatDesc = ACH:Group(L["Description"], nil, 3)
 	section.args.chatDesc.inline = true
 	section.args.chatDesc.args.desc = ACH:Description(L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nChat tabs: [ Main - Log - Whisper - Guild - Party ]"], 1, 'medium')
@@ -217,7 +218,7 @@ end
 local function BuildProfilesSection()
 	local section = ACH:Group(L["Profiles"], nil, 50)
 	section.args.header1 = ACH:Header(L["Profiles"], 1)
-	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 2)
+	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 2, nil, nil, nil, nil, not Private.ElvUI)
 	section.args.plugins.inline = true
 	section.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_WindTools() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_ShadowAndLight() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
