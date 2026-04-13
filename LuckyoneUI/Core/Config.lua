@@ -72,6 +72,7 @@ local function BuildGeneralSection()
 	section.args.disabledFrames.args.AlertFrame = ACH:Toggle(L["Alert Frame"], L["Hide the Loot/Alert Frame"], 2)
 	section.args.disabledFrames.args.BossBanner = ACH:Toggle(L["Boss Banner"], L["Hide the Boss Banner"], 3, nil, nil, nil, nil, nil, nil, not Private.isRetail)
 	section.args.disabledFrames.args.HousingDecorAlerts = ACH:Toggle(L["Housing Decor Alerts"], L["Hide the Housing Alerts for \n\'New Decor Added\'"], 4, nil, nil, nil, nil, nil, nil, not Private.isRetail)
+	section.args.disabledFrames.args.ApplicationCover = ACH:Toggle(L["Application Cover"], L["Removes the LFG frame overlay and animation which blocks your mouse inputs and tooltip when you are not the party leader."], 5, nil, nil, nil, nil, nil, nil, not Private.isRetail)
 	section.args.qualityOfLife = ACH:Group(L["Quality of Life"], nil, 3, nil, function(info) return Private.Addon.db.profile.qualityOfLife[info[#info]] end, function(info, value) Private.Addon.db.profile.qualityOfLife[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.qualityOfLife.inline = true
 	section.args.qualityOfLife.args.easyDelete = ACH:Toggle(L["Easy Delete"], L["Automatically fill out the confirmation text to delete items."], 1)

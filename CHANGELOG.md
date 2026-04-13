@@ -8,6 +8,7 @@
 - Voicechat button on the chat is now hidden by default  
 
 **Retail:**  
+- Added new Application Cover option to the General tab of /lucky config  
 - Fixed Private Aura positions (Raid1, Raid2, Raid3)  
 - Updated Aura Indicators (Evoker, Priest)  
 - Updated BetterCooldownManager (Fixes the initial position for 1080p users)  

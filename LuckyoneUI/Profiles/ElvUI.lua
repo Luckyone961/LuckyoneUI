@@ -163,6 +163,7 @@ function Private:Setup_PrivateDB(includePlugins)
 
 		-- LuckyoneUI settings
 		Private.Addon.db.profile.disabledFrames.AlertFrame = true
+		Private.Addon.db.profile.disabledFrames.ApplicationCover = true
 		Private.Addon.db.profile.disabledFrames.BossBanner = true
 		Private.Addon.db.profile.disabledFrames.HousingDecorAlerts = true
 		Private.Addon.db.profile.misc.mythicVisibility = true
