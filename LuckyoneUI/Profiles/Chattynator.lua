@@ -14,6 +14,9 @@ end
 function Private:Setup_Chattynator()
 	if not Private.IsAddOnLoaded('Chattynator') then Private:Print('Chattynator ' .. L["is not installed or enabled."]) return end
 
+	-- 1080p
+	local scaled = Private.Addon.db.global.scaled
+
 	local DB = _G.CHATTYNATOR_CONFIG.Profiles.DEFAULT
 	DB = DB or {}
 
@@ -53,8 +56,8 @@ function Private:Setup_Chattynator()
 				"TOPLEFT",
 				"UIParent",
 				"TOPLEFT",
-				2.00003719329834,
-				-1231.998779296875,
+				2, -- X Offset
+				(scaled and -910) or -1232, -- Y Offset
 			},
 			["tabs"] = {
 				{
@@ -162,8 +165,8 @@ function Private:Setup_Chattynator()
 				},
 			},
 			["size"] = {
-				484,
-				206,
+				(scaled and 432) or 482, -- Width
+				(scaled and 168) or 206, -- Height
 			},
 		},
 	}
