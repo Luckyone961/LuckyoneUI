@@ -1591,6 +1591,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.fader.minAlpha = 0.5
 	E.db.unitframe.units.target.fader.smooth = 0
 	E.db.unitframe.units.target.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.target.healPrediction.enable = true
 	E.db.unitframe.units.target.health.text_format = ''
 	E.db.unitframe.units.target.height = 50
 	E.db.unitframe.units.target.middleClickFocus = false
@@ -2069,7 +2070,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raidpet.healPrediction.enable = false
 		E.db.unitframe.units.player.healPrediction.enable = false
 		E.db.unitframe.units.pet.healPrediction.enable = false
-		E.db.unitframe.units.target.healPrediction.enable = false
 		E.db.unitframe.units.targettarget.healPrediction.enable = false
 		E.db.unitframe.units.focus.healPrediction.enable = false
 
@@ -2170,7 +2170,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raidpet.healPrediction.enable = true
 		E.db.unitframe.units.player.healPrediction.enable = true
 		E.db.unitframe.units.pet.healPrediction.enable = true
-		E.db.unitframe.units.target.healPrediction.enable = true
 		E.db.unitframe.units.targettarget.healPrediction.enable = true
 		E.db.unitframe.units.focus.healPrediction.enable = true
 	end
