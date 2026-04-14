@@ -9,6 +9,9 @@ local _G = _G
 function Private:Setup_BuffReminders()
 	if not Private.IsAddOnLoaded('BuffReminders') then Private:Print('BuffReminders ' .. L["is not installed or enabled."]) return end
 
+	-- 1080p
+	local scaled = Private.Addon.db.global.scaled
+
 	-- Profile name
 	local name = 'Luckyone'
 
@@ -18,6 +21,11 @@ function Private:Setup_BuffReminders()
 	-- Profile import
 	local BuffReminders = _G.BuffReminders
 	BuffReminders:Import(importString, name)
+
+	-- 1080p need a different Y offset position
+	if scaled then
+		_G.BuffRemindersDB.profiles[name].categorySettings.main.position.y = 420
+	end
 
 	Private:Print(L["BuffReminders profile has been set."])
 end

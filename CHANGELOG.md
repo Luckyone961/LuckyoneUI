@@ -1,6 +1,7 @@
 ﻿## Version 4.09 [In Development]
 
 **All WoW Versions:**  
+- 1080p improvements (Fixed more initial import anchor positions)  
 - Added back the Augmentation/Support layout (Centered Raidframes, No Actionbars)  
 - Added Chattynator profile to /lucky config  
 - Healing layout player power is now only enabled if no CDM addon is loaded  

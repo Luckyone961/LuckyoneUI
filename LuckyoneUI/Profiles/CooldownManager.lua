@@ -39,8 +39,8 @@ end
 function Private:Setup_ACDM(installer)
 	if not Private.IsAddOnLoaded('Ayije_CDM') then Private:Print('AyijeCDM ' .. L["is not installed or enabled."]) return end
 
-	-- Global db
-	local dev = Private.Addon.db.global.dev
+	-- Global dbs
+	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.global.scaled
 
 	-- Profile name
 	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version
@@ -51,6 +51,16 @@ function Private:Setup_ACDM(installer)
 	-- Profile import
 	local ACDM_API = _G.Ayije_CDM_API
 	ACDM_API:ImportProfile(importString, name)
+
+	-- 1080p needs different offset values
+	if scaled then
+		_G.Ayije_CDMDB.profiles[name].castBarOffsetY = -234
+		_G.Ayije_CDMDB.profiles[name].resourcesOffsetY = -145
+		_G.Ayije_CDMDB.profiles[name].editModePositions.BuffBarCooldownViewer.Default.x = -288
+        _G.Ayije_CDMDB.profiles[name].editModePositions.BuffBarCooldownViewer.Default.y = -100
+		_G.Ayije_CDMDB.profiles[name].editModePositions.BuffIconCooldownViewer.Default.y = -113
+		_G.Ayije_CDMDB.profiles[name].editModePositions.EssentialCooldownViewer.Default.y = -146
+	end
 
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["AyijeCDM profile has been set."])
