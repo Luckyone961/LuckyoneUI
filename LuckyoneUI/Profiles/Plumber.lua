@@ -2,139 +2,141 @@
 local _, Private = ...
 local L = Private.Libs.ACL
 
+-- Global environment
+local _G = _G
+
 -- Plumber profile
 function Private:Setup_Plumber()
 	if not Private.IsAddOnLoaded('Plumber') then Private:Print('Plumber ' .. L["is not installed or enabled."]) return end
 
-	if not PlumberDB then
-		PlumberDB = {}
-	end
+	local DB = _G.PlumberDB
+	DB = DB or {}
 
-	PlumberDB.AlternativePlayerChoiceUI = true
-	PlumberDB.AppearanceTab = true
-	PlumberDB.AppearanceTab_ModelCount = 1
-	PlumberDB.AutoJoinEvents = false
-	PlumberDB.BackpackItemTracker = false
-	PlumberDB.BlizzardSuperTrack = false
-	PlumberDB.BlizzFixEventToast = true
-	PlumberDB.BlizzFixFishingArtifact = true
+	DB.AlternativePlayerChoiceUI = true
+	DB.AppearanceTab = true
+	DB.AppearanceTab_ModelCount = 1
+	DB.AutoJoinEvents = false
+	DB.BackpackItemTracker = false
+	DB.BlizzardSuperTrack = false
+	DB.BlizzFixEventToast = true
+	DB.BlizzFixFishingArtifact = true
 
-	PlumberDB.BossBanner_MasterSwitch = false
+	DB.BossBanner_MasterSwitch = false
 
-	PlumberDB.BreakTime = false
+	DB.BreakTime = false
 
-	PlumberDB.CatalystUI = true
-	PlumberDB.ChatOptions = false
-	PlumberDB.ConciseTokenTooltip = true
-	PlumberDB.CraftSearchExtended = false
+	DB.CatalystUI = true
+	DB.ChatOptions = false
+	DB.ConciseTokenTooltip = true
+	DB.CraftSearchExtended = false
 
-	PlumberDB.DecorModelScaleRef = true
-	PlumberDB.DecorModelScaleRef_ShowBanana = false
+	DB.DecorModelScaleRef = true
+	DB.DecorModelScaleRef_ShowBanana = false
 
-	PlumberDB.Delves_Automation = true
-	PlumberDB.Delves_Dashboard = true
-	PlumberDB.Delves_SeasonProgress = true
+	DB.Delves_Automation = true
+	DB.Delves_Dashboard = true
+	DB.Delves_SeasonProgress = true
 
-	PlumberDB.EditModeShowPlumberUI = true
-	PlumberDB.EmeraldBountySeedList = true
-	PlumberDB.EnableNewByDefault = false
-	PlumberDB.ExpansionLandingPage = true
-	PlumberDB.GossipFrameMedal = true
-	PlumberDB.HandyLockpick = true
-	PlumberDB.HideZeroCountItem = true
-	PlumberDB.HolidayDungeon = true
+	DB.EditModeShowPlumberUI = true
+	DB.EmeraldBountySeedList = true
+	DB.EnableNewByDefault = false
+	DB.ExpansionLandingPage = true
+	DB.GossipFrameMedal = true
+	DB.HandyLockpick = true
+	DB.HideZeroCountItem = true
+	DB.HolidayDungeon = true
 
-	PlumberDB.Housing_CatalogSearch = true
-	PlumberDB.Housing_Clock = true
-	PlumberDB.Housing_Clock_AnalogClock = false
-	PlumberDB.Housing_CustomizeMode = true
-	PlumberDB.Housing_DecorHover = true
-	PlumberDB.Housing_DecorHover_DuplicateKey = 2
-	PlumberDB.Housing_DecorHover_EnableDupe = true
-	PlumberDB.Housing_ItemAcquiredAlert = false
-	PlumberDB.Housing_Macro = true
+	DB.Housing_CatalogSearch = true
+	DB.Housing_Clock = true
+	DB.Housing_Clock_AnalogClock = false
+	DB.Housing_CustomizeMode = true
+	DB.Housing_DecorHover = true
+	DB.Housing_DecorHover_DuplicateKey = 2
+	DB.Housing_DecorHover_EnableDupe = true
+	DB.Housing_ItemAcquiredAlert = false
+	DB.Housing_Macro = true
 
-	PlumberDB.HuntTable = true
-	PlumberDB.InstanceDifficulty = true
-	PlumberDB.ItemUpgradeUI = true
+	DB.HuntTable = true
+	DB.InstanceDifficulty = true
+	DB.ItemUpgradeUI = true
 
-	PlumberDB.LandingButton_ShowButton = false
+	DB.LandingButton_ShowButton = false
 
-	PlumberDB.LandingPage_Activity_HideCompleted = true
-	PlumberDB.LandingPage_AdvancedTooltip = true
-	PlumberDB.LandingPage_Raid_CollapsedAchievement = false
+	DB.LandingPage_Activity_HideCompleted = true
+	DB.LandingPage_AdvancedTooltip = true
+	DB.LandingPage_Raid_CollapsedAchievement = false
 
-	PlumberDB.LootUI = false
-	PlumberDB.MerchantPrice = false
-	PlumberDB.NameplateQuest = false
+	DB.LootUI = false
+	DB.MerchantPrice = false
+	DB.NameplateQuest = false
 
-	PlumberDB.NameplateWidget = true
-	PlumberDB.Navigator_Dreamseed = false
-	PlumberDB.Navigator_MasterSwitch = true
-	PlumberDB.NewExpansionLandingPage = true
+	DB.NameplateWidget = true
+	DB.Navigator_Dreamseed = false
+	DB.Navigator_MasterSwitch = true
+	DB.NewExpansionLandingPage = true
 
-	PlumberDB.PartyInviterInfo = false
+	DB.PartyInviterInfo = false
 
-	PlumberDB.PlayerChoiceFrameToken = true
-	PlumberDB.PlayerTitleUI = true
-	PlumberDB.Plunderstore = true
-	PlumberDB.Plunderstore_HideCollected = true
-	PlumberDB.ProfessionsBook = true
-	PlumberDB.QuestItemDestroyAlert = true
+	DB.PlayerChoiceFrameToken = true
+	DB.PlayerTitleUI = true
+	DB.Plunderstore = true
+	DB.Plunderstore_HideCollected = true
+	DB.ProfessionsBook = true
+	DB.QuestItemDestroyAlert = true
 
-	PlumberDB.QueueStatus = false
+	DB.QueueStatus = false
 
-	PlumberDB.quickslotFromRadian = 0
-	PlumberDB.QuickSlotHighContrastMode = false
+	DB.quickslotFromRadian = 0
+	DB.QuickSlotHighContrastMode = false
 
-	PlumberDB.SettingsPanel_AutoShowChangelog = false
-	PlumberDB.SettingsPanel_ChangelogFontSize = 1
+	DB.SettingsPanel_AutoShowChangelog = false
+	DB.SettingsPanel_ChangelogFontSize = 1
 
-	PlumberDB.SoftTargetName = false
+	DB.SoftTargetName = false
 
-	PlumberDB.SourceAchievementLink = true
-	PlumberDB.SpellcastingInfo = false
+	DB.SourceAchievementLink = true
+	DB.SpellcastingInfo = false
 
-	PlumberDB.SpellFlyout_CloseAfterClick = true
-	PlumberDB.SpellFlyout_HideUnusable = false
-	PlumberDB.SpellFlyout_SingleRow = false
-	PlumberDB.SpellFlyout_UpdateFrequently = false
+	DB.SpellFlyout_CloseAfterClick = true
+	DB.SpellFlyout_HideUnusable = false
+	DB.SpellFlyout_SingleRow = false
+	DB.SpellFlyout_UpdateFrequently = false
 
-	PlumberDB.StaticPopup_Confirm = true
+	DB.StaticPopup_Confirm = true
 
-	PlumberDB.TalkingHead_MasterSwitch = false
+	DB.TalkingHead_MasterSwitch = false
 
-	PlumberDB.Technoscryers = true
-	PlumberDB.timeSpentInHouseEditor = 0
+	DB.Technoscryers = true
+	DB.timeSpentInHouseEditor = 0
 
-	PlumberDB.TooltipChestKeys = true
-	PlumberDB.TooltipDelvesItem = false
-	PlumberDB.TooltipDyeDeez = true
-	PlumberDB.TooltipItemQuest = true
-	PlumberDB.TooltipItemReagents = false
-	PlumberDB.TooltipProfessionKnowledge = true
-	PlumberDB.TooltipRepTokens = true
-	PlumberDB.TooltipRichSoil = true
-	PlumberDB.TooltipSnapdragonTreats = true
-	PlumberDB.TooltipTransmogEnsemble = true
+	DB.TooltipChestKeys = true
+	DB.TooltipDelvesItem = false
+	DB.TooltipDyeDeez = true
+	DB.TooltipItemQuest = true
+	DB.TooltipItemReagents = false
+	DB.TooltipProfessionKnowledge = true
+	DB.TooltipRepTokens = true
+	DB.TooltipRichSoil = true
+	DB.TooltipSnapdragonTreats = true
+	DB.TooltipTransmogEnsemble = true
 
-	PlumberDB.TrackerBarInsideSeparateBag = false
-	PlumberDB.TrackHolidayItem = true
-	PlumberDB.TrackItemUpgradeCurrency = true
+	DB.TrackerBarInsideSeparateBag = false
+	DB.TrackHolidayItem = true
+	DB.TrackItemUpgradeCurrency = true
 
-	PlumberDB.TransmogChatCommand = false
-	PlumberDB.TransmogOutfitSelect = false
+	DB.TransmogChatCommand = false
+	DB.TransmogOutfitSelect = false
 
-	PlumberDB.VotingResultsExpanded = true
+	DB.VotingResultsExpanded = true
 
-	PlumberDB.WorldMapPin_PlayerPing = true
-	PlumberDB.WorldMapPin_Size = 1
-	PlumberDB.WorldMapPin_TWW = true
-	PlumberDB.WorldMapPin_TWW_Delve = true
-	PlumberDB.WorldMapPin_TWW_Quest = true
-	PlumberDB.WorldMapPinSeedPlanting = true
+	DB.WorldMapPin_PlayerPing = true
+	DB.WorldMapPin_Size = 1
+	DB.WorldMapPin_TWW = true
+	DB.WorldMapPin_TWW_Delve = true
+	DB.WorldMapPin_TWW_Quest = true
+	DB.WorldMapPinSeedPlanting = true
 
-	PlumberDB.WoWAnniversary = true
+	DB.WoWAnniversary = true
 
 	Private:Print(L["Plumber profile has been set."])
 end

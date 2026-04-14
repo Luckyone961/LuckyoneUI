@@ -193,63 +193,40 @@ function Private:Setup_Filters_Retail()
 
 	-- Preservation
 	classes['EVOKER'][355941] = { -- Dream Breath
-		['displayText'] = true,
-		['sizeOffset'] = 2,
-		['style'] = 'texturedIcon',
-		['xOffset'] = 1,
-		['yOffset'] = 1,
-	}
-	classes['EVOKER'][376788] = { -- Dream Breath (Echo)
-		['displayText'] = true,
-		['sizeOffset'] = 2,
-		['style'] = 'texturedIcon',
-		['xOffset'] = -16,
-		['yOffset'] = 1,
-	}
-	classes['EVOKER'][363502] = { -- Dream Flight
-		['displayText'] = true,
-		['point'] = 'BOTTOMRIGHT',
-		['sizeOffset'] = 2,
-		['style'] = 'texturedIcon',
-		['xOffset'] = 1,
-		['yOffset'] = -1,
+		["point"] = "TOPLEFT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 16,
 	}
 	classes['EVOKER'][366155] = { -- Reversion
-		['displayText'] = true,
-		['point'] = 'TOP',
-		['sizeOffset'] = 2,
-		['style'] = 'texturedIcon',
-		['xOffset'] = 17,
-		['yOffset'] = 1,
-	}
-	classes['EVOKER'][367364] = { -- Reversion (Echo)
-		['displayText'] = true,
-		['point'] = 'TOP',
-		['sizeOffset'] = 2,
-		['style'] = 'texturedIcon',
-		['xOffset'] = 0,
-		['yOffset'] = 1,
+		["point"] = "TOPLEFT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
 	}
 	classes['EVOKER'][373267] = { -- Life Bind
-		['displayText'] = true,
-		['point'] = 'TOPLEFT',
-		['sizeOffset'] = 2,
-		['style'] = 'texturedIcon',
-		['xOffset'] = 16,
-		['yOffset'] = 1,
+		["point"] = "TOPLEFT",
+		["displayText"] = true,
+		["yOffset"] = 1,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = 33,
 	}
 	classes['EVOKER'][364343] = { -- Echo
-		['color'] = {
-			['a'] = 1,
-			['r'] = 1,
-			['g'] = 1,
-			['b'] = 1,
+		["color"] = {
+			["a"] = 1,
+			["r"] = 1,
+			["g"] = 1,
+			["b"] = 1,
 		},
-		['displayText'] = true,
-		['yOffset'] = 1,
-		['sizeOffset'] = 2,
-		['style'] = 'timerOnly',
-		['xOffset'] = -17,
+		["displayText"] = true,
+		["sizeOffset"] = 2,
+		["style"] = "timerOnly",
+		["xOffset"] = -10,
 	}
 	auraHighlight[364343] = { -- Echo
 		['enable'] = true,
@@ -262,6 +239,10 @@ function Private:Setup_Filters_Retail()
 			['r'] = 0.51,
 		},
 	}
+	classes['EVOKER'][363502]['enabled'] = false -- Dream Flight
+	classes['EVOKER'][376788]['enabled'] = false -- Dream Breath (Echo)
+	classes['EVOKER'][367364]['enabled'] = false -- Reversion (Echo)
+
 	-- Augmentation
 	classes['EVOKER'][360827] = { -- Blistering Scales
 		['countAnchor'] = 'BOTTOM',
@@ -429,8 +410,10 @@ function Private:Setup_Filters_Retail()
 		["point"] = "TOP",
 		["displayText"] = true,
 		["yOffset"] = 1,
+		["countY"] = 2,
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
+		["countX"] = 14,
 	}
 	classes['PRIEST'][77489]['enabled'] = false -- Echo of Light
 

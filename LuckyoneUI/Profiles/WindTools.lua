@@ -154,7 +154,7 @@ function Private:Setup_WindTools(installer)
 	E.db.movers = E.db.movers or {}
 
 	-- Movers
-	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,450') or 'BOTTOM,ElvUIParent,BOTTOM,0,660'
+	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,480') or 'BOTTOM,ElvUIParent,BOTTOM,0,660'
 	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-202'
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-110'
 
@@ -215,6 +215,7 @@ function Private:Setup_Private_WindTools()
 	Set(E.private, 'WT.skins.addons.bigWigs', false)
 	Set(E.private, 'WT.skins.addons.bugSack', false)
 	Set(E.private, 'WT.skins.addons.warpDeplete', false)
+	Set(E.private, 'WT.skins.addons.worldQuestTab', false)
 	Set(E.private, 'WT.skins.bigWigsSkin.queueTimer.countDown.name', Private.Font)
 	Set(E.private, 'WT.skins.bigWigsSkin.queueTimer.countDown.size', 12)
 	Set(E.private, 'WT.skins.blizzard.enable', false)

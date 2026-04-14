@@ -5,19 +5,12 @@ local L = Private.Libs.ACL
 -- Global environment
 local _G = _G
 
--- Disable ElvUI castbar and player power(healers)
-local function SetElvDB()
-	if not Private.ElvUI then return end
-	-- ElvUI[1].db.unitframe.units.player.castbar.enable = false
-	ElvUI[1].db.unitframe.units.player.power.enable = false
-end
-
 -- BetterCooldownManager profile
 function Private:Setup_BCDM(installer)
 	if not Private.IsAddOnLoaded('BetterCooldownManager') then Private:Print('BetterCooldownManager ' .. L["is not installed or enabled."]) return end
 
-	-- Global db
-	local dev = Private.Addon.db.global.dev
+	-- Global dbs
+	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.global.scaled
 
 	-- Profile name
 	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version
@@ -29,22 +22,25 @@ function Private:Setup_BCDM(installer)
 	local BCDMG = _G.BCDMG
 	BCDMG:ImportBCDM(importString, name)
 
+	-- 1080p need a different Y offset position
+	if scaled then
+		_G.BCDMDB.profiles[name].CooldownManager.Essential.Layout = { nil, nil, nil, -163 }
+	end
+
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["BetterCooldownManager profile has been set."])
 	end
 
 	Private:Print(L["BetterCooldownManager profile has been set."])
 	Private:Print(L["Note: If the position is wrong after the UI reload, use X and Y offset in the /bcdm Essential tab to adjust it."])
-
-	SetElvDB()
 end
 
 -- AyijeCDM profile
 function Private:Setup_ACDM(installer)
 	if not Private.IsAddOnLoaded('Ayije_CDM') then Private:Print('AyijeCDM ' .. L["is not installed or enabled."]) return end
 
-	-- Global db
-	local dev = Private.Addon.db.global.dev
+	-- Global dbs
+	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.global.scaled
 
 	-- Profile name
 	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version
@@ -56,12 +52,20 @@ function Private:Setup_ACDM(installer)
 	local ACDM_API = _G.Ayije_CDM_API
 	ACDM_API:ImportProfile(importString, name)
 
+	-- 1080p needs different offset values
+	if scaled then
+		_G.Ayije_CDMDB.profiles[name].castBarOffsetY = -234
+		_G.Ayije_CDMDB.profiles[name].resourcesOffsetY = -145
+		_G.Ayije_CDMDB.profiles[name].editModePositions.BuffBarCooldownViewer.Default.x = -288
+        _G.Ayije_CDMDB.profiles[name].editModePositions.BuffBarCooldownViewer.Default.y = -100
+		_G.Ayije_CDMDB.profiles[name].editModePositions.BuffIconCooldownViewer.Default.y = -113
+		_G.Ayije_CDMDB.profiles[name].editModePositions.EssentialCooldownViewer.Default.y = -146
+	end
+
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["AyijeCDM profile has been set."])
 	end
 
 	Private:Print(L["AyijeCDM profile has been set."])
 	Private:Print(L["Note: If the position is wrong after the UI reload, use X and Y offset in the /acdm Positions tab to adjust it."])
-
-	SetElvDB()
 end

@@ -12,6 +12,7 @@ Private.Defaults = {
 		-- Modules
 		disabledFrames = {
 			AlertFrame = false,
+			ApplicationCover = false,
 			BossBanner = false,
 			HousingDecorAlerts = false,
 			ZoneTextFrame = false,

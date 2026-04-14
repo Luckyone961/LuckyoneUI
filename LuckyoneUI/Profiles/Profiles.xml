@@ -2,6 +2,7 @@
 	<Script file='BuffReminders.lua'/>
 	<Script file='CooldownManager.lua'/>
 	<Script file='BigWigs.lua'/>
+	<Script file='Chattynator.lua'/>
 	<Script file='Details.lua'/>
 	<Script file='EditMode.lua'/>
 	<Script file='ElvUI.lua'/>
