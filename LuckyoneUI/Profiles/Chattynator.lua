@@ -5,7 +5,7 @@ local L = Private.Libs.ACL
 -- Global environment
 local _G = _G
 
-local function ElvDB()
+local function SetElvDB()
 	if not Private.ElvUI then return end
 	ElvUI[1].private.chat.enable = false
 end
@@ -171,8 +171,7 @@ function Private:Setup_Chattynator()
 		},
 	}
 
-	-- Disable ElvUI chat module
-	ElvDB()
-
 	Private:Print(L["Chattynator profile has been set."])
+
+	SetElvDB()
 end
