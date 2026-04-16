@@ -1,4 +1,12 @@
-﻿## Version 4.09 [14-04-2026]
+﻿## Version 4.10 [In Development]
+
+**All WoW Versions:**  
+- Re-enabled DPS/Tank layout heal prediction on Player/Target  
+
+**Retail:**  
+- Updated PermoksAccountManager profile  
+
+## Version 4.09 [14-04-2026]
 
 **All WoW Versions:**  
 - 1080p improvements (Fixed more initial import anchor positions)  
