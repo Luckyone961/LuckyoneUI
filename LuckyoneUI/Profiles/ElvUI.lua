@@ -1518,6 +1518,7 @@ function Private:Setup_ElvUI(layout)
 	if (Private.isRetail and Private.itsLuckyone) then
 		E.db.unitframe.units.player.debuffs.anchorPoint = 'TOPRIGHT'
 		E.db.unitframe.units.player.debuffs.clickThrough = true
+		E.db.unitframe.units.player.debuffs.enable = true
 		E.db.unitframe.units.player.debuffs.growthX = 'LEFT'
 		E.db.unitframe.units.player.debuffs.isAuraCrowdControl = true
 		E.db.unitframe.units.player.debuffs.isAuraCrowdControlPlayer = true
@@ -1527,6 +1528,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.debuffs.isAuraPermanentPlayer = true
 		E.db.unitframe.units.player.debuffs.isAuraRaid = true
 		E.db.unitframe.units.player.debuffs.isAuraRaidPlayer = true
+		E.db.unitframe.units.player.debuffs.numrows = 2
 		E.db.unitframe.units.player.debuffs.perrow = 4
 		E.db.unitframe.units.player.debuffs.sizeOverride = 54
 		E.db.unitframe.units.player.debuffs.spacing = 4
