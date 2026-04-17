@@ -1512,6 +1512,27 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.threatStyle = 'NONE'
 	E.db.unitframe.units.player.width = 260
 
+	-- TODO: WIP
+	if Private.isRetail and Private.itsLuckyone then
+		E.db.unitframe.units.player.debuffs.anchorPoint = 'TOPRIGHT'
+		E.db.unitframe.units.player.debuffs.clickThrough = true
+		E.db.unitframe.units.player.debuffs.growthX = 'LEFT'
+		E.db.unitframe.units.player.debuffs.isAuraCrowdControl = true
+		E.db.unitframe.units.player.debuffs.isAuraCrowdControlPlayer = true
+		E.db.unitframe.units.player.debuffs.isAuraImportant = true
+		E.db.unitframe.units.player.debuffs.isAuraImportantPlayer = true
+		E.db.unitframe.units.player.debuffs.isAuraPermanent = true
+		E.db.unitframe.units.player.debuffs.isAuraPermanentPlayer = true
+		E.db.unitframe.units.player.debuffs.isAuraRaid = true
+		E.db.unitframe.units.player.debuffs.isAuraRaidPlayer = true
+		E.db.unitframe.units.player.debuffs.perrow = 4
+		E.db.unitframe.units.player.debuffs.sizeOverride = 54
+		E.db.unitframe.units.player.debuffs.spacing = 4
+		E.db.unitframe.units.player.debuffs.useBlocklist = true
+		E.db.unitframe.units.player.debuffs.xOffset = -1
+		E.db.unitframe.units.player.debuffs.yOffset = 164
+	end
+
 	-- Shared Target
 	E.db.unitframe.units.target.customTexts = {}
 	E.db.unitframe.units.target.customTexts.Luckyone_HP = {
