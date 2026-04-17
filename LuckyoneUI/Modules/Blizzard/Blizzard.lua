@@ -88,6 +88,7 @@ function Private:UntrackAllQuests()
 end
 
 -- Removes the Realm names from friendly Nameplates in name-only mode while in a Dungeon/Raid/Battleground
+-- This sets (NamePlateFriendlyFrameOptions.updateNameUsesGetUnitName = nil) without tainting
 function Private:RemoveNameplateRealm()
 	if not (Private.isRetail and Private.Addon.db.profile.misc.removeNameplateRealm) then return end
 	_G.TextureLoadingGroupMixin.RemoveTexture({textures = _G.NamePlateFriendlyFrameOptions}, 'updateNameUsesGetUnitName')
