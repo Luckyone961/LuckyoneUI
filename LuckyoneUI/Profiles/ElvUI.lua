@@ -1742,6 +1742,8 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.debuffs.countYOffset = -1
 	E.db.unitframe.units.party.debuffs.enable = true
 	E.db.unitframe.units.party.debuffs.growthY = 'DOWN'
+	E.db.unitframe.units.party.debuffs.isAuraPermanent = true
+	E.db.unitframe.units.party.debuffs.isAuraPermanentPlayer = true
 	E.db.unitframe.units.party.debuffs.maxDuration = 0
 	E.db.unitframe.units.party.debuffs.numrows = 2
 	E.db.unitframe.units.party.debuffs.perrow = 4
