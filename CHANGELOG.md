@@ -4,7 +4,8 @@
 - Re-enabled DPS/Tank layout heal prediction on Player/Target  
 
 **Retail:**  
-- Added Auto Dismount to /lucky config - General Quality of Life
+- Added Auto Dismount option to /lucky config - General Quality of Life  
+- Added Remove Nameplate Realms option to /lucky config - General - Misc  
 - Updated PermoksAccountManager profile  
 
 ## Version 4.09 [14-04-2026]

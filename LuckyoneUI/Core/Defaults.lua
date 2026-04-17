@@ -21,8 +21,9 @@ Private.Defaults = {
 			hide = false,
 		},
 		misc = {
-			mythicVisibility = false,
 			dataTextsTweaks = false,
+			mythicVisibility = false,
+			removeNameplateRealm = false,
 		},
 		qualityOfLife = {
 			autoDismount = false,
