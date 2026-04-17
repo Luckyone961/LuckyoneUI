@@ -25,6 +25,7 @@ Private.Defaults = {
 			dataTextsTweaks = false,
 		},
 		qualityOfLife = {
+			autoDismount = false,
 			easyDelete = false,
 			privacyOverlay = false,
 		},

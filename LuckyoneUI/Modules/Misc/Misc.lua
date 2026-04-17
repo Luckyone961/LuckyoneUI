@@ -8,6 +8,7 @@ if not Private.ElvUI then
 end
 
 function Misc:PLAYER_ENTERING_WORLD()
+	Private:AutoDismount()
 	Private:MythicVisibility()
 	Private:DataTextsTweaks()
 end

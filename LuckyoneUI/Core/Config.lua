@@ -77,6 +77,7 @@ local function BuildGeneralSection()
 	section.args.qualityOfLife.inline = true
 	section.args.qualityOfLife.args.easyDelete = ACH:Toggle(L["Easy Delete"], L["Automatically fill out the confirmation text to delete items."], 1)
 	section.args.qualityOfLife.args.privacyOverlay = ACH:Toggle(L["Privacy Overlay"], L["Creates an overlay to hide the chat frame in the Communities Frame until you click on it."], 2)
+	section.args.qualityOfLife.args.autoDismount = ACH:Toggle(L["Auto Dismount"], L["Automatically dismounts you if all of the following conditions are true:\n- You are on a skyriding mount\n- You are on the ground\n- You press any skyriding spell except Skyward Ascent"], 3, nil, nil, nil, nil, nil, nil, not Private.isRetail)
 	section.args.strings = ACH:Group(L["Profile strings"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
 	section.args.strings.inline = true
 	section.args.strings.args.editModeString = ACH:Execute(L["Copy Import String"], nil, 1, function() Private:Return_EditModeString() end)

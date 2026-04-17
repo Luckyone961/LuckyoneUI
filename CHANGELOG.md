@@ -4,6 +4,7 @@
 - Re-enabled DPS/Tank layout heal prediction on Player/Target  
 
 **Retail:**  
+- Added Auto Dismount to /lucky config - General Quality of Life
 - Updated PermoksAccountManager profile  
 
 ## Version 4.09 [14-04-2026]
