@@ -1,6 +1,7 @@
 ﻿## Version 4.10 [In Development]
 
 **All WoW Versions:**  
+- Color for absorbs is blue again (was yellow)  
 - Re-enabled DPS/Tank layout heal prediction on Player/Target  
 
 **Retail:**  
