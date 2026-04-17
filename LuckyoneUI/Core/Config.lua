@@ -80,7 +80,7 @@ local function BuildGeneralSection()
 	section.args.qualityOfLife.args.autoDismount = ACH:Toggle(L["Auto Dismount"], L["Automatically dismounts you if all of the following conditions are true:\n- You are on a skyriding mount\n- You are on the ground\n- You press any skyriding spell except Skyward Ascent"], 3, nil, nil, nil, nil, nil, nil, not Private.isRetail)
 	section.args.misc = ACH:Group(L["Misc"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
 	section.args.misc.inline = true
-	section.args.misc.args.removeNameplateRealm = ACH:Toggle(L["Remove Nameplate Realms"], L["Removes the Realm names from friendly Nameplates in name-only mode while in a Dungeon/Raid/Battleground."], 1, nil, nil, nil, function() return Private.Addon.db.profile.misc.removeNameplateRealm end, function(_, value) Private.Addon.db.profile.misc.removeNameplateRealm = value StaticPopup_Show(RELOAD_POPUP) end)
+	section.args.misc.args.removeNameplateRealm = ACH:Toggle(L["Remove Nameplate Realms"], L["Removes the realm names from friendly nameplates in name-only mode while in a Dungeon/Raid/Battleground."], 1, nil, nil, nil, function() return Private.Addon.db.profile.misc.removeNameplateRealm end, function(_, value) Private.Addon.db.profile.misc.removeNameplateRealm = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.strings = ACH:Group(L["Profile strings"], nil, 5, nil, nil, nil, nil, not Private.isRetail)
 	section.args.strings.inline = true
 	section.args.strings.args.editModeString = ACH:Execute(L["Copy Import String"], nil, 1, function() Private:Return_EditModeString() end)
