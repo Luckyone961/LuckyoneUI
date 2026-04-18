@@ -1514,8 +1514,8 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.threatStyle = 'NONE'
 	E.db.unitframe.units.player.width = 260
 
-	-- TODO: WIP
-	if (Private.isRetail and Private.itsLuckyone) then
+	-- Player debuffs anchor + filters for retail
+	if Private.isRetail then
 		E.db.unitframe.units.player.debuffs.anchorPoint = 'TOPRIGHT'
 		E.db.unitframe.units.player.debuffs.clickThrough = true
 		E.db.unitframe.units.player.debuffs.enable = true

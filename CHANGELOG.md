@@ -7,6 +7,7 @@
 **Retail:**  
 - Added Auto Dismount option to /lucky config - General Quality of Life  
 - Added Remove Nameplate Realms option to /lucky config - General - Misc  
+- Updated ElvUI layouts to display filtered debuffs 200px above the player frame  
 - Updated PermoksAccountManager profile  
 
 ## Version 4.09 [14-04-2026]
