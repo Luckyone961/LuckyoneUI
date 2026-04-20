@@ -376,19 +376,7 @@ function Private:Setup_Filters_Retail()
 		["displayText"] = true,
 		["yOffset"] = 1,
 		["sizeOffset"] = 2,
-		["style"] = "timerOnly",
 		["xOffset"] = 33,
-	}
-	auraHighlight[194384] = {
-		["enable"] = true,
-		["ownOnly"] = true,
-		["style"] = "FILL",
-		["color"] = {
-			["a"] = 0.65,
-			["b"] = 0.34,
-			["g"] = 0.59,
-			["r"] = 0.80,
-		},
 	}
 	classes['PRIEST'][1253593] = { -- Void Shield
 		["displayText"] = true,
@@ -413,7 +401,7 @@ function Private:Setup_Filters_Retail()
 		["countY"] = 2,
 		["sizeOffset"] = 2,
 		["style"] = "texturedIcon",
-		["countX"] = 14,
+		["countX"] = -15,
 	}
 	classes['PRIEST'][77489]['enabled'] = false -- Echo of Light
 

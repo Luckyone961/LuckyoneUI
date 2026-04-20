@@ -9,6 +9,7 @@
 - Added Remove Nameplate Realms option to /lucky config - General - Misc  
 - Updated ElvUI layouts to display filtered debuffs 200px above the player frame  
 - Updated PermoksAccountManager profile  
+- Updated Priest aura indicators (Removed atonement health color, Fixed Prayer stack text overlap)  
 
 ## Version 4.09 [14-04-2026]
 
