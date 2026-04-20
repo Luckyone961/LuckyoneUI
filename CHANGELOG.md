@@ -3,6 +3,7 @@
 **All WoW Versions:**  
 - Color for absorbs is blue again (was yellow)  
 - Re-enabled DPS/Tank layout heal prediction on Player/Target  
+- Updated frFR locales (Credits: Oniria)  
 - Updated target Nameplate background color color (Blue > White)  
 
 **Retail:**  
