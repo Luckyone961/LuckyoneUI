@@ -280,8 +280,6 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.colors.castNoInterruptColor.b = 0
 	E.db.nameplates.colors.castNoInterruptColor.g = 0
 	E.db.nameplates.colors.castNoInterruptColor.r = 1
-	E.db.nameplates.colors.glowColor.b = 0.97
-	E.db.nameplates.colors.glowColor.r = 0
 	E.db.nameplates.colors.selection[0].b = 0.07
 	E.db.nameplates.colors.selection[0].g = 0.13
 	E.db.nameplates.colors.selection[0].r = 0.92
@@ -333,8 +331,8 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.widgets.below = false
 
 	-- Target indicator
-	E.db.nameplates.units.TARGET.arrowScale = 0.7
-	E.db.nameplates.units.TARGET.arrowSpacing = 25
+	E.db.nameplates.units.TARGET.arrowScale = 0.8
+	E.db.nameplates.units.TARGET.arrowSpacing = 30
 	E.db.nameplates.units.TARGET.glowStyle = 'style2'
 
 	-- Enemy NPC
