@@ -1,19 +1,18 @@
-## Version 4.09 [14-04-2026]
+## Version 4.10 [22-04-2026]
 
 **All WoW Versions:**  
-- 1080p improvements (Fixed more initial import anchor positions)  
-- Added back the Augmentation/Support layout (Centered Raidframes, No Actionbars)  
-- Added Chattynator profile to /lucky config  
-- Healing layout player power is now only enabled if no CDM addon is loaded  
-- Updated ElvUI Nameplates (Pixel fixes for Castbar + Castbar icon)  
-- Updated Profile section of /lucky config  
-- Voicechat button on the chat is now hidden by default  
+- ElvUI 15.12+ compatibility  
+- Color for absorbs is blue again (was yellow)  
+- Re-enabled DPS/Tank layout heal prediction on Player/Target  
+- Updated frFR locales (Credits: Oniria)  
+- Updated target Nameplate background color color (Blue > White)  
 
 **Retail:**  
-- Added new Application Cover option to the General tab of /lucky config  
-- Fixed Private Aura positions (Raid1, Raid2, Raid3)  
-- Updated Aura Indicators (Evoker, Priest)  
-- Updated BetterCooldownManager (Fixes the initial position for 1080p users)  
-- Updated BuffReminders profile (Y Offset)  
+- Added Auto Dismount option to /lucky config - General Quality of Life  
+- Added Remove Nameplate Realms option to /lucky config - General - Misc  
+- Updated BuffReminders profile  
+- Updated ElvUI layouts to display filtered debuffs 200px above the player frame  
 - Updated PermoksAccountManager profile  
-- Updated WarpDeplete profile (Skins)  
+- Updated Priest aura indicators (Removed atonement health color, Fixed Prayer stack text overlap)  
+- Updated TOC for patch 12.0.5  
+- Updated WindTools profile (Skins)  
