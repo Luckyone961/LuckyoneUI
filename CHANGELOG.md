@@ -1,5 +1,8 @@
 ﻿## Version 4.11 [In Development]
 
+**All WoW Versions:**  
+- ElvUI 15.13+ compatibility  
+
 **Retail:**  
 - Updated AyijeCDM profile  
 - Updated BetterCooldownManager profile  
