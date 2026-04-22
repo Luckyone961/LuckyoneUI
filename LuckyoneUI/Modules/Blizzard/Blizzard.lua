@@ -87,10 +87,18 @@ function Private:UntrackAllQuests()
 	Private:Print(L["Successfully untracked all quests (including hidden ones)"])
 end
 
+-- Removes the Realm names from friendly Nameplates in name-only mode while in a Dungeon/Raid/Battleground
+-- This sets (NamePlateFriendlyFrameOptions.updateNameUsesGetUnitName = nil) without tainting
+function Private:RemoveNameplateRealm()
+	if not (Private.isRetail and Private.Addon.db.profile.misc.removeNameplateRealm) then return end
+	_G.TextureLoadingGroupMixin.RemoveTexture({textures = _G.NamePlateFriendlyFrameOptions}, 'updateNameUsesGetUnitName')
+end
+
 function Blizzard:PLAYER_ENTERING_WORLD()
 	Private:DisabledFrames()
 	Private:EasyDelete()
 	Private:PrivacyOverlay()
+	Private:RemoveNameplateRealm()
 end
 
 function Blizzard:OnEnable()

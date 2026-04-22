@@ -280,8 +280,6 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.colors.castNoInterruptColor.b = 0
 	E.db.nameplates.colors.castNoInterruptColor.g = 0
 	E.db.nameplates.colors.castNoInterruptColor.r = 1
-	E.db.nameplates.colors.glowColor.b = 0.97
-	E.db.nameplates.colors.glowColor.r = 0
 	E.db.nameplates.colors.selection[0].b = 0.07
 	E.db.nameplates.colors.selection[0].g = 0.13
 	E.db.nameplates.colors.selection[0].r = 0.92
@@ -333,8 +331,8 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.widgets.below = false
 
 	-- Target indicator
-	E.db.nameplates.units.TARGET.arrowScale = 0.7
-	E.db.nameplates.units.TARGET.arrowSpacing = 25
+	E.db.nameplates.units.TARGET.arrowScale = 0.8
+	E.db.nameplates.units.TARGET.arrowSpacing = 30
 	E.db.nameplates.units.TARGET.glowStyle = 'style2'
 
 	-- Enemy NPC
@@ -1023,6 +1021,8 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.colors.custompowerbackdrop = true
 	E.db.unitframe.colors.frameGlow.mouseoverGlow.texture = Private.Texture
 	E.db.unitframe.colors.healPrediction.absorbs.a = 0.25
+	E.db.unitframe.colors.healPrediction.absorbs.b = 1
+	E.db.unitframe.colors.healPrediction.absorbs.r = 0
 	E.db.unitframe.colors.healPrediction.healAbsorbs.a = 0.25
 	E.db.unitframe.colors.healPrediction.maxOverflow = 1
 	E.db.unitframe.colors.healPrediction.others.a = 0.25
@@ -1498,6 +1498,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.debuffs.perrow = 12
 	E.db.unitframe.units.player.disableMouseoverGlow = true
 	E.db.unitframe.units.player.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.player.healPrediction.enable = true
 	E.db.unitframe.units.player.health.text_format = ''
 	E.db.unitframe.units.player.height = 50
 	E.db.unitframe.units.player.partyIndicator.enable = false
@@ -1510,6 +1511,29 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.RestIcon.enable = false
 	E.db.unitframe.units.player.threatStyle = 'NONE'
 	E.db.unitframe.units.player.width = 260
+
+	-- Player debuffs anchor + filters for retail
+	if Private.isRetail then
+		E.db.unitframe.units.player.debuffs.anchorPoint = 'TOPRIGHT'
+		E.db.unitframe.units.player.debuffs.clickThrough = true
+		E.db.unitframe.units.player.debuffs.enable = true
+		E.db.unitframe.units.player.debuffs.growthX = 'LEFT'
+		E.db.unitframe.units.player.debuffs.isAuraCrowdControl = true
+		E.db.unitframe.units.player.debuffs.isAuraCrowdControlPlayer = true
+		E.db.unitframe.units.player.debuffs.isAuraImportant = true
+		E.db.unitframe.units.player.debuffs.isAuraImportantPlayer = true
+		E.db.unitframe.units.player.debuffs.isAuraPermanent = true
+		E.db.unitframe.units.player.debuffs.isAuraPermanentPlayer = true
+		E.db.unitframe.units.player.debuffs.isAuraRaid = true
+		E.db.unitframe.units.player.debuffs.isAuraRaidPlayer = true
+		E.db.unitframe.units.player.debuffs.numrows = 2
+		E.db.unitframe.units.player.debuffs.perrow = 4
+		E.db.unitframe.units.player.debuffs.sizeOverride = 54
+		E.db.unitframe.units.player.debuffs.spacing = 4
+		E.db.unitframe.units.player.debuffs.useBlocklist = true
+		E.db.unitframe.units.player.debuffs.xOffset = -1
+		E.db.unitframe.units.player.debuffs.yOffset = 164
+	end
 
 	-- Shared Target
 	E.db.unitframe.units.target.customTexts = {}
@@ -1591,6 +1615,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.fader.minAlpha = 0.5
 	E.db.unitframe.units.target.fader.smooth = 0
 	E.db.unitframe.units.target.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.target.healPrediction.enable = true
 	E.db.unitframe.units.target.health.text_format = ''
 	E.db.unitframe.units.target.height = 50
 	E.db.unitframe.units.target.middleClickFocus = false
@@ -1740,6 +1765,8 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.debuffs.countYOffset = -1
 	E.db.unitframe.units.party.debuffs.enable = true
 	E.db.unitframe.units.party.debuffs.growthY = 'DOWN'
+	E.db.unitframe.units.party.debuffs.isAuraPermanent = true
+	E.db.unitframe.units.party.debuffs.isAuraPermanentPlayer = true
 	E.db.unitframe.units.party.debuffs.maxDuration = 0
 	E.db.unitframe.units.party.debuffs.numrows = 2
 	E.db.unitframe.units.party.debuffs.perrow = 4
@@ -2067,9 +2094,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.healPrediction.enable = false
 		E.db.unitframe.units.raid3.healPrediction.enable = false
 		E.db.unitframe.units.raidpet.healPrediction.enable = false
-		E.db.unitframe.units.player.healPrediction.enable = false
 		E.db.unitframe.units.pet.healPrediction.enable = false
-		E.db.unitframe.units.target.healPrediction.enable = false
 		E.db.unitframe.units.targettarget.healPrediction.enable = false
 		E.db.unitframe.units.focus.healPrediction.enable = false
 
@@ -2168,9 +2193,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.healPrediction.enable = true
 		E.db.unitframe.units.raid3.healPrediction.enable = true
 		E.db.unitframe.units.raidpet.healPrediction.enable = true
-		E.db.unitframe.units.player.healPrediction.enable = true
 		E.db.unitframe.units.pet.healPrediction.enable = true
-		E.db.unitframe.units.target.healPrediction.enable = true
 		E.db.unitframe.units.targettarget.healPrediction.enable = true
 		E.db.unitframe.units.focus.healPrediction.enable = true
 	end
