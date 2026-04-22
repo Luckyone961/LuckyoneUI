@@ -1,6 +1,7 @@
 ﻿## Version 4.10 [In Development]
 
 **All WoW Versions:**  
+- ElvUI 15.12+ compatibility  
 - Color for absorbs is blue again (was yellow)  
 - Re-enabled DPS/Tank layout heal prediction on Player/Target  
 - Updated frFR locales (Credits: Oniria)  
