@@ -1,4 +1,9 @@
-﻿## Version 4.10 [22-04-2026]
+﻿## Version 4.11 [In Development]
+
+**Retail:**  
+- Updated PermoksAccountManager profile  
+
+## Version 4.10 [22-04-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.12+ compatibility  
