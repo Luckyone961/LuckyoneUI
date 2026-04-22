@@ -13,6 +13,7 @@
 - Updated ElvUI layouts to display filtered debuffs 200px above the player frame  
 - Updated PermoksAccountManager profile  
 - Updated Priest aura indicators (Removed atonement health color, Fixed Prayer stack text overlap)  
+- Updated TOC for patch 12.0.5  
 - Updated WindTools profile (Skins)  
 
 ## Version 4.09 [14-04-2026]

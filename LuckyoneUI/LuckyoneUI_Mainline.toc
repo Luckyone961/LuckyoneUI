@@ -7,7 +7,7 @@
 ## Author: Luckyone
 ## Version: 4.09
 
-## Interface: 120001
+## Interface: 120005
 ## X-Required-ElvUI: 15.12
 
 ## X-Curse-Project-ID: 363472
