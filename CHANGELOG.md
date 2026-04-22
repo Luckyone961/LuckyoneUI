@@ -1,6 +1,7 @@
 ﻿## Version 4.11 [In Development]
 
 **Retail:**  
+- Updated AyijeCDM profile  
 - Updated PermoksAccountManager profile  
 
 ## Version 4.10 [22-04-2026]
