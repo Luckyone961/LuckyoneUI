@@ -2,6 +2,7 @@
 
 **Retail:**  
 - Updated AyijeCDM profile  
+- Updated BetterCooldownManager profile  
 - Updated PermoksAccountManager profile  
 
 ## Version 4.10 [22-04-2026]
