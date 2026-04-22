@@ -10,6 +10,7 @@
 **Retail:**  
 - Added Auto Dismount option to /lucky config - General Quality of Life  
 - Added Remove Nameplate Realms option to /lucky config - General - Misc  
+- Updated BuffReminders profile  
 - Updated ElvUI layouts to display filtered debuffs 200px above the player frame  
 - Updated PermoksAccountManager profile  
 - Updated Priest aura indicators (Removed atonement health color, Fixed Prayer stack text overlap)  
