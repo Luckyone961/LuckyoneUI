@@ -3,6 +3,7 @@
 **All WoW Versions:**  
 - ElvUI 15.13+ compatibility  
 - Updated BigWigs profiles  
+- Updated Details profile  
 
 **Retail:**  
 - Updated AyijeCDM profile  
