@@ -135,6 +135,7 @@ L["Hide Blizzard Frames"] = "Verstecke Blizzard Fenster"
 L["Hide the Boss Banner"] = "Verstecke das Bossbanner"
 L["Hide the Housing Alerts for \n\'New Decor Added\'"] = "Verstecke die Housing-Warnungen für \n\'Neue Dekorationen hinzugefügt\'"
 L["Hide the Loot/Alert Frame"] = "Verstecke das Beute-/Alarm Fenster"
+L["Hide the Loss of Control Frame"] = "Versteckt die Kontrollverlust Anzeige"
 L["Hide the Zone Text"] = "Verstecke den Zonentext"
 L["Homepage:"] = true -- No need to translate
 L["Hunter"] = "Jäger"
@@ -146,6 +147,7 @@ L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor p
 L["Layout has been set."] = "Layout wurde festgelegt."
 L["Left panel: General - Log - Whisper - Guild - Party."] = "Linkes Feld: Allgemein – Log – Flüstern – Gilde – Party."
 L["Links"] = true -- No need to translate
+L["Loss of Control Frame"] = "Kontrollverlust Fenster"
 L["LuckyoneUI is now a standalone addon.\nPlease remove the old ElvUI_LuckyoneUI from your AddOns folder."] = "LuckyoneUI ist jetzt ein eigenständiges Addon.\nBitte entferne das alte ElvUI_LuckyoneUI aus dem AddOns Ordner."
 L["LuckyoneUI Scale"] = "LuckyoneUI Skalierung"
 L["Mage"] = "Magier"
