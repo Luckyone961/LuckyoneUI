@@ -6,6 +6,7 @@
 - Updated Details profile  
 
 **Retail:**  
+- Added option to disable and hide the Loss of Control Frame to /lucky config  
 - Updated AyijeCDM profile  
 - Updated BetterCooldownManager profile  
 - Updated PermoksAccountManager profile  
