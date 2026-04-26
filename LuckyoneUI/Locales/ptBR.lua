@@ -169,6 +169,7 @@ L["NamePlates"] = "Placas de Nome"
 L["Next"] = true
 L["No ActionBars and centered Raid Frames"] = "Sem Barras de Ação e Paineis de Raíde centralizados"
 L["No existing LuckyoneUI profile found."] = "Nenhum perfil LuckyoneUI encontrado."
+L["Northern Sky Raid Tools profile has been set."] = true
 L["Note: If the position is wrong after the UI reload, use X and Y offset in the /acdm Positions tab to adjust it."] = true
 L["Note: If the position is wrong after the UI reload, use X and Y offset in the /bcdm Essential tab to adjust it."] = true
 L["Note"] = "Nota"

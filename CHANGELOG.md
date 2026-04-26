@@ -6,6 +6,7 @@
 - Updated Details profile  
 
 **Retail:**  
+- Added Northern Sky Raid Tools profile to /lucky config  
 - Added option to disable and hide the Loss of Control Frame to /lucky config  
 - Updated AyijeCDM profile  
 - Updated BetterCooldownManager profile  

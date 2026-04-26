@@ -169,6 +169,7 @@ L["NamePlates"] = "Barres d'info"
 L["Next"] = "Suivant"
 L["No ActionBars and centered Raid Frames"] = "Pas de barres d'action et cadres de raid centrés"
 L["No existing LuckyoneUI profile found."] = "Pas de profil LuckyoneUI existant trouvé."
+L["Northern Sky Raid Tools profile has been set."] = true
 L["Note: If the position is wrong after the UI reload, use X and Y offset in the /acdm Positions tab to adjust it."] = "Note : si la position est incorrecte après rechargement, utilisez les décalages X et Y dans l'onglet Positions de /acdm pour l'ajuster"
 L["Note: If the position is wrong after the UI reload, use X and Y offset in the /bcdm Essential tab to adjust it."] = "Note : si la position est incorrecte après rechargement, utilisez les décalages X et Y dans l'onglet Essential de /bcdm pour l'ajuster"
 L["Note"] = true
