@@ -4,6 +4,7 @@
 - ElvUI 15.13+ compatibility  
 - Updated BigWigs profiles  
 - Updated Details profile  
+- Updated ElvUI party frames (Ready Check Indicator size)  
 
 **Retail:**  
 - Added Northern Sky Raid Tools profile to /lucky config  
