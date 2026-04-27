@@ -7,12 +7,12 @@
 - Updated ElvUI party frames (Ready Check Indicator size)  
 
 **Retail:**  
-- Added Northern Sky Raid Tools profile to /lucky config  
+- Added Northern Sky Raid Tools profile to /lucky config (Requires 12.0.91 or later)  
 - Added option to disable and hide the Loss of Control Frame to /lucky config  
 - Updated AyijeCDM profile  
 - Updated BetterCooldownManager profile  
 - Updated Evoker Aura Indicators (Added and enabled Source of Magic)  
-- Updated PermoksAccountManager profile  
+- Updated PermoksAccountManager profile (Added bonusrolls to main tab)  
 
 ## Version 4.10 [22-04-2026]
 
