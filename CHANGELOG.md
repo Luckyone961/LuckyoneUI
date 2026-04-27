@@ -10,6 +10,7 @@
 - Added option to disable and hide the Loss of Control Frame to /lucky config  
 - Updated AyijeCDM profile  
 - Updated BetterCooldownManager profile  
+- Updated Evoker Aura Indicators (Added and enabled Source of Magic)  
 - Updated PermoksAccountManager profile  
 
 ## Version 4.10 [22-04-2026]
