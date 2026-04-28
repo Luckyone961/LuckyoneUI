@@ -39,7 +39,7 @@ function Private:PrivacyOverlay()
 
 	-- Make sure we can click the overlay to show the chat
 	PrivacyOverlay:EnableMouse(true)
-	PrivacyOverlay:RegisterForClicks('AnyDown', 'AnyUp')
+	PrivacyOverlay:RegisterForClicks('AnyUp')
 	PrivacyOverlay:SetScript('OnClick', function(self)
 		self:Hide()
 	end)
@@ -58,7 +58,7 @@ function Private:PrivacyOverlay()
 
 	-- Hook the following Blizzard events
 	hooksecurefunc(_G.CommunitiesFrame, 'SetDisplayMode', ShowOverlay)
-	hooksecurefunc(_G.CommunitiesFrame, 'Show', ShowOverlay)
-	hooksecurefunc(_G.CommunitiesFrame, 'Hide', function() PrivacyOverlay:Hide() end)
-	hooksecurefunc(_G.CommunitiesFrame, 'OnClubSelected', ShowOverlay)
+	_G.CommunitiesFrame:HookScript('OnShow', ShowOverlay)
+	_G.CommunitiesFrame:HookScript('OnHide', function() PrivacyOverlay:Hide() end)
+	_G.CommunitiesFrame:HookScript('OnClubSelected', ShowOverlay)
 end
