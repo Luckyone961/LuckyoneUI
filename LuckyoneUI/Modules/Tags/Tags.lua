@@ -51,6 +51,11 @@ local ElvUF_colors_power = ElvUF.colors.power
 -- Local references
 local Hex = Private.Tags.Hex
 
+-- Constants
+local manaColorTable = ElvUF_colors_power.MANA
+local MANA_HEX = manaColorTable and Hex(manaColorTable.r, manaColorTable.g, manaColorTable.b)
+local petHappinessStrings = _G.PET_HAPPINESS1 and { _G.PET_HAPPINESS1, _G.PET_HAPPINESS2, _G.PET_HAPPINESS3 } -- [1] "Unhappy", [2] "Content", [3] "Happy"
+
 -------------------------------------------------------
 -------------------- Classification -------------------
 -------------------------------------------------------
@@ -177,8 +182,7 @@ if not Private.isRetail then
 		local role = UnitGroupRolesAssigned(unit)
 		if role ~= 'HEALER' then return end
 
-		local color = ElvUF_colors_power.MANA
-		return Hex(color.r, color.g, color.b) .. UnitPower(unit, Enum.PowerType.Mana)
+		return MANA_HEX .. UnitPower(unit, Enum.PowerType.Mana)
 	end)
 	E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana with manacolor (Role: Healer)"])
 end
@@ -194,12 +198,11 @@ E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_
 		local color = Private.Tags.getPowerColor(unit)
 		return color .. percent
 	else
-		local color = ElvUF_colors_power.MANA
 		local min = UnitPower(unit, Enum.PowerType.Mana)
 		local max = UnitPowerMax(unit, Enum.PowerType.Mana)
 		if max == 0 then return end -- Avoid the "%inf" on frames
 
-		return Hex(color.r, color.g, color.b) .. E:GetFormattedText('PERCENT', min, max, 0, nil)
+		return MANA_HEX .. E:GetFormattedText('PERCENT', min, max, 0, nil)
 	end
 end)
 E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"])
@@ -305,7 +308,7 @@ E:AddTag('luckyone:pet:name-and-happiness', (Private.isClassic or Private.isTBC)
 				local petHappiness = GetPetHappiness()
 				local happinessColor = _COLORS.happiness[petHappiness]
 				-- Return for Hunters
-				return Hex(happinessColor) .. _G['PET_HAPPINESS' .. petHappiness]
+				return Hex(happinessColor) .. petHappinessStrings[petHappiness]
 			else
 				-- Return for other Pet Classes
 				return 'Pet'
@@ -329,7 +332,7 @@ if Private.isRetail then
 			local name = UnitName(unit) or UNKNOWN
 			if E:IsSecretValue(name) then return name end
 
-			return (friend and Private.Tags.getFormattedName(unit, length, true)) or name
+			return friend and Private.Tags.getFormattedName(unit, length, true, nil, name) or name
 		end)
 		-- Displays the unit's name with no color and a maximum length (friendly only) or full name (if enemy)
 		E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
@@ -337,7 +340,7 @@ if Private.isRetail then
 			local name = UnitName(unit) or UNKNOWN
 			if E:IsSecretValue(name) then return name end
 
-			return (friend and Private.Tags.getFormattedName(unit, length, false)) or name
+			return friend and Private.Tags.getFormattedName(unit, length, false, nil, name) or name
 		end)
 		-- Displays the unit's name (or status) with classcolor and a maximum length (friendly only) or full name (if enemy)
 		E:AddTag('luckyone:name:' .. textFormat .. '-color-friendly:status', 'UNIT_HEALTH UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT PLAYER_UPDATE_RESTING UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
@@ -348,7 +351,7 @@ if Private.isRetail then
 			local name = UnitName(unit) or UNKNOWN
 			if E:IsSecretValue(name) then return name end
 
-			return (friend and Private.Tags.getFormattedName(unit, length, true)) or name
+			return friend and Private.Tags.getFormattedName(unit, length, true, nil, name) or name
 		end)
 		-- Displays the unit's name (or status) with no color and a maximum length (friendly only) or full name (if enemy)
 		E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly:status', 'UNIT_HEALTH UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT PLAYER_UPDATE_RESTING UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
@@ -359,7 +362,7 @@ if Private.isRetail then
 			local name = UnitName(unit) or UNKNOWN
 			if E:IsSecretValue(name) then return name end
 
-			return (friend and Private.Tags.getFormattedName(unit, length, false)) or name
+			return friend and Private.Tags.getFormattedName(unit, length, false, nil, name) or name
 		end)
 
 		E:AddTagInfo('luckyone:name:' .. textFormat .. '-color-friendly', Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters (friendly only) or full name (if enemy)"], length))
