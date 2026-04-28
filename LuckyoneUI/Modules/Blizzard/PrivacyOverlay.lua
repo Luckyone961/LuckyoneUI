@@ -60,5 +60,5 @@ function Private:PrivacyOverlay()
 	hooksecurefunc(_G.CommunitiesFrame, 'SetDisplayMode', ShowOverlay)
 	_G.CommunitiesFrame:HookScript('OnShow', ShowOverlay)
 	_G.CommunitiesFrame:HookScript('OnHide', function() PrivacyOverlay:Hide() end)
-	_G.CommunitiesFrame:HookScript('OnClubSelected', ShowOverlay)
+	hooksecurefunc(_G.CommunitiesFrame, 'OnClubSelected', ShowOverlay)
 end
