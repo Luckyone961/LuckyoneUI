@@ -158,6 +158,7 @@ function Private:Setup_PrivateDB(includePlugins)
 
 		-- ElvUI settings
 		E.private.bags.enable = (not Private.IsAddOnLoaded('Baganator'))
+		E.private.chat.enable = (not Private.IsAddOnLoaded('Chattynator'))
 		E.private.general.chatBubbles = 'disabled'
 		E.private.nameplates.enable = (not Private.IsAddOnLoaded('Plater'))
 
@@ -166,8 +167,9 @@ function Private:Setup_PrivateDB(includePlugins)
 		Private.Addon.db.profile.disabledFrames.ApplicationCover = true
 		Private.Addon.db.profile.disabledFrames.BossBanner = true
 		Private.Addon.db.profile.disabledFrames.HousingDecorAlerts = true
-		Private.Addon.db.profile.misc.mythicVisibility = true
+		Private.Addon.db.profile.disabledFrames.LossOfControl = true
 		Private.Addon.db.profile.misc.dataTextsTweaks = true
+		Private.Addon.db.profile.misc.mythicVisibility = true
 		Private.Addon.db.profile.qualityOfLife.easyDelete = true
 		Private.Addon.db.profile.qualityOfLife.privacyOverlay = true
 		Private.Addon.db.profile.skins.BugSack = true
@@ -1526,7 +1528,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.debuffs.isAuraPermanentPlayer = true
 		E.db.unitframe.units.player.debuffs.isAuraRaid = true
 		E.db.unitframe.units.player.debuffs.isAuraRaidPlayer = true
-		E.db.unitframe.units.player.debuffs.numrows = 2
+		E.db.unitframe.units.player.debuffs.numrows = 1
 		E.db.unitframe.units.player.debuffs.perrow = 4
 		E.db.unitframe.units.player.debuffs.sizeOverride = 54
 		E.db.unitframe.units.player.debuffs.spacing = 4
@@ -1812,6 +1814,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.rdebuffs.enable = false
 	E.db.unitframe.units.party.readycheckIcon.attachTo = 'Frame'
 	E.db.unitframe.units.party.readycheckIcon.position = 'RIGHT'
+	E.db.unitframe.units.party.readycheckIcon.size = 18
 	E.db.unitframe.units.party.readycheckIcon.xOffset = -2
 	E.db.unitframe.units.party.readycheckIcon.yOffset = 0
 	E.db.unitframe.units.party.roleIcon.damager = false

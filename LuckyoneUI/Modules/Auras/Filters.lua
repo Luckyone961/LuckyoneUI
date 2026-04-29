@@ -90,6 +90,8 @@ function Private:Setup_Filters_Retail()
 			410263, -- Inferno's Blessing
 			410686, -- Symbiotic Bloom
 			413984, -- Shifting Sands
+			-- All
+			369459, -- Source of Magic
 		},
 		MONK = {
 			-- Mistweaver
@@ -274,6 +276,15 @@ function Private:Setup_Filters_Retail()
 			['g'] = 0.59,
 			['b'] = 0.34,
 		},
+	}
+
+	classes['EVOKER'][369459] = { -- Source of Magic
+		["point"] = "TOPLEFT",
+		["yOffset"] = 1,
+		["enabled"] = true,
+		["sizeOffset"] = 2,
+		["style"] = "texturedIcon",
+		["xOffset"] = -1,
 	}
 	classes['EVOKER'][395152]['enabled'] = false -- Ebon Might (Others)
 	classes['EVOKER'][410263]['enabled'] = false -- Inferno's Blessing

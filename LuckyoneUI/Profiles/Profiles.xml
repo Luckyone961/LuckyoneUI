@@ -6,6 +6,7 @@
 	<Script file='Details.lua'/>
 	<Script file='EditMode.lua'/>
 	<Script file='ElvUI.lua'/>
+	<Script file='NSRT.lua'/>
 	<Script file='PermoksAccountManager.lua'/>
 	<Script file='Plater.lua'/>
 	<Script file='Plumber.lua'/>

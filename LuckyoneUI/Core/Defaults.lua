@@ -15,6 +15,7 @@ Private.Defaults = {
 			ApplicationCover = false,
 			BossBanner = false,
 			HousingDecorAlerts = false,
+			LossOfControl = false,
 			ZoneTextFrame = false,
 		},
 		minimap = {

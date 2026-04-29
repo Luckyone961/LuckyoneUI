@@ -43,6 +43,13 @@ function Private:DisabledFrames()
 		_G.EventRegistry:UnregisterFrameEventAndCallback('NEW_HOUSING_ITEM_ACQUIRED', HousingEventHandler.ShowHousingItemAcquiredAlert, HousingEventHandler)
 	end
 
+	if Private.Addon.db.profile.disabledFrames.LossOfControl and Private.isRetail then
+		_G.LossOfControlFrame:UnregisterAllEvents()
+		if Private.ElvUI then
+			ElvUI[1]:DisableMover('LossControlMover')
+		end
+	end
+
 	if Private.Addon.db.profile.disabledFrames.ApplicationCover and Private.isRetail then
 		local HiddenFrame = CreateFrame('Frame', nil, UIParent)
 		HiddenFrame:Hide()
