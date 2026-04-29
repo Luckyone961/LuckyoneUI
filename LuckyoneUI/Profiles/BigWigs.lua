@@ -3,13 +3,23 @@ local _, Private = ...
 local L = Private.Libs.ACL
 
 -- Runs after successful profile import
-local function CallbackFunction(accepted)
+local function CallbackFunction(accepted, name)
 	if not accepted then return end
+
+	-- 1080p
+	local scaled = Private.Addon.db.global.scaled
 
 	-- Handle minimap icon
 	local LDBI = LibStub('LibDBIcon-1.0')
 	BigWigsIconDB.hide = true
 	LDBI:Hide('BigWigs')
+
+	if scaled then -- Handle BattleRess x/y offsets for 1080p resolution
+		local bres = BigWigs3DB.namespaces.BigWigs_Plugins_BattleRes
+		if bres and bres.profiles and bres.profiles[name] then
+			bres.profiles[name].position = { nil, nil, -499, -514 }
+		end
+	end
 end
 
 -- BigWigs profiles
@@ -26,7 +36,8 @@ function Private:Setup_BigWigs(layout)
 
 	-- Profile import
 	-- API.RegisterProfile(addonName, profileString, optionalCustomProfileName, optionalCallbackFunction)
-	BigWigsAPI.RegisterProfile('LuckyoneUI', (layout == 'main' and profile_main) or profile_healing, (layout == 'main' and name_main) or name_healing, CallbackFunction)
+	local name = (layout == 'main' and name_main) or name_healing
+	BigWigsAPI.RegisterProfile('LuckyoneUI', (layout == 'main' and profile_main) or profile_healing, name, function(accepted) CallbackFunction(accepted, name) end)
 
 	-- No chat print here
 	-- BigWigs will print a message with all important information after the import
