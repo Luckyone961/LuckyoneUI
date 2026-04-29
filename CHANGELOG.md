@@ -1,4 +1,9 @@
-﻿## Version 4.11 [29-04-2026]
+﻿## Version 4.12 [In Development]
+
+**All WoW Versions:**  
+- Updated Details profile (1080p only)  
+
+## Version 4.11 [29-04-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.13+ compatibility  
