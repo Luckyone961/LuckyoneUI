@@ -1,8 +1,7 @@
 ﻿## Version 4.12 [In Development]
 
 **All WoW Versions:**  
-- Updated BigWigs profiles (1080p only)  
-- Updated Details profile (1080p only)  
+- 1080p improvements (BigWigs and Details)  
 
 ## Version 4.11 [29-04-2026]
 
