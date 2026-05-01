@@ -7,6 +7,7 @@ local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local GetBuildInfo = GetBuildInfo
 local GetRealmName = GetRealmName
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
+local UnitClass = UnitClass
 local UnitGUID = UnitGUID
 local UnitName = UnitName
 
@@ -69,6 +70,7 @@ Private.IsAddOnLoaded = IsAddOnLoaded
 Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
 
 -- Player utils
+Private.myClass = select(2, UnitClass('player'))
 Private.myGUID = UnitGUID('player')
 Private.myName = UnitName('player')
 Private.myRealm = GetRealmName()

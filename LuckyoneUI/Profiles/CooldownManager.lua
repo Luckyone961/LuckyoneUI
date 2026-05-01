@@ -5,6 +5,17 @@ local L = Private.Libs.ACL
 -- Global environment
 local _G = _G
 
+-- Toggle Cooldown Viewer helper function
+function Private:ShowCooldownViewerSettings()
+	if not _G.CooldownViewerSettings then return end
+
+	if not _G.CooldownViewerSettings:IsShown() then
+		_G.CooldownViewerSettings:Show()
+	else
+		_G.CooldownViewerSettings:Hide()
+	end
+end
+
 -- BetterCooldownManager profile
 function Private:Setup_BCDM(installer)
 	if not Private.IsAddOnLoaded('BetterCooldownManager') then Private:Print('BetterCooldownManager ' .. L["is not installed or enabled."]) return end
