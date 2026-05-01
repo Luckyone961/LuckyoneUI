@@ -229,8 +229,13 @@ local function BuildCDMSection()
 	section.args.desc.inline = true
 	section.args.desc.args.desc = ACH:Description(L["Specializations are only displayed for the class you're currently logged into.\n\nGrab the updated import string from the Wago URL and import it manually.\n\nFor quick access to the Blizzard cooldown viewer panel use the button below."], 1, 'medium')
 	section.args.header2 = ACH:Header(L["Cooldown Settings"], 16)
-	section.args.spacer = ACH:Spacer(17, 'full')
-	section.args.toggleViewer = ACH:Execute(format('|cff4beb2c%s|r', L["Toggle Cooldown Settings"]), L["Shortcut to the Cooldown Settings.\nYou can import the profiles in the bottom left dropdown."], 18, function() Private:ShowCooldownViewerSettings() end)
+	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 17)
+	section.args.addons.inline = true
+	section.args.addons.args.acdm = ACH:Execute('AyijeCDM', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_ACDM() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.addons.args.bcdm = ACH:Execute('BetterCooldownManager', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_BCDM() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.utilities = ACH:Group(L["Utilities"], nil, 18)
+	section.args.utilities.inline = true
+	section.args.utilities.args.toggleViewer = ACH:Execute(format('|cff4beb2c%s|r', L["Toggle Cooldown Settings"]), L["Shortcut to the Cooldown Settings.\nYou can import the profiles in the bottom left dropdown."], 1, function() Private:ShowCooldownViewerSettings() end)
 	return section
 end
 
@@ -318,14 +323,12 @@ local function BuildProfilesSection()
 	section.args.bossmods.args.bigwigsHealing = ACH:Execute(L["BigWigs Healing"], RESET_DEFAULTS_TEXT, 2, function() Private:Setup_BigWigs('healing') end, nil, true)
 	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 5)
 	section.args.addons.inline = true
-	section.args.addons.args.acdm = ACH:Execute('AyijeCDM', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_ACDM() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.bcdm = ACH:Execute('BetterCooldownManager', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_BCDM() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.buffReminders = ACH:Execute('BuffReminders', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_BuffReminders() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.details = ACH:Execute('Details', RESET_DEFAULTS_TEXT, 4, function() Private:Setup_Details() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.addons.args.nsrt = ACH:Execute('Northern Sky Raid Tools', RESET_DEFAULTS_TEXT, 5, function() Private:Setup_NSRT() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.addons.args.permoksAccountManager = ACH:Execute('PermoksAccountManager', RESET_DEFAULTS_TEXT, 6, function() Private:Setup_PermoksAccountManager() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.plumber = ACH:Execute('Plumber', RESET_DEFAULTS_TEXT, 7, function() Private:Setup_Plumber() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', RESET_DEFAULTS_TEXT, 8, function() Private:Setup_WarpDeplete() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.buffReminders = ACH:Execute('BuffReminders', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_BuffReminders() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.details = ACH:Execute('Details', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_Details() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.addons.args.nsrt = ACH:Execute('Northern Sky Raid Tools', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_NSRT() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.permoksAccountManager = ACH:Execute('PermoksAccountManager', RESET_DEFAULTS_TEXT, 4, function() Private:Setup_PermoksAccountManager() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.plumber = ACH:Execute('Plumber', RESET_DEFAULTS_TEXT, 5, function() Private:Setup_Plumber() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', RESET_DEFAULTS_TEXT, 6, function() Private:Setup_WarpDeplete() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	return section
 end
 
