@@ -6,6 +6,7 @@
 **Retail:**  
 - Added basic edit mode specialization strings for all 40 specs  
 - Added new Cooldown Manager section in /lucky config  
+- Adjusted default Y-offset of Boss- and Zone button slightly  
 
 ## Version 4.11 [29-04-2026]
 
