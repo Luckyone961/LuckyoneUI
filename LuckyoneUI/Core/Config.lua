@@ -323,13 +323,14 @@ local function BuildProfilesSection()
 	section.args.bossmods.args.bigwigsHealing = ACH:Execute(L["BigWigs Healing"], RESET_DEFAULTS_TEXT, 2, function() Private:Setup_BigWigs('healing') end, nil, true)
 	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 5)
 	section.args.addons.inline = true
-	section.args.addons.args.buffReminders = ACH:Execute('BuffReminders', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_BuffReminders() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.details = ACH:Execute('Details', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_Details() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.addons.args.mplustimer = ACH:Execute('MPlusTimer', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_MPlusTimer() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.nsrt = ACH:Execute('Northern Sky Raid Tools', RESET_DEFAULTS_TEXT, 4, function() Private:Setup_NSRT() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.permoksAccountManager = ACH:Execute('PermoksAccountManager', RESET_DEFAULTS_TEXT, 5, function() Private:Setup_PermoksAccountManager() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.plumber = ACH:Execute('Plumber', RESET_DEFAULTS_TEXT, 6, function() Private:Setup_Plumber() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', RESET_DEFAULTS_TEXT, 7, function() Private:Setup_WarpDeplete() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.baganator = ACH:Execute('Baganator', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_Baganator() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.addons.args.buffReminders = ACH:Execute('BuffReminders', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_BuffReminders() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.details = ACH:Execute('Details', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_Details() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.addons.args.mplustimer = ACH:Execute('MPlusTimer', RESET_DEFAULTS_TEXT, 4, function() Private:Setup_MPlusTimer() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.nsrt = ACH:Execute('Northern Sky Raid Tools', RESET_DEFAULTS_TEXT, 5, function() Private:Setup_NSRT() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.permoksAccountManager = ACH:Execute('PermoksAccountManager', RESET_DEFAULTS_TEXT, 6, function() Private:Setup_PermoksAccountManager() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.plumber = ACH:Execute('Plumber', RESET_DEFAULTS_TEXT, 7, function() Private:Setup_Plumber() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', RESET_DEFAULTS_TEXT, 8, function() Private:Setup_WarpDeplete() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	return section
 end
 

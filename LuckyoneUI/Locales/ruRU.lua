@@ -28,6 +28,7 @@ L["Auto Dismount"] = true
 L["Automatically dismounts you if all of the following conditions are true:\n\n- You are on a skyriding mount\n- You are on the ground\n- You press any skyriding spell except Skyward Ascent\n\nDoes not work for Druid Travel Form."] = true
 L["Automatically fill out the confirmation text to delete items."] = "Автоматически заполнять текст подтверждения для удаления элементов."
 L["AyijeCDM profile has been set."] = true
+L["Baganator profile has been set."] = true
 L["Balance"] = true
 L["Beast Mastery"] = true
 L["BetterCooldownManager profile has been set."] = true

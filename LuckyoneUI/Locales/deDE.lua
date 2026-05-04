@@ -28,6 +28,7 @@ L["Auto Dismount"] = true
 L["Automatically dismounts you if all of the following conditions are true:\n\n- You are on a skyriding mount\n- You are on the ground\n- You press any skyriding spell except Skyward Ascent\n\nDoes not work for Druid Travel Form."] = "Steigt automatisch vom Reittier wenn alles wie folgt zutrifft:\n\n- Du bist auf einem Himmelsreiten Mount\n- Du bist am Boden\n- Du benutzt einen Himmelsreiten Zauber außer Aufstieg gen Himmel\n\nFunktioniert nicht für die Druiden Fluggestalt."
 L["Automatically fill out the confirmation text to delete items."] = "Fülle automatisch den Bestätigungstext zum Löschen von Gegenständen aus."
 L["AyijeCDM profile has been set."] = "AyijeCDM Profil wurde festgelegt."
+L["Baganator profile has been set."] = "Baganator Profil wurde festgelegt."
 L["Balance"] = true
 L["Beast Mastery"] = true
 L["BetterCooldownManager profile has been set."] = "BetterCooldownManager Profil wurde festgelegt."

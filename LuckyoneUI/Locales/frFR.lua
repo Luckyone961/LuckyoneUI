@@ -28,6 +28,7 @@ L["Auto Dismount"] = "Désarçonnage automatique"
 L["Automatically dismounts you if all of the following conditions are true:\n\n- You are on a skyriding mount\n- You are on the ground\n- You press any skyriding spell except Skyward Ascent\n\nDoes not work for Druid Travel Form."] = "Vous désarçonne automatiquement si toutes les conditions suivantes sont remplies :\n\n- Vous êtes sur une monture volante\n- Vous êtes au sol\n- Vous appuyez sur n'importe quelle compétence de vol sauf Ascension\n\nNe fonctionne pas pour la forme de voyage du Druide."
 L["Automatically fill out the confirmation text to delete items."] = "Remplir automatiquement le texte de confirmation pour l'effacement d'objets."
 L["AyijeCDM profile has been set."] = "Le profil AyijeCDM a été appliqué."
+L["Baganator profile has been set."] = true
 L["Balance"] = "Équilibre"
 L["Beast Mastery"] = "Maîtrise des bêtes"
 L["BetterCooldownManager profile has been set."] = "Le profil BetterCooldownManager a été appliqué."

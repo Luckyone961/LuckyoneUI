@@ -2,6 +2,7 @@
 
 **All WoW Versions:**  
 - 1080p improvements (BigWigs and Details)  
+- Added optional profile for the Baganator addon to /lucky config  
 
 **Retail:**  
 - Added basic edit mode specialization strings for all 40 specs  
