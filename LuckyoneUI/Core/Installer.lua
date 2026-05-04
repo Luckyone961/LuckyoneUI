@@ -726,14 +726,17 @@ local function BuildInstallerData()
 	if Private.isRetail then
 		pages[pageIndex] = function()
 			local f = installerFrame
-			f.SubTitle:SetText(L["WarpDeplete profile"])
-			f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for WarpDeplete."])
+			f.SubTitle:SetText(L["Mythic+ Addons"])
+			f.Desc1:SetText(L["Choose between WarpDeplete and MPlusTimer."])
 			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			f.Option1:Show()
 			f.Option1:SetScript('OnClick', function() Private:Setup_WarpDeplete(true) end)
 			f.Option1:SetText(L["Setup WarpDeplete"])
+			f.Option2:Show()
+			f.Option2:SetScript('OnClick', function() Private:Setup_MPlusTimer(true) end)
+			f.Option2:SetText(L["Setup MPlusTimer"])
 		end
-		stepTitles[pageIndex] = 'WarpDeplete'
+		stepTitles[pageIndex] = L["Mythic+ Addons"]
 		pageIndex = pageIndex + 1
 
 		pages[pageIndex] = function()
