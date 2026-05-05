@@ -5,14 +5,14 @@ local L = Private.Libs.ACL
 -- Global environment
 local _G = _G
 
-local function SetElvDB()
-	if not Private.ElvUI then return end
-	ElvUI[1].private.chat.enable = false
-end
-
 -- Chattynator profile
 function Private:Setup_Chattynator()
 	if not Private.IsAddOnLoaded('Chattynator') then Private:Print('Chattynator ' .. L["is not installed or enabled."]) return end
+
+	-- Disable ElvUI chat
+	if Private.ElvUI then
+		ElvUI[1].private.chat.enable = false
+	end
 
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
@@ -172,6 +172,4 @@ function Private:Setup_Chattynator()
 	}
 
 	Private:Print(L["Chattynator profile has been set."])
-
-	SetElvDB()
 end

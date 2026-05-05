@@ -5,15 +5,14 @@ local L = Private.Libs.ACL
 -- Global environment
 local _G = _G
 
--- Disable ElvUI bags
-local function SetElvDB()
-	if not Private.ElvUI then return end
-	ElvUI[1].private.bags.enable = false
-end
-
 -- Baganator profile
 function Private:Setup_Baganator(installer)
 	if not Private.IsAddOnLoaded('Baganator') then Private:Print('Baganator ' .. L["is not installed or enabled."]) return end
+
+	-- Disable ElvUI bags
+	if Private.ElvUI then
+		ElvUI[1].private.bags.enable = false
+	end
 
 	-- Global db
 	local dev = Private.Addon.db.global.dev
@@ -33,6 +32,4 @@ function Private:Setup_Baganator(installer)
 	end
 
 	Private:Print(L["Baganator profile has been set."])
-
-	SetElvDB()
 end

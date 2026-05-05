@@ -29,7 +29,7 @@ function Private:Setup_WarpDeplete(installer)
 		['bar3Texture'] = Private.Texture,
 		['barHeight'] = 16,
 		['barPadding'] = 4,
-		['barWidth'] = scaled and 240 or 300,
+		['barWidth'] = (scaled and 240) or 300,
 		['deathsFont'] = Private.Font,
 		['deathsFontSize'] = 15,
 		['forcesFont'] = Private.Font,

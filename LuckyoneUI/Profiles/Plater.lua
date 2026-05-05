@@ -8,15 +8,14 @@ local tinsert = table.insert
 -- Global environment
 local _G = _G
 
--- Disable ElvUI nameplates
-local function SetElvDB()
-	if not Private.ElvUI then return end
-	ElvUI[1].private.nameplates.enable = false
-end
-
 -- Plater profile
 function Private:Setup_Plater(installer)
 	if not Private.IsAddOnLoaded('Plater') then Private:Print('Plater ' .. L["is not installed or enabled."]) return end
+
+	-- Disable ElvUI Nameplates
+	if Private.ElvUI then
+		ElvUI[1].private.nameplates.enable = false
+	end
 
 	-- Global db
 	local dev = Private.Addon.db.global.dev
@@ -43,6 +42,4 @@ function Private:Setup_Plater(installer)
 	end
 
 	Private:Print(L["Plater profile has been set."])
-
-	SetElvDB()
 end
