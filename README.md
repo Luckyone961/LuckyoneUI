@@ -28,12 +28,14 @@
 • Raidframe handler for mythic raiders (Hides all benched people and only displays groups 1-4 in Mythic).  
 • Small list of custom skins for third party Addons to match the general ElvUI style.  
 
-### **Custom profiles**  
-• **Addons:** BetterCooldownManager, Details, WarpDeplete.  
-• **Encounter tools:** BigWigs and LittleWigs.  
-• **Nameplates:** ElvUI and Plater.  
-• **Plugins:** Shadow&Light and WindTools.  
-• **User interface:** ElvUI.  
+### **Custom Addon profiles from A-Z**  
+• AyijeCDM, BetterCooldownManager, Baganator  
+• BigWigs, BuffReminders, Chattynator  
+• Details, ElvUI, MPlusTimer  
+• Northern Sky Raid Tools, PermoksAccountManager  
+• Plater, Plumber, ElvUI Shadow&Light  
+• SkironCooldownManager, WarpDeplete Mythic+ Timer  
+• ElvUI WindTools  
 
 ### **Shared media for all your Addons**  
 • **Included Fonts:** Expressway and Geist (Bold, Light, Medium, Regular, Semi Bold).  
