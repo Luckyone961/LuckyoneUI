@@ -261,8 +261,9 @@ local function BuildCDMSection()
 	section.args.header2 = ACH:Header(L["Cooldown Settings"], 16)
 	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 17)
 	section.args.addons.inline = true
-	section.args.addons.args.acdm = ACH:Execute('AyijeCDM', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_ACDM() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.addons.args.bcdm = ACH:Execute('BetterCooldownManager', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_BCDM() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.addons.args.scm = ACH:Execute('SkironCooldownManager', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_SCM() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.addons.args.acdm = ACH:Execute('AyijeCDM', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_ACDM() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.addons.args.bcdm = ACH:Execute('BetterCooldownManager', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_BCDM() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.utilities = ACH:Group(L["Utilities"], nil, 18)
 	section.args.utilities.inline = true
 	section.args.utilities.args.toggleViewer = ACH:Execute(format('|cff4beb2c%s|r', L["Toggle Cooldown Settings"]), L["Shortcut to the Cooldown Settings.\nYou can import the profiles in the bottom left dropdown."], 1, function() Private:ShowCooldownViewerSettings() end)

@@ -742,15 +742,18 @@ local function BuildInstallerData()
 		pages[pageIndex] = function()
 			local f = installerFrame
 			f.SubTitle:SetText(L["Cooldown Manager profile"])
-			f.Desc1:SetText(L["Choose between BetterCooldownManager and AyijeCDM."])
+			f.Desc1:SetText(L["Choose between SkironCooldownManager, AyijeCDM and BetterCooldownManager."])
 			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-			f.Desc3:SetText(L["For position adjustments use /bcdm or /acdm X and Y offset options."])
+			f.Desc3:SetText(L["For position adjustments use /scm /acdm /bcdm X and Y offset options."])
 			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Setup_BCDM(true) end)
-			f.Option1:SetText('BetterCooldownManager')
+			f.Option1:SetScript('OnClick', function() Private:Setup_SCM(true) end)
+			f.Option1:SetText('SkironCooldownManager')
 			f.Option2:Show()
 			f.Option2:SetScript('OnClick', function() Private:Setup_ACDM(true) end)
 			f.Option2:SetText('AyijeCDM')
+			f.Option3:Show()
+			f.Option3:SetScript('OnClick', function() Private:Setup_BCDM(true) end)
+			f.Option3:SetText('BetterCooldownManager')
 		end
 		stepTitles[pageIndex] = L["Cooldown Manager"]
 		pageIndex = pageIndex + 1
