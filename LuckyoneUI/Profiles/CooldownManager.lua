@@ -83,6 +83,11 @@ end
 function Private:Setup_SCM(installer)
 	if not Private.IsAddOnLoaded('SkironCooldownManager') then Private:Print('SkironCooldownManager ' .. L["is not installed or enabled."]) return end
 
+	-- Disable ElvUI player castbar
+	if Private.ElvUI then
+		ElvUI[1].db.unitframe.units.player.castbar.enable = false
+	end
+
 	-- Global db
 	local dev = Private.Addon.db.global.dev
 
