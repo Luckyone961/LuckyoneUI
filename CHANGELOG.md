@@ -2,13 +2,13 @@
 
 **All WoW Versions:**  
 - 1080p improvements (BigWigs and Details)  
-- Added optional profile for the Baganator addon to /lucky config  
+- Added optional profile for the Baganator addon  
 
 **Retail:**  
-- Added basic edit mode specialization strings for all 40 specs  
+- Added basic edit mode specialization strings for all 40 specs (WIP)  
 - Added new Cooldown Manager section in /lucky config  
-- Added optional profile for the MPlusTimer addon to /lucky install and /lucky config  
-- Added SkironCooldownManager profile to /lucky install and /lucky config  
+- Added optional profile for the MPlusTimer addon  
+- Added SkironCooldownManager profile (Requires alpha)  
 - Adjusted default Y-offset of Boss- and Zone button slightly  
 
 ## Version 4.11 [29-04-2026]
