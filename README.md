@@ -1,4 +1,4 @@
-[![Discord](https://img.shields.io/badge/Join-Discord-green)](https://discord.gg/xRY4bwA) [![Patreon](https://img.shields.io/badge/Support-Patreon-orange)](https://www.patreon.com/luckyone) [![Donate](https://img.shields.io/badge/Support-Donate-blue)](https://streamlabs.com/luckyone1996/tip) [![Twitch](https://img.shields.io/badge/Support-Twitch-purple)](https://subs.twitch.tv/Luckyone1996)  
+[![Discord](https://img.shields.io/badge/Join-Discord-green)](https://discord.luckyone.dev) [![Patreon](https://img.shields.io/badge/Support-Patreon-orange)](https://www.patreon.com/luckyone) [![Donate](https://img.shields.io/badge/Support-Donate-blue)](https://streamlabs.com/luckyone1996/tip) [![Twitch](https://img.shields.io/badge/Support-Twitch-purple)](https://subs.twitch.tv/Luckyone1996)  
 
 ### **About LuckyoneUI**  
 • Active Discord community server for everything about WoW UIs (More than 5500 members).  
@@ -28,12 +28,14 @@
 • Raidframe handler for mythic raiders (Hides all benched people and only displays groups 1-4 in Mythic).  
 • Small list of custom skins for third party Addons to match the general ElvUI style.  
 
-### **Custom profiles**  
-• **Addons:** BetterCooldownManager, Details, WarpDeplete.  
-• **Encounter tools:** BigWigs and LittleWigs.  
-• **Nameplates:** ElvUI and Plater.  
-• **Plugins:** Shadow&Light and WindTools.  
-• **User interface:** ElvUI.  
+### **Custom Addon profiles from A-Z**  
+• AyijeCDM, BetterCooldownManager, Baganator  
+• BigWigs, BuffReminders, Chattynator  
+• Details, ElvUI, MPlusTimer  
+• Northern Sky Raid Tools, PermoksAccountManager  
+• Plater, Plumber, ElvUI Shadow&Light  
+• SkironCooldownManager, WarpDeplete Mythic+ Timer  
+• ElvUI WindTools  
 
 ### **Shared media for all your Addons**  
 • **Included Fonts:** Expressway and Geist (Bold, Light, Medium, Regular, Semi Bold).  

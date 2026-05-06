@@ -15,6 +15,7 @@ end
 
 function Misc:PLAYER_SPECIALIZATION_CHANGED()
 	Private:DataTextsTweaks()
+	Private:MythicVisibility()
 end
 
 function Misc:OnEnable()

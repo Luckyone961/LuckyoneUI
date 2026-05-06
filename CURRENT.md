@@ -1,15 +1,14 @@
-## Version 4.11 [29-04-2026]
+## Version 4.12 [06-05-2026]
 
 **All WoW Versions:**  
-- ElvUI 15.13+ compatibility  
-- Updated BigWigs profiles  
-- Updated Details profile (1440p only)  
-- Updated ElvUI party frames (Ready Check Indicator size)  
+- 1080p improvements (BigWigs and Details)  
+- Added optional profile for the Baganator addon  
+- Updated frFR locales (Credits: Oniria)  
+- Updated graphics config section mouseover descriptions  
 
 **Retail:**  
-- Added Northern Sky Raid Tools profile to /lucky config (Requires alpha or 12.0.91 or later)  
-- Added option to disable and hide the Loss of Control Frame to /lucky config  
-- Updated AyijeCDM profile  
-- Updated BetterCooldownManager profile  
-- Updated Evoker Aura Indicators (Added and enabled Source of Magic)  
-- Updated PermoksAccountManager profile (Added bonusrolls to main tab)  
+- Added basic edit mode specialization strings for all 40 specs (WIP)  
+- Added new Cooldown Manager section in /lucky config  
+- Added optional profile for the MPlusTimer addon  
+- Added SkironCooldownManager profile (Requires alpha)  
+- Adjusted default Y-offset of Boss- and Zone button slightly  
