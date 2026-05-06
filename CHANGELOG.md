@@ -1,4 +1,9 @@
-﻿## Version 4.12 [06-05-2026]
+﻿## Version 4.13 [In Development]
+
+**Retail:**  
+- Updated SkironCooldownManager profile  
+
+## Version 4.12 [06-05-2026]
 
 **All WoW Versions:**  
 - 1080p improvements (BigWigs and Details)  
