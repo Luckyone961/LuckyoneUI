@@ -1,4 +1,4 @@
-﻿## Version 4.12 [In Development]
+﻿## Version 4.12 [06-05-2026]
 
 **All WoW Versions:**  
 - 1080p improvements (BigWigs and Details)  
