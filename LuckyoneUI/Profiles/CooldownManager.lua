@@ -86,6 +86,7 @@ function Private:Setup_SCM(installer)
 	-- Disable ElvUI player castbar
 	if Private.ElvUI then
 		ElvUI[1].db.unitframe.units.player.castbar.enable = false
+		ElvUI[1].private.unitframe.disabledBlizzardFrames.castbar = false
 	end
 
 	-- Global db
