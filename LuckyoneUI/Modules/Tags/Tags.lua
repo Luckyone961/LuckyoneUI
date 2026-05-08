@@ -194,7 +194,7 @@ E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_
 
 	if Private.isRetail then
 		if UnitInPartyIsAI(unit) then return end -- Exclude NPC Healers (Delve companion etc)
-		local percent = format('%d', UnitPowerPercent(unit, nil, true, ScaleTo100))
+		local percent = format('%d', UnitPowerPercent(unit, Enum.PowerType.Mana, true, ScaleTo100))
 		local color = Private.Tags.getPowerColor(unit)
 		return color .. percent
 	else
