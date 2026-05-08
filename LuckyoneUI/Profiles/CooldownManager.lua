@@ -89,8 +89,8 @@ function Private:Setup_SCM(installer)
 		ElvUI[1].private.unitframe.disabledBlizzardFrames.castbar = false
 	end
 
-	-- Global db
-	local dev = Private.Addon.db.global.dev
+	-- Global dbs
+	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.global.scaled
 
 	-- Profile name
 	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version
@@ -101,6 +101,11 @@ function Private:Setup_SCM(installer)
 	-- Profile import
 	local API = _G.SCMAPI
 	API.ImportProfile(name, importString)
+
+	-- 1080p need a different Y offset position
+	if scaled then
+		-- TODO: Y Offset for 1080p
+	end
 
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["SkironCooldownManager profile has been set."])
