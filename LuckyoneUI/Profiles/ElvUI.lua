@@ -168,6 +168,7 @@ function Private:Setup_PrivateDB(includePlugins)
 		Private.Addon.db.profile.disabledFrames.BossBanner = true
 		Private.Addon.db.profile.disabledFrames.HousingDecorAlerts = true
 		Private.Addon.db.profile.disabledFrames.LossOfControl = true
+		Private.Addon.db.profile.disabledFrames.UIErrorsFrame = true
 		Private.Addon.db.profile.misc.dataTextsTweaks = true
 		Private.Addon.db.profile.misc.mythicVisibility = true
 		Private.Addon.db.profile.qualityOfLife.easyDelete = true

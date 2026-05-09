@@ -16,6 +16,7 @@ Private.Defaults = {
 			BossBanner = false,
 			HousingDecorAlerts = false,
 			LossOfControl = false,
+			UIErrorsFrame = false,
 			ZoneTextFrame = false,
 		},
 		minimap = {

@@ -20,6 +20,9 @@ local DELETE_ITEM_CONFIRM_STRING = DELETE_ITEM_CONFIRM_STRING
 
 -- Disabled Blizzard Frames (Loading on init)
 function Private:DisabledFrames()
+	local HiddenFrame = CreateFrame('Frame', nil, UIParent)
+	HiddenFrame:Hide()
+
 	if Private.Addon.db.profile.disabledFrames.AlertFrame then
 		_G.AlertFrame:UnregisterAllEvents()
 		if Private.ElvUI then
@@ -51,13 +54,20 @@ function Private:DisabledFrames()
 	end
 
 	if Private.Addon.db.profile.disabledFrames.ApplicationCover and Private.isRetail then
-		local HiddenFrame = CreateFrame('Frame', nil, UIParent)
-		HiddenFrame:Hide()
 		local Cover = _G.LFGListFrame.ApplicationViewer.UnempoweredCover
 		if Cover then
 			Cover:UnregisterAllEvents()
 			Cover:SetParent(HiddenFrame)
 			Cover:Hide()
+		end
+	end
+
+	if Private.Addon.db.profile.disabledFrames.UIErrorsFrame then
+		local ErrorFrame = _G.UIErrorsFrame
+		if ErrorFrame then
+			ErrorFrame:UnregisterAllEvents()
+			ErrorFrame:SetParent(HiddenFrame)
+			ErrorFrame:Hide()
 		end
 	end
 end

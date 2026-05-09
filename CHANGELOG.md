@@ -1,5 +1,8 @@
 ﻿## Version 4.13 [In Development]
 
+**All WoW Versions:**  
+- Added option to disable and hide the UI Errors Frame to /lucky config  
+
 **Retail:**  
 - Updated SkironCooldownManager profile  
 

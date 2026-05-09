@@ -160,6 +160,7 @@ L["Hide the Boss Banner"] = "Скрыть Баннер босса"
 L["Hide the Housing Alerts for \n\'New Decor Added\'"] = true
 L["Hide the Loot/Alert Frame"] = "Скрыть рамку с добычей/оповещением"
 L["Hide the Loss of Control Frame"] = true
+L["Hide the UI Errors Frame which usually displays messages like 'Out of range', 'Not enough mana', 'You have no target'"] = true
 L["Hide the Zone Text"] = "Скрыть текст локации"
 L["Holy"] = true
 L["Homepage:"] = true
@@ -290,6 +291,7 @@ L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\
 L["This will load your most recent LuckyoneUI profile."] = true
 L["Toggle Cooldown Settings"] = true
 L["Toggles"] = true
+L["UI Errors Frame"] = true
 L["Unholy"] = true
 L["UnitFrames Color Theme"] = "Цветовая тема рамок юнитов"
 L["UnitFrames"] = "Рамки инитов"
