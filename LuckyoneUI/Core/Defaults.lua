@@ -28,6 +28,7 @@ Private.Defaults = {
 			removeNameplateRealm = false,
 		},
 		qualityOfLife = {
+			autoAcceptRole = false,
 			autoDismount = false,
 			easyDelete = false,
 			privacyOverlay = false,

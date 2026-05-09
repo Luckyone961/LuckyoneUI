@@ -4,6 +4,7 @@
 - Added option to disable and hide the UI Errors Frame to /lucky config  
 
 **Retail:**  
+- Added option to auto accept role check popups for group/raid signups to /lucky config  
 - Updated SkironCooldownManager profile  
 
 ## Version 4.12 [06-05-2026]

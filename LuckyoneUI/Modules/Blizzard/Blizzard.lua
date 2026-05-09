@@ -9,6 +9,7 @@ local CreateFrame = CreateFrame
 local GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
 local GetQuestInfo = C_QuestLog.GetInfo
 local hooksecurefunc = hooksecurefunc
+local IsShiftKeyDown = IsShiftKeyDown
 local RemoveQuestWatch = C_QuestLog.RemoveQuestWatch
 
 -- Global environment
@@ -84,6 +85,25 @@ function Private:EasyDelete()
 	-- Quests and Quest starters
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', function(frame)
 		frame.EditBox:SetText(DELETE_ITEM_CONFIRM_STRING)
+	end)
+end
+
+-- Auto accept role check
+function Private:AutoAcceptRole()
+	if not Private.Addon.db.profile.qualityOfLife.autoAcceptRole then return end
+
+	-- Auto click on show
+	_G.LFDRoleCheckPopupAcceptButton:SetScript('OnShow', function()
+		if not IsShiftKeyDown() then
+			_G.LFDRoleCheckPopupAcceptButton:Click()
+		end
+	end)
+
+	-- Allow skipping auto-accept while shift key is down
+	_G.LFGListApplicationDialog:SetScript('OnShow', function()
+		if not IsShiftKeyDown() then
+			_G.LFGListApplicationDialog.SignUpButton:Click()
+		end
 	end)
 end
 
