@@ -20,6 +20,11 @@ end
 function Private:Setup_BCDM(installer)
 	if not Private.IsAddOnLoaded('BetterCooldownManager') then Private:Print('BetterCooldownManager ' .. L["is not installed or enabled."]) return end
 
+	-- Disable unused ElvUI elements
+	if Private.ElvUI then
+		ElvUI[1].db.unitframe.units.player.power.enable = false
+	end
+
 	-- Global dbs
 	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.global.scaled
 
@@ -49,6 +54,11 @@ end
 -- AyijeCDM profile
 function Private:Setup_ACDM(installer)
 	if not Private.IsAddOnLoaded('Ayije_CDM') then Private:Print('AyijeCDM ' .. L["is not installed or enabled."]) return end
+
+	-- Disable unused ElvUI elements
+	if Private.ElvUI then
+		ElvUI[1].db.unitframe.units.player.power.enable = false
+	end
 
 	-- Global dbs
 	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.global.scaled
@@ -83,9 +93,10 @@ end
 function Private:Setup_SCM(installer)
 	if not Private.IsAddOnLoaded('SkironCooldownManager') then Private:Print('SkironCooldownManager ' .. L["is not installed or enabled."]) return end
 
-	-- Disable ElvUI player castbar
+	-- Disable unused ElvUI elements
 	if Private.ElvUI then
 		ElvUI[1].db.unitframe.units.player.castbar.enable = false
+		ElvUI[1].db.unitframe.units.player.power.enable = false
 		ElvUI[1].private.unitframe.disabledBlizzardFrames.castbar = false
 	end
 
