@@ -132,6 +132,7 @@ function Private:RemoveNameplateRealm()
 end
 
 function Blizzard:PLAYER_ENTERING_WORLD()
+	Private:AutoAcceptRole()
 	Private:DisabledFrames()
 	Private:EasyDelete()
 	Private:PrivacyOverlay()
