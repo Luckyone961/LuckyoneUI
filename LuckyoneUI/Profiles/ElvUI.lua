@@ -25,11 +25,14 @@ local DT = E:GetModule('DataTexts')
 local NP = E:GetModule('NamePlates')
 
 -- Disable LibDualSpec to set the profile
-local function HandleLibDualSpec()
-	ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
-	ElvDB['namespaces']['LibDualSpec-1.0']['char'] = ElvDB['namespaces']['LibDualSpec-1.0']['char'] or {}
-	ElvDB['namespaces']['LibDualSpec-1.0']['char'][Private.myNameRealm] = {}
-	ElvDB['namespaces']['LibDualSpec-1.0']['char'][Private.myNameRealm]['enabled'] = false
+local function DisableLibDualSpec()
+	local namespaces = ElvDB.namespaces
+	namespaces['LibDualSpec-1.0'] = namespaces['LibDualSpec-1.0'] or {}
+
+	local libDualSpec = namespaces['LibDualSpec-1.0']
+	libDualSpec.char = libDualSpec.char or {}
+	libDualSpec.char[Private.myNameRealm] = libDualSpec.char[Private.myNameRealm] or {}
+	libDualSpec.char[Private.myNameRealm].enabled = false
 end
 
 -- Full frontend refresh
@@ -175,7 +178,7 @@ function Private:HandleAlts(layout)
 	end
 
 	if Private.isRetail or Private.isMists then
-		HandleLibDualSpec()
+		DisableLibDualSpec()
 	end
 
 	-- Load the most recent profile
@@ -204,10 +207,10 @@ function Private:HandleAlts(layout)
 	Private:Print(L["Applied profile: "] .. mostRecentProfile)
 end
 
--- Setup The War Within layout
+-- Setup Midnight layout
 function Private:Setup_Layout(layout, installer)
 	if Private.isRetail or Private.isMists then
-		HandleLibDualSpec()
+		DisableLibDualSpec()
 	end
 
 	-- Create a fresh profile in ElvUI
