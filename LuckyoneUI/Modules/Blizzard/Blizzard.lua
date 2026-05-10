@@ -90,7 +90,7 @@ end
 
 -- Auto accept role check
 function Private:AutoAcceptRole()
-	if not Private.Addon.db.profile.qualityOfLife.autoAcceptRole then return end
+	if not (Private.isRetail and Private.Addon.db.profile.qualityOfLife.autoAcceptRole) then return end
 
 	-- Auto click on show
 	_G.LFDRoleCheckPopupAcceptButton:SetScript('OnShow', function()
