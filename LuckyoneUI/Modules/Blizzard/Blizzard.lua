@@ -25,21 +25,30 @@ function Private:DisabledFrames()
 	HiddenFrame:Hide()
 
 	if Private.Addon.db.profile.disabledFrames.AlertFrame then
-		_G.AlertFrame:UnregisterAllEvents()
-		if Private.ElvUI then
-			ElvUI[1]:DisableMover('AlertFrameMover')
+		local AlertFrame = _G.AlertFrame
+		if AlertFrame then
+			AlertFrame:UnregisterAllEvents()
+			if Private.ElvUI then
+				ElvUI[1]:DisableMover('AlertFrameMover')
+			end
 		end
 	end
 
 	if Private.Addon.db.profile.disabledFrames.BossBanner and Private.isRetail then
-		_G.BossBanner:UnregisterAllEvents()
-		if Private.ElvUI then
-			ElvUI[1]:DisableMover('BossBannerMover')
+		local BossBanner = _G.BossBanner
+		if BossBanner then
+			BossBanner:UnregisterAllEvents()
+			if Private.ElvUI then
+				ElvUI[1]:DisableMover('BossBannerMover')
+			end
 		end
 	end
 
 	if Private.Addon.db.profile.disabledFrames.ZoneTextFrame then
-		_G.ZoneTextFrame:UnregisterAllEvents()
+		local ZoneTextFrame = _G.ZoneTextFrame
+		if ZoneTextFrame then
+			ZoneTextFrame:UnregisterAllEvents()
+		end
 	end
 
 	if Private.Addon.db.profile.disabledFrames.HousingDecorAlerts and Private.isRetail then
@@ -48,9 +57,12 @@ function Private:DisabledFrames()
 	end
 
 	if Private.Addon.db.profile.disabledFrames.LossOfControl and Private.isRetail then
-		_G.LossOfControlFrame:UnregisterAllEvents()
-		if Private.ElvUI then
-			ElvUI[1]:DisableMover('LossControlMover')
+		local LossOfControlFrame = _G.LossOfControlFrame
+		if LossOfControlFrame then
+			LossOfControlFrame:UnregisterAllEvents()
+			if Private.ElvUI then
+				ElvUI[1]:DisableMover('LossControlMover')
+			end
 		end
 	end
 
