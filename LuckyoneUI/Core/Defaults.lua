@@ -43,6 +43,9 @@ Private.Defaults = {
 			NovaWorldBuffs = false,
 			Tabardy = false,
 			WhatsTraining = false,
+			Blizzard = {
+				CooldownViewer = false,
+			}
 		},
 	}
 }

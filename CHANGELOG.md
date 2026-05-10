@@ -6,6 +6,7 @@
 **Retail:**  
 - Added option to auto accept role check popups in LFG to /lucky config  
 - Added option to enable double-clicking to signup in LFG to /lucky config  
+- Added skin for the Blizzard Cooldown Manager settings panel  
 - Updated SkironCooldownManager profile for all 40 specs  
 - Updated the edit mode specialization strings for all 40 specs (Advanced)  
 
