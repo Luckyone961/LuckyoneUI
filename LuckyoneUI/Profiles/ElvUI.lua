@@ -161,26 +161,6 @@ function Private:Setup_PrivateDB(includePlugins)
 		E.private.chat.enable = (not Private.IsAddOnLoaded('Chattynator'))
 		E.private.general.chatBubbles = 'disabled'
 		E.private.nameplates.enable = (not Private.IsAddOnLoaded('Plater'))
-
-		-- LuckyoneUI settings
-		Private.Addon.db.profile.disabledFrames.AlertFrame = true
-		Private.Addon.db.profile.disabledFrames.ApplicationCover = true
-		Private.Addon.db.profile.disabledFrames.BossBanner = true
-		Private.Addon.db.profile.disabledFrames.HousingDecorAlerts = true
-		Private.Addon.db.profile.disabledFrames.LossOfControl = true
-		Private.Addon.db.profile.disabledFrames.UIErrorsFrame = true
-		Private.Addon.db.profile.misc.dataTextsTweaks = true
-		Private.Addon.db.profile.misc.mythicVisibility = true
-		Private.Addon.db.profile.qualityOfLife.easyDelete = true
-		Private.Addon.db.profile.qualityOfLife.privacyOverlay = true
-		Private.Addon.db.profile.skins.BugSack = true
-		Private.Addon.db.profile.skins.DejaClassicStats = true
-		Private.Addon.db.profile.skins.LeatrixPlus = true
-		Private.Addon.db.profile.skins.LFGBulletinBoard = true
-		Private.Addon.db.profile.skins.NovaSpellRankChecker = true
-		Private.Addon.db.profile.skins.NovaWorldBuffs = true
-		Private.Addon.db.profile.skins.Tabardy = true
-		Private.Addon.db.profile.skins.WhatsTraining = true
 	end
 end
 
