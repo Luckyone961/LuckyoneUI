@@ -5,7 +5,8 @@
 
 **Retail:**  
 - Added option to auto accept role check popups for group/raid signups to /lucky config  
-- Updated SkironCooldownManager profile  
+- Updated SkironCooldownManager profile for all 40 specs  
+- Updated the edit mode specialization strings for all 40 specs (Advanced)  
 
 ## Version 4.12 [06-05-2026]
 
