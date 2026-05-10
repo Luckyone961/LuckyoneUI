@@ -107,6 +107,21 @@ function Private:AutoAcceptRole()
 	end)
 end
 
+-- Quick signup (double-click LFG search results to open signup)
+function Private:QuickSignup()
+	if not (Private.isRetail and Private.Addon.db.profile.qualityOfLife.quickSignup) then return end
+
+	local SearchPanel = _G.LFGListFrame and _G.LFGListFrame.SearchPanel
+	if not SearchPanel then return end
+
+	hooksecurefunc('LFGListSearchEntry_Update', function(entry)
+		entry:SetScript('OnDoubleClick', function(_, button)
+			if button ~= 'LeftButton' then return end
+			_G.LFGListSearchPanel_SignUp(SearchPanel)
+		end)
+	end)
+end
+
 -- Untrack All Quests
 -- Source and Credits:
 -- https://www.reddit.com/r/WowUI/comments/1qk96mg/otherfixworkaroundhidden_tracked_quests_caused_60/
@@ -136,6 +151,7 @@ function Blizzard:PLAYER_ENTERING_WORLD()
 	Private:DisabledFrames()
 	Private:EasyDelete()
 	Private:PrivacyOverlay()
+	Private:QuickSignup()
 	Private:RemoveNameplateRealm()
 end
 

@@ -32,6 +32,7 @@ Private.Defaults = {
 			autoDismount = false,
 			easyDelete = false,
 			privacyOverlay = false,
+			quickSignup = false,
 		},
 		skins = {
 			BugSack = false,

@@ -231,6 +231,7 @@ L["Profiles"] = "Profile"
 L["Protection"] = true
 L["Quality of Life"] = true -- No need to translate
 L["Quick setup for alts"] = "Schnellinstallation für Twinks"
+L["Quick Signup"] = true
 L["Raidframe Style"] = "Schlachtzugsfenster Stil"
 L["Ranged DPS"] = "Fernkämpfer DD"
 L["Re-Run the installation process."] = "Starte den Installatonsprozess neu"
@@ -269,6 +270,7 @@ L["Skin the two small Head/Cloak toggle checkboxes on the character frame in Elv
 L["Skin the WhatsTraining page in the Spellbook in ElvUI style"] = "Skinne die Seite WhatsTraining im Zauberbuch im ElvUI-Stil."
 L["Skip and close"] = "Überspringen und schließen"
 L["Specializations are only displayed for the class you're currently logged into.\n\nGrab the updated import string from the Wago URL and import it manually.\n\nFor quick access to the Blizzard cooldown viewer panel use the button below."] = true
+L["Speed up the signup process for party and raid applications by double clicking the listing instead of clicking the signup button."] = true
 L["Step 1:"] = true
 L["Step 2:"] = true
 L["Subtlety"] = true

@@ -4,7 +4,8 @@
 - Added option to disable and hide the UI Errors Frame to /lucky config  
 
 **Retail:**  
-- Added option to auto accept role check popups for group/raid signups to /lucky config  
+- Added option to auto accept role check popups in LFG to /lucky config  
+- Added option to enable double-clicking to signup in LFG to /lucky config  
 - Updated SkironCooldownManager profile for all 40 specs  
 - Updated the edit mode specialization strings for all 40 specs (Advanced)  
 
