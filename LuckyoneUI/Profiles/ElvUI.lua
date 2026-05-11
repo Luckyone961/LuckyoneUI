@@ -2001,7 +2001,7 @@ function Private:Setup_ElvUI(layout)
 	if layout == 'main' or layout == 'support' then
 
 		-- Main/Support Player
-		E.db.unitframe.units.player.power.enable = false -- Private.IsAddOnLoaded('BetterCooldownManager') or Private.IsAddOnLoaded('Ayije_CDM')
+		E.db.unitframe.units.player.power.enable = false
 
 		-- Main/Support Party
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. (not Private.isRetail and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]')
@@ -2092,7 +2092,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.power.autoHide = false
 		E.db.unitframe.units.player.power.detachedWidth = 260
 		E.db.unitframe.units.player.power.detachFromFrame = true
-		E.db.unitframe.units.player.power.enable = not (Private.IsAddOnLoaded('BetterCooldownManager') or Private.IsAddOnLoaded('Ayije_CDM'))
+		E.db.unitframe.units.player.power.enable = true
 		E.db.unitframe.units.player.power.height = 18
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
