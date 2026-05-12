@@ -2,6 +2,7 @@
 
 **All WoW Versions:**  
 - Added option to disable and hide the UI Errors Frame to /lucky config  
+- Updated deDE locales  
 
 **Retail:**  
 - Added option to auto accept role check popups in LFG to /lucky config  
