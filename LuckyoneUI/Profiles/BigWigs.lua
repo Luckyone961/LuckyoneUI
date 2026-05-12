@@ -14,10 +14,10 @@ local function CallbackFunction(accepted, name)
 	BigWigsIconDB.hide = true
 	LDBI:Hide('BigWigs')
 
-	if scaled then -- Handle BattleRess x/y offsets for 1080p resolution
+	if scaled then -- 1080p x/y offsets
 		local bres = BigWigs3DB.namespaces.BigWigs_Plugins_BattleRes
 		if bres and bres.profiles and bres.profiles[name] then
-			bres.profiles[name].position = { nil, nil, -499, -514 }
+			bres.profiles[name].position = { nil, nil, -499, -514 } -- 1440p is -769, -694
 		end
 	end
 end

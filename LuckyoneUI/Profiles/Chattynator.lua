@@ -59,6 +59,10 @@ function Private:Setup_Chattynator()
 				2, -- X Offset
 				(scaled and -910) or -1232, -- Y Offset
 			},
+			["size"] = {
+				(scaled and 432) or 482, -- Width
+				(scaled and 168) or 206, -- Height
+			},
 			["tabs"] = {
 				{
 					["tabColor"] = "06a1ff",
@@ -163,10 +167,6 @@ function Private:Setup_Chattynator()
 					["filters"] = {
 					},
 				},
-			},
-			["size"] = {
-				(scaled and 432) or 482, -- Width
-				(scaled and 168) or 206, -- Height
 			},
 		},
 	}

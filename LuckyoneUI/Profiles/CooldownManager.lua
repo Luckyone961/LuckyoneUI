@@ -38,8 +38,7 @@ function Private:Setup_ACDM(installer)
 	local API = _G.Ayije_CDM_API
 	API:ImportProfile(importString, name)
 
-	-- 1080p needs different offset values
-	if scaled then
+	if scaled then -- 1080p x/y offsets
 		_G.Ayije_CDMDB.profiles[name].editModePositions.BuffBarCooldownViewer.Default.x = -288
         _G.Ayije_CDMDB.profiles[name].editModePositions.BuffBarCooldownViewer.Default.y = -100
 		_G.Ayije_CDMDB.profiles[name].editModePositions.BuffIconCooldownViewer.Default.y = -113
@@ -78,8 +77,7 @@ function Private:Setup_SCM(installer)
 	local API = _G.SCMAPI
 	API.ImportProfile(name, importString)
 
-	-- 1080p need a different Y offset position
-	if scaled then
+	if scaled then -- 1080p ANCHOR:1 Y offset
 		local DB = _G.SkironCooldownManagerDB
 		if DB then
 			DB.profiles[name].options.anchorConfig[1].anchor = { 'CENTER', 'ElvUIParent,UIParent', 'CENTER', 0, -163 }

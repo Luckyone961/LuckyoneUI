@@ -22,10 +22,13 @@ function Private:Setup_MPlusTimer(installer)
 	local API = _G.MPTAPI
 	API:ImportProfile(importString, name, true)
 
-	-- Additional data which is not part of the profile string
-	_G.MPTSV.AutoGossip = false -- "Auto Accept Gossip"
-	_G.MPTSV.KeySlot = false -- "Automatic Keyslot"
-	_G.MPTSV.LowerKey = false -- "Data from Lower Level"
+	local DB = _G.MPTSV
+	if DB then
+		-- Additional data which is not part of the profile string
+		DB.AutoGossip = false -- "Auto Accept Gossip"
+		DB.KeySlot = false -- "Automatic Keyslot"
+		DB.LowerKey = false -- "Data from Lower Level"
+	end
 
 	if installer then
 		_G.LuckyoneInstallStepComplete:ShowMessage(L["MPlusTimer profile has been set."])
