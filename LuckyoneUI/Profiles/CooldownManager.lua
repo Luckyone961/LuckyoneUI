@@ -82,7 +82,7 @@ function Private:Setup_SCM(installer)
 	if scaled then
 		local DB = _G.SkironCooldownManagerDB
 		if DB then
-			DB.profiles[name].options.anchorConfig[1].anchor = { 'CENTER', 'ElvUIParent,UIParent', 'CENTER', 0, -146 }
+			DB.profiles[name].options.anchorConfig[1].anchor = { 'CENTER', 'ElvUIParent,UIParent', 'CENTER', 0, -163 }
 		end
 	end
 
