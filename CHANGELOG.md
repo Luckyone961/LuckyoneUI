@@ -1,4 +1,9 @@
-﻿## Version 4.13 [13-05-2026]
+﻿## Version 4.14 [In Development]
+
+**Retail:**  
+- Updated PermoksAccountManager profile (Font size 10 > 11)  
+
+## Version 4.13 [13-05-2026]
 
 **All WoW Versions:**  
 - Added option to disable and hide the UI Errors Frame to /lucky config  
