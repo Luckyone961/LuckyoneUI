@@ -16,6 +16,7 @@ Private.Defaults = {
 			BossBanner = false,
 			HousingDecorAlerts = false,
 			LossOfControl = false,
+			UIErrorsFrame = false,
 			ZoneTextFrame = false,
 		},
 		minimap = {
@@ -27,9 +28,11 @@ Private.Defaults = {
 			removeNameplateRealm = false,
 		},
 		qualityOfLife = {
+			autoAcceptRole = false,
 			autoDismount = false,
 			easyDelete = false,
 			privacyOverlay = false,
+			quickSignup = false,
 		},
 		skins = {
 			BugSack = false,
@@ -40,6 +43,9 @@ Private.Defaults = {
 			NovaWorldBuffs = false,
 			Tabardy = false,
 			WhatsTraining = false,
+			Blizzard = {
+				CooldownViewer = false,
+			}
 		},
 	}
 }

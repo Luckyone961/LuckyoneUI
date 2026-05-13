@@ -9,6 +9,7 @@ local CreateFrame = CreateFrame
 local GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
 local GetQuestInfo = C_QuestLog.GetInfo
 local hooksecurefunc = hooksecurefunc
+local IsShiftKeyDown = IsShiftKeyDown
 local RemoveQuestWatch = C_QuestLog.RemoveQuestWatch
 
 -- Global environment
@@ -20,22 +21,34 @@ local DELETE_ITEM_CONFIRM_STRING = DELETE_ITEM_CONFIRM_STRING
 
 -- Disabled Blizzard Frames (Loading on init)
 function Private:DisabledFrames()
+	local HiddenFrame = CreateFrame('Frame', nil, UIParent)
+	HiddenFrame:Hide()
+
 	if Private.Addon.db.profile.disabledFrames.AlertFrame then
-		_G.AlertFrame:UnregisterAllEvents()
-		if Private.ElvUI then
-			ElvUI[1]:DisableMover('AlertFrameMover')
+		local AlertFrame = _G.AlertFrame
+		if AlertFrame then
+			AlertFrame:UnregisterAllEvents()
+			if Private.ElvUI then
+				ElvUI[1]:DisableMover('AlertFrameMover')
+			end
 		end
 	end
 
 	if Private.Addon.db.profile.disabledFrames.BossBanner and Private.isRetail then
-		_G.BossBanner:UnregisterAllEvents()
-		if Private.ElvUI then
-			ElvUI[1]:DisableMover('BossBannerMover')
+		local BossBanner = _G.BossBanner
+		if BossBanner then
+			BossBanner:UnregisterAllEvents()
+			if Private.ElvUI then
+				ElvUI[1]:DisableMover('BossBannerMover')
+			end
 		end
 	end
 
 	if Private.Addon.db.profile.disabledFrames.ZoneTextFrame then
-		_G.ZoneTextFrame:UnregisterAllEvents()
+		local ZoneTextFrame = _G.ZoneTextFrame
+		if ZoneTextFrame then
+			ZoneTextFrame:UnregisterAllEvents()
+		end
 	end
 
 	if Private.Addon.db.profile.disabledFrames.HousingDecorAlerts and Private.isRetail then
@@ -44,20 +57,30 @@ function Private:DisabledFrames()
 	end
 
 	if Private.Addon.db.profile.disabledFrames.LossOfControl and Private.isRetail then
-		_G.LossOfControlFrame:UnregisterAllEvents()
-		if Private.ElvUI then
-			ElvUI[1]:DisableMover('LossControlMover')
+		local LossOfControlFrame = _G.LossOfControlFrame
+		if LossOfControlFrame then
+			LossOfControlFrame:UnregisterAllEvents()
+			if Private.ElvUI then
+				ElvUI[1]:DisableMover('LossControlMover')
+			end
 		end
 	end
 
 	if Private.Addon.db.profile.disabledFrames.ApplicationCover and Private.isRetail then
-		local HiddenFrame = CreateFrame('Frame', nil, UIParent)
-		HiddenFrame:Hide()
 		local Cover = _G.LFGListFrame.ApplicationViewer.UnempoweredCover
 		if Cover then
 			Cover:UnregisterAllEvents()
 			Cover:SetParent(HiddenFrame)
 			Cover:Hide()
+		end
+	end
+
+	if Private.Addon.db.profile.disabledFrames.UIErrorsFrame then
+		local ErrorFrame = _G.UIErrorsFrame
+		if ErrorFrame then
+			ErrorFrame:UnregisterAllEvents()
+			ErrorFrame:SetParent(HiddenFrame)
+			ErrorFrame:Hide()
 		end
 	end
 end
@@ -74,6 +97,41 @@ function Private:EasyDelete()
 	-- Quests and Quest starters
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', function(frame)
 		frame.EditBox:SetText(DELETE_ITEM_CONFIRM_STRING)
+	end)
+end
+
+-- Auto accept role check
+function Private:AutoAcceptRole()
+	if not (Private.isRetail and Private.Addon.db.profile.qualityOfLife.autoAcceptRole) then return end
+
+	-- Auto click on show
+	_G.LFDRoleCheckPopupAcceptButton:SetScript('OnShow', function()
+		if not IsShiftKeyDown() then
+			_G.LFDRoleCheckPopupAcceptButton:Click()
+		end
+	end)
+
+	-- Allow skipping auto-accept while shift key is down
+	_G.LFGListApplicationDialog:SetScript('OnShow', function()
+		if not IsShiftKeyDown() then
+			_G.LFGListApplicationDialog.SignUpButton:Click()
+		end
+	end)
+end
+
+-- Quick signup (double-click LFG search results to open signup)
+function Private:QuickSignup()
+	if not (Private.isRetail and Private.Addon.db.profile.qualityOfLife.quickSignup) then return end
+
+	local SearchPanel = (_G.LFGListFrame and _G.LFGListFrame.SearchPanel)
+
+	hooksecurefunc('LFGListSearchEntry_Update', function(entry)
+		entry:SetScript('OnDoubleClick', function(_, button)
+			if button ~= 'LeftButton' then return end
+			if SearchPanel then
+				_G.LFGListSearchPanel_SignUp(SearchPanel)
+			end
+		end)
 	end)
 end
 
@@ -102,9 +160,11 @@ function Private:RemoveNameplateRealm()
 end
 
 function Blizzard:PLAYER_ENTERING_WORLD()
+	Private:AutoAcceptRole()
 	Private:DisabledFrames()
 	Private:EasyDelete()
 	Private:PrivacyOverlay()
+	Private:QuickSignup()
 	Private:RemoveNameplateRealm()
 end
 

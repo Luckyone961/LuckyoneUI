@@ -25,11 +25,14 @@ local DT = E:GetModule('DataTexts')
 local NP = E:GetModule('NamePlates')
 
 -- Disable LibDualSpec to set the profile
-local function HandleLibDualSpec()
-	ElvDB['namespaces']['LibDualSpec-1.0'] = ElvDB['namespaces']['LibDualSpec-1.0'] or {}
-	ElvDB['namespaces']['LibDualSpec-1.0']['char'] = ElvDB['namespaces']['LibDualSpec-1.0']['char'] or {}
-	ElvDB['namespaces']['LibDualSpec-1.0']['char'][Private.myNameRealm] = {}
-	ElvDB['namespaces']['LibDualSpec-1.0']['char'][Private.myNameRealm]['enabled'] = false
+local function DisableLibDualSpec()
+	local namespaces = ElvDB.namespaces
+	namespaces['LibDualSpec-1.0'] = namespaces['LibDualSpec-1.0'] or {}
+
+	local libDualSpec = namespaces['LibDualSpec-1.0']
+	libDualSpec.char = libDualSpec.char or {}
+	libDualSpec.char[Private.myNameRealm] = libDualSpec.char[Private.myNameRealm] or {}
+	libDualSpec.char[Private.myNameRealm].enabled = false
 end
 
 -- Full frontend refresh
@@ -161,25 +164,6 @@ function Private:Setup_PrivateDB(includePlugins)
 		E.private.chat.enable = (not Private.IsAddOnLoaded('Chattynator'))
 		E.private.general.chatBubbles = 'disabled'
 		E.private.nameplates.enable = (not Private.IsAddOnLoaded('Plater'))
-
-		-- LuckyoneUI settings
-		Private.Addon.db.profile.disabledFrames.AlertFrame = true
-		Private.Addon.db.profile.disabledFrames.ApplicationCover = true
-		Private.Addon.db.profile.disabledFrames.BossBanner = true
-		Private.Addon.db.profile.disabledFrames.HousingDecorAlerts = true
-		Private.Addon.db.profile.disabledFrames.LossOfControl = true
-		Private.Addon.db.profile.misc.dataTextsTweaks = true
-		Private.Addon.db.profile.misc.mythicVisibility = true
-		Private.Addon.db.profile.qualityOfLife.easyDelete = true
-		Private.Addon.db.profile.qualityOfLife.privacyOverlay = true
-		Private.Addon.db.profile.skins.BugSack = true
-		Private.Addon.db.profile.skins.DejaClassicStats = true
-		Private.Addon.db.profile.skins.LeatrixPlus = true
-		Private.Addon.db.profile.skins.LFGBulletinBoard = true
-		Private.Addon.db.profile.skins.NovaSpellRankChecker = true
-		Private.Addon.db.profile.skins.NovaWorldBuffs = true
-		Private.Addon.db.profile.skins.Tabardy = true
-		Private.Addon.db.profile.skins.WhatsTraining = true
 	end
 end
 
@@ -194,7 +178,7 @@ function Private:HandleAlts(layout)
 	end
 
 	if Private.isRetail or Private.isMists then
-		HandleLibDualSpec()
+		DisableLibDualSpec()
 	end
 
 	-- Load the most recent profile
@@ -223,10 +207,10 @@ function Private:HandleAlts(layout)
 	Private:Print(L["Applied profile: "] .. mostRecentProfile)
 end
 
--- Setup The War Within layout
+-- Setup Midnight layout
 function Private:Setup_Layout(layout, installer)
 	if Private.isRetail or Private.isMists then
-		HandleLibDualSpec()
+		DisableLibDualSpec()
 	end
 
 	-- Create a fresh profile in ElvUI
@@ -2017,7 +2001,7 @@ function Private:Setup_ElvUI(layout)
 	if layout == 'main' or layout == 'support' then
 
 		-- Main/Support Player
-		E.db.unitframe.units.player.power.enable = false -- Private.IsAddOnLoaded('BetterCooldownManager') or Private.IsAddOnLoaded('Ayije_CDM')
+		E.db.unitframe.units.player.power.enable = false
 
 		-- Main/Support Party
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. (not Private.isRetail and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]')
@@ -2108,7 +2092,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.power.autoHide = false
 		E.db.unitframe.units.player.power.detachedWidth = 260
 		E.db.unitframe.units.player.power.detachFromFrame = true
-		E.db.unitframe.units.player.power.enable = not (Private.IsAddOnLoaded('BetterCooldownManager') or Private.IsAddOnLoaded('Ayije_CDM'))
+		E.db.unitframe.units.player.power.enable = true
 		E.db.unitframe.units.player.power.height = 18
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true

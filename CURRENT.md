@@ -1,14 +1,14 @@
-## Version 4.12 [06-05-2026]
+## Version 4.13 [13-05-2026]
 
 **All WoW Versions:**  
-- 1080p improvements (BigWigs and Details)  
-- Added optional profile for the Baganator addon  
+- Added option to disable and hide the UI Errors Frame to /lucky config  
+- Updated deDE locales  
 - Updated frFR locales (Credits: Oniria)  
-- Updated graphics config section mouseover descriptions  
 
 **Retail:**  
-- Added basic edit mode specialization strings for all 40 specs (WIP)  
-- Added new Cooldown Manager section in /lucky config  
-- Added optional profile for the MPlusTimer addon  
-- Added SkironCooldownManager profile (Requires alpha)  
-- Adjusted default Y-offset of Boss- and Zone button slightly  
+- Added option to auto accept role check popups in LFG to /lucky config  
+- Added option to enable double-clicking to signup in LFG to /lucky config  
+- Added skin for the Blizzard Cooldown Manager settings panel  
+- Removed BetterCooldownManager profile  
+- Updated SkironCooldownManager profile for all 40 specs (Requires alpha)  
+- Updated the edit mode specialization strings for all 40 specs (Advanced)  

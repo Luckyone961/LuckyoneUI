@@ -22,9 +22,8 @@ function Private:Setup_BuffReminders()
 	local BuffReminders = _G.BuffReminders
 	BuffReminders:Import(importString, name)
 
-	-- 1080p need a different Y offset position
-	if scaled then
-		_G.BuffRemindersDB.profiles[name].categorySettings.main.position.y = 420
+	if scaled then -- 1080p offsets
+		_G.BuffRemindersDB.profiles[name].categorySettings.main.position.y = 420 -- 1440p is 580
 	end
 
 	Private:Print(L["BuffReminders profile has been set."])
