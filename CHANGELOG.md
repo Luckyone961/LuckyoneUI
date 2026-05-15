@@ -2,6 +2,7 @@
 
 **Retail:**  
 - Updated PermoksAccountManager profile (Font size 10 > 11)  
+- Updated SkironCooldownManager profile  
 
 ## Version 4.13 [13-05-2026]
 
