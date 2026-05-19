@@ -133,7 +133,7 @@ function Private:QuickSignup()
 			local resultID = self.resultID
 			if not resultID or not LFGListSearchPanelUtil_CanSelectResult(resultID) then return end
 
-			local panel = self:GetParent():GetParent()
+			local panel = _G.LFGListFrame.SearchPanel
 			if panel.selectedResult ~= resultID then
 				LFGListSearchPanel_SelectResult(panel, resultID)
 			end
