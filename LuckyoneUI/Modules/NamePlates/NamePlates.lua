@@ -14,12 +14,15 @@ local unpack = unpack
 
 -- API cache
 local hooksecurefunc = hooksecurefunc
+local UnitExists = UnitExists
+local C_NamePlate_GetNamePlateForUnit = C_NamePlate.GetNamePlateForUnit
 
 -- ElvUI reference
 local E = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 
 local hooked
+local plateHooked
 
 local function IsEnabled()
 	local db = Private.Addon.db.profile.nameplates.focusTextureEnable
@@ -36,9 +39,14 @@ local function GetFocusTexture()
 	return LSM:Fetch('statusbar', db)
 end
 
-local function IsFocusUnit(unit)
-	if not unit then return false end
-	return E:UnitIsUnit(unit, 'focus')
+-- Focus validation, seems to be the best way since GUID is secret?
+local function GetFocusNameplate()
+	if not UnitExists('focus') then return end
+
+	local blizzPlate = C_NamePlate_GetNamePlateForUnit('focus')
+	if blizzPlate and blizzPlate.unitFrame then
+		return blizzPlate.unitFrame
+	end
 end
 
 local function SetBarTexture(bar, texture)
@@ -47,18 +55,21 @@ local function SetBarTexture(bar, texture)
 	end
 end
 
-local function ApplyPlateTexture(nameplate)
+local function ApplyPlateTexture(nameplate, focusPlate)
 	if not nameplate or not nameplate.Health then return end
 
-	local texture = IsFocusUnit(nameplate.unit) and GetFocusTexture() or GetDefaultTexture()
+	focusPlate = (focusPlate == nil and GetFocusNameplate()) or focusPlate
+	local texture = (focusPlate and nameplate == focusPlate) and GetFocusTexture() or GetDefaultTexture()
 	SetBarTexture(nameplate.Health, texture)
 end
 
 function Private:UpdateFocusNameplateTextures()
 	if not NP or not NP.Plates or not IsEnabled() then return end
 
+	local focusPlate = GetFocusNameplate()
+
 	for nameplate in pairs(NP.Plates) do
-		ApplyPlateTexture(nameplate)
+		ApplyPlateTexture(nameplate, focusPlate)
 	end
 end
 
@@ -70,34 +81,37 @@ function Private:RestoreNameplateTextures()
 end
 
 local function CheckHook()
-	if hooked then return end
-	if not NP or not NP.Update_StatusBars then return end
+	if not NP then return end
 
-	hooksecurefunc(NP, 'Update_StatusBars', Private.UpdateFocusNameplateTextures)
-	hooked = true
-end
+	if not hooked and NP.Update_StatusBars then
+		hooksecurefunc(NP, 'Update_StatusBars', Private.UpdateFocusNameplateTextures)
+		hooked = true
+	end
 
-function NamePlates:PLAYER_FOCUS_CHANGED()
-	Private:UpdateFocusNameplateTextures()
-end
+	if not plateHooked and NP.PostUpdateAllElements and NP.NAME_PLATE_UNIT_REMOVED then
+		hooksecurefunc(NP, 'PostUpdateAllElements', function(nameplate, event)
+			if not IsEnabled() or event ~= 'NAME_PLATE_UNIT_ADDED' then return end
+			if nameplate == NP.TestFrame or nameplate.widgetsOnly then return end
 
-function NamePlates:NAME_PLATE_UNIT_ADDED(_, unit)
-	if not IsEnabled() then return end
-	if not IsFocusUnit(unit) then return end
-	if not NP or not NP.Plates then return end
-
-	for nameplate in pairs(NP.Plates) do
-		if E:UnitIsUnit(nameplate.unit, unit) then
 			ApplyPlateTexture(nameplate)
-			break
-		end
+		end)
+		hooksecurefunc(NP, 'NAME_PLATE_UNIT_REMOVED', function(nameplate)
+			if not IsEnabled() then return end
+
+			local focusPlate = GetFocusNameplate()
+
+			-- Recycled frames keep the previous texture until explicitly reset
+			SetBarTexture(nameplate.Health, GetDefaultTexture())
+
+			if focusPlate and focusPlate == nameplate then
+				Private:UpdateFocusNameplateTextures()
+			end
+		end)
+		plateHooked = true
 	end
 end
 
-function NamePlates:NAME_PLATE_UNIT_REMOVED(_, unit)
-	if not IsEnabled() then return end
-	if not IsFocusUnit(unit) then return end
-
+function NamePlates:PLAYER_FOCUS_CHANGED()
 	Private:UpdateFocusNameplateTextures()
 end
 
@@ -111,8 +125,6 @@ function NamePlates:OnEnable()
 
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 	self:RegisterEvent('PLAYER_FOCUS_CHANGED')
-	self:RegisterEvent('NAME_PLATE_UNIT_ADDED')
-	self:RegisterEvent('NAME_PLATE_UNIT_REMOVED')
 
 	Private:UpdateFocusNameplateTextures()
 end
