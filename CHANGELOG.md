@@ -1,5 +1,8 @@
 ﻿## Version 4.14 [In Development]
 
+**All WoW Versions:**  
+- ElvUI 15.14+ compatibility  
+
 **Retail:**  
 - Added option to select a different ElvUI focus nameplate texture  
 - Updated PermoksAccountManager profile  

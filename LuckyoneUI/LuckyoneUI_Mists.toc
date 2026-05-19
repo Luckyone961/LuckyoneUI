@@ -8,7 +8,7 @@
 ## Version: 4.13
 
 ## Interface: 50503
-## X-Required-ElvUI: 15.13
+## X-Required-ElvUI: 15.14
 
 ## X-Curse-Project-ID: 363472
 ## X-Wago-ID: Rn6VLGdB
