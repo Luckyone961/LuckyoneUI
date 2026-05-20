@@ -5,6 +5,7 @@
 
 **Retail:**  
 - Added option to select a different ElvUI focus nameplate texture  
+- Updated Northern Sky Raid Tools profile (Requires alpha or 12.0.95 or later)  
 - Updated PermoksAccountManager profile  
 - Updated SkironCooldownManager profile  
 
