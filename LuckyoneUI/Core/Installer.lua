@@ -597,6 +597,27 @@ local function BuildInstallerData()
 		stepTitles[pageIndex] = L["ElvUI Layouts"]
 		pageIndex = pageIndex + 1
 
+		-- Retail-only: ElvUI Extras
+		pages[pageIndex] = function()
+			local f = installerFrame
+			f.SubTitle:SetText(L["ElvUI Extras"])
+			f.Desc1:SetText(L["This step will configure additional ElvUI modules such as Nameplates and plugins."])
+			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+			f.Option1:Show()
+			f.Option1:SetScript('OnClick', function() Private:Setup_NamePlates(true) end)
+			f.Option1:SetText('ElvUI Nameplates')
+			if Private.isRetail then
+				f.Option2:Show()
+				f.Option2:SetScript('OnClick', function() Private:Setup_WindTools(true) end)
+				f.Option2:SetText('|cff5385edWindTools|r')
+			end
+			-- f.Option3:Show()
+			-- f.Option3:SetScript('OnClick', function() Private:Setup_ShadowAndLight(true) end)
+			-- f.Option3:SetText('|cff9482c9Shadow & Light|r')
+		end
+		stepTitles[pageIndex] = L["ElvUI Extras"]
+		pageIndex = pageIndex + 1
+
 		-- Page: ElvUI Filters
 		pages[pageIndex] = function()
 			local f = installerFrame
@@ -609,24 +630,6 @@ local function BuildInstallerData()
 		end
 		stepTitles[pageIndex] = L["ElvUI Filters"]
 		pageIndex = pageIndex + 1
-
-		-- Retail-only: ElvUI plugins
-		if Private.isRetail then
-			pages[pageIndex] = function()
-				local f = installerFrame
-				f.SubTitle:SetText(L["ElvUI Plugins"])
-				f.Desc1:SetText(L["This step will configure profiles for other ElvUI plugins."])
-				f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-				f.Option1:Show()
-				f.Option1:SetScript('OnClick', function() Private:Setup_WindTools(true) end)
-				f.Option1:SetText('|cff5385edWindTools|r')
-				-- f.Option2:Show()
-				-- f.Option2:SetScript('OnClick', function() Private:Setup_ShadowAndLight(true) end)
-				-- f.Option2:SetText('|cff9482c9Shadow & Light|r')
-			end
-			stepTitles[pageIndex] = L["ElvUI Plugins"]
-			pageIndex = pageIndex + 1
-		end
 
 		-- Page: Color Theme
 		pages[pageIndex] = function()
@@ -673,24 +676,6 @@ local function BuildInstallerData()
 		f.Option1:SetText(L["Setup CVars"])
 	end
 	stepTitles[pageIndex] = L["Console Variables"]
-	pageIndex = pageIndex + 1
-
-	-- Page: NamePlates
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["NamePlates"])
-		f.Desc1:SetText(L["Choose between ElvUI NamePlates and Plater NamePlates."])
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() Private:Setup_Plater(true) end)
-		f.Option1:SetText('Plater')
-		if Private.ElvUI then
-			f.Option2:Show()
-			f.Option2:SetScript('OnClick', function() Private:Setup_NamePlates(true) end)
-			f.Option2:SetText('ElvUI')
-		end
-	end
-	stepTitles[pageIndex] = L["NamePlates"]
 	pageIndex = pageIndex + 1
 
 	-- Page: BigWigs

@@ -2,6 +2,8 @@
 
 **All WoW Versions:**  
 - ElvUI 15.14+ compatibility  
+- Removed Plater from the installer (Still available via /lucky config)  
+- Updated the installer steps  
 
 **Retail:**  
 - Added option to select a different ElvUI focus nameplate texture  
