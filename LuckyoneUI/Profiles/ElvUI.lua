@@ -2190,7 +2190,7 @@ function Private:Setup_ElvUI(layout)
 	if layout == 'main' then
 
 		-- Main movers
-		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,399'
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
 		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,82'
 		E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,49'
@@ -2198,12 +2198,12 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,115'
-		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,351'
+		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 
 	elseif layout == 'healing' then
 
 		-- Healing movers
-		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,399'
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
 		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvAB_2 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
 		E.db.movers.ElvAB_3 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
@@ -2211,12 +2211,12 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
-		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,351'
+		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 
 	elseif layout == 'support' then
 
 		-- Support movers
-		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,399'
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
 		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvAB_2 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
 		E.db.movers.ElvAB_3 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
@@ -2224,7 +2224,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
-		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,351'
+		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 	end
 
 	-- Initial DT width
