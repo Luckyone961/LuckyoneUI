@@ -7,6 +7,7 @@
 
 **Retail:**  
 - Added option to select a different ElvUI focus nameplate texture  
+- Fixed an error regarding the new double-clicking to signup option  
 - Updated Northern Sky Raid Tools profile (For next release or alpha version users)  
 - Updated PermoksAccountManager profile  
 - Updated SkironCooldownManager profile  
