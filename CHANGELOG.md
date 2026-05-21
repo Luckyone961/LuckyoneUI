@@ -3,6 +3,7 @@
 **All WoW Versions:**  
 - ElvUI 15.14+ compatibility  
 - Removed Plater from the installer (Still available via /lucky config)  
+- Updated Details profile  
 - Updated the installer steps  
 
 **Retail:**  
