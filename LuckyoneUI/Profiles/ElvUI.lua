@@ -633,6 +633,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.privateAuras.borderScale = 4
 	E.db.general.privateAuras.countdownNumbers = true
 	E.db.general.privateAuras.duration.enable = false
+	E.db.general.privateAuras.enable = false
 	E.db.general.privateAuras.icon.amount = 5
 	E.db.general.privateAuras.icon.offset = 10
 	E.db.general.privateAuras.icon.size = 48
