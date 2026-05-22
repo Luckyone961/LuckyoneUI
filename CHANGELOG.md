@@ -1,4 +1,4 @@
-﻿## Version 4.14 [In Development]
+﻿## Version 4.14 [22-05-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.14+ compatibility  
@@ -12,7 +12,7 @@
 - Fixed an error regarding the new double-clicking to signup option  
 - Updated Northern Sky Raid Tools profile (For next release or alpha version users)  
 - Updated PermoksAccountManager profile  
-- Updated SkironCooldownManager profile  
+- Updated SkironCooldownManager profile (Requires alpha)  
 
 ## Version 4.13 [13-05-2026]
 
