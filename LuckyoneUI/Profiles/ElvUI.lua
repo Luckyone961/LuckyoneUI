@@ -1458,6 +1458,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.player.castbar.customTimeFont.font = Private.Font
 	E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 14
+	E.db.unitframe.units.player.castbar.enable = (not Private.IsAddOnLoaded('SkironCooldownManager'))
 	E.db.unitframe.units.player.castbar.height = 26
 	E.db.unitframe.units.player.castbar.hideName = true
 	E.db.unitframe.units.player.castbar.latency = false
@@ -1506,14 +1507,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.debuffs.clickThrough = true
 		E.db.unitframe.units.player.debuffs.enable = true
 		E.db.unitframe.units.player.debuffs.growthX = 'LEFT'
-		E.db.unitframe.units.player.debuffs.isAuraCrowdControl = true
-		E.db.unitframe.units.player.debuffs.isAuraCrowdControlPlayer = true
-		E.db.unitframe.units.player.debuffs.isAuraImportant = true
-		E.db.unitframe.units.player.debuffs.isAuraImportantPlayer = true
-		E.db.unitframe.units.player.debuffs.isAuraPermanent = true
-		E.db.unitframe.units.player.debuffs.isAuraPermanentPlayer = true
-		E.db.unitframe.units.player.debuffs.isAuraRaid = true
-		E.db.unitframe.units.player.debuffs.isAuraRaidPlayer = true
 		E.db.unitframe.units.player.debuffs.numrows = 1
 		E.db.unitframe.units.player.debuffs.perrow = 4
 		E.db.unitframe.units.player.debuffs.sizeOverride = 54
