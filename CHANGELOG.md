@@ -2,6 +2,7 @@
 
 **All WoW Versions:**  
 - ElvUI 15.14+ compatibility  
+- Adjusted Nameplate spacing for the new HitTestInset changes (OverlapV 1.8, Click height 22)  
 - Removed Plater from the installer (Still available via /lucky config)  
 - Updated Details profile  
 - Updated the installer steps  
