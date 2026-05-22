@@ -85,6 +85,7 @@ Private.Modules = {
 	Core = Private.Addon:NewModule('Core', 'AceEvent-3.0'),
 	Blizzard = Private.Addon:NewModule('Blizzard', 'AceEvent-3.0'),
 	Misc = Private.ElvUI and Private.Addon:NewModule('Misc', 'AceEvent-3.0') or nil,
+	NamePlates = Private.ElvUI and Private.Addon:NewModule('NamePlates', 'AceEvent-3.0') or nil,
 }
 
 -- Called directly after the addon is fully loaded

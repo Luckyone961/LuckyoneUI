@@ -298,14 +298,15 @@ function Private:Setup_NamePlates(installer)
 
 	-- NamePlates general
 	E.db.nameplates.classColorNames = true
+	E.db.nameplates.clickSize.height = 22
 	E.db.nameplates.clickSize.width = 210
 	E.db.nameplates.fadeIn = false
 	E.db.nameplates.lowHealthThreshold = 0
 	E.db.nameplates.overlapH = 1.2
-	E.db.nameplates.overlapV = 1.6
+	E.db.nameplates.overlapV = 1.8
 	E.db.nameplates.statusbar = Private.Texture
-	E.db.nameplates.threat.useSoloColor = true
 	E.db.nameplates.threat.skipGoodColor = true
+	E.db.nameplates.threat.useSoloColor = true
 	E.db.nameplates.useBlizzardAuras = Private.isRetail -- Use filter prio in nonRetail
 
 	-- NamePlates misc
@@ -633,6 +634,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.privateAuras.borderScale = 4
 	E.db.general.privateAuras.countdownNumbers = true
 	E.db.general.privateAuras.duration.enable = false
+	E.db.general.privateAuras.enable = false
 	E.db.general.privateAuras.icon.amount = 5
 	E.db.general.privateAuras.icon.offset = 10
 	E.db.general.privateAuras.icon.size = 48
@@ -1456,6 +1458,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.player.castbar.customTimeFont.font = Private.Font
 	E.db.unitframe.units.player.castbar.customTimeFont.fontSize = 14
+	E.db.unitframe.units.player.castbar.enable = (not Private.IsAddOnLoaded('SkironCooldownManager'))
 	E.db.unitframe.units.player.castbar.height = 26
 	E.db.unitframe.units.player.castbar.hideName = true
 	E.db.unitframe.units.player.castbar.latency = false
@@ -1504,14 +1507,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.debuffs.clickThrough = true
 		E.db.unitframe.units.player.debuffs.enable = true
 		E.db.unitframe.units.player.debuffs.growthX = 'LEFT'
-		E.db.unitframe.units.player.debuffs.isAuraCrowdControl = true
-		E.db.unitframe.units.player.debuffs.isAuraCrowdControlPlayer = true
-		E.db.unitframe.units.player.debuffs.isAuraImportant = true
-		E.db.unitframe.units.player.debuffs.isAuraImportantPlayer = true
-		E.db.unitframe.units.player.debuffs.isAuraPermanent = true
-		E.db.unitframe.units.player.debuffs.isAuraPermanentPlayer = true
-		E.db.unitframe.units.player.debuffs.isAuraRaid = true
-		E.db.unitframe.units.player.debuffs.isAuraRaidPlayer = true
 		E.db.unitframe.units.player.debuffs.numrows = 1
 		E.db.unitframe.units.player.debuffs.perrow = 4
 		E.db.unitframe.units.player.debuffs.sizeOverride = 54
@@ -2189,7 +2184,7 @@ function Private:Setup_ElvUI(layout)
 	if layout == 'main' then
 
 		-- Main movers
-		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,399'
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
 		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,82'
 		E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,49'
@@ -2197,12 +2192,12 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,115'
-		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,351'
+		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 
 	elseif layout == 'healing' then
 
 		-- Healing movers
-		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,399'
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
 		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvAB_2 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
 		E.db.movers.ElvAB_3 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
@@ -2210,12 +2205,12 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
-		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,351'
+		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 
 	elseif layout == 'support' then
 
 		-- Support movers
-		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,399'
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
 		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvAB_2 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
 		E.db.movers.ElvAB_3 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
@@ -2223,7 +2218,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
-		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,351'
+		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 	end
 
 	-- Initial DT width

@@ -10,6 +10,9 @@ local GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
 local GetQuestInfo = C_QuestLog.GetInfo
 local hooksecurefunc = hooksecurefunc
 local IsShiftKeyDown = IsShiftKeyDown
+local LFGListSearchPanel_SelectResult = LFGListSearchPanel_SelectResult
+local LFGListSearchPanel_SignUp = LFGListSearchPanel_SignUp
+local LFGListSearchPanelUtil_CanSelectResult = LFGListSearchPanelUtil_CanSelectResult
 local RemoveQuestWatch = C_QuestLog.RemoveQuestWatch
 
 -- Global environment
@@ -123,14 +126,19 @@ end
 function Private:QuickSignup()
 	if not (Private.isRetail and Private.Addon.db.profile.qualityOfLife.quickSignup) then return end
 
-	local SearchPanel = (_G.LFGListFrame and _G.LFGListFrame.SearchPanel)
-
 	hooksecurefunc('LFGListSearchEntry_Update', function(entry)
-		entry:SetScript('OnDoubleClick', function(_, button)
+		entry:SetScript('OnDoubleClick', function(self, button)
 			if button ~= 'LeftButton' then return end
-			if SearchPanel then
-				_G.LFGListSearchPanel_SignUp(SearchPanel)
+
+			local resultID = self.resultID
+			if not resultID or not LFGListSearchPanelUtil_CanSelectResult(resultID) then return end
+
+			local panel = _G.LFGListFrame.SearchPanel
+			if panel.selectedResult ~= resultID then
+				LFGListSearchPanel_SelectResult(panel, resultID)
 			end
+
+			LFGListSearchPanel_SignUp(panel)
 		end)
 	end)
 end

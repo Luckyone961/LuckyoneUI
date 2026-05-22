@@ -1,14 +1,15 @@
-## Version 4.13 [13-05-2026]
+## Version 4.14 [22-05-2026]
 
 **All WoW Versions:**  
-- Added option to disable and hide the UI Errors Frame to /lucky config  
-- Updated deDE locales  
-- Updated frFR locales (Credits: Oniria)  
+- ElvUI 15.14+ compatibility  
+- Adjusted Nameplate spacing for the new HitTestInset changes (OverlapV 1.8, Click height 22)  
+- Removed Plater from the installer (Still available via /lucky config)  
+- Updated Details profile  
+- Updated the installer steps  
 
 **Retail:**  
-- Added option to auto accept role check popups in LFG to /lucky config  
-- Added option to enable double-clicking to signup in LFG to /lucky config  
-- Added skin for the Blizzard Cooldown Manager settings panel  
-- Removed BetterCooldownManager profile  
-- Updated SkironCooldownManager profile for all 40 specs (Requires alpha)  
-- Updated the edit mode specialization strings for all 40 specs (Advanced)  
+- Added option to select a different ElvUI focus nameplate texture  
+- Fixed an error regarding the new double-clicking to signup option  
+- Updated Northern Sky Raid Tools profile (For next release or alpha version users)  
+- Updated PermoksAccountManager profile  
+- Updated SkironCooldownManager profile (Requires alpha)  

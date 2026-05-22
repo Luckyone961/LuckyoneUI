@@ -100,13 +100,13 @@ end
 local function BuildAddonProfilesSection()
 	local section = ACH:Group(L["Addon Profiles"], nil, 10)
 	section.args.header1 = ACH:Header(L["Addon Profiles"], 1)
-	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 2, nil, nil, nil, nil, not Private.ElvUI)
+	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 2, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.plugins.inline = true
 	section.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_WindTools() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_ShadowAndLight() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.nameplates = ACH:Group(L["Nameplate Profiles"], nil, 3)
 	section.args.nameplates.inline = true
-	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_NamePlates() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
+	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_NamePlates() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.ElvUI)
 	section.args.nameplates.args.plater = ACH:Execute('Plater', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_Plater() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.bossmods = ACH:Group(L["BossMods Profiles"], nil, 4)
 	section.args.bossmods.inline = true
@@ -183,7 +183,7 @@ local function BuildCVarsSection()
 	section.args.generalDesc.args.cvars = ACH:Description('- AutoPushSpellToActionBar 0\n- cameraDistanceMaxZoomFactor 2.6\n- countdownForCooldowns 1\n- fstack_preferParentKeys 0\n- lockActionBars 1\n- minimapTrackingShowAll 1\n- screenshotQuality 10\n- showNPETutorials 0\n- showTutorials 0\n- threatWarning 3\n- UberTooltips 1\n', 1, 'medium')
 	section.args.nameplateDesc = ACH:Group(L["Nameplate CVars"], nil, 4)
 	section.args.nameplateDesc.inline = true
-	section.args.nameplateDesc.args.cvars = ACH:Description('- nameplateLargerScale 1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1.2\n- nameplateOverlapV 1.6\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1\n- UnitNameEnemyTotemName 1', 1, 'medium')
+	section.args.nameplateDesc.args.cvars = ACH:Description('- nameplateLargerScale 1\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1.2\n- nameplateOverlapV 1.8\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1\n- UnitNameEnemyTotemName 1', 1, 'medium')
 	return section
 end
 
@@ -311,10 +311,14 @@ local function BuildElvUITweaksSection()
 	section.args.toggles.inline = true
 	section.args.toggles.args.mythicVisibility = ACH:Toggle(L["Mythic Raidframe Visibility"], L["Feature explained in the description below"], 1, nil, nil, nil, function() return Private.Addon.db.profile.misc.mythicVisibility end, function(_, value) Private.Addon.db.profile.misc.mythicVisibility = value end, nil, not Private.isRetail)
 	section.args.toggles.args.dataTextsTweaks = ACH:Toggle(L["DataTexts Tweaks"], L["Feature explained in the description below"], 2, nil, nil, nil, function() return Private.Addon.db.profile.misc.dataTextsTweaks end, function(_, value) Private.Addon.db.profile.misc.dataTextsTweaks = value end, nil, not Private.isRetail)
-	section.args.mythicVisibilityDesc = ACH:Group(L["Mythic Raidframe Visibility explained"], nil, 3, nil, nil, nil, nil, not Private.isRetail)
+	section.args.nameplates = ACH:Group(L["Nameplates"], nil, 3)
+	section.args.nameplates.inline = true
+	section.args.nameplates.args.focusTextureEnable = ACH:Toggle(L["Enable Focus Texture"], nil, 1, nil, nil, nil, function() return Private.Addon.db.profile.nameplates.focusTextureEnable end, function(_, value) Private.Addon.db.profile.nameplates.focusTextureEnable = value if value then Private:UpdateFocusNameplateTextures() else Private:RestoreNameplateTextures() end end)
+	section.args.nameplates.args.focusTexture = ACH:SharedMediaStatusbar(L["Select Texture"], nil, 2, nil, function() return Private.Addon.db.profile.nameplates.focusTexture end, function(_, value) Private.Addon.db.profile.nameplates.focusTexture = value Private:UpdateFocusNameplateTextures() end, function() return not Private.Addon.db.profile.nameplates.focusTextureEnable end)
+	section.args.mythicVisibilityDesc = ACH:Group(L["Mythic Raidframe Visibility explained"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
 	section.args.mythicVisibilityDesc.inline = true
 	section.args.mythicVisibilityDesc.args.desc = ACH:Description(L["Your Raid 1 frames will be enabled if you enter Mythic difficulty (Triggers after loading screen)\nYour Raid 2 frames will be disabled if you enter Mythic difficulty (Triggers after loading screen)\n\nAdditionally the maxAllowedGroups setting will be enabled and the visibility state gets modified\nBenched people in groups 5-8 while not show up when you're Mythic raiding\n\nAll changes mentioned above will revert back to default upon leaving the raid"], 1, 'medium', nil, nil, nil, nil, nil, not Private.isRetail)
-	section.args.dataTextsTweaksDesc = ACH:Group(L["DataTexts Tweaks explained"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
+	section.args.dataTextsTweaksDesc = ACH:Group(L["DataTexts Tweaks explained"], nil, 5, nil, nil, nil, nil, not Private.isRetail)
 	section.args.dataTextsTweaksDesc.inline = true
 	section.args.dataTextsTweaksDesc.args.desc = ACH:Description(L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your specialization\nIt also assumes you have properly setup specialization-based profile loading in ElvUI profiles"], 1, 'medium', nil, nil, nil, nil, nil, not Private.isRetail)
 	return section

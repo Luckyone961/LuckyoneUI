@@ -27,6 +27,10 @@ Private.Defaults = {
 			mythicVisibility = false,
 			removeNameplateRealm = false,
 		},
+		nameplates = {
+			focusTexture = 'Luckyone Focus',
+			focusTextureEnable = false,
+		},
 		qualityOfLife = {
 			autoAcceptRole = false,
 			autoDismount = false,
