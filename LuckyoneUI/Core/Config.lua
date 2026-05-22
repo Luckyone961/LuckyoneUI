@@ -100,13 +100,13 @@ end
 local function BuildAddonProfilesSection()
 	local section = ACH:Group(L["Addon Profiles"], nil, 10)
 	section.args.header1 = ACH:Header(L["Addon Profiles"], 1)
-	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 2, nil, nil, nil, nil, not Private.ElvUI)
+	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 2, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.plugins.inline = true
 	section.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_WindTools() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.plugins.args.sle = ACH:Execute('|cff9482c9Shadow & Light|r', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_ShadowAndLight() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.nameplates = ACH:Group(L["Nameplate Profiles"], nil, 3)
 	section.args.nameplates.inline = true
-	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_NamePlates() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
+	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_NamePlates() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.ElvUI)
 	section.args.nameplates.args.plater = ACH:Execute('Plater', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_Plater() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.bossmods = ACH:Group(L["BossMods Profiles"], nil, 4)
 	section.args.bossmods.inline = true
