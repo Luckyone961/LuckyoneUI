@@ -132,6 +132,7 @@ L["ElvUI Plugins"] = "Plugins ElvUI"
 L["ElvUI Themes"] = "Thèmes ElvUI"
 L["ElvUI Tweaks"] = "Ajustements ElvUI"
 L["Enable Focus Texture"] = true
+L["Enable Target Texture"] = true
 L["Enhancement"] = "Amélioration"
 L["Enter Edit Mode and select Import on the Dropdown.\nUse CTRL+V to paste string, then pick a name and click import."] = "Entrez en Mode Édition et sélectionnez Importer dans le menu déroulant.\nUtilisez CTRL+V pour coller le 'texte', puis saisissez un nom et cliquez sur Importer."
 L["Enter Edit Mode"] = "Entrez en Mode Édition"

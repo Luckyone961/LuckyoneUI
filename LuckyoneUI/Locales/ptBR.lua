@@ -132,6 +132,7 @@ L["ElvUI Plugins"] = "Plugins do ElvUI"
 L["ElvUI Themes"] = true
 L["ElvUI Tweaks"] = true
 L["Enable Focus Texture"] = true
+L["Enable Target Texture"] = true
 L["Enhancement"] = true
 L["Enter Edit Mode and select Import on the Dropdown.\nUse CTRL+V to paste string, then pick a name and click import."] = true
 L["Enter Edit Mode"] = true

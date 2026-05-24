@@ -132,6 +132,7 @@ L["ElvUI Plugins"] = true -- No need to translate
 L["ElvUI Themes"] = true -- No need to translate
 L["ElvUI Tweaks"] = true -- No need to translate
 L["Enable Focus Texture"] = true
+L["Enable Target Texture"] = true
 L["Enhancement"] = true
 L["Enter Edit Mode and select Import on the Dropdown.\nUse CTRL+V to paste string, then pick a name and click import."] = "Gehe in den Editiermodus und wähle Import im Dropdown-Menü.\nNutze STRG+V, um den Text einzufügen, dann wähle einen Namen und klicke auf Import."
 L["Enter Edit Mode"] = "Zum Editiermodus"
