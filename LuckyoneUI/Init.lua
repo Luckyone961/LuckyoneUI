@@ -11,9 +11,6 @@ local UnitClass = UnitClass
 local UnitGUID = UnitGUID
 local UnitName = UnitName
 
--- Global environment
-local _G = _G
-
 -- LibStub
 local LibStub = LibStub
 
@@ -70,7 +67,7 @@ Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 
 -- API checks
 Private.IsAddOnLoaded = IsAddOnLoaded
-Private.IsEditModeActive = _G.EditModeManagerFrame and _G.EditModeManagerFrame:IsEditModeActive()
+Private.IsEditModeActive = Private.isTBC or Private.isRetail
 Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
 
 -- Player utils
