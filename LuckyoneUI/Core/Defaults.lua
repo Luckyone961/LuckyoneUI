@@ -30,7 +30,7 @@ Private.Defaults = {
 		nameplates = {
 			focusTexture = 'Luckyone Focus',
 			focusTextureEnable = false,
-			targetTexture = 'Luckyone Focus',
+			targetTexture = 'ElvUI Blank',
 			targetTextureEnable = false,
 		},
 		qualityOfLife = {

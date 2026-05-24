@@ -1,4 +1,9 @@
-﻿## Version 4.14 [22-05-2026]
+﻿## Version 4.15 [In Development]
+
+**Retail:**  
+- Added option to select a different ElvUI target nameplate texture  
+
+## Version 4.14 [22-05-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.14+ compatibility  
