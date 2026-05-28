@@ -1512,7 +1512,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.debuffs.sizeOverride = 54
 		E.db.unitframe.units.player.debuffs.spacing = 4
 		E.db.unitframe.units.player.debuffs.useBlocklist = true
-		E.db.unitframe.units.player.debuffs.xOffset = -1
+		E.db.unitframe.units.player.debuffs.xOffset = 0
 		E.db.unitframe.units.player.debuffs.yOffset = 164
 	end
 

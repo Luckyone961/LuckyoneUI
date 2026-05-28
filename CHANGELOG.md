@@ -8,6 +8,7 @@
 **Retail:**  
 - Added option to select a different ElvUI target nameplate texture  
 - Reworked Private Auras on Party and Raidframes  
+- Updated Northern Sky Raid Tools profile  
 - Updated SkironCooldownManager profile (Requires alpha)  
 
 ## Version 4.14 [22-05-2026]
