@@ -1735,8 +1735,8 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.buffs.growthX = 'LEFT'
 	E.db.unitframe.units.party.buffs.isAuraRaidInCombatPlayer = false
 	E.db.unitframe.units.party.buffs.perrow = 3
-	E.db.unitframe.units.party.buffs.sizeOverride = 20
-	E.db.unitframe.units.party.buffs.yOffset = 20
+	E.db.unitframe.units.party.buffs.sizeOverride = 22
+	E.db.unitframe.units.party.buffs.yOffset = 22
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.debuffs.anchorPoint = 'TOPRIGHT'
 	E.db.unitframe.units.party.debuffs.countFont = Private.Font
@@ -1779,10 +1779,11 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.party.phaseIndicator.xOffset = 15
 	E.db.unitframe.units.party.power.enable = false
-	E.db.unitframe.units.party.privateAuras.icon.amount = 3
+	E.db.unitframe.units.party.privateAuras.icon.amount = 2
+	E.db.unitframe.units.party.privateAuras.icon.offset = 1
 	E.db.unitframe.units.party.privateAuras.icon.point = 'RIGHT'
-	E.db.unitframe.units.party.privateAuras.parent.offsetX = 3
-	E.db.unitframe.units.party.privateAuras.parent.offsetY = 23
+	E.db.unitframe.units.party.privateAuras.icon.size = 22
+	E.db.unitframe.units.party.privateAuras.parent.offsetY = 22
 	E.db.unitframe.units.party.privateAuras.parent.point = 'BOTTOMLEFT'
 	E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.party.raidicon.size = 14
