@@ -1779,7 +1779,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.party.phaseIndicator.xOffset = 15
 	E.db.unitframe.units.party.power.enable = false
-	E.db.unitframe.units.party.privateAuras.borderScale = -2
+	E.db.unitframe.units.party.privateAuras.borderScale = -4
 	E.db.unitframe.units.party.privateAuras.icon.amount = 2
 	E.db.unitframe.units.party.privateAuras.icon.offset = 1
 	E.db.unitframe.units.party.privateAuras.icon.point = 'RIGHT'
@@ -1853,7 +1853,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'TOP'
 	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid1.power.enable = false
-	E.db.unitframe.units.raid1.privateAuras.borderScale = -2
+	E.db.unitframe.units.raid1.privateAuras.borderScale = -4
 	E.db.unitframe.units.raid1.privateAuras.icon.offset = 1
 	E.db.unitframe.units.raid1.privateAuras.icon.point = 'RIGHT'
 	E.db.unitframe.units.raid1.privateAuras.parent.point = 'BOTTOMLEFT'
