@@ -1824,18 +1824,19 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.buffs.isAuraBigDefensivePlayer = false
 	E.db.unitframe.units.raid1.buffs.isAuraRaidInCombatPlayer = false
 	E.db.unitframe.units.raid1.buffs.perrow = 1
-	E.db.unitframe.units.raid1.buffs.sizeOverride = 18
-	E.db.unitframe.units.raid1.buffs.yOffset = 18
+	E.db.unitframe.units.raid1.buffs.sizeOverride = 22
+	E.db.unitframe.units.raid1.buffs.yOffset = 22
 	E.db.unitframe.units.raid1.classbar.enable = false
-	E.db.unitframe.units.raid1.debuffs.anchorPoint = 'BOTTOMLEFT'
+	E.db.unitframe.units.raid1.debuffs.anchorPoint = 'BOTTOMRIGHT'
+	E.db.unitframe.units.raid1.debuffs.clickThrough = true
 	E.db.unitframe.units.raid1.debuffs.countFont = Private.Font
 	E.db.unitframe.units.raid1.debuffs.countFontSize = 10
 	E.db.unitframe.units.raid1.debuffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.raid1.debuffs.countXOffset = 2
 	E.db.unitframe.units.raid1.debuffs.countYOffset = 0
+	E.db.unitframe.units.raid1.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.raid1.debuffs.perrow = 2
 	E.db.unitframe.units.raid1.debuffs.priority = 'Dispellable,RaidDebuffs'
-	E.db.unitframe.units.raid1.debuffs.sizeOverride = 18
 	E.db.unitframe.units.raid1.debuffs.yOffset = -1
 	E.db.unitframe.units.raid1.disableFocusGlow = true
 	E.db.unitframe.units.raid1.disableTargetGlow = true
@@ -1850,9 +1851,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'TOP'
 	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid1.power.enable = false
-	E.db.unitframe.units.raid1.privateAuras.icon.offset = 2
-	E.db.unitframe.units.raid1.privateAuras.icon.point = 'TOP'
-	E.db.unitframe.units.raid1.privateAuras.parent.point = 'BOTTOMRIGHT'
+	E.db.unitframe.units.raid1.privateAuras.borderScale = -2
+	E.db.unitframe.units.raid1.privateAuras.icon.offset = 1
+	E.db.unitframe.units.raid1.privateAuras.icon.point = 'RIGHT'
+	E.db.unitframe.units.raid1.privateAuras.parent.point = 'BOTTOMLEFT'
 	E.db.unitframe.units.raid1.pvpclassificationindicator.enable = false
 	E.db.unitframe.units.raid1.raidRoleIcons.combatHide = true
 	E.db.unitframe.units.raid1.raidRoleIcons.scale = 0.8
@@ -2003,6 +2005,7 @@ function Private:Setup_ElvUI(layout)
 
 		-- Main/Support Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 10
+		E.db.unitframe.units.raid1.debuffs.sizeOverride = 18
 		E.db.unitframe.units.raid1.height = 40
 		E.db.unitframe.units.raid1.privateAuras.enable = false
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'TOPRIGHT'
@@ -2023,6 +2026,7 @@ function Private:Setup_ElvUI(layout)
 
 		-- Main/Support Raid2
 		E.db.unitframe.units.raid2.buffIndicator.size = 10
+		E.db.unitframe.units.raid2.debuffs.sizeOverride = 18
 		E.db.unitframe.units.raid2.height = 40
 		E.db.unitframe.units.raid2.privateAuras.enable = false
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'TOPRIGHT'
@@ -2061,12 +2065,10 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.width = (scaled and 86) or 96
 
 		-- Main/Support Private Auras
-		E.db.unitframe.units.raid1.privateAuras.icon.size = 16
-		E.db.unitframe.units.raid1.privateAuras.parent.offsetX = 5
-		E.db.unitframe.units.raid1.privateAuras.parent.offsetY = 26
-		E.db.unitframe.units.raid2.privateAuras.icon.size = 16
-		E.db.unitframe.units.raid2.privateAuras.parent.offsetX = 5
-		E.db.unitframe.units.raid2.privateAuras.parent.offsetY = 26
+		E.db.unitframe.units.raid1.privateAuras.icon.size = 18
+		E.db.unitframe.units.raid1.privateAuras.parent.offsetY = 18
+		E.db.unitframe.units.raid2.privateAuras.icon.size = 18
+		E.db.unitframe.units.raid2.privateAuras.parent.offsetY = 18
 
 		-- Main/Support Heal Prediction
 		E.db.unitframe.units.arena.healPrediction.enable = false
@@ -2087,7 +2089,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.power.autoHide = false
 		E.db.unitframe.units.player.power.detachedWidth = 260
 		E.db.unitframe.units.player.power.detachFromFrame = true
-		E.db.unitframe.units.player.power.enable = true
+		E.db.unitframe.units.player.power.enable = (not Private.IsAddOnLoaded('SkironCooldownManager'))
 		E.db.unitframe.units.player.power.height = 18
 		E.db.unitframe.units.player.power.position = 'CENTER'
 		E.db.unitframe.units.player.power.powerPrediction = true
@@ -2105,6 +2107,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
 		E.db.unitframe.units.raid1.buffs.enable = Private.isRetail
 		E.db.unitframe.units.raid1.debuffs.enable = Private.isRetail
+		E.db.unitframe.units.raid1.debuffs.sizeOverride = 22
 		E.db.unitframe.units.raid1.height = (scaled and 60) or 70
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid1.raidicon.size = 14
@@ -2125,6 +2128,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.buffIndicator.size = 14
 		E.db.unitframe.units.raid2.buffs.enable = Private.isRetail
 		E.db.unitframe.units.raid2.debuffs.enable = Private.isRetail
+		E.db.unitframe.units.raid2.debuffs.sizeOverride = 22
 		E.db.unitframe.units.raid2.height = (scaled and 44) or 54
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid2.raidicon.size = 14
@@ -2160,12 +2164,10 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.width = 140
 
 		-- Healing Private Auras
-		E.db.unitframe.units.raid1.privateAuras.icon.size = 20
-		E.db.unitframe.units.raid1.privateAuras.parent.offsetX = 7
-		E.db.unitframe.units.raid1.privateAuras.parent.offsetY = 32
-		E.db.unitframe.units.raid2.privateAuras.icon.size = 20
-		E.db.unitframe.units.raid2.privateAuras.parent.offsetX = 7
-		E.db.unitframe.units.raid2.privateAuras.parent.offsetY = 32
+		E.db.unitframe.units.raid1.privateAuras.icon.size = 22
+		E.db.unitframe.units.raid1.privateAuras.parent.offsetY = 22
+		E.db.unitframe.units.raid2.privateAuras.icon.size = 22
+		E.db.unitframe.units.raid2.privateAuras.parent.offsetY = 22
 
 		-- Main/Support Heal Prediction
 		E.db.unitframe.units.arena.healPrediction.enable = true
