@@ -1889,10 +1889,19 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.buffIndicator.countFontSize = 10
 	E.db.unitframe.units.raid3.buffs.enable = false
 	E.db.unitframe.units.raid3.classbar.enable = false
-	E.db.unitframe.units.raid3.debuffs.countFont = Private.Font
-	E.db.unitframe.units.raid3.debuffs.desaturate = false
+	E.db.unitframe.units.raid3.debuffs.anchorPoint = 'BOTTOMRIGHT'
+	E.db.unitframe.units.raid3.debuffs.clickThrough = true
+	E.db.unitframe.units.raid3.debuffs.countFont = 'Expressway'
+	E.db.unitframe.units.raid3.debuffs.countFontSize = 10
+	E.db.unitframe.units.raid3.debuffs.countPosition = 'TOPRIGHT'
+	E.db.unitframe.units.raid3.debuffs.countXOffset = 2
+	E.db.unitframe.units.raid3.debuffs.countYOffset = 0
+	E.db.unitframe.units.raid3.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.raid3.debuffs.maxDuration = 0
+	E.db.unitframe.units.raid3.debuffs.perrow = 2
 	E.db.unitframe.units.raid3.debuffs.priority = 'Dispellable,RaidDebuffs'
+	E.db.unitframe.units.raid3.debuffs.sizeOverride = 18
+	E.db.unitframe.units.raid3.debuffs.yOffset = -1
 	E.db.unitframe.units.raid3.disableFocusGlow = true
 	E.db.unitframe.units.raid3.disableTargetGlow = true
 	E.db.unitframe.units.raid3.fader.minAlpha = 0.5
@@ -1908,6 +1917,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.privateAuras.enable = false
 	E.db.unitframe.units.raid3.privateAuras.icon.offset = 1
 	E.db.unitframe.units.raid3.privateAuras.icon.point = 'RIGHT'
+	E.db.unitframe.units.raid3.privateAuras.icon.size = 18
 	E.db.unitframe.units.raid3.privateAuras.parent.anchorPoint = 'BOTTOMLEFT'
 	E.db.unitframe.units.raid3.privateAuras.parent.invertAnchor = false
 	E.db.unitframe.units.raid3.privateAuras.parent.point = 'BOTTOMLEFT'
@@ -2172,7 +2182,6 @@ function Private:Setup_ElvUI(layout)
 		-- Healing Private Auras
 		E.db.unitframe.units.raid1.privateAuras.icon.size = 22
 		E.db.unitframe.units.raid2.privateAuras.icon.size = 22
-		E.db.unitframe.units.raid3.privateAuras.icon.size = 18
 
 		-- Main/Support Heal Prediction
 		E.db.unitframe.units.arena.healPrediction.enable = true
