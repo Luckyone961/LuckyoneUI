@@ -1780,11 +1780,11 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.phaseIndicator.xOffset = 15
 	E.db.unitframe.units.party.power.enable = false
 	E.db.unitframe.units.party.privateAuras.borderScale = -4
-	E.db.unitframe.units.party.privateAuras.icon.amount = 2
 	E.db.unitframe.units.party.privateAuras.icon.offset = 1
 	E.db.unitframe.units.party.privateAuras.icon.point = 'RIGHT'
 	E.db.unitframe.units.party.privateAuras.icon.size = 22
-	E.db.unitframe.units.party.privateAuras.parent.offsetY = 22
+	E.db.unitframe.units.party.privateAuras.parent.anchorPoint = 'BOTTOMLEFT'
+	E.db.unitframe.units.party.privateAuras.parent.invertAnchor = false
 	E.db.unitframe.units.party.privateAuras.parent.point = 'BOTTOMLEFT'
 	E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.party.raidicon.size = 14
