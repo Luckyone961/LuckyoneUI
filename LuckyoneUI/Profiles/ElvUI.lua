@@ -2124,8 +2124,10 @@ function Private:Setup_ElvUI(layout)
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
 		E.db.unitframe.units.raid1.buffs.enable = Private.isRetail
+		E.db.unitframe.units.raid1.buffs.sizeOverride = 26
+		E.db.unitframe.units.raid1.buffs.yOffset = 26
 		E.db.unitframe.units.raid1.debuffs.enable = Private.isRetail
-		E.db.unitframe.units.raid1.debuffs.sizeOverride = 22
+		E.db.unitframe.units.raid1.debuffs.sizeOverride = 26
 		E.db.unitframe.units.raid1.height = (scaled and 60) or 70
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid1.raidicon.size = 14
@@ -2182,7 +2184,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.width = 140
 
 		-- Healing Private Auras
-		E.db.unitframe.units.raid1.privateAuras.icon.size = 22
+		E.db.unitframe.units.raid1.privateAuras.icon.size = 26
 		E.db.unitframe.units.raid2.privateAuras.icon.size = 22
 
 		-- Main/Support Heal Prediction
