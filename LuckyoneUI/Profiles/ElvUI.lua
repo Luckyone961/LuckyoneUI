@@ -1995,7 +1995,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.PlayerPowerBarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,341') or 'BOTTOM,ElvUIParent,BOTTOM,-320,481'
 	E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-180'
-	E.db.movers.PrivateAurasMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-182,512') or 'BOTTOM,ElvUIParent,BOTTOM,-217,660'
+	E.db.movers.PrivateAurasMover = (scaled and 'TOP,ElvUIParent,TOP,-185,-506') or 'BOTTOM,ElvUIParent,BOTTOM,-217,660'
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-200'
 	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-24'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
