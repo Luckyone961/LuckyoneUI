@@ -11,6 +11,11 @@
 - Updated Northern Sky Raid Tools profile  
 - Updated SkironCooldownManager profile (Requires alpha)  
 
+**Mists:**  
+- Added addonlist icon  
+- Edit mode support  
+- Updated TOC for 5.5.4  
+
 ## Version 4.14 [22-05-2026]
 
 **All WoW Versions:**  
