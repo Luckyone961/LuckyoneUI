@@ -1431,11 +1431,20 @@ function Private:Setup_ElvUI(layout)
 	}
 
 	E.db.unitframe.units.player.aurabar.enable = false
+	E.db.unitframe.units.player.buffs.anchorPoint = 'BOTTOM'
 	E.db.unitframe.units.player.buffs.attachTo = 'FRAME'
+	E.db.unitframe.units.player.buffs.clickThrough = true
 	E.db.unitframe.units.player.buffs.countFont = Private.Font
-	E.db.unitframe.units.player.buffs.perrow = 10
+	E.db.unitframe.units.player.buffs.countFontSize = 10
+	E.db.unitframe.units.player.buffs.countPosition = 'TOPRIGHT'
+	E.db.unitframe.units.player.buffs.countXOffset = 2
+	E.db.unitframe.units.player.buffs.countYOffset = 0
+	E.db.unitframe.units.player.buffs.enable = Private.isRetail
+	E.db.unitframe.units.player.buffs.isAuraBigDefensive = false
+	E.db.unitframe.units.player.buffs.perrow = 3
 	E.db.unitframe.units.player.buffs.priority = 'Blacklist,Personal,NonPersonal'
-	E.db.unitframe.units.player.buffs.yOffset = 1
+	E.db.unitframe.units.player.buffs.sizeOverride = 30
+	E.db.unitframe.units.player.buffs.yOffset = 40
 	E.db.unitframe.units.player.castbar.customColor.color.b = 0.05
 	E.db.unitframe.units.player.castbar.customColor.color.g = 0.05
 	E.db.unitframe.units.player.castbar.customColor.color.r = 0.05

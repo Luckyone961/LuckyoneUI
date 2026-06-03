@@ -6,6 +6,7 @@
 - Updated ruRU localization (Credits: Hollicsh)  
 
 **Retail:**  
+- Added external defensives to player unitframe by default (Centered)  
 - Added option to select a different ElvUI target nameplate texture  
 - Reworked Private Auras on Party and Raidframes  
 - Updated Northern Sky Raid Tools profile  
