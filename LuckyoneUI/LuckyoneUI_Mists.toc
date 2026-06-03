@@ -5,13 +5,15 @@
 
 ## DefaultState: enabled
 ## Author: Luckyone
-## Version: 4.14
+## Version: 4.15
 
-## Interface: 50503
-## X-Required-ElvUI: 15.14
+## Interface: 50504
+## X-Required-ElvUI: 15.15
 
 ## X-Curse-Project-ID: 363472
 ## X-Wago-ID: Rn6VLGdB
+
+## IconTexture: Interface\AddOns\LuckyoneUI\Media\Textures\Compartment.png
 
 Libs\Libs.xml
 Locales\Locales.xml

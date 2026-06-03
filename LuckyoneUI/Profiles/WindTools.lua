@@ -136,7 +136,6 @@ function Private:Setup_WindTools(installer)
 			['Luckypala'] = 'PALADIN',
 			['Luckypriest'] = 'PRIEST',
 			['Unluckyone'] = 'SHAMAN',
-			['Luckydh'] = 'DEMONHUNTER',
 			['Luckydk'] = 'DEATHKNIGHT',
 			['Luckywl'] = 'WARLOCK',
 			['Luckymage'] = 'MAGE',
