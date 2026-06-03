@@ -164,6 +164,7 @@ function Private:Setup_PrivateDB(includePlugins)
 		E.private.chat.enable = (not Private.IsAddOnLoaded('Chattynator'))
 		E.private.general.chatBubbles = 'disabled'
 		E.private.nameplates.enable = (not Private.IsAddOnLoaded('Plater'))
+		E.private.unitframe.disabledBlizzardFrames.castbar = (not Private.IsAddOnLoaded('SkironCooldownManager'))
 	end
 end
 
