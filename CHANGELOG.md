@@ -1,6 +1,7 @@
 ﻿## Version 4.15 [In Development]
 
 **All WoW Versions:**  
+- ElvUI 15.15+ compatibility  
 - Disabled Action Bar 15 by default (Its still configured and can be re-enabled)  
 - Reworked Debuffs on Party and Raidframes  
 - Updated ruRU localization (Credits: Hollicsh)  
