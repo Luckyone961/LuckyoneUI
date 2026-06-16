@@ -1,4 +1,9 @@
-﻿## Version 4.15 [03-06-2026]
+﻿## Version 4.16 [In Development]
+
+**Retail:**  
+- Updated TOC for patch 12.0.7  
+
+## Version 4.15 [03-06-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.15+ compatibility  
