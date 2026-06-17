@@ -1,6 +1,13 @@
 ﻿## Version 4.16 [In Development]
 
+**All WoW Versions:**  
+- ElvUI 15.17+ compatibility  
+- Updated Baganator profile  
+- Updated Details profile  
+
 **Retail:**  
+- Updated Northern Sky Raid Tools profile  
+- Updated SkironCooldownManager profile  
 - Updated TOC for patch 12.0.7  
 
 ## Version 4.15 [03-06-2026]
