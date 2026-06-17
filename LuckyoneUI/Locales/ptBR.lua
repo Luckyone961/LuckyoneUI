@@ -213,6 +213,7 @@ L["Outlaw"] = true
 L["Paladin"] = "Paladino"
 L["People found out some characters have a big amount of hidden quests which will cause performance issues. This button will untrack all your quests, including the hidden ones and might give you an increase in average FPS."] = true
 L["Performance"] = "Desempenho"
+L["Performance"] = true
 L["PermoksAccountManager profile has been set."] = true
 L["Plater profile has been set."] = "Perfil do Plater foi configurado."
 L["Please click the button below to apply Luckyones Nameplates profile."] = true
