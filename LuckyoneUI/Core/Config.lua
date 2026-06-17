@@ -11,6 +11,7 @@ local tinsert = table.insert
 local tostring = tostring
 
 -- API cache
+local GetCVar = C_CVar.GetCVar
 local GetCVarBool = C_CVar.GetCVarBool
 local SetCVar = C_CVar.SetCVar
 local HideUIPanel = HideUIPanel
@@ -342,6 +343,12 @@ local function BuildGraphicsSection()
 	section.args.cosmetic.args.ffxNether = ACH:Toggle('ffx Nether', 'Game Default: on | Suggestion: off\n\nBox checked means on/enabled', 3, nil, nil, nil, function() return GetCVarBool('ffxNether') end, function(_, value) SetCVar('ffxNether', value and 1 or 0) end)
 	section.args.cosmetic.args.ffxVenari = ACH:Toggle('ffx Venari', 'Game Default: on | Suggestion: off\n\nBox checked means on/enabled', 4, nil, nil, nil, function() return GetCVarBool('ffxVenari') end, function(_, value) SetCVar('ffxVenari', value and 1 or 0) end)
 	section.args.cosmetic.args.ffxLingeringVenari = ACH:Toggle('ffx Lingering Venari', 'Game Default: on | Suggestion: off\n\nBox checked means on/enabled', 5, nil, nil, nil, function() return GetCVarBool('ffxLingeringVenari') end, function(_, value) SetCVar('ffxLingeringVenari', value and 1 or 0) end)
+	section.args.performance = ACH:Group(format('%s |cffC80000EXPERIMENTAL - NO SUPPORT|r', L["Performance"]), nil, 4, nil, nil, nil, not Private.isRetail)
+	section.args.performance.inline = true
+	section.args.performance.args.ThreadPoolPerThreadAllocator = ACH:Range('ThreadPoolPerThreadAllocator', '0 = Disabled\n1 = Allow\n2 = Force\n\nForce is around 12% faster but uses ~300MB more memory', 1, { min = 0, max = 2, step = 1 }, nil, function() return tonumber(GetCVar('ThreadPoolPerThreadAllocator')) or 0 end, function(_, value) SetCVar('ThreadPoolPerThreadAllocator', value) end)
+	section.args.performance.args.ThreadPoolLimitLP = ACH:Range('ThreadPoolLimitLP', 'Limit num threads for Low priority jobs\n\nGame Default: 6', 2, { min = 0, max = 12, step = 1 }, nil, function() return tonumber(GetCVar('ThreadPoolLimitLP')) or 6 end, function(_, value) SetCVar('ThreadPoolLimitLP', value) end)
+	section.args.performance.args.ThreadPoolLimitMP = ACH:Range('ThreadPoolLimitMP', 'Limit num threads for Mid priority jobs\n\nGame Default: 6', 3, { min = 0, max = 12, step = 1 }, nil, function() return tonumber(GetCVar('ThreadPoolLimitMP')) or 6 end, function(_, value) SetCVar('ThreadPoolLimitMP', value) end)
+	section.args.performance.args.ThreadPoolLimitHP = ACH:Range('ThreadPoolLimitHP', 'Limit num threads for High priority jobs\n\nGame Default: 6', 4, { min = 0, max = 12, step = 1 }, nil, function() return tonumber(GetCVar('ThreadPoolLimitHP')) or 6 end, function(_, value) SetCVar('ThreadPoolLimitHP', value) end)
 	return section
 end
 

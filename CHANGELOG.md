@@ -6,6 +6,7 @@
 - Updated Details profile  
 
 **Retail:**  
+- Added experimental performance CVar editor to the /lucky config Graphics tab  
 - Updated Northern Sky Raid Tools profile  
 - Updated SkironCooldownManager profile  
 - Updated TOC for patch 12.0.7  
