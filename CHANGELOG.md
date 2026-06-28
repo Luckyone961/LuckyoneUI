@@ -1,4 +1,9 @@
-﻿## Version 4.16 [17-06-2026]
+﻿## Version 4.17 [In Development]
+
+**Retail:**  
+- Removed AyijeCDM profile  
+
+## Version 4.16 [17-06-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.17+ compatibility  

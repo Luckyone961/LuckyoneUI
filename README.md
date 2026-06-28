@@ -29,9 +29,8 @@
 • Small list of custom skins for third party Addons to match the general ElvUI style.  
 
 ### **Custom Addon profiles from A-Z**  
-• AyijeCDM, BetterCooldownManager, Baganator  
-• BigWigs, BuffReminders, Chattynator  
-• Details, ElvUI, MPlusTimer  
+• Baganator, BigWigs, BuffReminders  
+• Chattynator, Details, ElvUI, MPlusTimer  
 • Northern Sky Raid Tools, PermoksAccountManager  
 • Plater, Plumber, ElvUI Shadow&Light  
 • SkironCooldownManager, WarpDeplete Mythic+ Timer  
