@@ -29,4 +29,4 @@ function Private:Skin_LeatrixPlus()
 	end
 end
 
-S:AddCallbackForAddon('Leatrix_Plus', 'LuckyoneUI_LeatrixPlus', C_Timer.After(1, function() Private.Skin_LeatrixPlus() end))
+S:AddCallbackForAddon('Leatrix_Plus', 'LuckyoneUI_LeatrixPlus', function() C_Timer.After(1, Private.Skin_LeatrixPlus) end)
