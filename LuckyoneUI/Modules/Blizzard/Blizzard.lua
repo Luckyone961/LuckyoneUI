@@ -167,11 +167,16 @@ function Private:RemoveNameplateRealm()
 	_G.TextureLoadingGroupMixin.RemoveTexture({textures = _G.NamePlateFriendlyFrameOptions}, 'updateNameUsesGetUnitName')
 end
 
-function Blizzard:PLAYER_ENTERING_WORLD()
+function Blizzard:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
+	-- Retries until Blizzard_Communities is loaded, creates the overlay once
+	Private:PrivacyOverlay()
+
+	-- Only run the setup on login and reload, not on every loading screen
+	if not (initLogin or isReload) then return end
+
 	Private:AutoAcceptRole()
 	Private:DisabledFrames()
 	Private:EasyDelete()
-	Private:PrivacyOverlay()
 	Private:QuickSignup()
 	Private:RemoveNameplateRealm()
 end
