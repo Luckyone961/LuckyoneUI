@@ -10,7 +10,7 @@ Private.Tags = Private.Tags or {}
 
 -- Lua functions
 local format = string.format
-local strfind = string.find
+local setmetatable = setmetatable
 local strmatch = string.match
 local type = type
 local unpack = unpack
@@ -42,6 +42,14 @@ local DEFAULT_COLOR = '|cFFcccccc'
 local classHexCache = {}
 local reactionHexCache = {}
 local powerHexCache = {}
+local powerTypeHexCache = {}
+
+-- Avoids a concat per tag call
+local targetUnits = setmetatable({}, { __index = function(t, unit)
+	local targetUnit = unit .. 'target'
+	t[unit] = targetUnit
+	return targetUnit
+end})
 
 Private.Tags.classificationText = {
 	rare = 'Rare',
@@ -102,6 +110,8 @@ function Private.Tags.getUnitColor(unit)
 	return DEFAULT_COLOR
 end
 
+local getUnitColor = Private.Tags.getUnitColor
+
 function Private.Tags.getFormattedName(unit, length, color, abbrev, name)
 	name = name or UnitName(unit) or UNKNOWN
 
@@ -118,7 +128,7 @@ function Private.Tags.getFormattedName(unit, length, color, abbrev, name)
 
 	if not color then return name end
 
-	return Private.Tags.getUnitColor(unit) .. name
+	return getUnitColor(unit) .. name
 end
 
 function Private.Tags.getPowerColor(unit)
@@ -140,7 +150,13 @@ function Private.Tags.getPowerColor(unit)
 				hex = Hex(altR, altG, altB)
 			end
 		else
-			hex = Hex(ElvUF_colors_power[pType] or ElvUF_colors_power.MANA)
+			hex = pType and powerTypeHexCache[pType]
+			if not hex then
+				hex = Hex(ElvUF_colors_power[pType] or ElvUF_colors_power.MANA)
+				if pType then
+					powerTypeHexCache[pType] = hex
+				end
+			end
 		end
 	else
 		hex = Hex(color)
@@ -158,13 +174,17 @@ function Private.Tags.getLastNamePart(name)
 	return strmatch(name, '([%S]+)$') or name
 end
 
+local getLastNamePart = Private.Tags.getLastNamePart
+
 function Private.Tags.formatTargetName(unit, lastPartOnly, withColor)
-	local targetName = UnitName(unit..'target')
+	local targetUnit = targetUnits[unit]
+
+	local targetName = UnitName(targetUnit)
 	if not targetName then return end
 
 	if lastPartOnly then
-		targetName = Private.Tags.getLastNamePart(targetName)
+		targetName = getLastNamePart(targetName)
 	end
 
-	return withColor and (Private.Tags.getUnitColor(unit..'target')..targetName) or targetName
+	return withColor and (getUnitColor(targetUnit)..targetName) or targetName
 end

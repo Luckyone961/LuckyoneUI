@@ -50,6 +50,12 @@ local ElvUF_colors_power = ElvUF.colors.power
 
 -- Local references
 local Hex = Private.Tags.Hex
+local classificationText = Private.Tags.classificationText
+local formatTargetName = Private.Tags.formatTargetName
+local getFormattedName = Private.Tags.getFormattedName
+local getLastNamePart = Private.Tags.getLastNamePart
+local getPowerColor = Private.Tags.getPowerColor
+local getUnitColor = Private.Tags.getUnitColor
 
 -- Constants
 local manaColorTable = ElvUF_colors_power.MANA
@@ -62,7 +68,7 @@ local petHappinessStrings = _G.PET_HAPPINESS1 and { _G.PET_HAPPINESS1, _G.PET_HA
 
 -- Display unit classification without 'affix' on minor enemies
 E:AddTag('luckyone:classification', 'UNIT_CLASSIFICATION_CHANGED', function(unit)
-	return Private.Tags.classificationText[UnitClassification(unit)] or nil
+	return classificationText[UnitClassification(unit)] or nil
 end)
 E:AddTagInfo('luckyone:classification', Private.Name, L["Displays the unit's classification (e.g 'Elite' and 'Rare') but without 'Affix'"])
 
@@ -71,15 +77,17 @@ E:AddTagInfo('luckyone:classification', Private.Name, L["Displays the unit's cla
 -------------------------------------------------------
 
 -- Display percentage health
-E:AddTag('luckyone:health:percent', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
-	if Private.isRetail then
+if Private.isRetail then
+	E:AddTag('luckyone:health:percent', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
 		return format('%d', UnitHealthPercent(unit, true, ScaleTo100))
-	else
+	end)
+else
+	E:AddTag('luckyone:health:percent', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
 		local currentHealth, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
 		local percent = currentHealth / maxHealth * 100
 		return E:GetFormattedText('PERCENT', currentHealth, maxHealth, percent == 100 and 0 or percent < 10 and 2 or 1, nil)
-	end
-end)
+	end)
+end
 if Private.isRetail then
 	E:AddTagInfo('luckyone:health:percent', Private.Name, L["Displays percentage health without decimals"])
 else
@@ -129,36 +137,37 @@ end
 -------------------------------------------------------
 
 -- Display percentage power with powercolor
-E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
-	if Private.isRetail then
-		local percent = format('%d', UnitPowerPercent(unit, nil, true, ScaleTo100))
-		local color = Private.Tags.getPowerColor(unit)
-		return color .. percent
-	else
+if Private.isRetail then
+	E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
+		return getPowerColor(unit) .. format('%d', UnitPowerPercent(unit, nil, true, ScaleTo100))
+	end)
+else
+	E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 		local min, max = UnitPower(unit), UnitPowerMax(unit)
 		if max == 0 then return end
 
-		local color = Private.Tags.getPowerColor(unit)
 		local percentage = floor(min / max * 100 + .5)
 
 		if percentage ~= 0 then
-			return color .. percentage
+			return getPowerColor(unit) .. percentage
 		end
-	end
-end)
+	end)
+end
 E:AddTagInfo('luckyone:power:percent-color', Private.Name, L["Displays percentage power without decimals with powercolor"])
 
 -- Display percentage power with no color
-E:AddTag('luckyone:power:percent-nocolor', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
-	if Private.isRetail then
+if Private.isRetail then
+	E:AddTag('luckyone:power:percent-nocolor', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 		return format('%d', UnitPowerPercent(unit, nil, true, ScaleTo100))
-	else
+	end)
+else
+	E:AddTag('luckyone:power:percent-nocolor', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 		local min, max = UnitPower(unit), UnitPowerMax(unit)
 		if min ~= 0 and max ~= 0 then
 			return floor(min / max * 100 + .5)
 		end
-	end
-end)
+	end)
+end
 E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percentage power without decimals with no color"])
 
 -- Display percentage mana with 0 decimals (Classic only)
@@ -188,23 +197,27 @@ if not Private.isRetail then
 end
 
 -- Display mana (percent) if the unit is flagged healer
-E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
-	local role = UnitGroupRolesAssigned(unit)
-	if role ~= 'HEALER' then return end
+if Private.isRetail then
+	E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
+		local role = UnitGroupRolesAssigned(unit)
+		if role ~= 'HEALER' then return end
 
-	if Private.isRetail then
 		if UnitInPartyIsAI(unit) then return end -- Exclude NPC Healers (Delve companion etc)
-		local percent = format('%d', UnitPowerPercent(unit, Enum.PowerType.Mana, true, ScaleTo100))
-		local color = Private.Tags.getPowerColor(unit)
-		return color .. percent
-	else
+
+		return getPowerColor(unit) .. format('%d', UnitPowerPercent(unit, Enum.PowerType.Mana, true, ScaleTo100))
+	end)
+else
+	E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
+		local role = UnitGroupRolesAssigned(unit)
+		if role ~= 'HEALER' then return end
+
 		local min = UnitPower(unit, Enum.PowerType.Mana)
 		local max = UnitPowerMax(unit, Enum.PowerType.Mana)
 		if max == 0 then return end -- Avoid the "%inf" on frames
 
 		return MANA_HEX .. E:GetFormattedText('PERCENT', min, max, 0, nil)
-	end
-end)
+	end)
+end
 E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"])
 
 -------------------------------------------------------
@@ -216,8 +229,7 @@ if Private.isRetail then
 	E:AddTag('luckyone:name-color', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 		local name = UnitName(unit) or UNKNOWN
 
-		local color = Private.Tags.getUnitColor(unit)
-		return color .. name
+		return getUnitColor(unit) .. name
 	end)
 	E:AddTagInfo('luckyone:name-color', Private.Name, L["Displays the name with classcolor/reactioncolor"])
 
@@ -233,8 +245,8 @@ end
 if not Private.isRetail then
 	E:AddTag('luckyone:name:last-classcolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 		local name = UnitName(unit)
-		local color = Private.Tags.getUnitColor(unit)
-		local formattedName = (name and Private.Tags.getLastNamePart(name)) or UNKNOWN
+		local color = getUnitColor(unit)
+		local formattedName = (name and getLastNamePart(name)) or UNKNOWN
 
 		return color .. formattedName
 	end)
@@ -243,7 +255,7 @@ if not Private.isRetail then
 	-- Displays the last part of the unit's name with no color (Classic only)
 	E:AddTag('luckyone:name:last-nocolor', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 		local name = UnitName(unit)
-		return Private.Tags.getLastNamePart(name) or UNKNOWN
+		return getLastNamePart(name) or UNKNOWN
 	end)
 	E:AddTagInfo('luckyone:name:last-nocolor', Private.Name, L["Displays the last part of the unit's name with no color"])
 end
@@ -269,26 +281,26 @@ end
 
 -- Displays the unit's target name with class color
 E:AddTag('luckyone:target:name-classcolor', 'UNIT_TARGET UNIT_FACTION', function(unit)
-	return Private.Tags.formatTargetName(unit, false, true)
+	return formatTargetName(unit, false, true)
 end)
 E:AddTagInfo('luckyone:target:name-classcolor', Private.Name, L["Displays the unit's target name with class color"])
 
 -- Displays the unit's target name with no color
 E:AddTag('luckyone:target:name-nocolor', 'UNIT_TARGET', function(unit)
-	return Private.Tags.formatTargetName(unit, false, false)
+	return formatTargetName(unit, false, false)
 end)
 E:AddTagInfo('luckyone:target:name-nocolor', Private.Name, L["Displays the unit's target name with no color"])
 
 -- Displays the last part of the unit's target name with class color (Classic only)
 if not Private.isRetail then
 	E:AddTag('luckyone:target:last-classcolor', 'UNIT_TARGET UNIT_FACTION', function(unit)
-		return Private.Tags.formatTargetName(unit, true, true)
+		return formatTargetName(unit, true, true)
 	end)
 	E:AddTagInfo('luckyone:target:last-classcolor', Private.Name, L["Displays the last part of the unit's target name with class color"])
 
 	-- Displays the last part of the unit's target name with no color (Classic only)
 	E:AddTag('luckyone:target:last-nocolor', 'UNIT_TARGET', function(unit)
-		return Private.Tags.formatTargetName(unit, true, false)
+		return formatTargetName(unit, true, false)
 	end)
 	E:AddTagInfo('luckyone:target:last-nocolor', Private.Name, L["Displays the last part of the unit's target name with no color"])
 end
@@ -298,26 +310,23 @@ end
 -------------------------------------------------------
 
 -- Display pet name and happiness status (Classic and TBC only)
-E:AddTag('luckyone:pet:name-and-happiness', (Private.isClassic or Private.isTBC) and 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE' or 'UNIT_NAME_UPDATE PET_UI_UPDATE', function(unit)
-	if Private.isRetail or Private.isMists then
-		return 'Pet'
-	else
+if Private.isClassic or Private.isTBC then
+	E:AddTag('luckyone:pet:name-and-happiness', 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE', function(unit)
 		local hasPetUI, isHunterPet = HasPetUI()
-		if hasPetUI and UnitIsUnit('pet', unit) then
-			if isHunterPet then
-				local petHappiness = GetPetHappiness()
-				local happinessColor = _COLORS.happiness[petHappiness]
-				-- Return for Hunters
-				return Hex(happinessColor) .. petHappinessStrings[petHappiness]
-			else
-				-- Return for other Pet Classes
-				return 'Pet'
-			end
-		else -- Shadowfiend and others
+		if hasPetUI and isHunterPet and UnitIsUnit('pet', unit) then
+			local petHappiness = GetPetHappiness()
+			local happinessColor = _COLORS.happiness[petHappiness]
+			-- Return for Hunters
+			return Hex(happinessColor) .. petHappinessStrings[petHappiness]
+		else -- Other Pet Classes, Shadowfiend and others
 			return 'Pet'
 		end
-	end
-end)
+	end)
+else
+	E:AddTag('luckyone:pet:name-and-happiness', 'UNIT_NAME_UPDATE PET_UI_UPDATE', function()
+		return 'Pet'
+	end)
+end
 E:AddTagInfo('luckyone:pet:name-and-happiness', Private.Name, L["Displays the pet's name and includes (in Classic only) the full happiness status"])
 
 -------------------------------------------------------
@@ -332,7 +341,7 @@ if Private.isRetail then
 			local name = UnitName(unit) or UNKNOWN
 			if E:IsSecretValue(name) then return name end
 
-			return friend and Private.Tags.getFormattedName(unit, length, true, nil, name) or name
+			return friend and getFormattedName(unit, length, true, nil, name) or name
 		end)
 		-- Displays the unit's name with no color and a maximum length (friendly only) or full name (if enemy)
 		E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
@@ -340,7 +349,7 @@ if Private.isRetail then
 			local name = UnitName(unit) or UNKNOWN
 			if E:IsSecretValue(name) then return name end
 
-			return friend and Private.Tags.getFormattedName(unit, length, false, nil, name) or name
+			return friend and getFormattedName(unit, length, false, nil, name) or name
 		end)
 		-- Displays the unit's name (or status) with classcolor and a maximum length (friendly only) or full name (if enemy)
 		E:AddTag('luckyone:name:' .. textFormat .. '-color-friendly:status', 'UNIT_HEALTH UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT PLAYER_UPDATE_RESTING UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
@@ -351,7 +360,7 @@ if Private.isRetail then
 			local name = UnitName(unit) or UNKNOWN
 			if E:IsSecretValue(name) then return name end
 
-			return friend and Private.Tags.getFormattedName(unit, length, true, nil, name) or name
+			return friend and getFormattedName(unit, length, true, nil, name) or name
 		end)
 		-- Displays the unit's name (or status) with no color and a maximum length (friendly only) or full name (if enemy)
 		E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly:status', 'UNIT_HEALTH UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT PLAYER_UPDATE_RESTING UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
@@ -362,7 +371,7 @@ if Private.isRetail then
 			local name = UnitName(unit) or UNKNOWN
 			if E:IsSecretValue(name) then return name end
 
-			return friend and Private.Tags.getFormattedName(unit, length, false, nil, name) or name
+			return friend and getFormattedName(unit, length, false, nil, name) or name
 		end)
 
 		E:AddTagInfo('luckyone:name:' .. textFormat .. '-color-friendly', Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters (friendly only) or full name (if enemy)"], length))
@@ -374,19 +383,19 @@ else
 	for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long = 20 }) do
 		-- Displays the unit's name with classcolor and a maximum length
 		E:AddTag('luckyone:name:' .. textFormat .. '-classcolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
-			return Private.Tags.getFormattedName(unit, length, true)
+			return getFormattedName(unit, length, true)
 		end)
 		-- Displays the unit's name with no color and a maximum length
 		E:AddTag('luckyone:name:' .. textFormat .. '-nocolor', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
-			return Private.Tags.getFormattedName(unit, length, false)
+			return getFormattedName(unit, length, false)
 		end)
 		-- Displays the unit's name abbreviated with classcolor and a maximum length
 		E:AddTag('luckyone:name:abbrev:' .. textFormat .. '-classcolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
-			return Private.Tags.getFormattedName(unit, length, true, true)
+			return getFormattedName(unit, length, true, true)
 		end)
 		-- Displays the unit's name abbreviated with no color and a maximum length
 		E:AddTag('luckyone:name:abbrev:' .. textFormat .. '-nocolor', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
-			return Private.Tags.getFormattedName(unit, length, false, true)
+			return getFormattedName(unit, length, false, true)
 		end)
 
 		E:AddTagInfo('luckyone:name:' .. textFormat .. '-classcolor', Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters"], length))
