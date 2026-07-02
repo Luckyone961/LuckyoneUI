@@ -14,17 +14,19 @@ local DisabledSpells = {
     [425782] = true, -- Second Wind,
 }
 
-local EventFrame = CreateFrame('Frame')
-
-EventFrame:SetScript('OnEvent', function(_, event, unit, _, _, spellID)
-	if event == 'UNIT_SPELLCAST_SENT' and unit == 'player' then
-		if (not (IsFlying('player')) and DisabledSpells[spellID]) then
-			Dismount()
-		end
-	end
-end)
+local EventFrame
 
 function Private:AutoDismount()
 	if not (Private.isRetail and Private.Addon.db.profile.qualityOfLife.autoDismount) then return end
+
+	if not EventFrame then
+		EventFrame = CreateFrame('Frame')
+		EventFrame:SetScript('OnEvent', function(_, _, _, _, _, spellID)
+			if DisabledSpells[spellID] and not IsFlying('player') then
+				Dismount()
+			end
+		end)
+	end
+
 	EventFrame:RegisterUnitEvent('UNIT_SPELLCAST_SENT', 'player')
 end
