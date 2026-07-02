@@ -62,6 +62,11 @@ local function GetNumber(str, profileType)
 	return (not profileType or str:find(profileType, 1, true)) and tonumber(str:match('%d+%.?%d*')) or nil
 end
 
+local devProfiles = {
+	Main = 'Luckyone Main',
+	Healing = 'Luckyone Healing'
+}
+
 -- Find the profile with the highest number
 -- Optionally filtering by the specified profile type
 function Private:GetMostRecentProfile(profileType)
@@ -69,10 +74,6 @@ function Private:GetMostRecentProfile(profileType)
 
 	local profiles = ElvUI[1].data:GetProfiles()
 	local mostRecentNumber, mostRecentProfile
-	local devProfiles = {
-		Main = 'Luckyone Main',
-		Healing = 'Luckyone Healing'
-	}
 
 	for _, profile in ipairs(profiles) do
 		local number = GetNumber(profile, profileType)
@@ -433,11 +434,14 @@ function Private:HandleToons()
 end
 
 function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
+	-- Only run the setup on login and reload, not on every loading screen
+	if not (initLogin or isReload) then return end
+
 	if initLogin or not Private.Addon.db.global.DebugDisabledAddOns then
 		Private.Addon.db.global.DebugDisabledAddOns = {}
 	end
 
-	if Private.ElvUI and (initLogin or isReload) then
+	if Private.ElvUI then
 		Private:VersionCheck()
 	end
 

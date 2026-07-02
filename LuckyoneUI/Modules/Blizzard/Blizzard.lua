@@ -123,23 +123,29 @@ function Private:AutoAcceptRole()
 end
 
 -- Quick signup (double-click LFG search results to open signup)
+local function QuickSignup_OnDoubleClick(self, button)
+	if button ~= 'LeftButton' then return end
+
+	local resultID = self.resultID
+	if not resultID or not LFGListSearchPanelUtil_CanSelectResult(resultID) then return end
+
+	local panel = _G.LFGListFrame.SearchPanel
+	if panel.selectedResult ~= resultID then
+		LFGListSearchPanel_SelectResult(panel, resultID)
+	end
+
+	LFGListSearchPanel_SignUp(panel)
+end
+
 function Private:QuickSignup()
 	if not (Private.isRetail and Private.Addon.db.profile.qualityOfLife.quickSignup) then return end
 
+	-- Update fires per entry on every list refresh, only set the handler once per entry
 	hooksecurefunc('LFGListSearchEntry_Update', function(entry)
-		entry:SetScript('OnDoubleClick', function(self, button)
-			if button ~= 'LeftButton' then return end
-
-			local resultID = self.resultID
-			if not resultID or not LFGListSearchPanelUtil_CanSelectResult(resultID) then return end
-
-			local panel = _G.LFGListFrame.SearchPanel
-			if panel.selectedResult ~= resultID then
-				LFGListSearchPanel_SelectResult(panel, resultID)
-			end
-
-			LFGListSearchPanel_SignUp(panel)
-		end)
+		if not entry.LuckyoneQuickSignup then
+			entry:SetScript('OnDoubleClick', QuickSignup_OnDoubleClick)
+			entry.LuckyoneQuickSignup = true
+		end
 	end)
 end
 
