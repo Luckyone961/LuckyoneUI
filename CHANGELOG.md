@@ -3,6 +3,9 @@
 **Retail:**  
 - Removed AyijeCDM profile  
 
+**Anniversary:**  
+- Updated TOC for 2.5.6  
+
 ## Version 4.16 [17-06-2026]
 
 **All WoW Versions:**  
