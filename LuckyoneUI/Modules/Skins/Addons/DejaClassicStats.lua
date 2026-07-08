@@ -56,4 +56,4 @@ function Private:Skin_DejaClassicStats()
 	end
 end
 
-S:AddCallbackForAddon('DejaClassicStats', 'LuckyoneUI_DejaClassicStats', C_Timer.After(1, function() Private.Skin_DejaClassicStats() end))
+S:AddCallbackForAddon('DejaClassicStats', 'LuckyoneUI_DejaClassicStats', function() C_Timer.After(1, Private.Skin_DejaClassicStats) end)

@@ -42,4 +42,4 @@ function Private:Skin_WhatsTraining()
 	end
 end
 
-S:AddCallbackForAddon('WhatsTraining', 'LuckyoneUI_WhatsTraining', C_Timer.After(1, function() Private.Skin_WhatsTraining() end))
+S:AddCallbackForAddon('WhatsTraining', 'LuckyoneUI_WhatsTraining', function() C_Timer.After(1, Private.Skin_WhatsTraining) end)

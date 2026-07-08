@@ -12,8 +12,11 @@ local UIParent = UIParent
 -- Global constants
 local COMMUNITIES_FRAME_DISPLAY_MODES = COMMUNITIES_FRAME_DISPLAY_MODES
 
+local created
+
 -- Privacy overlay for the guild chat, useful for streamers and recordings, based on a outdated WeakAura on Wago
 function Private:PrivacyOverlay()
+	if created then return end
 	if not Private.Addon.db.profile.qualityOfLife.privacyOverlay then return end
 	if not Private.IsAddOnLoaded('Blizzard_Communities') then return end
 
@@ -52,6 +55,8 @@ function Private:PrivacyOverlay()
 			PrivacyOverlay:Hide()
 		end
 	end
+
+	created = true
 
 	-- Hide after creation
 	PrivacyOverlay:Hide()

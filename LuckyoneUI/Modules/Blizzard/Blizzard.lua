@@ -123,23 +123,29 @@ function Private:AutoAcceptRole()
 end
 
 -- Quick signup (double-click LFG search results to open signup)
+local function QuickSignup_OnDoubleClick(self, button)
+	if button ~= 'LeftButton' then return end
+
+	local resultID = self.resultID
+	if not resultID or not LFGListSearchPanelUtil_CanSelectResult(resultID) then return end
+
+	local panel = _G.LFGListFrame.SearchPanel
+	if panel.selectedResult ~= resultID then
+		LFGListSearchPanel_SelectResult(panel, resultID)
+	end
+
+	LFGListSearchPanel_SignUp(panel)
+end
+
 function Private:QuickSignup()
 	if not (Private.isRetail and Private.Addon.db.profile.qualityOfLife.quickSignup) then return end
 
+	-- Update fires per entry on every list refresh, only set the handler once per entry
 	hooksecurefunc('LFGListSearchEntry_Update', function(entry)
-		entry:SetScript('OnDoubleClick', function(self, button)
-			if button ~= 'LeftButton' then return end
-
-			local resultID = self.resultID
-			if not resultID or not LFGListSearchPanelUtil_CanSelectResult(resultID) then return end
-
-			local panel = _G.LFGListFrame.SearchPanel
-			if panel.selectedResult ~= resultID then
-				LFGListSearchPanel_SelectResult(panel, resultID)
-			end
-
-			LFGListSearchPanel_SignUp(panel)
-		end)
+		if not entry.LuckyoneQuickSignup then
+			entry:SetScript('OnDoubleClick', QuickSignup_OnDoubleClick)
+			entry.LuckyoneQuickSignup = true
+		end
 	end)
 end
 
@@ -167,11 +173,16 @@ function Private:RemoveNameplateRealm()
 	_G.TextureLoadingGroupMixin.RemoveTexture({textures = _G.NamePlateFriendlyFrameOptions}, 'updateNameUsesGetUnitName')
 end
 
-function Blizzard:PLAYER_ENTERING_WORLD()
+function Blizzard:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
+	-- Retries until Blizzard_Communities is loaded, creates the overlay once
+	Private:PrivacyOverlay()
+
+	-- Only run the setup on login and reload, not on every loading screen
+	if not (initLogin or isReload) then return end
+
 	Private:AutoAcceptRole()
 	Private:DisabledFrames()
 	Private:EasyDelete()
-	Private:PrivacyOverlay()
 	Private:QuickSignup()
 	Private:RemoveNameplateRealm()
 end

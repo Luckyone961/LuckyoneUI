@@ -33,6 +33,8 @@ local MythicVisibility = {
 	raid3 = 'hide',
 }
 
+local GroupFrames = { 'party', 'raid1', 'raid2', 'raid3' }
+
 local function HasVisibility(preset)
 	local units = E.db.unitframe.units
 	return units.party.visibility == preset.party
@@ -51,7 +53,7 @@ local function ApplyVisibility(preset)
 	units.raid3.visibility = preset.raid3
 
 	-- Only update headers if ElvUI frames are actually enabled
-	for _, frame in ipairs({'party', 'raid1', 'raid2', 'raid3'}) do
+	for _, frame in ipairs(GroupFrames) do
 		if units[frame].enable then
 			UF:CreateAndUpdateHeaderGroup(frame)
 		end

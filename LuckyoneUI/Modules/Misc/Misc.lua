@@ -13,7 +13,10 @@ function Misc:PLAYER_ENTERING_WORLD()
 	Private:DataTextsTweaks()
 end
 
-function Misc:PLAYER_SPECIALIZATION_CHANGED()
+function Misc:PLAYER_SPECIALIZATION_CHANGED(_, unit)
+	-- Fires for all units?
+	if unit ~= 'player' then return end
+
 	Private:DataTextsTweaks()
 	Private:MythicVisibility()
 end

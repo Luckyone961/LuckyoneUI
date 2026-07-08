@@ -12,6 +12,7 @@ end
 local ipairs = ipairs
 local pairs = pairs
 local unpack = unpack
+local wipe = table.wipe
 
 -- API cache
 local hooksecurefunc = hooksecurefunc
@@ -30,29 +31,15 @@ local units = {
 	{ unit = 'focus', enable = 'focusTextureEnable', texture = 'focusTexture' },
 }
 
-local function IsEnabled()
-	if not E.private.nameplates.enable then return end
+local desiredPlates = {} -- unitFrame -> special texture for this update
+local styledPlates = {} -- unitFrame -> special texture we applied, restored to default on removal
 
-	local db = Private.Addon.db.profile.nameplates
-	for _, entry in ipairs(units) do
-		if db[entry.enable] then
-			return true
-		end
-	end
-end
-
-local function IsUnitEnabled(entry)
-	return Private.Addon.db.profile.nameplates[entry.enable]
+local function GetDB()
+	return Private.Addon.db.profile.nameplates
 end
 
 local function GetDefaultTexture()
-	local db = NP.db.statusbar
-	return LSM:Fetch('statusbar', db)
-end
-
-local function GetSpecialTexture(entry)
-	local db = Private.Addon.db.profile.nameplates
-	return LSM:Fetch('statusbar', db[entry.texture])
+	return LSM:Fetch('statusbar', NP.db.statusbar)
 end
 
 -- Unit validation, seems to be the best way since GUID is secret?
@@ -65,49 +52,46 @@ local function GetUnitNameplate(unit)
 	end
 end
 
-local function GetSpecialPlates()
-	local plates = {}
-
-	for _, entry in ipairs(units) do
-		if IsUnitEnabled(entry) then
-			plates[entry.unit] = GetUnitNameplate(entry.unit)
-		end
-	end
-
-	return plates
-end
-
 local function SetBarTexture(bar, texture)
 	if bar and bar.SetStatusBarTexture and texture then
 		bar:SetStatusBarTexture(texture)
 	end
 end
 
-local function ApplyPlateTexture(nameplate, specialPlates)
-	if not nameplate or not nameplate.Health then return end
+-- Only touches plates whose texture actually changed (old special -> default, new special -> texture)
+-- instead of re-applying textures to every visible plate
+function Private:UpdateSpecialNameplateTextures()
+	if not NP or not NP.Plates or not E.private.nameplates.enable then return end
 
-	specialPlates = specialPlates or GetSpecialPlates()
+	local db = GetDB()
 
+	-- Resolve the desired special plates, units order gives target priority over focus
+	wipe(desiredPlates)
 	for _, entry in ipairs(units) do
-		if IsUnitEnabled(entry) then
-			local specialPlate = specialPlates[entry.unit]
-			if specialPlate and nameplate == specialPlate then
-				SetBarTexture(nameplate.Health, GetSpecialTexture(entry))
-				return
+		if db[entry.enable] then
+			local plate = GetUnitNameplate(entry.unit)
+			if plate and plate.Health and not desiredPlates[plate] then
+				desiredPlates[plate] = LSM:Fetch('statusbar', db[entry.texture])
 			end
 		end
 	end
 
-	SetBarTexture(nameplate.Health, GetDefaultTexture())
-end
+	-- Restore plates that are no longer special
+	local defaultTexture
+	for plate in pairs(styledPlates) do
+		if not desiredPlates[plate] then
+			defaultTexture = defaultTexture or GetDefaultTexture()
+			SetBarTexture(plate.Health, defaultTexture)
+			styledPlates[plate] = nil
+		end
+	end
 
-function Private:UpdateSpecialNameplateTextures()
-	if not NP or not NP.Plates or not IsEnabled() then return end
-
-	local specialPlates = GetSpecialPlates()
-
-	for nameplate in pairs(NP.Plates) do
-		ApplyPlateTexture(nameplate, specialPlates)
+	-- Apply new or changed special textures
+	for plate, texture in pairs(desiredPlates) do
+		if styledPlates[plate] ~= texture then
+			SetBarTexture(plate.Health, texture)
+			styledPlates[plate] = texture
+		end
 	end
 end
 
@@ -122,35 +106,41 @@ local function CheckHook()
 	if not NP then return end
 
 	if not hooked and NP.Update_StatusBars then
-		hooksecurefunc(NP, 'Update_StatusBars', Private.UpdateSpecialNameplateTextures)
+		hooksecurefunc(NP, 'Update_StatusBars', function()
+			wipe(styledPlates)
+			Private:UpdateSpecialNameplateTextures()
+		end)
 		hooked = true
 	end
 
 	if not plateHooked and NP.PostUpdateAllElements and NP.NAME_PLATE_UNIT_REMOVED then
 		hooksecurefunc(NP, 'PostUpdateAllElements', function(nameplate, event)
-			if not IsEnabled() or event ~= 'NAME_PLATE_UNIT_ADDED' then return end
-			if nameplate == NP.TestFrame or nameplate.widgetsOnly then return end
+			if event ~= 'NAME_PLATE_UNIT_ADDED' then return end
+			if nameplate == NP.TestFrame or nameplate.widgetsOnly or not nameplate.Health then return end
+			if not E.private.nameplates.enable then return end
 
-			ApplyPlateTexture(nameplate)
-		end)
-		hooksecurefunc(NP, 'NAME_PLATE_UNIT_REMOVED', function(nameplate)
-			if not IsEnabled() then return end
-
-			local specialPlates = GetSpecialPlates()
-			local needsRefresh
-
-			SetBarTexture(nameplate.Health, GetDefaultTexture())
-
+			local db = GetDB()
 			for _, entry in ipairs(units) do
-				local specialPlate = specialPlates[entry.unit]
-				if specialPlate and specialPlate == nameplate then
-					needsRefresh = true
-					break
+				if db[entry.enable] and GetUnitNameplate(entry.unit) == nameplate then
+					local texture = LSM:Fetch('statusbar', db[entry.texture])
+					if styledPlates[nameplate] ~= texture then
+						SetBarTexture(nameplate.Health, texture)
+						styledPlates[nameplate] = texture
+					end
+					return
 				end
 			end
 
-			if needsRefresh then
-				Private:UpdateSpecialNameplateTextures()
+			-- REMOVED normally cleared this already
+			if styledPlates[nameplate] then
+				SetBarTexture(nameplate.Health, GetDefaultTexture())
+				styledPlates[nameplate] = nil
+			end
+		end)
+		hooksecurefunc(NP, 'NAME_PLATE_UNIT_REMOVED', function(nameplate)
+			if styledPlates[nameplate] then
+				SetBarTexture(nameplate.Health, GetDefaultTexture())
+				styledPlates[nameplate] = nil
 			end
 		end)
 		plateHooked = true
