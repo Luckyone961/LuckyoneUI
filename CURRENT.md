@@ -1,12 +1,12 @@
-## Version 4.16 [17-06-2026]
+## Version 4.17 [08-07-2026]
 
 **All WoW Versions:**  
-- ElvUI 15.17+ compatibility  
-- Updated Baganator profile  
-- Updated Details profile  
+- ElvUI 15.18+ compatibility  
 
 **Retail:**  
-- Added experimental performance CVar editor to the /lucky config Graphics tab  
-- Updated Northern Sky Raid Tools profile  
-- Updated SkironCooldownManager profile  
-- Updated TOC for patch 12.0.7  
+- Fixed some rare issues with certain QOL options in /lucky config  
+- Improved the DataTexts Tweaks option in /lucky config  
+- Removed AyijeCDM profile (The addon is discontinued)  
+
+**Anniversary:**  
+- Updated TOC for 2.5.6  
