@@ -1,5 +1,8 @@
 ﻿## Version 4.17 [In Development]
 
+**All WoW Versions:**  
+- ElvUI 15.18+ compatibility  
+
 **Retail:**  
 - Removed AyijeCDM profile  
 
