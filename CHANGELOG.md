@@ -4,7 +4,7 @@
 - ElvUI 15.18+ compatibility  
 
 **Retail:**  
-- Fixed some rare issues with certain /lucky config QOL options  
+- Fixed some rare issues with certain QOL options in /lucky config  
 - Improved the DataTexts Tweaks option in /lucky config  
 - Removed AyijeCDM profile (The addon is discontinued)  
 
