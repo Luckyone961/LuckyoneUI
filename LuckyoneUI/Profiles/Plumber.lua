@@ -15,7 +15,7 @@ function Private:Setup_Plumber()
 	if not Private.IsAddOnLoaded('Plumber') then Private:Print('Plumber ' .. L["is not installed or enabled."]) return end
 
 	local DB = _G.PlumberDB
-	DB = DB or {}
+	if not DB then return end
 
 	DB.AlternativePlayerChoiceUI = true
 	DB.AppearanceTab = true

@@ -208,6 +208,13 @@ function Private:HandleAlts(layout)
 	Private:Print(L["Applied profile: "] .. mostRecentProfile)
 end
 
+-- Profile names by layout
+local layoutNames = {
+	main = 'Luckyone Main',
+	healing = 'Luckyone Healing',
+	support = 'Luckyone Support',
+}
+
 -- Setup Midnight layout
 function Private:Setup_Layout(layout, installer)
 	if Private.isRetail or Private.isMists then
@@ -215,13 +222,8 @@ function Private:Setup_Layout(layout, installer)
 	end
 
 	-- Create a fresh profile in ElvUI
-	if layout == 'main' then
-		E.data:SetProfile(Private.Addon.db.global.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version)
-	elseif layout == 'healing' then
-		E.data:SetProfile(Private.Addon.db.global.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version)
-	elseif layout == 'support' then
-		E.data:SetProfile(Private.Addon.db.global.dev and 'Luckyone Support' or 'Luckyone Support ' .. Private.Version)
-	end
+	local name = layoutNames[layout]
+	E.data:SetProfile(Private.Addon.db.global.dev and name or name .. ' ' .. Private.Version)
 
 	-- E.global & Custom DataText
 	Private:Setup_GlobalDB()
@@ -230,13 +232,7 @@ function Private:Setup_Layout(layout, installer)
 	Private:Setup_PrivateDB()
 
 	-- E.db & Movers
-	if layout == 'main' then
-		Private:Setup_ElvUI('main')
-	elseif layout == 'healing' then
-		Private:Setup_ElvUI('healing')
-	elseif layout == 'support' then
-		Private:Setup_ElvUI('support')
-	end
+	Private:Setup_ElvUI(layout)
 
 	-- Push the update
 	Refresh()

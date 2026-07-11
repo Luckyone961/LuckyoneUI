@@ -18,7 +18,7 @@ function Private:Setup_Chattynator()
 	local scaled = Private.Addon.db.global.scaled
 
 	local DB = _G.CHATTYNATOR_CONFIG.Profiles.DEFAULT
-	DB = DB or {}
+	if not DB then return end
 
 	-- General settings
 	DB.button_position = 'outside_tabs'
