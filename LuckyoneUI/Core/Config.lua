@@ -4,10 +4,8 @@ local L = Private.Libs.ACL
 local ACH = Private.Libs.ACH
 
 -- Lua functions
-local format = string.format
-local pairs = pairs
 local concat = table.concat
-local tinsert = table.insert
+local format = string.format
 local tostring = tostring
 
 -- API cache
@@ -26,24 +24,49 @@ local RELOAD_POPUP = 'LUCKYONE_RL'
 local RESET_DEFAULTS_TEXT = L["Reset to LuckyoneUI defaults."]
 
 -- Credits
-Private.Credits = {}
-
-local AUTHOR = { '|cff33937FLucky|r - LaughingSkull', '|cffFF7D0ALuckyone|r - LaughingSkull' }
-local CODING = { '|cff0070DEAzilroka|r', '|cFF8866ccSimpy|r', '|cffF58CBARepooc|r', '|cffFF7D0AMerathilis|r' }
-local SUPPORT = { '|cffe6cc80Calmcacil|r', '|cffe6cc80DaPaKnat|r', '|cffe6cc80Debeleus|r', '|cffe6cc80DevinDog|r', '|cffe6cc80Dukes|r', '|cffe6cc80Garbar|r', '|cffe6cc80Kenneth|r', '|cffe6cc80Liam|r', '|cffe6cc80Littlesack|r', '|cffe6cc80Lox|r', '|cffe6cc80Midnatt|r', '|cffe6cc80MonkeyHack|r', '|cffe6cc80Onlyne|r', '|cffe6cc80ShowNoMercy|r', '|cffe6cc80Treelyté|r', '|cffe6cc80Triplebeamdreams|r', '|cffe6cc80Tykk|r', '|cffe6cc80Logan|r' }
-local TESTERS = { '|cff00FF96AltBridge|r', '|cffABD473Badbrain|r', '|cff00FF96Doctorio|r', '|cffC41F3BKringel|r', '|cffF58CBAIllusion|r', '|cffABD473Dlarge|r', '|cffe6cc80Hollicsh|r', '|cff3FC7EBEltreum|r', '|cffFFFFFFOniria|r' }
-
-local function ProcessList(list)
-	for _, name in pairs(list) do
-		tinsert(Private.Credits, name)
-	end
-	return concat(list, '|n')
-end
-
-local AUTHOR_STRING = ProcessList(AUTHOR)
-local CODING_STRING = ProcessList(CODING)
-local TESTER_STRING = ProcessList(TESTERS)
-local SUPPORT_STRING = ProcessList(SUPPORT)
+local CREDITS = {
+	author = {
+		'|cff33937FLucky|r - LaughingSkull',
+		'|cffFF7D0ALuckyone|r - LaughingSkull',
+	},
+	coding = {
+		'|cff0070DEAzilroka|r',
+		'|cffFF7D0AMerathilis|r',
+		'|cffF58CBARepooc|r',
+		'|cFF8866ccSimpy|r',
+	},
+	testers = {
+		'|cff00FF96AltBridge|r',
+		'|cffABD473Badbrain|r',
+		'|cffABD473Dlarge|r',
+		'|cff00FF96Doctorio|r',
+		'|cff3FC7EBEltreum|r',
+		'|cffe6cc80Hollicsh|r',
+		'|cffF58CBAIllusion|r',
+		'|cffC41F3BKringel|r',
+		'|cffFFFFFFOniria|r',
+	},
+	support = {
+		'|cffe6cc80Calmcacil|r',
+		'|cffe6cc80DaPaKnat|r',
+		'|cffe6cc80Debeleus|r',
+		'|cffe6cc80DevinDog|r',
+		'|cffe6cc80Dukes|r',
+		'|cffe6cc80Garbar|r',
+		'|cffe6cc80Kenneth|r',
+		'|cffe6cc80Liam|r',
+		'|cffe6cc80Littlesack|r',
+		'|cffe6cc80Logan|r',
+		'|cffe6cc80Lox|r',
+		'|cffe6cc80Midnatt|r',
+		'|cffe6cc80MonkeyHack|r',
+		'|cffe6cc80Onlyne|r',
+		'|cffe6cc80ShowNoMercy|r',
+		'|cffe6cc80Treelyté|r',
+		'|cffe6cc80Triplebeamdreams|r',
+		'|cffe6cc80Tykk|r',
+	},
+}
 
 -- Build Setup Section
 local function BuildSetupSection()
@@ -388,16 +411,16 @@ local function BuildCreditsSection()
 	section.args.header = ACH:Header(L["Credits"], 1)
 	section.args.author = ACH:Group(L["Author"], nil, 2)
 	section.args.author.inline = true
-	section.args.author.args.desc = ACH:Description(AUTHOR_STRING, 1, 'medium')
+	section.args.author.args.desc = ACH:Description(concat(CREDITS.author, '|n'), 1, 'medium')
 	section.args.coding = ACH:Group(L["Coding"], nil, 3)
 	section.args.coding.inline = true
-	section.args.coding.args.desc = ACH:Description(CODING_STRING, 1, 'medium')
+	section.args.coding.args.desc = ACH:Description(concat(CREDITS.coding, '|n'), 1, 'medium')
 	section.args.testers = ACH:Group(L["Testers and Translation"], nil, 4)
 	section.args.testers.inline = true
-	section.args.testers.args.desc = ACH:Description(TESTER_STRING, 1, 'medium')
+	section.args.testers.args.desc = ACH:Description(concat(CREDITS.testers, '|n'), 1, 'medium')
 	section.args.supporter = ACH:Group(L["Supporters"], nil, 5)
 	section.args.supporter.inline = true
-	section.args.supporter.args.desc = ACH:Description(SUPPORT_STRING, 1, 'medium')
+	section.args.supporter.args.desc = ACH:Description(concat(CREDITS.support, '|n'), 1, 'medium')
 	return section
 end
 
