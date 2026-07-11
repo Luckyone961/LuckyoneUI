@@ -49,9 +49,9 @@ function Private:Setup_GlobalDB()
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
 
-	SetCVar('uiScale', (scaled and 0.71111111111111) or 0.53333333333333)
+	SetCVar('uiScale', (scaled and Private.UIScale1080) or Private.UIScale1440)
 	SetCVar('useUiScale', 1)
-	E.global.general.UIScale = (scaled and 0.71111111111111) or 0.53333333333333
+	E.global.general.UIScale = (scaled and Private.UIScale1080) or Private.UIScale1440
 
 	E.global.datatexts.settings.Combat.NoLabel = true
 	E.global.datatexts.settings.Combat.TimeFull = false

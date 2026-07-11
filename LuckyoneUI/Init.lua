@@ -56,6 +56,10 @@ Private.Font = 'Expressway'
 Private.Outline = 'OUTLINE'
 Private.Texture = 'Minimalist'
 
+-- UI scale values
+Private.UIScale1440 = 0.53333333333333
+Private.UIScale1080 = 0.71111111111111
+
 -- Build info
 Private.InterfaceVersion = select(4, GetBuildInfo())
 
