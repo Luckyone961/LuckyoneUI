@@ -23,7 +23,6 @@ Private.Defaults = {
 			hide = false,
 		},
 		misc = {
-			dataTextsTweaks = false,
 			mythicVisibility = false,
 			removeNameplateRealm = false,
 		},
