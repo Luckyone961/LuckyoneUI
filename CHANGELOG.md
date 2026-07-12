@@ -1,4 +1,11 @@
-﻿## Version 4.17 [08-07-2026]
+﻿## Version 4.18 [In development, not yet released]
+
+**All WoW Versions:**  
+- Removed the main DataText underneath the Actionbars  
+- System (FPS/MS), Combat Timer, Durability DataText is now underneath Details  
+- Updated Details profile to not overlap with the DataText changes  
+
+## Version 4.17 [08-07-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.18+ compatibility  
