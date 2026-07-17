@@ -59,10 +59,6 @@
 • **Twitch link:** [Luckyone1996 on Twitch](https://www.twitch.tv/Luckyone1996)  
 • **YouTube link:** [LuckyoneWoW on YouTube](https://www.youtube.com/@LuckyoneWoW)  
 
-### **Setup guide**  
-• My step-by-step guide for new users without ElvUI experience is available on Wowhead.  
-• **Guide link:** [View guide on Wowhead](https://www.wowhead.com/guide=10680/elvui-luckyoneui-addon-plugin-guide)  
-
 ### **Website**  
 • Simple static web page for quick access to all important links.  
 • **Website link:** [Luckyone Development Website](https://luckyone.dev/)  
