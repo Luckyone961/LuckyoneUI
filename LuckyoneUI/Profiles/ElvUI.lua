@@ -915,7 +915,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.datatexts.battlePanel.RightChatDataPanel[3] = ''
 	E.db.datatexts.font = Private.Font
 	E.db.datatexts.fontOutline = Private.Outline
-	E.db.datatexts.fontSize = 12
+	E.db.datatexts.fontSize = 13 -- Only used for RightChatDataPanel
 	E.db.datatexts.noCombatClick = true
 	E.db.datatexts.noCombatHover = true
 	E.db.datatexts.panels.LeftChatDataPanel.battleground = false
