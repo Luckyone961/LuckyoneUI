@@ -5,6 +5,9 @@
 - System (FPS/MS), Combat Timer, Durability DataText is now underneath Details  
 - Updated Details profile to not overlap with the DataText changes  
 
+**Retail:**  
+- Updated SkironCooldownManager profile (Includes G1 text frame strata fix)  
+
 ## Version 4.17 [08-07-2026]
 
 **All WoW Versions:**  
