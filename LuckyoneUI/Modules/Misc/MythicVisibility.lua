@@ -76,10 +76,5 @@ end
 function Private:MythicVisibility()
 	if not (Private.isRetail and Private.Addon.db.profile.misc.mythicVisibility) then return end
 
-	local _, instanceType, difficultyID = GetInstanceInfo()
-	local isMythicRaid = (instanceType == 'raid' and difficultyID == 16)
-	local preset = isMythicRaid and MythicVisibility or DefaultVisibility
-	if E.db.unitframe.maxAllowedGroups and HasVisibility(preset) then return end
-
 	E:Delay(1, UpdateRaidVisibility)
 end
