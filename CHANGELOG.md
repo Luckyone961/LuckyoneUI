@@ -1,10 +1,5 @@
 ﻿## Version 4.18 [In development, not yet released]
 
-**All WoW Versions:**  
-- Removed the main DataText underneath the Actionbars  
-- System (FPS/MS), Combat Timer, Durability DataText is now underneath Details  
-- Updated Details profile to not overlap with the DataText changes  
-
 **Retail:**  
 - Updated SkironCooldownManager profile (Includes G1 text frame strata fix)  
 
