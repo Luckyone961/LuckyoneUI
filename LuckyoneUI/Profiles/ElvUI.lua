@@ -829,7 +829,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.chat.panelColor.g = 0.05
 	E.db.chat.panelColor.r = 0.05
 	E.db.chat.panelHeight = (scaled and 170) or 208
-	E.db.chat.panelHeightRight = (scaled and 147) or 185
+	E.db.chat.panelHeightRight = (scaled and 170) or 208
 	E.db.chat.panelWidth = (scaled and 434) or 484
 	E.db.chat.panelWidthRight = (scaled and 440) or 486
 	E.db.chat.separateSizes = true
@@ -945,7 +945,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.datatexts.battlePanel.RightChatDataPanel[3] = ''
 	E.db.datatexts.font = Private.Font
 	E.db.datatexts.fontOutline = Private.Outline
-	E.db.datatexts.fontSize = 13 -- Only used for RightChatDataPanel
+	E.db.datatexts.fontSize = 11
 	E.db.datatexts.noCombatClick = true
 	E.db.datatexts.noCombatHover = true
 	E.db.datatexts.panels.LeftChatDataPanel.battleground = false
@@ -959,11 +959,11 @@ function Private:Setup_ElvUI(layout)
 	E.db.datatexts.panels.MinimapPanel[1] = ''
 	E.db.datatexts.panels.MinimapPanel[2] = ''
 	E.db.datatexts.panels.RightChatDataPanel.battleground = false
-	E.db.datatexts.panels.RightChatDataPanel.enable = true
+	E.db.datatexts.panels.RightChatDataPanel.enable = false
 	E.db.datatexts.panels.RightChatDataPanel.panelTransparency = true
-	E.db.datatexts.panels.RightChatDataPanel[1] = 'System'
-	E.db.datatexts.panels.RightChatDataPanel[2] = 'Combat'
-	E.db.datatexts.panels.RightChatDataPanel[3] = 'Durability'
+	E.db.datatexts.panels.RightChatDataPanel[1] = ''
+	E.db.datatexts.panels.RightChatDataPanel[2] = ''
+	E.db.datatexts.panels.RightChatDataPanel[3] = ''
 
 	-- Tooltip
 	E.db.tooltip.alwaysShowRealm = true
@@ -2211,13 +2211,13 @@ function Private:Setup_ElvUI(layout)
 
 		-- Main movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
-		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
-		E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,67'
-		E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,34'
+		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
+		E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,82'
+		E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,49'
 		E.db.movers.ElvUF_Raid1Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,100'
+		E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,115'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 
 	elseif layout == 'healing' then
@@ -2227,9 +2227,9 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvAB_2 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
 		E.db.movers.ElvAB_3 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
-		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
-		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
-		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
+		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
+		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
+		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 
@@ -2240,9 +2240,9 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvAB_2 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
 		E.db.movers.ElvAB_3 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
-		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
-		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
-		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
+		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
+		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
+		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 	end
