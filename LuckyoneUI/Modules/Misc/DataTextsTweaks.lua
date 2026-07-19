@@ -16,10 +16,8 @@ local InCombatLockdown = InCombatLockdown
 local E = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
 
--- Update ActionBars DataText width based on active LuckyoneUI profile
-local function UpdateDataTextWidth()
-	if InCombatLockdown() then return end
-
+-- Correct ActionBars DataText width for the active LuckyoneUI profile, or nil if unchanged/unavailable
+local function GetCorrectDataTextWidth()
 	local datatexts = E.global.datatexts
 	if not datatexts or not datatexts.customPanels then return end
 
@@ -41,11 +39,23 @@ local function UpdateDataTextWidth()
 	-- Skip the full datatext reload if the width already matches
 	if not width or ActionBarsDT.width == width then return end
 
+	return width, ActionBarsDT
+end
+
+-- Update ActionBars DataText width based on active LuckyoneUI profile
+local function UpdateDataTextWidth()
+	if InCombatLockdown() then return end
+
+	local width, ActionBarsDT = GetCorrectDataTextWidth()
+	if not width then return end
+
 	ActionBarsDT.width = width
 	DT:LoadDataTexts()
 end
 
 function Private:DataTextsTweaks()
 	if not (Private.isRetail and Private.Addon.db.profile.misc.dataTextsTweaks) then return end
+	if not GetCorrectDataTextWidth() then return end
+
 	E:Delay(1, UpdateDataTextWidth)
 end
