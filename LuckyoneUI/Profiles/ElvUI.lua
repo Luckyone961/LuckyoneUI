@@ -65,6 +65,22 @@ function Private:Setup_GlobalDB()
 	E.global.general.smallerWorldMapScale = 0.8
 	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
+	DT:BuildPanelFrame('Luckyone_ActionBars_DT')
+
+	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
+	ActionBarsDT.fonts.enable = true
+	ActionBarsDT.fonts.font = Private.Font
+	ActionBarsDT.fonts.fontSize = 12
+	ActionBarsDT.frameStrata = 'BACKGROUND'
+	ActionBarsDT.height = 14
+	ActionBarsDT.name = 'Luckyone_ActionBars_DT'
+	ActionBarsDT.panelTransparency = true
+	ActionBarsDT.tooltipAnchor = 'ANCHOR_TOP'
+	ActionBarsDT.tooltipXOffset = 0
+	ActionBarsDT.tooltipYOffset = 5
+	ActionBarsDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
+	ActionBarsDT.width = 395
+
 	DT:BuildPanelFrame('Luckyone_MiniMap_DT')
 
 	local MiniMapDT = E.global.datatexts.customPanels.Luckyone_MiniMap_DT
@@ -168,6 +184,15 @@ function Private:HandleAlts(layout)
 
 	-- Load the most recent profile
 	E.data:SetProfile(mostRecentProfile)
+
+	-- Fix our custom DataText
+	if layout == 'main' then
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395 -- (Profile == 1)
+	elseif layout == 'healing' then
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704 -- (Profile == 2)
+	elseif layout == 'support' then
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 484 -- (Profile == 3)
+	end
 
 	-- PrivateDB for ElvUI, Shadow&Light, WindTools
 	Private:Setup_PrivateDB(true)
@@ -902,6 +927,11 @@ function Private:Setup_ElvUI(layout)
 	E.db.databars.threat.enable = false
 
 	-- DataTexts custom
+	E.db.datatexts.panels.Luckyone_ActionBars_DT.battleground = false
+	E.db.datatexts.panels.Luckyone_ActionBars_DT.enable = true
+	E.db.datatexts.panels.Luckyone_ActionBars_DT[1] = 'System'
+	E.db.datatexts.panels.Luckyone_ActionBars_DT[2] = 'Combat'
+	E.db.datatexts.panels.Luckyone_ActionBars_DT[3] = 'Durability'
 	E.db.datatexts.panels.Luckyone_MiniMap_DT.battleground = false
 	E.db.datatexts.panels.Luckyone_MiniMap_DT.enable = true
 	E.db.datatexts.panels.Luckyone_MiniMap_DT[1] = 'Time'
@@ -1932,6 +1962,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.BossHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-342,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-402,-280'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-116'
+	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-68,-180'
 	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,232,1'
 	E.db.movers.ElvAB_4 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-578'
@@ -1986,6 +2017,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-82'
 
+	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
 	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
 
 	if layout == 'main' or layout == 'support' then
@@ -2214,6 +2246,9 @@ function Private:Setup_ElvUI(layout)
 		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 	end
+
+	-- Initial DT width
+	E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (layout == 'main' and 395) or (layout == 'healing' and 704) or (layout == 'support' and 484)
 
 	-- Custom AB changes
 	if Private.itsLuckyone and (layout == 'healing' or layout == 'support') then

@@ -333,6 +333,7 @@ local function BuildElvUITweaksSection()
 	section.args.toggles = ACH:Group(L["Toggles"], nil, 2)
 	section.args.toggles.inline = true
 	section.args.toggles.args.mythicVisibility = ACH:Toggle(L["Mythic Raidframe Visibility"], L["Feature explained in the description below"], 1, nil, nil, nil, function() return Private.Addon.db.profile.misc.mythicVisibility end, function(_, value) Private.Addon.db.profile.misc.mythicVisibility = value end, nil, not Private.isRetail)
+	section.args.toggles.args.dataTextsTweaks = ACH:Toggle(L["DataTexts Tweaks"], L["Feature explained in the description below"], 2, nil, nil, nil, function() return Private.Addon.db.profile.misc.dataTextsTweaks end, function(_, value) Private.Addon.db.profile.misc.dataTextsTweaks = value end, nil, not Private.isRetail)
 	section.args.nameplates = ACH:Group(L["Nameplates"], nil, 3)
 	section.args.nameplates.inline = true
 	section.args.nameplates.args.focusTextureEnable = ACH:Toggle(L["Enable Focus Texture"], nil, 1, nil, nil, nil, function() return Private.Addon.db.profile.nameplates.focusTextureEnable end, function(_, value) local db = Private.Addon.db.profile.nameplates db.focusTextureEnable = value if value or db.targetTextureEnable then Private:UpdateSpecialNameplateTextures() else Private:RestoreNameplateTextures() end end)
@@ -343,6 +344,9 @@ local function BuildElvUITweaksSection()
 	section.args.mythicVisibilityDesc = ACH:Group(L["Mythic Raidframe Visibility explained"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
 	section.args.mythicVisibilityDesc.inline = true
 	section.args.mythicVisibilityDesc.args.desc = ACH:Description(L["Your Raid 1 frames will be enabled if you enter Mythic difficulty (Triggers after loading screen)\nYour Raid 2 frames will be disabled if you enter Mythic difficulty (Triggers after loading screen)\n\nAdditionally the maxAllowedGroups setting will be enabled and the visibility state gets modified\nBenched people in groups 5-8 while not show up when you're Mythic raiding\n\nAll changes mentioned above will revert back to default upon leaving the raid"], 1, 'medium', nil, nil, nil, nil, nil, not Private.isRetail)
+	section.args.dataTextsTweaksDesc = ACH:Group(L["DataTexts Tweaks explained"], nil, 5, nil, nil, nil, nil, not Private.isRetail)
+	section.args.dataTextsTweaksDesc.inline = true
+	section.args.dataTextsTweaksDesc.args.desc = ACH:Description(L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your specialization\nIt also assumes you have properly setup specialization-based profile loading in ElvUI profiles"], 1, 'medium', nil, nil, nil, nil, nil, not Private.isRetail)
 	return section
 end
 
@@ -448,7 +452,7 @@ local function BuildDevSection()
 	section.args.devInfo.args.desc = ACH:Description('While this developer mode is enabled, the following will change:\n\n- Profiles created by the installer will no longer add the version suffix to the profile name.\n- Profile installer make additional database adjustments as listed below.', 1, 'medium')
 	section.args.db = ACH:Group('Database adjustments', nil, 4)
 	section.args.db.inline = true
-	section.args.db.args.desc = ACH:Description('- Chat bubble skinning disabled (To use texture replacements)\n- Bags module disabled (To use Baganator)\n- Alert Frame hider enabled\n- Boss Banner hider enabled\n- Housing Decor Alerts hider enabled\n- Easy Delete enabled\n- Privacy Overlay enabled\n- Mythic Raidframe Visibility enabled\n- All LuckyoneUI custom skins enabled', 1, 'medium')
+	section.args.db.args.desc = ACH:Description('- Chat bubble skinning disabled (To use texture replacements)\n- Bags module disabled (To use Baganator)\n- Alert Frame hider enabled\n- Boss Banner hider enabled\n- Housing Decor Alerts hider enabled\n- Easy Delete enabled\n- Privacy Overlay enabled\n- Mythic Raidframe Visibility enabled\n- DataTexts Tweaks enabled\n- All LuckyoneUI custom skins enabled', 1, 'medium')
 	section.args.header2 = ACH:Header('Luckyone\'s Private Section', 5)
 	section.args.syncInfo = ACH:Group('Important information', nil, 6)
 	section.args.syncInfo.inline = true
