@@ -71,7 +71,6 @@ Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 
 -- API checks
 Private.IsAddOnLoaded = IsAddOnLoaded
-Private.IsEditModeActive = Private.isRetail or Private.isMists or Private.isTBC
 Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
 
 -- Player utils

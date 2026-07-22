@@ -163,8 +163,5 @@ function Private:Setup_Chat(installer)
 	end
 
 	Private:Print(L["Chat setup successful."])
-
-	if Private.IsEditModeActive then
-		Private:Print(L["Your chat will keep disappearing unless you move it in Blizzard's Edit Mode and save the profile there."])
-	end
+	Private:Print(L["Your chat will keep disappearing unless you move it in Blizzard's Edit Mode and save the profile there."])
 end
