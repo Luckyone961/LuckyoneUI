@@ -3,6 +3,9 @@
 **Retail:**  
 - Updated SkironCooldownManager profile (Includes G1 text frame strata fix)  
 
+**Classic:**  
+- Updated TOC for patch 1.15.9  
+
 ## Version 4.17 [08-07-2026]
 
 **All WoW Versions:**  
