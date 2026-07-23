@@ -1,8 +1,7 @@
 # LuckyoneUI Proprietary License
 
-Version 1.0 - July 2026
+Copyright © 2020-2026 LuckyoneUI. All rights reserved.
 
-Copyright © 2026 LuckyoneUI. All rights reserved.
 Contact: Luckyone@Luckyone.dev
 
 ### 1. Definitions
