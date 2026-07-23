@@ -37,4 +37,4 @@ function Private:Skin_NovaWorldBuffs()
     end
 end
 
-S:AddCallbackForAddon('NovaWorldBuffs', 'LuckyoneUI_NovaWorldBuffs', Private.Skin_NovaWorldBuffs)
+Private:RegisterAddonSkin('NovaWorldBuffs', 'LuckyoneUI_NovaWorldBuffs', Private.Skin_NovaWorldBuffs)

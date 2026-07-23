@@ -94,9 +94,7 @@ end
 -- Open settings helper
 function Private:OpenSettings()
 	if Private.ElvUI then
-		ElvUI[1]:ToggleOptions()
-		ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'LuckyoneUI')
-		ElvUI[1]:Config_UpdateSize(true)
+		ElvUI[1]:ToggleOptions('LuckyoneUI')
 	else
 		if Settings_OpenToCategory and Private.SettingsCategoryID then
 			Settings_OpenToCategory(Private.SettingsCategoryID)
@@ -352,7 +350,34 @@ function Private:CheckElvUI()
 		E.global.L1UI.install_version = nil
 	end
 
+	Private:BuildConfig()
+
+	if Private.IsAddOnLoaded('ElvUI_Options') and not E.Options.args.plugins then
+		EP:GetPluginOptions()
+	end
+
 	EP:RegisterPlugin(Name, Private.BuildConfig)
+end
+
+local AddonSkins = {}
+function Private:RegisterAddonSkin(addonName, givenName, func)
+	local skin = {}
+	AddonSkins[addonName] = function()
+		if skin.done then return end
+		skin.done = true
+		func()
+	end
+
+	local S = ElvUI[1]:GetModule('Skins')
+	S:AddCallbackForAddon(addonName, givenName, AddonSkins[addonName])
+end
+
+function Private:LoadAddonSkins()
+	for addonName, callback in pairs(AddonSkins) do
+		if Private.IsAddOnLoaded(addonName) then
+			callback()
+		end
+	end
 end
 
 -- Incompatible addons
@@ -450,17 +475,19 @@ function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	if Private.itsLuckyone then
 		Private.Addon.db.global.dev = true
 	end
+
+	if Private.Installer and (Private.Addon.db.global.install_version == nil) then
+		Private.Installer:OnLoad()
+	end
 end
 
 function Core:OnEnable()
 	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
 	Private.Addon:LoadCommands()
-	Private:CheckElvUI()
-	Private:CheckIncompatible()
 
-	if Private.Installer and (Private.Addon.db.global.install_version == nil) then
-		Private.Installer:OnLoad()
-	end
+	Private:CheckElvUI()
+	Private:LoadAddonSkins()
+	Private:CheckIncompatible()
 
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end

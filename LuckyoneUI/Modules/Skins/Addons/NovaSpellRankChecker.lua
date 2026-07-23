@@ -31,4 +31,4 @@ function Private:Skin_NovaSpellRankChecker()
     end
 end
 
-S:AddCallbackForAddon('NovaSpellRankChecker', 'LuckyoneUI_NovaSpellRankChecker', Private.Skin_NovaSpellRankChecker)
+Private:RegisterAddonSkin('NovaSpellRankChecker', 'LuckyoneUI_NovaSpellRankChecker', Private.Skin_NovaSpellRankChecker)

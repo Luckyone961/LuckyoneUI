@@ -70,4 +70,4 @@ function Private:Skin_BugSack()
 	hooksecurefunc(BugSack, 'OpenSack', SkinBugSackFrame)
 end
 
-S:AddCallbackForAddon('BugSack', 'LuckyoneUI_BugSack', Private.Skin_BugSack)
+Private:RegisterAddonSkin('BugSack', 'LuckyoneUI_BugSack', Private.Skin_BugSack)

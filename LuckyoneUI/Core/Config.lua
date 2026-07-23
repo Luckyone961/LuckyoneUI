@@ -489,8 +489,20 @@ function Private:BuildConfig()
 
 	-- ElvUI config integration
 	if Private.ElvUI then
-		ElvUI[1].Options.name = format('%s + %s |cff99ff33%.2f|r', ElvUI[1].Options.name, Private.Name, Private.Version)
-		ElvUI[1].Options.args.LuckyoneUI = Private.Config
+		local E = ElvUI[1]
+
+		-- Only append to the config title on the first run
+		if not Private.configTitleSet then
+			E.Options.name = format('%s + %s |cff99ff33%.2f|r', E.Options.name, Private.Name, Private.Version)
+			Private.configTitleSet = true
+		end
+
+		E.Options.args.LuckyoneUI = Private.Config
+
+		-- Refresh the config tree in case the window is already built
+		if Private.IsAddOnLoaded('ElvUI_Options') then
+			E.Libs.AceConfigRegistry:NotifyChange('ElvUI')
+		end
 	end
 end
 

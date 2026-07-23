@@ -184,4 +184,4 @@ function Private:Skin_CooldownViewer()
 	end
 end
 
-S:AddCallbackForAddon('Blizzard_CooldownViewer', 'LuckyoneUI_CooldownViewer', Private.Skin_CooldownViewer)
+Private:RegisterAddonSkin('Blizzard_CooldownViewer', 'LuckyoneUI_CooldownViewer', Private.Skin_CooldownViewer)
