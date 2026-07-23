@@ -491,12 +491,7 @@ function Private:BuildConfig()
 	if Private.ElvUI then
 		local E = ElvUI[1]
 
-		-- Only append to the config title on the first run
-		if not Private.configTitleSet then
-			E.Options.name = format('%s + %s |cff99ff33%.2f|r', E.Options.name, Private.Name, Private.Version)
-			Private.configTitleSet = true
-		end
-
+		E.Options.name = format('%s + %s |cff99ff33%.2f|r', E.Options.name, Private.Name, Private.Version)
 		E.Options.args.LuckyoneUI = Private.Config
 
 		-- Refresh the config tree in case the window is already built

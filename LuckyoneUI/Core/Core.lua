@@ -352,7 +352,8 @@ function Private:CheckElvUI()
 
 	Private:BuildConfig()
 
-	if Private.IsAddOnLoaded('ElvUI_Options') and not E.Options.args.plugins then
+	-- Pre-create the plugins group, the config window is built before LibElvUIPlugin creates it
+	if not E.Options.args.plugins then
 		EP:GetPluginOptions()
 	end
 
