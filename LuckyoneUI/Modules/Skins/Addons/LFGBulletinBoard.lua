@@ -47,4 +47,4 @@ function Private:Skin_LFGBulletinBoard()
 	end
 end
 
-Private:RegisterAddonSkin('LFGBulletinBoard', 'LuckyoneUI_LFGBulletinBoard', Private.Skin_LFGBulletinBoard)
+S:AddCallbackForAddon('LFGBulletinBoard', 'LuckyoneUI_LFGBulletinBoard', Private.Skin_LFGBulletinBoard)

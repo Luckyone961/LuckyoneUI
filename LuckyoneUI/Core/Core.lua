@@ -335,27 +335,6 @@ function Private:CheckElvUI()
 	EP:RegisterPlugin(Name, Private.BuildConfig)
 end
 
-local AddonSkins = {}
-function Private:RegisterAddonSkin(addonName, givenName, func)
-	local skin = {}
-	AddonSkins[addonName] = function()
-		if skin.done then return end
-		skin.done = true
-		func()
-	end
-
-	local S = ElvUI[1]:GetModule('Skins')
-	S:AddCallbackForAddon(addonName, givenName, AddonSkins[addonName])
-end
-
-function Private:LoadAddonSkins()
-	for addonName, callback in pairs(AddonSkins) do
-		if Private.IsAddOnLoaded(addonName) then
-			callback()
-		end
-	end
-end
-
 -- Luckyone characters by GUID
 local Toons = Private.isRetail and {
 	-- (1598: LaughingSkull)
@@ -455,7 +434,6 @@ function Core:OnEnable()
 	Private.Addon:LoadCommands()
 
 	Private:CheckElvUI()
-	Private:LoadAddonSkins()
 
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end

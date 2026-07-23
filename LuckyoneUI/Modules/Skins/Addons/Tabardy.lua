@@ -49,4 +49,4 @@ function Private:Skin_Tabardy()
 	end)
 end
 
-Private:RegisterAddonSkin('Tabardy', 'LuckyoneUI_Tabardy', Private.Skin_Tabardy)
+S:AddCallbackForAddon('Tabardy', 'LuckyoneUI_Tabardy', Private.Skin_Tabardy)

@@ -8,12 +8,17 @@ end
 
 -- Lua functions
 local ipairs = ipairs
+local unpack = unpack
 
 -- API cache
 local C_Timer = C_Timer
 
 -- Global environment
 local _G = _G
+
+-- ElvUI modules
+local E = unpack(ElvUI)
+local S = E:GetModule('Skins')
 
 function Private:Skin_DejaClassicStats()
 	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.DejaClassicStats then return end
@@ -51,4 +56,4 @@ function Private:Skin_DejaClassicStats()
 	end
 end
 
-Private:RegisterAddonSkin('DejaClassicStats', 'LuckyoneUI_DejaClassicStats', function() C_Timer.After(1, Private.Skin_DejaClassicStats) end)
+S:AddCallbackForAddon('DejaClassicStats', 'LuckyoneUI_DejaClassicStats', function() C_Timer.After(1, Private.Skin_DejaClassicStats) end)
