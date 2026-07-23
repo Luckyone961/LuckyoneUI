@@ -339,17 +339,6 @@ function Private:CheckElvUI()
 		E.private.install_complete = E.version
 	end
 
-	-- Skip the Shadow & Light installer
-	if (Private.isRetail and E.private.sle) and E.private.sle.install_complete == nil then
-		E.private.sle.install_complete = tonumber(GetAddOnMetadata('ElvUI_SLE', 'Version'))
-	end
-
-	-- Convert old db to avoid forced installer re-run
-	if E.global.L1UI and E.global.L1UI.install_version ~= nil then
-		Private.Addon.db.global.install_version = tonumber(E.global.L1UI.install_version)
-		E.global.L1UI.install_version = nil
-	end
-
 	Private:BuildConfig()
 
 	-- Pre-create the plugins group, the config window is built before LibElvUIPlugin creates it
