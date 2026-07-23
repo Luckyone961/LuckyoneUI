@@ -94,6 +94,7 @@ end
 function Private:OpenSettings()
 	if Private.ElvUI then
 		ElvUI[1]:ToggleOptions('LuckyoneUI')
+		ElvUI[1]:Config_UpdateSize(true)
 	else
 		if Settings_OpenToCategory and Private.SettingsCategoryID then
 			Settings_OpenToCategory(Private.SettingsCategoryID)
