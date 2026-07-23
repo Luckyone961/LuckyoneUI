@@ -493,11 +493,6 @@ function Private:BuildConfig()
 
 		E.Options.name = format('%s + %s |cff99ff33%.2f|r', E.Options.name, Private.Name, Private.Version)
 		E.Options.args.LuckyoneUI = Private.Config
-
-		-- Refresh the config tree in case the window is already built
-		if Private.IsAddOnLoaded('ElvUI_Options') then
-			E.Libs.AceConfigRegistry:NotifyChange('ElvUI')
-		end
 	end
 end
 
