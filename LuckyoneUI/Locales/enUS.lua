@@ -174,7 +174,6 @@ L["Layout has been set."] = true
 L["Left panel: General - Log - Whisper - Guild - Party."] = true
 L["Links"] = true
 L["Loss of Control Frame"] = true
-L["LuckyoneUI is now a standalone addon.\nPlease remove the old ElvUI_LuckyoneUI from your AddOns folder."] = true
 L["LuckyoneUI Scale"] = true
 L["Mage"] = true
 L["Main Layout"] = true

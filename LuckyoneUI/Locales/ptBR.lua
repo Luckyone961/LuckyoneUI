@@ -174,7 +174,6 @@ L["Layout has been set."] = "Perfil foi configurado."
 L["Left panel: General - Log - Whisper - Guild - Party."] = "Painel Esquerdo: Geral - Registro - Sussuro - Guilda - Grupo."
 L["Links"] = true
 L["Loss of Control Frame"] = true
-L["LuckyoneUI is now a standalone addon.\nPlease remove the old ElvUI_LuckyoneUI from your AddOns folder."] = true
 L["LuckyoneUI Scale"] = true
 L["Mage"] = "Mago"
 L["Main Layout"] = "Perfil Principal"

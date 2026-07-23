@@ -160,14 +160,6 @@ _G.StaticPopupDialogs['LUCKYONE_VC'] = {
 	hideOnEscape = false,
 }
 
--- Incompatible addon popup
--- StaticPopup_Show('LUCKYONE_INCOMPATIBLE')
-_G.StaticPopupDialogs['LUCKYONE_INCOMPATIBLE'] = {
-	text = format('|cffC80000%s|r', L["LuckyoneUI is now a standalone addon.\nPlease remove the old ElvUI_LuckyoneUI from your AddOns folder."]),
-	whileDead = 1,
-	hideOnEscape = false,
-}
-
 -- Editbox popup
 -- StaticPopup_Show('LUCKYONE_EDITBOX', text_arg1, text_arg2, data)
 _G.StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
@@ -340,11 +332,6 @@ function Private:CheckElvUI()
 
 	Private:BuildConfig()
 
-	-- Pre-create the plugins group, the config window is built before LibElvUIPlugin creates it
-	if not E.Options.args.plugins then
-		EP:GetPluginOptions()
-	end
-
 	EP:RegisterPlugin(Name, Private.BuildConfig)
 end
 
@@ -366,13 +353,6 @@ function Private:LoadAddonSkins()
 		if Private.IsAddOnLoaded(addonName) then
 			callback()
 		end
-	end
-end
-
--- Incompatible addons
-function Private:CheckIncompatible()
-	if Private.IsAddOnLoaded('ElvUI_LuckyoneUI') then
-		StaticPopup_Show('LUCKYONE_INCOMPATIBLE')
 	end
 end
 
@@ -476,7 +456,6 @@ function Core:OnEnable()
 
 	Private:CheckElvUI()
 	Private:LoadAddonSkins()
-	Private:CheckIncompatible()
 
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end

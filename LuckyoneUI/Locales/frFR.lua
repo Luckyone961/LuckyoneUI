@@ -174,7 +174,6 @@ L["Layout has been set."] = "La disposition a été appliquée"
 L["Left panel: General - Log - Whisper - Guild - Party."] = "Panneau gauche : Général - Log - Chuchotement - Guilde - Groupe"
 L["Links"] = "Liens"
 L["Loss of Control Frame"] = "Cadre de perte de contrôle"
-L["LuckyoneUI is now a standalone addon.\nPlease remove the old ElvUI_LuckyoneUI from your AddOns folder."] = "LuckyoneUI est désormais un add-on autonome.\nMerci de supprimer l'ancien ElvUI_LuckyoneUI de votre dossier d'add-ons."
 L["LuckyoneUI Scale"] = "Échelle LuckyoneUI"
 L["Mage"] = true
 L["Main Layout"] = "Disposition principale"
