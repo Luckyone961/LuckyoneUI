@@ -49,6 +49,10 @@ function Private:Setup_GlobalDB()
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
 
+	-- Protect movers error
+	-- Can happen on BuildPanelFrame in rare cases
+	E.db.movers = E.db.movers or {}
+
 	SetCVar('uiScale', (scaled and Private.UIScale1080) or Private.UIScale1440)
 	SetCVar('useUiScale', 1)
 	E.global.general.UIScale = (scaled and Private.UIScale1080) or Private.UIScale1440
