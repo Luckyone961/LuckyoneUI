@@ -31,4 +31,4 @@ function Private:Skin_NovaSpellRankChecker()
     end
 end
 
-S:AddCallbackForAddon('NovaSpellRankChecker', 'LuckyoneUI_NovaSpellRankChecker', Private.Skin_NovaSpellRankChecker)
+S:AddCallbackForAddon('NovaSpellRankChecker', 'LuckyoneUI_NovaSpellRankChecker', function() C_Timer.After(1, Private.Skin_NovaSpellRankChecker) end)
