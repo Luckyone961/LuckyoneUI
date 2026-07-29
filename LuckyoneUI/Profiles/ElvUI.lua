@@ -39,7 +39,7 @@ end
 local function Refresh()
 	E:UIMult()
 	E:UIScale()
-	E:Config_UpdateSize(true)
+	E:UpdateAll()
 end
 
 -- E.global & Custom DataText
