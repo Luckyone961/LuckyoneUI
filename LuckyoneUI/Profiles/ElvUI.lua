@@ -37,7 +37,6 @@ end
 
 -- Full frontend refresh
 local function Refresh()
-	E:StaggeredUpdateAll()
 	E:UIMult()
 	E:UIScale()
 	E:Config_UpdateSize(true)
