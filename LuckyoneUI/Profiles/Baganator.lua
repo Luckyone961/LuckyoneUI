@@ -27,9 +27,5 @@ function Private:Setup_Baganator(installer)
 	local API = _G.Baganator.API
 	API.ImportString(importString, name)
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["Baganator profile has been set."])
-	end
-
-	Private:Print(L["Baganator profile has been set."])
+	Private:Print(L["Baganator profile has been set."], installer)
 end

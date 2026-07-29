@@ -13,9 +13,6 @@ local unpack = unpack
 -- API cache
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 
--- Global environment
-local _G = _G
-
 -- ElvUI modules
 local E, _, V, P, G = unpack(ElvUI)
 
@@ -120,11 +117,7 @@ function Private:Setup_ShadowAndLight(installer)
 		Set(E.db, 'sle.skins.objectiveTracker.underline', false)
 	end
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["Shadow&Light profile has been set."])
-	end
-
-	Private:Print(L["Shadow&Light profile has been set."])
+	Private:Print(L["Shadow&Light profile has been set."], installer)
 end
 
 -- Shadow & Light PrivateDB

@@ -13,9 +13,6 @@ local unpack = unpack
 -- API cache
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 
--- Global environment
-local _G = _G
-
 -- ElvUI modules
 local E, _, V, P, G = unpack(ElvUI)
 
@@ -157,11 +154,7 @@ function Private:Setup_WindTools(installer)
 	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-202'
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-110'
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["WindTools profile has been set."])
-	end
-
-	Private:Print(L["WindTools profile has been set."])
+	Private:Print(L["WindTools profile has been set."], installer)
 end
 
 -- WindTools PrivateDB

@@ -2,9 +2,6 @@
 local _, Private = ...
 local L = Private.Libs.ACL
 
--- Global environment
-local _G = _G
-
 -- Details profiles
 function Private:Setup_Details(installer)
 	if not Private.IsAddOnLoaded('Details') then Private:Print('Details ' .. L["is not installed or enabled."]) return end
@@ -30,9 +27,5 @@ function Private:Setup_Details(installer)
 	Details.always_use_profile = true
 	Details.always_use_profile_name = name
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["Details profile has been set."])
-	end
-
-	Private:Print(L["Details profile has been set."])
+	Private:Print(L["Details profile has been set."], installer)
 end

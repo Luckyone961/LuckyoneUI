@@ -34,11 +34,7 @@ function Private:Setup_Filters(installer)
 		Private:Setup_Filters_Classic()
 	end
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["Custom ElvUI aura filters loaded."])
-	end
-
-	Private:Print(L["Custom ElvUI aura filters loaded."])
+	Private:Print(L["Custom ElvUI aura filters loaded."], installer)
 end
 
 -- Aura filters: Retail

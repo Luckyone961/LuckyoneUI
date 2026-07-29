@@ -158,10 +158,6 @@ function Private:Setup_Chat(installer)
 	-- Select the main tab
 	FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["Chat setup successful."])
-	end
-
-	Private:Print(L["Chat setup successful."])
+	Private:Print(L["Chat setup successful."], installer)
 	Private:Print(L["Your chat will keep disappearing unless you move it in Blizzard's Edit Mode and save the profile there."])
 end

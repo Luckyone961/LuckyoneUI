@@ -10,9 +10,6 @@ end
 -- Lua functions
 local unpack = unpack
 
--- Global environment
-local _G = _G
-
 -- ElvUI modules
 local E = unpack(ElvUI)
 
@@ -152,9 +149,5 @@ function Private:Setup_Theme(theme, installer)
 	E:UpdateMediaItems(true)
 	E:UpdateUnitFrames()
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["Theme has been set."])
-	end
-
-	Private:Print(L["Theme has been set."])
+	Private:Print(L["Theme has been set."], installer)
 end

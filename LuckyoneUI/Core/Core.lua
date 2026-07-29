@@ -51,8 +51,12 @@ local AddOns = {
 }
 
 -- Chat print
-function Private:Print(msg)
+function Private:Print(msg, installer)
 	print(Private.Name .. ': ' .. msg)
+
+	if installer then
+		_G.LuckyoneInstallStepComplete:ShowMessage(msg)
+	end
 end
 
 -- Gets the number from the profile string

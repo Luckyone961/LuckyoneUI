@@ -37,9 +37,5 @@ function Private:Setup_Plater(installer)
 		PlaterDB.profileKeys[Private.myNameRealm] = name
 	end
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["Plater profile has been set."])
-	end
-
-	Private:Print(L["Plater profile has been set."])
+	Private:Print(L["Plater profile has been set."], installer)
 end

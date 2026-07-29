@@ -240,11 +240,7 @@ function Private:Setup_Layout(layout, installer)
 	-- Push the update
 	Refresh()
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["Layout has been set."])
-	end
-
-	Private:Print(L["Layout has been set."])
+	Private:Print(L["Layout has been set."], installer)
 end
 
 -- NamePlate Setup for ElvUI
@@ -547,9 +543,7 @@ function Private:Setup_NamePlates(installer)
 		E:UpdateNamePlates(true)
 	end
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["NamePlate profile and CVars have been set."])
-	end
+	Private:Print(L["NamePlate profile and CVars have been set."], installer)
 end
 
 -- ElvUI profile

@@ -5,9 +5,6 @@ local L = Private.Libs.ACL
 -- API cache
 local SetCVar = C_CVar.SetCVar
 
--- Global environment
-local _G = _G
-
 -- General CVars
 function Private:Setup_CVars(noPrint, installer)
 
@@ -34,12 +31,8 @@ function Private:Setup_CVars(noPrint, installer)
 		SetCVar('floatingCombatTextCombatHealing', 0)
 	end
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["CVars have been set."])
-	end
-
 	if not noPrint then
-		Private:Print(L["CVars have been set."])
+		Private:Print(L["CVars have been set."], installer)
 	end
 end
 
