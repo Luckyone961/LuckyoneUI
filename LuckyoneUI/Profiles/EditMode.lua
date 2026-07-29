@@ -7,13 +7,9 @@ local StaticPopup_Show = _G.StaticPopup_Show
 
 -- Edit Mode helper
 function Private:ToggleEditMode()
-	if not _G.EditModeManagerFrame then return end
-
-	if not _G.EditModeManagerFrame:IsShown() then
-		_G.EditModeManagerFrame:Show()
-	else
-		_G.EditModeManagerFrame:Hide()
-	end
+	local EM = _G.EditModeManagerFrame
+	if not EM then return end
+	EM:SetShown(not EM:IsShown())
 end
 
 -- Edit Mode profiles
