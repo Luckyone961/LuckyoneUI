@@ -12,13 +12,9 @@ local _G = _G
 
 -- Toggle Cooldown Viewer helper function
 function Private:ShowCooldownViewerSettings()
-	if not _G.CooldownViewerSettings then return end
-
-	if not _G.CooldownViewerSettings:IsShown() then
-		_G.CooldownViewerSettings:Show()
-	else
-		_G.CooldownViewerSettings:Hide()
-	end
+	local CVS = _G.CooldownViewerSettings
+	if not CVS then return end
+	CVS:SetShown(not CVS:IsShown())
 end
 
 -- SkironCooldownManager profile
