@@ -582,6 +582,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.backdropfadecolor.g = 0.05
 	E.db.general.backdropfadecolor.r = 0.05
 	E.db.general.bonusObjectivePosition = 'AUTO'
+	E.db.general.bordercolor.b = 0
+	E.db.general.bordercolor.g = 0
+	E.db.general.bordercolor.r = 0
 	E.db.general.bottomPanel = false
 	E.db.general.customGlow.color.a = 1
 	E.db.general.customGlow.color.b = 1
