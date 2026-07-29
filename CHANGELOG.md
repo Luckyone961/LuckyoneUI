@@ -1,9 +1,11 @@
 ﻿## Version 4.18 [In development, not yet released]
 
 **Retail:**  
+- Improved DataTexts Tweaks to support manual profile switching  
 - Updated SkironCooldownManager profile (Includes G1 text frame strata fix)  
 
 **Classic:**  
+- Fixed NovaSpellRankChecker skin  
 - Updated TOC for patch 1.15.9  
 
 ## Version 4.17 [08-07-2026]
