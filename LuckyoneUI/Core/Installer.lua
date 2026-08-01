@@ -659,6 +659,9 @@ local function BuildInstallerData()
 		f.Option1:Show()
 		f.Option1:SetScript('OnClick', function() Private:Setup_Chat(true) end)
 		f.Option1:SetText(L["Setup Chat"])
+		f.Option2:Show()
+		f.Option2:SetScript('OnClick', function() Private:Setup_Chattynator(true) end)
+		f.Option2:SetText(L["Use Chattynator Addon"])
 	end
 	stepTitles[pageIndex] = L["Chat"]
 	pageIndex = pageIndex + 1

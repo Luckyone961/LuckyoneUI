@@ -6,7 +6,7 @@ local L = Private.Libs.ACL
 local _G = _G
 
 -- Chattynator profile
-function Private:Setup_Chattynator()
+function Private:Setup_Chattynator(installer)
 	if not Private.IsAddOnLoaded('Chattynator') then Private:Print('Chattynator ' .. L["is not installed or enabled."]) return end
 
 	-- Disable ElvUI chat
@@ -171,5 +171,5 @@ function Private:Setup_Chattynator()
 		},
 	}
 
-	Private:Print(L["Chattynator profile has been set."])
+	Private:Print(L["Chattynator profile has been set."], installer)
 end
