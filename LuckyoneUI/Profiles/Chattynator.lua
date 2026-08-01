@@ -83,6 +83,8 @@ function Private:Setup_Chattynator(installer)
 						["VOICE_TEXT"] = false,
 						["PET_INFO"] = false,
 						["TRADESKILLS"] = false,
+						["WHISPER"] = false,
+						["BN_WHISPER"] = false,
 					},
 					["backgroundColor"] = "0D0D0D",
 					["filters"] = {
