@@ -374,10 +374,33 @@ local function BuildGraphicsSection()
 	return section
 end
 
+-- Build Map Section
+local function BuildMapSection()
+	if not Private.ElvUI then return end -- ElvUI section
+	local section = ACH:Group(L["Map"], nil, 60)
+	section.args.header = ACH:Header(L["Map"], 1)
+	section.args.minimapButtons = ACH:Group(L["Minimap Buttons"], nil, 2, nil, function(info) return Private.Addon.db.profile.map.minimap.buttons[info[#info]] end, function(info, value) Private.Addon.db.profile.map.minimap.buttons[info[#info]] = value Private:UpdateMinimapButtonBar() end)
+	section.args.minimapButtons.inline = true
+	section.args.minimapButtons.args.enable = ACH:Toggle(L["Enable"], L["Collect LibDBIcon minimap buttons into a squared bar under the Minimap."], 1, nil, nil, nil, nil, function(_, value) Private.Addon.db.profile.map.minimap.buttons.enable = value StaticPopup_Show(RELOAD_POPUP) end)
+	section.args.minimapButtons.args.mouseover = ACH:Toggle(L["Mouseover"], L["Show the Minimap button bar only on mouseover."], 2, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
+	section.args.minimapButtons.args.holder = ACH:Input(L["Anchor"], L["Frame name the Minimap button bar is anchored to."], 3, nil, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
+	section.args.minimapButtons.args.xOffset = ACH:Range(L["X Offset"], nil, 4, { min = -200, max = 200, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
+	section.args.minimapButtons.args.yOffset = ACH:Range(L["Y Offset"], nil, 5, { min = -200, max = 200, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
+	section.args.minimapButtons.args.size = ACH:Range(L["Icon Size"], nil, 6, { min = 8, max = 54, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
+	section.args.minimapButtons.args.spacing = ACH:Range(L["Spacing"], nil, 7, { min = -1, max = 12, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
+	section.args.blizzardButtons = ACH:Group(L["Blizzard Buttons"], nil, 3, nil, function(info) return Private.Addon.db.profile.map.minimap.buttons.blizzard[info[#info]] end, function(info, value) Private.Addon.db.profile.map.minimap.buttons.blizzard[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end, not Private.isRetail)
+	section.args.blizzardButtons.inline = true
+	section.args.blizzardButtons.args.expansionLandingPage = ACH:Toggle(L["Expansion Landing Page"], L["Include the Expansion Landing Page button in the Minimap button bar."], 1)
+	section.args.minimapButtonsDesc = ACH:Group(L["Minimap Buttons explained"], nil, 4)
+	section.args.minimapButtonsDesc.inline = true
+	section.args.minimapButtonsDesc.args.desc = ACH:Description(L["The order of icons is sorted alphabetically, starting on the right side.\nException 1: BugSack - it's hardcoded to be the right-most icon.\nException 2: Blizzard buttons - they're hardcoded to be the last icon."], 1, 'medium')
+	return section
+end
+
 -- Build Skins Section
 local function BuildSkinsSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group('Skins', nil, 60)
+	local section = ACH:Group('Skins', nil, 65)
 	section.args.header = ACH:Header('Skins', 1)
 	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.profile.skins[info[#info]] end, function(info, value) Private.Addon.db.profile.skins[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.addons.inline = true
@@ -398,7 +421,7 @@ end
 -- Build Tags Section
 local function BuildTagsSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["Tags"], nil, 65)
+	local section = ACH:Group(L["Tags"], nil, 70)
 	section.args.header = ACH:Header(L["Tags"], 1)
 	section.args.spacer = ACH:Spacer(2, 'full')
 	section.args.shortcut = ACH:Execute(L["Available Tags"], nil, 3, function() ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', Private.Name) end)
@@ -407,7 +430,7 @@ end
 
 -- Build Credits Section
 local function BuildCreditsSection()
-	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 70)
+	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 75)
 	section.args.header = ACH:Header(L["Credits"], 1)
 	section.args.author = ACH:Group(L["Author"], nil, 2)
 	section.args.author.inline = true
@@ -426,7 +449,7 @@ end
 
 -- Build Links Section
 local function BuildLinksSection()
-	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 75)
+	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 80)
 	section.args.header = ACH:Header(L["Links"], 1)
 	section.args.spacer = ACH:Spacer(2, 'full')
 	section.args.website = ACH:Input(L["Addon download:"], nil, 3, nil, 'full', function() return 'https://download.luckyone.dev' end)
@@ -481,10 +504,11 @@ function Private:BuildConfig()
 	Private.Config.args.elvuiThemes = BuildElvUIThemesSection() -- 45
 	Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 50
 	Private.Config.args.graphics = BuildGraphicsSection() -- 55
-	Private.Config.args.skins = BuildSkinsSection() -- 60
-	Private.Config.args.tags = BuildTagsSection() -- 65
-	Private.Config.args.credits = BuildCreditsSection() -- 70
-	Private.Config.args.links = BuildLinksSection() -- 75
+	Private.Config.args.map = BuildMapSection() -- 60
+	Private.Config.args.skins = BuildSkinsSection() -- 65
+	Private.Config.args.tags = BuildTagsSection() -- 70
+	Private.Config.args.credits = BuildCreditsSection() -- 75
+	Private.Config.args.links = BuildLinksSection() -- 80
 	Private.Config.args.dev = BuildDevSection() -- 100
 
 	-- ElvUI config integration

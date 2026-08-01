@@ -19,6 +19,22 @@ Private.Defaults = {
 			UIErrorsFrame = false,
 			ZoneTextFrame = false,
 		},
+		map = {
+			minimap = {
+				buttons = {
+					enable = false,
+					mouseover = false,
+					holder = 'ElvUI_MinimapHolder',
+					size = 24,
+					spacing = 1,
+					xOffset = 0,
+					yOffset = -1,
+					blizzard = {
+						expansionLandingPage = false,
+					},
+				},
+			},
+		},
 		minimap = {
 			hide = false,
 		},

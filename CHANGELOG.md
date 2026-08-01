@@ -1,5 +1,8 @@
 ﻿## Version 4.18 [In development, not yet released]
 
+**All WoW Versions:**  
+- Added a minimap button module for the same bar style across all wow versions  
+
 **Retail:**  
 - Improved DataTexts Tweaks to support manual profile switching  
 - Updated SkironCooldownManager profile (Includes G1 text frame strata fix)  
