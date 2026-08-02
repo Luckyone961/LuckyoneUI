@@ -2,6 +2,8 @@
 
 **All WoW Versions:**  
 - Added a minimap button module for the same bar style across all wow versions  
+- Added Chattynator option to the initial chat installer  
+- Added the WIP Platynator profile option in /lucky config  
 
 **Retail:**  
 - Improved DataTexts Tweaks to support manual profile switching  

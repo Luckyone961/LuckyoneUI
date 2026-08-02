@@ -131,7 +131,8 @@ local function BuildAddonProfilesSection()
 	section.args.nameplates = ACH:Group(L["Nameplate Profiles"], nil, 3)
 	section.args.nameplates.inline = true
 	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_NamePlates() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.ElvUI)
-	section.args.nameplates.args.plater = ACH:Execute('Plater', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_Plater() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.nameplates.args.platynator = ACH:Execute('Platynator', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_Platynator() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.nameplates.args.plater = ACH:Execute('Plater', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_Plater() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.bossmods = ACH:Group(L["BossMods Profiles"], nil, 4)
 	section.args.bossmods.inline = true
 	section.args.bossmods.args.bigwigsMain = ACH:Execute(L["BigWigs Main"], RESET_DEFAULTS_TEXT, 1, function() Private:Setup_BigWigs('main') end, nil, true)

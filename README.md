@@ -32,7 +32,7 @@
 • Baganator, BigWigs, BuffReminders  
 • Chattynator, Details, ElvUI, MPlusTimer  
 • Northern Sky Raid Tools, PermoksAccountManager  
-• Plater, Plumber, ElvUI Shadow&Light  
+• Plater, Platynator, Plumber, ElvUI Shadow&Light  
 • SkironCooldownManager, WarpDeplete Mythic+ Timer  
 • ElvUI WindTools  
 
