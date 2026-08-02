@@ -17,161 +17,19 @@ function Private:Setup_Chattynator(installer)
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
 
-	local DB = _G.CHATTYNATOR_CONFIG.Profiles.DEFAULT
-	if not DB then return end
+	-- Global db
+	local dev = Private.Addon.db.global.dev
 
-	-- General settings
-	DB.button_position = 'outside_tabs'
-	DB.class_colors = true
-	DB.copy_timestamps = true
-	DB.edit_box_position = 'top'
-	DB.enable_message_fade = false
-	DB.enable_smooth_scrolling_combat = false
-	DB.force_tab_overflow = false
-	DB.keep_edit_box_visible = false
-	DB.line_spacing_2 = 0
-	DB.link_urls = true
-	DB.locked = true
-	DB.message_font = Private.Font -- Expressway
-	DB.message_font_outline = 'thin'
-	DB.message_font_size = 12
-	DB.message_spacing = 1
-	DB.new_whisper_new_tab = 0
-	DB.reduce_redundant_text = true
-	DB.shorten_format = 'letter'
-	DB.show_buttons = 'never'
-	DB.show_combat_log = true
-	DB.show_font_shadow = false
-	DB.show_tabs_1 = 'always'
-	DB.show_timestamp_separator = false
-	DB.store_messages = true
-	DB.tab_flash_on = 'whispers'
-	DB.timestamp_format = '%H:%M'
-	DB.whisper_sounds = 'all'
+	-- Profile name
+	local name = (dev and 'Luckyone') or 'Luckyone ' .. Private.Version
 
-	-- Tabs
-	DB.windows = {
-		{
-			["position"] = {
-				"TOPLEFT",
-				"UIParent",
-				"TOPLEFT",
-				2, -- X Offset
-				(scaled and -910) or -1232, -- Y Offset
-			},
-			["size"] = {
-				(scaled and 432) or 482, -- Width
-				(scaled and 168) or 206, -- Height
-			},
-			["tabs"] = {
-				{
-					["tabColor"] = "06a1ff",
-					["channels"] = {
-					},
-					["whispersTemp"] = {
-					},
-					["addons"] = {
-					},
-					["isTemporary"] = false,
-					["invert"] = true,
-					["name"] = "Main",
-					["groups"] = {
-						["OPENING"] = false,
-						["PET_BATTLE_COMBAT_LOG"] = false,
-						["COMBAT_XP_GAIN"] = false,
-						["COMBAT_MISC_INFO"] = false,
-						["VOICE_TEXT"] = false,
-						["PET_INFO"] = false,
-						["TRADESKILLS"] = false,
-						["WHISPER"] = false,
-						["BN_WHISPER"] = false,
-					},
-					["backgroundColor"] = "0D0D0D",
-					["filters"] = {
-					},
-				},
-				{
-					["tabColor"] = "c97c48",
-					["channels"] = {
-					},
-					["whispersTemp"] = {
-					},
-					["custom"] = "combat_log",
-					["name"] = "Log",
-					["isTemporary"] = false,
-					["groups"] = {
-					},
-					["addons"] = {
-					},
-					["backgroundColor"] = "0D0D0D",
-					["filters"] = {
-					},
-				},
-				{
-					["tabColor"] = "b5926c",
-					["channels"] = {
-					},
-					["whispersTemp"] = {
-					},
-					["name"] = "Whisper",
-					["isTemporary"] = false,
-					["groups"] = {
-						["BN_WHISPER"] = true,
-						["WHISPER"] = true,
-						["IGNORED"] = true,
-					},
-					["addons"] = {
-					},
-					["backgroundColor"] = "0D0D0D",
-					["filters"] = {
-					},
-				},
-				{
-					["tabColor"] = "b5926c",
-					["channels"] = {
-					},
-					["whispersTemp"] = {
-					},
-					["name"] = "Guild",
-					["isTemporary"] = false,
-					["groups"] = {
-						["GUILD_ACHIEVEMENT"] = true,
-						["OFFICER"] = true,
-						["GUILD"] = true,
-					},
-					["addons"] = {
-					},
-					["backgroundColor"] = "0D0D0D",
-					["filters"] = {
-					},
-				},
-				{
-					["tabColor"] = "b5926c",
-					["channels"] = {
-					},
-					["whispersTemp"] = {
-					},
-					["name"] = "Party",
-					["isTemporary"] = false,
-					["groups"] = {
-						["PARTY"] = true,
-						["PARTY_LEADER"] = true,
-						["RAID"] = true,
-						["INSTANCE_CHAT_LEADER"] = true,
-						["RAID_WARNING"] = true,
-						["INSTANCE_CHAT"] = true,
-						["SYSTEM"] = true,
-						["RAID_LEADER"] = true,
-					},
-					["addons"] = {
-					},
-					["backgroundColor"] = "0D0D0D",
-					["filters"] = {
-					},
-				},
-			},
-		},
-	}
+	-- Profile string
+	local importString = (scaled and [[CHATTY!1!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]]
+	or [[CHATTY!1!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]])
+
+	-- Profile import
+	local API = _G.Chattynator.API
+	API.ImportString(importString, name)
 
 	Private:Print(L["Chattynator profile has been set."], installer)
 end
