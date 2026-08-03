@@ -13,7 +13,6 @@
 	<Script file='Plater.lua'/>
 	<Script file='Platynator.lua'/>
 	<Script file='Plumber.lua'/>
-	<Script file='ShadowLight.lua'/>
 	<Script file='WarpDeplete.lua'/>
 	<Script file='WindTools.lua'/>
 </Ui>

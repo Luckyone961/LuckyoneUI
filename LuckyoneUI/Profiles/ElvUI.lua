@@ -146,9 +146,6 @@ function Private:Setup_PrivateDB(includePlugins)
 	E.private.skins.parchmentRemoverEnable = true
 
 	if includePlugins and Private.isRetail then
-		if Private.IsAddOnLoaded('ElvUI_SLE') then
-			Private:Setup_Private_ShadowAndLight()
-		end
 		if Private.IsAddOnLoaded('ElvUI_WindTools') then
 			Private:Setup_Private_WindTools()
 		end
@@ -197,7 +194,7 @@ function Private:HandleAlts(layout)
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 484 -- (Profile == 3)
 	end
 
-	-- PrivateDB for ElvUI, Shadow&Light, WindTools
+	-- PrivateDB for ElvUI + WindTools
 	Private:Setup_PrivateDB(true)
 
 	-- Chat setup

@@ -271,7 +271,6 @@ L["Setup Details"] = true
 L["Setup MPlusTimer"] = true
 L["Setup WarpDeplete"] = true
 L["Shadow"] = true
-L["Shadow&Light profile has been set."] = true
 L["Shaman"] = true
 L["Shortcut to the Cooldown Settings.\nYou can import the profiles in the bottom left dropdown."] = true
 L["Show the Minimap button bar only on mouseover."] = true

@@ -271,7 +271,6 @@ L["Setup Details"] = "Configurar o Details"
 L["Setup MPlusTimer"] = true
 L["Setup WarpDeplete"] = "Configurar o WarpDeplete"
 L["Shadow"] = true
-L["Shadow&Light profile has been set."] = "Perfil do Shadow&Light foi configurado."
 L["Shaman"] = "Xamã"
 L["Shortcut to the Cooldown Settings.\nYou can import the profiles in the bottom left dropdown."] = true
 L["Show the Minimap button bar only on mouseover."] = true

@@ -611,9 +611,6 @@ local function BuildInstallerData()
 				f.Option2:SetScript('OnClick', function() Private:Setup_WindTools(true) end)
 				f.Option2:SetText('|cff5385edWindTools|r')
 			end
-			-- f.Option3:Show()
-			-- f.Option3:SetScript('OnClick', function() Private:Setup_ShadowAndLight(true) end)
-			-- f.Option3:SetText('|cff9482c9Shadow & Light|r')
 		end
 		stepTitles[pageIndex] = L["ElvUI Extras"]
 		pageIndex = pageIndex + 1
