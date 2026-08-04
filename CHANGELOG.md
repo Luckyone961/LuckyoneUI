@@ -6,6 +6,7 @@
 - Added the WIP Platynator profile option in /lucky config  
 
 **Retail:**  
+- Added an option to prevent group loot overview from auto opening after a boss kill  
 - Improved DataTexts Tweaks to support manual profile switching  
 - Removed Shadow&Light profile  
 - Updated SkironCooldownManager profile (Includes G1 text frame strata fix)  

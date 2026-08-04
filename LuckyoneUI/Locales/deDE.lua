@@ -232,6 +232,8 @@ L["Please click the button below to apply Luckyones profile for SkironCooldownMa
 L["Please read the steps carefully before clicking any buttons."] = "Bitte lies die Schritte sorgfältig durch, bevor du auf eine Schaltfläche klickst."
 L["Plumber profile has been set."] = "Plumber Profil wurde festgelegt."
 L["Preservation"] = true
+L["Prevent Loot Overview"] = true
+L["Prevents the Blizzard group loot overview frame from auto opening after a boss kill."] = true
 L["Previous"] = "Zurück"
 L["Priest"] = "Piester"
 L["Privacy Overlay"] = "Datenschutz-Overlay"

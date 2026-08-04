@@ -53,6 +53,7 @@ Private.Defaults = {
 			autoAcceptRole = false,
 			autoDismount = false,
 			easyDelete = false,
+			preventLootAutoShow = false,
 			privacyOverlay = false,
 			quickSignup = false,
 		},

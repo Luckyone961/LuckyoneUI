@@ -88,6 +88,16 @@ function Private:DisabledFrames()
 	end
 end
 
+-- Prevent GroupLootHistoryFrame from auto-opening after a boss kill or keystone
+function Private:PreventLootAutoShow()
+	if not (Private.isRetail and Private.Addon.db.profile.qualityOfLife.preventLootAutoShow) then return end
+
+	local GroupLootHistoryFrame = _G.GroupLootHistoryFrame
+	if GroupLootHistoryFrame then
+		GroupLootHistoryFrame:UnregisterEvent('LOOT_HISTORY_GO_TO_ENCOUNTER')
+	end
+end
+
 -- Easy delete
 function Private:EasyDelete()
 	if not Private.Addon.db.profile.qualityOfLife.easyDelete then return end
@@ -183,6 +193,7 @@ function Blizzard:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	Private:AutoAcceptRole()
 	Private:DisabledFrames()
 	Private:EasyDelete()
+	Private:PreventLootAutoShow()
 	Private:QuickSignup()
 	Private:RemoveNameplateRealm()
 end

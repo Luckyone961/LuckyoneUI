@@ -232,6 +232,8 @@ L["Please click the button below to apply Luckyones profile for SkironCooldownMa
 L["Please read the steps carefully before clicking any buttons."] = true
 L["Plumber profile has been set."] = true
 L["Preservation"] = true
+L["Prevent Loot Overview"] = true
+L["Prevents the Blizzard group loot overview frame from auto opening after a boss kill."] = true
 L["Previous"] = true
 L["Priest"] = true
 L["Privacy Overlay"] = true
