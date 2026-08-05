@@ -62,6 +62,27 @@ local function SkinBugSackFrame()
 		end
 	end
 
+	-- Game version left of page count (top right)
+	local countLabel
+	for i = 1, BugSackFrame:GetNumRegions() do
+		local region = select(i, BugSackFrame:GetRegions())
+		if region:IsObjectType('FontString') and region:GetJustifyH() == 'RIGHT' then
+			countLabel = region
+			break
+		end
+	end
+
+	if countLabel then
+		local _, elvVersion = E:ParseVersionString('ElvUI')
+		local classColor = RAID_CLASS_COLORS[Private.myClass]
+		local hex = format('|cff%02x%02x%02x', classColor.r * 255, classColor.g * 255, classColor.b * 255)
+		local versionLabel = BugSackFrame:CreateFontString(nil, 'ARTWORK')
+		versionLabel:SetFontObject(countLabel:GetFontObject())
+		versionLabel:SetTextColor(countLabel:GetTextColor())
+		versionLabel:SetText(format('%sElvUI:|r %s %sPatch:|r %s %sPage:|r', hex, elvVersion, hex, Private.GameVersion, hex))
+		versionLabel:SetPoint('RIGHT', countLabel, 'LEFT', -6, 0)
+	end
+
 	BugSack.Skinned = true
 end
 

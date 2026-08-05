@@ -62,6 +62,7 @@ Private.UIScale1080 = 0.71111111111111
 
 -- Build info
 Private.InterfaceVersion = select(4, GetBuildInfo())
+Private.GameVersion = GetBuildInfo()
 
 -- Game flavors
 Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
