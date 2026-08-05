@@ -4,6 +4,7 @@
 - Added a minimap button module for the same bar style across all wow versions  
 - Added Chattynator option to the initial chat installer  
 - Added the WIP Platynator profile option in /lucky config  
+- Updated BugSack skin to include ElvUI version and game version in the top bar  
 
 **Retail:**  
 - Added an option to prevent group loot overview from auto opening after a boss kill  
