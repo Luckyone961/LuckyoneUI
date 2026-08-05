@@ -325,7 +325,6 @@ L["Warrior"] = "Воин"
 L["Welcome"] = "Добро пожаловать!"
 L["WindTools profile has been set."] = "Профиль WindTools установлен."
 L["Windwalker"] = "Танцующий с ветром"
-L["Wowhead guide:"] = "Руководство на Wowhead:"
 L["X Offset"] = true
 L["Y Offset"] = true
 L["You have completed the installation process, please click 'Finished' to reload the UI."] = "Вы завершили процесс установки, нажмите 'Готово', чтобы перезагрузить интерфейс."

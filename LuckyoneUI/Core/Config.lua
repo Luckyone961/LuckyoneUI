@@ -457,10 +457,9 @@ local function BuildLinksSection()
 	section.args.changelog = ACH:Input(L["Changelog:"], nil, 4, nil, 'full', function() return 'https://changelog.luckyone.dev' end)
 	section.args.discord = ACH:Input('Discord:', nil, 5, nil, 'full', function() return 'https://discord.luckyone.dev' end)
 	section.args.issues = ACH:Input(L["Report issues here:"], nil, 6, nil, 'full', function() return 'https://tickets.luckyone.dev' end)
-	section.args.guide = ACH:Input(L["Wowhead guide:"], nil, 7, nil, 'full', function() return 'https://guide.luckyone.dev' end)
-	section.args.twitch = ACH:Input('Twitch:', nil, 8, nil, 'full', function() return 'https://twitch.luckyone.dev' end)
-	section.args.youtube = ACH:Input('YouTube:', nil, 9, nil, 'full', function() return 'https://youtube.luckyone.dev' end)
-	section.args.homepage = ACH:Input(L["Homepage:"], nil, 10, nil, 'full', function() return 'https://luckyone.dev' end)
+	section.args.twitch = ACH:Input('Twitch:', nil, 7, nil, 'full', function() return 'https://twitch.luckyone.dev' end)
+	section.args.youtube = ACH:Input('YouTube:', nil, 8, nil, 'full', function() return 'https://youtube.luckyone.dev' end)
+	section.args.homepage = ACH:Input(L["Homepage:"], nil, 9, nil, 'full', function() return 'https://luckyone.dev' end)
 	return section
 end
 

@@ -325,7 +325,6 @@ L["Warrior"] = true
 L["Welcome"] = true
 L["WindTools profile has been set."] = true
 L["Windwalker"] = true
-L["Wowhead guide:"] = true
 L["X Offset"] = true
 L["Y Offset"] = true
 L["You have completed the installation process, please click 'Finished' to reload the UI."] = true

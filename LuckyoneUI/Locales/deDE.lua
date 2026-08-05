@@ -325,7 +325,6 @@ L["Warrior"] = "Krieger"
 L["Welcome"] = "Willkommen"
 L["WindTools profile has been set."] = "WindTools Profil wurde festgelegt."
 L["Windwalker"] = true
-L["Wowhead guide:"] = true -- No need to translate
 L["X Offset"] = true
 L["Y Offset"] = true
 L["You have completed the installation process, please click 'Finished' to reload the UI."] = "Du hast den Installationsvorgang abgeschlossen, bitte klicke auf 'Fertig', um die Benutzeroberfläche neu zu laden."
