@@ -7,57 +7,93 @@ if not Private.ElvUI then
 end
 
 -- Lua functions
-local pairs = pairs
+local format = format
 local select = select
 local unpack = unpack
 
 -- API cache
 local hooksecurefunc = hooksecurefunc
 
+-- Global environment
+local _G = _G
+
 -- ElvUI modules
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 local function SkinBugSackFrame()
-	if BugSack.Skinned then return end
+	local BugSack = _G.BugSack
+	if not BugSack or BugSack.Skinned then return end
+
+	local BugSackFrame = _G.BugSackFrame
+	if not BugSackFrame then return end
 
 	-- Main Frame
 	S:HandleFrame(BugSackFrame)
 
 	-- Scroll Frame
-	S:HandleScrollBar(BugSackScrollScrollBar)
+	local BugSackScrollScrollBar = _G.BugSackScrollScrollBar
+	if BugSackScrollScrollBar then
+		S:HandleScrollBar(BugSackScrollScrollBar)
+	end
 
 	-- Buttons
 	local buttonHeight = 24
-	S:HandleButton(BugSackNextButton)
-	S:HandleButton(BugSackSendButton)
-	S:HandleButton(BugSackPrevButton)
-	BugSackNextButton:Height(buttonHeight)
-	BugSackSendButton:Height(buttonHeight)
-	BugSackPrevButton:Height(buttonHeight)
+	local BugSackNextButton = _G.BugSackNextButton
+	local BugSackSendButton = _G.BugSackSendButton
+	local BugSackPrevButton = _G.BugSackPrevButton
 
-	BugSackPrevButton:ClearAllPoints()
-	BugSackPrevButton:Point('BOTTOMLEFT', BugSackFrame, 'BOTTOMLEFT', 12, 6)
-	BugSackNextButton:ClearAllPoints()
-	BugSackNextButton:Point('BOTTOMRIGHT', BugSackFrame, 'BOTTOMRIGHT', -12, 6)
+	if BugSackNextButton then
+		S:HandleButton(BugSackNextButton)
+		BugSackNextButton:Height(buttonHeight)
+		BugSackNextButton:ClearAllPoints()
+		BugSackNextButton:Point('BOTTOMRIGHT', BugSackFrame, 'BOTTOMRIGHT', -12, 6)
+	end
+
+	if BugSackSendButton then
+		S:HandleButton(BugSackSendButton)
+		BugSackSendButton:Height(buttonHeight)
+	end
+
+	if BugSackPrevButton then
+		S:HandleButton(BugSackPrevButton)
+		BugSackPrevButton:Height(buttonHeight)
+		BugSackPrevButton:ClearAllPoints()
+		BugSackPrevButton:Point('BOTTOMLEFT', BugSackFrame, 'BOTTOMLEFT', 12, 6)
+	end
 
 	-- Tabs
-	S:HandleTab(BugSackTabAll)
-	S:HandleTab(BugSackTabSession)
-	S:HandleTab(BugSackTabLast)
+	local BugSackTabAll = _G.BugSackTabAll
+	local BugSackTabSession = _G.BugSackTabSession
+	local BugSackTabLast = _G.BugSackTabLast
 
-	BugSackTabSession:ClearAllPoints()
-	BugSackTabSession:Point('CENTER', BugSackFrame, 'BOTTOM', 0, -16)
-	BugSackTabAll:ClearAllPoints()
-	BugSackTabAll:Point('LEFT', BugSackTabSession, 'RIGHT', -5, 0)
-	BugSackTabLast:ClearAllPoints()
-	BugSackTabLast:Point('RIGHT', BugSackTabSession, 'LEFT', 5, 0)
+	if BugSackTabSession then
+		S:HandleTab(BugSackTabSession)
+		BugSackTabSession:ClearAllPoints()
+		BugSackTabSession:Point('CENTER', BugSackFrame, 'BOTTOM', 0, -16)
+	end
+
+	if BugSackTabAll then
+		S:HandleTab(BugSackTabAll)
+		if BugSackTabSession then
+			BugSackTabAll:ClearAllPoints()
+			BugSackTabAll:Point('LEFT', BugSackTabSession, 'RIGHT', -5, 0)
+		end
+	end
+
+	if BugSackTabLast then
+		S:HandleTab(BugSackTabLast)
+		if BugSackTabSession then
+			BugSackTabLast:ClearAllPoints()
+			BugSackTabLast:Point('RIGHT', BugSackTabSession, 'LEFT', 5, 0)
+		end
+	end
 
 	-- Close Button(s)
 	local numChildren = select('#', BugSackFrame:GetChildren())
 	for i = 1, numChildren do
 		local child = select(i, BugSackFrame:GetChildren())
-		if child:IsObjectType('Button') and child:GetScript('OnClick') == BugSack.CloseSack then
+		if child and child:IsObjectType('Button') and child:GetScript('OnClick') == BugSack.CloseSack then
 			S:HandleCloseButton(child)
 		end
 	end
@@ -66,7 +102,7 @@ local function SkinBugSackFrame()
 	local countLabel
 	for i = 1, BugSackFrame:GetNumRegions() do
 		local region = select(i, BugSackFrame:GetRegions())
-		if region:IsObjectType('FontString') and region:GetJustifyH() == 'RIGHT' then
+		if region and region:IsObjectType('FontString') and region:GetJustifyH() == 'RIGHT' then
 			countLabel = region
 			break
 		end
@@ -74,7 +110,7 @@ local function SkinBugSackFrame()
 
 	if countLabel then
 		local _, elvVersion = E:ParseVersionString('ElvUI')
-		local classColor = RAID_CLASS_COLORS[Private.myClass]
+		local classColor = E:ClassColor(Private.myClass)
 		local hex = format('|cff%02x%02x%02x', classColor.r * 255, classColor.g * 255, classColor.b * 255)
 		local versionLabel = BugSackFrame:CreateFontString(nil, 'ARTWORK')
 		versionLabel:SetFontObject(countLabel:GetFontObject())
@@ -88,7 +124,11 @@ end
 
 function Private:Skin_BugSack()
 	if not Private.Addon.db.profile.skins.BugSack then return end
-	hooksecurefunc(BugSack, 'OpenSack', SkinBugSackFrame)
+
+	local BugSack = _G.BugSack
+	if BugSack then
+		hooksecurefunc(BugSack, 'OpenSack', SkinBugSackFrame)
+	end
 end
 
 S:AddCallbackForAddon('BugSack', 'LuckyoneUI_BugSack', Private.Skin_BugSack)
