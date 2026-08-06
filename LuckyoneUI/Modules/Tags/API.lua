@@ -84,7 +84,7 @@ function Private.Tags.getUnitColor(unit)
 		if unitClass then
 			local hex = classHexCache[unitClass]
 			if not hex then
-				local cs = ElvUF_colors_class[unitClass]
+				local cs = E:NotSecretValue(unitClass) and ElvUF_colors_class[unitClass]
 				if cs then
 					hex = Hex(cs.r, cs.g, cs.b)
 					classHexCache[unitClass] = hex
