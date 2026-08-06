@@ -26,9 +26,9 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 local function CooldownManager_PositionViewerTab(tab, _, _, _, x, y)
-	if x ~= 1 or y ~= -10 then
+	if x ~= 1 or y ~= 0 then
 		tab:ClearAllPoints()
-		tab:SetPoint('TOPLEFT', _G.CooldownViewerSettings, 'TOPRIGHT', 1, -10)
+		tab:SetPoint('TOPLEFT', _G.CooldownViewerSettings, 'TOPRIGHT', 2, -1)
 	end
 end
 
@@ -76,11 +76,8 @@ local function CooldownManager_HandleSettingItemPool(pool)
 end
 
 local hookedItemPools = {}
-local function CooldownManager_RefreshLayout()
-	local CooldownViewer = _G.CooldownViewerSettings
-	if not CooldownViewer or not CooldownViewer.CooldownScroll then return end
 
-	local content = CooldownViewer.CooldownScroll.Content
+local function RefreshContent(content)
 	if not content then return end
 
 	for _, child in next, { content:GetChildren() } do
@@ -100,8 +97,22 @@ local function CooldownManager_RefreshLayout()
 	end
 end
 
+local function CooldownManager_RefreshLayout()
+	local CooldownViewer = _G.CooldownViewerSettings
+	if not CooldownViewer then return end
+
+	if CooldownViewer.CooldownScroll then
+		RefreshContent(CooldownViewer.CooldownScroll.Content)
+	end
+
+	local groupBuffFilter = CooldownViewer.GroupBuffFilter
+	if groupBuffFilter and groupBuffFilter.Scroll then
+		RefreshContent(groupBuffFilter.Scroll.Content)
+	end
+end
+
 local function CooldownManager_HandleAbilityTabs(viewer)
-	for i, tab in next, { viewer.SpellsTab, viewer.AurasTab } do
+	for i, tab in next, { viewer.SpellsTab, viewer.AurasTab, viewer.GroupBuffsTab } do
 		tab:CreateBackdrop()
 		tab:Size(30, 40)
 
@@ -129,11 +140,13 @@ local function CooldownManager_HandleAbilityTabs(viewer)
 			tab.SelectedTexture:SetAllPoints()
 		end
 
-		for _, region in next, { tab:GetRegions() } do
-			if region:IsObjectType('Texture') and region:GetAtlas() == 'QuestLog-Tab-side-Glow-hover' then
-				region:SetColorTexture(1, 1, 1, 0.3)
-				region:SetAllPoints()
-			end
+		if tab.HighlightTexture then
+			tab.HighlightTexture:SetColorTexture(1, 1, 1, 0.3)
+			tab.HighlightTexture:SetAllPoints()
+		end
+
+		if tab.TabGlow then
+			tab.TabGlow:SetAlpha(0)
 		end
 	end
 end
@@ -144,6 +157,7 @@ local function CooldownManager_HandleSettings(viewer)
 	S:HandlePortraitFrame(viewer)
 	S:HandleEditBox(viewer.SearchBox)
 	S:HandleTrimScrollBar(viewer.CooldownScroll.ScrollBar)
+	S:HandleTrimScrollBar(viewer.GroupBuffFilter.Scroll.ScrollBar)
 	S:HandleButton(viewer.UndoButton)
 	S:HandleDropDownBox(viewer.LayoutDropdown)
 
