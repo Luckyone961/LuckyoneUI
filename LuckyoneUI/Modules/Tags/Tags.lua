@@ -199,7 +199,7 @@ end
 -- Display mana (percent) if the unit is flagged healer
 if Private.isRetail then
 	E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
-		local role = UnitGroupRolesAssigned(unit)
+		local role = E:NotSecretValue(UnitGroupRolesAssigned(unit))
 		if role ~= 'HEALER' then return end
 
 		if UnitInPartyIsAI(unit) then return end -- Exclude NPC Healers (Delve companion etc)
