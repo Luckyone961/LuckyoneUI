@@ -1,5 +1,6 @@
 -- Addon namespace
 local _, Private = ...
+local L = Private.Libs.ACL
 
 -- ElvUI file
 if not Private.ElvUI then
@@ -14,11 +15,17 @@ local setmetatable = setmetatable
 local strmatch = string.match
 local type = type
 local unpack = unpack
+local wipe = table.wipe
 
 -- API cache
 local GenerateTextColorCode = C_ColorUtil and C_ColorUtil.GenerateTextColorCode
+local hooksecurefunc = hooksecurefunc
+local issecretvalue = issecretvalue
 local UnitClass = UnitClass
 local UnitInPartyIsAI = UnitInPartyIsAI
+local UnitIsConnected = UnitIsConnected
+local UnitIsDead = UnitIsDead
+local UnitIsGhost = UnitIsGhost
 local UnitIsPlayer = UnitIsPlayer
 local UnitName = UnitName
 local UnitPowerType = UnitPowerType
@@ -37,19 +44,7 @@ local ElvUF_colors_reaction = ElvUF.colors.reaction
 
 -- Constants
 local DEFAULT_COLOR = '|cFFcccccc'
-
--- Static color tables
-local classHexCache = {}
-local reactionHexCache = {}
-local powerHexCache = {}
-local powerTypeHexCache = {}
-
--- Avoids a concat per tag call
-local targetUnits = setmetatable({}, { __index = function(t, unit)
-	local targetUnit = unit .. 'target'
-	t[unit] = targetUnit
-	return targetUnit
-end})
+local DEAD, GHOST, OFFLINE = L["DEAD"], L["GHOST"], L["OFFLINE"]
 
 Private.Tags.classificationText = {
 	rare = 'Rare',
@@ -58,115 +53,186 @@ Private.Tags.classificationText = {
 	worldboss = 'Boss'
 }
 
-function Private.Tags.Hex(r, g, b)
-	if type(r) == 'table' then
-		if Private.isRetail then
-			return '|c' .. GenerateTextColorCode(r)
-		elseif r.r then
-			r, g, b = r.r, r.g, r.b
-		else
-			r, g, b = unpack(r)
-		end
-	end
-
-	if type(r) == 'number' and g and b then
-		return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
-	end
-
-	return '|cffFFFFFF'
+-- Status check (dead, ghost, offline)
+function Private.Tags.getUnitStatus(unit)
+	return UnitIsDead(unit) and DEAD or UnitIsGhost(unit) and GHOST or not UnitIsConnected(unit) and OFFLINE
 end
 
-local Hex = Private.Tags.Hex
+-- Color table or r, g, b values to a hex escape code
+local Hex
+if Private.isRetail then
+	function Hex(r, g, b)
+		if type(r) == 'table' then
+			return '|c' .. GenerateTextColorCode(r)
+		end
 
-function Private.Tags.getUnitColor(unit)
-	if UnitIsPlayer(unit) or (Private.isRetail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		if unitClass then
-			local hex = classHexCache[unitClass]
-			if not hex then
-				local cs = E:NotSecretValue(unitClass) and ElvUF_colors_class[unitClass]
-				if cs then
-					hex = Hex(cs.r, cs.g, cs.b)
-					classHexCache[unitClass] = hex
-				end
-			end
-			if hex then return hex end
+		if type(r) == 'number' and g and b then
+			return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
 		end
-	else
-		local reaction = UnitReaction(unit, 'player')
-		if reaction then
-			local hex = reactionHexCache[reaction]
-			if not hex then
-				local cr = ElvUF_colors_reaction[reaction]
-				if cr then
-					hex = Hex(cr.r, cr.g, cr.b)
-					reactionHexCache[reaction] = hex
-				end
-			end
-			if hex then return hex end
-		end
+
+		return '|cffFFFFFF'
 	end
+else
+	function Hex(r, g, b)
+		if type(r) == 'table' then
+			if r.r then
+				r, g, b = r.r, r.g, r.b
+			else
+				r, g, b = unpack(r)
+			end
+		end
 
-	return DEFAULT_COLOR
+		if type(r) == 'number' and g and b then
+			return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
+		end
+
+		return '|cffFFFFFF'
+	end
+end
+
+Private.Tags.Hex = Hex
+
+-- Avoids a concat per tag call
+local targetUnits = setmetatable({}, { __index = function(t, unit)
+	local targetUnit = unit .. 'target'
+	t[unit] = targetUnit
+	return targetUnit
+end})
+
+-- Lazily built hex caches
+local classHexCache = setmetatable({}, { __index = function(t, token)
+	local cs = ElvUF_colors_class[token]
+	local hex = cs and Hex(cs.r, cs.g, cs.b) or DEFAULT_COLOR
+	t[token] = hex
+	return hex
+end})
+
+local reactionHexCache = setmetatable({}, { __index = function(t, reaction)
+	local cr = ElvUF_colors_reaction[reaction]
+	local hex = cr and Hex(cr.r, cr.g, cr.b) or DEFAULT_COLOR
+	t[reaction] = hex
+	return hex
+end})
+
+-- Static power token colors only, alternate colors are unit specific and never cached
+local powerHexCache = setmetatable({}, { __index = function(t, token)
+	local color = ElvUF_colors_power[token]
+	if color then
+		local hex = Hex(color)
+		t[token] = hex
+		return hex
+	end
+end})
+
+local powerTypeHexCache = setmetatable({}, { __index = function(t, pType)
+	local hex = Hex(ElvUF_colors_power[pType] or ElvUF_colors_power.MANA)
+	t[pType] = hex
+	return hex
+end})
+
+-- Wipe hex caches when ElvUI media updates so color changes apply without a reload
+function Private.Tags.WipeCaches()
+	wipe(classHexCache)
+	wipe(reactionHexCache)
+	wipe(powerHexCache)
+	wipe(powerTypeHexCache)
+end
+
+hooksecurefunc(E, 'UpdateMedia', Private.Tags.WipeCaches)
+
+-- Class color for players, reaction color for NPCs
+-- Retail will not touch any tables if secrets exist
+if Private.isRetail then
+	function Private.Tags.getUnitColor(unit)
+		if UnitIsPlayer(unit) or UnitInPartyIsAI(unit) then
+			local _, unitClass = UnitClass(unit)
+			if unitClass and not issecretvalue(unitClass) then
+				return classHexCache[unitClass]
+			end
+		else
+			local reaction = UnitReaction(unit, 'player')
+			if reaction then
+				return reactionHexCache[reaction]
+			end
+		end
+
+		return DEFAULT_COLOR
+	end
+else
+	function Private.Tags.getUnitColor(unit)
+		if UnitIsPlayer(unit) then
+			local _, unitClass = UnitClass(unit)
+			if unitClass then
+				return classHexCache[unitClass]
+			end
+		else
+			local reaction = UnitReaction(unit, 'player')
+			if reaction then
+				return reactionHexCache[reaction]
+			end
+		end
+
+		return DEFAULT_COLOR
+	end
 end
 
 local getUnitColor = Private.Tags.getUnitColor
 
-function Private.Tags.getFormattedName(unit, length, color, abbrev, name)
-	name = name or UnitName(unit) or UNKNOWN
-
-	if Private.isRetail and E:IsSecretValue(name) then
-		return name
-	end
-
-	if name ~= UNKNOWN then
-		if abbrev then
-			name = Abbrev(name)
+-- The passed name arg is already checked for secrets
+if Private.isRetail then
+	function Private.Tags.getFormattedName(unit, length, color, abbrev, name)
+		if not name then
+			name = UnitName(unit) or UNKNOWN
+			if issecretvalue(name) then
+				return name
+			end
 		end
-		name = E:ShortenString(name, length)
+
+		if name ~= UNKNOWN then
+			if abbrev then
+				name = Abbrev(name)
+			end
+			name = E:ShortenString(name, length)
+		end
+
+		if not color then return name end
+
+		return getUnitColor(unit) .. name
 	end
+else
+	function Private.Tags.getFormattedName(unit, length, color, abbrev, name)
+		name = name or UnitName(unit) or UNKNOWN
 
-	if not color then return name end
+		if name ~= UNKNOWN then
+			if abbrev then
+				name = Abbrev(name)
+			end
+			name = E:ShortenString(name, length)
+		end
 
-	return getUnitColor(unit) .. name
+		if not color then return name end
+
+		return getUnitColor(unit) .. name
+	end
 end
 
 function Private.Tags.getPowerColor(unit)
 	local pType, pToken, altR, altG, altB = UnitPowerType(unit)
 
 	if pToken then
-		local cached = powerHexCache[pToken]
-		if cached then return cached end
+		local hex = powerHexCache[pToken]
+		if hex then return hex end
 	end
 
-	local color = ElvUF_colors_power[pToken]
-	local hex
-
-	if not color then
-		if altR then
-			if altR > 1 or altG > 1 or altB > 1 then
-				hex = Hex(altR / 255, altG / 255, altB / 255)
-			else
-				hex = Hex(altR, altG, altB)
-			end
-		else
-			hex = pType and powerTypeHexCache[pType]
-			if not hex then
-				hex = Hex(ElvUF_colors_power[pType] or ElvUF_colors_power.MANA)
-				if pType then
-					powerTypeHexCache[pType] = hex
-				end
-			end
+	if altR then
+		if altR > 1 or altG > 1 or altB > 1 then
+			return Hex(altR / 255, altG / 255, altB / 255)
 		end
-	else
-		hex = Hex(color)
+
+		return Hex(altR, altG, altB)
 	end
 
-	if pToken then
-		powerHexCache[pToken] = hex
-	end
-
-	return hex
+	return powerTypeHexCache[pType or 0]
 end
 
 function Private.Tags.getLastNamePart(name)
@@ -176,18 +242,33 @@ end
 
 local getLastNamePart = Private.Tags.getLastNamePart
 
-function Private.Tags.formatTargetName(unit, lastPartOnly, withColor)
-	local targetUnit = targetUnits[unit]
+if Private.isRetail then
+	function Private.Tags.formatTargetName(unit, lastPartOnly, withColor)
+		local targetUnit = targetUnits[unit]
 
-	local targetName = UnitName(targetUnit)
-	if not targetName then return end
-	if Private.isRetail and E:IsSecretValue(targetName) then
-		return targetName
+		local targetName = UnitName(targetUnit)
+		if not targetName then return end
+		if issecretvalue(targetName) then
+			return targetName
+		end
+
+		if lastPartOnly then
+			targetName = getLastNamePart(targetName)
+		end
+
+		return withColor and (getUnitColor(targetUnit) .. targetName) or targetName
 	end
+else
+	function Private.Tags.formatTargetName(unit, lastPartOnly, withColor)
+		local targetUnit = targetUnits[unit]
 
-	if lastPartOnly then
-		targetName = getLastNamePart(targetName)
+		local targetName = UnitName(targetUnit)
+		if not targetName then return end
+
+		if lastPartOnly then
+			targetName = getLastNamePart(targetName)
+		end
+
+		return withColor and (getUnitColor(targetUnit) .. targetName) or targetName
 	end
-
-	return withColor and (getUnitColor(targetUnit)..targetName) or targetName
 end
