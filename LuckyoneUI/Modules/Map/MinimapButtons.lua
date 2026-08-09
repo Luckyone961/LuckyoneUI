@@ -9,7 +9,7 @@ if not Private.ElvUI then
 end
 
 -- Credits: MinimapButtonButton, ProjectAzilroka, WindTools
--- I've used them across multiple wow versions and wanted a all-in-one approach.
+-- I've used them across multiple wow versions and wanted an all-in-one approach.
 -- Even if no code was re-used, the module is inspired by their work.
 
 -- Lua functions
@@ -37,6 +37,27 @@ local M = E:GetModule('Minimap')
 Private.CustomMinimapButtons = {
 	-- 'AddonName_MinimapButton',
 }
+
+-- Called in UpdateMinimapButtonBar when enabled
+local RegisterHooks
+
+local function IsLandingPageButton(button)
+	return Private.isRetail and button == _G.ExpansionLandingPageMinimapButton
+end
+
+local function ApplyHighlight(button)
+	button:SetHighlightTexture(E.Media.Textures.White8x8)
+	local highlight = button:GetHighlightTexture()
+	if highlight then
+		highlight:SetVertexColor(1, 1, 1, 0.3)
+		highlight:SetInside()
+	end
+end
+
+-- Keep the ElvUI crop when LibDBIcon refreshes the coords
+local function UpdateCoord(self)
+	self:SetTexCoord(unpack(E.TexCoords))
+end
 
 -- Blizzard art uses SetAtlas(..., UseAtlasSize) and ElvUI re-applies the classHall scale.
 -- Instead of fighting both, hide the original art and draw our own copy of the icon.
@@ -75,12 +96,7 @@ local function FitLandingPageButton(button, size)
 	icon:Show()
 
 	-- Blizzard UpdateIcon also resets the highlight to a huge atlas
-	button:SetHighlightTexture(E.Media.Textures.White8x8)
-	local highlight = button:GetHighlightTexture()
-	if highlight then
-		highlight:SetVertexColor(1, 1, 1, 0.3)
-		highlight:SetInside()
-	end
+	ApplyHighlight(button)
 end
 
 -- Save the original state so hidden buttons can be restored to the Minimap
@@ -89,7 +105,8 @@ local function CaptureState(button)
 
 	local points = {}
 	for i = 1, button:GetNumPoints() do
-		points[i] = { button:GetPoint(i) }
+		local point, relativeTo, relativePoint, xOfs, yOfs = button:GetPoint(i)
+		points[i] = { point, relativeTo, relativePoint, xOfs, yOfs }
 	end
 
 	button.LuckyoneState = {
@@ -118,7 +135,7 @@ local function SkinLandingPageButton(button)
 end
 
 local function SkinButton(button)
-	if Private.isRetail and button == _G.ExpansionLandingPageMinimapButton then
+	if IsLandingPageButton(button) then
 		SkinLandingPageButton(button)
 		return
 	end
@@ -157,19 +174,11 @@ local function SkinButton(button)
 		icon:SetTexCoord(unpack(E.TexCoords))
 		icon:SetInside()
 		if icon.UpdateCoord then
-			-- Keep the ElvUI crop when LibDBIcon refreshes the coords
-			icon.UpdateCoord = function(self)
-				self:SetTexCoord(unpack(E.TexCoords))
-			end
+			icon.UpdateCoord = UpdateCoord
 		end
 	end
 
-	button:SetHighlightTexture(E.Media.Textures.White8x8)
-	local highlight = button:GetHighlightTexture()
-	if highlight then
-		highlight:SetVertexColor(1, 1, 1, 0.3)
-		highlight:SetInside()
-	end
+	ApplyHighlight(button)
 
 	button.LuckyoneSkinned = true
 end
@@ -186,7 +195,8 @@ local function ReleaseButton(button)
 	button:ClearAllPoints()
 
 	for i = 1, #state.points do
-		button:SetPoint(unpack(state.points[i]))
+		local p = state.points[i]
+		button:SetPoint(p[1], p[2], p[3], p[4], p[5])
 	end
 
 	button:SetScript('OnDragStart', state.onDragStart)
@@ -194,7 +204,7 @@ local function ReleaseButton(button)
 	button.LuckyoneState = nil
 
 	-- Restore Blizzard art and let UpdateIcon reapply atlas sizes and anchors
-	if Private.isRetail and button == _G.ExpansionLandingPageMinimapButton then
+	if IsLandingPageButton(button) then
 		if button.LuckyoneIcon then
 			button.LuckyoneIcon:Hide()
 		end
@@ -216,7 +226,7 @@ end
 -- Layout grows from TOPRIGHT leftward: index 1 = top-right, last index = far left.
 -- BugSack pinned first, Blizzard buttons pinned last, everything else A-Z by name.
 local function GetButtonSortRank(button)
-	if Private.isRetail and button == _G.ExpansionLandingPageMinimapButton then
+	if IsLandingPageButton(button) then
 		return 2
 	end
 
@@ -229,15 +239,18 @@ local function GetButtonSortRank(button)
 end
 
 local function SortCollectedButtons(buttons)
-	sort(buttons, function(a, b)
-		local rankA, rankB = GetButtonSortRank(a), GetButtonSortRank(b)
-		if rankA ~= rankB then
-			return rankA < rankB
-		end
+	local keys = {}
+	for i = 1, #buttons do
+		local button = buttons[i]
+		keys[button] = { GetButtonSortRank(button), button.GetName and button:GetName() or '' }
+	end
 
-		local nameA = a.GetName and a:GetName() or ''
-		local nameB = b.GetName and b:GetName() or ''
-		return nameA < nameB
+	sort(buttons, function(a, b)
+		local keyA, keyB = keys[a], keys[b]
+		if keyA[1] ~= keyB[1] then
+			return keyA[1] < keyB[1]
+		end
+		return keyA[2] < keyB[2]
 	end)
 end
 
@@ -271,7 +284,7 @@ local function CollectButtons()
 		end
 	end
 
-	-- Blizzard Expansion Landing Page (Garrison / Covenant / DF / TWW) — Retail only
+	-- Blizzard Expansion Landing Page (Garrison / Covenant / DF / TWW) - Retail only
 	if Private.isRetail then
 		local blizzardDB = Private.Addon.db.profile.map.minimap.buttons.blizzard
 		local landing = _G.ExpansionLandingPageMinimapButton
@@ -307,16 +320,17 @@ local function CollectButtons()
 	return buttons
 end
 
-local function ShowBarOnHover()
-	local bar = Map.buttonBar
-	if bar and Private.Addon.db.profile.map.minimap.buttons.mouseover then
-		bar:SetAlpha(1)
-	end
-end
-
-local function HideBarOnHover()
+local function ShowBarOnHover(self)
 	local bar = Map.buttonBar
 	if not bar or not Private.Addon.db.profile.map.minimap.buttons.mouseover then return end
+	if self ~= bar and not bar.buttons[self] then return end
+	bar:SetAlpha(1)
+end
+
+local function HideBarOnHover(self)
+	local bar = Map.buttonBar
+	if not bar or not Private.Addon.db.profile.map.minimap.buttons.mouseover then return end
+	if self ~= bar and not bar.buttons[self] then return end
 	if bar:IsMouseOver() then return end
 	bar:SetAlpha(0)
 end
@@ -391,10 +405,6 @@ local function LayoutButtons(holder, buttons)
 		SkinButton(button)
 		HookButtonMouseover(button)
 
-		if Private.isRetail and button == _G.ExpansionLandingPageMinimapButton then
-			FitLandingPageButton(button, size)
-		end
-
 		bar.buttons[button] = true
 		button:Show()
 	end
@@ -417,7 +427,6 @@ local function ReleaseAll()
 		bar.buttons[button] = nil
 		ReleaseButton(button)
 	end
-	wipe(bar.buttons)
 
 	bar:Hide()
 	bar:SetSize(0, 0)
@@ -448,6 +457,9 @@ function Private:UpdateMinimapButtonBar()
 		return
 	end
 
+	-- Covers enable and expansionLandingPage toggles from config
+	RegisterHooks()
+
 	local holder = _G[db.holder]
 	if not (holder and holder.IsObjectType and holder:IsObjectType('Frame')) then
 		holder = Minimap
@@ -472,7 +484,7 @@ function Private:UpdateMinimapButtonBar()
 				bar.buttons[button] = nil
 				ReleaseButton(button)
 				-- LibDBIcon hides stay hidden: Leave Expansion Landing Page to Blizzard show/hide events
-				if not Private.isRetail or button ~= _G.ExpansionLandingPageMinimapButton then
+				if not IsLandingPageButton(button) then
 					button:Hide()
 				end
 			end
@@ -515,7 +527,7 @@ local function RegisterLandingPageHooks()
 	end
 end
 
-local function RegisterHooks()
+RegisterHooks = function()
 	if not Map.buttonBarHooks then
 		Map.buttonBarHooks = true
 
