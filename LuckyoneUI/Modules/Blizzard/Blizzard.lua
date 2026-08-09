@@ -4,7 +4,6 @@ local L = Private.Libs.ACL
 local Blizzard = Private.Modules.Blizzard
 
 -- API cache
-local CreateAndInitFromMixin = CreateAndInitFromMixin
 local CreateFrame = CreateFrame
 local GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
 local GetQuestInfo = C_QuestLog.GetInfo
@@ -19,15 +18,24 @@ local RemoveQuestWatch = C_QuestLog.RemoveQuestWatch
 local _G = _G
 local UIParent = UIParent
 
--- Global strings
+-- Globals
 local DELETE_ITEM_CONFIRM_STRING = DELETE_ITEM_CONFIRM_STRING
+local StaticPopupDialogs = StaticPopupDialogs
 
 -- Disabled Blizzard Frames (Loading on init)
 function Private:DisabledFrames()
-	local HiddenFrame = CreateFrame('Frame', nil, UIParent)
-	HiddenFrame:Hide()
+	local db = Private.Addon.db.profile.disabledFrames
+	local HiddenFrame
 
-	if Private.Addon.db.profile.disabledFrames.AlertFrame then
+	local function GetHiddenFrame()
+		if not HiddenFrame then
+			HiddenFrame = CreateFrame('Frame', nil, UIParent)
+			HiddenFrame:Hide()
+		end
+		return HiddenFrame
+	end
+
+	if db.AlertFrame then
 		local AlertFrame = _G.AlertFrame
 		if AlertFrame then
 			AlertFrame:UnregisterAllEvents()
@@ -37,7 +45,7 @@ function Private:DisabledFrames()
 		end
 	end
 
-	if Private.Addon.db.profile.disabledFrames.BossBanner and Private.isRetail then
+	if db.BossBanner and Private.isRetail then
 		local BossBanner = _G.BossBanner
 		if BossBanner then
 			BossBanner:UnregisterAllEvents()
@@ -47,19 +55,23 @@ function Private:DisabledFrames()
 		end
 	end
 
-	if Private.Addon.db.profile.disabledFrames.ZoneTextFrame then
+	if db.ZoneTextFrame then
 		local ZoneTextFrame = _G.ZoneTextFrame
 		if ZoneTextFrame then
 			ZoneTextFrame:UnregisterAllEvents()
 		end
 	end
 
-	if Private.Addon.db.profile.disabledFrames.HousingDecorAlerts and Private.isRetail then
-		local HousingEventHandler = CreateAndInitFromMixin(_G.HousingEventHandlerMixin)
-		_G.EventRegistry:UnregisterFrameEventAndCallback('NEW_HOUSING_ITEM_ACQUIRED', HousingEventHandler.ShowHousingItemAcquiredAlert, HousingEventHandler)
+	if db.HousingDecorAlerts and Private.isRetail then
+		-- HousingEventHandler is local to Blizzard; EventRegistry unregister needs that owner.
+		-- No-op the alert system instead so the toast never queues.
+		local system = _G.HousingItemEarnedAlertFrameSystem
+		if system then
+			system.AddAlert = function() end
+		end
 	end
 
-	if Private.Addon.db.profile.disabledFrames.LossOfControl and Private.isRetail then
+	if db.LossOfControl and Private.isRetail then
 		local LossOfControlFrame = _G.LossOfControlFrame
 		if LossOfControlFrame then
 			LossOfControlFrame:UnregisterAllEvents()
@@ -69,20 +81,20 @@ function Private:DisabledFrames()
 		end
 	end
 
-	if Private.Addon.db.profile.disabledFrames.ApplicationCover and Private.isRetail then
+	if db.ApplicationCover and Private.isRetail then
 		local Cover = _G.LFGListFrame.ApplicationViewer.UnempoweredCover
 		if Cover then
 			Cover:UnregisterAllEvents()
-			Cover:SetParent(HiddenFrame)
+			Cover:SetParent(GetHiddenFrame())
 			Cover:Hide()
 		end
 	end
 
-	if Private.Addon.db.profile.disabledFrames.UIErrorsFrame then
+	if db.UIErrorsFrame then
 		local ErrorFrame = _G.UIErrorsFrame
 		if ErrorFrame then
 			ErrorFrame:UnregisterAllEvents()
-			ErrorFrame:SetParent(HiddenFrame)
+			ErrorFrame:SetParent(GetHiddenFrame())
 			ErrorFrame:Hide()
 		end
 	end
@@ -102,15 +114,15 @@ end
 function Private:EasyDelete()
 	if not Private.Addon.db.profile.qualityOfLife.easyDelete then return end
 
-	-- Higher quality than green
-	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', function(frame)
+	local function EasyDelete_OnShow(frame)
 		frame.EditBox:SetText(DELETE_ITEM_CONFIRM_STRING)
-	end)
+	end
+
+	-- Higher quality than green
+	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', EasyDelete_OnShow)
 
 	-- Quests and Quest starters
-	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', function(frame)
-		frame.EditBox:SetText(DELETE_ITEM_CONFIRM_STRING)
-	end)
+	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', EasyDelete_OnShow)
 end
 
 -- Auto accept role check
@@ -118,16 +130,16 @@ function Private:AutoAcceptRole()
 	if not (Private.isRetail and Private.Addon.db.profile.qualityOfLife.autoAcceptRole) then return end
 
 	-- Auto click on show
-	_G.LFDRoleCheckPopupAcceptButton:SetScript('OnShow', function()
+	_G.LFDRoleCheckPopupAcceptButton:HookScript('OnShow', function(self)
 		if not IsShiftKeyDown() then
-			_G.LFDRoleCheckPopupAcceptButton:Click()
+			self:Click()
 		end
 	end)
 
 	-- Allow skipping auto-accept while shift key is down
-	_G.LFGListApplicationDialog:SetScript('OnShow', function()
+	_G.LFGListApplicationDialog:HookScript('OnShow', function(self)
 		if not IsShiftKeyDown() then
-			_G.LFGListApplicationDialog.SignUpButton:Click()
+			self.SignUpButton:Click()
 		end
 	end)
 end
@@ -163,8 +175,6 @@ end
 -- Source and Credits:
 -- https://www.reddit.com/r/WowUI/comments/1qk96mg/otherfixworkaroundhidden_tracked_quests_caused_60/
 function Private:UntrackAllQuests()
-	if not C_QuestLog then return end
-
 	local numShownEntries = GetNumQuestLogEntries()
 	for i = 1, numShownEntries do
 		local info = GetQuestInfo(i)
