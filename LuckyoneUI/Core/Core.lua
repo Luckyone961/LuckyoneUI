@@ -16,7 +16,6 @@ local strlower = string.lower
 local tinsert = table.insert
 local tonumber = tonumber
 local type = type
-local unpack = unpack
 local wipe = table.wipe
 
 -- API cache
@@ -31,6 +30,7 @@ local SetCVar = C_CVar.SetCVar
 
 -- Global environment
 local _G = _G
+local LibStub = _G.LibStub
 
 -- Blizzard functions
 local Settings_OpenToCategory = _G.Settings and _G.Settings.OpenToCategory
@@ -90,8 +90,19 @@ end
 
 function Private:GetActiveProfile()
 	if not Private.ElvUI then return end
+
 	local data = ElvUI[1].data:GetCurrentProfile()
-	return strfind(data, 'Luckyone Main') and 1 or strfind(data, 'Luckyone Healing') and 2 or strfind(data, 'Luckyone Support') and 3 or nil
+	local profiles = {
+		{ 'Luckyone Main', 1 },
+		{ 'Luckyone Healing', 2 },
+		{ 'Luckyone Support', 3 },
+	}
+
+	for i = 1, #profiles do
+		if strfind(data, profiles[i][1], 1, true) then
+			return profiles[i][2]
+		end
+	end
 end
 
 -- Open settings helper
@@ -110,7 +121,9 @@ end
 
 -- Installer toggle helper
 function Private:ToggleInstaller()
-	if Private.Installer and Private.Installer:IsShown() then
+	if not Private.Installer then return end
+
+	if Private.Installer:IsShown() then
 		Private.Installer:Hide()
 	else
 		Private.Installer:Show(Private.InstallerData)
@@ -183,7 +196,7 @@ _G.StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 	OnHide = function(self)
 		self.EditBox:SetWidth(self.EditBox.width or 50)
 		self.EditBox.width = nil
-		self.temptxt = nil
+		self.EditBox.temptxt = nil
 	end,
 	EditBoxOnEnterPressed = function(self)
 		self:GetParent():Hide()
@@ -213,7 +226,7 @@ end
 
 -- Skip invalid/renamed db keys and continue profile import
 function Private:DBSetValue(tbl, path, value)
-	if not tbl or type(tbl) ~= 'table' then return end
+	if type(tbl) ~= 'table' then return end
 
 	local keys = {}
 	for key in path:gmatch('([^.]+)') do -- No dot
@@ -233,10 +246,7 @@ function Private:DBSetValue(tbl, path, value)
 		current = current[key]
 	end
 
-	local finalKey = keys[#keys]
-	if current and type(current) == 'table' then
-		current[finalKey] = value
-	end
+	current[keys[#keys]] = value
 end
 
 -- Scale helper
@@ -290,7 +300,7 @@ function Private.Addon:DebugMode(msg)
 			local name = GetAddOnInfo(i)
 			if not AddOns[name] and Private.IsAddOnLoaded(name) then
 				DisableAddOn(name, Private.myName)
-				Private.Addon.db.global.DebugDisabledAddOns[name] = i
+				Private.Addon.db.global.DebugDisabledAddOns[name] = true
 			end
 		end
 		SetCVar('scriptErrors', 1)
@@ -324,7 +334,7 @@ end
 function Private:CheckElvUI()
 	if not Private.ElvUI then return end
 
-	local E = unpack(ElvUI)
+	local E = ElvUI[1]
 	local EP = LibStub('LibElvUIPlugin-1.0')
 
 	-- Skip the ElvUI installer
@@ -409,6 +419,7 @@ local Toons = Private.isRetail and {
 
 function Private:HandleToons()
 	Private.itsLuckyone = Toons and Toons[Private.myGUID]
+	Toons = nil
 end
 
 function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
