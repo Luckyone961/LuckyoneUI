@@ -57,11 +57,10 @@ Private.Outline = 'OUTLINE'
 Private.Texture = 'Minimalist'
 
 -- UI scale values
-Private.UIScale1440 = 0.53333333333333
-Private.UIScale1080 = 0.71111111111111
+Private.UIScale1440 = 768 / 1440
+Private.UIScale1080 = 768 / 1080
 
 -- Build info
-Private.InterfaceVersion = select(4, GetBuildInfo())
 Private.GameVersion = GetBuildInfo()
 
 -- Game flavors
@@ -96,7 +95,6 @@ Private.Modules = {
 
 -- Called directly after the addon is fully loaded
 function Private.Addon:OnInitialize()
-
 	-- SavedVariables
 	Private.Addon.db = Private.Libs.ADB:New('LuckyoneDB', Private.Defaults, true)
 
