@@ -137,6 +137,7 @@ end
 -- Set install version to current LuckyoneUI version
 local function InstallComplete()
 	Private.Addon.db.global.install_version = Private.Version
+	Private:HandleLuckyoneDB()
 	C_UI_Reload()
 end
 
