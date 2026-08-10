@@ -300,7 +300,6 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.statusbar = Private.Texture
 	E.db.nameplates.threat.skipGoodColor = true
 	E.db.nameplates.threat.useSoloColor = true
-	E.db.nameplates.useBlizzardAuras = Private.isRetail -- Use filter prio in nonRetail
 
 	-- NamePlates misc
 	E.db.nameplates.classColorNames = true
