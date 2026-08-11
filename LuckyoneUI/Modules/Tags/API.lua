@@ -19,8 +19,11 @@ local wipe = table.wipe
 
 -- API cache
 local GenerateTextColorCode = C_ColorUtil and C_ColorUtil.GenerateTextColorCode
+local GetClassColor = C_ClassColor and C_ClassColor.GetClassColor
 local hooksecurefunc = hooksecurefunc
 local issecretvalue = issecretvalue
+local WrapString = C_StringUtil and C_StringUtil.WrapString
+local WrapTextInColor = C_ColorUtil and C_ColorUtil.WrapTextInColor
 local UnitClass = UnitClass
 local UnitInPartyIsAI = UnitInPartyIsAI
 local UnitIsConnected = UnitIsConnected
@@ -249,7 +252,18 @@ if Private.isRetail then
 		local targetName = UnitName(targetUnit)
 		if not targetName then return end
 		if issecretvalue(targetName) then
-			return targetName
+			if not withColor then return targetName end
+
+			-- Class color for players, secret class tokens go through C_ClassColor
+			if UnitIsPlayer(targetUnit) or UnitInPartyIsAI(targetUnit) then
+				local _, classToken = UnitClass(targetUnit)
+				if issecretvalue(classToken) then
+					return WrapTextInColor(targetName, GetClassColor(classToken))
+				end
+			end
+
+			-- Non-secret color paths (reaction / cached class / fallback grey)
+			return WrapString(targetName, getUnitColor(targetUnit), '|r')
 		end
 
 		if lastPartOnly then
