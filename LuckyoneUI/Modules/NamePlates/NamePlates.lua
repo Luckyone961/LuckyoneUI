@@ -160,8 +160,12 @@ function NamePlates:OnEnable()
 	CheckHook()
 
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
-	self:RegisterEvent('PLAYER_FOCUS_CHANGED')
 	self:RegisterEvent('PLAYER_TARGET_CHANGED')
+
+	-- Focus unit does not exist on Classic Era
+	if not Private.isClassic then
+		self:RegisterEvent('PLAYER_FOCUS_CHANGED')
+	end
 
 	Private:UpdateSpecialNameplateTextures()
 end

@@ -3,7 +3,7 @@
 **All WoW Versions:**  
 - Added a minimap button module for the same bar style across all wow versions  
 - Added Chattynator option to the initial chat installer  
-- Added the WIP Platynator profile option in /lucky config  
+- Added a Platynator profile option in /lucky config  
 - Updated BugSack skin to include ElvUI version and game version in the top bar  
 
 **Retail:**  
@@ -11,10 +11,20 @@
 - Improved DataTexts Tweaks to support manual profile switching  
 - Removed Shadow&Light profile  
 - Updated SkironCooldownManager profile (Includes G1 text frame strata fix)  
-- Updated TOC for patch 12.1.  
+- Updated TOC for patch 12.1.0  
+
+**Mists:**  
+- Auto accept role option is now available like in retail  
+- Now supports my target and focus nameplate texture options  
+- Quick signup option is now available like in retail  
+
+**Anniversary:**  
+- Fixed NovaSpellRankChecker skin  
+- Now supports my target nameplate texture option  
 
 **Classic:**  
 - Fixed NovaSpellRankChecker skin  
+- Now supports my target nameplate texture option  
 - Updated TOC for patch 1.15.9  
 
 ## Version 4.17 [08-07-2026]

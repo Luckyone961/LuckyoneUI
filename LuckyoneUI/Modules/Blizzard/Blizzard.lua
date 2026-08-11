@@ -67,17 +67,18 @@ function Private:DisabledFrames()
 		end
 	end
 
-	if db.LossOfControl and Private.isRetail then
+	if db.LossOfControl and (Private.isRetail or Private.isMists) then
 		local LossOfControlFrame = _G.LossOfControlFrame
 		if LossOfControlFrame then
 			LossOfControlFrame:UnregisterAllEvents()
-			if Private.ElvUI then
+			-- ElvUI only creates this mover on Retail and DisableMover errors on unknown movers
+			if Private.ElvUI and Private.isRetail then
 				ElvUI[1]:DisableMover('LossControlMover')
 			end
 		end
 	end
 
-	if db.ApplicationCover and Private.isRetail then
+	if db.ApplicationCover and (Private.isRetail or Private.isMists) then
 		local Cover = _G.LFGListFrame.ApplicationViewer.UnempoweredCover
 		if Cover then
 			Cover:UnregisterAllEvents()
@@ -123,7 +124,7 @@ end
 
 -- Auto accept role check
 function Private:AutoAcceptRole()
-	if not (Private.isRetail and Private.Addon.db.profile.qualityOfLife.autoAcceptRole) then return end
+	if not ((Private.isRetail or Private.isMists) and Private.Addon.db.profile.qualityOfLife.autoAcceptRole) then return end
 
 	-- Auto click on show
 	_G.LFDRoleCheckPopupAcceptButton:HookScript('OnShow', function(self)
@@ -156,7 +157,7 @@ local function QuickSignup_OnDoubleClick(self, button)
 end
 
 function Private:QuickSignup()
-	if not (Private.isRetail and Private.Addon.db.profile.qualityOfLife.quickSignup) then return end
+	if not ((Private.isRetail or Private.isMists) and Private.Addon.db.profile.qualityOfLife.quickSignup) then return end
 
 	-- Update fires per entry on every list refresh, only set the handler once per entry
 	hooksecurefunc('LFGListSearchEntry_Update', function(entry)
