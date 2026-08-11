@@ -165,9 +165,18 @@ E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percent
 
 -- Display mana (percent) if the unit is flagged healer
 if Private.isRetail then
-	E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
+	-- Roles become secret in combat (12.1), cache the last readable role per unit
+	local roleCache = {}
+
+	E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER GROUP_ROSTER_UPDATE PLAYER_ROLES_ASSIGNED', function(unit)
 		local role = UnitGroupRolesAssigned(unit)
-		if issecretvalue(role) or role ~= 'HEALER' then return end -- 12.1 secret (PTR Week 7 notes)
+		if issecretvalue(role) then
+			role = roleCache[unit]
+		else
+			roleCache[unit] = role
+		end
+
+		if role ~= 'HEALER' then return end
 		if UnitInPartyIsAI(unit) then return end -- Exclude NPC Healers (Delve companion etc)
 
 		return getPowerColor(unit) .. format('%d', UnitPowerPercent(unit, POWERTYPE_MANA, true, ScaleTo100))
