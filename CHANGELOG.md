@@ -11,6 +11,7 @@
 - Improved DataTexts Tweaks to support manual profile switching  
 - Removed Shadow&Light profile  
 - Updated SkironCooldownManager profile (Includes G1 text frame strata fix)  
+- Updated TOC for patch 12.1.  
 
 **Classic:**  
 - Fixed NovaSpellRankChecker skin  
