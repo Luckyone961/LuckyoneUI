@@ -1,19 +1,14 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
--- Lua functions
 local ipairs = ipairs
 local next = next
 
--- API cache
 local SetCVar = C_CVar.SetCVar
 
--- Global environment
 local _G = _G
 local ChatFrameUtil = _G.ChatFrameUtil
 
--- Blizzard functions
 local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
 local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
 local ChatFrame_RemoveMessageGroup = ChatFrame_RemoveMessageGroup
@@ -30,10 +25,8 @@ local VoiceTranscriptionFrame_UpdateEditBox = VoiceTranscriptionFrame_UpdateEdit
 local VoiceTranscriptionFrame_UpdateVisibility = VoiceTranscriptionFrame_UpdateVisibility
 local VoiceTranscriptionFrame_UpdateVoiceTab = VoiceTranscriptionFrame_UpdateVoiceTab
 
--- Global strings
 local VOICE = VOICE
 
--- Constants
 local WHISPER_TAB = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
 local GUILD_TAB = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
 local PARTY_TAB = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER', 'SYSTEM' }

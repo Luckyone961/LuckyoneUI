@@ -1,8 +1,6 @@
--- Lua functions
 local select = select
 local tonumber = tonumber
 
--- API cache
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local GetBuildInfo = GetBuildInfo
 local GetRealmName = GetRealmName
@@ -11,26 +9,21 @@ local UnitClass = UnitClass
 local UnitGUID = UnitGUID
 local UnitName = UnitName
 
--- LibStub
 local LibStub = LibStub
 
--- Globals
 local WOW_PROJECT_ID = WOW_PROJECT_ID
 local WOW_PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
 local WOW_PROJECT_BURNING_CRUSADE_CLASSIC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 local WOW_PROJECT_MISTS_CLASSIC = WOW_PROJECT_MISTS_CLASSIC
 local WOW_PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
 
--- Addon namespace
 local Name, Private = ...
 
 -- Create a new AceAddon instance
 local LuckyoneUI = LibStub('AceAddon-3.0'):NewAddon(Name, 'AceConsole-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
 
--- Core reference
 Private.Addon = LuckyoneUI
 
--- Libraries
 Private.Libs = {
 	-- Ace
 	ADB = LibStub('AceDB-3.0'),
@@ -102,6 +95,6 @@ function Private.Addon:OnInitialize()
 	if not Private.ElvUI then
 		Private:BuildConfig()
 		Private.Libs.AC:RegisterOptionsTable('LuckyoneUI', Private.Config)
-		Private.SettingsFrame, Private.SettingsCategoryID = Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI')
+		Private.SettingsCategoryID = select(2, Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI'))
 	end
 end

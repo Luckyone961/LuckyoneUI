@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 
 -- ElvUI file
@@ -6,14 +5,11 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
 local ipairs = ipairs
 local unpack = unpack
 
--- API cache
 local GetInstanceInfo = GetInstanceInfo
 
--- ElvUI reference
 local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 

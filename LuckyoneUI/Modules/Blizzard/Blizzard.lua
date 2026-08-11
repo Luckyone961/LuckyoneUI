@@ -1,9 +1,7 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 local Blizzard = Private.Modules.Blizzard
 
--- API cache
 local CreateFrame = CreateFrame
 local GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
 local GetQuestInfo = C_QuestLog.GetInfo
@@ -14,11 +12,9 @@ local LFGListSearchPanel_SignUp = LFGListSearchPanel_SignUp
 local LFGListSearchPanelUtil_CanSelectResult = LFGListSearchPanelUtil_CanSelectResult
 local RemoveQuestWatch = C_QuestLog.RemoveQuestWatch
 
--- Global environment
 local _G = _G
 local UIParent = UIParent
 
--- Globals
 local DELETE_ITEM_CONFIRM_STRING = DELETE_ITEM_CONFIRM_STRING
 local StaticPopupDialogs = StaticPopupDialogs
 

@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 
 -- LuckyoneDB defaults

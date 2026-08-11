@@ -1,4 +1,3 @@
--- AddOn namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
@@ -7,19 +6,15 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
 local ipairs = ipairs
 local pairs = pairs
 local unpack = unpack
 
--- API cache
 local SetCVar = C_CVar.SetCVar
 
--- Global environment
 local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
 
--- ElvUI modules
 local E, _, _, P = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
 local NP = E:GetModule('NamePlates')

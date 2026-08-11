@@ -1,19 +1,15 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 local LSM = Private.Libs.LSM
 
--- Lua functions
 local format = string.format
 local ipairs = ipairs
 local type = type
 
--- API cache
 local C_UI_Reload = C_UI.Reload
 local CreateFrame = CreateFrame
 local PlaySound = PlaySound
 
--- Global environment
 local _G = _G
 local UIParent = UIParent
 local StaticPopup_Show = _G.StaticPopup_Show
@@ -38,7 +34,6 @@ local STEP_TITLE_SELECTED_COLOR = {0, 0.702, 1} -- #00b3ff
 local Installer = {}
 Private.Installer = Installer
 
--- Local references
 local installerFrame
 local currentPage = 0
 local maxPage = 0
@@ -104,14 +99,7 @@ local function LayoutOptionButtons()
 	local visibleButtons = {}
 	local numButtons = 0
 
-	local options = {
-		installerFrame.Option1,
-		installerFrame.Option2,
-		installerFrame.Option3,
-		installerFrame.Option4
-	}
-
-	for _, option in ipairs(options) do
+	for _, option in ipairs(installerFrame.Options) do
 		if option:IsShown() then
 			numButtons = numButtons + 1
 			visibleButtons[numButtons] = option
@@ -187,14 +175,7 @@ local function SetupReset()
 	installerFrame.Next:Disable()
 	installerFrame.Prev:Disable()
 
-	local options = {
-		installerFrame.Option1,
-		installerFrame.Option2,
-		installerFrame.Option3,
-		installerFrame.Option4
-	}
-
-	for _, option in ipairs(options) do
+	for _, option in ipairs(installerFrame.Options) do
 		option:Hide()
 		option:SetScript('OnClick', nil)
 		option:SetText('')
@@ -394,6 +375,8 @@ local function CreateMainFrame()
 	option4:Hide()
 	StyleButton(option4)
 	frame.Option4 = option4
+
+	frame.Options = { option1, option2, option3, option4 }
 
 	frame.Prev = CreateFrame('Button', 'LuckyoneInstallerPrevButton', frame)
 	frame.Prev:SetSize(110, 25)

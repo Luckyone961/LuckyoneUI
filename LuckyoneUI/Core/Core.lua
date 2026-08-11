@@ -1,11 +1,9 @@
--- Addon namespace
 local Name, Private = ...
 local L = Private.Libs.ACL
 local LDB = Private.Libs.LDB
 local LDBI = Private.Libs.LDBI
 local Core = Private.Modules.Core
 
--- Lua functions
 local format = string.format
 local ipairs = ipairs
 local next = next
@@ -18,7 +16,6 @@ local tonumber = tonumber
 local type = type
 local wipe = table.wipe
 
--- API cache
 local C_UI_Reload = C_UI.Reload
 local DisableAddOn = C_AddOns.DisableAddOn
 local EnableAddOn = C_AddOns.EnableAddOn
@@ -28,16 +25,12 @@ local IsShiftKeyDown = IsShiftKeyDown
 local LoadAddOn = C_AddOns.LoadAddOn
 local SetCVar = C_CVar.SetCVar
 
--- Global environment
 local _G = _G
 local LibStub = _G.LibStub
 
--- Blizzard functions
-local Settings_OpenToCategory = _G.Settings and _G.Settings.OpenToCategory
-local InterfaceOptionsFrame_OpenToCategory = _G.InterfaceOptionsFrame_OpenToCategory
+local Settings_OpenToCategory = _G.Settings.OpenToCategory
 local StaticPopup_Show = _G.StaticPopup_Show
 
--- Global strings
 local ACCEPT = ACCEPT
 local CANCEL = CANCEL
 local OKAY = OKAY
@@ -88,19 +81,19 @@ function Private:GetMostRecentProfile(profileType)
 	return mostRecentProfile or (profileType and devProfiles[profileType]) or nil
 end
 
+local activeProfiles = {
+	{ 'Luckyone Main', 1 },
+	{ 'Luckyone Healing', 2 },
+	{ 'Luckyone Support', 3 },
+}
+
 function Private:GetActiveProfile()
 	if not Private.ElvUI then return end
 
 	local data = ElvUI[1].data:GetCurrentProfile()
-	local profiles = {
-		{ 'Luckyone Main', 1 },
-		{ 'Luckyone Healing', 2 },
-		{ 'Luckyone Support', 3 },
-	}
-
-	for i = 1, #profiles do
-		if strfind(data, profiles[i][1], 1, true) then
-			return profiles[i][2]
+	for i = 1, #activeProfiles do
+		if strfind(data, activeProfiles[i][1], 1, true) then
+			return activeProfiles[i][2]
 		end
 	end
 end
@@ -110,12 +103,8 @@ function Private:OpenSettings()
 	if Private.ElvUI then
 		ElvUI[1]:ToggleOptions('LuckyoneUI')
 		ElvUI[1]:Config_UpdateSize(true)
-	else
-		if Settings_OpenToCategory and Private.SettingsCategoryID then
-			Settings_OpenToCategory(Private.SettingsCategoryID)
-		elseif InterfaceOptionsFrame_OpenToCategory and Private.SettingsFrame then
-			InterfaceOptionsFrame_OpenToCategory(Private.SettingsFrame)
-		end
+	elseif Private.SettingsCategoryID then
+		Settings_OpenToCategory(Private.SettingsCategoryID)
 	end
 end
 

@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
@@ -7,12 +6,10 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
 local ipairs = ipairs
 local pairs = pairs
 local unpack = unpack
 
--- ElvUI modules
 local E = unpack(ElvUI)
 
 -- Function to add IDs to a list (fresh table per ID)

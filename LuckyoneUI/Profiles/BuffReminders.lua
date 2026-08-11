@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
@@ -7,7 +6,6 @@ if not Private.isRetail then
 	return
 end
 
--- Global environment
 local _G = _G
 
 -- BuffReminders profile

@@ -1,25 +1,21 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 local ACH = Private.Libs.ACH
 
--- Lua functions
 local concat = table.concat
 local format = string.format
+local tonumber = tonumber
 local tostring = tostring
 
--- API cache
 local GetCVar = C_CVar.GetCVar
 local GetCVarBool = C_CVar.GetCVarBool
 local SetCVar = C_CVar.SetCVar
 local HideUIPanel = HideUIPanel
 
--- Global environment
 local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
 local SettingsPanel = _G.SettingsPanel
 
--- Constants
 local RELOAD_POPUP = 'LUCKYONE_RL'
 local RESET_DEFAULTS_TEXT = L["Reset to LuckyoneUI defaults."]
 

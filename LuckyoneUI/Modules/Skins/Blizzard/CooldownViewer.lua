@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 
 -- ElvUI file
@@ -12,16 +11,12 @@ end
 	Removed all skinning except for the settings frame.
 ]]
 
--- Lua functions
 local next = next
 
--- API cache
 local hooksecurefunc = hooksecurefunc
 
--- Global environment
 local _G = _G
 
--- ElvUI reference
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 

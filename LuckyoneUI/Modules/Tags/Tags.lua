@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
@@ -7,13 +6,11 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
 local floor = floor
 local format = string.format
 local pairs = pairs
 local unpack = unpack
 
--- API cache
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
 local GetPetHappiness = GetPetHappiness
 local HasPetUI = HasPetUI
@@ -34,17 +31,13 @@ local UnitPower = UnitPower
 local UnitPowerMax = UnitPowerMax
 local UnitPowerPercent = UnitPowerPercent
 
--- Global environment
 local _G = _G
 
--- Global strings
 local UNKNOWN = UNKNOWN
 
--- ElvUI modules
 local E = unpack(ElvUI)
 local ElvUF_colors_power = ElvUF.colors.power
 
--- Local references
 local Hex = Private.Tags.Hex
 local classificationText = Private.Tags.classificationText
 local formatTargetName = Private.Tags.formatTargetName
@@ -54,7 +47,6 @@ local getPowerColor = Private.Tags.getPowerColor
 local getUnitColor = Private.Tags.getUnitColor
 local getUnitStatus = Private.Tags.getUnitStatus
 
--- Constants
 local POWERTYPE_MANA = Enum.PowerType.Mana
 local manaColorTable = ElvUF_colors_power.MANA
 local MANA_HEX = manaColorTable and Hex(manaColorTable.r, manaColorTable.g, manaColorTable.b)
@@ -97,10 +89,6 @@ else
 	-- Shared by both absorb tags (Hidden on Era/HC/Seasonal)
 	local function getAbsorbPercent(unit)
 		local absorb = UnitGetTotalAbsorbs(unit) or 0
-		if absorb == 0 then
-			return E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit), 0, nil)
-		end
-
 		return E:GetFormattedText('PERCENT', UnitHealth(unit) + absorb, UnitHealthMax(unit), 0, nil)
 	end
 

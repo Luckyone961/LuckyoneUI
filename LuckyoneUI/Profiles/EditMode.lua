@@ -1,7 +1,5 @@
--- Addon namespace
 local _, Private = ...
 
--- Global environment
 local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
 

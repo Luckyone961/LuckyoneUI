@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 
 -- ElvUI file
@@ -6,17 +5,13 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
 local ipairs = ipairs
 local unpack = unpack
 
--- API cache
 local hooksecurefunc = hooksecurefunc
 
--- Global environment
 local _G = _G
 
--- ElvUI modules
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 

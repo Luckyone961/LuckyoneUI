@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
@@ -7,10 +6,8 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
 local unpack = unpack
 
--- ElvUI modules
 local E = unpack(ElvUI)
 
 -- UnitFrame color themes

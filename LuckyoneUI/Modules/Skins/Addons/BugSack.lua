@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 
 -- ElvUI file
@@ -6,18 +5,13 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
-local format = format
-local select = select
+local format = string.format
 local unpack = unpack
 
--- API cache
 local hooksecurefunc = hooksecurefunc
 
--- Global environment
 local _G = _G
 
--- ElvUI modules
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
@@ -90,19 +84,20 @@ local function SkinBugSackFrame()
 	end
 
 	-- Close Button(s)
-	local numChildren = select('#', BugSackFrame:GetChildren())
-	for i = 1, numChildren do
-		local child = select(i, BugSackFrame:GetChildren())
-		if child and child:IsObjectType('Button') and child:GetScript('OnClick') == BugSack.CloseSack then
+	local children = { BugSackFrame:GetChildren() }
+	for i = 1, #children do
+		local child = children[i]
+		if child:IsObjectType('Button') and child:GetScript('OnClick') == BugSack.CloseSack then
 			S:HandleCloseButton(child)
 		end
 	end
 
 	-- Game version left of page count (top right)
 	local countLabel
-	for i = 1, BugSackFrame:GetNumRegions() do
-		local region = select(i, BugSackFrame:GetRegions())
-		if region and region:IsObjectType('FontString') and region:GetJustifyH() == 'RIGHT' then
+	local regions = { BugSackFrame:GetRegions() }
+	for i = 1, #regions do
+		local region = regions[i]
+		if region:IsObjectType('FontString') and region:GetJustifyH() == 'RIGHT' then
 			countLabel = region
 			break
 		end

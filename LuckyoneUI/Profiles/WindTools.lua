@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
@@ -7,13 +6,10 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
 local unpack = unpack
 
--- API cache
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 
--- ElvUI modules
 local E, _, V, P, G = unpack(ElvUI)
 
 local function Set(tbl, path, value)

@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 local LSM = Private.Libs.LSM
 local NamePlates = Private.Modules.NamePlates
@@ -8,18 +7,15 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
 local ipairs = ipairs
 local pairs = pairs
 local unpack = unpack
 local wipe = table.wipe
 
--- API cache
 local hooksecurefunc = hooksecurefunc
 local UnitExists = UnitExists
 local C_NamePlate_GetNamePlateForUnit = C_NamePlate.GetNamePlateForUnit
 
--- ElvUI reference
 local E = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 

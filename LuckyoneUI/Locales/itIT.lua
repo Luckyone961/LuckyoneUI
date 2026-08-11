@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 
 local L = Private.ElvUI and ElvUI[1].Libs.ACL:NewLocale('ElvUI', 'itIT') or LibStub('AceLocale-3.0'):NewLocale('LuckyoneUI', 'itIT')

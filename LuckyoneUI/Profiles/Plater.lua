@@ -1,11 +1,8 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
--- Lua functions
 local tinsert = table.insert
 
--- Global environment
 local _G = _G
 
 -- Plater profile

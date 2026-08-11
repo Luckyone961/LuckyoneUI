@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 
 -- ElvUI file
@@ -6,13 +5,10 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
 local unpack = unpack
 
--- API cache
 local InCombatLockdown = InCombatLockdown
 
--- ElvUI reference
 local E = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
 

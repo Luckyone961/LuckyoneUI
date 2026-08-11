@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 
 -- ElvUI file
@@ -6,10 +5,8 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
 local unpack = unpack
 
--- ElvUI modules
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 

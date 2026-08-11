@@ -1,8 +1,6 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
--- API cache
 local SetCVar = C_CVar.SetCVar
 
 -- General CVars

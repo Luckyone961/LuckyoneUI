@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
@@ -9,7 +8,6 @@ end
 
 Private.Tags = Private.Tags or {}
 
--- Lua functions
 local format = string.format
 local setmetatable = setmetatable
 local strmatch = string.match
@@ -17,7 +15,6 @@ local type = type
 local unpack = unpack
 local wipe = table.wipe
 
--- API cache
 local GenerateTextColorCode = C_ColorUtil and C_ColorUtil.GenerateTextColorCode
 local GetClassColor = C_ClassColor and C_ClassColor.GetClassColor
 local hooksecurefunc = hooksecurefunc
@@ -34,10 +31,8 @@ local UnitName = UnitName
 local UnitPowerType = UnitPowerType
 local UnitReaction = UnitReaction
 
--- Global strings
 local UNKNOWN = UNKNOWN
 
--- ElvUI modules
 local E = unpack(ElvUI)
 local Abbrev = ElvUF.Tags.Env.Abbrev
 
@@ -45,7 +40,6 @@ local ElvUF_colors_class = ElvUF.colors.class
 local ElvUF_colors_power = ElvUF.colors.power
 local ElvUF_colors_reaction = ElvUF.colors.reaction
 
--- Constants
 local DEFAULT_COLOR = '|cFFcccccc'
 local DEAD, GHOST, OFFLINE = L["DEAD"], L["GHOST"], L["OFFLINE"]
 

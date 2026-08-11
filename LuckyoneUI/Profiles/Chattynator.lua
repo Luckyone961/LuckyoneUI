@@ -1,8 +1,6 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
--- Global environment
 local _G = _G
 
 -- Chattynator profile

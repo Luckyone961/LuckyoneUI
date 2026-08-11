@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 local Map = Private.Modules.Map
 local LDBI = Private.Libs.LDBI
@@ -12,7 +11,6 @@ end
 -- I've used them across multiple wow versions and wanted an all-in-one approach.
 -- Even if no code was re-used, the module is inspired by their work.
 
--- Lua functions
 local floor = math.floor
 local ipairs = ipairs
 local pairs = pairs
@@ -21,15 +19,12 @@ local tinsert = table.insert
 local unpack = unpack
 local wipe = table.wipe
 
--- API cache
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 
--- Global environment
 local _G = _G
 local Minimap = _G.Minimap
 
--- ElvUI reference
 local E = unpack(ElvUI)
 local M = E:GetModule('Minimap')
 

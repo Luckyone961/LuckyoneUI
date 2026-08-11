@@ -1,10 +1,7 @@
--- Addon namespace
 local _, Private = ...
 
--- Lua functions
 local pairs = pairs
 
--- Global environment
 local _G = _G
 
 -- Luckyone characters by GUID
