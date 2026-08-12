@@ -1076,7 +1076,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.buffs.countXOffset = 1
 	E.db.unitframe.units.arena.buffs.countYOffset = -1
 	E.db.unitframe.units.arena.buffs.growthY = 'DOWN'
-	E.db.unitframe.units.arena.buffs.maxDuration = 0
 	E.db.unitframe.units.arena.buffs.numrows = 2
 	E.db.unitframe.units.arena.buffs.perrow = 4
 	E.db.unitframe.units.arena.buffs.priority = 'Whitelist,TurtleBuffs,Dispellable'
@@ -1109,7 +1108,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.debuffs.desaturate = true
 	E.db.unitframe.units.arena.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.arena.debuffs.growthY = 'DOWN'
-	E.db.unitframe.units.arena.debuffs.maxDuration = 0
 	E.db.unitframe.units.arena.debuffs.numrows = 2
 	E.db.unitframe.units.arena.debuffs.perrow = 4
 	E.db.unitframe.units.arena.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
@@ -1279,7 +1277,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.focus.buffs.countYOffset = 0
 	E.db.unitframe.units.focus.buffs.enable = true
 	E.db.unitframe.units.focus.buffs.growthX = 'LEFT'
-	E.db.unitframe.units.focus.buffs.maxDuration = 0
 	E.db.unitframe.units.focus.buffs.numrows = 3
 	E.db.unitframe.units.focus.buffs.perrow = 12
 	E.db.unitframe.units.focus.buffs.priority = 'Dispellable,RaidBuffsElvUI,Mount'
@@ -1307,7 +1304,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.focus.debuffs.countXOffset = 2
 	E.db.unitframe.units.focus.debuffs.countYOffset = 0
 	E.db.unitframe.units.focus.debuffs.desaturate = false
-	E.db.unitframe.units.focus.debuffs.maxDuration = 0
 	E.db.unitframe.units.focus.debuffs.numrows = 2
 	E.db.unitframe.units.focus.debuffs.perrow = 12
 	E.db.unitframe.units.focus.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
@@ -1576,7 +1572,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.debuffs.countXOffset = 2
 	E.db.unitframe.units.target.debuffs.countYOffset = 0
 	E.db.unitframe.units.target.debuffs.desaturate = false
-	E.db.unitframe.units.target.debuffs.maxDuration = 0
 	E.db.unitframe.units.target.debuffs.numrows = 2
 	E.db.unitframe.units.target.debuffs.perrow = 12
 	E.db.unitframe.units.target.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
@@ -1643,7 +1638,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raidpet.classbar.enable = false
 	E.db.unitframe.units.raidpet.debuffs.countFont = Private.Font
 	E.db.unitframe.units.raidpet.debuffs.desaturate = false
-	E.db.unitframe.units.raidpet.debuffs.maxDuration = 0
 	E.db.unitframe.units.raidpet.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raidpet.disableFocusGlow = true
 	E.db.unitframe.units.raidpet.disableTargetGlow = true
@@ -1733,7 +1727,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.debuffs.countYOffset = -1
 	E.db.unitframe.units.party.debuffs.enable = true
 	E.db.unitframe.units.party.debuffs.growthY = 'DOWN'
-	E.db.unitframe.units.party.debuffs.maxDuration = 0
 	E.db.unitframe.units.party.debuffs.numrows = 2
 	E.db.unitframe.units.party.debuffs.perrow = 4
 	E.db.unitframe.units.party.debuffs.priority = 'Dispellable,RaidDebuffs'
@@ -1866,7 +1859,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.debuffs.countXOffset = 2
 	E.db.unitframe.units.raid3.debuffs.countYOffset = 0
 	E.db.unitframe.units.raid3.debuffs.growthX = 'LEFT'
-	E.db.unitframe.units.raid3.debuffs.maxDuration = 0
 	E.db.unitframe.units.raid3.debuffs.perrow = 2
 	E.db.unitframe.units.raid3.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid3.debuffs.sizeOverride = 18
