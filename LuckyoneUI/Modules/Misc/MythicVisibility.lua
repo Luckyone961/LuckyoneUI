@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 
 -- ElvUI file
@@ -6,14 +5,11 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
 local ipairs = ipairs
 local unpack = unpack
 
--- API cache
 local GetInstanceInfo = GetInstanceInfo
 
--- ElvUI reference
 local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 
@@ -75,5 +71,6 @@ end
 
 function Private:MythicVisibility()
 	if not (Private.isRetail and Private.Addon.db.profile.misc.mythicVisibility) then return end
+
 	E:Delay(1, UpdateRaidVisibility)
 end

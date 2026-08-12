@@ -1,8 +1,11 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
--- Global environment
+-- Retail file
+if not Private.isRetail then
+	return
+end
+
 local _G = _G
 
 -- MPlusTimer profile
@@ -30,9 +33,5 @@ function Private:Setup_MPlusTimer(installer)
 		DB.LowerKey = false -- "Data from Lower Level"
 	end
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["MPlusTimer profile has been set."])
-	end
-
-	Private:Print(L["MPlusTimer profile has been set."])
+	Private:Print(L["MPlusTimer profile has been set."], installer)
 end

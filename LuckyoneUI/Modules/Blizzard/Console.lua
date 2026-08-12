@@ -1,12 +1,7 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
--- API cache
 local SetCVar = C_CVar.SetCVar
-
--- Global environment
-local _G = _G
 
 -- General CVars
 function Private:Setup_CVars(noPrint, installer)
@@ -34,12 +29,8 @@ function Private:Setup_CVars(noPrint, installer)
 		SetCVar('floatingCombatTextCombatHealing', 0)
 	end
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["CVars have been set."])
-	end
-
 	if not noPrint then
-		Private:Print(L["CVars have been set."])
+		Private:Print(L["CVars have been set."], installer)
 	end
 end
 
@@ -267,7 +258,7 @@ function Private:SyncSettings()
 	SetCVar('GxNewResolution', '0x0')
 	SetCVar('RenderScale', 1)
 	SetCVar('useUiScale', 1)
-	SetCVar('uiScale', (scaled and 0.71111111111111) or 0.53333333333333)
+	SetCVar('uiScale', (scaled and Private.UIScale1080) or Private.UIScale1440)
 	SetCVar('vsync', 0)
 	SetCVar('LowLatencyMode', 2)
 	SetCVar('ffxAntiAliasingMode', 0)

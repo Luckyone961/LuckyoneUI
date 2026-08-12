@@ -1,15 +1,11 @@
--- Addon namespace
 local _, Private = ...
 
--- API cache
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 
--- Global environment
 local _G = _G
 local UIParent = UIParent
 
--- Global constants
 local COMMUNITIES_FRAME_DISPLAY_MODES = COMMUNITIES_FRAME_DISPLAY_MODES
 
 local created

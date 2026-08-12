@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
@@ -7,16 +6,10 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
 local unpack = unpack
 
--- API cache
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 
--- Global environment
-local _G = _G
-
--- ElvUI modules
 local E, _, V, P, G = unpack(ElvUI)
 
 local function Set(tbl, path, value)
@@ -157,11 +150,7 @@ function Private:Setup_WindTools(installer)
 	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-202'
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-110'
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["WindTools profile has been set."])
-	end
-
-	Private:Print(L["WindTools profile has been set."])
+	Private:Print(L["WindTools profile has been set."], installer)
 end
 
 -- WindTools PrivateDB
@@ -176,6 +165,7 @@ function Private:Setup_Private_WindTools()
 	Set(E.private, 'WT.maps.minimapButtons.backdropSpacing', 0)
 	Set(E.private, 'WT.maps.minimapButtons.buttonSize', 22)
 	Set(E.private, 'WT.maps.minimapButtons.buttonsPerRow', 8)
+	Set(E.private, 'WT.maps.minimapButtons.enable', false)
 	Set(E.private, 'WT.maps.minimapButtons.expansionLandingPage', true)
 	Set(E.private, 'WT.maps.minimapButtons.spacing', 3)
 	Set(E.private, 'WT.maps.superTracker.enable', false)

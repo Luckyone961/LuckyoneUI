@@ -1,4 +1,3 @@
--- AddOn namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
@@ -7,19 +6,15 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
 local ipairs = ipairs
 local pairs = pairs
 local unpack = unpack
 
--- API cache
 local SetCVar = C_CVar.SetCVar
 
--- Global environment
 local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
 
--- ElvUI modules
 local E, _, _, P = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
 local NP = E:GetModule('NamePlates')
@@ -37,10 +32,9 @@ end
 
 -- Full frontend refresh
 local function Refresh()
-	E:StaggeredUpdateAll()
 	E:UIMult()
 	E:UIScale()
-	E:Config_UpdateSize(true)
+	E:UpdateAll()
 end
 
 -- E.global & Custom DataText
@@ -49,9 +43,13 @@ function Private:Setup_GlobalDB()
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
 
-	SetCVar('uiScale', (scaled and 0.71111111111111) or 0.53333333333333)
+	-- Protect movers error
+	-- Can happen on BuildPanelFrame in rare cases
+	E.db.movers = E.db.movers or {}
+
+	SetCVar('uiScale', (scaled and Private.UIScale1080) or Private.UIScale1440)
 	SetCVar('useUiScale', 1)
-	E.global.general.UIScale = (scaled and 0.71111111111111) or 0.53333333333333
+	E.global.general.UIScale = (scaled and Private.UIScale1080) or Private.UIScale1440
 
 	E.global.datatexts.settings.Combat.NoLabel = true
 	E.global.datatexts.settings.Combat.TimeFull = false
@@ -143,9 +141,6 @@ function Private:Setup_PrivateDB(includePlugins)
 	E.private.skins.parchmentRemoverEnable = true
 
 	if includePlugins and Private.isRetail then
-		if Private.IsAddOnLoaded('ElvUI_SLE') then
-			Private:Setup_Private_ShadowAndLight()
-		end
 		if Private.IsAddOnLoaded('ElvUI_WindTools') then
 			Private:Setup_Private_WindTools()
 		end
@@ -163,7 +158,7 @@ function Private:Setup_PrivateDB(includePlugins)
 		E.private.bags.enable = (not Private.IsAddOnLoaded('Baganator'))
 		E.private.chat.enable = (not Private.IsAddOnLoaded('Chattynator'))
 		E.private.general.chatBubbles = 'disabled'
-		E.private.nameplates.enable = (not Private.IsAddOnLoaded('Plater'))
+		E.private.nameplates.enable = (not Private.IsAddOnLoaded('Plater') or not Private.IsAddOnLoaded('Platynator'))
 		E.private.unitframe.disabledBlizzardFrames.castbar = (not Private.IsAddOnLoaded('SkironCooldownManager'))
 	end
 end
@@ -194,7 +189,7 @@ function Private:HandleAlts(layout)
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 484 -- (Profile == 3)
 	end
 
-	-- PrivateDB for ElvUI, Shadow&Light, WindTools
+	-- PrivateDB for ElvUI + WindTools
 	Private:Setup_PrivateDB(true)
 
 	-- Chat setup
@@ -208,6 +203,13 @@ function Private:HandleAlts(layout)
 	Private:Print(L["Applied profile: "] .. mostRecentProfile)
 end
 
+-- Profile names by layout
+local layoutNames = {
+	main = 'Luckyone Main',
+	healing = 'Luckyone Healing',
+	support = 'Luckyone Support',
+}
+
 -- Setup Midnight layout
 function Private:Setup_Layout(layout, installer)
 	if Private.isRetail or Private.isMists then
@@ -215,13 +217,8 @@ function Private:Setup_Layout(layout, installer)
 	end
 
 	-- Create a fresh profile in ElvUI
-	if layout == 'main' then
-		E.data:SetProfile(Private.Addon.db.global.dev and 'Luckyone Main' or 'Luckyone Main ' .. Private.Version)
-	elseif layout == 'healing' then
-		E.data:SetProfile(Private.Addon.db.global.dev and 'Luckyone Healing' or 'Luckyone Healing ' .. Private.Version)
-	elseif layout == 'support' then
-		E.data:SetProfile(Private.Addon.db.global.dev and 'Luckyone Support' or 'Luckyone Support ' .. Private.Version)
-	end
+	local name = layoutNames[layout]
+	E.data:SetProfile(Private.Addon.db.global.dev and name or name .. ' ' .. Private.Version)
 
 	-- E.global & Custom DataText
 	Private:Setup_GlobalDB()
@@ -230,22 +227,12 @@ function Private:Setup_Layout(layout, installer)
 	Private:Setup_PrivateDB()
 
 	-- E.db & Movers
-	if layout == 'main' then
-		Private:Setup_ElvUI('main')
-	elseif layout == 'healing' then
-		Private:Setup_ElvUI('healing')
-	elseif layout == 'support' then
-		Private:Setup_ElvUI('support')
-	end
+	Private:Setup_ElvUI(layout)
 
 	-- Push the update
 	Refresh()
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["Layout has been set."])
-	end
-
-	Private:Print(L["Layout has been set."])
+	Private:Print(L["Layout has been set."], installer)
 end
 
 -- NamePlate Setup for ElvUI
@@ -308,7 +295,6 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.statusbar = Private.Texture
 	E.db.nameplates.threat.skipGoodColor = true
 	E.db.nameplates.threat.useSoloColor = true
-	E.db.nameplates.useBlizzardAuras = Private.isRetail -- Use filter prio in nonRetail
 
 	-- NamePlates misc
 	E.db.nameplates.classColorNames = true
@@ -548,9 +534,7 @@ function Private:Setup_NamePlates(installer)
 		E:UpdateNamePlates(true)
 	end
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["NamePlate profile and CVars have been set."])
-	end
+	Private:Print(L["NamePlate profile and CVars have been set."], installer)
 end
 
 -- ElvUI profile
@@ -583,6 +567,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.backdropfadecolor.g = 0.05
 	E.db.general.backdropfadecolor.r = 0.05
 	E.db.general.bonusObjectivePosition = 'AUTO'
+	E.db.general.bordercolor.b = 0
+	E.db.general.bordercolor.g = 0
+	E.db.general.bordercolor.r = 0
 	E.db.general.bottomPanel = false
 	E.db.general.customGlow.color.a = 1
 	E.db.general.customGlow.color.b = 1
@@ -2264,7 +2251,7 @@ function Private:Setup_ElvUI(layout)
 	-- Custom nonRetail changes
 	-- Extra bar next to the left chat panel
 	if Private.itsLuckyone and not Private.isRetail then
-		E.db.actionbar.bar4.enable = true
+		E.db.actionbar.bar4.enabled = true
 		E.db.actionbar.bar4.buttons = 8
 		E.db.actionbar.bar4.buttonsPerRow = 1
 		E.db.actionbar.bar4.buttonSize = 25

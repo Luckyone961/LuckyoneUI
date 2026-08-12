@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 local Misc = Private.Modules.Misc
 
@@ -14,7 +13,7 @@ function Misc:PLAYER_ENTERING_WORLD()
 end
 
 function Misc:PLAYER_SPECIALIZATION_CHANGED(_, unit)
-	-- Fires for all units?
+	-- Fires for other units as well, only react to the player
 	if unit ~= 'player' then return end
 
 	Private:DataTextsTweaks()

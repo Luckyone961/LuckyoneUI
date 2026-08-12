@@ -1,9 +1,10 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
--- Global environment
-local _G = _G
+-- Retail file
+if not Private.isRetail then
+	return
+end
 
 -- WarpDeplete profile
 function Private:Setup_WarpDeplete(installer)
@@ -53,9 +54,5 @@ function Private:Setup_WarpDeplete(installer)
 	-- Profile key
 	WarpDepleteDB['profileKeys'][Private.myNameRealm] = name
 
-	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(L["WarpDeplete profile has been set."])
-	end
-
-	Private:Print(L["WarpDeplete profile has been set."])
+	Private:Print(L["WarpDeplete profile has been set."], installer)
 end

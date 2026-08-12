@@ -1,8 +1,11 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
 
--- Global environment
+-- Retail file
+if not Private.isRetail then
+	return
+end
+
 local _G = _G
 
 -- Plumber profile
@@ -10,7 +13,7 @@ function Private:Setup_Plumber()
 	if not Private.IsAddOnLoaded('Plumber') then Private:Print('Plumber ' .. L["is not installed or enabled."]) return end
 
 	local DB = _G.PlumberDB
-	DB = DB or {}
+	if not DB then return end
 
 	DB.AlternativePlayerChoiceUI = true
 	DB.AppearanceTab = true

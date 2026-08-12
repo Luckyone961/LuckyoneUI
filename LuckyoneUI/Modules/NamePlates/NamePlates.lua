@@ -1,4 +1,3 @@
--- Addon namespace
 local _, Private = ...
 local LSM = Private.Libs.LSM
 local NamePlates = Private.Modules.NamePlates
@@ -8,18 +7,15 @@ if not Private.ElvUI then
 	return
 end
 
--- Lua functions
 local ipairs = ipairs
 local pairs = pairs
 local unpack = unpack
 local wipe = table.wipe
 
--- API cache
 local hooksecurefunc = hooksecurefunc
 local UnitExists = UnitExists
 local C_NamePlate_GetNamePlateForUnit = C_NamePlate.GetNamePlateForUnit
 
--- ElvUI reference
 local E = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 
@@ -164,8 +160,12 @@ function NamePlates:OnEnable()
 	CheckHook()
 
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
-	self:RegisterEvent('PLAYER_FOCUS_CHANGED')
 	self:RegisterEvent('PLAYER_TARGET_CHANGED')
+
+	-- Focus unit does not exist on Classic Era
+	if not Private.isClassic then
+		self:RegisterEvent('PLAYER_FOCUS_CHANGED')
+	end
 
 	Private:UpdateSpecialNameplateTextures()
 end

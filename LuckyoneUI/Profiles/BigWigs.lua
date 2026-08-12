@@ -1,6 +1,7 @@
--- Addon namespace
 local _, Private = ...
 local L = Private.Libs.ACL
+
+local LibStub = LibStub
 
 -- Runs after successful profile import
 local function CallbackFunction(accepted, name)

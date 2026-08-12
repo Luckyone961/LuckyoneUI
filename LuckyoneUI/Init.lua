@@ -1,8 +1,6 @@
--- Lua functions
 local select = select
 local tonumber = tonumber
 
--- API cache
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local GetBuildInfo = GetBuildInfo
 local GetRealmName = GetRealmName
@@ -11,26 +9,21 @@ local UnitClass = UnitClass
 local UnitGUID = UnitGUID
 local UnitName = UnitName
 
--- LibStub
 local LibStub = LibStub
 
--- Globals
 local WOW_PROJECT_ID = WOW_PROJECT_ID
 local WOW_PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
 local WOW_PROJECT_BURNING_CRUSADE_CLASSIC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 local WOW_PROJECT_MISTS_CLASSIC = WOW_PROJECT_MISTS_CLASSIC
 local WOW_PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
 
--- Addon namespace
 local Name, Private = ...
 
 -- Create a new AceAddon instance
 local LuckyoneUI = LibStub('AceAddon-3.0'):NewAddon(Name, 'AceConsole-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
 
--- Core reference
 Private.Addon = LuckyoneUI
 
--- Libraries
 Private.Libs = {
 	-- Ace
 	ADB = LibStub('AceDB-3.0'),
@@ -56,8 +49,12 @@ Private.Font = 'Expressway'
 Private.Outline = 'OUTLINE'
 Private.Texture = 'Minimalist'
 
+-- UI scale values
+Private.UIScale1440 = 768 / 1440
+Private.UIScale1080 = 768 / 1080
+
 -- Build info
-Private.InterfaceVersion = select(4, GetBuildInfo())
+Private.GameVersion = GetBuildInfo()
 
 -- Game flavors
 Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
@@ -67,7 +64,6 @@ Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 
 -- API checks
 Private.IsAddOnLoaded = IsAddOnLoaded
-Private.IsEditModeActive = Private.isRetail or Private.isMists or Private.isTBC
 Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
 
 -- Player utils
@@ -85,13 +81,13 @@ Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
 Private.Modules = {
 	Core = Private.Addon:NewModule('Core', 'AceEvent-3.0'),
 	Blizzard = Private.Addon:NewModule('Blizzard', 'AceEvent-3.0'),
+	Map = Private.ElvUI and Private.Addon:NewModule('Map', 'AceEvent-3.0') or nil,
 	Misc = Private.ElvUI and Private.Addon:NewModule('Misc', 'AceEvent-3.0') or nil,
 	NamePlates = Private.ElvUI and Private.Addon:NewModule('NamePlates', 'AceEvent-3.0') or nil,
 }
 
 -- Called directly after the addon is fully loaded
 function Private.Addon:OnInitialize()
-
 	-- SavedVariables
 	Private.Addon.db = Private.Libs.ADB:New('LuckyoneDB', Private.Defaults, true)
 
@@ -99,6 +95,6 @@ function Private.Addon:OnInitialize()
 	if not Private.ElvUI then
 		Private:BuildConfig()
 		Private.Libs.AC:RegisterOptionsTable('LuckyoneUI', Private.Config)
-		Private.SettingsFrame, Private.SettingsCategoryID = Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI')
+		Private.SettingsCategoryID = select(2, Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI'))
 	end
 end
