@@ -1428,7 +1428,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.buffs.countXOffset = 2
 	E.db.unitframe.units.player.buffs.countYOffset = 0
 	E.db.unitframe.units.player.buffs.enable = Private.isRetail
-	E.db.unitframe.units.player.buffs.isAuraBigDefensive = false
 	E.db.unitframe.units.player.buffs.perrow = 3
 	E.db.unitframe.units.player.buffs.priority = 'Blacklist,Personal,NonPersonal'
 	E.db.unitframe.units.player.buffs.sizeOverride = 30
@@ -1504,8 +1503,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.player.debuffs.clickThrough = true
 		E.db.unitframe.units.player.debuffs.enable = true
 		E.db.unitframe.units.player.debuffs.growthX = 'LEFT'
-		E.db.unitframe.units.player.debuffs.isAuraPermanent = true
-		E.db.unitframe.units.player.debuffs.isAuraPermanentPlayer = true
 		E.db.unitframe.units.player.debuffs.numrows = 1
 		E.db.unitframe.units.player.debuffs.perrow = 4
 		E.db.unitframe.units.player.debuffs.sizeOverride = 54
@@ -1732,7 +1729,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.buffs.countYOffset = -1
 	E.db.unitframe.units.party.buffs.enable = Private.isRetail
 	E.db.unitframe.units.party.buffs.growthX = 'LEFT'
-	E.db.unitframe.units.party.buffs.isAuraRaidInCombatPlayer = false
 	E.db.unitframe.units.party.buffs.perrow = 3
 	E.db.unitframe.units.party.buffs.sizeOverride = 22
 	E.db.unitframe.units.party.buffs.yOffset = 22
@@ -1745,8 +1741,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.debuffs.countYOffset = -1
 	E.db.unitframe.units.party.debuffs.enable = true
 	E.db.unitframe.units.party.debuffs.growthY = 'DOWN'
-	E.db.unitframe.units.party.debuffs.isAuraPermanent = true
-	E.db.unitframe.units.party.debuffs.isAuraPermanentPlayer = true
 	E.db.unitframe.units.party.debuffs.maxDuration = 0
 	E.db.unitframe.units.party.debuffs.numrows = 2
 	E.db.unitframe.units.party.debuffs.perrow = 4
@@ -1821,9 +1815,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.buffs.countYOffset = 0
 	E.db.unitframe.units.raid1.buffs.enable = false
 	E.db.unitframe.units.raid1.buffs.growthY = 'DOWN'
-	E.db.unitframe.units.raid1.buffs.isAuraBigDefensive = false
-	E.db.unitframe.units.raid1.buffs.isAuraBigDefensivePlayer = false
-	E.db.unitframe.units.raid1.buffs.isAuraRaidInCombatPlayer = false
 	E.db.unitframe.units.raid1.buffs.perrow = 1
 	E.db.unitframe.units.raid1.buffs.sizeOverride = 22
 	E.db.unitframe.units.raid1.buffs.yOffset = 22
