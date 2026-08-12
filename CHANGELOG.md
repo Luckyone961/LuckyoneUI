@@ -1,6 +1,7 @@
 ﻿## Version 4.18 [In development, not yet released]
 
 **All WoW Versions:**  
+- ElvUI 15.20+ compatibility  
 - Added a minimap button module for the same bar style across all wow versions  
 - Added Chattynator option to the initial chat installer  
 - Added a Platynator profile option in /lucky config  

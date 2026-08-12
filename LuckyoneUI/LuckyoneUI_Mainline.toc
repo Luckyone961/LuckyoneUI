@@ -7,8 +7,8 @@
 ## Author: Luckyone
 ## Version: 4.17
 
-## Interface: 120007, 120100
-## X-Required-ElvUI: 15.18
+## Interface: 120100
+## X-Required-ElvUI: 15.20
 
 ## X-Curse-Project-ID: 363472
 ## X-Wago-ID: Rn6VLGdB
