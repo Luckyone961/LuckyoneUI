@@ -20,9 +20,6 @@ end
 function Private:Setup_WindTools(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and Private.isRetail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
-	-- 1080p
-	local scaled = Private.Addon.db.global.scaled
-
 	-- Get version
 	local version = GetAddOnMetadata('ElvUI_WindTools', 'X-Version')
 
@@ -35,9 +32,6 @@ function Private:Setup_WindTools(installer)
 	E.global.WT.version = version
 	E.private.WT.version = version
 
-	-- Keep this, it won't get exported by default
-	Set(E.db, 'WT.quest.switchButtons.hideWithObjectiveTracker', true)
-
 	-- Global db
 	Set(E.global, 'WT.core.elvUIVersionPopup', false)
 	Set(E.global, 'WT.core.loginMessage', false)
@@ -46,13 +40,7 @@ function Private:Setup_WindTools(installer)
 	Private:Setup_Private_WindTools()
 
 	-- Profile db
-	Set(E.db, 'WT.announcement.combatResurrection.enable', false)
 	Set(E.db, 'WT.announcement.enable', false)
-	Set(E.db, 'WT.announcement.interrupt.enable', false)
-	Set(E.db, 'WT.announcement.keystone.enable', false)
-	Set(E.db, 'WT.announcement.resetInstance.enable', false)
-	Set(E.db, 'WT.announcement.threatTransfer.enable', false)
-	Set(E.db, 'WT.announcement.utility.enable', false)
 	Set(E.db, 'WT.combat.combatAlert.enable', false)
 	Set(E.db, 'WT.combat.quickKeystone.enable', false)
 	Set(E.db, 'WT.combat.raidMarkers.enable', false)
@@ -64,10 +52,6 @@ function Private:Setup_WindTools(installer)
 	Set(E.db, 'WT.item.itemLevel.enable', false)
 	Set(E.db, 'WT.item.trade.enable', false)
 	Set(E.db, 'WT.maps.eventTracker.enable', false)
-	Set(E.db, 'WT.maps.whoClicked.font.size', 12)
-	Set(E.db, 'WT.maps.whoClicked.onlyOnCombat', false)
-	Set(E.db, 'WT.maps.whoClicked.stayTime', 2)
-	Set(E.db, 'WT.maps.whoClicked.yOffset', 19)
 	Set(E.db, 'WT.misc.exitPhaseDiving.enable', false)
 	Set(E.db, 'WT.misc.gameBar.enable', false)
 	Set(E.db, 'WT.misc.noLootPanel', true)
@@ -118,11 +102,8 @@ function Private:Setup_WindTools(installer)
 		E.global.WT.item.contacts.updateAlts = false
 	end
 
-	-- Protect movers error
-	E.db.movers = E.db.movers or {}
-
 	-- Movers
-	E.db.movers.WTCombatAlertFrameMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,480') or 'BOTTOM,ElvUIParent,BOTTOM,0,660'
+	E.db.movers = E.db.movers or {} -- Protect movers error
 	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-202'
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-110'
 
@@ -137,27 +118,12 @@ function Private:Setup_Private_WindTools()
 
 	-- Private db
 	Set(E.private, 'WT.item.extendMerchantPages.enable', true)
-	Set(E.private, 'WT.maps.minimapButtons.backdrop', false)
-	Set(E.private, 'WT.maps.minimapButtons.backdropSpacing', 0)
-	Set(E.private, 'WT.maps.minimapButtons.buttonSize', 22)
-	Set(E.private, 'WT.maps.minimapButtons.buttonsPerRow', 8)
 	Set(E.private, 'WT.maps.minimapButtons.enable', false)
-	Set(E.private, 'WT.maps.minimapButtons.expansionLandingPage', true)
-	Set(E.private, 'WT.maps.minimapButtons.spacing', 3)
 	Set(E.private, 'WT.maps.superTracker.enable', false)
 	Set(E.private, 'WT.maps.superTracker.waypointParse.enable', false)
 	Set(E.private, 'WT.maps.worldMap.enable', false)
-	Set(E.private, 'WT.maps.worldMap.reveal.enable', false)
-	Set(E.private, 'WT.maps.worldMap.scale.enable', false)
-	Set(E.private, 'WT.misc.lfgList.icon.pack', 'LYNUI')
-	Set(E.private, 'WT.misc.lfgList.icon.size', 14)
-	Set(E.private, 'WT.misc.lfgList.line.height', 4)
-	Set(E.private, 'WT.misc.lfgList.line.tex', Private.Texture)
-	Set(E.private, 'WT.misc.lfgList.partyKeystone.enable', false)
-	Set(E.private, 'WT.misc.lfgList.rightPanel.enable', false)
+	Set(E.private, 'WT.misc.lfgList.enable', false)
 	Set(E.private, 'WT.misc.moveFrames.elvUIBags', false)
-	Set(E.private, 'WT.misc.pauseToSlash', false)
-	Set(E.private, 'WT.misc.tags', false)
 	Set(E.private, 'WT.quest.objectiveTracker.cosmeticBar.border', 'ONEPIXEL')
 	Set(E.private, 'WT.quest.objectiveTracker.cosmeticBar.color.mode', 'CLASS')
 	Set(E.private, 'WT.quest.objectiveTracker.cosmeticBar.texture', Private.Texture)
@@ -222,8 +188,4 @@ function Private:Setup_Private_WindTools()
 	Set(E.private, 'WT.tooltips.titleIcon.enable', false)
 	Set(E.private, 'WT.unitFrames.roleIcon.enable', false)
 	Set(E.private, 'WT.unitFrames.tags.enable', false)
-
-	if Private.itsLuckyone then
-		Set(E.private, 'WT.misc.skipCutScene', true)
-	end
 end
