@@ -1,4 +1,16 @@
-﻿## Version 4.18 [12-08-2026]
+﻿## Version 4.19 [In development - not yet released]
+
+**All WoW Versions:**  
+- ElvUI 15.21+ compatibility  
+- ElvUI profile updates for all layouts to load optimized patch 12.1.0 filters  
+- Moved stack counter on minimap buffs and debuffs to the top right of each icon  
+
+**Retail:**  
+- Added an option to hide the talking head while keeping sound and voicelines active  
+- ESC game menu scale is no longer set to 90%  
+- Increased font size for stack counter on player debuffs  
+
+## Version 4.18 [12-08-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.20+ compatibility  
