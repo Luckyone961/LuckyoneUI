@@ -250,7 +250,6 @@ L["Profiles for Healing"] = "Profils pour soigneurs"
 L["Profiles"] = "Profils"
 L["Protection"] = true
 L["Quality of Life"] = "Qualité de vie"
-L["Quick setup for alts"] = "Configuration rapide pour les rerolls"
 L["Quick Signup"] = true
 L["Raidframe Style"] = "Style de cadre de raid"
 L["Ranged DPS"] = "DPS distants"

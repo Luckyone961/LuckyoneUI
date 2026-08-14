@@ -254,7 +254,6 @@ L["Profiles for Healing"] = true
 L["Profiles"] = true
 L["Protection"] = true
 L["Quality of Life"] = true
-L["Quick setup for alts"] = true
 L["Quick Signup"] = true
 L["Raidframe Style"] = true
 L["Ranged DPS"] = true

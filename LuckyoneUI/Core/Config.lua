@@ -67,18 +67,12 @@ local CREDITS = {
 local function BuildSetupSection()
 	local section = ACH:Group('', nil, 2)
 	section.inline = true
+	section.args.header = ACH:Header(Private.Name, 1, nil, nil, not Private.ElvUI)
+	section.args.spacer1 = ACH:Spacer(2, 'full', not Private.ElvUI)
 	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 3, function() Private.Installer:Show(Private.InstallerData) if Private.ElvUI then ElvUI[1]:ToggleOptions() else HideUIPanel(SettingsPanel) end end)
-	section.args.spacer2 = ACH:Spacer(4, 'full')
-
-	if Private.ElvUI then
-		section.args.header1 = ACH:Header(Private.Name, 1)
-		section.args.spacer1 = ACH:Spacer(2, 'full')
-		section.args.header2 = ACH:Header(L["Quick setup for alts"], 5)
-		section.args.spacer3 = ACH:Spacer(6, 'full')
-		section.args.altMain = ACH:Execute(L["Alt: "] .. L["DPS & Tanks"], L["This will load your most recent LuckyoneUI profile."], 7, function() Private:HandleAlts('Main') end, nil, true)
-		section.args.altHealing = ACH:Execute(L["Alt: "] .. L["Healing"], L["This will load your most recent LuckyoneUI profile."], 8, function() Private:HandleAlts('Healing') end, nil, true)
-		section.args.spacer4 = ACH:Spacer(9, 'full')
-	end
+	section.args.altMain = ACH:Execute(L["Alt: "] .. L["DPS & Tanks"], L["This will load your most recent LuckyoneUI profile."], 4, function() Private:HandleAlts('Main') end, nil, true, nil, nil, nil, nil, not Private.ElvUI)
+	section.args.altHealing = ACH:Execute(L["Alt: "] .. L["Healing"], L["This will load your most recent LuckyoneUI profile."], 5, function() Private:HandleAlts('Healing') end, nil, true, nil, nil, nil, nil, not Private.ElvUI)
+	section.args.spacer2 = ACH:Spacer(6, 'full')
 	return section
 end
 
@@ -400,8 +394,10 @@ local function BuildMiscSection()
 	section.args.combatText.args.anchorGroup.args.yOffset = ACH:Range(L["Y Offset"], nil, 3, { min = -1000, max = 1000, step = 1 })
 	section.args.combatText.args.fontGroup = ACH:Group(L["Font"], nil, 8, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
 	section.args.combatText.args.fontGroup.inline = true
-	section.args.combatText.args.fontGroup.args.font = ACH:SharedMediaFont(L["Font"], nil, 1)
-	section.args.combatText.args.fontGroup.args.fontOutline = ACH:FontFlags(L["Font Outline"], nil, 2)
+	if Private.ElvUI then
+		section.args.combatText.args.fontGroup.args.font = ACH:SharedMediaFont(L["Font"], nil, 1)
+		section.args.combatText.args.fontGroup.args.fontOutline = ACH:FontFlags(L["Font Outline"], nil, 2)
+	end
 	section.args.combatText.args.fontGroup.args.fontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 64, step = 1 })
 	return section
 end

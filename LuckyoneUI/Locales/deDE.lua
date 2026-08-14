@@ -250,7 +250,6 @@ L["Profiles for Healing"] = "Profile für Heiler"
 L["Profiles"] = "Profile"
 L["Protection"] = true
 L["Quality of Life"] = true -- No need to translate
-L["Quick setup for alts"] = "Schnellinstallation für Twinks"
 L["Quick Signup"] = true
 L["Raidframe Style"] = "Schlachtzugsfenster Stil"
 L["Ranged DPS"] = "Fernkämpfer DD"
