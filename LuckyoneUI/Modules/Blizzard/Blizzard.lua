@@ -217,4 +217,6 @@ end
 
 function Blizzard:OnEnable()
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
+	self:RegisterEvent('PLAYER_REGEN_DISABLED')
+	self:RegisterEvent('PLAYER_REGEN_ENABLED')
 end

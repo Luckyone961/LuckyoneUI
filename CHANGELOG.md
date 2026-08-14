@@ -2,8 +2,9 @@
 
 **All WoW Versions:**  
 - ElvUI 15.21+ compatibility  
-- ElvUI profile updates for all layouts to load optimized patch 12.1.0 filters  
+- Added new combat text module (+Combat, -Combat) into /lucky config - Misc  
 - Moved stack counter on minimap buffs and debuffs to the top right of each icon  
+- Profile updates for all 3 layouts to load optimized patch 12.1.0 filters  
 
 **Retail:**  
 - Added an option to hide the talking head while keeping sound and voicelines active  

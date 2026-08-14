@@ -395,10 +395,35 @@ local function BuildMapSection()
 	return section
 end
 
+-- Build Misc Section
+local function BuildMiscSection()
+	local section = ACH:Group(L["Misc"], nil, 65)
+	section.args.header = ACH:Header(L["Misc"], 1)
+	section.args.combatText = ACH:Group(L["Combat Text"], nil, 2, nil, function(info) return Private.Addon.db.profile.misc.combatText[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.combatText[info[#info]] = value Private:CombatText_Update() end)
+	section.args.combatText.inline = true
+	section.args.combatText.args.enable = ACH:Toggle(L["Enable"], L["Show a customizable text on screen when entering and leaving combat."], 1)
+	section.args.combatText.args.enterText = ACH:Input(L["Entering Text"], nil, 2, nil, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
+	section.args.combatText.args.leaveText = ACH:Input(L["Leaving Text"], nil, 3, nil, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
+	section.args.combatText.args.enterColor = ACH:Color(L["Entering Color"], nil, 4, nil, nil, function() local color = Private.Addon.db.profile.misc.combatText.enterColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.misc.combatText.enterColor color.r, color.g, color.b = r, g, b end, function() return not Private.Addon.db.profile.misc.combatText.enable end)
+	section.args.combatText.args.leaveColor = ACH:Color(L["Leaving Color"], nil, 5, nil, nil, function() local color = Private.Addon.db.profile.misc.combatText.leaveColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.misc.combatText.leaveColor color.r, color.g, color.b = r, g, b end, function() return not Private.Addon.db.profile.misc.combatText.enable end)
+	section.args.combatText.args.fadeTime = ACH:Range(L["Fade Time"], L["Duration of the fade out in seconds."], 6, { min = 0.1, max = 10, step = 0.1 }, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
+	section.args.combatText.args.anchorGroup = ACH:Group(L["Anchor"], nil, 7, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
+	section.args.combatText.args.anchorGroup.inline = true
+	section.args.combatText.args.anchorGroup.args.anchor = ACH:Input(L["Anchor"], L["Frame name the combat text is anchored to."], 1)
+	section.args.combatText.args.anchorGroup.args.xOffset = ACH:Range(L["X Offset"], nil, 2, { min = -1000, max = 1000, step = 1 })
+	section.args.combatText.args.anchorGroup.args.yOffset = ACH:Range(L["Y Offset"], nil, 3, { min = -1000, max = 1000, step = 1 })
+	section.args.combatText.args.fontGroup = ACH:Group(L["Font"], nil, 8, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
+	section.args.combatText.args.fontGroup.inline = true
+	section.args.combatText.args.fontGroup.args.font = ACH:SharedMediaFont(L["Font"], nil, 1)
+	section.args.combatText.args.fontGroup.args.fontOutline = ACH:FontFlags(L["Font Outline"], nil, 2)
+	section.args.combatText.args.fontGroup.args.fontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 64, step = 1 })
+	return section
+end
+
 -- Build Skins Section
 local function BuildSkinsSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group('Skins', nil, 65)
+	local section = ACH:Group('Skins', nil, 70)
 	section.args.header = ACH:Header('Skins', 1)
 	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.profile.skins[info[#info]] end, function(info, value) Private.Addon.db.profile.skins[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.addons.inline = true
@@ -419,7 +444,7 @@ end
 -- Build Tags Section
 local function BuildTagsSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["Tags"], nil, 70)
+	local section = ACH:Group(L["Tags"], nil, 75)
 	section.args.header = ACH:Header(L["Tags"], 1)
 	section.args.spacer = ACH:Spacer(2, 'full')
 	section.args.shortcut = ACH:Execute(L["Available Tags"], nil, 3, function() ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', Private.Name) end)
@@ -428,7 +453,7 @@ end
 
 -- Build Credits Section
 local function BuildCreditsSection()
-	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 75)
+	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 80)
 	section.args.header = ACH:Header(L["Credits"], 1)
 	section.args.author = ACH:Group(L["Author"], nil, 2)
 	section.args.author.inline = true
@@ -447,7 +472,7 @@ end
 
 -- Build Links Section
 local function BuildLinksSection()
-	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 80)
+	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 85)
 	section.args.header = ACH:Header(L["Links"], 1)
 	section.args.spacer = ACH:Spacer(2, 'full')
 	section.args.website = ACH:Input(L["Addon download:"], nil, 3, nil, 'full', function() return 'https://download.luckyone.dev' end)
@@ -502,10 +527,11 @@ function Private:BuildConfig()
 	Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 50
 	Private.Config.args.graphics = BuildGraphicsSection() -- 55
 	Private.Config.args.map = BuildMapSection() -- 60
-	Private.Config.args.skins = BuildSkinsSection() -- 65
-	Private.Config.args.tags = BuildTagsSection() -- 70
-	Private.Config.args.credits = BuildCreditsSection() -- 75
-	Private.Config.args.links = BuildLinksSection() -- 80
+	Private.Config.args.misc = BuildMiscSection() -- 65
+	Private.Config.args.skins = BuildSkinsSection() -- 70
+	Private.Config.args.tags = BuildTagsSection() -- 75
+	Private.Config.args.credits = BuildCreditsSection() -- 80
+	Private.Config.args.links = BuildLinksSection() -- 85
 	Private.Config.args.dev = BuildDevSection() -- 100
 
 	-- ElvUI config integration
