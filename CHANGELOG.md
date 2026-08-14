@@ -11,6 +11,7 @@
 - Added an option to hide the talking head while keeping sound and voicelines active  
 - ESC game menu scale is no longer set to 90%  
 - Increased font size for stack counter on player debuffs  
+- Updated SkironCooldownManager profile  
 - Updated WindTools profile (Disabled +Combat, -Combat to use my own module mentioned above)  
 
 ## Version 4.18 [12-08-2026]
