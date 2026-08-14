@@ -2,7 +2,6 @@ local _, Private = ...
 local L = Private.Libs.ACL
 local Blizzard = Private.Modules.Blizzard
 
-local ContinueOnAddOnLoaded = EventUtil.ContinueOnAddOnLoaded
 local CreateFrame = CreateFrame
 local GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
 local GetQuestInfo = C_QuestLog.GetInfo
@@ -99,11 +98,12 @@ function Private:DisabledFrames()
 	end
 
 	if db.TalkingHead and Private.isRetail then
-		ContinueOnAddOnLoaded('Blizzard_TalkingHeadUI', function()
-			hooksecurefunc(_G.TalkingHeadFrame, 'PlayCurrent', function(frame)
+		local TalkingHeadFrame = _G.TalkingHeadFrame
+		if TalkingHeadFrame then
+			hooksecurefunc(TalkingHeadFrame, 'PlayCurrent', function(frame)
 				RunNextFrame(function() frame:Hide() end)
 			end)
-		end)
+		end
 	end
 end
 
