@@ -110,7 +110,7 @@ local function BuildGeneralSection()
 	section.args.misc.args.removeNameplateRealm = ACH:Toggle(L["Remove Nameplate Realms"], L["Removes the realm names from friendly nameplates in name-only mode while in a Dungeon/Raid/Battleground."], 1, nil, nil, nil, function() return Private.Addon.db.profile.misc.removeNameplateRealm end, function(_, value) Private.Addon.db.profile.misc.removeNameplateRealm = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.strings = ACH:Group(L["Profile strings"], nil, 5, nil, nil, nil, nil, not Private.isRetail)
 	section.args.strings.inline = true
-	section.args.strings.args.editModeString = ACH:Execute(L["Copy Import String"], nil, 1, function() Private:Return_EditModeString() end)
+	section.args.strings.args.editModeString = ACH:Execute(L["Copy Editmode String"], nil, 1, function() Private:Return_EditModeString() end)
 	section.args.strings.args.editModeToggle = ACH:Execute(format('|cff4beb2c%s|r', L["Enter Edit Mode"]), nil, 2, function() Private:ToggleEditMode() if Private.ElvUI then ElvUI[1]:ToggleOptions() end end)
 	section.args.performance = ACH:Group(L["Performance Tweaks"], nil, 6, nil, nil, nil, nil, not Private.isRetail)
 	section.args.performance.inline = true
