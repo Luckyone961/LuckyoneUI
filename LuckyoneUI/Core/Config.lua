@@ -515,6 +515,11 @@ function Private:BuildConfig()
 
 		E.Options.name = format('%s + %s |cff99ff33%.2f|r', E.Options.name, Private.Name, Private.Version)
 		E.Options.args.LuckyoneUI = Private.Config
+
+		local scaling = E.Options.args.general and E.Options.args.general.args.general and E.Options.args.general.args.general.args.scaling
+		if scaling then
+			scaling.hidden = true
+		end
 	end
 end
 
