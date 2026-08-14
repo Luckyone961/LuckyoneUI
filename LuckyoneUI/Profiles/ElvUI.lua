@@ -1462,14 +1462,14 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.classbar.enable = false
 	E.db.unitframe.units.player.CombatIcon.enable = false
 	E.db.unitframe.units.player.debuffs.countFont = Private.Font
-	E.db.unitframe.units.player.debuffs.countFontSize = 10
+	E.db.unitframe.units.player.debuffs.countFontSize = Private.isRetail and 14 or 10
 	E.db.unitframe.units.player.debuffs.countPosition = 'TOPRIGHT'
-	E.db.unitframe.units.player.debuffs.countXOffset = 2
+	E.db.unitframe.units.player.debuffs.countXOffset = Private.isRetail and 0 or 2
 	E.db.unitframe.units.player.debuffs.countYOffset = 0
 	E.db.unitframe.units.player.debuffs.desaturate = false
-	E.db.unitframe.units.player.debuffs.enable = false
-	E.db.unitframe.units.player.debuffs.numrows = 2
-	E.db.unitframe.units.player.debuffs.perrow = 12
+	E.db.unitframe.units.player.debuffs.enable = Private.isRetail
+	E.db.unitframe.units.player.debuffs.numrows = Private.isRetail and 12 or 2
+	E.db.unitframe.units.player.debuffs.perrow = Private.isRetail and 4 or 12
 	E.db.unitframe.units.player.disableMouseoverGlow = true
 	E.db.unitframe.units.player.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.player.healPrediction.enable = true
@@ -1490,13 +1490,9 @@ function Private:Setup_ElvUI(layout)
 	if Private.isRetail then
 		E.db.unitframe.units.player.debuffs.anchorPoint = 'TOPRIGHT'
 		E.db.unitframe.units.player.debuffs.clickThrough = true
-		E.db.unitframe.units.player.debuffs.enable = true
 		E.db.unitframe.units.player.debuffs.growthX = 'LEFT'
-		E.db.unitframe.units.player.debuffs.numrows = 1
-		E.db.unitframe.units.player.debuffs.perrow = 4
 		E.db.unitframe.units.player.debuffs.sizeOverride = 54
 		E.db.unitframe.units.player.debuffs.spacing = 1
-		E.db.unitframe.units.player.debuffs.useBlocklist = true
 		E.db.unitframe.units.player.debuffs.xOffset = 0
 		E.db.unitframe.units.player.debuffs.yOffset = 164
 	end
