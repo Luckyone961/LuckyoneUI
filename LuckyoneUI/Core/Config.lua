@@ -7,7 +7,6 @@ local format = string.format
 local tonumber = tonumber
 local tostring = tostring
 
-local GetCVar = C_CVar.GetCVar
 local GetCVarBool = C_CVar.GetCVarBool
 local SetCVar = C_CVar.SetCVar
 local HideUIPanel = HideUIPanel
@@ -18,7 +17,6 @@ local SettingsPanel = _G.SettingsPanel
 
 local RELOAD_POPUP = 'LUCKYONE_RL'
 local IMPORT_DEFAULTS_TEXT = L["Import LuckyoneUI defaults."]
-local RESET_DEFAULTS_TEXT = L["Reset to LuckyoneUI defaults."]
 
 -- Credits
 local CREDITS = {
@@ -273,7 +271,7 @@ local function BuildCDMSection()
 	section.args.header2 = ACH:Header(L["Cooldown Settings"], 16)
 	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 17)
 	section.args.addons.inline = true
-	section.args.addons.args.scm = ACH:Execute('SkironCooldownManager', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_SCM() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.addons.args.scm = ACH:Execute('SkironCooldownManager', IMPORT_DEFAULTS_TEXT, 1, function() Private:Setup_SCM() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.utilities = ACH:Group(L["Utilities"], nil, 18)
 	section.args.utilities.inline = true
 	section.args.utilities.args.toggleViewer = ACH:Execute(format('|cff4beb2c%s|r', L["Toggle Cooldown Settings"]), L["Shortcut to the Cooldown Settings.\nYou can import the profiles in the bottom left dropdown."], 1, function() Private:ShowCooldownViewerSettings() end)
