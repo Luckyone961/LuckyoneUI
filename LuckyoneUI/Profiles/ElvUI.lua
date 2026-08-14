@@ -1280,7 +1280,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.focus.buffs.numrows = 3
 	E.db.unitframe.units.focus.buffs.perrow = 12
 	E.db.unitframe.units.focus.buffs.priority = 'Dispellable,RaidBuffsElvUI,Mount'
-	E.db.unitframe.units.focus.buffs.yOffset = 1
 	E.db.unitframe.units.focus.castbar.customTextFont.enable = true
 	E.db.unitframe.units.focus.castbar.customTextFont.font = Private.Font
 	E.db.unitframe.units.focus.castbar.customTimeFont.enable = true
@@ -1547,7 +1546,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.buffs.numrows = 3
 	E.db.unitframe.units.target.buffs.perrow = 12
 	E.db.unitframe.units.target.buffs.priority = 'Dispellable,RaidBuffsElvUI,Mount'
-	E.db.unitframe.units.target.buffs.yOffset = 1
 	E.db.unitframe.units.target.castbar.customTextFont.enable = true
 	E.db.unitframe.units.target.castbar.customTextFont.font = Private.Font
 	E.db.unitframe.units.target.castbar.customTextFont.fontSize = 12
