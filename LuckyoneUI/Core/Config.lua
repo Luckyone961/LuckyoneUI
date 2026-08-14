@@ -18,6 +18,11 @@ local SettingsPanel = _G.SettingsPanel
 local RELOAD_POPUP = 'LUCKYONE_RL'
 local IMPORT_DEFAULTS_TEXT = L["Import LuckyoneUI defaults."]
 
+local ICON_PATH = 'Interface\\AddOns\\LuckyoneUI\\Media\\Icons\\'
+local function GetIconName(name, icon)
+	return format('|T%s%s.png:14:14:0:0|t %s', ICON_PATH, icon, name)
+end
+
 -- Credits
 local CREDITS = {
 	author = {
@@ -78,7 +83,7 @@ end
 
 -- Build General Section
 local function BuildGeneralSection()
-	local section = ACH:Group(L["General"], nil, 5)
+	local section = ACH:Group(GetIconName(L["General"], 'General'), nil, 5)
 	section.args.header = ACH:Header(L["General"], 1)
 	section.args.disabledFrames = ACH:Group(L["Hide Blizzard Frames"], nil, 2, nil, function(info) return Private.Addon.db.profile.disabledFrames[info[#info]] end, function(info, value) Private.Addon.db.profile.disabledFrames[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.disabledFrames.inline = true
@@ -113,7 +118,7 @@ end
 
 -- Build Addon Profiles Section
 local function BuildAddonProfilesSection()
-	local section = ACH:Group(L["Addon Profiles"], nil, 10)
+	local section = ACH:Group(GetIconName(L["Addon Profiles"], 'Addons'), nil, 10)
 	section.args.header1 = ACH:Header(L["Addon Profiles"], 1)
 	section.args.addons = ACH:Group(L["Profiles"], nil, 2)
 	section.args.addons.inline = true
@@ -143,7 +148,7 @@ end
 -- Build PrivateDB Section
 local function BuildPrivateDBSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["Character Specific"], nil, 15)
+	local section = ACH:Group(GetIconName(L["Character Specific"], 'Character'), nil, 15)
 	section.args.header = ACH:Header(L["Character Specific"], 1)
 	section.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 2)
 	section.args.defaults.inline = true
@@ -156,7 +161,7 @@ end
 
 -- Build Chat Section
 local function BuildChatSection()
-	local section = ACH:Group(L["Chat"], nil, 20)
+	local section = ACH:Group(GetIconName(L["Chat"], 'Chat'), nil, 20)
 	section.args.header = ACH:Header(L["Chat"], 1)
 	section.args.chatSetup = ACH:Group(L["Setup Chat"], nil, 2)
 	section.args.chatSetup.inline = true
@@ -173,7 +178,7 @@ end
 
 -- Build CVars Section
 local function BuildCVarsSection()
-	local section = ACH:Group(L["Console Variables"], nil, 25)
+	local section = ACH:Group(GetIconName(L["Console Variables"], 'Console'), nil, 25)
 	section.args.header = ACH:Header(L["Console Variables"], 1)
 	section.args.setup = ACH:Group(L["Setup CVars"], nil, 2)
 	section.args.setup.inline = true
@@ -191,7 +196,7 @@ end
 -- Build Cooldown Manager Section
 local function BuildCDMSection()
 	if not Private.isRetail then return end -- Retail only section
-	local section = ACH:Group(L["Cooldown Manager"], nil, 30)
+	local section = ACH:Group(GetIconName(L["Cooldown Manager"], 'Cdm'), nil, 30)
 	section.args.header1 = ACH:Header(L["Cooldown Manager"], 1)
 	section.args.hunter = ACH:Group(L["Hunter"], nil, 2, nil, nil, nil, nil, Private.myClass ~= 'HUNTER')
 	section.args.hunter.inline = true
@@ -275,7 +280,7 @@ end
 -- Build ElvUI Layouts Section
 local function BuildElvUILayoutSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["ElvUI Layouts"], nil, 35)
+	local section = ACH:Group(GetIconName(L["ElvUI Layouts"], 'Layouts'), nil, 35)
 	section.args.header1 = ACH:Header(L["LuckyoneUI Scale"], 1)
 	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	section.args.scaling.inline = true
@@ -300,7 +305,7 @@ end
 -- Build ElvUI Themes Section
 local function BuildElvUIThemesSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["ElvUI Themes"], nil, 40)
+	local section = ACH:Group(GetIconName(L["ElvUI Themes"], 'Themes'), nil, 40)
 	section.args.header = ACH:Header(L["ElvUI Themes"], 1)
 	section.args.raid = ACH:Group(L["UnitFrames Color Theme"], nil, 2)
 	section.args.raid.inline = true
@@ -312,7 +317,7 @@ end
 -- Build ElvUI Tweaks Section
 local function BuildElvUITweaksSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["ElvUI Tweaks"], nil, 45)
+	local section = ACH:Group(GetIconName(L["ElvUI Tweaks"], 'Tweaks'), nil, 45)
 	section.args.header = ACH:Header(L["ElvUI Tweaks"], 1)
 	section.args.toggles = ACH:Group(L["Toggles"], nil, 2, nil, nil, nil, nil, not Private.isRetail)
 	section.args.toggles.inline = true
@@ -336,7 +341,7 @@ end
 
 -- Build Graphics Section
 local function BuildGraphicsSection()
-	local section = ACH:Group(L["Graphics"], nil, 50)
+	local section = ACH:Group(GetIconName(L["Graphics"], 'Graphics'), nil, 50)
 	section.args.header = ACH:Header(L["Graphics"], 1)
 	section.args.toggles = ACH:Group(L["General"], nil, 2)
 	section.args.toggles.inline = true
@@ -355,7 +360,7 @@ end
 -- Build Map Section
 local function BuildMapSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["Map"], nil, 55)
+	local section = ACH:Group(GetIconName(L["Map"], 'Map'), nil, 55)
 	section.args.header = ACH:Header(L["Map"], 1)
 	section.args.minimapButtons = ACH:Group(L["Minimap Buttons"], nil, 2, nil, function(info) return Private.Addon.db.profile.map.minimap.buttons[info[#info]] end, function(info, value) Private.Addon.db.profile.map.minimap.buttons[info[#info]] = value Private:UpdateMinimapButtonBar() end)
 	section.args.minimapButtons.inline = true
@@ -377,7 +382,7 @@ end
 
 -- Build Misc Section
 local function BuildMiscSection()
-	local section = ACH:Group(L["Misc"], nil, 60)
+	local section = ACH:Group(GetIconName(L["Misc"], 'Misc'), nil, 60)
 	section.args.header = ACH:Header(L["Misc"], 1)
 	section.args.combatText = ACH:Group(L["Combat Text"], nil, 2, nil, function(info) return Private.Addon.db.profile.misc.combatText[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.combatText[info[#info]] = value Private:CombatText_Update() end)
 	section.args.combatText.inline = true
@@ -405,7 +410,7 @@ end
 -- Build Skins Section
 local function BuildSkinsSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group('Skins', nil, 65)
+	local section = ACH:Group(GetIconName('Skins', 'Skins'), nil, 65)
 	section.args.header = ACH:Header('Skins', 1)
 	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.profile.skins[info[#info]] end, function(info, value) Private.Addon.db.profile.skins[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.addons.inline = true
@@ -425,7 +430,7 @@ end
 
 -- Build Credits Section
 local function BuildCreditsSection()
-	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 70)
+	local section = ACH:Group(GetIconName(format('|cfd9b9b9b%s|r', L["Credits"]), 'Credits'), nil, 70)
 	section.args.header = ACH:Header(L["Credits"], 1)
 	section.args.author = ACH:Group(L["Author"], nil, 2)
 	section.args.author.inline = true
@@ -444,7 +449,7 @@ end
 
 -- Build Links Section
 local function BuildLinksSection()
-	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 75)
+	local section = ACH:Group(GetIconName(format('|cfd9b9b9b%s|r', L["Links"]), 'Links'), nil, 75)
 	section.args.header = ACH:Header(L["Links"], 1)
 	section.args.spacer = ACH:Spacer(2, 'full')
 	section.args.website = ACH:Input(L["Addon download:"], nil, 3, nil, 'full', function() return 'https://download.luckyone.dev' end)
@@ -459,7 +464,7 @@ end
 
 -- Build Dev Section
 local function BuildDevSection()
-	local section = ACH:Group(format('|cff4beb2c%s|r', 'Developer'), nil, 100)
+	local section = ACH:Group(GetIconName(format('|cff4beb2c%s|r', 'Developer'), 'Developer'), nil, 100)
 	section.args.header1 = ACH:Header('Developer', 1)
 	section.args.toggles = ACH:Group(L["Toggles"], nil, 2)
 	section.args.toggles.inline = true
