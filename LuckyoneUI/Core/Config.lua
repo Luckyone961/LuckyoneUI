@@ -17,6 +17,7 @@ local StaticPopup_Show = _G.StaticPopup_Show
 local SettingsPanel = _G.SettingsPanel
 
 local RELOAD_POPUP = 'LUCKYONE_RL'
+local IMPORT_DEFAULTS_TEXT = L["Import LuckyoneUI defaults."]
 local RESET_DEFAULTS_TEXT = L["Reset to LuckyoneUI defaults."]
 
 -- Credits
@@ -86,7 +87,7 @@ end
 -- Build General Section
 local function BuildGeneralSection()
 	local section = ACH:Group(L["General"], nil, 5)
-	section.args.header = ACH:Header(L["Blizzard Improvements"], 1)
+	section.args.header = ACH:Header(L["General"], 1)
 	section.args.disabledFrames = ACH:Group(L["Hide Blizzard Frames"], nil, 2, nil, function(info) return Private.Addon.db.profile.disabledFrames[info[#info]] end, function(info, value) Private.Addon.db.profile.disabledFrames[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.disabledFrames.inline = true
 	section.args.disabledFrames.args.AlertFrame = ACH:Toggle(L["Alert Frame"], L["Hide the Loot/Alert Frame"], 1)
@@ -122,49 +123,35 @@ end
 local function BuildAddonProfilesSection()
 	local section = ACH:Group(L["Addon Profiles"], nil, 10)
 	section.args.header1 = ACH:Header(L["Addon Profiles"], 1)
-	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 2, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
-	section.args.plugins.inline = true
-	section.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_WindTools() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
+	section.args.addons = ACH:Group(L["Profiles"], nil, 2)
+	section.args.addons.inline = true
+	section.args.addons.args.baganator = ACH:Execute('Baganator', IMPORT_DEFAULTS_TEXT, 1, function() Private:Setup_Baganator() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.addons.args.buffReminders = ACH:Execute('BuffReminders', IMPORT_DEFAULTS_TEXT, 2, function() Private:Setup_BuffReminders() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.details = ACH:Execute('Details', IMPORT_DEFAULTS_TEXT, 3, function() Private:Setup_Details() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.addons.args.mplustimer = ACH:Execute('MPlusTimer', IMPORT_DEFAULTS_TEXT, 4, function() Private:Setup_MPlusTimer() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.nsrt = ACH:Execute('Northern Sky Raid Tools', IMPORT_DEFAULTS_TEXT, 5, function() Private:Setup_NSRT() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.permoksAccountManager = ACH:Execute('PermoksAccountManager', IMPORT_DEFAULTS_TEXT, 6, function() Private:Setup_PermoksAccountManager() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.plumber = ACH:Execute('Plumber', IMPORT_DEFAULTS_TEXT, 7, function() Private:Setup_Plumber() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', IMPORT_DEFAULTS_TEXT, 8, function() Private:Setup_WarpDeplete() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.nameplates = ACH:Group(L["Nameplate Profiles"], nil, 3)
 	section.args.nameplates.inline = true
-	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_NamePlates() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.ElvUI)
-	section.args.nameplates.args.platynator = ACH:Execute('Platynator', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_Platynator() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.nameplates.args.plater = ACH:Execute('Plater', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_Plater() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', IMPORT_DEFAULTS_TEXT, 1, function() Private:Setup_NamePlates() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.ElvUI)
+	section.args.nameplates.args.platynator = ACH:Execute('Platynator', IMPORT_DEFAULTS_TEXT, 2, function() Private:Setup_Platynator() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.nameplates.args.plater = ACH:Execute('Plater', IMPORT_DEFAULTS_TEXT, 3, function() Private:Setup_Plater() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.bossmods = ACH:Group(L["BossMods Profiles"], nil, 4)
 	section.args.bossmods.inline = true
-	section.args.bossmods.args.bigwigsMain = ACH:Execute(L["BigWigs Main"], RESET_DEFAULTS_TEXT, 1, function() Private:Setup_BigWigs('main') end, nil, true)
-	section.args.bossmods.args.bigwigsHealing = ACH:Execute(L["BigWigs Healing"], RESET_DEFAULTS_TEXT, 2, function() Private:Setup_BigWigs('healing') end, nil, true)
-	section.args.addons = ACH:Group(L["Profiles"], nil, 5)
-	section.args.addons.inline = true
-	section.args.addons.args.baganator = ACH:Execute('Baganator', RESET_DEFAULTS_TEXT, 1, function() Private:Setup_Baganator() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.addons.args.buffReminders = ACH:Execute('BuffReminders', RESET_DEFAULTS_TEXT, 2, function() Private:Setup_BuffReminders() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.details = ACH:Execute('Details', RESET_DEFAULTS_TEXT, 3, function() Private:Setup_Details() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.addons.args.mplustimer = ACH:Execute('MPlusTimer', RESET_DEFAULTS_TEXT, 4, function() Private:Setup_MPlusTimer() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.nsrt = ACH:Execute('Northern Sky Raid Tools', RESET_DEFAULTS_TEXT, 5, function() Private:Setup_NSRT() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.permoksAccountManager = ACH:Execute('PermoksAccountManager', RESET_DEFAULTS_TEXT, 6, function() Private:Setup_PermoksAccountManager() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.plumber = ACH:Execute('Plumber', RESET_DEFAULTS_TEXT, 7, function() Private:Setup_Plumber() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', RESET_DEFAULTS_TEXT, 8, function() Private:Setup_WarpDeplete() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	return section
-end
-
--- Build Auras Section
-local function BuildAurasSection()
-	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["Auras"], nil, 15)
-	section.args.header = ACH:Header(L["Auras"], 1)
-	section.args.filters = ACH:Group(L["Filters"], nil, 2)
-	section.args.filters.inline = true
-	section.args.filters.args.setup = ACH:Execute((Private.isRetail and L["Setup Aura Indicators"]) or L["Setup Aura Filters"], nil, 1, function() Private:Setup_Filters() StaticPopup_Show(RELOAD_POPUP) end)
-	section.args.Desc = ACH:Group(L["Description"], nil, 3)
-	section.args.Desc.inline = true
-	section.args.Desc.args.cvars = ACH:Description((Private.isRetail and L["This will apply Luckyones Aura Indicator edit and set the style to Textured."]) or L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"], 2, 'medium')
+	section.args.bossmods.args.bigwigsMain = ACH:Execute(L["BigWigs Main"], IMPORT_DEFAULTS_TEXT, 1, function() Private:Setup_BigWigs('main') end, nil, true)
+	section.args.bossmods.args.bigwigsHealing = ACH:Execute(L["BigWigs Healing"], IMPORT_DEFAULTS_TEXT, 2, function() Private:Setup_BigWigs('healing') end, nil, true)
+	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 5, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
+	section.args.plugins.inline = true
+	section.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', IMPORT_DEFAULTS_TEXT, 1, function() Private:Setup_WindTools() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	return section
 end
 
 -- Build PrivateDB Section
 local function BuildPrivateDBSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["Character Specific"], nil, 20)
+	local section = ACH:Group(L["Character Specific"], nil, 15)
 	section.args.header = ACH:Header(L["Character Specific"], 1)
 	section.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 2)
 	section.args.defaults.inline = true
@@ -177,7 +164,7 @@ end
 
 -- Build Chat Section
 local function BuildChatSection()
-	local section = ACH:Group(L["Chat"], nil, 25)
+	local section = ACH:Group(L["Chat"], nil, 20)
 	section.args.header = ACH:Header(L["Chat"], 1)
 	section.args.chatSetup = ACH:Group(L["Setup Chat"], nil, 2)
 	section.args.chatSetup.inline = true
@@ -194,7 +181,7 @@ end
 
 -- Build CVars Section
 local function BuildCVarsSection()
-	local section = ACH:Group(L["Console Variables"], nil, 30)
+	local section = ACH:Group(L["Console Variables"], nil, 25)
 	section.args.header = ACH:Header(L["Console Variables"], 1)
 	section.args.setup = ACH:Group(L["Setup CVars"], nil, 2)
 	section.args.setup.inline = true
@@ -212,7 +199,7 @@ end
 -- Build Cooldown Manager Section
 local function BuildCDMSection()
 	if not Private.isRetail then return end -- Retail only section
-	local section = ACH:Group(L["Cooldown Manager"], nil, 35)
+	local section = ACH:Group(L["Cooldown Manager"], nil, 30)
 	section.args.header1 = ACH:Header(L["Cooldown Manager"], 1)
 	section.args.hunter = ACH:Group(L["Hunter"], nil, 2, nil, nil, nil, nil, Private.myClass ~= 'HUNTER')
 	section.args.hunter.inline = true
@@ -296,25 +283,32 @@ end
 -- Build ElvUI Layouts Section
 local function BuildElvUILayoutSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["ElvUI Layouts"], nil, 40)
+	local section = ACH:Group(L["ElvUI Layouts"], nil, 35)
 	section.args.header1 = ACH:Header(L["LuckyoneUI Scale"], 1)
 	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	section.args.scaling.inline = true
 	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
 	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = value end)
 	section.args.header2 = ACH:Header(L["ElvUI Layouts"], 3)
-	section.args.midnight = ACH:Group(L["Midnight Layouts"] .. ' (v' .. tostring(Private.Version) .. ') (' .. format('|cff4beb2c%s', L["Current"]) .. ')', nil, 4)
+	section.args.midnight = ACH:Group(L["Midnight Layouts"], nil, 4)
 	section.args.midnight.inline = true
 	section.args.midnight.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout('main') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.midnight.args.healing = ACH:Execute(L["Healing"], nil, 2, function() Private:Setup_Layout('healing') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.midnight.args.support = ACH:Execute(format('|cff33937F%s', L["Augmentation"]), nil, 3, function() Private:Setup_Layout('support') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.header = ACH:Header(L["Auras"], 5)
+	section.args.filters = ACH:Group(L["Filters"], nil, 6)
+	section.args.filters.inline = true
+	section.args.filters.args.setup = ACH:Execute((Private.isRetail and L["Setup Aura Indicators"]) or L["Setup Aura Filters"], nil, 1, function() Private:Setup_Filters() StaticPopup_Show(RELOAD_POPUP) end)
+	section.args.Desc = ACH:Group(L["Description"], nil, 7)
+	section.args.Desc.inline = true
+	section.args.Desc.args.cvars = ACH:Description((Private.isRetail and L["This will apply Luckyones Aura Indicator edit and set the style to Textured."]) or L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"], 2, 'medium')
 	return section
 end
 
 -- Build ElvUI Themes Section
 local function BuildElvUIThemesSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["ElvUI Themes"], nil, 45)
+	local section = ACH:Group(L["ElvUI Themes"], nil, 40)
 	section.args.header = ACH:Header(L["ElvUI Themes"], 1)
 	section.args.raid = ACH:Group(L["UnitFrames Color Theme"], nil, 2)
 	section.args.raid.inline = true
@@ -326,7 +320,7 @@ end
 -- Build ElvUI Tweaks Section
 local function BuildElvUITweaksSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["ElvUI Tweaks"], nil, 50)
+	local section = ACH:Group(L["ElvUI Tweaks"], nil, 45)
 	section.args.header = ACH:Header(L["ElvUI Tweaks"], 1)
 	section.args.toggles = ACH:Group(L["Toggles"], nil, 2, nil, nil, nil, nil, not Private.isRetail)
 	section.args.toggles.inline = true
@@ -350,7 +344,7 @@ end
 
 -- Build Graphics Section
 local function BuildGraphicsSection()
-	local section = ACH:Group(L["Graphics"], nil, 55)
+	local section = ACH:Group(L["Graphics"], nil, 50)
 	section.args.header = ACH:Header(L["Graphics"], 1)
 	section.args.toggles = ACH:Group(L["General"], nil, 2)
 	section.args.toggles.inline = true
@@ -363,19 +357,13 @@ local function BuildGraphicsSection()
 	section.args.cosmetic.args.ffxNether = ACH:Toggle('ffx Nether', 'Game Default: on | Suggestion: off\n\nBox checked means on/enabled', 3, nil, nil, nil, function() return GetCVarBool('ffxNether') end, function(_, value) SetCVar('ffxNether', value and 1 or 0) end)
 	section.args.cosmetic.args.ffxVenari = ACH:Toggle('ffx Venari', 'Game Default: on | Suggestion: off\n\nBox checked means on/enabled', 4, nil, nil, nil, function() return GetCVarBool('ffxVenari') end, function(_, value) SetCVar('ffxVenari', value and 1 or 0) end)
 	section.args.cosmetic.args.ffxLingeringVenari = ACH:Toggle('ffx Lingering Venari', 'Game Default: on | Suggestion: off\n\nBox checked means on/enabled', 5, nil, nil, nil, function() return GetCVarBool('ffxLingeringVenari') end, function(_, value) SetCVar('ffxLingeringVenari', value and 1 or 0) end)
-	section.args.performance = ACH:Group(format('%s |cffC80000EXPERIMENTAL - NO SUPPORT|r', L["Performance"]), nil, 4, nil, nil, nil, not Private.isRetail)
-	section.args.performance.inline = true
-	section.args.performance.args.ThreadPoolPerThreadAllocator = ACH:Range('ThreadPoolPerThreadAllocator', '0 = Disabled\n1 = Allow\n2 = Force\n\nForce is around 12% faster but uses ~300MB more memory', 1, { min = 0, max = 2, step = 1 }, nil, function() return tonumber(GetCVar('ThreadPoolPerThreadAllocator')) or 0 end, function(_, value) SetCVar('ThreadPoolPerThreadAllocator', value) end)
-	section.args.performance.args.ThreadPoolLimitLP = ACH:Range('ThreadPoolLimitLP', 'Limit num threads for Low priority jobs\n\nGame Default: 6', 2, { min = 0, max = 12, step = 1 }, nil, function() return tonumber(GetCVar('ThreadPoolLimitLP')) or 6 end, function(_, value) SetCVar('ThreadPoolLimitLP', value) end)
-	section.args.performance.args.ThreadPoolLimitMP = ACH:Range('ThreadPoolLimitMP', 'Limit num threads for Mid priority jobs\n\nGame Default: 6', 3, { min = 0, max = 12, step = 1 }, nil, function() return tonumber(GetCVar('ThreadPoolLimitMP')) or 6 end, function(_, value) SetCVar('ThreadPoolLimitMP', value) end)
-	section.args.performance.args.ThreadPoolLimitHP = ACH:Range('ThreadPoolLimitHP', 'Limit num threads for High priority jobs\n\nGame Default: 6', 4, { min = 0, max = 12, step = 1 }, nil, function() return tonumber(GetCVar('ThreadPoolLimitHP')) or 6 end, function(_, value) SetCVar('ThreadPoolLimitHP', value) end)
 	return section
 end
 
 -- Build Map Section
 local function BuildMapSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["Map"], nil, 60)
+	local section = ACH:Group(L["Map"], nil, 55)
 	section.args.header = ACH:Header(L["Map"], 1)
 	section.args.minimapButtons = ACH:Group(L["Minimap Buttons"], nil, 2, nil, function(info) return Private.Addon.db.profile.map.minimap.buttons[info[#info]] end, function(info, value) Private.Addon.db.profile.map.minimap.buttons[info[#info]] = value Private:UpdateMinimapButtonBar() end)
 	section.args.minimapButtons.inline = true
@@ -397,7 +385,7 @@ end
 
 -- Build Misc Section
 local function BuildMiscSection()
-	local section = ACH:Group(L["Misc"], nil, 65)
+	local section = ACH:Group(L["Misc"], nil, 60)
 	section.args.header = ACH:Header(L["Misc"], 1)
 	section.args.combatText = ACH:Group(L["Combat Text"], nil, 2, nil, function(info) return Private.Addon.db.profile.misc.combatText[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.combatText[info[#info]] = value Private:CombatText_Update() end)
 	section.args.combatText.inline = true
@@ -423,7 +411,7 @@ end
 -- Build Skins Section
 local function BuildSkinsSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group('Skins', nil, 70)
+	local section = ACH:Group('Skins', nil, 65)
 	section.args.header = ACH:Header('Skins', 1)
 	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.profile.skins[info[#info]] end, function(info, value) Private.Addon.db.profile.skins[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.addons.inline = true
@@ -441,19 +429,9 @@ local function BuildSkinsSection()
 	return section
 end
 
--- Build Tags Section
-local function BuildTagsSection()
-	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(L["Tags"], nil, 75)
-	section.args.header = ACH:Header(L["Tags"], 1)
-	section.args.spacer = ACH:Spacer(2, 'full')
-	section.args.shortcut = ACH:Execute(L["Available Tags"], nil, 3, function() ElvUI[1].Libs.AceConfigDialog:SelectGroup('ElvUI', 'tagGroup', Private.Name) end)
-	return section
-end
-
 -- Build Credits Section
 local function BuildCreditsSection()
-	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 80)
+	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Credits"]), nil, 70)
 	section.args.header = ACH:Header(L["Credits"], 1)
 	section.args.author = ACH:Group(L["Author"], nil, 2)
 	section.args.author.inline = true
@@ -472,7 +450,7 @@ end
 
 -- Build Links Section
 local function BuildLinksSection()
-	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 85)
+	local section = ACH:Group(format('|cfd9b9b9b%s|r', L["Links"]), nil, 75)
 	section.args.header = ACH:Header(L["Links"], 1)
 	section.args.spacer = ACH:Spacer(2, 'full')
 	section.args.website = ACH:Input(L["Addon download:"], nil, 3, nil, 'full', function() return 'https://download.luckyone.dev' end)
@@ -517,21 +495,19 @@ function Private:BuildConfig()
 	Private.Config.args.setup = BuildSetupSection() -- 2
 	Private.Config.args.blizzard = BuildGeneralSection() -- 5
 	Private.Config.args.addonProfiles = BuildAddonProfilesSection() -- 10
-	Private.Config.args.auras = BuildAurasSection() -- 15
-	Private.Config.args.privateDB = BuildPrivateDBSection() -- 20
-	Private.Config.args.chat = BuildChatSection() -- 25
-	Private.Config.args.cvars = BuildCVarsSection() -- 30
-	Private.Config.args.cdm = BuildCDMSection() -- 35
-	Private.Config.args.elvuiLayouts = BuildElvUILayoutSection() -- 40
-	Private.Config.args.elvuiThemes = BuildElvUIThemesSection() -- 45
-	Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 50
-	Private.Config.args.graphics = BuildGraphicsSection() -- 55
-	Private.Config.args.map = BuildMapSection() -- 60
-	Private.Config.args.misc = BuildMiscSection() -- 65
-	Private.Config.args.skins = BuildSkinsSection() -- 70
-	Private.Config.args.tags = BuildTagsSection() -- 75
-	Private.Config.args.credits = BuildCreditsSection() -- 80
-	Private.Config.args.links = BuildLinksSection() -- 85
+	Private.Config.args.privateDB = BuildPrivateDBSection() -- 15
+	Private.Config.args.chat = BuildChatSection() -- 20
+	Private.Config.args.cvars = BuildCVarsSection() -- 25
+	Private.Config.args.cdm = BuildCDMSection() -- 30
+	Private.Config.args.elvuiLayouts = BuildElvUILayoutSection() -- 35
+	Private.Config.args.elvuiThemes = BuildElvUIThemesSection() -- 40
+	Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 45
+	Private.Config.args.graphics = BuildGraphicsSection() -- 50
+	Private.Config.args.map = BuildMapSection() -- 55
+	Private.Config.args.misc = BuildMiscSection() -- 60
+	Private.Config.args.skins = BuildSkinsSection() -- 65
+	Private.Config.args.credits = BuildCreditsSection() -- 70
+	Private.Config.args.links = BuildLinksSection() -- 75
 	Private.Config.args.dev = BuildDevSection() -- 100
 
 	-- ElvUI config integration
