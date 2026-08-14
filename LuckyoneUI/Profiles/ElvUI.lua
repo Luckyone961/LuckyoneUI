@@ -576,6 +576,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.customGlow.color.g = 1
 	E.db.general.customGlow.color.r = 1
 	E.db.general.customGlow.useColor = true
+	E.db.general.debuffColors.None.b = 0
+	E.db.general.debuffColors.None.g = 0
+	E.db.general.debuffColors.None.r = 0
 	E.db.general.durabilityScale = 0.5
 	E.db.general.enhancedPvpMessages = false
 	E.db.general.guildBank.countFont = Private.Font
