@@ -15,6 +15,7 @@ Private.Defaults = {
 			BossBanner = false,
 			HousingDecorAlerts = false,
 			LossOfControl = false,
+			TalkingHead = false,
 			UIErrorsFrame = false,
 			ZoneTextFrame = false,
 		},

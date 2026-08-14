@@ -2,6 +2,7 @@ local _, Private = ...
 local L = Private.Libs.ACL
 local Blizzard = Private.Modules.Blizzard
 
+local ContinueOnAddOnLoaded = EventUtil.ContinueOnAddOnLoaded
 local CreateFrame = CreateFrame
 local GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
 local GetQuestInfo = C_QuestLog.GetInfo
@@ -11,6 +12,7 @@ local LFGListSearchPanel_SelectResult = LFGListSearchPanel_SelectResult
 local LFGListSearchPanel_SignUp = LFGListSearchPanel_SignUp
 local LFGListSearchPanelUtil_CanSelectResult = LFGListSearchPanelUtil_CanSelectResult
 local RemoveQuestWatch = C_QuestLog.RemoveQuestWatch
+local RunNextFrame = RunNextFrame
 
 local _G = _G
 local UIParent = UIParent
@@ -94,6 +96,14 @@ function Private:DisabledFrames()
 			ErrorFrame:SetParent(GetHiddenFrame())
 			ErrorFrame:Hide()
 		end
+	end
+
+	if db.TalkingHead and Private.isRetail then
+		ContinueOnAddOnLoaded('Blizzard_TalkingHeadUI', function()
+			hooksecurefunc(_G.TalkingHeadFrame, 'PlayCurrent', function(frame)
+				RunNextFrame(function() frame:Hide() end)
+			end)
+		end)
 	end
 end
 
