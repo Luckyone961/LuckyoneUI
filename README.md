@@ -50,6 +50,19 @@
 • Plater, Platynator, Plumber  
 • WarpDeplete, WindTools  
 
+### **Shared media**  
+• Included Fonts: Expressway and Geist (Bold, Light, Medium, Regular, Semi Bold)  
+• Included Textures: Luckyone Bubbles and Luckyone Focus  
+
+### **Chat commands**  
+• /lucky config -> Opens the ingame options  
+• /lucky install -> Run the installation process  
+• /lucky minimap -> Hide or show the minimap icon  
+• /lucky untrack -> Remove all tracked quests, including hidden, to boost performance  
+• /luckydebug on -> Disables all Addons except ElvUI and LuckyoneUI for troubleshooting  
+• /luckydebug off -> Re-Enables all Addons disabled by the command above  
+• /vault and /weekly -> Open your great vault in retail to check weekly progress  
+
 ***
 ### **Installer:**  
 ***
