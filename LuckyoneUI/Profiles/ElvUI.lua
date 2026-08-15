@@ -1801,7 +1801,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.raid1.debuffs.perrow = 2
 	E.db.unitframe.units.raid1.debuffs.priority = 'Dispellable,RaidDebuffs'
-	E.db.unitframe.units.raid1.debuffs.yOffset = 0
+	E.db.unitframe.units.raid1.debuffs.yOffset = -1
 	E.db.unitframe.units.raid1.disableFocusGlow = true
 	E.db.unitframe.units.raid1.disableTargetGlow = true
 	E.db.unitframe.units.raid1.fader.minAlpha = 0.5
