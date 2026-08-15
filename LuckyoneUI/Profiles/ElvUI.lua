@@ -1711,7 +1711,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.buffs.growthX = 'LEFT'
 	E.db.unitframe.units.party.buffs.perrow = 3
 	E.db.unitframe.units.party.buffs.sizeOverride = 22
-	E.db.unitframe.units.party.buffs.yOffset = 11
+	E.db.unitframe.units.party.buffs.yOffset = 10
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.debuffs.anchorPoint = 'TOPRIGHT'
 	E.db.unitframe.units.party.debuffs.countFont = Private.Font
@@ -1726,7 +1726,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.party.debuffs.sizeOverride = 31
 	E.db.unitframe.units.party.debuffs.xOffset = 1
-	E.db.unitframe.units.party.debuffs.yOffset = 1
+	E.db.unitframe.units.party.debuffs.yOffset = 0
 	E.db.unitframe.units.party.disableFocusGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.fader.minAlpha = 0.5
@@ -1789,7 +1789,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.buffs.growthY = 'DOWN'
 	E.db.unitframe.units.raid1.buffs.perrow = 1
 	E.db.unitframe.units.raid1.buffs.sizeOverride = 22
-	E.db.unitframe.units.raid1.buffs.yOffset = 11
+	E.db.unitframe.units.raid1.buffs.yOffset = 10
 	E.db.unitframe.units.raid1.classbar.enable = false
 	E.db.unitframe.units.raid1.debuffs.anchorPoint = 'BOTTOMRIGHT'
 	E.db.unitframe.units.raid1.debuffs.clickThrough = true
@@ -2063,7 +2063,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
 		E.db.unitframe.units.raid1.buffs.enable = Private.isRetail
 		E.db.unitframe.units.raid1.buffs.sizeOverride = 26
-		E.db.unitframe.units.raid1.buffs.yOffset = 13
+		E.db.unitframe.units.raid1.buffs.yOffset = 12
 		E.db.unitframe.units.raid1.debuffs.enable = Private.isRetail
 		E.db.unitframe.units.raid1.debuffs.sizeOverride = 26
 		E.db.unitframe.units.raid1.height = (scaled and 60) or 70
