@@ -1628,7 +1628,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raidpet.buffIndicator.countFont = Private.Font
 	E.db.unitframe.units.raidpet.buffIndicator.countFontSize = 10
 	E.db.unitframe.units.raidpet.buffIndicator.enable = true
-	E.db.unitframe.units.raidpet.buffIndicator.size = 6
+	E.db.unitframe.units.raidpet.buffIndicator.size = 8
 	E.db.unitframe.units.raidpet.classbar.enable = false
 	E.db.unitframe.units.raidpet.debuffs.countFont = Private.Font
 	E.db.unitframe.units.raidpet.debuffs.desaturate = false
@@ -1699,7 +1699,7 @@ function Private:Setup_ElvUI(layout)
 	}
 
 	E.db.unitframe.units.party.buffIndicator.countFont = Private.Font
-	E.db.unitframe.units.party.buffIndicator.size = 14
+	E.db.unitframe.units.party.buffIndicator.size = 16
 	E.db.unitframe.units.party.buffs.anchorPoint = 'BOTTOM'
 	E.db.unitframe.units.party.buffs.clickThrough = true
 	E.db.unitframe.units.party.buffs.countFont = Private.Font
@@ -1968,7 +1968,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. (not Private.isRetail and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]')
 
 		-- Main/Support Raid1
-		E.db.unitframe.units.raid1.buffIndicator.size = 10
+		E.db.unitframe.units.raid1.buffIndicator.size = 12
 		E.db.unitframe.units.raid1.debuffs.sizeOverride = 18
 		E.db.unitframe.units.raid1.height = 40
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'TOPRIGHT'
@@ -1988,7 +1988,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid1.width = (scaled and 86) or 96
 
 		-- Main/Support Raid2
-		E.db.unitframe.units.raid2.buffIndicator.size = 10
+		E.db.unitframe.units.raid2.buffIndicator.size = 12
 		E.db.unitframe.units.raid2.debuffs.sizeOverride = 18
 		E.db.unitframe.units.raid2.height = 40
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'TOPRIGHT'
@@ -2008,7 +2008,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.width = (scaled and 86) or 96
 
 		-- Main/Support Raid3
-		E.db.unitframe.units.raid3.buffIndicator.size = 8
+		E.db.unitframe.units.raid3.buffIndicator.size = 10
 		E.db.unitframe.units.raid3.height = 30
 		E.db.unitframe.units.raid3.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid3.raidicon.attachToObject = 'Health'
@@ -2060,7 +2060,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
 
 		-- Healing Raid1
-		E.db.unitframe.units.raid1.buffIndicator.size = 14
+		E.db.unitframe.units.raid1.buffIndicator.size = 16
 		E.db.unitframe.units.raid1.buffs.enable = Private.isRetail
 		E.db.unitframe.units.raid1.buffs.sizeOverride = 26
 		E.db.unitframe.units.raid1.buffs.yOffset = 12
@@ -2083,7 +2083,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid1.width = 140
 
 		-- Healing Raid2
-		E.db.unitframe.units.raid2.buffIndicator.size = 14
+		E.db.unitframe.units.raid2.buffIndicator.size = 16
 		E.db.unitframe.units.raid2.buffs.enable = Private.isRetail
 		E.db.unitframe.units.raid2.debuffs.enable = Private.isRetail
 		E.db.unitframe.units.raid2.debuffs.sizeOverride = 22
@@ -2104,7 +2104,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.width = 140
 
 		-- Healing Raid3
-		E.db.unitframe.units.raid3.buffIndicator.size = 10
+		E.db.unitframe.units.raid3.buffIndicator.size = 12
 		E.db.unitframe.units.raid3.height = (scaled and 32) or 36
 		E.db.unitframe.units.raid3.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid3.raidicon.size = 12
