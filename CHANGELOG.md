@@ -1,7 +1,7 @@
 ﻿## Version 4.19 [In development - not yet released]
 
 **All WoW Versions:**  
-- ElvUI 15.21+ compatibility  
+- ElvUI 15.22+ compatibility  
 - Added new combat text module (+Combat, -Combat) into /lucky config - Misc  
 - Massive rework and cleanup of the /lucky config for better navigation  
 - Moved stack counter on minimap buffs and debuffs to the top right of each icon  
