@@ -576,9 +576,11 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.customGlow.color.g = 1
 	E.db.general.customGlow.color.r = 1
 	E.db.general.customGlow.useColor = true
+	E.db.general.debuffColors.None.b = 0
+	E.db.general.debuffColors.None.g = 0
+	E.db.general.debuffColors.None.r = 0
 	E.db.general.durabilityScale = 0.5
 	E.db.general.enhancedPvpMessages = false
-	E.db.general.gameMenuScale = 0.9
 	E.db.general.guildBank.countFont = Private.Font
 	E.db.general.guildBank.countFontOutline = Private.Outline
 	E.db.general.guildBank.itemLevelFont = Private.Font
@@ -619,13 +621,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.minimap.size = 197
 	E.db.general.objectiveFrameAutoHide = false
 	E.db.general.objectiveFrameHeight = 600
-	E.db.general.privateAuras.borderScale = -10
-	E.db.general.privateAuras.clickThrough = true
-	E.db.general.privateAuras.countdownNumbers = true
-	E.db.general.privateAuras.duration.enable = false
-	E.db.general.privateAuras.icon.amount = 4
-	E.db.general.privateAuras.icon.offset = 1
-	E.db.general.privateAuras.icon.size = 54
 	E.db.general.privateRaidWarning.scale = 1.5
 	E.db.general.queueStatus.scale = 0.3
 	E.db.general.tagUpdateRate = 0.33
@@ -775,9 +770,8 @@ function Private:Setup_ElvUI(layout)
 	-- Auras
 	E.db.auras.buffs.countFont = Private.Font
 	E.db.auras.buffs.countFontOutline = Private.Outline
-	E.db.auras.buffs.countFontSize = 12
-	E.db.auras.buffs.countXOffset = 1
-	E.db.auras.buffs.countYOffset = 2
+	E.db.auras.buffs.countFontSize = 11
+	E.db.auras.buffs.countYOffset = 12
 	E.db.auras.buffs.fadeThreshold = -1
 	E.db.auras.buffs.horizontalSpacing = 2
 	E.db.auras.buffs.seperateOwn = 0
@@ -786,9 +780,8 @@ function Private:Setup_ElvUI(layout)
 	E.db.auras.buffs.verticalSpacing = 14
 	E.db.auras.debuffs.countFont = Private.Font
 	E.db.auras.debuffs.countFontOutline = Private.Outline
-	E.db.auras.debuffs.countFontSize = 12
-	E.db.auras.debuffs.countXOffset = 1
-	E.db.auras.debuffs.countYOffset = 2
+	E.db.auras.debuffs.countFontSize = 11
+	E.db.auras.debuffs.countYOffset = 12
 	E.db.auras.debuffs.fadeThreshold = -1
 	E.db.auras.debuffs.horizontalSpacing = 2
 	E.db.auras.debuffs.maxWraps = 2
@@ -1083,7 +1076,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.buffs.countXOffset = 1
 	E.db.unitframe.units.arena.buffs.countYOffset = -1
 	E.db.unitframe.units.arena.buffs.growthY = 'DOWN'
-	E.db.unitframe.units.arena.buffs.maxDuration = 0
 	E.db.unitframe.units.arena.buffs.numrows = 2
 	E.db.unitframe.units.arena.buffs.perrow = 4
 	E.db.unitframe.units.arena.buffs.priority = 'Whitelist,TurtleBuffs,Dispellable'
@@ -1116,7 +1108,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.arena.debuffs.desaturate = true
 	E.db.unitframe.units.arena.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.arena.debuffs.growthY = 'DOWN'
-	E.db.unitframe.units.arena.debuffs.maxDuration = 0
 	E.db.unitframe.units.arena.debuffs.numrows = 2
 	E.db.unitframe.units.arena.debuffs.perrow = 4
 	E.db.unitframe.units.arena.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
@@ -1245,7 +1236,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.boss.orientation = 'LEFT'
 	E.db.unitframe.units.boss.power.enable = false
 	E.db.unitframe.units.boss.power.text_format = ''
-	E.db.unitframe.units.boss.privateAuras.enable = false
 	E.db.unitframe.units.boss.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.boss.raidicon.size = 40
 	E.db.unitframe.units.boss.raidicon.xOffset = 42
@@ -1287,11 +1277,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.focus.buffs.countYOffset = 0
 	E.db.unitframe.units.focus.buffs.enable = true
 	E.db.unitframe.units.focus.buffs.growthX = 'LEFT'
-	E.db.unitframe.units.focus.buffs.maxDuration = 0
 	E.db.unitframe.units.focus.buffs.numrows = 3
 	E.db.unitframe.units.focus.buffs.perrow = 12
 	E.db.unitframe.units.focus.buffs.priority = 'Dispellable,RaidBuffsElvUI,Mount'
-	E.db.unitframe.units.focus.buffs.yOffset = 1
 	E.db.unitframe.units.focus.castbar.customTextFont.enable = true
 	E.db.unitframe.units.focus.castbar.customTextFont.font = Private.Font
 	E.db.unitframe.units.focus.castbar.customTimeFont.enable = true
@@ -1315,7 +1303,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.focus.debuffs.countXOffset = 2
 	E.db.unitframe.units.focus.debuffs.countYOffset = 0
 	E.db.unitframe.units.focus.debuffs.desaturate = false
-	E.db.unitframe.units.focus.debuffs.maxDuration = 0
 	E.db.unitframe.units.focus.debuffs.numrows = 2
 	E.db.unitframe.units.focus.debuffs.perrow = 12
 	E.db.unitframe.units.focus.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
@@ -1428,11 +1415,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.buffs.countXOffset = 2
 	E.db.unitframe.units.player.buffs.countYOffset = 0
 	E.db.unitframe.units.player.buffs.enable = Private.isRetail
-	E.db.unitframe.units.player.buffs.isAuraBigDefensive = false
 	E.db.unitframe.units.player.buffs.perrow = 3
 	E.db.unitframe.units.player.buffs.priority = 'Blacklist,Personal,NonPersonal'
 	E.db.unitframe.units.player.buffs.sizeOverride = 30
-	E.db.unitframe.units.player.buffs.yOffset = 40
+	E.db.unitframe.units.player.buffs.yOffset = 25
 	E.db.unitframe.units.player.castbar.customColor.color.b = 0.05
 	E.db.unitframe.units.player.castbar.customColor.color.g = 0.05
 	E.db.unitframe.units.player.castbar.customColor.color.r = 0.05
@@ -1474,14 +1460,14 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.classbar.enable = false
 	E.db.unitframe.units.player.CombatIcon.enable = false
 	E.db.unitframe.units.player.debuffs.countFont = Private.Font
-	E.db.unitframe.units.player.debuffs.countFontSize = 10
+	E.db.unitframe.units.player.debuffs.countFontSize = Private.isRetail and 14 or 10
 	E.db.unitframe.units.player.debuffs.countPosition = 'TOPRIGHT'
-	E.db.unitframe.units.player.debuffs.countXOffset = 2
+	E.db.unitframe.units.player.debuffs.countXOffset = Private.isRetail and 0 or 2
 	E.db.unitframe.units.player.debuffs.countYOffset = 0
 	E.db.unitframe.units.player.debuffs.desaturate = false
-	E.db.unitframe.units.player.debuffs.enable = false
-	E.db.unitframe.units.player.debuffs.numrows = 2
-	E.db.unitframe.units.player.debuffs.perrow = 12
+	E.db.unitframe.units.player.debuffs.enable = Private.isRetail
+	E.db.unitframe.units.player.debuffs.numrows = Private.isRetail and 1 or 2
+	E.db.unitframe.units.player.debuffs.perrow = Private.isRetail and 4 or 12
 	E.db.unitframe.units.player.disableMouseoverGlow = true
 	E.db.unitframe.units.player.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.player.healPrediction.enable = true
@@ -1502,15 +1488,9 @@ function Private:Setup_ElvUI(layout)
 	if Private.isRetail then
 		E.db.unitframe.units.player.debuffs.anchorPoint = 'TOPRIGHT'
 		E.db.unitframe.units.player.debuffs.clickThrough = true
-		E.db.unitframe.units.player.debuffs.enable = true
 		E.db.unitframe.units.player.debuffs.growthX = 'LEFT'
-		E.db.unitframe.units.player.debuffs.isAuraPermanent = true
-		E.db.unitframe.units.player.debuffs.isAuraPermanentPlayer = true
-		E.db.unitframe.units.player.debuffs.numrows = 1
-		E.db.unitframe.units.player.debuffs.perrow = 4
 		E.db.unitframe.units.player.debuffs.sizeOverride = 54
 		E.db.unitframe.units.player.debuffs.spacing = 1
-		E.db.unitframe.units.player.debuffs.useBlocklist = true
 		E.db.unitframe.units.player.debuffs.xOffset = 0
 		E.db.unitframe.units.player.debuffs.yOffset = 164
 	end
@@ -1562,7 +1542,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.buffs.numrows = 3
 	E.db.unitframe.units.target.buffs.perrow = 12
 	E.db.unitframe.units.target.buffs.priority = 'Dispellable,RaidBuffsElvUI,Mount'
-	E.db.unitframe.units.target.buffs.yOffset = 1
 	E.db.unitframe.units.target.castbar.customTextFont.enable = true
 	E.db.unitframe.units.target.castbar.customTextFont.font = Private.Font
 	E.db.unitframe.units.target.castbar.customTextFont.fontSize = 12
@@ -1587,7 +1566,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.debuffs.countXOffset = 2
 	E.db.unitframe.units.target.debuffs.countYOffset = 0
 	E.db.unitframe.units.target.debuffs.desaturate = false
-	E.db.unitframe.units.target.debuffs.maxDuration = 0
 	E.db.unitframe.units.target.debuffs.numrows = 2
 	E.db.unitframe.units.target.debuffs.perrow = 12
 	E.db.unitframe.units.target.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
@@ -1650,11 +1628,10 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raidpet.buffIndicator.countFont = Private.Font
 	E.db.unitframe.units.raidpet.buffIndicator.countFontSize = 10
 	E.db.unitframe.units.raidpet.buffIndicator.enable = true
-	E.db.unitframe.units.raidpet.buffIndicator.size = 6
+	E.db.unitframe.units.raidpet.buffIndicator.size = 8
 	E.db.unitframe.units.raidpet.classbar.enable = false
 	E.db.unitframe.units.raidpet.debuffs.countFont = Private.Font
 	E.db.unitframe.units.raidpet.debuffs.desaturate = false
-	E.db.unitframe.units.raidpet.debuffs.maxDuration = 0
 	E.db.unitframe.units.raidpet.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raidpet.disableFocusGlow = true
 	E.db.unitframe.units.raidpet.disableTargetGlow = true
@@ -1722,7 +1699,7 @@ function Private:Setup_ElvUI(layout)
 	}
 
 	E.db.unitframe.units.party.buffIndicator.countFont = Private.Font
-	E.db.unitframe.units.party.buffIndicator.size = 14
+	E.db.unitframe.units.party.buffIndicator.size = 16
 	E.db.unitframe.units.party.buffs.anchorPoint = 'BOTTOM'
 	E.db.unitframe.units.party.buffs.clickThrough = true
 	E.db.unitframe.units.party.buffs.countFont = Private.Font
@@ -1732,10 +1709,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.buffs.countYOffset = -1
 	E.db.unitframe.units.party.buffs.enable = Private.isRetail
 	E.db.unitframe.units.party.buffs.growthX = 'LEFT'
-	E.db.unitframe.units.party.buffs.isAuraRaidInCombatPlayer = false
 	E.db.unitframe.units.party.buffs.perrow = 3
 	E.db.unitframe.units.party.buffs.sizeOverride = 22
-	E.db.unitframe.units.party.buffs.yOffset = 22
+	E.db.unitframe.units.party.buffs.yOffset = 10
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.debuffs.anchorPoint = 'TOPRIGHT'
 	E.db.unitframe.units.party.debuffs.countFont = Private.Font
@@ -1745,15 +1721,12 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.debuffs.countYOffset = -1
 	E.db.unitframe.units.party.debuffs.enable = true
 	E.db.unitframe.units.party.debuffs.growthY = 'DOWN'
-	E.db.unitframe.units.party.debuffs.isAuraPermanent = true
-	E.db.unitframe.units.party.debuffs.isAuraPermanentPlayer = true
-	E.db.unitframe.units.party.debuffs.maxDuration = 0
 	E.db.unitframe.units.party.debuffs.numrows = 2
 	E.db.unitframe.units.party.debuffs.perrow = 4
 	E.db.unitframe.units.party.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.party.debuffs.sizeOverride = 31
 	E.db.unitframe.units.party.debuffs.xOffset = 1
-	E.db.unitframe.units.party.debuffs.yOffset = 1
+	E.db.unitframe.units.party.debuffs.yOffset = 0
 	E.db.unitframe.units.party.disableFocusGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.fader.minAlpha = 0.5
@@ -1778,13 +1751,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.party.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.party.phaseIndicator.xOffset = 15
 	E.db.unitframe.units.party.power.enable = false
-	E.db.unitframe.units.party.privateAuras.borderScale = -4
-	E.db.unitframe.units.party.privateAuras.icon.offset = 1
-	E.db.unitframe.units.party.privateAuras.icon.point = 'RIGHT'
-	E.db.unitframe.units.party.privateAuras.icon.size = 22
-	E.db.unitframe.units.party.privateAuras.parent.anchorPoint = 'BOTTOMLEFT'
-	E.db.unitframe.units.party.privateAuras.parent.invertAnchor = false
-	E.db.unitframe.units.party.privateAuras.parent.point = 'BOTTOMLEFT'
 	E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
 	E.db.unitframe.units.party.raidicon.size = 14
 	E.db.unitframe.units.party.raidicon.xOffset = -3
@@ -1821,12 +1787,9 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.buffs.countYOffset = 0
 	E.db.unitframe.units.raid1.buffs.enable = false
 	E.db.unitframe.units.raid1.buffs.growthY = 'DOWN'
-	E.db.unitframe.units.raid1.buffs.isAuraBigDefensive = false
-	E.db.unitframe.units.raid1.buffs.isAuraBigDefensivePlayer = false
-	E.db.unitframe.units.raid1.buffs.isAuraRaidInCombatPlayer = false
 	E.db.unitframe.units.raid1.buffs.perrow = 1
 	E.db.unitframe.units.raid1.buffs.sizeOverride = 22
-	E.db.unitframe.units.raid1.buffs.yOffset = 22
+	E.db.unitframe.units.raid1.buffs.yOffset = 10
 	E.db.unitframe.units.raid1.classbar.enable = false
 	E.db.unitframe.units.raid1.debuffs.anchorPoint = 'BOTTOMRIGHT'
 	E.db.unitframe.units.raid1.debuffs.clickThrough = true
@@ -1852,12 +1815,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'TOP'
 	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid1.power.enable = false
-	E.db.unitframe.units.raid1.privateAuras.borderScale = -4
-	E.db.unitframe.units.raid1.privateAuras.icon.offset = 1
-	E.db.unitframe.units.raid1.privateAuras.icon.point = 'RIGHT'
-	E.db.unitframe.units.raid1.privateAuras.parent.anchorPoint = 'BOTTOMLEFT'
-	E.db.unitframe.units.raid1.privateAuras.parent.invertAnchor = false
-	E.db.unitframe.units.raid1.privateAuras.parent.point = 'BOTTOMLEFT'
 	E.db.unitframe.units.raid1.pvpclassificationindicator.enable = false
 	E.db.unitframe.units.raid1.raidRoleIcons.combatHide = true
 	E.db.unitframe.units.raid1.raidRoleIcons.scale = 0.8
@@ -1896,7 +1853,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.debuffs.countXOffset = 2
 	E.db.unitframe.units.raid3.debuffs.countYOffset = 0
 	E.db.unitframe.units.raid3.debuffs.growthX = 'LEFT'
-	E.db.unitframe.units.raid3.debuffs.maxDuration = 0
 	E.db.unitframe.units.raid3.debuffs.perrow = 2
 	E.db.unitframe.units.raid3.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid3.debuffs.sizeOverride = 18
@@ -1912,14 +1868,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.name.text_format = Private.isRetail and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 	E.db.unitframe.units.raid3.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.raid3.phaseIndicator.scale = 0.5
-	E.db.unitframe.units.raid3.privateAuras.borderScale = -4
-	E.db.unitframe.units.raid3.privateAuras.enable = false
-	E.db.unitframe.units.raid3.privateAuras.icon.offset = 1
-	E.db.unitframe.units.raid3.privateAuras.icon.point = 'RIGHT'
-	E.db.unitframe.units.raid3.privateAuras.icon.size = 18
-	E.db.unitframe.units.raid3.privateAuras.parent.anchorPoint = 'BOTTOMLEFT'
-	E.db.unitframe.units.raid3.privateAuras.parent.invertAnchor = false
-	E.db.unitframe.units.raid3.privateAuras.parent.point = 'BOTTOMLEFT'
 	E.db.unitframe.units.raid3.pvpclassificationindicator.enable = false
 	E.db.unitframe.units.raid3.raidRoleIcons.combatHide = true
 	E.db.unitframe.units.raid3.raidRoleIcons.scale = 0.8
@@ -2020,10 +1968,9 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. (not Private.isRetail and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]')
 
 		-- Main/Support Raid1
-		E.db.unitframe.units.raid1.buffIndicator.size = 10
+		E.db.unitframe.units.raid1.buffIndicator.size = 12
 		E.db.unitframe.units.raid1.debuffs.sizeOverride = 18
 		E.db.unitframe.units.raid1.height = 40
-		E.db.unitframe.units.raid1.privateAuras.enable = false
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid1.raidicon.attachToObject = 'Health'
 		E.db.unitframe.units.raid1.raidicon.size = 12
@@ -2041,10 +1988,9 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid1.width = (scaled and 86) or 96
 
 		-- Main/Support Raid2
-		E.db.unitframe.units.raid2.buffIndicator.size = 10
+		E.db.unitframe.units.raid2.buffIndicator.size = 12
 		E.db.unitframe.units.raid2.debuffs.sizeOverride = 18
 		E.db.unitframe.units.raid2.height = 40
-		E.db.unitframe.units.raid2.privateAuras.enable = false
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid2.raidicon.attachToObject = 'Health'
 		E.db.unitframe.units.raid2.raidicon.size = 12
@@ -2062,7 +2008,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.width = (scaled and 86) or 96
 
 		-- Main/Support Raid3
-		E.db.unitframe.units.raid3.buffIndicator.size = 8
+		E.db.unitframe.units.raid3.buffIndicator.size = 10
 		E.db.unitframe.units.raid3.height = 30
 		E.db.unitframe.units.raid3.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid3.raidicon.attachToObject = 'Health'
@@ -2079,11 +2025,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 8
 		E.db.unitframe.units.raid3.width = (scaled and 86) or 96
-
-		-- Main/Support Private Auras
-		E.db.unitframe.units.raid1.privateAuras.icon.size = 18
-		E.db.unitframe.units.raid2.privateAuras.icon.size = 18
-		E.db.unitframe.units.raid3.privateAuras.icon.size = 18
 
 		-- Main/Support Heal Prediction
 		E.db.unitframe.units.arena.healPrediction.enable = false
@@ -2119,10 +2060,10 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
 
 		-- Healing Raid1
-		E.db.unitframe.units.raid1.buffIndicator.size = 14
+		E.db.unitframe.units.raid1.buffIndicator.size = 16
 		E.db.unitframe.units.raid1.buffs.enable = Private.isRetail
 		E.db.unitframe.units.raid1.buffs.sizeOverride = 26
-		E.db.unitframe.units.raid1.buffs.yOffset = 26
+		E.db.unitframe.units.raid1.buffs.yOffset = 12
 		E.db.unitframe.units.raid1.debuffs.enable = Private.isRetail
 		E.db.unitframe.units.raid1.debuffs.sizeOverride = 26
 		E.db.unitframe.units.raid1.height = (scaled and 60) or 70
@@ -2142,7 +2083,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid1.width = 140
 
 		-- Healing Raid2
-		E.db.unitframe.units.raid2.buffIndicator.size = 14
+		E.db.unitframe.units.raid2.buffIndicator.size = 16
 		E.db.unitframe.units.raid2.buffs.enable = Private.isRetail
 		E.db.unitframe.units.raid2.debuffs.enable = Private.isRetail
 		E.db.unitframe.units.raid2.debuffs.sizeOverride = 22
@@ -2163,7 +2104,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.width = 140
 
 		-- Healing Raid3
-		E.db.unitframe.units.raid3.buffIndicator.size = 10
+		E.db.unitframe.units.raid3.buffIndicator.size = 12
 		E.db.unitframe.units.raid3.height = (scaled and 32) or 36
 		E.db.unitframe.units.raid3.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid3.raidicon.size = 12
@@ -2179,10 +2120,6 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 60
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 11
 		E.db.unitframe.units.raid3.width = 140
-
-		-- Healing Private Auras
-		E.db.unitframe.units.raid1.privateAuras.icon.size = 26
-		E.db.unitframe.units.raid2.privateAuras.icon.size = 22
 
 		-- Main/Support Heal Prediction
 		E.db.unitframe.units.arena.healPrediction.enable = true

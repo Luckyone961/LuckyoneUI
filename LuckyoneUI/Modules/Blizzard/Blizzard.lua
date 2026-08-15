@@ -11,6 +11,7 @@ local LFGListSearchPanel_SelectResult = LFGListSearchPanel_SelectResult
 local LFGListSearchPanel_SignUp = LFGListSearchPanel_SignUp
 local LFGListSearchPanelUtil_CanSelectResult = LFGListSearchPanelUtil_CanSelectResult
 local RemoveQuestWatch = C_QuestLog.RemoveQuestWatch
+local RunNextFrame = RunNextFrame
 
 local _G = _G
 local UIParent = UIParent
@@ -93,6 +94,15 @@ function Private:DisabledFrames()
 			ErrorFrame:UnregisterAllEvents()
 			ErrorFrame:SetParent(GetHiddenFrame())
 			ErrorFrame:Hide()
+		end
+	end
+
+	if db.TalkingHead and Private.isRetail then
+		local TalkingHeadFrame = _G.TalkingHeadFrame
+		if TalkingHeadFrame then
+			hooksecurefunc(TalkingHeadFrame, 'PlayCurrent', function(frame)
+				RunNextFrame(function() frame:Hide() end)
+			end)
 		end
 	end
 end
@@ -207,4 +217,6 @@ end
 
 function Blizzard:OnEnable()
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
+	self:RegisterEvent('PLAYER_REGEN_DISABLED')
+	self:RegisterEvent('PLAYER_REGEN_ENABLED')
 end

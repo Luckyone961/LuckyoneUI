@@ -55,6 +55,7 @@ function Private:NameplateCVars(noPrint)
 	SetCVar('nameplateMaxDistance', (Private.isRetail and 100) or 41)
 
 	if Private.isRetail then
+		SetCVar('nameplateShowFriendlyRealmName', 0)
 		SetCVar('nameplateShowOnlyNameForFriendlyPlayerUnits', 1)
 		SetCVar('nameplateUseClassColorForFriendlyPlayerUnitNames', 1)
 	else
