@@ -870,6 +870,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.cooldown.global.fontSize = 12
 	E.db.cooldown.global.hideBling = true
 	E.db.cooldown.global.offsetX = 1
+	E.db.cooldown.global.thresholdText.secondsThreshold = -1
 	E.db.cooldown.nameplates.colors.edge.a = 0
 	E.db.cooldown.nameplates.fontSize = 12
 	E.db.cooldown.nameplates.hideBling = true
