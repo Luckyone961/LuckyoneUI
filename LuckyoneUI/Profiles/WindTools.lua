@@ -6,6 +6,7 @@ if not Private.ElvUI then
 	return
 end
 
+local pairs = pairs
 local unpack = unpack
 
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
@@ -148,7 +149,6 @@ function Private:Setup_Private_WindTools()
 	Set(E.private, 'WT.skins.addons.warpDeplete', false)
 	Set(E.private, 'WT.skins.bigWigsSkin.queueTimer.countDown.name', Private.Font)
 	Set(E.private, 'WT.skins.bigWigsSkin.queueTimer.countDown.size', 12)
-	Set(E.private, 'WT.skins.blizzard.enable', false)
 	Set(E.private, 'WT.skins.cooldownViewer.enable', false)
 	Set(E.private, 'WT.skins.damageMeter.enable', false)
 	Set(E.private, 'WT.skins.elvui.enable', false)
@@ -188,4 +188,18 @@ function Private:Setup_Private_WindTools()
 	Set(E.private, 'WT.tooltips.titleIcon.enable', false)
 	Set(E.private, 'WT.unitFrames.roleIcon.enable', false)
 	Set(E.private, 'WT.unitFrames.tags.enable', false)
+
+	-- Handle Blizzard skins
+	Set(E.private, 'WT.skins.blizzard.enable', true)
+
+	-- Disable all Blizzard skins
+	for key in pairs(V.WT.skins.blizzard) do
+		if key ~= 'enable' then
+			E.private.WT.skins.blizzard[key] = false
+		end
+	end
+
+	-- Enable the skins we want
+	Set(E.private, 'WT.skins.blizzard.objectiveTracker', true)
+	Set(E.private, 'WT.skins.blizzard.scenario', true)
 end
