@@ -371,6 +371,7 @@ local function BuildMapSection()
 	section.args.minimapButtons.args.yOffset = ACH:Range(L["Y Offset"], nil, 5, { min = -200, max = 200, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
 	section.args.minimapButtons.args.size = ACH:Range(L["Icon Size"], nil, 6, { min = 8, max = 54, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
 	section.args.minimapButtons.args.spacing = ACH:Range(L["Spacing"], nil, 7, { min = -1, max = 12, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
+	section.args.minimapButtons.args.perRow = ACH:Range(L["Buttons Per Row"], nil, 8, { min = 1, max = 20, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
 	section.args.blizzardButtons = ACH:Group(L["Blizzard Buttons"], nil, 3, nil, function(info) return Private.Addon.db.profile.map.minimap.buttons.blizzard[info[#info]] end, function(info, value) Private.Addon.db.profile.map.minimap.buttons.blizzard[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end, not Private.isRetail)
 	section.args.blizzardButtons.inline = true
 	section.args.blizzardButtons.args.expansionLandingPage = ACH:Toggle(L["Expansion Landing Page"], L["Include the Expansion Landing Page button in the Minimap button bar."], 1)

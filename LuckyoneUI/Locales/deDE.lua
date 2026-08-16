@@ -45,6 +45,7 @@ L["Boss Banner"] = true -- No need to translate
 L["BossMods Profiles"] = "BossMods Profile"
 L["Brewmaster"] = true
 L["BuffReminders profile has been set."] = "BuffReminders Profil wurde festgelegt."
+L["Buttons Per Row"] = true
 L["Changelog:"] = "Änderungsprotokoll:"
 L["Character Specific"] = "Charakterspezifisch"
 L["Chat CVars"] = true -- No need to translate

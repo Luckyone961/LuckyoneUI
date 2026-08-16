@@ -45,6 +45,7 @@ L["Boss Banner"] = "Painel do Chefe"
 L["BossMods Profiles"] = "Perfis dos BossMods"
 L["Brewmaster"] = true
 L["BuffReminders profile has been set."] = true
+L["Buttons Per Row"] = true
 L["Changelog:"] = "Mudanças:"
 L["Character Specific"] = true
 L["Chat CVars"] = "CVars de Chat"

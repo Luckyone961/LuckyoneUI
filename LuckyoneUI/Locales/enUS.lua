@@ -45,6 +45,7 @@ L["Boss Banner"] = true
 L["BossMods Profiles"] = true
 L["Brewmaster"] = true
 L["BuffReminders profile has been set."] = true
+L["Buttons Per Row"] = true
 L["Changelog:"] = true
 L["Character Specific"] = true
 L["Chat CVars"] = true
