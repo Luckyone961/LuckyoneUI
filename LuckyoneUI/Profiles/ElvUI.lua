@@ -1423,6 +1423,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.buffs.countXOffset = 2
 	E.db.unitframe.units.player.buffs.countYOffset = 0
 	E.db.unitframe.units.player.buffs.enable = Private.isRetail
+	E.db.unitframe.units.player.buffs.filterLists.group2.enable = false
 	E.db.unitframe.units.player.buffs.perrow = 3
 	E.db.unitframe.units.player.buffs.priority = 'Blacklist,Personal,NonPersonal'
 	E.db.unitframe.units.player.buffs.sizeOverride = 30
