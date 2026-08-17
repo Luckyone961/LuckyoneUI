@@ -209,8 +209,167 @@ local layoutNames = {
 	support = 'Luckyone Support',
 }
 
+-- Shared Party
+local function ApplyPartyShared()
+	E.db.unitframe.units.party.customTexts = {}
+	E.db.unitframe.units.party.customTexts.Luckyone_Name = {
+		attachTextTo = 'Health',
+		enable = true,
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		justifyH = 'CENTER',
+		size = 12,
+		text_format = '',
+		xOffset = 0,
+		yOffset = 0
+	}
+
+	E.db.unitframe.units.party.buffIndicator.countFont = Private.Font
+	E.db.unitframe.units.party.buffIndicator.size = 14
+	E.db.unitframe.units.party.buffs.anchorPoint = 'BOTTOM'
+	E.db.unitframe.units.party.buffs.clickThrough = true
+	E.db.unitframe.units.party.buffs.countFont = Private.Font
+	E.db.unitframe.units.party.buffs.countFontSize = 10
+	E.db.unitframe.units.party.buffs.countPosition = 'TOPRIGHT'
+	E.db.unitframe.units.party.buffs.enable = Private.isRetail
+	E.db.unitframe.units.party.classbar.enable = false
+	E.db.unitframe.units.party.debuffs.countFont = Private.Font
+	E.db.unitframe.units.party.debuffs.countFontSize = 10
+	E.db.unitframe.units.party.debuffs.countPosition = 'TOPRIGHT'
+	E.db.unitframe.units.party.debuffs.enable = true
+	E.db.unitframe.units.party.debuffs.priority = 'Dispellable,RaidDebuffs'
+	E.db.unitframe.units.party.disableFocusGlow = true
+	E.db.unitframe.units.party.disableTargetGlow = true
+	E.db.unitframe.units.party.fader.minAlpha = 0.5
+	E.db.unitframe.units.party.fader.smooth = 0
+	E.db.unitframe.units.party.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.party.health.text_format = ''
+	E.db.unitframe.units.party.horizontalSpacing = 1
+	E.db.unitframe.units.party.name.text_format = ''
+	E.db.unitframe.units.party.petsGroup.anchorPoint = 'LEFT'
+	E.db.unitframe.units.party.petsGroup.enable = (Private.isClassic or Private.isTBC)
+	E.db.unitframe.units.party.petsGroup.height = 31
+	E.db.unitframe.units.party.petsGroup.name.attachTextTo = 'Frame'
+	E.db.unitframe.units.party.petsGroup.raidicon.attachTo = 'LEFT'
+	E.db.unitframe.units.party.petsGroup.raidicon.size = 22
+	E.db.unitframe.units.party.petsGroup.raidicon.xOffset = -24
+	E.db.unitframe.units.party.petsGroup.raidicon.yOffset = 0
+	E.db.unitframe.units.party.petsGroup.threatStyle = 'NONE'
+	E.db.unitframe.units.party.petsGroup.xOffset = -1
+	E.db.unitframe.units.party.petsGroup.yOffset = 16
+	E.db.unitframe.units.party.phaseIndicator.scale = 0.5
+	E.db.unitframe.units.party.power.enable = false
+	E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
+	E.db.unitframe.units.party.raidicon.size = 14
+	E.db.unitframe.units.party.raidicon.yOffset = 0
+	E.db.unitframe.units.party.raidRoleIcons.combatHide = true
+	E.db.unitframe.units.party.raidRoleIcons.yOffset = 1
+	E.db.unitframe.units.party.rdebuffs.enable = false
+	E.db.unitframe.units.party.readycheckIcon.yOffset = 0
+	E.db.unitframe.units.party.roleIcon.damager = false
+	E.db.unitframe.units.party.roleIcon.position = 'LEFT'
+	E.db.unitframe.units.party.roleIcon.xOffset = 0
+	E.db.unitframe.units.party.showPlayer = false
+	E.db.unitframe.units.party.summonIcon.attachTo = 'RIGHT'
+	E.db.unitframe.units.party.threatStyle = 'NONE'
+	E.db.unitframe.units.party.verticalSpacing = 1
+end
+
+-- Vertical Party
+local function ApplyPartyVertical()
+	E.db.unitframe.units.party.buffs.countXOffset = 1
+	E.db.unitframe.units.party.buffs.countYOffset = -1
+	E.db.unitframe.units.party.buffs.growthX = 'LEFT'
+	E.db.unitframe.units.party.buffs.perrow = 3
+	E.db.unitframe.units.party.buffs.sizeOverride = 22
+	E.db.unitframe.units.party.buffs.yOffset = 10
+	E.db.unitframe.units.party.debuffs.anchorPoint = 'TOPRIGHT'
+	E.db.unitframe.units.party.debuffs.countXOffset = 1
+	E.db.unitframe.units.party.debuffs.countYOffset = -1
+	E.db.unitframe.units.party.debuffs.growthY = 'DOWN'
+	E.db.unitframe.units.party.debuffs.numrows = 2
+	E.db.unitframe.units.party.debuffs.perrow = 4
+	E.db.unitframe.units.party.debuffs.sizeOverride = 31
+	E.db.unitframe.units.party.debuffs.xOffset = 1
+	E.db.unitframe.units.party.debuffs.yOffset = 0
+	E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
+	E.db.unitframe.units.party.height = 63
+	E.db.unitframe.units.party.phaseIndicator.anchorPoint = 'LEFT'
+	E.db.unitframe.units.party.phaseIndicator.xOffset = 15
+	E.db.unitframe.units.party.raidicon.xOffset = -3
+	E.db.unitframe.units.party.readycheckIcon.attachTo = 'Frame'
+	E.db.unitframe.units.party.readycheckIcon.position = 'RIGHT'
+	E.db.unitframe.units.party.readycheckIcon.size = 18
+	E.db.unitframe.units.party.readycheckIcon.xOffset = -2
+	E.db.unitframe.units.party.roleIcon.size = 14
+	E.db.unitframe.units.party.summonIcon.size = 24
+	E.db.unitframe.units.party.summonIcon.xOffset = -15
+	E.db.unitframe.units.party.width = 220
+end
+
+-- Horizontal Party
+local function ApplyPartyHorizontal()
+	E.db.unitframe.units.party.buffIndicator.countFontSize = 10
+	E.db.unitframe.units.party.buffs.countXOffset = 2
+	E.db.unitframe.units.party.buffs.countYOffset = 0
+	E.db.unitframe.units.party.buffs.growthY = 'DOWN'
+	E.db.unitframe.units.party.buffs.perrow = 1
+	E.db.unitframe.units.party.buffs.sizeOverride = 26
+	E.db.unitframe.units.party.buffs.yOffset = 12
+	E.db.unitframe.units.party.debuffs.anchorPoint = 'BOTTOMRIGHT'
+	E.db.unitframe.units.party.debuffs.clickThrough = true
+	E.db.unitframe.units.party.debuffs.countXOffset = 2
+	E.db.unitframe.units.party.debuffs.countYOffset = 0
+	E.db.unitframe.units.party.debuffs.growthX = 'LEFT'
+	E.db.unitframe.units.party.debuffs.perrow = 2
+	E.db.unitframe.units.party.debuffs.sizeOverride = 26
+	E.db.unitframe.units.party.debuffs.yOffset = -1
+	E.db.unitframe.units.party.groupBy = 'GROUP'
+	E.db.unitframe.units.party.growthDirection = 'RIGHT_DOWN'
+	E.db.unitframe.units.party.health.position = 'BOTTOM'
+	E.db.unitframe.units.party.health.yOffset = 2
+	E.db.unitframe.units.party.height = 70
+	E.db.unitframe.units.party.infoPanel.height = 12
+	E.db.unitframe.units.party.name.attachTextTo = 'Frame'
+	E.db.unitframe.units.party.orientation = 'MIDDLE'
+	E.db.unitframe.units.party.phaseIndicator.anchorPoint = 'TOP'
+	E.db.unitframe.units.party.power.position = 'BOTTOMRIGHT'
+	E.db.unitframe.units.party.power.text_format = ''
+	E.db.unitframe.units.party.power.yOffset = 2
+	E.db.unitframe.units.party.pvpclassificationindicator.enable = false
+	E.db.unitframe.units.party.raidicon.xOffset = -2
+	E.db.unitframe.units.party.raidRoleIcons.scale = 0.8
+	E.db.unitframe.units.party.readycheckIcon.position = 'TOP'
+	E.db.unitframe.units.party.readycheckIcon.size = 14
+	E.db.unitframe.units.party.resurrectIcon.attachTo = 'RIGHT'
+	E.db.unitframe.units.party.resurrectIcon.size = 18
+	E.db.unitframe.units.party.roleIcon.attachTo = 'Frame'
+	E.db.unitframe.units.party.roleIcon.size = 16
+	E.db.unitframe.units.party.roleIcon.yOffset = 0
+	E.db.unitframe.units.party.summonIcon.size = 18
+	E.db.unitframe.units.party.width = 140
+end
+
+-- Healing party orientation
+local function SetupHealingParty(partyStyle, scaled)
+	E.db.unitframe.units.party = E:CopyTable({}, P.unitframe.units.party)
+
+	ApplyPartyShared()
+
+	if partyStyle == 'horizontal' then
+		ApplyPartyHorizontal()
+		E.db.movers.ElvUF_PartyMover = 'BOTTOM,ElvUIParent,BOTTOM,0,275'
+	else
+		ApplyPartyVertical()
+		E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,322,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,610,-400'
+	end
+
+	E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
+	E.db.unitframe.units.party.healPrediction.enable = true
+end
+
 -- Setup Midnight layout
-function Private:Setup_Layout(layout, installer)
+function Private:Setup_Layout(layout, installer, partyStyle)
 	if Private.isRetail or Private.isMists then
 		DisableLibDualSpec()
 	end
@@ -226,7 +385,7 @@ function Private:Setup_Layout(layout, installer)
 	Private:Setup_PrivateDB()
 
 	-- E.db & Movers
-	Private:Setup_ElvUI(layout)
+	Private:Setup_ElvUI(layout, partyStyle)
 
 	-- Push the update
 	Refresh()
@@ -536,7 +695,7 @@ function Private:Setup_NamePlates(installer)
 end
 
 -- ElvUI profile
-function Private:Setup_ElvUI(layout)
+function Private:Setup_ElvUI(layout, partyStyle)
 
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
@@ -1671,99 +1830,11 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raidpet.width = 92
 
 	-- Shared growth directions
-	E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
 	E.db.unitframe.units.raidpet.growthDirection = 'RIGHT_DOWN'
 
 	-- Shared Party
-	E.db.unitframe.units.party.customTexts = {}
-	E.db.unitframe.units.party.customTexts.Luckyone_Name = {
-		attachTextTo = 'Health',
-		enable = true,
-		font = Private.Font,
-		fontOutline = Private.Outline,
-		justifyH = 'CENTER',
-		size = 12,
-		text_format = '',
-		xOffset = 0,
-		yOffset = 0
-	}
-
-	E.db.unitframe.units.party.buffIndicator.countFont = Private.Font
-	E.db.unitframe.units.party.buffIndicator.size = 14
-	E.db.unitframe.units.party.buffs.anchorPoint = 'BOTTOM'
-	E.db.unitframe.units.party.buffs.clickThrough = true
-	E.db.unitframe.units.party.buffs.countFont = Private.Font
-	E.db.unitframe.units.party.buffs.countFontSize = 10
-	E.db.unitframe.units.party.buffs.countPosition = 'TOPRIGHT'
-	E.db.unitframe.units.party.buffs.countXOffset = 1
-	E.db.unitframe.units.party.buffs.countYOffset = -1
-	E.db.unitframe.units.party.buffs.enable = Private.isRetail
-	E.db.unitframe.units.party.buffs.growthX = 'LEFT'
-	E.db.unitframe.units.party.buffs.perrow = 3
-	E.db.unitframe.units.party.buffs.sizeOverride = 22
-	E.db.unitframe.units.party.buffs.yOffset = 10
-	E.db.unitframe.units.party.classbar.enable = false
-	E.db.unitframe.units.party.debuffs.anchorPoint = 'TOPRIGHT'
-	E.db.unitframe.units.party.debuffs.countFont = Private.Font
-	E.db.unitframe.units.party.debuffs.countFontSize = 10
-	E.db.unitframe.units.party.debuffs.countPosition = 'TOPRIGHT'
-	E.db.unitframe.units.party.debuffs.countXOffset = 1
-	E.db.unitframe.units.party.debuffs.countYOffset = -1
-	E.db.unitframe.units.party.debuffs.enable = true
-	E.db.unitframe.units.party.debuffs.growthY = 'DOWN'
-	E.db.unitframe.units.party.debuffs.numrows = 2
-	E.db.unitframe.units.party.debuffs.perrow = 4
-	E.db.unitframe.units.party.debuffs.priority = 'Dispellable,RaidDebuffs'
-	E.db.unitframe.units.party.debuffs.sizeOverride = 31
-	E.db.unitframe.units.party.debuffs.xOffset = 1
-	E.db.unitframe.units.party.debuffs.yOffset = 0
-	E.db.unitframe.units.party.disableFocusGlow = true
-	E.db.unitframe.units.party.disableTargetGlow = true
-	E.db.unitframe.units.party.fader.minAlpha = 0.5
-	E.db.unitframe.units.party.fader.smooth = 0
-	E.db.unitframe.units.party.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
-	E.db.unitframe.units.party.health.text_format = ''
-	E.db.unitframe.units.party.height = 63
-	E.db.unitframe.units.party.horizontalSpacing = 1
-	E.db.unitframe.units.party.name.text_format = ''
-	E.db.unitframe.units.party.petsGroup.anchorPoint = 'LEFT'
-	E.db.unitframe.units.party.petsGroup.enable = (Private.isClassic or Private.isTBC)
-	E.db.unitframe.units.party.petsGroup.height = 31
-	E.db.unitframe.units.party.petsGroup.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.party.petsGroup.raidicon.attachTo = 'LEFT'
-	E.db.unitframe.units.party.petsGroup.raidicon.size = 22
-	E.db.unitframe.units.party.petsGroup.raidicon.xOffset = -24
-	E.db.unitframe.units.party.petsGroup.raidicon.yOffset = 0
-	E.db.unitframe.units.party.petsGroup.threatStyle = 'NONE'
-	E.db.unitframe.units.party.petsGroup.xOffset = -1
-	E.db.unitframe.units.party.petsGroup.yOffset = 16
-	E.db.unitframe.units.party.phaseIndicator.anchorPoint = 'LEFT'
-	E.db.unitframe.units.party.phaseIndicator.scale = 0.5
-	E.db.unitframe.units.party.phaseIndicator.xOffset = 15
-	E.db.unitframe.units.party.power.enable = false
-	E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
-	E.db.unitframe.units.party.raidicon.size = 14
-	E.db.unitframe.units.party.raidicon.xOffset = -3
-	E.db.unitframe.units.party.raidicon.yOffset = 0
-	E.db.unitframe.units.party.raidRoleIcons.combatHide = true
-	E.db.unitframe.units.party.raidRoleIcons.yOffset = 1
-	E.db.unitframe.units.party.rdebuffs.enable = false
-	E.db.unitframe.units.party.readycheckIcon.attachTo = 'Frame'
-	E.db.unitframe.units.party.readycheckIcon.position = 'RIGHT'
-	E.db.unitframe.units.party.readycheckIcon.size = 18
-	E.db.unitframe.units.party.readycheckIcon.xOffset = -2
-	E.db.unitframe.units.party.readycheckIcon.yOffset = 0
-	E.db.unitframe.units.party.roleIcon.damager = false
-	E.db.unitframe.units.party.roleIcon.position = 'LEFT'
-	E.db.unitframe.units.party.roleIcon.size = 14
-	E.db.unitframe.units.party.roleIcon.xOffset = 0
-	E.db.unitframe.units.party.showPlayer = false
-	E.db.unitframe.units.party.summonIcon.attachTo = 'RIGHT'
-	E.db.unitframe.units.party.summonIcon.size = 24
-	E.db.unitframe.units.party.summonIcon.xOffset = -15
-	E.db.unitframe.units.party.threatStyle = 'NONE'
-	E.db.unitframe.units.party.verticalSpacing = 1
-	E.db.unitframe.units.party.width = 220
+	ApplyPartyShared()
+	ApplyPartyVertical()
 
 	-- Shared Raid1
 	E.db.unitframe.units.raid1.buffIndicator.countFont = Private.Font
@@ -2032,9 +2103,6 @@ function Private:Setup_ElvUI(layout)
 			E.db.unitframe.units.player.power.EnergyManaRegen = true
 		end
 
-		-- Healing Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
-
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
 		E.db.unitframe.units.raid1.buffs.enable = Private.isRetail
@@ -2081,7 +2149,6 @@ function Private:Setup_ElvUI(layout)
 
 		-- Healing Heal Prediction
 		E.db.unitframe.units.boss.healPrediction.enable = true
-		E.db.unitframe.units.party.healPrediction.enable = true
 		E.db.unitframe.units.raid1.healPrediction.enable = true
 		E.db.unitframe.units.raid2.healPrediction.enable = true
 		E.db.unitframe.units.raid3.healPrediction.enable = true
@@ -2149,5 +2216,9 @@ function Private:Setup_ElvUI(layout)
 		E.db.actionbar.bar4.buttonSize = 25
 		E.db.actionbar.bar4.point = 'BOTTOMRIGHT'
 		E.db.movers.ElvAB_4 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,2'
+	end
+
+	if layout == 'healing' then
+		SetupHealingParty(partyStyle, scaled)
 	end
 end
