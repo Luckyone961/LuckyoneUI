@@ -358,7 +358,7 @@ local function SetupHealingParty(partyStyle, scaled)
 
 	if partyStyle == 'horizontal' then
 		ApplyPartyHorizontal()
-		E.db.movers.ElvUF_PartyMover = 'BOTTOM,ElvUIParent,BOTTOM,0,275'
+		E.db.movers.ElvUF_PartyMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,215') or 'BOTTOM,ElvUIParent,BOTTOM,0,275'
 	else
 		ApplyPartyVertical()
 		E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,322,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,610,-400'
