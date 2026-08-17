@@ -1640,7 +1640,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	-- Player debuffs anchor + filters for retail
 	if Private.isRetail then
 		E.db.unitframe.units.player.debuffs.anchorPoint = 'TOPRIGHT'
-		E.db.unitframe.units.player.debuffs.clickThrough = true
 		E.db.unitframe.units.player.debuffs.growthX = 'LEFT'
 		E.db.unitframe.units.player.debuffs.sizeOverride = 54
 		E.db.unitframe.units.player.debuffs.spacing = 1
