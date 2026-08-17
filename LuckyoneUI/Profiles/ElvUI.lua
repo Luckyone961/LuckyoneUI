@@ -563,9 +563,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.general.backdropfadecolor.g = 0.05
 	E.db.general.backdropfadecolor.r = 0.05
 	E.db.general.bonusObjectivePosition = 'AUTO'
-	E.db.general.bordercolor.b = 0
-	E.db.general.bordercolor.g = 0
-	E.db.general.bordercolor.r = 0
 	E.db.general.bottomPanel = false
 	E.db.general.customGlow.color.a = 1
 	E.db.general.customGlow.color.b = 1
@@ -629,7 +626,6 @@ function Private:Setup_ElvUI(layout)
 		if i ~= 11 and i ~= 12 then
 			E.db.actionbar['bar'..i].backdrop = false
 			E.db.actionbar['bar'..i].buttons = 12
-			E.db.actionbar['bar'..i].buttonSize = 32
 			E.db.actionbar['bar'..i].buttonSpacing = 1
 			E.db.actionbar['bar'..i].buttonsPerRow = 12
 			E.db.actionbar['bar'..i].countFont = Private.Font
@@ -645,7 +641,6 @@ function Private:Setup_ElvUI(layout)
 			E.db.actionbar['bar'..i].hotkeyTextYOffset = -1
 			E.db.actionbar['bar'..i].macroFont = Private.Font
 			E.db.actionbar['bar'..i].macroFontOutline = Private.Outline
-			E.db.actionbar['bar'..i].macrotext = false
 			E.db.actionbar['bar'..i].macroTextPosition = 'BOTTOM'
 			E.db.actionbar['bar'..i].macroTextXOffset = 1
 			E.db.actionbar['bar'..i].macroTextYOffset = 1
@@ -700,7 +695,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.extraActionButton.hotkeyTextYOffset = -1
 	E.db.actionbar.extraActionButton.scale = 0.89
-	E.db.actionbar.flyoutSize = 32
 	E.db.actionbar.font = Private.Font
 	E.db.actionbar.fontOutline = Private.Outline
 	E.db.actionbar.fontSize = 9
@@ -976,9 +970,7 @@ function Private:Setup_ElvUI(layout)
 	E.db.tooltip.role = false
 	E.db.tooltip.showElvUIUsers = true
 	E.db.tooltip.showMount = false
-	E.db.tooltip.smallTextFontSize = 12
 	E.db.tooltip.targetInfo = false
-	E.db.tooltip.textFontSize = 12
 
 	-- Shared UnitFrames
 	E.db.unitframe.colors.castbar_backdrop.b = 0.05
@@ -1183,7 +1175,6 @@ function Private:Setup_ElvUI(layout)
 		yOffset = -12
 	}
 
-	E.db.unitframe.units.boss.buffIndicator.enable = false
 	E.db.unitframe.units.boss.buffs.anchorPoint = 'TOPRIGHT'
 	E.db.unitframe.units.boss.buffs.clickThrough = true
 	E.db.unitframe.units.boss.buffs.countFont = Private.Font
@@ -1433,9 +1424,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.castbar.customColor.colorBackdrop.b = 0.61
 	E.db.unitframe.units.player.castbar.customColor.colorBackdrop.g = 0.56
 	E.db.unitframe.units.player.castbar.customColor.colorBackdrop.r = 0.54
-	E.db.unitframe.units.player.castbar.customColor.colorInterrupted.b = 0.30
-	E.db.unitframe.units.player.castbar.customColor.colorInterrupted.g = 0.30
-	E.db.unitframe.units.player.castbar.customColor.colorInterrupted.r = 0.30
 	E.db.unitframe.units.player.castbar.customColor.colorNoInterrupt.b = 0.05
 	E.db.unitframe.units.player.castbar.customColor.colorNoInterrupt.g = 0.05
 	E.db.unitframe.units.player.castbar.customColor.colorNoInterrupt.r = 0.05
@@ -1477,7 +1465,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.player.debuffs.perrow = Private.isRetail and 4 or 12
 	E.db.unitframe.units.player.disableMouseoverGlow = true
 	E.db.unitframe.units.player.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
-	E.db.unitframe.units.player.healPrediction.enable = true
 	E.db.unitframe.units.player.health.text_format = ''
 	E.db.unitframe.units.player.height = 50
 	E.db.unitframe.units.player.partyIndicator.enable = false
@@ -1580,7 +1567,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.target.fader.minAlpha = 0.5
 	E.db.unitframe.units.target.fader.smooth = 0
 	E.db.unitframe.units.target.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
-	E.db.unitframe.units.target.healPrediction.enable = true
 	E.db.unitframe.units.target.health.text_format = ''
 	E.db.unitframe.units.target.height = 50
 	E.db.unitframe.units.target.middleClickFocus = false
@@ -1686,9 +1672,6 @@ function Private:Setup_ElvUI(layout)
 
 	-- Shared growth directions
 	E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
-	E.db.unitframe.units.raid1.growthDirection = 'RIGHT_DOWN'
-	E.db.unitframe.units.raid2.growthDirection = 'RIGHT_DOWN'
-	E.db.unitframe.units.raid3.growthDirection = 'RIGHT_DOWN'
 	E.db.unitframe.units.raidpet.growthDirection = 'RIGHT_DOWN'
 
 	-- Shared Party
@@ -1845,7 +1828,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.summonIcon.size = 18
 	E.db.unitframe.units.raid1.threatStyle = 'NONE'
 	E.db.unitframe.units.raid1.verticalSpacing = 1
-	E.db.unitframe.units.raid1.visibility = Private.isRetail and '[@raid6,noexists][@raid21,exists] hide;show' or '[@raid6,noexists][@raid11,exists] hide;show'
 
 	-- Shared Raid2
 	E:CopyTable(E.db.unitframe.units.raid2, E.db.unitframe.units.raid1)
@@ -1907,7 +1889,6 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.summonIcon.size = 18
 	E.db.unitframe.units.raid3.threatStyle = 'NONE'
 	E.db.unitframe.units.raid3.verticalSpacing = 1
-	E.db.unitframe.units.raid3.visibility = Private.isRetail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
 
 	-- Shared movers
 	E.db.movers.AddonCompartmentMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66'
@@ -2030,14 +2011,7 @@ function Private:Setup_ElvUI(layout)
 
 		-- Main/Support Heal Prediction
 		E.db.unitframe.units.arena.healPrediction.enable = false
-		E.db.unitframe.units.boss.healPrediction.enable = false
-		E.db.unitframe.units.party.healPrediction.enable = false
-		E.db.unitframe.units.raid1.healPrediction.enable = false
-		E.db.unitframe.units.raid2.healPrediction.enable = false
-		E.db.unitframe.units.raid3.healPrediction.enable = false
-		E.db.unitframe.units.raidpet.healPrediction.enable = false
 		E.db.unitframe.units.pet.healPrediction.enable = false
-		E.db.unitframe.units.targettarget.healPrediction.enable = false
 		E.db.unitframe.units.focus.healPrediction.enable = false
 
 	elseif layout == 'healing' then
@@ -2106,16 +2080,13 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.width = 140
 
 		-- Healing Heal Prediction
-		E.db.unitframe.units.arena.healPrediction.enable = true
 		E.db.unitframe.units.boss.healPrediction.enable = true
 		E.db.unitframe.units.party.healPrediction.enable = true
 		E.db.unitframe.units.raid1.healPrediction.enable = true
 		E.db.unitframe.units.raid2.healPrediction.enable = true
 		E.db.unitframe.units.raid3.healPrediction.enable = true
 		E.db.unitframe.units.raidpet.healPrediction.enable = true
-		E.db.unitframe.units.pet.healPrediction.enable = true
 		E.db.unitframe.units.targettarget.healPrediction.enable = true
-		E.db.unitframe.units.focus.healPrediction.enable = true
 	end
 
 	-- Layout specific movers
