@@ -270,7 +270,6 @@ local function ApplyPartyShared()
 	E.db.unitframe.units.party.roleIcon.damager = false
 	E.db.unitframe.units.party.roleIcon.position = 'LEFT'
 	E.db.unitframe.units.party.roleIcon.xOffset = 0
-	E.db.unitframe.units.party.showPlayer = false
 	E.db.unitframe.units.party.summonIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.party.threatStyle = 'NONE'
 	E.db.unitframe.units.party.verticalSpacing = 1
@@ -302,6 +301,7 @@ local function ApplyPartyVertical()
 	E.db.unitframe.units.party.readycheckIcon.size = 18
 	E.db.unitframe.units.party.readycheckIcon.xOffset = -2
 	E.db.unitframe.units.party.roleIcon.size = 14
+	E.db.unitframe.units.party.showPlayer = false
 	E.db.unitframe.units.party.summonIcon.size = 24
 	E.db.unitframe.units.party.summonIcon.xOffset = -15
 	E.db.unitframe.units.party.width = 220
@@ -345,6 +345,7 @@ local function ApplyPartyHorizontal()
 	E.db.unitframe.units.party.roleIcon.attachTo = 'Frame'
 	E.db.unitframe.units.party.roleIcon.size = 16
 	E.db.unitframe.units.party.roleIcon.yOffset = 0
+	E.db.unitframe.units.party.showPlayer = true
 	E.db.unitframe.units.party.summonIcon.size = 18
 	E.db.unitframe.units.party.width = 140
 end
