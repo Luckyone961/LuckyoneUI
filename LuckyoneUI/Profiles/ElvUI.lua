@@ -232,6 +232,7 @@ local function ApplyPartyShared()
 	E.db.unitframe.units.party.buffs.countFontSize = 10
 	E.db.unitframe.units.party.buffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.party.buffs.enable = Private.isRetail
+	E.db.unitframe.units.party.buffs.perrow = 3
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.debuffs.countFont = Private.Font
 	E.db.unitframe.units.party.debuffs.countFontSize = 10
@@ -280,7 +281,6 @@ local function ApplyPartyVertical()
 	E.db.unitframe.units.party.buffs.countXOffset = 1
 	E.db.unitframe.units.party.buffs.countYOffset = -1
 	E.db.unitframe.units.party.buffs.growthX = 'LEFT'
-	E.db.unitframe.units.party.buffs.perrow = 3
 	E.db.unitframe.units.party.buffs.sizeOverride = 22
 	E.db.unitframe.units.party.buffs.yOffset = 10
 	E.db.unitframe.units.party.debuffs.anchorPoint = 'TOPRIGHT'
@@ -313,7 +313,6 @@ local function ApplyPartyHorizontal()
 	E.db.unitframe.units.party.buffs.countXOffset = 2
 	E.db.unitframe.units.party.buffs.countYOffset = 0
 	E.db.unitframe.units.party.buffs.growthY = 'DOWN'
-	E.db.unitframe.units.party.buffs.perrow = 1
 	E.db.unitframe.units.party.buffs.sizeOverride = 26
 	E.db.unitframe.units.party.buffs.yOffset = 12
 	E.db.unitframe.units.party.debuffs.anchorPoint = 'BOTTOMRIGHT'
