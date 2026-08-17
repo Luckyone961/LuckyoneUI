@@ -77,7 +77,6 @@ function Private:Setup_GlobalDB()
 	ActionBarsDT.tooltipXOffset = 0
 	ActionBarsDT.tooltipYOffset = 5
 	ActionBarsDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
-	ActionBarsDT.width = 395
 
 	DT:BuildPanelFrame('Luckyone_MiniMap_DT')
 
@@ -297,7 +296,6 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.threat.useSoloColor = true
 
 	-- NamePlates misc
-	E.db.nameplates.classColorNames = true
 	E.db.nameplates.visibility.enemy.guardians = true
 	E.db.nameplates.visibility.enemy.minions = true
 	E.db.nameplates.visibility.friendly.npcs = false
@@ -498,9 +496,9 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -16
 	E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'RIGHT'
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 32
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.position = 'RIGHT'
+	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.xOffset = 32
+	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.yOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.title.format = ''
 
 	-- Friendly NPC
@@ -545,8 +543,6 @@ function Private:Setup_ElvUI(layout)
 
 	-- AB conversion
 	E.db.convertPages = true
-	-- Protect movers error
-	E.db.movers = E.db.movers or {}
 
 	-- General
 	E.db.general.addonCompartment.fontOutline = Private.Outline
@@ -1830,6 +1826,11 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid1.raidRoleIcons.combatHide = true
 	E.db.unitframe.units.raid1.raidRoleIcons.scale = 0.8
 	E.db.unitframe.units.raid1.raidRoleIcons.yOffset = 1
+	E.db.unitframe.units.raid1.rdebuffs.font = Private.Font
+	E.db.unitframe.units.raid1.rdebuffs.fontSize = 9
+	E.db.unitframe.units.raid1.rdebuffs.stack.position = 'CENTER'
+	E.db.unitframe.units.raid1.rdebuffs.stack.xOffset = -10
+	E.db.unitframe.units.raid1.rdebuffs.stack.yOffset = 0
 	E.db.unitframe.units.raid1.readycheckIcon.position = 'TOP'
 	E.db.unitframe.units.raid1.readycheckIcon.size = 14
 	E.db.unitframe.units.raid1.readycheckIcon.yOffset = 0
@@ -1880,9 +1881,17 @@ function Private:Setup_ElvUI(layout)
 	E.db.unitframe.units.raid3.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.raid3.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid3.pvpclassificationindicator.enable = false
+	E.db.unitframe.units.raid3.raidicon.size = 12
 	E.db.unitframe.units.raid3.raidRoleIcons.combatHide = true
 	E.db.unitframe.units.raid3.raidRoleIcons.scale = 0.8
 	E.db.unitframe.units.raid3.raidRoleIcons.yOffset = 1
+	E.db.unitframe.units.raid3.rdebuffs.enable = true
+	E.db.unitframe.units.raid3.rdebuffs.font = Private.Font
+	E.db.unitframe.units.raid3.rdebuffs.fontSize = 9
+	E.db.unitframe.units.raid3.rdebuffs.size = 14
+	E.db.unitframe.units.raid3.rdebuffs.stack.position = 'CENTER'
+	E.db.unitframe.units.raid3.rdebuffs.stack.xOffset = -10
+	E.db.unitframe.units.raid3.rdebuffs.stack.yOffset = 0
 	E.db.unitframe.units.raid3.readycheckIcon.position = 'RIGHT'
 	E.db.unitframe.units.raid3.readycheckIcon.yOffset = 0
 	E.db.unitframe.units.raid3.resurrectIcon.attachTo = 'RIGHT'
@@ -1987,12 +1996,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid1.raidicon.size = 12
 		E.db.unitframe.units.raid1.raidicon.xOffset = 1
 		E.db.unitframe.units.raid1.raidicon.yOffset = 1
-		E.db.unitframe.units.raid1.rdebuffs.font = Private.Font
-		E.db.unitframe.units.raid1.rdebuffs.fontSize = 9
 		E.db.unitframe.units.raid1.rdebuffs.size = 14
-		E.db.unitframe.units.raid1.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.raid1.rdebuffs.stack.xOffset = -10
-		E.db.unitframe.units.raid1.rdebuffs.stack.yOffset = 0
 		E.db.unitframe.units.raid1.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid1.rdebuffs.yOffset = 13
 		E.db.unitframe.units.raid1.roleIcon.size = 12
@@ -2007,12 +2011,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.raidicon.size = 12
 		E.db.unitframe.units.raid2.raidicon.xOffset = 1
 		E.db.unitframe.units.raid2.raidicon.yOffset = 1
-		E.db.unitframe.units.raid2.rdebuffs.font = Private.Font
-		E.db.unitframe.units.raid2.rdebuffs.fontSize = 9
 		E.db.unitframe.units.raid2.rdebuffs.size = 14
-		E.db.unitframe.units.raid2.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.raid2.rdebuffs.stack.xOffset = -10
-		E.db.unitframe.units.raid2.rdebuffs.stack.yOffset = 0
 		E.db.unitframe.units.raid2.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid2.rdebuffs.yOffset = 13
 		E.db.unitframe.units.raid2.roleIcon.size = 12
@@ -2023,16 +2022,8 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.height = 30
 		E.db.unitframe.units.raid3.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid3.raidicon.attachToObject = 'Health'
-		E.db.unitframe.units.raid3.raidicon.size = 12
 		E.db.unitframe.units.raid3.raidicon.xOffset = 1
 		E.db.unitframe.units.raid3.raidicon.yOffset = 1
-		E.db.unitframe.units.raid3.rdebuffs.enable = true
-		E.db.unitframe.units.raid3.rdebuffs.font = Private.Font
-		E.db.unitframe.units.raid3.rdebuffs.fontSize = 9
-		E.db.unitframe.units.raid3.rdebuffs.size = 14
-		E.db.unitframe.units.raid3.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.raid3.rdebuffs.stack.xOffset = -10
-		E.db.unitframe.units.raid3.rdebuffs.stack.yOffset = 0
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 8
 		E.db.unitframe.units.raid3.width = (scaled and 86) or 96
@@ -2082,12 +2073,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid1.raidicon.size = 14
 		E.db.unitframe.units.raid1.raidicon.xOffset = -2
 		E.db.unitframe.units.raid1.raidicon.yOffset = 0
-		E.db.unitframe.units.raid1.rdebuffs.font = Private.Font
-		E.db.unitframe.units.raid1.rdebuffs.fontSize = 9
 		E.db.unitframe.units.raid1.rdebuffs.size = 18
-		E.db.unitframe.units.raid1.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.raid1.rdebuffs.stack.xOffset = -10
-		E.db.unitframe.units.raid1.rdebuffs.stack.yOffset = 0
 		E.db.unitframe.units.raid1.rdebuffs.xOffset = 60
 		E.db.unitframe.units.raid1.rdebuffs.yOffset = 27
 		E.db.unitframe.units.raid1.roleIcon.size = 16
@@ -2103,12 +2089,7 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid2.raidicon.size = 14
 		E.db.unitframe.units.raid2.raidicon.xOffset = -2
 		E.db.unitframe.units.raid2.raidicon.yOffset = 0
-		E.db.unitframe.units.raid2.rdebuffs.font = Private.Font
-		E.db.unitframe.units.raid2.rdebuffs.fontSize = 9
 		E.db.unitframe.units.raid2.rdebuffs.size = 18
-		E.db.unitframe.units.raid2.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.raid2.rdebuffs.stack.xOffset = -10
-		E.db.unitframe.units.raid2.rdebuffs.stack.yOffset = 0
 		E.db.unitframe.units.raid2.rdebuffs.xOffset = 60
 		E.db.unitframe.units.raid2.rdebuffs.yOffset = 20
 		E.db.unitframe.units.raid2.roleIcon.size = 16
@@ -2118,21 +2099,13 @@ function Private:Setup_ElvUI(layout)
 		E.db.unitframe.units.raid3.buffIndicator.size = 10
 		E.db.unitframe.units.raid3.height = (scaled and 32) or 36
 		E.db.unitframe.units.raid3.raidicon.attachTo = 'RIGHT'
-		E.db.unitframe.units.raid3.raidicon.size = 12
 		E.db.unitframe.units.raid3.raidicon.xOffset = -2
 		E.db.unitframe.units.raid3.raidicon.yOffset = 0
-		E.db.unitframe.units.raid3.rdebuffs.enable = true
-		E.db.unitframe.units.raid3.rdebuffs.font = Private.Font
-		E.db.unitframe.units.raid3.rdebuffs.fontSize = 9
-		E.db.unitframe.units.raid3.rdebuffs.size = 14
-		E.db.unitframe.units.raid3.rdebuffs.stack.position = 'CENTER'
-		E.db.unitframe.units.raid3.rdebuffs.stack.xOffset = -10
-		E.db.unitframe.units.raid3.rdebuffs.stack.yOffset = 0
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 60
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 11
 		E.db.unitframe.units.raid3.width = 140
 
-		-- Main/Support Heal Prediction
+		-- Healing Heal Prediction
 		E.db.unitframe.units.arena.healPrediction.enable = true
 		E.db.unitframe.units.boss.healPrediction.enable = true
 		E.db.unitframe.units.party.healPrediction.enable = true
