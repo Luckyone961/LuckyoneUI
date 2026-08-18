@@ -225,19 +225,22 @@ local function ApplyPartyShared()
 	}
 
 	E.db.unitframe.units.party.buffIndicator.countFont = Private.Font
+	E.db.unitframe.units.party.buffIndicator.countFontSize = 10
 	E.db.unitframe.units.party.buffIndicator.size = 14
-	E.db.unitframe.units.party.buffs.anchorPoint = 'BOTTOM'
+	E.db.unitframe.units.party.buffs.anchorPoint = 'BOTTOMLEFT'
 	E.db.unitframe.units.party.buffs.clickThrough = true
 	E.db.unitframe.units.party.buffs.countFont = Private.Font
 	E.db.unitframe.units.party.buffs.countFontSize = 10
 	E.db.unitframe.units.party.buffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.party.buffs.enable = Private.isRetail
 	E.db.unitframe.units.party.buffs.perrow = 3
+	E.db.unitframe.units.party.buffs.sizeOverride = 26
+	E.db.unitframe.units.party.buffs.spacing = -1
+	E.db.unitframe.units.party.buffs.yOffset = -1
 	E.db.unitframe.units.party.classbar.enable = false
 	E.db.unitframe.units.party.debuffs.countFont = Private.Font
 	E.db.unitframe.units.party.debuffs.countFontSize = 10
 	E.db.unitframe.units.party.debuffs.countPosition = 'TOPRIGHT'
-	E.db.unitframe.units.party.debuffs.enable = true
 	E.db.unitframe.units.party.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.party.disableFocusGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
@@ -247,17 +250,6 @@ local function ApplyPartyShared()
 	E.db.unitframe.units.party.health.text_format = ''
 	E.db.unitframe.units.party.horizontalSpacing = 1
 	E.db.unitframe.units.party.name.text_format = ''
-	E.db.unitframe.units.party.petsGroup.anchorPoint = 'LEFT'
-	E.db.unitframe.units.party.petsGroup.enable = (Private.isClassic or Private.isTBC)
-	E.db.unitframe.units.party.petsGroup.height = 31
-	E.db.unitframe.units.party.petsGroup.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.party.petsGroup.raidicon.attachTo = 'LEFT'
-	E.db.unitframe.units.party.petsGroup.raidicon.size = 22
-	E.db.unitframe.units.party.petsGroup.raidicon.xOffset = -24
-	E.db.unitframe.units.party.petsGroup.raidicon.yOffset = 0
-	E.db.unitframe.units.party.petsGroup.threatStyle = 'NONE'
-	E.db.unitframe.units.party.petsGroup.xOffset = -1
-	E.db.unitframe.units.party.petsGroup.yOffset = 16
 	E.db.unitframe.units.party.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.party.power.enable = false
 	E.db.unitframe.units.party.raidicon.attachTo = 'RIGHT'
@@ -277,18 +269,13 @@ end
 
 -- Vertical Party
 local function ApplyPartyVertical()
-	E.db.unitframe.units.party.buffs.countXOffset = 1
-	E.db.unitframe.units.party.buffs.countYOffset = -1
-	E.db.unitframe.units.party.buffs.growthX = 'LEFT'
-	E.db.unitframe.units.party.buffs.sizeOverride = 22
-	E.db.unitframe.units.party.buffs.yOffset = 10
 	E.db.unitframe.units.party.debuffs.anchorPoint = 'TOPRIGHT'
-	E.db.unitframe.units.party.debuffs.countXOffset = 1
-	E.db.unitframe.units.party.debuffs.countYOffset = -1
+	E.db.unitframe.units.party.debuffs.growthX = 'RIGHT'
 	E.db.unitframe.units.party.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.party.debuffs.numrows = 2
 	E.db.unitframe.units.party.debuffs.perrow = 4
 	E.db.unitframe.units.party.debuffs.sizeOverride = 31
+	E.db.unitframe.units.party.debuffs.spacing = 1
 	E.db.unitframe.units.party.debuffs.xOffset = 1
 	E.db.unitframe.units.party.debuffs.yOffset = 0
 	E.db.unitframe.units.party.growthDirection = 'DOWN_RIGHT'
@@ -305,23 +292,33 @@ local function ApplyPartyVertical()
 	E.db.unitframe.units.party.summonIcon.size = 24
 	E.db.unitframe.units.party.summonIcon.xOffset = -15
 	E.db.unitframe.units.party.width = 220
+
+	-- Party pet frames for Classic & Anniversary
+	if (Private.isClassic or Private.isTBC) then
+		E.db.unitframe.units.party.petsGroup.anchorPoint = 'LEFT'
+		E.db.unitframe.units.party.petsGroup.enable = true
+		E.db.unitframe.units.party.petsGroup.height = 31
+		E.db.unitframe.units.party.petsGroup.name.attachTextTo = 'Frame'
+		E.db.unitframe.units.party.petsGroup.raidicon.attachTo = 'LEFT'
+		E.db.unitframe.units.party.petsGroup.raidicon.size = 22
+		E.db.unitframe.units.party.petsGroup.raidicon.xOffset = -24
+		E.db.unitframe.units.party.petsGroup.raidicon.yOffset = 0
+		E.db.unitframe.units.party.petsGroup.threatStyle = 'NONE'
+		E.db.unitframe.units.party.petsGroup.xOffset = -1
+		E.db.unitframe.units.party.petsGroup.yOffset = 16
+	end
 end
 
 -- Horizontal Party
 local function ApplyPartyHorizontal()
-	E.db.unitframe.units.party.buffIndicator.countFontSize = 10
-	E.db.unitframe.units.party.buffs.countXOffset = 2
-	E.db.unitframe.units.party.buffs.countYOffset = 0
-	E.db.unitframe.units.party.buffs.growthY = 'DOWN'
-	E.db.unitframe.units.party.buffs.sizeOverride = 26
-	E.db.unitframe.units.party.buffs.yOffset = 12
 	E.db.unitframe.units.party.debuffs.anchorPoint = 'BOTTOMRIGHT'
-	E.db.unitframe.units.party.debuffs.clickThrough = true
-	E.db.unitframe.units.party.debuffs.countXOffset = 2
-	E.db.unitframe.units.party.debuffs.countYOffset = 0
 	E.db.unitframe.units.party.debuffs.growthX = 'LEFT'
-	E.db.unitframe.units.party.debuffs.perrow = 2
+	E.db.unitframe.units.party.debuffs.growthY = 'UP'
+	E.db.unitframe.units.party.debuffs.numrows = 1
+	E.db.unitframe.units.party.debuffs.perrow = 3
 	E.db.unitframe.units.party.debuffs.sizeOverride = 26
+	E.db.unitframe.units.party.debuffs.spacing = -1
+	E.db.unitframe.units.party.debuffs.xOffset = 0
 	E.db.unitframe.units.party.debuffs.yOffset = -1
 	E.db.unitframe.units.party.groupBy = 'GROUP'
 	E.db.unitframe.units.party.growthDirection = 'RIGHT_DOWN'
