@@ -11,6 +11,7 @@
 - Player unitframe debuffs now spawn a mouseover tooltip by default  
 - Tons of tweaks for buff and debuff containers in party and raidframes  
 - Updated aura indicators for all healing specs (Hots, Shields)  
+- Updated PermoksAccountManager profile  
 - Updated SkironCooldownManager profile  
 - Updated WindTools profile (It's very minimalistic now)  
 
