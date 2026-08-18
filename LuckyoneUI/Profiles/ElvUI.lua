@@ -233,7 +233,7 @@ local function ApplyPartyShared()
 	E.db.unitframe.units.party.buffs.countFontSize = 10
 	E.db.unitframe.units.party.buffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.party.buffs.enable = Private.isRetail
-	E.db.unitframe.units.party.buffs.perrow = 2
+	E.db.unitframe.units.party.buffs.perrow = 3
 	E.db.unitframe.units.party.buffs.sizeOverride = 26
 	E.db.unitframe.units.party.buffs.spacing = -1
 	E.db.unitframe.units.party.buffs.yOffset = -1
@@ -1833,7 +1833,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	-- Shared Raid1
 	E.db.unitframe.units.raid1.buffIndicator.countFont = Private.Font
 	E.db.unitframe.units.raid1.buffIndicator.countFontSize = 10
-	E.db.unitframe.units.raid1.buffs.anchorPoint = 'BOTTOM'
+	E.db.unitframe.units.raid1.buffs.anchorPoint = 'BOTTOMLEFT'
 	E.db.unitframe.units.raid1.buffs.clickThrough = true
 	E.db.unitframe.units.raid1.buffs.countFont = Private.Font
 	E.db.unitframe.units.raid1.buffs.countFontSize = 10
@@ -1841,10 +1841,11 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid1.buffs.countXOffset = 2
 	E.db.unitframe.units.raid1.buffs.countYOffset = 0
 	E.db.unitframe.units.raid1.buffs.enable = false
-	E.db.unitframe.units.raid1.buffs.growthY = 'DOWN'
-	E.db.unitframe.units.raid1.buffs.perrow = 1
-	E.db.unitframe.units.raid1.buffs.sizeOverride = 22
-	E.db.unitframe.units.raid1.buffs.yOffset = 10
+	E.db.unitframe.units.raid1.buffs.growthX = 'RIGHT'
+	E.db.unitframe.units.raid1.buffs.growthY = 'UP'
+	E.db.unitframe.units.raid1.buffs.perrow = 3
+	E.db.unitframe.units.raid1.buffs.sizeOverride = 26
+	E.db.unitframe.units.raid1.buffs.yOffset = -1
 	E.db.unitframe.units.raid1.classbar.enable = false
 	E.db.unitframe.units.raid1.debuffs.anchorPoint = 'BOTTOMRIGHT'
 	E.db.unitframe.units.raid1.debuffs.countFont = Private.Font
@@ -1853,7 +1854,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid1.debuffs.countXOffset = 2
 	E.db.unitframe.units.raid1.debuffs.countYOffset = 0
 	E.db.unitframe.units.raid1.debuffs.growthX = 'LEFT'
-	E.db.unitframe.units.raid1.debuffs.perrow = 2
+	E.db.unitframe.units.raid1.debuffs.perrow = 3
 	E.db.unitframe.units.raid1.debuffs.spacing = -1
 	E.db.unitframe.units.raid1.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid1.debuffs.yOffset = -1
@@ -1911,7 +1912,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid3.debuffs.countXOffset = 2
 	E.db.unitframe.units.raid3.debuffs.countYOffset = 0
 	E.db.unitframe.units.raid3.debuffs.growthX = 'LEFT'
-	E.db.unitframe.units.raid3.debuffs.perrow = 2
+	E.db.unitframe.units.raid3.debuffs.perrow = 3
 	E.db.unitframe.units.raid3.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid3.debuffs.sizeOverride = 18
 	E.db.unitframe.units.raid3.debuffs.spacing = -1
@@ -2100,8 +2101,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
 		E.db.unitframe.units.raid1.buffs.enable = Private.isRetail
-		E.db.unitframe.units.raid1.buffs.sizeOverride = 26
-		E.db.unitframe.units.raid1.buffs.yOffset = 12
 		E.db.unitframe.units.raid1.debuffs.enable = Private.isRetail
 		E.db.unitframe.units.raid1.debuffs.sizeOverride = 26
 		E.db.unitframe.units.raid1.height = (scaled and 60) or 70
