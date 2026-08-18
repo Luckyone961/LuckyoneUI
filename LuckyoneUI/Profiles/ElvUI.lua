@@ -301,7 +301,7 @@ local function ApplyPartyHorizontal()
 	E.db.unitframe.units.party.debuffs.growthY = 'UP'
 	E.db.unitframe.units.party.debuffs.numrows = 1
 	E.db.unitframe.units.party.debuffs.perrow = 3
-	E.db.unitframe.units.party.debuffs.sizeOverride = 26
+	E.db.unitframe.units.party.debuffs.sizeOverride = 24
 	E.db.unitframe.units.party.debuffs.spacing = -1
 	E.db.unitframe.units.party.debuffs.xOffset = 0
 	E.db.unitframe.units.party.debuffs.yOffset = -1
@@ -1856,8 +1856,9 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid1.debuffs.countYOffset = 0
 	E.db.unitframe.units.raid1.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.raid1.debuffs.perrow = 3
-	E.db.unitframe.units.raid1.debuffs.spacing = -1
 	E.db.unitframe.units.raid1.debuffs.priority = 'Dispellable,RaidDebuffs'
+	E.db.unitframe.units.raid1.debuffs.sizeOverride = 20
+	E.db.unitframe.units.raid1.debuffs.spacing = -1
 	E.db.unitframe.units.raid1.debuffs.yOffset = -1
 	E.db.unitframe.units.raid1.disableFocusGlow = true
 	E.db.unitframe.units.raid1.disableTargetGlow = true
@@ -1916,7 +1917,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid3.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.raid3.debuffs.perrow = 3
 	E.db.unitframe.units.raid3.debuffs.priority = 'Dispellable,RaidDebuffs'
-	E.db.unitframe.units.raid3.debuffs.sizeOverride = 18
+	E.db.unitframe.units.raid3.debuffs.sizeOverride = 20
 	E.db.unitframe.units.raid3.debuffs.spacing = -1
 	E.db.unitframe.units.raid3.debuffs.yOffset = -1
 	E.db.unitframe.units.raid3.disableFocusGlow = true
@@ -2038,7 +2039,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 
 		-- Main/Support Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 10
-		E.db.unitframe.units.raid1.debuffs.sizeOverride = 18
 		E.db.unitframe.units.raid1.height = 40
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid1.raidicon.attachToObject = 'Health'
@@ -2053,7 +2053,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 
 		-- Main/Support Raid2
 		E.db.unitframe.units.raid2.buffIndicator.size = 10
-		E.db.unitframe.units.raid2.debuffs.sizeOverride = 18
 		E.db.unitframe.units.raid2.height = 40
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid2.raidicon.attachToObject = 'Health'
@@ -2122,7 +2121,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.raid2.buffs.enable = Private.isRetail
 		E.db.unitframe.units.raid2.buffs.sizeOverride = 24
 		E.db.unitframe.units.raid2.debuffs.enable = Private.isRetail
-		E.db.unitframe.units.raid2.debuffs.sizeOverride = 22
+		E.db.unitframe.units.raid2.debuffs.sizeOverride = 24
 		E.db.unitframe.units.raid2.height = (scaled and 44) or 54
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid2.raidicon.size = 14
