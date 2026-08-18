@@ -1,4 +1,16 @@
-﻿## Version 4.19 [15-08-2026]
+﻿## Version 4.20 [In development, not yet released]
+
+**All WoW Versions:**  
+- Added an optional layout for horizontal party frames in the healing layout  
+- Added perRow option for the minimap button module (This can allow a vertical bar)  
+- Cooldown text for seconds below 10 is white again (Was yellow)  
+- Count text for stacks and charges is now top right to match other elements  
+
+**Retail:**  
+- Player unitframe debuffs now spawn a mouseover tooltip by default  
+- Updated WindTools profile (It's very minimalistic now)  
+
+## Version 4.19 [15-08-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.22+ compatibility  
