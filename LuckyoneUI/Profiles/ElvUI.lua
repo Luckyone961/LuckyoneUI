@@ -233,7 +233,7 @@ local function ApplyPartyShared()
 	E.db.unitframe.units.party.buffs.countFontSize = 10
 	E.db.unitframe.units.party.buffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.party.buffs.enable = Private.isRetail
-	E.db.unitframe.units.party.buffs.perrow = 3
+	E.db.unitframe.units.party.buffs.perrow = 2
 	E.db.unitframe.units.party.buffs.sizeOverride = 26
 	E.db.unitframe.units.party.buffs.spacing = -1
 	E.db.unitframe.units.party.buffs.yOffset = -1
