@@ -1253,7 +1253,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.arena.castbar.xOffsetText = 2
 	E.db.unitframe.units.arena.castbar.xOffsetTime = -2
 	E.db.unitframe.units.arena.debuffs.anchorPoint = 'TOPLEFT'
-	E.db.unitframe.units.arena.debuffs.clickThrough = true
 	E.db.unitframe.units.arena.debuffs.countFont = Private.Font
 	E.db.unitframe.units.arena.debuffs.countFontSize = 10
 	E.db.unitframe.units.arena.debuffs.countPosition = 'TOPRIGHT'
@@ -1363,7 +1362,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.boss.castbar.xOffsetText = 2
 	E.db.unitframe.units.boss.castbar.xOffsetTime = -2
 	E.db.unitframe.units.boss.debuffs.anchorPoint = 'TOPLEFT'
-	E.db.unitframe.units.boss.debuffs.clickThrough = true
 	E.db.unitframe.units.boss.debuffs.countFont = Private.Font
 	E.db.unitframe.units.boss.debuffs.countFontSize = 10
 	E.db.unitframe.units.boss.debuffs.countPosition = 'TOPRIGHT'
@@ -1849,7 +1847,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid1.buffs.yOffset = 10
 	E.db.unitframe.units.raid1.classbar.enable = false
 	E.db.unitframe.units.raid1.debuffs.anchorPoint = 'BOTTOMRIGHT'
-	E.db.unitframe.units.raid1.debuffs.clickThrough = true
 	E.db.unitframe.units.raid1.debuffs.countFont = Private.Font
 	E.db.unitframe.units.raid1.debuffs.countFontSize = 10
 	E.db.unitframe.units.raid1.debuffs.countPosition = 'TOPRIGHT'
@@ -1857,6 +1854,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid1.debuffs.countYOffset = 0
 	E.db.unitframe.units.raid1.debuffs.growthX = 'LEFT'
 	E.db.unitframe.units.raid1.debuffs.perrow = 2
+	E.db.unitframe.units.raid1.debuffs.spacing = -1
 	E.db.unitframe.units.raid1.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid1.debuffs.yOffset = -1
 	E.db.unitframe.units.raid1.disableFocusGlow = true
@@ -1907,7 +1905,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid3.buffs.enable = false
 	E.db.unitframe.units.raid3.classbar.enable = false
 	E.db.unitframe.units.raid3.debuffs.anchorPoint = 'BOTTOMRIGHT'
-	E.db.unitframe.units.raid3.debuffs.clickThrough = true
 	E.db.unitframe.units.raid3.debuffs.countFont = 'Expressway'
 	E.db.unitframe.units.raid3.debuffs.countFontSize = 10
 	E.db.unitframe.units.raid3.debuffs.countPosition = 'TOPRIGHT'
@@ -1917,6 +1914,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid3.debuffs.perrow = 2
 	E.db.unitframe.units.raid3.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid3.debuffs.sizeOverride = 18
+	E.db.unitframe.units.raid3.debuffs.spacing = -1
 	E.db.unitframe.units.raid3.debuffs.yOffset = -1
 	E.db.unitframe.units.raid3.disableFocusGlow = true
 	E.db.unitframe.units.raid3.disableTargetGlow = true
