@@ -292,21 +292,6 @@ local function ApplyPartyVertical()
 	E.db.unitframe.units.party.summonIcon.size = 24
 	E.db.unitframe.units.party.summonIcon.xOffset = -15
 	E.db.unitframe.units.party.width = 220
-
-	-- Party pet frames for Classic & Anniversary
-	if (Private.isClassic or Private.isTBC) then
-		E.db.unitframe.units.party.petsGroup.anchorPoint = 'LEFT'
-		E.db.unitframe.units.party.petsGroup.enable = true
-		E.db.unitframe.units.party.petsGroup.height = 31
-		E.db.unitframe.units.party.petsGroup.name.attachTextTo = 'Frame'
-		E.db.unitframe.units.party.petsGroup.raidicon.attachTo = 'LEFT'
-		E.db.unitframe.units.party.petsGroup.raidicon.size = 22
-		E.db.unitframe.units.party.petsGroup.raidicon.xOffset = -24
-		E.db.unitframe.units.party.petsGroup.raidicon.yOffset = 0
-		E.db.unitframe.units.party.petsGroup.threatStyle = 'NONE'
-		E.db.unitframe.units.party.petsGroup.xOffset = -1
-		E.db.unitframe.units.party.petsGroup.yOffset = 16
-	end
 end
 
 -- Horizontal Party
@@ -359,6 +344,21 @@ local function SetupHealingParty(partyStyle, scaled)
 	else
 		ApplyPartyVertical()
 		E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,322,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,610,-400'
+
+		-- Party pet frames for Classic & Anniversary
+		if (Private.isClassic or Private.isTBC) then
+			E.db.unitframe.units.party.petsGroup.anchorPoint = 'LEFT'
+			E.db.unitframe.units.party.petsGroup.enable = true
+			E.db.unitframe.units.party.petsGroup.height = 31
+			E.db.unitframe.units.party.petsGroup.name.attachTextTo = 'Frame'
+			E.db.unitframe.units.party.petsGroup.raidicon.attachTo = 'LEFT'
+			E.db.unitframe.units.party.petsGroup.raidicon.size = 22
+			E.db.unitframe.units.party.petsGroup.raidicon.xOffset = -24
+			E.db.unitframe.units.party.petsGroup.raidicon.yOffset = 0
+			E.db.unitframe.units.party.petsGroup.threatStyle = 'NONE'
+			E.db.unitframe.units.party.petsGroup.xOffset = -1
+			E.db.unitframe.units.party.petsGroup.yOffset = 16
+		end
 	end
 
 	E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
