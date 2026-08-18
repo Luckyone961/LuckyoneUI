@@ -5,9 +5,13 @@
 - Added perRow option for the minimap button module (This can allow a vertical bar)  
 - Cooldown text for seconds below 10 is white again (Was yellow)  
 - Count text for stacks and charges is now top right to match other elements  
+- Party frames will now show player by default (Player was hidden previously)  
 
 **Retail:**  
 - Player unitframe debuffs now spawn a mouseover tooltip by default  
+- Tons of tweaks for buff and debuff containers in party and raidframes  
+- Updated aura indicators for all healing specs (Hots, Shields)  
+- Updated SkironCooldownManager profile  
 - Updated WindTools profile (It's very minimalistic now)  
 
 ## Version 4.19 [15-08-2026]
