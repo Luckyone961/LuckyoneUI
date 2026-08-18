@@ -234,7 +234,7 @@ local function ApplyPartyShared()
 	E.db.unitframe.units.party.buffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.party.buffs.enable = Private.isRetail
 	E.db.unitframe.units.party.buffs.perrow = 3
-	E.db.unitframe.units.party.buffs.sizeOverride = 26
+	E.db.unitframe.units.party.buffs.sizeOverride = 24
 	E.db.unitframe.units.party.buffs.spacing = -1
 	E.db.unitframe.units.party.buffs.yOffset = -1
 	E.db.unitframe.units.party.classbar.enable = false
@@ -1844,7 +1844,8 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid1.buffs.growthX = 'RIGHT'
 	E.db.unitframe.units.raid1.buffs.growthY = 'UP'
 	E.db.unitframe.units.raid1.buffs.perrow = 3
-	E.db.unitframe.units.raid1.buffs.sizeOverride = 26
+	E.db.unitframe.units.raid1.buffs.sizeOverride = 20
+	E.db.unitframe.units.raid1.buffs.spacing = -1
 	E.db.unitframe.units.raid1.buffs.yOffset = -1
 	E.db.unitframe.units.raid1.classbar.enable = false
 	E.db.unitframe.units.raid1.debuffs.anchorPoint = 'BOTTOMRIGHT'
@@ -1904,6 +1905,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid3.buffIndicator.countFont = Private.Font
 	E.db.unitframe.units.raid3.buffIndicator.countFontSize = 10
 	E.db.unitframe.units.raid3.buffs.enable = false
+	E.db.unitframe.units.raid3.buffs.sizeOverride = 20
 	E.db.unitframe.units.raid3.classbar.enable = false
 	E.db.unitframe.units.raid3.debuffs.anchorPoint = 'BOTTOMRIGHT'
 	E.db.unitframe.units.raid3.debuffs.countFont = 'Expressway'
@@ -2101,6 +2103,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
 		E.db.unitframe.units.raid1.buffs.enable = Private.isRetail
+		E.db.unitframe.units.raid1.buffs.sizeOverride = 26
 		E.db.unitframe.units.raid1.debuffs.enable = Private.isRetail
 		E.db.unitframe.units.raid1.debuffs.sizeOverride = 26
 		E.db.unitframe.units.raid1.height = (scaled and 60) or 70
@@ -2117,6 +2120,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 		-- Healing Raid2
 		E.db.unitframe.units.raid2.buffIndicator.size = 14
 		E.db.unitframe.units.raid2.buffs.enable = Private.isRetail
+		E.db.unitframe.units.raid2.buffs.sizeOverride = 24
 		E.db.unitframe.units.raid2.debuffs.enable = Private.isRetail
 		E.db.unitframe.units.raid2.debuffs.sizeOverride = 22
 		E.db.unitframe.units.raid2.height = (scaled and 44) or 54
