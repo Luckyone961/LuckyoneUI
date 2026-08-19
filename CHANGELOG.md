@@ -1,6 +1,7 @@
 ﻿## Version 4.20 [In development, not yet released]
 
 **All WoW Versions:**  
+- ElvUI 15.23+ compatibility  
 - Added an optional layout for horizontal party frames in the healing layout  
 - Added perRow option for the minimap button module (This can allow a vertical bar)  
 - Cooldown text for seconds below 10 is white again (Was yellow)  
