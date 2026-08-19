@@ -6,6 +6,7 @@
 - Cooldown text for seconds below 10 is white again (Was yellow)  
 - Count text for stacks and charges is now top right to match other elements  
 - Party frames will now show player by default (Player was hidden previously)  
+- Updated BigWigs (Disabled the new Debuff icons for Player)  
 
 **Retail:**  
 - Player unitframe debuffs now spawn a mouseover tooltip by default  
