@@ -110,13 +110,14 @@ local function LayoutOptionButtons()
 	if numButtons == 0 then return end
 
 	local spacing = 4
-	local buttonWidth = 160
+	local buttonWidth = (numButtons >= 4) and 140 or 160
 	local totalWidth = (numButtons * buttonWidth) + ((numButtons - 1) * spacing)
 	local startX = -(totalWidth / 2) + (buttonWidth / 2)
 
 	for i = 1, numButtons do
 		local button = visibleButtons[i]
 		button:ClearAllPoints()
+		button:SetSize(buttonWidth, 30)
 		local offsetX = startX + ((i - 1) * (buttonWidth + spacing))
 		button:SetPoint('BOTTOM', installerFrame, 'BOTTOM', offsetX, 60)
 	end
@@ -573,10 +574,13 @@ local function BuildInstallerData()
 			f.Option1:SetText(L["DPS & Tanks"])
 			f.Option2:Show()
 			f.Option2:SetScript('OnClick', function() Private:Setup_Layout('healing', true) end)
-			f.Option2:SetText(L["Healing"])
+			f.Option2:SetText(L["Healing Vertical"])
 			f.Option3:Show()
-			f.Option3:SetScript('OnClick', function() Private:Setup_Layout('support', true) end)
-			f.Option3:SetText(format('|cff33937F%s', L["Augmentation"]))
+			f.Option3:SetScript('OnClick', function() Private:Setup_Layout('healing', true, 'horizontal') end)
+			f.Option3:SetText(L["Healing Horizontal"])
+			f.Option4:Show()
+			f.Option4:SetScript('OnClick', function() Private:Setup_Layout('support', true) end)
+			f.Option4:SetText(L["Support"])
 		end
 		stepTitles[pageIndex] = L["ElvUI Layouts"]
 		pageIndex = pageIndex + 1

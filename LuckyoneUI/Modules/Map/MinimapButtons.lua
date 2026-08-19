@@ -367,11 +367,9 @@ local function LayoutButtons(holder, buttons)
 	local bar = EnsureBar(holder)
 	local db = Private.Addon.db.profile.map.minimap.buttons
 	local size = db.size
+	local perRow = db.perRow
 	local xStep = size + db.spacing
 	local yStep = size + 1 -- Vertical row gap is always 1px
-	local holderWidth = holder:GetWidth()
-	local perRow = floor((holderWidth + db.spacing) / xStep)
-	if perRow < 1 then perRow = 1 end
 
 	local count = #buttons
 	local rows = count > 0 and floor((count - 1) / perRow) + 1 or 0
@@ -381,7 +379,7 @@ local function LayoutButtons(holder, buttons)
 
 	bar:ClearAllPoints()
 	bar:SetPoint('TOP', holder, 'BOTTOM', db.xOffset, db.yOffset)
-	bar:SetSize(holderWidth, height)
+	bar:SetSize(holder:GetWidth(), height)
 	wipe(bar.buttons)
 
 	for index, button in ipairs(buttons) do

@@ -126,7 +126,7 @@ function Private:Setup_Filters_Retail()
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
@@ -135,9 +135,9 @@ function Private:Setup_Filters_Retail()
 		['point'] = 'TOPRIGHT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
-		['xOffset'] = -16,
+		['xOffset'] = -18,
 	}
 	classes['DRUID'][33763] = { -- Lifebloom
 		['enabled'] = true,
@@ -150,17 +150,17 @@ function Private:Setup_Filters_Retail()
 		['displayText'] = true,
 		['yOffset'] = 1,
 		['countAnchor'] = 'RIGHT',
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'timerOnly',
 		['countX'] = 13,
-		['xOffset'] = 33,
+		['xOffset'] = 37,
 	}
 	classes['DRUID'][48438] = { -- Wild Growth
 		['enabled'] = true,
 		['point'] = 'TOPRIGHT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = 1,
 	}
@@ -169,9 +169,9 @@ function Private:Setup_Filters_Retail()
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
-		['xOffset'] = 16,
+		['xOffset'] = 18,
 	}
 	auraHighlight[33763] = { -- Lifebloom
 		['enable'] = true,
@@ -191,16 +191,16 @@ function Private:Setup_Filters_Retail()
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
-		['xOffset'] = 16,
+		['xOffset'] = 18,
 	}
 	classes['EVOKER'][366155] = { -- Reversion
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
@@ -209,9 +209,9 @@ function Private:Setup_Filters_Retail()
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
-		['xOffset'] = 33,
+		['xOffset'] = 37,
 	}
 	classes['EVOKER'][364343] = { -- Echo
 		['enabled'] = true,
@@ -222,9 +222,10 @@ function Private:Setup_Filters_Retail()
 			['b'] = 1,
 		},
 		['displayText'] = true,
-		['sizeOffset'] = 2,
+		['point'] = 'TOP',
+		['sizeOffset'] = 4,
 		['style'] = 'timerOnly',
-		['xOffset'] = -10,
+		['xOffset'] = 0,
 	}
 	auraHighlight[364343] = { -- Echo
 		['enable'] = true,
@@ -246,7 +247,7 @@ function Private:Setup_Filters_Retail()
 		['enabled'] = true,
 		['countAnchor'] = 'BOTTOM',
 		['point'] = 'TOPLEFT',
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 		['yOffset'] = 1,
@@ -261,7 +262,7 @@ function Private:Setup_Filters_Retail()
 		},
 		['displayText'] = true,
 		['point'] = 'TOPRIGHT',
-		['sizeOffset'] = 6,
+		['sizeOffset'] = 4,
 		['style'] = 'timerOnly',
 	}
 	auraHighlight[410089] = { -- Prescience
@@ -280,7 +281,7 @@ function Private:Setup_Filters_Retail()
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
@@ -295,16 +296,16 @@ function Private:Setup_Filters_Retail()
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
-		['xOffset'] = 33,
+		['xOffset'] = 37,
 	}
 	classes['MONK'][119611] = { -- Renewing Mist
 		['enabled'] = true,
 		['displayText'] = true,
 		['yOffset'] = 1,
 		['countY'] = 0,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 		['cooldownY'] = 0,
@@ -314,7 +315,7 @@ function Private:Setup_Filters_Retail()
 		['displayText'] = true,
 		['yOffset'] = 1,
 		['countY'] = 0,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 		['cooldownY'] = 0,
@@ -325,10 +326,10 @@ function Private:Setup_Filters_Retail()
 		['displayText'] = true,
 		['yOffset'] = 1,
 		['countY'] = 0,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['countX'] = 0,
-		['xOffset'] = 16,
+		['xOffset'] = 18,
 		['cooldownY'] = 0,
 	}
 
@@ -338,7 +339,7 @@ function Private:Setup_Filters_Retail()
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
@@ -347,7 +348,7 @@ function Private:Setup_Filters_Retail()
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
@@ -356,7 +357,7 @@ function Private:Setup_Filters_Retail()
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
@@ -364,16 +365,16 @@ function Private:Setup_Filters_Retail()
 		['enabled'] = true,
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
-		['xOffset'] = 16,
+		['xOffset'] = 18,
 	}
 	classes['PALADIN'][1244893] = { -- Beacon of the Savior
 		['enabled'] = true,
 		['point'] = 'TOP',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 	}
 
@@ -382,9 +383,9 @@ function Private:Setup_Filters_Retail()
 		['enabled'] = true,
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
-		['xOffset'] = 16,
+		['xOffset'] = 18,
 	}
 	classes['PRIEST'][194384] = { -- Atonement
 		['enabled'] = true,
@@ -395,14 +396,14 @@ function Private:Setup_Filters_Retail()
 		},
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
-		['xOffset'] = 33,
+		['sizeOffset'] = 4,
+		['xOffset'] = 37,
 	}
 	classes['PRIEST'][1253593] = { -- Void Shield
 		['enabled'] = true,
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = 17,
 	}
@@ -412,7 +413,7 @@ function Private:Setup_Filters_Retail()
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
@@ -422,7 +423,7 @@ function Private:Setup_Filters_Retail()
 		['displayText'] = true,
 		['yOffset'] = 1,
 		['countY'] = 2,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['countX'] = -15,
 	}
@@ -434,16 +435,16 @@ function Private:Setup_Filters_Retail()
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
-		['xOffset'] = 16,
+		['xOffset'] = 18,
 	}
 	classes['SHAMAN'][61295] = { -- Riptide
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
@@ -452,16 +453,16 @@ function Private:Setup_Filters_Retail()
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
-		['xOffset'] = 16,
+		['xOffset'] = 18,
 	}
 	classes['SHAMAN'][207400] = { -- Ancestral Vigor
 		['enabled'] = true,
 		['point'] = 'TOPRIGHT',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = 1,
 	}
@@ -470,7 +471,7 @@ function Private:Setup_Filters_Retail()
 		['point'] = 'TOP',
 		['displayText'] = true,
 		['yOffset'] = 1,
-		['sizeOffset'] = 2,
+		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 	}
 	classes['SHAMAN'][444490]['enabled'] = false -- Hydrobubble

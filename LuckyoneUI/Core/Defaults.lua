@@ -27,6 +27,7 @@ Private.Defaults = {
 					holder = 'ElvUI_MinimapHolder',
 					size = 24,
 					spacing = 1,
+					perRow = 8,
 					xOffset = 0,
 					yOffset = -1,
 					blizzard = {
