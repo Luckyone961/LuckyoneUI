@@ -1,4 +1,9 @@
-﻿## Version 4.20 [19-08-2026]
+﻿## Version 4.21 [In development, not yet released]
+
+**Retail:**  
+- Updated SkironCooldownManager profile  
+
+## Version 4.20 [19-08-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.23+ compatibility  
