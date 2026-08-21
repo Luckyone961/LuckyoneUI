@@ -241,6 +241,7 @@ local function ApplyPartyShared()
 	E.db.unitframe.units.party.debuffs.countFont = Private.Font
 	E.db.unitframe.units.party.debuffs.countFontSize = 10
 	E.db.unitframe.units.party.debuffs.countPosition = 'TOPRIGHT'
+	E.db.unitframe.units.party.debuffs.countYOffset = -2
 	E.db.unitframe.units.party.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.party.disableFocusGlow = true
 	E.db.unitframe.units.party.disableTargetGlow = true
@@ -1221,7 +1222,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	}
 
 	E.db.unitframe.units.arena.buffs.anchorPoint = 'TOPRIGHT'
-	E.db.unitframe.units.arena.buffs.clickThrough = true
 	E.db.unitframe.units.arena.buffs.countFont = Private.Font
 	E.db.unitframe.units.arena.buffs.countFontSize = 10
 	E.db.unitframe.units.arena.buffs.countPosition = 'TOPRIGHT'
@@ -1329,7 +1329,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	}
 
 	E.db.unitframe.units.boss.buffs.anchorPoint = 'TOPRIGHT'
-	E.db.unitframe.units.boss.buffs.clickThrough = true
 	E.db.unitframe.units.boss.buffs.countFont = Private.Font
 	E.db.unitframe.units.boss.buffs.countFontSize = 10
 	E.db.unitframe.units.boss.buffs.countPosition = 'TOPRIGHT'
