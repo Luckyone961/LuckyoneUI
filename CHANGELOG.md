@@ -1,6 +1,7 @@
 ﻿## Version 4.21 [In development, not yet released]
 
 **Retail:**  
+- Updated EditMode strings (Default UI, ElvUI 1440p, ElvUI 1080p)  
 - Updated SkironCooldownManager profile  
 - Updated WindTools profile (BigWigs /keys window skin)  
 
