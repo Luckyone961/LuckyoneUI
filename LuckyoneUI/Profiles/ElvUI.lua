@@ -919,7 +919,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.auras.buffs.countFontOutline = Private.Outline
 	E.db.auras.buffs.countFontSize = 11
 	E.db.auras.buffs.countXOffset = 1
-	E.db.auras.buffs.countYOffset = 13
+	E.db.auras.buffs.countYOffset = 12
 	E.db.auras.buffs.fadeThreshold = -1
 	E.db.auras.buffs.horizontalSpacing = 2
 	E.db.auras.buffs.seperateOwn = 0
@@ -930,7 +930,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.auras.debuffs.countFontOutline = Private.Outline
 	E.db.auras.debuffs.countFontSize = 11
 	E.db.auras.debuffs.countXOffset = 1
-	E.db.auras.debuffs.countYOffset = 13
+	E.db.auras.debuffs.countYOffset = 12
 	E.db.auras.debuffs.fadeThreshold = -1
 	E.db.auras.debuffs.horizontalSpacing = 2
 	E.db.auras.debuffs.maxWraps = 2
