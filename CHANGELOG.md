@@ -2,7 +2,7 @@
 
 **Retail:**  
 - Updated EditMode strings (Default UI, ElvUI 1440p, ElvUI 1080p)  
-- Updated SkironCooldownManager profile  
+- Updated SkironCooldownManager profile (Keep icon aspect ratio)  
 - Updated WindTools profile (BigWigs /keys window skin)  
 
 ## Version 4.20 [19-08-2026]
