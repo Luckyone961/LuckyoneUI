@@ -1,5 +1,8 @@
 ﻿## Version 4.21 [In development, not yet released]
 
+**All WoW Versions:**  
+- ElvUI 15.26+ compatibility  
+
 **Retail:**  
 - Updated EditMode strings (Default UI, ElvUI 1440p, ElvUI 1080p)  
 - Updated SkironCooldownManager profile (Keep icon aspect ratio)  
