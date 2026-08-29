@@ -213,31 +213,6 @@ function Private:VersionCheck()
 	end
 end
 
--- Skip invalid/renamed db keys and continue profile import
-function Private:DBSetValue(tbl, path, value)
-	if type(tbl) ~= 'table' then return end
-
-	local keys = {}
-	for key in path:gmatch('([^.]+)') do -- No dot
-		tinsert(keys, key)
-	end
-
-	if #keys == 0 then return end
-
-	local current = tbl
-	for i = 1, #keys - 1 do
-		local key = keys[i]
-		if not current[key] then
-			current[key] = {}
-		elseif type(current[key]) ~= 'table' then
-			return
-		end
-		current = current[key]
-	end
-
-	current[keys[#keys]] = value
-end
-
 -- Scale helper
 function Private:ApplyScale(native)
 	SetCVar('useUiScale', 1)
