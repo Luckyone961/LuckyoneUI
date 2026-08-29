@@ -78,6 +78,19 @@ function Private:Setup_WindTools(installer)
 	Set(E.db, 'WT.tooltips.groupInfo.enable', false)
 	Set(E.db, 'WT.tooltips.keystone.enable', false)
 
+	-- WIP Blizzard Damage Meter
+	Set(E.db, 'WT.combat.damageMeterLayout.animation.enable', false)
+	Set(E.db, 'WT.combat.damageMeterLayout.backdrop', false)
+	Set(E.db, 'WT.combat.damageMeterLayout.enable', true)
+	Set(E.db, 'WT.combat.damageMeterLayout.height', 224)
+	Set(E.db, 'WT.combat.damageMeterLayout.shadow', false)
+	Set(E.db, 'WT.combat.damageMeterLayout.width', 486)
+	E.db.WT.combat.damageMeterLayout.layouts[1].direction = 'HORIZONTAL'
+	E.db.WT.combat.damageMeterLayout.layouts[1].innerPadding = 16
+	E.db.WT.combat.damageMeterLayout.layouts[1].meters[1].weight = 10
+	E.db.WT.combat.damageMeterLayout.layouts[1].name = 'Luckyone'
+	E.db.WT.combat.damageMeterLayout.layouts[1].outerPadding = 10
+
 	-- Mailbox favorite list
 	if Private.itsLuckyone then
 		E.global.WT.item.contacts.alts = {}
@@ -105,6 +118,7 @@ function Private:Setup_WindTools(installer)
 
 	-- Movers
 	E.db.movers = E.db.movers or {} -- Protect movers error
+	E.db.movers.WTDamageMeterLayoutMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-202'
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-110'
 
@@ -155,7 +169,8 @@ function Private:Setup_Private_WindTools()
 	Set(E.private, 'WT.skins.bigWigsSkin.queueTimer.countDown.name', Private.Font)
 	Set(E.private, 'WT.skins.bigWigsSkin.queueTimer.countDown.size', 12)
 	Set(E.private, 'WT.skins.cooldownViewer.enable', false)
-	Set(E.private, 'WT.skins.damageMeter.enable', false)
+	Set(E.private, 'WT.skins.damageMeter.bar.texture', Private.Texture)
+	Set(E.private, 'WT.skins.damageMeter.scrollBar', 'hide')
 	Set(E.private, 'WT.skins.elvui.enable', false)
 	Set(E.private, 'WT.skins.ime.label.name', Private.Font)
 	Set(E.private, 'WT.skins.ime.label.size', 12)
