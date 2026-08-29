@@ -17,6 +17,9 @@ local E, _, V, P, G = unpack(ElvUI)
 function Private:Setup_WindTools(installer)
 	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and Private.isRetail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
+	-- 1080p
+	local scaled = Private.Addon.db.global.scaled
+
 	-- Restore defaults
 	E.db.WT = E:CopyTable({}, P.WT)
 	E.global.WT = E:CopyTable({}, G.WT)
@@ -85,9 +88,9 @@ function Private:Setup_WindTools(installer)
 		E.db.WT.combat.damageMeterLayout.animation.enable = false
 		E.db.WT.combat.damageMeterLayout.backdrop = false
 		E.db.WT.combat.damageMeterLayout.enable = true
-		E.db.WT.combat.damageMeterLayout.height = 224
+		E.db.WT.combat.damageMeterLayout.height = (scaled and 185) or 224
 		E.db.WT.combat.damageMeterLayout.shadow = false
-		E.db.WT.combat.damageMeterLayout.width = 486
+		E.db.WT.combat.damageMeterLayout.width = (scaled and 439) or 485
 
 		E.db.movers.WTDamageMeterLayoutMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 
@@ -95,7 +98,7 @@ function Private:Setup_WindTools(installer)
 		E.db.WT.combat.damageMeterLayout.layouts[1].innerPadding = 16
 		E.db.WT.combat.damageMeterLayout.layouts[1].meters[1].weight = 10
 		E.db.WT.combat.damageMeterLayout.layouts[1].name = 'Luckyone'
-		E.db.WT.combat.damageMeterLayout.layouts[1].outerPadding = 10
+		E.db.WT.combat.damageMeterLayout.layouts[1].outerPadding = (scaled and 8) or 10
 	end
 
 	-- Mailbox favorite list
