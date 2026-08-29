@@ -10,6 +10,7 @@ local pairs = pairs
 local unpack = unpack
 
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
+local SetCVar = C_CVar.SetCVar
 
 local E, _, V, P, G = unpack(ElvUI)
 
@@ -79,17 +80,21 @@ function Private:Setup_WindTools(installer)
 	Set(E.db, 'WT.tooltips.keystone.enable', false)
 
 	-- WIP Blizzard Damage Meter
-	Set(E.db, 'WT.combat.damageMeterLayout.animation.enable', false)
-	Set(E.db, 'WT.combat.damageMeterLayout.backdrop', false)
-	Set(E.db, 'WT.combat.damageMeterLayout.enable', true)
-	Set(E.db, 'WT.combat.damageMeterLayout.height', 224)
-	Set(E.db, 'WT.combat.damageMeterLayout.shadow', false)
-	Set(E.db, 'WT.combat.damageMeterLayout.width', 486)
-	E.db.WT.combat.damageMeterLayout.layouts[1].direction = 'HORIZONTAL'
-	E.db.WT.combat.damageMeterLayout.layouts[1].innerPadding = 16
-	E.db.WT.combat.damageMeterLayout.layouts[1].meters[1].weight = 10
-	E.db.WT.combat.damageMeterLayout.layouts[1].name = 'Luckyone'
-	E.db.WT.combat.damageMeterLayout.layouts[1].outerPadding = 10
+	if not Private.IsAddOnLoaded('Details') then
+		SetCVar('damageMeterEnabled', 1)
+		SetCVar('damageMeterResetOnNewInstance', 1)
+		Set(E.db, 'WT.combat.damageMeterLayout.animation.enable', false)
+		Set(E.db, 'WT.combat.damageMeterLayout.backdrop', false)
+		Set(E.db, 'WT.combat.damageMeterLayout.enable', true)
+		Set(E.db, 'WT.combat.damageMeterLayout.height', 224)
+		Set(E.db, 'WT.combat.damageMeterLayout.shadow', false)
+		Set(E.db, 'WT.combat.damageMeterLayout.width', 486)
+		E.db.WT.combat.damageMeterLayout.layouts[1].direction = 'HORIZONTAL'
+		E.db.WT.combat.damageMeterLayout.layouts[1].innerPadding = 16
+		E.db.WT.combat.damageMeterLayout.layouts[1].meters[1].weight = 10
+		E.db.WT.combat.damageMeterLayout.layouts[1].name = 'Luckyone'
+		E.db.WT.combat.damageMeterLayout.layouts[1].outerPadding = 10
+	end
 
 	-- Mailbox favorite list
 	if Private.itsLuckyone then
