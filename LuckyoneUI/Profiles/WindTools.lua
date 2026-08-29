@@ -88,17 +88,17 @@ function Private:Setup_WindTools(installer)
 		E.db.WT.combat.damageMeterLayout.animation.enable = false
 		E.db.WT.combat.damageMeterLayout.backdrop = false
 		E.db.WT.combat.damageMeterLayout.enable = true
-		E.db.WT.combat.damageMeterLayout.height = (scaled and 185) or 224
+		E.db.WT.combat.damageMeterLayout.height = (scaled and 178) or 216
 		E.db.WT.combat.damageMeterLayout.shadow = false
-		E.db.WT.combat.damageMeterLayout.width = (scaled and 439) or 485
+		E.db.WT.combat.damageMeterLayout.width = (scaled and 439) or 486
 
 		E.db.movers.WTDamageMeterLayoutMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 
 		E.db.WT.combat.damageMeterLayout.layouts[1].direction = 'HORIZONTAL'
-		E.db.WT.combat.damageMeterLayout.layouts[1].innerPadding = 16
+		E.db.WT.combat.damageMeterLayout.layouts[1].innerPadding = 1
 		E.db.WT.combat.damageMeterLayout.layouts[1].meters[1].weight = 10
 		E.db.WT.combat.damageMeterLayout.layouts[1].name = 'Luckyone'
-		E.db.WT.combat.damageMeterLayout.layouts[1].outerPadding = (scaled and 8) or 10
+		E.db.WT.combat.damageMeterLayout.layouts[1].outerPadding = 2
 	end
 
 	-- Mailbox favorite list
@@ -174,7 +174,9 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.size = 12
 	E.private.WT.skins.cooldownViewer.enable = false
 	E.private.WT.skins.damageMeter.bar.texture = Private.Texture
+	E.private.WT.skins.damageMeter.minimizeButton = false
 	E.private.WT.skins.damageMeter.scrollBar = 'hide'
+	E.private.WT.skins.damageMeter.sessionTimer = false
 	E.private.WT.skins.elvui.enable = false
 	E.private.WT.skins.ime.label.name = Private.Font
 	E.private.WT.skins.ime.label.size = 12
