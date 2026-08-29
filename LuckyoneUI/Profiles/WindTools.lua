@@ -90,7 +90,7 @@ function Private:Setup_WindTools(installer)
 		E.db.WT.combat.damageMeterLayout.enable = true
 		E.db.WT.combat.damageMeterLayout.height = (scaled and 178) or 216
 		E.db.WT.combat.damageMeterLayout.shadow = false
-		E.db.WT.combat.damageMeterLayout.width = (scaled and 439) or 486
+		E.db.WT.combat.damageMeterLayout.width = (scaled and 440) or 486
 
 		E.db.movers.WTDamageMeterLayoutMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 
