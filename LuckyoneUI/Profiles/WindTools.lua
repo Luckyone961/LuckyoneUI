@@ -34,6 +34,9 @@ function Private:Setup_WindTools(installer)
 	E.global.WT.version = version
 	E.private.WT.version = version
 
+	-- Protect movers error
+	E.db.movers = E.db.movers or {}
+
 	-- Global db
 	Set(E.global, 'WT.core.elvUIVersionPopup', false)
 	Set(E.global, 'WT.core.loginMessage', false)
@@ -89,6 +92,9 @@ function Private:Setup_WindTools(installer)
 		Set(E.db, 'WT.combat.damageMeterLayout.height', 224)
 		Set(E.db, 'WT.combat.damageMeterLayout.shadow', false)
 		Set(E.db, 'WT.combat.damageMeterLayout.width', 486)
+
+		E.db.movers.WTDamageMeterLayoutMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
+
 		E.db.WT.combat.damageMeterLayout.layouts[1].direction = 'HORIZONTAL'
 		E.db.WT.combat.damageMeterLayout.layouts[1].innerPadding = 16
 		E.db.WT.combat.damageMeterLayout.layouts[1].meters[1].weight = 10
@@ -122,8 +128,6 @@ function Private:Setup_WindTools(installer)
 	end
 
 	-- Movers
-	E.db.movers = E.db.movers or {} -- Protect movers error
-	E.db.movers.WTDamageMeterLayoutMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-202'
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-110'
 
