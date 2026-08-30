@@ -804,7 +804,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.colors.power.MANA.r = 0
 	E.db.unitframe.colors.tapped.g = 0.56
 	E.db.unitframe.colors.tapped.r = 0.54
-	E.db.unitframe.colors.transparentCastbar = false
 	E.db.unitframe.colors.transparentHealth = true
 	E.db.unitframe.colors.useDeadBackdrop = true
 	E.db.unitframe.font = Private.Font
@@ -1321,10 +1320,8 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.target.buffs.priority = 'Dispellable,RaidBuffsElvUI,Mount'
 	E.db.unitframe.units.target.castbar.customTextFont.enable = true
 	E.db.unitframe.units.target.castbar.customTextFont.font = Private.Font
-	E.db.unitframe.units.target.castbar.customTextFont.fontSize = 12
 	E.db.unitframe.units.target.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.target.castbar.customTimeFont.font = Private.Font
-	E.db.unitframe.units.target.castbar.customTimeFont.fontSize = 12
 	E.db.unitframe.units.target.castbar.height = 22
 	E.db.unitframe.units.target.castbar.strataAndLevel.useCustomLevel = true
 	E.db.unitframe.units.target.castbar.strataAndLevel.useCustomStrata = true
@@ -1473,7 +1470,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid1.buffs.enable = false
 	E.db.unitframe.units.raid1.buffs.growthX = 'RIGHT'
 	E.db.unitframe.units.raid1.buffs.growthY = 'UP'
-	E.db.unitframe.units.raid1.buffs.perrow = 3
 	E.db.unitframe.units.raid1.buffs.sizeOverride = 20
 	E.db.unitframe.units.raid1.buffs.spacing = -1
 	E.db.unitframe.units.raid1.buffs.yOffset = -1
@@ -1485,7 +1481,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid1.debuffs.countXOffset = 2
 	E.db.unitframe.units.raid1.debuffs.countYOffset = 0
 	E.db.unitframe.units.raid1.debuffs.growthX = 'LEFT'
-	E.db.unitframe.units.raid1.debuffs.perrow = 3
 	E.db.unitframe.units.raid1.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid1.debuffs.sizeOverride = 20
 	E.db.unitframe.units.raid1.debuffs.spacing = -1
@@ -1545,7 +1540,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid3.debuffs.countXOffset = 2
 	E.db.unitframe.units.raid3.debuffs.countYOffset = 0
 	E.db.unitframe.units.raid3.debuffs.growthX = 'LEFT'
-	E.db.unitframe.units.raid3.debuffs.perrow = 3
 	E.db.unitframe.units.raid3.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raid3.debuffs.sizeOverride = 20
 	E.db.unitframe.units.raid3.debuffs.spacing = -1
@@ -1693,7 +1687,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.raid2.width = (scaled and 86) or 96
 
 		-- Main/Support Raid3
-		E.db.unitframe.units.raid3.buffIndicator.size = 8
 		E.db.unitframe.units.raid3.height = 30
 		E.db.unitframe.units.raid3.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid3.raidicon.attachToObject = 'Health'
@@ -1712,7 +1705,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 
 		-- Healing Player
 		E.db.unitframe.units.player.power.attachTextTo = 'Power'
-		E.db.unitframe.units.player.power.autoHide = false
 		E.db.unitframe.units.player.power.detachedWidth = 260
 		E.db.unitframe.units.player.power.detachFromFrame = true
 		E.db.unitframe.units.player.power.enable = (not Private.IsAddOnLoaded('SkironCooldownManager'))
@@ -1914,9 +1906,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.widgets.below = false
 
 	-- Target indicator
-	E.db.nameplates.units.TARGET.arrowScale = 0.8
 	E.db.nameplates.units.TARGET.arrowSpacing = 30
-	E.db.nameplates.units.TARGET.glowStyle = 'style2'
 
 	-- Enemy NPC
 	E.db.nameplates.units.ENEMY_NPC.auras.attachTo = 'HEALTH'
