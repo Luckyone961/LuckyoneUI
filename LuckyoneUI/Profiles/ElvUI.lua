@@ -221,7 +221,9 @@ function Private:Setup_GlobalDB()
 	E.global.general.smallerWorldMapScale = 0.8
 	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
-	DT:BuildPanelFrame('Luckyone_ActionBars_DT')
+	if not E.global.datatexts.customPanels.Luckyone_ActionBars_DT then
+		DT:BuildPanelFrame('Luckyone_ActionBars_DT')
+	end
 
 	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 	ActionBarsDT.fonts.enable = true
@@ -236,7 +238,9 @@ function Private:Setup_GlobalDB()
 	ActionBarsDT.tooltipYOffset = 5
 	ActionBarsDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
 
-	DT:BuildPanelFrame('Luckyone_MiniMap_DT')
+	if not E.global.datatexts.customPanels.Luckyone_MiniMap_DT then
+		DT:BuildPanelFrame('Luckyone_MiniMap_DT')
+	end
 
 	local MiniMapDT = E.global.datatexts.customPanels.Luckyone_MiniMap_DT
 	MiniMapDT.backdrop = false
@@ -694,11 +698,14 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.databars.threat.enable = false
 
 	-- DataTexts custom
+	E.db.datatexts.panels.Luckyone_ActionBars_DT = E.db.datatexts.panels.Luckyone_ActionBars_DT or {}
 	E.db.datatexts.panels.Luckyone_ActionBars_DT.battleground = false
 	E.db.datatexts.panels.Luckyone_ActionBars_DT.enable = true
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[1] = 'System'
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[2] = 'Combat'
 	E.db.datatexts.panels.Luckyone_ActionBars_DT[3] = 'Durability'
+
+	E.db.datatexts.panels.Luckyone_MiniMap_DT = E.db.datatexts.panels.Luckyone_MiniMap_DT or {}
 	E.db.datatexts.panels.Luckyone_MiniMap_DT.battleground = false
 	E.db.datatexts.panels.Luckyone_MiniMap_DT.enable = true
 	E.db.datatexts.panels.Luckyone_MiniMap_DT[1] = 'Time'
@@ -1650,9 +1657,6 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,543,412') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,831,552'
 	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-82'
-
-	E:SaveMoverPosition('DTPanelLuckyone_ActionBars_DTMover')
-	E:SaveMoverPosition('DTPanelLuckyone_MiniMap_DTMover')
 
 	if layout == 'main' or layout == 'support' then
 
