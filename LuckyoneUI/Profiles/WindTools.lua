@@ -13,12 +13,41 @@ local SetCVar = C_CVar.SetCVar
 
 local E, _, V, P, G = unpack(ElvUI)
 
--- WindTools ProfileDB
-function Private:Setup_WindTools(installer)
-	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and Private.isRetail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
+-- Blizzard Damage Meter
+local function BlizzardDamageMeter()
+	if Private.IsAddOnLoaded('Details') then return end -- Only apply DB if Details is not used
 
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
+
+	-- Enable Blizzard module in gameplay enhancements tab
+	SetCVar('damageMeterEnabled', 1)
+	SetCVar('damageMeterResetOnNewInstance', 1)
+
+	E.private.WT.skins.damageMeter.enable = true
+	E.private.WT.skins.damageMeter.bar.texture = Private.Texture
+	E.private.WT.skins.damageMeter.minimizeButton = false
+	E.private.WT.skins.damageMeter.scrollBar = 'hide'
+	E.private.WT.skins.damageMeter.sessionTimer = false
+
+	E.db.WT.combat.damageMeterLayout.animation.enable = false
+	E.db.WT.combat.damageMeterLayout.backdrop = false
+	E.db.WT.combat.damageMeterLayout.enable = true
+	E.db.WT.combat.damageMeterLayout.height = (scaled and 178) or 216
+	E.db.WT.combat.damageMeterLayout.layouts[1].direction = 'HORIZONTAL'
+	E.db.WT.combat.damageMeterLayout.layouts[1].innerPadding = 1
+	E.db.WT.combat.damageMeterLayout.layouts[1].meters[1].weight = 10
+	E.db.WT.combat.damageMeterLayout.layouts[1].name = 'Luckyone'
+	E.db.WT.combat.damageMeterLayout.layouts[1].outerPadding = 2
+	E.db.WT.combat.damageMeterLayout.shadow = false
+	E.db.WT.combat.damageMeterLayout.width = (scaled and 440) or 486
+
+	E.db.movers.WTDamageMeterLayoutMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
+end
+
+-- WindTools ProfileDB
+function Private:Setup_WindTools(installer)
+	if not (Private.IsAddOnLoaded('ElvUI_WindTools') and Private.isRetail) then Private:Print('|cff5385edWindTools|r ' .. L["is not installed or enabled."]) return end
 
 	-- Restore defaults
 	E.db.WT = E:CopyTable({}, P.WT)
@@ -38,6 +67,9 @@ function Private:Setup_WindTools(installer)
 
 	-- Private db
 	Private:Setup_Private_WindTools()
+
+	-- Apply skin and layout if Details is not used
+	BlizzardDamageMeter()
 
 	-- Profile db
 	E.db.WT.announcement.enable = false
@@ -80,26 +112,6 @@ function Private:Setup_WindTools(installer)
 	-- Movers
 	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-202'
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-110'
-
-	-- Blizzard Damage Meter
-	if not Private.IsAddOnLoaded('Details') then
-		SetCVar('damageMeterEnabled', 1)
-		SetCVar('damageMeterResetOnNewInstance', 1)
-		E.db.WT.combat.damageMeterLayout.animation.enable = false
-		E.db.WT.combat.damageMeterLayout.backdrop = false
-		E.db.WT.combat.damageMeterLayout.enable = true
-		E.db.WT.combat.damageMeterLayout.height = (scaled and 178) or 216
-		E.db.WT.combat.damageMeterLayout.shadow = false
-		E.db.WT.combat.damageMeterLayout.width = (scaled and 440) or 486
-
-		E.db.movers.WTDamageMeterLayoutMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
-
-		E.db.WT.combat.damageMeterLayout.layouts[1].direction = 'HORIZONTAL'
-		E.db.WT.combat.damageMeterLayout.layouts[1].innerPadding = 1
-		E.db.WT.combat.damageMeterLayout.layouts[1].meters[1].weight = 10
-		E.db.WT.combat.damageMeterLayout.layouts[1].name = 'Luckyone'
-		E.db.WT.combat.damageMeterLayout.layouts[1].outerPadding = 2
-	end
 
 	-- Mailbox favorite list
 	if Private.itsLuckyone then
@@ -173,10 +185,7 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.name = Private.Font
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.size = 12
 	E.private.WT.skins.cooldownViewer.enable = false
-	E.private.WT.skins.damageMeter.bar.texture = Private.Texture
-	E.private.WT.skins.damageMeter.minimizeButton = false
-	E.private.WT.skins.damageMeter.scrollBar = 'hide'
-	E.private.WT.skins.damageMeter.sessionTimer = false
+	E.private.WT.skins.damageMeter.enable = false
 	E.private.WT.skins.elvui.enable = false
 	E.private.WT.skins.ime.label.name = Private.Font
 	E.private.WT.skins.ime.label.size = 12
