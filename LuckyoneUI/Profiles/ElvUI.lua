@@ -26,6 +26,8 @@ local layoutNames = {
 
 -- LibDualSpec handler
 local function DisableLibDualSpec()
+	if E.Classic and not (E.ClassicSOD or E.ClassicAnniv or E.ClassicAnnivHC) then return end
+
 	local namespaces = ElvDB.namespaces
 	namespaces['LibDualSpec-1.0'] = namespaces['LibDualSpec-1.0'] or {}
 
@@ -2138,12 +2140,9 @@ end
 
 -- Initial layout setup
 function Private:Setup_Layout(layout, installer, partyStyle)
-	if Private.isRetail or Private.isMists then
-		DisableLibDualSpec()
-	end
-
 	-- Create a fresh profile in ElvUI
 	local name = layoutNames[layout]
+	DisableLibDualSpec()
 	E.data:SetProfile(Private.Addon.db.global.dev and name or name .. ' ' .. Private.Version)
 
 	-- Protect movers error
@@ -2167,10 +2166,7 @@ function Private:HandleAlts(layout)
 		return
 	end
 
-	if Private.isRetail or Private.isMists then
-		DisableLibDualSpec()
-	end
-
+	DisableLibDualSpec()
 	E.data:SetProfile(mostRecentProfile)
 
 	-- Correct initial DT width
