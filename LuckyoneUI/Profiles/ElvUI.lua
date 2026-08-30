@@ -6,8 +6,6 @@ if not Private.ElvUI then
 	return
 end
 
-local ipairs = ipairs
-local pairs = pairs
 local unpack = unpack
 
 local SetCVar = C_CVar.SetCVar
@@ -19,7 +17,14 @@ local E, _, _, P = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
 local NP = E:GetModule('NamePlates')
 
--- Disable LibDualSpec to set the profile
+-- Profile names by layout
+local layoutNames = {
+	main = 'Luckyone Main',
+	healing = 'Luckyone Healing',
+	support = 'Luckyone Support',
+}
+
+-- LibDualSpec handler
 local function DisableLibDualSpec()
 	local namespaces = ElvDB.namespaces
 	namespaces['LibDualSpec-1.0'] = namespaces['LibDualSpec-1.0'] or {}
@@ -30,184 +35,12 @@ local function DisableLibDualSpec()
 	libDualSpec.char[Private.myNameRealm].enabled = false
 end
 
--- Full frontend refresh
+-- Frontend refresh
 local function Refresh()
 	E:UIMult()
 	E:UIScale()
 	E:UpdateAll()
 end
-
--- E.global & Custom DataText
-function Private:Setup_GlobalDB()
-
-	-- 1080p
-	local scaled = Private.Addon.db.global.scaled
-
-	-- Protect movers error
-	-- Can happen on BuildPanelFrame in rare cases
-	E.db.movers = E.db.movers or {}
-
-	SetCVar('uiScale', (scaled and Private.UIScale1080) or Private.UIScale1440)
-	SetCVar('useUiScale', 1)
-	E.global.general.UIScale = (scaled and Private.UIScale1080) or Private.UIScale1440
-
-	E.global.datatexts.settings.Combat.NoLabel = true
-	E.global.datatexts.settings.Combat.TimeFull = false
-	E.global.datatexts.settings.Durability.NoLabel = true
-	E.global.datatexts.settings.System.latency = 'HOME'
-	E.global.datatexts.settings.System.NoLabel = true
-	E.global.datatexts.settings.Time.time24 = true
-	E.global.general.commandBarSetting = 'DISABLED'
-	E.global.general.fadeMapWhenMoving = false
-	E.global.general.mapAlphaWhenMoving = 0.35
-	E.global.general.smallerWorldMapScale = 0.8
-	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
-
-	DT:BuildPanelFrame('Luckyone_ActionBars_DT')
-
-	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
-	ActionBarsDT.fonts.enable = true
-	ActionBarsDT.fonts.font = Private.Font
-	ActionBarsDT.fonts.fontSize = 12
-	ActionBarsDT.frameStrata = 'BACKGROUND'
-	ActionBarsDT.height = 14
-	ActionBarsDT.name = 'Luckyone_ActionBars_DT'
-	ActionBarsDT.panelTransparency = true
-	ActionBarsDT.tooltipAnchor = 'ANCHOR_TOP'
-	ActionBarsDT.tooltipXOffset = 0
-	ActionBarsDT.tooltipYOffset = 5
-	ActionBarsDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
-
-	DT:BuildPanelFrame('Luckyone_MiniMap_DT')
-
-	local MiniMapDT = E.global.datatexts.customPanels.Luckyone_MiniMap_DT
-	MiniMapDT.backdrop = false
-	MiniMapDT.border = false
-	MiniMapDT.fonts.enable = true
-	MiniMapDT.fonts.font = Private.Font
-	MiniMapDT.fonts.fontSize = 16
-	MiniMapDT.frameStrata = 'HIGH'
-	MiniMapDT.height = 20
-	MiniMapDT.name = 'Luckyone_MiniMap_DT'
-	MiniMapDT.numPoints = 1
-	MiniMapDT.panelTransparency = true
-	MiniMapDT.tooltipAnchor = 'ANCHOR_BOTTOMLEFT'
-	MiniMapDT.tooltipXOffset = -50
-	MiniMapDT.tooltipYOffset = -28
-	MiniMapDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
-	MiniMapDT.width = 60
-end
-
--- E.private & Media
-function Private:Setup_PrivateDB(includePlugins)
-
-	E.db.general.font = Private.Font
-	E.db.general.fonts.cooldown.outline = Private.Outline
-	E.db.general.fonts.errortext.outline = Private.Outline
-	E.db.general.fonts.errortext.size = 16
-	E.db.general.fonts.mailbody.outline = Private.Outline
-	E.db.general.fonts.objective.enable = true
-	E.db.general.fonts.objective.outline = Private.Outline
-	E.db.general.fonts.objective.size = 12
-	E.db.general.fonts.questsmall.enable = true
-	E.db.general.fonts.questsmall.outline = Private.Outline
-	E.db.general.fonts.questsmall.size = 12
-	E.db.general.fonts.questtext.enable = true
-	E.db.general.fonts.questtext.outline = Private.Outline
-	E.db.general.fonts.questtext.size = 12
-	E.db.general.fonts.questtitle.enable = true
-	E.db.general.fonts.questtitle.outline = Private.Outline
-	E.db.general.fonts.questtitle.size = 14
-	E.db.general.fonts.talkingtext.outline = Private.Outline
-	E.db.general.fonts.talkingtitle.outline = Private.Outline
-	E.db.general.fontSize = 11
-
-	E.private.bags.bagBar = false
-	E.private.general.chatBubbleFont = Private.Font
-	E.private.general.chatBubbleFontOutline = Private.Outline
-	E.private.general.glossTex = Private.Texture
-	E.private.general.minimap.hideTracking = not Private.isClassic
-	E.private.general.nameplateFont = Private.Font
-	E.private.general.nameplateFontSize = 9
-	E.private.general.nameplateLargeFont = Private.Font
-	E.private.general.nameplateLargeFontSize = 11
-	E.private.general.normTex = Private.Texture
-	E.private.general.totemTracker = false
-
-	E.private.install_complete = E.version
-
-	E.private.skins.blizzard.cooldownManager = false
-	E.private.skins.parchmentRemoverEnable = true
-
-	if includePlugins and Private.isRetail then
-		if Private.IsAddOnLoaded('ElvUI_WindTools') then
-			Private:Setup_Private_WindTools()
-		end
-	end
-
-	-- This will make sure Shaman is blue instead of pink in Era/HC/SoD
-	if Private.isClassic then
-		E.private.general.classColors = true
-	end
-
-	-- DB keys for the dev profiles
-	if Private.Addon.db.global.dev then
-
-		-- ElvUI settings
-		E.private.bags.enable = (not Private.IsAddOnLoaded('Baganator'))
-		E.private.chat.enable = (not Private.IsAddOnLoaded('Chattynator'))
-		E.private.general.chatBubbles = 'disabled'
-		E.private.nameplates.enable = (not Private.IsAddOnLoaded('Plater') or not Private.IsAddOnLoaded('Platynator'))
-		E.private.unitframe.disabledBlizzardFrames.castbar = (not Private.IsAddOnLoaded('SkironCooldownManager'))
-	end
-end
-
--- Handler for existing profiles (Quick install on alts)
-function Private:HandleAlts(layout)
-
-	local mostRecentProfile = Private:GetMostRecentProfile(layout)
-
-	if not mostRecentProfile then
-		Private:Print(L["No existing LuckyoneUI profile found."])
-		return
-	end
-
-	if Private.isRetail or Private.isMists then
-		DisableLibDualSpec()
-	end
-
-	-- Load the most recent profile
-	E.data:SetProfile(mostRecentProfile)
-
-	-- Fix our custom DataText
-	if layout == 'main' then
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395 -- (Profile == 1)
-	elseif layout == 'healing' then
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704 -- (Profile == 2)
-	elseif layout == 'support' then
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 484 -- (Profile == 3)
-	end
-
-	-- PrivateDB for ElvUI + WindTools
-	Private:Setup_PrivateDB(true)
-
-	-- Chat setup
-	Private:Setup_Chat()
-
-	-- Push the update
-	Refresh()
-
-	StaticPopup_Show('LUCKYONE_RL')
-
-	Private:Print(L["Applied profile: "] .. mostRecentProfile)
-end
-
--- Profile names by layout
-local layoutNames = {
-	main = 'Luckyone Main',
-	healing = 'Luckyone Healing',
-	support = 'Luckyone Support',
-}
 
 -- Shared Party
 local function ApplyPartyShared()
@@ -366,330 +199,123 @@ local function SetupHealingParty(partyStyle, scaled)
 	E.db.unitframe.units.party.healPrediction.enable = true
 end
 
--- Setup Midnight layout
-function Private:Setup_Layout(layout, installer, partyStyle)
-	if Private.isRetail or Private.isMists then
-		DisableLibDualSpec()
-	end
+-- E.global & Custom DataText
+function Private:Setup_GlobalDB()
 
-	-- Create a fresh profile in ElvUI
-	local name = layoutNames[layout]
-	E.data:SetProfile(Private.Addon.db.global.dev and name or name .. ' ' .. Private.Version)
+	-- 1080p
+	local scaled = Private.Addon.db.global.scaled
 
-	-- E.global & Custom DataText
-	Private:Setup_GlobalDB()
+	SetCVar('uiScale', (scaled and Private.UIScale1080) or Private.UIScale1440)
+	SetCVar('useUiScale', 1)
+	E.global.general.UIScale = (scaled and Private.UIScale1080) or Private.UIScale1440
 
-	-- E.private & Media
-	Private:Setup_PrivateDB()
+	E.global.datatexts.settings.Combat.NoLabel = true
+	E.global.datatexts.settings.Combat.TimeFull = false
+	E.global.datatexts.settings.Durability.NoLabel = true
+	E.global.datatexts.settings.System.latency = 'HOME'
+	E.global.datatexts.settings.System.NoLabel = true
+	E.global.datatexts.settings.Time.time24 = true
+	E.global.general.commandBarSetting = 'DISABLED'
+	E.global.general.fadeMapWhenMoving = false
+	E.global.general.mapAlphaWhenMoving = 0.35
+	E.global.general.smallerWorldMapScale = 0.8
+	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
-	-- E.db & Movers
-	Private:Setup_ElvUI(layout, partyStyle)
+	DT:BuildPanelFrame('Luckyone_ActionBars_DT')
 
-	-- Push the update
-	Refresh()
+	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
+	ActionBarsDT.fonts.enable = true
+	ActionBarsDT.fonts.font = Private.Font
+	ActionBarsDT.fonts.fontSize = 12
+	ActionBarsDT.frameStrata = 'BACKGROUND'
+	ActionBarsDT.height = 14
+	ActionBarsDT.name = 'Luckyone_ActionBars_DT'
+	ActionBarsDT.panelTransparency = true
+	ActionBarsDT.tooltipAnchor = 'ANCHOR_TOP'
+	ActionBarsDT.tooltipXOffset = 0
+	ActionBarsDT.tooltipYOffset = 5
+	ActionBarsDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
 
-	Private:Print(L["Layout has been set."], installer)
+	DT:BuildPanelFrame('Luckyone_MiniMap_DT')
+
+	local MiniMapDT = E.global.datatexts.customPanels.Luckyone_MiniMap_DT
+	MiniMapDT.backdrop = false
+	MiniMapDT.border = false
+	MiniMapDT.fonts.enable = true
+	MiniMapDT.fonts.font = Private.Font
+	MiniMapDT.fonts.fontSize = 16
+	MiniMapDT.frameStrata = 'HIGH'
+	MiniMapDT.height = 20
+	MiniMapDT.name = 'Luckyone_MiniMap_DT'
+	MiniMapDT.numPoints = 1
+	MiniMapDT.panelTransparency = true
+	MiniMapDT.tooltipAnchor = 'ANCHOR_BOTTOMLEFT'
+	MiniMapDT.tooltipXOffset = -50
+	MiniMapDT.tooltipYOffset = -28
+	MiniMapDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
+	MiniMapDT.width = 60
 end
 
--- NamePlate Setup for ElvUI
-function Private:Setup_NamePlates(installer)
-	-- Make sure to enable the module
-	E.private.nameplates.enable = true
+-- E.private & Media
+function Private:Setup_PrivateDB(includePlugins)
 
-	-- Restore defaults
-	E.db.nameplates = E:CopyTable({}, P.nameplates)
+	E.db.general.font = Private.Font
+	E.db.general.fonts.cooldown.outline = Private.Outline
+	E.db.general.fonts.errortext.outline = Private.Outline
+	E.db.general.fonts.errortext.size = 16
+	E.db.general.fonts.mailbody.outline = Private.Outline
+	E.db.general.fonts.objective.enable = true
+	E.db.general.fonts.objective.outline = Private.Outline
+	E.db.general.fonts.objective.size = 12
+	E.db.general.fonts.questsmall.enable = true
+	E.db.general.fonts.questsmall.outline = Private.Outline
+	E.db.general.fonts.questsmall.size = 12
+	E.db.general.fonts.questtext.enable = true
+	E.db.general.fonts.questtext.outline = Private.Outline
+	E.db.general.fonts.questtext.size = 12
+	E.db.general.fonts.questtitle.enable = true
+	E.db.general.fonts.questtitle.outline = Private.Outline
+	E.db.general.fonts.questtitle.size = 14
+	E.db.general.fonts.talkingtext.outline = Private.Outline
+	E.db.general.fonts.talkingtitle.outline = Private.Outline
+	E.db.general.fontSize = 11
 
-	-- NamePlates CVars
-	Private:NameplateCVars()
+	E.private.bags.bagBar = false
+	E.private.general.chatBubbleFont = Private.Font
+	E.private.general.chatBubbleFontOutline = Private.Outline
+	E.private.general.glossTex = Private.Texture
+	E.private.general.minimap.hideTracking = not Private.isClassic
+	E.private.general.nameplateFont = Private.Font
+	E.private.general.nameplateFontSize = 9
+	E.private.general.nameplateLargeFont = Private.Font
+	E.private.general.nameplateLargeFontSize = 11
+	E.private.general.normTex = Private.Texture
+	E.private.general.totemTracker = false
 
-	-- NamePlates colors
-	E.db.nameplates.colors.auraByType = false
-	E.db.nameplates.colors.castbarDesaturate = false
-	E.db.nameplates.colors.castColor.g = 1
-	E.db.nameplates.colors.castColor.r = 0.02
-	E.db.nameplates.colors.castNoInterruptColor.b = 0
-	E.db.nameplates.colors.castNoInterruptColor.g = 0
-	E.db.nameplates.colors.castNoInterruptColor.r = 1
-	E.db.nameplates.colors.selection[0].b = 0.07
-	E.db.nameplates.colors.selection[0].g = 0.13
-	E.db.nameplates.colors.selection[0].r = 0.92
-	E.db.nameplates.colors.selection[2].b = 0.27
-	E.db.nameplates.colors.selection[2].g = 0.8
-	E.db.nameplates.colors.selection[2].r = 0.93
-	E.db.nameplates.colors.selection[3].b = 0.02
-	E.db.nameplates.colors.selection[3].g = 0.82
-	E.db.nameplates.colors.selection[3].r = 0.02
-	E.db.nameplates.colors.threat.badColor.b = 0
-	E.db.nameplates.colors.threat.badColor.g = 0
-	E.db.nameplates.colors.threat.badTransition.b = 0
-	E.db.nameplates.colors.threat.badTransition.g = 0.8
-	E.db.nameplates.colors.threat.goodColor.b = 1
-	E.db.nameplates.colors.threat.goodColor.g = 0.5
-	E.db.nameplates.colors.threat.goodColor.r = 0.5
-	E.db.nameplates.colors.threat.goodTransition.b = 0
-	E.db.nameplates.colors.threat.goodTransition.g = 1
-	E.db.nameplates.colors.threat.offTankColor.g = 0.92
-	E.db.nameplates.colors.threat.offTankColor.r = 0.73
-	E.db.nameplates.colors.threat.offTankColorBadTransition.b = 1
-	E.db.nameplates.colors.threat.offTankColorBadTransition.g = 0.92
-	E.db.nameplates.colors.threat.offTankColorBadTransition.r = 0.73
-	E.db.nameplates.colors.threat.offTankColorGoodTransition.b = 1
-	E.db.nameplates.colors.threat.offTankColorGoodTransition.g = 0.92
-	E.db.nameplates.colors.threat.offTankColorGoodTransition.r = 0.73
-	E.db.nameplates.colors.threat.soloColor.b = 1
-	E.db.nameplates.colors.threat.soloColor.g = 0.5
-	E.db.nameplates.colors.threat.soloColor.r = 0.5
+	E.private.install_complete = E.version
 
-	-- NamePlates general
-	E.db.nameplates.classColorNames = true
-	E.db.nameplates.clickSize.height = 22
-	E.db.nameplates.clickSize.width = 210
-	E.db.nameplates.fadeIn = false
-	E.db.nameplates.lowHealthThreshold = 0
-	E.db.nameplates.overlapH = 1.1
-	E.db.nameplates.overlapV = 1.7
-	E.db.nameplates.statusbar = Private.Texture
-	E.db.nameplates.threat.skipGoodColor = true
-	E.db.nameplates.threat.useSoloColor = true
+	E.private.skins.blizzard.cooldownManager = false
+	E.private.skins.parchmentRemoverEnable = true
 
-	-- NamePlates misc
-	E.db.nameplates.visibility.enemy.guardians = true
-	E.db.nameplates.visibility.enemy.minions = true
-	E.db.nameplates.visibility.friendly.npcs = false
-	E.db.nameplates.visibility.showOnlyNames = true
-	E.db.nameplates.widgets.below = false
-
-	-- Target indicator
-	E.db.nameplates.units.TARGET.arrowScale = 0.8
-	E.db.nameplates.units.TARGET.arrowSpacing = 30
-	E.db.nameplates.units.TARGET.glowStyle = 'style2'
-
-	-- Enemy NPC
-	E.db.nameplates.units.ENEMY_NPC.auras.attachTo = 'HEALTH'
-	E.db.nameplates.units.ENEMY_NPC.auras.countFont = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.auras.countFontSize = 12
-	E.db.nameplates.units.ENEMY_NPC.auras.countPosition = 'TOP'
-	E.db.nameplates.units.ENEMY_NPC.auras.countXOffset = 1
-	E.db.nameplates.units.ENEMY_NPC.auras.countYOffset = 14
-	E.db.nameplates.units.ENEMY_NPC.auras.desaturate = false
-	E.db.nameplates.units.ENEMY_NPC.auras.height = 24
-	E.db.nameplates.units.ENEMY_NPC.auras.numAuras = 4
-	E.db.nameplates.units.ENEMY_NPC.auras.priority = Private.isRetail and 'ImportantCC' or 'CCDebuffs'
-	E.db.nameplates.units.ENEMY_NPC.auras.size = 24
-	E.db.nameplates.units.ENEMY_NPC.auras.sortMethod = 'INDEX'
-	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.fontSize = 11
-	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.length = 5
-	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.xOffset = 2
-	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.yOffset = 13
-	E.db.nameplates.units.ENEMY_NPC.auras.yOffset = -1
-	E.db.nameplates.units.ENEMY_NPC.buffs.anchorPoint = 'TOPRIGHT'
-	E.db.nameplates.units.ENEMY_NPC.buffs.attachTo = 'HEALTH'
-	E.db.nameplates.units.ENEMY_NPC.buffs.countFont = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.buffs.countFontSize = 12
-	E.db.nameplates.units.ENEMY_NPC.buffs.countPosition = 'TOP'
-	E.db.nameplates.units.ENEMY_NPC.buffs.countXOffset = 1
-	E.db.nameplates.units.ENEMY_NPC.buffs.countYOffset = 14
-	E.db.nameplates.units.ENEMY_NPC.buffs.desaturate = false
-	E.db.nameplates.units.ENEMY_NPC.buffs.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.buffs.fontSize = 10
-	E.db.nameplates.units.ENEMY_NPC.buffs.growthX = 'LEFT'
-	E.db.nameplates.units.ENEMY_NPC.buffs.maxDuration = 300
-	E.db.nameplates.units.ENEMY_NPC.buffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Dispellable'
-	E.db.nameplates.units.ENEMY_NPC.buffs.size = 24
-	E.db.nameplates.units.ENEMY_NPC.buffs.xOffset = 1
-	E.db.nameplates.units.ENEMY_NPC.buffs.yOffset = 1
-	E.db.nameplates.units.ENEMY_NPC.castbar.anchorPoint = 'BOTTOMRIGHT'
-	E.db.nameplates.units.ENEMY_NPC.castbar.castTimeFormat = 'REMAINING'
-	E.db.nameplates.units.ENEMY_NPC.castbar.channelTimeFormat = 'REMAINING'
-	E.db.nameplates.units.ENEMY_NPC.castbar.displayTarget = true
-	E.db.nameplates.units.ENEMY_NPC.castbar.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.castbar.fontSize = 10
-	E.db.nameplates.units.ENEMY_NPC.castbar.height = 16
-	E.db.nameplates.units.ENEMY_NPC.castbar.iconOffsetY = -1
-	E.db.nameplates.units.ENEMY_NPC.castbar.iconPosition = 'LEFT'
-	E.db.nameplates.units.ENEMY_NPC.castbar.iconSize = 18
-	E.db.nameplates.units.ENEMY_NPC.castbar.targetAnchorPoint = 'RIGHT'
-	E.db.nameplates.units.ENEMY_NPC.castbar.targetFont = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.castbar.targetXOffset = 2
-	E.db.nameplates.units.ENEMY_NPC.castbar.textPosition = 'ONBAR'
-	E.db.nameplates.units.ENEMY_NPC.castbar.textXOffset = 2
-	E.db.nameplates.units.ENEMY_NPC.castbar.timeToHold = 2
-	E.db.nameplates.units.ENEMY_NPC.castbar.timeXOffset = -1
-	E.db.nameplates.units.ENEMY_NPC.castbar.width = 193
-	E.db.nameplates.units.ENEMY_NPC.castbar.xOffset = 30
-	E.db.nameplates.units.ENEMY_NPC.castbar.yOffset = 3
-	E.db.nameplates.units.ENEMY_NPC.debuffs.anchorPoint = 'LEFT'
-	E.db.nameplates.units.ENEMY_NPC.debuffs.attachTo = 'HEALTH'
-	E.db.nameplates.units.ENEMY_NPC.debuffs.countFont = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.debuffs.countFontSize = 12
-	E.db.nameplates.units.ENEMY_NPC.debuffs.countPosition = 'TOP'
-	E.db.nameplates.units.ENEMY_NPC.debuffs.countXOffset = 1
-	E.db.nameplates.units.ENEMY_NPC.debuffs.countYOffset = 14
-	E.db.nameplates.units.ENEMY_NPC.debuffs.desaturate = false
-	E.db.nameplates.units.ENEMY_NPC.debuffs.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.debuffs.fontSize = 10
-	E.db.nameplates.units.ENEMY_NPC.debuffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_NPC.debuffs.priority = Private.isRetail and 'blockNonPersonal,ClassDebuffs' or 'blockCCDebuffs,Personal'
-	E.db.nameplates.units.ENEMY_NPC.debuffs.size = 24
-	E.db.nameplates.units.ENEMY_NPC.debuffs.xOffset = -2
-	E.db.nameplates.units.ENEMY_NPC.debuffs.yOffset = -1
-	E.db.nameplates.units.ENEMY_NPC.eliteIcon.size = 14
-	E.db.nameplates.units.ENEMY_NPC.eliteIcon.xOffset = 3
-	E.db.nameplates.units.ENEMY_NPC.health.height = 22
-	E.db.nameplates.units.ENEMY_NPC.health.text.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
-	E.db.nameplates.units.ENEMY_NPC.health.text.parent = 'Health'
-	E.db.nameplates.units.ENEMY_NPC.health.text.position = 'TOPRIGHT'
-	E.db.nameplates.units.ENEMY_NPC.health.text.xOffset = -1
-	E.db.nameplates.units.ENEMY_NPC.health.text.yOffset = -16
-	E.db.nameplates.units.ENEMY_NPC.health.useClassificationColor = true
-	E.db.nameplates.units.ENEMY_NPC.health.useClassificationColorInInstance = true
-	E.db.nameplates.units.ENEMY_NPC.health.width = 210
-	E.db.nameplates.units.ENEMY_NPC.level.enable = false
-	E.db.nameplates.units.ENEMY_NPC.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
-	E.db.nameplates.units.ENEMY_NPC.name.parent = 'Health'
-	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 2
-	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -16
-	E.db.nameplates.units.ENEMY_NPC.pvpindicator.size = 35
-	E.db.nameplates.units.ENEMY_NPC.questIcon.enable = Private.isRetail
-	E.db.nameplates.units.ENEMY_NPC.questIcon.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.questIcon.position = 'TOP'
-	E.db.nameplates.units.ENEMY_NPC.questIcon.size = 30
-	E.db.nameplates.units.ENEMY_NPC.questIcon.spacing = 2
-	E.db.nameplates.units.ENEMY_NPC.questIcon.textPosition = 'CENTER'
-	E.db.nameplates.units.ENEMY_NPC.questIcon.textXOffset = 1
-	E.db.nameplates.units.ENEMY_NPC.questIcon.textYOffset = 0
-	E.db.nameplates.units.ENEMY_NPC.questIcon.yOffset = -2
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'RIGHT'
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 32
-	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
-
-	-- Enemy Player
-	E.db.nameplates.units.ENEMY_PLAYER.auras.attachTo = 'HEALTH'
-	E.db.nameplates.units.ENEMY_PLAYER.auras.countFont = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.auras.countFontSize = 12
-	E.db.nameplates.units.ENEMY_PLAYER.auras.countPosition = 'TOP'
-	E.db.nameplates.units.ENEMY_PLAYER.auras.countXOffset = 1
-	E.db.nameplates.units.ENEMY_PLAYER.auras.countYOffset = 14
-	E.db.nameplates.units.ENEMY_PLAYER.auras.desaturate = false
-	E.db.nameplates.units.ENEMY_PLAYER.auras.height = 24
-	E.db.nameplates.units.ENEMY_PLAYER.auras.numAuras = 4
-	E.db.nameplates.units.ENEMY_PLAYER.auras.priority = Private.isRetail and 'ImportantCC' or 'CCDebuffs'
-	E.db.nameplates.units.ENEMY_PLAYER.auras.size = 24
-	E.db.nameplates.units.ENEMY_PLAYER.auras.sortMethod = 'INDEX'
-	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.fontSize = 11
-	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.length = 5
-	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.xOffset = 2
-	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.yOffset = 13
-	E.db.nameplates.units.ENEMY_PLAYER.auras.yOffset = -1
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.anchorPoint = 'TOPRIGHT'
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.attachTo = 'HEALTH'
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.countFont = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.countFontSize = 12
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.countPosition = 'TOP'
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.countXOffset = 1
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.countYOffset = 14
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.desaturate = false
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.fontSize = 10
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.growthX = 'LEFT'
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Dispellable'
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 24
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.xOffset = 1
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.yOffset = 1
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.anchorPoint = 'BOTTOMRIGHT'
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.castTimeFormat = 'REMAINING'
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.channelTimeFormat = 'REMAINING'
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.displayTarget = true
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.fontSize = 10
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.height = 16
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconOffsetY = -1
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconPosition = 'LEFT'
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconSize = 18
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.targetAnchorPoint = 'RIGHT'
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.targetXOffset = 2
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.textPosition = 'ONBAR'
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.textXOffset = 2
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeToHold = 2
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeXOffset = -1
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.width = 193
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.xOffset = 30
-	E.db.nameplates.units.ENEMY_PLAYER.castbar.yOffset = 3
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.anchorPoint = 'LEFT'
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.attachTo = 'HEALTH'
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFont = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFontSize = 12
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countPosition = 'TOP'
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countXOffset = 1
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countYOffset = 14
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.desaturate = false
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.fontSize = 10
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = Private.isRetail and 'blockNonPersonal,ClassDebuffs' or 'blockCCDebuffs,Personal'
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.size = 24
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.xOffset = -2
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = -1
-	E.db.nameplates.units.ENEMY_PLAYER.health.height = 22
-	E.db.nameplates.units.ENEMY_PLAYER.health.text.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
-	E.db.nameplates.units.ENEMY_PLAYER.health.text.parent = 'Health'
-	E.db.nameplates.units.ENEMY_PLAYER.health.text.position = 'TOPRIGHT'
-	E.db.nameplates.units.ENEMY_PLAYER.health.text.xOffset = -1
-	E.db.nameplates.units.ENEMY_PLAYER.health.text.yOffset = -16
-	E.db.nameplates.units.ENEMY_PLAYER.health.width = 210
-	E.db.nameplates.units.ENEMY_PLAYER.level.enable = false
-	E.db.nameplates.units.ENEMY_PLAYER.level.format = ''
-	E.db.nameplates.units.ENEMY_PLAYER.markHealers = false
-	E.db.nameplates.units.ENEMY_PLAYER.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
-	E.db.nameplates.units.ENEMY_PLAYER.name.parent = 'Health'
-	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
-	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -16
-	E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.position = 'RIGHT'
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.xOffset = 32
-	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.yOffset = 1
-	E.db.nameplates.units.ENEMY_PLAYER.title.format = ''
-
-	-- Friendly NPC
-	E.db.nameplates.units.FRIENDLY_NPC.buffs.enable = false
-	E.db.nameplates.units.FRIENDLY_NPC.debuffs.enable = false
-	E.db.nameplates.units.FRIENDLY_NPC.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
-	E.db.nameplates.units.FRIENDLY_NPC.name.font = Private.Font
-	E.db.nameplates.units.FRIENDLY_NPC.name.fontSize = 14
-	E.db.nameplates.units.FRIENDLY_NPC.name.yOffset = 0
-	E.db.nameplates.units.FRIENDLY_NPC.questIcon.enable = false
-	E.db.nameplates.units.FRIENDLY_NPC.raidTargetIndicator.size = 20
-	E.db.nameplates.units.FRIENDLY_NPC.title.enable = true
-	E.db.nameplates.units.FRIENDLY_NPC.title.font = Private.Font
-
-	-- Friendly Player
-	E.db.nameplates.units.FRIENDLY_PLAYER.auras.enable = false
-	E.db.nameplates.units.FRIENDLY_PLAYER.buffs.enable = false
-	E.db.nameplates.units.FRIENDLY_PLAYER.debuffs.enable = false
-	E.db.nameplates.units.FRIENDLY_PLAYER.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
-	E.db.nameplates.units.FRIENDLY_PLAYER.markHealers = false
-	E.db.nameplates.units.FRIENDLY_PLAYER.markTanks = false
-	E.db.nameplates.units.FRIENDLY_PLAYER.name.font = Private.Font
-	E.db.nameplates.units.FRIENDLY_PLAYER.name.fontSize = 14
-	E.db.nameplates.units.FRIENDLY_PLAYER.name.yOffset = 0
-	E.db.nameplates.units.FRIENDLY_PLAYER.nameOnly = true
-	E.db.nameplates.units.FRIENDLY_PLAYER.raidTargetIndicator.size = 20
-	E.db.nameplates.units.FRIENDLY_PLAYER.title.enable = true
-	E.db.nameplates.units.FRIENDLY_PLAYER.title.font = Private.Font
-
-	if NP.Initialized then
-		E:UpdateNamePlates(true)
+	if includePlugins and Private.isRetail then
+		if Private.IsAddOnLoaded('ElvUI_WindTools') then
+			Private:Setup_Private_WindTools()
+		end
 	end
 
-	Private:Print(L["NamePlate profile and CVars have been set."], installer)
+	-- This will make sure Shaman is blue instead of pink in Era/HC/SoD
+	if Private.isClassic then
+		E.private.general.classColors = true
+	end
+
+	-- DB keys for the dev profiles
+	if Private.Addon.db.global.dev then
+		E.private.bags.enable = (not Private.IsAddOnLoaded('Baganator'))
+		E.private.chat.enable = (not Private.IsAddOnLoaded('Chattynator'))
+		E.private.general.chatBubbles = 'disabled'
+		E.private.nameplates.enable = (not Private.IsAddOnLoaded('Plater') or not Private.IsAddOnLoaded('Platynator'))
+		E.private.unitframe.disabledBlizzardFrames.castbar = (not Private.IsAddOnLoaded('SkironCooldownManager'))
+	end
 end
 
 -- ElvUI profile
@@ -2216,4 +1842,360 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	if layout == 'healing' then
 		SetupHealingParty(partyStyle, scaled)
 	end
+end
+
+-- ElvUI NamePlates
+function Private:Setup_NamePlates(installer)
+	E.private.nameplates.enable = true
+
+	-- Restore defaults
+	E.db.nameplates = E:CopyTable({}, P.nameplates)
+
+	-- NamePlates CVars
+	Private:NameplateCVars()
+
+	-- NamePlates colors
+	E.db.nameplates.colors.auraByType = false
+	E.db.nameplates.colors.castbarDesaturate = false
+	E.db.nameplates.colors.castColor.g = 1
+	E.db.nameplates.colors.castColor.r = 0.02
+	E.db.nameplates.colors.castNoInterruptColor.b = 0
+	E.db.nameplates.colors.castNoInterruptColor.g = 0
+	E.db.nameplates.colors.castNoInterruptColor.r = 1
+	E.db.nameplates.colors.selection[0].b = 0.07
+	E.db.nameplates.colors.selection[0].g = 0.13
+	E.db.nameplates.colors.selection[0].r = 0.92
+	E.db.nameplates.colors.selection[2].b = 0.27
+	E.db.nameplates.colors.selection[2].g = 0.8
+	E.db.nameplates.colors.selection[2].r = 0.93
+	E.db.nameplates.colors.selection[3].b = 0.02
+	E.db.nameplates.colors.selection[3].g = 0.82
+	E.db.nameplates.colors.selection[3].r = 0.02
+	E.db.nameplates.colors.threat.badColor.b = 0
+	E.db.nameplates.colors.threat.badColor.g = 0
+	E.db.nameplates.colors.threat.badTransition.b = 0
+	E.db.nameplates.colors.threat.badTransition.g = 0.8
+	E.db.nameplates.colors.threat.goodColor.b = 1
+	E.db.nameplates.colors.threat.goodColor.g = 0.5
+	E.db.nameplates.colors.threat.goodColor.r = 0.5
+	E.db.nameplates.colors.threat.goodTransition.b = 0
+	E.db.nameplates.colors.threat.goodTransition.g = 1
+	E.db.nameplates.colors.threat.offTankColor.g = 0.92
+	E.db.nameplates.colors.threat.offTankColor.r = 0.73
+	E.db.nameplates.colors.threat.offTankColorBadTransition.b = 1
+	E.db.nameplates.colors.threat.offTankColorBadTransition.g = 0.92
+	E.db.nameplates.colors.threat.offTankColorBadTransition.r = 0.73
+	E.db.nameplates.colors.threat.offTankColorGoodTransition.b = 1
+	E.db.nameplates.colors.threat.offTankColorGoodTransition.g = 0.92
+	E.db.nameplates.colors.threat.offTankColorGoodTransition.r = 0.73
+	E.db.nameplates.colors.threat.soloColor.b = 1
+	E.db.nameplates.colors.threat.soloColor.g = 0.5
+	E.db.nameplates.colors.threat.soloColor.r = 0.5
+
+	-- NamePlates general
+	E.db.nameplates.classColorNames = true
+	E.db.nameplates.clickSize.height = 22
+	E.db.nameplates.clickSize.width = 210
+	E.db.nameplates.fadeIn = false
+	E.db.nameplates.lowHealthThreshold = 0
+	E.db.nameplates.overlapH = 1.1
+	E.db.nameplates.overlapV = 1.7
+	E.db.nameplates.statusbar = Private.Texture
+	E.db.nameplates.threat.skipGoodColor = true
+	E.db.nameplates.threat.useSoloColor = true
+
+	-- NamePlates misc
+	E.db.nameplates.visibility.enemy.guardians = true
+	E.db.nameplates.visibility.enemy.minions = true
+	E.db.nameplates.visibility.friendly.npcs = false
+	E.db.nameplates.visibility.showOnlyNames = true
+	E.db.nameplates.widgets.below = false
+
+	-- Target indicator
+	E.db.nameplates.units.TARGET.arrowScale = 0.8
+	E.db.nameplates.units.TARGET.arrowSpacing = 30
+	E.db.nameplates.units.TARGET.glowStyle = 'style2'
+
+	-- Enemy NPC
+	E.db.nameplates.units.ENEMY_NPC.auras.attachTo = 'HEALTH'
+	E.db.nameplates.units.ENEMY_NPC.auras.countFont = Private.Font
+	E.db.nameplates.units.ENEMY_NPC.auras.countFontSize = 12
+	E.db.nameplates.units.ENEMY_NPC.auras.countPosition = 'TOP'
+	E.db.nameplates.units.ENEMY_NPC.auras.countXOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.auras.countYOffset = 14
+	E.db.nameplates.units.ENEMY_NPC.auras.desaturate = false
+	E.db.nameplates.units.ENEMY_NPC.auras.height = 24
+	E.db.nameplates.units.ENEMY_NPC.auras.numAuras = 4
+	E.db.nameplates.units.ENEMY_NPC.auras.priority = Private.isRetail and 'ImportantCC' or 'CCDebuffs'
+	E.db.nameplates.units.ENEMY_NPC.auras.size = 24
+	E.db.nameplates.units.ENEMY_NPC.auras.sortMethod = 'INDEX'
+	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.font = Private.Font
+	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.fontSize = 11
+	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.length = 5
+	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.xOffset = 2
+	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.yOffset = 13
+	E.db.nameplates.units.ENEMY_NPC.auras.yOffset = -1
+	E.db.nameplates.units.ENEMY_NPC.buffs.anchorPoint = 'TOPRIGHT'
+	E.db.nameplates.units.ENEMY_NPC.buffs.attachTo = 'HEALTH'
+	E.db.nameplates.units.ENEMY_NPC.buffs.countFont = Private.Font
+	E.db.nameplates.units.ENEMY_NPC.buffs.countFontSize = 12
+	E.db.nameplates.units.ENEMY_NPC.buffs.countPosition = 'TOP'
+	E.db.nameplates.units.ENEMY_NPC.buffs.countXOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.buffs.countYOffset = 14
+	E.db.nameplates.units.ENEMY_NPC.buffs.desaturate = false
+	E.db.nameplates.units.ENEMY_NPC.buffs.font = Private.Font
+	E.db.nameplates.units.ENEMY_NPC.buffs.fontSize = 10
+	E.db.nameplates.units.ENEMY_NPC.buffs.growthX = 'LEFT'
+	E.db.nameplates.units.ENEMY_NPC.buffs.maxDuration = 300
+	E.db.nameplates.units.ENEMY_NPC.buffs.numAuras = 4
+	E.db.nameplates.units.ENEMY_NPC.buffs.priority = 'Dispellable'
+	E.db.nameplates.units.ENEMY_NPC.buffs.size = 24
+	E.db.nameplates.units.ENEMY_NPC.buffs.xOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.buffs.yOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.castbar.anchorPoint = 'BOTTOMRIGHT'
+	E.db.nameplates.units.ENEMY_NPC.castbar.castTimeFormat = 'REMAINING'
+	E.db.nameplates.units.ENEMY_NPC.castbar.channelTimeFormat = 'REMAINING'
+	E.db.nameplates.units.ENEMY_NPC.castbar.displayTarget = true
+	E.db.nameplates.units.ENEMY_NPC.castbar.font = Private.Font
+	E.db.nameplates.units.ENEMY_NPC.castbar.fontSize = 10
+	E.db.nameplates.units.ENEMY_NPC.castbar.height = 16
+	E.db.nameplates.units.ENEMY_NPC.castbar.iconOffsetY = -1
+	E.db.nameplates.units.ENEMY_NPC.castbar.iconPosition = 'LEFT'
+	E.db.nameplates.units.ENEMY_NPC.castbar.iconSize = 18
+	E.db.nameplates.units.ENEMY_NPC.castbar.targetAnchorPoint = 'RIGHT'
+	E.db.nameplates.units.ENEMY_NPC.castbar.targetFont = Private.Font
+	E.db.nameplates.units.ENEMY_NPC.castbar.targetXOffset = 2
+	E.db.nameplates.units.ENEMY_NPC.castbar.textPosition = 'ONBAR'
+	E.db.nameplates.units.ENEMY_NPC.castbar.textXOffset = 2
+	E.db.nameplates.units.ENEMY_NPC.castbar.timeToHold = 2
+	E.db.nameplates.units.ENEMY_NPC.castbar.timeXOffset = -1
+	E.db.nameplates.units.ENEMY_NPC.castbar.width = 193
+	E.db.nameplates.units.ENEMY_NPC.castbar.xOffset = 30
+	E.db.nameplates.units.ENEMY_NPC.castbar.yOffset = 3
+	E.db.nameplates.units.ENEMY_NPC.debuffs.anchorPoint = 'LEFT'
+	E.db.nameplates.units.ENEMY_NPC.debuffs.attachTo = 'HEALTH'
+	E.db.nameplates.units.ENEMY_NPC.debuffs.countFont = Private.Font
+	E.db.nameplates.units.ENEMY_NPC.debuffs.countFontSize = 12
+	E.db.nameplates.units.ENEMY_NPC.debuffs.countPosition = 'TOP'
+	E.db.nameplates.units.ENEMY_NPC.debuffs.countXOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.debuffs.countYOffset = 14
+	E.db.nameplates.units.ENEMY_NPC.debuffs.desaturate = false
+	E.db.nameplates.units.ENEMY_NPC.debuffs.font = Private.Font
+	E.db.nameplates.units.ENEMY_NPC.debuffs.fontSize = 10
+	E.db.nameplates.units.ENEMY_NPC.debuffs.numAuras = 4
+	E.db.nameplates.units.ENEMY_NPC.debuffs.priority = Private.isRetail and 'blockNonPersonal,ClassDebuffs' or 'blockCCDebuffs,Personal'
+	E.db.nameplates.units.ENEMY_NPC.debuffs.size = 24
+	E.db.nameplates.units.ENEMY_NPC.debuffs.xOffset = -2
+	E.db.nameplates.units.ENEMY_NPC.debuffs.yOffset = -1
+	E.db.nameplates.units.ENEMY_NPC.eliteIcon.size = 14
+	E.db.nameplates.units.ENEMY_NPC.eliteIcon.xOffset = 3
+	E.db.nameplates.units.ENEMY_NPC.health.height = 22
+	E.db.nameplates.units.ENEMY_NPC.health.text.font = Private.Font
+	E.db.nameplates.units.ENEMY_NPC.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
+	E.db.nameplates.units.ENEMY_NPC.health.text.parent = 'Health'
+	E.db.nameplates.units.ENEMY_NPC.health.text.position = 'TOPRIGHT'
+	E.db.nameplates.units.ENEMY_NPC.health.text.xOffset = -1
+	E.db.nameplates.units.ENEMY_NPC.health.text.yOffset = -16
+	E.db.nameplates.units.ENEMY_NPC.health.useClassificationColor = true
+	E.db.nameplates.units.ENEMY_NPC.health.useClassificationColorInInstance = true
+	E.db.nameplates.units.ENEMY_NPC.health.width = 210
+	E.db.nameplates.units.ENEMY_NPC.level.enable = false
+	E.db.nameplates.units.ENEMY_NPC.name.font = Private.Font
+	E.db.nameplates.units.ENEMY_NPC.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
+	E.db.nameplates.units.ENEMY_NPC.name.parent = 'Health'
+	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 2
+	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -16
+	E.db.nameplates.units.ENEMY_NPC.pvpindicator.size = 35
+	E.db.nameplates.units.ENEMY_NPC.questIcon.enable = Private.isRetail
+	E.db.nameplates.units.ENEMY_NPC.questIcon.font = Private.Font
+	E.db.nameplates.units.ENEMY_NPC.questIcon.position = 'TOP'
+	E.db.nameplates.units.ENEMY_NPC.questIcon.size = 30
+	E.db.nameplates.units.ENEMY_NPC.questIcon.spacing = 2
+	E.db.nameplates.units.ENEMY_NPC.questIcon.textPosition = 'CENTER'
+	E.db.nameplates.units.ENEMY_NPC.questIcon.textXOffset = 1
+	E.db.nameplates.units.ENEMY_NPC.questIcon.textYOffset = 0
+	E.db.nameplates.units.ENEMY_NPC.questIcon.yOffset = -2
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.position = 'RIGHT'
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.xOffset = 32
+	E.db.nameplates.units.ENEMY_NPC.raidTargetIndicator.yOffset = 1
+
+	-- Enemy Player
+	E.db.nameplates.units.ENEMY_PLAYER.auras.attachTo = 'HEALTH'
+	E.db.nameplates.units.ENEMY_PLAYER.auras.countFont = Private.Font
+	E.db.nameplates.units.ENEMY_PLAYER.auras.countFontSize = 12
+	E.db.nameplates.units.ENEMY_PLAYER.auras.countPosition = 'TOP'
+	E.db.nameplates.units.ENEMY_PLAYER.auras.countXOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.auras.countYOffset = 14
+	E.db.nameplates.units.ENEMY_PLAYER.auras.desaturate = false
+	E.db.nameplates.units.ENEMY_PLAYER.auras.height = 24
+	E.db.nameplates.units.ENEMY_PLAYER.auras.numAuras = 4
+	E.db.nameplates.units.ENEMY_PLAYER.auras.priority = Private.isRetail and 'ImportantCC' or 'CCDebuffs'
+	E.db.nameplates.units.ENEMY_PLAYER.auras.size = 24
+	E.db.nameplates.units.ENEMY_PLAYER.auras.sortMethod = 'INDEX'
+	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.font = Private.Font
+	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.fontSize = 11
+	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.length = 5
+	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.xOffset = 2
+	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.yOffset = 13
+	E.db.nameplates.units.ENEMY_PLAYER.auras.yOffset = -1
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.anchorPoint = 'TOPRIGHT'
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.attachTo = 'HEALTH'
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.countFont = Private.Font
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.countFontSize = 12
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.countPosition = 'TOP'
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.countXOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.countYOffset = 14
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.desaturate = false
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.font = Private.Font
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.fontSize = 10
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.growthX = 'LEFT'
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.numAuras = 4
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Dispellable'
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.size = 24
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.xOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.yOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.anchorPoint = 'BOTTOMRIGHT'
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.castTimeFormat = 'REMAINING'
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.channelTimeFormat = 'REMAINING'
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.displayTarget = true
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.font = Private.Font
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.fontSize = 10
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.height = 16
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconOffsetY = -1
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconPosition = 'LEFT'
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.iconSize = 18
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.targetAnchorPoint = 'RIGHT'
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.targetXOffset = 2
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.textPosition = 'ONBAR'
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.textXOffset = 2
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeToHold = 2
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.timeXOffset = -1
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.width = 193
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.xOffset = 30
+	E.db.nameplates.units.ENEMY_PLAYER.castbar.yOffset = 3
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.anchorPoint = 'LEFT'
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.attachTo = 'HEALTH'
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFont = Private.Font
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFontSize = 12
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countPosition = 'TOP'
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countXOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countYOffset = 14
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.desaturate = false
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.font = Private.Font
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.fontSize = 10
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.numAuras = 4
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = Private.isRetail and 'blockNonPersonal,ClassDebuffs' or 'blockCCDebuffs,Personal'
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.size = 24
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.xOffset = -2
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = -1
+	E.db.nameplates.units.ENEMY_PLAYER.health.height = 22
+	E.db.nameplates.units.ENEMY_PLAYER.health.text.font = Private.Font
+	E.db.nameplates.units.ENEMY_PLAYER.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
+	E.db.nameplates.units.ENEMY_PLAYER.health.text.parent = 'Health'
+	E.db.nameplates.units.ENEMY_PLAYER.health.text.position = 'TOPRIGHT'
+	E.db.nameplates.units.ENEMY_PLAYER.health.text.xOffset = -1
+	E.db.nameplates.units.ENEMY_PLAYER.health.text.yOffset = -16
+	E.db.nameplates.units.ENEMY_PLAYER.health.width = 210
+	E.db.nameplates.units.ENEMY_PLAYER.level.enable = false
+	E.db.nameplates.units.ENEMY_PLAYER.level.format = ''
+	E.db.nameplates.units.ENEMY_PLAYER.markHealers = false
+	E.db.nameplates.units.ENEMY_PLAYER.name.font = Private.Font
+	E.db.nameplates.units.ENEMY_PLAYER.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
+	E.db.nameplates.units.ENEMY_PLAYER.name.parent = 'Health'
+	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
+	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -16
+	E.db.nameplates.units.ENEMY_PLAYER.pvpindicator.size = 35
+	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.position = 'RIGHT'
+	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.xOffset = 32
+	E.db.nameplates.units.ENEMY_PLAYER.raidTargetIndicator.yOffset = 1
+	E.db.nameplates.units.ENEMY_PLAYER.title.format = ''
+
+	-- Friendly NPC
+	E.db.nameplates.units.FRIENDLY_NPC.buffs.enable = false
+	E.db.nameplates.units.FRIENDLY_NPC.debuffs.enable = false
+	E.db.nameplates.units.FRIENDLY_NPC.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
+	E.db.nameplates.units.FRIENDLY_NPC.name.font = Private.Font
+	E.db.nameplates.units.FRIENDLY_NPC.name.fontSize = 14
+	E.db.nameplates.units.FRIENDLY_NPC.name.yOffset = 0
+	E.db.nameplates.units.FRIENDLY_NPC.questIcon.enable = false
+	E.db.nameplates.units.FRIENDLY_NPC.raidTargetIndicator.size = 20
+	E.db.nameplates.units.FRIENDLY_NPC.title.enable = true
+	E.db.nameplates.units.FRIENDLY_NPC.title.font = Private.Font
+
+	-- Friendly Player
+	E.db.nameplates.units.FRIENDLY_PLAYER.auras.enable = false
+	E.db.nameplates.units.FRIENDLY_PLAYER.buffs.enable = false
+	E.db.nameplates.units.FRIENDLY_PLAYER.debuffs.enable = false
+	E.db.nameplates.units.FRIENDLY_PLAYER.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
+	E.db.nameplates.units.FRIENDLY_PLAYER.markHealers = false
+	E.db.nameplates.units.FRIENDLY_PLAYER.markTanks = false
+	E.db.nameplates.units.FRIENDLY_PLAYER.name.font = Private.Font
+	E.db.nameplates.units.FRIENDLY_PLAYER.name.fontSize = 14
+	E.db.nameplates.units.FRIENDLY_PLAYER.name.yOffset = 0
+	E.db.nameplates.units.FRIENDLY_PLAYER.nameOnly = true
+	E.db.nameplates.units.FRIENDLY_PLAYER.raidTargetIndicator.size = 20
+	E.db.nameplates.units.FRIENDLY_PLAYER.title.enable = true
+	E.db.nameplates.units.FRIENDLY_PLAYER.title.font = Private.Font
+
+	if NP.Initialized then
+		E:UpdateNamePlates(true)
+	end
+
+	Private:Print(L["NamePlate profile and CVars have been set."], installer)
+end
+
+-- Initial layout setup
+function Private:Setup_Layout(layout, installer, partyStyle)
+	if Private.isRetail or Private.isMists then
+		DisableLibDualSpec()
+	end
+
+	-- Create a fresh profile in ElvUI
+	local name = layoutNames[layout]
+	E.data:SetProfile(Private.Addon.db.global.dev and name or name .. ' ' .. Private.Version)
+
+	-- Protect movers error
+	E.db.movers = E.db.movers or {}
+
+	Private:Setup_GlobalDB()
+	Private:Setup_PrivateDB()
+	Private:Setup_ElvUI(layout, partyStyle)
+
+	Refresh()
+
+	Private:Print(L["Layout has been set."], installer)
+end
+
+-- Handler for existing profiles (Quick install on alts)
+function Private:HandleAlts(layout)
+	local mostRecentProfile = Private:GetMostRecentProfile(layout)
+
+	if not mostRecentProfile then
+		Private:Print(L["No existing LuckyoneUI profile found."])
+		return
+	end
+
+	if Private.isRetail or Private.isMists then
+		DisableLibDualSpec()
+	end
+
+	E.data:SetProfile(mostRecentProfile)
+
+	-- Correct initial DT width
+	if layout == 'main' then
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395 -- (Profile == 1)
+	elseif layout == 'healing' then
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704 -- (Profile == 2)
+	elseif layout == 'support' then
+		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 484 -- (Profile == 3)
+	end
+
+	Private:Setup_PrivateDB(true)
+	Private:Setup_Chat()
+
+	Refresh()
+
+	StaticPopup_Show('LUCKYONE_RL')
+
+	Private:Print(L["Applied profile: "] .. mostRecentProfile)
 end
