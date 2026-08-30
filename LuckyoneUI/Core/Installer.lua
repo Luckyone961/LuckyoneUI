@@ -539,7 +539,7 @@ local function BuildInstallerData()
 		f.Option1:SetText(format('|cffC80000%s', L["Skip and close"]))
 		f.Option2:Show()
 		f.Option2:SetScript('OnClick', Installer.Hide)
-		f.Option2:SetText(L["Temporarily hide"])
+		f.Option2:SetText(L["Close installer"])
 	end
 	stepTitles[pageIndex] = L["Welcome"]
 	pageIndex = pageIndex + 1
