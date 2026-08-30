@@ -2,11 +2,14 @@
 
 **All WoW Versions:**  
 - ElvUI 15.26+ compatibility  
+- Arena and boss frame Buffs show a tooltip again on hover  
+- DataText panels no longer stuck in the screen center during the installer process  
+- Pixel adjustments for stack text on Buffs and Debuffs next to the minimap  
 
 **Retail:**  
 - Updated EditMode strings (Default UI, ElvUI 1440p, ElvUI 1080p)  
 - Updated SkironCooldownManager profile (Keep icon aspect ratio)  
-- Updated WindTools profile (BigWigs /keys window skin)  
+- Updated WindTools profile (Handles Blizzard Damage Meter if Details is not installed)  
 
 ## Version 4.20 [19-08-2026]
 

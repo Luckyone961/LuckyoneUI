@@ -24,8 +24,8 @@ local function BlizzardDamageMeter()
 	SetCVar('damageMeterEnabled', 1)
 	SetCVar('damageMeterResetOnNewInstance', 1)
 
-	E.private.WT.skins.damageMeter.enable = true
 	E.private.WT.skins.damageMeter.bar.texture = Private.Texture
+	E.private.WT.skins.damageMeter.enable = true
 	E.private.WT.skins.damageMeter.minimizeButton = false
 	E.private.WT.skins.damageMeter.scrollBar = 'hide'
 	E.private.WT.skins.damageMeter.sessionTimer = false
@@ -53,10 +53,9 @@ function Private:Setup_WindTools(installer)
 	E.db.WT = E:CopyTable({}, P.WT)
 	E.global.WT = E:CopyTable({}, G.WT)
 
-	-- Avoid recent db convert, seems to run after import and re-enables stuff we don't want
+	-- Avoid db convert
 	E.db.WT.version = 4.20
 	E.global.WT.version = 4.20
-	E.private.WT.version = 4.20
 
 	-- Protect movers error
 	E.db.movers = E.db.movers or {}
@@ -146,6 +145,9 @@ function Private:Setup_Private_WindTools()
 
 	-- Restore defaults
 	E.private.WT = E:CopyTable({}, V.WT)
+
+	-- Avoid db convert
+	E.private.WT.version = 4.20
 
 	-- Private db
 	E.private.WT.item.extendMerchantPages.enable = true
