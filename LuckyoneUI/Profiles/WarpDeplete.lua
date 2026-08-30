@@ -19,6 +19,7 @@ function Private:Setup_WarpDeplete(installer)
 	-- Profile data
 	WarpDepleteDB['profiles'][name] = WarpDepleteDB['profiles'][name] or {}
 	WarpDepleteDB['profiles'][name] = {
+		['backdropTexture'] = Private.Texture,
 		['bar1Font'] = Private.Font,
 		['bar1FontSize'] = 12,
 		['bar1Texture'] = Private.Texture,
