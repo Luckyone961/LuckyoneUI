@@ -332,9 +332,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.convertPages = true
 
 	-- General
-	E.db.general.addonCompartment.fontOutline = Private.Outline
 	E.db.general.addonCompartment.hide = true
-	E.db.general.addonCompartment.size = 20
 	E.db.general.afk = false
 	E.db.general.afkChat = false
 	E.db.general.altPowerBar.font = Private.Font
@@ -896,7 +894,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.arena.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.arena.debuffs.numrows = 2
 	E.db.unitframe.units.arena.debuffs.perrow = 4
-	E.db.unitframe.units.arena.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.arena.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
 	E.db.unitframe.units.arena.debuffs.sizeOverride = 24
 	E.db.unitframe.units.arena.debuffs.xOffset = -1
 	E.db.unitframe.units.arena.debuffs.yOffset = 1
@@ -1003,7 +1001,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.boss.debuffs.growthY = 'DOWN'
 	E.db.unitframe.units.boss.debuffs.numrows = 2
 	E.db.unitframe.units.boss.debuffs.perrow = 4
-	E.db.unitframe.units.boss.debuffs.priority = Private.isRetail and 'blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
+	E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Personal'
 	E.db.unitframe.units.boss.debuffs.sizeOverride = 24
 	E.db.unitframe.units.boss.debuffs.xOffset = -1
 	E.db.unitframe.units.boss.debuffs.yOffset = 1
@@ -1088,7 +1086,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.focus.debuffs.desaturate = false
 	E.db.unitframe.units.focus.debuffs.numrows = 2
 	E.db.unitframe.units.focus.debuffs.perrow = 12
-	E.db.unitframe.units.focus.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal,CCDebuffs'
+	E.db.unitframe.units.focus.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
 	E.db.unitframe.units.focus.disableMouseoverGlow = true
 	E.db.unitframe.units.focus.disableTargetGlow = true
 	E.db.unitframe.units.focus.fader.minAlpha = 0.5
@@ -1347,7 +1345,7 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.target.debuffs.desaturate = false
 	E.db.unitframe.units.target.debuffs.numrows = 2
 	E.db.unitframe.units.target.debuffs.perrow = 12
-	E.db.unitframe.units.target.debuffs.priority = Private.isRetail and 'ImportantCC,blockNonPersonal,ClassDebuffs' or 'Blacklist,Personal'
+	E.db.unitframe.units.target.debuffs.priority = 'Blacklist,Personal'
 	E.db.unitframe.units.target.disableMouseoverGlow = true
 	E.db.unitframe.units.target.fader.minAlpha = 0.5
 	E.db.unitframe.units.target.fader.smooth = 0
@@ -1930,7 +1928,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.auras.desaturate = false
 	E.db.nameplates.units.ENEMY_NPC.auras.height = 24
 	E.db.nameplates.units.ENEMY_NPC.auras.numAuras = 4
-	E.db.nameplates.units.ENEMY_NPC.auras.priority = Private.isRetail and 'ImportantCC' or 'CCDebuffs'
+	E.db.nameplates.units.ENEMY_NPC.auras.priority = 'CCDebuffs'
 	E.db.nameplates.units.ENEMY_NPC.auras.size = 24
 	E.db.nameplates.units.ENEMY_NPC.auras.sortMethod = 'INDEX'
 	E.db.nameplates.units.ENEMY_NPC.auras.sourceText.font = Private.Font
@@ -1987,7 +1985,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_NPC.debuffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_NPC.debuffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_NPC.debuffs.priority = Private.isRetail and 'blockNonPersonal,ClassDebuffs' or 'blockCCDebuffs,Personal'
+	E.db.nameplates.units.ENEMY_NPC.debuffs.priority = 'blockCCDebuffs,Personal'
 	E.db.nameplates.units.ENEMY_NPC.debuffs.size = 24
 	E.db.nameplates.units.ENEMY_NPC.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_NPC.debuffs.yOffset = -1
@@ -2033,7 +2031,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.auras.desaturate = false
 	E.db.nameplates.units.ENEMY_PLAYER.auras.height = 24
 	E.db.nameplates.units.ENEMY_PLAYER.auras.numAuras = 4
-	E.db.nameplates.units.ENEMY_PLAYER.auras.priority = Private.isRetail and 'ImportantCC' or 'CCDebuffs'
+	E.db.nameplates.units.ENEMY_PLAYER.auras.priority = 'CCDebuffs'
 	E.db.nameplates.units.ENEMY_PLAYER.auras.size = 24
 	E.db.nameplates.units.ENEMY_PLAYER.auras.sortMethod = 'INDEX'
 	E.db.nameplates.units.ENEMY_PLAYER.auras.sourceText.font = Private.Font
@@ -2088,7 +2086,7 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.font = Private.Font
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.fontSize = 10
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.numAuras = 4
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = Private.isRetail and 'blockNonPersonal,ClassDebuffs' or 'blockCCDebuffs,Personal'
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.priority = 'blockCCDebuffs,Personal'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.size = 24
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.xOffset = -2
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = -1
