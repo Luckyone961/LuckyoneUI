@@ -11,6 +11,9 @@
 - Updated SkironCooldownManager profile (Keep icon aspect ratio)  
 - Updated WindTools profile (Handles Blizzard Damage Meter if Details is not installed)  
 
+**Classic:**  
+- Updated minimap tracking button position to avoid overlap with Nova Layer frame  
+
 ## Version 4.20 [19-08-2026]
 
 **All WoW Versions:**  

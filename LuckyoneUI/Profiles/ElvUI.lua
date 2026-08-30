@@ -394,8 +394,8 @@ function Private:Setup_ElvUI(layout, partyStyle)
 	E.db.general.minimap.icons.mail.xOffset = -2
 	E.db.general.minimap.icons.mail.yOffset = 2
 	E.db.general.minimap.icons.tracking.scale = 1
-	E.db.general.minimap.icons.tracking.xOffset = 1
-	E.db.general.minimap.icons.tracking.yOffset = 0
+	E.db.general.minimap.icons.tracking.xOffset = 0
+	E.db.general.minimap.icons.tracking.yOffset = 17
 	E.db.general.minimap.locationFontSize = 12
 	E.db.general.minimap.locationText = 'SHOW'
 	E.db.general.minimap.size = 197
