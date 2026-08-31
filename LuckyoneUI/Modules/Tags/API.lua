@@ -128,14 +128,14 @@ local powerTypeHexCache = setmetatable({}, { __index = function(t, pType)
 end})
 
 -- Wipe hex caches when ElvUI media updates so color changes apply without a reload
-function Private.Tags.WipeCaches()
+local function WipeCaches()
 	wipe(classHexCache)
 	wipe(reactionHexCache)
 	wipe(powerHexCache)
 	wipe(powerTypeHexCache)
 end
 
-hooksecurefunc(E, 'UpdateMedia', Private.Tags.WipeCaches)
+hooksecurefunc(E, 'UpdateMedia', WipeCaches)
 
 -- Class color for players, reaction color for NPCs
 -- Retail will not touch any tables if secrets exist

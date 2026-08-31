@@ -202,7 +202,7 @@ local function SetupHealingParty(partyStyle, scaled)
 end
 
 -- E.global & Custom DataText
-function Private:Setup_GlobalDB()
+local function Setup_GlobalDB()
 
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
@@ -325,7 +325,7 @@ function Private:Setup_PrivateDB(includePlugins)
 end
 
 -- ElvUI profile
-function Private:Setup_ElvUI(layout, partyStyle)
+local function Setup_ElvUI(layout, partyStyle)
 
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
@@ -2148,9 +2148,9 @@ function Private:Setup_Layout(layout, installer, partyStyle)
 	-- Protect movers error
 	E.db.movers = E.db.movers or {}
 
-	Private:Setup_GlobalDB()
+	Setup_GlobalDB()
 	Private:Setup_PrivateDB()
-	Private:Setup_ElvUI(layout, partyStyle)
+	Setup_ElvUI(layout, partyStyle)
 
 	Refresh()
 

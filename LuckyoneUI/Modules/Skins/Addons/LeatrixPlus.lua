@@ -13,7 +13,7 @@ local C_Timer = C_Timer
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
-function Private:Skin_LeatrixPlus()
+local function Skin_LeatrixPlus()
 	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.LeatrixPlus then return end
 
 	for _, checkbox in pairs({ PaperDollFrame:GetChildren() }) do
@@ -25,4 +25,4 @@ function Private:Skin_LeatrixPlus()
 	end
 end
 
-S:AddCallbackForAddon('Leatrix_Plus', 'LuckyoneUI_LeatrixPlus', function() C_Timer.After(1, Private.Skin_LeatrixPlus) end)
+S:AddCallbackForAddon('Leatrix_Plus', 'LuckyoneUI_LeatrixPlus', function() C_Timer.After(1, Skin_LeatrixPlus) end)

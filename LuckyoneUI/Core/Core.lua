@@ -99,7 +99,7 @@ function Private:GetActiveProfile()
 end
 
 -- Open settings helper
-function Private:OpenSettings()
+local function OpenSettings()
 	if Private.ElvUI then
 		ElvUI[1]:ToggleOptions('LuckyoneUI')
 		ElvUI[1]:Config_UpdateSize(true)
@@ -109,7 +109,7 @@ function Private:OpenSettings()
 end
 
 -- Installer toggle helper
-function Private:ToggleInstaller()
+local function ToggleInstaller()
 	if not Private.Installer then return end
 
 	if Private.Installer:IsShown() then
@@ -126,13 +126,13 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 	icon = 'Interface\\AddOns\\LuckyoneUI\\Media\\Textures\\Compartment.png',
 	OnClick = function(_, button)
 		if button == 'LeftButton' then
-			Private:OpenSettings()
+			OpenSettings()
 		elseif button == 'RightButton' then
 			if IsShiftKeyDown() then
 				LDBI:Hide(Name)
 				Private.Addon.db.profile.minimap.hide = true
 			else
-				Private:ToggleInstaller()
+				ToggleInstaller()
 			end
 		end
 	end,
@@ -145,7 +145,7 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 
 -- Addon Compartment OnClick TOC func
 function LuckyoneUI_OnAddonCompartmentClick()
-	Private:OpenSettings()
+	OpenSettings()
 end
 
 -- Reload popup
@@ -205,7 +205,7 @@ _G.StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 }
 
 -- ElvUI version check
-function Private:VersionCheck()
+local function VersionCheck()
 	if not Private.ElvUI then return end
 	if ElvUI[1].version < Private.RequiredElvUI then
 		StaticPopup_Show('LUCKYONE_VC')
@@ -228,7 +228,7 @@ function Private:ApplyScale(native)
 end
 
 -- Weekly Rewards Frame chat commands
-function Private.Addon:WeeklyRewards()
+local function WeeklyRewards()
 	LoadAddOn('Blizzard_WeeklyRewards')
 	if _G.WeeklyRewardsFrame:IsShown() then
 		_G.WeeklyRewardsFrame:Hide()
@@ -238,11 +238,11 @@ function Private.Addon:WeeklyRewards()
 end
 
 -- LuckyoneUI chat commands
-function Private.Addon:Toggles(msg)
+local function Toggles(msg)
 	if msg == 'install' then
-		Private:ToggleInstaller()
+		ToggleInstaller()
 	elseif msg == 'config' then
-		Private:OpenSettings()
+		OpenSettings()
 	elseif msg == 'minimap' then
 		local hide = not Private.Addon.db.profile.minimap.hide
 		Private.Addon.db.profile.minimap.hide = hide
@@ -257,7 +257,7 @@ function Private.Addon:Toggles(msg)
 end
 
 -- LuckyoneUI ElvUI debug mode
-function Private.Addon:DebugMode(msg)
+local function DebugMode(msg)
 	local switch = strlower(msg)
 	if switch == 'on' then
 		for i = 1, GetNumAddOns() do
@@ -283,19 +283,19 @@ function Private.Addon:DebugMode(msg)
 end
 
 -- Register all commands
-function Private.Addon:LoadCommands()
-	self:RegisterChatCommand('lucky', 'Toggles')
+local function LoadCommands()
+	Private.Addon:RegisterChatCommand('lucky', Toggles)
 	if Private.isRetail then -- Retail chat commands
-		self:RegisterChatCommand('vault', 'WeeklyRewards')
-		self:RegisterChatCommand('weekly', 'WeeklyRewards')
+		Private.Addon:RegisterChatCommand('vault', WeeklyRewards)
+		Private.Addon:RegisterChatCommand('weekly', WeeklyRewards)
 	end
 	if Private.ElvUI then
-		self:RegisterChatCommand('luckydebug', 'DebugMode')
+		Private.Addon:RegisterChatCommand('luckydebug', DebugMode)
 	end
 end
 
 -- ElvUI init
-function Private:CheckElvUI()
+local function CheckElvUI()
 	if not Private.ElvUI then return end
 
 	local E = ElvUI[1]
@@ -323,7 +323,7 @@ function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	end
 
 	if Private.ElvUI then
-		Private:VersionCheck()
+		VersionCheck()
 	end
 
 	Private:HandleToons()
@@ -333,15 +333,15 @@ function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	end
 
 	if Private.Installer and (Private.Addon.db.global.install_version == nil) then
-		Private.Installer:OnLoad()
+		Private.Installer:Show(Private.InstallerData)
 	end
 end
 
 function Core:OnEnable()
 	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
-	Private.Addon:LoadCommands()
+	LoadCommands()
 
-	Private:CheckElvUI()
+	CheckElvUI()
 
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end

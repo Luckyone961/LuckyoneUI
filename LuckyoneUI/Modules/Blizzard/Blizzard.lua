@@ -20,7 +20,7 @@ local DELETE_ITEM_CONFIRM_STRING = DELETE_ITEM_CONFIRM_STRING
 local StaticPopupDialogs = StaticPopupDialogs
 
 -- Disabled Blizzard Frames (Loading on init)
-function Private:DisabledFrames()
+local function DisabledFrames()
 	local db = Private.Addon.db.profile.disabledFrames
 	local HiddenFrame
 
@@ -108,7 +108,7 @@ function Private:DisabledFrames()
 end
 
 -- Prevent GroupLootHistoryFrame from auto-opening after a boss kill or keystone
-function Private:PreventLootAutoShow()
+local function PreventLootAutoShow()
 	if not (Private.isRetail and Private.Addon.db.profile.qualityOfLife.preventLootAutoShow) then return end
 
 	local GroupLootHistoryFrame = _G.GroupLootHistoryFrame
@@ -118,7 +118,7 @@ function Private:PreventLootAutoShow()
 end
 
 -- Easy delete
-function Private:EasyDelete()
+local function EasyDelete()
 	if not Private.Addon.db.profile.qualityOfLife.easyDelete then return end
 
 	local function EasyDelete_OnShow(frame)
@@ -133,7 +133,7 @@ function Private:EasyDelete()
 end
 
 -- Auto accept role check
-function Private:AutoAcceptRole()
+local function AutoAcceptRole()
 	if not ((Private.isRetail or Private.isMists) and Private.Addon.db.profile.qualityOfLife.autoAcceptRole) then return end
 
 	-- Auto click on show
@@ -166,7 +166,7 @@ local function QuickSignup_OnDoubleClick(self, button)
 	LFGListSearchPanel_SignUp(panel)
 end
 
-function Private:QuickSignup()
+local function QuickSignup()
 	if not ((Private.isRetail or Private.isMists) and Private.Addon.db.profile.qualityOfLife.quickSignup) then return end
 
 	-- Update fires per entry on every list refresh, only set the handler once per entry
@@ -195,7 +195,7 @@ end
 
 -- Removes the Realm names from friendly Nameplates in name-only mode while in a Dungeon/Raid/Battleground
 -- This sets (NamePlateFriendlyFrameOptions.updateNameUsesGetUnitName = nil) without tainting
-function Private:RemoveNameplateRealm()
+local function RemoveNameplateRealm()
 	if not (Private.isRetail and Private.Addon.db.profile.misc.removeNameplateRealm) then return end
 	_G.TextureLoadingGroupMixin.RemoveTexture({textures = _G.NamePlateFriendlyFrameOptions}, 'updateNameUsesGetUnitName')
 end
@@ -207,12 +207,12 @@ function Blizzard:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	-- Only run the setup on login and reload, not on every loading screen
 	if not (initLogin or isReload) then return end
 
-	Private:AutoAcceptRole()
-	Private:DisabledFrames()
-	Private:EasyDelete()
-	Private:PreventLootAutoShow()
-	Private:QuickSignup()
-	Private:RemoveNameplateRealm()
+	AutoAcceptRole()
+	DisabledFrames()
+	EasyDelete()
+	PreventLootAutoShow()
+	QuickSignup()
+	RemoveNameplateRealm()
 end
 
 function Blizzard:OnEnable()

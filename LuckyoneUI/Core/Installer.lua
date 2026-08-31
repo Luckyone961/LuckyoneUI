@@ -767,8 +767,3 @@ function Installer:Initialize()
 	CreateStepComplete()
 	installerFrame = CreateMainFrame()
 end
-
--- Initialize
-function Private.Installer:OnLoad()
-	Installer:Show(Private.InstallerData)
-end

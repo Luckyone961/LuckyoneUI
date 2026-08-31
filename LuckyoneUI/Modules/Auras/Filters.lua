@@ -19,21 +19,23 @@ local function Add(list, ids)
 	end
 end
 
+local Setup_Filters_Retail, Setup_Filters_Mists, Setup_Filters_Classic
+
 -- Aura filters: Installer Function
 function Private:Setup_Filters(installer)
 	if Private.isRetail then
-		Private:Setup_Filters_Retail()
+		Setup_Filters_Retail()
 	elseif Private.isMists then
-		Private:Setup_Filters_Mists()
+		Setup_Filters_Mists()
 	elseif Private.isTBC or Private.isClassic then
-		Private:Setup_Filters_Classic()
+		Setup_Filters_Classic()
 	end
 
 	Private:Print(L["Custom ElvUI aura filters loaded."], installer)
 end
 
 -- Aura filters: Retail
-function Private:Setup_Filters_Retail()
+function Setup_Filters_Retail()
 	if not Private.isRetail then return end
 
 	-- General vars
@@ -478,7 +480,7 @@ function Private:Setup_Filters_Retail()
 end
 
 -- Aura filters: Mists of Pandaria
-function Private:Setup_Filters_Mists()
+function Setup_Filters_Mists()
 	if not Private.isMists then return end
 
 	-- General vars
@@ -797,7 +799,7 @@ function Private:Setup_Filters_Mists()
 end
 
 -- Aura filters: TBC / Classic
-function Private:Setup_Filters_Classic()
+function Setup_Filters_Classic()
 	if not (Private.isTBC or Private.isClassic) then return end
 
 	-- General vars

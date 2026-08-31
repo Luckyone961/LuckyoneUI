@@ -162,7 +162,7 @@ local function CooldownManager_HandleSettings(viewer)
 	hooksecurefunc(viewer, 'RefreshLayout', CooldownManager_RefreshLayout)
 end
 
-function Private:Skin_CooldownViewer()
+local function Skin_CooldownViewer()
 	if not Private.Addon.db.profile.skins.Blizzard.CooldownViewer then return end
 
 	CooldownManager_HandleSettings(_G.CooldownViewerSettings)
@@ -193,4 +193,4 @@ function Private:Skin_CooldownViewer()
 	end
 end
 
-S:AddCallbackForAddon('Blizzard_CooldownViewer', 'LuckyoneUI_CooldownViewer', Private.Skin_CooldownViewer)
+S:AddCallbackForAddon('Blizzard_CooldownViewer', 'LuckyoneUI_CooldownViewer', Skin_CooldownViewer)

@@ -10,7 +10,7 @@ local unpack = unpack
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
-function Private:Skin_NovaWorldBuffs()
+local function Skin_NovaWorldBuffs()
 	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.NovaWorldBuffs then return end
 
 	if MinimapLayerFrame and not MinimapLayerFrame.isSkinned then
@@ -34,4 +34,4 @@ function Private:Skin_NovaWorldBuffs()
 	end
 end
 
-S:AddCallbackForAddon('NovaWorldBuffs', 'LuckyoneUI_NovaWorldBuffs', Private.Skin_NovaWorldBuffs)
+S:AddCallbackForAddon('NovaWorldBuffs', 'LuckyoneUI_NovaWorldBuffs', Skin_NovaWorldBuffs)
