@@ -13,12 +13,13 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
+local mainWindow = _G.DamageMeterSessionWindow1
 local function SetSourcePoint(source)
 	if not source or source:IsForbidden() then return end
 
 	source:SetClampedToScreen(true)
 	source:ClearAllPoints()
-	source:Point('BOTTOMLEFT', _G.RightChatPanel, 'TOPLEFT', -15, -13)
+	source:Point('BOTTOMLEFT', mainWindow, 'TOPLEFT', -11, -19)
 
 	source.ResizeButton:Kill()
 end
