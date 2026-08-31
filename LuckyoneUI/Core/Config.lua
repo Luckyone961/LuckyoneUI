@@ -427,6 +427,14 @@ local function BuildSkinsSection()
 	section.args.blizzard = ACH:Group('Blizzard', nil, 2, nil, function(info) return Private.Addon.db.profile.skins.Blizzard[info[#info]] end, function(info, value) Private.Addon.db.profile.skins.Blizzard[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end, nil, not Private.isRetail)
 	section.args.blizzard.inline = true
 	section.args.blizzard.args.CooldownViewer = ACH:Toggle('Cooldown Manager Settings', nil, 1)
+	section.args.blizzard.args.DamageMeter = ACH:Group('Damage Meter', nil, 2, nil, function(info) return Private.Addon.db.profile.skins.Blizzard.DamageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.skins.Blizzard.DamageMeter[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
+	section.args.blizzard.args.DamageMeter.inline = true
+	section.args.blizzard.args.DamageMeter.args.enable = ACH:Toggle(L["Enable"], L["Requires the ElvUI Damage Meter skin to be enabled."], 1, nil, nil, nil, nil, nil, function() local E = ElvUI[1] return not (E.private.skins.blizzard.enable and E.private.skins.blizzard.damageMeter) end)
+	section.args.blizzard.args.DamageMeter.args.applyStyle = ACH:Toggle('Apply style', nil, 2, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.skins.Blizzard.DamageMeter.enable end)
+	section.args.blizzard.args.DamageMeter.args.removeCombatTime = ACH:Toggle('Remove Combat Time', nil, 3, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.skins.Blizzard.DamageMeter.enable end)
+	section.args.blizzard.args.DamageMeter.args.removeCollapseButton = ACH:Toggle('Remove Collapse Button', nil, 4, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.skins.Blizzard.DamageMeter.enable end)
+	section.args.blizzard.args.DamageMeter.args.removeScrollbar = ACH:Toggle('Remove Scrollbar', nil, 5, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.skins.Blizzard.DamageMeter.enable end)
+	section.args.blizzard.args.DamageMeter.args.extendPaddingSlider = ACH:Toggle('Extend Padding Slider', L["Allow the Edit Mode bar padding slider to go as low as -2. Existing padding values shift down by 4, re-adjust the slider once after toggling."], 6, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.skins.Blizzard.DamageMeter.enable end)
 	return section
 end
 

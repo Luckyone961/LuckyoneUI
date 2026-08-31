@@ -83,6 +83,14 @@ Private.Defaults = {
 			WhatsTraining = false,
 			Blizzard = {
 				CooldownViewer = false,
+				DamageMeter = {
+					enable = false,
+					applyStyle = true,
+					removeCombatTime = true,
+					removeCollapseButton = true,
+					removeScrollbar = true,
+					extendPaddingSlider = true,
+				},
 			}
 		},
 	}
