@@ -1,7 +1,6 @@
 local _, Private = ...
 local Misc = Private.Modules.Misc
 
--- ElvUI file
 if not Private.ElvUI then
 	return
 end

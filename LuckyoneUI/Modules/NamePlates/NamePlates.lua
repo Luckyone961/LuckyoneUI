@@ -2,7 +2,6 @@ local _, Private = ...
 local LSM = Private.Libs.LSM
 local NamePlates = Private.Modules.NamePlates
 
--- ElvUI file
 if not Private.ElvUI then
 	return
 end
