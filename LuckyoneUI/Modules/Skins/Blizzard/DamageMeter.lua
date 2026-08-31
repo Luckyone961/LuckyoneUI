@@ -81,13 +81,13 @@ local function DamageMeter_HandleSessionWindow(window)
 	if db.removeScrollbar then
 		local scrollBar = window.GetScrollBar and window:GetScrollBar()
 		if scrollBar then
-			scrollBar:SetAlpha(0)
+			scrollBar:Kill()
 		end
 
 		local sourceWindow = window.SourceWindow
 		local sourceScrollBar = sourceWindow and sourceWindow.GetScrollBar and sourceWindow:GetScrollBar()
 		if sourceScrollBar then
-			sourceScrollBar:SetAlpha(0)
+			sourceScrollBar:Kill()
 		end
 	end
 
