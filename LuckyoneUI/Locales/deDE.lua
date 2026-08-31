@@ -264,6 +264,7 @@ L["Remove Nameplate Realms"] = "Namensplaketten Realm entfernen"
 L["Removes the LFG frame overlay and animation which blocks your mouse inputs and tooltip when you are not the party leader."] = "Entfernt das Overlay im Gruppenbrowser, welches Mausklicks und Tooltips blockiert, solange du nicht Gruppenanführer bist."
 L["Removes the realm names from friendly nameplates in name-only mode while in a Dungeon/Raid/Battleground."] = "Entfernt die Realms von freundlichen Namensplaketten in der 'Nur Namen anzeigen' version in Dungeons/Raids/Schlachtfeldern."
 L["Report issues here:"] = "Melde Fehler hier:"
+L["Requires the ElvUI Damage Meter skin to be enabled."] = true
 L["Restoration"] = true
 L["Restore Defaults"] = "Standard wiederherstellen"
 L["Restore LuckyoneUI Defaults"] = "LuckyoneUI Standardeinstellungen wiederherstellen"

@@ -267,6 +267,7 @@ L["Remove Nameplate Realms"] = true
 L["Removes the LFG frame overlay and animation which blocks your mouse inputs and tooltip when you are not the party leader."] = true
 L["Removes the realm names from friendly nameplates in name-only mode while in a Dungeon/Raid/Battleground."] = true
 L["Report issues here:"] = true
+L["Requires the ElvUI Damage Meter skin to be enabled."] = true
 L["Restoration"] = true
 L["Restore Defaults"] = true
 L["Restore LuckyoneUI Defaults"] = true

@@ -264,6 +264,7 @@ L["Remove Nameplate Realms"] = "Enlever les royaumes des barres d'info"
 L["Removes the LFG frame overlay and animation which blocks your mouse inputs and tooltip when you are not the party leader."] = "Supprime le recouvrement et l'animation du cadre LFG qui bloquent la souris et les info-bulles lorsque vous n'êtes pas le leader du groupe."
 L["Removes the realm names from friendly nameplates in name-only mode while in a Dungeon/Raid/Battleground."] = "Supprime le royaume des barres d'info amicales en mode nom uniquement dans les donjons, raids et champs de bataille."
 L["Report issues here:"] = "Signalez les problèmes ici :"
+L["Requires the ElvUI Damage Meter skin to be enabled."] = true
 L["Restoration"] = "Restauration"
 L["Restore Defaults"] = "Restaurer les valeurs par défaut"
 L["Restore LuckyoneUI Defaults"] = "Restaurer aux valeurs LuckyoneUI par défaut"

@@ -264,6 +264,7 @@ L["Remove Nameplate Realms"] = "Убрать названия миров с ин
 L["Removes the LFG frame overlay and animation which blocks your mouse inputs and tooltip when you are not the party leader."] = "Убирает наложение и анимацию рамки поиска группы, которые блокируют ввод мыши и всплывающие подсказки, когда Вы не являетесь лидером группы."
 L["Removes the realm names from friendly nameplates in name-only mode while in a Dungeon/Raid/Battleground."] = "Убирает названия миров с индикаторов здоровья союзников в режиме 'только имена' во время нахождения в подземелье, рейде или на поле боя."
 L["Report issues here:"] = "Сообщить о проблеме:"
+L["Requires the ElvUI Damage Meter skin to be enabled."] = true
 L["Restoration"] = "Исцеление"
 L["Restore Defaults"] = "Восстановить стандартные настройки"
 L["Restore LuckyoneUI Defaults"] = "Восстановить стандартные настройки LuckyoneUI"
