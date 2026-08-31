@@ -243,6 +243,7 @@ L["Minimalistic"] = "Minimalistisch"
 L["Minimap Buttons explained"] = true
 L["Minimap Buttons"] = true
 L["Minimap_Tooltip"] = "|cff4beb2cKlick|r um die Optionen zu öffnen.\n|cff4beb2cRechtsklick|r um die Installation zu starten.\n|cff4beb2cShift-Rechtsklick|r um das Minikarten-Symbol zu verstecken."
+L["Misc"] = true
 L["Mistweaver"] = true
 L["Monk"] = "Mönch"
 L["Mouseover"] = true -- No need to translate

@@ -243,6 +243,7 @@ L["Minimalistic"] = "Минималистичный"
 L["Minimap Buttons explained"] = true
 L["Minimap Buttons"] = true
 L["Minimap_Tooltip"] = "Подсказка миникарты"
+L["Misc"] = true
 L["Mistweaver"] = "Ткач туманов"
 L["Monk"] = "Монах"
 L["Mouseover"] = true

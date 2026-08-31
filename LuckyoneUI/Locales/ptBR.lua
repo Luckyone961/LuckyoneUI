@@ -243,6 +243,7 @@ L["Minimalistic"] = "Minimalista"
 L["Minimap Buttons explained"] = true
 L["Minimap Buttons"] = true
 L["Minimap_Tooltip"] = true
+L["Misc"] = true
 L["Mistweaver"] = true
 L["Monk"] = "Monge"
 L["Mouseover"] = true
