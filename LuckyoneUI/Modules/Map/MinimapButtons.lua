@@ -2,7 +2,6 @@ local _, Private = ...
 local Map = Private.Modules.Map
 local LDBI = Private.Libs.LDBI
 
--- ElvUI file
 if not Private.ElvUI then
 	return
 end
@@ -12,7 +11,6 @@ end
 -- Even if no code was re-used, the module is inspired by their work.
 
 local floor = math.floor
-local ipairs = ipairs
 local pairs = pairs
 local sort = table.sort
 local tinsert = table.insert
@@ -33,9 +31,6 @@ Private.CustomMinimapButtons = {
 	-- 'AddonName_MinimapButton',
 }
 
--- Called in UpdateMinimapButtonBar when enabled
-local RegisterHooks
-
 local function IsLandingPageButton(button)
 	return Private.isRetail and button == _G.ExpansionLandingPageMinimapButton
 end
@@ -54,6 +49,16 @@ local function UpdateCoord(self)
 	self:SetTexCoord(unpack(E.TexCoords))
 end
 
+local function SetLandingPageArtAlpha(button, alpha)
+	local normal = button:GetNormalTexture()
+	local pushed = button:GetPushedTexture()
+	if normal then normal:SetAlpha(alpha) end
+	if pushed then pushed:SetAlpha(alpha) end
+	if button.LoopingGlow then button.LoopingGlow:SetAlpha(alpha) end
+	if button.AlertBG then button.AlertBG:SetAlpha(alpha) end
+	if button.AlertText then button.AlertText:SetAlpha(alpha) end
+end
+
 -- Blizzard art uses SetAtlas(..., UseAtlasSize) and ElvUI re-applies the classHall scale.
 -- Instead of fighting both, hide the original art and draw our own copy of the icon.
 local function FitLandingPageButton(button, size)
@@ -62,22 +67,15 @@ local function FitLandingPageButton(button, size)
 	button:SetSize(size, size)
 	button:SetHitRectInsets(0, 0, 0, 0)
 
-	local normal = button:GetNormalTexture()
-	local pushed = button:GetPushedTexture()
+	SetLandingPageArtAlpha(button, 0)
 
-	if normal then normal:SetAlpha(0) end
-	if pushed then pushed:SetAlpha(0) end
-	if button.LoopingGlow then button.LoopingGlow:SetAlpha(0) end
-	if button.AlertBG then button.AlertBG:SetAlpha(0) end
-	if button.AlertText then button.AlertText:SetAlpha(0) end
-
-	-- Our own icon respects the bar size, unlike the UseAtlasSize textures
 	local icon = button.LuckyoneIcon
 	if not icon then
 		icon = button:CreateTexture(nil, 'ARTWORK')
 		button.LuckyoneIcon = icon
 	end
 
+	local normal = button:GetNormalTexture()
 	local atlas = normal and normal.GetAtlas and normal:GetAtlas()
 	if atlas then
 		icon:SetAtlas(atlas, false)
@@ -92,6 +90,13 @@ local function FitLandingPageButton(button, size)
 
 	-- Blizzard UpdateIcon also resets the highlight to a huge atlas
 	ApplyHighlight(button)
+end
+
+local function FitManagedLandingPage(button)
+	if Map.buttonBar and Map.buttonBar.buttons[button] then
+		FitLandingPageButton(button, Private.Addon.db.profile.map.minimap.buttons.size)
+		return true
+	end
 end
 
 -- Save the original state so hidden buttons can be restored to the Minimap
@@ -125,7 +130,6 @@ local function SkinLandingPageButton(button)
 		button.LuckyoneSkinned = true
 	end
 
-	-- UpdateIcon resets atlas size and points: Always re-fit to our bar size
 	FitLandingPageButton(button, Private.Addon.db.profile.map.minimap.buttons.size)
 end
 
@@ -146,7 +150,6 @@ local function SkinButton(button)
 	end
 	button.icon = icon
 
-	-- Hide every texture that is not the main icon (file IDs, overlays, shadows, etc.)
 	local regions = { button:GetRegions() }
 	for i = 1, #regions do
 		local region = regions[i]
@@ -198,19 +201,12 @@ local function ReleaseButton(button)
 	button:SetScript('OnDragStop', state.onDragStop)
 	button.LuckyoneState = nil
 
-	-- Restore Blizzard art and let UpdateIcon reapply atlas sizes and anchors
 	if IsLandingPageButton(button) then
 		if button.LuckyoneIcon then
 			button.LuckyoneIcon:Hide()
 		end
 
-		local normal = button:GetNormalTexture()
-		local pushed = button:GetPushedTexture()
-		if normal then normal:SetAlpha(1) end
-		if pushed then pushed:SetAlpha(1) end
-		if button.LoopingGlow then button.LoopingGlow:SetAlpha(1) end
-		if button.AlertBG then button.AlertBG:SetAlpha(1) end
-		if button.AlertText then button.AlertText:SetAlpha(1) end
+		SetLandingPageArtAlpha(button, 1)
 
 		if button.UpdateIcon then
 			button:UpdateIcon()
@@ -218,8 +214,7 @@ local function ReleaseButton(button)
 	end
 end
 
--- Layout grows from TOPRIGHT leftward: index 1 = top-right, last index = far left.
--- BugSack pinned first, Blizzard buttons pinned last, everything else A-Z by name.
+-- TOPRIGHT leftward: BugSack first, A-Z, landing page last
 local function GetButtonSortRank(button)
 	if IsLandingPageButton(button) then
 		return 2
@@ -249,6 +244,13 @@ local function SortCollectedButtons(buttons)
 	end)
 end
 
+local function TryCollect(buttons, seen, button)
+	if button and not seen[button] and button:IsShown() then
+		seen[button] = true
+		tinsert(buttons, button)
+	end
+end
+
 local function CollectLibDBIconChildren(parent, buttons, seen)
 	if not parent then return end
 
@@ -272,31 +274,18 @@ local function CollectButtons()
 	-- fallback below cannot see them and a missed LDBI lookup would Hide() them for good.
 	if bar then
 		for button in pairs(bar.buttons) do
-			if button:IsShown() then
-				seen[button] = true
-				tinsert(buttons, button)
-			end
+			TryCollect(buttons, seen, button)
 		end
 	end
 
-	-- Blizzard Expansion Landing Page (Garrison / Covenant / DF / TWW) - Retail only
-	if Private.isRetail then
-		local blizzardDB = Private.Addon.db.profile.map.minimap.buttons.blizzard
-		local landing = _G.ExpansionLandingPageMinimapButton
-		if blizzardDB.expansionLandingPage and landing and landing:IsShown() and not seen[landing] then
-			seen[landing] = true
-			tinsert(buttons, landing)
-		end
+	if Private.isRetail and Private.Addon.db.profile.map.minimap.buttons.blizzard.expansionLandingPage then
+		TryCollect(buttons, seen, _G.ExpansionLandingPageMinimapButton)
 	end
 
 	local names = LDBI:GetButtonList()
 	for i = 1, #names do
-		local button = LDBI:GetMinimapButton(names[i])
 		-- Trust visibility only. Some addons keep db.hide = true while still showing the button.
-		if button and not seen[button] and button:IsShown() then
-			seen[button] = true
-			tinsert(buttons, button)
-		end
+		TryCollect(buttons, seen, LDBI:GetMinimapButton(names[i]))
 	end
 
 	-- Fallback: LibDBIcon buttons the list missed (Minimap on first grab, bar after reparent)
@@ -304,30 +293,32 @@ local function CollectButtons()
 	CollectLibDBIconChildren(bar, buttons, seen)
 
 	for i = 1, #Private.CustomMinimapButtons do
-		local button = _G[Private.CustomMinimapButtons[i]]
-		if button and not seen[button] and button:IsShown() then
-			seen[button] = true
-			tinsert(buttons, button)
-		end
+		TryCollect(buttons, seen, _G[Private.CustomMinimapButtons[i]])
 	end
 
 	SortCollectedButtons(buttons)
 	return buttons
 end
 
-local function ShowBarOnHover(self)
+local function HoverBar(self)
 	local bar = Map.buttonBar
 	if not bar or not Private.Addon.db.profile.map.minimap.buttons.mouseover then return end
 	if self ~= bar and not bar.buttons[self] then return end
-	bar:SetAlpha(1)
+	return bar
+end
+
+local function ShowBarOnHover(self)
+	local bar = HoverBar(self)
+	if bar then
+		bar:SetAlpha(1)
+	end
 end
 
 local function HideBarOnHover(self)
-	local bar = Map.buttonBar
-	if not bar or not Private.Addon.db.profile.map.minimap.buttons.mouseover then return end
-	if self ~= bar and not bar.buttons[self] then return end
-	if bar:IsMouseOver() then return end
-	bar:SetAlpha(0)
+	local bar = HoverBar(self)
+	if bar and not bar:IsMouseOver() then
+		bar:SetAlpha(0)
+	end
 end
 
 local function HookButtonMouseover(button)
@@ -369,7 +360,7 @@ local function LayoutButtons(holder, buttons)
 	local size = db.size
 	local perRow = db.perRow
 	local xStep = size + db.spacing
-	local yStep = size + 1 -- Vertical row gap is always 1px
+	local yStep = size + 1
 
 	local count = #buttons
 	local rows = count > 0 and floor((count - 1) / perRow) + 1 or 0
@@ -382,7 +373,8 @@ local function LayoutButtons(holder, buttons)
 	bar:SetSize(holder:GetWidth(), height)
 	wipe(bar.buttons)
 
-	for index, button in ipairs(buttons) do
+	for i = 1, count do
+		local button = buttons[i]
 		CaptureState(button)
 
 		-- Anchor first so a skin/fit error cannot leave buttons unpositioned
@@ -392,7 +384,7 @@ local function LayoutButtons(holder, buttons)
 		button:SetScript('OnDragStop', nil)
 		button:ClearAllPoints()
 
-		local slot = index - 1
+		local slot = i - 1
 		button:SetPoint('TOPRIGHT', bar, 'TOPRIGHT', -((slot % perRow) * xStep), -(floor(slot / perRow) * yStep))
 
 		SkinButton(button)
@@ -424,7 +416,6 @@ local function ReleaseAll()
 	bar:Hide()
 	bar:SetSize(0, 0)
 
-	-- Restore LibDBIcon positioning for released buttons
 	local names = LDBI:GetButtonList()
 	for i = 1, #names do
 		LDBI:Refresh(names[i])
@@ -443,6 +434,49 @@ local function ScheduleUpdate()
 	Map.updateTimer = Private.Addon:ScheduleTimer(RunUpdate, 0.1)
 end
 
+local function RegisterLandingPageHooks()
+	if not Private.isRetail then return end
+
+	local button = _G.ExpansionLandingPageMinimapButton
+	if not button or button.LuckyoneLandingHooked then return end
+	if not Private.Addon.db.profile.map.minimap.buttons.blizzard.expansionLandingPage then return end
+
+	button.LuckyoneLandingHooked = true
+
+	-- UpdateIcon swaps garrison/expansion atlases and calls SetSize with atlas dimensions
+	hooksecurefunc(button, 'UpdateIcon', function(self)
+		FitManagedLandingPage(self)
+		ScheduleUpdate()
+	end)
+
+	-- RefreshButton does Hide -> UpdateIcon -> Show when the overlay changes
+	hooksecurefunc(button, 'RefreshButton', ScheduleUpdate)
+	button:HookScript('OnShow', ScheduleUpdate)
+	button:HookScript('OnHide', ScheduleUpdate)
+
+	-- ElvUI re-anchors the button to the Minimap and re-applies the classHall scale
+	if M.HandleExpansionButton then
+		hooksecurefunc(M, 'HandleExpansionButton', function()
+			if FitManagedLandingPage(button) then
+				ScheduleUpdate()
+			end
+		end)
+	end
+end
+
+local function RegisterHooks()
+	if not Map.buttonBarHooks then
+		Map.buttonBarHooks = true
+
+		LDBI.RegisterCallback(Map, 'LibDBIcon_IconCreated', ScheduleUpdate)
+		hooksecurefunc(LDBI, 'Hide', ScheduleUpdate)
+		hooksecurefunc(LDBI, 'Show', ScheduleUpdate)
+		hooksecurefunc(M, 'UpdateSettings', ScheduleUpdate)
+	end
+
+	RegisterLandingPageHooks()
+end
+
 function Private:UpdateMinimapButtonBar()
 	local db = Private.Addon.db.profile.map.minimap.buttons
 	if not db.enable or not E.private.general.minimap.enable then
@@ -450,7 +484,6 @@ function Private:UpdateMinimapButtonBar()
 		return
 	end
 
-	-- Covers enable and expansionLandingPage toggles from config
 	RegisterHooks()
 
 	local holder = _G[db.holder]
@@ -465,7 +498,6 @@ function Private:UpdateMinimapButtonBar()
 
 	local buttons = CollectButtons()
 
-	-- Release buttons that left the set (hidden or unregistered)
 	local bar = Map.buttonBar
 	if bar then
 		local keep = {}
@@ -487,52 +519,6 @@ function Private:UpdateMinimapButtonBar()
 	LayoutButtons(holder, buttons)
 end
 
-local function RegisterLandingPageHooks()
-	if not Private.isRetail then return end
-
-	local button = _G.ExpansionLandingPageMinimapButton
-	if not button or button.LuckyoneLandingHooked then return end
-	if not Private.Addon.db.profile.map.minimap.buttons.blizzard.expansionLandingPage then return end
-
-	button.LuckyoneLandingHooked = true
-
-	-- UpdateIcon swaps garrison/expansion atlases and calls SetSize with atlas dimensions
-	hooksecurefunc(button, 'UpdateIcon', function(self)
-		if Map.buttonBar and Map.buttonBar.buttons[self] then
-			FitLandingPageButton(self, Private.Addon.db.profile.map.minimap.buttons.size)
-		end
-		ScheduleUpdate()
-	end)
-
-	-- RefreshButton does Hide -> UpdateIcon -> Show when the overlay changes
-	hooksecurefunc(button, 'RefreshButton', ScheduleUpdate)
-	button:HookScript('OnShow', ScheduleUpdate)
-	button:HookScript('OnHide', ScheduleUpdate)
-
-	-- ElvUI re-anchors the button to the Minimap and re-applies the classHall scale
-	if M.HandleExpansionButton then
-		hooksecurefunc(M, 'HandleExpansionButton', function()
-			if Map.buttonBar and Map.buttonBar.buttons[button] then
-				FitLandingPageButton(button, Private.Addon.db.profile.map.minimap.buttons.size)
-				ScheduleUpdate()
-			end
-		end)
-	end
-end
-
-RegisterHooks = function()
-	if not Map.buttonBarHooks then
-		Map.buttonBarHooks = true
-
-		LDBI.RegisterCallback(Map, 'LibDBIcon_IconCreated', ScheduleUpdate)
-		hooksecurefunc(LDBI, 'Hide', ScheduleUpdate)
-		hooksecurefunc(LDBI, 'Show', ScheduleUpdate)
-		hooksecurefunc(M, 'UpdateSettings', ScheduleUpdate)
-	end
-
-	RegisterLandingPageHooks()
-end
-
 function Map:PLAYER_ENTERING_WORLD()
 	RegisterHooks()
 	ScheduleUpdate()
@@ -543,6 +529,5 @@ function Map:OnEnable()
 	if not db.enable or not E.private.general.minimap.enable then return end
 
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
-	RegisterHooks()
-	ScheduleUpdate()
+	self:PLAYER_ENTERING_WORLD()
 end
