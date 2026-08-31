@@ -5,6 +5,7 @@
 - Arena and boss frame Buffs show a tooltip again on hover  
 - DataText panels no longer stuck in the screen center during the installer process  
 - Pixel adjustments for stack text on Buffs and Debuffs next to the minimap  
+- Updated frFR locales (Credits: Oniria)  
 - Value color is now class colored by default (Chat tab names, Game menu title, etc)  
 
 **Retail:**  
