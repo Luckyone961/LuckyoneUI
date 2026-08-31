@@ -329,6 +329,9 @@ local function Setup_ElvUI(layout, partyStyle)
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
 
+	-- For the value color values
+	local classColor = E.myClassColor
+
 	-- AB conversion
 	E.db.convertPages = true
 
@@ -405,6 +408,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.general.tagUpdateRate = 0.33
 	E.db.general.talkingHeadFrameBackdrop = true
 	E.db.general.talkingHeadFrameScale = 1
+	E.db.general.valuecolor = E:NewColorTable(classColor.r, classColor.g, classColor.b, classColor.a)
 	E.db.general.vehicleSeatIndicatorSize = 64
 
 	-- Prepare all ActionBars
