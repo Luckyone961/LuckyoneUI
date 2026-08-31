@@ -233,7 +233,6 @@ L["Outlaw"] = true
 L["Paladin"] = true -- No need to translate
 L["People found out some characters have a big amount of hidden quests which will cause performance issues. This button will untrack all your quests, including the hidden ones and might give you an increase in average FPS."] = true
 L["Performance"] = "Leistung"
-L["Performance"] = true
 L["PermoksAccountManager profile has been set."] = "PermoksAccountManager Profil wurde festgelegt."
 L["Plater profile has been set."] = "Plater Profil wurde festgelegt."
 L["Platynator profile has been set."] = "Platynator Profil wurde festgelegt."
