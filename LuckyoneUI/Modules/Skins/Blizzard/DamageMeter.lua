@@ -33,6 +33,10 @@ local function DamageMeter_HandleSessionWindow(window)
 				dropdown:ClearAllPoints()
 				dropdown:Point('TOPLEFT', window.Header, 3, -5)
 				dropdown:Point('RIGHT', window.SessionDropdown, 'LEFT', -3, 0)
+
+				if window.SessionDropdown and window.SessionDropdown.SessionName then
+					window.SessionDropdown.SessionName:SetTextColor(1, 1, 1)
+				end
 			end
 
 			local typeName = dropdown.TypeName
