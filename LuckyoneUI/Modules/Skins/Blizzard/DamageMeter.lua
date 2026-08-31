@@ -13,6 +13,16 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
+local function SetSourcePoint(source)
+	if not source or source:IsForbidden() then return end
+
+	source:SetClampedToScreen(true)
+	source:ClearAllPoints()
+	source:Point('BOTTOMLEFT', _G.RightChatPanel, 'TOPLEFT', -15, -13)
+
+	source.ResizeButton:Kill()
+end
+
 local function DamageMeter_HandleSessionWindow(window)
 	local db = Private.Addon.db.profile.skins.Blizzard.DamageMeter
 
@@ -89,6 +99,11 @@ local function DamageMeter_HandleSessionWindow(window)
 		if sourceScrollBar then
 			sourceScrollBar:Kill()
 		end
+	end
+
+	local source = window.MinimizeContainer.SourceWindow
+	if source then
+		source:HookScript('OnShow', SetSourcePoint)
 	end
 
 	-- Blizzard re-anchors the header widgets when the saved minimize state is restored on login/reload
