@@ -207,6 +207,7 @@ _G.StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 -- ElvUI version check
 local function VersionCheck()
 	if not Private.ElvUI then return end
+
 	if ElvUI[1].version < Private.RequiredElvUI then
 		StaticPopup_Show('LUCKYONE_VC')
 		Private:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
@@ -340,8 +341,6 @@ end
 function Core:OnEnable()
 	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
 	LoadCommands()
-
 	CheckElvUI()
-
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end

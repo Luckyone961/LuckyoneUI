@@ -19,23 +19,8 @@ local function Add(list, ids)
 	end
 end
 
-local Setup_Filters_Retail, Setup_Filters_Mists, Setup_Filters_Classic
-
--- Aura filters: Installer Function
-function Private:Setup_Filters(installer)
-	if Private.isRetail then
-		Setup_Filters_Retail()
-	elseif Private.isMists then
-		Setup_Filters_Mists()
-	elseif Private.isTBC or Private.isClassic then
-		Setup_Filters_Classic()
-	end
-
-	Private:Print(L["Custom ElvUI aura filters loaded."], installer)
-end
-
 -- Aura filters: Retail
-function Setup_Filters_Retail()
+local function Setup_Filters_Retail()
 	if not Private.isRetail then return end
 
 	-- General vars
@@ -480,7 +465,7 @@ function Setup_Filters_Retail()
 end
 
 -- Aura filters: Mists of Pandaria
-function Setup_Filters_Mists()
+local function Setup_Filters_Mists()
 	if not Private.isMists then return end
 
 	-- General vars
@@ -799,7 +784,7 @@ function Setup_Filters_Mists()
 end
 
 -- Aura filters: TBC / Classic
-function Setup_Filters_Classic()
+local function Setup_Filters_Classic()
 	if not (Private.isTBC or Private.isClassic) then return end
 
 	-- General vars
@@ -976,4 +961,17 @@ function Setup_Filters_Classic()
 
 	-- Warrior
 	classes['WARRIOR'][6673]['style'] = 'texturedIcon' -- Battle Shout
+end
+
+-- Aura filters: Installer Function
+function Private:Setup_Filters(installer)
+	if Private.isRetail then
+		Setup_Filters_Retail()
+	elseif Private.isMists then
+		Setup_Filters_Mists()
+	elseif Private.isTBC or Private.isClassic then
+		Setup_Filters_Classic()
+	end
+
+	Private:Print(L["Custom ElvUI aura filters loaded."], installer)
 end
