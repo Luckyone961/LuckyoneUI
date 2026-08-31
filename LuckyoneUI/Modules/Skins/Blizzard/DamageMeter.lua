@@ -29,12 +29,10 @@ local function DamageMeter_HandleSessionWindow(window)
 				dropdown.customArrow:SetAlpha(0)
 			end
 
-			if not dropdown.LuckyoneSkinned and window.Header and window.SessionDropdown then
+			if window.Header and window.SessionDropdown then
 				dropdown:ClearAllPoints()
 				dropdown:Point('TOPLEFT', window.Header, 3, -5)
 				dropdown:Point('RIGHT', window.SessionDropdown, 'LEFT', -3, 0)
-
-				dropdown.LuckyoneSkinned = true
 			end
 
 			local typeName = dropdown.TypeName
@@ -62,20 +60,17 @@ local function DamageMeter_HandleSessionWindow(window)
 		window.MinimizeButton:EnableMouse(false)
 
 		-- Move the dropdowns into the gap left by the hidden button
+		-- Reapply on every pass, Blizzard re-anchors these on minimize state restore
 		local settingsDropdown = window.SettingsDropdown
-		if settingsDropdown and not settingsDropdown.LuckyoneSkinned then
+		if settingsDropdown then
 			settingsDropdown:ClearAllPoints()
-			settingsDropdown:Point('RIGHT', window.MinimizeButton, 'RIGHT', 0, 0)
-
-			settingsDropdown.LuckyoneSkinned = true
+			settingsDropdown:Point('RIGHT', window.MinimizeButton, 'RIGHT', 2, -2)
 		end
 
 		local sessionDropdown = window.SessionDropdown
-		if sessionDropdown and settingsDropdown and not sessionDropdown.LuckyoneSkinned then
+		if sessionDropdown and settingsDropdown then
 			sessionDropdown:ClearAllPoints()
 			sessionDropdown:Point('RIGHT', settingsDropdown, 'LEFT', 6, 0)
-
-			sessionDropdown.LuckyoneSkinned = true
 		end
 	end
 
@@ -90,6 +85,13 @@ local function DamageMeter_HandleSessionWindow(window)
 		if sourceScrollBar then
 			sourceScrollBar:SetAlpha(0)
 		end
+	end
+
+	-- Blizzard re-anchors the header widgets when the saved minimize state is restored on login/reload
+	if window.SetMinimized and not window.LuckyoneHooked then
+		hooksecurefunc(window, 'SetMinimized', DamageMeter_HandleSessionWindow)
+
+		window.LuckyoneHooked = true
 	end
 end
 
