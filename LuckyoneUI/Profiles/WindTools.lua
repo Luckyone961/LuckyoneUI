@@ -23,12 +23,6 @@ local function BlizzardDamageMeter()
 	SetCVar('damageMeterEnabled', 1)
 	SetCVar('damageMeterResetOnNewInstance', 1)
 
-	E.private.WT.skins.damageMeter.bar.texture = Private.Texture
-	E.private.WT.skins.damageMeter.enable = true
-	E.private.WT.skins.damageMeter.minimizeButton = false
-	E.private.WT.skins.damageMeter.scrollBar = 'hide'
-	E.private.WT.skins.damageMeter.sessionTimer = false
-
 	E.db.WT.combat.damageMeterLayout.animation.enable = false
 	E.db.WT.combat.damageMeterLayout.backdrop = false
 	E.db.WT.combat.damageMeterLayout.enable = true

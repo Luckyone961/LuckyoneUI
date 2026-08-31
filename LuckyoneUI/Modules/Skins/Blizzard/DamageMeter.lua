@@ -110,6 +110,11 @@ local function Skin_DamageMeter()
 	-- Requires the ElvUI Damage Meter skin
 	if not (E.private.skins.blizzard.enable and E.private.skins.blizzard.damageMeter) then return end
 
+	-- Force off WT skin
+	if Private.IsAddOnLoaded('ElvUI_WindTools') and E.private.WT.skins.damageMeter.enable then
+		E.private.WT.skins.damageMeter.enable = false
+	end
+
 	hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', DamageMeter_SetupSessionWindows)
 	DamageMeter_SetupSessionWindows()
 end
