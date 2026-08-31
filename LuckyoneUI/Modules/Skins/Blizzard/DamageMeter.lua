@@ -29,9 +29,9 @@ local function DamageMeter_HandleSessionWindow(window)
 				dropdown.customArrow:SetAlpha(0)
 			end
 
-			if not dropdown.LuckyoneSkinned and window.SessionTimer and window.SessionDropdown then
-				dropdown:ClearAllPoints() -- point is a secret
-				dropdown:Point('TOPLEFT', window.SessionTimer, 'TOPRIGHT', 0, 4)
+			if not dropdown.LuckyoneSkinned and window.Header and window.SessionDropdown then
+				dropdown:ClearAllPoints()
+				dropdown:Point('TOPLEFT', window.Header, 3, -5)
 				dropdown:Point('RIGHT', window.SessionDropdown, 'LEFT', -3, 0)
 
 				dropdown.LuckyoneSkinned = true
@@ -39,9 +39,16 @@ local function DamageMeter_HandleSessionWindow(window)
 
 			local typeName = dropdown.TypeName
 			if typeName then
-				typeName:ClearAllPoints() -- point is a secret
-				typeName:Point('LEFT', dropdown, 3, 0)
+				typeName:ClearAllPoints()
+				typeName:Point('LEFT', dropdown, -2, 0)
 				typeName:SetTextColor(1, 1, 1)
+
+				-- Combat timer on the right side of the TypeName
+				-- This avoids moving the TypeName when combat timer is updating
+				if window.SessionTimer then
+					window.SessionTimer:ClearAllPoints()
+					window.SessionTimer:Point('LEFT', typeName, 'RIGHT', 3, 0)
+				end
 			end
 		end
 	end
@@ -57,7 +64,7 @@ local function DamageMeter_HandleSessionWindow(window)
 		-- Move the dropdowns into the gap left by the hidden button
 		local settingsDropdown = window.SettingsDropdown
 		if settingsDropdown and not settingsDropdown.LuckyoneSkinned then
-			settingsDropdown:ClearAllPoints() -- point is a secret
+			settingsDropdown:ClearAllPoints()
 			settingsDropdown:Point('RIGHT', window.MinimizeButton, 'RIGHT', 0, 0)
 
 			settingsDropdown.LuckyoneSkinned = true
@@ -65,8 +72,8 @@ local function DamageMeter_HandleSessionWindow(window)
 
 		local sessionDropdown = window.SessionDropdown
 		if sessionDropdown and settingsDropdown and not sessionDropdown.LuckyoneSkinned then
-			sessionDropdown:ClearAllPoints() -- point is a secret
-			sessionDropdown:Point('RIGHT', settingsDropdown, 'LEFT', 3, 1)
+			sessionDropdown:ClearAllPoints()
+			sessionDropdown:Point('RIGHT', settingsDropdown, 'LEFT', 6, 0)
 
 			sessionDropdown.LuckyoneSkinned = true
 		end
@@ -101,21 +108,4 @@ local function Skin_DamageMeter()
 	DamageMeter_SetupSessionWindows()
 end
 
--- Values are stored as an offset from minValue, so the saved value never goes negative
-local function EditMode_ExtendPaddingSlider()
-	local db = Private.Addon.db.profile.skins.Blizzard.DamageMeter
-	if not (db.enable and db.extendPaddingSlider) then return end
-
-	-- Requires the ElvUI Damage Meter skin
-	if not (E.private.skins.blizzard.enable and E.private.skins.blizzard.damageMeter) then return end
-
-	local manager = _G.EditModeSettingDisplayInfoManager
-	local displayInfoMap = manager and manager.displayInfoMap[Enum.EditModeSystem.DamageMeter]
-	local padding = displayInfoMap and displayInfoMap[Enum.EditModeDamageMeterSetting.Padding]
-	if padding then
-		padding.minValue = -2
-	end
-end
-
 S:AddCallbackForAddon('Blizzard_DamageMeter', 'LuckyoneUI_DamageMeter', Skin_DamageMeter)
-S:AddCallbackForAddon('Blizzard_EditMode', 'LuckyoneUI_DamageMeterEditMode', EditMode_ExtendPaddingSlider)

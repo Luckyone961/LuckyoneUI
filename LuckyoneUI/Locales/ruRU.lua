@@ -13,7 +13,6 @@ L["Addon Profiles"] = "Профили дополнений"
 L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your specialization\nIt also assumes you have properly setup specialization-based profile loading in ElvUI profiles"] = "Регулирует ширину DataText 'FPS - Время в бою - Прочность' в зависимости от Вашей компоновки LuckyoneUI\n\nКомпоновка для ДД и танков будет соответствовать стандартной ширине моих панелей действий\nКомпоновка для лекарей будет соответствовать стандартной ширине моих рамок рейда\n\nВсе вышеуказанные изменения сработают при смене Вашей специализации\nТакже предполагается, что Вы правильно настроили загрузку профилей ElvUI в зависимости от специализации"
 L["Affliction"] = "Колдовство"
 L["Alert Frame"] = "Рамка оповещения"
-L["Allow the Edit Mode bar padding slider to go as low as -2. Existing padding values shift down by 4, re-adjust the slider once after toggling."] = true
 L["Alt: "] = "Альт: "
 L["Anchor"] = "Якорь"
 L["Application Cover"] = "Обложка заявок"

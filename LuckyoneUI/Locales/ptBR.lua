@@ -13,7 +13,6 @@ L["Addon Profiles"] = "Perfis dos Addons"
 L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your specialization\nIt also assumes you have properly setup specialization-based profile loading in ElvUI profiles"] = true
 L["Affliction"] = true
 L["Alert Frame"] = "Painel de Alerta"
-L["Allow the Edit Mode bar padding slider to go as low as -2. Existing padding values shift down by 4, re-adjust the slider once after toggling."] = true
 L["Alt: "] = true
 L["Anchor"] = true
 L["Application Cover"] = true

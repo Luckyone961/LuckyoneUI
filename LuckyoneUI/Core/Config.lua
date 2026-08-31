@@ -434,7 +434,6 @@ local function BuildSkinsSection()
 	section.args.blizzard.args.DamageMeter.args.removeCombatTime = ACH:Toggle('Remove Combat Time', nil, 3, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.skins.Blizzard.DamageMeter.enable end)
 	section.args.blizzard.args.DamageMeter.args.removeCollapseButton = ACH:Toggle('Remove Collapse Button', nil, 4, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.skins.Blizzard.DamageMeter.enable end)
 	section.args.blizzard.args.DamageMeter.args.removeScrollbar = ACH:Toggle('Remove Scrollbar', nil, 5, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.skins.Blizzard.DamageMeter.enable end)
-	section.args.blizzard.args.DamageMeter.args.extendPaddingSlider = ACH:Toggle('Extend Padding Slider', L["Allow the Edit Mode bar padding slider to go as low as -2. Existing padding values shift down by 4, re-adjust the slider once after toggling."], 6, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.skins.Blizzard.DamageMeter.enable end)
 	return section
 end
 

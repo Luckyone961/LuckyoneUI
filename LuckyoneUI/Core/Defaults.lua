@@ -89,7 +89,6 @@ Private.Defaults = {
 					removeCombatTime = true,
 					removeCollapseButton = true,
 					removeScrollbar = true,
-					extendPaddingSlider = true,
 				},
 			}
 		},
