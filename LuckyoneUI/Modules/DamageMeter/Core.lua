@@ -56,9 +56,7 @@ function DM:ShouldShow()
 
 	local visibility = DM.db.visibility
 
-	if visibility == 'HIDE' then
-		return false
-	elseif visibility == 'COMBAT' then
+	if visibility == 'COMBAT' then
 		return UnitAffectingCombat('player')
 	elseif visibility == 'GROUP' then
 		return IsInGroup()

@@ -185,7 +185,6 @@ L["Healing Layout"] = "Макет 'Исцеление'"
 L["Healing Vertical"] = "Исцеление вертикально"
 L["Healing"] = "Исцеление"
 L["Height"] = true
-L["Hidden"] = true
 L["Hide Blizzard Frames"] = "Скрыть рамки Blizzard"
 L["Hide the Boss Banner"] = "Скрыть баннер босса"
 L["Hide the Housing Alerts for \n\'New Decor Added\'"] = "Скрыть оповещения жилья о \n\'Добавлено новое украшение\'"

@@ -324,7 +324,6 @@ local function SettingsMenu(_, rootDescription)
 	visibility:CreateRadio(L["Always"], IsVisibilitySelected, SetVisibilitySelected, 'SHOW')
 	visibility:CreateRadio(L["In Combat"], IsVisibilitySelected, SetVisibilitySelected, 'COMBAT')
 	visibility:CreateRadio(L["In Group"], IsVisibilitySelected, SetVisibilitySelected, 'GROUP')
-	visibility:CreateRadio(L["Hidden"], IsVisibilitySelected, SetVisibilitySelected, 'HIDE')
 
 	rootDescription:CreateDivider()
 	rootDescription:CreateButton(Private.Name, function()
@@ -348,6 +347,14 @@ end
 
 local function CogButton_OnClick(button)
 	MenuUtil.CreateContextMenu(button, SettingsMenu)
+end
+
+local function CogButton_OnEnter(button)
+	button:GetNormalTexture():SetVertexColor(unpack(E.media.rgbvaluecolor))
+end
+
+local function CogButton_OnLeave(button)
+	button:GetNormalTexture():SetVertexColor(1, 1, 1)
 end
 
 -- Mouse wheel scrolling, no scrollbar
@@ -388,12 +395,17 @@ function DM:GetWindow(index)
 
 	local cogButton = CreateFrame('Button', nil, header)
 	cogButton:Point('RIGHT', header, 'RIGHT', -2, 0)
-	cogButton:SetNormalAtlas('common-dropdown-a-button-settings-shadowless')
-	cogButton:SetHighlightAtlas('common-dropdown-a-button-settings-hover-shadowless')
-	cogButton:SetPushedAtlas('common-dropdown-a-button-settings-pressed-shadowless')
+	cogButton:SetNormalAtlas('GM-icon-settings')
 	cogButton:SetScript('OnClick', CogButton_OnClick)
+	cogButton:SetScript('OnEnter', CogButton_OnEnter)
+	cogButton:SetScript('OnLeave', CogButton_OnLeave)
 	cogButton.window = window
 	window.cogButton = cogButton
+
+	-- The atlas carries padding, oversize it like the ElvUI skin does
+	window.cogIcon = cogButton:GetNormalTexture()
+	window.cogIcon:ClearAllPoints()
+	window.cogIcon:Point('CENTER')
 
 	local sessionButton = CreateFrame('Button', nil, header)
 	sessionButton:Point('RIGHT', cogButton, 'LEFT', -4, 0)
@@ -445,7 +457,9 @@ function DM:ApplyWindowSettings(window)
 	end
 
 	window.header:Height(db.headerHeight)
-	window.cogButton:Size(max(12, db.headerHeight - 4))
+	local cogSize = max(12, db.headerHeight - 4)
+	window.cogButton:Size(cogSize)
+	window.cogIcon:Size(cogSize * 1.3)
 	window.sessionButton:Size(26, db.headerHeight)
 
 	window.typeText:FontTemplate(db.font, db.fontSize, db.fontOutline)

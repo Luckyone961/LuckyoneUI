@@ -185,7 +185,6 @@ L["Healing Layout"] = "Perfil de Curandeiro"
 L["Healing Vertical"] = "Curando Vertical"
 L["Healing"] = "Curando"
 L["Height"] = true
-L["Hidden"] = true
 L["Hide Blizzard Frames"] = "Esconder Painéis da Blizzard"
 L["Hide the Boss Banner"] = "Esconder o Anúncio do Chefe"
 L["Hide the Housing Alerts for \n\'New Decor Added\'"] = true

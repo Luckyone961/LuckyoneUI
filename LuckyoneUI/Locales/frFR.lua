@@ -185,7 +185,6 @@ L["Healing Layout"] = "Disposition soigneur"
 L["Healing Vertical"] = "Soigneur vertical"
 L["Healing"] = "Soigneur"
 L["Height"] = true
-L["Hidden"] = true
 L["Hide Blizzard Frames"] = "Masquer les cadres Blizzard"
 L["Hide the Boss Banner"] = "Masquer la banière du boss"
 L["Hide the Housing Alerts for \n\'New Decor Added\'"] = "Masquer les alertes du logis pour les nouvelles décorations ajoutées"

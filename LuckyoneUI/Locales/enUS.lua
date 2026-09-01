@@ -188,7 +188,6 @@ L["Healing Layout"] = true
 L["Healing Vertical"] = true
 L["Healing"] = true
 L["Height"] = true
-L["Hidden"] = true
 L["Hide Blizzard Frames"] = true
 L["Hide the Boss Banner"] = true
 L["Hide the Housing Alerts for \n\'New Decor Added\'"] = true

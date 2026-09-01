@@ -218,7 +218,7 @@ local function BuildDamageMeterSection()
 	section.args.general = ACH:Group(L["General"], nil, 2, nil, GetOpt, SetOpt)
 	section.args.general.inline = true
 	section.args.general.args.enable = ACH:Toggle(L["Enable"], L["Lightweight Damage Meter powered by the native Blizzard combat data."], 1)
-	section.args.general.args.visibility = ACH:Select(L["Visibility"], nil, 2, { SHOW = L["Always"], COMBAT = L["In Combat"], GROUP = L["In Group"], HIDE = L["Hidden"] }, nil, nil, nil, nil, IsDisabled)
+	section.args.general.args.visibility = ACH:Select(L["Visibility"], nil, 2, { SHOW = L["Always"], COMBAT = L["In Combat"], GROUP = L["In Group"] }, nil, nil, nil, nil, IsDisabled)
 	section.args.general.args.secondWindow = ACH:Toggle(L["Second Window"], L["Show a second session window, both share the frame width."], 3, nil, nil, nil, nil, nil, IsDisabled)
 	section.args.general.args.windowOneType = ACH:Select(L["Window 1"], nil, 4, GetMeterTypes, nil, nil, function() return Private.Addon.db.profile.damageMeter.windowOne.meterType end, function(_, value) SetWindowType(1, value) end, IsDisabled)
 	section.args.general.args.windowTwoType = ACH:Select(L["Window 2"], nil, 5, GetMeterTypes, nil, nil, function() return Private.Addon.db.profile.damageMeter.windowTwo.meterType end, function(_, value) SetWindowType(2, value) end, function() return IsDisabled() or not Private.Addon.db.profile.damageMeter.secondWindow end)
