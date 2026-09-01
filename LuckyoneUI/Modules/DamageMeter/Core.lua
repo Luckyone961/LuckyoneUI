@@ -65,7 +65,7 @@ function DM:ShouldShow()
 	return true
 end
 
--- Transparent template so the backdrop picks up the ElvUI faded color
+-- Use ElvUI backdrop faded color db
 function DM:UpdateBackdrop()
 	if not DM.holder then return end
 
@@ -89,7 +89,7 @@ function DM:UpdateShown()
 	DM.lastShown = shown
 end
 
--- Windows split the holder, one window takes the full width, two share it
+-- Windows split the holder (1: Full width, 2: Half width, inner spacing)
 function DM:Layout()
 	local db = DM.db
 	local holder = DM.holder
@@ -144,7 +144,7 @@ function DM:Initialize()
 
 	E:CreateMover(holder, 'LuckyoneUI_DamageMeterMover', Private.Name .. ' ' .. L["Damage Meter"], nil, nil, nil, 'ALL,GENERAL', nil, 'LuckyoneUI,damageMeter')
 
-	-- Follow chat panel resizing while synced
+	-- Follow ElvUI resizing while "Sync with Chat Panel" option is used
 	hooksecurefunc(E:GetModule('Chat'), 'PositionChats', function()
 		if DM.db.enable and DM.db.syncSize then
 			DM:Layout()
@@ -178,7 +178,7 @@ function DM:PLAYER_REGEN_DISABLED()
 	DM:UpdateShown()
 end
 
--- Re-render after combat, the amounts stop being secret so the share comes back
+-- Re-render after combat when the amounts stop being secret
 function DM:PLAYER_REGEN_ENABLED()
 	DM:UpdateShown()
 	DM:MarkAllDirty()

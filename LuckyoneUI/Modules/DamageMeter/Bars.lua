@@ -219,7 +219,6 @@ local function UpdateBarStatus(bar, entry, maxAmount, deathEntry)
 		status:SetMinMaxValues(0, 1)
 		status:SetValue(1)
 	else
-		-- Both accept secret values from tainted code
 		status:SetMinMaxValues(0, maxAmount)
 		status:SetValue(entry.totalAmount)
 	end
@@ -306,7 +305,6 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 
 	local display = db.numberDisplay
 
-	-- Only the share needs arithmetic, so it is the one part secrets have to drop
 	if display == 'COMPLETE' and not (sessionSecret or issecretvalue(total)) then
 		local percent = sessionTotal > 0 and (total / sessionTotal * 100) or 0
 
