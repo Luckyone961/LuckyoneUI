@@ -9,6 +9,7 @@ local unpack = unpack
 local floor = math.floor
 local max = math.max
 
+local CreateAbbreviateConfig = CreateAbbreviateConfig
 local CreateFrame = CreateFrame
 local GetClassAtlas = GetClassAtlas
 local GetSpellName = C_Spell.GetSpellName
@@ -25,9 +26,34 @@ local DAMAGE_METER_SPELL_ENTRY_UNIT = DAMAGE_METER_SPELL_ENTRY_UNIT
 
 local E = unpack(ElvUI)
 
--- ElvUI keeps the config in sync with prefix style and decimal length
+-- Expand the ElvUI abbrev to support values below 1k
+-- This fixes 13 random decimals showing for low dps/hps numbers
+local abbrevSource, abbrevOptions
+local function GetAbbreviate()
+	local config = E.Abbreviate.short.config
+	if not config then return end
+
+	if abbrevSource ~= config then
+		abbrevSource = config
+
+		local data = config:GetAbbreviateNumberData()
+
+		data[#data + 1] = {
+			breakpoint = 1e-9, -- This is 0.000000001 because 0 is not accepted/valid
+			abbreviation = '',
+			significandDivisor = 0.01,
+			fractionDivisor = 100,
+			abbreviationIsGlobal = false
+		}
+
+		abbrevOptions = { config = CreateAbbreviateConfig(data) }
+	end
+
+	return abbrevOptions
+end
+
 local function FormatAmount(amount)
-	return AbbreviateNumbers(amount, E.Abbreviate.short)
+	return AbbreviateNumbers(amount, GetAbbreviate() or E.Abbreviate.short)
 end
 
 local function Bar_OnClick(bar, mouseButton)
