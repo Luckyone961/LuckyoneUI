@@ -213,7 +213,7 @@ local function BuildDamageMeterSection()
 		end
 	end
 
-	local section = ACH:Group(GetIconName(L["Damage Meter"], 'Cdm'), nil, 30)
+	local section = ACH:Group(GetIconName(L["Damage Meter"], 'DamageMeter'), nil, 30)
 	section.args.header = ACH:Header(L["Damage Meter"], 1)
 	section.args.general = ACH:Group(L["General"], nil, 2, nil, GetOpt, SetOpt)
 	section.args.general.inline = true
