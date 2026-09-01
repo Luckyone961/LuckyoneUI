@@ -26,10 +26,7 @@ local DAMAGE_METER_SPELL_ENTRY_UNIT = DAMAGE_METER_SPELL_ENTRY_UNIT
 
 local E = unpack(ElvUI)
 
--- Same crop the Blizzard meter applies to spec and spell icons
-local CROP_LEFT, CROP_RIGHT, CROP_TOP, CROP_BOTTOM = 0.0625, 0.9, 0.0625, 0.9
-
--- ElvUI keeps the config in sync with its own prefix style and decimal length.
+-- ElvUI keeps the config in sync with prefix style and decimal length
 local function FormatAmount(amount)
 	return AbbreviateNumbers(amount, E.Abbreviate.short)
 end
@@ -73,7 +70,7 @@ local function CreateBar(window)
 	return bar
 end
 
--- The class or spec icon sits flush with the statusbar, Blizzard Default style
+-- Blizzard Default style
 local function SetBarAnchors(bar, iconShown)
 	if bar.iconsShown == iconShown then return end
 	bar.iconsShown = iconShown
@@ -110,7 +107,7 @@ local function ApplyBarSettings(window, bar, index)
 	bar.name:FontTemplate(db.font, db.fontSize, db.fontOutline)
 	bar.value:FontTemplate(db.font, db.fontSize, db.fontOutline)
 
-	-- Drop cached render state so new settings apply on the next render
+	-- Wipe cached states so we can insta display setting changes
 	bar.colorKey = nil
 	bar.iconFile = nil
 	bar.iconAtlas = nil
@@ -119,10 +116,9 @@ local function ApplyBarSettings(window, bar, index)
 	bar.iconsShown = nil
 end
 
--- Sized from unscaled db values, all elements scale identically through E:Scale
 function DM:UpdateWindowGeometry(window, width, height)
 	local db = DM.db
-	local contentHeight = height - db.headerHeight - db.outerSpacing * 2
+	local contentHeight = height - db.headerHeight
 
 	local visibleCount = 0
 	if contentHeight >= db.barHeight then
@@ -154,7 +150,7 @@ local function SetBarIcon(bar, fileID, atlas)
 			bar.iconFile = fileID
 			bar.iconAtlas = nil
 			bar.icon:SetTexture(fileID)
-			bar.icon:SetTexCoord(CROP_LEFT, CROP_RIGHT, CROP_TOP, CROP_BOTTOM)
+			bar.icon:SetTexCoord(unpack(E.TexCoords))
 		end
 	elseif atlas then
 		if bar.iconAtlas ~= atlas then

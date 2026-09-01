@@ -107,7 +107,7 @@ function DM:Layout()
 	holder:Size(width, height)
 
 	local count = db.secondWindow and 2 or 1
-	local windowWidth = (width - (count - 1) * db.innerSpacing) / count
+	local windowWidth = (width - db.outerSpacing * 2 - (count - 1) * db.innerSpacing) / count
 
 	for index, window in pairs(DM.windows) do
 		if index <= count then
@@ -115,15 +115,20 @@ function DM:Layout()
 			window:Size(windowWidth, height)
 
 			if index == 1 then
-				window:Point('TOPLEFT', holder, 'TOPLEFT', 0, 0)
+				window:Point('TOPLEFT', holder, 'TOPLEFT', db.outerSpacing, 0)
 			else
-				window:Point('TOPRIGHT', holder, 'TOPRIGHT', 0, 0)
+				window:Point('TOPRIGHT', holder, 'TOPRIGHT', -db.outerSpacing, 0)
 			end
 
-			DM:UpdateWindowGeometry(window, windowWidth, height)
 			window:Show()
 		else
 			window:Hide()
+		end
+	end
+
+	for index, window in pairs(DM.windows) do
+		if index <= count then
+			DM:UpdateWindowGeometry(window, windowWidth, height)
 		end
 	end
 end

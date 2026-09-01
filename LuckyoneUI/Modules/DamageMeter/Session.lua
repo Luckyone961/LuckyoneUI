@@ -434,6 +434,8 @@ function DM:GetWindow(index)
 	window.typeText:SetAllPoints()
 
 	local content = CreateFrame('Frame', nil, window)
+	content:Point('TOPLEFT', window.header, 'BOTTOMLEFT', 0, 0)
+	content:Point('BOTTOMRIGHT', window, 'BOTTOMRIGHT', 0, 0)
 	content:EnableMouseWheel(true)
 	content:SetScript('OnMouseWheel', Content_OnMouseWheel)
 	content:SetScript('OnMouseDown', Content_OnMouseDown)
@@ -461,19 +463,14 @@ function DM:ApplyWindowSettings(window)
 	end
 
 	window.header:Height(db.headerHeight)
-	local cogSize = max(12, db.headerHeight - 4)
+	local cogSize = min(db.headerHeight - 2, db.fontSize + 4)
 	window.cogButton:Size(cogSize)
-	window.cogIcon:Size(cogSize * 1.3)
+	window.cogIcon:Size(db.fontSize * 2)
 	window.sessionButton:Size(26, db.headerHeight)
 
 	window.typeText:FontTemplate(db.font, db.fontSize, db.fontOutline)
 	window.sessionText:FontTemplate(db.font, db.fontSize, db.fontOutline)
 	window.infoText:FontTemplate(db.font, db.fontSize, db.fontOutline)
-
-	local content = window.content
-	content:ClearAllPoints()
-	content:Point('TOPLEFT', window.header, 'BOTTOMLEFT', db.outerSpacing, -db.outerSpacing)
-	content:Point('BOTTOMRIGHT', window, 'BOTTOMRIGHT', -db.outerSpacing, db.outerSpacing)
 
 	DM:UpdateHeaderColors(window)
 	DM:UpdateHeader(window)
