@@ -2,6 +2,7 @@
 	<Include file='Auras\Auras.xml'/>
 	<Include file='Blizzard\Blizzard.xml'/>
 	<Include file='Chat\Chat.xml'/>
+	<Include file='DamageMeter\DamageMeter.xml'/>
 	<Include file='Map\Map.xml'/>
 	<Include file='Misc\Misc.xml'/>
 	<Include file='NamePlates\NamePlates.xml'/>
