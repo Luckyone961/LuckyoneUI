@@ -8,6 +8,7 @@ local L = Private.Libs.ACL
 local unpack = unpack
 local pairs = pairs
 
+local Ambiguate = Ambiguate
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 local SetCVar = C_CVar.SetCVar
@@ -19,6 +20,14 @@ local _G = _G
 local E = unpack(ElvUI)
 
 DM.windows = {}
+
+-- Ambiguate accepts secret names, string functions don't
+function DM:StripRealm(name, classFilename)
+	if not name or not DM.db.stripRealm then return name end
+	if not classFilename or classFilename == '' then return name end
+
+	return Ambiguate(name, 'short')
+end
 
 local function HideBlizzardMeter()
 	local meter = _G.DamageMeter

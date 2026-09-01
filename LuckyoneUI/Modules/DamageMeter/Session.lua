@@ -71,7 +71,6 @@ DM.TypeSuppressIcon = {
 	[MeterType.EnemyDamageTaken] = true,
 }
 
--- Data fetch, sources arrive sorted with maxAmount and totalAmount included
 function DM:FetchWindow(window)
 	if window.mode == 'spells' then
 		if window.sessionType then
@@ -88,7 +87,6 @@ function DM:FetchWindow(window)
 	end
 end
 
--- Coalesce event bursts into one render per interval
 local pendingFlush = false
 local function Flush()
 	pendingFlush = false
@@ -120,8 +118,6 @@ end
 function DM:DAMAGE_METER_COMBAT_SESSION_UPDATED(_, meterType, sessionID)
 	for _, window in pairs(DM.windows) do
 		if window.meterType == meterType then
-			-- Each update dispatches twice, once for the overall session and once
-			-- for the current session with its ID, only process one of them
 			if window.sessionID == sessionID or (sessionID == 0 and window.sessionType ~= nil) then
 				DM:MarkDirty(window)
 			end
@@ -148,8 +144,7 @@ end
 -- Header text and colors
 function DM:UpdateHeader(window)
 	if window.mode == 'spells' then
-		-- SetFormattedText handles names that are secret values
-		window.typeText:SetFormattedText('< %s', window.drillName or _G.UNKNOWN)
+		window.typeText:SetFormattedText('< %s', DM:StripRealm(window.drillName, window.drillClass) or _G.UNKNOWN)
 	else
 		window.typeText:SetText(DM.TypeNames[window.meterType])
 	end
@@ -221,6 +216,7 @@ function DM:OpenDrilldown(window, entry)
 	window.drillGUID = entry.sourceGUID
 	window.drillCreatureID = entry.sourceCreatureID
 	window.drillName = entry.name
+	window.drillClass = entry.classFilename
 	window.offset = 0
 
 	DM:UpdateHeader(window)
@@ -235,6 +231,7 @@ function DM:CloseDrilldown(window)
 	window.drillGUID = nil
 	window.drillCreatureID = nil
 	window.drillName = nil
+	window.drillClass = nil
 	window.offset = 0
 
 	DM:UpdateHeader(window)

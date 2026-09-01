@@ -8,7 +8,6 @@ local LSM = Private.Libs.LSM
 local unpack = unpack
 local floor = math.floor
 local max = math.max
-local gsub = string.gsub
 
 local CreateFrame = CreateFrame
 local GetClassAtlas = GetClassAtlas
@@ -245,7 +244,7 @@ local function UpdateBarName(db, bar, entry, rank, spellMode)
 		if creatureName and (issecretvalue(creatureName) or creatureName ~= '') then
 			nameText:SetFormattedText(DAMAGE_METER_SPELL_ENTRY_CREATURE, spellName, creatureName)
 		elseif unitName and (issecretvalue(unitName) or unitName ~= '') then
-			nameText:SetFormattedText(DAMAGE_METER_SPELL_ENTRY_UNIT, spellName, unitName)
+			nameText:SetFormattedText(DAMAGE_METER_SPELL_ENTRY_UNIT, spellName, DM:StripRealm(unitName, details.unitClassFilename))
 		else
 			nameText:SetText(spellName)
 		end
@@ -261,13 +260,7 @@ local function UpdateBarName(db, bar, entry, rank, spellMode)
 	bar.lastName = not nameSecret and rawName or nil
 	bar.lastRank = rank
 
-	local name = rawName
-	if not nameSecret then
-		name = name or ''
-		if db.stripRealm then
-			name = gsub(name, '%-.+', '')
-		end
-	end
+	local name = DM:StripRealm(rawName or '', entry.classFilename)
 
 	if db.showRank then
 		nameText:SetFormattedText(DAMAGE_METER_SOURCE_NAME, rank, name)
