@@ -222,6 +222,7 @@ local function BuildDamageMeterSection()
 	section.args.general.args.secondWindow = ACH:Toggle(L["Second Window"], L["Show a second session window, both share the frame width."], 3, nil, nil, nil, nil, nil, IsDisabled)
 	section.args.general.args.windowOneType = ACH:Select(L["Window 1"], nil, 4, GetMeterTypes, nil, nil, function() return Private.Addon.db.profile.damageMeter.windowOne.meterType end, function(_, value) SetWindowType(1, value) end, IsDisabled)
 	section.args.general.args.windowTwoType = ACH:Select(L["Window 2"], nil, 5, GetMeterTypes, nil, nil, function() return Private.Addon.db.profile.damageMeter.windowTwo.meterType end, function(_, value) SetWindowType(2, value) end, function() return IsDisabled() or not Private.Addon.db.profile.damageMeter.secondWindow end)
+	section.args.general.args.backdrop = ACH:Toggle(L["Frame Backdrop"], L["Show a transparent ElvUI backdrop behind the frame."], 6, nil, nil, nil, nil, nil, IsDisabled)
 	section.args.size = ACH:Group(L["Size and Spacing"], nil, 3, nil, GetOpt, SetOpt, IsDisabled)
 	section.args.size.inline = true
 	section.args.size.args.syncSize = ACH:Toggle(L["Sync with Chat Panel"], L["Match the width and height of the ElvUI Right Chat Panel."], 1)
