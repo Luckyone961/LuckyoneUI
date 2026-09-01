@@ -41,7 +41,7 @@ function Private:CombatText_Update()
 	frame:SetPoint('CENTER', _G[db.anchor] or UIParent, 'CENTER', db.xOffset, db.yOffset)
 end
 
-function Private:CombatText_Show(entering)
+local function CombatText_Show(entering)
 	local db = Private.Addon.db.profile.misc.combatText
 	if not db.enable then return end
 
@@ -66,9 +66,9 @@ function Private:CombatText_Show(entering)
 end
 
 function Blizzard:PLAYER_REGEN_DISABLED()
-	Private:CombatText_Show(true)
+	CombatText_Show(true)
 end
 
 function Blizzard:PLAYER_REGEN_ENABLED()
-	Private:CombatText_Show(false)
+	CombatText_Show(false)
 end

@@ -1,6 +1,5 @@
 local _, Private = ...
 
--- ElvUI file
 if not Private.ElvUI then
 	return
 end
@@ -12,7 +11,7 @@ local C_Timer = C_Timer
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
-function Private:Skin_WhatsTraining()
+local function Skin_WhatsTraining()
 	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.WhatsTraining then return end
 
 	if WhatsTrainingFrame and not WhatsTrainingFrame.isSkinned then
@@ -38,4 +37,4 @@ function Private:Skin_WhatsTraining()
 	end
 end
 
-S:AddCallbackForAddon('WhatsTraining', 'LuckyoneUI_WhatsTraining', function() C_Timer.After(1, Private.Skin_WhatsTraining) end)
+S:AddCallbackForAddon('WhatsTraining', 'LuckyoneUI_WhatsTraining', function() C_Timer.After(1, Skin_WhatsTraining) end)

@@ -1,6 +1,5 @@
 local _, Private = ...
 
--- ElvUI file
 if not Private.ElvUI then
 	return
 end
@@ -117,7 +116,7 @@ local function SkinBugSackFrame()
 	BugSack.Skinned = true
 end
 
-function Private:Skin_BugSack()
+local function Skin_BugSack()
 	if not Private.Addon.db.profile.skins.BugSack then return end
 
 	local BugSack = _G.BugSack
@@ -126,4 +125,4 @@ function Private:Skin_BugSack()
 	end
 end
 
-S:AddCallbackForAddon('BugSack', 'LuckyoneUI_BugSack', Private.Skin_BugSack)
+S:AddCallbackForAddon('BugSack', 'LuckyoneUI_BugSack', Skin_BugSack)

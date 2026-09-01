@@ -1,6 +1,5 @@
 local _, Private = ...
 
--- ElvUI file
 if not Private.ElvUI then
 	return
 end
@@ -15,7 +14,7 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
-function Private:Skin_DejaClassicStats()
+local function Skin_DejaClassicStats()
 	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.DejaClassicStats then return end
 
 	if DejaClassicStatsFrame and not DejaClassicStatsFrame.isSkinned then
@@ -51,4 +50,4 @@ function Private:Skin_DejaClassicStats()
 	end
 end
 
-S:AddCallbackForAddon('DejaClassicStats', 'LuckyoneUI_DejaClassicStats', function() C_Timer.After(1, Private.Skin_DejaClassicStats) end)
+S:AddCallbackForAddon('DejaClassicStats', 'LuckyoneUI_DejaClassicStats', function() C_Timer.After(1, Skin_DejaClassicStats) end)

@@ -539,7 +539,7 @@ local function BuildInstallerData()
 		f.Option1:SetText(format('|cffC80000%s', L["Skip and close"]))
 		f.Option2:Show()
 		f.Option2:SetScript('OnClick', Installer.Hide)
-		f.Option2:SetText(L["Temporarily hide"])
+		f.Option2:SetText(L["Close installer"])
 	end
 	stepTitles[pageIndex] = L["Welcome"]
 	pageIndex = pageIndex + 1
@@ -640,7 +640,7 @@ local function BuildInstallerData()
 		f.Desc1:SetText(L["This step will configure your two chat panels."])
 		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 		f.Desc3:SetText(L["Left panel: General - Log - Whisper - Guild - Party."])
-		f.Desc4:SetText(L["Right panel: Details! Damage Meter."])
+		f.Desc4:SetText(L["Right panel: Damage Meter."])
 		f.Option1:Show()
 		f.Option1:SetScript('OnClick', function() Private:Setup_Chat(true) end)
 		f.Option1:SetText(L["Setup Chat"])
@@ -766,9 +766,4 @@ function Installer:Initialize()
 
 	CreateStepComplete()
 	installerFrame = CreateMainFrame()
-end
-
--- Initialize
-function Private.Installer:OnLoad()
-	Installer:Show(Private.InstallerData)
 end

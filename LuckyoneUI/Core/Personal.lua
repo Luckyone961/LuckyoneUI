@@ -286,4 +286,9 @@ function Private:HandleLuckyoneDB()
 			ElvPrivateDB.profileKeys[char] = privateProfile
 		end
 	end
+
+	-- Remove the default profile from the list
+	if ElvDB.profiles then
+		ElvDB.profiles.Default = nil
+	end
 end

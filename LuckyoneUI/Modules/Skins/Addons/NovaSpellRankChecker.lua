@@ -1,6 +1,5 @@
 local _, Private = ...
 
--- ElvUI file
 if not Private.ElvUI then
 	return
 end
@@ -12,7 +11,7 @@ local C_Timer = C_Timer
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
-function Private:Skin_NovaSpellRankChecker()
+local function Skin_NovaSpellRankChecker()
 	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.NovaSpellRankChecker then return end
 
 	if SpellBookFrameButton and not SpellBookFrameButton.isSkinned then
@@ -30,4 +29,4 @@ function Private:Skin_NovaSpellRankChecker()
 	end
 end
 
-S:AddCallbackForAddon('NovaSpellRankChecker', 'LuckyoneUI_NovaSpellRankChecker', function() C_Timer.After(2, Private.Skin_NovaSpellRankChecker) end)
+S:AddCallbackForAddon('NovaSpellRankChecker', 'LuckyoneUI_NovaSpellRankChecker', function() C_Timer.After(2, Skin_NovaSpellRankChecker) end)

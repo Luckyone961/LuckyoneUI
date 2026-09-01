@@ -1,6 +1,5 @@
 local _, Private = ...
 
--- ElvUI file
 if not Private.ElvUI then
 	return
 end
@@ -10,7 +9,7 @@ local unpack = unpack
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
-function Private:Skin_LFGBulletinBoard()
+local function Skin_LFGBulletinBoard()
 	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.LFGBulletinBoard then return end
 
 	if GroupBulletinBoardFrame and not GroupBulletinBoardFrame.isSkinned then
@@ -44,4 +43,4 @@ function Private:Skin_LFGBulletinBoard()
 	end
 end
 
-S:AddCallbackForAddon('LFGBulletinBoard', 'LuckyoneUI_LFGBulletinBoard', Private.Skin_LFGBulletinBoard)
+S:AddCallbackForAddon('LFGBulletinBoard', 'LuckyoneUI_LFGBulletinBoard', Skin_LFGBulletinBoard)
