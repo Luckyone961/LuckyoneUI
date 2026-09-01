@@ -60,6 +60,7 @@ L["Click the first button for the import.\nUse CTRL+C to copy the string from th
 L["Close installer"] = true
 L["Coding"] = true
 L["Collect LibDBIcon minimap buttons into a squared bar under the Minimap."] = true
+L["Color the header text with the ElvUI value color instead of white."] = true
 L["Color Theme"] = true
 L["Combat Text"] = true
 L["Console Variables"] = true
@@ -328,7 +329,7 @@ L["This will apply Luckyones Aura Indicator edit and set the style to Textured."
 L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"] = true
 L["This will load your most recent LuckyoneUI profile."] = true
 L["This will only make the Scrollbar invisible. Spacing insets from hidden Scrollbars cannot be worked around at this time."] = true
-L["This will remove the header backdrop, color all text in white and allow clicking on the text to switch between sessions."] = true
+L["This will remove the header backdrop, recolor all text and allow clicking on the text to switch between sessions."] = true
 L["Toggle Cooldown Settings"] = true
 L["Toggles"] = true
 L["UI Errors Frame"] = true
@@ -337,6 +338,7 @@ L["UnitFrames Color Theme"] = true
 L["UnitFrames"] = true
 L["Untrack Hidden Quests"] = true
 L["Use Chattynator Addon"] = true
+L["Use Value Color"] = true
 L["Useful for a quick setup on your alts."] = true
 L["Vengeance"] = true
 L["Warlock"] = true

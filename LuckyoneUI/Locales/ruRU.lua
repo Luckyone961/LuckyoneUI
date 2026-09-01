@@ -60,6 +60,7 @@ L["Click the first button for the import.\nUse CTRL+C to copy the string from th
 L["Close installer"] = true
 L["Coding"] = "Написание кода"
 L["Collect LibDBIcon minimap buttons into a squared bar under the Minimap."] = true
+L["Color the header text with the ElvUI value color instead of white."] = true
 L["Color Theme"] = "Цветовая тема"
 L["Combat Text"] = true
 L["Console Variables"] = "Переменные консоли"
@@ -324,7 +325,7 @@ L["This will apply Luckyones Aura Indicator edit and set the style to Textured."
 L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"] = "Это применит правку индикаторов аур от Luckyone и установит стиль 'Текстурированный'.\nТакже добавит пользовательские ID в белый и чёрный списки.\n"
 L["This will load your most recent LuckyoneUI profile."] = "Это загрузит Ваш последний профиль LuckyoneUI."
 L["This will only make the Scrollbar invisible. Spacing insets from hidden Scrollbars cannot be worked around at this time."] = true
-L["This will remove the header backdrop, color all text in white and allow clicking on the text to switch between sessions."] = true
+L["This will remove the header backdrop, recolor all text and allow clicking on the text to switch between sessions."] = true
 L["Toggle Cooldown Settings"] = "Вкл./выкл. настройки перезарядок"
 L["Toggles"] = "Переключатели"
 L["UI Errors Frame"] = "Рамка ошибок интерфейса"
@@ -333,6 +334,7 @@ L["UnitFrames Color Theme"] = "Цветовая тема рамок юнитов
 L["UnitFrames"] = "Рамки инитов"
 L["Untrack Hidden Quests"] = "Отключить отслеживание скрытых заданий"
 L["Use Chattynator Addon"] = "Использовать аддон Chattynator"
+L["Use Value Color"] = true
 L["Useful for a quick setup on your alts."] = "Полезно для быстрой настройки на Ваших альтернативных персонажах."
 L["Vengeance"] = "Месть"
 L["Warlock"] = "Чернокнижник"

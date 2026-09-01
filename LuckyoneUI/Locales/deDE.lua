@@ -60,6 +60,7 @@ L["Click the first button for the import.\nUse CTRL+C to copy the string from th
 L["Close installer"] = "Installation schließen"
 L["Coding"] = true -- No need to translate
 L["Collect LibDBIcon minimap buttons into a squared bar under the Minimap."] = true
+L["Color the header text with the ElvUI value color instead of white."] = "Färbt den Text der Hauptleiste in der ElvUI Wertfarbe anstatt weiss."
 L["Color Theme"] = "Farb Theme"
 L["Combat Text"] = true
 L["Console Variables"] = "Konsolenvariablen"
@@ -324,7 +325,7 @@ L["This will apply Luckyones Aura Indicator edit and set the style to Textured."
 L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"] = "Dies richtet Luckyones benutzerdefinierte Auren Indikatoren ein und setzt den Stil auf Textured.\nAußerdem fügt es benutzerdefinierte IDs zur Whitelist und Blacklist hinzu.\n"
 L["This will load your most recent LuckyoneUI profile."] = "Dies wird dein aktuellstes LuckyoneUI Profil laden."
 L["This will only make the Scrollbar invisible. Spacing insets from hidden Scrollbars cannot be worked around at this time."] = "Dies macht die Scrollbar lediglich unsichtbar. Abstände durch ausgeblendete Scrollbars können derzeit nicht umgangen werden."
-L["This will remove the header backdrop, color all text in white and allow clicking on the text to switch between sessions."] = "Dies entfernt den Hauptleisten Hintergrund, färbt alle Texte in weiss und erlaubt das klicken auf den Text um zwischen Segmenten umzuschalten."
+L["This will remove the header backdrop, recolor all text and allow clicking on the text to switch between sessions."] = "Dies entfernt den Hauptleisten Hintergrund, färbt alle Texte um und erlaubt das klicken auf den Text um zwischen Segmenten umzuschalten."
 L["Toggle Cooldown Settings"] = true
 L["Toggles"] = "Schalter"
 L["UI Errors Frame"] = true
@@ -333,6 +334,7 @@ L["UnitFrames Color Theme"] = "Einheitenfenster Farbtheme"
 L["UnitFrames"] = "Einheitsfenster"
 L["Untrack Hidden Quests"] = "Versteckte Quests aufdecken"
 L["Use Chattynator Addon"] = "Chattynator Addon nutzen"
+L["Use Value Color"] = "Wertfarbe verwenden"
 L["Useful for a quick setup on your alts."] = "Hilfreich für eine schnelle Einrichtung auf Twinks."
 L["Vengeance"] = true
 L["Warlock"] = "Hexenmeister"

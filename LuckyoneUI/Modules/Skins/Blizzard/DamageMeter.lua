@@ -24,6 +24,16 @@ local function SetSourcePoint(source)
 	source.ResizeButton:Kill()
 end
 
+local function SetHeaderTextColor(fontString, useValueColor)
+	if not fontString then return end
+
+	if useValueColor then
+		fontString:SetTextColor(unpack(E.media.rgbvaluecolor))
+	else
+		fontString:SetTextColor(1, 1, 1)
+	end
+end
+
 local function DamageMeter_HandleSessionWindow(window)
 	local db = Private.Addon.db.profile.skins.Blizzard.DamageMeter
 
@@ -46,7 +56,7 @@ local function DamageMeter_HandleSessionWindow(window)
 				dropdown:Point('RIGHT', window.SessionDropdown, 'LEFT', -3, 0)
 
 				if window.SessionDropdown and window.SessionDropdown.SessionName then
-					window.SessionDropdown.SessionName:SetTextColor(1, 1, 1)
+					SetHeaderTextColor(window.SessionDropdown.SessionName, db.useValueColor)
 				end
 			end
 
@@ -54,7 +64,7 @@ local function DamageMeter_HandleSessionWindow(window)
 			if typeName then
 				typeName:ClearAllPoints()
 				typeName:Point('LEFT', dropdown, -2, 0)
-				typeName:SetTextColor(1, 1, 1)
+				SetHeaderTextColor(typeName, db.useValueColor)
 
 				-- Combat timer on the right side of the TypeName
 				-- This avoids moving the TypeName when combat timer is updating
@@ -119,6 +129,14 @@ local function DamageMeter_SetupSessionWindows()
 	_G.DamageMeter:ForEachSessionWindow(DamageMeter_HandleSessionWindow)
 end
 
+local function UpdateDamageMeterHeaderColors()
+	local db = Private.Addon.db.profile.skins.Blizzard.DamageMeter
+	if not db.enable or not db.applyStyle or not db.useValueColor then return end
+	if _G.DamageMeter then
+		DamageMeter_SetupSessionWindows()
+	end
+end
+
 local function Skin_DamageMeter()
 	local db = Private.Addon.db.profile.skins.Blizzard.DamageMeter
 	if not db.enable then return end
@@ -130,6 +148,8 @@ local function Skin_DamageMeter()
 	if Private.IsAddOnLoaded('ElvUI_WindTools') and E.private.WT.skins.damageMeter.enable then
 		E.private.WT.skins.damageMeter.enable = false
 	end
+
+	E.valueColorUpdateFuncs.LuckyoneUI_DamageMeter = UpdateDamageMeterHeaderColors
 
 	hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', DamageMeter_SetupSessionWindows)
 	DamageMeter_SetupSessionWindows()

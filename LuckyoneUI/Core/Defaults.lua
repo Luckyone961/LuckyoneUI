@@ -86,6 +86,7 @@ Private.Defaults = {
 				DamageMeter = {
 					enable = false,
 					applyStyle = true,
+					useValueColor = false,
 					removeCombatTime = true,
 					removeCollapseButton = true,
 					removeScrollbar = true,
