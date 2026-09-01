@@ -22,6 +22,9 @@ local ResetAllCombatSessions = C_DamageMeter.ResetAllCombatSessions
 local After = C_Timer.After
 local SecondsToClock = SecondsToClock
 local MenuUtil = MenuUtil
+local MenuVariants = MenuVariants
+local Menu = Menu
+local CreateAnchor = AnchorUtil.CreateAnchor
 local issecretvalue = issecretvalue or function() return false end
 
 local _G = _G
@@ -306,29 +309,30 @@ local function SettingsMenu(_, rootDescription)
 	rootDescription:CreateButton(_G.DAMAGE_METER_RESET_ALL_SESSIONS, ResetAllCombatSessions)
 	rootDescription:CreateDivider()
 
-	rootDescription:CreateCheckbox(L["Second Window"], function()
-		return DM.db.secondWindow
-	end, function()
-		DM.db.secondWindow = not DM.db.secondWindow
-		Private:DamageMeter_UpdateAll()
-	end)
-
-	rootDescription:CreateCheckbox(L["Class Colors"], function()
-		return DM.db.classColors
-	end, function()
-		DM.db.classColors = not DM.db.classColors
-		Private:DamageMeter_UpdateAll()
-	end)
-
 	local visibility = rootDescription:CreateButton(L["Visibility"])
 	visibility:CreateRadio(L["Always"], IsVisibilitySelected, SetVisibilitySelected, 'SHOW')
 	visibility:CreateRadio(L["In Combat"], IsVisibilitySelected, SetVisibilitySelected, 'COMBAT')
 	visibility:CreateRadio(L["In Group"], IsVisibilitySelected, SetVisibilitySelected, 'GROUP')
 
 	rootDescription:CreateDivider()
-	rootDescription:CreateButton(Private.Name, function()
+	rootDescription:CreateButton(Private.Name .. ' ' .. L["Options"], function()
 		E:ToggleOptions('LuckyoneUI,damageMeter')
 	end)
+end
+
+-- Anchored above the window instead of at the cursor, the manager flips them
+-- back down on its own when there is no room left on screen
+local function OpenMenu(button, generator, alignRight)
+	local rootDescription = MenuUtil.CreateRootMenuDescription(MenuVariants.GetDefaultContextMenuMixin())
+	Menu.PopulateDescription(generator, button, rootDescription)
+
+	local point, relativePoint = 'BOTTOMLEFT', 'TOPLEFT'
+	if alignRight then
+		point, relativePoint = 'BOTTOMRIGHT', 'TOPRIGHT'
+	end
+
+	local anchor = CreateAnchor(point, button.window, relativePoint, -1, -4)
+	Menu.GetManager():OpenMenu(button, rootDescription, anchor)
 end
 
 local function TypeButton_OnClick(button)
@@ -337,16 +341,16 @@ local function TypeButton_OnClick(button)
 	if window.mode == 'spells' then
 		DM:CloseDrilldown(window)
 	else
-		MenuUtil.CreateContextMenu(button, TypeMenu)
+		OpenMenu(button, TypeMenu)
 	end
 end
 
 local function SessionButton_OnClick(button)
-	MenuUtil.CreateContextMenu(button, SessionMenu)
+	OpenMenu(button, SessionMenu, true)
 end
 
 local function CogButton_OnClick(button)
-	MenuUtil.CreateContextMenu(button, SettingsMenu)
+	OpenMenu(button, SettingsMenu, true)
 end
 
 local function CogButton_OnEnter(button)
@@ -408,7 +412,7 @@ function DM:GetWindow(index)
 	window.cogIcon:Point('CENTER')
 
 	local sessionButton = CreateFrame('Button', nil, header)
-	sessionButton:Point('RIGHT', cogButton, 'LEFT', -4, 0)
+	sessionButton:Point('RIGHT', cogButton, 'LEFT', 0, 0)
 	sessionButton:SetScript('OnClick', SessionButton_OnClick)
 	sessionButton.window = window
 	window.sessionButton = sessionButton

@@ -137,7 +137,7 @@ function DM:Initialize()
 	holder:Point('BOTTOMRIGHT', _G.RightChatPanel or E.UIParent, 'BOTTOMRIGHT', 0, 0)
 	DM.holder = holder
 
-	E:CreateMover(holder, 'LuckyoneUI_DamageMeterMover', L["Damage Meter"], nil, nil, nil, 'ALL,GENERAL', nil, 'LuckyoneUI,damageMeter')
+	E:CreateMover(holder, 'LuckyoneUI_DamageMeterMover', Private.Name .. ' ' .. L["Damage Meter"], nil, nil, nil, 'ALL,GENERAL', nil, 'LuckyoneUI,damageMeter')
 
 	-- Follow chat panel resizing while synced
 	hooksecurefunc(E:GetModule('Chat'), 'PositionChats', function()
