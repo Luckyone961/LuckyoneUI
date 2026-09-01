@@ -1,4 +1,9 @@
-﻿## Version 4.21 [01-09-2026]
+﻿## Version 4.22 [In development, not yet released]
+
+**Retail:**  
+- Removed the Blizzard Damage Meter skin and tweaks  
+
+## Version 4.21 [01-09-2026]
 
 **All WoW Versions:**  
 - ElvUI 15.26+ compatibility  
