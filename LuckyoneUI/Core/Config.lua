@@ -193,10 +193,70 @@ local function BuildCVarsSection()
 	return section
 end
 
+-- Build Damage Meter Section
+local function BuildDamageMeterSection()
+	if not (Private.ElvUI and Private.isRetail) then return end -- Retail + ElvUI section
+
+	local function GetOpt(info) return Private.Addon.db.profile.damageMeter[info[#info]] end
+	local function SetOpt(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end
+	local function IsDisabled() return not Private.Addon.db.profile.damageMeter.enable end
+	local function GetMeterTypes() local DM = Private.Modules.DamageMeter return DM and DM.TypeNames or {} end
+	local function SetWindowType(index, value)
+		local db = Private.Addon.db.profile.damageMeter
+		local wdb = index == 1 and db.windowOne or db.windowTwo
+		wdb.meterType = value
+
+		local DM = Private.Modules.DamageMeter
+		local window = DM and DM.windows[index]
+		if window then
+			DM:SetWindowType(window, value)
+		end
+	end
+
+	local section = ACH:Group(GetIconName(L["Damage Meter"], 'Cdm'), nil, 30)
+	section.args.header = ACH:Header(L["Damage Meter"], 1)
+	section.args.general = ACH:Group(L["General"], nil, 2, nil, GetOpt, SetOpt)
+	section.args.general.inline = true
+	section.args.general.args.enable = ACH:Toggle(L["Enable"], L["Lightweight Damage Meter powered by the native Blizzard combat data."], 1)
+	section.args.general.args.visibility = ACH:Select(L["Visibility"], nil, 2, { SHOW = L["Always"], COMBAT = L["In Combat"], GROUP = L["In Group"], HIDE = L["Hidden"] }, nil, nil, nil, nil, IsDisabled)
+	section.args.general.args.secondWindow = ACH:Toggle(L["Second Window"], L["Show a second session window, both share the frame width."], 3, nil, nil, nil, nil, nil, IsDisabled)
+	section.args.general.args.windowOneType = ACH:Select(L["Window 1"], nil, 4, GetMeterTypes, nil, nil, function() return Private.Addon.db.profile.damageMeter.windowOne.meterType end, function(_, value) SetWindowType(1, value) end, IsDisabled)
+	section.args.general.args.windowTwoType = ACH:Select(L["Window 2"], nil, 5, GetMeterTypes, nil, nil, function() return Private.Addon.db.profile.damageMeter.windowTwo.meterType end, function(_, value) SetWindowType(2, value) end, function() return IsDisabled() or not Private.Addon.db.profile.damageMeter.secondWindow end)
+	section.args.size = ACH:Group(L["Size and Spacing"], nil, 3, nil, GetOpt, SetOpt, IsDisabled)
+	section.args.size.inline = true
+	section.args.size.args.syncSize = ACH:Toggle(L["Sync with Chat Panel"], L["Match the width and height of the ElvUI Right Chat Panel."], 1)
+	section.args.size.args.width = ACH:Range(L["Width"], nil, 2, { min = 100, max = 1200, step = 1 }, nil, nil, nil, function() return Private.Addon.db.profile.damageMeter.syncSize end)
+	section.args.size.args.height = ACH:Range(L["Height"], nil, 3, { min = 60, max = 800, step = 1 }, nil, nil, nil, function() return Private.Addon.db.profile.damageMeter.syncSize end)
+	section.args.size.args.innerSpacing = ACH:Range(L["Inner Spacing"], L["Space between the two session windows."], 4, { min = 0, max = 30, step = 1 })
+	section.args.size.args.outerSpacing = ACH:Range(L["Outer Spacing"], L["Space between the frame border and the bars."], 5, { min = 0, max = 30, step = 1 })
+	section.args.bars = ACH:Group(L["Bars"], nil, 4, nil, GetOpt, SetOpt, IsDisabled)
+	section.args.bars.inline = true
+	section.args.bars.args.barTexture = ACH:SharedMediaStatusbar(L["Bar Texture"], nil, 1)
+	section.args.bars.args.barHeight = ACH:Range(L["Bar Height"], nil, 2, { min = 8, max = 50, step = 1 })
+	section.args.bars.args.barSpacing = ACH:Range(L["Bar Spacing"], nil, 3, { min = 0, max = 20, step = 1 })
+	section.args.bars.args.backdropAlpha = ACH:Range(L["Backdrop Alpha"], L["Transparency of the bar backdrop behind each bar."], 4, { min = 0, max = 1, step = 0.01, isPercent = true })
+	section.args.bars.args.showIcons = ACH:Toggle(L["Bar Icons"], L["Show the class or spec icon in front of each bar."], 5)
+	section.args.bars.args.classColors = ACH:Toggle(L["Class Colors"], nil, 6)
+	section.args.bars.args.othersColor = ACH:Color(L["Fallback Color"], L["Bar color for creatures and sources without a class."], 7, nil, nil, function() local color = Private.Addon.db.profile.damageMeter.othersColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.damageMeter.othersColor color.r, color.g, color.b = r, g, b Private:DamageMeter_UpdateAll() end)
+	section.args.text = ACH:Group(L["Text"], nil, 5, nil, GetOpt, SetOpt, IsDisabled)
+	section.args.text.inline = true
+	section.args.text.args.font = ACH:SharedMediaFont(L["Font"], nil, 1)
+	section.args.text.args.fontSize = ACH:Range(L["Font Size"], nil, 2, { min = 8, max = 26, step = 1 })
+	section.args.text.args.fontOutline = ACH:FontFlags(L["Font Outline"], nil, 3)
+	section.args.text.args.numberDisplay = ACH:Select(L["Number Display"], nil, 4, { MINIMAL = L["Minimal"], COMPACT = L["Compact"], COMPLETE = L["Complete"] })
+	section.args.text.args.showRank = ACH:Toggle(L["Show Rank Numbers"], L["Show the rank number in front of each name."], 5)
+	section.args.text.args.stripRealm = ACH:Toggle(L["Strip Realm Names"], L["Remove the realm name from cross realm players."], 6)
+	section.args.headerOptions = ACH:Group(L["Header"], nil, 6, nil, GetOpt, SetOpt, IsDisabled)
+	section.args.headerOptions.inline = true
+	section.args.headerOptions.args.headerHeight = ACH:Range(L["Header Height"], nil, 1, { min = 12, max = 40, step = 1 })
+	section.args.headerOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 2)
+	return section
+end
+
 -- Build Cooldown Manager Section
 local function BuildCDMSection()
 	if not Private.isRetail then return end -- Retail only section
-	local section = ACH:Group(GetIconName(L["Cooldown Manager"], 'Cdm'), nil, 30)
+	local section = ACH:Group(GetIconName(L["Cooldown Manager"], 'Cdm'), nil, 35)
 	section.args.header1 = ACH:Header(L["Cooldown Manager"], 1)
 	section.args.hunter = ACH:Group(L["Hunter"], nil, 2, nil, nil, nil, nil, Private.myClass ~= 'HUNTER')
 	section.args.hunter.inline = true
@@ -280,7 +340,7 @@ end
 -- Build ElvUI Layouts Section
 local function BuildElvUILayoutSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(GetIconName(L["ElvUI Layouts"], 'Layouts'), nil, 35)
+	local section = ACH:Group(GetIconName(L["ElvUI Layouts"], 'Layouts'), nil, 40)
 	section.args.header1 = ACH:Header(L["LuckyoneUI Scale"], 1)
 	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
 	section.args.scaling.inline = true
@@ -306,7 +366,7 @@ end
 -- Build ElvUI Themes Section
 local function BuildElvUIThemesSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(GetIconName(L["ElvUI Themes"], 'Themes'), nil, 40)
+	local section = ACH:Group(GetIconName(L["ElvUI Themes"], 'Themes'), nil, 45)
 	section.args.header = ACH:Header(L["ElvUI Themes"], 1)
 	section.args.raid = ACH:Group(L["UnitFrames Color Theme"], nil, 2)
 	section.args.raid.inline = true
@@ -318,7 +378,7 @@ end
 -- Build ElvUI Tweaks Section
 local function BuildElvUITweaksSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(GetIconName(L["ElvUI Tweaks"], 'Tweaks'), nil, 45)
+	local section = ACH:Group(GetIconName(L["ElvUI Tweaks"], 'Tweaks'), nil, 50)
 	section.args.header = ACH:Header(L["ElvUI Tweaks"], 1)
 	section.args.toggles = ACH:Group(L["Toggles"], nil, 2, nil, nil, nil, nil, not Private.isRetail)
 	section.args.toggles.inline = true
@@ -342,7 +402,7 @@ end
 
 -- Build Graphics Section
 local function BuildGraphicsSection()
-	local section = ACH:Group(GetIconName(L["Graphics"], 'Graphics'), nil, 50)
+	local section = ACH:Group(GetIconName(L["Graphics"], 'Graphics'), nil, 55)
 	section.args.header = ACH:Header(L["Graphics"], 1)
 	section.args.toggles = ACH:Group(L["General"], nil, 2)
 	section.args.toggles.inline = true
@@ -361,7 +421,7 @@ end
 -- Build Map Section
 local function BuildMapSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(GetIconName(L["Map"], 'Map'), nil, 55)
+	local section = ACH:Group(GetIconName(L["Map"], 'Map'), nil, 60)
 	section.args.header = ACH:Header(L["Map"], 1)
 	section.args.minimapButtons = ACH:Group(L["Minimap Buttons"], nil, 2, nil, function(info) return Private.Addon.db.profile.map.minimap.buttons[info[#info]] end, function(info, value) Private.Addon.db.profile.map.minimap.buttons[info[#info]] = value Private:UpdateMinimapButtonBar() end)
 	section.args.minimapButtons.inline = true
@@ -384,7 +444,7 @@ end
 
 -- Build Misc Section
 local function BuildMiscSection()
-	local section = ACH:Group(GetIconName(L["Misc"], 'Misc'), nil, 60)
+	local section = ACH:Group(GetIconName(L["Misc"], 'Misc'), nil, 65)
 	section.args.header = ACH:Header(L["Misc"], 1)
 	section.args.combatText = ACH:Group(L["Combat Text"], nil, 2, nil, function(info) return Private.Addon.db.profile.misc.combatText[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.combatText[info[#info]] = value Private:CombatText_Update() end)
 	section.args.combatText.inline = true
@@ -412,7 +472,7 @@ end
 -- Build Skins Section
 local function BuildSkinsSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(GetIconName('Skins', 'Skins'), nil, 65)
+	local section = ACH:Group(GetIconName('Skins', 'Skins'), nil, 70)
 	section.args.header = ACH:Header('Skins', 1)
 	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.profile.skins[info[#info]] end, function(info, value) Private.Addon.db.profile.skins[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.addons.inline = true
@@ -440,7 +500,7 @@ end
 
 -- Build Credits Section
 local function BuildCreditsSection()
-	local section = ACH:Group(GetIconName(format('|cfd9b9b9b%s|r', L["Credits"]), 'Credits'), nil, 70)
+	local section = ACH:Group(GetIconName(format('|cfd9b9b9b%s|r', L["Credits"]), 'Credits'), nil, 75)
 	section.args.header = ACH:Header(L["Credits"], 1)
 	section.args.author = ACH:Group(L["Author"], nil, 2)
 	section.args.author.inline = true
@@ -459,7 +519,7 @@ end
 
 -- Build Links Section
 local function BuildLinksSection()
-	local section = ACH:Group(GetIconName(format('|cfd9b9b9b%s|r', L["Links"]), 'Links'), nil, 75)
+	local section = ACH:Group(GetIconName(format('|cfd9b9b9b%s|r', L["Links"]), 'Links'), nil, 80)
 	section.args.header = ACH:Header(L["Links"], 1)
 	section.args.spacer = ACH:Spacer(2, 'full')
 	section.args.website = ACH:Input(L["Addon download:"], nil, 3, nil, 'full', function() return 'https://download.luckyone.dev' end)
@@ -507,16 +567,17 @@ function Private:BuildConfig()
 	Private.Config.args.privateDB = BuildPrivateDBSection() -- 15
 	Private.Config.args.chat = BuildChatSection() -- 20
 	Private.Config.args.cvars = BuildCVarsSection() -- 25
-	Private.Config.args.cdm = BuildCDMSection() -- 30
-	Private.Config.args.elvuiLayouts = BuildElvUILayoutSection() -- 35
-	Private.Config.args.elvuiThemes = BuildElvUIThemesSection() -- 40
-	Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 45
-	Private.Config.args.graphics = BuildGraphicsSection() -- 50
-	Private.Config.args.map = BuildMapSection() -- 55
-	Private.Config.args.misc = BuildMiscSection() -- 60
-	Private.Config.args.skins = BuildSkinsSection() -- 65
-	Private.Config.args.credits = BuildCreditsSection() -- 70
-	Private.Config.args.links = BuildLinksSection() -- 75
+	Private.Config.args.damageMeter = BuildDamageMeterSection() -- 30
+	Private.Config.args.cdm = BuildCDMSection() -- 35
+	Private.Config.args.elvuiLayouts = BuildElvUILayoutSection() -- 40
+	Private.Config.args.elvuiThemes = BuildElvUIThemesSection() -- 45
+	Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 50
+	Private.Config.args.graphics = BuildGraphicsSection() -- 55
+	Private.Config.args.map = BuildMapSection() -- 60
+	Private.Config.args.misc = BuildMiscSection() -- 65
+	Private.Config.args.skins = BuildSkinsSection() -- 70
+	Private.Config.args.credits = BuildCreditsSection() -- 75
+	Private.Config.args.links = BuildLinksSection() -- 80
 	Private.Config.args.dev = BuildDevSection() -- 100
 
 	-- ElvUI config integration
