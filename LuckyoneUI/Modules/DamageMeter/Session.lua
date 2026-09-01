@@ -32,6 +32,7 @@ local MeterType = Enum.DamageMeterType
 local SessionType = Enum.DamageMeterSessionType
 
 -- Localized names come from GlobalStrings, same source as the Blizzard meter
+-- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua#L1-L46
 DM.TypeNames = {
 	[MeterType.DamageDone] = _G.DAMAGE_METER_TYPE_DAMAGE_DONE,
 	[MeterType.Dps] = _G.DAMAGE_METER_TYPE_DPS,
@@ -435,7 +436,6 @@ function DM:ApplyWindowSettings(window)
 	local db = DM.db
 	local wdb = window.index == 1 and db.windowOne or db.windowTwo
 
-	-- Runtime selections win, saved settings only seed fresh windows
 	if window.meterType == nil then
 		window.meterType = wdb.meterType
 	end

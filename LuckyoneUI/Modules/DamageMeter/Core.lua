@@ -1,7 +1,6 @@
 local _, Private = ...
 local DM = Private.Modules.DamageMeter
 
--- Retail + ElvUI only, gated in Init.lua
 if not DM then return end
 
 local L = Private.Libs.ACL
