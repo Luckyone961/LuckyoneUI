@@ -9,15 +9,13 @@ local unpack = unpack
 local floor = math.floor
 local max = math.max
 local gsub = string.gsub
-local pcall = pcall
 
 local CreateFrame = CreateFrame
 local GetClassAtlas = GetClassAtlas
 local GetSpellName = C_Spell.GetSpellName
 local GetSpellTexture = C_Spell.GetSpellTexture
 local IsDamageMeterAvailable = C_DamageMeter.IsDamageMeterAvailable
-local RoundToNearestString = C_StringUtil.RoundToNearestString
-local CreateAbbreviatedNumberFormatter = C_StringUtil.CreateAbbreviatedNumberFormatter
+local AbbreviateNumbers = AbbreviateNumbers
 local SecondsToClock = SecondsToClock
 local issecretvalue = issecretvalue or function() return false end
 
@@ -31,26 +29,9 @@ local E = unpack(ElvUI)
 -- Same crop the Blizzard meter applies to spec and spell icons
 local CROP_LEFT, CROP_RIGHT, CROP_TOP, CROP_BOTTOM = 0.0625, 0.9, 0.0625, 0.9
 
--- In combat the amounts are secret values, only the native formatter may touch
--- them. Probe once whether it accepts tainted secret input, else fall back to
--- the plain rounded string.
-local formatter, formatterMode
-local function FormatSecretNumber(amount)
-	if not formatterMode then
-		formatter = CreateAbbreviatedNumberFormatter and CreateAbbreviatedNumberFormatter()
-
-		if formatter and pcall(formatter.FormatNumber, formatter, amount) then
-			formatterMode = 'abbreviated'
-		else
-			formatterMode = 'plain'
-		end
-	end
-
-	if formatterMode == 'abbreviated' then
-		return formatter:FormatNumber(amount)
-	end
-
-	return RoundToNearestString(amount)
+-- ElvUI keeps the config in sync with its own prefix style and decimal length.
+local function FormatAmount(amount)
+	return AbbreviateNumbers(amount, E.Abbreviate.short)
 end
 
 local function Bar_OnClick(bar, mouseButton)
@@ -300,7 +281,7 @@ local function UpdateBarName(db, bar, entry, rank, spellMode)
 	end
 end
 
-local function UpdateBarValue(db, bar, entry, sessionTotal, secretAmounts, persecPrimary, suppressPersec, deathEntry)
+local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry)
 	local valueText = bar.value
 
 	if deathEntry then
@@ -329,24 +310,19 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, secretAmounts, perse
 
 	local display = db.numberDisplay
 
-	if secretAmounts then
-		if display == 'MINIMAL' or not secondary then
-			valueText:SetText(FormatSecretNumber(primary))
-		else
-			valueText:SetFormattedText('%s (%s)', FormatSecretNumber(primary), FormatSecretNumber(secondary))
-		end
-	elseif display == 'COMPLETE' then
+	-- Only the share needs arithmetic, so it is the one part secrets have to drop
+	if display == 'COMPLETE' and not (sessionSecret or issecretvalue(total)) then
 		local percent = sessionTotal > 0 and (total / sessionTotal * 100) or 0
 
 		if secondary then
-			valueText:SetFormattedText('%s (%s, %.0f%%)', E:ShortValue(primary), E:ShortValue(secondary), percent)
+			valueText:SetFormattedText('%s (%s, %.0f%%)', FormatAmount(primary), FormatAmount(secondary), percent)
 		else
-			valueText:SetFormattedText('%s (%.0f%%)', E:ShortValue(primary), percent)
+			valueText:SetFormattedText('%s (%.0f%%)', FormatAmount(primary), percent)
 		end
-	elseif display == 'COMPACT' and secondary then
-		valueText:SetFormattedText('%s (%s)', E:ShortValue(primary), E:ShortValue(secondary))
+	elseif display ~= 'MINIMAL' and secondary then
+		valueText:SetFormattedText('%s (%s)', FormatAmount(primary), FormatAmount(secondary))
 	else
-		valueText:SetText(E:ShortValue(primary))
+		valueText:SetText(FormatAmount(primary))
 	end
 end
 
@@ -370,7 +346,7 @@ function DM:RenderWindow(window)
 	local offset = window.offset
 	local maxAmount = session and session.maxAmount or 0
 	local sessionTotal = session and session.totalAmount or 0
-	local secretAmounts = issecretvalue(maxAmount) or issecretvalue(sessionTotal)
+	local sessionSecret = issecretvalue(sessionTotal)
 
 	local meterType = window.meterType
 	local persecPrimary = DM.TypePerSecondPrimary[meterType]
@@ -392,7 +368,7 @@ function DM:RenderWindow(window)
 				UpdateBarIcon(bar, entry, spellMode)
 			end
 			UpdateBarName(db, bar, entry, offset + i, spellMode)
-			UpdateBarValue(db, bar, entry, sessionTotal, secretAmounts, persecPrimary, suppressPersec, deathEntry)
+			UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry)
 			bar:Show()
 		else
 			bar.entry = nil

@@ -162,7 +162,7 @@ function DM:PLAYER_REGEN_DISABLED()
 	DM:UpdateShown()
 end
 
--- Re-render after combat so secret values upgrade to the custom format
+-- Re-render after combat, the amounts stop being secret so the share comes back
 function DM:PLAYER_REGEN_ENABLED()
 	DM:UpdateShown()
 	DM:MarkAllDirty()
