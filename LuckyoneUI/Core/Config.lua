@@ -196,41 +196,24 @@ end
 -- Build Damage Meter Section
 local function BuildDamageMeterSection()
 	if not (Private.ElvUI and Private.isRetail) then return end -- Retail + ElvUI section
-
-	local function GetOpt(info) return Private.Addon.db.profile.damageMeter[info[#info]] end
-	local function SetOpt(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end
-	local function IsDisabled() return not Private.Addon.db.profile.damageMeter.enable end
-	local function GetMeterTypes() local DM = Private.Modules.DamageMeter return DM and DM.TypeNames or {} end
-	local function SetWindowType(index, value)
-		local db = Private.Addon.db.profile.damageMeter
-		local wdb = index == 1 and db.windowOne or db.windowTwo
-		wdb.meterType = value
-
-		local DM = Private.Modules.DamageMeter
-		local window = DM and DM.windows[index]
-		if window then
-			DM:SetWindowType(window, value)
-		end
-	end
-
 	local section = ACH:Group(GetIconName(L["Damage Meter"], 'DamageMeter'), nil, 30)
 	section.args.header = ACH:Header(L["Damage Meter"], 1)
-	section.args.general = ACH:Group(L["General"], nil, 2, nil, GetOpt, SetOpt)
+	section.args.general = ACH:Group(L["General"], nil, 2, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end)
 	section.args.general.inline = true
 	section.args.general.args.enable = ACH:Toggle(L["Enable"], L["Lightweight Damage Meter powered by the native Blizzard combat data."], 1)
-	section.args.general.args.visibility = ACH:Select(L["Visibility"], nil, 2, { SHOW = L["Always"], COMBAT = L["In Combat"], GROUP = L["In Group"] }, nil, nil, nil, nil, IsDisabled)
-	section.args.general.args.secondWindow = ACH:Toggle(L["Second Window"], L["Show a second session window, both share the frame width."], 3, nil, nil, nil, nil, nil, IsDisabled)
-	section.args.general.args.windowOneType = ACH:Select(L["Window 1"], nil, 4, GetMeterTypes, nil, nil, function() return Private.Addon.db.profile.damageMeter.windowOne.meterType end, function(_, value) SetWindowType(1, value) end, IsDisabled)
-	section.args.general.args.windowTwoType = ACH:Select(L["Window 2"], nil, 5, GetMeterTypes, nil, nil, function() return Private.Addon.db.profile.damageMeter.windowTwo.meterType end, function(_, value) SetWindowType(2, value) end, function() return IsDisabled() or not Private.Addon.db.profile.damageMeter.secondWindow end)
-	section.args.general.args.backdrop = ACH:Toggle(L["Frame Backdrop"], L["Show a transparent ElvUI backdrop behind the frame."], 6, nil, nil, nil, nil, nil, IsDisabled)
-	section.args.size = ACH:Group(L["Size and Spacing"], nil, 3, nil, GetOpt, SetOpt, IsDisabled)
+	section.args.general.args.visibility = ACH:Select(L["Visibility"], nil, 2, { SHOW = L["Always"], COMBAT = L["In Combat"], GROUP = L["In Group"] }, nil, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.enable end)
+	section.args.general.args.secondWindow = ACH:Toggle(L["Second Window"], L["Show a second session window, both share the frame width."], 3, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.enable end)
+	section.args.general.args.windowOneType = ACH:Select(L["Window 1"], nil, 4, function() local DM = Private.Modules.DamageMeter return DM and DM.TypeNames or {} end, nil, nil, function() return Private.Addon.db.profile.damageMeter.windowOne.meterType end, function(_, value) Private.Addon.db.profile.damageMeter.windowOne.meterType = value local DM = Private.Modules.DamageMeter local window = DM and DM.windows[1] if window then DM:SetWindowType(window, value) end end, function() return not Private.Addon.db.profile.damageMeter.enable end)
+	section.args.general.args.windowTwoType = ACH:Select(L["Window 2"], nil, 5, function() local DM = Private.Modules.DamageMeter return DM and DM.TypeNames or {} end, nil, nil, function() return Private.Addon.db.profile.damageMeter.windowTwo.meterType end, function(_, value) Private.Addon.db.profile.damageMeter.windowTwo.meterType = value local DM = Private.Modules.DamageMeter local window = DM and DM.windows[2] if window then DM:SetWindowType(window, value) end end, function() local db = Private.Addon.db.profile.damageMeter return not db.enable or not db.secondWindow end)
+	section.args.general.args.backdrop = ACH:Toggle(L["Frame Backdrop"], L["Show a transparent ElvUI backdrop behind the frame."], 6, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.enable end)
+	section.args.size = ACH:Group(L["Size and Spacing"], nil, 3, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.size.inline = true
 	section.args.size.args.syncSize = ACH:Toggle(L["Sync with Chat Panel"], L["Match the width and height of the ElvUI Right Chat Panel."], 1)
 	section.args.size.args.width = ACH:Range(L["Width"], nil, 2, { min = 100, max = 1200, step = 1 }, nil, nil, nil, function() return Private.Addon.db.profile.damageMeter.syncSize end)
 	section.args.size.args.height = ACH:Range(L["Height"], nil, 3, { min = 60, max = 800, step = 1 }, nil, nil, nil, function() return Private.Addon.db.profile.damageMeter.syncSize end)
 	section.args.size.args.innerSpacing = ACH:Range(L["Inner Spacing"], L["Space between the two session windows."], 4, { min = 0, max = 30, step = 1 })
 	section.args.size.args.outerSpacing = ACH:Range(L["Outer Spacing"], L["Space between the frame border and the bars."], 5, { min = 0, max = 30, step = 1 })
-	section.args.bars = ACH:Group(L["Bars"], nil, 4, nil, GetOpt, SetOpt, IsDisabled)
+	section.args.bars = ACH:Group(L["Bars"], nil, 4, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.bars.inline = true
 	section.args.bars.args.barTexture = ACH:SharedMediaStatusbar(L["Bar Texture"], nil, 1)
 	section.args.bars.args.barHeight = ACH:Range(L["Bar Height"], nil, 2, { min = 8, max = 50, step = 1 })
@@ -239,7 +222,7 @@ local function BuildDamageMeterSection()
 	section.args.bars.args.showIcons = ACH:Toggle(L["Bar Icons"], L["Show the class or spec icon in front of each bar."], 5)
 	section.args.bars.args.classColors = ACH:Toggle(L["Class Colors"], nil, 6)
 	section.args.bars.args.othersColor = ACH:Color(L["Fallback Color"], L["Bar color for creatures and sources without a class."], 7, nil, nil, function() local color = Private.Addon.db.profile.damageMeter.othersColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.damageMeter.othersColor color.r, color.g, color.b = r, g, b Private:DamageMeter_UpdateAll() end)
-	section.args.text = ACH:Group(L["Text"], nil, 5, nil, GetOpt, SetOpt, IsDisabled)
+	section.args.text = ACH:Group(L["Text"], nil, 5, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.text.inline = true
 	section.args.text.args.font = ACH:SharedMediaFont(L["Font"], nil, 1)
 	section.args.text.args.fontSize = ACH:Range(L["Font Size"], nil, 2, { min = 8, max = 26, step = 1 })
@@ -247,7 +230,7 @@ local function BuildDamageMeterSection()
 	section.args.text.args.numberDisplay = ACH:Select(L["Number Display"], nil, 4, { MINIMAL = L["Minimal"], COMPACT = L["Compact"], COMPLETE = L["Complete"] })
 	section.args.text.args.showRank = ACH:Toggle(L["Show Rank Numbers"], L["Show the rank number in front of each name."], 5)
 	section.args.text.args.stripRealm = ACH:Toggle(L["Strip Realm Names"], L["Remove the realm name from cross realm players."], 6)
-	section.args.headerOptions = ACH:Group(L["Header"], nil, 6, nil, GetOpt, SetOpt, IsDisabled)
+	section.args.headerOptions = ACH:Group(L["Header"], nil, 6, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.headerOptions.inline = true
 	section.args.headerOptions.args.headerHeight = ACH:Range(L["Header Height"], nil, 1, { min = 12, max = 40, step = 1 })
 	section.args.headerOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 2)
