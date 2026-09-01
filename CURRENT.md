@@ -1,18 +1,20 @@
-## Version 4.20 [19-08-2026]
+## Version 4.21 [01-09-2026]
 
 **All WoW Versions:**  
-- ElvUI 15.23+ compatibility  
-- Added an optional layout for horizontal party frames in the healing layout  
-- Added perRow option for the minimap button module (This can allow a vertical bar)  
-- Cooldown text for seconds below 10 is white again (Was yellow)  
-- Count text for stacks and charges is now top right to match other elements  
-- Party frames will now show player by default (Player was hidden previously)  
-- Updated BigWigs (Disabled the new Debuff icons for Player)  
+- ElvUI 15.26+ compatibility  
+- Arena and boss frame Buffs show a tooltip again on hover  
+- DataText panels no longer stuck in the screen center during the installer process  
+- Pixel adjustments for stack text on Buffs and Debuffs next to the minimap  
+- Updated frFR locales (Credits: Oniria)  
+- Value color is now class colored by default (Chat tab names, Game menu title, etc)  
 
 **Retail:**  
-- Player unitframe debuffs now spawn a mouseover tooltip by default  
-- Tons of tweaks for buff and debuff containers in party and raidframes  
-- Updated aura indicators for all healing specs (Hots, Shields)  
+- Added custom skin and tweaks for the Blizzard Damage Meter to /lucky config Skins  
+- Updated EditMode strings (Default UI, ElvUI 1440p, ElvUI 1080p)  
+- Updated Northern Sky Raid Tools profile  
 - Updated PermoksAccountManager profile  
-- Updated SkironCooldownManager profile  
-- Updated WindTools profile (It's very minimalistic now)  
+- Updated SkironCooldownManager profile (Keep icon aspect ratio)  
+- Updated WindTools profile (Handles Blizzard Damage Meter if Details is not installed)  
+
+**Classic:**  
+- Updated minimap tracking button position to avoid overlap with Nova Layer frame  
