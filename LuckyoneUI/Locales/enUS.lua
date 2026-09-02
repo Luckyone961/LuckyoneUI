@@ -389,6 +389,7 @@ L["WarpDeplete profile has been set."] = true
 L["Warrior"] = true
 L["Welcome"] = true
 L["Width"] = true
+L["Wipe all Damage Meter settings, the module itself stays enabled."] = true
 L["Window 1"] = true
 L["Window 2"] = true
 L["WindTools profile has been set."] = true

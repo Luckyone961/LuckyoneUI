@@ -385,6 +385,7 @@ L["WarpDeplete profile has been set."] = "WarpDeplete Profil wurde festgelegt."
 L["Warrior"] = "Krieger"
 L["Welcome"] = "Willkommen"
 L["Width"] = true
+L["Wipe all Damage Meter settings, the module itself stays enabled."] = true
 L["Window 1"] = true
 L["Window 2"] = true
 L["WindTools profile has been set."] = "WindTools Profil wurde festgelegt."

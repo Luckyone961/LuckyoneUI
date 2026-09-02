@@ -241,6 +241,9 @@ local function BuildDamageMeterSection()
 	section.args.headerOptions.inline = true
 	section.args.headerOptions.args.headerHeight = ACH:Range(L["Header Height"], nil, 1, { min = 12, max = 40, step = 1 })
 	section.args.headerOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 2)
+	section.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 7)
+	section.args.defaults.inline = true
+	section.args.defaults.args.damageMeter = ACH:Execute(L["Restore Defaults"], L["Wipe all Damage Meter settings, the module itself stays enabled."], 1, function() Private:DamageMeter_ResetDefaults() end, nil, true)
 	return section
 end
 

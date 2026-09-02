@@ -7,6 +7,7 @@ local L = Private.Libs.ACL
 
 local unpack = unpack
 local pairs = pairs
+local wipe = wipe
 
 local Ambiguate = Ambiguate
 local CreateFrame = CreateFrame
@@ -226,6 +227,29 @@ function Private:DamageMeter_UpdateAll()
 	DM:UpdateBackdrop()
 	DM:UpdateShown()
 	DM:MarkAllDirty()
+end
+
+-- Restore profile defaults config button
+function Private:DamageMeter_ResetDefaults()
+	local db = Private.Addon.db.profile.damageMeter
+	local enable = db.enable
+
+	wipe(db)
+	E:CopyTable(db, Private.Defaults.profile.damageMeter)
+
+	-- Restoring the look should not switch the module off
+	db.enable = enable
+
+	for _, window in pairs(DM.windows) do
+		DM:CloseDrilldown(window)
+
+		window.meterType = nil
+		window.sessionType = nil
+		window.sessionID = nil
+		window.offset = 0
+	end
+
+	Private:DamageMeter_UpdateAll()
 end
 
 function DM:OnEnable()
