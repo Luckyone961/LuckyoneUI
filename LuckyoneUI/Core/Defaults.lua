@@ -19,6 +19,7 @@ Private.Defaults = {
 			height = 208,
 			innerSpacing = 2,
 			outerSpacing = 2,
+			barStyle = 'DEFAULT',
 			barTexture = Private.Texture,
 			barHeight = 18,
 			barSpacing = 1,

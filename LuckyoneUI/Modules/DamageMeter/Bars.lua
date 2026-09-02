@@ -123,23 +123,74 @@ local function CreateBar(window)
 	return bar
 end
 
--- Blizzard Default style
-local function SetBarAnchors(bar, iconShown)
+-- Blizzard styles, Default, Bordered and Thin
+-- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DamageMeter/DamageMeterEntry.lua
+local function SetBarAnchors(db, bar, iconShown)
 	if bar.iconsShown == iconShown then return end
 	bar.iconsShown = iconShown
 
 	bar.icon:SetShown(iconShown)
 
-	local status = bar.status
-	status:ClearAllPoints()
+	local style = db.barStyle
+	local status, name, value = bar.status, bar.name, bar.value
 
-	if iconShown then
-		status:Point('TOPLEFT', bar.icon, 'TOPRIGHT', 0, 0)
+	local relative = iconShown and bar.icon or bar
+	local relativePoint = iconShown and 'RIGHT' or 'LEFT'
+
+	-- Bordered splits the icon and the bar with the same border
+	local border = (style == 'BORDERED' and iconShown) and (E.twoPixelsPlease and 2 or 1) or 0
+
+	status:ClearAllPoints()
+	name:ClearAllPoints()
+	value:ClearAllPoints()
+
+	if style == 'THIN' then
+		-- Both texts sit on top, the bar only fills the leftover height
+		value:Point('TOP', bar, 'TOP', 0, db.valueYOffset)
+		value:Point('RIGHT', bar, 'RIGHT', -2 + db.valueXOffset, 0)
+
+		name:Point('TOP', bar, 'TOP', 0, db.nameYOffset)
+		name:Point('LEFT', relative, relativePoint, 2 + db.nameXOffset, 0)
+		name:Point('RIGHT', value, 'LEFT', -8, 0)
+
+		status:Point('LEFT', relative, relativePoint, 0, 0)
+		status:Point('TOP', name, 'BOTTOM', 0, 0)
+		status:Point('BOTTOMRIGHT', bar, 'BOTTOMRIGHT', 0, 0)
 	else
-		status:Point('TOPLEFT', bar, 'TOPLEFT', 0, 0)
+		status:Point('TOPLEFT', relative, iconShown and 'TOPRIGHT' or 'TOPLEFT', border, 0)
+		status:Point('BOTTOMRIGHT', bar, 'BOTTOMRIGHT', 0, 0)
+
+		value:Point('RIGHT', status, 'RIGHT', -2 + db.valueXOffset, db.valueYOffset)
+
+		-- It has to cancel out that offset
+		name:Point('LEFT', status, 'LEFT', 2 + db.nameXOffset, db.nameYOffset)
+		name:Point('RIGHT', value, 'LEFT', -8, db.nameYOffset - db.valueYOffset)
 	end
 
-	status:Point('BOTTOMRIGHT', bar, 'BOTTOMRIGHT', 0, 0)
+	-- 1px ElvUI border around the icon and the bar
+	if style == 'BORDERED' and not bar.backdrop then
+		bar:CreateBackdrop(nil, nil, nil, true)
+	end
+
+	if bar.backdrop then
+		bar.backdrop:SetShown(style == 'BORDERED')
+	end
+
+	if border > 0 and not bar.separator then
+		bar.separator = bar:CreateTexture(nil, 'OVERLAY')
+		bar.separator:SetTexture(E.media.blankTex)
+		bar.separator:Point('TOPLEFT', bar.icon, 'TOPRIGHT', 0, 0)
+		bar.separator:Point('BOTTOMLEFT', bar.icon, 'BOTTOMRIGHT', 0, 0)
+	end
+
+	if bar.separator then
+		bar.separator:SetShown(border > 0)
+
+		if border > 0 then
+			bar.separator:SetVertexColor(unpack(E.media.bordercolor))
+			bar.separator:Width(border)
+		end
+	end
 end
 
 local function ApplyBarSettings(window, bar, index)
@@ -159,14 +210,6 @@ local function ApplyBarSettings(window, bar, index)
 
 	bar.name:FontTemplate(db.font, db.fontSize, db.fontOutline)
 	bar.value:FontTemplate(db.font, db.fontSize, db.fontOutline)
-
-	bar.value:ClearAllPoints()
-	bar.value:Point('RIGHT', bar.status, 'RIGHT', -2 + db.valueXOffset, db.valueYOffset)
-
-	-- It has to cancel out that offset
-	bar.name:ClearAllPoints()
-	bar.name:Point('LEFT', bar.status, 'LEFT', 2 + db.nameXOffset, db.nameYOffset)
-	bar.name:Point('RIGHT', bar.value, 'LEFT', -8, db.nameYOffset - db.valueYOffset)
 
 	-- Wipe cached states so we can insta display setting changes
 	bar.colorKey = nil
@@ -411,7 +454,7 @@ function DM:RenderWindow(window)
 			local deathEntry = not spellMode and entry.deathRecapID and entry.deathRecapID ~= 0
 
 			bar.entry = entry
-			SetBarAnchors(bar, iconsShown)
+			SetBarAnchors(db, bar, iconsShown)
 			UpdateBarStatus(bar, entry, maxAmount, deathEntry)
 			UpdateBarColor(db, bar, entry, spellMode)
 			if iconsShown then
