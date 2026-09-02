@@ -12,9 +12,10 @@ Private.Defaults = {
 		damageMeter = {
 			enable = false,
 			visibility = 'SHOW',
-			secondWindow = true,
+			orientation = 'HORIZONTAL',
+			windowCount = 2,
 			backdrop = false,
-			syncSize = true,
+			sizeMode = 'CHAT',
 			width = 486,
 			height = 208,
 			innerSpacing = 2,
@@ -51,13 +52,25 @@ Private.Defaults = {
 			headerFontOutline = Private.Outline,
 			headerFontSize = 12,
 			useValueColor = false,
-			windowOne = {
-				meterType = 0,
-				sessionType = 1,
-			},
-			windowTwo = {
-				meterType = 2,
-				sessionType = 1,
+			windows = {
+				[1] = {
+					meterType = 0, -- Damage Done
+					sessionType = 1, -- Current
+					width = 240,
+					height = 208,
+				},
+				[2] = {
+					meterType = 2, -- Healing Done
+					sessionType = 1, -- Current
+					width = 240,
+					height = 208,
+				},
+				[3] = {
+					meterType = 9, -- Deaths
+					sessionType = 1, -- Current
+					width = 240,
+					height = 208,
+				},
 			},
 		},
 		disabledFrames = {

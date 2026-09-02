@@ -8,6 +8,7 @@ local L = Private.Libs.ACL
 local unpack = unpack
 local pairs = pairs
 local wipe = wipe
+local max = math.max
 
 local Ambiguate = Ambiguate
 local CreateFrame = CreateFrame
@@ -21,6 +22,10 @@ local _G = _G
 local E = unpack(ElvUI)
 
 DM.windows = {}
+
+function DM:WindowDB(index)
+	return DM.db.windows[index]
+end
 
 -- Ambiguate accepts secret names, string functions don't
 function DM:StripRealm(name, classFilename)
@@ -99,46 +104,76 @@ function DM:UpdateShown()
 	DM.lastShown = shown
 end
 
--- Windows split the holder (1: Full width, 2: Half width, inner spacing)
+local widths, heights = {}, {}
+
+-- Windows are laid out along one axis, the holder wraps them
 function DM:Layout()
 	local db = DM.db
 	local holder = DM.holder
 	if not holder then return end
 
-	local width, height
-	if db.syncSize then
-		local chat = E.db.chat
-		width = chat.separateSizes and chat.panelWidthRight or chat.panelWidth
-		height = chat.separateSizes and chat.panelHeightRight or chat.panelHeight
+	local vertical = db.orientation == 'VERTICAL'
+	local count = db.windowCount
+	local inner, outer = db.innerSpacing, db.outerSpacing
+	local holderWidth, holderHeight
+
+	if db.sizeMode == 'CUSTOM' then
+		-- Every window brings its own size, the holder wraps them
+		local axis, cross = outer * 2 + (count - 1) * inner, 0
+
+		for index = 1, count do
+			local wdb = DM:WindowDB(index)
+			widths[index], heights[index] = wdb.width, wdb.height
+
+			axis = axis + (vertical and wdb.height or wdb.width)
+			cross = max(cross, vertical and wdb.width or wdb.height)
+		end
+
+		holderWidth = vertical and cross or axis
+		holderHeight = vertical and axis or cross
 	else
-		width, height = db.width, db.height
+		-- The holder size is given, the windows split it evenly
+		if db.sizeMode == 'CHAT' then
+			local chat = E.db.chat
+			holderWidth = chat.separateSizes and chat.panelWidthRight or chat.panelWidth
+			holderHeight = chat.separateSizes and chat.panelHeightRight or chat.panelHeight
+		else
+			holderWidth, holderHeight = db.width, db.height
+		end
+
+		local size = ((vertical and holderHeight or holderWidth) - outer * 2 - (count - 1) * inner) / count
+
+		for index = 1, count do
+			widths[index] = vertical and holderWidth or size
+			heights[index] = vertical and size or holderHeight
+		end
 	end
 
-	holder:Size(width, height)
+	holder:Size(holderWidth, holderHeight)
 
-	local count = db.secondWindow and 2 or 1
-	local windowWidth = (width - db.outerSpacing * 2 - (count - 1) * db.innerSpacing) / count
-
-	for index, window in pairs(DM.windows) do
-		if index <= count then
+	for index = 1, count do
+		local window = DM.windows[index]
+		if window then
 			window:ClearAllPoints()
-			window:Size(windowWidth, height)
+			window:Size(widths[index], heights[index])
 
 			if index == 1 then
-				window:Point('TOPLEFT', holder, 'TOPLEFT', db.outerSpacing, 0)
+				window:Point('TOPLEFT', holder, 'TOPLEFT', vertical and 0 or outer, vertical and -outer or 0)
+			elseif vertical then
+				window:Point('TOPLEFT', DM.windows[index - 1], 'BOTTOMLEFT', 0, -inner)
 			else
-				window:Point('TOPRIGHT', holder, 'TOPRIGHT', -db.outerSpacing, 0)
+				window:Point('TOPLEFT', DM.windows[index - 1], 'TOPRIGHT', inner, 0)
 			end
 
 			window:Show()
-		else
-			window:Hide()
 		end
 	end
 
 	for index, window in pairs(DM.windows) do
-		if index <= count then
-			DM:UpdateWindowGeometry(window, windowWidth, height)
+		if index > count then
+			window:Hide()
+		else
+			DM:UpdateWindowGeometry(window, widths[index], heights[index])
 		end
 	end
 end
@@ -154,9 +189,9 @@ function DM:Initialize()
 
 	E:CreateMover(holder, 'LuckyoneUI_DamageMeterMover', Private.Name .. ' ' .. L["Damage Meter"], nil, nil, nil, 'ALL,GENERAL', nil, 'LuckyoneUI,damageMeter')
 
-	-- Follow ElvUI resizing while "Sync with Chat Panel" option is used
+	-- Follow ElvUI resizing while the "Chat Panel" size mode is used
 	hooksecurefunc(E:GetModule('Chat'), 'PositionChats', function()
-		if DM.db.enable and DM.db.syncSize then
+		if DM.db.enable and DM.db.sizeMode == 'CHAT' then
 			DM:Layout()
 		end
 	end)
@@ -214,9 +249,8 @@ function Private:DamageMeter_UpdateAll()
 
 	DM:Initialize()
 
-	DM:GetWindow(1)
-	if db.secondWindow then
-		DM:GetWindow(2)
+	for index = 1, db.windowCount do
+		DM:GetWindow(index)
 	end
 
 	for _, window in pairs(DM.windows) do

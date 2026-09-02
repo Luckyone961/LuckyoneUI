@@ -177,7 +177,7 @@ function DM:SetWindowType(window, meterType)
 	window.mode = 'sources'
 	window.offset = 0
 
-	local wdb = window.index == 1 and DM.db.windowOne or DM.db.windowTwo
+	local wdb = DM:WindowDB(window.index)
 	wdb.meterType = meterType
 
 	DM:UpdateHeader(window)
@@ -192,7 +192,7 @@ function DM:SetWindowSession(window, sessionType, sessionID)
 	window.offset = 0
 
 	-- Session IDs are per login session and intentionally not persisted
-	local wdb = window.index == 1 and DM.db.windowOne or DM.db.windowTwo
+	local wdb = DM:WindowDB(window.index)
 	wdb.sessionType = sessionType
 
 	DM:UpdateHeader(window)
@@ -433,7 +433,7 @@ end
 
 function DM:ApplyWindowSettings(window)
 	local db = DM.db
-	local wdb = window.index == 1 and db.windowOne or db.windowTwo
+	local wdb = DM:WindowDB(window.index)
 
 	if window.meterType == nil then
 		window.meterType = wdb.meterType
