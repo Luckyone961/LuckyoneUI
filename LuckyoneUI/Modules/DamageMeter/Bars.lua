@@ -8,6 +8,7 @@ local LSM = Private.Libs.LSM
 local unpack = unpack
 local floor = math.floor
 local max = math.max
+local rep = string.rep
 
 local CreateAbbreviateConfig = CreateAbbreviateConfig
 local CreateFrame = CreateFrame
@@ -56,6 +57,36 @@ local function FormatAmount(amount)
 	return AbbreviateNumbers(amount, GetAbbreviate() or E.Abbreviate.short)
 end
 
+-- Bracket styling () [] etc
+local BracketChars = {
+	PARENTHESES = { '(', ')' },
+	SQUARE = { '[', ']' },
+	NONE = { '', '' },
+}
+
+-- Value formats for the secondary number
+-- Only rebuilt when the bracket style or the spacing changes
+local formatKey, valueFormats
+local function GetValueFormats(db)
+	local key = db.bracketStyle .. db.valueSpacing
+
+	if formatKey ~= key then
+		formatKey = key
+
+		local chars = BracketChars[db.bracketStyle] or BracketChars.PARENTHESES
+		local open, close = chars[1], chars[2]
+		local space = rep(' ', db.valueSpacing)
+
+		valueFormats = {
+			both = '%s' .. space .. open .. '%s, %.0f%%' .. close,
+			percent = '%s' .. space .. open .. '%.0f%%' .. close,
+			single = '%s' .. space .. open .. '%s' .. close,
+		}
+	end
+
+	return valueFormats
+end
+
 local function Bar_OnClick(bar, mouseButton)
 	local window = bar.window
 
@@ -84,13 +115,10 @@ local function CreateBar(window)
 
 	bar.value = status:CreateFontString(nil, 'OVERLAY')
 	bar.value:SetJustifyH('RIGHT')
-	bar.value:Point('RIGHT', status, 'RIGHT', -2, 0)
 
 	bar.name = status:CreateFontString(nil, 'OVERLAY')
 	bar.name:SetJustifyH('LEFT')
 	bar.name:SetWordWrap(false)
-	bar.name:Point('LEFT', status, 'LEFT', 2, 0)
-	bar.name:Point('RIGHT', bar.value, 'LEFT', -8, 0)
 
 	return bar
 end
@@ -131,6 +159,14 @@ local function ApplyBarSettings(window, bar, index)
 
 	bar.name:FontTemplate(db.font, db.fontSize, db.fontOutline)
 	bar.value:FontTemplate(db.font, db.fontSize, db.fontOutline)
+
+	bar.value:ClearAllPoints()
+	bar.value:Point('RIGHT', bar.status, 'RIGHT', -2 + db.valueXOffset, db.valueYOffset)
+
+	-- It has to cancel out that offset
+	bar.name:ClearAllPoints()
+	bar.name:Point('LEFT', bar.status, 'LEFT', 2 + db.nameXOffset, db.nameYOffset)
+	bar.name:Point('RIGHT', bar.value, 'LEFT', -8, db.nameYOffset - db.valueYOffset)
 
 	-- Wipe cached states so we can insta display setting changes
 	bar.colorKey = nil
@@ -323,17 +359,18 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 	end
 
 	local display = db.numberDisplay
+	local formats = GetValueFormats(db)
 
 	if display == 'COMPLETE' and not (sessionSecret or issecretvalue(total)) then
 		local percent = sessionTotal > 0 and (total / sessionTotal * 100) or 0
 
 		if secondary then
-			valueText:SetFormattedText('%s (%s, %.0f%%)', FormatAmount(primary), FormatAmount(secondary), percent)
+			valueText:SetFormattedText(formats.both, FormatAmount(primary), FormatAmount(secondary), percent)
 		else
-			valueText:SetFormattedText('%s (%.0f%%)', FormatAmount(primary), percent)
+			valueText:SetFormattedText(formats.percent, FormatAmount(primary), percent)
 		end
 	elseif display ~= 'MINIMAL' and secondary then
-		valueText:SetFormattedText('%s (%s)', FormatAmount(primary), FormatAmount(secondary))
+		valueText:SetFormattedText(formats.single, FormatAmount(primary), FormatAmount(secondary))
 	else
 		valueText:SetText(FormatAmount(primary))
 	end
