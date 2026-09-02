@@ -291,26 +291,10 @@ local function SessionMenu(owner, rootDescription)
 	rootDescription:CreateRadio(_G.DAMAGE_METER_OVERALL_SESSION, IsSessionSelected, SetSessionSelected, { window = window, sessionType = SessionType.Overall })
 end
 
-local function IsVisibilitySelected(value)
-	return DM.db.visibility == value
-end
-
-local function SetVisibilitySelected(value)
-	DM.db.visibility = value
-	DM:UpdateShown()
-end
-
 local function SettingsMenu(_, rootDescription)
 	rootDescription:SetTag('MENU_LUCKYONEUI_DAMAGE_METER_SETTINGS')
 
 	rootDescription:CreateButton(_G.DAMAGE_METER_RESET_ALL_SESSIONS, ResetAllCombatSessions)
-	rootDescription:CreateDivider()
-
-	local visibility = rootDescription:CreateButton(L["Visibility"])
-	visibility:CreateRadio(L["Always"], IsVisibilitySelected, SetVisibilitySelected, 'SHOW')
-	visibility:CreateRadio(L["In Combat"], IsVisibilitySelected, SetVisibilitySelected, 'COMBAT')
-	visibility:CreateRadio(L["In Group"], IsVisibilitySelected, SetVisibilitySelected, 'GROUP')
-
 	rootDescription:CreateDivider()
 	rootDescription:CreateButton(Private.Name .. ' ' .. L["Options"], function()
 		E:ToggleOptions('LuckyoneUI,damageMeter')
