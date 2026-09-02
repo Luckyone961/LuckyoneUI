@@ -348,11 +348,7 @@ function Private:DamageMeter_UpdateAll()
 	DM:Initialize()
 
 	for index = 1, db.windowCount do
-		DM:GetWindow(index)
-	end
-
-	for _, window in pairs(DM.windows) do
-		DM:ApplyWindowSettings(window)
+		DM:ApplyWindowSettings(DM:GetWindow(index))
 	end
 
 	DM:Layout()
