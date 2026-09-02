@@ -343,21 +343,26 @@ local function UpdateBarColor(db, bar, entry, spellMode)
 	end
 	if not classFilename then classFilename = '' end
 
-	local key = db.classColors and classFilename or ''
-	if key == bar.colorKey then return end
-	bar.colorKey = key
+	-- Class names are never secret, comparing them is safe
+	if classFilename == bar.colorKey then return end
+	bar.colorKey = classFilename
 
-	local color
-	if db.classColors and classFilename ~= '' then
-		color = E:ClassColor(classFilename, true)
-	end
-	if not color then color = db.othersColor end
+	local classColor = classFilename ~= '' and E:ClassColor(classFilename, true)
+	local color = (db.classColors and classColor) or db.othersColor
 
 	bar.status:SetStatusBarColor(color.r, color.g, color.b)
 
 	-- The backdrop can run on its own color instead of following the bar
 	local backdrop = db.backdropColorType == 'CUSTOM' and db.backdropColor or color
 	bar.bg:SetVertexColor(backdrop.r, backdrop.g, backdrop.b)
+
+	-- The texts run on their own color or follow the class color
+	local nameColor = (db.nameColorType == 'CLASS' and classColor) or db.nameColor
+	local valueColor = (db.valueColorType == 'CLASS' and classColor) or db.valueColor
+
+	bar.name:SetTextColor(nameColor.r, nameColor.g, nameColor.b)
+	bar.value:SetTextColor(valueColor.r, valueColor.g, valueColor.b)
+	bar.persec:SetTextColor(valueColor.r, valueColor.g, valueColor.b)
 end
 
 local function UpdateBarStatus(bar, entry, maxAmount, deathEntry)
