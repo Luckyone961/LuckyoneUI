@@ -49,14 +49,14 @@ local function HideBlizzardMeter()
 	meter:SetShown(false)
 end
 
--- Force the CVar on while enabled, the native meter is our only data source
+-- The native meter is our only data source, mirror the CVar with our module state
 function DM:HandleBlizzardMeter()
+	SetCVar('damageMeterEnabled', DM.db.enable and 1 or 0)
+
 	local meter = _G.DamageMeter
 	if not meter or meter:IsForbidden() then return end
 
 	if DM.db.enable then
-		SetCVar('damageMeterEnabled', 1)
-
 		if not DM.blizzardHooked then
 			hooksecurefunc(meter, 'UpdateShownState', HideBlizzardMeter)
 			DM.blizzardHooked = true
