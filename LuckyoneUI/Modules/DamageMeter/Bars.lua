@@ -9,6 +9,7 @@ local unpack = unpack
 local floor = math.floor
 local ipairs = ipairs
 local max = math.max
+local format = string.format
 
 local CreateAbbreviateConfig = CreateAbbreviateConfig
 local CreateFrame = CreateFrame
@@ -472,17 +473,46 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 	end
 end
 
+local SampleAmount = '999.9M'
+local sampleKey, sampleWidth, sampleText
+local function GetSampleWidth(db)
+	local key = format('%s-%s-%s-%s', db.font, db.fontSize, db.fontOutline, db.bracketStyle)
+	if sampleKey == key then return sampleWidth end
+	sampleKey = key
+
+	if not sampleText then
+		sampleText = E.HiddenFrame:CreateFontString(nil, 'OVERLAY')
+		sampleText:SetWordWrap(false)
+	end
+
+	sampleText:FontTemplate(db.font, db.fontSize, db.fontOutline)
+	sampleText:SetFormattedText(GetValueFormats(db).single, SampleAmount)
+	sampleWidth = sampleText:GetStringWidth()
+
+	return sampleWidth
+end
+
 -- The widest secondary number sets the column, that keeps both numbers aligned
 -- No spacing drops the column so both numbers sit next to each other again
 local function UpdateValueColumn(db, window)
-	local width = 0
+	local width, secret = 0, false
 
 	if db.valueSpacing > 0 then
 		for i = 1, window.visibleCount do
 			local bar = window.bars[i]
 			if bar.entry then
-				width = max(width, bar.persec:GetStringWidth())
+				local barWidth = bar.persec:GetStringWidth()
+
+				if issecretvalue(barWidth) then
+					secret = true
+				else
+					width = max(width, barWidth)
+				end
 			end
+		end
+
+		if secret then
+			width = max(width, GetSampleWidth(db))
 		end
 
 		if width > 0 then
