@@ -71,6 +71,9 @@ end
 function DM:ShouldShow()
 	if not DM.db.enable then return false end
 
+	-- The preview ignores the visibility rule, same as Edit Mode
+	if DM.testMode then return true end
+
 	local visibility = DM.db.visibility
 
 	if visibility == 'COMBAT' then
@@ -104,6 +107,19 @@ function DM:UpdateShown()
 	end
 
 	DM.lastShown = shown
+end
+
+-- A reload always drops back to the live data
+function DM:SetTestMode(value)
+	DM.testMode = value or nil
+
+	-- Fake data has no spell entries
+	for _, window in pairs(DM.windows) do
+		DM:CloseDrilldown(window)
+		window.offset = 0
+	end
+
+	Private:DamageMeter_UpdateAll()
 end
 
 local widths, heights = {}, {}

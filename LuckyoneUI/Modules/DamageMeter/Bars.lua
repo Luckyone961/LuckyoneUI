@@ -532,9 +532,9 @@ function DM:RenderWindow(window)
 	if not db or window.visibleCount == 0 then return end
 
 	local available, failureReason = IsDamageMeterAvailable()
-	window.infoText:SetText(not available and failureReason or '')
+	window.infoText:SetText((not available and not DM.testMode) and failureReason or '')
 
-	local session = window.session
+	local session = DM:GetSession(window)
 	local spellMode = window.mode == 'spells'
 	local entries = session and (spellMode and session.combatSpells or session.combatSources)
 	local numEntries = entries and #entries or 0
