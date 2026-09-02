@@ -148,14 +148,17 @@ local function SetBarBorder(bar, size, iconShown)
 		end
 	end
 
+	local shown = size > 0
+	local r, g, b = unpack(E.media.bordercolor)
+
 	for _, edge in ipairs(BorderEdges) do
 		local texture = border[edge]
 		texture:ClearAllPoints()
-		texture:SetShown(size > 0)
-		texture:SetVertexColor(unpack(E.media.bordercolor))
+		texture:SetShown(shown)
+		texture:SetVertexColor(r, g, b)
 	end
 
-	if size == 0 then return end
+	if not shown then return end
 
 	-- Drawn outside the bar so the icon and the status bar keep their space
 	border.top:Point('BOTTOMLEFT', bar, 'TOPLEFT', -size, 0)
@@ -234,8 +237,7 @@ local function SetBarAnchors(db, bar, iconShown)
 	SetBarBorder(bar, border, iconShown)
 end
 
-local function ApplyBarSettings(window, bar, index)
-	local db = DM.db
+local function ApplyBarSettings(db, window, bar, index, texture)
 	local yOffset = -((index - 1) * (db.barHeight + db.barSpacing))
 
 	bar:ClearAllPoints()
@@ -244,7 +246,6 @@ local function ApplyBarSettings(window, bar, index)
 	bar:Height(db.barHeight)
 	bar.icon:Size(db.barHeight)
 
-	local texture = LSM:Fetch('statusbar', db.barTexture)
 	bar.status:SetStatusBarTexture(texture)
 	bar.bg:SetTexture(texture)
 	bar.bg:SetAlpha(db.backdropAlpha)
@@ -260,7 +261,6 @@ local function ApplyBarSettings(window, bar, index)
 	bar.lastName = nil
 	bar.lastRank = nil
 	bar.iconsShown = nil
-	window.columnWidth = nil
 end
 
 function DM:UpdateWindowGeometry(window, width, height)
@@ -273,6 +273,9 @@ function DM:UpdateWindowGeometry(window, width, height)
 	end
 
 	window.visibleCount = visibleCount
+	window.columnWidth = nil
+
+	local texture = LSM:Fetch('statusbar', db.barTexture)
 
 	for i = 1, visibleCount do
 		local bar = window.bars[i]
@@ -281,7 +284,7 @@ function DM:UpdateWindowGeometry(window, width, height)
 			window.bars[i] = bar
 		end
 
-		ApplyBarSettings(window, bar, i)
+		ApplyBarSettings(db, window, bar, i, texture)
 	end
 
 	for i = visibleCount + 1, #window.bars do
@@ -532,9 +535,9 @@ function DM:RenderWindow(window)
 	if not db or window.visibleCount == 0 then return end
 
 	local available, failureReason = IsDamageMeterAvailable()
-	window.infoText:SetText(not available and failureReason or '')
+	window.infoText:SetText((not available and not DM.testMode) and failureReason or '')
 
-	local session = window.session
+	local session = DM:GetSession(window)
 	local spellMode = window.mode == 'spells'
 	local entries = session and (spellMode and session.combatSpells or session.combatSources)
 	local numEntries = entries and #entries or 0

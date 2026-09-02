@@ -372,6 +372,7 @@ L["Supporters"] = "Soutiens"
 L["Survival"] = "Survie"
 L["Talking Head"] = true
 L["Tanks"] = true
+L["Test Mode"] = true
 L["Testers and Translation"] = "Testeurs et traducteurs"
 L["Text"] = "Texte"
 L["The following data will be updated"] = "Les données suivantes seront mises à jour"

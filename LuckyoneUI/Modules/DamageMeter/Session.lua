@@ -11,6 +11,7 @@ local ipairs = ipairs
 local pairs = pairs
 local max = math.max
 local min = math.min
+local floor = math.floor
 
 local CreateFrame = CreateFrame
 local GetAvailableCombatSessions = C_DamageMeter.GetAvailableCombatSessions
@@ -85,6 +86,60 @@ function DM:FetchWindow(window)
 			window.session = GetCombatSessionFromID(window.sessionID, window.meterType)
 		end
 	end
+end
+
+-- Fake data for the test mode preview, same names Blizzard uses in Edit Mode
+-- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua#L76-L89
+local TestSources = {
+	{ name = _G.DAMAGE_METER_EDIT_MODE_SOURCE_1 or 'Arthas', classFilename = 'DEATHKNIGHT' },
+	{ name = _G.DAMAGE_METER_EDIT_MODE_SOURCE_2 or 'Jaina', classFilename = 'MAGE' },
+	{ name = _G.DAMAGE_METER_EDIT_MODE_SOURCE_3 or "Gul'dan", classFilename = 'WARLOCK' },
+	{ name = _G.DAMAGE_METER_EDIT_MODE_SOURCE_7 or 'Sylvanas', classFilename = 'HUNTER' },
+	{ name = _G.DAMAGE_METER_EDIT_MODE_SOURCE_6 or 'Illidan', classFilename = 'DEMONHUNTER' },
+	{ name = _G.DAMAGE_METER_EDIT_MODE_SOURCE_4 or 'Thrall', classFilename = 'SHAMAN' },
+	{ name = _G.DAMAGE_METER_EDIT_MODE_SOURCE_5 or 'Uther', classFilename = 'PALADIN' },
+}
+
+local TestTopAmount, TestFalloff, TestDuration = 12400000, 0.88, 300
+local testSessions = {}
+
+-- The windows can have different heights
+local function GetTestSession(count)
+	count = max(count, #TestSources)
+
+	local session = testSessions[count]
+	if session then return session end
+
+	local sources, total, amount = {}, 0, TestTopAmount
+
+	for index = 1, count do
+		local source = TestSources[(index - 1) % #TestSources + 1]
+
+		sources[index] = {
+			name = source.name,
+			classFilename = source.classFilename,
+			totalAmount = amount,
+			amountPerSecond = amount / TestDuration,
+		}
+
+		total = total + amount
+		amount = max(floor(amount * TestFalloff), 1)
+	end
+
+	session = { combatSources = sources, maxAmount = TestTopAmount, totalAmount = total }
+	testSessions[count] = session
+
+	return session
+end
+
+-- DamageMeterSessionWindowMixin:GetCombatSession
+-- Fake data replaces the live data
+function DM:GetSession(window)
+	if DM.testMode then
+		return GetTestSession(window.visibleCount)
+	end
+
+	return window.session
 end
 
 local pendingFlush = false
@@ -344,7 +399,7 @@ end
 -- Mouse wheel scrolling, no scrollbar
 local function Content_OnMouseWheel(content, delta)
 	local window = content.window
-	local session = window.session
+	local session = DM:GetSession(window)
 	local entries = session and (window.mode == 'spells' and session.combatSpells or session.combatSources)
 	local numEntries = entries and #entries or 0
 
