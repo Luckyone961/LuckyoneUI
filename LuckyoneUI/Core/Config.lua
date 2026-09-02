@@ -246,7 +246,11 @@ local function BuildDamageMeterSection()
 	section.args.headerOptions = ACH:Group(L["Header"], nil, 6, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.headerOptions.inline = true
 	section.args.headerOptions.args.headerHeight = ACH:Range(L["Header Height"], nil, 1, { min = 12, max = 40, step = 1 })
-	section.args.headerOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 2)
+	section.args.headerOptions.args.headerIconSize = ACH:Range(L["Icon Size"], L["Size of the settings icon in the header."], 2, { min = 8, max = 40, step = 1 })
+	section.args.headerOptions.args.headerFont = ACH:SharedMediaFont(L["Font"], nil, 3)
+	section.args.headerOptions.args.headerFontOutline = ACH:FontFlags(L["Font Outline"], nil, 4)
+	section.args.headerOptions.args.headerFontSize = ACH:Range(L["Font Size"], nil, 5, { min = 8, max = 26, step = 1 })
+	section.args.headerOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 6)
 	section.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 7)
 	section.args.defaults.inline = true
 	section.args.defaults.args.damageMeter = ACH:Execute(L["Restore Defaults"], L["Wipe all Damage Meter settings, the module itself stays enabled."], 1, function() Private:DamageMeter_ResetDefaults() end, nil, true)

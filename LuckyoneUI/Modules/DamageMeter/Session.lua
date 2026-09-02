@@ -144,7 +144,7 @@ end
 -- Header text and colors
 function DM:UpdateHeader(window)
 	if window.mode == 'spells' then
-		window.typeText:SetFormattedText('< %s', DM:StripRealm(window.drillName, window.drillClass) or _G.UNKNOWN)
+		window.typeText:SetText(DM:StripRealm(window.drillName, window.drillClass) or _G.UNKNOWN)
 	else
 		window.typeText:SetText(DM.TypeNames[window.meterType])
 	end
@@ -393,7 +393,7 @@ function DM:GetWindow(index)
 	window.cogIcon:Point('CENTER')
 
 	local sessionButton = CreateFrame('Button', nil, header)
-	sessionButton:Point('RIGHT', cogButton, 'LEFT', 6, 0)
+	sessionButton:Point('RIGHT', cogButton, 'LEFT', 4, 0)
 	sessionButton:SetScript('OnClick', SessionButton_OnClick)
 	sessionButton.window = window
 	window.sessionButton = sessionButton
@@ -444,13 +444,14 @@ function DM:ApplyWindowSettings(window)
 	end
 
 	window.header:Height(db.headerHeight)
-	local cogSize = min(db.headerHeight - 2, db.fontSize + 4)
-	window.cogButton:Size(cogSize)
-	window.cogIcon:Size(db.fontSize * 2)
-	window.sessionButton:Size(26, db.headerHeight)
+	window.cogButton:Size(db.headerIconSize)
+	window.cogIcon:Size(db.headerIconSize * 1.5)
 
-	window.typeText:FontTemplate(db.font, db.fontSize, db.fontOutline)
-	window.sessionText:FontTemplate(db.font, db.fontSize, db.fontOutline)
+	-- Keeps the session text readable when the header font grows
+	window.sessionButton:Size(db.headerFontSize * 2 + 2, db.headerHeight)
+
+	window.typeText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
+	window.sessionText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
 	window.infoText:FontTemplate(db.font, db.fontSize, db.fontOutline)
 
 	DM:UpdateHeaderColors(window)
