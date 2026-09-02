@@ -1,5 +1,6 @@
 local _, Private = ...
 local L = Private.Libs.ACL
+local DM = Private.Modules.DamageMeter
 local LSM = Private.Libs.LSM
 
 local format = string.format
@@ -37,6 +38,15 @@ Private.Installer = Installer
 local installerFrame
 local currentPage = 0
 local maxPage = 0
+
+local function LuckyoneDamageMeter()
+	if not Private.isRetail then return end
+
+	Private.Addon.db.profile.damageMeter.enable = true
+	DM:HandleBlizzardMeter()
+	Private:DamageMeter_UpdateAll()
+	Private:Print(L["Damage Meter module enabled."], true)
+end
 
 -- Our frame 'skin'
 local function ApplyTemplate(frame)
@@ -682,17 +692,27 @@ local function BuildInstallerData()
 	stepTitles[pageIndex] = 'BigWigs'
 	pageIndex = pageIndex + 1
 
-	-- Page: Details
+	-- Page: Damage Meter
 	pages[pageIndex] = function()
 		local f = installerFrame
-		f.SubTitle:SetText(L["Details profile"])
-		f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for Details! Damage Meter."])
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+		f.SubTitle:SetText(L["Damage Meter"])
+		if not Private.isRetail then
+			f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for Details! Damage Meter."])
+		else
+			f.Desc1:SetText(L["Choose between Details! Damage Meter and the custom LuckyoneUI Damage Meter."])
+			f.Desc2:SetText(L["The LuckyoneUI Damage Meter is based on the Blizzard API and much more lightweight\nbut offers less options compared to Details."])
+		end
+		f.Desc3:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 		f.Option1:Show()
 		f.Option1:SetScript('OnClick', function() Private:Setup_Details(true) end)
 		f.Option1:SetText(L["Setup Details"])
+		if Private.isRetail then
+			f.Option2:Show()
+			f.Option2:SetScript('OnClick', function() LuckyoneDamageMeter() end)
+			f.Option2:SetText(L["LuckyoneUI Damage Meter"])
+		end
 	end
-	stepTitles[pageIndex] = 'Details'
+	stepTitles[pageIndex] = L["Damage Meter"]
 	pageIndex = pageIndex + 1
 
 	-- Retail-only: WarpDeplete, MPlusTimer, SkironCooldownManager
