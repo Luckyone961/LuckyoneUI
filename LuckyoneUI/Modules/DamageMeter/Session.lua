@@ -393,7 +393,7 @@ function DM:GetWindow(index)
 	window.cogIcon:Point('CENTER')
 
 	local sessionButton = CreateFrame('Button', nil, header)
-	sessionButton:Point('RIGHT', cogButton, 'LEFT', 0, 0)
+	sessionButton:Point('RIGHT', cogButton, 'LEFT', 6, 0)
 	sessionButton:SetScript('OnClick', SessionButton_OnClick)
 	sessionButton.window = window
 	window.sessionButton = sessionButton

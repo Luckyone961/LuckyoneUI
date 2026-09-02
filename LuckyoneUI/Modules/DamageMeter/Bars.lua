@@ -7,8 +7,8 @@ local LSM = Private.Libs.LSM
 
 local unpack = unpack
 local floor = math.floor
+local ipairs = ipairs
 local max = math.max
-local rep = string.rep
 
 local CreateAbbreviateConfig = CreateAbbreviateConfig
 local CreateFrame = CreateFrame
@@ -42,8 +42,8 @@ local function GetAbbreviate()
 		data[#data + 1] = {
 			breakpoint = 1e-9, -- This is 0.000000001 because 0 is not accepted/valid
 			abbreviation = '',
-			significandDivisor = 0.01,
-			fractionDivisor = 100,
+			significandDivisor = 0.1,
+			fractionDivisor = 10,
 			abbreviationIsGlobal = false
 		}
 
@@ -65,22 +65,21 @@ local BracketChars = {
 }
 
 -- Value formats for the secondary number
--- Only rebuilt when the bracket style or the spacing changes
+-- Only rebuilt when the bracket style changes
 local formatKey, valueFormats
 local function GetValueFormats(db)
-	local key = db.bracketStyle .. db.valueSpacing
+	local style = db.bracketStyle
 
-	if formatKey ~= key then
-		formatKey = key
+	if formatKey ~= style then
+		formatKey = style
 
-		local chars = BracketChars[db.bracketStyle] or BracketChars.PARENTHESES
+		local chars = BracketChars[style] or BracketChars.PARENTHESES
 		local open, close = chars[1], chars[2]
-		local space = rep(' ', db.valueSpacing)
 
 		valueFormats = {
-			both = '%s' .. space .. open .. '%s, %.0f%%' .. close,
-			percent = '%s' .. space .. open .. '%.0f%%' .. close,
-			single = '%s' .. space .. open .. '%s' .. close,
+			both = open .. '%s, %.0f%%' .. close,
+			percent = open .. '%.0f%%' .. close,
+			single = open .. '%s' .. close,
 		}
 	end
 
@@ -113,14 +112,71 @@ local function CreateBar(window)
 	status:SetFrameLevel(bar:GetFrameLevel() + 1)
 	bar.status = status
 
+	bar.persec = status:CreateFontString(nil, 'OVERLAY')
+	bar.persec:SetJustifyH('RIGHT')
+	bar.persec:SetWordWrap(false)
+
 	bar.value = status:CreateFontString(nil, 'OVERLAY')
 	bar.value:SetJustifyH('RIGHT')
+	bar.value:SetWordWrap(false)
 
 	bar.name = status:CreateFontString(nil, 'OVERLAY')
 	bar.name:SetJustifyH('LEFT')
 	bar.name:SetWordWrap(false)
 
 	return bar
+end
+
+-- Edge textures instead of a backdrop frame per bar
+local BorderEdges = { 'top', 'bottom', 'left', 'right', 'separator' }
+
+local function SetBarBorder(bar, size, iconShown)
+	local border = bar.border
+
+	if not border then
+		if size == 0 then return end
+
+		border = {}
+		bar.border = border
+
+		for _, edge in ipairs(BorderEdges) do
+			local texture = bar:CreateTexture(nil, 'OVERLAY')
+			texture:SetTexture(E.media.blankTex)
+			border[edge] = texture
+		end
+	end
+
+	for _, edge in ipairs(BorderEdges) do
+		local texture = border[edge]
+		texture:ClearAllPoints()
+		texture:SetShown(size > 0)
+		texture:SetVertexColor(unpack(E.media.bordercolor))
+	end
+
+	if size == 0 then return end
+
+	-- Drawn outside the bar so the icon and the status bar keep their space
+	border.top:Point('BOTTOMLEFT', bar, 'TOPLEFT', -size, 0)
+	border.top:Point('BOTTOMRIGHT', bar, 'TOPRIGHT', size, 0)
+	border.top:Height(size)
+
+	border.bottom:Point('TOPLEFT', bar, 'BOTTOMLEFT', -size, 0)
+	border.bottom:Point('TOPRIGHT', bar, 'BOTTOMRIGHT', size, 0)
+	border.bottom:Height(size)
+
+	border.left:Point('TOPRIGHT', bar, 'TOPLEFT', 0, 0)
+	border.left:Point('BOTTOMRIGHT', bar, 'BOTTOMLEFT', 0, 0)
+	border.left:Width(size)
+
+	border.right:Point('TOPLEFT', bar, 'TOPRIGHT', 0, 0)
+	border.right:Point('BOTTOMLEFT', bar, 'BOTTOMRIGHT', 0, 0)
+	border.right:Width(size)
+
+	-- Splits the icon and the bar
+	border.separator:SetShown(iconShown)
+	border.separator:Point('TOPLEFT', bar.icon, 'TOPRIGHT', 0, 0)
+	border.separator:Point('BOTTOMLEFT', bar.icon, 'BOTTOMRIGHT', 0, 0)
+	border.separator:Width(size)
 end
 
 -- Blizzard styles, Default, Bordered and Thin
@@ -132,22 +188,27 @@ local function SetBarAnchors(db, bar, iconShown)
 	bar.icon:SetShown(iconShown)
 
 	local style = db.barStyle
-	local status, name, value = bar.status, bar.name, bar.value
+	local status, name, value, persec = bar.status, bar.name, bar.value, bar.persec
 
 	local relative = iconShown and bar.icon or bar
 	local relativePoint = iconShown and 'RIGHT' or 'LEFT'
 
-	-- Bordered splits the icon and the bar with the same border
-	local border = (style == 'BORDERED' and iconShown) and (E.twoPixelsPlease and 2 or 1) or 0
+	-- Bordered wraps the bar and splits off the icon with the same border
+	local border = (style == 'BORDERED') and (E.twoPixelsPlease and 2 or 1) or 0
+	local separator = iconShown and border or 0
 
 	status:ClearAllPoints()
 	name:ClearAllPoints()
 	value:ClearAllPoints()
+	persec:ClearAllPoints()
 
 	if style == 'THIN' then
 		-- Both texts sit on top, the bar only fills the leftover height
+		persec:Point('TOP', bar, 'TOP', 0, db.valueYOffset)
+		persec:Point('RIGHT', bar, 'RIGHT', -2 + db.valueXOffset, 0)
+
 		value:Point('TOP', bar, 'TOP', 0, db.valueYOffset)
-		value:Point('RIGHT', bar, 'RIGHT', -2 + db.valueXOffset, 0)
+		value:Point('RIGHT', persec, 'LEFT', 0, 0)
 
 		name:Point('TOP', bar, 'TOP', 0, db.nameYOffset)
 		name:Point('LEFT', relative, relativePoint, 2 + db.nameXOffset, 0)
@@ -157,40 +218,18 @@ local function SetBarAnchors(db, bar, iconShown)
 		status:Point('TOP', name, 'BOTTOM', 0, 0)
 		status:Point('BOTTOMRIGHT', bar, 'BOTTOMRIGHT', 0, 0)
 	else
-		status:Point('TOPLEFT', relative, iconShown and 'TOPRIGHT' or 'TOPLEFT', border, 0)
+		status:Point('TOPLEFT', relative, iconShown and 'TOPRIGHT' or 'TOPLEFT', separator, 0)
 		status:Point('BOTTOMRIGHT', bar, 'BOTTOMRIGHT', 0, 0)
 
-		value:Point('RIGHT', status, 'RIGHT', -2 + db.valueXOffset, db.valueYOffset)
+		persec:Point('RIGHT', status, 'RIGHT', -2 + db.valueXOffset, db.valueYOffset)
+		value:Point('RIGHT', persec, 'LEFT', 0, 0)
 
 		-- It has to cancel out that offset
 		name:Point('LEFT', status, 'LEFT', 2 + db.nameXOffset, db.nameYOffset)
 		name:Point('RIGHT', value, 'LEFT', -8, db.nameYOffset - db.valueYOffset)
 	end
 
-	-- 1px ElvUI border around the icon and the bar
-	if style == 'BORDERED' and not bar.backdrop then
-		bar:CreateBackdrop(nil, nil, nil, true)
-	end
-
-	if bar.backdrop then
-		bar.backdrop:SetShown(style == 'BORDERED')
-	end
-
-	if border > 0 and not bar.separator then
-		bar.separator = bar:CreateTexture(nil, 'OVERLAY')
-		bar.separator:SetTexture(E.media.blankTex)
-		bar.separator:Point('TOPLEFT', bar.icon, 'TOPRIGHT', 0, 0)
-		bar.separator:Point('BOTTOMLEFT', bar.icon, 'BOTTOMRIGHT', 0, 0)
-	end
-
-	if bar.separator then
-		bar.separator:SetShown(border > 0)
-
-		if border > 0 then
-			bar.separator:SetVertexColor(unpack(E.media.bordercolor))
-			bar.separator:Width(border)
-		end
-	end
+	SetBarBorder(bar, border, iconShown)
 end
 
 local function ApplyBarSettings(window, bar, index)
@@ -210,6 +249,7 @@ local function ApplyBarSettings(window, bar, index)
 
 	bar.name:FontTemplate(db.font, db.fontSize, db.fontOutline)
 	bar.value:FontTemplate(db.font, db.fontSize, db.fontOutline)
+	bar.persec:FontTemplate(db.font, db.fontSize, db.fontOutline)
 
 	-- Wipe cached states so we can insta display setting changes
 	bar.colorKey = nil
@@ -218,6 +258,7 @@ local function ApplyBarSettings(window, bar, index)
 	bar.lastName = nil
 	bar.lastRank = nil
 	bar.iconsShown = nil
+	window.columnWidth = nil
 end
 
 function DM:UpdateWindowGeometry(window, width, height)
@@ -313,7 +354,10 @@ local function UpdateBarColor(db, bar, entry, spellMode)
 	if not color then color = db.othersColor end
 
 	bar.status:SetStatusBarColor(color.r, color.g, color.b)
-	bar.bg:SetVertexColor(color.r, color.g, color.b)
+
+	-- The backdrop can run on its own color instead of following the bar
+	local backdrop = db.backdropColorType == 'CUSTOM' and db.backdropColor or color
+	bar.bg:SetVertexColor(backdrop.r, backdrop.g, backdrop.b)
 end
 
 local function UpdateBarStatus(bar, entry, maxAmount, deathEntry)
@@ -375,7 +419,7 @@ local function UpdateBarName(db, bar, entry, rank, spellMode)
 end
 
 local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry)
-	local valueText = bar.value
+	local valueText, persecText = bar.value, bar.persec
 
 	if deathEntry then
 		local deathTime = entry.deathTimeSeconds
@@ -384,6 +428,8 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 		else
 			valueText:SetText(SecondsToClock(deathTime))
 		end
+
+		persecText:SetText('')
 		return
 	end
 
@@ -404,18 +450,46 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 	local display = db.numberDisplay
 	local formats = GetValueFormats(db)
 
+	valueText:SetText(FormatAmount(primary))
+
 	if display == 'COMPLETE' and not (sessionSecret or issecretvalue(total)) then
 		local percent = sessionTotal > 0 and (total / sessionTotal * 100) or 0
 
 		if secondary then
-			valueText:SetFormattedText(formats.both, FormatAmount(primary), FormatAmount(secondary), percent)
+			persecText:SetFormattedText(formats.both, FormatAmount(secondary), percent)
 		else
-			valueText:SetFormattedText(formats.percent, FormatAmount(primary), percent)
+			persecText:SetFormattedText(formats.percent, percent)
 		end
 	elseif display ~= 'MINIMAL' and secondary then
-		valueText:SetFormattedText(formats.single, FormatAmount(primary), FormatAmount(secondary))
+		persecText:SetFormattedText(formats.single, FormatAmount(secondary))
 	else
-		valueText:SetText(FormatAmount(primary))
+		persecText:SetText('')
+	end
+end
+
+-- The widest secondary number sets the column, that keeps both numbers aligned
+-- No spacing drops the column so both numbers sit next to each other again
+local function UpdateValueColumn(db, window)
+	local width = 0
+
+	if db.valueSpacing > 0 then
+		for i = 1, window.visibleCount do
+			local bar = window.bars[i]
+			if bar.entry then
+				width = max(width, bar.persec:GetStringWidth())
+			end
+		end
+
+		if width > 0 then
+			width = width + E:Scale(db.valueSpacing)
+		end
+	end
+
+	if window.columnWidth == width then return end
+	window.columnWidth = width
+
+	for i = 1, #window.bars do
+		window.bars[i].persec:SetWidth(width)
 	end
 end
 
@@ -468,4 +542,6 @@ function DM:RenderWindow(window)
 			bar:Hide()
 		end
 	end
+
+	UpdateValueColumn(db, window)
 end
