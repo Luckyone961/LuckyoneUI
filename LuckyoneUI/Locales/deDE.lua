@@ -14,7 +14,7 @@ L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on y
 L["Affliction"] = true
 L["Alert Frame"] = "Alarmfenster"
 L["Alt: "] = "Twink: "
-L["Always"] = true
+L["Always"] = "Immer"
 L["Anchor"] = "Anker"
 L["Application Cover"] = "Gruppenbrowser Overlay"
 L["Applied profile: "] = "Folgendes Profil wurde geladen: "
