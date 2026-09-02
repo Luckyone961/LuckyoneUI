@@ -71,7 +71,6 @@ L["Choose between Details! Damage Meter and the custom LuckyoneUI Damage Meter."
 L["Choose between WarpDeplete and MPlusTimer."] = "Choisissez entre WarpDeplete et MPlusTimer."
 L["Class Color Style"] = "Style couleur de classe"
 L["Class Color"] = "Couleur de classe"
-L["Class Colors"] = true
 L["Click the first button for the import.\nUse CTRL+C to copy the string from the popup."] = "Cliquez sur le premier bouton pour l'importation.\nUtilisez CTRL+C pour copier le 'texte' depuis le popup."
 L["Close installer"] = "Fermer l'installeur"
 L["Coding"] = "Développement"

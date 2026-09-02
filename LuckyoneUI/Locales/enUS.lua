@@ -71,7 +71,6 @@ L["Choose between Details! Damage Meter and the custom LuckyoneUI Damage Meter."
 L["Choose between WarpDeplete and MPlusTimer."] = true
 L["Class Color Style"] = true
 L["Class Color"] = true
-L["Class Colors"] = true
 L["Click the first button for the import.\nUse CTRL+C to copy the string from the popup."] = true
 L["Close installer"] = true
 L["Coding"] = true
