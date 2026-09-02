@@ -7,8 +7,11 @@ local L = Private.Libs.ACL
 
 local unpack = unpack
 local pairs = pairs
+local ipairs = ipairs
 local wipe = wipe
 local max = math.max
+local min = math.min
+local floor = math.floor
 
 local Ambiguate = Ambiguate
 local CreateFrame = CreateFrame
@@ -105,8 +108,27 @@ function DM:UpdateShown()
 end
 
 local widths, heights = {}, {}
+local hosts, columns = {}, {}
 
--- Windows are laid out along one axis, the holder wraps them
+-- Attached windows leave the main axis and hang inside the slot of their host
+local function BuildColumns(count)
+	wipe(hosts)
+	wipe(columns)
+
+	for index = 1, count do
+		local target = DM:WindowDB(index).attachTo or 0
+		local host = (target >= 1 and target <= count and target ~= index) and DM:WindowDB(target)
+
+		-- Only a window on the main axis can host, this keeps chains one level deep
+		hosts[index] = (host and (host.attachTo or 0) == 0) and target or 0
+
+		if hosts[index] == 0 then
+			columns[#columns + 1] = index
+		end
+	end
+end
+
+-- Columns are laid out along one axis, the holder wraps them
 function DM:Layout()
 	local db = DM.db
 	local holder = DM.holder
@@ -117,11 +139,14 @@ function DM:Layout()
 	local inner, outer = db.innerSpacing, db.outerSpacing
 	local holderWidth, holderHeight
 
-	if db.sizeMode == 'CUSTOM' then
-		-- Every window brings its own size, the holder wraps them
-		local axis, cross = outer * 2 + (count - 1) * inner, 0
+	BuildColumns(count)
+	local columnCount = #columns
 
-		for index = 1, count do
+	if db.sizeMode == 'CUSTOM' then
+		-- Every column brings its own size, the holder wraps them
+		local axis, cross = outer * 2 + (columnCount - 1) * inner, 0
+
+		for _, index in ipairs(columns) do
 			local wdb = DM:WindowDB(index)
 			widths[index], heights[index] = wdb.width, wdb.height
 
@@ -132,7 +157,7 @@ function DM:Layout()
 		holderWidth = vertical and cross or axis
 		holderHeight = vertical and axis or cross
 	else
-		-- The holder size is given, the windows split it evenly
+		-- The holder size is given, the columns split it evenly
 		if db.sizeMode == 'CHAT' then
 			local chat = E.db.chat
 			holderWidth = chat.separateSizes and chat.panelWidthRight or chat.panelWidth
@@ -141,31 +166,83 @@ function DM:Layout()
 			holderWidth, holderHeight = db.width, db.height
 		end
 
-		local size = ((vertical and holderHeight or holderWidth) - outer * 2 - (count - 1) * inner) / count
+		local size = ((vertical and holderHeight or holderWidth) - outer * 2 - (columnCount - 1) * inner) / columnCount
 
-		for index = 1, count do
+		for _, index in ipairs(columns) do
 			widths[index] = vertical and holderWidth or size
 			heights[index] = vertical and size or holderHeight
 		end
 	end
 
+	-- Attached windows take their share of the slot, the host keeps the rest
+	local minSize = db.headerHeight + db.barHeight
+
+	for _, index in ipairs(columns) do
+		local remaining = vertical and widths[index] or heights[index]
+
+		for child = 1, count do
+			if hosts[child] == index then
+				remaining = remaining - inner
+
+				local share = floor(remaining * (DM:WindowDB(child).attachSize or 50) / 100 + 0.5)
+				share = max(min(share, remaining - minSize), minSize)
+				remaining = remaining - share
+
+				widths[child] = vertical and share or widths[index]
+				heights[child] = vertical and heights[index] or share
+			end
+		end
+
+		remaining = max(remaining, minSize)
+
+		if vertical then
+			widths[index] = remaining
+		else
+			heights[index] = remaining
+		end
+	end
+
 	holder:Size(holderWidth, holderHeight)
 
-	for index = 1, count do
+	local previous
+
+	for _, index in ipairs(columns) do
 		local window = DM.windows[index]
 		if window then
 			window:ClearAllPoints()
 			window:Size(widths[index], heights[index])
 
-			if index == 1 then
+			if not previous then
 				window:Point('TOPLEFT', holder, 'TOPLEFT', vertical and 0 or outer, vertical and -outer or 0)
 			elseif vertical then
-				window:Point('TOPLEFT', DM.windows[index - 1], 'BOTTOMLEFT', 0, -inner)
+				window:Point('TOPLEFT', previous, 'BOTTOMLEFT', 0, -inner)
 			else
-				window:Point('TOPLEFT', DM.windows[index - 1], 'TOPRIGHT', inner, 0)
+				window:Point('TOPLEFT', previous, 'TOPRIGHT', inner, 0)
 			end
 
 			window:Show()
+			previous = window
+
+			local anchor = window
+
+			for child = 1, count do
+				if hosts[child] == index then
+					local sub = DM.windows[child]
+					if sub then
+						sub:ClearAllPoints()
+						sub:Size(widths[child], heights[child])
+
+						if vertical then
+							sub:Point('TOPLEFT', anchor, 'TOPRIGHT', inner, 0)
+						else
+							sub:Point('TOPLEFT', anchor, 'BOTTOMLEFT', 0, -inner)
+						end
+
+						sub:Show()
+						anchor = sub
+					end
+				end
+			end
 		end
 	end
 

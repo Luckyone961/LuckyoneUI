@@ -58,18 +58,24 @@ Private.Defaults = {
 					sessionType = 1, -- Current
 					width = 240,
 					height = 208,
+					attachTo = 0, -- 0 = own slot
+					attachSize = 50,
 				},
 				[2] = {
 					meterType = 2, -- Healing Done
 					sessionType = 1, -- Current
 					width = 240,
 					height = 208,
+					attachTo = 0, -- 0 = own slot
+					attachSize = 50,
 				},
 				[3] = {
 					meterType = 9, -- Deaths
 					sessionType = 1, -- Current
 					width = 240,
 					height = 208,
+					attachTo = 0, -- 0 = own slot
+					attachSize = 50,
 				},
 			},
 		},

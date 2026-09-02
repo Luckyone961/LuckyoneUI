@@ -193,6 +193,41 @@ local function BuildCVarsSection()
 	return section
 end
 
+-- Damage Meter window placement
+local WINDOW_NAMES = { L["Window 1"], L["Window 2"], L["Window 3"] }
+
+local function GetAttachTargets(index)
+	return function()
+		local db = Private.Addon.db.profile.damageMeter
+		local values = { [0] = _G.NONE }
+
+		-- Only windows that still sit on the main axis can host another one
+		for target = 1, db.windowCount do
+			if target ~= index and db.windows[target].attachTo == 0 then
+				values[target] = WINDOW_NAMES[target]
+			end
+		end
+
+		return values
+	end
+end
+
+local function SetAttachTo(index, value)
+	local db = Private.Addon.db.profile.damageMeter
+	db.windows[index].attachTo = value
+
+	-- A window hanging under another one cannot host one itself
+	if value ~= 0 then
+		for other = 1, #db.windows do
+			if db.windows[other].attachTo == index then
+				db.windows[other].attachTo = 0
+			end
+		end
+	end
+
+	Private:DamageMeter_UpdateAll()
+end
+
 -- Build Damage Meter Section
 local function BuildDamageMeterSection()
 	if not (Private.ElvUI and Private.isRetail) then return end -- Retail + ElvUI section
@@ -215,15 +250,23 @@ local function BuildDamageMeterSection()
 	section.args.size.args.height = ACH:Range(L["Height"], nil, 3, { min = 60, max = 800, step = 1 }, nil, nil, nil, function() return Private.Addon.db.profile.damageMeter.sizeMode ~= 'SHARED' end)
 	section.args.size.args.innerSpacing = ACH:Range(L["Inner Spacing"], L["Space between the session windows."], 4, { min = -20, max = 20, step = 1 }, nil, nil, nil, function() return Private.Addon.db.profile.damageMeter.windowCount < 2 end)
 	section.args.size.args.outerSpacing = ACH:Range(L["Outer Spacing"], L["Space between the frame border and the session windows."], 5, { min = -20, max = 20, step = 1 })
-	section.args.windowSizes = ACH:Group(L["Window Sizes"], nil, 4, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.enable end, function() return Private.Addon.db.profile.damageMeter.sizeMode ~= 'CUSTOM' end)
+	section.args.placement = ACH:Group(L["Window Placement"], nil, 4, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.enable end, function() return Private.Addon.db.profile.damageMeter.windowCount < 2 end)
+	section.args.placement.inline = true
+	section.args.placement.args.windowOneAttach = ACH:Select(L["Window 1"] .. ' - ' .. L["Attach To"], L["Stack this window under another one instead of giving it its own slot."], 1, GetAttachTargets(1), nil, nil, function() return Private.Addon.db.profile.damageMeter.windows[1].attachTo end, function(_, value) SetAttachTo(1, value) end)
+	section.args.placement.args.windowOneAttachSize = ACH:Range(L["Window 1"] .. ' - ' .. L["Attached Size"], L["Share of the parent window taken by the attached window."], 2, { min = 10, max = 90, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[1].attachSize end, function(_, value) Private.Addon.db.profile.damageMeter.windows[1].attachSize = value Private:DamageMeter_UpdateAll() end, nil, function() return Private.Addon.db.profile.damageMeter.windows[1].attachTo == 0 end)
+	section.args.placement.args.windowTwoAttach = ACH:Select(L["Window 2"] .. ' - ' .. L["Attach To"], L["Stack this window under another one instead of giving it its own slot."], 3, GetAttachTargets(2), nil, nil, function() return Private.Addon.db.profile.damageMeter.windows[2].attachTo end, function(_, value) SetAttachTo(2, value) end, nil, function() return Private.Addon.db.profile.damageMeter.windowCount < 2 end)
+	section.args.placement.args.windowTwoAttachSize = ACH:Range(L["Window 2"] .. ' - ' .. L["Attached Size"], L["Share of the parent window taken by the attached window."], 4, { min = 10, max = 90, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[2].attachSize end, function(_, value) Private.Addon.db.profile.damageMeter.windows[2].attachSize = value Private:DamageMeter_UpdateAll() end, nil, function() local db = Private.Addon.db.profile.damageMeter return db.windowCount < 2 or db.windows[2].attachTo == 0 end)
+	section.args.placement.args.windowThreeAttach = ACH:Select(L["Window 3"] .. ' - ' .. L["Attach To"], L["Stack this window under another one instead of giving it its own slot."], 5, GetAttachTargets(3), nil, nil, function() return Private.Addon.db.profile.damageMeter.windows[3].attachTo end, function(_, value) SetAttachTo(3, value) end, nil, function() return Private.Addon.db.profile.damageMeter.windowCount < 3 end)
+	section.args.placement.args.windowThreeAttachSize = ACH:Range(L["Window 3"] .. ' - ' .. L["Attached Size"], L["Share of the parent window taken by the attached window."], 6, { min = 10, max = 90, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[3].attachSize end, function(_, value) Private.Addon.db.profile.damageMeter.windows[3].attachSize = value Private:DamageMeter_UpdateAll() end, nil, function() local db = Private.Addon.db.profile.damageMeter return db.windowCount < 3 or db.windows[3].attachTo == 0 end)
+	section.args.windowSizes = ACH:Group(L["Window Sizes"], nil, 5, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.enable end, function() return Private.Addon.db.profile.damageMeter.sizeMode ~= 'CUSTOM' end)
 	section.args.windowSizes.inline = true
-	section.args.windowSizes.args.windowOneWidth = ACH:Range(L["Window 1"] .. ' - ' .. L["Width"], nil, 1, { min = 100, max = 1200, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[1].width end, function(_, value) Private.Addon.db.profile.damageMeter.windows[1].width = value Private:DamageMeter_UpdateAll() end)
-	section.args.windowSizes.args.windowOneHeight = ACH:Range(L["Window 1"] .. ' - ' .. L["Height"], nil, 2, { min = 60, max = 800, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[1].height end, function(_, value) Private.Addon.db.profile.damageMeter.windows[1].height = value Private:DamageMeter_UpdateAll() end)
-	section.args.windowSizes.args.windowTwoWidth = ACH:Range(L["Window 2"] .. ' - ' .. L["Width"], nil, 3, { min = 100, max = 1200, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[2].width end, function(_, value) Private.Addon.db.profile.damageMeter.windows[2].width = value Private:DamageMeter_UpdateAll() end, nil, function() return Private.Addon.db.profile.damageMeter.windowCount < 2 end)
-	section.args.windowSizes.args.windowTwoHeight = ACH:Range(L["Window 2"] .. ' - ' .. L["Height"], nil, 4, { min = 60, max = 800, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[2].height end, function(_, value) Private.Addon.db.profile.damageMeter.windows[2].height = value Private:DamageMeter_UpdateAll() end, nil, function() return Private.Addon.db.profile.damageMeter.windowCount < 2 end)
-	section.args.windowSizes.args.windowThreeWidth = ACH:Range(L["Window 3"] .. ' - ' .. L["Width"], nil, 5, { min = 100, max = 1200, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[3].width end, function(_, value) Private.Addon.db.profile.damageMeter.windows[3].width = value Private:DamageMeter_UpdateAll() end, nil, function() return Private.Addon.db.profile.damageMeter.windowCount < 3 end)
-	section.args.windowSizes.args.windowThreeHeight = ACH:Range(L["Window 3"] .. ' - ' .. L["Height"], nil, 6, { min = 60, max = 800, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[3].height end, function(_, value) Private.Addon.db.profile.damageMeter.windows[3].height = value Private:DamageMeter_UpdateAll() end, nil, function() return Private.Addon.db.profile.damageMeter.windowCount < 3 end)
-	section.args.bars = ACH:Group(L["Bars"], nil, 5, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
+	section.args.windowSizes.args.windowOneWidth = ACH:Range(L["Window 1"] .. ' - ' .. L["Width"], nil, 1, { min = 100, max = 1200, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[1].width end, function(_, value) Private.Addon.db.profile.damageMeter.windows[1].width = value Private:DamageMeter_UpdateAll() end, nil, function() return Private.Addon.db.profile.damageMeter.windows[1].attachTo ~= 0 end)
+	section.args.windowSizes.args.windowOneHeight = ACH:Range(L["Window 1"] .. ' - ' .. L["Height"], nil, 2, { min = 60, max = 800, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[1].height end, function(_, value) Private.Addon.db.profile.damageMeter.windows[1].height = value Private:DamageMeter_UpdateAll() end, nil, function() return Private.Addon.db.profile.damageMeter.windows[1].attachTo ~= 0 end)
+	section.args.windowSizes.args.windowTwoWidth = ACH:Range(L["Window 2"] .. ' - ' .. L["Width"], nil, 3, { min = 100, max = 1200, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[2].width end, function(_, value) Private.Addon.db.profile.damageMeter.windows[2].width = value Private:DamageMeter_UpdateAll() end, nil, function() local db = Private.Addon.db.profile.damageMeter return db.windowCount < 2 or db.windows[2].attachTo ~= 0 end)
+	section.args.windowSizes.args.windowTwoHeight = ACH:Range(L["Window 2"] .. ' - ' .. L["Height"], nil, 4, { min = 60, max = 800, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[2].height end, function(_, value) Private.Addon.db.profile.damageMeter.windows[2].height = value Private:DamageMeter_UpdateAll() end, nil, function() local db = Private.Addon.db.profile.damageMeter return db.windowCount < 2 or db.windows[2].attachTo ~= 0 end)
+	section.args.windowSizes.args.windowThreeWidth = ACH:Range(L["Window 3"] .. ' - ' .. L["Width"], nil, 5, { min = 100, max = 1200, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[3].width end, function(_, value) Private.Addon.db.profile.damageMeter.windows[3].width = value Private:DamageMeter_UpdateAll() end, nil, function() local db = Private.Addon.db.profile.damageMeter return db.windowCount < 3 or db.windows[3].attachTo ~= 0 end)
+	section.args.windowSizes.args.windowThreeHeight = ACH:Range(L["Window 3"] .. ' - ' .. L["Height"], nil, 6, { min = 60, max = 800, step = 1 }, nil, function() return Private.Addon.db.profile.damageMeter.windows[3].height end, function(_, value) Private.Addon.db.profile.damageMeter.windows[3].height = value Private:DamageMeter_UpdateAll() end, nil, function() local db = Private.Addon.db.profile.damageMeter return db.windowCount < 3 or db.windows[3].attachTo ~= 0 end)
+	section.args.bars = ACH:Group(L["Bars"], nil, 6, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.bars.inline = true
 	section.args.bars.args.barStyle = ACH:Select(L["Bar Style"], L["Layout of each bar, matches the Blizzard Edit Mode styles."], 1, { DEFAULT = L["Default"], BORDERED = L["Bordered"], THIN = L["Thin"] })
 	section.args.bars.args.barTexture = ACH:SharedMediaStatusbar(L["Bar Texture"], nil, 2)
@@ -235,7 +278,7 @@ local function BuildDamageMeterSection()
 	section.args.bars.args.showIcons = ACH:Toggle(L["Bar Icons"], L["Show the class or spec icon in front of each bar."], 8)
 	section.args.bars.args.classColors = ACH:Toggle(L["Class Colors"], nil, 9)
 	section.args.bars.args.othersColor = ACH:Color(L["Fallback Color"], L["Bar color for creatures and sources without a class."], 10, nil, nil, function() local color = Private.Addon.db.profile.damageMeter.othersColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.damageMeter.othersColor color.r, color.g, color.b = r, g, b Private:DamageMeter_UpdateAll() end)
-	section.args.text = ACH:Group(L["Text"], nil, 6, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
+	section.args.text = ACH:Group(L["Text"], nil, 7, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.text.inline = true
 	section.args.text.args.numberDisplay = ACH:Select(L["Number Display"], nil, 1, { MINIMAL = L["Minimal"], COMPACT = L["Compact"], COMPLETE = L["Complete"] })
 	section.args.text.args.font = ACH:SharedMediaFont(L["Font"], nil, 2)
@@ -253,7 +296,7 @@ local function BuildDamageMeterSection()
 	section.args.text.args.valueSpacing = ACH:Range(L["Number Spacing"], L["Space between the primary and the secondary number."], 14, { min = 0, max = 20, step = 1 }, nil, nil, nil, function() return Private.Addon.db.profile.damageMeter.numberDisplay == 'MINIMAL' end)
 	section.args.text.args.showRank = ACH:Toggle(L["Show Rank Numbers"], L["Show the rank number in front of each name."], 15)
 	section.args.text.args.stripRealm = ACH:Toggle(L["Strip Realm Names"], L["Remove the realm name from cross realm players."], 16)
-	section.args.headerOptions = ACH:Group(L["Header"], nil, 7, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
+	section.args.headerOptions = ACH:Group(L["Header"], nil, 8, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.headerOptions.inline = true
 	section.args.headerOptions.args.headerHeight = ACH:Range(L["Header Height"], nil, 1, { min = 12, max = 40, step = 1 })
 	section.args.headerOptions.args.headerIconSize = ACH:Range(L["Icon Size"], L["Size of the settings icon in the header."], 2, { min = 8, max = 40, step = 1 })
@@ -261,7 +304,7 @@ local function BuildDamageMeterSection()
 	section.args.headerOptions.args.headerFontOutline = ACH:FontFlags(L["Font Outline"], nil, 4)
 	section.args.headerOptions.args.headerFontSize = ACH:Range(L["Font Size"], nil, 5, { min = 8, max = 26, step = 1 })
 	section.args.headerOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 6)
-	section.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 8)
+	section.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 9)
 	section.args.defaults.inline = true
 	section.args.defaults.args.damageMeter = ACH:Execute(L["Restore Defaults"], L["Wipe all Damage Meter settings, the module itself stays enabled."], 1, function() Private:DamageMeter_ResetDefaults() end, nil, true)
 	return section
