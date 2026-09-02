@@ -279,6 +279,13 @@ function DM:Initialize()
 		end
 	end
 
+	-- Make sure both WindTools modules are off
+	-- Their layout forces Blizzard Meter to be shown
+	if Private.IsAddOnLoaded('ElvUI_WindTools') then
+		E.db.WT.combat.damageMeterLayout.enable = false
+		E.private.WT.skins.damageMeter.enable = false
+	end
+
 	DM:RegisterEvent('DAMAGE_METER_COMBAT_SESSION_UPDATED')
 	DM:RegisterEvent('DAMAGE_METER_CURRENT_SESSION_UPDATED')
 	DM:RegisterEvent('DAMAGE_METER_RESET')
