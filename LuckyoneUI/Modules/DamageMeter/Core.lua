@@ -30,7 +30,7 @@ function DM:WindowDB(index)
 	return DM.db.windows[index]
 end
 
--- Ambiguate accepts secret names, string functions don't
+-- Ambiguate accepts secret names
 function DM:StripRealm(name, classFilename)
 	if not name or not DM.db.stripRealm then return name end
 	if not classFilename or classFilename == '' then return name end
@@ -46,7 +46,7 @@ local function HideBlizzardMeter()
 	-- Edit Mode needs the system frame visible while editing
 	if meter.IsEditing and meter:IsEditing() then return end
 
-	meter:SetShown(false)
+	meter:SetShown(false) -- Same as "Hidden" visibility in Edit Mode settings
 end
 
 -- The native meter is our only data source, mirror the CVar with our module state
@@ -64,7 +64,6 @@ function DM:HandleBlizzardMeter()
 
 		HideBlizzardMeter()
 	elseif DM.blizzardHooked then
-		-- Hand the frame back to Blizzards own visibility logic
 		meter:UpdateShownState()
 	end
 end
@@ -110,7 +109,7 @@ end
 local widths, heights = {}, {}
 local hosts, columns = {}, {}
 
--- Attached windows leave the main axis and hang inside the slot of their host
+-- Attached windows leave the main axis
 local function BuildColumns(count)
 	wipe(hosts)
 	wipe(columns)
@@ -119,7 +118,6 @@ local function BuildColumns(count)
 		local target = DM:WindowDB(index).attachTo or 0
 		local host = (target >= 1 and target <= count and target ~= index) and DM:WindowDB(target)
 
-		-- Only a window on the main axis can host, this keeps chains one level deep
 		hosts[index] = (host and (host.attachTo or 0) == 0) and target or 0
 
 		if hosts[index] == 0 then

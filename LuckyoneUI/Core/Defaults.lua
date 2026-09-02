@@ -58,7 +58,7 @@ Private.Defaults = {
 					sessionType = 1, -- Current
 					width = 240,
 					height = 208,
-					attachTo = 0, -- 0 = own slot
+					attachTo = 0,
 					attachSize = 50,
 				},
 				[2] = {
@@ -66,7 +66,7 @@ Private.Defaults = {
 					sessionType = 1, -- Current
 					width = 240,
 					height = 208,
-					attachTo = 0, -- 0 = own slot
+					attachTo = 0,
 					attachSize = 50,
 				},
 				[3] = {
@@ -74,7 +74,7 @@ Private.Defaults = {
 					sessionType = 1, -- Current
 					width = 240,
 					height = 208,
-					attachTo = 0, -- 0 = own slot
+					attachTo = 0,
 					attachSize = 50,
 				},
 			},

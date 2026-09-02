@@ -191,7 +191,7 @@ function DM:SetWindowSession(window, sessionType, sessionID)
 	window.mode = 'sources'
 	window.offset = 0
 
-	-- Session IDs are per login session and intentionally not persisted
+	-- Session IDs are per login session
 	local wdb = DM:WindowDB(window.index)
 	wdb.sessionType = sessionType
 
@@ -200,7 +200,6 @@ function DM:SetWindowSession(window, sessionType, sessionID)
 	DM:RenderWindow(window)
 end
 
--- Drill-down into a single source
 function DM:OpenDrilldown(window, entry)
 	-- Death entries open the Blizzard death recap instead
 	if entry.deathRecapID and entry.deathRecapID ~= 0 then
@@ -387,7 +386,7 @@ function DM:GetWindow(index)
 	cogButton.window = window
 	window.cogButton = cogButton
 
-	-- The atlas carries padding, oversize it like the ElvUI skin does
+	-- Oversize the atlas like the ElvUI skin does
 	window.cogIcon = cogButton:GetNormalTexture()
 	window.cogIcon:ClearAllPoints()
 	window.cogIcon:Point('CENTER')

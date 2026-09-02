@@ -129,6 +129,7 @@ local function CreateBar(window)
 end
 
 -- Edge textures instead of a backdrop frame per bar
+-- Separator is between class/spec icon and the bar
 local BorderEdges = { 'top', 'bottom', 'left', 'right', 'separator' }
 
 local function SetBarBorder(bar, size, iconShown)
@@ -344,7 +345,7 @@ local function UpdateBarColor(db, bar, entry, spellMode)
 	end
 	if not classFilename then classFilename = '' end
 
-	-- Class names are never secret, comparing them is safe
+	-- Class name comparison is secret safe
 	if classFilename == bar.colorKey then return end
 	bar.colorKey = classFilename
 
@@ -353,11 +354,11 @@ local function UpdateBarColor(db, bar, entry, spellMode)
 
 	bar.status:SetStatusBarColor(color.r, color.g, color.b)
 
-	-- The backdrop can run on its own color instead of following the bar
+	-- Backdrop color can be custom
 	local backdrop = db.backdropColorType == 'CUSTOM' and db.backdropColor or color
 	bar.bg:SetVertexColor(backdrop.r, backdrop.g, backdrop.b)
 
-	-- The texts run on their own color or follow the class color
+	-- Text color can be custom or class
 	local nameColor = (db.nameColorType == 'CLASS' and classColor) or db.nameColor
 	local valueColor = (db.valueColorType == 'CLASS' and classColor) or db.valueColor
 
@@ -395,7 +396,6 @@ local function UpdateBarName(db, bar, entry, rank, spellMode)
 		local details = entry.combatSpellDetails
 		local unitName = details and details.unitName
 
-		-- Pet spells carry the pet name, incoming spells carry the attacker
 		if creatureName and (issecretvalue(creatureName) or creatureName ~= '') then
 			nameText:SetFormattedText(DAMAGE_METER_SPELL_ENTRY_CREATURE, spellName, creatureName)
 		elseif unitName and (issecretvalue(unitName) or unitName ~= '') then
@@ -410,7 +410,7 @@ local function UpdateBarName(db, bar, entry, rank, spellMode)
 	local rawName = entry.name
 	local nameSecret = issecretvalue(rawName)
 
-	-- Skip identical text, comparisons are only safe on non secret names
+	-- Comparisons are only safe on non-secret names
 	if not nameSecret and rawName == bar.lastName and rank == bar.lastRank then return end
 	bar.lastName = not nameSecret and rawName or nil
 	bar.lastRank = rank
@@ -492,11 +492,10 @@ local function GetSampleWidth(db)
 	return sampleWidth
 end
 
--- The widest secondary number sets the column, that keeps both numbers aligned
--- No spacing drops the column so both numbers sit next to each other again
 local function UpdateValueColumn(db, window)
 	local width, secret = 0, false
 
+	-- Value spacing only applies if the slider is greater than 0 in the config
 	if db.valueSpacing > 0 then
 		for i = 1, window.visibleCount do
 			local bar = window.bars[i]
