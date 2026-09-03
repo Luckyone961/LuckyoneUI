@@ -39,7 +39,7 @@ Private.Defaults = {
 			valueColor = { r = 1, g = 1, b = 1 },
 			numberDisplay = 'COMPACT',
 			bracketStyle = 'NONE',
-			valueSpacing = 6,
+			valueSpacing = 10,
 			showRank = false,
 			stripRealm = true,
 			nameXOffset = 0,
