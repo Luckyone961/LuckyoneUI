@@ -366,7 +366,7 @@ local function OpenMenu(button, generator, alignRight)
 		point, relativePoint = 'BOTTOMRIGHT', 'TOPRIGHT'
 	end
 
-	local anchor = CreateAnchor(point, button.window, relativePoint, -1, -4)
+	local anchor = CreateAnchor(point, button.window, relativePoint, -3, -4)
 	Menu.GetManager():OpenMenu(button, rootDescription, anchor)
 end
 
