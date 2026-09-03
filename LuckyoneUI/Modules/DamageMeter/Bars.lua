@@ -97,10 +97,22 @@ local function Bar_OnClick(bar, mouseButton)
 	end
 end
 
+local function Bar_OnEnter(bar)
+	if not DM.db.mouseoverHighlight then return end
+
+	bar.highlight:Show()
+end
+
+local function Bar_OnLeave(bar)
+	bar.highlight:Hide()
+end
+
 local function CreateBar(window)
 	local bar = CreateFrame('Button', nil, window.content)
 	bar:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
 	bar:SetScript('OnClick', Bar_OnClick)
+	bar:SetScript('OnEnter', Bar_OnEnter)
+	bar:SetScript('OnLeave', Bar_OnLeave)
 	bar.window = window
 
 	bar.bg = bar:CreateTexture(nil, 'BACKGROUND')
@@ -112,6 +124,13 @@ local function CreateBar(window)
 	local status = CreateFrame('StatusBar', nil, bar)
 	status:SetFrameLevel(bar:GetFrameLevel() + 1)
 	bar.status = status
+
+	-- Parented to the status bar to sit above the fill, below the texts
+	bar.highlight = status:CreateTexture(nil, 'OVERLAY', nil, -1)
+	bar.highlight:SetTexture(E.media.blankTex)
+	bar.highlight:SetVertexColor(1, 1, 1, 0.2)
+	bar.highlight:SetAllPoints(bar)
+	bar.highlight:Hide()
 
 	bar.persec = status:CreateFontString(nil, 'OVERLAY')
 	bar.persec:SetJustifyH('RIGHT')
@@ -249,6 +268,8 @@ local function ApplyBarSettings(db, window, bar, index, texture)
 	bar.status:SetStatusBarTexture(texture)
 	bar.bg:SetTexture(texture)
 	bar.bg:SetAlpha(db.backdropAlpha)
+
+	bar.highlight:Hide()
 
 	bar.name:FontTemplate(db.font, db.fontSize, db.fontOutline)
 	bar.value:FontTemplate(db.font, db.fontSize, db.fontOutline)

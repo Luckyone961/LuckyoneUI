@@ -281,6 +281,7 @@ local function BuildDamageMeterSection()
 	section.args.bars.args.showIcons = ACH:Toggle(L["Bar Icons"], L["Show the class or spec icon in front of each bar."], 8)
 	section.args.bars.args.classColors = ACH:Toggle(L["Class Color"], nil, 9)
 	section.args.bars.args.othersColor = ACH:Color(L["Fallback Color"], L["Bar color for creatures and sources without a class."], 10, nil, nil, function() local color = Private.Addon.db.profile.damageMeter.othersColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.damageMeter.othersColor color.r, color.g, color.b = r, g, b Private:DamageMeter_UpdateAll() end)
+	section.args.bars.args.mouseoverHighlight = ACH:Toggle(L["Mouseover Highlight"], L["Highlight the bar under your cursor."], 11)
 	section.args.text = ACH:Group(L["Text"], nil, 7, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.text.inline = true
 	section.args.text.args.numberDisplay = ACH:Select(L["Number Display"], nil, 1, { MINIMAL = L["Minimal"], COMPACT = L["Compact"], COMPLETE = L["Complete"] })

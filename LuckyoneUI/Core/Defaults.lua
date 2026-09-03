@@ -32,6 +32,7 @@ Private.Defaults = {
 			classColors = true,
 			othersColor = { r = 0.5, g = 0.5, b = 1 },
 			showIcons = true,
+			mouseoverHighlight = false,
 			font = Private.Font,
 			fontOutline = Private.Outline,
 			fontSize = 12,
