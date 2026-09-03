@@ -341,6 +341,7 @@ L["Shared"] = "Partagé"
 L["Shortcut to the Cooldown Settings.\nYou can import the profiles in the bottom left dropdown."] = "Raccourci vers les paramètres de temps de recharge.\nVous pouvez importer les profils dans le menu déroulant en bas à gauche."
 L["Show a customizable text on screen when entering and leaving combat."] = "Afficher un texte configurable à l'écran en entrant ou sortant de combat."
 L["Show a transparent ElvUI backdrop behind the frame."] = "Afficher un arrière-plan transparent d'ElvUI derrière le cadre."
+L["Show fake bars to preview settings. Resets on reload."] = true
 L["Show Rank Numbers"] = "Afficher les numéros de rang"
 L["Show the class or spec icon in front of each bar."] = "Afficher l'icône de classe ou de spécialisation devant chaque barre."
 L["Show the Minimap button bar only on mouseover."] = "Afficher la barre de boutons de la minicarte seulement au survol."
