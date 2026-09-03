@@ -370,6 +370,18 @@ local function OpenMenu(button, generator, alignRight)
 	Menu.GetManager():OpenMenu(button, rootDescription, anchor)
 end
 
+function DM:UpdateHeaderButtons(window)
+	if not DM:WindowDB(window.index).mouseoverButtons then return end
+
+	local alpha = window:IsMouseOver() and 1 or 0
+	window.sessionButton:SetAlpha(alpha)
+	window.cogButton:SetAlpha(alpha)
+end
+
+local function Frame_OnHover(frame)
+	DM:UpdateHeaderButtons(frame.window)
+end
+
 local function TypeButton_OnClick(button)
 	local window = button.window
 
@@ -390,10 +402,12 @@ end
 
 local function CogButton_OnEnter(button)
 	button:GetNormalTexture():SetVertexColor(unpack(E.media.rgbvaluecolor))
+	DM:UpdateHeaderButtons(button.window)
 end
 
 local function CogButton_OnLeave(button)
 	button:GetNormalTexture():SetVertexColor(1, 1, 1)
+	DM:UpdateHeaderButtons(button.window)
 end
 
 -- Mouse wheel scrolling, no scrollbar
@@ -430,10 +444,12 @@ function DM:GetWindow(index)
 	local header = CreateFrame('Frame', nil, window)
 	header:Point('TOPLEFT')
 	header:Point('TOPRIGHT')
+	header:SetScript('OnEnter', Frame_OnHover)
+	header:SetScript('OnLeave', Frame_OnHover)
+	header.window = window
 	window.header = header
 
 	local cogButton = CreateFrame('Button', nil, header)
-	cogButton:Point('RIGHT', header, 'RIGHT', -2, 0)
 	cogButton:SetNormalAtlas('GM-icon-settings')
 	cogButton:SetScript('OnClick', CogButton_OnClick)
 	cogButton:SetScript('OnEnter', CogButton_OnEnter)
@@ -443,22 +459,18 @@ function DM:GetWindow(index)
 
 	-- Oversize the atlas like the ElvUI skin does
 	window.cogIcon = cogButton:GetNormalTexture()
-	window.cogIcon:ClearAllPoints()
-	window.cogIcon:Point('CENTER')
 
 	local sessionButton = CreateFrame('Button', nil, header)
-	sessionButton:Point('RIGHT', cogButton, 'LEFT', 4, 0)
 	sessionButton:SetScript('OnClick', SessionButton_OnClick)
+	sessionButton:SetScript('OnEnter', Frame_OnHover)
+	sessionButton:SetScript('OnLeave', Frame_OnHover)
 	sessionButton.window = window
 	window.sessionButton = sessionButton
 
 	window.sessionText = sessionButton:CreateFontString(nil, 'OVERLAY')
 	window.sessionText:SetJustifyH('CENTER')
-	window.sessionText:SetAllPoints()
 
 	local typeButton = CreateFrame('Button', nil, header)
-	typeButton:Point('TOPLEFT', header, 'TOPLEFT', 2, 0)
-	typeButton:Point('BOTTOMRIGHT', sessionButton, 'BOTTOMLEFT', -4, 0)
 	typeButton:SetScript('OnClick', TypeButton_OnClick)
 	typeButton.window = window
 	window.typeButton = typeButton
@@ -466,7 +478,6 @@ function DM:GetWindow(index)
 	window.typeText = typeButton:CreateFontString(nil, 'OVERLAY')
 	window.typeText:SetJustifyH('LEFT')
 	window.typeText:SetWordWrap(false)
-	window.typeText:SetAllPoints()
 
 	local content = CreateFrame('Frame', nil, window)
 	content:Point('TOPLEFT', window.header, 'BOTTOMLEFT', 0, 0)
@@ -497,12 +508,62 @@ function DM:ApplyWindowSettings(window)
 		window.sessionType = wdb.sessionType
 	end
 
-	window.header:Height(db.headerHeight)
-	window.cogButton:Size(db.headerIconSize)
+	local header, cogButton, sessionButton, typeButton = window.header, window.cogButton, window.sessionButton, window.typeButton
+
+	header:Height(db.headerHeight)
+	cogButton:Size(db.headerIconSize)
 	window.cogIcon:Size(db.headerIconSize * 1.5)
 
 	-- Keeps the session text readable when the header font grows
-	window.sessionButton:Size(db.headerFontSize * 2 + 2, db.headerHeight)
+	sessionButton:Size(db.headerFontSize * 2 + 2, db.headerHeight)
+
+	cogButton:ClearAllPoints()
+	cogButton:Point('RIGHT', header, 'RIGHT', -2, 0)
+
+	-- The session button takes the icon spot when the cogwheel is hidden
+	sessionButton:ClearAllPoints()
+
+	if wdb.showCogButton then
+		sessionButton:Point('RIGHT', cogButton, 'LEFT', 4, 0)
+	else
+		sessionButton:Point('RIGHT', header, 'RIGHT', -2, 0)
+	end
+
+	-- The type button fills whatever the buttons leave over
+	typeButton:ClearAllPoints()
+	typeButton:Point('TOPLEFT', header, 'TOPLEFT', 2, 0)
+
+	if wdb.showSessionButton then
+		typeButton:Point('BOTTOMRIGHT', sessionButton, 'BOTTOMLEFT', -4, 0)
+	elseif wdb.showCogButton then
+		typeButton:Point('BOTTOMRIGHT', header, 'BOTTOMRIGHT', -(db.headerIconSize + 6), 0)
+	else
+		typeButton:Point('BOTTOMRIGHT', header, 'BOTTOMRIGHT', -2, 0)
+	end
+
+	-- Offsets move the visuals, the click areas stay where they are
+	window.cogIcon:ClearAllPoints()
+	window.cogIcon:Point('CENTER', cogButton, 'CENTER', db.headerIconXOffset, db.headerIconYOffset)
+
+	window.sessionText:ClearAllPoints()
+	window.sessionText:Point('TOPLEFT', sessionButton, 'TOPLEFT', db.headerSessionXOffset, db.headerSessionYOffset)
+	window.sessionText:Point('BOTTOMRIGHT', sessionButton, 'BOTTOMRIGHT', db.headerSessionXOffset, db.headerSessionYOffset)
+
+	window.typeText:ClearAllPoints()
+	window.typeText:Point('TOPLEFT', typeButton, 'TOPLEFT', db.headerTypeXOffset, db.headerTypeYOffset)
+	window.typeText:Point('BOTTOMRIGHT', typeButton, 'BOTTOMRIGHT', db.headerTypeXOffset, db.headerTypeYOffset)
+
+	-- Hidden buttons stay hidden, mouseover only fades the enabled ones
+	local mouseover = wdb.mouseoverButtons
+	local alpha = (mouseover and not window:IsMouseOver()) and 0 or 1
+
+	sessionButton:SetShown(wdb.showSessionButton)
+	sessionButton:SetAlpha(alpha)
+	cogButton:SetShown(wdb.showCogButton)
+	cogButton:SetAlpha(alpha)
+
+	-- Only the header takes the mouse, the bars keep the fade alive below it
+	header:EnableMouse(mouseover)
 
 	window.typeText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
 	window.sessionText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)

@@ -228,6 +228,20 @@ local function SetAttachTo(index, value)
 	Private:DamageMeter_UpdateAll()
 end
 
+-- Damage Meter per window settings
+local function GetWindowValue(index, key)
+	return function()
+		return Private.Addon.db.profile.damageMeter.windows[index][key]
+	end
+end
+
+local function SetWindowValue(index, key)
+	return function(_, value)
+		Private.Addon.db.profile.damageMeter.windows[index][key] = value
+		Private:DamageMeter_UpdateAll()
+	end
+end
+
 -- Build Damage Meter Section
 local function BuildDamageMeterSection()
 	if not (Private.ElvUI and Private.isRetail) then return end -- Retail + ElvUI section
@@ -308,7 +322,24 @@ local function BuildDamageMeterSection()
 	section.args.headerOptions.args.headerFontOutline = ACH:FontFlags(L["Font Outline"], nil, 4)
 	section.args.headerOptions.args.headerFontSize = ACH:Range(L["Font Size"], nil, 5, { min = 8, max = 26, step = 1 })
 	section.args.headerOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 6)
-	section.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 9)
+	section.args.headerOptions.args.headerTypeXOffset = ACH:Range(L["Title X Offset"], nil, 7, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.headerTypeYOffset = ACH:Range(L["Title Y Offset"], nil, 8, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.headerSessionXOffset = ACH:Range(L["Session X Offset"], nil, 9, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.headerSessionYOffset = ACH:Range(L["Session Y Offset"], nil, 10, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.headerIconXOffset = ACH:Range(L["Icon X Offset"], nil, 11, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.headerIconYOffset = ACH:Range(L["Icon Y Offset"], nil, 12, { min = -100, max = 100, step = 1 })
+	section.args.headerButtons = ACH:Group(L["Header Buttons"], nil, 9, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.enable end)
+	section.args.headerButtons.inline = true
+	section.args.headerButtons.args.windowOneSession = ACH:Toggle(L["Window 1"] .. ' - ' .. L["Session Button"], L["Show the session button in the header."], 1, nil, nil, nil, GetWindowValue(1, 'showSessionButton'), SetWindowValue(1, 'showSessionButton'))
+	section.args.headerButtons.args.windowOneCog = ACH:Toggle(L["Window 1"] .. ' - ' .. L["Settings Button"], L["Show the settings button in the header."], 2, nil, nil, nil, GetWindowValue(1, 'showCogButton'), SetWindowValue(1, 'showCogButton'))
+	section.args.headerButtons.args.windowOneMouseover = ACH:Toggle(L["Window 1"] .. ' - ' .. L["Mouseover"], L["Only show the header buttons while the cursor is over the window."], 3, nil, nil, nil, GetWindowValue(1, 'mouseoverButtons'), SetWindowValue(1, 'mouseoverButtons'))
+	section.args.headerButtons.args.windowTwoSession = ACH:Toggle(L["Window 2"] .. ' - ' .. L["Session Button"], L["Show the session button in the header."], 4, nil, nil, nil, GetWindowValue(2, 'showSessionButton'), SetWindowValue(2, 'showSessionButton'), nil, function() return Private.Addon.db.profile.damageMeter.windowCount < 2 end)
+	section.args.headerButtons.args.windowTwoCog = ACH:Toggle(L["Window 2"] .. ' - ' .. L["Settings Button"], L["Show the settings button in the header."], 5, nil, nil, nil, GetWindowValue(2, 'showCogButton'), SetWindowValue(2, 'showCogButton'), nil, function() return Private.Addon.db.profile.damageMeter.windowCount < 2 end)
+	section.args.headerButtons.args.windowTwoMouseover = ACH:Toggle(L["Window 2"] .. ' - ' .. L["Mouseover"], L["Only show the header buttons while the cursor is over the window."], 6, nil, nil, nil, GetWindowValue(2, 'mouseoverButtons'), SetWindowValue(2, 'mouseoverButtons'), nil, function() return Private.Addon.db.profile.damageMeter.windowCount < 2 end)
+	section.args.headerButtons.args.windowThreeSession = ACH:Toggle(L["Window 3"] .. ' - ' .. L["Session Button"], L["Show the session button in the header."], 7, nil, nil, nil, GetWindowValue(3, 'showSessionButton'), SetWindowValue(3, 'showSessionButton'), nil, function() return Private.Addon.db.profile.damageMeter.windowCount < 3 end)
+	section.args.headerButtons.args.windowThreeCog = ACH:Toggle(L["Window 3"] .. ' - ' .. L["Settings Button"], L["Show the settings button in the header."], 8, nil, nil, nil, GetWindowValue(3, 'showCogButton'), SetWindowValue(3, 'showCogButton'), nil, function() return Private.Addon.db.profile.damageMeter.windowCount < 3 end)
+	section.args.headerButtons.args.windowThreeMouseover = ACH:Toggle(L["Window 3"] .. ' - ' .. L["Mouseover"], L["Only show the header buttons while the cursor is over the window."], 9, nil, nil, nil, GetWindowValue(3, 'mouseoverButtons'), SetWindowValue(3, 'mouseoverButtons'), nil, function() return Private.Addon.db.profile.damageMeter.windowCount < 3 end)
+	section.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 10)
 	section.args.defaults.inline = true
 	section.args.defaults.args.damageMeter = ACH:Execute(L["Restore Defaults"], L["Wipe all Damage Meter settings, the module itself stays enabled."], 1, function() Private:DamageMeter_ResetDefaults() end, nil, true)
 	return section

@@ -55,6 +55,12 @@ Private.Defaults = {
 			headerFontOutline = Private.Outline,
 			headerFontSize = 12,
 			useValueColor = false,
+			headerTypeXOffset = 0,
+			headerTypeYOffset = 0,
+			headerSessionXOffset = 0,
+			headerSessionYOffset = 0,
+			headerIconXOffset = 0,
+			headerIconYOffset = 0,
 			windows = {
 				[1] = {
 					meterType = 0, -- Damage Done
@@ -63,6 +69,9 @@ Private.Defaults = {
 					height = 208,
 					attachTo = 0,
 					attachSize = 50,
+					showSessionButton = true,
+					showCogButton = true,
+					mouseoverButtons = false,
 				},
 				[2] = {
 					meterType = 2, -- Healing Done
@@ -71,6 +80,9 @@ Private.Defaults = {
 					height = 208,
 					attachTo = 0,
 					attachSize = 50,
+					showSessionButton = true,
+					showCogButton = true,
+					mouseoverButtons = false,
 				},
 				[3] = {
 					meterType = 9, -- Deaths
@@ -79,6 +91,9 @@ Private.Defaults = {
 					height = 208,
 					attachTo = 0,
 					attachSize = 50,
+					showSessionButton = true,
+					showCogButton = true,
+					mouseoverButtons = false,
 				},
 			},
 		},

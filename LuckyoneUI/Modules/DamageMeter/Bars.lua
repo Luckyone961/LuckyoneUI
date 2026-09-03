@@ -98,12 +98,15 @@ local function Bar_OnClick(bar, mouseButton)
 end
 
 local function Bar_OnEnter(bar)
+	DM:UpdateHeaderButtons(bar.window)
+
 	if not DM.db.mouseoverHighlight then return end
 
 	bar.highlight:Show()
 end
 
 local function Bar_OnLeave(bar)
+	DM:UpdateHeaderButtons(bar.window)
 	bar.highlight:Hide()
 end
 
