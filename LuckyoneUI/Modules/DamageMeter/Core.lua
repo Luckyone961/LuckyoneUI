@@ -17,10 +17,13 @@ local Ambiguate = Ambiguate
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 local SetCVar = C_CVar.SetCVar
+local GetInstanceInfo = GetInstanceInfo
 local IsInGroup = IsInGroup
 local UnitAffectingCombat = UnitAffectingCombat
+local ResetAllCombatSessions = C_DamageMeter.ResetAllCombatSessions
 
 local _G = _G
+local StaticPopup_Show = _G.StaticPopup_Show
 
 local E = unpack(ElvUI)
 
@@ -311,10 +314,56 @@ function DM:Initialize()
 	DM:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
 
-function DM:PLAYER_ENTERING_WORLD()
+-- Reset data popup
+-- StaticPopup_Show('LUCKYONE_DM_RESET')
+_G.StaticPopupDialogs['LUCKYONE_DM_RESET'] = {
+	text = Private.Name .. ' ' .. L["Damage Meter"] .. '|n|n' .. L["Reset all data?"],
+	button1 = OKAY,
+	button2 = CANCEL,
+	OnAccept = ResetAllCombatSessions,
+	whileDead = 1,
+	hideOnEscape = 1,
+	preferredIndex = 3,
+}
+
+local InstanceScopes = {
+	party = 'PARTY',
+	raid = 'RAID',
+}
+
+-- Offer a data reset when the instance actually changes
+function DM:CheckAutoReset(initLogin, isReload)
+	-- The events stay registered after the module is switched off
+	if not DM.db.enable then return end
+
+	local _, instanceType, _, _, _, _, _, instanceID = GetInstanceInfo()
+	local scope = InstanceScopes[instanceType]
+	local last = DM.lastInstanceID
+
+	-- Track where we are even while the option is off
+	DM.lastInstanceID = scope and instanceID or nil
+
+	if initLogin or isReload then return end
+	if not scope or instanceID == last then return end
+
+	local mode = DM.db.autoReset
+	if mode == 'NONE' then return end
+
+	local wanted = DM.db.autoResetType
+	if wanted ~= 'BOTH' and wanted ~= scope then return end
+
+	if mode == 'AUTO' then
+		ResetAllCombatSessions()
+	else
+		StaticPopup_Show('LUCKYONE_DM_RESET')
+	end
+end
+
+function DM:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	DM:HandleBlizzardMeter()
 	DM:UpdateShown()
 	DM:MarkAllDirty()
+	DM:CheckAutoReset(initLogin, isReload)
 end
 
 function DM:PLAYER_REGEN_DISABLED()
