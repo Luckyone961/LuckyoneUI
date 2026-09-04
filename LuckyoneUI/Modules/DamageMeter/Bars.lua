@@ -395,9 +395,9 @@ local function UpdateBarColor(db, bar, entry, spellMode)
 	bar.colorKey = classFilename
 
 	local classColor = classFilename ~= '' and E:ClassColor(classFilename, true)
-	local color = (db.classColors and classColor) or db.othersColor
+	local color = (db.barColorType == 'CLASS' and classColor) or db.barColor
 
-	bar.status:SetStatusBarColor(color.r, color.g, color.b)
+	bar.status:SetStatusBarColor(color.r, color.g, color.b, db.barAlpha)
 
 	-- Backdrop color can be custom
 	local backdrop = db.backdropColorType == 'CUSTOM' and db.backdropColor or color
