@@ -243,6 +243,7 @@ function DM:UpdateHeaderColors(window)
 	window.typeText:SetTextColor(r, g, b)
 	window.sessionText:SetTextColor(r, g, b)
 	window.resetText:SetTextColor(r, g, b)
+	window.settingsIcon:SetVertexColor(r, g, b)
 end
 
 -- ElvUI keeps calling this whenever its media updates
@@ -419,6 +420,7 @@ function DM:UpdateHeaderButtons(window)
 
 	local alpha = window:IsMouseOver() and 1 or 0
 	window.sessionButton:SetAlpha(alpha)
+	window.settingsButton:SetAlpha(alpha)
 	window.resetButton:SetAlpha(alpha)
 end
 
@@ -438,6 +440,10 @@ end
 
 local function SessionButton_OnClick(button)
 	OpenMenu(button, SessionMenu, true)
+end
+
+local function SettingsButton_OnClick()
+	E:ToggleOptions('LuckyoneUI,damageMeter')
 end
 
 -- Shift click skips the confirmation
@@ -506,6 +512,17 @@ function DM:GetWindow(index)
 	window.sessionText = sessionButton:CreateFontString(nil, 'OVERLAY')
 	window.sessionText:SetJustifyH('CENTER')
 
+	local settingsButton = CreateFrame('Button', nil, header)
+	settingsButton:SetNormalAtlas('GM-icon-settings')
+	settingsButton:SetScript('OnClick', SettingsButton_OnClick)
+	settingsButton:SetScript('OnEnter', Frame_OnHover)
+	settingsButton:SetScript('OnLeave', Frame_OnHover)
+	settingsButton.window = window
+	window.settingsButton = settingsButton
+
+	-- Oversize the atlas like the ElvUI skin does
+	window.settingsIcon = settingsButton:GetNormalTexture()
+
 	local typeButton = CreateFrame('Button', nil, header)
 	typeButton:SetScript('OnClick', TypeButton_OnClick)
 	typeButton:SetScript('OnEnter', Frame_OnHover)
@@ -548,19 +565,21 @@ function DM:ApplyWindowSettings(window)
 		window.sessionType = wdb.sessionType
 	end
 
-	local header, resetButton, sessionButton, typeButton = window.header, window.resetButton, window.sessionButton, window.typeButton
+	local header, resetButton, sessionButton, settingsButton, typeButton = window.header, window.resetButton, window.sessionButton, window.settingsButton, window.typeButton
 
-	-- Keeps the header texts readable when the font grows
-	local resetWidth = db.headerFontSize + 4
+	-- Keeps the header texts and the icon readable when the font grows
+	local buttonWidth = db.headerFontSize + 4
 
 	header:Height(db.headerHeight)
-	resetButton:Size(resetWidth, db.headerHeight)
+	resetButton:Size(buttonWidth, db.headerHeight)
 	sessionButton:Size(db.headerFontSize * 2 + 2, db.headerHeight)
+	settingsButton:Size(buttonWidth, db.headerHeight)
+	window.settingsIcon:Size(buttonWidth * 1.5)
 
 	resetButton:ClearAllPoints()
 	resetButton:Point('RIGHT', header, 'RIGHT', -2, 0)
 
-	-- The session button takes the reset spot when the reset button is hidden
+	-- Every button takes the spot of the one to its right when that one is hidden
 	sessionButton:ClearAllPoints()
 
 	if wdb.showResetButton then
@@ -569,14 +588,26 @@ function DM:ApplyWindowSettings(window)
 		sessionButton:Point('RIGHT', header, 'RIGHT', -2, 0)
 	end
 
+	settingsButton:ClearAllPoints()
+
+	if wdb.showSessionButton then
+		settingsButton:Point('RIGHT', sessionButton, 'LEFT', 0, 0)
+	elseif wdb.showResetButton then
+		settingsButton:Point('RIGHT', resetButton, 'LEFT', 4, 0)
+	else
+		settingsButton:Point('RIGHT', header, 'RIGHT', -2, 0)
+	end
+
 	-- The type button fills whatever the buttons leave over
 	typeButton:ClearAllPoints()
 	typeButton:Point('TOPLEFT', header, 'TOPLEFT', 2, 0)
 
-	if wdb.showSessionButton then
+	if wdb.showSettingsButton then
+		typeButton:Point('BOTTOMRIGHT', settingsButton, 'BOTTOMLEFT', -8, 0)
+	elseif wdb.showSessionButton then
 		typeButton:Point('BOTTOMRIGHT', sessionButton, 'BOTTOMLEFT', -4, 0)
 	elseif wdb.showResetButton then
-		typeButton:Point('BOTTOMRIGHT', header, 'BOTTOMRIGHT', -(resetWidth + 6), 0)
+		typeButton:Point('BOTTOMRIGHT', header, 'BOTTOMRIGHT', -(buttonWidth + 6), 0)
 	else
 		typeButton:Point('BOTTOMRIGHT', header, 'BOTTOMRIGHT', -2, 0)
 	end
@@ -589,6 +620,9 @@ function DM:ApplyWindowSettings(window)
 	window.sessionText:ClearAllPoints()
 	window.sessionText:Point('TOPLEFT', sessionButton, 'TOPLEFT', db.headerSessionXOffset, db.headerSessionYOffset)
 	window.sessionText:Point('BOTTOMRIGHT', sessionButton, 'BOTTOMRIGHT', db.headerSessionXOffset, db.headerSessionYOffset)
+
+	window.settingsIcon:ClearAllPoints()
+	window.settingsIcon:Point('CENTER', settingsButton, 'CENTER', db.headerIconXOffset, db.headerIconYOffset)
 
 	window.typeText:ClearAllPoints()
 	window.typeText:Point('TOPLEFT', typeButton, 'TOPLEFT', db.headerTypeXOffset, db.headerTypeYOffset)
@@ -603,6 +637,8 @@ function DM:ApplyWindowSettings(window)
 	sessionButton:SetAlpha(alpha)
 	resetButton:SetShown(wdb.showResetButton)
 	resetButton:SetAlpha(alpha)
+	settingsButton:SetShown(wdb.showSettingsButton)
+	settingsButton:SetAlpha(alpha)
 
 	-- Header and content only take the mouse for the fade, the bars always do
 	header:EnableMouse(mouseover)
