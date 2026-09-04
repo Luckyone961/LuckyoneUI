@@ -106,12 +106,10 @@ local function GetSampleWidth(db)
 end
 
 local function Bar_OnClick(bar, mouseButton)
-	local window = bar.window
-
 	if mouseButton == 'RightButton' then
-		DM:CloseDrilldown(window)
-	elseif window.mode == 'sources' and bar.entry then
-		DM:OpenDrilldown(window, bar.entry)
+		DM:ClosePopup()
+	elseif bar.entry and not bar.window.spellMode then
+		DM:OpenPopup(bar.window, bar.entry)
 	end
 end
 
@@ -559,16 +557,19 @@ function DM:RenderWindow(window)
 	renderAbbrev = GetAbbreviate()
 	renderFormats = GetValueFormats(db)
 
-	local available, failureReason = IsDamageMeterAvailable()
-	local info = (not available and not DM.testMode) and failureReason or ''
+	-- Only the session windows carry the availability message
+	if window.infoText then
+		local available, failureReason = IsDamageMeterAvailable()
+		local info = (not available and not DM.testMode) and failureReason or ''
 
-	if window.lastInfo ~= info then
-		window.lastInfo = info
-		window.infoText:SetText(info)
+		if window.lastInfo ~= info then
+			window.lastInfo = info
+			window.infoText:SetText(info)
+		end
 	end
 
 	local session = DM:GetSession(window)
-	local spellMode = window.mode == 'spells'
+	local spellMode = window.spellMode
 	local entries = session and (spellMode and session.combatSpells or session.combatSources)
 	local numEntries = entries and #entries or 0
 	window.numEntries = numEntries

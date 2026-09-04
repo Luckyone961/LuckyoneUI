@@ -96,6 +96,8 @@ function DM:UpdateShown()
 
 	if shown and not DM.lastShown then
 		DM:MarkAllDirty()
+	elseif not shown then
+		DM:ClosePopup()
 	end
 
 	DM.lastShown = shown
@@ -105,9 +107,8 @@ end
 function DM:SetTestMode(value)
 	DM.testMode = value or nil
 
-	-- Fake data has no spell entries
+	-- Fake data brings its own bar count, start from the top again
 	for _, window in pairs(DM.windows) do
-		DM:CloseDrilldown(window)
 		window.offset = 0
 	end
 
@@ -357,6 +358,10 @@ function DM:Initialize()
 			for _, window in pairs(DM.windows) do
 				DM:UpdateHeaderColors(window)
 			end
+
+			if DM.popup and DM.popup:IsShown() then
+				DM:ApplyPopupSettings(DM.popup)
+			end
 		end
 	end
 
@@ -448,6 +453,9 @@ function Private:DamageMeter_UpdateAll()
 
 	DM:HandleBlizzardMeter()
 
+	-- The popup rebuilds itself with the new settings the next time it opens
+	DM:ClosePopup()
+
 	if not db.enable then
 		if DM.holder then
 			DM.holder:Hide()
@@ -479,8 +487,6 @@ function Private:DamageMeter_ResetDefaults()
 	db.enable = enable
 
 	for _, window in pairs(DM.windows) do
-		DM:CloseDrilldown(window)
-
 		window.meterType = nil
 		window.sessionType = nil
 		window.sessionID = nil

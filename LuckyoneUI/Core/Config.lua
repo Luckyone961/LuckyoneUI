@@ -328,6 +328,14 @@ local function BuildDamageMeterSection()
 	section.args.headerOptions.args.fontOptions.args.headerFont = ACH:SharedMediaFont(L["Font"], nil, 1)
 	section.args.headerOptions.args.fontOptions.args.headerFontOutline = ACH:FontFlags(L["Font Outline"], nil, 2)
 	section.args.headerOptions.args.fontOptions.args.headerFontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 26, step = 1 })
+	section.args.popupOptions = ACH:Group(L["Spell Breakdown"], nil, 7, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
+	section.args.popupOptions.args.popupDesc = ACH:Group(L["Description"], nil, 1)
+	section.args.popupOptions.args.popupDesc.inline = true
+	section.args.popupOptions.args.popupDesc.args.desc = ACH:Description(L["Left click a bar to open the spell breakdown at your cursor.\n\nShift click pins it in place, right click closes it again. Pinned popups are dragged around by their header."], 1, 'medium')
+	section.args.popupOptions.args.colorOptions = ACH:Group(L["Colors"], nil, 2)
+	section.args.popupOptions.args.colorOptions.inline = true
+	section.args.popupOptions.args.colorOptions.args.popupBackdropColorType = ACH:Select(L["Backdrop Color"], L["Follow the ElvUI backdrop fade color or use a custom color."], 1, { ELVUI = 'ElvUI', CUSTOM = L["Custom"] })
+	section.args.popupOptions.args.colorOptions.args.popupBackdropColor = ACH:Color(L["Custom Color"], nil, 2, true, nil, function() local color = Private.Addon.db.profile.damageMeter.popupBackdropColor return color.r, color.g, color.b, color.a end, function(_, r, g, b, a) local color = Private.Addon.db.profile.damageMeter.popupBackdropColor color.r, color.g, color.b, color.a = r, g, b, a Private:DamageMeter_UpdateAll() end, nil, function() return Private.Addon.db.profile.damageMeter.popupBackdropColorType ~= 'CUSTOM' end)
 	return section
 end
 

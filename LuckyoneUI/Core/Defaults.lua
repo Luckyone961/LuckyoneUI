@@ -63,6 +63,8 @@ Private.Defaults = {
 			headerResetYOffset = 0,
 			headerSettingsXOffset = 0,
 			headerSettingsYOffset = 0,
+			popupBackdropColorType = 'ELVUI',
+			popupBackdropColor = { r = 0, g = 0, b = 0, a = 0.8 },
 			windows = {
 				[1] = {
 					meterType = 0, -- Damage Done

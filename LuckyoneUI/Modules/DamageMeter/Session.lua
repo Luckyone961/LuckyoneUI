@@ -12,6 +12,9 @@ local min = math.min
 local floor = math.floor
 
 local CreateFrame = CreateFrame
+local DoesAncestryIncludeAny = DoesAncestryIncludeAny
+local GetCursorPosition = GetCursorPosition
+local GetMouseFoci = GetMouseFoci
 local IsShiftKeyDown = IsShiftKeyDown
 local GetAvailableCombatSessions = C_DamageMeter.GetAvailableCombatSessions
 local GetCombatSessionFromID = C_DamageMeter.GetCombatSessionFromID
@@ -76,20 +79,23 @@ DM.TypeSuppressIcon = {
 	[MeterType.EnemyDamageTaken] = true,
 }
 
+-- The popup pulls a single source, the windows pull the whole session
 function DM:FetchWindow(window)
-	if window.mode == 'spells' then
+	local session
+
+	if window.spellMode then
 		if window.sessionType then
-			window.session = GetCombatSessionSourceFromType(window.sessionType, window.meterType, window.drillGUID, window.drillCreatureID)
+			session = GetCombatSessionSourceFromType(window.sessionType, window.meterType, window.sourceGUID, window.sourceCreatureID)
 		elseif window.sessionID then
-			window.session = GetCombatSessionSourceFromID(window.sessionID, window.meterType, window.drillGUID, window.drillCreatureID)
+			session = GetCombatSessionSourceFromID(window.sessionID, window.meterType, window.sourceGUID, window.sourceCreatureID)
 		end
-	else
-		if window.sessionType then
-			window.session = GetCombatSessionFromType(window.sessionType, window.meterType)
-		elseif window.sessionID then
-			window.session = GetCombatSessionFromID(window.sessionID, window.meterType)
-		end
+	elseif window.sessionType then
+		session = GetCombatSessionFromType(window.sessionType, window.meterType)
+	elseif window.sessionID then
+		session = GetCombatSessionFromID(window.sessionID, window.meterType)
 	end
+
+	window.session = session
 end
 
 -- Fake data for the test mode preview, same names Blizzard uses in Edit Mode
@@ -158,6 +164,11 @@ local function Refresh(onlyDirty)
 			DM:RefreshWindow(window)
 		end
 	end
+
+	local popup = DM.popup
+	if popup and popup:IsShown() and (popup.dirty or not onlyDirty) then
+		DM:RefreshPopup()
+	end
 end
 
 function DM:RefreshAll()
@@ -172,6 +183,12 @@ end
 
 function DM:MarkDirty(window)
 	window.dirty = true
+
+	-- The popup reads the same session as the window it was opened from
+	local popup = DM.popup
+	if popup and popup.owner == window then
+		popup.dirty = true
+	end
 
 	if not pendingFlush then
 		pendingFlush = true
@@ -205,6 +222,8 @@ function DM:DAMAGE_METER_CURRENT_SESSION_UPDATED()
 end
 
 function DM:DAMAGE_METER_RESET()
+	DM:ClosePopup()
+
 	for _, window in pairs(DM.windows) do
 		-- Numbered segments are gone after a wipe, fall back to the current one
 		if window.sessionID then
@@ -219,31 +238,30 @@ function DM:DAMAGE_METER_RESET()
 end
 
 -- Header text and colors
-function DM:UpdateHeader(window)
-	local title
-	if window.mode == 'spells' then
-		title = DM:StripRealm(window.drillName, window.drillClass) or _G.UNKNOWN
-	else
-		title = DM.TypeNames[window.meterType]
-	end
-
-	local segment
+local function SegmentName(window)
 	if window.sessionType == SessionType.Current then
-		segment = _G.DAMAGE_METER_CURRENT_SESSION_SHORT
+		return _G.DAMAGE_METER_CURRENT_SESSION_SHORT
 	elseif window.sessionType == SessionType.Overall then
-		segment = _G.DAMAGE_METER_OVERALL_SESSION_SHORT
-	else
-		segment = window.sessionID
+		return _G.DAMAGE_METER_OVERALL_SESSION_SHORT
 	end
 
-	window.typeText:SetFormattedText('%s [%s]', title, segment)
+	return window.sessionID
+end
+
+function DM:UpdateHeader(window)
+	window.typeText:SetFormattedText('%s [%s]', DM.TypeNames[window.meterType], SegmentName(window))
+end
+
+local function HeaderColor()
+	if DM.db.useValueColor then
+		return unpack(E.media.rgbvaluecolor)
+	end
+
+	return 1, 1, 1
 end
 
 function DM:UpdateHeaderColors(window)
-	local r, g, b = 1, 1, 1
-	if DM.db.useValueColor then
-		r, g, b = unpack(E.media.rgbvaluecolor)
-	end
+	local r, g, b = HeaderColor()
 
 	window.typeText:SetTextColor(r, g, b)
 	window.sessionIcon:SetVertexColor(r, g, b)
@@ -255,6 +273,18 @@ end
 local function BackdropColor(backdrop)
 	local color = backdrop.customColor
 	backdrop:SetBackdropColor(color.r, color.g, color.b, color.a)
+end
+
+local function SetBackdropColor(backdrop, custom, color)
+	if custom then
+		backdrop.customColor = color
+		backdrop.callbackBackdropColor = BackdropColor
+		BackdropColor(backdrop)
+	else
+		backdrop.customColor = nil
+		backdrop.callbackBackdropColor = nil
+		backdrop:SetBackdropColor(unpack(E.media.backdropfadecolor))
+	end
 end
 
 function DM:UpdateWindowBackdrop(window)
@@ -277,28 +307,19 @@ function DM:UpdateWindowBackdrop(window)
 	-- Padding grows the backdrop past the window
 	backdrop:SetOutside(window, E.Border + E:Scale(wdb.backdropWidth), E.Border + E:Scale(wdb.backdropHeight), nil, true)
 
-	if wdb.backdropColorType == 'CUSTOM' then
-		backdrop.customColor = wdb.backdropColor
-		backdrop.callbackBackdropColor = BackdropColor
-		BackdropColor(backdrop)
-	else
-		backdrop.customColor = nil
-		backdrop.callbackBackdropColor = nil
-		backdrop:SetBackdropColor(unpack(E.media.backdropfadecolor))
-	end
-
+	SetBackdropColor(backdrop, wdb.backdropColorType == 'CUSTOM', wdb.backdropColor)
 	backdrop:Show()
 end
 
 -- Session changes
 function DM:SetWindowType(window, meterType)
 	window.meterType = meterType
-	window.mode = 'sources'
 	window.offset = 0
 
 	local wdb = DM:WindowDB(window.index)
 	wdb.meterType = meterType
 
+	DM:ClosePopup()
 	DM:UpdateHeader(window)
 	DM:RefreshWindow(window)
 end
@@ -306,49 +327,13 @@ end
 function DM:SetWindowSession(window, sessionType, sessionID)
 	window.sessionType = sessionType
 	window.sessionID = sessionID
-	window.mode = 'sources'
 	window.offset = 0
 
 	-- Session IDs are per login session
 	local wdb = DM:WindowDB(window.index)
 	wdb.sessionType = sessionType
 
-	DM:UpdateHeader(window)
-	DM:RefreshWindow(window)
-end
-
-function DM:OpenDrilldown(window, entry)
-	-- Death entries open the Blizzard death recap instead
-	if entry.deathRecapID and entry.deathRecapID ~= 0 then
-		_G.OpenDeathRecapUI(entry.deathRecapID)
-		return
-	end
-
-	-- Secret identifiers cannot be passed back into the API while restricted
-	if issecretvalue(entry.sourceGUID) or issecretvalue(entry.sourceCreatureID) then return end
-	if not entry.sourceGUID and not entry.sourceCreatureID then return end
-
-	window.mode = 'spells'
-	window.drillGUID = entry.sourceGUID
-	window.drillCreatureID = entry.sourceCreatureID
-	window.drillName = entry.name
-	window.drillClass = entry.classFilename
-	window.offset = 0
-
-	DM:UpdateHeader(window)
-	DM:RefreshWindow(window)
-end
-
-function DM:CloseDrilldown(window)
-	if window.mode ~= 'spells' then return end
-
-	window.mode = 'sources'
-	window.drillGUID = nil
-	window.drillCreatureID = nil
-	window.drillName = nil
-	window.drillClass = nil
-	window.offset = 0
-
+	DM:ClosePopup()
 	DM:UpdateHeader(window)
 	DM:RefreshWindow(window)
 end
@@ -434,13 +419,7 @@ local function Frame_OnHover(frame)
 end
 
 local function TypeButton_OnClick(button)
-	local window = button.window
-
-	if window.mode == 'spells' then
-		DM:CloseDrilldown(window)
-	else
-		OpenMenu(button, TypeMenu)
-	end
+	OpenMenu(button, TypeMenu)
 end
 
 local function SessionButton_OnClick(button)
@@ -460,7 +439,7 @@ local function ResetButton_OnClick()
 	end
 end
 
--- Mouse wheel scrolling, no scrollbar
+-- Mouse wheel scrolling, the session windows have no scroll bar
 local function Content_OnMouseWheel(content, delta)
 	local window = content.window
 
@@ -468,12 +447,279 @@ local function Content_OnMouseWheel(content, delta)
 	if offset ~= window.offset then
 		window.offset = offset
 		DM:RenderWindow(window)
+		DM:UpdateScrollBar(window)
 	end
 end
 
-local function Content_OnMouseDown(content, button)
+local function Content_OnMouseDown(_, button)
 	if button == 'RightButton' then
-		DM:CloseDrilldown(content.window)
+		DM:ClosePopup()
+	end
+end
+
+-- Spell breakdown popup
+-- Same idea as the Blizzard source window, spawned at the cursor instead
+-- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSourceWindow.lua
+local function Popup_OnShow(popup)
+	popup:RegisterEvent('GLOBAL_MOUSE_DOWN')
+end
+
+local function Popup_OnHide(popup)
+	popup:UnregisterEvent('GLOBAL_MOUSE_DOWN')
+
+	popup.owner = nil
+	popup.session = nil
+	popup.sourceGUID = nil
+	popup.sourceCreatureID = nil
+	popup.sourceName = nil
+	popup.sourceClass = nil
+
+	-- The next one it opens rebuilds its bars with the current settings
+	popup.lastRows = nil
+	popup.lastWidth = nil
+end
+
+-- Any click that misses the popup closes it again unless it was pinned
+local function Popup_OnEvent(popup)
+	if not popup.sticky and not DoesAncestryIncludeAny(popup, GetMouseFoci()) then
+		popup:Hide()
+	end
+end
+
+-- Only pinned popups are worth moving, the rest close on the next click
+local function PopupHeader_OnDragStart(header)
+	local popup = header.window
+
+	if popup.sticky then
+		popup:StartMoving()
+	end
+end
+
+local function PopupHeader_OnDragStop(header)
+	local popup = header.window
+
+	popup:StopMovingOrSizing()
+	popup:SetUserPlaced(false)
+end
+
+-- The cursor corner is the anchor, the popup grows toward the screen center
+local function AnchorToCursor(popup)
+	local scale = popup:GetEffectiveScale()
+	local x, y = GetCursorPosition()
+	x, y = x / scale, y / scale
+
+	local horizontal = (x > E.UIParent:GetWidth() / 2) and 'RIGHT' or 'LEFT'
+	local vertical = (y > E.UIParent:GetHeight() / 2) and 'TOP' or 'BOTTOM'
+
+	popup:ClearAllPoints()
+	popup:SetPoint(vertical .. horizontal, E.UIParent, 'BOTTOMLEFT', x, y)
+end
+
+local function ScrollBar_OnValueChanged(scrollBar, value)
+	if scrollBar.locked then return end
+
+	local window = scrollBar.window
+	local offset = floor(value + 0.5)
+
+	if offset ~= window.offset then
+		window.offset = offset
+		DM:RenderWindow(window)
+	end
+end
+
+-- Only shows up once the list outgrows the popup, the bars give up their right edge for it
+function DM:UpdateScrollBar(window)
+	local scrollBar = window.scrollBar
+	if not scrollBar then return end
+
+	local db = DM.db
+	local maxOffset = max(window.numEntries - window.visibleCount, 0)
+	local shown = maxOffset > 0
+
+	scrollBar:SetShown(shown)
+	window.content:Point('BOTTOMRIGHT', window, 'BOTTOMRIGHT', shown and -(scrollBar:GetWidth() + db.barSpacing) or 0, 0)
+
+	if not shown then return end
+
+	local track = window.visibleCount * (db.barHeight + db.barSpacing) - db.barSpacing
+
+	-- The thumb covers as much of the track as the popup covers of the list
+	window.scrollThumb:Height(max(track * window.visibleCount / window.numEntries, db.barHeight))
+
+	scrollBar.locked = true
+	scrollBar:SetMinMaxValues(0, maxOffset)
+	scrollBar:SetValue(window.offset)
+	scrollBar.locked = false
+end
+
+function DM:GetPopup()
+	local popup = DM.popup
+	if popup then return popup end
+
+	popup = CreateFrame('Frame', 'LuckyoneUI_DamageMeterPopup', E.UIParent)
+	popup:SetFrameStrata('DIALOG')
+	popup:SetClampedToScreen(true)
+	popup:SetMovable(true)
+	popup:SetScript('OnShow', Popup_OnShow)
+	popup:SetScript('OnHide', Popup_OnHide)
+	popup:SetScript('OnEvent', Popup_OnEvent)
+	popup:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
+	popup:Hide()
+
+	-- Everything the shared render path expects from a window
+	popup.spellMode = true
+	popup.bars = {}
+	popup.offset = 0
+	popup.visibleCount = 0
+	popup.numEntries = 0
+
+	-- The header doubles as the drag handle
+	local header = CreateFrame('Frame', nil, popup)
+	header:Point('TOPLEFT')
+	header:Point('TOPRIGHT')
+	header:EnableMouse(true)
+	header:RegisterForDrag('LeftButton')
+	header:SetScript('OnDragStart', PopupHeader_OnDragStart)
+	header:SetScript('OnDragStop', PopupHeader_OnDragStop)
+	header:SetScript('OnMouseDown', Content_OnMouseDown)
+	header.window = popup
+	popup.header = header
+
+	popup.typeText = header:CreateFontString(nil, 'OVERLAY')
+	popup.typeText:SetJustifyH('LEFT')
+	popup.typeText:SetWordWrap(false)
+
+	local content = CreateFrame('Frame', nil, popup)
+	content:Point('TOPLEFT', header, 'BOTTOMLEFT', 0, 0)
+	content:Point('BOTTOMRIGHT', popup, 'BOTTOMRIGHT', 0, 0)
+	content:EnableMouse(true)
+	content:EnableMouseWheel(true)
+	content:SetScript('OnMouseWheel', Content_OnMouseWheel)
+	content:SetScript('OnMouseDown', Content_OnMouseDown)
+	content.window = popup
+	popup.content = content
+
+	-- One step per bar, the slider value is the render offset
+	local scrollBar = CreateFrame('Slider', nil, popup)
+	scrollBar:SetOrientation('VERTICAL')
+	scrollBar:SetValueStep(1)
+	scrollBar:SetObeyStepOnDrag(true)
+	scrollBar:SetThumbTexture(E.media.blankTex)
+	scrollBar:EnableMouseWheel(true)
+	scrollBar:SetScript('OnMouseWheel', Content_OnMouseWheel)
+	scrollBar:SetScript('OnValueChanged', ScrollBar_OnValueChanged)
+	scrollBar:Hide()
+	scrollBar.window = popup
+	popup.scrollBar = scrollBar
+
+	popup.scrollTrack = scrollBar:CreateTexture(nil, 'BACKGROUND')
+	popup.scrollTrack:SetTexture(E.media.blankTex)
+	popup.scrollTrack:SetAllPoints()
+
+	popup.scrollThumb = scrollBar:GetThumbTexture()
+
+	DM.popup = popup
+	return popup
+end
+
+function DM:ApplyPopupSettings(popup)
+	local db = DM.db
+	local wdb = DM:WindowDB(popup.owner.index)
+	local scrollWidth = 6
+	local r, g, b = HeaderColor()
+
+	popup.header:Height(db.headerHeight)
+
+	popup.typeText:ClearAllPoints()
+	popup.typeText:Point('TOPLEFT', popup.header, 'TOPLEFT', db.headerTypeXOffset, db.headerTypeYOffset)
+	popup.typeText:Point('BOTTOMRIGHT', popup.header, 'BOTTOMRIGHT', db.headerTypeXOffset, db.headerTypeYOffset)
+	popup.typeText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
+	popup.typeText:SetTextColor(r, g, b)
+
+	-- Kept off the bars by the same gap the bars keep from each other
+	popup.scrollBar:ClearAllPoints()
+	popup.scrollBar:Point('TOPLEFT', popup.content, 'TOPRIGHT', db.barSpacing, 0)
+	popup.scrollBar:Point('BOTTOMLEFT', popup.content, 'BOTTOMRIGHT', db.barSpacing, 0)
+	popup.scrollBar:Width(scrollWidth)
+
+	popup.scrollTrack:SetVertexColor(unpack(E.media.bordercolor))
+	popup.scrollThumb:Width(scrollWidth)
+	popup.scrollThumb:SetVertexColor(r, g, b)
+
+	-- The backdrop follows the window the popup was opened from
+	popup.backdrop:SetOutside(popup, E.Border + E:Scale(wdb.backdropWidth), E.Border + E:Scale(wdb.backdropHeight), nil, true)
+	SetBackdropColor(popup.backdrop, db.popupBackdropColorType == 'CUSTOM', db.popupBackdropColor)
+end
+
+function DM:UpdatePopupHeader(popup)
+	local name = DM:StripRealm(popup.sourceName, popup.sourceClass) or _G.UNKNOWN
+
+	popup.typeText:SetFormattedText('%s [%s]', name, SegmentName(popup))
+end
+
+function DM:RefreshPopup()
+	local db = DM.db
+	local popup = DM.popup
+	local owner = popup.owner
+
+	popup.dirty = false
+	DM:FetchWindow(popup)
+
+	local entries = popup.session and popup.session.combatSpells
+
+	-- It grows to fit the spells, the window it came from is the ceiling
+	local rows = max(min(entries and #entries or 0, owner.visibleCount), 1)
+	local width = owner:GetWidth()
+
+	if popup.lastRows ~= rows or popup.lastWidth ~= width then
+		popup.lastRows, popup.lastWidth = rows, width
+
+		local height = db.headerHeight + rows * db.barHeight + (rows - 1) * db.barSpacing
+		popup:Size(width, height)
+		DM:UpdateWindowGeometry(popup, width, height)
+	end
+
+	DM:RenderWindow(popup)
+	DM:UpdateScrollBar(popup)
+end
+
+function DM:OpenPopup(window, entry)
+	-- Death entries open the Blizzard death recap instead
+	if entry.deathRecapID and entry.deathRecapID ~= 0 then
+		_G.OpenDeathRecapUI(entry.deathRecapID)
+		return
+	end
+
+	-- Secret identifiers cannot be passed back into the API while restricted
+	if issecretvalue(entry.sourceGUID) or issecretvalue(entry.sourceCreatureID) then return end
+	if not entry.sourceGUID and not entry.sourceCreatureID then return end
+
+	local popup = DM:GetPopup()
+
+	popup.owner = window
+	popup.meterType = window.meterType
+	popup.sessionType = window.sessionType
+	popup.sessionID = window.sessionID
+	popup.sourceGUID = entry.sourceGUID
+	popup.sourceCreatureID = entry.sourceCreatureID
+	popup.sourceName = entry.name
+	popup.sourceClass = entry.classFilename
+	popup.offset = 0
+
+	-- Shift click pins it, otherwise the next click anywhere else closes it
+	popup.sticky = IsShiftKeyDown()
+
+	DM:ApplyPopupSettings(popup)
+	DM:UpdatePopupHeader(popup)
+	DM:RefreshPopup()
+
+	AnchorToCursor(popup)
+	popup:Show()
+end
+
+function DM:ClosePopup()
+	if DM.popup then
+		DM.popup:Hide()
 	end
 end
 
@@ -484,7 +730,6 @@ function DM:GetWindow(index)
 	window = CreateFrame('Frame', 'LuckyoneUI_DamageMeterWindow' .. index, DM.holder)
 	window.index = index
 	window.offset = 0
-	window.mode = 'sources'
 	window.bars = {}
 	window.visibleCount = 0
 	window.numEntries = 0
