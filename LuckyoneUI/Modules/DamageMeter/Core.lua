@@ -184,6 +184,19 @@ local function PlaceAttached(index, count, vertical, inner)
 	end
 end
 
+-- Nothing is anchored to the main holder when every window is in custom mode
+local function UpdateHolderMover(enabled)
+	local name = 'LuckyoneUI_DamageMeterMover'
+
+	if enabled then
+		if E.DisabledMovers[name] then
+			E:EnableMover(name)
+		end
+	elseif E.CreatedMovers[name] then
+		E:DisableMover(name)
+	end
+end
+
 -- Custom placed windows are dragged around with their own mover
 local function UpdateWindowMover(window, index, custom)
 	local name = 'LuckyoneUI_DamageMeterWindow' .. index .. 'Mover'
@@ -316,6 +329,8 @@ function DM:Layout()
 			DM:UpdateWindowGeometry(window, widths[index], heights[index])
 		end
 	end
+
+	UpdateHolderMover(columnCount > 0)
 end
 
 function DM:Initialize()
