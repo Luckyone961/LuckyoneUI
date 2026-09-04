@@ -3,8 +3,6 @@ local DM = Private.Modules.DamageMeter
 
 if not DM then return end
 
-local L = Private.Libs.ACL
-
 local unpack = unpack
 local format = string.format
 local ipairs = ipairs
@@ -14,6 +12,7 @@ local min = math.min
 local floor = math.floor
 
 local CreateFrame = CreateFrame
+local IsShiftKeyDown = IsShiftKeyDown
 local GetAvailableCombatSessions = C_DamageMeter.GetAvailableCombatSessions
 local GetCombatSessionFromID = C_DamageMeter.GetCombatSessionFromID
 local GetCombatSessionFromType = C_DamageMeter.GetCombatSessionFromType
@@ -29,6 +28,7 @@ local CreateAnchor = AnchorUtil.CreateAnchor
 local issecretvalue = issecretvalue or function() return false end
 
 local _G = _G
+local StaticPopup_Show = _G.StaticPopup_Show
 
 local E = unpack(ElvUI)
 
@@ -242,6 +242,7 @@ function DM:UpdateHeaderColors(window)
 
 	window.typeText:SetTextColor(r, g, b)
 	window.sessionText:SetTextColor(r, g, b)
+	window.resetText:SetTextColor(r, g, b)
 end
 
 -- ElvUI keeps calling this whenever its media updates
@@ -398,16 +399,6 @@ local function SessionMenu(owner, rootDescription)
 	rootDescription:CreateRadio(_G.DAMAGE_METER_OVERALL_SESSION, IsSessionSelected, SetSessionSelected, { window = window, sessionType = SessionType.Overall })
 end
 
-local function SettingsMenu(_, rootDescription)
-	rootDescription:SetTag('MENU_LUCKYONEUI_DAMAGE_METER_SETTINGS')
-
-	rootDescription:CreateButton(_G.DAMAGE_METER_RESET_ALL_SESSIONS, ResetAllCombatSessions)
-	rootDescription:CreateDivider()
-	rootDescription:CreateButton(Private.Name .. ' ' .. L["Options"], function()
-		E:ToggleOptions('LuckyoneUI,damageMeter')
-	end)
-end
-
 -- Anchored above the window instead of at the cursor, the manager flips them
 -- back down on its own when there is no room left on screen
 local function OpenMenu(button, generator, alignRight)
@@ -428,7 +419,7 @@ function DM:UpdateHeaderButtons(window)
 
 	local alpha = window:IsMouseOver() and 1 or 0
 	window.sessionButton:SetAlpha(alpha)
-	window.cogButton:SetAlpha(alpha)
+	window.resetButton:SetAlpha(alpha)
 end
 
 local function Frame_OnHover(frame)
@@ -449,18 +440,13 @@ local function SessionButton_OnClick(button)
 	OpenMenu(button, SessionMenu, true)
 end
 
-local function CogButton_OnClick(button)
-	OpenMenu(button, SettingsMenu, true)
-end
-
-local function CogButton_OnEnter(button)
-	button:GetNormalTexture():SetVertexColor(unpack(E.media.rgbvaluecolor))
-	DM:UpdateHeaderButtons(button.window)
-end
-
-local function CogButton_OnLeave(button)
-	button:GetNormalTexture():SetVertexColor(1, 1, 1)
-	DM:UpdateHeaderButtons(button.window)
+-- Shift click skips the confirmation
+local function ResetButton_OnClick()
+	if IsShiftKeyDown() then
+		ResetAllCombatSessions()
+	else
+		StaticPopup_Show('LUCKYONE_DM_RESET')
+	end
 end
 
 -- Mouse wheel scrolling, no scrollbar
@@ -500,16 +486,15 @@ function DM:GetWindow(index)
 	header.window = window
 	window.header = header
 
-	local cogButton = CreateFrame('Button', nil, header)
-	cogButton:SetNormalAtlas('GM-icon-settings')
-	cogButton:SetScript('OnClick', CogButton_OnClick)
-	cogButton:SetScript('OnEnter', CogButton_OnEnter)
-	cogButton:SetScript('OnLeave', CogButton_OnLeave)
-	cogButton.window = window
-	window.cogButton = cogButton
+	local resetButton = CreateFrame('Button', nil, header)
+	resetButton:SetScript('OnClick', ResetButton_OnClick)
+	resetButton:SetScript('OnEnter', Frame_OnHover)
+	resetButton:SetScript('OnLeave', Frame_OnHover)
+	resetButton.window = window
+	window.resetButton = resetButton
 
-	-- Oversize the atlas like the ElvUI skin does
-	window.cogIcon = cogButton:GetNormalTexture()
+	window.resetText = resetButton:CreateFontString(nil, 'OVERLAY')
+	window.resetText:SetJustifyH('CENTER')
 
 	local sessionButton = CreateFrame('Button', nil, header)
 	sessionButton:SetScript('OnClick', SessionButton_OnClick)
@@ -559,23 +544,23 @@ function DM:ApplyWindowSettings(window)
 		window.sessionType = wdb.sessionType
 	end
 
-	local header, cogButton, sessionButton, typeButton = window.header, window.cogButton, window.sessionButton, window.typeButton
+	local header, resetButton, sessionButton, typeButton = window.header, window.resetButton, window.sessionButton, window.typeButton
+
+	-- Keeps the header texts readable when the font grows
+	local resetWidth = db.headerFontSize + 4
 
 	header:Height(db.headerHeight)
-	cogButton:Size(db.headerIconSize)
-	window.cogIcon:Size(db.headerIconSize * 1.5)
-
-	-- Keeps the session text readable when the header font grows
+	resetButton:Size(resetWidth, db.headerHeight)
 	sessionButton:Size(db.headerFontSize * 2 + 2, db.headerHeight)
 
-	cogButton:ClearAllPoints()
-	cogButton:Point('RIGHT', header, 'RIGHT', -2, 0)
+	resetButton:ClearAllPoints()
+	resetButton:Point('RIGHT', header, 'RIGHT', -2, 0)
 
-	-- The session button takes the icon spot when the cogwheel is hidden
+	-- The session button takes the reset spot when the reset button is hidden
 	sessionButton:ClearAllPoints()
 
-	if wdb.showCogButton then
-		sessionButton:Point('RIGHT', cogButton, 'LEFT', 4, 0)
+	if wdb.showResetButton then
+		sessionButton:Point('RIGHT', resetButton, 'LEFT', 4, 0)
 	else
 		sessionButton:Point('RIGHT', header, 'RIGHT', -2, 0)
 	end
@@ -586,15 +571,16 @@ function DM:ApplyWindowSettings(window)
 
 	if wdb.showSessionButton then
 		typeButton:Point('BOTTOMRIGHT', sessionButton, 'BOTTOMLEFT', -4, 0)
-	elseif wdb.showCogButton then
-		typeButton:Point('BOTTOMRIGHT', header, 'BOTTOMRIGHT', -(db.headerIconSize + 6), 0)
+	elseif wdb.showResetButton then
+		typeButton:Point('BOTTOMRIGHT', header, 'BOTTOMRIGHT', -(resetWidth + 6), 0)
 	else
 		typeButton:Point('BOTTOMRIGHT', header, 'BOTTOMRIGHT', -2, 0)
 	end
 
 	-- Offsets move the visuals, the click areas stay where they are
-	window.cogIcon:ClearAllPoints()
-	window.cogIcon:Point('CENTER', cogButton, 'CENTER', db.headerIconXOffset, db.headerIconYOffset)
+	window.resetText:ClearAllPoints()
+	window.resetText:Point('TOPLEFT', resetButton, 'TOPLEFT', db.headerResetXOffset, db.headerResetYOffset)
+	window.resetText:Point('BOTTOMRIGHT', resetButton, 'BOTTOMRIGHT', db.headerResetXOffset, db.headerResetYOffset)
 
 	window.sessionText:ClearAllPoints()
 	window.sessionText:Point('TOPLEFT', sessionButton, 'TOPLEFT', db.headerSessionXOffset, db.headerSessionYOffset)
@@ -611,14 +597,16 @@ function DM:ApplyWindowSettings(window)
 
 	sessionButton:SetShown(wdb.showSessionButton)
 	sessionButton:SetAlpha(alpha)
-	cogButton:SetShown(wdb.showCogButton)
-	cogButton:SetAlpha(alpha)
+	resetButton:SetShown(wdb.showResetButton)
+	resetButton:SetAlpha(alpha)
 
 	-- Only the header takes the mouse, the bars keep the fade alive below it
 	header:EnableMouse(mouseover)
 
 	window.typeText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
 	window.sessionText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
+	window.resetText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
+	window.resetText:SetText('X')
 	window.infoText:FontTemplate(db.font, db.fontSize, db.fontOutline)
 
 	DM:UpdateWindowBackdrop(window)
