@@ -45,6 +45,7 @@ Private.Logo = 'Interface\\AddOns\\LuckyoneUI\\Media\\Textures\\Clover.tga'
 Private.Name = '|cff4beb2cLuckyoneUI|r'
 
 -- Media
+Private.IconPath = 'Interface\\AddOns\\LuckyoneUI\\Media\\Icons\\'
 Private.Font = 'Expressway'
 Private.Outline = 'OUTLINE'
 Private.Texture = 'Minimalist'

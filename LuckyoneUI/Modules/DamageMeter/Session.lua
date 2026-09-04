@@ -32,6 +32,10 @@ local StaticPopup_Show = _G.StaticPopup_Show
 
 local E = unpack(ElvUI)
 
+local ICON_RESET = Private.IconPath .. 'DM_Reset.png'
+local ICON_SESSIONS = Private.IconPath .. 'DM_Sessions.png'
+local ICON_SETTINGS = Private.IconPath .. 'DM_Settings.png'
+
 local MeterType = Enum.DamageMeterType
 local SessionType = Enum.DamageMeterSessionType
 
@@ -216,22 +220,23 @@ end
 
 -- Header text and colors
 function DM:UpdateHeader(window)
+	local title
 	if window.mode == 'spells' then
-		window.typeText:SetText(DM:StripRealm(window.drillName, window.drillClass) or _G.UNKNOWN)
+		title = DM:StripRealm(window.drillName, window.drillClass) or _G.UNKNOWN
 	else
-		window.typeText:SetText(DM.TypeNames[window.meterType])
+		title = DM.TypeNames[window.meterType]
 	end
 
-	local sessionText
+	local segment
 	if window.sessionType == SessionType.Current then
-		sessionText = _G.DAMAGE_METER_CURRENT_SESSION_SHORT
+		segment = _G.DAMAGE_METER_CURRENT_SESSION_SHORT
 	elseif window.sessionType == SessionType.Overall then
-		sessionText = _G.DAMAGE_METER_OVERALL_SESSION_SHORT
+		segment = _G.DAMAGE_METER_OVERALL_SESSION_SHORT
 	else
-		sessionText = window.sessionID
+		segment = window.sessionID
 	end
 
-	window.sessionText:SetText(sessionText)
+	window.typeText:SetFormattedText('%s [%s]', title, segment)
 end
 
 function DM:UpdateHeaderColors(window)
@@ -241,8 +246,8 @@ function DM:UpdateHeaderColors(window)
 	end
 
 	window.typeText:SetTextColor(r, g, b)
-	window.sessionText:SetTextColor(r, g, b)
-	window.resetText:SetTextColor(r, g, b)
+	window.sessionIcon:SetVertexColor(r, g, b)
+	window.resetIcon:SetVertexColor(r, g, b)
 	window.settingsIcon:SetVertexColor(r, g, b)
 end
 
@@ -493,34 +498,30 @@ function DM:GetWindow(index)
 	window.header = header
 
 	local resetButton = CreateFrame('Button', nil, header)
+	resetButton:SetNormalTexture(ICON_RESET)
 	resetButton:SetScript('OnClick', ResetButton_OnClick)
 	resetButton:SetScript('OnEnter', Frame_OnHover)
 	resetButton:SetScript('OnLeave', Frame_OnHover)
 	resetButton.window = window
 	window.resetButton = resetButton
-
-	window.resetText = resetButton:CreateFontString(nil, 'OVERLAY')
-	window.resetText:SetJustifyH('CENTER')
+	window.resetIcon = resetButton:GetNormalTexture()
 
 	local sessionButton = CreateFrame('Button', nil, header)
+	sessionButton:SetNormalTexture(ICON_SESSIONS)
 	sessionButton:SetScript('OnClick', SessionButton_OnClick)
 	sessionButton:SetScript('OnEnter', Frame_OnHover)
 	sessionButton:SetScript('OnLeave', Frame_OnHover)
 	sessionButton.window = window
 	window.sessionButton = sessionButton
-
-	window.sessionText = sessionButton:CreateFontString(nil, 'OVERLAY')
-	window.sessionText:SetJustifyH('CENTER')
+	window.sessionIcon = sessionButton:GetNormalTexture()
 
 	local settingsButton = CreateFrame('Button', nil, header)
-	settingsButton:SetNormalAtlas('GM-icon-settings')
+	settingsButton:SetNormalTexture(ICON_SETTINGS)
 	settingsButton:SetScript('OnClick', SettingsButton_OnClick)
 	settingsButton:SetScript('OnEnter', Frame_OnHover)
 	settingsButton:SetScript('OnLeave', Frame_OnHover)
 	settingsButton.window = window
 	window.settingsButton = settingsButton
-
-	-- Oversize the atlas like the ElvUI skin does
 	window.settingsIcon = settingsButton:GetNormalTexture()
 
 	local typeButton = CreateFrame('Button', nil, header)
@@ -567,62 +568,63 @@ function DM:ApplyWindowSettings(window)
 
 	local header, resetButton, sessionButton, settingsButton, typeButton = window.header, window.resetButton, window.sessionButton, window.settingsButton, window.typeButton
 
-	-- Keeps the header texts and the icon readable when the font grows
-	local buttonWidth = db.headerFontSize + 4
+	-- The icons bring their own size, the click areas fill the header height
+	local iconSize = db.headerIconSize
 
 	header:Height(db.headerHeight)
-	resetButton:Size(buttonWidth, db.headerHeight)
-	sessionButton:Size(db.headerFontSize * 2 + 2, db.headerHeight)
-	settingsButton:Size(buttonWidth, db.headerHeight)
-	window.settingsIcon:Size(buttonWidth * 1.5)
+	resetButton:Size(iconSize, db.headerHeight)
+	sessionButton:Size(iconSize, db.headerHeight)
+	settingsButton:Size(iconSize, db.headerHeight)
+
+	window.resetIcon:Size(iconSize)
+	window.sessionIcon:Size(iconSize)
+	window.settingsIcon:Size(iconSize - 1) -- Its artwork sits tighter in the file than the other two
 
 	resetButton:ClearAllPoints()
-	resetButton:Point('RIGHT', header, 'RIGHT', -2, 0)
+	resetButton:Point('RIGHT', header, 'RIGHT', 3, 0)
 
 	-- Every button takes the spot of the one to its right when that one is hidden
 	sessionButton:ClearAllPoints()
 
 	if wdb.showResetButton then
-		sessionButton:Point('RIGHT', resetButton, 'LEFT', 4, 0)
+		sessionButton:Point('RIGHT', resetButton, 'LEFT', 0, 0)
 	else
-		sessionButton:Point('RIGHT', header, 'RIGHT', -2, 0)
+		sessionButton:Point('RIGHT', header, 'RIGHT', 3, 0)
 	end
 
 	settingsButton:ClearAllPoints()
 
 	if wdb.showSessionButton then
-		settingsButton:Point('RIGHT', sessionButton, 'LEFT', 0, 0)
+		settingsButton:Point('RIGHT', sessionButton, 'LEFT', -1, 0)
 	elseif wdb.showResetButton then
-		settingsButton:Point('RIGHT', resetButton, 'LEFT', 4, 0)
+		settingsButton:Point('RIGHT', resetButton, 'LEFT', -1, 0)
 	else
-		settingsButton:Point('RIGHT', header, 'RIGHT', -2, 0)
+		settingsButton:Point('RIGHT', header, 'RIGHT', 2, 0)
 	end
 
 	-- The type button fills whatever the buttons leave over
 	typeButton:ClearAllPoints()
-	typeButton:Point('TOPLEFT', header, 'TOPLEFT', 2, 0)
+	typeButton:Point('TOPLEFT', header, 'TOPLEFT', 0, 0)
 
 	if wdb.showSettingsButton then
-		typeButton:Point('BOTTOMRIGHT', settingsButton, 'BOTTOMLEFT', -8, 0)
+		typeButton:Point('BOTTOMRIGHT', settingsButton, 'BOTTOMLEFT', -6, 0)
 	elseif wdb.showSessionButton then
 		typeButton:Point('BOTTOMRIGHT', sessionButton, 'BOTTOMLEFT', -4, 0)
 	elseif wdb.showResetButton then
-		typeButton:Point('BOTTOMRIGHT', header, 'BOTTOMRIGHT', -(buttonWidth + 6), 0)
+		typeButton:Point('BOTTOMRIGHT', resetButton, 'BOTTOMLEFT', -4, 0)
 	else
 		typeButton:Point('BOTTOMRIGHT', header, 'BOTTOMRIGHT', -2, 0)
 	end
 
 	-- Offsets move the visuals, the click areas stay where they are
-	window.resetText:ClearAllPoints()
-	window.resetText:Point('TOPLEFT', resetButton, 'TOPLEFT', db.headerResetXOffset, db.headerResetYOffset)
-	window.resetText:Point('BOTTOMRIGHT', resetButton, 'BOTTOMRIGHT', db.headerResetXOffset, db.headerResetYOffset)
+	window.resetIcon:ClearAllPoints()
+	window.resetIcon:Point('CENTER', resetButton, 'CENTER', db.headerResetXOffset, db.headerResetYOffset)
 
-	window.sessionText:ClearAllPoints()
-	window.sessionText:Point('TOPLEFT', sessionButton, 'TOPLEFT', db.headerSessionXOffset, db.headerSessionYOffset)
-	window.sessionText:Point('BOTTOMRIGHT', sessionButton, 'BOTTOMRIGHT', db.headerSessionXOffset, db.headerSessionYOffset)
+	window.sessionIcon:ClearAllPoints()
+	window.sessionIcon:Point('CENTER', sessionButton, 'CENTER', db.headerSessionXOffset, db.headerSessionYOffset)
 
 	window.settingsIcon:ClearAllPoints()
-	window.settingsIcon:Point('CENTER', settingsButton, 'CENTER', db.headerIconXOffset, db.headerIconYOffset)
+	window.settingsIcon:Point('CENTER', settingsButton, 'CENTER', db.headerSettingsXOffset, db.headerSettingsYOffset)
 
 	window.typeText:ClearAllPoints()
 	window.typeText:Point('TOPLEFT', typeButton, 'TOPLEFT', db.headerTypeXOffset, db.headerTypeYOffset)
@@ -645,9 +647,6 @@ function DM:ApplyWindowSettings(window)
 	window.content:EnableMouse(mouseover)
 
 	window.typeText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
-	window.sessionText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
-	window.resetText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
-	window.resetText:SetText('X')
 	window.infoText:FontTemplate(db.font, db.fontSize, db.fontOutline)
 
 	DM:UpdateWindowBackdrop(window)

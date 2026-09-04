@@ -18,7 +18,7 @@ local SettingsPanel = _G.SettingsPanel
 local RELOAD_POPUP = 'LUCKYONE_RL'
 local IMPORT_DEFAULTS_TEXT = L["Import LuckyoneUI defaults."]
 
-local ICON_PATH = 'Interface\\AddOns\\LuckyoneUI\\Media\\Icons\\'
+local ICON_PATH = Private.IconPath
 local function GetIconName(name, icon)
 	return format('|T%s%s.png:14:14:0:0|t %s', ICON_PATH, icon, name)
 end
@@ -309,6 +309,7 @@ local function BuildDamageMeterSection()
 	section.args.headerOptions.args.sizeOptions = ACH:Group(L["Size"], nil, 1)
 	section.args.headerOptions.args.sizeOptions.inline = true
 	section.args.headerOptions.args.sizeOptions.args.headerHeight = ACH:Range(L["Header Height"], nil, 1, { min = 12, max = 40, step = 1 })
+	section.args.headerOptions.args.sizeOptions.args.headerIconSize = ACH:Range(L["Icon Size"], L["Size of the icons in the header."], 2, { min = 8, max = 40, step = 1 })
 	section.args.headerOptions.args.positionOptions = ACH:Group(L["Position"], nil, 2)
 	section.args.headerOptions.args.positionOptions.inline = true
 	section.args.headerOptions.args.positionOptions.args.headerTypeXOffset = ACH:Range(L["Title X Offset"], nil, 1, { min = -100, max = 100, step = 1 })
@@ -317,8 +318,8 @@ local function BuildDamageMeterSection()
 	section.args.headerOptions.args.positionOptions.args.headerSessionYOffset = ACH:Range(L["Session Y Offset"], nil, 4, { min = -100, max = 100, step = 1 })
 	section.args.headerOptions.args.positionOptions.args.headerResetXOffset = ACH:Range(L["Reset X Offset"], nil, 5, { min = -100, max = 100, step = 1 })
 	section.args.headerOptions.args.positionOptions.args.headerResetYOffset = ACH:Range(L["Reset Y Offset"], nil, 6, { min = -100, max = 100, step = 1 })
-	section.args.headerOptions.args.positionOptions.args.headerIconXOffset = ACH:Range(L["Icon X Offset"], nil, 7, { min = -100, max = 100, step = 1 })
-	section.args.headerOptions.args.positionOptions.args.headerIconYOffset = ACH:Range(L["Icon Y Offset"], nil, 8, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.positionOptions.args.headerSettingsXOffset = ACH:Range(L["Settings X Offset"], nil, 7, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.positionOptions.args.headerSettingsYOffset = ACH:Range(L["Settings Y Offset"], nil, 8, { min = -100, max = 100, step = 1 })
 	section.args.headerOptions.args.colorOptions = ACH:Group(L["Colors"], nil, 3)
 	section.args.headerOptions.args.colorOptions.inline = true
 	section.args.headerOptions.args.colorOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 1)
