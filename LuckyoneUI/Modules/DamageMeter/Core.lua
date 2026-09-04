@@ -44,7 +44,7 @@ end
 local function HideBlizzardMeter()
 	local meter = _G.DamageMeter
 	if not meter or meter:IsForbidden() then return end
-	if not Private.Addon.db.profile.damageMeter.enable then return end
+	if not DM.db.enable then return end
 
 	-- Edit Mode needs the system frame visible while editing
 	if meter.IsEditing and meter:IsEditing() then return end
@@ -115,22 +115,96 @@ function DM:SetTestMode(value)
 end
 
 local widths, heights = {}, {}
-local hosts, columns = {}, {}
+local hosts, columns, floating = {}, {}, {}
 
--- Attached windows leave the main axis
-local function BuildColumns(count)
+local function BuildRoots(count)
 	wipe(hosts)
 	wipe(columns)
+	wipe(floating)
 
 	for index = 1, count do
-		local target = DM:WindowDB(index).attachTo or 0
+		local wdb = DM:WindowDB(index)
+		local target = (wdb.placement == 'ATTACH' and wdb.attachTo) or 0
 		local host = (target >= 1 and target <= count and target ~= index) and DM:WindowDB(target)
 
-		hosts[index] = (host and (host.attachTo or 0) == 0) and target or 0
+		hosts[index] = (host and host.placement ~= 'ATTACH') and target or 0
 
 		if hosts[index] == 0 then
-			columns[#columns + 1] = index
+			local list = wdb.placement == 'CUSTOM' and floating or columns
+			list[#list + 1] = index
 		end
+	end
+end
+
+local function SplitSlot(index, count, vertical, inner, minSize)
+	local remaining = vertical and widths[index] or heights[index]
+
+	for child = 1, count do
+		if hosts[child] == index then
+			remaining = remaining - inner
+
+			local share = floor(remaining * (DM:WindowDB(child).attachSize or 50) / 100 + 0.5)
+			share = max(min(share, remaining - minSize), minSize)
+			remaining = remaining - share
+
+			widths[child] = vertical and share or widths[index]
+			heights[child] = vertical and heights[index] or share
+		end
+	end
+
+	remaining = max(remaining, minSize)
+
+	if vertical then
+		widths[index] = remaining
+	else
+		heights[index] = remaining
+	end
+end
+
+local function PlaceAttached(index, count, vertical, inner)
+	local anchor = DM.windows[index]
+
+	for child = 1, count do
+		if hosts[child] == index then
+			local sub = DM.windows[child]
+			if sub then
+				sub:ClearAllPoints()
+				sub:Size(widths[child], heights[child])
+
+				if vertical then
+					sub:Point('TOPLEFT', anchor, 'TOPRIGHT', inner, 0)
+				else
+					sub:Point('TOPLEFT', anchor, 'BOTTOMLEFT', 0, -inner)
+				end
+
+				sub:Show()
+				anchor = sub
+			end
+		end
+	end
+end
+
+-- Custom placed windows are dragged around with their own mover
+local function UpdateWindowMover(window, index, custom)
+	local name = 'LuckyoneUI_DamageMeterWindow' .. index .. 'Mover'
+
+	if not custom then
+		if window.mover and E.CreatedMovers[name] then
+			E:DisableMover(name)
+		end
+	elseif window.mover then
+		if E.DisabledMovers[name] then
+			E:EnableMover(name)
+		end
+
+		E:SetMoverPoints(name, window)
+	else
+		-- The mover spawns wherever the window sits right now
+		if not window:GetPoint() then
+			window:Point('TOPLEFT', DM.holder, 'TOPLEFT', 0, 0)
+		end
+
+		E:CreateMover(window, name, Private.Name .. ' ' .. L["Damage Meter"] .. ' ' .. index, nil, nil, nil, 'ALL,GENERAL', nil, 'LuckyoneUI,damageMeter')
 	end
 end
 
@@ -143,14 +217,15 @@ function DM:Layout()
 	local vertical = db.orientation == 'VERTICAL'
 	local count = db.windowCount
 	local inner, outer = db.innerSpacing, db.outerSpacing
+	local minSize = db.headerHeight + db.barHeight
 	local holderWidth, holderHeight
 
-	BuildColumns(count)
+	BuildRoots(count)
 	local columnCount = #columns
 
 	if db.sizeMode == 'CUSTOM' then
 		-- Every column brings its own size, the holder wraps them
-		local axis, cross = outer * 2 + (columnCount - 1) * inner, 0
+		local axis, cross = outer * 2 + max(columnCount - 1, 0) * inner, 0
 
 		for _, index in ipairs(columns) do
 			local wdb = DM:WindowDB(index)
@@ -172,43 +247,31 @@ function DM:Layout()
 			holderWidth, holderHeight = db.width, db.height
 		end
 
-		local size = ((vertical and holderHeight or holderWidth) - outer * 2 - (columnCount - 1) * inner) / columnCount
+		if columnCount > 0 then
+			local size = ((vertical and holderHeight or holderWidth) - outer * 2 - (columnCount - 1) * inner) / columnCount
 
-		for _, index in ipairs(columns) do
-			widths[index] = vertical and holderWidth or size
-			heights[index] = vertical and size or holderHeight
-		end
-	end
-
-	-- Attached windows take their share of the slot, the host keeps the rest
-	local minSize = db.headerHeight + db.barHeight
-
-	for _, index in ipairs(columns) do
-		local remaining = vertical and widths[index] or heights[index]
-
-		for child = 1, count do
-			if hosts[child] == index then
-				remaining = remaining - inner
-
-				local share = floor(remaining * (DM:WindowDB(child).attachSize or 50) / 100 + 0.5)
-				share = max(min(share, remaining - minSize), minSize)
-				remaining = remaining - share
-
-				widths[child] = vertical and share or widths[index]
-				heights[child] = vertical and heights[index] or share
+			for _, index in ipairs(columns) do
+				widths[index] = vertical and holderWidth or size
+				heights[index] = vertical and size or holderHeight
 			end
 		end
-
-		remaining = max(remaining, minSize)
-
-		if vertical then
-			widths[index] = remaining
-		else
-			heights[index] = remaining
-		end
 	end
 
-	holder:Size(holderWidth, holderHeight)
+	-- Custom placed windows always bring their own size
+	for _, index in ipairs(floating) do
+		local wdb = DM:WindowDB(index)
+		widths[index], heights[index] = wdb.width, wdb.height
+	end
+
+	for _, index in ipairs(columns) do
+		SplitSlot(index, count, vertical, inner, minSize)
+	end
+
+	for _, index in ipairs(floating) do
+		SplitSlot(index, count, vertical, inner, minSize)
+	end
+
+	holder:Size(max(holderWidth, minSize), max(holderHeight, minSize))
 
 	local previous
 
@@ -229,33 +292,27 @@ function DM:Layout()
 			window:Show()
 			previous = window
 
-			local anchor = window
+			PlaceAttached(index, count, vertical, inner)
+		end
+	end
 
-			for child = 1, count do
-				if hosts[child] == index then
-					local sub = DM.windows[child]
-					if sub then
-						sub:ClearAllPoints()
-						sub:Size(widths[child], heights[child])
+	-- The mover owns the position, the layout only keeps the size
+	for _, index in ipairs(floating) do
+		local window = DM.windows[index]
+		if window then
+			window:Size(widths[index], heights[index])
+			window:Show()
 
-						if vertical then
-							sub:Point('TOPLEFT', anchor, 'TOPRIGHT', inner, 0)
-						else
-							sub:Point('TOPLEFT', anchor, 'BOTTOMLEFT', 0, -inner)
-						end
-
-						sub:Show()
-						anchor = sub
-					end
-				end
-			end
+			PlaceAttached(index, count, vertical, inner)
 		end
 	end
 
 	for index, window in pairs(DM.windows) do
 		if index > count then
+			UpdateWindowMover(window, index, false)
 			window:Hide()
 		else
+			UpdateWindowMover(window, index, DM:WindowDB(index).placement == 'CUSTOM')
 			DM:UpdateWindowGeometry(window, widths[index], heights[index])
 		end
 	end

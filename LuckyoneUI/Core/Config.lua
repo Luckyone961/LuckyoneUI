@@ -195,70 +195,38 @@ end
 
 -- Damage Meter window placement
 local WINDOW_NAMES = { L["Window 1"], L["Window 2"], L["Window 3"] }
+local PlacementValues = { AUTO = L["Automatic"], ATTACH = L["Attached"], CUSTOM = L["Custom"] }
+local SoloPlacementValues = { AUTO = L["Automatic"], CUSTOM = L["Custom"] }
 
-local function GetAttachTargets(index)
-	return function()
-		local db = Private.Addon.db.profile.damageMeter
-		local values = { [0] = _G.NONE }
+local function ReleaseAttached(db, index)
+	for other = 1, #db.windows do
+		local wdb = db.windows[other]
 
-		-- Only windows that still sit on the main axis can host another one
-		for target = 1, db.windowCount do
-			if target ~= index and db.windows[target].attachTo == 0 then
-				values[target] = WINDOW_NAMES[target]
-			end
+		if wdb.attachTo == index then
+			wdb.attachTo = 0
+			wdb.placement = 'AUTO'
 		end
-
-		return values
-	end
-end
-
-local function SetAttachTo(index, value)
-	local db = Private.Addon.db.profile.damageMeter
-	db.windows[index].attachTo = value
-
-	-- A window hanging under another one cannot host one itself
-	if value ~= 0 then
-		for other = 1, #db.windows do
-			if db.windows[other].attachTo == index then
-				db.windows[other].attachTo = 0
-			end
-		end
-	end
-
-	Private:DamageMeter_UpdateAll()
-end
-
--- Damage Meter per window settings
-local function GetWindowValue(index, key)
-	return function()
-		return Private.Addon.db.profile.damageMeter.windows[index][key]
-	end
-end
-
-local function SetWindowValue(index, key)
-	return function(_, value)
-		Private.Addon.db.profile.damageMeter.windows[index][key] = value
-		Private:DamageMeter_UpdateAll()
 	end
 end
 
 -- Damage Meter window group, one per session window
 local function BuildWindowGroup(index, order)
-	local group = ACH:Group(WINDOW_NAMES[index], nil, order, nil, nil, nil, nil, function() return Private.Addon.db.profile.damageMeter.windowCount < index end)
+	local group = ACH:Group(WINDOW_NAMES[index], nil, order, nil, function(info) return Private.Addon.db.profile.damageMeter.windows[index][info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter.windows[index][info[#info]] = value Private:DamageMeter_UpdateAll() end, nil, function() return Private.Addon.db.profile.damageMeter.windowCount < index end)
 	group.inline = true
-	group.args.meterType = ACH:Select(L["Type"], nil, 1, function() local DM = Private.Modules.DamageMeter return DM and DM.TypeNames or {} end, nil, nil, GetWindowValue(index, 'meterType'), function(_, value) Private.Addon.db.profile.damageMeter.windows[index].meterType = value local DM = Private.Modules.DamageMeter local window = DM and DM.windows[index] if window then DM:SetWindowType(window, value) end end)
-	group.args.attachTo = ACH:Select(L["Attach To"], L["Stack this window under another one instead of giving it its own slot."], 2, GetAttachTargets(index), nil, nil, GetWindowValue(index, 'attachTo'), function(_, value) SetAttachTo(index, value) end, nil, function() return Private.Addon.db.profile.damageMeter.windowCount < 2 end)
-	group.args.attachSize = ACH:Range(L["Attached Size"], L["Share of the parent window taken by the attached window."], 3, { min = 10, max = 90, step = 1 }, nil, GetWindowValue(index, 'attachSize'), SetWindowValue(index, 'attachSize'), nil, function() local db = Private.Addon.db.profile.damageMeter return db.windowCount < 2 or db.windows[index].attachTo == 0 end)
-	group.args.width = ACH:Range(L["Width"], nil, 4, { min = 100, max = 1200, step = 1 }, nil, GetWindowValue(index, 'width'), SetWindowValue(index, 'width'), nil, function() local db = Private.Addon.db.profile.damageMeter return db.sizeMode ~= 'CUSTOM' or db.windows[index].attachTo ~= 0 end)
-	group.args.height = ACH:Range(L["Height"], nil, 5, { min = 60, max = 800, step = 1 }, nil, GetWindowValue(index, 'height'), SetWindowValue(index, 'height'), nil, function() local db = Private.Addon.db.profile.damageMeter return db.sizeMode ~= 'CUSTOM' or db.windows[index].attachTo ~= 0 end)
-	group.args.showSessionButton = ACH:Toggle(L["Session Button"], L["Show the session button in the header."], 6, nil, nil, nil, GetWindowValue(index, 'showSessionButton'), SetWindowValue(index, 'showSessionButton'))
-	group.args.showCogButton = ACH:Toggle(L["Settings Button"], L["Show the settings button in the header."], 7, nil, nil, nil, GetWindowValue(index, 'showCogButton'), SetWindowValue(index, 'showCogButton'))
-	group.args.mouseoverButtons = ACH:Toggle(L["Mouseover"], L["Only show the header buttons while the cursor is over the window."], 8, nil, nil, nil, GetWindowValue(index, 'mouseoverButtons'), SetWindowValue(index, 'mouseoverButtons'))
-	group.args.backdrop = ACH:Toggle(L["Frame Backdrop"], L["Show a backdrop behind this window."], 9, nil, nil, nil, GetWindowValue(index, 'backdrop'), SetWindowValue(index, 'backdrop'))
-	group.args.backdropColorType = ACH:Select(L["Backdrop Color"], L["Follow the ElvUI backdrop fade color or use a custom color."], 10, { ELVUI = 'ElvUI', CUSTOM = L["Custom"] }, nil, nil, GetWindowValue(index, 'backdropColorType'), SetWindowValue(index, 'backdropColorType'), nil, function() return not Private.Addon.db.profile.damageMeter.windows[index].backdrop end)
-	group.args.backdropColor = ACH:Color(L["Custom Color"], nil, 11, true, nil, function() local color = Private.Addon.db.profile.damageMeter.windows[index].backdropColor return color.r, color.g, color.b, color.a end, function(_, r, g, b, a) local color = Private.Addon.db.profile.damageMeter.windows[index].backdropColor color.r, color.g, color.b, color.a = r, g, b, a Private:DamageMeter_UpdateAll() end, nil, function() local wdb = Private.Addon.db.profile.damageMeter.windows[index] return not wdb.backdrop or wdb.backdropColorType ~= 'CUSTOM' end)
-	group.args.backdropWidth = ACH:Range(L["Backdrop Width"], L["Grow or shrink the backdrop horizontally, 0 matches the window."], 12, { min = -20, max = 50, step = 1 }, nil, GetWindowValue(index, 'backdropWidth'), SetWindowValue(index, 'backdropWidth'), nil, function() return not Private.Addon.db.profile.damageMeter.windows[index].backdrop end)
-	group.args.backdropHeight = ACH:Range(L["Backdrop Height"], L["Grow or shrink the backdrop vertically, 0 matches the window."], 13, { min = -20, max = 50, step = 1 }, nil, GetWindowValue(index, 'backdropHeight'), SetWindowValue(index, 'backdropHeight'), nil, function() return not Private.Addon.db.profile.damageMeter.windows[index].backdrop end)
+	group.args.meterType = ACH:Select(L["Type"], nil, 1, function() local DM = Private.Modules.DamageMeter return DM and DM.TypeNames or {} end, nil, nil, nil, function(_, value) Private.Addon.db.profile.damageMeter.windows[index].meterType = value local DM = Private.Modules.DamageMeter local window = DM and DM.windows[index] if window then DM:SetWindowType(window, value) end end)
+	group.args.placement = ACH:Select(L["Placement"], L["Give this window its own slot, attach it to another window or move it with its own mover."], 2, function() return Private.Addon.db.profile.damageMeter.windowCount > 1 and PlacementValues or SoloPlacementValues end, nil, nil, nil, function(_, value) local db = Private.Addon.db.profile.damageMeter db.windows[index].placement = value if value == 'ATTACH' then ReleaseAttached(db, index) else db.windows[index].attachTo = 0 end Private:DamageMeter_UpdateAll() end)
+	group.args.attachTo = ACH:Select(L["Attach To"], L["Stack this window under another one instead of giving it its own slot."], 3, function() local db = Private.Addon.db.profile.damageMeter local values = { [0] = _G.NONE } for target = 1, db.windowCount do if target ~= index and db.windows[target].placement ~= 'ATTACH' then values[target] = WINDOW_NAMES[target] end end return values end, nil, nil, nil, function(_, value) local db = Private.Addon.db.profile.damageMeter db.windows[index].attachTo = value if value ~= 0 then ReleaseAttached(db, index) end Private:DamageMeter_UpdateAll() end, nil, function() local db = Private.Addon.db.profile.damageMeter return db.windowCount < 2 or db.windows[index].placement ~= 'ATTACH' end)
+	group.args.attachSize = ACH:Range(L["Attached Size"], L["Share of the parent window taken by the attached window."], 4, { min = 10, max = 90, step = 1 }, nil, nil, nil, nil, function() local wdb = Private.Addon.db.profile.damageMeter.windows[index] return wdb.placement ~= 'ATTACH' or wdb.attachTo == 0 end)
+	group.args.width = ACH:Range(L["Width"], nil, 5, { min = 100, max = 1200, step = 1 }, nil, nil, nil, nil, function() local db = Private.Addon.db.profile.damageMeter local placement = db.windows[index].placement return placement == 'ATTACH' or (placement ~= 'CUSTOM' and db.sizeMode ~= 'CUSTOM') end)
+	group.args.height = ACH:Range(L["Height"], nil, 6, { min = 60, max = 800, step = 1 }, nil, nil, nil, nil, function() local db = Private.Addon.db.profile.damageMeter local placement = db.windows[index].placement return placement == 'ATTACH' or (placement ~= 'CUSTOM' and db.sizeMode ~= 'CUSTOM') end)
+	group.args.showSessionButton = ACH:Toggle(L["Session Button"], L["Show the session button in the header."], 7)
+	group.args.showCogButton = ACH:Toggle(L["Settings Button"], L["Show the settings button in the header."], 8)
+	group.args.mouseoverButtons = ACH:Toggle(L["Mouseover"], L["Only show the header buttons while the cursor is over the window."], 9)
+	group.args.backdrop = ACH:Toggle(L["Frame Backdrop"], L["Show a backdrop behind this window."], 10)
+	group.args.backdropColorType = ACH:Select(L["Backdrop Color"], L["Follow the ElvUI backdrop fade color or use a custom color."], 11, { ELVUI = 'ElvUI', CUSTOM = L["Custom"] }, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.windows[index].backdrop end)
+	group.args.backdropColor = ACH:Color(L["Custom Color"], nil, 12, true, nil, function() local color = Private.Addon.db.profile.damageMeter.windows[index].backdropColor return color.r, color.g, color.b, color.a end, function(_, r, g, b, a) local color = Private.Addon.db.profile.damageMeter.windows[index].backdropColor color.r, color.g, color.b, color.a = r, g, b, a Private:DamageMeter_UpdateAll() end, nil, function() local wdb = Private.Addon.db.profile.damageMeter.windows[index] return not wdb.backdrop or wdb.backdropColorType ~= 'CUSTOM' end)
+	group.args.backdropWidth = ACH:Range(L["Backdrop Width"], L["Grow or shrink the backdrop horizontally, 0 matches the window."], 13, { min = -20, max = 50, step = 1 }, nil, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.windows[index].backdrop end)
+	group.args.backdropHeight = ACH:Range(L["Backdrop Height"], L["Grow or shrink the backdrop vertically, 0 matches the window."], 14, { min = -20, max = 50, step = 1 }, nil, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.windows[index].backdrop end)
 	return group
 end
 

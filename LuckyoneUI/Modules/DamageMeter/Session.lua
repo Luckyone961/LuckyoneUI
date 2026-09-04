@@ -148,23 +148,22 @@ function DM:RefreshWindow(window)
 	DM:RenderWindow(window)
 end
 
-function DM:RefreshAll()
+local function Refresh(onlyDirty)
 	for _, window in pairs(DM.windows) do
-		if window:IsVisible() then
+		if (window.dirty or not onlyDirty) and window:IsVisible() then
 			DM:RefreshWindow(window)
 		end
 	end
 end
 
+function DM:RefreshAll()
+	Refresh(false)
+end
+
 local pendingFlush = false
 local function Flush()
 	pendingFlush = false
-
-	for _, window in pairs(DM.windows) do
-		if window.dirty and window:IsVisible() then
-			DM:RefreshWindow(window)
-		end
-	end
+	Refresh(true)
 end
 
 function DM:MarkDirty(window)

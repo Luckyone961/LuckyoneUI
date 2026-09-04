@@ -27,12 +27,14 @@ local DAMAGE_METER_SPELL_ENTRY_UNIT = DAMAGE_METER_SPELL_ENTRY_UNIT
 
 local E = unpack(ElvUI)
 
+local renderAbbrev, renderFormats
+
 -- Expand the ElvUI abbrev to support values below 1k
 -- This fixes 13 random decimals showing for low dps/hps numbers
 local abbrevSource, abbrevOptions
 local function GetAbbreviate()
 	local config = E.Abbreviate.short.config
-	if not config then return end
+	if not config then return E.Abbreviate.short end
 
 	if abbrevSource ~= config then
 		abbrevSource = config
@@ -54,7 +56,7 @@ local function GetAbbreviate()
 end
 
 local function FormatAmount(amount)
-	return AbbreviateNumbers(amount, GetAbbreviate() or E.Abbreviate.short)
+	return AbbreviateNumbers(amount, renderAbbrev)
 end
 
 -- Bracket styling () [] etc
@@ -97,7 +99,7 @@ local function GetSampleWidth(db)
 	end
 
 	sampleText:FontTemplate(db.font, db.fontSize, db.fontOutline)
-	sampleText:SetFormattedText(GetValueFormats(db).single, SampleAmount)
+	sampleText:SetFormattedText(renderFormats.single, SampleAmount)
 	sampleWidth = sampleText:GetStringWidth()
 
 	return sampleWidth
@@ -497,7 +499,6 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 	end
 
 	local display = db.numberDisplay
-	local formats = GetValueFormats(db)
 
 	valueText:SetText(FormatAmount(primary))
 
@@ -505,12 +506,12 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 		local percent = sessionTotal > 0 and (total / sessionTotal * 100) or 0
 
 		if secondary then
-			persecText:SetFormattedText(formats.both, FormatAmount(secondary), percent)
+			persecText:SetFormattedText(renderFormats.both, FormatAmount(secondary), percent)
 		else
-			persecText:SetFormattedText(formats.percent, percent)
+			persecText:SetFormattedText(renderFormats.percent, percent)
 		end
 	elseif display ~= 'MINIMAL' and secondary then
-		persecText:SetFormattedText(formats.single, FormatAmount(secondary))
+		persecText:SetFormattedText(renderFormats.single, FormatAmount(secondary))
 	else
 		persecText:SetText('')
 	end
@@ -546,7 +547,7 @@ local function UpdateValueColumn(db, window)
 	if window.columnWidth == width then return end
 	window.columnWidth = width
 
-	for i = 1, #window.bars do
+	for i = 1, window.visibleCount do
 		window.bars[i].persec:SetWidth(width)
 	end
 end
@@ -555,8 +556,16 @@ function DM:RenderWindow(window)
 	local db = DM.db
 	if not db or window.visibleCount == 0 then return end
 
+	renderAbbrev = GetAbbreviate()
+	renderFormats = GetValueFormats(db)
+
 	local available, failureReason = IsDamageMeterAvailable()
-	window.infoText:SetText((not available and not DM.testMode) and failureReason or '')
+	local info = (not available and not DM.testMode) and failureReason or ''
+
+	if window.lastInfo ~= info then
+		window.lastInfo = info
+		window.infoText:SetText(info)
+	end
 
 	local session = DM:GetSession(window)
 	local spellMode = window.mode == 'spells'
