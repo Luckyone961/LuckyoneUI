@@ -226,6 +226,45 @@ function DM:UpdateHeaderColors(window)
 	window.sessionText:SetTextColor(r, g, b)
 end
 
+-- ElvUI keeps calling this whenever its media updates
+local function BackdropColor(backdrop)
+	local color = backdrop.customColor
+	backdrop:SetBackdropColor(color.r, color.g, color.b, color.a)
+end
+
+function DM:UpdateWindowBackdrop(window)
+	local wdb = DM:WindowDB(window.index)
+
+	if not wdb.backdrop then
+		if window.backdrop then
+			window.backdrop:Hide()
+		end
+
+		return
+	end
+
+	if not window.backdrop then
+		window:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
+	end
+
+	local backdrop = window.backdrop
+
+	-- Padding grows the backdrop past the window
+	backdrop:SetOutside(window, E.Border + E:Scale(wdb.backdropWidth), E.Border + E:Scale(wdb.backdropHeight), nil, true)
+
+	if wdb.backdropColorType == 'CUSTOM' then
+		backdrop.customColor = wdb.backdropColor
+		backdrop.callbackBackdropColor = BackdropColor
+		BackdropColor(backdrop)
+	else
+		backdrop.customColor = nil
+		backdrop.callbackBackdropColor = nil
+		backdrop:SetBackdropColor(unpack(E.media.backdropfadecolor))
+	end
+
+	backdrop:Show()
+end
+
 -- Session changes
 function DM:SetWindowType(window, meterType)
 	window.meterType = meterType
@@ -569,6 +608,7 @@ function DM:ApplyWindowSettings(window)
 	window.sessionText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
 	window.infoText:FontTemplate(db.font, db.fontSize, db.fontOutline)
 
+	DM:UpdateWindowBackdrop(window)
 	DM:UpdateHeaderColors(window)
 	DM:UpdateHeader(window)
 end

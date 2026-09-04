@@ -88,17 +88,6 @@ function DM:ShouldShow()
 	return true
 end
 
--- Use ElvUI backdrop faded color db
-function DM:UpdateBackdrop()
-	if not DM.holder then return end
-
-	if not DM.holder.backdrop then
-		DM.holder:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
-	end
-
-	DM.holder.backdrop:SetShown(DM.db.backdrop)
-end
-
 function DM:UpdateShown()
 	if not DM.holder then return end
 
@@ -401,7 +390,6 @@ function Private:DamageMeter_UpdateAll()
 	end
 
 	DM:Layout()
-	DM:UpdateBackdrop()
 	DM:UpdateShown()
 	DM:MarkAllDirty()
 end

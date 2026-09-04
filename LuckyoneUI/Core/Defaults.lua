@@ -16,7 +16,6 @@ Private.Defaults = {
 			autoResetType = 'BOTH',
 			orientation = 'HORIZONTAL',
 			windowCount = 2,
-			backdrop = false,
 			sizeMode = 'CHAT',
 			width = 486,
 			height = 208,
@@ -72,6 +71,11 @@ Private.Defaults = {
 					showSessionButton = true,
 					showCogButton = true,
 					mouseoverButtons = false,
+					backdrop = false,
+					backdropColorType = 'ELVUI',
+					backdropColor = { r = 0, g = 0, b = 0, a = 0.8 },
+					backdropWidth = 0,
+					backdropHeight = 0,
 				},
 				[2] = {
 					meterType = 2, -- Healing Done
@@ -83,6 +87,11 @@ Private.Defaults = {
 					showSessionButton = true,
 					showCogButton = true,
 					mouseoverButtons = false,
+					backdrop = false,
+					backdropColorType = 'ELVUI',
+					backdropColor = { r = 0, g = 0, b = 0, a = 0.8 },
+					backdropWidth = 0,
+					backdropHeight = 0,
 				},
 				[3] = {
 					meterType = 9, -- Deaths
@@ -94,6 +103,11 @@ Private.Defaults = {
 					showSessionButton = true,
 					showCogButton = true,
 					mouseoverButtons = false,
+					backdrop = false,
+					backdropColorType = 'ELVUI',
+					backdropColor = { r = 0, g = 0, b = 0, a = 0.8 },
+					backdropWidth = 0,
+					backdropHeight = 0,
 				},
 			},
 		},
