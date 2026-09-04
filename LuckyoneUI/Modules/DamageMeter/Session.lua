@@ -202,6 +202,13 @@ end
 
 function DM:DAMAGE_METER_RESET()
 	for _, window in pairs(DM.windows) do
+		-- Numbered segments are gone after a wipe, fall back to the current one
+		if window.sessionID then
+			window.sessionType = SessionType.Current
+			window.sessionID = nil
+			DM:UpdateHeader(window)
+		end
+
 		window.offset = 0
 		DM:MarkDirty(window)
 	end
