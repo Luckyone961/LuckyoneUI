@@ -398,7 +398,6 @@ L["Strip Realm Names"] = true
 L["Subtlety"] = true
 L["Successfully untracked all quests (including hidden ones)"] = true
 L["Successfully updated your current layout to LuckyoneUI version "] = "Seu perfil foi atualizado com sucesso para o LuckyoneUI versão "
-L["Support"] = "Suporte"
 L["Supporters"] = "Apoiadores"
 L["Survival"] = true
 L["Talking Head"] = true

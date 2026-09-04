@@ -84,7 +84,6 @@ end
 local activeProfiles = {
 	{ 'Luckyone Main', 1 },
 	{ 'Luckyone Healing', 2 },
-	{ 'Luckyone Support', 3 },
 }
 
 function Private:GetActiveProfile()

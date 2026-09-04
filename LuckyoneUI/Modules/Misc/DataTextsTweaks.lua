@@ -29,8 +29,6 @@ local function GetCorrectDataTextWidth()
 		width = 395 -- Main layout default value
 	elseif profile == 2 then
 		width = 704 -- Healer layout default value
-	elseif profile == 3 then
-		width = 484 -- Support layout default value
 	end
 
 	-- Skip the full datatext reload if the width already matches

@@ -20,7 +20,6 @@ local NP = E:GetModule('NamePlates')
 local layoutNames = {
 	main = 'Luckyone Main',
 	healing = 'Luckyone Healing',
-	support = 'Luckyone Support',
 }
 
 -- LibDualSpec handler
@@ -1655,15 +1654,15 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-82'
 
-	if layout == 'main' or layout == 'support' then
+	if layout == 'main' then
 
-		-- Main/Support Player
+		-- Main Player
 		E.db.unitframe.units.player.power.enable = false
 
-		-- Main/Support Party
+		-- Main Party
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. (not Private.isRetail and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]')
 
-		-- Main/Support Raid1
+		-- Main Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 10
 		E.db.unitframe.units.raid1.height = 40
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'TOPRIGHT'
@@ -1677,7 +1676,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.raid1.roleIcon.size = 12
 		E.db.unitframe.units.raid1.width = (scaled and 86) or 96
 
-		-- Main/Support Raid2
+		-- Main Raid2
 		E.db.unitframe.units.raid2.buffIndicator.size = 10
 		E.db.unitframe.units.raid2.height = 40
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'TOPRIGHT'
@@ -1691,7 +1690,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.raid2.roleIcon.size = 12
 		E.db.unitframe.units.raid2.width = (scaled and 86) or 96
 
-		-- Main/Support Raid3
+		-- Main Raid3
 		E.db.unitframe.units.raid3.height = 30
 		E.db.unitframe.units.raid3.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid3.raidicon.attachToObject = 'Health'
@@ -1701,7 +1700,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 8
 		E.db.unitframe.units.raid3.width = (scaled and 86) or 96
 
-		-- Main/Support Heal Prediction
+		-- Main Heal Prediction
 		E.db.unitframe.units.arena.healPrediction.enable = false
 		E.db.unitframe.units.pet.healPrediction.enable = false
 		E.db.unitframe.units.focus.healPrediction.enable = false
@@ -1803,25 +1802,13 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 
-	elseif layout == 'support' then
-
-		-- Support movers
-		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
-		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.ElvAB_2 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
-		E.db.movers.ElvAB_3 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
-		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
-		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 	end
 
 	-- Initial DT width
-	E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (layout == 'main' and 395) or (layout == 'healing' and 704) or (layout == 'support' and 484)
+	E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (layout == 'main' and 395) or (layout == 'healing' and 704)
 
 	-- Custom AB changes
-	if Private.itsLuckyone and (layout == 'healing' or layout == 'support') then
+	if Private.itsLuckyone and layout == 'healing' then
 		E.db.actionbar.bar1.mouseover = true
 		E.db.actionbar.bar2.mouseover = true
 		E.db.actionbar.bar3.mouseover = true
@@ -2177,8 +2164,6 @@ function Private:HandleAlts(layout)
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395 -- (Profile == 1)
 	elseif layout == 'healing' then
 		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704 -- (Profile == 2)
-	elseif layout == 'support' then
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 484 -- (Profile == 3)
 	end
 
 	Private:Setup_PrivateDB(true)

@@ -398,7 +398,6 @@ L["Strip Realm Names"] = "Supprimer les noms de royaumes"
 L["Subtlety"] = "Finesse"
 L["Successfully untracked all quests (including hidden ones)"] = "Le suivi de toutes les quêtes (y compris cachées) a été désactivé avec succès"
 L["Successfully updated your current layout to LuckyoneUI version "] = "Mise à jour réussie de votre disposition actuelle à la version LuckyoneUI "
-L["Support"] = true
 L["Supporters"] = "Soutiens"
 L["Survival"] = "Survie"
 L["Talking Head"] = true

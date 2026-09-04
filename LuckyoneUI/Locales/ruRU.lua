@@ -398,7 +398,6 @@ L["Strip Realm Names"] = true
 L["Subtlety"] = "Скрытность"
 L["Successfully untracked all quests (including hidden ones)"] = "Все задания (включая скрытые) успешно отменены"
 L["Successfully updated your current layout to LuckyoneUI version "] = "Ваш текущий макет успешно обновлен до версии "
-L["Support"] = "Саппорт"
 L["Supporters"] = "Поддержка"
 L["Survival"] = "Выживание"
 L["Talking Head"] = true

@@ -425,7 +425,6 @@ local function BuildElvUILayoutSection()
 	section.args.midnight.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout('main') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.midnight.args.healingVertical = ACH:Execute(L["Healing Vertical"], nil, 2, function() Private:Setup_Layout('healing') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.midnight.args.healingHorizontal = ACH:Execute(L["Healing Horizontal"], nil, 3, function() Private:Setup_Layout('healing', nil, 'horizontal') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.midnight.args.support = ACH:Execute(L["Support"], nil, 4, function() Private:Setup_Layout('support') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.header = ACH:Header(L["Auras"], 5)
 	section.args.filters = ACH:Group(L["Filters"], nil, 6)
 	section.args.filters.inline = true
