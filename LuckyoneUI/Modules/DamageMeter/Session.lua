@@ -508,6 +508,8 @@ function DM:GetWindow(index)
 
 	local typeButton = CreateFrame('Button', nil, header)
 	typeButton:SetScript('OnClick', TypeButton_OnClick)
+	typeButton:SetScript('OnEnter', Frame_OnHover)
+	typeButton:SetScript('OnLeave', Frame_OnHover)
 	typeButton.window = window
 	window.typeButton = typeButton
 
@@ -521,6 +523,8 @@ function DM:GetWindow(index)
 	content:EnableMouseWheel(true)
 	content:SetScript('OnMouseWheel', Content_OnMouseWheel)
 	content:SetScript('OnMouseDown', Content_OnMouseDown)
+	content:SetScript('OnEnter', Frame_OnHover)
+	content:SetScript('OnLeave', Frame_OnHover)
 	content.window = window
 	window.content = content
 
@@ -600,8 +604,9 @@ function DM:ApplyWindowSettings(window)
 	resetButton:SetShown(wdb.showResetButton)
 	resetButton:SetAlpha(alpha)
 
-	-- Only the header takes the mouse, the bars keep the fade alive below it
+	-- Header and content only take the mouse for the fade, the bars always do
 	header:EnableMouse(mouseover)
+	window.content:EnableMouse(mouseover)
 
 	window.typeText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
 	window.sessionText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
