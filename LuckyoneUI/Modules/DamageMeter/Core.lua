@@ -29,6 +29,13 @@ local E = unpack(ElvUI)
 
 DM.windows = {}
 
+-- Bracket styling () [] etc
+DM.BracketChars = {
+	PARENTHESES = { '(', ')' },
+	SQUARE = { '[', ']' },
+	NONE = { '', '' },
+}
+
 function DM:WindowDB(index)
 	return DM.db.windows[index]
 end

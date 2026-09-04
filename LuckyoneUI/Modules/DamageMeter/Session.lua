@@ -239,17 +239,34 @@ end
 
 -- Header text and colors
 local function SegmentName(window)
+	local short = DM.db.headerSessionLength == 'SHORT'
+
 	if window.sessionType == SessionType.Current then
-		return _G.DAMAGE_METER_CURRENT_SESSION_SHORT
+		return short and _G.DAMAGE_METER_CURRENT_SESSION_SHORT or _G.DAMAGE_METER_CURRENT_SESSION
 	elseif window.sessionType == SessionType.Overall then
-		return _G.DAMAGE_METER_OVERALL_SESSION_SHORT
+		return short and _G.DAMAGE_METER_OVERALL_SESSION_SHORT or _G.DAMAGE_METER_OVERALL_SESSION
 	end
 
 	return window.sessionID
 end
 
+-- Only rebuilt when the bracket style changes
+local headerKey, headerFormat
+local function GetHeaderFormat()
+	local style = DM.db.headerBracketStyle
+
+	if headerKey ~= style then
+		headerKey = style
+
+		local chars = DM.BracketChars[style] or DM.BracketChars.SQUARE
+		headerFormat = '%s ' .. chars[1] .. '%s' .. chars[2]
+	end
+
+	return headerFormat
+end
+
 function DM:UpdateHeader(window)
-	window.typeText:SetFormattedText('%s [%s]', DM.TypeNames[window.meterType], SegmentName(window))
+	window.typeText:SetFormattedText(GetHeaderFormat(), DM.TypeNames[window.meterType], SegmentName(window))
 end
 
 local function HeaderColor()
@@ -654,7 +671,7 @@ end
 function DM:UpdatePopupHeader(popup)
 	local name = DM:StripRealm(popup.sourceName, popup.sourceClass) or _G.UNKNOWN
 
-	popup.typeText:SetFormattedText('%s [%s]', name, SegmentName(popup))
+	popup.typeText:SetFormattedText(GetHeaderFormat(), name, SegmentName(popup))
 end
 
 function DM:RefreshPopup()

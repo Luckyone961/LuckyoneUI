@@ -59,13 +59,6 @@ local function FormatAmount(amount)
 	return AbbreviateNumbers(amount, renderAbbrev)
 end
 
--- Bracket styling () [] etc
-local BracketChars = {
-	PARENTHESES = { '(', ')' },
-	SQUARE = { '[', ']' },
-	NONE = { '', '' },
-}
-
 -- Value formats for the secondary number
 -- Only rebuilt when the bracket style changes
 local formatKey, valueFormats
@@ -75,7 +68,7 @@ local function GetValueFormats(db)
 	if formatKey ~= style then
 		formatKey = style
 
-		local chars = BracketChars[style] or BracketChars.PARENTHESES
+		local chars = DM.BracketChars[style] or DM.BracketChars.PARENTHESES
 		local open, close = chars[1], chars[2]
 
 		valueFormats = {
