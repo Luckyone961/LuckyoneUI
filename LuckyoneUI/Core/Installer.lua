@@ -1,6 +1,5 @@
 local _, Private = ...
 local L = Private.Libs.ACL
-local DM = Private.Modules.DamageMeter
 local LSM = Private.Libs.LSM
 
 local format = string.format
@@ -43,7 +42,6 @@ local function LuckyoneDamageMeter()
 	if not Private.isRetail then return end
 
 	Private.Addon.db.profile.damageMeter.enable = true
-	DM:HandleBlizzardMeter()
 	Private:DamageMeter_UpdateAll()
 	Private:Print(L["Damage Meter module enabled."], true)
 end

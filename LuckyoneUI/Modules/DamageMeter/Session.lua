@@ -142,15 +142,27 @@ function DM:GetSession(window)
 	return window.session
 end
 
+function DM:RefreshWindow(window)
+	window.dirty = false
+	DM:FetchWindow(window)
+	DM:RenderWindow(window)
+end
+
+function DM:RefreshAll()
+	for _, window in pairs(DM.windows) do
+		if window:IsVisible() then
+			DM:RefreshWindow(window)
+		end
+	end
+end
+
 local pendingFlush = false
 local function Flush()
 	pendingFlush = false
 
 	for _, window in pairs(DM.windows) do
 		if window.dirty and window:IsVisible() then
-			window.dirty = false
-			DM:FetchWindow(window)
-			DM:RenderWindow(window)
+			DM:RefreshWindow(window)
 		end
 	end
 end
@@ -275,8 +287,7 @@ function DM:SetWindowType(window, meterType)
 	wdb.meterType = meterType
 
 	DM:UpdateHeader(window)
-	DM:FetchWindow(window)
-	DM:RenderWindow(window)
+	DM:RefreshWindow(window)
 end
 
 function DM:SetWindowSession(window, sessionType, sessionID)
@@ -290,8 +301,7 @@ function DM:SetWindowSession(window, sessionType, sessionID)
 	wdb.sessionType = sessionType
 
 	DM:UpdateHeader(window)
-	DM:FetchWindow(window)
-	DM:RenderWindow(window)
+	DM:RefreshWindow(window)
 end
 
 function DM:OpenDrilldown(window, entry)
@@ -313,8 +323,7 @@ function DM:OpenDrilldown(window, entry)
 	window.offset = 0
 
 	DM:UpdateHeader(window)
-	DM:FetchWindow(window)
-	DM:RenderWindow(window)
+	DM:RefreshWindow(window)
 end
 
 function DM:CloseDrilldown(window)
@@ -328,8 +337,7 @@ function DM:CloseDrilldown(window)
 	window.offset = 0
 
 	DM:UpdateHeader(window)
-	DM:FetchWindow(window)
-	DM:RenderWindow(window)
+	DM:RefreshWindow(window)
 end
 
 -- Menus
@@ -410,7 +418,7 @@ local function OpenMenu(button, generator, alignRight)
 end
 
 function DM:UpdateHeaderButtons(window)
-	if not DM:WindowDB(window.index).mouseoverButtons then return end
+	if not window.mouseoverButtons then return end
 
 	local alpha = window:IsMouseOver() and 1 or 0
 	window.sessionButton:SetAlpha(alpha)
@@ -452,11 +460,8 @@ end
 -- Mouse wheel scrolling, no scrollbar
 local function Content_OnMouseWheel(content, delta)
 	local window = content.window
-	local session = DM:GetSession(window)
-	local entries = session and (window.mode == 'spells' and session.combatSpells or session.combatSources)
-	local numEntries = entries and #entries or 0
 
-	local offset = min(max(0, numEntries - window.visibleCount), max(0, window.offset - delta))
+	local offset = min(max(0, window.numEntries - window.visibleCount), max(0, window.offset - delta))
 	if offset ~= window.offset then
 		window.offset = offset
 		DM:RenderWindow(window)
@@ -479,6 +484,7 @@ function DM:GetWindow(index)
 	window.mode = 'sources'
 	window.bars = {}
 	window.visibleCount = 0
+	window.numEntries = 0
 
 	local header = CreateFrame('Frame', nil, window)
 	header:Point('TOPLEFT')
@@ -519,7 +525,7 @@ function DM:GetWindow(index)
 	window.typeText:SetWordWrap(false)
 
 	local content = CreateFrame('Frame', nil, window)
-	content:Point('TOPLEFT', window.header, 'BOTTOMLEFT', 0, 0)
+	content:Point('TOPLEFT', header, 'BOTTOMLEFT', 0, 0)
 	content:Point('BOTTOMRIGHT', window, 'BOTTOMRIGHT', 0, 0)
 	content:EnableMouseWheel(true)
 	content:SetScript('OnMouseWheel', Content_OnMouseWheel)
@@ -595,6 +601,7 @@ function DM:ApplyWindowSettings(window)
 	-- Hidden buttons stay hidden, mouseover only fades the enabled ones
 	local mouseover = wdb.mouseoverButtons
 	local alpha = (mouseover and not window:IsMouseOver()) and 0 or 1
+	window.mouseoverButtons = mouseover
 
 	sessionButton:SetShown(wdb.showSessionButton)
 	sessionButton:SetAlpha(alpha)

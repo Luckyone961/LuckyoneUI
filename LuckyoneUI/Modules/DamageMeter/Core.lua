@@ -276,6 +276,7 @@ function DM:Initialize()
 	hooksecurefunc(E:GetModule('Chat'), 'PositionChats', function()
 		if DM.db.enable and DM.db.sizeMode == 'CHAT' then
 			DM:Layout()
+			DM:RefreshAll()
 		end
 	end)
 
@@ -391,7 +392,7 @@ function Private:DamageMeter_UpdateAll()
 
 	DM:Layout()
 	DM:UpdateShown()
-	DM:MarkAllDirty()
+	DM:RefreshAll()
 end
 
 -- Restore profile defaults config button

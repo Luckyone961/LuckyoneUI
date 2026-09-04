@@ -9,7 +9,6 @@ local unpack = unpack
 local floor = math.floor
 local ipairs = ipairs
 local max = math.max
-local format = string.format
 
 local CreateAbbreviateConfig = CreateAbbreviateConfig
 local CreateFrame = CreateFrame
@@ -85,6 +84,23 @@ local function GetValueFormats(db)
 	end
 
 	return valueFormats
+end
+
+local SampleAmount = '999.9M'
+local sampleWidth, sampleText
+local function GetSampleWidth(db)
+	if sampleWidth then return sampleWidth end
+
+	if not sampleText then
+		sampleText = E.HiddenFrame:CreateFontString(nil, 'OVERLAY')
+		sampleText:SetWordWrap(false)
+	end
+
+	sampleText:FontTemplate(db.font, db.fontSize, db.fontOutline)
+	sampleText:SetFormattedText(GetValueFormats(db).single, SampleAmount)
+	sampleWidth = sampleText:GetStringWidth()
+
+	return sampleWidth
 end
 
 local function Bar_OnClick(bar, mouseButton)
@@ -287,6 +303,7 @@ local function ApplyBarSettings(db, window, bar, index, texture)
 	bar.iconsShown = nil
 end
 
+-- Refreshes the bars afterwards
 function DM:UpdateWindowGeometry(window, width, height)
 	local db = DM.db
 	local contentHeight = height - db.headerHeight
@@ -298,6 +315,7 @@ function DM:UpdateWindowGeometry(window, width, height)
 
 	window.visibleCount = visibleCount
 	window.columnWidth = nil
+	sampleWidth = nil
 
 	local texture = LSM:Fetch('statusbar', db.barTexture)
 
@@ -314,8 +332,6 @@ function DM:UpdateWindowGeometry(window, width, height)
 	for i = visibleCount + 1, #window.bars do
 		window.bars[i]:Hide()
 	end
-
-	DM:RenderWindow(window)
 end
 
 local function SetBarIcon(bar, fileID, atlas)
@@ -500,25 +516,6 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 	end
 end
 
-local SampleAmount = '999.9M'
-local sampleKey, sampleWidth, sampleText
-local function GetSampleWidth(db)
-	local key = format('%s-%s-%s-%s', db.font, db.fontSize, db.fontOutline, db.bracketStyle)
-	if sampleKey == key then return sampleWidth end
-	sampleKey = key
-
-	if not sampleText then
-		sampleText = E.HiddenFrame:CreateFontString(nil, 'OVERLAY')
-		sampleText:SetWordWrap(false)
-	end
-
-	sampleText:FontTemplate(db.font, db.fontSize, db.fontOutline)
-	sampleText:SetFormattedText(GetValueFormats(db).single, SampleAmount)
-	sampleWidth = sampleText:GetStringWidth()
-
-	return sampleWidth
-end
-
 local function UpdateValueColumn(db, window)
 	local width, secret = 0, false
 
@@ -565,6 +562,7 @@ function DM:RenderWindow(window)
 	local spellMode = window.mode == 'spells'
 	local entries = session and (spellMode and session.combatSpells or session.combatSources)
 	local numEntries = entries and #entries or 0
+	window.numEntries = numEntries
 
 	local maxOffset = max(0, numEntries - window.visibleCount)
 	if window.offset > maxOffset then
