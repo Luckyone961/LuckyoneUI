@@ -333,7 +333,16 @@ local function BuildDamageMeterSection()
 	section.args.headerOptions.args.fontOptions.args.headerFont = ACH:SharedMediaFont(L["Font"], nil, 1)
 	section.args.headerOptions.args.fontOptions.args.headerFontOutline = ACH:FontFlags(L["Font Outline"], nil, 2)
 	section.args.headerOptions.args.fontOptions.args.headerFontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 26, step = 1 })
-	section.args.popupOptions = ACH:Group(L["Spell Breakdown"], nil, 7, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
+	section.args.bookmarkOptions = ACH:Group(L["Bookmarks"], nil, 7, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
+	section.args.bookmarkOptions.args.bookmarkDesc = ACH:Group(L["Description"], nil, 1)
+	section.args.bookmarkOptions.args.bookmarkDesc.inline = true
+	section.args.bookmarkOptions.args.bookmarkDesc.args.desc = ACH:Description(L["Right click a session window to open the bookmark panel over its bars.\n\nLeft click a bookmark to switch the window to it, right click one to drop it again. Drag one up or down to give it another place. The last slot opens a menu with the types you are missing."], 1, 'medium')
+	section.args.bookmarkOptions.args.generalOptions = ACH:Group(L["General"], nil, 2)
+	section.args.bookmarkOptions.args.generalOptions.inline = true
+	section.args.bookmarkOptions.args.generalOptions.args.showBookmarks = ACH:Toggle(L["Enable"], L["Open the bookmark panel with a right click on a session window."], 1)
+	section.args.bookmarkOptions.args.generalOptions.args.bookmarkDragDrop = ACH:Toggle(L["Drag and Drop"], L["Drag a bookmark up or down to change its place in the panel."], 2, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.showBookmarks end)
+	section.args.bookmarkOptions.args.bookmarks = ACH:MultiSelect(L["Bookmarks"], L["Types the panel offers, new ones are added to the end of the list."], 3, function() local DM = Private.Modules.DamageMeter return DM and DM.TypeNames or {} end, nil, nil, function(_, key) return Private.Addon.db.profile.damageMeter.bookmarks[key] and true or false end, function(_, key, value) local DM = Private.Modules.DamageMeter if DM then DM:SetBookmark(key, value) end Private:DamageMeter_UpdateAll() end, function() local db = Private.Addon.db.profile.damageMeter return not db.enable or not db.showBookmarks end)
+	section.args.popupOptions = ACH:Group(L["Spell Breakdown"], nil, 8, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.popupOptions.args.popupDesc = ACH:Group(L["Description"], nil, 1)
 	section.args.popupOptions.args.popupDesc.inline = true
 	section.args.popupOptions.args.popupDesc.args.desc = ACH:Description(L["Left click a bar to open the spell breakdown at your cursor.\n\nShift click pins it in place, right click closes it again. Pinned popups are dragged around by their header."], 1, 'medium')

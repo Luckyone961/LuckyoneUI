@@ -7,6 +7,11 @@ local unpack = unpack
 local format = string.format
 local ipairs = ipairs
 local pairs = pairs
+local type = type
+local wipe = wipe
+local sort = table.sort
+local tinsert = table.insert
+local tremove = table.remove
 local max = math.max
 local min = math.min
 local floor = math.floor
@@ -338,6 +343,7 @@ function DM:SetWindowType(window, meterType)
 	wdb.meterType = meterType
 
 	DM:ClosePopup()
+	DM:CloseBookmarks(window)
 	DM:UpdateHeader(window)
 	DM:RefreshWindow(window)
 end
@@ -352,6 +358,7 @@ function DM:SetWindowSession(window, sessionType, sessionID)
 	wdb.sessionType = sessionType
 
 	DM:ClosePopup()
+	DM:CloseBookmarks(window)
 	DM:UpdateHeader(window)
 	DM:RefreshWindow(window)
 end
@@ -436,8 +443,13 @@ local function Frame_OnHover(frame)
 	DM:UpdateHeaderButtons(frame.window)
 end
 
-local function TypeButton_OnClick(button)
-	OpenMenu(button, TypeMenu)
+-- Right click carries through to the window so the bookmarks open from here too
+local function TypeButton_OnClick(button, mouseButton)
+	if mouseButton == 'RightButton' then
+		DM:WindowRightClick(button.window)
+	else
+		OpenMenu(button, TypeMenu)
+	end
 end
 
 local function SessionButton_OnClick(button)
@@ -469,10 +481,389 @@ local function Content_OnMouseWheel(content, delta)
 	end
 end
 
-local function Content_OnMouseDown(_, button)
+local function Content_OnMouseDown(frame, button)
 	if button == 'RightButton' then
-		DM:ClosePopup()
+		DM:WindowRightClick(frame.window)
 	end
+end
+
+-- Secret safe bookmarks
+-- A right click panel over the bar area, it only carries damage meter types (the table)
+-- Every type is stored as its own place in the list so it can be dragged around,
+-- profiles from before that stored a plain true and fall back to the type menu order
+local NEW_BOOKMARK = 99 -- Higher than the type count, anything new sorts to the end
+
+local bookmarkList, bookmarkPlaces = {}, {}
+
+local function SortBookmarks(a, b)
+	return bookmarkPlaces[a] < bookmarkPlaces[b]
+end
+
+local function BuildBookmarkList()
+	wipe(bookmarkList)
+	wipe(bookmarkPlaces)
+
+	local saved = DM.db.bookmarks
+	local total = 0
+
+	for _, category in ipairs(DM.TypeCategories) do
+		for _, meterType in ipairs(category.types) do
+			total = total + 1
+
+			local place = saved[meterType]
+
+			if place then
+				bookmarkList[#bookmarkList + 1] = meterType
+				bookmarkPlaces[meterType] = (type(place) == 'number') and place or total
+			end
+		end
+	end
+
+	sort(bookmarkList, SortBookmarks)
+
+	return bookmarkList, total
+end
+
+-- Dropping one leaves a gap behind, the places are handed out again from the list
+local function SaveBookmarkOrder()
+	local saved = DM.db.bookmarks
+
+	for index, meterType in ipairs(bookmarkList) do
+		saved[meterType] = index
+	end
+end
+
+-- The options list and the plus menu both go through here, a dropped one is kept
+-- as false so the profile defaults cannot bring it back on the next login
+function DM:SetBookmark(meterType, enabled)
+	DM.db.bookmarks[meterType] = enabled and NEW_BOOKMARK or false
+end
+
+local function AddBookmark(data)
+	DM:SetBookmark(data.meterType, true)
+	DM:LayoutBookmarks(data.window)
+end
+
+-- The plus icon only offers types which are still missing in the bookmarks
+local function BookmarkMenu(owner, rootDescription)
+	rootDescription:SetTag('MENU_LUCKYONEUI_DAMAGE_METER_BOOKMARK')
+
+	local saved = DM.db.bookmarks
+	local window = owner.window
+
+	for _, category in ipairs(DM.TypeCategories) do
+		local submenu
+
+		for _, meterType in ipairs(category.types) do
+			if not saved[meterType] then
+				submenu = submenu or rootDescription:CreateButton(category.name)
+				submenu:CreateButton(DM.TypeNames[meterType], AddBookmark, { window = window, meterType = meterType })
+			end
+		end
+	end
+end
+
+local function BookmarkRow_OnClick(row, mouseButton)
+	local window = row.window
+
+	-- The last slot spawns the menu instead, it has no type of its own
+	if not row.meterType then
+		if mouseButton == 'LeftButton' then
+			OpenMenu(row, BookmarkMenu)
+		end
+
+		return
+	end
+
+	-- Right click drops the bookmark again, the panel stays open
+	if mouseButton == 'RightButton' then
+		DM:SetBookmark(row.meterType, false)
+		DM:LayoutBookmarks(window)
+		return
+	end
+
+	DM:SetWindowType(window, row.meterType)
+end
+
+-- Drag and drop reorder
+-- The row under the cursor, the plus slot never counts as one
+local function DropIndex(frame)
+	local _, y = GetCursorPosition()
+	y = y / frame:GetEffectiveScale()
+
+	for index = 1, frame.dropCount do
+		if y >= frame.rows[index]:GetBottom() then
+			return index
+		end
+	end
+
+	return frame.dropCount
+end
+
+-- The marker sits above the target while moving up and below it while moving down
+local function Bookmarks_OnUpdate(frame)
+	local index = DropIndex(frame)
+	if index == frame.dropIndex then return end
+
+	frame.dropIndex = index
+
+	local row = frame.rows[index]
+	local marker = frame.marker
+
+	marker:ClearAllPoints()
+
+	if index <= frame.dragIndex then
+		marker:Point('BOTTOMLEFT', row, 'TOPLEFT', 0, 0)
+		marker:Point('BOTTOMRIGHT', row, 'TOPRIGHT', 0, 0)
+	else
+		marker:Point('TOPLEFT', row, 'BOTTOMLEFT', 0, 0)
+		marker:Point('TOPRIGHT', row, 'BOTTOMRIGHT', 0, 0)
+	end
+end
+
+local function BookmarkRow_OnDragStart(row)
+	if not DM.db.bookmarkDragDrop or not row.meterType then return end
+
+	local frame = row:GetParent()
+	frame.dragIndex = row.index
+	frame.dropIndex = nil
+
+	row:SetAlpha(0.4)
+	frame.marker:Show()
+	frame:SetScript('OnUpdate', Bookmarks_OnUpdate)
+
+	Bookmarks_OnUpdate(frame)
+end
+
+local function BookmarkRow_OnDragStop(row)
+	local frame = row:GetParent()
+	local from, to = frame.dragIndex, frame.dropIndex
+
+	frame.dragIndex, frame.dropIndex = nil, nil
+	if not from then return end
+
+	frame:SetScript('OnUpdate', nil)
+	frame.marker:Hide()
+	row:SetAlpha(1)
+
+	if to and to ~= from then
+		DM:MoveBookmark(row.window, from, to)
+	end
+end
+
+local function CreateBookmarkRow(frame)
+	local row = CreateFrame('Button', nil, frame)
+	row.window = frame.window
+
+	row:SetFrameLevel(frame:GetFrameLevel() + 2) -- Keeps its backdrop above the one behind the whole panel
+	row:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
+	row:RegisterForDrag('LeftButton')
+	row:SetScript('OnClick', BookmarkRow_OnClick)
+	row:SetScript('OnDragStart', BookmarkRow_OnDragStart)
+	row:SetScript('OnDragStop', BookmarkRow_OnDragStop)
+	row:SetScript('OnEnter', Frame_OnHover)
+	row:SetScript('OnLeave', Frame_OnHover)
+	row:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
+
+	-- Marks the type the window is showing right now
+	row.selected = row:CreateTexture(nil, 'ARTWORK')
+	row.selected:SetTexture(E.media.blankTex)
+	row.selected:SetVertexColor(1, 1, 1, 0.2)
+	row.selected:SetAllPoints()
+
+	local highlight = row:CreateTexture(nil, 'HIGHLIGHT')
+	highlight:SetTexture(E.media.blankTex)
+	highlight:SetVertexColor(1, 1, 1, 0.2)
+	highlight:SetAllPoints()
+
+	-- Both edges so the longer type names get trimmed instead of spilling out
+	row.text = row:CreateFontString(nil, 'OVERLAY')
+	row.text:SetJustifyH('CENTER')
+	row.text:SetWordWrap(false)
+	row.text:Point('LEFT', row, 'LEFT', 4, 0)
+	row.text:Point('RIGHT', row, 'RIGHT', -4, 0)
+
+	return row
+end
+
+local function Bookmarks_OnShow(frame)
+	frame:RegisterEvent('GLOBAL_MOUSE_DOWN')
+end
+
+-- The bars come back whichever way the panel went away
+local function Bookmarks_OnHide(frame)
+	frame:UnregisterEvent('GLOBAL_MOUSE_DOWN')
+	frame:SetScript('OnUpdate', nil)
+
+	frame.dragIndex, frame.dropIndex = nil, nil
+	frame.marker:Hide()
+	frame.window.content:Show()
+end
+
+-- Anything on the window keeps it open, the add menu counts as part of it
+local function Bookmarks_OnEvent(frame)
+	if Menu.GetManager():GetOpenMenu() then return end
+	if DoesAncestryIncludeAny(frame.window, GetMouseFoci()) then return end
+
+	frame:Hide()
+end
+
+local function Bookmarks_OnMouseDown(frame, button)
+	if button == 'RightButton' then
+		frame:Hide()
+	end
+end
+
+function DM:GetBookmarks(window)
+	local frame = window.bookmarks
+	if frame then return frame end
+
+	frame = CreateFrame('Frame', nil, window)
+
+	-- Set before the scripts, the first Hide already fires OnHide
+	frame.rows = {}
+	frame.window = window
+	window.bookmarks = frame
+
+	frame:SetFrameLevel(window.content:GetFrameLevel() + 5)
+	frame:Point('TOPLEFT', window.header, 'BOTTOMLEFT', 0, 0)
+	frame:Point('BOTTOMRIGHT', window, 'BOTTOMRIGHT', 0, 0)
+	frame:EnableMouse(true)
+
+	-- Shows where a dragged bookmark lands, above the rows so it stays visible
+	local marker = CreateFrame('Frame', nil, frame)
+	marker:SetFrameLevel(frame:GetFrameLevel() + 4)
+	marker:Hide()
+	frame.marker = marker
+
+	marker.texture = marker:CreateTexture(nil, 'OVERLAY')
+	marker.texture:SetTexture(E.media.blankTex)
+	marker.texture:SetAllPoints()
+
+	frame:SetScript('OnShow', Bookmarks_OnShow)
+	frame:SetScript('OnHide', Bookmarks_OnHide)
+	frame:SetScript('OnEvent', Bookmarks_OnEvent)
+	frame:SetScript('OnMouseDown', Bookmarks_OnMouseDown)
+	frame:SetScript('OnEnter', Frame_OnHover)
+	frame:SetScript('OnLeave', Frame_OnHover)
+	frame:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
+	frame:Hide()
+
+	return frame
+end
+
+-- The rows split whatever the header leaves over, so they always fit
+function DM:LayoutBookmarks(window)
+	local frame = window.bookmarks
+	if not frame then return false end
+
+	local db = DM.db
+	local list, total = BuildBookmarkList()
+
+	-- The plus icon goes away once every type is bookmarked
+	local rows = #list + ((#list < total) and 1 or 0)
+	if rows == 0 then return false end
+
+	local spacing = db.barSpacing
+	local rowHeight = floor(((window.contentHeight or 0) - (rows - 1) * spacing) / rows)
+	if rowHeight < 1 then return false end
+
+	-- Whatever the list looked like, it comes out of here numbered from the top
+	SaveBookmarkOrder()
+
+	local r, g, b = HeaderColor()
+
+	frame.dropCount = #list
+	frame.marker:Height(max(spacing, 2))
+	frame.marker.texture:SetVertexColor(r, g, b)
+
+	for index = 1, rows do
+		local row = frame.rows[index]
+		if not row then
+			row = CreateBookmarkRow(frame)
+			frame.rows[index] = row
+		end
+
+		local meterType = list[index]
+		local yOffset = -((index - 1) * (rowHeight + spacing))
+
+		row:ClearAllPoints()
+		row:Point('TOPLEFT', frame, 'TOPLEFT', 0, yOffset)
+		row:Point('TOPRIGHT', frame, 'TOPRIGHT', 0, yOffset)
+		row:Height(rowHeight)
+
+		row.index = index
+		row.meterType = meterType
+		row:SetAlpha(1) -- A drag that ended on a relayout leaves it dimmed
+		row.text:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
+		row.text:SetTextColor(r, g, b)
+		row.text:SetText(meterType and DM.TypeNames[meterType] or '+')
+		row.selected:SetShown(meterType == window.meterType)
+		row:Show()
+	end
+
+	for index = rows + 1, #frame.rows do
+		frame.rows[index]:Hide()
+	end
+
+	return true
+end
+
+function DM:OpenBookmarks(window)
+	if not DM.db.showBookmarks then return end
+
+	DM:GetBookmarks(window)
+	if not DM:LayoutBookmarks(window) then return end
+
+	window.content:Hide()
+	window.bookmarks:Show()
+end
+
+-- The list is rebuilt from the places, so the places are what has to move
+function DM:MoveBookmark(window, from, to)
+	local list = BuildBookmarkList()
+
+	local meterType = tremove(list, from)
+	if not meterType then return end
+
+	tinsert(list, to, meterType)
+	SaveBookmarkOrder()
+
+	DM:LayoutBookmarks(window)
+end
+
+function DM:CloseBookmarks(window)
+	if window.bookmarks then
+		window.bookmarks:Hide()
+	end
+end
+
+function DM:CloseAllBookmarks()
+	for _, window in pairs(DM.windows) do
+		DM:CloseBookmarks(window)
+	end
+end
+
+function DM:ToggleBookmarks(window)
+	if window.bookmarks and window.bookmarks:IsShown() then
+		DM:CloseBookmarks(window)
+	else
+		DM:OpenBookmarks(window)
+	end
+end
+
+-- The popup goes first, the bookmarks only take over once it is gone
+function DM:WindowRightClick(window)
+	local popup = DM.popup
+
+	if popup and popup:IsShown() then
+		popup:Hide()
+		return
+	end
+
+	if window.spellMode then return end
+
+	DM:ToggleBookmarks(window)
 end
 
 -- Spell breakdown popup
@@ -741,8 +1132,10 @@ function DM:GetWindow(index)
 	local header = CreateFrame('Frame', nil, window)
 	header:Point('TOPLEFT')
 	header:Point('TOPRIGHT')
+	header:SetPassThroughButtons('LeftButton', 'MiddleButton')
 	header:SetScript('OnEnter', Frame_OnHover)
 	header:SetScript('OnLeave', Frame_OnHover)
+	header:SetScript('OnMouseDown', Content_OnMouseDown)
 	header.window = window
 	window.header = header
 
@@ -780,6 +1173,7 @@ function DM:GetWindow(index)
 	window.settingsIcon:Point('CENTER')
 
 	local typeButton = CreateFrame('Button', nil, header)
+	typeButton:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
 	typeButton:SetScript('OnClick', TypeButton_OnClick)
 	typeButton:SetScript('OnEnter', Frame_OnHover)
 	typeButton:SetScript('OnLeave', Frame_OnHover)
@@ -795,6 +1189,7 @@ function DM:GetWindow(index)
 	local content = CreateFrame('Frame', nil, window)
 	content:Point('TOPLEFT', header, 'BOTTOMLEFT', 0, 0)
 	content:Point('BOTTOMRIGHT', window, 'BOTTOMRIGHT', 0, 0)
+	content:SetPassThroughButtons('LeftButton', 'MiddleButton')
 	content:EnableMouseWheel(true)
 	content:SetScript('OnMouseWheel', Content_OnMouseWheel)
 	content:SetScript('OnMouseDown', Content_OnMouseDown)
@@ -891,9 +1286,12 @@ function DM:ApplyWindowSettings(window)
 	settingsButton:SetShown(wdb.showSettingsButton)
 	settingsButton:SetAlpha(alpha)
 
-	-- Header and content only take the mouse for the fade, the bars always do
-	header:EnableMouse(mouseover)
-	window.content:EnableMouse(mouseover)
+	-- The fade wants the mouse, the bookmark panel wants the right click
+	-- Left and middle clicks pass straight through either way
+	local takeMouse = mouseover or db.showBookmarks
+
+	header:EnableMouse(takeMouse)
+	window.content:EnableMouse(takeMouse)
 
 	window.typeText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
 	window.infoText:FontTemplate(db.font, db.fontSize, db.fontOutline)

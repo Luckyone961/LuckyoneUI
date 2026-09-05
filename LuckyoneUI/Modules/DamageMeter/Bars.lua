@@ -100,7 +100,7 @@ end
 
 local function Bar_OnClick(bar, mouseButton)
 	if mouseButton == 'RightButton' then
-		DM:ClosePopup()
+		DM:WindowRightClick(bar.window)
 	elseif bar.entry and not bar.window.spellMode then
 		DM:OpenPopup(bar.window, bar.entry)
 	end
@@ -307,6 +307,7 @@ function DM:UpdateWindowGeometry(window, width, height)
 	end
 
 	window.visibleCount = visibleCount
+	window.contentHeight = contentHeight
 	window.columnWidth = nil
 	sampleWidth = nil
 

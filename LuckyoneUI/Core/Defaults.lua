@@ -68,6 +68,16 @@ Private.Defaults = {
 			headerSettingsYOffset = 0,
 			popupBackdropColorType = 'ELVUI',
 			popupBackdropColor = { r = 0, g = 0, b = 0, a = 0.8 },
+			showBookmarks = true,
+			bookmarkDragDrop = true,
+			bookmarks = { -- Meter type = its place in the panel
+				[0] = 1, -- Damage Done
+				[2] = 2, -- Healing Done
+				[9] = 3, -- Deaths
+				[6] = 4, -- Dispels
+				[5] = 5, -- Interrupts
+				[10] = 6, -- Enemy Damage Taken
+			},
 			windows = {
 				[1] = {
 					meterType = 0, -- Damage Done

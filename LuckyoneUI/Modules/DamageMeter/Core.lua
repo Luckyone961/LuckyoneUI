@@ -105,6 +105,7 @@ function DM:UpdateShown()
 		DM:MarkAllDirty()
 	elseif not shown then
 		DM:ClosePopup()
+		DM:CloseAllBookmarks()
 	end
 
 	DM.lastShown = shown
@@ -469,8 +470,9 @@ function Private:DamageMeter_UpdateAll()
 
 	DM:HandleBlizzardMeter()
 
-	-- The popup rebuilds itself with the new settings the next time it opens
+	-- The popup and the bookmarks rebuild themselves the next time they open
 	DM:ClosePopup()
+	DM:CloseAllBookmarks()
 
 	if not db.enable then
 		if DM.holder then
