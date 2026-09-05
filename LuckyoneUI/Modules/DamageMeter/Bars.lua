@@ -413,22 +413,29 @@ local function UpdateBarName(db, bar, entry, rank, spellMode)
 		bar.lastName = nil
 
 		local spellID = entry.spellID
-		if not spellID or issecretvalue(spellID) then
-			nameText:SetText(UNKNOWN)
-			return
+		local spellName
+		if spellID and not issecretvalue(spellID) then
+			spellName = GetSpellName(spellID)
 		end
 
-		local spellName = GetSpellName(spellID) or UNKNOWN
 		local creatureName = entry.creatureName
 		local details = entry.combatSpellDetails
 		local unitName = details and details.unitName
+		local source, sourceFormat
 
 		if creatureName and (issecretvalue(creatureName) or creatureName ~= '') then
-			nameText:SetFormattedText(DAMAGE_METER_SPELL_ENTRY_CREATURE, spellName, creatureName)
+			source, sourceFormat = creatureName, DAMAGE_METER_SPELL_ENTRY_CREATURE
 		elseif unitName and (issecretvalue(unitName) or unitName ~= '') then
-			nameText:SetFormattedText(DAMAGE_METER_SPELL_ENTRY_UNIT, spellName, DM:StripRealm(unitName, details.unitClassFilename))
+			source, sourceFormat = DM:StripRealm(unitName, details.unitClassFilename), DAMAGE_METER_SPELL_ENTRY_UNIT
+		end
+
+		if not source then
+			nameText:SetText(spellName or UNKNOWN)
+		elseif spellName then
+			nameText:SetFormattedText(sourceFormat, spellName, source)
 		else
-			nameText:SetText(spellName)
+			-- Enemy damage taken has no spell to name, the source alone beats "Unknown - Name"
+			nameText:SetText(source)
 		end
 
 		return
