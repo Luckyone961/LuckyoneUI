@@ -139,8 +139,13 @@ local function BuildRoots(count)
 		hosts[index] = (host and host.placement ~= 'ATTACH') and target or 0
 
 		if hosts[index] == 0 then
-			local list = wdb.placement == 'CUSTOM' and floating or columns
-			list[#list + 1] = index
+			if wdb.placement == 'CUSTOM' then
+				-- Custom placed windows always bring their own size
+				floating[#floating + 1] = index
+				widths[index], heights[index] = wdb.width, wdb.height
+			else
+				columns[#columns + 1] = index
+			end
 		end
 	end
 end
@@ -193,10 +198,8 @@ local function PlaceAttached(index, count, vertical, inner)
 	end
 end
 
--- Nothing is anchored to the main holder when every window is in custom mode
-local function UpdateHolderMover(enabled)
-	local name = 'LuckyoneUI_DamageMeterMover'
-
+-- ElvUI keeps disabled movers around, this only flips them back and forth
+local function ToggleMover(name, enabled)
 	if enabled then
 		if E.DisabledMovers[name] then
 			E:EnableMover(name)
@@ -210,17 +213,13 @@ end
 local function UpdateWindowMover(window, index, custom)
 	local name = 'LuckyoneUI_DamageMeterWindow' .. index .. 'Mover'
 
-	if not custom then
-		if window.mover and E.CreatedMovers[name] then
-			E:DisableMover(name)
-		end
-	elseif window.mover then
-		if E.DisabledMovers[name] then
-			E:EnableMover(name)
-		end
+	if window.mover then
+		ToggleMover(name, custom)
 
-		E:SetMoverPoints(name, window)
-	else
+		if custom then
+			E:SetMoverPoints(name, window)
+		end
+	elseif custom then
 		-- The mover spawns wherever the window sits right now
 		if not window:GetPoint() then
 			window:Point('TOPLEFT', DM.holder, 'TOPLEFT', 0, 0)
@@ -279,18 +278,11 @@ function DM:Layout()
 		end
 	end
 
-	-- Custom placed windows always bring their own size
-	for _, index in ipairs(floating) do
-		local wdb = DM:WindowDB(index)
-		widths[index], heights[index] = wdb.width, wdb.height
-	end
-
-	for _, index in ipairs(columns) do
-		SplitSlot(index, count, vertical, inner, minSize)
-	end
-
-	for _, index in ipairs(floating) do
-		SplitSlot(index, count, vertical, inner, minSize)
+	-- Attached windows take their share from the root they sit under
+	for index = 1, count do
+		if hosts[index] == 0 then
+			SplitSlot(index, count, vertical, inner, minSize)
+		end
 	end
 
 	holder:Size(max(holderWidth, minSize), max(holderHeight, minSize))
@@ -339,7 +331,8 @@ function DM:Layout()
 		end
 	end
 
-	UpdateHolderMover(columnCount > 0)
+	-- Nothing is anchored to the main holder when every window is in custom mode
+	ToggleMover('LuckyoneUI_DamageMeterMover', columnCount > 0)
 end
 
 function DM:Initialize()
@@ -383,10 +376,12 @@ function DM:Initialize()
 	DM:RegisterEvent('DAMAGE_METER_COMBAT_SESSION_UPDATED')
 	DM:RegisterEvent('DAMAGE_METER_CURRENT_SESSION_UPDATED')
 	DM:RegisterEvent('DAMAGE_METER_RESET')
-	DM:RegisterEvent('PLAYER_REGEN_DISABLED')
 	DM:RegisterEvent('PLAYER_REGEN_ENABLED')
-	DM:RegisterEvent('GROUP_ROSTER_UPDATE')
 	DM:RegisterEvent('PLAYER_ENTERING_WORLD')
+
+	-- Combat and group changes only touch the visibility rule
+	DM:RegisterEvent('PLAYER_REGEN_DISABLED', 'UpdateShown')
+	DM:RegisterEvent('GROUP_ROSTER_UPDATE', 'UpdateShown')
 end
 
 -- Wipe all sessions, optionally confirmed in chat
@@ -450,18 +445,10 @@ function DM:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	DM:CheckAutoReset(initLogin, isReload)
 end
 
-function DM:PLAYER_REGEN_DISABLED()
-	DM:UpdateShown()
-end
-
 -- Re-render after combat when the amounts stop being secret
 function DM:PLAYER_REGEN_ENABLED()
 	DM:UpdateShown()
 	DM:MarkAllDirty()
-end
-
-function DM:GROUP_ROSTER_UPDATE()
-	DM:UpdateShown()
 end
 
 function Private:DamageMeter_UpdateAll()

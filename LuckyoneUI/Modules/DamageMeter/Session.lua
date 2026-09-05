@@ -287,9 +287,9 @@ function DM:UpdateHeaderColors(window)
 	local r, g, b = HeaderColor()
 
 	window.typeText:SetTextColor(r, g, b)
-	window.sessionIcon:SetVertexColor(r, g, b)
-	window.resetIcon:SetVertexColor(r, g, b)
-	window.settingsIcon:SetVertexColor(r, g, b)
+	window.sessionButton.icon:SetVertexColor(r, g, b)
+	window.resetButton.icon:SetVertexColor(r, g, b)
+	window.settingsButton.icon:SetVertexColor(r, g, b)
 end
 
 -- ElvUI keeps calling this whenever its media updates
@@ -334,13 +334,9 @@ function DM:UpdateWindowBackdrop(window)
 	backdrop:Show()
 end
 
--- Session changes
-function DM:SetWindowType(window, meterType)
-	window.meterType = meterType
+-- Session changes, anything open on top of the window goes away with the old data
+local function WindowChanged(window)
 	window.offset = 0
-
-	local wdb = DM:WindowDB(window.index)
-	wdb.meterType = meterType
 
 	DM:ClosePopup()
 	DM:CloseBookmarks(window)
@@ -348,19 +344,20 @@ function DM:SetWindowType(window, meterType)
 	DM:RefreshWindow(window)
 end
 
+function DM:SetWindowType(window, meterType)
+	window.meterType = meterType
+	DM:WindowDB(window.index).meterType = meterType
+
+	WindowChanged(window)
+end
+
+-- Session IDs are per login session, only the type is saved
 function DM:SetWindowSession(window, sessionType, sessionID)
 	window.sessionType = sessionType
 	window.sessionID = sessionID
-	window.offset = 0
+	DM:WindowDB(window.index).sessionType = sessionType
 
-	-- Session IDs are per login session
-	local wdb = DM:WindowDB(window.index)
-	wdb.sessionType = sessionType
-
-	DM:ClosePopup()
-	DM:CloseBookmarks(window)
-	DM:UpdateHeader(window)
-	DM:RefreshWindow(window)
+	WindowChanged(window)
 end
 
 -- Menus
@@ -441,6 +438,16 @@ end
 
 local function Frame_OnHover(frame)
 	DM:UpdateHeaderButtons(frame.window)
+end
+
+local function SetHoverScripts(frame)
+	frame:SetScript('OnEnter', Frame_OnHover)
+	frame:SetScript('OnLeave', Frame_OnHover)
+end
+
+-- Clicks anywhere on screen decide whether a panel stays open
+local function Frame_OnShow(frame)
+	frame:RegisterEvent('GLOBAL_MOUSE_DOWN')
 end
 
 -- Right click carries through to the window so the bookmarks open from here too
@@ -661,9 +668,8 @@ local function CreateBookmarkRow(frame)
 	row:SetScript('OnClick', BookmarkRow_OnClick)
 	row:SetScript('OnDragStart', BookmarkRow_OnDragStart)
 	row:SetScript('OnDragStop', BookmarkRow_OnDragStop)
-	row:SetScript('OnEnter', Frame_OnHover)
-	row:SetScript('OnLeave', Frame_OnHover)
 	row:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
+	SetHoverScripts(row)
 
 	-- Marks the type the window is showing right now
 	row.selected = row:CreateTexture(nil, 'ARTWORK')
@@ -684,10 +690,6 @@ local function CreateBookmarkRow(frame)
 	row.text:Point('RIGHT', row, 'RIGHT', -4, 0)
 
 	return row
-end
-
-local function Bookmarks_OnShow(frame)
-	frame:RegisterEvent('GLOBAL_MOUSE_DOWN')
 end
 
 -- The bars come back whichever way the panel went away
@@ -714,11 +716,8 @@ local function Bookmarks_OnMouseDown(frame, button)
 	end
 end
 
-function DM:GetBookmarks(window)
-	local frame = window.bookmarks
-	if frame then return frame end
-
-	frame = CreateFrame('Frame', nil, window)
+local function CreateBookmarks(window)
+	local frame = CreateFrame('Frame', nil, window)
 
 	-- Set before the scripts, the first Hide already fires OnHide
 	frame.rows = {}
@@ -740,14 +739,13 @@ function DM:GetBookmarks(window)
 	marker.texture:SetTexture(E.media.blankTex)
 	marker.texture:SetAllPoints()
 
-	frame:SetScript('OnShow', Bookmarks_OnShow)
+	frame:SetScript('OnShow', Frame_OnShow)
 	frame:SetScript('OnHide', Bookmarks_OnHide)
 	frame:SetScript('OnEvent', Bookmarks_OnEvent)
 	frame:SetScript('OnMouseDown', Bookmarks_OnMouseDown)
-	frame:SetScript('OnEnter', Frame_OnHover)
-	frame:SetScript('OnLeave', Frame_OnHover)
 	frame:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
 	frame:Hide()
+	SetHoverScripts(frame)
 
 	return frame
 end
@@ -809,14 +807,14 @@ function DM:LayoutBookmarks(window)
 	return true
 end
 
-function DM:OpenBookmarks(window)
+local function OpenBookmarks(window)
 	if not DM.db.showBookmarks then return end
 
-	DM:GetBookmarks(window)
+	local frame = window.bookmarks or CreateBookmarks(window)
 	if not DM:LayoutBookmarks(window) then return end
 
 	window.content:Hide()
-	window.bookmarks:Show()
+	frame:Show()
 end
 
 -- The list is rebuilt from the places, so the places are what has to move
@@ -844,48 +842,35 @@ function DM:CloseAllBookmarks()
 	end
 end
 
-function DM:ToggleBookmarks(window)
-	if window.bookmarks and window.bookmarks:IsShown() then
-		DM:CloseBookmarks(window)
-	else
-		DM:OpenBookmarks(window)
-	end
-end
-
 -- The popup goes first, the bookmarks only take over once it is gone
+-- The popup has no bookmarks of its own, a right click on it only closes it
 function DM:WindowRightClick(window)
 	local popup = DM.popup
+	local bookmarks = window.bookmarks
 
 	if popup and popup:IsShown() then
 		popup:Hide()
-		return
+	elseif bookmarks and bookmarks:IsShown() then
+		bookmarks:Hide()
+	elseif not window.spellMode then
+		OpenBookmarks(window)
 	end
-
-	if window.spellMode then return end
-
-	DM:ToggleBookmarks(window)
 end
 
 -- Spell breakdown popup
 -- Same idea as the Blizzard source window, spawned at the cursor instead
 -- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSourceWindow.lua
-local function Popup_OnShow(popup)
-	popup:RegisterEvent('GLOBAL_MOUSE_DOWN')
-end
-
+-- The source it showed is set again by the next OpenPopup
 local function Popup_OnHide(popup)
 	popup:UnregisterEvent('GLOBAL_MOUSE_DOWN')
 
 	popup.owner = nil
 	popup.session = nil
-	popup.sourceGUID = nil
-	popup.sourceCreatureID = nil
-	popup.sourceName = nil
-	popup.sourceClass = nil
 
 	-- The next one it opens rebuilds its bars with the current settings
 	popup.lastRows = nil
 	popup.lastWidth = nil
+	popup.scrollShown = nil
 end
 
 -- Any click that misses the popup closes it again unless it was pinned
@@ -942,12 +927,15 @@ function DM:UpdateScrollBar(window)
 	local scrollBar = window.scrollBar
 	if not scrollBar then return end
 
-	local db = DM.db
 	local maxOffset = max(window.numEntries - window.visibleCount, 0)
 	local shown = maxOffset > 0
 
-	scrollBar:SetShown(shown)
-	window.content:Point('BOTTOMRIGHT', window, 'BOTTOMRIGHT', shown and -(scrollBar:GetWidth() + db.barSpacing) or 0, 0)
+	-- The bars only move when the scroll bar comes or goes
+	if window.scrollShown ~= shown then
+		window.scrollShown = shown
+		scrollBar:SetShown(shown)
+		window.content:Point('BOTTOMRIGHT', window, 'BOTTOMRIGHT', shown and -(scrollBar:GetWidth() + DM.db.barSpacing) or 0, 0)
+	end
 
 	if not shown then return end
 
@@ -967,7 +955,7 @@ function DM:GetPopup()
 	popup:SetFrameStrata('DIALOG')
 	popup:SetClampedToScreen(true)
 	popup:SetMovable(true)
-	popup:SetScript('OnShow', Popup_OnShow)
+	popup:SetScript('OnShow', Frame_OnShow)
 	popup:SetScript('OnHide', Popup_OnHide)
 	popup:SetScript('OnEvent', Popup_OnEvent)
 	popup:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
@@ -1118,6 +1106,21 @@ function DM:ClosePopup()
 	end
 end
 
+-- The click area grows with the header, the artwork stays centered in it
+local function CreateHeaderButton(window, icon, onClick)
+	local button = CreateFrame('Button', nil, window.header)
+	button:SetNormalTexture(icon)
+	button:SetScript('OnClick', onClick)
+	button.window = window
+	SetHoverScripts(button)
+
+	button.icon = button:GetNormalTexture()
+	button.icon:ClearAllPoints()
+	button.icon:Point('CENTER')
+
+	return button
+end
+
 function DM:GetWindow(index)
 	local window = DM.windows[index]
 	if window then return window end
@@ -1133,52 +1136,21 @@ function DM:GetWindow(index)
 	header:Point('TOPLEFT')
 	header:Point('TOPRIGHT')
 	header:SetPassThroughButtons('LeftButton', 'MiddleButton')
-	header:SetScript('OnEnter', Frame_OnHover)
-	header:SetScript('OnLeave', Frame_OnHover)
 	header:SetScript('OnMouseDown', Content_OnMouseDown)
 	header.window = window
 	window.header = header
+	SetHoverScripts(header)
 
-	local resetButton = CreateFrame('Button', nil, header)
-	resetButton:SetNormalTexture(ICON_RESET)
-	resetButton:SetScript('OnClick', ResetButton_OnClick)
-	resetButton:SetScript('OnEnter', Frame_OnHover)
-	resetButton:SetScript('OnLeave', Frame_OnHover)
-	resetButton.window = window
-	window.resetButton = resetButton
-	window.resetIcon = resetButton:GetNormalTexture()
-	window.resetIcon:ClearAllPoints()
-	window.resetIcon:Point('CENTER')
-
-	local sessionButton = CreateFrame('Button', nil, header)
-	sessionButton:SetNormalTexture(ICON_SESSIONS)
-	sessionButton:SetScript('OnClick', SessionButton_OnClick)
-	sessionButton:SetScript('OnEnter', Frame_OnHover)
-	sessionButton:SetScript('OnLeave', Frame_OnHover)
-	sessionButton.window = window
-	window.sessionButton = sessionButton
-	window.sessionIcon = sessionButton:GetNormalTexture()
-	window.sessionIcon:ClearAllPoints()
-	window.sessionIcon:Point('CENTER')
-
-	local settingsButton = CreateFrame('Button', nil, header)
-	settingsButton:SetNormalTexture(ICON_SETTINGS)
-	settingsButton:SetScript('OnClick', SettingsButton_OnClick)
-	settingsButton:SetScript('OnEnter', Frame_OnHover)
-	settingsButton:SetScript('OnLeave', Frame_OnHover)
-	settingsButton.window = window
-	window.settingsButton = settingsButton
-	window.settingsIcon = settingsButton:GetNormalTexture()
-	window.settingsIcon:ClearAllPoints()
-	window.settingsIcon:Point('CENTER')
+	window.resetButton = CreateHeaderButton(window, ICON_RESET, ResetButton_OnClick)
+	window.sessionButton = CreateHeaderButton(window, ICON_SESSIONS, SessionButton_OnClick)
+	window.settingsButton = CreateHeaderButton(window, ICON_SETTINGS, SettingsButton_OnClick)
 
 	local typeButton = CreateFrame('Button', nil, header)
 	typeButton:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
 	typeButton:SetScript('OnClick', TypeButton_OnClick)
-	typeButton:SetScript('OnEnter', Frame_OnHover)
-	typeButton:SetScript('OnLeave', Frame_OnHover)
 	typeButton.window = window
 	window.typeButton = typeButton
+	SetHoverScripts(typeButton)
 
 	window.typeText = typeButton:CreateFontString(nil, 'OVERLAY')
 	window.typeText:SetJustifyH('LEFT')
@@ -1193,10 +1165,9 @@ function DM:GetWindow(index)
 	content:EnableMouseWheel(true)
 	content:SetScript('OnMouseWheel', Content_OnMouseWheel)
 	content:SetScript('OnMouseDown', Content_OnMouseDown)
-	content:SetScript('OnEnter', Frame_OnHover)
-	content:SetScript('OnLeave', Frame_OnHover)
 	content.window = window
 	window.content = content
+	SetHoverScripts(content)
 
 	window.infoText = content:CreateFontString(nil, 'OVERLAY')
 	window.infoText:SetJustifyH('CENTER')
@@ -1205,6 +1176,15 @@ function DM:GetWindow(index)
 	DM.windows[index] = window
 	return window
 end
+
+-- Header buttons from right to left, every one takes the spot of a hidden one to its right
+-- edge is the gap to the header, gap the one to the next button on the right and pad what the
+-- tighter settings artwork (trim) hands over to whatever sits on its left
+local HeaderButtons = {
+	{ button = 'resetButton', shown = 'showResetButton', x = 'headerResetXOffset', y = 'headerResetYOffset', edge = 3 },
+	{ button = 'sessionButton', shown = 'showSessionButton', x = 'headerSessionXOffset', y = 'headerSessionYOffset', edge = 3 },
+	{ button = 'settingsButton', shown = 'showSettingsButton', x = 'headerSettingsXOffset', y = 'headerSettingsYOffset', edge = 2, gap = -1, pad = -2, trim = 1 },
+}
 
 function DM:ApplyWindowSettings(window)
 	local db = DM.db
@@ -1218,73 +1198,53 @@ function DM:ApplyWindowSettings(window)
 		window.sessionType = wdb.sessionType
 	end
 
-	local header, resetButton, sessionButton, settingsButton, typeButton = window.header, window.resetButton, window.sessionButton, window.settingsButton, window.typeButton
-
-	-- The icons bring their own size, the click areas fill the header height
-	local iconSize = db.headerIconSize
-
-	header:Height(db.headerHeight)
-	resetButton:Size(iconSize, db.headerHeight)
-	sessionButton:Size(iconSize, db.headerHeight)
-	settingsButton:Size(iconSize, db.headerHeight)
-
-	window.resetIcon:Size(iconSize)
-	window.sessionIcon:Size(iconSize)
-	window.settingsIcon:Size(iconSize - 1) -- Its artwork sits tighter in the file than the other two
-
-	-- Click areas move move along with x and y
-	local resetX, resetY = db.headerResetXOffset, db.headerResetYOffset
-	local sessionX, sessionY = db.headerSessionXOffset, db.headerSessionYOffset
-	local settingsX, settingsY = db.headerSettingsXOffset, db.headerSettingsYOffset
-	local typeX, typeY = db.headerTypeXOffset, db.headerTypeYOffset
-
-	resetButton:ClearAllPoints()
-	resetButton:Point('RIGHT', header, 'RIGHT', 3 + resetX, resetY)
-
-	-- Every button takes the spot of the one to its right when that one is hidden
-	sessionButton:ClearAllPoints()
-
-	if wdb.showResetButton then
-		sessionButton:Point('RIGHT', resetButton, 'LEFT', sessionX - resetX, sessionY - resetY)
-	else
-		sessionButton:Point('RIGHT', header, 'RIGHT', 3 + sessionX, sessionY)
-	end
-
-	settingsButton:ClearAllPoints()
-
-	if wdb.showSessionButton then
-		settingsButton:Point('RIGHT', sessionButton, 'LEFT', -1 + settingsX - sessionX, settingsY - sessionY)
-	elseif wdb.showResetButton then
-		settingsButton:Point('RIGHT', resetButton, 'LEFT', -1 + settingsX - resetX, settingsY - resetY)
-	else
-		settingsButton:Point('RIGHT', header, 'RIGHT', 2 + settingsX, settingsY)
-	end
-
-	-- The type button fills whatever the buttons leave over
-	typeButton:ClearAllPoints()
-	typeButton:Point('TOPLEFT', header, 'TOPLEFT', typeX, typeY)
-
-	if wdb.showSettingsButton then
-		typeButton:Point('BOTTOMRIGHT', settingsButton, 'BOTTOMLEFT', -6 + typeX - settingsX, typeY - settingsY)
-	elseif wdb.showSessionButton then
-		typeButton:Point('BOTTOMRIGHT', sessionButton, 'BOTTOMLEFT', -4 + typeX - sessionX, typeY - sessionY)
-	elseif wdb.showResetButton then
-		typeButton:Point('BOTTOMRIGHT', resetButton, 'BOTTOMLEFT', -4 + typeX - resetX, typeY - resetY)
-	else
-		typeButton:Point('BOTTOMRIGHT', header, 'BOTTOMRIGHT', -2 + typeX, typeY)
-	end
+	local header, typeButton = window.header, window.typeButton
+	local iconSize, headerHeight = db.headerIconSize, db.headerHeight
 
 	-- Hidden buttons stay hidden, mouseover only fades the enabled ones
 	local mouseover = wdb.mouseoverButtons
 	local alpha = (mouseover and not window:IsMouseOver()) and 0 or 1
 	window.mouseoverButtons = mouseover
 
-	sessionButton:SetShown(wdb.showSessionButton)
-	sessionButton:SetAlpha(alpha)
-	resetButton:SetShown(wdb.showResetButton)
-	resetButton:SetAlpha(alpha)
-	settingsButton:SetShown(wdb.showSettingsButton)
-	settingsButton:SetAlpha(alpha)
+	header:Height(headerHeight)
+
+	-- The icons bring their own size, the click areas fill the header height and move along with x and y
+	local previous, previousX, previousY, previousPad = nil, 0, 0, 0
+
+	for _, info in ipairs(HeaderButtons) do
+		local button = window[info.button]
+		local shown = wdb[info.shown]
+		local x, y = db[info.x], db[info.y]
+
+		button:Size(iconSize, headerHeight)
+		button.icon:Size(iconSize - (info.trim or 0))
+		button:ClearAllPoints()
+
+		if previous then
+			button:Point('RIGHT', previous, 'LEFT', (info.gap or 0) + previousPad + x - previousX, y - previousY)
+		else
+			button:Point('RIGHT', header, 'RIGHT', info.edge + x, y)
+		end
+
+		button:SetShown(shown)
+		button:SetAlpha(alpha)
+
+		if shown then
+			previous, previousX, previousY, previousPad = button, x, y, info.pad or 0
+		end
+	end
+
+	-- The type button fills whatever the buttons leave over
+	local typeX, typeY = db.headerTypeXOffset, db.headerTypeYOffset
+
+	typeButton:ClearAllPoints()
+	typeButton:Point('TOPLEFT', header, 'TOPLEFT', typeX, typeY)
+
+	if previous then
+		typeButton:Point('BOTTOMRIGHT', previous, 'BOTTOMLEFT', -4 + previousPad + typeX - previousX, typeY - previousY)
+	else
+		typeButton:Point('BOTTOMRIGHT', header, 'BOTTOMRIGHT', -2 + typeX, typeY)
+	end
 
 	-- The fade wants the mouse, the bookmark panel wants the right click
 	-- Left and middle clicks pass straight through either way

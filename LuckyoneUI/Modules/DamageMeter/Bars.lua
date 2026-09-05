@@ -289,8 +289,7 @@ local function ApplyBarSettings(db, window, bar, index, texture)
 
 	-- Wipe cached states so we can insta display setting changes
 	bar.colorKey = nil
-	bar.iconFile = nil
-	bar.iconAtlas = nil
+	bar.iconKey = nil
 	bar.lastName = nil
 	bar.lastRank = nil
 	bar.iconsShown = nil
@@ -328,27 +327,7 @@ function DM:UpdateWindowGeometry(window, width, height)
 	end
 end
 
-local function SetBarIcon(bar, fileID, atlas)
-	if fileID then
-		if bar.iconFile ~= fileID then
-			bar.iconFile = fileID
-			bar.iconAtlas = nil
-			bar.icon:SetTexture(fileID)
-			bar.icon:SetTexCoord(unpack(E.TexCoords))
-		end
-	elseif atlas then
-		if bar.iconAtlas ~= atlas then
-			bar.iconAtlas = atlas
-			bar.iconFile = nil
-			bar.icon:SetAtlas(atlas)
-		end
-	elseif bar.iconFile or bar.iconAtlas then
-		bar.iconFile = nil
-		bar.iconAtlas = nil
-		bar.icon:SetTexture(nil)
-	end
-end
-
+-- A file ID and an atlas name never collide, so one key covers both
 local function UpdateBarIcon(bar, entry, spellMode)
 	local fileID, atlas
 
@@ -371,7 +350,18 @@ local function UpdateBarIcon(bar, entry, spellMode)
 		end
 	end
 
-	SetBarIcon(bar, fileID, atlas)
+	local key = fileID or atlas
+	if bar.iconKey == key then return end
+	bar.iconKey = key
+
+	if fileID then
+		bar.icon:SetTexture(fileID)
+		bar.icon:SetTexCoord(unpack(E.TexCoords))
+	elseif atlas then
+		bar.icon:SetAtlas(atlas)
+	else
+		bar.icon:SetTexture(nil)
+	end
 end
 
 local function UpdateBarColor(db, bar, entry, spellMode)
@@ -477,13 +467,10 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 	end
 
 	local total = entry.totalAmount
-	local persec = entry.amountPerSecond
+	local primary, secondary = total, entry.amountPerSecond
 
-	local primary, secondary
 	if persecPrimary then
-		primary, secondary = persec, total
-	else
-		primary, secondary = total, persec
+		primary, secondary = secondary, primary
 	end
 
 	if suppressPersec then
