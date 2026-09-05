@@ -46,6 +46,7 @@ Private.Defaults = {
 			bracketStyle = 'NONE',
 			valueSpacing = 10,
 			showRank = false,
+			rankSpacing = 1,
 			stripRealm = true,
 			nameXOffset = 0,
 			nameYOffset = 0,

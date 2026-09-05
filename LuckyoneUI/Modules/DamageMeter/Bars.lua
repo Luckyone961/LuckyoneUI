@@ -6,9 +6,13 @@ if not DM then return end
 local LSM = Private.Libs.LSM
 
 local unpack = unpack
+local format = string.format
+local gsub = string.gsub
 local floor = math.floor
 local ipairs = ipairs
 local max = math.max
+local min = math.min
+local wipe = wipe
 
 local CreateAbbreviateConfig = CreateAbbreviateConfig
 local CreateFrame = CreateFrame
@@ -82,9 +86,17 @@ local function GetValueFormats(db)
 end
 
 local SampleAmount = '999.9M'
-local sampleWidth, sampleText
-local function GetSampleWidth(db)
-	if sampleWidth then return sampleWidth end
+local SampleRanks = { 9, 99 }
+
+-- Blizzards format with the trailing name dropped, that space belongs to the slider now
+local RankFormat = gsub(DAMAGE_METER_SOURCE_NAME, '%s*%%s$', '')
+
+local sampleText
+local sampleWidths = {}
+
+local function GetSampleWidth(db, key)
+	local width = sampleWidths[key]
+	if width then return width end
 
 	if not sampleText then
 		sampleText = E.HiddenFrame:CreateFontString(nil, 'OVERLAY')
@@ -92,10 +104,17 @@ local function GetSampleWidth(db)
 	end
 
 	sampleText:FontTemplate(db.font, db.fontSize, db.fontOutline)
-	sampleText:SetFormattedText(renderFormats.single, SampleAmount)
-	sampleWidth = sampleText:GetStringWidth()
 
-	return sampleWidth
+	if key == 'value' then
+		sampleText:SetFormattedText(renderFormats.single, SampleAmount)
+	else
+		sampleText:SetFormattedText(RankFormat, SampleRanks[key], '')
+	end
+
+	width = sampleText:GetStringWidth()
+	sampleWidths[key] = width
+
+	return width
 end
 
 local function Bar_OnClick(bar, mouseButton)
@@ -151,6 +170,11 @@ local function CreateBar(window)
 	bar.value = status:CreateFontString(nil, 'OVERLAY')
 	bar.value:SetJustifyH('RIGHT')
 	bar.value:SetWordWrap(false)
+
+	-- Custom font string so every name can start at the same position
+	bar.rank = status:CreateFontString(nil, 'OVERLAY')
+	bar.rank:SetJustifyH('LEFT')
+	bar.rank:SetWordWrap(false)
 
 	bar.name = status:CreateFontString(nil, 'OVERLAY')
 	bar.name:SetJustifyH('LEFT')
@@ -224,7 +248,7 @@ local function SetBarAnchors(db, bar, iconShown)
 	bar.icon:SetShown(iconShown)
 
 	local style = db.barStyle
-	local status, name, value, persec = bar.status, bar.name, bar.value, bar.persec
+	local status, rank, name, value, persec = bar.status, bar.rank, bar.name, bar.value, bar.persec
 
 	local relative = iconShown and bar.icon or bar
 	local relativePoint = iconShown and 'RIGHT' or 'LEFT'
@@ -234,6 +258,7 @@ local function SetBarAnchors(db, bar, iconShown)
 	local separator = iconShown and border or 0
 
 	status:ClearAllPoints()
+	rank:ClearAllPoints()
 	name:ClearAllPoints()
 	value:ClearAllPoints()
 	persec:ClearAllPoints()
@@ -246,8 +271,12 @@ local function SetBarAnchors(db, bar, iconShown)
 		value:Point('TOP', bar, 'TOP', 0, db.valueYOffset)
 		value:Point('RIGHT', persec, 'LEFT', 0, 0)
 
+		-- Empty rank has no width, the name keeps its spot without it
+		rank:Point('TOP', bar, 'TOP', 0, db.nameYOffset)
+		rank:Point('LEFT', relative, relativePoint, 2 + db.nameXOffset, 0)
+
 		name:Point('TOP', bar, 'TOP', 0, db.nameYOffset)
-		name:Point('LEFT', relative, relativePoint, 2 + db.nameXOffset, 0)
+		name:Point('LEFT', rank, 'RIGHT', 0, 0)
 		name:Point('RIGHT', value, 'LEFT', -8, 0)
 
 		status:Point('LEFT', relative, relativePoint, 0, 0)
@@ -260,8 +289,10 @@ local function SetBarAnchors(db, bar, iconShown)
 		persec:Point('RIGHT', status, 'RIGHT', -2 + db.valueXOffset, db.valueYOffset)
 		value:Point('RIGHT', persec, 'LEFT', 0, 0)
 
+		rank:Point('LEFT', status, 'LEFT', 2 + db.nameXOffset, db.nameYOffset)
+
 		-- It has to cancel out that offset
-		name:Point('LEFT', status, 'LEFT', 2 + db.nameXOffset, db.nameYOffset)
+		name:Point('LEFT', rank, 'RIGHT', 0, 0)
 		name:Point('RIGHT', value, 'LEFT', -8, db.nameYOffset - db.valueYOffset)
 	end
 
@@ -283,6 +314,7 @@ local function ApplyBarSettings(db, window, bar, index, texture)
 
 	bar.highlight:Hide()
 
+	bar.rank:FontTemplate(db.font, db.fontSize, db.fontOutline)
 	bar.name:FontTemplate(db.font, db.fontSize, db.fontOutline)
 	bar.value:FontTemplate(db.font, db.fontSize, db.fontOutline)
 	bar.persec:FontTemplate(db.font, db.fontSize, db.fontOutline)
@@ -308,7 +340,8 @@ function DM:UpdateWindowGeometry(window, width, height)
 	window.visibleCount = visibleCount
 	window.contentHeight = contentHeight
 	window.columnWidth = nil
-	sampleWidth = nil
+	window.rankWidth = nil
+	wipe(sampleWidths)
 
 	local texture = LSM:Fetch('statusbar', db.barTexture)
 
@@ -389,6 +422,7 @@ local function UpdateBarColor(db, bar, entry, spellMode)
 	local nameColor = (db.nameColorType == 'CLASS' and classColor) or db.nameColor
 	local valueColor = (db.valueColorType == 'CLASS' and classColor) or db.valueColor
 
+	bar.rank:SetTextColor(nameColor.r, nameColor.g, nameColor.b)
 	bar.name:SetTextColor(nameColor.r, nameColor.g, nameColor.b)
 	bar.value:SetTextColor(valueColor.r, valueColor.g, valueColor.b)
 	bar.persec:SetTextColor(valueColor.r, valueColor.g, valueColor.b)
@@ -406,11 +440,12 @@ local function UpdateBarStatus(bar, entry, maxAmount, deathEntry)
 	end
 end
 
-local function UpdateBarName(db, bar, entry, rank, spellMode)
+local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 	local nameText = bar.name
 
 	if spellMode then
 		bar.lastName = nil
+		bar.rank:SetText('')
 
 		local spellID = entry.spellID
 		local spellName
@@ -451,7 +486,10 @@ local function UpdateBarName(db, bar, entry, rank, spellMode)
 
 	local name = DM:StripRealm(rawName or '', entry.classFilename)
 
-	if db.showRank then
+	-- Second argument is only there for locales that keep the name in the format
+	bar.rank:SetText(rankColumn and format(RankFormat, rank, '') or '')
+
+	if db.showRank and not rankColumn then
 		nameText:SetFormattedText(DAMAGE_METER_SOURCE_NAME, rank, name)
 	else
 		nameText:SetText(name)
@@ -503,6 +541,18 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 	end
 end
 
+-- Every rank shares the width of the widest one, that lines up the names behind them
+local function UpdateRankColumn(db, window, lastRank)
+	local width = lastRank > 0 and (GetSampleWidth(db, lastRank < 10 and 1 or 2) + E:Scale(db.rankSpacing)) or 0
+
+	if window.rankWidth == width then return end
+	window.rankWidth = width
+
+	for i = 1, window.visibleCount do
+		window.bars[i].rank:SetWidth(width)
+	end
+end
+
 local function UpdateValueColumn(db, window)
 	local width, secret = 0, false
 
@@ -522,7 +572,7 @@ local function UpdateValueColumn(db, window)
 		end
 
 		if secret then
-			width = max(width, GetSampleWidth(db))
+			width = max(width, GetSampleWidth(db, 'value'))
 		end
 
 		if width > 0 then
@@ -605,6 +655,10 @@ function DM:RenderWindow(window)
 
 	local pinIndex, pinRow = GetPinnedRow(db, window, entries, numEntries, offset, spellMode, meterType)
 
+	-- Rank spacing only applies if the slider is greater than 0 in the config
+	local rankColumn = db.showRank and db.rankSpacing > 0 and not spellMode
+	local lastRank = rankColumn and max(pinIndex or 0, min(offset + window.visibleCount, numEntries)) or 0
+
 	for i = 1, window.visibleCount do
 		local bar = window.bars[i]
 		local rank = (i == pinRow) and pinIndex or (offset + i)
@@ -620,7 +674,7 @@ function DM:RenderWindow(window)
 			if iconsShown then
 				UpdateBarIcon(bar, entry, spellMode)
 			end
-			UpdateBarName(db, bar, entry, rank, spellMode)
+			UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 			UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry)
 			bar:Show()
 		else
@@ -629,5 +683,6 @@ function DM:RenderWindow(window)
 		end
 	end
 
+	UpdateRankColumn(db, window, lastRank)
 	UpdateValueColumn(db, window)
 end
