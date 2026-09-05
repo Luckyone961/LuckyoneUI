@@ -405,9 +405,11 @@ _G.StaticPopupDialogs['LUCKYONE_DM_RESET'] = {
 	preferredIndex = 3,
 }
 
+-- Instance types the auto reset can watch, scenarios cover Delves
 local InstanceScopes = {
-	party = 'PARTY',
-	raid = 'RAID',
+	party = true,
+	raid = true,
+	scenario = true,
 }
 
 -- Offer a data reset when the instance actually changes
@@ -416,7 +418,7 @@ function DM:CheckAutoReset(initLogin, isReload)
 	if not DM.db.enable then return end
 
 	local _, instanceType, _, _, _, _, _, instanceID = GetInstanceInfo()
-	local scope = InstanceScopes[instanceType]
+	local scope = InstanceScopes[instanceType] and instanceType or nil
 	local last = DM.lastInstanceID
 
 	-- Track where we are even while the option is off
@@ -428,8 +430,7 @@ function DM:CheckAutoReset(initLogin, isReload)
 	local mode = DM.db.autoReset
 	if mode == 'NONE' then return end
 
-	local wanted = DM.db.autoResetType
-	if wanted ~= 'BOTH' and wanted ~= scope then return end
+	if not DM.db.autoResetTypes[scope] then return end
 
 	if mode == 'AUTO' then
 		DM:ResetData()

@@ -13,7 +13,7 @@ Private.Defaults = {
 			enable = false,
 			visibility = 'SHOW',
 			autoReset = 'NONE',
-			autoResetType = 'BOTH',
+			autoResetTypes = { party = true, raid = true, scenario = true },
 			announceReset = true,
 			orientation = 'HORIZONTAL',
 			windowCount = 2,
