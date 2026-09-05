@@ -755,6 +755,8 @@ function DM:GetWindow(index)
 	resetButton.window = window
 	window.resetButton = resetButton
 	window.resetIcon = resetButton:GetNormalTexture()
+	window.resetIcon:ClearAllPoints()
+	window.resetIcon:Point('CENTER')
 
 	local sessionButton = CreateFrame('Button', nil, header)
 	sessionButton:SetNormalTexture(ICON_SESSIONS)
@@ -764,6 +766,8 @@ function DM:GetWindow(index)
 	sessionButton.window = window
 	window.sessionButton = sessionButton
 	window.sessionIcon = sessionButton:GetNormalTexture()
+	window.sessionIcon:ClearAllPoints()
+	window.sessionIcon:Point('CENTER')
 
 	local settingsButton = CreateFrame('Button', nil, header)
 	settingsButton:SetNormalTexture(ICON_SETTINGS)
@@ -773,6 +777,8 @@ function DM:GetWindow(index)
 	settingsButton.window = window
 	window.settingsButton = settingsButton
 	window.settingsIcon = settingsButton:GetNormalTexture()
+	window.settingsIcon:ClearAllPoints()
+	window.settingsIcon:Point('CENTER')
 
 	local typeButton = CreateFrame('Button', nil, header)
 	typeButton:SetScript('OnClick', TypeButton_OnClick)
@@ -784,6 +790,8 @@ function DM:GetWindow(index)
 	window.typeText = typeButton:CreateFontString(nil, 'OVERLAY')
 	window.typeText:SetJustifyH('LEFT')
 	window.typeText:SetWordWrap(false)
+	window.typeText:Point('TOPLEFT')
+	window.typeText:Point('BOTTOMRIGHT')
 
 	local content = CreateFrame('Frame', nil, window)
 	content:Point('TOPLEFT', header, 'BOTTOMLEFT', 0, 0)
@@ -830,55 +838,47 @@ function DM:ApplyWindowSettings(window)
 	window.sessionIcon:Size(iconSize)
 	window.settingsIcon:Size(iconSize - 1) -- Its artwork sits tighter in the file than the other two
 
+	-- Click areas move move along with x and y
+	local resetX, resetY = db.headerResetXOffset, db.headerResetYOffset
+	local sessionX, sessionY = db.headerSessionXOffset, db.headerSessionYOffset
+	local settingsX, settingsY = db.headerSettingsXOffset, db.headerSettingsYOffset
+	local typeX, typeY = db.headerTypeXOffset, db.headerTypeYOffset
+
 	resetButton:ClearAllPoints()
-	resetButton:Point('RIGHT', header, 'RIGHT', 3, 0)
+	resetButton:Point('RIGHT', header, 'RIGHT', 3 + resetX, resetY)
 
 	-- Every button takes the spot of the one to its right when that one is hidden
 	sessionButton:ClearAllPoints()
 
 	if wdb.showResetButton then
-		sessionButton:Point('RIGHT', resetButton, 'LEFT', 0, 0)
+		sessionButton:Point('RIGHT', resetButton, 'LEFT', sessionX - resetX, sessionY - resetY)
 	else
-		sessionButton:Point('RIGHT', header, 'RIGHT', 3, 0)
+		sessionButton:Point('RIGHT', header, 'RIGHT', 3 + sessionX, sessionY)
 	end
 
 	settingsButton:ClearAllPoints()
 
 	if wdb.showSessionButton then
-		settingsButton:Point('RIGHT', sessionButton, 'LEFT', -1, 0)
+		settingsButton:Point('RIGHT', sessionButton, 'LEFT', -1 + settingsX - sessionX, settingsY - sessionY)
 	elseif wdb.showResetButton then
-		settingsButton:Point('RIGHT', resetButton, 'LEFT', -1, 0)
+		settingsButton:Point('RIGHT', resetButton, 'LEFT', -1 + settingsX - resetX, settingsY - resetY)
 	else
-		settingsButton:Point('RIGHT', header, 'RIGHT', 2, 0)
+		settingsButton:Point('RIGHT', header, 'RIGHT', 2 + settingsX, settingsY)
 	end
 
 	-- The type button fills whatever the buttons leave over
 	typeButton:ClearAllPoints()
-	typeButton:Point('TOPLEFT', header, 'TOPLEFT', 0, 0)
+	typeButton:Point('TOPLEFT', header, 'TOPLEFT', typeX, typeY)
 
 	if wdb.showSettingsButton then
-		typeButton:Point('BOTTOMRIGHT', settingsButton, 'BOTTOMLEFT', -6, 0)
+		typeButton:Point('BOTTOMRIGHT', settingsButton, 'BOTTOMLEFT', -6 + typeX - settingsX, typeY - settingsY)
 	elseif wdb.showSessionButton then
-		typeButton:Point('BOTTOMRIGHT', sessionButton, 'BOTTOMLEFT', -4, 0)
+		typeButton:Point('BOTTOMRIGHT', sessionButton, 'BOTTOMLEFT', -4 + typeX - sessionX, typeY - sessionY)
 	elseif wdb.showResetButton then
-		typeButton:Point('BOTTOMRIGHT', resetButton, 'BOTTOMLEFT', -4, 0)
+		typeButton:Point('BOTTOMRIGHT', resetButton, 'BOTTOMLEFT', -4 + typeX - resetX, typeY - resetY)
 	else
-		typeButton:Point('BOTTOMRIGHT', header, 'BOTTOMRIGHT', -2, 0)
+		typeButton:Point('BOTTOMRIGHT', header, 'BOTTOMRIGHT', -2 + typeX, typeY)
 	end
-
-	-- Offsets move the visuals, the click areas stay where they are
-	window.resetIcon:ClearAllPoints()
-	window.resetIcon:Point('CENTER', resetButton, 'CENTER', db.headerResetXOffset, db.headerResetYOffset)
-
-	window.sessionIcon:ClearAllPoints()
-	window.sessionIcon:Point('CENTER', sessionButton, 'CENTER', db.headerSessionXOffset, db.headerSessionYOffset)
-
-	window.settingsIcon:ClearAllPoints()
-	window.settingsIcon:Point('CENTER', settingsButton, 'CENTER', db.headerSettingsXOffset, db.headerSettingsYOffset)
-
-	window.typeText:ClearAllPoints()
-	window.typeText:Point('TOPLEFT', typeButton, 'TOPLEFT', db.headerTypeXOffset, db.headerTypeYOffset)
-	window.typeText:Point('BOTTOMRIGHT', typeButton, 'BOTTOMRIGHT', db.headerTypeXOffset, db.headerTypeYOffset)
 
 	-- Hidden buttons stay hidden, mouseover only fades the enabled ones
 	local mouseover = wdb.mouseoverButtons
