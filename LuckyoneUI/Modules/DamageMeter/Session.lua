@@ -1181,7 +1181,7 @@ end
 -- edge is the gap to the header, gap the one to the next button on the right and pad what the
 -- tighter settings artwork (trim) hands over to whatever sits on its left
 local HeaderButtons = {
-	{ button = 'resetButton', shown = 'showResetButton', x = 'headerResetXOffset', y = 'headerResetYOffset', edge = 3 },
+	{ button = 'resetButton', shown = 'showResetButton', x = 'headerResetXOffset', y = 'headerResetYOffset', edge = 3, gap = nil, pad = nil, trim = 2 },
 	{ button = 'sessionButton', shown = 'showSessionButton', x = 'headerSessionXOffset', y = 'headerSessionYOffset', edge = 3 },
 	{ button = 'settingsButton', shown = 'showSettingsButton', x = 'headerSettingsXOffset', y = 'headerSettingsYOffset', edge = 2, gap = -1, pad = -2, trim = 1 },
 }

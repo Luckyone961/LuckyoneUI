@@ -311,6 +311,7 @@ local function BuildDamageMeterSection()
 	section.args.headerOptions.args.generalOptions.inline = true
 	section.args.headerOptions.args.generalOptions.args.headerSessionLength = ACH:Select(L["Session Name"], L["Length of the session name in the header."], 1, { SHORT = L["Short"], LONG = L["Long"] })
 	section.args.headerOptions.args.generalOptions.args.headerBracketStyle = ACH:Select(L["Brackets"], L["Bracket style around the session name."], 2, { PARENTHESES = '( )', SQUARE = '[ ]', NONE = _G.NONE })
+	section.args.headerOptions.args.generalOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 3)
 	section.args.headerOptions.args.sizeOptions = ACH:Group(L["Size"], nil, 2)
 	section.args.headerOptions.args.sizeOptions.inline = true
 	section.args.headerOptions.args.sizeOptions.args.headerHeight = ACH:Range(L["Header Height"], nil, 1, { min = 12, max = 40, step = 1 })
@@ -325,10 +326,7 @@ local function BuildDamageMeterSection()
 	section.args.headerOptions.args.positionOptions.args.headerResetYOffset = ACH:Range(L["Reset Y Offset"], nil, 6, { min = -100, max = 100, step = 1 })
 	section.args.headerOptions.args.positionOptions.args.headerSettingsXOffset = ACH:Range(L["Settings X Offset"], nil, 7, { min = -100, max = 100, step = 1 })
 	section.args.headerOptions.args.positionOptions.args.headerSettingsYOffset = ACH:Range(L["Settings Y Offset"], nil, 8, { min = -100, max = 100, step = 1 })
-	section.args.headerOptions.args.colorOptions = ACH:Group(L["Colors"], nil, 4)
-	section.args.headerOptions.args.colorOptions.inline = true
-	section.args.headerOptions.args.colorOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 1)
-	section.args.headerOptions.args.fontOptions = ACH:Group(L["Font"], nil, 5)
+	section.args.headerOptions.args.fontOptions = ACH:Group(L["Font"], nil, 4)
 	section.args.headerOptions.args.fontOptions.inline = true
 	section.args.headerOptions.args.fontOptions.args.headerFont = ACH:SharedMediaFont(L["Font"], nil, 1)
 	section.args.headerOptions.args.fontOptions.args.headerFontOutline = ACH:FontFlags(L["Font Outline"], nil, 2)
