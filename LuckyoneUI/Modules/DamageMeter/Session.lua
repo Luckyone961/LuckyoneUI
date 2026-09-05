@@ -85,6 +85,19 @@ DM.TypeSuppressIcon = {
 	[MeterType.EnemyDamageTaken] = true,
 }
 
+-- Types that can pin your own bar, deaths and enemies never carry one
+DM.TypePinLocalPlayer = {
+	[MeterType.DamageDone] = true,
+	[MeterType.Dps] = true,
+	[MeterType.HealingDone] = true,
+	[MeterType.Hps] = true,
+	[MeterType.Absorbs] = true,
+	[MeterType.Interrupts] = true,
+	[MeterType.Dispels] = true,
+	[MeterType.DamageTaken] = true,
+	[MeterType.AvoidableDamageTaken] = true,
+}
+
 -- The popup pulls a single source, the windows pull the whole session
 function DM:FetchWindow(window)
 	local session
@@ -141,6 +154,9 @@ local function GetTestSession(count)
 		total = total + amount
 		amount = max(floor(amount * TestFalloff), 1)
 	end
+
+	-- The last source is the worst one, it previews the pinned player bar
+	sources[count].isLocalPlayer = true
 
 	session = { combatSources = sources, maxAmount = TestTopAmount, totalAmount = total }
 	testSessions[count] = session

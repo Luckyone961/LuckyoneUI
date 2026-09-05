@@ -34,6 +34,7 @@ Private.Defaults = {
 			backdropAlpha = 0,
 			showIcons = true,
 			mouseoverHighlight = true,
+			pinLocalPlayer = false,
 			font = Private.Font,
 			fontOutline = Private.Outline,
 			fontSize = 12,

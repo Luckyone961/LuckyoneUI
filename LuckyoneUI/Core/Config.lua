@@ -268,6 +268,7 @@ local function BuildDamageMeterSection()
 	section.args.bars.args.generalOptions.args.barTexture = ACH:SharedMediaStatusbar(L["Bar Texture"], nil, 2)
 	section.args.bars.args.generalOptions.args.showIcons = ACH:Toggle(L["Bar Icons"], L["Show the class or spec icon in front of each bar."], 3)
 	section.args.bars.args.generalOptions.args.mouseoverHighlight = ACH:Toggle(L["Mouseover Highlight"], L["Highlight the bar under your cursor."], 4)
+	section.args.bars.args.generalOptions.args.pinLocalPlayer = ACH:Toggle(L["Always Show Yourself"], L["Pin your own bar to the closest edge of the list while it would be scrolled out of view."], 5)
 	section.args.bars.args.sizeOptions = ACH:Group(L["Size and Spacing"], nil, 2)
 	section.args.bars.args.sizeOptions.inline = true
 	section.args.bars.args.sizeOptions.args.barHeight = ACH:Range(L["Bar Height"], nil, 1, { min = 8, max = 50, step = 1 })

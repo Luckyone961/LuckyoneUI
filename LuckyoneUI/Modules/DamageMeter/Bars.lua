@@ -531,6 +531,33 @@ local function UpdateValueColumn(db, window)
 	end
 end
 
+-- isLocalPlayer is flagged as never secret, comparing it is safe
+local function FindLocalPlayer(entries, numEntries)
+	for index = 1, numEntries do
+		if entries[index].isLocalPlayer then
+			return index
+		end
+	end
+end
+
+-- Same idea as the Blizzard meter, your own bar stays in view while the list scrolls past it
+-- We have no room outside the bar area, so the closest row hands its slot over instead
+-- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua#L680-L698
+local function GetPinnedRow(db, window, entries, numEntries, offset, spellMode, meterType)
+	if not db.pinLocalPlayer or spellMode then return end
+	if numEntries <= window.visibleCount then return end
+	if not DM.TypePinLocalPlayer[meterType] then return end
+
+	local index = FindLocalPlayer(entries, numEntries)
+	if not index then return end
+
+	if index <= offset then
+		return index, 1
+	elseif index > offset + window.visibleCount then
+		return index, window.visibleCount
+	end
+end
+
 function DM:RenderWindow(window)
 	local db = DM.db
 	if not db or window.visibleCount == 0 then return end
@@ -570,9 +597,12 @@ function DM:RenderWindow(window)
 	local suppressPersec = DM.TypeSuppressPerSecond[meterType]
 	local iconsShown = db.showIcons and (spellMode or not DM.TypeSuppressIcon[meterType])
 
+	local pinIndex, pinRow = GetPinnedRow(db, window, entries, numEntries, offset, spellMode, meterType)
+
 	for i = 1, window.visibleCount do
 		local bar = window.bars[i]
-		local entry = entries and entries[offset + i]
+		local rank = (i == pinRow) and pinIndex or (offset + i)
+		local entry = entries and entries[rank]
 
 		if entry then
 			local deathEntry = not spellMode and entry.deathRecapID and entry.deathRecapID ~= 0
@@ -584,7 +614,7 @@ function DM:RenderWindow(window)
 			if iconsShown then
 				UpdateBarIcon(bar, entry, spellMode)
 			end
-			UpdateBarName(db, bar, entry, offset + i, spellMode)
+			UpdateBarName(db, bar, entry, rank, spellMode)
 			UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry)
 			bar:Show()
 		else
