@@ -21,6 +21,7 @@ local GetInstanceInfo = GetInstanceInfo
 local IsInGroup = IsInGroup
 local UnitAffectingCombat = UnitAffectingCombat
 local ResetAllCombatSessions = C_DamageMeter.ResetAllCombatSessions
+local C_UI = C_UI
 
 local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
@@ -346,6 +347,9 @@ function DM:Initialize()
 
 	E:CreateMover(holder, 'LuckyoneUI_DamageMeterMover', Private.Name .. ' ' .. L["Damage Meter"], nil, nil, nil, 'ALL,GENERAL', nil, 'LuckyoneUI,damageMeter')
 
+	-- Attempt to keep data on reloads
+	hooksecurefunc(C_UI, 'Reload', function() DM.reloadingUI = true end)
+
 	-- Follow ElvUI resizing while the "Chat Panel" size mode is used
 	hooksecurefunc(E:GetModule('Chat'), 'PositionChats', function()
 		if DM.db.enable and DM.db.sizeMode == 'CHAT' then
@@ -378,6 +382,7 @@ function DM:Initialize()
 	DM:RegisterEvent('DAMAGE_METER_RESET')
 	DM:RegisterEvent('PLAYER_REGEN_ENABLED')
 	DM:RegisterEvent('PLAYER_ENTERING_WORLD')
+	DM:RegisterEvent('PLAYER_LOGOUT')
 
 	-- Combat and group changes only touch the visibility rule
 	DM:RegisterEvent('PLAYER_REGEN_DISABLED', 'UpdateShown')
@@ -444,6 +449,14 @@ function DM:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	DM:UpdateShown()
 	DM:MarkAllDirty()
 	DM:CheckAutoReset(initLogin, isReload)
+end
+
+function DM:PLAYER_LOGOUT()
+	if not DM.db.enable then return end
+	if not DM.db.resetOnLogout then return end
+	if DM.reloadingUI then return end
+
+	ResetAllCombatSessions()
 end
 
 -- Re-render after combat when the amounts stop being secret
