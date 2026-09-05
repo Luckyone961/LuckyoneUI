@@ -14,6 +14,7 @@ Private.Defaults = {
 			visibility = 'SHOW',
 			autoReset = 'NONE',
 			autoResetType = 'BOTH',
+			announceReset = true,
 			orientation = 'HORIZONTAL',
 			windowCount = 2,
 			sizeMode = 'CHAT',

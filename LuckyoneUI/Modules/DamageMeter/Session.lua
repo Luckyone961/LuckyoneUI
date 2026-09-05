@@ -21,7 +21,6 @@ local GetCombatSessionFromID = C_DamageMeter.GetCombatSessionFromID
 local GetCombatSessionFromType = C_DamageMeter.GetCombatSessionFromType
 local GetCombatSessionSourceFromID = C_DamageMeter.GetCombatSessionSourceFromID
 local GetCombatSessionSourceFromType = C_DamageMeter.GetCombatSessionSourceFromType
-local ResetAllCombatSessions = C_DamageMeter.ResetAllCombatSessions
 local After = C_Timer.After
 local SecondsToClock = SecondsToClock
 local MenuUtil = MenuUtil
@@ -452,7 +451,7 @@ end
 -- Shift click skips the confirmation
 local function ResetButton_OnClick()
 	if IsShiftKeyDown() then
-		ResetAllCombatSessions()
+		DM:ResetData()
 	else
 		StaticPopup_Show('LUCKYONE_DM_RESET')
 	end

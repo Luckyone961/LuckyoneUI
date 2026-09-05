@@ -388,13 +388,22 @@ function DM:Initialize()
 	DM:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
 
+-- Wipe all sessions, optionally confirmed in chat
+function DM:ResetData()
+	ResetAllCombatSessions()
+
+	if DM.db.announceReset then
+		Private:Print(L["Damage Meter data has been reset."])
+	end
+end
+
 -- Reset data popup
 -- StaticPopup_Show('LUCKYONE_DM_RESET')
 _G.StaticPopupDialogs['LUCKYONE_DM_RESET'] = {
 	text = Private.Name .. ' ' .. L["Damage Meter"] .. '|n|n' .. L["Reset all data?"],
 	button1 = OKAY,
 	button2 = CANCEL,
-	OnAccept = ResetAllCombatSessions,
+	OnAccept = function() DM:ResetData() end,
 	whileDead = 1,
 	hideOnEscape = 1,
 	preferredIndex = 3,
@@ -427,7 +436,7 @@ function DM:CheckAutoReset(initLogin, isReload)
 	if wanted ~= 'BOTH' and wanted ~= scope then return end
 
 	if mode == 'AUTO' then
-		ResetAllCombatSessions()
+		DM:ResetData()
 	else
 		StaticPopup_Show('LUCKYONE_DM_RESET')
 	end
