@@ -287,6 +287,7 @@ function Private:Setup_PrivateDB(includePlugins)
 	E.private.bags.bagBar = false
 	E.private.general.chatBubbleFont = Private.Font
 	E.private.general.chatBubbleFontOutline = Private.Outline
+	E.private.general.chatBubbleFontSize = 12
 	E.private.general.glossTex = Private.Texture
 	E.private.general.minimap.hideTracking = not Private.isClassic
 	E.private.general.nameplateFont = Private.Font
