@@ -480,7 +480,7 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 		primary, secondary = secondary, primary
 	end
 
-	if suppressPersec then
+	if suppressPersec or (not issecretvalue(secondary) and (not secondary or secondary <= 0)) then
 		secondary = nil
 	end
 
