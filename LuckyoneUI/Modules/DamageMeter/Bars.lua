@@ -540,9 +540,8 @@ local function FindLocalPlayer(entries, numEntries)
 	end
 end
 
--- Same idea as the Blizzard meter, your own bar stays in view while the list scrolls past it
--- We have no room outside the bar area, so the closest row hands its slot over instead
--- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua#L680-L698
+-- Blizzard just overlaps the local player on top of the bottom-most bar, we can do it cleaner
+-- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua#L656-L698
 local function GetPinnedRow(db, window, entries, numEntries, offset, spellMode, meterType)
 	if not db.pinLocalPlayer or spellMode then return end
 	if numEntries <= window.visibleCount then return end
