@@ -64,11 +64,21 @@ DM.TypeNames = {
 	[MeterType.EnemyDamageTaken] = _G.DAMAGE_METER_TYPE_ENEMY_DAMAGE_TAKEN,
 }
 
+-- Blizzard keeps Absorbs out of the categories, it has a name but no menu entry
 DM.TypeCategories = {
 	{ name = _G.DAMAGE_METER_CATEGORY_DAMAGE, types = { MeterType.DamageDone, MeterType.Dps, MeterType.DamageTaken, MeterType.AvoidableDamageTaken, MeterType.EnemyDamageTaken } },
 	{ name = _G.DAMAGE_METER_CATEGORY_HEALING, types = { MeterType.HealingDone, MeterType.Hps } },
 	{ name = _G.DAMAGE_METER_CATEGORY_ACTIONS, types = { MeterType.Interrupts, MeterType.Dispels, MeterType.Deaths } },
 }
+
+-- The types the options offer, same set the type menu and the bookmarks build from
+DM.TypeMenuNames = {}
+
+for _, category in ipairs(DM.TypeCategories) do
+	for _, meterType in ipairs(category.types) do
+		DM.TypeMenuNames[meterType] = DM.TypeNames[meterType]
+	end
+end
 
 DM.TypePerSecondPrimary = {
 	[MeterType.Dps] = true,
