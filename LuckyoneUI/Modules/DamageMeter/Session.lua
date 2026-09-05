@@ -27,6 +27,7 @@ local SecondsToClock = SecondsToClock
 local MenuUtil = MenuUtil
 local MenuVariants = MenuVariants
 local Menu = Menu
+local ScrollBarMixin = ScrollBarMixin
 local CreateAnchor = AnchorUtil.CreateAnchor
 local issecretvalue = issecretvalue or function() return false end
 
@@ -34,6 +35,7 @@ local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
 
 local E = unpack(ElvUI)
+local S = E:GetModule('Skins')
 
 local ICON_RESET = Private.IconPath .. 'DM_Reset.png'
 local ICON_SESSIONS = Private.IconPath .. 'DM_Sessions.png'
@@ -532,11 +534,12 @@ local function AnchorToCursor(popup)
 	popup:SetPoint(vertical .. horizontal, E.UIParent, 'BOTTOMLEFT', x, y)
 end
 
-local function ScrollBar_OnValueChanged(scrollBar, value)
-	if scrollBar.locked then return end
+-- The scroll bar works in percent, the render path works in rows
+local function ScrollBar_OnScroll(window, percentage)
+	if window.scrollBar.locked then return end
 
-	local window = scrollBar.window
-	local offset = floor(value + 0.5)
+	local maxOffset = max(window.numEntries - window.visibleCount, 0)
+	local offset = floor(percentage * maxOffset + 0.5)
 
 	if offset ~= window.offset then
 		window.offset = offset
@@ -558,14 +561,11 @@ function DM:UpdateScrollBar(window)
 
 	if not shown then return end
 
-	local track = window.visibleCount * (db.barHeight + db.barSpacing) - db.barSpacing
-
-	-- The thumb covers as much of the track as the popup covers of the list
-	window.scrollThumb:Height(max(track * window.visibleCount / window.numEntries, db.barHeight))
-
+	-- One row per stepper click, the thumb covers as much of the track as the popup covers of the list
 	scrollBar.locked = true
-	scrollBar:SetMinMaxValues(0, maxOffset)
-	scrollBar:SetValue(window.offset)
+	scrollBar:SetPanExtentPercentage(1 / maxOffset)
+	scrollBar:SetVisibleExtentPercentage(window.visibleCount / window.numEntries)
+	scrollBar:SetScrollPercentage(window.offset / maxOffset)
 	scrollBar.locked = false
 end
 
@@ -616,24 +616,16 @@ function DM:GetPopup()
 	content.window = popup
 	popup.content = content
 
-	-- One step per bar, the slider value is the render offset
-	local scrollBar = CreateFrame('Slider', nil, popup)
-	scrollBar:SetOrientation('VERTICAL')
-	scrollBar:SetValueStep(1)
-	scrollBar:SetObeyStepOnDrag(true)
-	scrollBar:SetThumbTexture(E.media.blankTex)
+	-- The Blizzard trim scroll bar with the ElvUI skin, the wheel keeps moving one row at a time
+	local scrollBar = CreateFrame('EventFrame', nil, popup, 'WowTrimScrollBar')
 	scrollBar:EnableMouseWheel(true)
 	scrollBar:SetScript('OnMouseWheel', Content_OnMouseWheel)
-	scrollBar:SetScript('OnValueChanged', ScrollBar_OnValueChanged)
+	scrollBar:RegisterCallback(ScrollBarMixin.Event.OnScroll, ScrollBar_OnScroll, popup)
 	scrollBar:Hide()
 	scrollBar.window = popup
 	popup.scrollBar = scrollBar
 
-	popup.scrollTrack = scrollBar:CreateTexture(nil, 'BACKGROUND')
-	popup.scrollTrack:SetTexture(E.media.blankTex)
-	popup.scrollTrack:SetAllPoints()
-
-	popup.scrollThumb = scrollBar:GetThumbTexture()
+	S:HandleTrimScrollBar(scrollBar)
 
 	DM.popup = popup
 	return popup
@@ -642,7 +634,7 @@ end
 function DM:ApplyPopupSettings(popup)
 	local db = DM.db
 	local wdb = DM:WindowDB(popup.owner.index)
-	local scrollWidth = 6
+	local scrollWidth = 22
 	local r, g, b = HeaderColor()
 
 	popup.header:Height(db.headerHeight)
@@ -658,10 +650,6 @@ function DM:ApplyPopupSettings(popup)
 	popup.scrollBar:Point('TOPLEFT', popup.content, 'TOPRIGHT', db.barSpacing, 0)
 	popup.scrollBar:Point('BOTTOMLEFT', popup.content, 'BOTTOMRIGHT', db.barSpacing, 0)
 	popup.scrollBar:Width(scrollWidth)
-
-	popup.scrollTrack:SetVertexColor(unpack(E.media.bordercolor))
-	popup.scrollThumb:Width(scrollWidth)
-	popup.scrollThumb:SetVertexColor(r, g, b)
 
 	-- The backdrop follows the window the popup was opened from
 	popup.backdrop:SetOutside(popup, E.Border + E:Scale(wdb.backdropWidth), E.Border + E:Scale(wdb.backdropHeight), nil, true)
