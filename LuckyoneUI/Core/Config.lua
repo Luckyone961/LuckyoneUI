@@ -247,7 +247,6 @@ local function BuildDamageMeterSection()
 	section.args.general.args.generalOptions.args.autoReset = ACH:Select(L["Auto Reset"], L["Reset all Damage Meter data when you enter a new instance."], 6, { NONE = _G.NONE, ASK = L["Ask"], AUTO = L["Automatic"] }, nil, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.general.args.generalOptions.args.autoResetTypes = ACH:MultiSelect(L["Instances"], L["Which instance types trigger the reset. Scenarios include Delves."], 7, { party = L["Dungeon"], raid = L["Raid"], scenario = L["Scenario"] }, nil, nil, function(_, key) return Private.Addon.db.profile.damageMeter.autoResetTypes[key] end, function(_, key, value) Private.Addon.db.profile.damageMeter.autoResetTypes[key] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end, function() return Private.Addon.db.profile.damageMeter.autoReset == 'NONE' end)
 	section.args.general.args.generalOptions.args.resetOnLogout = ACH:Toggle(L["Reset on Logout"], L["Wipe all Damage Meter data when you log out. Reloading the UI keeps the data."], 8, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.enable end)
-	section.args.general.args.generalOptions.args.announceReset = ACH:Toggle(L["Announce Resets"], L["Print a message in chat when the Damage Meter data is reset."], 9, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.general.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 2)
 	section.args.general.args.defaults.inline = true
 	section.args.general.args.defaults.args.damageMeter = ACH:Execute(L["Restore Defaults"], L["Wipe all Damage Meter settings, the module itself stays enabled."], 1, function() Private:DamageMeter_ResetDefaults() end, nil, true)
@@ -311,9 +310,7 @@ local function BuildDamageMeterSection()
 	section.args.headerOptions = ACH:Group(L["Header"], nil, 6, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.headerOptions.args.generalOptions = ACH:Group(L["General"], nil, 1)
 	section.args.headerOptions.args.generalOptions.inline = true
-	section.args.headerOptions.args.generalOptions.args.headerSessionLength = ACH:Select(L["Session Name"], L["Length of the session name in the header."], 1, { SHORT = L["Short"], LONG = L["Long"] })
-	section.args.headerOptions.args.generalOptions.args.headerBracketStyle = ACH:Select(L["Brackets"], L["Bracket style around the session name."], 2, { PARENTHESES = '( )', SQUARE = '[ ]', NONE = _G.NONE })
-	section.args.headerOptions.args.generalOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 3)
+	section.args.headerOptions.args.generalOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 1)
 	section.args.headerOptions.args.sizeOptions = ACH:Group(L["Size"], nil, 2)
 	section.args.headerOptions.args.sizeOptions.inline = true
 	section.args.headerOptions.args.sizeOptions.args.headerHeight = ACH:Range(L["Header Height"], nil, 1, { min = 12, max = 40, step = 1 })

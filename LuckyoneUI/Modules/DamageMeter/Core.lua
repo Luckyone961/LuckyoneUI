@@ -389,13 +389,10 @@ function DM:Initialize()
 	DM:RegisterEvent('GROUP_ROSTER_UPDATE', 'UpdateShown')
 end
 
--- Wipe all sessions, optionally confirmed in chat
+-- Wipe all sessions, confirmed in chat
 function DM:ResetData()
 	ResetAllCombatSessions()
-
-	if DM.db.announceReset then
-		Private:Print(L["Damage Meter data has been reset."])
-	end
+	Private:Print(L["Damage Meter data has been reset."])
 end
 
 -- Reset data popup
