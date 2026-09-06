@@ -307,7 +307,7 @@ function DM:Layout()
 			window:Hide()
 		else
 			UpdateWindowMover(window, index, DM:WindowDB(index).placement == 'CUSTOM')
-			DM:UpdateWindowGeometry(window, widths[index], heights[index])
+			DM:UpdateWindowGeometry(window, heights[index])
 		end
 	end
 end

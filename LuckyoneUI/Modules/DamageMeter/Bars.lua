@@ -138,6 +138,15 @@ local function Bar_OnLeave(bar)
 	bar.highlight:Hide()
 end
 
+-- All four texts share the same setup, only the side they align to differs
+local function CreateBarText(status, justify)
+	local text = status:CreateFontString(nil, 'OVERLAY')
+	text:SetJustifyH(justify)
+	text:SetWordWrap(false)
+
+	return text
+end
+
 local function CreateBar(window)
 	local bar = CreateFrame('Button', nil, window.content)
 	bar:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
@@ -163,22 +172,12 @@ local function CreateBar(window)
 	bar.highlight:SetAllPoints(bar)
 	bar.highlight:Hide()
 
-	bar.persec = status:CreateFontString(nil, 'OVERLAY')
-	bar.persec:SetJustifyH('RIGHT')
-	bar.persec:SetWordWrap(false)
-
-	bar.value = status:CreateFontString(nil, 'OVERLAY')
-	bar.value:SetJustifyH('RIGHT')
-	bar.value:SetWordWrap(false)
+	bar.persec = CreateBarText(status, 'RIGHT')
+	bar.value = CreateBarText(status, 'RIGHT')
 
 	-- Custom font string so every name can start at the same position
-	bar.rank = status:CreateFontString(nil, 'OVERLAY')
-	bar.rank:SetJustifyH('LEFT')
-	bar.rank:SetWordWrap(false)
-
-	bar.name = status:CreateFontString(nil, 'OVERLAY')
-	bar.name:SetJustifyH('LEFT')
-	bar.name:SetWordWrap(false)
+	bar.rank = CreateBarText(status, 'LEFT')
+	bar.name = CreateBarText(status, 'LEFT')
 
 	return bar
 end
@@ -339,8 +338,8 @@ local function ApplyBarSettings(db, window, bar, index, texture)
 	bar.iconsShown = nil
 end
 
--- Refreshes the bars afterwards
-function DM:UpdateWindowGeometry(window, width, height)
+-- Refreshes the bars afterwards, the width comes from the anchors on its own
+function DM:UpdateWindowGeometry(window, height)
 	local db = DM.db
 	local contentHeight = height - db.headerHeight
 

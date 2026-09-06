@@ -7,7 +7,6 @@ local unpack = unpack
 local format = string.format
 local ipairs = ipairs
 local pairs = pairs
-local type = type
 local wipe = wipe
 local sort = table.sort
 local tinsert = table.insert
@@ -74,9 +73,11 @@ DM.TypeCategories = {
 -- The types the options offer, same set the type menu and the bookmarks build from
 DM.TypeMenuNames = {}
 
+local typeCount = 0
 for _, category in ipairs(DM.TypeCategories) do
 	for _, meterType in ipairs(category.types) do
 		DM.TypeMenuNames[meterType] = DM.TypeNames[meterType]
+		typeCount = typeCount + 1
 	end
 end
 
@@ -441,6 +442,9 @@ function DM:UpdateHeaderButtons(window)
 	if not window.mouseoverButtons then return end
 
 	local alpha = window:IsMouseOver() and 1 or 0
+	if window.buttonAlpha == alpha then return end -- Avoid firing twice
+	window.buttonAlpha = alpha
+
 	window.sessionButton:SetAlpha(alpha)
 	window.settingsButton:SetAlpha(alpha)
 	window.resetButton:SetAlpha(alpha)
@@ -506,8 +510,7 @@ end
 
 -- Secret safe bookmarks
 -- A right click panel over the bar area, it only carries damage meter types (the table)
--- Every type is stored as its own place in the list so it can be dragged around,
--- profiles from before that stored a plain true and fall back to the type menu order
+-- Every type is stored as its own place in the list so it can be dragged around
 local NEW_BOOKMARK = 99 -- Higher than the type count, anything new sorts to the end
 
 local bookmarkList, bookmarkPlaces = {}, {}
@@ -521,24 +524,21 @@ local function BuildBookmarkList()
 	wipe(bookmarkPlaces)
 
 	local saved = DM.db.bookmarks
-	local total = 0
 
 	for _, category in ipairs(DM.TypeCategories) do
 		for _, meterType in ipairs(category.types) do
-			total = total + 1
-
 			local place = saved[meterType]
 
 			if place then
 				bookmarkList[#bookmarkList + 1] = meterType
-				bookmarkPlaces[meterType] = (type(place) == 'number') and place or total
+				bookmarkPlaces[meterType] = place
 			end
 		end
 	end
 
 	sort(bookmarkList, SortBookmarks)
 
-	return bookmarkList, total
+	return bookmarkList
 end
 
 -- Dropping one leaves a gap behind, the places are handed out again from the list
@@ -668,6 +668,15 @@ local function BookmarkRow_OnDragStop(row)
 	end
 end
 
+local function CreateRowTexture(row, layer)
+	local texture = row:CreateTexture(nil, layer)
+	texture:SetTexture(E.media.blankTex)
+	texture:SetVertexColor(1, 1, 1, 0.2)
+	texture:SetAllPoints()
+
+	return texture
+end
+
 local function CreateBookmarkRow(frame)
 	local row = CreateFrame('Button', nil, frame)
 	row.window = frame.window
@@ -682,15 +691,8 @@ local function CreateBookmarkRow(frame)
 	SetHoverScripts(row)
 
 	-- Marks the type the window is showing right now
-	row.selected = row:CreateTexture(nil, 'ARTWORK')
-	row.selected:SetTexture(E.media.blankTex)
-	row.selected:SetVertexColor(1, 1, 1, 0.2)
-	row.selected:SetAllPoints()
-
-	local highlight = row:CreateTexture(nil, 'HIGHLIGHT')
-	highlight:SetTexture(E.media.blankTex)
-	highlight:SetVertexColor(1, 1, 1, 0.2)
-	highlight:SetAllPoints()
+	row.selected = CreateRowTexture(row, 'ARTWORK')
+	CreateRowTexture(row, 'HIGHLIGHT')
 
 	-- Both edges so the longer type names get trimmed instead of spilling out
 	row.text = row:CreateFontString(nil, 'OVERLAY')
@@ -766,10 +768,10 @@ function DM:LayoutBookmarks(window)
 	if not frame then return false end
 
 	local db = DM.db
-	local list, total = BuildBookmarkList()
+	local list = BuildBookmarkList()
 
 	-- The plus icon goes away once every type is bookmarked
-	local rows = #list + ((#list < total) and 1 or 0)
+	local rows = #list + ((#list < typeCount) and 1 or 0)
 	if rows == 0 then return false end
 
 	local spacing = db.barSpacing
@@ -957,6 +959,40 @@ function DM:UpdateScrollBar(window)
 	scrollBar.locked = false
 end
 
+-- The session windows and the popup are the same shape, a header on top and the bars below it
+local function CreateWindowFrames(frame)
+	frame.bars = {}
+	frame.offset = 0
+	frame.visibleCount = 0
+	frame.numEntries = 0
+
+	local header = CreateFrame('Frame', nil, frame)
+	header:Point('TOPLEFT')
+	header:Point('TOPRIGHT')
+	header:SetScript('OnMouseDown', Content_OnMouseDown)
+	header.window = frame
+	frame.header = header
+
+	local content = CreateFrame('Frame', nil, frame)
+	content:Point('TOPLEFT', header, 'BOTTOMLEFT', 0, 0)
+	content:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', 0, 0)
+	content:EnableMouseWheel(true)
+	content:SetScript('OnMouseWheel', Content_OnMouseWheel)
+	content:SetScript('OnMouseDown', Content_OnMouseDown)
+	content.window = frame
+	frame.content = content
+
+	return header, content
+end
+
+local function CreateHeaderText(parent)
+	local text = parent:CreateFontString(nil, 'OVERLAY')
+	text:SetJustifyH('LEFT')
+	text:SetWordWrap(false)
+
+	return text
+end
+
 function DM:GetPopup()
 	local popup = DM.popup
 	if popup then return popup end
@@ -971,38 +1007,19 @@ function DM:GetPopup()
 	popup:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
 	popup:Hide()
 
-	-- Everything the shared render path expects from a window
 	popup.spellMode = true
-	popup.bars = {}
-	popup.offset = 0
-	popup.visibleCount = 0
-	popup.numEntries = 0
+
+	local header, content = CreateWindowFrames(popup)
 
 	-- The header doubles as the drag handle
-	local header = CreateFrame('Frame', nil, popup)
-	header:Point('TOPLEFT')
-	header:Point('TOPRIGHT')
 	header:EnableMouse(true)
 	header:RegisterForDrag('LeftButton')
 	header:SetScript('OnDragStart', PopupHeader_OnDragStart)
 	header:SetScript('OnDragStop', PopupHeader_OnDragStop)
-	header:SetScript('OnMouseDown', Content_OnMouseDown)
-	header.window = popup
-	popup.header = header
 
-	popup.typeText = header:CreateFontString(nil, 'OVERLAY')
-	popup.typeText:SetJustifyH('LEFT')
-	popup.typeText:SetWordWrap(false)
-
-	local content = CreateFrame('Frame', nil, popup)
-	content:Point('TOPLEFT', header, 'BOTTOMLEFT', 0, 0)
-	content:Point('BOTTOMRIGHT', popup, 'BOTTOMRIGHT', 0, 0)
 	content:EnableMouse(true)
-	content:EnableMouseWheel(true)
-	content:SetScript('OnMouseWheel', Content_OnMouseWheel)
-	content:SetScript('OnMouseDown', Content_OnMouseDown)
-	content.window = popup
-	popup.content = content
+
+	popup.typeText = CreateHeaderText(header)
 
 	-- The Blizzard trim scroll bar with the ElvUI skin, the wheel keeps moving one row at a time
 	local scrollBar = CreateFrame('EventFrame', nil, popup, 'WowTrimScrollBar')
@@ -1069,7 +1086,7 @@ function DM:RefreshPopup()
 
 		local height = db.headerHeight + rows * db.barHeight + (rows - 1) * db.barSpacing
 		popup:Size(width, height)
-		DM:UpdateWindowGeometry(popup, width, height)
+		DM:UpdateWindowGeometry(popup, height)
 	end
 
 	DM:RenderWindow(popup)
@@ -1137,19 +1154,15 @@ function DM:GetWindow(index)
 
 	window = CreateFrame('Frame', 'LuckyoneUI_DamageMeterWindow' .. index, DM.holder)
 	window.index = index
-	window.offset = 0
-	window.bars = {}
-	window.visibleCount = 0
-	window.numEntries = 0
 
-	local header = CreateFrame('Frame', nil, window)
-	header:Point('TOPLEFT')
-	header:Point('TOPRIGHT')
+	local header, content = CreateWindowFrames(window)
+
+	-- Only the right click belongs to the window, the rest goes through
 	header:SetPassThroughButtons('LeftButton', 'MiddleButton')
-	header:SetScript('OnMouseDown', Content_OnMouseDown)
-	header.window = window
-	window.header = header
+	content:SetPassThroughButtons('LeftButton', 'MiddleButton')
+
 	SetHoverScripts(header)
+	SetHoverScripts(content)
 
 	window.resetButton = CreateHeaderButton(window, ICON_RESET, ResetButton_OnClick)
 	window.sessionButton = CreateHeaderButton(window, ICON_SESSIONS, SessionButton_OnClick)
@@ -1162,22 +1175,9 @@ function DM:GetWindow(index)
 	window.typeButton = typeButton
 	SetHoverScripts(typeButton)
 
-	window.typeText = typeButton:CreateFontString(nil, 'OVERLAY')
-	window.typeText:SetJustifyH('LEFT')
-	window.typeText:SetWordWrap(false)
+	window.typeText = CreateHeaderText(typeButton)
 	window.typeText:Point('TOPLEFT')
 	window.typeText:Point('BOTTOMRIGHT')
-
-	local content = CreateFrame('Frame', nil, window)
-	content:Point('TOPLEFT', header, 'BOTTOMLEFT', 0, 0)
-	content:Point('BOTTOMRIGHT', window, 'BOTTOMRIGHT', 0, 0)
-	content:SetPassThroughButtons('LeftButton', 'MiddleButton')
-	content:EnableMouseWheel(true)
-	content:SetScript('OnMouseWheel', Content_OnMouseWheel)
-	content:SetScript('OnMouseDown', Content_OnMouseDown)
-	content.window = window
-	window.content = content
-	SetHoverScripts(content)
 
 	window.infoText = content:CreateFontString(nil, 'OVERLAY')
 	window.infoText:SetJustifyH('CENTER')
@@ -1215,6 +1215,7 @@ function DM:ApplyWindowSettings(window)
 	local mouseover = wdb.mouseoverButtons
 	local alpha = (mouseover and not window:IsMouseOver()) and 0 or 1
 	window.mouseoverButtons = mouseover
+	window.buttonAlpha = alpha
 
 	header:Height(headerHeight)
 
