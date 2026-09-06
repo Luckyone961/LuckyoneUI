@@ -495,32 +495,25 @@ local function BuildElvUILayoutSection()
 	section.args.midnight.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout('main') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.midnight.args.healingVertical = ACH:Execute(L["Healing Vertical"], nil, 2, function() Private:Setup_Layout('healing') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.midnight.args.healingHorizontal = ACH:Execute(L["Healing Horizontal"], nil, 3, function() Private:Setup_Layout('healing', nil, 'horizontal') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.header = ACH:Header(L["Auras"], 5)
-	section.args.filters = ACH:Group(L["Filters"], nil, 6)
+	section.args.header3 = ACH:Header(L["ElvUI Themes"], 5)
+	section.args.themes = ACH:Group(L["UnitFrames Color Theme"], nil, 6)
+	section.args.themes.inline = true
+	section.args.themes.args.dark = ACH:Execute(L["Dark"], L["Dark Style (Default)"], 1, function() Private:Setup_Theme('dark') end, nil, true)
+	section.args.themes.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() Private:Setup_Theme('class') end, nil, true)
+	section.args.header = ACH:Header(L["Auras"], 7)
+	section.args.filters = ACH:Group(L["Filters"], nil, 8)
 	section.args.filters.inline = true
 	section.args.filters.args.setup = ACH:Execute((Private.isRetail and L["Setup Aura Indicators"]) or L["Setup Aura Filters"], nil, 1, function() Private:Setup_Filters() StaticPopup_Show(RELOAD_POPUP) end)
-	section.args.Desc = ACH:Group(L["Description"], nil, 7)
+	section.args.Desc = ACH:Group(L["Description"], nil, 9)
 	section.args.Desc.inline = true
 	section.args.Desc.args.cvars = ACH:Description((Private.isRetail and L["This will apply Luckyones Aura Indicator edit and set the style to Textured."]) or L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"], 2, 'medium')
-	return section
-end
-
--- Build ElvUI Themes Section
-local function BuildElvUIThemesSection()
-	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(GetIconName(L["ElvUI Themes"], 'Themes'), nil, 45)
-	section.args.header = ACH:Header(L["ElvUI Themes"], 1)
-	section.args.raid = ACH:Group(L["UnitFrames Color Theme"], nil, 2)
-	section.args.raid.inline = true
-	section.args.raid.args.dark = ACH:Execute(L["Dark"], L["Dark Style (Default)"], 1, function() Private:Setup_Theme('dark') end, nil, true)
-	section.args.raid.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() Private:Setup_Theme('class') end, nil, true)
 	return section
 end
 
 -- Build ElvUI Tweaks Section
 local function BuildElvUITweaksSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(GetIconName(L["ElvUI Tweaks"], 'Tweaks'), nil, 50)
+	local section = ACH:Group(GetIconName(L["ElvUI Tweaks"], 'Tweaks'), nil, 45)
 	section.args.header = ACH:Header(L["ElvUI Tweaks"], 1)
 	section.args.toggles = ACH:Group(L["Toggles"], nil, 2, nil, nil, nil, nil, not Private.isRetail)
 	section.args.toggles.inline = true
@@ -544,7 +537,7 @@ end
 
 -- Build Graphics Section
 local function BuildGraphicsSection()
-	local section = ACH:Group(GetIconName(L["Graphics"], 'Graphics'), nil, 55)
+	local section = ACH:Group(GetIconName(L["Graphics"], 'Graphics'), nil, 50)
 	section.args.header = ACH:Header(L["Graphics"], 1)
 	section.args.toggles = ACH:Group(L["General"], nil, 2)
 	section.args.toggles.inline = true
@@ -563,7 +556,7 @@ end
 -- Build Map Section
 local function BuildMapSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(GetIconName(L["Map"], 'Map'), nil, 60)
+	local section = ACH:Group(GetIconName(L["Map"], 'Map'), nil, 55)
 	section.args.header = ACH:Header(L["Map"], 1)
 	section.args.minimapButtons = ACH:Group(L["Minimap Buttons"], nil, 2, nil, function(info) return Private.Addon.db.profile.map.minimap.buttons[info[#info]] end, function(info, value) Private.Addon.db.profile.map.minimap.buttons[info[#info]] = value Private:UpdateMinimapButtonBar() end)
 	section.args.minimapButtons.inline = true
@@ -586,7 +579,7 @@ end
 
 -- Build Misc Section
 local function BuildMiscSection()
-	local section = ACH:Group(GetIconName(L["Misc"], 'Misc'), nil, 65)
+	local section = ACH:Group(GetIconName(L["Misc"], 'Misc'), nil, 60)
 	section.args.header = ACH:Header(L["Misc"], 1)
 	section.args.combatText = ACH:Group(L["Combat Text"], nil, 2, nil, function(info) return Private.Addon.db.profile.misc.combatText[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.combatText[info[#info]] = value Private:CombatText_Update() end)
 	section.args.combatText.inline = true
@@ -614,7 +607,7 @@ end
 -- Build Skins Section
 local function BuildSkinsSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(GetIconName('Skins', 'Skins'), nil, 70)
+	local section = ACH:Group(GetIconName('Skins', 'Skins'), nil, 65)
 	section.args.header = ACH:Header('Skins', 1)
 	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.profile.skins[info[#info]] end, function(info, value) Private.Addon.db.profile.skins[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.addons.inline = true
@@ -634,7 +627,7 @@ end
 
 -- Build Credits Section
 local function BuildCreditsSection()
-	local section = ACH:Group(GetIconName(format('|cfd9b9b9b%s|r', L["Credits"]), 'Credits'), nil, 75)
+	local section = ACH:Group(GetIconName(format('|cfd9b9b9b%s|r', L["Credits"]), 'Credits'), nil, 70)
 	section.args.header = ACH:Header(L["Credits"], 1)
 	section.args.author = ACH:Group(L["Author"], nil, 2)
 	section.args.author.inline = true
@@ -653,7 +646,7 @@ end
 
 -- Build Links Section
 local function BuildLinksSection()
-	local section = ACH:Group(GetIconName(format('|cfd9b9b9b%s|r', L["Links"]), 'Links'), nil, 80)
+	local section = ACH:Group(GetIconName(format('|cfd9b9b9b%s|r', L["Links"]), 'Links'), nil, 75)
 	section.args.header = ACH:Header(L["Links"], 1)
 	section.args.spacer = ACH:Spacer(2, 'full')
 	section.args.website = ACH:Input(L["Addon download:"], nil, 3, nil, 'full', function() return 'https://download.luckyone.dev' end)
@@ -704,14 +697,13 @@ function Private:BuildConfig()
 	Private.Config.args.cdm = BuildCDMSection() -- 30
 	Private.Config.args.damageMeter = BuildDamageMeterSection() -- 35
 	Private.Config.args.elvuiLayouts = BuildElvUILayoutSection() -- 40
-	Private.Config.args.elvuiThemes = BuildElvUIThemesSection() -- 45
-	Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 50
-	Private.Config.args.graphics = BuildGraphicsSection() -- 55
-	Private.Config.args.map = BuildMapSection() -- 60
-	Private.Config.args.misc = BuildMiscSection() -- 65
-	Private.Config.args.skins = BuildSkinsSection() -- 70
-	Private.Config.args.credits = BuildCreditsSection() -- 75
-	Private.Config.args.links = BuildLinksSection() -- 80
+	Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 45
+	Private.Config.args.graphics = BuildGraphicsSection() -- 50
+	Private.Config.args.map = BuildMapSection() -- 55
+	Private.Config.args.misc = BuildMiscSection() -- 60
+	Private.Config.args.skins = BuildSkinsSection() -- 65
+	Private.Config.args.credits = BuildCreditsSection() -- 70
+	Private.Config.args.links = BuildLinksSection() -- 75
 	Private.Config.args.dev = BuildDevSection() -- 100
 
 	-- ElvUI config integration
