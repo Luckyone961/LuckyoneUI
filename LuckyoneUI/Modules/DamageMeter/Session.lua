@@ -1056,9 +1056,9 @@ function DM:ApplyPopupSettings(popup)
 	popup.scrollBar:Point('BOTTOMLEFT', popup.content, 'BOTTOMRIGHT', db.barSpacing, 0)
 	popup.scrollBar:Width(scrollWidth)
 
-	-- The backdrop follows the window the popup was opened from
+	-- Padding follows the window the popup was opened from, the color is always the ElvUI one
 	popup.backdrop:SetOutside(popup, E.Border + E:Scale(wdb.backdropWidth), E.Border + E:Scale(wdb.backdropHeight), nil, true)
-	SetBackdropColor(popup.backdrop, db.popupBackdropColorType == 'CUSTOM', db.popupBackdropColor)
+	SetBackdropColor(popup.backdrop)
 end
 
 function DM:UpdatePopupHeader(popup)

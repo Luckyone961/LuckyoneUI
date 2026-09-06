@@ -64,8 +64,6 @@ Private.Defaults = {
 			headerResetYOffset = 0,
 			headerSettingsXOffset = -1,
 			headerSettingsYOffset = 0,
-			popupBackdropColorType = 'ELVUI',
-			popupBackdropColor = { r = 0, g = 0, b = 0, a = 0.8 },
 			showBookmarks = true,
 			bookmarkDragDrop = true,
 			bookmarks = { -- Meter type = its place in the panel

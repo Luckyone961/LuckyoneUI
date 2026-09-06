@@ -240,19 +240,6 @@ local function DamageMeterColorSet(info, r, g, b)
 	Private:DamageMeter_UpdateAll()
 end
 
-local function DamageMeterAlphaGet(info)
-	local color = DamageMeterDB()[info[#info]]
-
-	return color.r, color.g, color.b, color.a
-end
-
-local function DamageMeterAlphaSet(info, r, g, b, a)
-	local color = DamageMeterDB()[info[#info]]
-	color.r, color.g, color.b, color.a = r, g, b, a
-
-	Private:DamageMeter_UpdateAll()
-end
-
 local function ReleaseAttached(db, index)
 	for other = 1, MAX_WINDOWS do
 		local wdb = db.windows[other]
@@ -407,14 +394,6 @@ local function BuildDamageMeterSection()
 	section.args.bookmarkOptions.args.generalOptions.args.showBookmarks = ACH:Toggle(L["Enable"], L["Open the bookmark panel with a right click on a session window."], 1)
 	section.args.bookmarkOptions.args.generalOptions.args.bookmarkDragDrop = ACH:Toggle(L["Drag and Drop"], L["Drag a bookmark up or down to change its place in the panel."], 2, nil, nil, nil, nil, nil, function() return not DamageMeterDB().showBookmarks end)
 	section.args.bookmarkOptions.args.bookmarks = ACH:MultiSelect(L["Bookmarks"], L["Types the panel offers, new ones are added to the end of the list."], 3, DamageMeterTypes, nil, nil, function(_, key) return DamageMeterDB().bookmarks[key] and true or false end, function(_, key, value) local DM = Private.Modules.DamageMeter if DM then DM:SetBookmark(key, value) end Private:DamageMeter_UpdateAll() end, function() local db = DamageMeterDB() return not db.enable or not db.showBookmarks end)
-	section.args.popupOptions = ACH:Group(L["Spell Breakdown"], nil, 8, nil, DamageMeterGet, DamageMeterSet, DamageMeterDisabled)
-	section.args.popupOptions.args.popupDesc = ACH:Group(L["Description"], nil, 1)
-	section.args.popupOptions.args.popupDesc.inline = true
-	section.args.popupOptions.args.popupDesc.args.desc = ACH:Description(L["Left click a bar to open the spell breakdown at your cursor.\n\nShift click pins it in place, right click closes it again. Pinned popups are dragged around by their header."], 1, 'medium')
-	section.args.popupOptions.args.colorOptions = ACH:Group(L["Colors"], nil, 2)
-	section.args.popupOptions.args.colorOptions.inline = true
-	section.args.popupOptions.args.colorOptions.args.popupBackdropColorType = ACH:Select(L["Backdrop Color"], L["Follow the ElvUI backdrop fade color or use a custom color."], 1, { ELVUI = 'ElvUI', CUSTOM = L["Custom"] })
-	section.args.popupOptions.args.colorOptions.args.popupBackdropColor = ACH:Color(L["Custom Color"], nil, 2, true, nil, DamageMeterAlphaGet, DamageMeterAlphaSet, nil, function() return DamageMeterDB().popupBackdropColorType ~= 'CUSTOM' end)
 	return section
 end
 
