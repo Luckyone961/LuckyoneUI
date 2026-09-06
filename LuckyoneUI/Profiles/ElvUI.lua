@@ -1728,7 +1728,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.raid1.buffs.sizeOverride = 26
 		E.db.unitframe.units.raid1.debuffs.enable = Private.isRetail
 		E.db.unitframe.units.raid1.debuffs.sizeOverride = 26
-		E.db.unitframe.units.raid1.height = (scaled and 60) or 70
+		E.db.unitframe.units.raid1.height = (scaled and 60) or 80
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid1.raidicon.size = 14
 		E.db.unitframe.units.raid1.raidicon.xOffset = -2
