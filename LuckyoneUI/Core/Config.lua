@@ -74,7 +74,7 @@ local function BuildSetupSection()
 	section.inline = true
 	section.args.header = ACH:Header(Private.Name, 1, nil, nil, not Private.ElvUI)
 	section.args.spacer1 = ACH:Spacer(2, 'full', not Private.ElvUI)
-	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 3, function() Private.Installer:Show(Private.InstallerData) if Private.ElvUI then ElvUI[1]:ToggleOptions() else HideUIPanel(SettingsPanel) end end)
+	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Run the installation process."], 3, function() Private.Installer:Show(Private.InstallerData) if Private.ElvUI then ElvUI[1]:ToggleOptions() else HideUIPanel(SettingsPanel) end end)
 	section.args.spacer2 = ACH:Spacer(4, 'full')
 	return section
 end
@@ -104,11 +104,7 @@ local function BuildGeneralSection()
 	section.args.misc = ACH:Group(L["Misc"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
 	section.args.misc.inline = true
 	section.args.misc.args.removeNameplateRealm = ACH:Toggle(L["Remove Nameplate Realms"], L["Removes the realm names from friendly nameplates in name-only mode while in a Dungeon/Raid/Battleground."], 1, nil, nil, nil, function() return Private.Addon.db.profile.misc.removeNameplateRealm end, function(_, value) Private.Addon.db.profile.misc.removeNameplateRealm = value StaticPopup_Show(RELOAD_POPUP) end)
-	section.args.strings = ACH:Group(L["Profile strings"], nil, 5, nil, nil, nil, nil, not Private.isRetail)
-	section.args.strings.inline = true
-	section.args.strings.args.editModeString = ACH:Execute(L["Copy Editmode String"], nil, 1, function() Private:Return_EditModeString() end)
-	section.args.strings.args.editModeToggle = ACH:Execute(format('|cff4beb2c%s|r', L["Enter Edit Mode"]), nil, 2, function() Private:ToggleEditMode() if Private.ElvUI then ElvUI[1]:ToggleOptions() end end)
-	section.args.performance = ACH:Group(L["Performance Tweaks"], nil, 6, nil, nil, nil, nil, not Private.isRetail)
+	section.args.performance = ACH:Group(L["Performance Tweaks"], nil, 5, nil, nil, nil, nil, not Private.isRetail)
 	section.args.performance.inline = true
 	section.args.performance.args.performance = ACH:Execute(L["Untrack Hidden Quests"], L["People found out some characters have a big amount of hidden quests which will cause performance issues. This button will untrack all your quests, including the hidden ones and might give you an increase in average FPS."], 1, function() Private:UntrackAllQuests() end)
 	return section
@@ -140,6 +136,11 @@ local function BuildAddonProfilesSection()
 	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 5, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.plugins.inline = true
 	section.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', IMPORT_DEFAULTS_TEXT, 1, function() Private:Setup_WindTools() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
+	section.args.header2 = ACH:Header(L["Blizzard Profiles"], 6, nil, nil, not Private.isRetail)
+	section.args.strings = ACH:Group(L["Profile strings"], nil, 7, nil, nil, nil, nil, not Private.isRetail)
+	section.args.strings.inline = true
+	section.args.strings.args.editModeString = ACH:Execute(L["Copy Editmode String"], nil, 1, function() Private:Return_EditModeString() end)
+	section.args.strings.args.editModeToggle = ACH:Execute(format('|cff4beb2c%s|r', L["Enter Edit Mode"]), nil, 2, function() Private:ToggleEditMode() if Private.ElvUI then ElvUI[1]:ToggleOptions() end end)
 	return section
 end
 
