@@ -4,7 +4,6 @@ local _, Private = ...
 Private.Defaults = {
 	global = {
 		dev = false,
-		install_version = nil,
 		scaled = false,
 	},
 	profile = {

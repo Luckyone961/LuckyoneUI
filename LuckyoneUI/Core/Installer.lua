@@ -131,9 +131,8 @@ local function LayoutOptionButtons()
 	end
 end
 
--- Set install version to current LuckyoneUI version
+-- Finalize the install
 local function InstallComplete()
-	Private.Addon.db.global.install_version = Private.Version
 	Private:HandleLuckyoneDB()
 	C_UI_Reload()
 end

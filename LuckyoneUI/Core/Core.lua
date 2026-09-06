@@ -331,10 +331,6 @@ function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	if Private.itsLuckyone then
 		Private.Addon.db.global.dev = true
 	end
-
-	if Private.Installer and (Private.Addon.db.global.install_version == nil) then
-		Private.Installer:Show(Private.InstallerData)
-	end
 end
 
 function Core:OnEnable()
