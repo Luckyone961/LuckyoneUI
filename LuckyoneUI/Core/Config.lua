@@ -192,6 +192,90 @@ local function BuildCVarsSection()
 	return section
 end
 
+-- Build Cooldown Manager Section
+local function BuildCDMSection()
+	if not Private.isRetail then return end -- Retail only section
+	local section = ACH:Group(GetIconName(L["Cooldown Manager"], 'Cdm'), nil, 30)
+	section.args.header1 = ACH:Header(L["Cooldown Manager"], 1)
+	section.args.hunter = ACH:Group(L["Hunter"], nil, 2, nil, nil, nil, nil, Private.myClass ~= 'HUNTER')
+	section.args.hunter.inline = true
+	section.args.hunter.args.hunter1 = ACH:Execute(format('|cffAAD372%s|r', L["Beast Mastery"]), nil, 3, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Beastmastery') end)
+	section.args.hunter.args.hunter2 = ACH:Execute(format('|cffAAD372%s|r', L["Marksmanship"]), nil, 4, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Marksmanship') end)
+	section.args.hunter.args.hunter3 = ACH:Execute(format('|cffAAD372%s|r', L["Survival"]), nil, 5, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Survival') end)
+	section.args.shaman = ACH:Group(L["Shaman"], nil, 3, nil, nil, nil, nil, Private.myClass ~= 'SHAMAN')
+	section.args.shaman.inline = true
+	section.args.shaman.args.shaman1 = ACH:Execute(format('|cff0070DD%s|r', L["Enhancement"]), nil, 6, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Enhancement') end)
+	section.args.shaman.args.shaman2 = ACH:Execute(format('|cff0070DD%s|r', L["Elemental"]), nil, 7, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Elemental') end)
+	section.args.shaman.args.shaman3 = ACH:Execute(format('|cff0070DD%s|r', L["Restoration"]), nil, 8, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Restoration-Shaman') end)
+	section.args.monk = ACH:Group(L["Monk"], nil, 4, nil, nil, nil, nil, Private.myClass ~= 'MONK')
+	section.args.monk.inline = true
+	section.args.monk.args.monk1 = ACH:Execute(format('|cff00FF98%s|r', L["Windwalker"]), nil, 9, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Windwalker') end)
+	section.args.monk.args.monk2 = ACH:Execute(format('|cff00FF98%s|r', L["Brewmaster"]), nil, 10, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Brewmaster') end)
+	section.args.monk.args.monk3 = ACH:Execute(format('|cff00FF98%s|r', L["Mistweaver"]), nil, 11, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Mistweaver') end)
+	section.args.paladin = ACH:Group(L["Paladin"], nil, 5, nil, nil, nil, nil, Private.myClass ~= 'PALADIN')
+	section.args.paladin.inline = true
+	section.args.paladin.args.paladin1 = ACH:Execute(format('|cffF48CBA%s|r', L["Retribution"]), nil, 12, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Retribution') end)
+	section.args.paladin.args.paladin2 = ACH:Execute(format('|cffF48CBA%s|r', L["Protection"]), nil, 13, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Protection-Paladin') end)
+	section.args.paladin.args.paladin3 = ACH:Execute(format('|cffF48CBA%s|r', L["Holy"]), nil, 14, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Holy-Paladin') end)
+	section.args.druid = ACH:Group(L["Druid"], nil, 6, nil, nil, nil, nil, Private.myClass ~= 'DRUID')
+	section.args.druid.inline = true
+	section.args.druid.args.druid1 = ACH:Execute(format('|cffFF7C0A%s|r', L["Feral"]), nil, 15, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Feral') end)
+	section.args.druid.args.druid2 = ACH:Execute(format('|cffFF7C0A%s|r', L["Balance"]), nil, 16, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Balance') end)
+	section.args.druid.args.druid3 = ACH:Execute(format('|cffFF7C0A%s|r', L["Guardian"]), nil, 17, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Guardian') end)
+	section.args.druid.args.druid4 = ACH:Execute(format('|cffFF7C0A%s|r', L["Restoration"]), nil, 18, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Restoration-Druid') end)
+	section.args.evoker = ACH:Group(L["Evoker"], nil, 7, nil, nil, nil, nil, Private.myClass ~= 'EVOKER')
+	section.args.evoker.inline = true
+	section.args.evoker.args.evoker1 = ACH:Execute(format('|cff33937F%s|r', L["Devastation"]), nil, 19, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Devastation') end)
+	section.args.evoker.args.evoker2 = ACH:Execute(format('|cff33937F%s|r', L["Preservation"]), nil, 20, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Preservation') end)
+	section.args.evoker.args.evoker3 = ACH:Execute(format('|cff33937F%s|r', L["Augmentation"]), nil, 21, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Augmentation') end)
+	section.args.warrior = ACH:Group(L["Warrior"], nil, 8, nil, nil, nil, nil, Private.myClass ~= 'WARRIOR')
+	section.args.warrior.inline = true
+	section.args.warrior.args.warrior1 = ACH:Execute(format('|cffC69B6D%s|r', L["Arms"]), nil, 22, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Arms') end)
+	section.args.warrior.args.warrior2 = ACH:Execute(format('|cffC69B6D%s|r', L["Fury"]), nil, 23, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Fury') end)
+	section.args.warrior.args.warrior3 = ACH:Execute(format('|cffC69B6D%s|r', L["Protection"]), nil, 24, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Protection-Warrior') end)
+	section.args.dk = ACH:Group(L["Death Knight"], nil, 9, nil, nil, nil, nil, Private.myClass ~= 'DEATHKNIGHT')
+	section.args.dk.inline = true
+	section.args.dk.args.dk1 = ACH:Execute(format('|cffC41E3A%s|r', L["Unholy"]), nil, 25, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Unholy') end)
+	section.args.dk.args.dk2 = ACH:Execute(format('|cffC41E3A%s|r', L["Frost"]), nil, 26, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Frost-DK') end)
+	section.args.dk.args.dk3 = ACH:Execute(format('|cffC41E3A%s|r', L["Blood"]), nil, 27, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Blood') end)
+	section.args.dh = ACH:Group(L["Demon Hunter"], nil, 10, nil, nil, nil, nil, Private.myClass ~= 'DEMONHUNTER')
+	section.args.dh.inline = true
+	section.args.dh.args.dh1 = ACH:Execute(format('|cffA330C9%s|r', L["Havoc"]), nil, 28, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Havoc') end)
+	section.args.dh.args.dh2 = ACH:Execute(format('|cffA330C9%s|r', L["Vengeance"]), nil, 29, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Vengeance') end)
+	section.args.dh.args.dh3 = ACH:Execute(format('|cffA330C9%s|r', L["Devourer"]), nil, 30, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Devourer') end)
+	section.args.priest = ACH:Group(L["Priest"], nil, 11, nil, nil, nil, nil, Private.myClass ~= 'PRIEST')
+	section.args.priest.inline = true
+	section.args.priest.args.priest1 = ACH:Execute(format('|cffFFFFFF%s|r', L["Shadow"]), nil, 31, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Shadow') end)
+	section.args.priest.args.priest2 = ACH:Execute(format('|cffFFFFFF%s|r', L["Discipline"]), nil, 32, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Discipline') end)
+	section.args.priest.args.priest3 = ACH:Execute(format('|cffFFFFFF%s|r', L["Holy"]), nil, 33, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Holy-Priest') end)
+	section.args.warlock = ACH:Group(L["Warlock"], nil, 12, nil, nil, nil, nil, Private.myClass ~= 'WARLOCK')
+	section.args.warlock.inline = true
+	section.args.warlock.args.warlock1 = ACH:Execute(format('|cff8788EE%s|r', L["Destruction"]), nil, 34, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Destruction') end)
+	section.args.warlock.args.warlock2 = ACH:Execute(format('|cff8788EE%s|r', L["Affliction"]), nil, 35, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Affliction') end)
+	section.args.warlock.args.warlock3 = ACH:Execute(format('|cff8788EE%s|r', L["Demonology"]), nil, 36, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Demonology') end)
+	section.args.mage = ACH:Group(L["Mage"], nil, 13, nil, nil, nil, nil, Private.myClass ~= 'MAGE')
+	section.args.mage.inline = true
+	section.args.mage.args.mage1 = ACH:Execute(format('|cff3FC7EB%s|r', L["Fire"]), nil, 37, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Fire') end)
+	section.args.mage.args.mage2 = ACH:Execute(format('|cff3FC7EB%s|r', L["Frost"]), nil, 38, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Frost-Mage') end)
+	section.args.mage.args.mage3 = ACH:Execute(format('|cff3FC7EB%s|r', L["Arcane"]), nil, 39, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Arcane') end)
+	section.args.rogue = ACH:Group(L["Rogue"], nil, 14, nil, nil, nil, nil, Private.myClass ~= 'ROGUE')
+	section.args.rogue.inline = true
+	section.args.rogue.args.rogue1 = ACH:Execute(format('|cffFFF468%s|r', L["Assassination"]), nil, 40, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Assassination') end)
+	section.args.rogue.args.rogue2 = ACH:Execute(format('|cffFFF468%s|r', L["Outlaw"]), nil, 41, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Outlaw') end)
+	section.args.rogue.args.rogue3 = ACH:Execute(format('|cffFFF468%s|r', L["Subtlety"]), nil, 42, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Subtlety') end)
+	section.args.desc = ACH:Group(L["Description"], nil, 15)
+	section.args.desc.inline = true
+	section.args.desc.args.desc = ACH:Description(L["Specializations are only displayed for the class you're currently logged into.\n\nGrab the updated import string from the Wago URL and import it manually.\n\nFor quick access to the Blizzard cooldown viewer panel use the button below."], 1, 'medium')
+	section.args.header2 = ACH:Header(L["Cooldown Settings"], 16)
+	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 17)
+	section.args.addons.inline = true
+	section.args.addons.args.scm = ACH:Execute('SkironCooldownManager', IMPORT_DEFAULTS_TEXT, 1, function() Private:Setup_SCM() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
+	section.args.utilities = ACH:Group(L["Utilities"], nil, 18)
+	section.args.utilities.inline = true
+	section.args.utilities.args.toggleViewer = ACH:Execute(format('|cff4beb2c%s|r', L["Toggle Cooldown Settings"]), L["Shortcut to the Cooldown Settings.\nYou can import the profiles in the bottom left dropdown."], 1, function() Private:ShowCooldownViewerSettings() end)
+	return section
+end
+
 local MAX_WINDOWS = 4
 local WINDOW_NAMES = {}
 local PlacementValues = { AUTO = L["Automatic"], ATTACH = L["Attached"], CUSTOM = L["Custom"] }
@@ -283,7 +367,7 @@ end
 -- Build Damage Meter Section
 local function BuildDamageMeterSection()
 	if not (Private.ElvUI and Private.isRetail) then return end -- Retail + ElvUI section
-	local section = ACH:Group(GetIconName(L["Damage Meter"], 'DamageMeter'), nil, 30, 'tab')
+	local section = ACH:Group(GetIconName(L["Damage Meter"], 'DamageMeter'), nil, 35, 'tab')
 	section.args.header = ACH:Header(L["Damage Meter"], 1)
 	section.args.general = ACH:Group(L["General"], nil, 2, nil, DamageMeterGet, DamageMeterSet)
 	section.args.general.args.generalOptions = ACH:Group(L["General"], nil, 1)
@@ -393,90 +477,6 @@ local function BuildDamageMeterSection()
 	section.args.bookmarkOptions.args.generalOptions.args.showBookmarks = ACH:Toggle(L["Enable"], L["Open the bookmark panel with a right click on a session window."], 1)
 	section.args.bookmarkOptions.args.generalOptions.args.bookmarkDragDrop = ACH:Toggle(L["Drag and Drop"], L["Drag a bookmark up or down to change its place in the panel."], 2, nil, nil, nil, nil, nil, function() return not DamageMeterDB().showBookmarks end)
 	section.args.bookmarkOptions.args.bookmarks = ACH:MultiSelect(L["Bookmarks"], L["Types the panel offers, new ones are added to the end of the list."], 3, DamageMeterTypes, nil, nil, function(_, key) return DamageMeterDB().bookmarks[key] and true or false end, function(_, key, value) local DM = Private.Modules.DamageMeter if DM then DM:SetBookmark(key, value) end Private:DamageMeter_UpdateAll() end, function() local db = DamageMeterDB() return not db.enable or not db.showBookmarks end)
-	return section
-end
-
--- Build Cooldown Manager Section
-local function BuildCDMSection()
-	if not Private.isRetail then return end -- Retail only section
-	local section = ACH:Group(GetIconName(L["Cooldown Manager"], 'Cdm'), nil, 35)
-	section.args.header1 = ACH:Header(L["Cooldown Manager"], 1)
-	section.args.hunter = ACH:Group(L["Hunter"], nil, 2, nil, nil, nil, nil, Private.myClass ~= 'HUNTER')
-	section.args.hunter.inline = true
-	section.args.hunter.args.hunter1 = ACH:Execute(format('|cffAAD372%s|r', L["Beast Mastery"]), nil, 3, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Beastmastery') end)
-	section.args.hunter.args.hunter2 = ACH:Execute(format('|cffAAD372%s|r', L["Marksmanship"]), nil, 4, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Marksmanship') end)
-	section.args.hunter.args.hunter3 = ACH:Execute(format('|cffAAD372%s|r', L["Survival"]), nil, 5, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Survival') end)
-	section.args.shaman = ACH:Group(L["Shaman"], nil, 3, nil, nil, nil, nil, Private.myClass ~= 'SHAMAN')
-	section.args.shaman.inline = true
-	section.args.shaman.args.shaman1 = ACH:Execute(format('|cff0070DD%s|r', L["Enhancement"]), nil, 6, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Enhancement') end)
-	section.args.shaman.args.shaman2 = ACH:Execute(format('|cff0070DD%s|r', L["Elemental"]), nil, 7, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Elemental') end)
-	section.args.shaman.args.shaman3 = ACH:Execute(format('|cff0070DD%s|r', L["Restoration"]), nil, 8, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Restoration-Shaman') end)
-	section.args.monk = ACH:Group(L["Monk"], nil, 4, nil, nil, nil, nil, Private.myClass ~= 'MONK')
-	section.args.monk.inline = true
-	section.args.monk.args.monk1 = ACH:Execute(format('|cff00FF98%s|r', L["Windwalker"]), nil, 9, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Windwalker') end)
-	section.args.monk.args.monk2 = ACH:Execute(format('|cff00FF98%s|r', L["Brewmaster"]), nil, 10, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Brewmaster') end)
-	section.args.monk.args.monk3 = ACH:Execute(format('|cff00FF98%s|r', L["Mistweaver"]), nil, 11, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Mistweaver') end)
-	section.args.paladin = ACH:Group(L["Paladin"], nil, 5, nil, nil, nil, nil, Private.myClass ~= 'PALADIN')
-	section.args.paladin.inline = true
-	section.args.paladin.args.paladin1 = ACH:Execute(format('|cffF48CBA%s|r', L["Retribution"]), nil, 12, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Retribution') end)
-	section.args.paladin.args.paladin2 = ACH:Execute(format('|cffF48CBA%s|r', L["Protection"]), nil, 13, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Protection-Paladin') end)
-	section.args.paladin.args.paladin3 = ACH:Execute(format('|cffF48CBA%s|r', L["Holy"]), nil, 14, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Holy-Paladin') end)
-	section.args.druid = ACH:Group(L["Druid"], nil, 6, nil, nil, nil, nil, Private.myClass ~= 'DRUID')
-	section.args.druid.inline = true
-	section.args.druid.args.druid1 = ACH:Execute(format('|cffFF7C0A%s|r', L["Feral"]), nil, 15, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Feral') end)
-	section.args.druid.args.druid2 = ACH:Execute(format('|cffFF7C0A%s|r', L["Balance"]), nil, 16, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Balance') end)
-	section.args.druid.args.druid3 = ACH:Execute(format('|cffFF7C0A%s|r', L["Guardian"]), nil, 17, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Guardian') end)
-	section.args.druid.args.druid4 = ACH:Execute(format('|cffFF7C0A%s|r', L["Restoration"]), nil, 18, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Restoration-Druid') end)
-	section.args.evoker = ACH:Group(L["Evoker"], nil, 7, nil, nil, nil, nil, Private.myClass ~= 'EVOKER')
-	section.args.evoker.inline = true
-	section.args.evoker.args.evoker1 = ACH:Execute(format('|cff33937F%s|r', L["Devastation"]), nil, 19, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Devastation') end)
-	section.args.evoker.args.evoker2 = ACH:Execute(format('|cff33937F%s|r', L["Preservation"]), nil, 20, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Preservation') end)
-	section.args.evoker.args.evoker3 = ACH:Execute(format('|cff33937F%s|r', L["Augmentation"]), nil, 21, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Augmentation') end)
-	section.args.warrior = ACH:Group(L["Warrior"], nil, 8, nil, nil, nil, nil, Private.myClass ~= 'WARRIOR')
-	section.args.warrior.inline = true
-	section.args.warrior.args.warrior1 = ACH:Execute(format('|cffC69B6D%s|r', L["Arms"]), nil, 22, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Arms') end)
-	section.args.warrior.args.warrior2 = ACH:Execute(format('|cffC69B6D%s|r', L["Fury"]), nil, 23, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Fury') end)
-	section.args.warrior.args.warrior3 = ACH:Execute(format('|cffC69B6D%s|r', L["Protection"]), nil, 24, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Protection-Warrior') end)
-	section.args.dk = ACH:Group(L["Death Knight"], nil, 9, nil, nil, nil, nil, Private.myClass ~= 'DEATHKNIGHT')
-	section.args.dk.inline = true
-	section.args.dk.args.dk1 = ACH:Execute(format('|cffC41E3A%s|r', L["Unholy"]), nil, 25, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Unholy') end)
-	section.args.dk.args.dk2 = ACH:Execute(format('|cffC41E3A%s|r', L["Frost"]), nil, 26, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Frost-DK') end)
-	section.args.dk.args.dk3 = ACH:Execute(format('|cffC41E3A%s|r', L["Blood"]), nil, 27, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Blood') end)
-	section.args.dh = ACH:Group(L["Demon Hunter"], nil, 10, nil, nil, nil, nil, Private.myClass ~= 'DEMONHUNTER')
-	section.args.dh.inline = true
-	section.args.dh.args.dh1 = ACH:Execute(format('|cffA330C9%s|r', L["Havoc"]), nil, 28, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Havoc') end)
-	section.args.dh.args.dh2 = ACH:Execute(format('|cffA330C9%s|r', L["Vengeance"]), nil, 29, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Vengeance') end)
-	section.args.dh.args.dh3 = ACH:Execute(format('|cffA330C9%s|r', L["Devourer"]), nil, 30, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Devourer') end)
-	section.args.priest = ACH:Group(L["Priest"], nil, 11, nil, nil, nil, nil, Private.myClass ~= 'PRIEST')
-	section.args.priest.inline = true
-	section.args.priest.args.priest1 = ACH:Execute(format('|cffFFFFFF%s|r', L["Shadow"]), nil, 31, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Shadow') end)
-	section.args.priest.args.priest2 = ACH:Execute(format('|cffFFFFFF%s|r', L["Discipline"]), nil, 32, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Discipline') end)
-	section.args.priest.args.priest3 = ACH:Execute(format('|cffFFFFFF%s|r', L["Holy"]), nil, 33, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Holy-Priest') end)
-	section.args.warlock = ACH:Group(L["Warlock"], nil, 12, nil, nil, nil, nil, Private.myClass ~= 'WARLOCK')
-	section.args.warlock.inline = true
-	section.args.warlock.args.warlock1 = ACH:Execute(format('|cff8788EE%s|r', L["Destruction"]), nil, 34, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Destruction') end)
-	section.args.warlock.args.warlock2 = ACH:Execute(format('|cff8788EE%s|r', L["Affliction"]), nil, 35, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Affliction') end)
-	section.args.warlock.args.warlock3 = ACH:Execute(format('|cff8788EE%s|r', L["Demonology"]), nil, 36, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Demonology') end)
-	section.args.mage = ACH:Group(L["Mage"], nil, 13, nil, nil, nil, nil, Private.myClass ~= 'MAGE')
-	section.args.mage.inline = true
-	section.args.mage.args.mage1 = ACH:Execute(format('|cff3FC7EB%s|r', L["Fire"]), nil, 37, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Fire') end)
-	section.args.mage.args.mage2 = ACH:Execute(format('|cff3FC7EB%s|r', L["Frost"]), nil, 38, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Frost-Mage') end)
-	section.args.mage.args.mage3 = ACH:Execute(format('|cff3FC7EB%s|r', L["Arcane"]), nil, 39, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Arcane') end)
-	section.args.rogue = ACH:Group(L["Rogue"], nil, 14, nil, nil, nil, nil, Private.myClass ~= 'ROGUE')
-	section.args.rogue.inline = true
-	section.args.rogue.args.rogue1 = ACH:Execute(format('|cffFFF468%s|r', L["Assassination"]), nil, 40, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Assassination') end)
-	section.args.rogue.args.rogue2 = ACH:Execute(format('|cffFFF468%s|r', L["Outlaw"]), nil, 41, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Outlaw') end)
-	section.args.rogue.args.rogue3 = ACH:Execute(format('|cffFFF468%s|r', L["Subtlety"]), nil, 42, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-Subtlety') end)
-	section.args.desc = ACH:Group(L["Description"], nil, 15)
-	section.args.desc.inline = true
-	section.args.desc.args.desc = ACH:Description(L["Specializations are only displayed for the class you're currently logged into.\n\nGrab the updated import string from the Wago URL and import it manually.\n\nFor quick access to the Blizzard cooldown viewer panel use the button below."], 1, 'medium')
-	section.args.header2 = ACH:Header(L["Cooldown Settings"], 16)
-	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 17)
-	section.args.addons.inline = true
-	section.args.addons.args.scm = ACH:Execute('SkironCooldownManager', IMPORT_DEFAULTS_TEXT, 1, function() Private:Setup_SCM() StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.utilities = ACH:Group(L["Utilities"], nil, 18)
-	section.args.utilities.inline = true
-	section.args.utilities.args.toggleViewer = ACH:Execute(format('|cff4beb2c%s|r', L["Toggle Cooldown Settings"]), L["Shortcut to the Cooldown Settings.\nYou can import the profiles in the bottom left dropdown."], 1, function() Private:ShowCooldownViewerSettings() end)
 	return section
 end
 
@@ -701,8 +701,8 @@ function Private:BuildConfig()
 	Private.Config.args.privateDB = BuildPrivateDBSection() -- 15
 	Private.Config.args.chat = BuildChatSection() -- 20
 	Private.Config.args.cvars = BuildCVarsSection() -- 25
-	Private.Config.args.damageMeter = BuildDamageMeterSection() -- 30
-	Private.Config.args.cdm = BuildCDMSection() -- 35
+	Private.Config.args.cdm = BuildCDMSection() -- 30
+	Private.Config.args.damageMeter = BuildDamageMeterSection() -- 35
 	Private.Config.args.elvuiLayouts = BuildElvUILayoutSection() -- 40
 	Private.Config.args.elvuiThemes = BuildElvUIThemesSection() -- 45
 	Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 50
