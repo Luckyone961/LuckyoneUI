@@ -468,10 +468,21 @@ end
 -- Restore profile defaults config button
 function Private:DamageMeter_ResetDefaults()
 	local db = Private.Addon.db.profile.damageMeter
+	local defaults = Private.Defaults.profile.damageMeter
 	local enable = db.enable
+	local windows = db.windows
 
 	wipe(db)
-	E:CopyTable(db, Private.Defaults.profile.damageMeter)
+	E:CopyTable(db, defaults)
+
+	-- New windows come out of the AceDB ['**'] wildcard
+	db.windows = windows
+
+	for index, wdb in pairs(windows) do
+		wipe(wdb)
+		E:CopyTable(wdb, defaults.windows['**'])
+		E:CopyTable(wdb, defaults.windows[index])
+	end
 
 	-- Restoring the look should not switch the module off
 	db.enable = enable

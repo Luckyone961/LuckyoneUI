@@ -193,13 +193,13 @@ local function BuildCVarsSection()
 	return section
 end
 
--- Damage Meter window placement
-local WINDOW_NAMES = { L["Window 1"], L["Window 2"], L["Window 3"] }
+local MAX_WINDOWS = 4
+local WINDOW_NAMES = {}
 local PlacementValues = { AUTO = L["Automatic"], ATTACH = L["Attached"], CUSTOM = L["Custom"] }
 local SoloPlacementValues = { AUTO = L["Automatic"], CUSTOM = L["Custom"] }
 
 local function ReleaseAttached(db, index)
-	for other = 1, #db.windows do
+	for other = 1, MAX_WINDOWS do
 		local wdb = db.windows[other]
 
 		if wdb.attachTo == index then
@@ -211,6 +211,8 @@ end
 
 -- Damage Meter window group, one per session window
 local function BuildWindowGroup(index, order)
+	WINDOW_NAMES[index] = format(L["Window %d"], index) -- The attach menu picks them up from here
+
 	local group = ACH:Group(WINDOW_NAMES[index], nil, order, nil, function(info) return Private.Addon.db.profile.damageMeter.windows[index][info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter.windows[index][info[#info]] = value Private:DamageMeter_UpdateAll() end, nil, function() return Private.Addon.db.profile.damageMeter.windowCount < index end)
 	group.inline = true
 	group.args.meterType = ACH:Select(L["Type"], nil, 1, function() local DM = Private.Modules.DamageMeter return DM and DM.TypeMenuNames or {} end, nil, nil, nil, function(_, value) Private.Addon.db.profile.damageMeter.windows[index].meterType = value local DM = Private.Modules.DamageMeter local window = DM and DM.windows[index] if window then DM:SetWindowType(window, value) end end)
@@ -253,15 +255,17 @@ local function BuildDamageMeterSection()
 	section.args.windows = ACH:Group(L["Windows"], nil, 3, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.windows.args.generalOptions = ACH:Group(L["General"], nil, 1, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end)
 	section.args.windows.args.generalOptions.inline = true
-	section.args.windows.args.generalOptions.args.windowCount = ACH:Range(L["Windows"], L["Number of session windows."], 1, { min = 1, max = 3, step = 1 })
+	section.args.windows.args.generalOptions.args.windowCount = ACH:Range(L["Windows"], L["Number of session windows."], 1, { min = 1, max = MAX_WINDOWS, step = 1 })
 	section.args.windows.args.generalOptions.args.orientation = ACH:Select(L["Orientation"], L["Place the session windows next to each other or stacked."], 2, { HORIZONTAL = L["Horizontal"], VERTICAL = L["Vertical"] })
 	section.args.windows.args.spacingOptions = ACH:Group(L["Spacing"], nil, 2, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end)
 	section.args.windows.args.spacingOptions.inline = true
 	section.args.windows.args.spacingOptions.args.innerSpacing = ACH:Range(L["Inner Spacing"], L["Space between the session windows."], 1, { min = -20, max = 20, step = 1 }, nil, nil, nil, function() local db = Private.Addon.db.profile.damageMeter return not db.enable or db.windowCount < 2 end)
 	section.args.windows.args.spacingOptions.args.outerSpacing = ACH:Range(L["Outer Spacing"], L["Space between the frame border and the session windows."], 2, { min = -20, max = 20, step = 1 })
-	section.args.windows.args.windowOne = BuildWindowGroup(1, 3)
-	section.args.windows.args.windowTwo = BuildWindowGroup(2, 4)
-	section.args.windows.args.windowThree = BuildWindowGroup(3, 5)
+
+	for index = 1, MAX_WINDOWS do
+		section.args.windows.args['window' .. index] = BuildWindowGroup(index, index + 2)
+	end
+
 	section.args.bars = ACH:Group(L["Bars"], nil, 4, nil, function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_UpdateAll() end, function() return not Private.Addon.db.profile.damageMeter.enable end)
 	section.args.bars.args.generalOptions = ACH:Group(L["General"], nil, 1)
 	section.args.bars.args.generalOptions.inline = true
