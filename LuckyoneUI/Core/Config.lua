@@ -75,7 +75,10 @@ local function BuildSetupSection()
 	section.args.header = ACH:Header(Private.Name, 1, nil, nil, not Private.ElvUI)
 	section.args.spacer1 = ACH:Spacer(2, 'full', not Private.ElvUI)
 	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Run the installation process."], 3, function() Private.Installer:Show(Private.InstallerData) if Private.ElvUI then ElvUI[1]:ToggleOptions() else HideUIPanel(SettingsPanel) end end)
-	section.args.spacer2 = ACH:Spacer(4, 'full')
+	section.args.spacer2 = ACH:Spacer(4, 0.20)
+	section.args.native = ACH:Toggle('1440p',L["1440p = Default | 1080p = Downscaled"], 5, nil, nil, 'half', function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
+	section.args.scaled = ACH:Toggle('1080p',L["1440p = Default | 1080p = Downscaled"], 6, nil, nil, 'half', function() return Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = value end)
+	section.args.spacer3 = ACH:Spacer(7, 'full')
 	return section
 end
 
@@ -484,27 +487,22 @@ end
 local function BuildElvUILayoutSection()
 	if not Private.ElvUI then return end -- ElvUI section
 	local section = ACH:Group(GetIconName(L["ElvUI Layouts"], 'Layouts'), nil, 40)
-	section.args.header1 = ACH:Header(L["LuckyoneUI Scale"], 1)
-	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
-	section.args.scaling.inline = true
-	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
-	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = value end)
-	section.args.header2 = ACH:Header(L["ElvUI Layouts"], 3)
-	section.args.midnight = ACH:Group(L["Midnight Layouts"], nil, 4)
+	section.args.header1 = ACH:Header(L["ElvUI Layouts"], 1)
+	section.args.midnight = ACH:Group(L["Midnight Layouts"], nil, 2)
 	section.args.midnight.inline = true
 	section.args.midnight.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout('main') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.midnight.args.healingVertical = ACH:Execute(L["Healing Vertical"], nil, 2, function() Private:Setup_Layout('healing') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.midnight.args.healingHorizontal = ACH:Execute(L["Healing Horizontal"], nil, 3, function() Private:Setup_Layout('healing', nil, 'horizontal') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.header3 = ACH:Header(L["ElvUI Themes"], 5)
-	section.args.themes = ACH:Group(L["UnitFrames Color Theme"], nil, 6)
+	section.args.header2 = ACH:Header(L["ElvUI Themes"], 3)
+	section.args.themes = ACH:Group(L["UnitFrames Color Theme"], nil, 4)
 	section.args.themes.inline = true
 	section.args.themes.args.dark = ACH:Execute(L["Dark"], L["Dark Style (Default)"], 1, function() Private:Setup_Theme('dark') end, nil, true)
 	section.args.themes.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() Private:Setup_Theme('class') end, nil, true)
-	section.args.header = ACH:Header(L["Auras"], 7)
-	section.args.filters = ACH:Group(L["Filters"], nil, 8)
+	section.args.header3 = ACH:Header(L["Auras"], 5)
+	section.args.filters = ACH:Group(L["Filters"], nil, 6)
 	section.args.filters.inline = true
 	section.args.filters.args.setup = ACH:Execute((Private.isRetail and L["Setup Aura Indicators"]) or L["Setup Aura Filters"], nil, 1, function() Private:Setup_Filters() StaticPopup_Show(RELOAD_POPUP) end)
-	section.args.Desc = ACH:Group(L["Description"], nil, 9)
+	section.args.Desc = ACH:Group(L["Description"], nil, 7)
 	section.args.Desc.inline = true
 	section.args.Desc.args.cvars = ACH:Description((Private.isRetail and L["This will apply Luckyones Aura Indicator edit and set the style to Textured."]) or L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"], 2, 'medium')
 	return section
