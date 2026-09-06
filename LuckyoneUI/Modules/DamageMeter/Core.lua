@@ -230,7 +230,7 @@ local function UpdateWindowMover(window, index, custom)
 	end
 end
 
--- Columns are laid out along one axis, the holder wraps them
+-- Columns split the holder along one axis, custom placed windows sit outside of it
 function DM:Layout()
 	local db = DM.db
 	local holder = DM.holder
@@ -240,42 +240,21 @@ function DM:Layout()
 	local count = db.windowCount
 	local inner, outer = db.innerSpacing, db.outerSpacing
 	local minSize = db.headerHeight + db.barHeight
-	local holderWidth, holderHeight
 
 	BuildRoots(count)
+
+	-- The chat panel gives the holder its size, the columns split it evenly
+	local chat = E.db.chat
+	local holderWidth = chat.separateSizes and chat.panelWidthRight or chat.panelWidth
+	local holderHeight = chat.separateSizes and chat.panelHeightRight or chat.panelHeight
 	local columnCount = #columns
 
-	if db.sizeMode == 'CUSTOM' then
-		-- Every column brings its own size, the holder wraps them
-		local axis, cross = outer * 2 + max(columnCount - 1, 0) * inner, 0
+	if columnCount > 0 then
+		local size = ((vertical and holderHeight or holderWidth) - outer * 2 - (columnCount - 1) * inner) / columnCount
 
 		for _, index in ipairs(columns) do
-			local wdb = DM:WindowDB(index)
-			widths[index], heights[index] = wdb.width, wdb.height
-
-			axis = axis + (vertical and wdb.height or wdb.width)
-			cross = max(cross, vertical and wdb.width or wdb.height)
-		end
-
-		holderWidth = vertical and cross or axis
-		holderHeight = vertical and axis or cross
-	else
-		-- The holder size is given, the columns split it evenly
-		if db.sizeMode == 'CHAT' then
-			local chat = E.db.chat
-			holderWidth = chat.separateSizes and chat.panelWidthRight or chat.panelWidth
-			holderHeight = chat.separateSizes and chat.panelHeightRight or chat.panelHeight
-		else
-			holderWidth, holderHeight = db.width, db.height
-		end
-
-		if columnCount > 0 then
-			local size = ((vertical and holderHeight or holderWidth) - outer * 2 - (columnCount - 1) * inner) / columnCount
-
-			for _, index in ipairs(columns) do
-				widths[index] = vertical and holderWidth or size
-				heights[index] = vertical and size or holderHeight
-			end
+			widths[index] = vertical and holderWidth or size
+			heights[index] = vertical and size or holderHeight
 		end
 	end
 
@@ -331,9 +310,6 @@ function DM:Layout()
 			DM:UpdateWindowGeometry(window, widths[index], heights[index])
 		end
 	end
-
-	-- Nothing is anchored to the main holder when every window is in custom mode
-	ToggleMover('LuckyoneUI_DamageMeterMover', columnCount > 0)
 end
 
 function DM:Initialize()
@@ -345,14 +321,12 @@ function DM:Initialize()
 	holder:Point('BOTTOMRIGHT', _G.RightChatPanel or E.UIParent, 'BOTTOMRIGHT', 0, 0)
 	DM.holder = holder
 
-	E:CreateMover(holder, 'LuckyoneUI_DamageMeterMover', Private.Name .. ' ' .. L["Damage Meter"], nil, nil, nil, 'ALL,GENERAL', nil, 'LuckyoneUI,damageMeter')
-
 	-- Attempt to keep data on reloads
 	hooksecurefunc(C_UI, 'Reload', function() DM.reloadingUI = true end)
 
-	-- Follow ElvUI resizing while the "Chat Panel" size mode is used
+	-- The holder follows the right chat panel around
 	hooksecurefunc(E:GetModule('Chat'), 'PositionChats', function()
-		if DM.db.enable and DM.db.sizeMode == 'CHAT' then
+		if DM.db.enable then
 			DM:Layout()
 			DM:RefreshAll()
 		end
