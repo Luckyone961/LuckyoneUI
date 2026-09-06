@@ -75,9 +75,7 @@ local function BuildSetupSection()
 	section.args.header = ACH:Header(Private.Name, 1, nil, nil, not Private.ElvUI)
 	section.args.spacer1 = ACH:Spacer(2, 'full', not Private.ElvUI)
 	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 3, function() Private.Installer:Show(Private.InstallerData) if Private.ElvUI then ElvUI[1]:ToggleOptions() else HideUIPanel(SettingsPanel) end end)
-	section.args.altMain = ACH:Execute(L["Alt: "] .. L["DPS & Tanks"], L["This will load your most recent LuckyoneUI profile."], 4, function() Private:HandleAlts('Main') end, nil, true, nil, nil, nil, nil, not Private.ElvUI)
-	section.args.altHealing = ACH:Execute(L["Alt: "] .. L["Healing"], L["This will load your most recent LuckyoneUI profile."], 5, function() Private:HandleAlts('Healing') end, nil, true, nil, nil, nil, nil, not Private.ElvUI)
-	section.args.spacer2 = ACH:Spacer(6, 'full')
+	section.args.spacer2 = ACH:Spacer(4, 'full')
 	return section
 end
 

@@ -10,7 +10,6 @@ local unpack = unpack
 local SetCVar = C_CVar.SetCVar
 
 local _G = _G
-local StaticPopup_Show = _G.StaticPopup_Show
 
 local E, _, _, P = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
@@ -2146,33 +2145,4 @@ function Private:Setup_Layout(layout, installer, partyStyle)
 	Refresh()
 
 	Private:Print(L["Layout has been set."], installer)
-end
-
--- Handler for existing profiles (Quick install on alts)
-function Private:HandleAlts(layout)
-	local mostRecentProfile = Private:GetMostRecentProfile(layout)
-
-	if not mostRecentProfile then
-		Private:Print(L["No existing LuckyoneUI profile found."])
-		return
-	end
-
-	DisableLibDualSpec()
-	E.data:SetProfile(mostRecentProfile)
-
-	-- Correct initial DT width
-	if layout == 'main' then
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 395 -- (Profile == 1)
-	elseif layout == 'healing' then
-		E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = 704 -- (Profile == 2)
-	end
-
-	Private:Setup_PrivateDB(true)
-	Private:Setup_Chat()
-
-	Refresh()
-
-	StaticPopup_Show('LUCKYONE_RL')
-
-	Private:Print(L["Applied profile: "] .. mostRecentProfile)
 end
