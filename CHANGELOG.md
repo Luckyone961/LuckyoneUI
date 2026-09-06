@@ -1,6 +1,11 @@
 ﻿## Version 4.22 [In development, not yet released]
 
+**All WoW Versions:**  
+- Updated deDE locales  
+- Updated frFR locales (Credits: Oniria)  
+
 **Retail:**  
+- Added a fully custom Damage Meter with hundreds of settings based on Blizzards API  
 - Removed the Blizzard Damage Meter skin and tweaks  
 
 ## Version 4.21 [01-09-2026]
