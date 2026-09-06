@@ -260,8 +260,7 @@ local function Setup_Filters_Retail()
 
 	classes['EVOKER'][369459] = { -- Source of Magic
 		['enabled'] = true,
-		['point'] = 'TOPLEFT',
-		['yOffset'] = 1,
+		['point'] = 'LEFT',
 		['sizeOffset'] = 4,
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
