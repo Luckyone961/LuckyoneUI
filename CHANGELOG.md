@@ -1,6 +1,9 @@
 ﻿## Version 4.22 [In development, not yet released]
 
 **All WoW Versions:**  
+- Alt setup buttons were removed from the installer (Rework and improvements soon)  
+- Config sections cleaned up and slightly reworked  
+- Support layout was removed from the installer (Using main layout and Spotlights for Aug now)  
 - Updated deDE locales  
 - Updated frFR locales (Credits: Oniria)  
 
