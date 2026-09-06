@@ -216,6 +216,7 @@ L["Healing Horizontal"] = "Исцеление горизонтально"
 L["Healing Layout"] = "Макет 'Исцеление'"
 L["Healing Vertical"] = "Исцеление вертикально"
 L["Healing"] = "Исцеление"
+L["Height of the bar below the text. Zero attempts to match Blizzards default."] = true
 L["Height"] = true
 L["Hide Blizzard Frames"] = "Скрыть рамки Blizzard"
 L["Hide the Boss Banner"] = "Скрыть баннер босса"
@@ -424,6 +425,7 @@ L["The LuckyoneUI Damage Meter is based on the Blizzard API and much more lightw
 L["The LuckyoneUI installer will guide you through some steps and apply the profiles of your choice."] = "Установщик LuckyoneUI проведёт Вас через несколько шагов и применит выбранные Вами профили."
 L["The order of icons is sorted alphabetically, starting on the right side.\nException 1: BugSack - it's hardcoded to be the right-most icon.\nException 2: Blizzard buttons - they're hardcoded to be the last icon."] = true
 L["Theme has been set."] = "Тема установлена."
+L["Thin Bar Height"] = true
 L["Thin"] = true
 L["This step will configure additional ElvUI modules such as Nameplates and plugins."] = "Этот шаг настроит дополнительные модули ElvUI, такие как индикаторы здоровья и плагины."
 L["This step will configure some of Blizzards console variables."] = "Этот шаг настроит некоторые консольные переменные Blizzard."

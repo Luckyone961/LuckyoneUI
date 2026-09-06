@@ -22,6 +22,7 @@ Private.Defaults = {
 			barStyle = 'DEFAULT',
 			barTexture = Private.Texture,
 			barHeight = 18,
+			thinBarHeight = 0,
 			barSpacing = 1,
 			barColorType = 'CLASS',
 			barColor = { r = 0.5, g = 0.5, b = 1 },

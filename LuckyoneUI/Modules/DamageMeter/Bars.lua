@@ -263,6 +263,9 @@ local function SetBarAnchors(db, bar, iconShown)
 	value:ClearAllPoints()
 	persec:ClearAllPoints()
 
+	-- Only the thin style sets a fixed height, zero hands it back to the anchors
+	status:Height(0)
+
 	if style == 'THIN' then
 		-- Both texts sit on top, the bar only fills the leftover height
 		persec:Point('TOP', bar, 'TOP', 0, db.valueYOffset)
@@ -279,9 +282,18 @@ local function SetBarAnchors(db, bar, iconShown)
 		name:Point('LEFT', rank, 'RIGHT', 0, 0)
 		name:Point('RIGHT', value, 'LEFT', -8, 0)
 
-		status:Point('LEFT', relative, relativePoint, 0, 0)
-		status:Point('TOP', name, 'BOTTOM', 0, 0)
-		status:Point('BOTTOMRIGHT', bar, 'BOTTOMRIGHT', 0, 0)
+		-- Custom height sits on the bottom edge, zero keeps whatever the text leaves over
+		local thinHeight = min(db.thinBarHeight, db.barHeight)
+
+		if thinHeight > 0 then
+			status:Point('BOTTOMLEFT', relative, iconShown and 'BOTTOMRIGHT' or 'BOTTOMLEFT', 0, 0)
+			status:Point('BOTTOMRIGHT', bar, 'BOTTOMRIGHT', 0, 0)
+			status:Height(thinHeight)
+		else
+			status:Point('LEFT', relative, relativePoint, 0, 0)
+			status:Point('TOP', name, 'BOTTOM', 0, 0)
+			status:Point('BOTTOMRIGHT', bar, 'BOTTOMRIGHT', 0, 0)
+		end
 	else
 		status:Point('TOPLEFT', relative, iconShown and 'TOPRIGHT' or 'TOPLEFT', separator, 0)
 		status:Point('BOTTOMRIGHT', bar, 'BOTTOMRIGHT', 0, 0)
