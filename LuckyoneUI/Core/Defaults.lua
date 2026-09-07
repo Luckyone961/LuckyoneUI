@@ -3,6 +3,7 @@ local _, Private = ...
 -- LuckyoneDB defaults
 Private.Defaults = {
 	global = {
+		DebugDisabledAddOns = {},
 		dev = false,
 		scaled = false,
 	},
