@@ -2146,3 +2146,22 @@ function Private:Setup_Layout(layout, installer, partyStyle)
 
 	Private:Print(L["Layout has been set."], installer)
 end
+
+-- Existing profile setup (Quick install on alts)
+function Private:Setup_AltProfile(profile, layout)
+	DisableLibDualSpec()
+	E.data:SetProfile(profile)
+
+	-- Protect movers error
+	E.db.movers = E.db.movers or {}
+
+	-- Correct initial DT width
+	local actionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
+	if actionBarsDT then
+		actionBarsDT.width = (layout == 'healing' and 704) or 395
+	end
+
+	Private:Setup_PrivateDB(true)
+
+	Refresh()
+end

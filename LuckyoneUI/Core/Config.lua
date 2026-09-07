@@ -75,10 +75,11 @@ local function BuildSetupSection()
 	section.args.header = ACH:Header(Private.Name, 1, nil, nil, not Private.ElvUI)
 	section.args.spacer1 = ACH:Spacer(2, 'full', not Private.ElvUI)
 	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Run the installation process."], 3, function() Private.Installer:Show(Private.InstallerData) if Private.ElvUI then ElvUI[1]:ToggleOptions() else HideUIPanel(SettingsPanel) end end)
-	section.args.spacer2 = ACH:Spacer(4, 0.20)
-	section.args.native = ACH:Toggle('1440p',L["1440p = Default | 1080p = Downscaled"], 5, nil, nil, 'half', function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
-	section.args.scaled = ACH:Toggle('1080p',L["1440p = Default | 1080p = Downscaled"], 6, nil, nil, 'half', function() return Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = value end)
-	section.args.spacer3 = ACH:Spacer(7, 'full')
+	section.args.alts = ACH:Execute(L["Alt Setup"], L["Loads your existing LuckyoneUI profile in every enabled addon that has one.\n\nIt also creates your chat tabs and applies the console variables.\n\nHealer specializations get the healing profiles, everyone else the main ones."], 4, function() Private:HandleAlts() end, nil, true)
+	section.args.spacer2 = ACH:Spacer(5, 0.20)
+	section.args.native = ACH:Toggle('1440p',L["1440p = Default | 1080p = Downscaled"], 6, nil, nil, 'half', function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
+	section.args.scaled = ACH:Toggle('1080p',L["1440p = Default | 1080p = Downscaled"], 7, nil, nil, 'half', function() return Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = value end)
+	section.args.spacer3 = ACH:Spacer(8, 'full')
 	return section
 end
 

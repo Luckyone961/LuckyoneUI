@@ -3,6 +3,7 @@
 	<Script file='Config.lua'/>
 	<Script file='Personal.lua'/> <!-- Keep above Core -->
 	<Script file='Core.lua'/>
+	<Script file='Alts.lua'/>
 	<Script file='Installer.lua'/>
 	<Script file='Themes.lua'/>
 </Ui>
