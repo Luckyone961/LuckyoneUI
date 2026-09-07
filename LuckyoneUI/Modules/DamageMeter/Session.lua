@@ -512,6 +512,7 @@ end
 -- A right click panel over the bar area, it only carries damage meter types (the table)
 -- Every type is stored as its own place in the list so it can be dragged around
 local NEW_BOOKMARK = 99 -- Higher than the type count, anything new sorts to the end
+local DRAG_SCROLL_DELAY = 0.15 -- One row per step while a drag sits on an edge
 
 local bookmarkList, bookmarkPlaces = {}, {}
 
@@ -602,29 +603,73 @@ local function BookmarkRow_OnClick(row, mouseButton)
 	DM:SetWindowType(window, row.meterType)
 end
 
+-- Scrolling
+local function Bookmarks_ScrollTo(frame, offset)
+	offset = min(max(offset, 0), max(frame.total - frame.visible, 0))
+	if offset == frame.offset then return false end
+
+	frame.offset = offset
+	DM:LayoutBookmarks(frame.window)
+
+	return true
+end
+
+local function Bookmarks_OnMouseWheel(frame, delta)
+	Bookmarks_ScrollTo(frame, frame.offset - delta)
+end
+
 -- Drag and drop reorder
 -- The row under the cursor, the plus slot never counts as one
-local function DropIndex(frame)
-	local _, y = GetCursorPosition()
-	y = y / frame:GetEffectiveScale()
-
+local function DropIndex(frame, y)
 	for index = 1, frame.dropCount do
 		if y >= frame.rows[index]:GetBottom() then
-			return index
+			return frame.offset + index
 		end
 	end
 
-	return frame.dropCount
+	return frame.offset + frame.dropCount
+end
+
+local function DragScroll(frame, y, elapsed)
+	local direction = 0
+
+	if y > frame.rows[1]:GetTop() then
+		direction = -1
+	elseif y < frame.rows[frame.visible]:GetBottom() then
+		direction = 1
+	end
+
+	if direction == 0 then
+		frame.scrollWait = nil
+		return
+	end
+
+	frame.scrollWait = (frame.scrollWait or DRAG_SCROLL_DELAY) - elapsed
+	if frame.scrollWait > 0 then return end
+
+	frame.scrollWait = DRAG_SCROLL_DELAY
+
+	-- The rows carry other types now, the marker has to find its place again
+	if Bookmarks_ScrollTo(frame, frame.offset + direction) then
+		frame.dropIndex = nil
+	end
 end
 
 -- The marker sits above the target while moving up and below it while moving down
-local function Bookmarks_OnUpdate(frame)
-	local index = DropIndex(frame)
+local function Bookmarks_OnUpdate(frame, elapsed)
+	local _, y = GetCursorPosition()
+	y = y / frame:GetEffectiveScale()
+
+	DragScroll(frame, y, elapsed or 0)
+
+	local index = DropIndex(frame, y)
 	if index == frame.dropIndex then return end
+
+	local row = frame.rows[index - frame.offset]
+	if not row then return end
 
 	frame.dropIndex = index
 
-	local row = frame.rows[index]
 	local marker = frame.marker
 
 	marker:ClearAllPoints()
@@ -644,6 +689,7 @@ local function BookmarkRow_OnDragStart(row)
 	local frame = row:GetParent()
 	frame.dragIndex = row.index
 	frame.dropIndex = nil
+	frame.scrollWait = nil
 
 	row:SetAlpha(0.4)
 	frame.marker:Show()
@@ -661,10 +707,11 @@ local function BookmarkRow_OnDragStop(row)
 
 	frame:SetScript('OnUpdate', nil)
 	frame.marker:Hide()
-	row:SetAlpha(1)
 
 	if to and to ~= from then
 		DM:MoveBookmark(row.window, from, to)
+	else
+		DM:LayoutBookmarks(row.window) -- Takes the dimming off again
 	end
 end
 
@@ -709,7 +756,7 @@ local function Bookmarks_OnHide(frame)
 	frame:UnregisterEvent('GLOBAL_MOUSE_DOWN')
 	frame:SetScript('OnUpdate', nil)
 
-	frame.dragIndex, frame.dropIndex = nil, nil
+	frame.dragIndex, frame.dropIndex, frame.scrollWait = nil, nil, nil
 	frame.marker:Hide()
 	frame.window.content:Show()
 end
@@ -734,12 +781,16 @@ local function CreateBookmarks(window)
 	-- Set before the scripts, the first Hide already fires OnHide
 	frame.rows = {}
 	frame.window = window
+	frame.offset = 0
+	frame.total = 0
+	frame.visible = 0
 	window.bookmarks = frame
 
 	frame:SetFrameLevel(window.content:GetFrameLevel() + 5)
 	frame:Point('TOPLEFT', window.header, 'BOTTOMLEFT', 0, 0)
 	frame:Point('BOTTOMRIGHT', window, 'BOTTOMRIGHT', 0, 0)
 	frame:EnableMouse(true)
+	frame:EnableMouseWheel(true)
 
 	-- Shows where a dragged bookmark lands, above the rows so it stays visible
 	local marker = CreateFrame('Frame', nil, frame)
@@ -755,6 +806,7 @@ local function CreateBookmarks(window)
 	frame:SetScript('OnHide', Bookmarks_OnHide)
 	frame:SetScript('OnEvent', Bookmarks_OnEvent)
 	frame:SetScript('OnMouseDown', Bookmarks_OnMouseDown)
+	frame:SetScript('OnMouseWheel', Bookmarks_OnMouseWheel)
 	frame:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
 	frame:Hide()
 	SetHoverScripts(frame)
@@ -762,8 +814,7 @@ local function CreateBookmarks(window)
 	return frame
 end
 
--- The rows split whatever the header leaves over, so they always fit
-function DM:LayoutBookmarks(window)
+function DM:LayoutBookmarks(window, focus)
 	local frame = window.bookmarks
 	if not frame then return false end
 
@@ -771,30 +822,57 @@ function DM:LayoutBookmarks(window)
 	local list = BuildBookmarkList()
 
 	-- The plus icon goes away once every type is bookmarked
-	local rows = #list + ((#list < typeCount) and 1 or 0)
-	if rows == 0 then return false end
+	local total = #list + ((#list < typeCount) and 1 or 0)
+	if total == 0 then return false end
 
 	local spacing = db.barSpacing
-	local rowHeight = floor(((window.contentHeight or 0) - (rows - 1) * spacing) / rows)
+	local contentHeight = window.contentHeight or 0
+	local visible, rowHeight = total, floor((contentHeight - (total - 1) * spacing) / total)
+
+	if rowHeight < db.barHeight then
+		rowHeight = min(db.barHeight, floor(contentHeight))
+		visible = max(floor((contentHeight + spacing) / (rowHeight + spacing)), 1)
+		visible = min(visible, total)
+	end
+
 	if rowHeight < 1 then return false end
+
+	local offset = min(frame.offset or 0, total - visible)
+
+	-- A type picked somewhere else can sit outside the visible part
+	if focus and window.meterType then
+		for place = 1, #list do
+			if list[place] == window.meterType then
+				if place <= offset or place > offset + visible then
+					offset = min(place - 1, total - visible)
+				end
+
+				break
+			end
+		end
+	end
 
 	-- Whatever the list looked like, it comes out of here numbered from the top
 	SaveBookmarkOrder()
 
 	local r, g, b = HeaderColor()
 
-	frame.dropCount = #list
+	frame.offset = max(offset, 0)
+	frame.total = total
+	frame.visible = visible
+	frame.dropCount = min(visible, #list - frame.offset)
 	frame.marker:Height(max(spacing, 2))
 	frame.marker.texture:SetVertexColor(r, g, b)
 
-	for index = 1, rows do
+	for index = 1, visible do
 		local row = frame.rows[index]
 		if not row then
 			row = CreateBookmarkRow(frame)
 			frame.rows[index] = row
 		end
 
-		local meterType = list[index]
+		local place = frame.offset + index
+		local meterType = list[place]
 		local yOffset = -((index - 1) * (rowHeight + spacing))
 
 		row:ClearAllPoints()
@@ -802,9 +880,9 @@ function DM:LayoutBookmarks(window)
 		row:Point('TOPRIGHT', frame, 'TOPRIGHT', 0, yOffset)
 		row:Height(rowHeight)
 
-		row.index = index
+		row.index = place
 		row.meterType = meterType
-		row:SetAlpha(1) -- A drag that ended on a relayout leaves it dimmed
+		row:SetAlpha((place == frame.dragIndex) and 0.4 or 1) -- The dragged one stays dimmed while it scrolls
 		row.text:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
 		row.text:SetTextColor(r, g, b)
 		row.text:SetText(meterType and DM.TypeNames[meterType] or '+')
@@ -812,7 +890,7 @@ function DM:LayoutBookmarks(window)
 		row:Show()
 	end
 
-	for index = rows + 1, #frame.rows do
+	for index = visible + 1, #frame.rows do
 		frame.rows[index]:Hide()
 	end
 
@@ -823,7 +901,7 @@ local function OpenBookmarks(window)
 	if not DM.db.showBookmarks then return end
 
 	local frame = window.bookmarks or CreateBookmarks(window)
-	if not DM:LayoutBookmarks(window) then return end
+	if not DM:LayoutBookmarks(window, true) then return end
 
 	window.content:Hide()
 	frame:Show()
