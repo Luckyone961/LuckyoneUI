@@ -90,7 +90,7 @@ local profileKeys = Private.isRetail and {
 	['Luckymonkas - Laughing Skull'] = 'Luckyone Main',
 	['Taylorswift - Laughing Skull'] = 'Luckyone Main',
 	['Notlucky - Laughing Skull'] = 'Luckyone Main',
-	['Lucky - Laughing Skull'] = 'Luckyone Support',
+	['Lucky - Laughing Skull'] = 'Luckyone Main',
 	['Luckydk - Laughing Skull'] = 'Luckyone Main',
 } or Private.isMists and {
 	['Luckymage - Garalon'] = 'Luckyone Main',
@@ -213,7 +213,7 @@ local dualSpec = Private.isRetail and {
 	['Luckytwo - Laughing Skull'] = {
 		'Luckyone Main',
 		'Luckyone Healing',
-		'Luckyone Support',
+		'Luckyone Main',
 		['enabled'] = true,
 	},
 	['Luckyone - Laughing Skull'] = {
@@ -226,7 +226,7 @@ local dualSpec = Private.isRetail and {
 	['Lucky - Laughing Skull'] = {
 		'Luckyone Main',
 		'Luckyone Healing',
-		'Luckyone Support',
+		'Luckyone Main',
 		['enabled'] = true,
 	},
 	['Luckypala - Laughing Skull'] = {

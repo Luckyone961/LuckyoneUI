@@ -4,7 +4,6 @@ local LSM = Private.Libs.LSM
 
 local format = string.format
 local ipairs = ipairs
-local type = type
 
 local C_UI_Reload = C_UI.Reload
 local CreateFrame = CreateFrame
@@ -15,7 +14,8 @@ local UIParent = UIParent
 local StaticPopup_Show = _G.StaticPopup_Show
 
 -- Constants: Font + Outline
-local FONT = LSM:Fetch('font', Private.Font)
+-- Core loads before Media so Expressway is not available yet
+local FONT
 local FONT_OUTLINE = Private.Outline
 
 -- Constants: Scalings
@@ -37,6 +37,14 @@ Private.Installer = Installer
 local installerFrame
 local currentPage = 0
 local maxPage = 0
+
+local function LuckyoneDamageMeter()
+	if not Private.Modules.DamageMeter then return end
+
+	Private.Addon.db.profile.damageMeter.enable = true
+	Private:DamageMeter_UpdateAll()
+	Private:Print(L["Damage Meter module enabled."], true)
+end
 
 -- Our frame 'skin'
 local function ApplyTemplate(frame)
@@ -95,8 +103,8 @@ local function StyleButton(button)
 end
 
 -- Layout option buttons based on how many are visible
+local visibleButtons = {}
 local function LayoutOptionButtons()
-	local visibleButtons = {}
 	local numButtons = 0
 
 	for _, option in ipairs(installerFrame.Options) do
@@ -123,9 +131,8 @@ local function LayoutOptionButtons()
 	end
 end
 
--- Set install version to current LuckyoneUI version
+-- Finalize the install
 local function InstallComplete()
-	Private.Addon.db.global.install_version = Private.Version
 	Private:HandleLuckyoneDB()
 	C_UI_Reload()
 end
@@ -173,29 +180,17 @@ end
 
 -- Installer Frame Setup
 local function SetupReset()
-	installerFrame.Next:Disable()
-	installerFrame.Prev:Disable()
-
 	for _, option in ipairs(installerFrame.Options) do
 		option:Hide()
 		option:SetScript('OnClick', nil)
 		option:SetText('')
 		option:ClearAllPoints()
-		option:SetSize(160, 30)
 	end
 
 	installerFrame.SubTitle:SetText('')
-	installerFrame.Desc1:SetText('')
-	installerFrame.Desc2:SetText('')
-	installerFrame.Desc3:SetText('')
-	installerFrame.Desc4:SetText('')
 
-	-- Reset step title
-	if installerFrame.stepFrame then
-		local buttons = installerFrame.stepFrame.buttons
-		for i = 1, #buttons do
-			buttons[i].text:SetText('')
-		end
+	for _, desc in ipairs(installerFrame.Descs) do
+		desc:SetText('')
 	end
 end
 
@@ -225,22 +220,12 @@ local function UpdateStepList()
 
 	local buttons = installerFrame.stepFrame.buttons
 	local stepTitles = installerFrame.StepTitles
-	local selectedColor = installerFrame.StepTitlesColorSelected or STEP_TITLE_SELECTED_COLOR
-	local normalColor = installerFrame.StepTitlesColor or STEP_TITLE_COLOR
 
 	for i = 1, #buttons do
-		local button = buttons[i]
-		local color = (i == currentPage) and selectedColor or normalColor
+		local color = (i == currentPage) and STEP_TITLE_SELECTED_COLOR or STEP_TITLE_COLOR
+		local text = buttons[i].text
 
-		local stepTitle
-		if type(stepTitles[i]) == 'function' then
-			stepTitle = stepTitles[i]()
-		else
-			stepTitle = stepTitles[i]
-		end
-
-		local text = button.text
-		text:SetText(stepTitle)
+		text:SetText(stepTitles[i])
 		text:SetTextColor(color[1], color[2], color[3])
 	end
 end
@@ -252,11 +237,9 @@ function Installer:SetPage(pageNum)
 
 	currentPage = pageNum
 
-	installerFrame.Next:Show()
-	installerFrame.Next:Enable()
-
-	installerFrame.Prev:Show()
-	installerFrame.Prev:Enable()
+	-- Nothing to go back to on page one, nothing to go forward to on the last
+	installerFrame.Prev:SetEnabled(currentPage > 1)
+	installerFrame.Next:SetEnabled(currentPage < maxPage)
 
 	UpdateProgressBar()
 
@@ -282,17 +265,7 @@ function Installer:PreviousPage()
 end
 
 local function StepButton_OnClick(self)
-	local pageNum = self:GetID()
-	if pageNum and pageNum <= maxPage then
-		Installer:SetPage(pageNum)
-	end
-end
-
-local function CloseInstaller()
-	installerFrame:Hide()
-	if installerFrame.stepFrame then
-		installerFrame.stepFrame:Hide()
-	end
+	Installer:SetPage(self:GetID())
 end
 
 -- Frame Creation
@@ -325,59 +298,36 @@ local function CreateMainFrame()
 	frame.SubTitle:SetFont(FONT, 16, FONT_OUTLINE)
 	frame.SubTitle:SetPoint('TOP', 0, -45)
 
-	frame.Desc1 = frame:CreateFontString(nil, 'OVERLAY')
-	frame.Desc1:SetFont(FONT, 12, FONT_OUTLINE)
-	frame.Desc1:SetPoint('TOPLEFT', 20, -80)
-	frame.Desc1:SetWidth(MAIN_FRAME_WIDTH - 40)
-	frame.Desc1:SetJustifyH('CENTER')
-	frame.Desc1:SetSpacing(2)
+	frame.Descs = {}
 
-	frame.Desc2 = frame:CreateFontString(nil, 'OVERLAY')
-	frame.Desc2:SetFont(FONT, 12, FONT_OUTLINE)
-	frame.Desc2:SetPoint('TOP', frame.Desc1, 'BOTTOM', 0, -20)
-	frame.Desc2:SetWidth(MAIN_FRAME_WIDTH - 40)
-	frame.Desc2:SetJustifyH('CENTER')
-	frame.Desc2:SetSpacing(2)
+	for i = 1, 4 do
+		local desc = frame:CreateFontString(nil, 'OVERLAY')
+		desc:SetFont(FONT, 12, FONT_OUTLINE)
+		desc:SetWidth(MAIN_FRAME_WIDTH - 40)
+		desc:SetJustifyH('CENTER')
+		desc:SetSpacing(2)
 
-	frame.Desc3 = frame:CreateFontString(nil, 'OVERLAY')
-	frame.Desc3:SetFont(FONT, 12, FONT_OUTLINE)
-	frame.Desc3:SetPoint('TOP', frame.Desc2, 'BOTTOM', 0, -20)
-	frame.Desc3:SetWidth(MAIN_FRAME_WIDTH - 40)
-	frame.Desc3:SetJustifyH('CENTER')
-	frame.Desc3:SetSpacing(2)
+		if i == 1 then
+			desc:SetPoint('TOPLEFT', 20, -80)
+		else
+			desc:SetPoint('TOP', frame.Descs[i - 1], 'BOTTOM', 0, -20)
+		end
 
-	frame.Desc4 = frame:CreateFontString(nil, 'OVERLAY')
-	frame.Desc4:SetFont(FONT, 12, FONT_OUTLINE)
-	frame.Desc4:SetPoint('TOP', frame.Desc3, 'BOTTOM', 0, -20)
-	frame.Desc4:SetWidth(MAIN_FRAME_WIDTH - 40)
-	frame.Desc4:SetJustifyH('CENTER')
-	frame.Desc4:SetSpacing(2)
+		frame.Descs[i] = desc
+		frame['Desc' .. i] = desc
+	end
 
-	local option1 = CreateFrame('Button', 'LuckyoneInstallerOption1', frame)
-	option1:SetSize(160, 30)
-	option1:Hide()
-	StyleButton(option1)
-	frame.Option1 = option1
+	frame.Options = {}
 
-	local option2 = CreateFrame('Button', 'LuckyoneInstallerOption2', frame)
-	option2:SetSize(160, 30)
-	option2:Hide()
-	StyleButton(option2)
-	frame.Option2 = option2
+	for i = 1, 4 do
+		local option = CreateFrame('Button', 'LuckyoneInstallerOption' .. i, frame)
+		option:SetSize(160, 30)
+		option:Hide()
+		StyleButton(option)
 
-	local option3 = CreateFrame('Button', 'LuckyoneInstallerOption3', frame)
-	option3:SetSize(160, 30)
-	option3:Hide()
-	StyleButton(option3)
-	frame.Option3 = option3
-
-	local option4 = CreateFrame('Button', 'LuckyoneInstallerOption4', frame)
-	option4:SetSize(160, 30)
-	option4:Hide()
-	StyleButton(option4)
-	frame.Option4 = option4
-
-	frame.Options = { option1, option2, option3, option4 }
+		frame.Options[i] = option
+		frame['Option' .. i] = option
+	end
 
 	frame.Prev = CreateFrame('Button', 'LuckyoneInstallerPrevButton', frame)
 	frame.Prev:SetSize(110, 25)
@@ -445,8 +395,6 @@ function Installer:Show(data)
 
 	installerFrame.Pages = data.Pages
 	installerFrame.StepTitles = data.StepTitles
-	installerFrame.StepTitlesColor = data.StepTitlesColor
-	installerFrame.StepTitlesColorSelected = data.StepTitlesColorSelected
 
 	if data.Title then
 		installerFrame.Title:SetText(data.Title)
@@ -463,36 +411,34 @@ function Installer:Show(data)
 		local stepFrame = installerFrame.stepFrame
 		local buttons = stepFrame.buttons
 
-		if #buttons == 0 then
-			for i = 1, maxPage do
-				local button = CreateFrame('Button', nil, stepFrame)
-				button:SetSize(STEP_BUTTON_WIDTH, STEP_BUTTON_HEIGHT)
-				button:SetID(i)
-				button:SetScript('OnClick', StepButton_OnClick)
+		-- Only create what we are missing, existing buttons get reused
+		for i = #buttons + 1, maxPage do
+			local button = CreateFrame('Button', nil, stepFrame)
+			button:SetSize(STEP_BUTTON_WIDTH, STEP_BUTTON_HEIGHT)
+			button:SetID(i)
+			button:SetScript('OnClick', StepButton_OnClick)
 
-				if i == 1 then
-					button:SetPoint('TOP', stepFrame.title, 'BOTTOM', 0, -10)
-				else
-					button:SetPoint('TOP', buttons[i - 1], 'BOTTOM', 0, -2)
-				end
-
-				button.bg = button:CreateTexture(nil, 'BACKGROUND')
-				button.bg:SetAllPoints()
-				button.bg:SetColorTexture(0.2, 0.2, 0.2, 0.5)
-
-				button.highlight = button:CreateTexture(nil, 'HIGHLIGHT')
-				button.highlight:SetAllPoints()
-				button.highlight:SetColorTexture(1, 1, 1, 0.15)
-				button:SetHighlightTexture(button.highlight)
-
-				button.text = button:CreateFontString(nil, 'OVERLAY')
-				button.text:SetFont(FONT, 12, FONT_OUTLINE)
-				button.text:SetPoint('CENTER')
-				button.text:SetJustifyH('CENTER')
-				button.text:SetText('')
-
-				buttons[i] = button
+			if i == 1 then
+				button:SetPoint('TOP', stepFrame.title, 'BOTTOM', 0, -10)
+			else
+				button:SetPoint('TOP', buttons[i - 1], 'BOTTOM', 0, -2)
 			end
+
+			button.bg = button:CreateTexture(nil, 'BACKGROUND')
+			button.bg:SetAllPoints()
+			button.bg:SetColorTexture(0.2, 0.2, 0.2, 0.5)
+
+			button.highlight = button:CreateTexture(nil, 'HIGHLIGHT')
+			button.highlight:SetAllPoints()
+			button.highlight:SetColorTexture(1, 1, 1, 0.15)
+			button:SetHighlightTexture(button.highlight)
+
+			button.text = button:CreateFontString(nil, 'OVERLAY')
+			button.text:SetFont(FONT, 12, FONT_OUTLINE)
+			button.text:SetPoint('CENTER')
+			button.text:SetJustifyH('CENTER')
+
+			buttons[i] = button
 		end
 
 		installerFrame:ClearAllPoints()
@@ -512,13 +458,17 @@ function Installer:Show(data)
 end
 
 function Installer:Hide()
-	if installerFrame then
-		CloseInstaller()
+	if not installerFrame then return end
+
+	installerFrame:Hide()
+
+	if installerFrame.stepFrame then
+		installerFrame.stepFrame:Hide()
 	end
 end
 
 function Installer:IsShown()
-	return installerFrame and installerFrame:IsShown() or false
+	return installerFrame ~= nil and installerFrame:IsShown()
 end
 
 -- Installer Data
@@ -578,9 +528,6 @@ local function BuildInstallerData()
 			f.Option3:Show()
 			f.Option3:SetScript('OnClick', function() Private:Setup_Layout('healing', true, 'horizontal') end)
 			f.Option3:SetText(L["Healing Horizontal"])
-			f.Option4:Show()
-			f.Option4:SetScript('OnClick', function() Private:Setup_Layout('support', true) end)
-			f.Option4:SetText(L["Support"])
 		end
 		stepTitles[pageIndex] = L["ElvUI Layouts"]
 		pageIndex = pageIndex + 1
@@ -682,17 +629,27 @@ local function BuildInstallerData()
 	stepTitles[pageIndex] = 'BigWigs'
 	pageIndex = pageIndex + 1
 
-	-- Page: Details
+	-- Page: Damage Meter
 	pages[pageIndex] = function()
 		local f = installerFrame
-		f.SubTitle:SetText(L["Details profile"])
-		f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for Details! Damage Meter."])
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+		f.SubTitle:SetText(L["Damage Meter"])
+		if not Private.Modules.DamageMeter then
+			f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for Details! Damage Meter."])
+		else
+			f.Desc1:SetText(L["Choose between Details! Damage Meter and the custom LuckyoneUI Damage Meter."])
+			f.Desc2:SetText(L["The LuckyoneUI Damage Meter is based on the Blizzard API and much more lightweight\nbut offers less options compared to Details."])
+		end
+		f.Desc3:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 		f.Option1:Show()
 		f.Option1:SetScript('OnClick', function() Private:Setup_Details(true) end)
 		f.Option1:SetText(L["Setup Details"])
+		if Private.Modules.DamageMeter then
+			f.Option2:Show()
+			f.Option2:SetScript('OnClick', LuckyoneDamageMeter)
+			f.Option2:SetText(L["LuckyoneUI Damage Meter"])
+		end
 	end
-	stepTitles[pageIndex] = 'Details'
+	stepTitles[pageIndex] = L["Damage Meter"]
 	pageIndex = pageIndex + 1
 
 	-- Retail-only: WarpDeplete, MPlusTimer, SkironCooldownManager
@@ -757,12 +714,14 @@ local function BuildInstallerData()
 	end
 	stepTitles[pageIndex] = L["Installation Complete"]
 
-	return { Title = format('|cff4beb2c%s|r Installation', Private.Name), Pages = pages, StepTitles = stepTitles, StepTitlesColor = STEP_TITLE_COLOR, StepTitlesColorSelected = STEP_TITLE_SELECTED_COLOR }
+	return { Title = format('|cff4beb2c%s|r %s', Private.Name, L["Installation"]), Pages = pages, StepTitles = stepTitles }
 end
 Private.InstallerData = BuildInstallerData()
 
 function Installer:Initialize()
 	if installerFrame then return end
+
+	FONT = LSM:Fetch('font', Private.Font)
 
 	CreateStepComplete()
 	installerFrame = CreateMainFrame()

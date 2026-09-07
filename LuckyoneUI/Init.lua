@@ -45,6 +45,7 @@ Private.Logo = 'Interface\\AddOns\\LuckyoneUI\\Media\\Textures\\Clover.tga'
 Private.Name = '|cff4beb2cLuckyoneUI|r'
 
 -- Media
+Private.IconPath = 'Interface\\AddOns\\LuckyoneUI\\Media\\Icons\\'
 Private.Font = 'Expressway'
 Private.Outline = 'OUTLINE'
 Private.Texture = 'Minimalist'
@@ -81,6 +82,7 @@ Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
 Private.Modules = {
 	Core = Private.Addon:NewModule('Core', 'AceEvent-3.0'),
 	Blizzard = Private.Addon:NewModule('Blizzard', 'AceEvent-3.0'),
+	DamageMeter = (Private.ElvUI and Private.isRetail) and Private.Addon:NewModule('DamageMeter', 'AceEvent-3.0') or nil,
 	Map = Private.ElvUI and Private.Addon:NewModule('Map', 'AceEvent-3.0') or nil,
 	Misc = Private.ElvUI and Private.Addon:NewModule('Misc', 'AceEvent-3.0') or nil,
 	NamePlates = Private.ElvUI and Private.Addon:NewModule('NamePlates', 'AceEvent-3.0') or nil,

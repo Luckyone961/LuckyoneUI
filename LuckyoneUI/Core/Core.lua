@@ -52,39 +52,9 @@ function Private:Print(msg, installer)
 	end
 end
 
--- Gets the number from the profile string
--- If it matches the specified profile type (Main/Healing) or if no profile type is specified
-local function GetNumber(str, profileType)
-	return (not profileType or str:find(profileType, 1, true)) and tonumber(str:match('%d+%.?%d*')) or nil
-end
-
-local devProfiles = {
-	Main = 'Luckyone Main',
-	Healing = 'Luckyone Healing'
-}
-
--- Find the profile with the highest number
--- Optionally filtering by the specified profile type
-function Private:GetMostRecentProfile(profileType)
-	if not Private.ElvUI then return end
-
-	local profiles = ElvUI[1].data:GetProfiles()
-	local mostRecentNumber, mostRecentProfile
-
-	for _, profile in ipairs(profiles) do
-		local number = GetNumber(profile, profileType)
-		if number and (not mostRecentNumber or number > mostRecentNumber) then
-			mostRecentNumber, mostRecentProfile = number, profile
-		end
-	end
-
-	return mostRecentProfile or (profileType and devProfiles[profileType]) or nil
-end
-
 local activeProfiles = {
 	{ 'Luckyone Main', 1 },
 	{ 'Luckyone Healing', 2 },
-	{ 'Luckyone Support', 3 },
 }
 
 function Private:GetActiveProfile()
@@ -331,10 +301,6 @@ function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 
 	if Private.itsLuckyone then
 		Private.Addon.db.global.dev = true
-	end
-
-	if Private.Installer and (Private.Addon.db.global.install_version == nil) then
-		Private.Installer:Show(Private.InstallerData)
 	end
 end
 

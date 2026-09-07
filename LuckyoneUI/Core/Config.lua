@@ -18,7 +18,7 @@ local SettingsPanel = _G.SettingsPanel
 local RELOAD_POPUP = 'LUCKYONE_RL'
 local IMPORT_DEFAULTS_TEXT = L["Import LuckyoneUI defaults."]
 
-local ICON_PATH = 'Interface\\AddOns\\LuckyoneUI\\Media\\Icons\\'
+local ICON_PATH = Private.IconPath
 local function GetIconName(name, icon)
 	return format('|T%s%s.png:14:14:0:0|t %s', ICON_PATH, icon, name)
 end
@@ -74,10 +74,11 @@ local function BuildSetupSection()
 	section.inline = true
 	section.args.header = ACH:Header(Private.Name, 1, nil, nil, not Private.ElvUI)
 	section.args.spacer1 = ACH:Spacer(2, 'full', not Private.ElvUI)
-	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Re-Run the installation process."], 3, function() Private.Installer:Show(Private.InstallerData) if Private.ElvUI then ElvUI[1]:ToggleOptions() else HideUIPanel(SettingsPanel) end end)
-	section.args.altMain = ACH:Execute(L["Alt: "] .. L["DPS & Tanks"], L["This will load your most recent LuckyoneUI profile."], 4, function() Private:HandleAlts('Main') end, nil, true, nil, nil, nil, nil, not Private.ElvUI)
-	section.args.altHealing = ACH:Execute(L["Alt: "] .. L["Healing"], L["This will load your most recent LuckyoneUI profile."], 5, function() Private:HandleAlts('Healing') end, nil, true, nil, nil, nil, nil, not Private.ElvUI)
-	section.args.spacer2 = ACH:Spacer(6, 'full')
+	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Run the installation process."], 3, function() Private.Installer:Show(Private.InstallerData) if Private.ElvUI then ElvUI[1]:ToggleOptions() else HideUIPanel(SettingsPanel) end end)
+	section.args.spacer2 = ACH:Spacer(4, 0.20)
+	section.args.native = ACH:Toggle('1440p',L["1440p = Default | 1080p = Downscaled"], 5, nil, nil, 'half', function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
+	section.args.scaled = ACH:Toggle('1080p',L["1440p = Default | 1080p = Downscaled"], 6, nil, nil, 'half', function() return Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = value end)
+	section.args.spacer3 = ACH:Spacer(7, 'full')
 	return section
 end
 
@@ -106,11 +107,7 @@ local function BuildGeneralSection()
 	section.args.misc = ACH:Group(L["Misc"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
 	section.args.misc.inline = true
 	section.args.misc.args.removeNameplateRealm = ACH:Toggle(L["Remove Nameplate Realms"], L["Removes the realm names from friendly nameplates in name-only mode while in a Dungeon/Raid/Battleground."], 1, nil, nil, nil, function() return Private.Addon.db.profile.misc.removeNameplateRealm end, function(_, value) Private.Addon.db.profile.misc.removeNameplateRealm = value StaticPopup_Show(RELOAD_POPUP) end)
-	section.args.strings = ACH:Group(L["Profile strings"], nil, 5, nil, nil, nil, nil, not Private.isRetail)
-	section.args.strings.inline = true
-	section.args.strings.args.editModeString = ACH:Execute(L["Copy Editmode String"], nil, 1, function() Private:Return_EditModeString() end)
-	section.args.strings.args.editModeToggle = ACH:Execute(format('|cff4beb2c%s|r', L["Enter Edit Mode"]), nil, 2, function() Private:ToggleEditMode() if Private.ElvUI then ElvUI[1]:ToggleOptions() end end)
-	section.args.performance = ACH:Group(L["Performance Tweaks"], nil, 6, nil, nil, nil, nil, not Private.isRetail)
+	section.args.performance = ACH:Group(L["Performance Tweaks"], nil, 5, nil, nil, nil, nil, not Private.isRetail)
 	section.args.performance.inline = true
 	section.args.performance.args.performance = ACH:Execute(L["Untrack Hidden Quests"], L["People found out some characters have a big amount of hidden quests which will cause performance issues. This button will untrack all your quests, including the hidden ones and might give you an increase in average FPS."], 1, function() Private:UntrackAllQuests() end)
 	return section
@@ -142,6 +139,11 @@ local function BuildAddonProfilesSection()
 	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 5, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.plugins.inline = true
 	section.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', IMPORT_DEFAULTS_TEXT, 1, function() Private:Setup_WindTools() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
+	section.args.header2 = ACH:Header(L["Blizzard Profiles"], 6, nil, nil, not Private.isRetail)
+	section.args.strings = ACH:Group(L["Profile strings"], nil, 7, nil, nil, nil, nil, not Private.isRetail)
+	section.args.strings.inline = true
+	section.args.strings.args.editModeString = ACH:Execute(L["Copy Editmode String"], nil, 1, function() Private:Return_EditModeString() end)
+	section.args.strings.args.editModeToggle = ACH:Execute(format('|cff4beb2c%s|r', L["Enter Edit Mode"]), nil, 2, function() Private:ToggleEditMode() if Private.ElvUI then ElvUI[1]:ToggleOptions() end end)
 	return section
 end
 
@@ -277,41 +279,232 @@ local function BuildCDMSection()
 	return section
 end
 
+local MAX_WINDOWS = 4
+local WINDOW_NAMES = {}
+local PlacementValues = { AUTO = L["Automatic"], ATTACH = L["Attached"], CUSTOM = L["Custom"] }
+local SoloPlacementValues = { AUTO = L["Automatic"], CUSTOM = L["Custom"] }
+
+local function DamageMeterDB()
+	return Private.Addon.db.profile.damageMeter
+end
+
+local function DamageMeterGet(info)
+	return DamageMeterDB()[info[#info]]
+end
+
+local function DamageMeterSet(info, value)
+	DamageMeterDB()[info[#info]] = value
+	Private:DamageMeter_UpdateAll()
+end
+
+local function DamageMeterDisabled()
+	return not DamageMeterDB().enable
+end
+
+local function DamageMeterNoSecondary()
+	local db = DamageMeterDB()
+
+	return not db.enable or db.numberDisplay == 'MINIMAL'
+end
+
+local function DamageMeterTypes()
+	local DM = Private.Modules.DamageMeter
+
+	return DM and DM.TypeMenuNames or {}
+end
+
+local function DamageMeterColorGet(info)
+	local color = DamageMeterDB()[info[#info]]
+
+	return color.r, color.g, color.b
+end
+
+local function DamageMeterColorSet(info, r, g, b)
+	local color = DamageMeterDB()[info[#info]]
+	color.r, color.g, color.b = r, g, b
+
+	Private:DamageMeter_UpdateAll()
+end
+
+local function ReleaseAttached(db, index)
+	for other = 1, MAX_WINDOWS do
+		local wdb = db.windows[other]
+
+		if wdb.attachTo == index then
+			wdb.attachTo = 0
+			wdb.placement = 'AUTO'
+		end
+	end
+end
+
+-- Damage Meter window group, one per session window
+local function BuildWindowGroup(index, order)
+	WINDOW_NAMES[index] = format(L["Window %d"], index) -- The attach menu picks them up from here
+
+	local function WindowDB() return DamageMeterDB().windows[index] end
+	local function WindowGet(info) return WindowDB()[info[#info]] end
+	local function WindowSet(info, value) WindowDB()[info[#info]] = value Private:DamageMeter_UpdateAll() end
+	local function NotCustom() return WindowDB().placement ~= 'CUSTOM' end
+	local function NoBackdrop() return not WindowDB().backdrop end
+
+	local group = ACH:Group(WINDOW_NAMES[index], nil, order, nil, WindowGet, WindowSet, nil, function() return DamageMeterDB().windowCount < index end)
+	group.inline = true
+	group.args.meterType = ACH:Select(L["Type"], nil, 1, DamageMeterTypes, nil, nil, nil, function(_, value) WindowDB().meterType = value local DM = Private.Modules.DamageMeter local window = DM and DM.windows[index] if window then DM:SetWindowType(window, value) end end)
+	group.args.placement = ACH:Select(L["Placement"], L["Give this window its own slot, attach it to another window or move it with its own mover."], 2, function() return DamageMeterDB().windowCount > 1 and PlacementValues or SoloPlacementValues end, nil, nil, nil, function(_, value) local db = DamageMeterDB() db.windows[index].placement = value if value == 'ATTACH' then ReleaseAttached(db, index) else db.windows[index].attachTo = 0 end Private:DamageMeter_UpdateAll() end)
+	group.args.attachTo = ACH:Select(L["Attach To"], L["Stack this window under another one instead of giving it its own slot."], 3, function() local db = DamageMeterDB() local values = { [0] = _G.NONE } for target = 1, db.windowCount do if target ~= index and db.windows[target].placement ~= 'ATTACH' then values[target] = WINDOW_NAMES[target] end end return values end, nil, nil, nil, function(_, value) local db = DamageMeterDB() db.windows[index].attachTo = value if value ~= 0 then ReleaseAttached(db, index) end Private:DamageMeter_UpdateAll() end, nil, function() local db = DamageMeterDB() return db.windowCount < 2 or db.windows[index].placement ~= 'ATTACH' end)
+	group.args.attachSize = ACH:Range(L["Attached Size"], L["Share of the parent window taken by the attached window."], 4, { min = 10, max = 90, step = 1 }, nil, nil, nil, nil, function() local wdb = WindowDB() return wdb.placement ~= 'ATTACH' or wdb.attachTo == 0 end)
+	group.args.width = ACH:Range(L["Width"], nil, 5, { min = 100, max = 1200, step = 1 }, nil, nil, nil, nil, NotCustom)
+	group.args.height = ACH:Range(L["Height"], nil, 6, { min = 60, max = 800, step = 1 }, nil, nil, nil, nil, NotCustom)
+	group.args.showSessionButton = ACH:Toggle(L["Session Button"], L["Show the session button in the header."], 7)
+	group.args.showResetButton = ACH:Toggle(L["Reset Button"], L["Show the reset button in the header. Shift click to reset without confirmation."], 8)
+	group.args.showSettingsButton = ACH:Toggle(L["Settings Button"], L["Show the settings button in the header."], 9)
+	group.args.mouseoverButtons = ACH:Toggle(L["Mouseover"], L["Only show the header buttons while the cursor is over the window."], 10)
+	group.args.backdrop = ACH:Toggle(L["Frame Backdrop"], L["Show a backdrop behind this window."], 11)
+	group.args.backdropColorType = ACH:Select(L["Backdrop Color"], L["Follow the ElvUI backdrop fade color or use a custom color."], 12, { ELVUI = 'ElvUI', CUSTOM = L["Custom"] }, nil, nil, nil, nil, nil, NoBackdrop)
+	group.args.backdropColor = ACH:Color(L["Custom Color"], nil, 13, true, nil, function() local color = WindowDB().backdropColor return color.r, color.g, color.b, color.a end, function(_, r, g, b, a) local color = WindowDB().backdropColor color.r, color.g, color.b, color.a = r, g, b, a Private:DamageMeter_UpdateAll() end, nil, function() local wdb = WindowDB() return not wdb.backdrop or wdb.backdropColorType ~= 'CUSTOM' end)
+	group.args.backdropWidth = ACH:Range(L["Backdrop Width"], L["Grow or shrink the backdrop horizontally, 0 matches the window."], 14, { min = -20, max = 50, step = 1 }, nil, nil, nil, nil, NoBackdrop)
+	group.args.backdropHeight = ACH:Range(L["Backdrop Height"], L["Grow or shrink the backdrop vertically, 0 matches the window."], 15, { min = -20, max = 50, step = 1 }, nil, nil, nil, nil, NoBackdrop)
+	return group
+end
+
+-- Build Damage Meter Section
+local function BuildDamageMeterSection()
+	if not (Private.ElvUI and Private.isRetail) then return end -- Retail + ElvUI section
+	local section = ACH:Group(GetIconName(L["Damage Meter"], 'DamageMeter'), nil, 35, 'tab')
+	section.args.header = ACH:Header(L["Damage Meter"], 1)
+	section.args.general = ACH:Group(L["General"], nil, 2, nil, DamageMeterGet, DamageMeterSet)
+	section.args.general.args.generalOptions = ACH:Group(L["General"], nil, 1)
+	section.args.general.args.generalOptions.inline = true
+	section.args.general.args.generalOptions.args.enable = ACH:Toggle(L["Enable"], L["Lightweight Damage Meter powered by the native Blizzard combat data."], 1)
+	section.args.general.args.generalOptions.args.testMode = ACH:Toggle(L["Test Mode"], L["Show fake bars to preview settings. Resets on reload."], 2, nil, nil, nil, function() local DM = Private.Modules.DamageMeter return DM and DM.testMode end, function(_, value) local DM = Private.Modules.DamageMeter if DM then DM:SetTestMode(value) end end, DamageMeterDisabled)
+	section.args.general.args.generalOptions.args.visibility = ACH:Select(L["Visibility"], nil, 3, { SHOW = L["Always"], COMBAT = L["In Combat"], GROUP = L["In Group"] }, nil, nil, nil, nil, DamageMeterDisabled)
+	section.args.general.args.resetOptions = ACH:Group(L["Reset"], nil, 2)
+	section.args.general.args.resetOptions.inline = true
+	section.args.general.args.resetOptions.args.autoReset = ACH:Select(L["Auto Reset"], L["Reset all Damage Meter data when you enter a new instance."], 1, { NONE = _G.NONE, ASK = L["Ask"], AUTO = L["Automatic"] }, nil, nil, nil, nil, DamageMeterDisabled)
+	section.args.general.args.resetOptions.args.autoResetTypes = ACH:MultiSelect(L["Instances"], L["Which instance types trigger the reset. Scenarios include Delves."], 2, { party = L["Dungeon"], raid = L["Raid"], scenario = L["Scenario"] }, nil, nil, function(_, key) return DamageMeterDB().autoResetTypes[key] end, function(_, key, value) DamageMeterDB().autoResetTypes[key] = value Private:DamageMeter_UpdateAll() end, DamageMeterDisabled, function() return DamageMeterDB().autoReset == 'NONE' end)
+	section.args.general.args.resetOptions.args.resetOnLogout = ACH:Toggle(L["Reset on Logout"], L["Wipe all Damage Meter data when you log out. Reloading the UI keeps the data."], 3, nil, nil, nil, nil, nil, DamageMeterDisabled)
+	section.args.general.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 3)
+	section.args.general.args.defaults.inline = true
+	section.args.general.args.defaults.args.damageMeter = ACH:Execute(L["Restore Defaults"], L["Wipe all Damage Meter settings, the module itself stays enabled."], 1, function() Private:DamageMeter_ResetDefaults() end, nil, true)
+	section.args.windows = ACH:Group(L["Windows"], nil, 3, nil, nil, nil, DamageMeterDisabled)
+	section.args.windows.args.generalOptions = ACH:Group(L["General"], nil, 1, nil, DamageMeterGet, DamageMeterSet)
+	section.args.windows.args.generalOptions.inline = true
+	section.args.windows.args.generalOptions.args.windowCount = ACH:Range(L["Windows"], L["Number of session windows."], 1, { min = 1, max = MAX_WINDOWS, step = 1 })
+	section.args.windows.args.generalOptions.args.orientation = ACH:Select(L["Orientation"], L["Place the session windows next to each other or stacked."], 2, { HORIZONTAL = L["Horizontal"], VERTICAL = L["Vertical"] })
+	section.args.windows.args.spacingOptions = ACH:Group(L["Spacing"], nil, 2, nil, DamageMeterGet, DamageMeterSet)
+	section.args.windows.args.spacingOptions.inline = true
+	section.args.windows.args.spacingOptions.args.innerSpacing = ACH:Range(L["Inner Spacing"], L["Space between the session windows."], 1, { min = -20, max = 20, step = 1 }, nil, nil, nil, function() local db = DamageMeterDB() return not db.enable or db.windowCount < 2 end)
+	section.args.windows.args.spacingOptions.args.outerSpacing = ACH:Range(L["Outer Spacing"], L["Space between the frame border and the session windows."], 2, { min = -20, max = 20, step = 1 })
+
+	for index = 1, MAX_WINDOWS do
+		section.args.windows.args['window' .. index] = BuildWindowGroup(index, index + 2)
+	end
+
+	section.args.bars = ACH:Group(L["Bars"], nil, 4, nil, DamageMeterGet, DamageMeterSet, DamageMeterDisabled)
+	section.args.bars.args.generalOptions = ACH:Group(L["General"], nil, 1)
+	section.args.bars.args.generalOptions.inline = true
+	section.args.bars.args.generalOptions.args.barStyle = ACH:Select(L["Bar Style"], L["Layout of each bar, matches the Blizzard Edit Mode styles."], 1, { DEFAULT = L["Default"], BORDERED = L["Bordered"], THIN = L["Thin"] })
+	section.args.bars.args.generalOptions.args.thinBarHeight = ACH:Range(L["Thin Bar Height"], L["Height of the bar below the text. Zero attempts to match Blizzards default."], 2, { min = 0, max = 50, step = 1 }, nil, nil, nil, nil, function() return DamageMeterDB().barStyle ~= 'THIN' end)
+	section.args.bars.args.generalOptions.args.barTexture = ACH:SharedMediaStatusbar(L["Bar Texture"], nil, 3)
+	section.args.bars.args.generalOptions.args.showIcons = ACH:Toggle(L["Bar Icons"], L["Show the class or spec icon in front of each bar."], 4)
+	section.args.bars.args.generalOptions.args.mouseoverHighlight = ACH:Toggle(L["Mouseover Highlight"], L["Highlight the bar under your cursor."], 5)
+	section.args.bars.args.generalOptions.args.pinLocalPlayer = ACH:Toggle(L["Always Show Yourself"], L["Pin your own bar to the closest edge of the list while it would be scrolled out of view."], 6)
+	section.args.bars.args.sizeOptions = ACH:Group(L["Size and Spacing"], nil, 2)
+	section.args.bars.args.sizeOptions.inline = true
+	section.args.bars.args.sizeOptions.args.barHeight = ACH:Range(L["Bar Height"], nil, 1, { min = 8, max = 50, step = 1 })
+	section.args.bars.args.sizeOptions.args.barSpacing = ACH:Range(L["Bar Spacing"], nil, 2, { min = 0, max = 20, step = 1 })
+	section.args.bars.args.colorOptions = ACH:Group(L["Colors"], nil, 3)
+	section.args.bars.args.colorOptions.inline = true
+	section.args.bars.args.colorOptions.args.barColorType = ACH:Select(L["Bar Color"], nil, 1, { CLASS = L["Class Color"], CUSTOM = L["Custom"] })
+	section.args.bars.args.colorOptions.args.barColor = ACH:Color(L["Custom Color"], L["Also used for creatures and sources without a class."], 2, nil, nil, DamageMeterColorGet, DamageMeterColorSet)
+	section.args.bars.args.colorOptions.args.barAlpha = ACH:Range(L["Bar Alpha"], L["Transparency of the bar foreground."], 3, { min = 0, max = 1, step = 0.01, isPercent = true })
+	section.args.bars.args.colorOptions.args.spacer = ACH:Spacer(4, 'full')
+	section.args.bars.args.colorOptions.args.backdropColorType = ACH:Select(L["Backdrop Color"], L["Follow the bar color or use a custom color."], 5, { BAR = L["Bar Color"], CUSTOM = L["Custom"] })
+	section.args.bars.args.colorOptions.args.backdropColor = ACH:Color(L["Custom Color"], nil, 6, nil, nil, DamageMeterColorGet, DamageMeterColorSet, nil, function() return DamageMeterDB().backdropColorType ~= 'CUSTOM' end)
+	section.args.bars.args.colorOptions.args.backdropAlpha = ACH:Range(L["Backdrop Alpha"], L["Transparency of the bar backdrop behind each bar."], 7, { min = 0, max = 1, step = 0.01, isPercent = true })
+	section.args.text = ACH:Group(L["Text"], nil, 5, nil, DamageMeterGet, DamageMeterSet, DamageMeterDisabled)
+	section.args.text.args.generalOptions = ACH:Group(L["General"], nil, 1)
+	section.args.text.args.generalOptions.inline = true
+	section.args.text.args.generalOptions.args.numberDisplay = ACH:Select(L["Number Display"], nil, 1, { MINIMAL = L["Minimal"], COMPACT = L["Compact"], COMPLETE = L["Complete"] })
+	section.args.text.args.generalOptions.args.bracketStyle = ACH:Select(L["Brackets"], L["Bracket style around the secondary number."], 2, { PARENTHESES = '( )', SQUARE = '[ ]', NONE = _G.NONE }, nil, nil, nil, nil, DamageMeterNoSecondary)
+	section.args.text.args.generalOptions.args.valueSpacing = ACH:Range(L["Number Spacing"], L["Space between the primary and the secondary number."], 3, { min = 0, max = 30, step = 1 }, nil, nil, nil, DamageMeterNoSecondary)
+	section.args.text.args.generalOptions.args.showRank = ACH:Toggle(L["Show Rank Numbers"], L["Show the rank number in front of each name."], 4)
+	section.args.text.args.generalOptions.args.rankSpacing = ACH:Range(L["Rank Spacing"], L["Space between the rank number and the name. Every name lines up at the same position."], 5, { min = 0, max = 30, step = 1 }, nil, nil, nil, nil, function() return not DamageMeterDB().showRank end)
+	section.args.text.args.generalOptions.args.stripRealm = ACH:Toggle(L["Strip Realm Names"], L["Remove the realm name from cross realm players."], 6)
+	section.args.text.args.positionOptions = ACH:Group(L["Position"], nil, 2)
+	section.args.text.args.positionOptions.inline = true
+	section.args.text.args.positionOptions.args.nameXOffset = ACH:Range(L["Name X Offset"], nil, 1, { min = -100, max = 100, step = 1 })
+	section.args.text.args.positionOptions.args.nameYOffset = ACH:Range(L["Name Y Offset"], nil, 2, { min = -100, max = 100, step = 1 })
+	section.args.text.args.positionOptions.args.valueXOffset = ACH:Range(L["Number X Offset"], nil, 3, { min = -100, max = 100, step = 1 })
+	section.args.text.args.positionOptions.args.valueYOffset = ACH:Range(L["Number Y Offset"], nil, 4, { min = -100, max = 100, step = 1 })
+	section.args.text.args.colorOptions = ACH:Group(L["Colors"], nil, 3)
+	section.args.text.args.colorOptions.inline = true
+	section.args.text.args.colorOptions.args.nameColorType = ACH:Select(L["Name Color"], L["Color of the name text on each bar."], 1, { CUSTOM = L["Custom"], CLASS = L["Class Color"] })
+	section.args.text.args.colorOptions.args.nameColor = ACH:Color(L["Custom Color"], nil, 2, nil, nil, DamageMeterColorGet, DamageMeterColorSet, nil, function() return DamageMeterDB().nameColorType ~= 'CUSTOM' end)
+	section.args.text.args.colorOptions.args.valueColorType = ACH:Select(L["Number Color"], L["Color of the number text on each bar."], 3, { CUSTOM = L["Custom"], CLASS = L["Class Color"] })
+	section.args.text.args.colorOptions.args.valueColor = ACH:Color(L["Custom Color"], nil, 4, nil, nil, DamageMeterColorGet, DamageMeterColorSet, nil, function() return DamageMeterDB().valueColorType ~= 'CUSTOM' end)
+	section.args.text.args.fontOptions = ACH:Group(L["Font"], nil, 4)
+	section.args.text.args.fontOptions.inline = true
+	section.args.text.args.fontOptions.args.font = ACH:SharedMediaFont(L["Font"], nil, 1)
+	section.args.text.args.fontOptions.args.fontOutline = ACH:FontFlags(L["Font Outline"], nil, 2)
+	section.args.text.args.fontOptions.args.fontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 26, step = 1 })
+	section.args.headerOptions = ACH:Group(L["Header"], nil, 6, nil, DamageMeterGet, DamageMeterSet, DamageMeterDisabled)
+	section.args.headerOptions.args.generalOptions = ACH:Group(L["General"], nil, 1)
+	section.args.headerOptions.args.generalOptions.inline = true
+	section.args.headerOptions.args.generalOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 1)
+	section.args.headerOptions.args.sizeOptions = ACH:Group(L["Size"], nil, 2)
+	section.args.headerOptions.args.sizeOptions.inline = true
+	section.args.headerOptions.args.sizeOptions.args.headerHeight = ACH:Range(L["Header Height"], nil, 1, { min = 12, max = 40, step = 1 })
+	section.args.headerOptions.args.sizeOptions.args.headerIconSize = ACH:Range(L["Icon Size"], L["Size of the icons in the header."], 2, { min = 8, max = 40, step = 1 })
+	section.args.headerOptions.args.positionOptions = ACH:Group(L["Position"], nil, 3)
+	section.args.headerOptions.args.positionOptions.inline = true
+	section.args.headerOptions.args.positionOptions.args.headerTypeXOffset = ACH:Range(L["Title X Offset"], nil, 1, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.positionOptions.args.headerTypeYOffset = ACH:Range(L["Title Y Offset"], nil, 2, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.positionOptions.args.headerSettingsXOffset = ACH:Range(GetIconName(L["X Offset"], 'DM_Settings'), nil, 3, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.positionOptions.args.headerSettingsYOffset = ACH:Range(GetIconName(L["Y Offset"], 'DM_Settings'), nil, 4, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.positionOptions.args.headerSessionXOffset = ACH:Range(GetIconName(L["X Offset"], 'DM_Sessions'), nil, 5, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.positionOptions.args.headerSessionYOffset = ACH:Range(GetIconName(L["Y Offset"], 'DM_Sessions'), nil, 6, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.positionOptions.args.headerResetXOffset = ACH:Range(GetIconName(L["X Offset"], 'DM_Reset'), nil, 7, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.positionOptions.args.headerResetYOffset = ACH:Range(GetIconName(L["Y Offset"], 'DM_Reset'), nil, 8, { min = -100, max = 100, step = 1 })
+	section.args.headerOptions.args.fontOptions = ACH:Group(L["Font"], nil, 4)
+	section.args.headerOptions.args.fontOptions.inline = true
+	section.args.headerOptions.args.fontOptions.args.headerFont = ACH:SharedMediaFont(L["Font"], nil, 1)
+	section.args.headerOptions.args.fontOptions.args.headerFontOutline = ACH:FontFlags(L["Font Outline"], nil, 2)
+	section.args.headerOptions.args.fontOptions.args.headerFontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 26, step = 1 })
+	section.args.bookmarkOptions = ACH:Group(L["Bookmarks"], nil, 7, nil, DamageMeterGet, DamageMeterSet, DamageMeterDisabled)
+	section.args.bookmarkOptions.args.bookmarkDesc = ACH:Group(L["Description"], nil, 1)
+	section.args.bookmarkOptions.args.bookmarkDesc.inline = true
+	section.args.bookmarkOptions.args.bookmarkDesc.args.desc = ACH:Description(L["Right click a session window to open the bookmark panel over its bars.\n\nLeft click a bookmark to switch the window to it, right click one to drop it again. Drag one up or down to give it another place. The last slot opens a menu with the types you are missing."], 1, 'medium')
+	section.args.bookmarkOptions.args.generalOptions = ACH:Group(L["General"], nil, 2)
+	section.args.bookmarkOptions.args.generalOptions.inline = true
+	section.args.bookmarkOptions.args.generalOptions.args.showBookmarks = ACH:Toggle(L["Enable"], L["Open the bookmark panel with a right click on a session window."], 1)
+	section.args.bookmarkOptions.args.generalOptions.args.bookmarkDragDrop = ACH:Toggle(L["Drag and Drop"], L["Drag a bookmark up or down to change its place in the panel."], 2, nil, nil, nil, nil, nil, function() return not DamageMeterDB().showBookmarks end)
+	section.args.bookmarkOptions.args.bookmarks = ACH:MultiSelect(L["Bookmarks"], L["Types the panel offers, new ones are added to the end of the list."], 3, DamageMeterTypes, nil, nil, function(_, key) return DamageMeterDB().bookmarks[key] and true or false end, function(_, key, value) local DM = Private.Modules.DamageMeter if DM then DM:SetBookmark(key, value) end Private:DamageMeter_UpdateAll() end, function() local db = DamageMeterDB() return not db.enable or not db.showBookmarks end)
+	return section
+end
+
 -- Build ElvUI Layouts Section
 local function BuildElvUILayoutSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(GetIconName(L["ElvUI Layouts"], 'Layouts'), nil, 35)
-	section.args.header1 = ACH:Header(L["LuckyoneUI Scale"], 1)
-	section.args.scaling = ACH:Group(L["1440p = Default | 1080p = Downscaled"], nil, 2)
-	section.args.scaling.inline = true
-	section.args.scaling.args.native = ACH:Toggle('1440p', nil, 1, nil, nil, nil, function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
-	section.args.scaling.args.scaled = ACH:Toggle('1080p', nil, 2, nil, nil, nil, function() return Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = value end)
-	section.args.header2 = ACH:Header(L["ElvUI Layouts"], 3)
-	section.args.midnight = ACH:Group(L["Midnight Layouts"], nil, 4)
+	local section = ACH:Group(GetIconName(L["ElvUI Layouts"], 'Layouts'), nil, 40)
+	section.args.header1 = ACH:Header(L["ElvUI Layouts"], 1)
+	section.args.midnight = ACH:Group(L["Midnight Layouts"], nil, 2)
 	section.args.midnight.inline = true
 	section.args.midnight.args.main = ACH:Execute(L["DPS & Tanks"], nil, 1, function() Private:Setup_Layout('main') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.midnight.args.healingVertical = ACH:Execute(L["Healing Vertical"], nil, 2, function() Private:Setup_Layout('healing') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
 	section.args.midnight.args.healingHorizontal = ACH:Execute(L["Healing Horizontal"], nil, 3, function() Private:Setup_Layout('healing', nil, 'horizontal') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.midnight.args.support = ACH:Execute(L["Support"], nil, 4, function() Private:Setup_Layout('support') StaticPopup_Show(RELOAD_POPUP) end, nil, true)
-	section.args.header = ACH:Header(L["Auras"], 5)
+	section.args.header2 = ACH:Header(L["ElvUI Themes"], 3)
+	section.args.themes = ACH:Group(L["UnitFrames Color Theme"], nil, 4)
+	section.args.themes.inline = true
+	section.args.themes.args.dark = ACH:Execute(L["Dark"], L["Dark Style (Default)"], 1, function() Private:Setup_Theme('dark') end, nil, true)
+	section.args.themes.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() Private:Setup_Theme('class') end, nil, true)
+	section.args.header3 = ACH:Header(L["Auras"], 5)
 	section.args.filters = ACH:Group(L["Filters"], nil, 6)
 	section.args.filters.inline = true
 	section.args.filters.args.setup = ACH:Execute((Private.isRetail and L["Setup Aura Indicators"]) or L["Setup Aura Filters"], nil, 1, function() Private:Setup_Filters() StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.Desc = ACH:Group(L["Description"], nil, 7)
 	section.args.Desc.inline = true
 	section.args.Desc.args.cvars = ACH:Description((Private.isRetail and L["This will apply Luckyones Aura Indicator edit and set the style to Textured."]) or L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"], 2, 'medium')
-	return section
-end
-
--- Build ElvUI Themes Section
-local function BuildElvUIThemesSection()
-	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(GetIconName(L["ElvUI Themes"], 'Themes'), nil, 40)
-	section.args.header = ACH:Header(L["ElvUI Themes"], 1)
-	section.args.raid = ACH:Group(L["UnitFrames Color Theme"], nil, 2)
-	section.args.raid.inline = true
-	section.args.raid.args.dark = ACH:Execute(L["Dark"], L["Dark Style (Default)"], 1, function() Private:Setup_Theme('dark') end, nil, true)
-	section.args.raid.args.class = ACH:Execute(L["Class Color"], L["Class Color Style"], 2, function() Private:Setup_Theme('class') end, nil, true)
 	return section
 end
 
@@ -427,13 +620,6 @@ local function BuildSkinsSection()
 	section.args.blizzard = ACH:Group('Blizzard', nil, 2, nil, function(info) return Private.Addon.db.profile.skins.Blizzard[info[#info]] end, function(info, value) Private.Addon.db.profile.skins.Blizzard[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end, nil, not Private.isRetail)
 	section.args.blizzard.inline = true
 	section.args.blizzard.args.CooldownViewer = ACH:Toggle('Cooldown Manager Settings', nil, 1)
-	section.args.blizzard.args.DamageMeter = ACH:Group('Damage Meter', nil, 2, nil, function(info) return Private.Addon.db.profile.skins.Blizzard.DamageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.skins.Blizzard.DamageMeter[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
-	section.args.blizzard.args.DamageMeter.inline = true
-	section.args.blizzard.args.DamageMeter.args.enable = ACH:Toggle(L["Enable"], L["Requires the ElvUI Damage Meter skin to be enabled."], 1, nil, nil, nil, nil, nil, function() local E = ElvUI[1] return not (E.private.skins.blizzard.enable and E.private.skins.blizzard.damageMeter) end)
-	section.args.blizzard.args.DamageMeter.args.applyStyle = ACH:Toggle(L["Apply style"], L["This will remove the header backdrop, color all text in white and allow clicking on the text to switch between sessions."], 2, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.skins.Blizzard.DamageMeter.enable end)
-	section.args.blizzard.args.DamageMeter.args.removeCombatTime = ACH:Toggle(L["Remove Combat Time"], nil, 3, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.skins.Blizzard.DamageMeter.enable end)
-	section.args.blizzard.args.DamageMeter.args.removeCollapseButton = ACH:Toggle(L["Remove Collapse Button"], nil, 4, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.skins.Blizzard.DamageMeter.enable end)
-	section.args.blizzard.args.DamageMeter.args.removeScrollbar = ACH:Toggle(L["Remove Scrollbar"], L["This will only make the Scrollbar invisible. Spacing insets from hidden Scrollbars cannot be worked around at this time."], 5, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.skins.Blizzard.DamageMeter.enable end)
 	return section
 end
 
@@ -507,8 +693,8 @@ function Private:BuildConfig()
 	Private.Config.args.chat = BuildChatSection() -- 20
 	Private.Config.args.cvars = BuildCVarsSection() -- 25
 	Private.Config.args.cdm = BuildCDMSection() -- 30
-	Private.Config.args.elvuiLayouts = BuildElvUILayoutSection() -- 35
-	Private.Config.args.elvuiThemes = BuildElvUIThemesSection() -- 40
+	Private.Config.args.damageMeter = BuildDamageMeterSection() -- 35
+	Private.Config.args.elvuiLayouts = BuildElvUILayoutSection() -- 40
 	Private.Config.args.elvuiTweaks = BuildElvUITweaksSection() -- 45
 	Private.Config.args.graphics = BuildGraphicsSection() -- 50
 	Private.Config.args.map = BuildMapSection() -- 55

@@ -8,35 +8,7 @@ end
 local pairs = pairs
 local unpack = unpack
 
-local SetCVar = C_CVar.SetCVar
-
 local E, _, V, P, G = unpack(ElvUI)
-
--- Blizzard Damage Meter
-local function BlizzardDamageMeter()
-	if Private.IsAddOnLoaded('Details') then return end -- Only apply DB if Details is not used
-
-	-- 1080p
-	local scaled = Private.Addon.db.global.scaled
-
-	-- Enable Blizzard module in gameplay enhancements tab
-	SetCVar('damageMeterEnabled', 1)
-	SetCVar('damageMeterResetOnNewInstance', 1)
-
-	E.db.WT.combat.damageMeterLayout.animation.enable = false
-	E.db.WT.combat.damageMeterLayout.backdrop = false
-	E.db.WT.combat.damageMeterLayout.enable = true
-	E.db.WT.combat.damageMeterLayout.height = (scaled and 178) or 216
-	E.db.WT.combat.damageMeterLayout.layouts[1].direction = 'HORIZONTAL'
-	E.db.WT.combat.damageMeterLayout.layouts[1].innerPadding = 1
-	E.db.WT.combat.damageMeterLayout.layouts[1].meters[1].weight = 10
-	E.db.WT.combat.damageMeterLayout.layouts[1].name = 'Luckyone'
-	E.db.WT.combat.damageMeterLayout.layouts[1].outerPadding = 2
-	E.db.WT.combat.damageMeterLayout.shadow = false
-	E.db.WT.combat.damageMeterLayout.width = (scaled and 440) or 486
-
-	E.db.movers.WTDamageMeterLayoutMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
-end
 
 -- WindTools ProfileDB
 function Private:Setup_WindTools(installer)
@@ -60,12 +32,10 @@ function Private:Setup_WindTools(installer)
 	-- Private db
 	Private:Setup_Private_WindTools()
 
-	-- Apply skin and layout if Details is not used
-	BlizzardDamageMeter()
-
 	-- Profile db
 	E.db.WT.announcement.enable = false
 	E.db.WT.combat.combatAlert.enable = false
+	E.db.WT.combat.damageMeterLayout.enable = false
 	E.db.WT.combat.quickKeystone.enable = false
 	E.db.WT.combat.raidMarkers.enable = false
 	E.db.WT.item.alreadyKnown.enable = false

@@ -4,11 +4,101 @@ local _, Private = ...
 Private.Defaults = {
 	global = {
 		dev = false,
-		install_version = nil,
 		scaled = false,
 	},
 	profile = {
 		-- Modules
+		damageMeter = {
+			enable = false,
+			visibility = 'SHOW',
+			autoReset = 'NONE',
+			autoResetTypes = { party = true, raid = true, scenario = true },
+			resetOnLogout = false,
+			orientation = 'HORIZONTAL',
+			windowCount = 2,
+			innerSpacing = 2,
+			outerSpacing = 2,
+			barStyle = 'DEFAULT',
+			barTexture = Private.Texture,
+			barHeight = 18,
+			thinBarHeight = 0,
+			barSpacing = 1,
+			barColorType = 'CLASS',
+			barColor = { r = 0.5, g = 0.5, b = 1 },
+			barAlpha = 1,
+			backdropColorType = 'CUSTOM',
+			backdropColor = { r = 1, g = 1, b = 1 },
+			backdropAlpha = 0,
+			showIcons = true,
+			mouseoverHighlight = true,
+			pinLocalPlayer = false,
+			font = Private.Font,
+			fontOutline = Private.Outline,
+			fontSize = 12,
+			nameColorType = 'CUSTOM',
+			nameColor = { r = 1, g = 1, b = 1 },
+			valueColorType = 'CUSTOM',
+			valueColor = { r = 1, g = 1, b = 1 },
+			numberDisplay = 'COMPACT',
+			bracketStyle = 'NONE',
+			valueSpacing = 10,
+			showRank = false,
+			rankSpacing = 0,
+			stripRealm = true,
+			nameXOffset = 0,
+			nameYOffset = 0,
+			valueXOffset = 0,
+			valueYOffset = 0,
+			headerHeight = 18,
+			headerIconSize = 18,
+			headerFont = Private.Font,
+			headerFontOutline = Private.Outline,
+			headerFontSize = 12,
+			useValueColor = false,
+			headerTypeXOffset = 0,
+			headerTypeYOffset = 0,
+			headerSessionXOffset = 0,
+			headerSessionYOffset = 0,
+			headerResetXOffset = 0,
+			headerResetYOffset = 0,
+			headerSettingsXOffset = -1,
+			headerSettingsYOffset = 0,
+			showBookmarks = true,
+			bookmarkDragDrop = true,
+			bookmarks = { -- Meter type = its place in the panel
+				[0] = 1, -- Damage Done
+				[2] = 2, -- Healing Done
+				[9] = 3, -- Deaths
+				[6] = 4, -- Dispels
+				[5] = 5, -- Interrupts
+				[10] = 6, -- Enemy Damage Taken
+			},
+			windows = {
+				['**'] = { -- AceDB hands out every window from this table
+					meterType = 0, -- Damage Done
+					sessionType = 1, -- Current
+					width = 240,
+					height = 208,
+					placement = 'AUTO',
+					attachTo = 0,
+					attachSize = 50,
+					showSessionButton = true,
+					showResetButton = true,
+					showSettingsButton = false,
+					mouseoverButtons = false,
+					backdrop = false,
+					backdropColorType = 'ELVUI',
+					backdropColor = { r = 0, g = 0, b = 0, a = 0.8 },
+					backdropWidth = 0,
+					backdropHeight = 0,
+				},
+				-- Meter type each window starts on
+				[1] = { meterType = 0 }, -- Damage Done
+				[2] = { meterType = 2 }, -- Healing Done
+				[3] = { meterType = 9 }, -- Deaths
+				[4] = { meterType = 10 }, -- Enemy Damage Taken
+			},
+		},
 		disabledFrames = {
 			AlertFrame = false,
 			ApplicationCover = false,
@@ -83,13 +173,6 @@ Private.Defaults = {
 			WhatsTraining = false,
 			Blizzard = {
 				CooldownViewer = false,
-				DamageMeter = {
-					enable = false,
-					applyStyle = true,
-					removeCombatTime = true,
-					removeCollapseButton = true,
-					removeScrollbar = true,
-				},
 			}
 		},
 	}
