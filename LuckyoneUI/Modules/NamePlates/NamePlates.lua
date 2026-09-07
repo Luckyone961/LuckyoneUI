@@ -19,7 +19,6 @@ local E = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 
 local hooked
-local plateHooked
 
 local units = {
 	{ unit = 'target', enable = 'targetTextureEnable', texture = 'targetTexture' },
@@ -29,43 +28,31 @@ local units = {
 local desiredPlates = {} -- unitFrame -> special texture for this update
 local styledPlates = {} -- unitFrame -> special texture we applied, restored to default on removal
 
-local function GetDB()
-	return Private.Addon.db.profile.nameplates
-end
-
-local function GetDefaultTexture()
-	return LSM:Fetch('statusbar', NP.db.statusbar)
-end
-
 -- Unit validation, seems to be the best way since GUID is secret?
 local function GetUnitNameplate(unit)
 	if not UnitExists(unit) then return end
 
 	local blizzPlate = C_NamePlate_GetNamePlateForUnit(unit)
-	if blizzPlate and blizzPlate.unitFrame then
-		return blizzPlate.unitFrame
-	end
-end
+	local plate = blizzPlate and blizzPlate.unitFrame
 
-local function SetBarTexture(bar, texture)
-	if bar and bar.SetStatusBarTexture and texture then
-		bar:SetStatusBarTexture(texture)
+	if plate and plate.Health and not plate.widgetsOnly then
+		return plate
 	end
 end
 
 -- Only touches plates whose texture actually changed (old special -> default, new special -> texture)
 -- instead of re-applying textures to every visible plate
 function Private:UpdateSpecialNameplateTextures()
-	if not NP or not NP.Plates or not E.private.nameplates.enable then return end
+	if not NP.Plates or not E.private.nameplates.enable then return end
 
-	local db = GetDB()
+	local db = Private.Addon.db.profile.nameplates
 
 	-- Resolve the desired special plates, units order gives target priority over focus
 	wipe(desiredPlates)
 	for _, entry in ipairs(units) do
 		if db[entry.enable] then
 			local plate = GetUnitNameplate(entry.unit)
-			if plate and plate.Health and not desiredPlates[plate] then
+			if plate and not desiredPlates[plate] then
 				desiredPlates[plate] = LSM:Fetch('statusbar', db[entry.texture])
 			end
 		end
@@ -75,8 +62,8 @@ function Private:UpdateSpecialNameplateTextures()
 	local defaultTexture
 	for plate in pairs(styledPlates) do
 		if not desiredPlates[plate] then
-			defaultTexture = defaultTexture or GetDefaultTexture()
-			SetBarTexture(plate.Health, defaultTexture)
+			defaultTexture = defaultTexture or LSM:Fetch('statusbar', NP.db.statusbar) or E.media.normTex
+			plate.Health:SetStatusBarTexture(defaultTexture)
 			styledPlates[plate] = nil
 		end
 	end
@@ -84,7 +71,7 @@ function Private:UpdateSpecialNameplateTextures()
 	-- Apply new or changed special textures
 	for plate, texture in pairs(desiredPlates) do
 		if styledPlates[plate] ~= texture then
-			SetBarTexture(plate.Health, texture)
+			plate.Health:SetStatusBarTexture(texture)
 			styledPlates[plate] = texture
 		end
 	end
@@ -92,78 +79,41 @@ end
 
 -- Used in the config file and OnDisable
 function Private:RestoreNameplateTextures()
-	if NP and NP.Update_StatusBars then
+	if NP.StatusBars then
 		NP:Update_StatusBars()
 	end
 end
 
 local function CheckHook()
-	if not NP then return end
+	if hooked or not NP.Update_StatusBars or not NP.PostUpdateAllElements then return end
+	hooked = true
 
-	if not hooked and NP.Update_StatusBars then
-		hooksecurefunc(NP, 'Update_StatusBars', function()
-			wipe(styledPlates)
+	hooksecurefunc(NP, 'Update_StatusBars', function()
+		wipe(styledPlates)
+		Private:UpdateSpecialNameplateTextures()
+	end)
+
+	-- Plates are recycled and keep the last texture, so re-resolve whenever a unit is assigned
+	hooksecurefunc(NP, 'PostUpdateAllElements', function(_, event)
+		if event == 'NAME_PLATE_UNIT_ADDED' then
 			Private:UpdateSpecialNameplateTextures()
-		end)
-		hooked = true
-	end
-
-	if not plateHooked and NP.PostUpdateAllElements and NP.NAME_PLATE_UNIT_REMOVED then
-		hooksecurefunc(NP, 'PostUpdateAllElements', function(nameplate, event)
-			if event ~= 'NAME_PLATE_UNIT_ADDED' then return end
-			if nameplate == NP.TestFrame or nameplate.widgetsOnly or not nameplate.Health then return end
-			if not E.private.nameplates.enable then return end
-
-			local db = GetDB()
-			for _, entry in ipairs(units) do
-				if db[entry.enable] and GetUnitNameplate(entry.unit) == nameplate then
-					local texture = LSM:Fetch('statusbar', db[entry.texture])
-					if styledPlates[nameplate] ~= texture then
-						SetBarTexture(nameplate.Health, texture)
-						styledPlates[nameplate] = texture
-					end
-					return
-				end
-			end
-
-			-- REMOVED normally cleared this already
-			if styledPlates[nameplate] then
-				SetBarTexture(nameplate.Health, GetDefaultTexture())
-				styledPlates[nameplate] = nil
-			end
-		end)
-		hooksecurefunc(NP, 'NAME_PLATE_UNIT_REMOVED', function(nameplate)
-			if styledPlates[nameplate] then
-				SetBarTexture(nameplate.Health, GetDefaultTexture())
-				styledPlates[nameplate] = nil
-			end
-		end)
-		plateHooked = true
-	end
+		end
+	end)
 end
 
-function NamePlates:PLAYER_FOCUS_CHANGED()
-	Private:UpdateSpecialNameplateTextures()
-end
-
-function NamePlates:PLAYER_TARGET_CHANGED()
-	Private:UpdateSpecialNameplateTextures()
-end
-
-function NamePlates:PLAYER_ENTERING_WORLD()
-	CheckHook()
+function NamePlates:UpdateTextures()
 	Private:UpdateSpecialNameplateTextures()
 end
 
 function NamePlates:OnEnable()
 	CheckHook()
 
-	self:RegisterEvent('PLAYER_ENTERING_WORLD')
-	self:RegisterEvent('PLAYER_TARGET_CHANGED')
+	self:RegisterEvent('PLAYER_ENTERING_WORLD', 'UpdateTextures')
+	self:RegisterEvent('PLAYER_TARGET_CHANGED', 'UpdateTextures')
 
 	-- Focus unit does not exist on Classic Era
 	if not Private.isClassic then
-		self:RegisterEvent('PLAYER_FOCUS_CHANGED')
+		self:RegisterEvent('PLAYER_FOCUS_CHANGED', 'UpdateTextures')
 	end
 
 	Private:UpdateSpecialNameplateTextures()
