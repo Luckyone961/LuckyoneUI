@@ -102,6 +102,10 @@ DM.TypeSuppressPin = {
 	[MeterType.EnemyDamageTaken] = true,
 }
 
+DM.TypeReverseOrder = {
+	[MeterType.Deaths] = true, -- By default first death shows at the bottom, reverse it to the top
+}
+
 -- The popup pulls a single source, the windows pull the whole session
 function DM:FetchWindow(window)
 	local session

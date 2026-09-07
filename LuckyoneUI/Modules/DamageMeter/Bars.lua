@@ -693,6 +693,7 @@ function DM:RenderWindow(window)
 	local persecPrimary = DM.TypePerSecondPrimary[meterType]
 	local suppressPersec = DM.TypeSuppressPerSecond[meterType]
 	local iconsShown = db.showIcons and (spellMode or not DM.TypeSuppressIcon[meterType])
+	local reverseOrder = not spellMode and DM.TypeReverseOrder[meterType]
 
 	local pinIndex, pinRow = GetPinnedRow(db, window, entries, numEntries, offset, spellMode, meterType)
 
@@ -703,7 +704,9 @@ function DM:RenderWindow(window)
 	for i = 1, visibleCount do
 		local bar = bars[i]
 		local rank = (i == pinRow) and pinIndex or (offset + i)
-		local entry = entries and entries[rank]
+
+		-- Only the entry gets mirrored
+		local entry = entries and entries[reverseOrder and (numEntries - rank + 1) or rank]
 
 		if entry then
 			local deathEntry = not spellMode and entry.deathRecapID and entry.deathRecapID ~= 0
