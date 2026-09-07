@@ -10,6 +10,7 @@ end
 -- I've used them across multiple wow versions and wanted an all-in-one approach.
 -- Even if no code was re-used, the module is inspired by their work.
 
+local ceil = math.ceil
 local floor = math.floor
 local pairs = pairs
 local sort = table.sort
@@ -33,6 +34,12 @@ Private.CustomMinimapButtons = {
 
 local function IsLandingPageButton(button)
 	return Private.isRetail and button == _G.ExpansionLandingPageMinimapButton
+end
+
+local function ApplyTemplate(button)
+	button:SetTemplate()
+	button:SetFixedFrameStrata(false)
+	button:SetFixedFrameLevel(false)
 end
 
 local function ApplyHighlight(button)
@@ -124,9 +131,7 @@ end
 
 local function SkinLandingPageButton(button)
 	if not button.LuckyoneSkinned then
-		button:SetTemplate()
-		button:SetFixedFrameStrata(false)
-		button:SetFixedFrameLevel(false)
+		ApplyTemplate(button)
 		button.LuckyoneSkinned = true
 	end
 
@@ -162,9 +167,7 @@ local function SkinButton(button)
 		button.iconMini:SetAlpha(0)
 	end
 
-	button:SetTemplate()
-	button:SetFixedFrameStrata(false)
-	button:SetFixedFrameLevel(false)
+	ApplyTemplate(button)
 
 	if icon then
 		icon:SetAlpha(1)
@@ -215,33 +218,36 @@ local function ReleaseButton(button)
 end
 
 -- TOPRIGHT leftward: BugSack first, A-Z, landing page last
-local function GetButtonSortRank(button)
+local sortRanks, sortNames = {}, {}
+
+local function GetButtonSortRank(button, name)
 	if IsLandingPageButton(button) then
 		return 2
 	end
 
-	local name = button.GetName and button:GetName() or ''
-	if name:match('BugSack$') then
-		return 0
+	return name:match('BugSack$') and 0 or 1
+end
+
+local function CompareButtons(a, b)
+	if sortRanks[a] ~= sortRanks[b] then
+		return sortRanks[a] < sortRanks[b]
 	end
 
-	return 1
+	return sortNames[a] < sortNames[b]
 end
 
 local function SortCollectedButtons(buttons)
-	local keys = {}
+	wipe(sortRanks)
+	wipe(sortNames)
+
 	for i = 1, #buttons do
 		local button = buttons[i]
-		keys[button] = { GetButtonSortRank(button), button.GetName and button:GetName() or '' }
+		local name = button:GetName() or ''
+		sortRanks[button] = GetButtonSortRank(button, name)
+		sortNames[button] = name
 	end
 
-	sort(buttons, function(a, b)
-		local keyA, keyB = keys[a], keys[b]
-		if keyA[1] ~= keyB[1] then
-			return keyA[1] < keyB[1]
-		end
-		return keyA[2] < keyB[2]
-	end)
+	sort(buttons, CompareButtons)
 end
 
 local function TryCollect(buttons, seen, button)
@@ -257,10 +263,9 @@ local function CollectLibDBIconChildren(parent, buttons, seen)
 	local children = { parent:GetChildren() }
 	for i = 1, #children do
 		local child = children[i]
-		local childName = child.GetName and child:GetName()
-		if childName and not seen[child] and child:IsShown() and childName:match('^LibDBIcon10_') then
-			seen[child] = true
-			tinsert(buttons, child)
+		local childName = child:GetName()
+		if childName and childName:match('^LibDBIcon10_') then
+			TryCollect(buttons, seen, child)
 		end
 	end
 end
@@ -297,7 +302,7 @@ local function CollectButtons()
 	end
 
 	SortCollectedButtons(buttons)
-	return buttons
+	return buttons, seen
 end
 
 local function HoverBar(self)
@@ -363,7 +368,7 @@ local function LayoutButtons(holder, buttons)
 	local yStep = size + 1
 
 	local count = #buttons
-	local rows = count > 0 and floor((count - 1) / perRow) + 1 or 0
+	local rows = ceil(count / perRow)
 	local height = rows > 0 and (rows * yStep - 1) or 0
 
 	Map.updating = true
@@ -496,14 +501,10 @@ function Private:UpdateMinimapButtonBar()
 		holder:HookScript('OnSizeChanged', ScheduleUpdate)
 	end
 
-	local buttons = CollectButtons()
+	local buttons, keep = CollectButtons()
 
 	local bar = Map.buttonBar
 	if bar then
-		local keep = {}
-		for i = 1, #buttons do
-			keep[buttons[i]] = true
-		end
 		for button in pairs(bar.buttons) do
 			if not keep[button] then
 				bar.buttons[button] = nil
