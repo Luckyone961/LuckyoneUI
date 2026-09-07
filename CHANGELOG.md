@@ -10,6 +10,7 @@
 **Retail:**  
 - Added a fully custom Damage Meter with hundreds of settings based on Blizzards API  
 - Removed the Blizzard Damage Meter skin and tweaks  
+- Updated the MPlusTimer profile to look like WarpDeplete (I use this now)  
 
 ## Version 4.21 [01-09-2026]
 
