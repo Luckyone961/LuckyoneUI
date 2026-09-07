@@ -78,6 +78,9 @@ Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
 Private.ElvUI = Private.IsAddOnLoaded('ElvUI')
 Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
 
+-- Helpers
+Private.Noop = function() end
+
 -- Modules
 Private.Modules = {
 	Core = Private.Addon:NewModule('Core', 'AceEvent-3.0'),
