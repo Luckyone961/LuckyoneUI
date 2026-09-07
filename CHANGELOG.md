@@ -1,4 +1,12 @@
-﻿## Version 4.22 [07-09-2026]
+﻿## Version 4.23 [In development, not yet released]
+
+**All WoW Versions:**  
+- Alt setup button is back, one click to load all existing profiles and setup chat tabs  
+
+**Retail:**  
+- Updated aura indicators for all healing specs (Size, Postion, Stack count, Style)  
+
+## Version 4.22 [07-09-2026]
 
 **All WoW Versions:**  
 - Alt setup buttons were removed from the installer (Rework and improvements soon)  
