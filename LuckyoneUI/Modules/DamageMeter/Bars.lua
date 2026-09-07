@@ -456,7 +456,12 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 
 	if spellMode then
 		bar.lastName = nil
-		bar.rank:SetText('')
+
+		-- The popup has no rank column, zero is never a real rank
+		if bar.lastRank ~= 0 then
+			bar.lastRank = 0
+			bar.rank:SetText('')
+		end
 
 		local spellID = entry.spellID
 		local spellName
@@ -489,16 +494,21 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 
 	local rawName = entry.name
 	local nameSecret = issecretvalue(rawName)
+	local sameRank = rank == bar.lastRank
 
 	-- Comparisons are only safe on non-secret names
-	if not nameSecret and rawName == bar.lastName and rank == bar.lastRank then return end
+	if not nameSecret and sameRank and rawName == bar.lastName then return end
 	bar.lastName = not nameSecret and rawName or nil
-	bar.lastRank = rank
+
+	-- Only when the bar actually moved
+	if not sameRank then
+		bar.lastRank = rank
+
+		-- Second argument is only there for locales that keep the name in the format
+		bar.rank:SetText(rankColumn and format(RankFormat, rank, '') or '')
+	end
 
 	local name = DM:StripRealm(rawName or '', entry.classFilename)
-
-	-- Second argument is only there for locales that keep the name in the format
-	bar.rank:SetText(rankColumn and format(RankFormat, rank, '') or '')
 
 	if db.showRank and not rankColumn then
 		nameText:SetFormattedText(DAMAGE_METER_SOURCE_NAME, rank, name)
@@ -519,6 +529,7 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 		end
 
 		persecText:SetText('')
+		bar.persecSecret = false
 		return
 	end
 
@@ -529,7 +540,9 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 		primary, secondary = secondary, primary
 	end
 
-	if suppressPersec or (not issecretvalue(secondary) and (not secondary or secondary <= 0)) then
+	local secret = issecretvalue(secondary)
+
+	if suppressPersec or (not secret and (not secondary or secondary <= 0)) then
 		secondary = nil
 	end
 
@@ -542,13 +555,17 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 
 		if secondary then
 			persecText:SetFormattedText(renderFormats.both, FormatAmount(secondary), percent)
+			bar.persecSecret = secret
 		else
 			persecText:SetFormattedText(renderFormats.percent, percent)
+			bar.persecSecret = false
 		end
 	elseif display ~= 'MINIMAL' and secondary then
 		persecText:SetFormattedText(renderFormats.single, FormatAmount(secondary))
+		bar.persecSecret = secret
 	else
 		persecText:SetText('')
+		bar.persecSecret = false
 	end
 end
 
@@ -569,15 +586,16 @@ local function UpdateValueColumn(db, window)
 
 	-- Value spacing only applies if the slider is greater than 0 in the config
 	if db.valueSpacing > 0 then
-		for i = 1, window.visibleCount do
-			local bar = window.bars[i]
-			if bar.entry then
-				local barWidth = bar.persec:GetStringWidth()
+		local bars = window.bars
 
-				if issecretvalue(barWidth) then
+		for i = 1, window.visibleCount do
+			local bar = bars[i]
+
+			if bar.entry then
+				if bar.persecSecret then
 					secret = true
 				else
-					width = max(width, barWidth)
+					width = max(width, bar.persec:GetStringWidth())
 				end
 			end
 		end
@@ -613,7 +631,7 @@ end
 local function GetPinnedRow(db, window, entries, numEntries, offset, spellMode, meterType)
 	if not db.pinLocalPlayer or spellMode then return end
 	if numEntries <= window.visibleCount then return end
-	if not DM.TypePinLocalPlayer[meterType] then return end
+	if DM.TypeSuppressPin[meterType] then return end
 
 	local index = FindLocalPlayer(entries, numEntries)
 	if not index then return end
@@ -633,13 +651,23 @@ function DM:RenderWindow(window)
 	renderFormats = GetValueFormats(db)
 
 	-- Only the session windows carry the availability message
-	if window.infoText then
-		local available, failureReason = IsDamageMeterAvailable()
-		local info = (not available and not DM.testMode) and failureReason or ''
+	local infoText = window.infoText
+
+	if infoText then
+		local info = ''
+
+		-- Fake data always renders, only the live data can be unavailable
+		if not DM.testMode then
+			local available, failureReason = IsDamageMeterAvailable()
+
+			if not available then
+				info = failureReason or ''
+			end
+		end
 
 		if window.lastInfo ~= info then
 			window.lastInfo = info
-			window.infoText:SetText(info)
+			infoText:SetText(info)
 		end
 	end
 
@@ -649,7 +677,9 @@ function DM:RenderWindow(window)
 	local numEntries = entries and #entries or 0
 	window.numEntries = numEntries
 
-	local maxOffset = max(0, numEntries - window.visibleCount)
+	local bars, visibleCount = window.bars, window.visibleCount
+
+	local maxOffset = max(0, numEntries - visibleCount)
 	if window.offset > maxOffset then
 		window.offset = maxOffset
 	end
@@ -668,10 +698,10 @@ function DM:RenderWindow(window)
 
 	-- Rank spacing only applies if the slider is greater than 0 in the config
 	local rankColumn = db.showRank and db.rankSpacing > 0 and not spellMode
-	local lastRank = rankColumn and max(pinIndex or 0, min(offset + window.visibleCount, numEntries)) or 0
+	local lastRank = rankColumn and max(pinIndex or 0, min(offset + visibleCount, numEntries)) or 0
 
-	for i = 1, window.visibleCount do
-		local bar = window.bars[i]
+	for i = 1, visibleCount do
+		local bar = bars[i]
 		local rank = (i == pinRow) and pinIndex or (offset + i)
 		local entry = entries and entries[rank]
 

@@ -96,17 +96,10 @@ DM.TypeSuppressIcon = {
 	[MeterType.EnemyDamageTaken] = true,
 }
 
--- Types that can pin your own bar, deaths and enemies never carry one
-DM.TypePinLocalPlayer = {
-	[MeterType.DamageDone] = true,
-	[MeterType.Dps] = true,
-	[MeterType.HealingDone] = true,
-	[MeterType.Hps] = true,
-	[MeterType.Absorbs] = true,
-	[MeterType.Interrupts] = true,
-	[MeterType.Dispels] = true,
-	[MeterType.DamageTaken] = true,
-	[MeterType.AvoidableDamageTaken] = true,
+-- Deaths and enemies dont support "Always Show Yourself"
+DM.TypeSuppressPin = {
+	[MeterType.Deaths] = true,
+	[MeterType.EnemyDamageTaken] = true,
 }
 
 -- The popup pulls a single source, the windows pull the whole session
@@ -514,7 +507,8 @@ end
 local NEW_BOOKMARK = 99 -- Higher than the type count, anything new sorts to the end
 local DRAG_SCROLL_DELAY = 0.15 -- One row per step while a drag sits on an edge
 
-local bookmarkList, bookmarkPlaces = {}, {}
+local bookmarkList = {}
+local bookmarkPlaces -- The saved table the sort compares against
 
 local function SortBookmarks(a, b)
 	return bookmarkPlaces[a] < bookmarkPlaces[b]
@@ -522,17 +516,14 @@ end
 
 local function BuildBookmarkList()
 	wipe(bookmarkList)
-	wipe(bookmarkPlaces)
 
 	local saved = DM.db.bookmarks
+	bookmarkPlaces = saved
 
 	for _, category in ipairs(DM.TypeCategories) do
 		for _, meterType in ipairs(category.types) do
-			local place = saved[meterType]
-
-			if place then
+			if saved[meterType] then
 				bookmarkList[#bookmarkList + 1] = meterType
-				bookmarkPlaces[meterType] = place
 			end
 		end
 	end
