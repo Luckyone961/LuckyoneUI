@@ -1,4 +1,4 @@
-﻿## Version 4.22 [In development, not yet released]
+﻿## Version 4.22 [07-09-2026]
 
 **All WoW Versions:**  
 - Alt setup buttons were removed from the installer (Rework and improvements soon)  
