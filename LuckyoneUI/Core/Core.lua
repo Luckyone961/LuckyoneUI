@@ -33,7 +33,9 @@ local StaticPopup_Show = _G.StaticPopup_Show
 
 local ACCEPT = ACCEPT
 local CANCEL = CANCEL
+local NO = NO
 local OKAY = OKAY
+local YES = YES
 
 -- Keep these enabled in debug mode
 local AddOns = {
@@ -125,6 +127,23 @@ _G.StaticPopupDialogs['LUCKYONE_RL'] = {
 	button1 = ACCEPT,
 	button2 = CANCEL,
 	OnAccept = C_UI_Reload,
+	whileDead = 1,
+	hideOnEscape = false,
+}
+
+-- Alt setup popup
+-- StaticPopup_Show('LUCKYONE_ALTS')
+_G.StaticPopupDialogs['LUCKYONE_ALTS'] = {
+	text = format('%s\n\n%s', L["Alt Setup"], L["Load your existing profiles and setup your chat tabs?"]),
+	button1 = YES, -- OnAccept
+	button2 = L["Yes, no chat"], --OnCancel
+	button3 = NO, -- OnAlt
+	OnAccept = function() Private:HandleAlts(true) end,
+	OnCancel = function(_, _, reason)
+		if reason == 'clicked' then
+			Private:HandleAlts()
+		end
+	end,
 	whileDead = 1,
 	hideOnEscape = false,
 }

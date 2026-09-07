@@ -250,7 +250,8 @@ L["Leaving Text"] = true
 L["Left panel: General - Log - Whisper - Guild - Party."] = "[Левая панель: Общие сведения - Журнал - Шепот - Гильдия - Группа.]"
 L["Lightweight Damage Meter powered by the native Blizzard combat data."] = true
 L["Links"] = "Ссылки"
-L["Loads your existing LuckyoneUI profile in every enabled addon that has one.\n\nIt also creates your chat tabs and applies the console variables.\n\nHealer specializations get the healing profiles, everyone else the main ones."] = true
+L["Load your existing profiles and setup your chat tabs?"] = true
+L["Loads your existing LuckyoneUI profile in every enabled addon that has one.\n\nIt also applies the console variables and can create your chat tabs.\n\nHealer specializations get the healing profiles, everyone else the main ones."] = true
 L["Loss of Control Frame"] = "Рамка потери управления"
 L["LuckyoneUI Damage Meter"] = true
 L["LuckyoneUI Scale"] = "Масштаб LuckyoneUI"
@@ -464,6 +465,7 @@ L["Wipe all Damage Meter data when you log out. Reloading the UI keeps the data.
 L["Wipe all Damage Meter settings, the module itself stays enabled."] = true
 L["X Offset"] = true
 L["Y Offset"] = true
+L["Yes, no chat"] = true
 L["You have completed the installation process, please click 'Finished' to reload the UI."] = "Вы завершили процесс установки, нажмите 'Готово', чтобы перезагрузить интерфейс."
 L["Your chat will keep disappearing unless you move it in Blizzard's Edit Mode and save the profile there."] = "Ваш чат будет продолжать исчезать, если Вы не переместите его в режиме редактирования Blizzard и не сохраните профиль там."
 L["Your ElvUI is outdated - please update and reload."] = "Ваш ElvUI устарел, пожалуйста, обновите его и перезагрузите интерфейс."

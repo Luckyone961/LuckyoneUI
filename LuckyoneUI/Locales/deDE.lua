@@ -250,7 +250,8 @@ L["Leaving Text"] = true
 L["Left panel: General - Log - Whisper - Guild - Party."] = "Linkes Feld: Allgemein – Log – Flüstern – Gilde – Party."
 L["Lightweight Damage Meter powered by the native Blizzard combat data."] = "Vereinfachtes Damage Meter was von Blizzards nativen Kampfdaten versorgt wird."
 L["Links"] = true -- No need to translate
-L["Loads your existing LuckyoneUI profile in every enabled addon that has one.\n\nIt also creates your chat tabs and applies the console variables.\n\nHealer specializations get the healing profiles, everyone else the main ones."] = "Lädt Dein vorhandenes LuckyoneUI Profil in jedem aktivierten Addon, das eines besitzt.\n\nAußerdem werden Deine Chat-Tabs erstellt und die Konsolenvariablen gesetzt.\n\nHeiler-Spezialisierungen erhalten die Heiler-Profile, alle anderen die Main-Profile."
+L["Load your existing profiles and setup your chat tabs?"] = "Deine vorhandenen Profile laden und die Chat-Tabs einrichten?"
+L["Loads your existing LuckyoneUI profile in every enabled addon that has one.\n\nIt also applies the console variables and can create your chat tabs.\n\nHealer specializations get the healing profiles, everyone else the main ones."] = "Lädt Dein vorhandenes LuckyoneUI Profil in jedem aktivierten Addon, das eines besitzt.\n\nAußerdem werden die Konsolenvariablen gesetzt und auf Wunsch Deine Chat-Tabs erstellt.\n\nHeiler-Spezialisierungen erhalten die Heiler-Profile, alle anderen die Main-Profile."
 L["Loss of Control Frame"] = "Kontrollverlust Fenster"
 L["LuckyoneUI Damage Meter"] = true -- No need to translate
 L["LuckyoneUI Scale"] = "LuckyoneUI Skalierung"
@@ -464,6 +465,7 @@ L["Wipe all Damage Meter data when you log out. Reloading the UI keeps the data.
 L["Wipe all Damage Meter settings, the module itself stays enabled."] = "Löscht alle Damage Meter Einstellungen, das Modul selbst bleibt eingeschaltet."
 L["X Offset"] = "X-Versatz"
 L["Y Offset"] = "Y-Versatz"
+L["Yes, no chat"] = "Ja, ohne Chat"
 L["You have completed the installation process, please click 'Finished' to reload the UI."] = "Du hast den Installationsvorgang abgeschlossen, bitte klicke auf 'Fertig', um die Benutzeroberfläche neu zu laden."
 L["Your chat will keep disappearing unless you move it in Blizzard's Edit Mode and save the profile there."] = "Dein Chat wird verschwinden, wenn du ihn nicht in Blizzards Edit Mode platzierst und das Profil dort speicherst."
 L["Your ElvUI is outdated - please update and reload."] = "Deine ElvUI Version ist veraltet - bitte aktualisieren und dann /reload."

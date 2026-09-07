@@ -220,7 +220,7 @@ local handlers = {
 
 -- Quick setup for alts, loads every existing Luckyone profile
 local applied, skipped = {}, {}
-function Private:HandleAlts()
+function Private:HandleAlts(includeChat)
 	local layout = GetLayout()
 
 	wipe(applied)
@@ -241,7 +241,10 @@ function Private:HandleAlts()
 	end
 
 	-- Chat tabs and console variables are not part of any addon profile
-	Private:Setup_Chat()
+	if includeChat then
+		Private:Setup_Chat()
+	end
+
 	Private:Setup_CVars(true)
 	Private:NameplateCVars(true)
 
