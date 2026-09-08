@@ -50,6 +50,7 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.misc.gameBar.enable = false
 	E.db.WT.misc.noLootPanel = true
 	E.db.WT.quest.achievementTracker.show = false
+	E.db.WT.quest.preyHunt.enable = false
 	E.db.WT.quest.progress.enable = false
 	E.db.WT.quest.switchButtons.enable = false
 	E.db.WT.quest.turnIn.enable = false
