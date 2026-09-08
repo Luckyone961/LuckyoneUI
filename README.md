@@ -40,6 +40,9 @@
 • Streamer privacy overlay for the big guild and community frame (Click to show chat)  
 • Double click to quickly signup for parties and raids without confirmation  
 • Remove realm names and the (*) indicator from friendly names in dungeons and raids  
+• Option to increase the speed of autolooting items  
+• Movable Blizzard frames for all game versions  
+• Double the size of vendor frames to display 4 rows of items instead of 2  
 • One click toggles with descriptions to disable useless graphic effects in the game  
 • Clean minimap addon button bar which supports LibDBIcon minimap buttons  
 • Lightweight replacement for entering combat and leaving combat floating text  
