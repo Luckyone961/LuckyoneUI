@@ -30,17 +30,6 @@ local E = unpack(ElvUI)
 
 DM.windows = {}
 
--- Bracket styling () [] etc
-DM.BracketChars = {
-	PARENTHESES = { '(', ')' },
-	SQUARE = { '[', ']' },
-	NONE = { '', '' },
-}
-
-function DM:WindowDB(index)
-	return DM.db.windows[index]
-end
-
 -- Ambiguate accepts secret names
 function DM:StripRealm(name, classFilename)
 	if not name or not DM.db.stripRealm then return name end
@@ -133,9 +122,9 @@ local function BuildRoots(count)
 	wipe(floating)
 
 	for index = 1, count do
-		local wdb = DM:WindowDB(index)
+		local wdb = DM.db.windows[index]
 		local target = (wdb.placement == 'ATTACH' and wdb.attachTo) or 0
-		local host = (target >= 1 and target <= count and target ~= index) and DM:WindowDB(target)
+		local host = (target >= 1 and target <= count and target ~= index) and DM.db.windows[target]
 
 		hosts[index] = (host and host.placement ~= 'ATTACH') and target or 0
 
@@ -158,7 +147,7 @@ local function SplitSlot(index, count, vertical, inner, minSize)
 		if hosts[child] == index then
 			remaining = remaining - inner
 
-			local share = floor(remaining * (DM:WindowDB(child).attachSize or 50) / 100 + 0.5)
+			local share = floor(remaining * (DM.db.windows[child].attachSize or 50) / 100 + 0.5)
 			share = max(min(share, remaining - minSize), minSize)
 			remaining = remaining - share
 
@@ -306,7 +295,7 @@ function DM:Layout()
 			UpdateWindowMover(window, index, false)
 			window:Hide()
 		else
-			UpdateWindowMover(window, index, DM:WindowDB(index).placement == 'CUSTOM')
+			UpdateWindowMover(window, index, db.windows[index].placement == 'CUSTOM')
 			DM:UpdateWindowGeometry(window, heights[index])
 		end
 	end

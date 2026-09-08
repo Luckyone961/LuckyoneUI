@@ -85,31 +85,6 @@ for _, category in ipairs(DM.TypeCategories) do
 	end
 end
 
-DM.TypePerSecondPrimary = {
-	[MeterType.Dps] = true,
-	[MeterType.Hps] = true,
-}
-
-DM.TypeSuppressPerSecond = {
-	[MeterType.Interrupts] = true,
-	[MeterType.Dispels] = true,
-	[MeterType.Deaths] = true,
-}
-
-DM.TypeSuppressIcon = {
-	[MeterType.EnemyDamageTaken] = true,
-}
-
--- Deaths and enemies dont support "Always Show Yourself"
-DM.TypeSuppressPin = {
-	[MeterType.Deaths] = true,
-	[MeterType.EnemyDamageTaken] = true,
-}
-
-DM.TypeReverseOrder = {
-	[MeterType.Deaths] = true, -- By default first death shows at the bottom, reverse it to the top
-}
-
 -- The popup pulls a single source, the windows pull the whole session
 function DM:FetchWindow(window)
 	-- The death log is built once when the popup opens
@@ -241,10 +216,8 @@ end
 
 function DM:DAMAGE_METER_COMBAT_SESSION_UPDATED(_, meterType, sessionID)
 	for _, window in pairs(DM.windows) do
-		if window.meterType == meterType then
-			if window.sessionID == sessionID or (sessionID == 0 and window.sessionType ~= nil) then
-				DM:MarkDirty(window)
-			end
+		if window.meterType == meterType and (window.sessionID == sessionID or (sessionID == 0 and window.sessionType)) then
+			DM:MarkDirty(window)
 		end
 	end
 end
@@ -326,7 +299,7 @@ local function SetBackdropColor(backdrop, custom, color)
 end
 
 function DM:UpdateWindowBackdrop(window)
-	local wdb = DM:WindowDB(window.index)
+	local wdb = DM.db.windows[window.index]
 
 	if not wdb.backdrop then
 		if window.backdrop then
@@ -361,7 +334,7 @@ end
 
 function DM:SetWindowType(window, meterType)
 	window.meterType = meterType
-	DM:WindowDB(window.index).meterType = meterType
+	DM.db.windows[window.index].meterType = meterType
 
 	WindowChanged(window)
 end
@@ -370,7 +343,7 @@ end
 function DM:SetWindowSession(window, sessionType, sessionID)
 	window.sessionType = sessionType
 	window.sessionID = sessionID
-	DM:WindowDB(window.index).sessionType = sessionType
+	DM.db.windows[window.index].sessionType = sessionType
 
 	WindowChanged(window)
 end
@@ -839,7 +812,7 @@ function DM:LayoutBookmarks(window, focus)
 
 	if rowHeight < 1 then return false end
 
-	local offset = min(frame.offset or 0, total - visible)
+	local offset = min(frame.offset, total - visible)
 
 	-- A type picked somewhere else can sit outside the visible part
 	if focus and window.meterType then
@@ -1119,7 +1092,7 @@ end
 
 function DM:ApplyPopupSettings(popup)
 	local db = DM.db
-	local wdb = DM:WindowDB(popup.owner.index)
+	local wdb = db.windows[popup.owner.index]
 	local scrollWidth = 22
 	local r, g, b = HeaderColor()
 
@@ -1140,12 +1113,6 @@ function DM:ApplyPopupSettings(popup)
 	-- Padding follows the window the popup was opened from, the color is always the ElvUI one
 	popup.backdrop:SetOutside(popup, E.Border + E:Scale(wdb.backdropWidth), E.Border + E:Scale(wdb.backdropHeight), nil, true)
 	SetBackdropColor(popup.backdrop)
-end
-
-function DM:UpdatePopupHeader(popup)
-	local name = DM:StripRealm(popup.sourceName, popup.sourceClass) or _G.UNKNOWN
-
-	SetHeaderText(popup.typeText, name, popup)
 end
 
 function DM:RefreshPopup()
@@ -1312,8 +1279,6 @@ function DM:OpenPopup(window, entry)
 	popup.sessionID = window.sessionID
 	popup.sourceGUID = sourceGUID
 	popup.sourceCreatureID = sourceCreatureID
-	popup.sourceName = entry.name
-	popup.sourceClass = entry.classFilename
 	popup.offset = 0
 	popup.recapMode = recapSession ~= nil
 	popup.session = recapSession
@@ -1322,7 +1287,7 @@ function DM:OpenPopup(window, entry)
 	popup.sticky = IsShiftKeyDown()
 
 	DM:ApplyPopupSettings(popup)
-	DM:UpdatePopupHeader(popup)
+	SetHeaderText(popup.typeText, DM:StripRealm(entry.name, entry.classFilename) or _G.UNKNOWN, popup)
 	DM:RefreshPopup()
 
 	AnchorToCursor(popup)
@@ -1393,14 +1358,14 @@ end
 -- edge is the gap to the header, gap the one to the next button on the right and pad what the
 -- tighter settings artwork (trim) hands over to whatever sits on its left
 local HeaderButtons = {
-	{ button = 'resetButton', shown = 'showResetButton', x = 'headerResetXOffset', y = 'headerResetYOffset', edge = 3, gap = nil, pad = nil, trim = 2 },
+	{ button = 'resetButton', shown = 'showResetButton', x = 'headerResetXOffset', y = 'headerResetYOffset', edge = 3, trim = 2 },
 	{ button = 'sessionButton', shown = 'showSessionButton', x = 'headerSessionXOffset', y = 'headerSessionYOffset', edge = 3 },
 	{ button = 'settingsButton', shown = 'showSettingsButton', x = 'headerSettingsXOffset', y = 'headerSettingsYOffset', edge = 2, gap = -1, pad = -2, trim = 1 },
 }
 
 function DM:ApplyWindowSettings(window)
 	local db = DM.db
-	local wdb = DM:WindowDB(window.index)
+	local wdb = db.windows[window.index]
 
 	if window.meterType == nil then
 		window.meterType = wdb.meterType

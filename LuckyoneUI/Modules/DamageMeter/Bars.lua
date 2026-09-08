@@ -31,6 +31,33 @@ local DAMAGE_METER_SPELL_ENTRY_UNIT = DAMAGE_METER_SPELL_ENTRY_UNIT
 
 local E = unpack(ElvUI)
 
+local MeterType = Enum.DamageMeterType
+
+local TypePerSecondPrimary = {
+	[MeterType.Dps] = true,
+	[MeterType.Hps] = true,
+}
+
+local TypeSuppressPerSecond = {
+	[MeterType.Interrupts] = true,
+	[MeterType.Dispels] = true,
+	[MeterType.Deaths] = true,
+}
+
+local TypeSuppressIcon = {
+	[MeterType.EnemyDamageTaken] = true,
+}
+
+-- Deaths and enemies dont support "Always Show Yourself"
+local TypeSuppressPin = {
+	[MeterType.Deaths] = true,
+	[MeterType.EnemyDamageTaken] = true,
+}
+
+local TypeReverseOrder = {
+	[MeterType.Deaths] = true, -- By default first death shows at the bottom, reverse it to the top
+}
+
 local renderAbbrev, renderFormats
 
 -- Expand the ElvUI abbrev to support values below 1k
@@ -63,6 +90,13 @@ local function FormatAmount(amount)
 	return AbbreviateNumbers(amount, renderAbbrev)
 end
 
+-- Bracket styling () [] etc
+local BracketChars = {
+	PARENTHESES = { '(', ')' },
+	SQUARE = { '[', ']' },
+	NONE = { '', '' },
+}
+
 -- Value formats for the secondary number
 -- Only rebuilt when the bracket style changes
 local formatKey, valueFormats
@@ -72,7 +106,7 @@ local function GetValueFormats(db)
 	if formatKey ~= style then
 		formatKey = style
 
-		local chars = DM.BracketChars[style] or DM.BracketChars.PARENTHESES
+		local chars = BracketChars[style] or BracketChars.PARENTHESES
 		local open, close = chars[1], chars[2]
 
 		valueFormats = {
@@ -472,12 +506,10 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 			bar.rank:SetText('')
 		end
 
-		local spellID = entry.spellID
-
 		-- GetSpellName takes secret IDs
 		local spellName = entry.spellName
-		if not spellName and spellID then
-			spellName = GetSpellName(spellID)
+		if not spellName and entry.spellID then
+			spellName = GetSpellName(entry.spellID)
 		end
 
 		local creatureName = entry.creatureName
@@ -660,7 +692,7 @@ end
 local function GetPinnedRow(db, window, entries, numEntries, offset, spellMode, meterType)
 	if not db.pinLocalPlayer or spellMode then return end
 	if numEntries <= window.visibleCount then return end
-	if DM.TypeSuppressPin[meterType] then return end
+	if TypeSuppressPin[meterType] then return end
 
 	local index = FindLocalPlayer(entries, numEntries)
 	if not index then return end
@@ -720,10 +752,10 @@ function DM:RenderWindow(window)
 	local sessionSecret = issecretvalue(sessionTotal)
 
 	local meterType = window.meterType
-	local persecPrimary = DM.TypePerSecondPrimary[meterType]
-	local suppressPersec = DM.TypeSuppressPerSecond[meterType]
-	local iconsShown = db.showIcons and (spellMode or not DM.TypeSuppressIcon[meterType])
-	local reverseOrder = not spellMode and DM.TypeReverseOrder[meterType]
+	local persecPrimary = TypePerSecondPrimary[meterType]
+	local suppressPersec = TypeSuppressPerSecond[meterType]
+	local iconsShown = db.showIcons and (spellMode or not TypeSuppressIcon[meterType])
+	local reverseOrder = not spellMode and TypeReverseOrder[meterType]
 
 	-- For the death log, every hit fills its bar instead
 	local fullBars = recapMode and maxAmount == 0
