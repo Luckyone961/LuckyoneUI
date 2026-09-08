@@ -147,14 +147,18 @@ local function AddHandle(name)
 	handle:SetScript('OnMouseUp', Handle_OnMouseUp)
 	handle:SetScript('OnShow', Handle_OnShow)
 
-	local title = frame.TitleContainer or (frame.BorderFrame and frame.BorderFrame.TitleContainer)
-
-	if title then
-		handle:SetAllPoints(title)
-	else
+	-- Frames like the Achievement one keep their title bar on a header that sticks out above the panel
+	local title = frame.TitleContainer or (frame.BorderFrame and frame.BorderFrame.TitleContainer) or frame.Header or _G[name .. 'Header']
+	if not title then
 		handle:SetHeight(HANDLE_HEIGHT)
 		handle:SetPoint('TOPLEFT', frame, 'TOPLEFT', HANDLE_LEFT, HANDLE_TOP)
 		handle:SetPoint('TOPRIGHT', frame, 'TOPRIGHT', HANDLE_RIGHT, HANDLE_TOP)
+	elseif title.IsMouseEnabled and title:IsMouseEnabled() then
+		handle:SetFrameLevel(title:GetFrameLevel() + 1)
+		handle:SetPoint('TOPLEFT', title, 'TOPLEFT')
+		handle:SetPoint('BOTTOMRIGHT', title, 'BOTTOMRIGHT', HANDLE_RIGHT, 0)
+	else
+		handle:SetAllPoints(title)
 	end
 
 	Handles[frame] = handle
