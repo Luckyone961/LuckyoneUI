@@ -20,6 +20,7 @@ local DoesAncestryIncludeAny = DoesAncestryIncludeAny
 local GetCursorPosition = GetCursorPosition
 local GetMouseFoci = GetMouseFoci
 local IsShiftKeyDown = IsShiftKeyDown
+local UnitGUID = UnitGUID
 local GetAvailableCombatSessions = C_DamageMeter.GetAvailableCombatSessions
 local GetCombatSessionFromID = C_DamageMeter.GetCombatSessionFromID
 local GetCombatSessionFromType = C_DamageMeter.GetCombatSessionFromType
@@ -1173,9 +1174,17 @@ function DM:OpenPopup(window, entry)
 		return
 	end
 
-	-- Secret identifiers cannot be passed back into the API while restricted
-	if issecretvalue(entry.sourceGUID) or issecretvalue(entry.sourceCreatureID) then return end
-	if not entry.sourceGUID and not entry.sourceCreatureID then return end
+	local sourceGUID, sourceCreatureID = entry.sourceGUID, entry.sourceCreatureID
+
+	if issecretvalue(sourceGUID) or issecretvalue(sourceCreatureID) then
+		if not entry.isLocalPlayer then return end
+
+		sourceGUID, sourceCreatureID = UnitGUID('player'), nil
+
+		if issecretvalue(sourceGUID) then return end
+	end
+
+	if not sourceGUID and not sourceCreatureID then return end
 
 	local popup = DM:GetPopup()
 
@@ -1183,8 +1192,8 @@ function DM:OpenPopup(window, entry)
 	popup.meterType = window.meterType
 	popup.sessionType = window.sessionType
 	popup.sessionID = window.sessionID
-	popup.sourceGUID = entry.sourceGUID
-	popup.sourceCreatureID = entry.sourceCreatureID
+	popup.sourceGUID = sourceGUID
+	popup.sourceCreatureID = sourceCreatureID
 	popup.sourceName = entry.name
 	popup.sourceClass = entry.classFilename
 	popup.offset = 0

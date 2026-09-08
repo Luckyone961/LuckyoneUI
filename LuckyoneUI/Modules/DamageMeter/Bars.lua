@@ -381,7 +381,8 @@ local function UpdateBarIcon(bar, entry, spellMode)
 
 		if specIcon and specIcon ~= 0 then
 			fileID = specIcon
-		elseif entry.spellID and not issecretvalue(entry.spellID) then
+		elseif entry.spellID then
+			-- GetSpellTexture takes secret IDs
 			fileID = GetSpellTexture(entry.spellID)
 		end
 	else
@@ -395,8 +396,13 @@ local function UpdateBarIcon(bar, entry, spellMode)
 	end
 
 	local key = fileID or atlas
-	if bar.iconKey == key then return end
-	bar.iconKey = key
+
+	if issecretvalue(key) then
+		bar.iconKey = nil
+	else
+		if bar.iconKey == key then return end
+		bar.iconKey = key
+	end
 
 	if fileID then
 		bar.icon:SetTexture(fileID)
@@ -465,7 +471,9 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 
 		local spellID = entry.spellID
 		local spellName
-		if spellID and not issecretvalue(spellID) then
+
+		-- GetSpellName takes secret IDs
+		if spellID then
 			spellName = GetSpellName(spellID)
 		end
 
