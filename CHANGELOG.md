@@ -10,6 +10,9 @@
 - Disabled WindTools profile features (Faster loot, Extended Merchant Pages, Movable Blizz frames)  
 - Updated aura indicators for all healing specs (Size, Postion, Stack count, Style)  
 
+**Classic:**  
+- Fixed NovaSpellRankChecker skin (Sometimes the button was covering the entire spellbook)  
+
 **Damage Meter:**  
 - Bookmarks on very small windows are now fixed and let you scroll if needed  
 - Deathlog on cursor option added, when disabled the Blizzard deathlog frame is used like before  
