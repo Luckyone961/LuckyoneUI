@@ -1,10 +1,16 @@
 ﻿## Version 4.23 [In development, not yet released]
 
 **All WoW Versions:**  
-- Alt setup button is back, one click to load all existing profiles and setup chat tabs  
+- Alt setup button is back, one click to load all existing profiles and optionally setup chat  
 
 **Retail:**  
 - Updated aura indicators for all healing specs (Size, Postion, Stack count, Style)  
+
+**Damage Meter:**  
+- Bookmarks on very small windows are now fixed and let you scroll if needed  
+- Deathlog on cursor option added, when disabled the Blizzard deathlog frame is used like before  
+- Deaths are now reverse sorted, starting with the first death at the top of the list  
+- Your own player bar can now be clicked/opened in combat, other players remain secret in combat  
 
 ## Version 4.22 [07-09-2026]
 
