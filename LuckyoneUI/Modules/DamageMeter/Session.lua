@@ -5,6 +5,7 @@ if not DM then return end
 
 local unpack = unpack
 local format = string.format
+local upper = string.upper
 local ipairs = ipairs
 local pairs = pairs
 local wipe = wipe
@@ -26,6 +27,8 @@ local GetCombatSessionFromID = C_DamageMeter.GetCombatSessionFromID
 local GetCombatSessionFromType = C_DamageMeter.GetCombatSessionFromType
 local GetCombatSessionSourceFromID = C_DamageMeter.GetCombatSessionSourceFromID
 local GetCombatSessionSourceFromType = C_DamageMeter.GetCombatSessionSourceFromType
+local GetRecapEvents = C_DeathRecap.GetRecapEvents
+local GetRecapMaxHealth = C_DeathRecap.GetRecapMaxHealth
 local After = C_Timer.After
 local SecondsToClock = SecondsToClock
 local MenuUtil = MenuUtil
@@ -109,6 +112,9 @@ DM.TypeReverseOrder = {
 
 -- The popup pulls a single source, the windows pull the whole session
 function DM:FetchWindow(window)
+	-- The death log is built once when the popup opens
+	if window.recapMode then return end
+
 	local session
 
 	if window.spellMode then
@@ -952,6 +958,7 @@ local function Popup_OnHide(popup)
 
 	popup.owner = nil
 	popup.session = nil
+	popup.recapMode = nil
 
 	-- The next one it opens rebuilds its bars with the current settings
 	popup.lastRows = nil
@@ -1167,23 +1174,135 @@ function DM:RefreshPopup()
 	DM:UpdateScrollBar(popup)
 end
 
+-- Death log
+-- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DeathRecap/Blizzard_DeathRecap.lua
+local SWING_SPELL_ID = 88163 -- Swing damage
+local ENVIRONMENTAL_ICONS = {
+	DROWNING = 'spell_shadow_demonbreath',
+	FALLING = 'ability_rogue_quickrecovery',
+	FIRE = 'spell_fire_fire',
+	LAVA = 'spell_fire_fire',
+	SLIME = 'inv_misc_slime_01',
+	FATIGUE = 'ability_creature_cursed_05',
+}
+
+-- Don't let secrets on to the bar
+local function BuildRecapEntry(event, classFilename, maxHealth, deathTime)
+	local spellID, spellName, texture = event.spellId, event.spellName, nil
+	local eventType = event.event
+
+	if not issecretvalue(eventType) then
+		if eventType == 'SWING_DAMAGE' then
+			spellID, spellName = SWING_SPELL_ID, _G.ACTION_SWING
+		elseif eventType == 'ENVIRONMENTAL_DAMAGE' then
+			local damageType = event.environmentalType
+
+			if damageType and not issecretvalue(damageType) then
+				damageType = upper(damageType)
+
+				spellID = nil
+				spellName = _G['ACTION_ENVIRONMENTAL_DAMAGE_' .. damageType]
+				texture = 'Interface\\Icons\\' .. (ENVIRONMENTAL_ICONS[damageType] or 'ability_creature_cursed_05')
+			end
+		end
+	end
+
+	-- Environmental damage has no caster
+	local sourceName
+	if issecretvalue(event.hideCaster) or not event.hideCaster then
+		sourceName = event.sourceName
+	end
+
+	local amount = event.amount
+	if not issecretvalue(amount) then
+		amount = amount or 0
+	end
+
+	local currentHP, timestamp = event.currentHP, event.timestamp
+	local healthPercent, timeBeforeDeath
+
+	if maxHealth and not issecretvalue(currentHP) and currentHP then
+		healthPercent = currentHP / maxHealth * 100
+	end
+
+	if not issecretvalue(timestamp) and timestamp then
+		timeBeforeDeath = deathTime - timestamp
+	end
+
+	return {
+		spellID = spellID,
+		spellName = spellName,
+		texture = texture,
+		totalAmount = amount,
+		healthPercent = healthPercent,
+		timeBeforeDeath = timeBeforeDeath,
+		classFilename = classFilename, -- Class color the bar
+		combatSpellDetails = { unitName = sourceName },
+	}
+end
+
+-- The killing blow comes first, the bars keep that order
+local function BuildRecapSession(recapID, classFilename)
+	local events = GetRecapEvents(recapID)
+	if not events or #events == 0 then return end
+
+	local maxHealth = GetRecapMaxHealth(recapID)
+	if issecretvalue(maxHealth) or not maxHealth or maxHealth <= 0 then
+		maxHealth = nil
+	end
+
+	-- Bars scale against the biggest hit
+	local maxAmount, deathTime = 0, 0
+
+	for _, event in ipairs(events) do
+		local amount, timestamp = event.amount, event.timestamp
+
+		if not issecretvalue(amount) and amount and amount > maxAmount then
+			maxAmount = amount
+		end
+
+		if not issecretvalue(timestamp) and timestamp and timestamp > deathTime then
+			deathTime = timestamp
+		end
+	end
+
+	local entries = {}
+
+	for index, event in ipairs(events) do
+		entries[index] = BuildRecapEntry(event, classFilename, maxHealth, deathTime)
+	end
+
+	return { combatSpells = entries, maxAmount = maxAmount }
+end
+
 function DM:OpenPopup(window, entry)
-	-- Death entries open the Blizzard death recap instead
-	if entry.deathRecapID and entry.deathRecapID ~= 0 then
-		_G.OpenDeathRecapUI(entry.deathRecapID)
-		return
+	local recapID = entry.deathRecapID
+	local recapSession
+
+	if recapID and recapID ~= 0 then
+		recapSession = DM.db.deathLogPopup and BuildRecapSession(recapID, entry.classFilename)
+
+		if not recapSession then
+			_G.OpenDeathRecapUI(recapID)
+			return
+		end
 	end
 
-	local sourceGUID, sourceCreatureID = entry.sourceGUID, entry.sourceCreatureID
-	if issecretvalue(sourceGUID) or issecretvalue(sourceCreatureID) then
-		if not entry.isLocalPlayer then return end
+	local sourceGUID, sourceCreatureID
 
-		sourceGUID, sourceCreatureID = UnitGUID('player'), nil
+	if not recapSession then
+		sourceGUID, sourceCreatureID = entry.sourceGUID, entry.sourceCreatureID
 
-		if issecretvalue(sourceGUID) then return end
+		if issecretvalue(sourceGUID) or issecretvalue(sourceCreatureID) then
+			if not entry.isLocalPlayer then return end
+
+			sourceGUID, sourceCreatureID = UnitGUID('player'), nil
+
+			if issecretvalue(sourceGUID) then return end
+		end
+
+		if not sourceGUID and not sourceCreatureID then return end
 	end
-
-	if not sourceGUID and not sourceCreatureID then return end
 
 	local popup = DM:GetPopup()
 
@@ -1196,6 +1315,8 @@ function DM:OpenPopup(window, entry)
 	popup.sourceName = entry.name
 	popup.sourceClass = entry.classFilename
 	popup.offset = 0
+	popup.recapMode = recapSession ~= nil
+	popup.session = recapSession
 
 	-- Shift click pins it, otherwise the next click anywhere else closes it
 	popup.sticky = IsShiftKeyDown()

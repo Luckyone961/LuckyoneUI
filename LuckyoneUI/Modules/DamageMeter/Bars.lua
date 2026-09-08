@@ -379,7 +379,10 @@ local function UpdateBarIcon(bar, entry, spellMode)
 		local details = entry.combatSpellDetails
 		local specIcon = details and details.specIconID
 
-		if specIcon and specIcon ~= 0 then
+		-- The death log brings its own icon for environment damage
+		if entry.texture then
+			fileID = entry.texture
+		elseif specIcon and specIcon ~= 0 then
 			fileID = specIcon
 		elseif entry.spellID then
 			-- GetSpellTexture takes secret IDs
@@ -445,10 +448,10 @@ local function UpdateBarColor(db, bar, entry, spellMode)
 	bar.persec:SetTextColor(valueColor.r, valueColor.g, valueColor.b)
 end
 
-local function UpdateBarStatus(bar, entry, maxAmount, deathEntry)
+local function UpdateBarStatus(bar, entry, maxAmount, fullBar)
 	local status = bar.status
 
-	if deathEntry then
+	if fullBar then
 		status:SetMinMaxValues(0, 1)
 		status:SetValue(1)
 	else
@@ -470,10 +473,10 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 		end
 
 		local spellID = entry.spellID
-		local spellName
 
 		-- GetSpellName takes secret IDs
-		if spellID then
+		local spellName = entry.spellName
+		if not spellName and spellID then
 			spellName = GetSpellName(spellID)
 		end
 
@@ -525,8 +528,26 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 	end
 end
 
-local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry)
+local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry, recapMode)
 	local valueText, persecText = bar.value, bar.persec
+
+	if recapMode then
+		local percent, seconds = entry.healthPercent, entry.timeBeforeDeath
+		local display = db.numberDisplay
+
+		valueText:SetText(FormatAmount(entry.totalAmount))
+		bar.persecSecret = false
+
+		if display == 'MINIMAL' or not percent then
+			persecText:SetText('')
+		elseif display == 'COMPLETE' and seconds then
+			persecText:SetFormattedText(renderFormats.both, format('%.1fs', seconds), percent)
+		else
+			persecText:SetFormattedText(renderFormats.percent, percent)
+		end
+
+		return
+	end
 
 	if deathEntry then
 		local deathTime = entry.deathTimeSeconds
@@ -681,6 +702,7 @@ function DM:RenderWindow(window)
 
 	local session = DM:GetSession(window)
 	local spellMode = window.spellMode
+	local recapMode = window.recapMode
 	local entries = session and (spellMode and session.combatSpells or session.combatSources)
 	local numEntries = entries and #entries or 0
 	window.numEntries = numEntries
@@ -703,6 +725,9 @@ function DM:RenderWindow(window)
 	local iconsShown = db.showIcons and (spellMode or not DM.TypeSuppressIcon[meterType])
 	local reverseOrder = not spellMode and DM.TypeReverseOrder[meterType]
 
+	-- For the death log, every hit fills its bar instead
+	local fullBars = recapMode and maxAmount == 0
+
 	local pinIndex, pinRow = GetPinnedRow(db, window, entries, numEntries, offset, spellMode, meterType)
 
 	-- Rank spacing only applies if the slider is greater than 0 in the config
@@ -721,13 +746,13 @@ function DM:RenderWindow(window)
 
 			bar.entry = entry
 			SetBarAnchors(db, bar, iconsShown)
-			UpdateBarStatus(bar, entry, maxAmount, deathEntry)
+			UpdateBarStatus(bar, entry, maxAmount, deathEntry or fullBars)
 			UpdateBarColor(db, bar, entry, spellMode)
 			if iconsShown then
 				UpdateBarIcon(bar, entry, spellMode)
 			end
 			UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
-			UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry)
+			UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry, recapMode)
 			bar:Show()
 		else
 			bar.entry = nil

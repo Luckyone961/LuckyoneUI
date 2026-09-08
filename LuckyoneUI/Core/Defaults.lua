@@ -33,6 +33,7 @@ Private.Defaults = {
 			showIcons = true,
 			mouseoverHighlight = true,
 			pinLocalPlayer = false,
+			deathLogPopup = true,
 			font = Private.Font,
 			fontOutline = Private.Outline,
 			fontSize = 12,
