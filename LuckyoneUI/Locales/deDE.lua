@@ -160,6 +160,7 @@ L["Displays the unit's status (dead, ghost, offline) and name with classcolor an
 L["Displays the unit's status (dead, ghost, offline) and name with no color and a maximum length of %s characters (friendly only) or full name (if enemy)"] = true
 L["Displays the unit's target name with class color"] = "Zeigt den Namen des Einheitsziels mit Klassenfarbe an"
 L["Displays the unit's target name with no color"] = "Zeigt den Namen des Einheitsziels ohne Farbe an"
+L["Doubles the width of the merchant frame to show 20 items per page in four columns instead of 10 in two columns."] = true
 L["DPS & Tanks"] = true -- No need to translate
 L["Drag a bookmark up or down to change its place in the panel."] = "Ziehe ein Lesezeichen hoch oder runter um es zu replatzieren."
 L["Drag and Drop"] = true -- No need to translate
@@ -182,6 +183,7 @@ L["Entering Color"] = true
 L["Entering Text"] = true
 L["Evoker"] = "Rufer"
 L["Examples: Max camera distance, screenshot quality and tutorials."] = "Beispiele: Maximaler Kameraabstand, Screenshot-Qualität und Tutorials."
+L["Expand Merchant Frame"] = true
 L["Expansion Landing Page"] = true
 L["Fade Time"] = true
 L["Feature explained in the description below"] = "Die Funktion wird in der folgenden Beschreibung erläutert."

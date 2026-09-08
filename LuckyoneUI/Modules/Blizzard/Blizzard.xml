@@ -2,5 +2,6 @@
 	<Script file='Blizzard.lua'/>
 	<Script file='CombatText.lua'/>
 	<Script file='Console.lua'/>
+	<Script file='Merchant.lua'/>
 	<Script file='PrivacyOverlay.lua'/>
 </Ui>

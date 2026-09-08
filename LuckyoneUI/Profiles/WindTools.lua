@@ -113,7 +113,7 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.version = 4.20
 
 	-- Private db
-	E.private.WT.item.extendMerchantPages.enable = true
+	E.private.WT.item.extendMerchantPages.enable = false
 	E.private.WT.maps.minimapButtons.enable = false
 	E.private.WT.maps.superTracker.enable = false
 	E.private.WT.maps.superTracker.waypointParse.enable = false
