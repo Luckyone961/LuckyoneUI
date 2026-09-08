@@ -121,6 +121,7 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.maps.worldMap.enable = false
 	E.private.WT.misc.lfgList.enable = false
 	E.private.WT.misc.moveFrames.elvUIBags = false
+	E.private.WT.misc.moveFrames.enable = false
 	E.private.WT.quest.objectiveTracker.cosmeticBar.border = 'ONEPIXEL'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.color.mode = 'CLASS'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = Private.Texture

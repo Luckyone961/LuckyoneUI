@@ -108,10 +108,14 @@ local function BuildGeneralSection()
 	section.args.qualityOfLife.args.preventLootAutoShow = ACH:Toggle(L["Prevent Loot Overview"], L["Prevents the Blizzard group loot overview frame from auto opening after a boss kill."], 6, nil, nil, nil, nil, nil, nil, not Private.isRetail)
 	section.args.qualityOfLife.args.privacyOverlay = ACH:Toggle(L["Privacy Overlay"], L["Creates an overlay to hide the chat frame in the Communities Frame until you click on it."], 7)
 	section.args.qualityOfLife.args.quickSignup = ACH:Toggle(L["Quick Signup"], L["Speed up the signup process for party and raid applications by double clicking the listing instead of clicking the signup button."], 8, nil, nil, nil, nil, nil, nil, not (Private.isRetail or Private.isMists))
-	section.args.misc = ACH:Group(L["Misc"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
+	section.args.movableFrames = ACH:Group(L["Movable Frames"], nil, 4, nil, function(info) return Private.Addon.db.profile.movableFrames[info[#info]] end, function(info, value) Private.Addon.db.profile.movableFrames[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
+	section.args.movableFrames.inline = true
+	section.args.movableFrames.args.enable = ACH:Toggle(L["Enable"], L["Allows you to move Blizzard panels.\n\nRight-Click restores Blizzard default position.\n\nPosition is not stored and resets on reload and relog."], 1)
+	section.args.movableFrames.args.modifier = ACH:Select(L["Modifier"], L["Hold this key down to drag or reset a panel."], 2, { NONE = _G.NONE, SHIFT = _G.SHIFT_KEY_TEXT, ALT = _G.ALT_KEY_TEXT, CTRL = _G.CTRL_KEY_TEXT }, nil, nil, nil, function(_, value) Private.Addon.db.profile.movableFrames.modifier = value end, function() return not Private.Addon.db.profile.movableFrames.enable end)
+	section.args.misc = ACH:Group(L["Misc"], nil, 5, nil, nil, nil, nil, not Private.isRetail)
 	section.args.misc.inline = true
 	section.args.misc.args.removeNameplateRealm = ACH:Toggle(L["Remove Nameplate Realms"], L["Removes the realm names from friendly nameplates in name-only mode while in a Dungeon/Raid/Battleground."], 1, nil, nil, nil, function() return Private.Addon.db.profile.misc.removeNameplateRealm end, function(_, value) Private.Addon.db.profile.misc.removeNameplateRealm = value StaticPopup_Show(RELOAD_POPUP) end)
-	section.args.performance = ACH:Group(L["Performance Tweaks"], nil, 5, nil, nil, nil, nil, not Private.isRetail)
+	section.args.performance = ACH:Group(L["Performance Tweaks"], nil, 6, nil, nil, nil, nil, not Private.isRetail)
 	section.args.performance.inline = true
 	section.args.performance.args.performance = ACH:Execute(L["Untrack Hidden Quests"], L["People found out some characters have a big amount of hidden quests which will cause performance issues. This button will untrack all your quests, including the hidden ones and might give you an increase in average FPS."], 1, function() Private:UntrackAllQuests() end)
 	return section

@@ -150,6 +150,10 @@ Private.Defaults = {
 			mythicVisibility = false,
 			removeNameplateRealm = false,
 		},
+		movableFrames = {
+			enable = false,
+			modifier = 'NONE',
+		},
 		nameplates = {
 			focusTexture = 'Luckyone Focus',
 			focusTextureEnable = false,
