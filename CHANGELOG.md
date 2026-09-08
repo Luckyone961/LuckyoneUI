@@ -7,9 +7,8 @@
 - Alt setup button is back, one click to load all existing profiles and optionally setup chat  
 
 **Retail:**  
+- Disabled WindTools profile features (Faster loot, Extended Merchant Pages, Movable Blizz frames)  
 - Updated aura indicators for all healing specs (Size, Postion, Stack count, Style)  
-- Updated WindTools profile to disable their extended merchant option  
-- Updated WindTools profile to disable their faster loot option  
 
 **Damage Meter:**  
 - Bookmarks on very small windows are now fixed and let you scroll if needed  
