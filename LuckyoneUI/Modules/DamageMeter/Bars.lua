@@ -653,7 +653,7 @@ local function UpdateValueColumn(db, window)
 			local bar = bars[i]
 
 			if bar.entry then
-				if bar.persecSecret then
+				if bar.persecSecret or bar.persec:IsAnchoringSecret() then
 					secret = true
 				else
 					width = max(width, bar.persec:GetStringWidth())
