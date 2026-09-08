@@ -4,9 +4,6 @@ local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 
 local _G = _G
-local UIParent = UIParent
-
-local COMMUNITIES_FRAME_DISPLAY_MODES = COMMUNITIES_FRAME_DISPLAY_MODES
 
 local created
 
@@ -16,50 +13,38 @@ function Private:PrivacyOverlay()
 	if not Private.Addon.db.profile.qualityOfLife.privacyOverlay then return end
 	if not Private.IsAddOnLoaded('Blizzard_Communities') then return end
 
-	-- Create the overlay frame
-	local PrivacyOverlay = CreateFrame('Button', nil, UIParent)
+	-- Blizzard_Communities is load on demand, both of these only exist once it loaded
+	local CommunitiesFrame = _G.CommunitiesFrame
+	local ChatDisplayMode = _G.COMMUNITIES_FRAME_DISPLAY_MODES.CHAT
+
+	-- Parented to the chat inset, so it takes the anchors and hides along with the frame
+	local PrivacyOverlay = CreateFrame('Button', nil, CommunitiesFrame.Chat.InsetFrame)
 	PrivacyOverlay:SetFrameStrata('HIGH')
-	PrivacyOverlay.tex = PrivacyOverlay:CreateTexture(nil, 'BACKGROUND')
-	PrivacyOverlay.tex:SetAllPoints()
-	PrivacyOverlay.tex:SetColorTexture(0.1, 0.1, 0.1, 1) -- R, G, B, A
+	PrivacyOverlay:SetAllPoints()
+	PrivacyOverlay:RegisterForClicks('AnyUp')
+	PrivacyOverlay:SetScript('OnClick', function(self) self:Hide() end)
+
+	local texture = PrivacyOverlay:CreateTexture(nil, 'BACKGROUND')
+	texture:SetAllPoints()
+	texture:SetColorTexture(0.1, 0.1, 0.1, 1) -- R, G, B, A
 
 	-- Text on the overlay
-	PrivacyOverlay.text = PrivacyOverlay:CreateFontString()
-	PrivacyOverlay.text:SetFontObject(Private.ElvUI and 'ElvUIFontNormal' or 'GameFontNormal')
-	PrivacyOverlay.text:SetText('Chat Hidden. Click to show.')
-	PrivacyOverlay.text:SetTextColor(1, 1, 1, 1) -- R, G, B, A
-	PrivacyOverlay.text:SetJustifyH('CENTER')
-	PrivacyOverlay.text:SetJustifyV('MIDDLE')
-	PrivacyOverlay.text:SetHeight(20)
-	PrivacyOverlay.text:SetPoint('CENTER', PrivacyOverlay, 'CENTER', 0, 0)
+	local text = PrivacyOverlay:CreateFontString()
+	text:SetFontObject(Private.ElvUI and 'ElvUIFontNormal' or 'GameFontNormal')
+	text:SetPoint('CENTER')
+	text:SetTextColor(1, 1, 1, 1) -- R, G, B, A
+	text:SetText('Chat Hidden. Click to show.')
 
-	-- Anchor the overlay once
-	PrivacyOverlay:SetAllPoints(_G.CommunitiesFrame.Chat.InsetFrame)
-
-	-- Make sure we can click the overlay to show the chat
-	PrivacyOverlay:EnableMouse(true)
-	PrivacyOverlay:RegisterForClicks('AnyUp')
-	PrivacyOverlay:SetScript('OnClick', function(self)
-		self:Hide()
-	end)
-
-	-- Show or hide the overlay based on display mode
-	local function ShowOverlay()
-		if _G.CommunitiesFrame:IsShown() and (_G.CommunitiesFrame:GetDisplayMode() == COMMUNITIES_FRAME_DISPLAY_MODES.CHAT) then
-			PrivacyOverlay:Show()
-		else
-			PrivacyOverlay:Hide()
-		end
+	-- The parent handles hiding it
+	local function UpdateOverlay()
+		PrivacyOverlay:SetShown(CommunitiesFrame:GetDisplayMode() == ChatDisplayMode)
 	end
+
+	hooksecurefunc(CommunitiesFrame, 'SetDisplayMode', UpdateOverlay)
+	hooksecurefunc(CommunitiesFrame, 'OnClubSelected', UpdateOverlay)
+	CommunitiesFrame:HookScript('OnShow', UpdateOverlay)
 
 	created = true
 
-	-- Hide after creation
-	PrivacyOverlay:Hide()
-
-	-- Hook the following Blizzard events
-	hooksecurefunc(_G.CommunitiesFrame, 'SetDisplayMode', ShowOverlay)
-	_G.CommunitiesFrame:HookScript('OnShow', ShowOverlay)
-	_G.CommunitiesFrame:HookScript('OnHide', function() PrivacyOverlay:Hide() end)
-	hooksecurefunc(_G.CommunitiesFrame, 'OnClubSelected', ShowOverlay)
+	UpdateOverlay()
 end
