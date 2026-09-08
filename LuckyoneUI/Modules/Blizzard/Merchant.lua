@@ -68,6 +68,45 @@ local function Merchant_UpdateBuybackInfo()
 	end
 end
 
+local function GetAnchor(frame, anchor, keyword)
+	for i = 1, frame:GetNumPoints() do
+		local point, relativeTo, relativePoint, x, y = frame:GetPoint(i)
+		if relativeTo == anchor and relativePoint and (not keyword or strfind(relativePoint, keyword)) then
+			return point, relativePoint, x, y
+		end
+	end
+end
+
+local function SetAnchor(frame, anchor, point, relativePoint, x, y)
+	frame:ClearAllPoints()
+	frame:SetPoint(point, anchor, relativePoint, x, y)
+end
+
+local function LayoutPageButtons(grown)
+	local MerchantFrame = _G.MerchantFrame
+	local nextPage = _G.MerchantNextPageButton
+	local prevPage = _G.MerchantPrevPageButton
+	if not (MerchantFrame and nextPage and prevPage) then return end
+
+	local point, relativePoint, x, y = GetAnchor(nextPage, MerchantFrame, 'RIGHT')
+
+	if point then
+		SetAnchor(nextPage, MerchantFrame, point, relativePoint, x, y)
+
+		point, relativePoint, x, y = GetAnchor(prevPage, nextPage)
+		if point then
+			SetAnchor(prevPage, nextPage, point, relativePoint, x, y)
+		end
+
+		return
+	end
+
+	point, relativePoint, x, y = GetAnchor(nextPage, MerchantFrame, 'LEFT')
+	if point then
+		SetAnchor(nextPage, MerchantFrame, point, relativePoint, x + grown, y)
+	end
+end
+
 -- Doubles the merchant frame so it shows four rows of items instead of two
 function Private:ExpandMerchant()
 	if initialized then return end
@@ -111,15 +150,7 @@ function Private:ExpandMerchant()
 		border:SetWidth(border:GetWidth() + grown)
 	end
 
-	-- Only move it if it is pinned to the left edge, ElvUI already anchors it to the right side
-	local nextPage = _G.MerchantNextPageButton
-	if nextPage then
-		local point, relativeTo, relativePoint, x, y = nextPage:GetPoint()
-		if relativeTo == MerchantFrame and relativePoint and strfind(relativePoint, 'LEFT') then
-			nextPage:ClearAllPoints()
-			nextPage:SetPoint(point, MerchantFrame, relativePoint, x + grown, y)
-		end
-	end
+	LayoutPageButtons(grown)
 
 	local buyback = _G.MerchantBuyBackItem
 	if buyback then
