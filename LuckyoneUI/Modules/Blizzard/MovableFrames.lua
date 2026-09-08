@@ -31,9 +31,16 @@ local Blocked = {
 	EditModeManagerFrame = true,
 }
 
+-- Non-Retail registers the Worldmap as a left area panel
+-- Opening it drags it out of the screen center
+local Centered = {
+	WorldMapFrame = not Private.isRetail,
+}
+
 local Defaults = {} -- The position it had before the first drag
 local Handles = {}
 local Positions = {} -- The custom position, session only and reverted on reload
+local Restored = {} -- Frames that should ignore the Blizzard panel layout
 
 local EventFrame
 local initialized
@@ -66,10 +73,15 @@ local function SetAnchor(frame, anchor)
 	frame:SetPoint(anchor.point, UIParent, anchor.relativePoint, anchor.x, anchor.y)
 end
 
+local function GetPosition(frame)
+	return Positions[frame] or Restored[frame]
+end
+
 -- Blizzard re-anchors every open panel whenever one of them opens or closes
 local function ApplyPositions()
-	for frame, anchor in pairs(Positions) do
-		if frame:IsShown() and CanMove(frame) then
+	for frame in pairs(Handles) do
+		local anchor = GetPosition(frame)
+		if anchor and frame:IsShown() and CanMove(frame) then
 			SetAnchor(frame, anchor)
 		end
 	end
@@ -77,7 +89,7 @@ end
 
 local function Handle_OnShow(self)
 	local frame = self:GetParent()
-	local anchor = Positions[frame]
+	local anchor = GetPosition(frame)
 
 	if anchor and CanMove(frame) then
 		SetAnchor(frame, anchor)
@@ -137,6 +149,11 @@ local function AddHandle(name)
 	if frame:IsForbidden() or frame:GetParent() ~= UIParent then return end
 
 	if UIPanelWindows[name].area == 'full' then return end
+
+	-- Grab the layout position before we register the move
+	if Centered[name] then
+		Restored[frame] = GetAnchor(frame)
+	end
 
 	local handle = CreateFrame('Frame', nil, frame)
 	handle:SetFrameLevel(frame:GetFrameLevel() + 1)
