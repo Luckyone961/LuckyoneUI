@@ -1175,7 +1175,6 @@ function DM:OpenPopup(window, entry)
 	end
 
 	local sourceGUID, sourceCreatureID = entry.sourceGUID, entry.sourceCreatureID
-
 	if issecretvalue(sourceGUID) or issecretvalue(sourceCreatureID) then
 		if not entry.isLocalPlayer then return end
 
