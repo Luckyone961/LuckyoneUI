@@ -13,7 +13,7 @@ local unpack = unpack
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
 local GetPetHappiness = GetPetHappiness
 local HasPetUI = HasPetUI
-local issecretvalue = issecretvalue
+local issecretvalue = issecretvalue or function() return false end
 local ScaleTo100 = CurveConstants and CurveConstants.ScaleTo100
 local UnitClassification = UnitClassification
 local UnitEffectiveLevel = UnitEffectiveLevel
@@ -30,12 +30,9 @@ local UnitPower = UnitPower
 local UnitPowerMax = UnitPowerMax
 local UnitPowerPercent = UnitPowerPercent
 
-local _G = _G
-
 local UNKNOWN = UNKNOWN
 
 local E = unpack(ElvUI)
-local ElvUF_colors_power = ElvUF.colors.power
 
 local Hex = Private.Tags.Hex
 local classificationText = Private.Tags.classificationText
@@ -45,11 +42,9 @@ local getLastNamePart = Private.Tags.getLastNamePart
 local getPowerColor = Private.Tags.getPowerColor
 local getUnitColor = Private.Tags.getUnitColor
 local getUnitStatus = Private.Tags.getUnitStatus
+local powerColors = Private.Tags.powerColors
 
 local POWERTYPE_MANA = Enum.PowerType.Mana
-local manaColorTable = ElvUF_colors_power.MANA
-local MANA_HEX = manaColorTable and Hex(manaColorTable.r, manaColorTable.g, manaColorTable.b)
-local petHappinessStrings = _G.PET_HAPPINESS1 and { _G.PET_HAPPINESS1, _G.PET_HAPPINESS2, _G.PET_HAPPINESS3 } -- [1] "Unhappy", [2] "Content", [3] "Happy"
 
 -------------------------------------------------------
 -------------------- Classification -------------------
@@ -79,24 +74,27 @@ if Private.isRetail then
 	E:AddTagInfo('luckyone:health:current:shortvalue', Private.Name, L["Displays the short value of the current health (Examples: 156.4k, 1.62M, 1.75B)"])
 else
 	E:AddTag('luckyone:health:percent', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
-		local currentHealth, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
-		local percent = currentHealth / maxHealth * 100
-		return E:GetFormattedText('PERCENT', currentHealth, maxHealth, percent == 100 and 0 or percent < 10 and 2 or 1, nil)
+		local maxHealth = UnitHealthMax(unit)
+		if maxHealth == 0 then return end
+
+		local percent = UnitHealth(unit) / maxHealth * 100
+		if percent == 100 then return format('%.0f%%', percent) end
+
+		return format(percent < 10 and '%.2f%%' or '%.1f%%', percent)
 	end)
 	E:AddTagInfo('luckyone:health:percent', Private.Name, L["Displays percentage health with 1 decimal below 100%, 2 decimals below 10% and hides decimals at 100%"])
 
 	-- Shared by both absorb tags (Hidden on Era/HC/Seasonal)
 	local function getAbsorbPercent(unit)
-		local absorb = UnitGetTotalAbsorbs(unit) or 0
-		return E:GetFormattedText('PERCENT', UnitHealth(unit) + absorb, UnitHealthMax(unit), 0, nil)
+		local maxHealth = UnitHealthMax(unit)
+		if maxHealth == 0 then return end
+
+		return format('%.0f%%', (UnitHealth(unit) + (UnitGetTotalAbsorbs(unit) or 0)) / maxHealth * 100)
 	end
 
 	-- Display percentage health with absorb values, without decimals
 	E:AddTag('luckyone:health:percent-with-absorbs', 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_ABSORB_AMOUNT_CHANGED UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
-		local status = getUnitStatus(unit)
-		if status then return status end
-
-		return getAbsorbPercent(unit)
+		return getUnitStatus(unit) or getAbsorbPercent(unit)
 	end, Private.isClassic)
 	E:AddTagInfo('luckyone:health:percent-with-absorbs', Private.Name, L["Displays the unit's current health as a percentage with absorb values, without decimals"], nil, Private.isClassic)
 
@@ -139,7 +137,10 @@ else
 
 	-- Display percentage mana with 0 decimals (Classic only)
 	E:AddTag('luckyone:mana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
-		return E:GetFormattedText('PERCENT', UnitPower(unit, POWERTYPE_MANA), UnitPowerMax(unit, POWERTYPE_MANA), 0, nil)
+		local max = UnitPowerMax(unit, POWERTYPE_MANA)
+		if max == 0 then return end -- Avoid the "%inf" on frames
+
+		return format('%.0f%%', UnitPower(unit, POWERTYPE_MANA) / max * 100)
 	end)
 	E:AddTagInfo('luckyone:mana:percent', Private.Name, L["Displays percentage mana without decimals"])
 end
@@ -164,18 +165,17 @@ else
 	E:AddTag('luckyone:healermana:current', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 		if UnitGroupRolesAssigned(unit) ~= 'HEALER' then return end
 
-		return MANA_HEX .. UnitPower(unit, POWERTYPE_MANA)
+		return powerColors.MANA .. UnitPower(unit, POWERTYPE_MANA)
 	end)
 	E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana with manacolor (Role: Healer)"])
 
 	E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 		if UnitGroupRolesAssigned(unit) ~= 'HEALER' then return end
 
-		local min = UnitPower(unit, POWERTYPE_MANA)
 		local max = UnitPowerMax(unit, POWERTYPE_MANA)
 		if max == 0 then return end -- Avoid the "%inf" on frames
 
-		return MANA_HEX .. E:GetFormattedText('PERCENT', min, max, 0, nil)
+		return powerColors.MANA .. format('%.0f%%', UnitPower(unit, POWERTYPE_MANA) / max * 100)
 	end)
 end
 E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"])
@@ -199,8 +199,7 @@ if Private.isRetail then
 else
 	-- Displays the last part of the unit's name with class color (Classic only)
 	E:AddTag('luckyone:name:last-classcolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
-		local name = UnitName(unit)
-		return getUnitColor(unit) .. ((name and getLastNamePart(name)) or UNKNOWN)
+		return getUnitColor(unit) .. (getLastNamePart(UnitName(unit)) or UNKNOWN)
 	end)
 	E:AddTagInfo('luckyone:name:last-classcolor', Private.Name, L["Displays the last part of the unit's name with class color"])
 
@@ -264,13 +263,14 @@ end
 -- Display pet name and happiness status (Classic and TBC only)
 if Private.isClassic or Private.isTBC then
 	local happinessColors = ElvUF.colors.happiness
+	local happinessStrings = { PET_HAPPINESS1, PET_HAPPINESS2, PET_HAPPINESS3 } -- [1] "Unhappy", [2] "Content", [3] "Happy"
 
 	E:AddTag('luckyone:pet:name-and-happiness', 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE', function(unit)
 		local hasPetUI, isHunterPet = HasPetUI()
 		if hasPetUI and isHunterPet and UnitIsUnit('pet', unit) then
 			local petHappiness = GetPetHappiness()
 			if petHappiness then -- Return for Hunters
-				return Hex(happinessColors[petHappiness]) .. petHappinessStrings[petHappiness]
+				return Hex(happinessColors[petHappiness]) .. happinessStrings[petHappiness]
 			end
 		end
 
@@ -305,18 +305,10 @@ if Private.isRetail then
 
 	-- Same as buildNameTag but shows the unit's status (dead, ghost, offline) instead of the name
 	local function buildNameStatusTag(length, withColor)
+		local nameTag = buildNameTag(length, withColor)
+
 		return function(unit)
-			local status = getUnitStatus(unit)
-			if status then return status end
-
-			local name = UnitName(unit) or UNKNOWN
-			if issecretvalue(name) then return name end
-
-			if UnitIsFriend(unit, 'player') then
-				return getFormattedName(unit, length, withColor, nil, name)
-			end
-
-			return name
+			return getUnitStatus(unit) or nameTag(unit)
 		end
 	end
 
