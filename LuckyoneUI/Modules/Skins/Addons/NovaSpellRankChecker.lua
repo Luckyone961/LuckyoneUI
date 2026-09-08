@@ -1,6 +1,6 @@
 local _, Private = ...
 
-if not Private.ElvUI then
+if not Private.ElvUI or not (Private.isClassic or Private.isTBC) then
 	return
 end
 
@@ -12,21 +12,21 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 local function Skin_NovaSpellRankChecker()
-	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.NovaSpellRankChecker then return end
+	if not Private.Addon.db.profile.skins.NovaSpellRankChecker then return end
 
-	if SpellBookFrameButton and not SpellBookFrameButton.isSkinned then
-		-- Skin and resize the spell rank checker button
-		S:HandleButton(SpellBookFrameButton)
-		SpellBookFrameButton:SetFrameStrata('HIGH')
-		SpellBookFrameButton:Width(120)
-		SpellBookFrameButton:Height(26)
+	local button = SpellBookFrameButton
+	if not button or button.isSkinned then return end
 
-		-- Move it to the bottom left of the spell book frame
-		SpellBookFrameButton:ClearAllPoints()
-		SpellBookFrameButton:Point('BOTTOMLEFT', SpellBookFrame, 'BOTTOMLEFT', 19, 100)
+	-- Skin and resize the spell rank checker button
+	S:HandleButton(button)
+	button:SetFrameStrata('HIGH')
+	button:Size(120, 26)
 
-		SpellBookFrameButton.isSkinned = true
-	end
+	-- Move it to the bottom left of the spell book frame
+	button:ClearAllPoints()
+	button:Point('BOTTOMLEFT', SpellBookFrame, 'BOTTOMLEFT', 19, 100)
+
+	button.isSkinned = true
 end
 
 S:AddCallbackForAddon('NovaSpellRankChecker', 'LuckyoneUI_NovaSpellRankChecker', function() C_Timer.After(2, Skin_NovaSpellRankChecker) end)

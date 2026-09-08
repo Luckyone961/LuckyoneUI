@@ -1,6 +1,6 @@
 local _, Private = ...
 
-if not Private.ElvUI then
+if not Private.ElvUI or not (Private.isClassic or Private.isTBC) then
 	return
 end
 
@@ -14,40 +14,45 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
+-- Category headers
+local Headers = {
+	'DCSSpellEnhancementsStatsHeader',
+	'DCSPrimaryStatsHeader',
+	'DCSDefenseStatsHeader',
+	'DCSRangedStatsHeader',
+	'DCSMeleeEnhancementsStatsHeader'
+}
+
 local function Skin_DejaClassicStats()
-	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.DejaClassicStats then return end
+	if not Private.Addon.db.profile.skins.DejaClassicStats then return end
 
-	if DejaClassicStatsFrame and not DejaClassicStatsFrame.isSkinned then
-		-- Main Frame
-		DejaClassicStatsFrame:StripTextures()
-		DejaClassicStatsFrame:SetTemplate('Transparent')
-		DCS_StatScrollFrame:StripTextures()
-		DCS_StatScrollFrame:SetTemplate('Transparent')
+	local frame = _G.DejaClassicStatsFrame
+	if not frame or frame.isSkinned then return end
 
-		-- Adjust size and position
-		DCS_StatScrollFrame:Height(424)
-		DCS_StatScrollFrame:ClearAllPoints()
-		DCS_StatScrollFrame:Point('TOPLEFT', _G.CharacterFrame, 'TOPRIGHT', -31, -12)
+	-- Main Frame
+	frame:StripTextures()
+	frame:SetTemplate('Transparent')
 
-		-- Category Headers
-		local headers = {
-			'DCSSpellEnhancementsStatsHeader',
-			'DCSPrimaryStatsHeader',
-			'DCSDefenseStatsHeader',
-			'DCSRangedStatsHeader',
-			'DCSMeleeEnhancementsStatsHeader'
-		}
-		for _, headerName in ipairs(headers) do
-			local header = _G[headerName]
-			if header then
-				header:StripTextures()
-				header:SetTemplate()
-				header:Height(24)
-			end
+	-- Stat Frame
+	local statFrame = _G.DCS_StatScrollFrame
+	statFrame:StripTextures()
+	statFrame:SetTemplate('Transparent')
+
+	-- Adjust size and position
+	statFrame:Height(424)
+	statFrame:ClearAllPoints()
+	statFrame:Point('TOPLEFT', _G.CharacterFrame, 'TOPRIGHT', -31, -12)
+
+	for _, headerName in ipairs(Headers) do
+		local header = _G[headerName]
+		if header then
+			header:StripTextures()
+			header:SetTemplate()
+			header:Height(24)
 		end
-
-		DejaClassicStatsFrame.isSkinned = true
 	end
+
+	frame.isSkinned = true
 end
 
 S:AddCallbackForAddon('DejaClassicStats', 'LuckyoneUI_DejaClassicStats', function() C_Timer.After(1, Skin_DejaClassicStats) end)
