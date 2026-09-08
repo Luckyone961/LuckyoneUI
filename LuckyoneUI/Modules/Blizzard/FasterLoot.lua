@@ -11,27 +11,28 @@ local AUTOLOOT_DELAY = 0.1
 local AUTOLOOT_RATE = 0.1
 
 local EventFrame
-local isLooting
+local lootedSlots = 0
 
 -- Both loot events pass the auto loot state, it already accounts for the modifier key
 -- Reverse order because Blizzard clears the slots
 local function LootItems(autoLoot)
-	if isLooting or not autoLoot then return end
+	if not autoLoot then return end
 
+	-- Looted slots keep their index until the loot closes
 	local numItems = GetNumLootItems()
-	if numItems == 0 then return end
+	if numItems <= lootedSlots then return end
 
-	isLooting = true
-
-	for i = numItems, 1, -1 do
+	for i = numItems, lootedSlots + 1, -1 do
 		LootSlot(i)
 	end
+
+	lootedSlots = numItems
 end
 
--- LOOT_READY and LOOT_OPENED both fire for the same loot, only run the loop once
+-- LOOT_READY and LOOT_OPENED both fire for the same loot
 local function OnEvent(_, event, autoLoot)
 	if event == 'LOOT_CLOSED' then
-		isLooting = false
+		lootedSlots = 0
 	else
 		LootItems(autoLoot)
 	end
