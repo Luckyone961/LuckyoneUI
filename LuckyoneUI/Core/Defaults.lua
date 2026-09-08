@@ -161,6 +161,7 @@ Private.Defaults = {
 			autoDismount = false,
 			easyDelete = false,
 			expandMerchant = false,
+			fasterLoot = false,
 			preventLootAutoShow = false,
 			privacyOverlay = false,
 			quickSignup = false,

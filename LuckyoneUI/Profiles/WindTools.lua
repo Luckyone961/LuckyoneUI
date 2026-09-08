@@ -41,7 +41,7 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.item.alreadyKnown.enable = false
 	E.db.WT.item.delete.enable = false
 	E.db.WT.item.extraItemsBar.enable = false
-	E.db.WT.item.fastLoot.limit = 0.05
+	E.db.WT.item.fastLoot.enable = false
 	E.db.WT.item.inspect.enable = false
 	E.db.WT.item.itemLevel.enable = false
 	E.db.WT.item.trade.enable = false

@@ -186,6 +186,7 @@ L["Examples: Max camera distance, screenshot quality and tutorials."] = "Beispie
 L["Expand Merchant Frame"] = true
 L["Expansion Landing Page"] = true
 L["Fade Time"] = true
+L["Faster Loot"] = true
 L["Feature explained in the description below"] = "Die Funktion wird in der folgenden Beschreibung erläutert."
 L["Feel free to join our community Discord for support and social chats."] = "Trete gerne unserer Discord-Community bei, um Support und soziale Chats zu erhalten."
 L["Feral"] = true
@@ -409,6 +410,7 @@ L["Space between the rank number and the name. Every name lines up at the same p
 L["Space between the session windows."] = "Abstand zwischen den Session-Fenstern."
 L["Spacing"] = "Abstand"
 L["Specializations are only displayed for the class you're currently logged into.\n\nGrab the updated import string from the Wago URL and import it manually.\n\nFor quick access to the Blizzard cooldown viewer panel use the button below."] = true
+L["Speed up auto looting by grabbing everything the moment the loot becomes available instead of waiting for the loot window."] = true
 L["Speed up the signup process for party and raid applications by double clicking the listing instead of clicking the signup button."] = true
 L["Stack this window under another one instead of giving it its own slot."] = "Stapelt das Fenster unter einem anderen, anstatt einen eigenen Platz zu nutzen."
 L["Step 1:"] = "Schritt 1:"

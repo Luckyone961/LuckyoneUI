@@ -2,11 +2,13 @@
 
 **All WoW Versions:**  
 - Added option to double the amount of icons on vendor frames (4 rows of 5 items per page)  
+- Added option to increase auto loot speed (Credits: Azilroka, Re-used with permission)  
 - Alt setup button is back, one click to load all existing profiles and optionally setup chat  
 
 **Retail:**  
 - Updated aura indicators for all healing specs (Size, Postion, Stack count, Style)  
-- Updated WindTools profile to disable extended merchant page (I use my own option for it now)  
+- Updated WindTools profile to disable their extended merchant option  
+- Updated WindTools profile to disable their faster loot option  
 
 **Damage Meter:**  
 - Bookmarks on very small windows are now fixed and let you scroll if needed  
