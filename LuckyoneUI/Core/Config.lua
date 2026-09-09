@@ -1,6 +1,7 @@
 local _, Private = ...
 local L = Private.Libs.ACL
 local ACH = Private.Libs.ACH
+local LSM = Private.Libs.LSM
 
 local ipairs = ipairs
 local concat = table.concat
@@ -27,6 +28,25 @@ local IMPORT_DEFAULTS_TEXT = L["Import LuckyoneUI defaults."]
 local ICON_PATH = Private.IconPath
 local function GetIconName(name, icon)
 	return format('|T%s%s.png:14:14:0:0|t %s', ICON_PATH, icon, name)
+end
+
+-- Font compatibility (Fallbacks if ElvUI is not installed)
+local function FontValues()
+	local values = {}
+
+	for _, name in ipairs(LSM:List('font')) do
+		values[name] = name
+	end
+
+	return values
+end
+
+local function FontSelect(order)
+	return (Private.ElvUI and ACH:SharedMediaFont(L["Font"], nil, order)) or ACH:Select(L["Font"], nil, order, FontValues)
+end
+
+local function OutlineSelect(order)
+	return (Private.ElvUI and ACH:FontFlags(L["Font Outline"], nil, order)) or ACH:Select(L["Font Outline"], nil, order, ACH.FontValues)
 end
 
 -- Credits
@@ -656,10 +676,8 @@ local function BuildMiscSection()
 	section.args.combatText.args.anchorGroup.args.yOffset = ACH:Range(L["Y Offset"], nil, 3, { min = -1000, max = 1000, step = 1 })
 	section.args.combatText.args.fontGroup = ACH:Group(L["Font"], nil, 3, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
 	section.args.combatText.args.fontGroup.inline = true
-	if Private.ElvUI then
-		section.args.combatText.args.fontGroup.args.font = ACH:SharedMediaFont(L["Font"], nil, 1)
-		section.args.combatText.args.fontGroup.args.fontOutline = ACH:FontFlags(L["Font Outline"], nil, 2)
-	end
+	section.args.combatText.args.fontGroup.args.font = FontSelect(1)
+	section.args.combatText.args.fontGroup.args.fontOutline = OutlineSelect(2)
 	section.args.combatText.args.fontGroup.args.fontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 64, step = 1 })
 	section.args.mailbox = ACH:Group(L["Mailbox Favorites"], nil, 3, nil, function(info) return Private.Addon.db.profile.misc.mailbox[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.mailbox[info[#info]] = value Private:MailboxFavorites() Private:MailboxFavorites_Update() end)
 	section.args.mailbox.args.generalOptions = ACH:Group(L["General"], nil, 1)
@@ -678,10 +696,8 @@ local function BuildMiscSection()
 	section.args.mailbox.args.favoriteOptions.args.position = ACH:Select(L["Position"], nil, 4, MailboxPositions, nil, nil, function() local _, index = MailboxEntry() return index end, function(_, value) Private:MailboxFavorites_Move(mailboxSelected, value) end, function() return not MailboxEntry() end, function() return Private.Addon.db.profile.misc.mailbox.sort ~= 'index' end)
 	section.args.mailbox.args.fontGroup = ACH:Group(L["Font"], nil, 4, nil, nil, nil, function() return not Private.Addon.db.profile.misc.mailbox.enable end)
 	section.args.mailbox.args.fontGroup.inline = true
-	if Private.ElvUI then
-		section.args.mailbox.args.fontGroup.args.font = ACH:SharedMediaFont(L["Font"], nil, 1)
-		section.args.mailbox.args.fontGroup.args.fontOutline = ACH:FontFlags(L["Font Outline"], nil, 2)
-	end
+	section.args.mailbox.args.fontGroup.args.font = FontSelect(1)
+	section.args.mailbox.args.fontGroup.args.fontOutline = OutlineSelect(2)
 	section.args.mailbox.args.fontGroup.args.fontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 26, step = 1 })
 	return section
 end
