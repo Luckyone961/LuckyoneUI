@@ -925,6 +925,8 @@ end
 -- Spell breakdown popup
 -- Same idea as the Blizzard source window, spawned at the cursor instead
 -- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSourceWindow.lua
+local POPUP_WIDTH_SCALE = 1.25
+
 -- The source it showed is set again by the next OpenPopup
 local function Popup_OnHide(popup)
 	popup:UnregisterEvent('GLOBAL_MOUSE_DOWN')
@@ -1058,7 +1060,7 @@ function DM:GetPopup()
 	popup:SetScript('OnShow', Frame_OnShow)
 	popup:SetScript('OnHide', Popup_OnHide)
 	popup:SetScript('OnEvent', Popup_OnEvent)
-	popup:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
+	popup:CreateBackdrop('Default', nil, nil, nil, nil, nil, nil, true)
 	popup:Hide()
 
 	popup.spellMode = true
@@ -1110,9 +1112,8 @@ function DM:ApplyPopupSettings(popup)
 	popup.scrollBar:Point('BOTTOMLEFT', popup.content, 'BOTTOMRIGHT', db.barSpacing, 0)
 	popup.scrollBar:Width(scrollWidth)
 
-	-- Padding follows the window the popup was opened from, the color is always the ElvUI one
+	-- Padding follows the window the popup was opened from, the solid ElvUI backdrop keeps the spell text readable
 	popup.backdrop:SetOutside(popup, E.Border + E:Scale(wdb.backdropWidth), E.Border + E:Scale(wdb.backdropHeight), nil, true)
-	SetBackdropColor(popup.backdrop)
 end
 
 function DM:RefreshPopup()
@@ -1127,7 +1128,7 @@ function DM:RefreshPopup()
 
 	-- It grows to fit the spells, the window it came from is the ceiling
 	local rows = max(min(entries and #entries or 0, owner.visibleCount), 1)
-	local width = owner:GetWidth()
+	local width = owner:GetWidth() * POPUP_WIDTH_SCALE
 
 	if popup.lastRows ~= rows or popup.lastWidth ~= width then
 		popup.lastRows, popup.lastWidth = rows, width

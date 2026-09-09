@@ -17,6 +17,7 @@
 - Bookmarks on very small windows are now fixed and let you scroll if needed  
 - Deathlog on cursor option added, when disabled the Blizzard deathlog frame is used like before  
 - Deaths are now reverse sorted, starting with the first death at the top of the list  
+- Spell breakdown popup is now wider to cut off less text and has a non-transparent background  
 - Your own player bar can now be clicked/opened in combat, other players remain secret in combat  
 
 ## Version 4.22 [07-09-2026]
