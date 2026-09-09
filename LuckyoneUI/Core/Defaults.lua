@@ -192,6 +192,7 @@ Private.Defaults = {
 			WhatsTraining = false,
 			Blizzard = {
 				CooldownViewer = false,
+				DeveloperConsole = false,
 			}
 		},
 	}
