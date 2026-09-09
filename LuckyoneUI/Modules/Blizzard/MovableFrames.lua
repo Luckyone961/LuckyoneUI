@@ -77,6 +77,22 @@ local function GetPosition(frame)
 	return Positions[frame] or Restored[frame]
 end
 
+-- Back to the Blizzard default position
+local function ResetPosition(frame)
+	local anchor = Positions[frame] and Defaults[frame]
+	if not (anchor and CanMove(frame)) then return end
+
+	Positions[frame] = nil
+	SetAnchor(frame, anchor)
+end
+
+-- Config option offers reset to default OnShow/OnHide
+local function AutoReset(frame)
+	if not Private.Addon.db.profile.movableFrames.autoReset then return end
+
+	ResetPosition(frame)
+end
+
 -- Blizzard re-anchors every open panel whenever one of them opens or closes
 local function ApplyPositions()
 	for frame in pairs(Handles) do
@@ -89,11 +105,16 @@ end
 
 local function Handle_OnShow(self)
 	local frame = self:GetParent()
-	local anchor = GetPosition(frame)
+	AutoReset(frame)
 
+	local anchor = GetPosition(frame)
 	if anchor and CanMove(frame) then
 		SetAnchor(frame, anchor)
 	end
+end
+
+local function Handle_OnHide(self)
+	AutoReset(self:GetParent())
 end
 
 local function Handle_OnDragStart(self)
@@ -135,12 +156,7 @@ end
 local function Handle_OnMouseUp(self, button)
 	if button ~= 'RightButton' or not ModifierDown() then return end
 
-	local frame = self:GetParent()
-	local anchor = Positions[frame] and Defaults[frame]
-	if not (anchor and CanMove(frame)) then return end
-
-	Positions[frame] = nil
-	SetAnchor(frame, anchor)
+	ResetPosition(self:GetParent())
 end
 
 local function AddHandle(name)
@@ -161,6 +177,7 @@ local function AddHandle(name)
 	handle:RegisterForDrag('LeftButton')
 	handle:SetScript('OnDragStart', Handle_OnDragStart)
 	handle:SetScript('OnDragStop', Handle_OnDragStop)
+	handle:SetScript('OnHide', Handle_OnHide)
 	handle:SetScript('OnMouseUp', Handle_OnMouseUp)
 	handle:SetScript('OnShow', Handle_OnShow)
 

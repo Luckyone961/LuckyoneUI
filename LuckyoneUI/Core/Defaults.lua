@@ -151,6 +151,7 @@ Private.Defaults = {
 			removeNameplateRealm = false,
 		},
 		movableFrames = {
+			autoReset = true,
 			enable = false,
 			modifier = 'NONE',
 		},

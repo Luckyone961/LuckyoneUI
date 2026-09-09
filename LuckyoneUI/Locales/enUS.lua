@@ -318,6 +318,7 @@ L["Outdated"] = true
 L["Outer Spacing"] = true
 L["Outlaw"] = true
 L["Paladin"] = true
+L["Panels return to the Blizzard default position when they open or close.\n\nDisable this to keep a moved panel where you left it until you reload."] = true
 L["People found out some characters have a big amount of hidden quests which will cause performance issues. This button will untrack all your quests, including the hidden ones and might give you an increase in average FPS."] = true
 L["Performance"] = true
 L["PermoksAccountManager profile has been set."] = true
