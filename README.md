@@ -46,6 +46,7 @@
 • One click toggles with descriptions to disable useless graphic effects in the game  
 • Clean minimap addon button bar which supports LibDBIcon minimap buttons  
 • Lightweight replacement for entering combat and leaving combat floating text  
+• Favorite list with autofill on the mailbox to quickly send mail  
 
 ### **Optimized Addon profiles**  
 • Baganator, BigWigs, BuffReminders  

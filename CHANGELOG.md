@@ -1,6 +1,7 @@
 ﻿## Version 4.23 [In development, not yet released]
 
 **All WoW Versions:**  
+- Added option to create a custom mailbox favorite list with autofill on button click  
 - Added option to double the amount of icons on vendor frames (4 rows of 5 items per page)  
 - Added option to increase auto loot speed (Credits: Azilroka, Re-used with permission)  
 - Added option to move the Blizzard panels around, the position is never saved and resets on reload  

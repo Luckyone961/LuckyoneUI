@@ -2,6 +2,7 @@ local _, Private = ...
 local L = Private.Libs.ACL
 local ACH = Private.Libs.ACH
 
+local ipairs = ipairs
 local concat = table.concat
 local format = string.format
 local tonumber = tonumber
@@ -10,10 +11,14 @@ local tostring = tostring
 local GetCVarBool = C_CVar.GetCVarBool
 local SetCVar = C_CVar.SetCVar
 local HideUIPanel = HideUIPanel
+local strtrim = strtrim
 
 local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
 local SettingsPanel = _G.SettingsPanel
+local CLASS_SORT_ORDER = _G.CLASS_SORT_ORDER
+local LOCALIZED_CLASS_NAMES_MALE = _G.LOCALIZED_CLASS_NAMES_MALE
+local RAID_CLASS_COLORS = _G.RAID_CLASS_COLORS
 
 local ALTS_POPUP = 'LUCKYONE_ALTS'
 local RELOAD_POPUP = 'LUCKYONE_RL'
@@ -585,30 +590,99 @@ local function BuildMapSection()
 	return section
 end
 
+-- Mailbox favorites
+local mailboxSelected -- Name of the entry the class and faction options change
+
+local function MailboxColor(class, name)
+	local color = RAID_CLASS_COLORS[class]
+	return color and format('|cff%02x%02x%02x%s|r', color.r * 255, color.g * 255, color.b * 255, name) or name
+end
+
+local function MailboxEntries()
+	local values = {}
+
+	for _, favorite in ipairs(Private.Addon.db.profile.misc.mailbox.favorites) do
+		values[favorite.name] = MailboxColor(favorite.class, favorite.name)
+	end
+
+	return values
+end
+
+local function MailboxClasses()
+	local values = {}
+
+	for _, class in ipairs(CLASS_SORT_ORDER) do
+		values[class] = MailboxColor(class, LOCALIZED_CLASS_NAMES_MALE[class])
+	end
+
+	return values
+end
+
+local function MailboxPositions()
+	local values = {}
+
+	for index in ipairs(Private.Addon.db.profile.misc.mailbox.favorites) do
+		values[index] = tostring(index)
+	end
+
+	return values
+end
+
+local function MailboxEntry()
+	if not mailboxSelected then return end
+
+	for index, favorite in ipairs(Private.Addon.db.profile.misc.mailbox.favorites) do
+		if favorite.name == mailboxSelected then return favorite, index end
+	end
+end
+
 -- Build Misc Section
 local function BuildMiscSection()
-	local section = ACH:Group(GetIconName(L["Misc"], 'Misc'), nil, 60)
+	local section = ACH:Group(GetIconName(L["Misc"], 'Misc'), nil, 60, 'tab')
 	section.args.header = ACH:Header(L["Misc"], 1)
 	section.args.combatText = ACH:Group(L["Combat Text"], nil, 2, nil, function(info) return Private.Addon.db.profile.misc.combatText[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.combatText[info[#info]] = value Private:CombatText_Update() end)
-	section.args.combatText.inline = true
-	section.args.combatText.args.enable = ACH:Toggle(L["Enable"], L["Show a customizable text on screen when entering and leaving combat."], 1)
-	section.args.combatText.args.enterText = ACH:Input(L["Entering Text"], nil, 2, nil, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
-	section.args.combatText.args.leaveText = ACH:Input(L["Leaving Text"], nil, 3, nil, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
-	section.args.combatText.args.fadeTime = ACH:Range(L["Fade Time"], L["Duration of the fade out in seconds."], 4, { min = 0.1, max = 10, step = 0.1 }, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
-	section.args.combatText.args.enterColor = ACH:Color(L["Entering Color"], nil, 5, nil, nil, function() local color = Private.Addon.db.profile.misc.combatText.enterColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.misc.combatText.enterColor color.r, color.g, color.b = r, g, b end, function() return not Private.Addon.db.profile.misc.combatText.enable end)
-	section.args.combatText.args.leaveColor = ACH:Color(L["Leaving Color"], nil, 6, nil, nil, function() local color = Private.Addon.db.profile.misc.combatText.leaveColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.misc.combatText.leaveColor color.r, color.g, color.b = r, g, b end, function() return not Private.Addon.db.profile.misc.combatText.enable end)
-	section.args.combatText.args.anchorGroup = ACH:Group(L["Anchor"], nil, 7, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
+	section.args.combatText.args.generalOptions = ACH:Group(L["General"], nil, 1)
+	section.args.combatText.args.generalOptions.inline = true
+	section.args.combatText.args.generalOptions.args.enable = ACH:Toggle(L["Enable"], L["Show a customizable text on screen when entering and leaving combat."], 1)
+	section.args.combatText.args.generalOptions.args.enterText = ACH:Input(L["Entering Text"], nil, 2, nil, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
+	section.args.combatText.args.generalOptions.args.leaveText = ACH:Input(L["Leaving Text"], nil, 3, nil, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
+	section.args.combatText.args.generalOptions.args.fadeTime = ACH:Range(L["Fade Time"], L["Duration of the fade out in seconds."], 4, { min = 0.1, max = 10, step = 0.1 }, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
+	section.args.combatText.args.generalOptions.args.enterColor = ACH:Color(L["Entering Color"], nil, 5, nil, nil, function() local color = Private.Addon.db.profile.misc.combatText.enterColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.misc.combatText.enterColor color.r, color.g, color.b = r, g, b end, function() return not Private.Addon.db.profile.misc.combatText.enable end)
+	section.args.combatText.args.generalOptions.args.leaveColor = ACH:Color(L["Leaving Color"], nil, 6, nil, nil, function() local color = Private.Addon.db.profile.misc.combatText.leaveColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.misc.combatText.leaveColor color.r, color.g, color.b = r, g, b end, function() return not Private.Addon.db.profile.misc.combatText.enable end)
+	section.args.combatText.args.anchorGroup = ACH:Group(L["Anchor"], nil, 2, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
 	section.args.combatText.args.anchorGroup.inline = true
 	section.args.combatText.args.anchorGroup.args.anchor = ACH:Input(L["Anchor"], L["Frame name the combat text is anchored to."], 1)
 	section.args.combatText.args.anchorGroup.args.xOffset = ACH:Range(L["X Offset"], nil, 2, { min = -1000, max = 1000, step = 1 })
 	section.args.combatText.args.anchorGroup.args.yOffset = ACH:Range(L["Y Offset"], nil, 3, { min = -1000, max = 1000, step = 1 })
-	section.args.combatText.args.fontGroup = ACH:Group(L["Font"], nil, 8, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
+	section.args.combatText.args.fontGroup = ACH:Group(L["Font"], nil, 3, nil, nil, nil, function() return not Private.Addon.db.profile.misc.combatText.enable end)
 	section.args.combatText.args.fontGroup.inline = true
 	if Private.ElvUI then
 		section.args.combatText.args.fontGroup.args.font = ACH:SharedMediaFont(L["Font"], nil, 1)
 		section.args.combatText.args.fontGroup.args.fontOutline = ACH:FontFlags(L["Font Outline"], nil, 2)
 	end
 	section.args.combatText.args.fontGroup.args.fontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 64, step = 1 })
+	section.args.mailbox = ACH:Group(L["Mailbox Favorites"], nil, 3, nil, function(info) return Private.Addon.db.profile.misc.mailbox[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.mailbox[info[#info]] = value Private:MailboxFavorites() Private:MailboxFavorites_Update() end)
+	section.args.mailbox.args.generalOptions = ACH:Group(L["General"], nil, 1)
+	section.args.mailbox.args.generalOptions.inline = true
+	section.args.mailbox.args.generalOptions.args.enable = ACH:Toggle(L["Enable"], L["Show a favorite list next to the Mailbox while the Send Mail tab is open."], 1)
+	section.args.mailbox.args.generalOptions.args.sort = ACH:Select(L["Sort"], nil, 2, { index = L["Index"], name = L["Alphabetical"] }, nil, nil, nil, nil, function() return not Private.Addon.db.profile.misc.mailbox.enable end)
+	section.args.mailbox.args.favorites = ACH:Group(L["Favorites"], nil, 2, nil, nil, nil, function() return not Private.Addon.db.profile.misc.mailbox.enable end)
+	section.args.mailbox.args.favorites.inline = true
+	section.args.mailbox.args.favorites.args.add = ACH:Input(L["Add Favorite"], L["Use the Name-Server format."], 1, nil, 'full', function() return '' end, function(_, value) if Private:MailboxFavorites_Add(value) then mailboxSelected = strtrim(value) end end)
+	section.args.mailbox.args.favorites.args.remove = ACH:Execute(_G.REMOVE, nil, 2, function() Private:MailboxFavorites_Remove(mailboxSelected) mailboxSelected = nil end, nil, true, nil, nil, nil, function() return not MailboxEntry() end)
+	section.args.mailbox.args.favoriteOptions = ACH:Group(L["Options"], nil, 3, nil, nil, nil, function() return not Private.Addon.db.profile.misc.mailbox.enable end)
+	section.args.mailbox.args.favoriteOptions.inline = true
+	section.args.mailbox.args.favoriteOptions.args.selected = ACH:Select(L["Favorite"], L["Pick the entry the options below change."], 1, MailboxEntries, nil, 'full', function() return mailboxSelected end, function(_, value) mailboxSelected = value end)
+	section.args.mailbox.args.favoriteOptions.args.class = ACH:Select(_G.CLASS, nil, 2, MailboxClasses, nil, nil, function() local favorite = MailboxEntry() return favorite and favorite.class end, function(_, value) local favorite = MailboxEntry() if favorite then favorite.class = value Private:MailboxFavorites_Update() end end, function() return not MailboxEntry() end)
+	section.args.mailbox.args.favoriteOptions.args.faction = ACH:Select(_G.FACTION, nil, 3, { Alliance = _G.FACTION_ALLIANCE, Horde = _G.FACTION_HORDE }, nil, nil, function() local favorite = MailboxEntry() return favorite and favorite.faction end, function(_, value) local favorite = MailboxEntry() if favorite then favorite.faction = value Private:MailboxFavorites_Update() end end, function() return not MailboxEntry() end)
+	section.args.mailbox.args.favoriteOptions.args.position = ACH:Select(L["Position"], nil, 4, MailboxPositions, nil, nil, function() local _, index = MailboxEntry() return index end, function(_, value) Private:MailboxFavorites_Move(mailboxSelected, value) end, function() return not MailboxEntry() end, function() return Private.Addon.db.profile.misc.mailbox.sort ~= 'index' end)
+	section.args.mailbox.args.fontGroup = ACH:Group(L["Font"], nil, 4, nil, nil, nil, function() return not Private.Addon.db.profile.misc.mailbox.enable end)
+	section.args.mailbox.args.fontGroup.inline = true
+	if Private.ElvUI then
+		section.args.mailbox.args.fontGroup.args.font = ACH:SharedMediaFont(L["Font"], nil, 1)
+		section.args.mailbox.args.fontGroup.args.fontOutline = ACH:FontFlags(L["Font Outline"], nil, 2)
+	end
+	section.args.mailbox.args.fontGroup.args.fontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 26, step = 1 })
 	return section
 end
 

@@ -147,6 +147,15 @@ Private.Defaults = {
 				fadeTime = 2,
 			},
 			dataTextsTweaks = false,
+			mailbox = {
+				enable = false,
+				-- { name = 'Luckyone-LaughingSkull', class = 'DRUID', faction = 'Alliance' }
+				favorites = {},
+				font = Private.Font,
+				fontOutline = Private.Outline,
+				fontSize = 12,
+				sort = 'index',
+			},
 			mythicVisibility = false,
 			removeNameplateRealm = false,
 		},

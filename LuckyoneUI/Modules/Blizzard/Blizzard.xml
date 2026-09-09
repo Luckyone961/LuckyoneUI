@@ -3,6 +3,7 @@
 	<Script file='CombatText.lua'/>
 	<Script file='Console.lua'/>
 	<Script file='FasterLoot.lua'/>
+	<Script file='MailboxFavorites.lua'/>
 	<Script file='Merchant.lua'/>
 	<Script file='MovableFrames.lua'/>
 	<Script file='PrivacyOverlay.lua'/>
