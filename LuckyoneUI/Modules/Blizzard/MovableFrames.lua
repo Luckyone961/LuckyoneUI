@@ -3,6 +3,7 @@ local _, Private = ...
 local pairs = pairs
 
 local CreateFrame = CreateFrame
+local GetCursorPosition = GetCursorPosition
 local hooksecurefunc = hooksecurefunc
 local InCombatLockdown = InCombatLockdown
 local IsAltKeyDown = IsAltKeyDown
@@ -103,6 +104,33 @@ local function ApplyPositions()
 	end
 end
 
+-- Blizzard blocks StartMoving on the panels, so the drag runs on the cursor itself
+local function Handle_OnUpdate(self)
+	local frame = self:GetParent()
+	local anchor = self.anchor
+
+	local scale = frame:GetEffectiveScale()
+	local x, y = GetCursorPosition()
+
+	anchor.x = self.offsetX + (x - self.cursorX) / scale
+	anchor.y = self.offsetY + (y - self.cursorY) / scale
+
+	SetAnchor(frame, anchor)
+end
+
+-- Returns the frame when a drag was actually running
+local function StopDrag(self)
+	if not self.moving then return end
+	self.moving = nil
+
+	self:SetScript('OnUpdate', nil)
+
+	local frame = self:GetParent()
+	frame:SetClampedToScreen(self.clamped)
+
+	return frame
+end
+
 local function Handle_OnShow(self)
 	local frame = self:GetParent()
 	AutoReset(frame)
@@ -114,12 +142,21 @@ local function Handle_OnShow(self)
 end
 
 local function Handle_OnHide(self)
+	local frame = StopDrag(self)
+	if frame then
+		Positions[frame] = GetAnchor(frame)
+	end
+
 	AutoReset(self:GetParent())
 end
 
 local function Handle_OnDragStart(self)
 	local frame = self:GetParent()
 	if not CanMove(frame) or not ModifierDown() then return end
+
+	-- Without a readable anchor we have nothing to offset from
+	local anchor = GetAnchor(frame)
+	if not anchor then return end
 
 	if not Defaults[frame] then
 		Defaults[frame] = GetAnchor(frame)
@@ -129,25 +166,17 @@ local function Handle_OnDragStart(self)
 	self.clamped = frame:IsClampedToScreen()
 	frame:SetClampedToScreen(true)
 
-	frame:SetMovable(true)
-	frame:StartMoving()
-
-	-- True would keep the spot in Blizzards layout cache file
-	frame:SetUserPlaced(false)
+	self.anchor = anchor
+	self.offsetX, self.offsetY = anchor.x, anchor.y
+	self.cursorX, self.cursorY = GetCursorPosition()
 
 	self.moving = true
+	self:SetScript('OnUpdate', Handle_OnUpdate)
 end
 
 local function Handle_OnDragStop(self)
-	if not self.moving then return end
-	self.moving = nil
-
-	local frame = self:GetParent()
-
-	frame:StopMovingOrSizing()
-	frame:SetUserPlaced(false)
-	frame:SetMovable(false)
-	frame:SetClampedToScreen(self.clamped)
+	local frame = StopDrag(self)
+	if not frame then return end
 
 	Positions[frame] = GetAnchor(frame)
 end
@@ -208,10 +237,6 @@ end
 local function OnEvent(_, event)
 	if event == 'ADDON_LOADED' then
 		AddHandles()
-	elseif event == 'PLAYER_LOGOUT' then
-		for frame in pairs(Handles) do
-			frame:SetUserPlaced(false)
-		end
 	else
 		ApplyPositions()
 	end
@@ -228,7 +253,6 @@ function Private:MovableFrames()
 	EventFrame = CreateFrame('Frame')
 	EventFrame:SetScript('OnEvent', OnEvent)
 	EventFrame:RegisterEvent('ADDON_LOADED')
-	EventFrame:RegisterEvent('PLAYER_LOGOUT')
 	EventFrame:RegisterEvent('PLAYER_REGEN_ENABLED')
 
 	initialized = true
