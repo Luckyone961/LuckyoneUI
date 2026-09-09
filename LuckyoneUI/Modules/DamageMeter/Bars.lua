@@ -8,6 +8,7 @@ local LSM = Private.Libs.LSM
 local unpack = unpack
 local format = string.format
 local gsub = string.gsub
+local match = string.match
 local floor = math.floor
 local ipairs = ipairs
 local max = math.max
@@ -20,6 +21,7 @@ local GetClassAtlas = GetClassAtlas
 local GetSpellName = C_Spell.GetSpellName
 local GetSpellTexture = C_Spell.GetSpellTexture
 local IsDamageMeterAvailable = C_DamageMeter.IsDamageMeterAvailable
+local WrapString = C_StringUtil.WrapString
 local AbbreviateNumbers = AbbreviateNumbers
 local SecondsToClock = SecondsToClock
 local issecretvalue = issecretvalue or function() return false end
@@ -124,6 +126,15 @@ local SampleRanks = { 9, 99 }
 
 -- Blizzards format with the trailing name dropped, that space belongs to the slider now
 local RankFormat = gsub(DAMAGE_METER_SOURCE_NAME, '%s*%%s$', '')
+
+-- Everything the spell formats put around the source, WrapString wants those two halves
+local function SplitSourceFormat(sourceFormat, prefix, suffix)
+	local left, right = match(sourceFormat, '^%%s(.-)%%s(.*)$')
+	return left or prefix, right or suffix
+end
+
+local CreaturePrefix, CreatureSuffix = SplitSourceFormat(DAMAGE_METER_SPELL_ENTRY_CREATURE, ' (', ')')
+local UnitPrefix, UnitSuffix = SplitSourceFormat(DAMAGE_METER_SPELL_ENTRY_UNIT, ' - ', '')
 
 local sampleText
 local sampleWidths = {}
@@ -515,21 +526,22 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 		local creatureName = entry.creatureName
 		local details = entry.combatSpellDetails
 		local unitName = details and details.unitName
-		local source, sourceFormat
 
-		if creatureName and (issecretvalue(creatureName) or creatureName ~= '') then
-			source, sourceFormat = creatureName, DAMAGE_METER_SPELL_ENTRY_CREATURE
-		elseif unitName and (issecretvalue(unitName) or unitName ~= '') then
-			source, sourceFormat = DM:StripRealm(unitName, details.unitClassFilename), DAMAGE_METER_SPELL_ENTRY_UNIT
+		if unitName then
+			unitName = DM:StripRealm(unitName, details.unitClassFilename)
 		end
 
-		if not source then
-			nameText:SetText(spellName or UNKNOWN)
-		elseif spellName then
-			nameText:SetFormattedText(sourceFormat, spellName, source)
-		else
+		-- Blizzard sends an empty name when a spell has no source and secrets cant be compared, WrapString drops the brackets on those
+		local creature = creatureName and WrapString(creatureName, CreaturePrefix, CreatureSuffix) or ''
+		local unit = unitName and WrapString(unitName, UnitPrefix, UnitSuffix) or ''
+
+		if spellName then
+			nameText:SetFormattedText('%s%s%s', spellName, creature, unit)
+		elseif creatureName or unitName then
 			-- Enemy damage taken has no spell to name, the source alone beats "Unknown - Name"
-			nameText:SetText(source)
+			nameText:SetFormattedText('%s%s', WrapString(creatureName or '', '', ''), WrapString(unitName or '', '', ''))
+		else
+			nameText:SetText(UNKNOWN)
 		end
 
 		return
