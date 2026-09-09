@@ -148,6 +148,7 @@ Private.Defaults = {
 			},
 			dataTextsTweaks = false,
 			mailbox = {
+				currentRealm = false,
 				enable = false,
 				-- { name = 'Luckyone-LaughingSkull', class = 'DRUID', faction = 'Alliance' }
 				favorites = {},

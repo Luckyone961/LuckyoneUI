@@ -8,7 +8,6 @@ if not L then return end
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
 L["1440p = Default | 1080p = Downscaled"] = "1440p = Standard | 1080p = Skaliert"
-L["Add Favorite"] = true
 L["Addon download:"] = true -- No need to translate
 L["Addon Profiles"] = "Addon Profile"
 L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your specialization\nIt also assumes you have properly setup specialization-based profile loading in ElvUI profiles"] = true
@@ -105,6 +104,7 @@ L["Copy the import string from the Wago link and paste it in /wa."] = " Kopiere 
 L["Cosmetic"] = "Kosmetisch"
 L["Creates an overlay to hide the chat frame in the Communities Frame until you click on it."] = "Erstellt eine Überlagerung, um das Chatfenster im Communityfenster auszublenden, bis Du darauf klickst."
 L["Credits"] = true -- No need to translate
+L["Current Realm Only"] = true
 L["Custom Color"] = "Benutzerdefinierte Farbe"
 L["Custom ElvUI aura filters loaded."] = "Benutzerdefinierte ElvUI Aura-Filter geladen."
 L["Custom"] = "Benutzerdefiniert"
@@ -182,6 +182,7 @@ L["Enable"] = "Eingeschaltet"
 L["Enhancement"] = true
 L["Enter Edit Mode and select Import on the Dropdown.\nUse CTRL+V to paste string, then pick a name and click import."] = "Gehe in den Editiermodus und wähle Import im Dropdown-Menü.\nNutze STRG+V, um den Text einzufügen, dann wähle einen Namen und klicke auf Import."
 L["Enter Edit Mode"] = "Zum Editiermodus"
+L["Enter a character and a realm name."] = true
 L["Entering Color"] = true
 L["Entering Text"] = true
 L["Evoker"] = "Rufer"
@@ -312,6 +313,7 @@ L["Number Spacing"] = "Zahlenabstand"
 L["Number X Offset"] = "Zahlen X-Versatz"
 L["Number Y Offset"] = "Zahlen Y-Versatz"
 L["OFFLINE"] = true -- No need to translate
+L["Only show favorites that are on the realm you are playing on."] = true
 L["Only show the header buttons while the cursor is over the window."] = "Zeigt die Kopfzeilen Buttons nur an, solange sich der Mauszeiger über dem Fenster befindet."
 L["Open the bookmark panel with a right click on a session window."] = "Öffnet die Lesezeichenliste mit einem Rechtsklick auf ein Session-Fenster."
 L["Open the death log of a death entry at your cursor instead of the Blizzard Death Recap frame."] = "Öffnet das Todesprotokoll eines Todeseintrags an deinem Cursor anstelle des Blizzard-Fensters für den Todesrückblick."
@@ -358,6 +360,7 @@ L["Raid"] = true -- No need to translate
 L["Raidframe Style"] = "Schlachtzugsfenster Stil"
 L["Ranged DPS"] = "Fernkämpfer DD"
 L["Rank Spacing"] = "Platzierungsabstand"
+L["Realm"] = true
 L["Run the installation process."] = "Starte den Installatonsprozess."
 L["Recommended step. Should not be skipped."] = "Empfohlener Schritt. Sollte nicht übersprungen werden."
 L["Reload required - continue?"] = "UI neustarten nötig - Fortfahren?"
@@ -469,7 +472,6 @@ L["UnitFrames Color Theme"] = "Einheitenfenster Farbtheme"
 L["UnitFrames"] = "Einheitsfenster"
 L["Untrack Hidden Quests"] = "Versteckte Quests aufdecken"
 L["Use Chattynator Addon"] = "Chattynator Addon nutzen"
-L["Use the Name-Server format."] = true
 L["Vengeance"] = true
 L["Vertical"] = "Vertikal"
 L["Visibility"] = "Sichtbarkeit"

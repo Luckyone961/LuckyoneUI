@@ -32,7 +32,8 @@ local WHITE = { r = 1, g = 1, b = 1 }
 
 local panel, hooked, skinned
 local inset = 6 -- Row padding inside the list
-local sorted = {} -- For the alphabetical order option
+local display = {} -- Filtered and sorted copy of the favorites
+local myRealm = strlower(Private.myNormalizedRealm)
 
 local function SetFont(text)
 	local db = Private.Addon.db.profile.misc.mailbox
@@ -60,6 +61,11 @@ end
 local function SplitName(name)
 	local character, realm = strmatch(name, '^([^%-]+)%-(.+)$')
 	return character or name, realm
+end
+
+local function IsCurrentRealm(name)
+	local _, realm = SplitName(name)
+	return not realm or strlower(gsub(realm, '%s', '')) == myRealm
 end
 
 local function FindFavorite(name)
@@ -156,18 +162,25 @@ local function Layout()
 	local db = Private.Addon.db.profile.misc.mailbox
 	local list = db.favorites
 
-	if db.sort == 'name' then
-		wipe(sorted)
-		for index, favorite in ipairs(list) do
-			sorted[index] = favorite
+	-- The database keeps its own order
+	if db.currentRealm or db.sort == 'name' then
+		wipe(display)
+		for _, favorite in ipairs(list) do
+			if not db.currentRealm or IsCurrentRealm(favorite.name) then
+				tinsert(display, favorite)
+			end
 		end
-		sort(sorted, SortByName)
-		list = sorted
+
+		if db.sort == 'name' then
+			sort(display, SortByName)
+		end
+
+		list = display
 	end
 
 	-- Rows grow with the font
 	local rowHeight = db.fontSize + 10
-	local top = inset + (skinned and rowHeight or 0)
+	local top = inset + (panel.list == panel and rowHeight or 0)
 	local total = #list
 	local visible = max(1, floor((panel.list:GetHeight() - top - inset) / (rowHeight + 2)))
 
@@ -205,9 +218,12 @@ local function CreatePanel()
 
 	-- Follow the ElvUI Mail skin so the panel always matches the frame beside it
 	skinned = Private.ElvUI and ElvUI[1].private.skins.blizzard.enable and ElvUI[1].private.skins.blizzard.mail
-	inset = skinned and 6 or 4
 
-	panel = CreateFrame('Frame', 'LuckyoneMailboxFavorites', MailFrame, skinned and 'BackdropTemplate' or 'DefaultPanelTemplate')
+	-- Non retail got an empty close button the DefaultPanel corner
+	local header = not skinned and Private.isRetail
+	inset = (skinned and 6) or (header and 4) or 12
+
+	panel = CreateFrame('Frame', 'LuckyoneMailboxFavorites', MailFrame, (skinned and 'BackdropTemplate') or (header and 'DefaultPanelTemplate') or 'TranslucentFrameTemplate')
 	panel:SetWidth(180)
 	panel:SetPoint('TOPLEFT', MailFrame, 'TOPRIGHT', skinned and 1 or 0, 0)
 	panel:SetPoint('BOTTOMLEFT', MailFrame, 'BOTTOMRIGHT', skinned and 1 or 0, 0)
@@ -218,16 +234,19 @@ local function CreatePanel()
 
 	if skinned then
 		panel:SetTemplate('Transparent')
+	end
 
-		panel.list = panel
-		panel.title = CreateText(panel)
-		panel.title:SetPoint('TOP', 0, -inset)
-	else
+	if header then
 		-- Same header and inset every Blizzard frame is built from
 		panel.list = CreateFrame('Frame', nil, panel, 'InsetFrameTemplate')
 		panel.list:SetPoint('TOPLEFT', 4, -24)
 		panel.list:SetPoint('BOTTOMRIGHT', -6, 4)
 		panel.title = panel.TitleContainer.TitleText
+	else
+		-- These only bring a border
+		panel.list = panel
+		panel.title = CreateText(panel)
+		panel.title:SetPoint('TOP', 0, -inset)
 	end
 
 	panel.title:SetText(L["Favorites"])
@@ -238,11 +257,12 @@ local function CreatePanel()
 	panel.visible = 0
 end
 
-function Private:MailboxFavorites_Add(name)
-	local entry = strtrim(name or '')
+function Private:MailboxFavorites_Add(name, realm)
+	-- No spaces in the realm part inside the send editbox
+	local entry = strtrim(name or '') .. '-' .. gsub(strtrim(realm or ''), '%s', '')
 
 	if not strmatch(entry, '^[^%-]+%-[^%-]+$') then
-		Private:Print(L["Use the Name-Server format."])
+		Private:Print(L["Enter a character and a realm name."])
 		return
 	end
 
@@ -254,7 +274,7 @@ function Private:MailboxFavorites_Add(name)
 	tinsert(Private.Addon.db.profile.misc.mailbox.favorites, { name = entry, class = Private.myClass, faction = 'Alliance' })
 	Private:MailboxFavorites_Update()
 
-	return true
+	return entry
 end
 
 function Private:MailboxFavorites_Remove(name)

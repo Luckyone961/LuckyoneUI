@@ -8,7 +8,6 @@ if not L then return end
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
 L["1440p = Default | 1080p = Downscaled"] = "1440p = по умолчанию | 1080p = уменьшенный масштаб"
-L["Add Favorite"] = true
 L["Addon download:"] = "Загрузить аддон:"
 L["Addon Profiles"] = "Профили дополнений"
 L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your specialization\nIt also assumes you have properly setup specialization-based profile loading in ElvUI profiles"] = "Регулирует ширину DataText 'FPS - Время в бою - Прочность' в зависимости от Вашей компоновки LuckyoneUI\n\nКомпоновка для ДД и танков будет соответствовать стандартной ширине моих панелей действий\nКомпоновка для лекарей будет соответствовать стандартной ширине моих рамок рейда\n\nВсе вышеуказанные изменения сработают при смене Вашей специализации\nТакже предполагается, что Вы правильно настроили загрузку профилей ElvUI в зависимости от специализации"
@@ -105,6 +104,7 @@ L["Copy the import string from the Wago link and paste it in /wa."] = "Скоп�
 L["Cosmetic"] = "Косметика"
 L["Creates an overlay to hide the chat frame in the Communities Frame until you click on it."] = "Создаёт наложение, которое скрывает рамку чата во фрейме сообществ, пока Вы не нажмёте на неё."
 L["Credits"] = "Авторы"
+L["Current Realm Only"] = true
 L["Custom Color"] = true
 L["Custom ElvUI aura filters loaded."] = "Пользовательские фильтры аур ElvUI загружены."
 L["Custom"] = true
@@ -182,6 +182,7 @@ L["Enable"] = true
 L["Enhancement"] = "Совершенствование"
 L["Enter Edit Mode and select Import on the Dropdown.\nUse CTRL+V to paste string, then pick a name and click import."] = "Войдите в режим редактирования и выберите 'Импорт' в выпадающем меню.\nИспользуйте Ctrl+V, чтобы вставить строку, затем выберите имя и нажмите 'Импортировать'."
 L["Enter Edit Mode"] = "Войти в режим редактирования"
+L["Enter a character and a realm name."] = true
 L["Entering Color"] = true
 L["Entering Text"] = true
 L["Evoker"] = "Пробудитель"
@@ -312,6 +313,7 @@ L["Number Spacing"] = true
 L["Number X Offset"] = true
 L["Number Y Offset"] = true
 L["OFFLINE"] = "НЕ В СЕТИ"
+L["Only show favorites that are on the realm you are playing on."] = true
 L["Only show the header buttons while the cursor is over the window."] = true
 L["Open the bookmark panel with a right click on a session window."] = true
 L["Open the death log of a death entry at your cursor instead of the Blizzard Death Recap frame."] = true
@@ -358,6 +360,7 @@ L["Raid"] = true
 L["Raidframe Style"] = "Стиль рамки рейда"
 L["Ranged DPS"] = "Урон дальнего боя"
 L["Rank Spacing"] = true
+L["Realm"] = true
 L["Run the installation process."] = true
 L["Recommended step. Should not be skipped."] = "Рекомендуемый шаг. Пропускать его не следует."
 L["Reload required - continue?"] = "Требуется перезагрузка, продолжить?"
@@ -469,7 +472,6 @@ L["UnitFrames Color Theme"] = "Цветовая тема рамок юнитов
 L["UnitFrames"] = "Рамки инитов"
 L["Untrack Hidden Quests"] = "Отключить отслеживание скрытых заданий"
 L["Use Chattynator Addon"] = "Использовать аддон Chattynator"
-L["Use the Name-Server format."] = true
 L["Vengeance"] = "Месть"
 L["Vertical"] = true
 L["Visibility"] = true

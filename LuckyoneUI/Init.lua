@@ -1,8 +1,10 @@
+local gsub = string.gsub
 local select = select
 local tonumber = tonumber
 
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local GetBuildInfo = GetBuildInfo
+local GetNormalizedRealmName = GetNormalizedRealmName
 local GetRealmName = GetRealmName
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 local UnitClass = UnitClass
@@ -73,6 +75,7 @@ Private.myGUID = UnitGUID('player')
 Private.myName = UnitName('player')
 Private.myRealm = GetRealmName()
 Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
+Private.myNormalizedRealm = (GetNormalizedRealmName and GetNormalizedRealmName()) or gsub(Private.myRealm, '%s', '')
 
 -- ElvUI compatibility
 Private.ElvUI = Private.IsAddOnLoaded('ElvUI')

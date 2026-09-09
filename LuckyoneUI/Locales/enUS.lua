@@ -8,7 +8,6 @@ if not L then return end
 -- I will verify your Pull Request on GitHub and add you to the AddOn credits
 
 L["1440p = Default | 1080p = Downscaled"] = true
-L["Add Favorite"] = true
 L["Addon download:"] = true
 L["Addon Profiles"] = true
 L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your specialization\nIt also assumes you have properly setup specialization-based profile loading in ElvUI profiles"] = true
@@ -105,6 +104,7 @@ L["Copy the import string from the Wago link and paste it in /wa."] = true
 L["Cosmetic"] = true
 L["Creates an overlay to hide the chat frame in the Communities Frame until you click on it."] = true
 L["Credits"] = true
+L["Current Realm Only"] = true
 L["Custom Color"] = true
 L["Custom ElvUI aura filters loaded."] = true
 L["Custom"] = true
@@ -182,6 +182,7 @@ L["Enable"] = true
 L["Enhancement"] = true
 L["Enter Edit Mode and select Import on the Dropdown.\nUse CTRL+V to paste string, then pick a name and click import."] = true
 L["Enter Edit Mode"] = true
+L["Enter a character and a realm name."] = true
 L["Entering Color"] = true
 L["Entering Text"] = true
 L["Evoker"] = true
@@ -312,6 +313,7 @@ L["Number Spacing"] = true
 L["Number X Offset"] = true
 L["Number Y Offset"] = true
 L["OFFLINE"] = true
+L["Only show favorites that are on the realm you are playing on."] = true
 L["Only show the header buttons while the cursor is over the window."] = true
 L["Open the bookmark panel with a right click on a session window."] = true
 L["Open the death log of a death entry at your cursor instead of the Blizzard Death Recap frame."] = true
@@ -358,6 +360,7 @@ L["Raid"] = true
 L["Raidframe Style"] = true
 L["Ranged DPS"] = true
 L["Rank Spacing"] = true
+L["Realm"] = true
 L["Run the installation process."] = true
 L["Recommended step. Should not be skipped."] = true
 L["Reload required - continue?"] = true
@@ -469,7 +472,6 @@ L["UnitFrames Color Theme"] = true
 L["UnitFrames"] = true
 L["Untrack Hidden Quests"] = true
 L["Use Chattynator Addon"] = true
-L["Use the Name-Server format."] = true
 L["Vengeance"] = true
 L["Vertical"] = true
 L["Visibility"] = true
