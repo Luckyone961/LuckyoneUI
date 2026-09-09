@@ -925,7 +925,7 @@ end
 -- Spell breakdown popup
 -- Same idea as the Blizzard source window, spawned at the cursor instead
 -- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSourceWindow.lua
-local POPUP_WIDTH_SCALE = 1.25
+local POPUP_WIDTH_SCALE = 1.5
 
 -- The source it showed is set again by the next OpenPopup
 local function Popup_OnHide(popup)
