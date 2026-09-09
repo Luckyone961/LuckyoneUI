@@ -518,7 +518,8 @@ local function BuildInstallerData()
 			local f = installerFrame
 			f.SubTitle:SetText(L["ElvUI Layouts"])
 			f.Desc1:SetText(L["This step will configure the ElvUI layout of your choice."])
-			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
+			f.Desc2:SetText(L["The ElvUI Nameplates are included in this step."])
+			f.Desc3:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
 			f.Option1:Show()
 			f.Option1:SetScript('OnClick', function() Private:Setup_Layout('main', true) end)
 			f.Option1:SetText(L["DPS & Tanks"])
@@ -530,24 +531,6 @@ local function BuildInstallerData()
 			f.Option3:SetText(L["Healing Horizontal"])
 		end
 		stepTitles[pageIndex] = L["ElvUI Layouts"]
-		pageIndex = pageIndex + 1
-
-		-- Retail-only: ElvUI Extras
-		pages[pageIndex] = function()
-			local f = installerFrame
-			f.SubTitle:SetText(L["ElvUI Extras"])
-			f.Desc1:SetText(L["This step will configure additional ElvUI modules such as Nameplates and plugins."])
-			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Setup_NamePlates(true) end)
-			f.Option1:SetText('ElvUI Nameplates')
-			if Private.isRetail then
-				f.Option2:Show()
-				f.Option2:SetScript('OnClick', function() Private:Setup_WindTools(true) end)
-				f.Option2:SetText('|cff5385edWindTools|r')
-			end
-		end
-		stepTitles[pageIndex] = L["ElvUI Extras"]
 		pageIndex = pageIndex + 1
 
 		-- Page: ElvUI Filters

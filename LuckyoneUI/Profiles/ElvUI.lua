@@ -2141,6 +2141,7 @@ function Private:Setup_Layout(layout, installer, partyStyle)
 	Setup_GlobalDB()
 	Private:Setup_PrivateDB()
 	Setup_ElvUI(layout, partyStyle)
+	Private:Setup_NamePlates()
 
 	Refresh()
 
