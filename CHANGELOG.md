@@ -8,8 +8,8 @@
 - Alt setup button is back, one click to load all existing profiles and optionally setup chat  
 
 **Retail:**  
-- Disabled WindTools profile features (Faster loot, Extended Merchant Pages, Movable Blizz frames)  
 - Updated aura indicators for all healing specs (Size, Postion, Stack count, Style)  
+- Updated WindTools profile (Only skins left enabled) (Friendlist, Objective Tracker, Addons)  
 
 **Classic:**  
 - Fixed NovaSpellRankChecker skin (Sometimes the button was covering the entire spellbook)  

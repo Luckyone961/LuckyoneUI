@@ -19,8 +19,8 @@ function Private:Setup_WindTools(installer)
 	E.global.WT = E:CopyTable({}, G.WT)
 
 	-- Avoid db convert
-	E.db.WT.version = 4.20
-	E.global.WT.version = 4.20
+	E.db.WT.version = 4.21
+	E.global.WT.version = 4.21
 
 	-- Protect movers error
 	E.db.movers = E.db.movers or {}
@@ -35,10 +35,10 @@ function Private:Setup_WindTools(installer)
 	-- Profile db
 	E.db.WT.announcement.enable = false
 	E.db.WT.combat.combatAlert.enable = false
-	E.db.WT.combat.damageMeterLayout.enable = false
 	E.db.WT.combat.quickKeystone.enable = false
 	E.db.WT.combat.raidMarkers.enable = false
 	E.db.WT.item.alreadyKnown.enable = false
+	E.db.WT.item.contacts.enable = false
 	E.db.WT.item.delete.enable = false
 	E.db.WT.item.extraItemsBar.enable = false
 	E.db.WT.item.fastLoot.enable = false
@@ -46,10 +46,8 @@ function Private:Setup_WindTools(installer)
 	E.db.WT.item.itemLevel.enable = false
 	E.db.WT.item.trade.enable = false
 	E.db.WT.maps.eventTracker.enable = false
-	E.db.WT.misc.exitPhaseDiving.enable = false
 	E.db.WT.misc.gameBar.enable = false
-	E.db.WT.misc.noLootPanel = true
-	E.db.WT.quest.achievementTracker.show = false
+	E.db.WT.quest.achievementTracker.enable = false
 	E.db.WT.quest.preyHunt.enable = false
 	E.db.WT.quest.progress.enable = false
 	E.db.WT.quest.switchButtons.enable = false
@@ -76,31 +74,6 @@ function Private:Setup_WindTools(installer)
 	E.db.movers.WTMinimapButtonBarAnchor = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-202'
 	E.db.movers.WTParagonReputationToastFrameMover = 'TOP,ElvUIParent,TOP,0,-110'
 
-	-- Mailbox favorite list
-	if Private.itsLuckyone then
-		E.global.WT.item.contacts.alts = {}
-		E.global.WT.item.contacts.alts['Laughing Skull'] = {}
-		E.global.WT.item.contacts.alts['Laughing Skull']['Horde'] = {
-			['Notlucky'] = 'WARRIOR',
-			['Lucky'] = 'EVOKER',
-			['Luckyhunter'] = 'HUNTER',
-			['Luckytwo'] = 'EVOKER',
-			['Luckypala'] = 'PALADIN',
-			['Luckypriest'] = 'PRIEST',
-			['Unluckyone'] = 'SHAMAN',
-			['Luckydk'] = 'DEATHKNIGHT',
-			['Luckywl'] = 'WARLOCK',
-			['Luckymage'] = 'MAGE',
-			['Luckyrogue'] = 'ROGUE',
-		}
-		E.global.WT.item.contacts.alts['Laughing Skull']['Alliance'] = {
-			['Luckyone'] = 'DRUID',
-			['Luckymonkas'] = 'MONK',
-			['Taylorswift'] = 'DEMONHUNTER',
-		}
-		E.global.WT.item.contacts.updateAlts = false
-	end
-
 	Private:Print(L["WindTools profile has been set."], installer)
 end
 
@@ -111,24 +84,23 @@ function Private:Setup_Private_WindTools()
 	E.private.WT = E:CopyTable({}, V.WT)
 
 	-- Avoid db convert
-	E.private.WT.version = 4.20
+	E.private.WT.version = 4.21
 
 	-- Private db
-	E.private.WT.item.extendMerchantPages.enable = false
 	E.private.WT.maps.minimapButtons.enable = false
 	E.private.WT.maps.superTracker.enable = false
 	E.private.WT.maps.superTracker.waypointParse.enable = false
 	E.private.WT.maps.worldMap.enable = false
+	E.private.WT.misc.guildNewsItemLevel = false
 	E.private.WT.misc.lfgList.enable = false
-	E.private.WT.misc.moveFrames.elvUIBags = false
 	E.private.WT.misc.moveFrames.enable = false
+	E.private.WT.misc.reshiiWrapsUpgrade = false
 	E.private.WT.quest.objectiveTracker.cosmeticBar.border = 'ONEPIXEL'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.color.mode = 'CLASS'
 	E.private.WT.quest.objectiveTracker.cosmeticBar.texture = Private.Texture
 	E.private.WT.quest.objectiveTracker.cosmeticBar.width = 252
 	E.private.WT.quest.objectiveTracker.enable = true
 	E.private.WT.quest.objectiveTracker.header.classColor = true
-	E.private.WT.quest.objectiveTracker.header.size = 13
 	E.private.WT.quest.objectiveTracker.info.size = 12
 	E.private.WT.quest.objectiveTracker.infoColor.customColorHighlight.b = 1
 	E.private.WT.quest.objectiveTracker.infoColor.customColorHighlight.g = 1
@@ -138,7 +110,6 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.quest.objectiveTracker.infoColor.customColorNormal.r = 1
 	E.private.WT.quest.objectiveTracker.menuTitle.classColor = true
 	E.private.WT.quest.objectiveTracker.menuTitle.font.size = 13
-	E.private.WT.quest.objectiveTracker.title.size = 13
 	E.private.WT.quest.objectiveTracker.titleColor.classColor = true
 	E.private.WT.skins.actionStatus.size = 12
 	E.private.WT.skins.addons.bugSack = false
@@ -154,6 +125,7 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.skins.cooldownViewer.enable = false
 	E.private.WT.skins.damageMeter.enable = false
 	E.private.WT.skins.elvui.enable = false
+	E.private.WT.skins.ime.label.name = Private.Font
 	E.private.WT.skins.libraries.ace3 = false
 	E.private.WT.skins.libraries.ace3Dropdown = false
 	E.private.WT.skins.libraries.elioteDropDownMenu = false
