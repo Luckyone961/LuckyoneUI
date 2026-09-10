@@ -10,6 +10,7 @@
 - Alt setup button is back, one click to load all existing profiles and optionally setup chat  
 
 **Retail:**  
+- Added skin for Simulationcraft  
 - Updated aura indicators for all healing specs (Size, Postion, Stack count, Style)  
 - Updated WindTools profile (Only skins left enabled) (Friendlist, Objective Tracker, Addons)  
 

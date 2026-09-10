@@ -81,6 +81,7 @@ Modules\Skins\Addons\LFGBulletinBoard.lua [AllowLoadGameType vanilla, tbc]
 Modules\Skins\Addons\NovaSpellRankChecker.lua [AllowLoadGameType vanilla, tbc]
 Modules\Skins\Addons\NovaWorldBuffs.lua [AllowLoadGameType vanilla, tbc]
 Modules\Skins\Addons\SimpleAddonManager.lua
+Modules\Skins\Addons\Simulationcraft.lua [AllowLoadGameType mainline]
 Modules\Skins\Addons\Tabardy.lua
 Modules\Skins\Addons\WhatsTraining.lua [AllowLoadGameType vanilla, tbc]
 Modules\Skins\Blizzard\CooldownViewer.lua [AllowLoadGameType mainline]

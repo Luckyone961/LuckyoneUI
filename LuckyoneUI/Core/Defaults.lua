@@ -190,6 +190,7 @@ Private.Defaults = {
 			NovaSpellRankChecker = false,
 			NovaWorldBuffs = false,
 			SimpleAddonManager = false,
+			Simulationcraft = false,
 			Tabardy = false,
 			WhatsTraining = false,
 			Blizzard = {
