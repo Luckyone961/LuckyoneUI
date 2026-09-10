@@ -791,7 +791,7 @@ end
 function Private:BuildConfig()
 
 	-- Header
-	Private.Config = ACH:Group((Private.ElvUI and Private.Name) or format('%s %s', Private.Name, Private.Version), nil, 20, (Private.ElvUI and nil) or 'tree')
+	Private.Config = ACH:Group((Private.ElvUI and Private.Name) or format('%s %s', Private.Name, Private.VersionString), nil, 20, (Private.ElvUI and nil) or 'tree')
 
 	-- Add sections
 	Private.Config.args.setup = BuildSetupSection() -- 2
@@ -816,7 +816,7 @@ function Private:BuildConfig()
 	if Private.ElvUI then
 		local E = ElvUI[1]
 
-		E.Options.name = format('%s + %s |cff99ff33%.2f|r', E.Options.name, Private.Name, Private.Version)
+		E.Options.name = format('%s + %s |cff99ff33%s|r', E.Options.name, Private.Name, Private.VersionString)
 		E.Options.args.LuckyoneUI = Private.Config
 
 		local scaling = E.Options.args.general and E.Options.args.general.args.general and E.Options.args.general.args.general.args.scaling

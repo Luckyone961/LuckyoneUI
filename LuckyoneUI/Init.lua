@@ -1,5 +1,6 @@
 local gsub = string.gsub
 local select = select
+local strmatch = string.match
 local tonumber = tonumber
 
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
@@ -67,7 +68,16 @@ Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 
 -- API checks
 Private.IsAddOnLoaded = IsAddOnLoaded
-Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
+
+-- Packager fills the TOC version from the git tag
+-- Alpha tags look like 4.23-alpha1 and source keeps raw @project-version@
+Private.VersionString = GetAddOnMetadata(Name, 'Version')
+Private.Version = tonumber(strmatch(Private.VersionString, '^[%d%.]+'))
+
+-- Bump with every release, same as ElvUI does for source checkouts
+if not Private.Version then
+	Private.Version, Private.VersionString = 4.22, '4.22-git'
+end
 
 -- Player utils
 Private.myClass = select(2, UnitClass('player'))
