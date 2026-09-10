@@ -47,7 +47,7 @@ function Private:Print(msg, installer)
 	print(Private.Name .. ': ' .. msg)
 
 	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(msg)
+		Private.Installer:ShowStatus(msg)
 	end
 end
 
@@ -87,7 +87,7 @@ local function ToggleInstaller()
 	if installer:IsShown() then
 		installer:Hide()
 	else
-		installer:Show(Private.InstallerData)
+		installer:Show()
 	end
 end
 
@@ -306,7 +306,7 @@ local function CheckElvUI()
 		E.private.install_complete = E.version
 	end
 
-	LibStub('LibElvUIPlugin-1.0'):RegisterPlugin(Name, Private.BuildConfig)
+	LibStub('LibElvUIPlugin-1.0'):RegisterPlugin(Name, Private.RegisterElvUIConfig)
 end
 
 function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)

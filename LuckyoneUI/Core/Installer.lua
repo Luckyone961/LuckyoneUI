@@ -1,62 +1,70 @@
 local _, Private = ...
 local L = Private.Libs.ACL
+local AceGUI = Private.Libs.GUI
 local LSM = Private.Libs.LSM
 
+local concat = table.concat
+local floor = math.floor
 local format = string.format
+local gmatch = string.gmatch
 local ipairs = ipairs
+local min = math.min
+local strmatch = string.match
+local wipe = table.wipe
 
 local C_UI_Reload = C_UI.Reload
 local CreateFrame = CreateFrame
+local GameTooltip_Hide = GameTooltip_Hide
 local PlaySound = PlaySound
 
 local _G = _G
-local UIParent = UIParent
+local CLOSE = CLOSE
+local GameTooltip = GameTooltip
 local StaticPopup_Show = _G.StaticPopup_Show
-
--- Constants: Font + Outline
--- Core loads before Media so Expressway is not available yet
-local FONT
-local FONT_OUTLINE = Private.Outline
-
--- Constants: Scalings
-local MAIN_FRAME_HEIGHT = 440
-local MAIN_FRAME_WIDTH = 600
-local STEP_BUTTON_HEIGHT = 22
-local STEP_BUTTON_WIDTH = 200
-local STEP_FRAME_WIDTH = 220
-
--- Constants: Colors
-local LUCKYONE_COLOR = {0.294, 0.922, 0.173} -- #4beb2c
-local STEP_TITLE_COLOR = {1, 1, 1}
-local STEP_TITLE_SELECTED_COLOR = {0, 0.702, 1} -- #00b3ff
+local UIParent = UIParent
 
 -- Installer module
 local Installer = {}
 Private.Installer = Installer
 
 local installerFrame
+local pages = {}
+local selections = {} -- Key of the option picked last
 local currentPage = 0
-local maxPage = 0
 
-local function LuckyoneDamageMeter()
-	if not Private.Modules.DamageMeter then return end
+local function Green(text)
+	return format('|cff4beb2c%s|r', text)
+end
 
+local function Red(text)
+	return format('|cffC80000%s|r', text)
+end
+
+local function ToggleDB(toggle)
+	local db = Private.Addon.db.profile
+	for part in gmatch(toggle.section, '[^.]+') do
+		db = db[part]
+	end
+	return db
+end
+
+local function EnableDamageMeter()
 	Private.Addon.db.profile.damageMeter.enable = true
 	Private:DamageMeter_UpdateAll()
 	Private:Print(L["Damage Meter module enabled."], true)
 end
 
+local function InstallComplete()
+	Private:HandleLuckyoneDB()
+	C_UI_Reload()
+end
+
 -- Our frame 'skin'
 local function ApplyTemplate(frame)
-	if not frame.SetBackdrop then _G.Mixin(frame, _G.BackdropTemplateMixin) end
-
 	frame:SetBackdrop({
 		bgFile = 'Interface\\Buttons\\WHITE8X8',
 		edgeFile = 'Interface\\Buttons\\WHITE8X8',
-		tile = false,
-		tileSize = 0,
 		edgeSize = 1,
-		insets = { left = 1, right = 1, top = 1, bottom = 1 }
 	})
 
 	-- Background color: #0d0d0d + alpha 90
@@ -66,646 +74,753 @@ local function ApplyTemplate(frame)
 	frame:SetBackdropBorderColor(0, 0, 0, 1)
 end
 
+local function CreateLine(parent)
+	local line = parent:CreateTexture(nil, 'ARTWORK')
+	line:SetColorTexture(0, 0, 0, 1)
+	line:SetHeight(1)
+	return line
+end
+
+local function CreateText(parent, size)
+	local text = parent:CreateFontString(nil, 'OVERLAY')
+	text:SetFont(LSM:Fetch('font', Private.Font), size, Private.Outline)
+	return text
+end
+
+local function CreateHighlight(button)
+	local highlight = button:CreateTexture(nil, 'HIGHLIGHT')
+	highlight:SetAllPoints()
+	highlight:SetColorTexture(1, 1, 1, 0.15)
+	button:SetHighlightTexture(highlight)
+end
+
+-- Tooltips sit next to the installer so they never cover a page
+local function ShowTooltip(title, text)
+	GameTooltip:SetOwner(installerFrame, 'ANCHOR_NONE')
+	GameTooltip:SetPoint('TOPLEFT', installerFrame.Sidebar, 'TOPRIGHT', 1, 0)
+	GameTooltip:AddLine(title, 1, 1, 1)
+
+	if text then
+		GameTooltip:AddLine(text, 1, 1, 1, true)
+	end
+
+	GameTooltip:Show()
+end
+
 -- Our button 'skin'
-local function StyleButton(button)
-	-- If the background texture does not exist
-	if not button.bg then
-		button.bg = button:CreateTexture(nil, 'BACKGROUND')
-		button.bg:SetAllPoints()
-		button.bg:SetColorTexture(0.2, 0.2, 0.2, 0.8)
+local function CreateButton(parent, width, height)
+	local button = CreateFrame('Button', nil, parent, 'BackdropTemplate')
+	button:SetSize(width, height)
+	button:SetMotionScriptsWhileDisabled(true)
+
+	ApplyTemplate(button)
+	button:SetBackdropColor(0.2, 0.2, 0.2, 0.8)
+	CreateHighlight(button)
+
+	button.text = CreateText(button, 12)
+	button.text:SetPoint('CENTER')
+
+	return button
+end
+
+local function SetButtonEnabled(button, enabled)
+	button:SetEnabled(enabled)
+	button:SetAlpha(enabled and 1 or 0.4)
+end
+
+local function SetButtonSelected(button, selected)
+	if selected then
+		button:SetBackdropColor(0.294, 0.922, 0.173, 0.2)
+		button:SetBackdropBorderColor(0.294, 0.922, 0.173, 1)
+	else
+		button:SetBackdropColor(0.2, 0.2, 0.2, 0.8)
+		button:SetBackdropBorderColor(0, 0, 0, 1)
 	end
+end
 
-	-- Hover highlight
-	if not button.highlight then
-		button.highlight = button:CreateTexture(nil, 'HIGHLIGHT')
-		button.highlight:SetAllPoints()
-		button.highlight:SetColorTexture(1, 1, 1, 0.15)
-		button:SetHighlightTexture(button.highlight)
-	end
-
-	-- Font
-	if not button.text then
-		button.text = button:CreateFontString(nil, 'OVERLAY')
-		button.text:SetFont(FONT, 12, FONT_OUTLINE)
-		button.text:SetPoint('CENTER')
-		button.text:SetJustifyH('CENTER')
-
-		-- Override SetText to use our font string
-		button.SetText = function(self, text)
-			self.text:SetText(text)
-		end
-
-		-- Override GetFontString to return our font string
-		button.GetFontString = function(self)
-			return self.text
+-- Sidebar, the check icon doubles as the completed state of a step
+local function UpdateSidebar()
+	for index, button in ipairs(installerFrame.Sidebar.Buttons) do
+		if index == currentPage then
+			button.bg:SetColorTexture(0.2, 0.2, 0.2, 0.9)
+			button.text:SetTextColor(0, 0.702, 1) -- #00b3ff
+		else
+			button.bg:SetColorTexture(0.2, 0.2, 0.2, 0.5)
+			button.text:SetTextColor(1, 1, 1)
 		end
 	end
 end
 
--- Layout option buttons based on how many are visible
-local visibleButtons = {}
-local function LayoutOptionButtons()
-	local numButtons = 0
+local function Step_OnClick(self)
+	Installer:SetPage(self:GetID())
+end
 
-	for _, option in ipairs(installerFrame.Options) do
-		if option:IsShown() then
-			numButtons = numButtons + 1
-			visibleButtons[numButtons] = option
-		end
+local function CreateStepButton(sidebar, index, name)
+	local button = CreateFrame('Button', nil, sidebar)
+	button:SetSize(184, 22)
+	button:SetID(index)
+	button:SetScript('OnClick', Step_OnClick)
+
+	if index == 1 then
+		button:SetPoint('TOP', 0, -47)
+	else
+		button:SetPoint('TOP', sidebar.Buttons[index - 1], 'BOTTOM', 0, -2)
 	end
 
-	-- Don't even start doing math on empty pages (Welcome text for example)
-	if numButtons == 0 then return end
+	button.bg = button:CreateTexture(nil, 'BACKGROUND')
+	button.bg:SetAllPoints()
+	button.bg:SetColorTexture(0.2, 0.2, 0.2, 0.5)
 
-	local spacing = 4
-	local buttonWidth = (numButtons >= 4) and 140 or 160
-	local totalWidth = (numButtons * buttonWidth) + ((numButtons - 1) * spacing)
-	local startX = -(totalWidth / 2) + (buttonWidth / 2)
+	CreateHighlight(button)
 
-	for i = 1, numButtons do
-		local button = visibleButtons[i]
+	button.icon = button:CreateTexture(nil, 'ARTWORK')
+	button.icon:SetSize(14, 14)
+	button.icon:SetPoint('RIGHT', -6, 0)
+	button.icon:SetTexture('Interface\\RaidFrame\\ReadyCheck-Ready')
+	button.icon:Hide()
+
+	button.text = CreateText(button, 12)
+	button.text:SetPoint('LEFT', 26, 0)
+	button.text:SetPoint('RIGHT', -26, 0)
+	button.text:SetJustifyH('CENTER')
+	button.text:SetWordWrap(false)
+	button.text:SetText(name)
+
+	return button
+end
+
+-- Option buttons
+local function Option_OnClick(self)
+	local data = self.data
+
+	if data.key then
+		selections[currentPage] = data.key
+
+		for _, button in ipairs(installerFrame.Content.Options) do
+			SetButtonSelected(button, button.data == data)
+		end
+
+		installerFrame.Sidebar.Buttons[currentPage].icon:Show()
+	end
+
+	data.func()
+end
+
+local function Option_OnEnter(self)
+	local addon = self.data.addon
+	if addon and not Private.IsAddOnLoaded(addon) then
+		ShowTooltip(addon .. ' ' .. L["is not installed or enabled."])
+	end
+end
+
+local function LayoutOptions(count)
+	local content = installerFrame.Content
+
+	for index = count + 1, #content.Options do
+		content.Options[index]:Hide()
+	end
+
+	if count == 0 then return end
+
+	local width = min(190, floor((700 - 6 * (count - 1)) / count))
+	local total = count * width + 6 * (count - 1)
+
+	for index = 1, count do
+		local button = content.Options[index]
+		button:SetWidth(width)
 		button:ClearAllPoints()
-		button:SetSize(buttonWidth, 30)
-		local offsetX = startX + ((i - 1) * (buttonWidth + spacing))
-		button:SetPoint('BOTTOM', installerFrame, 'BOTTOM', offsetX, 60)
+		button:SetPoint('BOTTOM', content, 'BOTTOM', -total / 2 + width / 2 + (index - 1) * (width + 6), 56)
 	end
 end
 
--- Finalize the install
-local function InstallComplete()
-	Private:HandleLuckyoneDB()
-	C_UI_Reload()
+-- Checkboxes, AceGUI widgets so they match the config (ElvUI skins them as well)
+-- Only the db is written, the reload at the end of the installer loads everything
+local function CheckBox_OnValueChanged(widget, _, value)
+	local toggle = widget:GetUserData('toggle')
+
+	ToggleDB(toggle)[toggle.key] = value and true or false
+	installerFrame.Sidebar.Buttons[currentPage].icon:Show()
 end
 
--- Create step complete frame
-local stepCompleteFrame
-local function CreateStepComplete()
-	local frame = CreateFrame('Frame', 'LuckyoneInstallStepComplete', UIParent, _G.BackdropTemplateMixin and 'BackdropTemplate')
-	frame:SetSize(460, 60)
-	frame:SetPoint('TOP', 0, -200)
-	frame:Hide()
+local function CheckBox_OnEnter(widget)
+	local toggle = widget:GetUserData('toggle')
+	if toggle.desc then
+		ShowTooltip(toggle.label, toggle.desc)
+	end
+end
 
-	ApplyTemplate(frame)
+local function CreateCheckBox(parent)
+	local widget = AceGUI:Create('CheckBox')
+	widget.frame:SetParent(parent)
+	widget:SetWidth(325)
+	widget:SetCallback('OnValueChanged', CheckBox_OnValueChanged)
+	widget:SetCallback('OnEnter', CheckBox_OnEnter)
+	widget:SetCallback('OnLeave', GameTooltip_Hide)
+	widget.text:SetFont(LSM:Fetch('font', Private.Font), 12, Private.Outline)
 
-	frame.text = frame:CreateFontString(nil, 'ARTWORK')
-	frame.text:SetFont(FONT, 16, FONT_OUTLINE)
-	frame.text:SetPoint('CENTER', 0, 0)
-	frame.text:SetTextColor(LUCKYONE_COLOR[1], LUCKYONE_COLOR[2], LUCKYONE_COLOR[3])
-	frame.text:SetJustifyH('CENTER')
+	return widget
+end
 
-	local hideTimer
+-- Two columns
+local function LayoutToggles(page)
+	local content = installerFrame.Content
+	local container = content.Toggles
+	local rows = floor((422 - 44 - content.Desc:GetStringHeight() - 16 - (page.buttons and 100 or 40)) / 24)
+	local column, row = 0, 0
+	local headers, checks = 0, 0
 
-	function frame:ShowMessage(msg)
-		if hideTimer then
-			Private.Addon:CancelTimer(hideTimer, true)
-			hideTimer = nil
+	for _, group in ipairs(page.toggles) do
+		if #group > 0 then
+			if row > 0 and row + #group + 1 > rows then
+				column, row = column + 1, 0
+			end
+
+			headers = headers + 1
+			local header = container.Headers[headers]
+			if not header then
+				header = CreateText(container, 13)
+				header:SetJustifyH('LEFT')
+				header:SetTextColor(0.294, 0.922, 0.173)
+				container.Headers[headers] = header
+			end
+
+			header:SetText(group.name)
+			header:ClearAllPoints()
+			header:SetPoint('TOPLEFT', column * 350, -(row * 24) - 4)
+			header:Show()
+			row = row + 1
+
+			for _, toggle in ipairs(group) do
+				if row >= rows then
+					column, row = column + 1, 0
+				end
+
+				checks = checks + 1
+				local check = container.Checks[checks]
+				if not check then
+					check = CreateCheckBox(container)
+					container.Checks[checks] = check
+				end
+
+				check:SetUserData('toggle', toggle)
+				check:SetLabel(toggle.label)
+				check:SetValue(ToggleDB(toggle)[toggle.key])
+				check:ClearAllPoints()
+				check:SetPoint('TOPLEFT', column * 350, -(row * 24))
+				check.frame:Show()
+				row = row + 1
+			end
 		end
-
-		PlaySound(888) -- Level Up Sound
-		self.text:SetText(format('%s: %s', Private.Name, msg))
-
-		if not self:IsShown() then
-			self:Show()
-		end
-
-		hideTimer = Private.Addon:ScheduleTimer(function()
-			self:Hide()
-			hideTimer = nil
-		end, 3)
 	end
 
-	stepCompleteFrame = frame
-	_G.LuckyoneInstallStepComplete = frame
-end
-
--- Installer Frame Setup
-local function SetupReset()
-	for _, option in ipairs(installerFrame.Options) do
-		option:Hide()
-		option:SetScript('OnClick', nil)
-		option:SetText('')
-		option:ClearAllPoints()
+	for index = headers + 1, #container.Headers do
+		container.Headers[index]:Hide()
 	end
 
-	installerFrame.SubTitle:SetText('')
-
-	for _, desc in ipairs(installerFrame.Descs) do
-		desc:SetText('')
+	for index = checks + 1, #container.Checks do
+		container.Checks[index].frame:Hide()
 	end
 end
 
-local function UpdateProgressBar()
-	local progress = currentPage / maxPage
-	local statusBar = installerFrame.StatusBar
-	statusBar:SetValue(currentPage)
+local function UpdateProgress()
+	local bar = installerFrame.StatusBar
+	local progress = currentPage / #pages
+
+	bar:SetValue(currentPage)
 
 	-- Red -> Yellow -> Green (50% brightness)
-	local r, g, b
 	if progress < 0.5 then
-		r = 0.5
-		g = progress
-		b = 0
+		bar:SetStatusBarColor(0.5, progress, 0)
 	else
-		r = 0.5 - (progress - 0.5)
-		g = 0.5
-		b = 0
+		bar:SetStatusBarColor(1 - progress, 0.5, 0)
 	end
 
-	statusBar:SetStatusBarColor(r, g, b)
-	statusBar.text:SetFormattedText('%d / %d', currentPage, maxPage)
-end
-
-local function UpdateStepList()
-	if not installerFrame.stepFrame or not installerFrame.StepTitles then return end
-
-	local buttons = installerFrame.stepFrame.buttons
-	local stepTitles = installerFrame.StepTitles
-
-	for i = 1, #buttons do
-		local color = (i == currentPage) and STEP_TITLE_SELECTED_COLOR or STEP_TITLE_COLOR
-		local text = buttons[i].text
-
-		text:SetText(stepTitles[i])
-		text:SetTextColor(color[1], color[2], color[3])
-	end
-end
-
-function Installer:SetPage(pageNum)
-	if pageNum < 1 or pageNum > maxPage then return end
-
-	SetupReset()
-
-	currentPage = pageNum
-
-	-- Nothing to go back to on page one, nothing to go forward to on the last
-	installerFrame.Prev:SetEnabled(currentPage > 1)
-	installerFrame.Next:SetEnabled(currentPage < maxPage)
-
-	UpdateProgressBar()
-
-	-- Execute page function
-	if installerFrame.Pages and installerFrame.Pages[currentPage] then
-		installerFrame.Pages[currentPage]()
-	end
-
-	LayoutOptionButtons()
-	UpdateStepList()
-end
-
-function Installer:NextPage()
-	if currentPage < maxPage then
-		self:SetPage(currentPage + 1)
-	end
-end
-
-function Installer:PreviousPage()
-	if currentPage > 1 then
-		self:SetPage(currentPage - 1)
-	end
-end
-
-local function StepButton_OnClick(self)
-	Installer:SetPage(self:GetID())
+	bar.text:SetFormattedText('%d / %d', currentPage, #pages)
 end
 
 -- Frame Creation
 local function CreateMainFrame()
-	local frame = CreateFrame('Frame', 'LuckyoneInstallerFrame', UIParent, _G.BackdropTemplateMixin and 'BackdropTemplate')
-	frame:SetSize(MAIN_FRAME_WIDTH, MAIN_FRAME_HEIGHT)
-	frame:SetPoint('CENTER', UIParent, 'CENTER', 0, 0)
+	local frame = CreateFrame('Frame', 'LuckyoneInstallerFrame', UIParent, 'BackdropTemplate')
+	frame:SetSize(740, 500)
+	frame:SetPoint('CENTER', UIParent, 'CENTER', -100, 160)
 	frame:SetFrameStrata('DIALOG')
-	frame:EnableMouse(true)
 	frame:SetMovable(true)
-	frame:RegisterForDrag('LeftButton')
-	frame:SetScript('OnDragStart', function(self) self:StartMoving() end)
-	frame:SetScript('OnDragStop', function(self) self:StopMovingOrSizing() end)
+	frame:SetClampedToScreen(true)
+	frame:EnableMouse(true)
 	frame:Hide()
 
 	ApplyTemplate(frame)
 
-	frame.Title = frame:CreateFontString(nil, 'OVERLAY')
-	frame.Title:SetFont(FONT, 16, FONT_OUTLINE)
-	frame.Title:SetPoint('TOP', 0, -10)
-	frame.Title:SetText(Private.Name .. ' ' .. L["Installation"])
+	-- Top Header
+	local header = CreateFrame('Frame', nil, frame)
+	header:SetHeight(36)
+	header:SetPoint('TOPLEFT')
+	header:SetPoint('TOPRIGHT')
+	header:EnableMouse(true)
+	header:RegisterForDrag('LeftButton')
+	header:SetScript('OnDragStart', function() frame:StartMoving() end)
+	header:SetScript('OnDragStop', function() frame:StopMovingOrSizing() end)
 
-	-- Logo texture
-	frame.Logo = frame:CreateTexture(nil, 'ARTWORK')
-	frame.Logo:SetTexture(Private.Logo)
-	frame.Logo:SetSize(36, 18)
-	frame.Logo:SetPoint('RIGHT', frame.Title, 'LEFT', 6, 0)
+	local title = CreateText(header, 16)
+	title:SetPoint('CENTER')
+	title:SetText(Private.Name .. ' ' .. L["Installation"])
 
-	frame.SubTitle = frame:CreateFontString(nil, 'OVERLAY')
-	frame.SubTitle:SetFont(FONT, 16, FONT_OUTLINE)
-	frame.SubTitle:SetPoint('TOP', 0, -45)
+	local logo = header:CreateTexture(nil, 'ARTWORK')
+	logo:SetTexture(Private.Logo)
+	logo:SetSize(36, 18)
+	logo:SetPoint('RIGHT', title, 'LEFT', 6, 0)
 
-	frame.Descs = {}
+	local version = CreateText(header, 11)
+	version:SetPoint('LEFT', 10, 0)
+	version:SetTextColor(0.6, 0.6, 0.6)
+	version:SetText(Private.VersionString)
 
-	for i = 1, 4 do
-		local desc = frame:CreateFontString(nil, 'OVERLAY')
-		desc:SetFont(FONT, 12, FONT_OUTLINE)
-		desc:SetWidth(MAIN_FRAME_WIDTH - 40)
-		desc:SetJustifyH('CENTER')
-		desc:SetSpacing(2)
+	local headerLine = CreateLine(frame)
+	headerLine:SetPoint('TOPLEFT', header, 'BOTTOMLEFT')
+	headerLine:SetPoint('TOPRIGHT', header, 'BOTTOMRIGHT')
 
-		if i == 1 then
-			desc:SetPoint('TOPLEFT', 20, -80)
-		else
-			desc:SetPoint('TOP', frame.Descs[i - 1], 'BOTTOM', 0, -20)
-		end
+	-- Footer: Previous, progress bar, Next
+	local footer = CreateFrame('Frame', nil, frame)
+	footer:SetHeight(40)
+	footer:SetPoint('BOTTOMLEFT')
+	footer:SetPoint('BOTTOMRIGHT')
 
-		frame.Descs[i] = desc
-		frame['Desc' .. i] = desc
+	local footerLine = CreateLine(frame)
+	footerLine:SetPoint('BOTTOMLEFT', footer, 'TOPLEFT')
+	footerLine:SetPoint('BOTTOMRIGHT', footer, 'TOPRIGHT')
+
+	frame.Prev = CreateButton(footer, 110, 26)
+	frame.Prev:SetPoint('LEFT', 8, 0)
+	frame.Prev:SetScript('OnClick', function() Installer:SetPage(currentPage - 1) end)
+	frame.Prev.text:SetText(L["Previous"])
+
+	frame.Next = CreateButton(footer, 110, 26)
+	frame.Next:SetPoint('RIGHT', -8, 0)
+	frame.Next:SetScript('OnClick', function() Installer:SetPage(currentPage + 1) end)
+	frame.Next.text:SetText(L["Next"])
+
+	-- Same backdrop as the buttons
+	local barHolder = CreateFrame('Frame', nil, footer, 'BackdropTemplate')
+	barHolder:SetPoint('TOPLEFT', frame.Prev, 'TOPRIGHT', 6, 0)
+	barHolder:SetPoint('BOTTOMRIGHT', frame.Next, 'BOTTOMLEFT', -6, 0)
+	ApplyTemplate(barHolder)
+	barHolder:SetBackdropColor(0.2, 0.2, 0.2, 0.8)
+
+	local bar = CreateFrame('StatusBar', nil, barHolder)
+	bar:SetPoint('TOPLEFT', 1, -1)
+	bar:SetPoint('BOTTOMRIGHT', -1, 1)
+	bar:SetStatusBarTexture('Interface\\Buttons\\WHITE8X8')
+	frame.StatusBar = bar
+
+	bar.text = CreateText(bar, 12)
+	bar.text:SetPoint('CENTER')
+
+	-- Step list, its own frame next to the main one so it moves and hides along with it
+	local sidebar = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
+	sidebar:SetSize(200, 500)
+	sidebar:SetPoint('TOPLEFT', frame, 'TOPRIGHT', 1, 0)
+	sidebar.Buttons = {}
+	frame.Sidebar = sidebar
+
+	ApplyTemplate(sidebar)
+
+	local steps = CreateText(sidebar, 16)
+	steps:SetPoint('CENTER', sidebar, 'TOP', 0, -18)
+	steps:SetText('Steps')
+
+	local sidebarLine = CreateLine(sidebar)
+	sidebarLine:SetPoint('TOPLEFT', 0, -36)
+	sidebarLine:SetPoint('TOPRIGHT', 0, -36)
+
+	-- Content: Subtitle, description, checkboxes, option buttons and the status line
+	local content = CreateFrame('Frame', nil, frame)
+	content:SetSize(740, 422)
+	content:SetPoint('TOPLEFT', header, 'BOTTOMLEFT', 0, -1)
+	frame.Content = content
+
+	content.SubTitle = CreateText(content, 16)
+	content.SubTitle:SetPoint('TOP', 0, -16)
+
+	content.Desc = CreateText(content, 12)
+	content.Desc:SetPoint('TOPLEFT', 20, -44)
+	content.Desc:SetWidth(700)
+	content.Desc:SetJustifyH('CENTER')
+	content.Desc:SetSpacing(2)
+
+	local toggles = CreateFrame('Frame', nil, content)
+	toggles:SetPoint('TOPLEFT', content.Desc, 'BOTTOMLEFT', 0, -16)
+	toggles:SetPoint('BOTTOMRIGHT', -20, 100)
+	toggles:Hide()
+	toggles.Headers = {}
+	toggles.Checks = {}
+	content.Toggles = toggles
+
+	content.Options = {}
+
+	for index = 1, 4 do
+		local button = CreateButton(content, 190, 30)
+		button:SetScript('OnClick', Option_OnClick)
+		button:SetScript('OnEnter', Option_OnEnter)
+		button:SetScript('OnLeave', GameTooltip_Hide)
+		button:Hide()
+		content.Options[index] = button
 	end
 
-	frame.Options = {}
+	-- Status line, holds for three seconds and fades out over one
+	local status = CreateText(content, 13)
+	status:SetHeight(20)
+	status:SetPoint('BOTTOMLEFT', 20, 12)
+	status:SetPoint('BOTTOMRIGHT', -20, 12)
+	status:SetJustifyH('CENTER')
+	status:SetTextColor(0.294, 0.922, 0.173)
+	status:Hide()
+	content.Status = status
 
-	for i = 1, 4 do
-		local option = CreateFrame('Button', 'LuckyoneInstallerOption' .. i, frame)
-		option:SetSize(160, 30)
-		option:Hide()
-		StyleButton(option)
+	status.fade = status:CreateAnimationGroup()
+	status.fade:SetScript('OnFinished', function() status:Hide() end)
 
-		frame.Options[i] = option
-		frame['Option' .. i] = option
-	end
-
-	frame.Prev = CreateFrame('Button', 'LuckyoneInstallerPrevButton', frame)
-	frame.Prev:SetSize(110, 25)
-	frame.Prev:SetPoint('BOTTOMLEFT', 5, 5)
-	frame.Prev:Disable()
-	frame.Prev:SetScript('OnClick', function() Installer:PreviousPage() end)
-	StyleButton(frame.Prev)
-	frame.Prev:SetText(L["Previous"])
-
-	frame.Next = CreateFrame('Button', 'LuckyoneInstallerNextButton', frame)
-	frame.Next:SetSize(110, 25)
-	frame.Next:SetPoint('BOTTOMRIGHT', -5, 5)
-	frame.Next:Disable()
-	frame.Next:SetScript('OnClick', function() Installer:NextPage() end)
-	StyleButton(frame.Next)
-	frame.Next:SetText(L["Next"])
-
-	frame.StatusBar = CreateFrame('StatusBar', 'LuckyoneInstallerStatusBar', frame)
-	frame.StatusBar:SetPoint('TOPLEFT', frame.Prev, 'TOPRIGHT', 6, 0)
-	frame.StatusBar:SetPoint('BOTTOMRIGHT', frame.Next, 'BOTTOMLEFT', -6, 0)
-	frame.StatusBar:SetStatusBarTexture('Interface\\Buttons\\WHITE8X8')
-	frame.StatusBar:SetMinMaxValues(0, 1)
-	frame.StatusBar:SetValue(0)
-	frame.StatusBar:SetStatusBarColor(1, 0, 0)
-
-	frame.StatusBar.bg = frame.StatusBar:CreateTexture(nil, 'BACKGROUND')
-	frame.StatusBar.bg:SetAllPoints()
-	frame.StatusBar.bg:SetColorTexture(0.2, 0.2, 0.2, 0.8)
-
-	frame.StatusBar.text = frame.StatusBar:CreateFontString(nil, 'OVERLAY')
-	frame.StatusBar.text:SetFont(FONT, 12, FONT_OUTLINE)
-	frame.StatusBar.text:SetPoint('CENTER')
-	frame.StatusBar.text:SetText('0 / 0')
+	local alpha = status.fade:CreateAnimation('Alpha')
+	alpha:SetStartDelay(3)
+	alpha:SetDuration(1)
+	alpha:SetFromAlpha(1)
+	alpha:SetToAlpha(0)
 
 	return frame
 end
 
-local function CreateStepFrame(parent)
-	local frame = CreateFrame('Frame', 'LuckyoneInstallerStepFrame', UIParent, _G.BackdropTemplateMixin and 'BackdropTemplate')
-	frame:SetSize(STEP_FRAME_WIDTH, MAIN_FRAME_HEIGHT)
-	frame:SetPoint('TOPLEFT', parent, 'TOPRIGHT', 1, 0)
-	frame:SetFrameStrata('DIALOG')
-	frame:Hide()
+-- Used by Private:Print with the installer flag
+function Installer:ShowStatus(msg)
+	if not installerFrame then return end
 
-	ApplyTemplate(frame)
+	local status = installerFrame.Content.Status
+	status:SetText(msg)
+	status:Show()
+	status.fade:Restart()
 
-	frame.title = frame:CreateFontString(nil, 'OVERLAY')
-	frame.title:SetFont(FONT, 14, FONT_OUTLINE)
-	frame.title:SetPoint('TOP', 0, -10)
-	frame.title:SetText('Steps')
-
-	-- Buttons dynamically created on show
-	frame.buttons = {}
-
-	return frame
+	PlaySound(888) -- Level Up Sound
 end
 
-function Installer:Show(data)
-	if not installerFrame then self:Initialize() end
-	if not data or not data.Pages or #data.Pages == 0 then return end
+-- Pages
+function Installer:SetPage(index)
+	local page = pages[index]
+	if not page then return end
 
-	-- Reset state
-	currentPage = 0
-	maxPage = #data.Pages
+	currentPage = index
 
-	installerFrame.Pages = data.Pages
-	installerFrame.StepTitles = data.StepTitles
+	local content = installerFrame.Content
+	content.Toggles:Hide()
+	content.Status.fade:Stop()
+	content.Status:Hide()
 
-	if data.Title then
-		installerFrame.Title:SetText(data.Title)
-	end
+	content.SubTitle:SetText(page.title)
+	content.Desc:SetText(page.desc)
 
-	installerFrame.StatusBar:SetMinMaxValues(0, maxPage)
-	installerFrame.StatusBar:SetValue(0)
+	local shown = 0
+	if page.buttons then
+		for _, data in ipairs(page.buttons) do
+			if not data.hidden then
+				shown = shown + 1
 
-	if data.StepTitles and #data.StepTitles == maxPage then
-		if not installerFrame.stepFrame then
-			installerFrame.stepFrame = CreateStepFrame(installerFrame)
-		end
+				local button = content.Options[shown]
+				button.data = data
+				button.text:SetText(data.text)
+				button:Show()
 
-		local stepFrame = installerFrame.stepFrame
-		local buttons = stepFrame.buttons
-
-		-- Only create what we are missing, existing buttons get reused
-		for i = #buttons + 1, maxPage do
-			local button = CreateFrame('Button', nil, stepFrame)
-			button:SetSize(STEP_BUTTON_WIDTH, STEP_BUTTON_HEIGHT)
-			button:SetID(i)
-			button:SetScript('OnClick', StepButton_OnClick)
-
-			if i == 1 then
-				button:SetPoint('TOP', stepFrame.title, 'BOTTOM', 0, -10)
-			else
-				button:SetPoint('TOP', buttons[i - 1], 'BOTTOM', 0, -2)
+				SetButtonEnabled(button, not data.addon or Private.IsAddOnLoaded(data.addon))
+				SetButtonSelected(button, data.key and selections[index] == data.key)
 			end
-
-			button.bg = button:CreateTexture(nil, 'BACKGROUND')
-			button.bg:SetAllPoints()
-			button.bg:SetColorTexture(0.2, 0.2, 0.2, 0.5)
-
-			button.highlight = button:CreateTexture(nil, 'HIGHLIGHT')
-			button.highlight:SetAllPoints()
-			button.highlight:SetColorTexture(1, 1, 1, 0.15)
-			button:SetHighlightTexture(button.highlight)
-
-			button.text = button:CreateFontString(nil, 'OVERLAY')
-			button.text:SetFont(FONT, 12, FONT_OUTLINE)
-			button.text:SetPoint('CENTER')
-			button.text:SetJustifyH('CENTER')
-
-			buttons[i] = button
 		end
-
-		installerFrame:ClearAllPoints()
-		installerFrame:SetPoint('CENTER', UIParent, 'CENTER', -(STEP_FRAME_WIDTH / 2) - 5, 0)
-		installerFrame.stepFrame:Show()
-	else
-		if installerFrame.stepFrame then
-			installerFrame.stepFrame:Hide()
-		end
-		installerFrame:ClearAllPoints()
-		installerFrame:SetPoint('CENTER', UIParent, 'CENTER', 0, 0)
 	end
 
-	-- Make sure we start on page one
+	LayoutOptions(shown)
+
+	if page.toggles then
+		LayoutToggles(page)
+		content.Toggles:Show()
+	end
+
+	-- Nothing to go back to on page one, nothing to go forward to on the last
+	SetButtonEnabled(installerFrame.Prev, index > 1)
+	SetButtonEnabled(installerFrame.Next, index < #pages)
+
+	UpdateProgress()
+	UpdateSidebar()
+end
+
+local function Page(name, desc, buttons, toggles, hidden, title)
+	return { name = name, title = title or name, desc = concat(desc, '\n\n'), buttons = buttons, toggles = toggles, hidden = hidden }
+end
+
+local function Button(text, func, key, addon, hidden)
+	return { text = text, func = func, key = key, addon = addon, hidden = hidden }
+end
+
+-- Hidden toggles are dropped here so the layout never has to skip them
+local function Group(name, ...)
+	local group = { name = name }
+
+	for _, toggle in ipairs({ ... }) do
+		if not toggle.hidden then
+			group[#group + 1] = toggle
+		end
+	end
+
+	return group
+end
+
+-- Missing sections (no ElvUI, other flavor) hide the toggle just like a hidden option
+local function ConfigOption(path)
+	local option, hidden = Private.Config, false
+
+	for part in gmatch(path, '[^.]+') do
+		option = option.args and option.args[part]
+		if not option then return {}, true end
+		if option.hidden == true then hidden = true end
+	end
+
+	return option, hidden
+end
+
+-- The db key is the last part of the path
+local function Toggle(section, path, labelPath, descPath)
+	local option, hidden = ConfigOption(path)
+	local label = (labelPath and ConfigOption(labelPath).name) or option.name
+	local desc = (descPath and ConfigOption(descPath).name) or option.desc
+
+	return { section = section, key = strmatch(path, '[^.]+$'), label = label, desc = desc, hidden = hidden }
+end
+
+local function BuildPages()
+	local recommended = Green(L["Recommended step. Should not be skipped."])
+
+	return {
+		-- Welcome
+		Page(L["Welcome"], {
+			L["The LuckyoneUI installer will guide you through some steps and apply the profiles of your choice."],
+			Green(L["Your existing profiles will not change. The installer will create a fresh profile."]),
+			L["Please read the steps carefully before clicking any buttons."],
+		}, {
+			Button(Green(L["Start"]), function() Installer:SetPage(currentPage + 1) end),
+			Button(CLOSE, function() Installer:Hide() end),
+		}),
+
+		-- UI scale
+		Page(L["LuckyoneUI Scale"], {
+			L["1440p = Default | 1080p = Downscaled"] .. '.',
+			Red(L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor pixel offsets."]),
+			recommended,
+		}, {
+			Button('1440p', function() Private:ApplyScale(true) Installer:ShowStatus(L["LuckyoneUI Scale"] .. ' 1440p') end, 'native'),
+			Button('1080p', function() Private:ApplyScale(false) Installer:ShowStatus(L["LuckyoneUI Scale"] .. ' 1080p') end, 'scaled'),
+		}),
+
+		-- ElvUI profiles
+		Page(L["ElvUI Layouts"], {
+			L["This step will configure the ElvUI layout of your choice."],
+			L["The ElvUI Nameplates are included in this step."],
+			recommended,
+		}, {
+			Button(L["DPS & Tanks"], function() Private:Setup_Layout('main', true) end, 'main'),
+			Button(L["Healing Vertical"], function() Private:Setup_Layout('healing', true) end, 'vertical'),
+			Button(L["Healing Horizontal"], function() Private:Setup_Layout('healing', true, 'horizontal') end, 'horizontal'),
+		}, nil, not Private.ElvUI),
+
+		-- Aura indicators (Global)
+		Page(L["ElvUI Filters"], {
+			(Private.isRetail and L["This will apply Luckyones Aura Indicator edit and set the style to Textured."]) or L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"],
+			recommended,
+		}, {
+			Button((Private.isRetail and L["Setup Aura Indicators"]) or L["Setup Aura Filters"], function() Private:Setup_Filters(true) end, 'filters'),
+		}, nil, not Private.ElvUI),
+
+		-- UnitFrames color themes
+		Page(L["Color Theme"], {
+			L["Select your preferred UnitFrames color theme."],
+			Green(L["Optional step. Dark is applied by default."]),
+		}, {
+			Button(L["Dark"], function() Private:Setup_Theme('dark', true) end, 'dark'),
+			Button(L["Class Color"], function() Private:Setup_Theme('class', true) end, 'class'),
+		}, nil, not Private.ElvUI),
+
+		-- Chat tabs setup & Chattynator option
+		Page(L["Chat"], {
+			L["This step will configure your two chat panels."],
+			recommended,
+			L["Left panel: General - Log - Whisper - Guild - Party."] .. '\n' .. L["Right panel: Damage Meter."],
+		}, {
+			Button(L["Setup Chat"], function() Private:Setup_Chat(true) end, 'chat'),
+			Button(L["Use Chattynator Addon"], function() Private:Setup_Chattynator(true) end, 'chattynator', 'Chattynator'),
+		}),
+
+		-- CVars
+		Page(L["Console Variables"], {
+			L["This step will configure some of Blizzards console variables."],
+			recommended,
+			L["Examples: Max camera distance, screenshot quality and tutorials."] .. '\n' .. L["The full list of configured CVars can be found in /lucky config."],
+		}, {
+			Button(L["Setup CVars"], function() Private:Setup_CVars(nil, true) end, 'cvars'),
+		}),
+
+		-- BigWigs profiles
+		Page('BigWigs', {
+			L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."],
+			recommended,
+		}, {
+			Button('BigWigs', function() Private:Setup_BigWigs('main') end, 'main', 'BigWigs'),
+			Button(L["BigWigs Healing"], function() Private:Setup_BigWigs('healing') end, 'healing', 'BigWigs'),
+		}, nil, nil, L["BigWigs profile"]),
+
+		-- Damage Meter choice
+		Page(L["Damage Meter"], Private.Modules.DamageMeter and {
+			L["Choose between Details! Damage Meter and the custom LuckyoneUI Damage Meter."],
+			L["The LuckyoneUI Damage Meter is based on the Blizzard API and much more lightweight\nbut offers less options compared to Details."],
+			recommended,
+		} or {
+			L["Please click the button below to apply Luckyones profile for Details! Damage Meter."],
+			recommended,
+		}, {
+			Button(L["Setup Details"], function() Private:Setup_Details(true) end, 'details', 'Details'),
+			Button(L["LuckyoneUI Damage Meter"], EnableDamageMeter, 'luckyone', nil, not Private.Modules.DamageMeter),
+		}),
+
+		-- M+ timer choice
+		Page(L["Mythic+ Addons"], {
+			L["Choose between WarpDeplete and MPlusTimer."],
+			recommended,
+		}, {
+			Button(L["Setup WarpDeplete"], function() Private:Setup_WarpDeplete(true) end, 'warpdeplete', 'WarpDeplete'),
+			Button(L["Setup MPlusTimer"], function() Private:Setup_MPlusTimer(true) end, 'mplustimer', 'MPlusTimer'),
+		}, nil, not Private.isRetail),
+
+		-- SCM profile
+		Page(L["Cooldown Manager"], {
+			L["Please click the button below to apply Luckyones profile for SkironCooldownManager."],
+			recommended,
+			L["For position adjustments use /scm X and Y offset options."],
+		}, {
+			Button('SkironCooldownManager', function() Private:Setup_SCM(true) end, 'scm', 'SkironCooldownManager'),
+		}, nil, not Private.isRetail, L["Cooldown Manager profile"]),
+
+		-- Edit mode string and guide
+		Page(L["Blizzard Edit Mode"], {
+			Green(L["Step 1:"]) .. '\n' .. L["Click the first button for the import.\nUse CTRL+C to copy the string from the popup."],
+			Green(L["Step 2:"]) .. '\n' .. L["Enter Edit Mode and select Import on the Dropdown.\nUse CTRL+V to paste string, then pick a name and click import."],
+		}, {
+			Button(L["Copy Editmode String"], function() Private:Return_EditModeString() end, 'copy'),
+			Button(Green(L["Enter Edit Mode"]), function() Private:ToggleEditMode() end),
+		}, nil, not Private.isRetail),
+
+		-- LuckyoneUI module checkboxes
+		Page(L["Modules"], { L["Enable the LuckyoneUI modules you want to use. Hover over a checkbox for details."] }, nil, {
+			Group(L["Modules"],
+				Toggle('map.minimap.buttons', 'map.minimapButtons.enable', 'map.minimapButtons'),
+				Toggle('misc.combatText', 'misc.combatText.generalOptions.enable', 'misc.combatText'),
+				Toggle('movableFrames', 'blizzard.movableFrames.enable', 'blizzard.movableFrames'),
+				Toggle('misc.mailbox', 'misc.mailbox.generalOptions.enable', 'misc.mailbox')
+			),
+			Group(L["ElvUI Tweaks"],
+				Toggle('misc', 'elvuiTweaks.toggles.mythicVisibility', nil, 'elvuiTweaks.mythicVisibilityDesc.desc'),
+				Toggle('misc', 'elvuiTweaks.toggles.dataTextsTweaks', nil, 'elvuiTweaks.dataTextsTweaksDesc.desc')
+			),
+			Group(L["Nameplates"],
+				Toggle('nameplates', 'elvuiTweaks.nameplates.targetTextureEnable'),
+				Toggle('nameplates', 'elvuiTweaks.nameplates.focusTextureEnable'),
+				Toggle('misc', 'blizzard.misc.removeNameplateRealm')
+			),
+		}),
+
+		-- LuckyoneUI general tab checkboxes
+		Page(L["Quality of Life"], { L["Small tweaks that speed up daily tasks and hide Blizzard frames you do not need."] }, nil, {
+			Group(L["Quality of Life"],
+				Toggle('qualityOfLife', 'blizzard.qualityOfLife.autoAcceptRole'),
+				Toggle('qualityOfLife', 'blizzard.qualityOfLife.autoDismount'),
+				Toggle('qualityOfLife', 'blizzard.qualityOfLife.easyDelete'),
+				Toggle('qualityOfLife', 'blizzard.qualityOfLife.expandMerchant'),
+				Toggle('qualityOfLife', 'blizzard.qualityOfLife.fasterLoot'),
+				Toggle('qualityOfLife', 'blizzard.qualityOfLife.preventLootAutoShow'),
+				Toggle('qualityOfLife', 'blizzard.qualityOfLife.privacyOverlay'),
+				Toggle('qualityOfLife', 'blizzard.qualityOfLife.quickSignup')
+			),
+			Group(L["Hide Blizzard Frames"],
+				Toggle('disabledFrames', 'blizzard.disabledFrames.AlertFrame'),
+				Toggle('disabledFrames', 'blizzard.disabledFrames.ApplicationCover'),
+				Toggle('disabledFrames', 'blizzard.disabledFrames.BossBanner'),
+				Toggle('disabledFrames', 'blizzard.disabledFrames.HousingDecorAlerts'),
+				Toggle('disabledFrames', 'blizzard.disabledFrames.LossOfControl'),
+				Toggle('disabledFrames', 'blizzard.disabledFrames.TalkingHead'),
+				Toggle('disabledFrames', 'blizzard.disabledFrames.UIErrorsFrame'),
+				Toggle('disabledFrames', 'blizzard.disabledFrames.ZoneTextFrame')
+			),
+		}),
+
+		-- LuckyoneUI custom skins
+		Page('Skins', { L["Skin the Addons and Blizzard frames below in ElvUI style. Only installed Addons are listed."] }, nil, {
+			Group('AddOns',
+				Toggle('skins', 'skins.addons.Auctionator'),
+				Toggle('skins', 'skins.addons.BugSack'),
+				Toggle('skins', 'skins.addons.DejaClassicStats'),
+				Toggle('skins', 'skins.addons.LeatrixPlus'),
+				Toggle('skins', 'skins.addons.LFGBulletinBoard'),
+				Toggle('skins', 'skins.addons.NovaSpellRankChecker'),
+				Toggle('skins', 'skins.addons.NovaWorldBuffs'),
+				Toggle('skins', 'skins.addons.SimpleAddonManager'),
+				Toggle('skins', 'skins.addons.Tabardy'),
+				Toggle('skins', 'skins.addons.WhatsTraining')
+			),
+			Group('Blizzard',
+				Toggle('skins.Blizzard', 'skins.blizzard.CooldownViewer'),
+				Toggle('skins.Blizzard', 'skins.blizzard.DeveloperConsole')
+			),
+		}, not Private.ElvUI),
+
+		-- Final reload and Discord link
+		Page(L["Installation Complete"], {
+			L["You have completed the installation process, please click 'Finished' to reload the UI."],
+			L["Feel free to join our community Discord for support and social chats."],
+		}, {
+			Button('Discord', function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://discord.gg/xRY4bwA') end),
+			Button(Green(L["Finished"]), InstallComplete),
+		}),
+	}
+end
+
+local function Initialize()
+	installerFrame = CreateMainFrame()
+
+	-- Checkbox pages read their text from the config table
+	Private:BuildConfig()
+
+	-- Addon checks only make sense once everything is loaded
+	local sidebar = installerFrame.Sidebar
+	for _, page in ipairs(BuildPages()) do
+		if not page.hidden then
+			local index = #pages + 1
+			pages[index] = page
+			sidebar.Buttons[index] = CreateStepButton(sidebar, index, page.name)
+		end
+	end
+
+	installerFrame.StatusBar:SetMinMaxValues(0, #pages)
+end
+
+function Installer:Show()
+	if not installerFrame then Initialize() end
+
+	wipe(selections)
+	for _, button in ipairs(installerFrame.Sidebar.Buttons) do
+		button.icon:Hide()
+	end
+
 	installerFrame:Show()
 	self:SetPage(1)
 end
 
 function Installer:Hide()
-	if not installerFrame then return end
-
-	installerFrame:Hide()
-
-	if installerFrame.stepFrame then
-		installerFrame.stepFrame:Hide()
+	if installerFrame then
+		installerFrame:Hide()
 	end
 end
 
 function Installer:IsShown()
-	return installerFrame ~= nil and installerFrame:IsShown()
-end
-
--- Installer Data
-local function BuildInstallerData()
-	local pages = {}
-	local stepTitles = {}
-	local pageIndex = 1
-
-	-- Page 1: Welcome
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["Welcome"])
-		f.Desc1:SetText(L["The LuckyoneUI installer will guide you through some steps and apply the profiles of your choice."])
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Your existing profiles will not change. The installer will create a fresh profile."]))
-		f.Desc3:SetText(L["Please read the steps carefully before clicking any buttons."])
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', InstallComplete)
-		f.Option1:SetText(format('|cffC80000%s', L["Skip and close"]))
-		f.Option2:Show()
-		f.Option2:SetScript('OnClick', Installer.Hide)
-		f.Option2:SetText(L["Close installer"])
-	end
-	stepTitles[pageIndex] = L["Welcome"]
-	pageIndex = pageIndex + 1
-
-	-- Page 2: Layout scale (All versions)
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["LuckyoneUI Scale"])
-		f.Desc1:SetText(L["1440p = Default | 1080p = Downscaled"] .. '.')
-		f.Desc2:SetText(format('|cffC80000%s', L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor pixel offsets."]))
-		f.Desc3:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() Private:ApplyScale(true) stepCompleteFrame:ShowMessage(L["LuckyoneUI Scale"] .. ' 1440p') end)
-		f.Option1:SetText('1440p')
-		f.Option2:Show()
-		f.Option2:SetScript('OnClick', function() Private:ApplyScale(false) stepCompleteFrame:ShowMessage(L["LuckyoneUI Scale"] .. ' 1080p') end)
-		f.Option2:SetText('1080p')
-	end
-	stepTitles[pageIndex] = L["LuckyoneUI Scale"]
-	pageIndex = pageIndex + 1
-
-	-- Only add ElvUI-specific pages if ElvUI is loaded
-	if Private.ElvUI then
-		-- Page: ElvUI layouts
-		pages[pageIndex] = function()
-			local f = installerFrame
-			f.SubTitle:SetText(L["ElvUI Layouts"])
-			f.Desc1:SetText(L["This step will configure the ElvUI layout of your choice."])
-			f.Desc2:SetText(L["The ElvUI Nameplates are included in this step."])
-			f.Desc3:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Setup_Layout('main', true) end)
-			f.Option1:SetText(L["DPS & Tanks"])
-			f.Option2:Show()
-			f.Option2:SetScript('OnClick', function() Private:Setup_Layout('healing', true) end)
-			f.Option2:SetText(L["Healing Vertical"])
-			f.Option3:Show()
-			f.Option3:SetScript('OnClick', function() Private:Setup_Layout('healing', true, 'horizontal') end)
-			f.Option3:SetText(L["Healing Horizontal"])
-		end
-		stepTitles[pageIndex] = L["ElvUI Layouts"]
-		pageIndex = pageIndex + 1
-
-		-- Page: ElvUI Filters
-		pages[pageIndex] = function()
-			local f = installerFrame
-			f.SubTitle:SetText(L["ElvUI Filters"])
-			f.Desc1:SetText((Private.isRetail and L["This will apply Luckyones Aura Indicator edit and set the style to Textured."]) or L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"])
-			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Setup_Filters(true) end)
-			f.Option1:SetText((Private.isRetail and L["Setup Aura Indicators"]) or L["Setup Aura Filters"])
-		end
-		stepTitles[pageIndex] = L["ElvUI Filters"]
-		pageIndex = pageIndex + 1
-
-		-- Page: Color Theme
-		pages[pageIndex] = function()
-			local f = installerFrame
-			f.SubTitle:SetText(L["Color Theme"])
-			f.Desc1:SetText(L["Select your preferred UnitFrames color theme."])
-			f.Desc2:SetText(format('|cff4beb2c%s', L["Optional step. Dark is applied by default."]))
-			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Setup_Theme('dark', true) end)
-			f.Option1:SetText(L["Dark"])
-			f.Option2:Show()
-			f.Option2:SetScript('OnClick', function() Private:Setup_Theme('class', true) end)
-			f.Option2:SetText(L["Class Color"])
-		end
-		stepTitles[pageIndex] = L["Color Theme"]
-		pageIndex = pageIndex + 1
-	end
-
-	-- Page: Chat
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["Chat"])
-		f.Desc1:SetText(L["This step will configure your two chat panels."])
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-		f.Desc3:SetText(L["Left panel: General - Log - Whisper - Guild - Party."])
-		f.Desc4:SetText(L["Right panel: Damage Meter."])
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() Private:Setup_Chat(true) end)
-		f.Option1:SetText(L["Setup Chat"])
-		f.Option2:Show()
-		f.Option2:SetScript('OnClick', function() Private:Setup_Chattynator(true) end)
-		f.Option2:SetText(L["Use Chattynator Addon"])
-	end
-	stepTitles[pageIndex] = L["Chat"]
-	pageIndex = pageIndex + 1
-
-	-- Page: Console variables
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["Console Variables"])
-		f.Desc1:SetText(L["This step will configure some of Blizzards console variables."])
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-		f.Desc3:SetText(L["Examples: Max camera distance, screenshot quality and tutorials."])
-		f.Desc4:SetText(L["The full list of configured CVars can be found in /lucky config."])
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() Private:Setup_CVars(nil, true) end)
-		f.Option1:SetText(L["Setup CVars"])
-	end
-	stepTitles[pageIndex] = L["Console Variables"]
-	pageIndex = pageIndex + 1
-
-	-- Page: BigWigs
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["BigWigs profile"])
-		f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."])
-		f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() Private:Setup_BigWigs('main') end)
-		f.Option1:SetText('BigWigs')
-		f.Option2:Show()
-		f.Option2:SetScript('OnClick', function() Private:Setup_BigWigs('healing') end)
-		f.Option2:SetText(L["BigWigs Healing"])
-	end
-	stepTitles[pageIndex] = 'BigWigs'
-	pageIndex = pageIndex + 1
-
-	-- Page: Damage Meter
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["Damage Meter"])
-		if not Private.Modules.DamageMeter then
-			f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for Details! Damage Meter."])
-		else
-			f.Desc1:SetText(L["Choose between Details! Damage Meter and the custom LuckyoneUI Damage Meter."])
-			f.Desc2:SetText(L["The LuckyoneUI Damage Meter is based on the Blizzard API and much more lightweight\nbut offers less options compared to Details."])
-		end
-		f.Desc3:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() Private:Setup_Details(true) end)
-		f.Option1:SetText(L["Setup Details"])
-		if Private.Modules.DamageMeter then
-			f.Option2:Show()
-			f.Option2:SetScript('OnClick', LuckyoneDamageMeter)
-			f.Option2:SetText(L["LuckyoneUI Damage Meter"])
-		end
-	end
-	stepTitles[pageIndex] = L["Damage Meter"]
-	pageIndex = pageIndex + 1
-
-	-- Retail-only: WarpDeplete, MPlusTimer, SkironCooldownManager
-	if Private.isRetail then
-		pages[pageIndex] = function()
-			local f = installerFrame
-			f.SubTitle:SetText(L["Mythic+ Addons"])
-			f.Desc1:SetText(L["Choose between WarpDeplete and MPlusTimer."])
-			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Setup_WarpDeplete(true) end)
-			f.Option1:SetText(L["Setup WarpDeplete"])
-			f.Option2:Show()
-			f.Option2:SetScript('OnClick', function() Private:Setup_MPlusTimer(true) end)
-			f.Option2:SetText(L["Setup MPlusTimer"])
-		end
-		stepTitles[pageIndex] = L["Mythic+ Addons"]
-		pageIndex = pageIndex + 1
-
-		pages[pageIndex] = function()
-			local f = installerFrame
-			f.SubTitle:SetText(L["Cooldown Manager profile"])
-			f.Desc1:SetText(L["Please click the button below to apply Luckyones profile for SkironCooldownManager."])
-			f.Desc2:SetText(format('|cff4beb2c%s', L["Recommended step. Should not be skipped."]))
-			f.Desc3:SetText(L["For position adjustments use /scm X and Y offset options."])
-			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Setup_SCM(true) end)
-			f.Option1:SetText('SkironCooldownManager')
-		end
-		stepTitles[pageIndex] = L["Cooldown Manager"]
-		pageIndex = pageIndex + 1
-
-		-- Edit Mode import guide
-		pages[pageIndex] = function()
-			local f = installerFrame
-			f.SubTitle:SetText(L["Blizzard Edit Mode"])
-			f.Desc1:SetText(format('|cff4beb2c%s|r', L["Step 1:"]) .. '\n\n' .. L["Click the first button for the import.\nUse CTRL+C to copy the string from the popup."])
-			f.Desc2:SetText(format('|cff4beb2c%s|r', L["Step 2:"]) .. '\n\n' .. L["Enter Edit Mode and select Import on the Dropdown.\nUse CTRL+V to paste string, then pick a name and click import."])
-			f.Option1:Show()
-			f.Option1:SetScript('OnClick', function() Private:Return_EditModeString() end)
-			f.Option1:SetText(L["Copy Editmode String"])
-			f.Option2:Show()
-			f.Option2:SetScript('OnClick', function() Private:ToggleEditMode() end)
-			f.Option2:SetText(format('|cff4beb2c%s|r', L["Enter Edit Mode"]))
-		end
-		stepTitles[pageIndex] = L["Blizzard Edit Mode"]
-		pageIndex = pageIndex + 1
-	end
-
-	-- Final page: Installation Complete
-	pages[pageIndex] = function()
-		local f = installerFrame
-		f.SubTitle:SetText(L["Installation Complete"])
-		f.Desc1:SetText(L["You have completed the installation process, please click 'Finished' to reload the UI."])
-		f.Desc2:SetText(L["Feel free to join our community Discord for support and social chats."])
-		f.Option1:Show()
-		f.Option1:SetScript('OnClick', function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://discord.gg/xRY4bwA') end)
-		f.Option1:SetText('Discord')
-		f.Option2:Show()
-		f.Option2:SetScript('OnClick', InstallComplete)
-		f.Option2:SetText(format('|cff4beb2c%s', L["Finished"]))
-	end
-	stepTitles[pageIndex] = L["Installation Complete"]
-
-	return { Title = format('|cff4beb2c%s|r %s', Private.Name, L["Installation"]), Pages = pages, StepTitles = stepTitles }
-end
-Private.InstallerData = BuildInstallerData()
-
-function Installer:Initialize()
-	if installerFrame then return end
-
-	FONT = LSM:Fetch('font', Private.Font)
-
-	CreateStepComplete()
-	installerFrame = CreateMainFrame()
+	return installerFrame and installerFrame:IsShown()
 end

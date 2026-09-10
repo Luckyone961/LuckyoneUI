@@ -100,7 +100,7 @@ local function BuildSetupSection()
 	section.inline = true
 	section.args.header = ACH:Header(Private.Name, 1, nil, nil, not Private.ElvUI)
 	section.args.spacer1 = ACH:Spacer(2, 'full', not Private.ElvUI)
-	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Run the installation process."], 3, function() Private.Installer:Show(Private.InstallerData) if Private.ElvUI then ElvUI[1]:ToggleOptions() else HideUIPanel(SettingsPanel) end end)
+	section.args.installer = ACH:Execute(Private.Name .. ' ' .. L["Install"], L["Run the installation process."], 3, function() Private.Installer:Show() if Private.ElvUI then ElvUI[1]:ToggleOptions() else HideUIPanel(SettingsPanel) end end)
 	section.args.alts = ACH:Execute(L["Alt Setup"], L["Loads your existing LuckyoneUI profile in every enabled addon that has one.\n\nIt also applies the console variables and can create your chat tabs.\n\nHealer specializations get the healing profiles, everyone else the main ones."], 4, function() StaticPopup_Show(ALTS_POPUP) end)
 	section.args.spacer2 = ACH:Spacer(5, 0.20)
 	section.args.native = ACH:Toggle('1440p',L["1440p = Default | 1080p = Downscaled"], 6, nil, nil, 'half', function() return not Private.Addon.db.global.scaled end, function(_, value) Private.Addon.db.global.scaled = not value end)
@@ -716,14 +716,14 @@ local function BuildSkinsSection()
 	section.args.addons.inline = true
 	section.args.addons.args.Auctionator = ACH:Toggle('Auctionator', L["Skin the Addon in ElvUI style"], 1, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('Auctionator'))
 	section.args.addons.args.BugSack = ACH:Toggle('BugSack', L["Skin the Addon in ElvUI style"], 2, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('BugSack'))
-	section.args.addons.args.DejaClassicStats = ACH:Toggle('Deja Classic Stats', L["Skin the Addon in ElvUI style"], 3, nil, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) and not Private.IsAddOnLoaded('DejaClassicStats'))
-	section.args.addons.args.LeatrixPlus = ACH:Toggle('Leatrix Plus', L["Skin the two small Head/Cloak toggle checkboxes on the character frame in ElvUI style"], 4, nil, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) and not Private.IsAddOnLoaded('Leatrix_Plus'))
-	section.args.addons.args.LFGBulletinBoard = ACH:Toggle('LFG Bulletin Board', L["Skin the full bulletin board frame in ElvUI style"], 5, nil, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) and not Private.IsAddOnLoaded('LFGBulletinBoard'))
-	section.args.addons.args.NovaSpellRankChecker = ACH:Toggle('Nova Spell Rank Checker', L["Skin the Spell Rank Checker button in ElvUI style"], 6, nil, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) and not Private.IsAddOnLoaded('NovaSpellRankChecker'))
-	section.args.addons.args.NovaWorldBuffs = ACH:Toggle('Nova World Buffs', L["Skin the small layer frame on the Minimap in ElvUI style and move it to the bottom left"], 7, nil, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) and not Private.IsAddOnLoaded('NovaWorldBuffs'))
+	section.args.addons.args.DejaClassicStats = ACH:Toggle('Deja Classic Stats', L["Skin the Addon in ElvUI style"], 3, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC) and Private.IsAddOnLoaded('DejaClassicStats')))
+	section.args.addons.args.LeatrixPlus = ACH:Toggle('Leatrix Plus', L["Skin the two small Head/Cloak toggle checkboxes on the character frame in ElvUI style"], 4, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC) and Private.IsAddOnLoaded('Leatrix_Plus')))
+	section.args.addons.args.LFGBulletinBoard = ACH:Toggle('LFG Bulletin Board', L["Skin the full bulletin board frame in ElvUI style"], 5, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC) and Private.IsAddOnLoaded('LFGBulletinBoard')))
+	section.args.addons.args.NovaSpellRankChecker = ACH:Toggle('Nova Spell Rank Checker', L["Skin the Spell Rank Checker button in ElvUI style"], 6, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC) and Private.IsAddOnLoaded('NovaSpellRankChecker')))
+	section.args.addons.args.NovaWorldBuffs = ACH:Toggle('Nova World Buffs', L["Skin the small layer frame on the Minimap in ElvUI style and move it to the bottom left"], 7, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC) and Private.IsAddOnLoaded('NovaWorldBuffs')))
 	section.args.addons.args.SimpleAddonManager = ACH:Toggle('Simple Addon Manager', L["Skin the Addon in ElvUI style"], 8, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('SimpleAddonManager'))
 	section.args.addons.args.Tabardy = ACH:Toggle('Tabardy', L["Skin the Addon in ElvUI style"], 9, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('Tabardy'))
-	section.args.addons.args.WhatsTraining = ACH:Toggle('WhatsTraining', L["Skin the WhatsTraining page in the Spellbook in ElvUI style"], 10, nil, nil, nil, nil, nil, nil, (Private.isRetail or Private.isMists) and not Private.IsAddOnLoaded('WhatsTraining'))
+	section.args.addons.args.WhatsTraining = ACH:Toggle('WhatsTraining', L["Skin the WhatsTraining page in the Spellbook in ElvUI style"], 10, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC) and Private.IsAddOnLoaded('WhatsTraining')))
 	section.args.blizzard = ACH:Group('Blizzard', nil, 2, nil, function(info) return Private.Addon.db.profile.skins.Blizzard[info[#info]] end, function(info, value) Private.Addon.db.profile.skins.Blizzard[info[#info]] = value StaticPopup_Show(RELOAD_POPUP) end)
 	section.args.blizzard.inline = true
 	section.args.blizzard.args.CooldownViewer = ACH:Toggle('Cooldown Settings', nil, 1, nil, nil, nil, nil, nil, nil, not Private.isRetail)
@@ -788,7 +788,9 @@ local function BuildDevSection()
 end
 
 -- LuckyoneUI config panel
+-- Built once, the installer reads names and descriptions from it before ElvUI_Options is loaded
 function Private:BuildConfig()
+	if Private.Config then return end
 
 	-- Header
 	Private.Config = ACH:Group((Private.ElvUI and Private.Name) or format('%s %s', Private.Name, Private.VersionString), nil, 20, (Private.ElvUI and nil) or 'tree')
@@ -811,18 +813,20 @@ function Private:BuildConfig()
 	Private.Config.args.credits = BuildCreditsSection() -- 70
 	Private.Config.args.links = BuildLinksSection() -- 75
 	Private.Config.args.dev = BuildDevSection() -- 100
+end
 
-	-- ElvUI config integration
-	if Private.ElvUI then
-		local E = ElvUI[1]
+-- ElvUI config integration, LibElvUIPlugin calls this once ElvUI_Options is loaded
+function Private:RegisterElvUIConfig()
+	Private:BuildConfig()
 
-		E.Options.name = format('%s + %s |cff99ff33%s|r', E.Options.name, Private.Name, Private.VersionString)
-		E.Options.args.LuckyoneUI = Private.Config
+	local E = ElvUI[1]
 
-		local scaling = E.Options.args.general and E.Options.args.general.args.general and E.Options.args.general.args.general.args.scaling
-		if scaling then
-			scaling.hidden = true
-		end
+	E.Options.name = format('%s + %s |cff99ff33%s|r', E.Options.name, Private.Name, Private.VersionString)
+	E.Options.args.LuckyoneUI = Private.Config
+
+	local scaling = E.Options.args.general and E.Options.args.general.args.general and E.Options.args.general.args.general.args.scaling
+	if scaling then
+		scaling.hidden = true
 	end
 end
 

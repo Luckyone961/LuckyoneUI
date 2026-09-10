@@ -44,6 +44,8 @@ Locales\zhCN.lua
 
 Init.lua
 
+Media\Media.lua
+
 Core\Defaults.lua
 Core\Config.lua
 Core\Personal.lua
@@ -51,8 +53,6 @@ Core\Core.lua
 Core\Alts.lua
 Core\Installer.lua
 Core\Themes.lua
-
-Media\Media.lua
 
 Modules\Auras\Filters.lua
 Modules\Blizzard\Blizzard.lua
