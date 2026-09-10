@@ -112,6 +112,7 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.quest.objectiveTracker.menuTitle.font.size = 13
 	E.private.WT.quest.objectiveTracker.titleColor.classColor = true
 	E.private.WT.skins.actionStatus.size = 12
+	E.private.WT.skins.addons.auctionator = false
 	E.private.WT.skins.addons.bugSack = false
 	E.private.WT.skins.addons.simpleAddonManager = false
 	E.private.WT.skins.addons.warpDeplete = false

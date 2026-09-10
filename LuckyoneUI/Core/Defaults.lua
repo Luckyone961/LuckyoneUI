@@ -182,6 +182,7 @@ Private.Defaults = {
 			quickSignup = false,
 		},
 		skins = {
+			Auctionator = false,
 			BugSack = false,
 			DejaClassicStats = false,
 			LeatrixPlus = false,
