@@ -345,6 +345,7 @@ L["Restore Defaults"] = "Restaurer les valeurs par défaut"
 L["Restore LuckyoneUI Defaults"] = "Restaurer aux valeurs LuckyoneUI par défaut"
 L["Retribution"] = "Vindicte"
 L["Right click a session window to open the bookmark panel over its bars.\n\nLeft click a bookmark to switch the window to it, right click one to drop it again. Drag one up or down to give it another place. The last slot opens a menu with the types you are missing."] = true
+L["Right click the window to close it."] = true
 L["Right panel: Damage Meter."] = "Panneau droit : compteur de dégâts."
 L["Rogue"] = "Voleur"
 L["Scenario"] = "Scénario"

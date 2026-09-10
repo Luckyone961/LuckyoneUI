@@ -345,6 +345,7 @@ L["Restore Defaults"] = "Standard wiederherstellen"
 L["Restore LuckyoneUI Defaults"] = "LuckyoneUI Standardeinstellungen wiederherstellen"
 L["Retribution"] = true
 L["Right click a session window to open the bookmark panel over its bars.\n\nLeft click a bookmark to switch the window to it, right click one to drop it again. Drag one up or down to give it another place. The last slot opens a menu with the types you are missing."] = "Rechtsklick auf ein Session-Fenster um die Lesezeichenliste zu öffnen.\n\nLinksklick auf ein Lesezeichen wechselt das Fenster dorthin, Rechtsklick auf ein Lesezeichen löscht es aus der Liste. Zieh ein Lesezeichen hoch oder runter um es zu repositionieren. Der letzte Slot in der Liste öffnet ein Menü mit Kategorien die dir noch unter Lesezeichen fehlen."
+L["Right click the window to close it."] = "Rechtsklick auf das Fenster schließt es."
 L["Right panel: Damage Meter."] = "Rechtes Feld: Damage Meter."
 L["Rogue"] = "Schurke"
 L["Scenario"] = "Szenario"

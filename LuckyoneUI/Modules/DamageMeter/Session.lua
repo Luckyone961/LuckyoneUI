@@ -1,4 +1,5 @@
 local _, Private = ...
+local L = Private.Libs.ACL
 local DM = Private.Modules.DamageMeter
 
 if not DM then return end
@@ -34,6 +35,8 @@ local SecondsToClock = SecondsToClock
 local MenuUtil = MenuUtil
 local MenuVariants = MenuVariants
 local Menu = Menu
+local GameTooltip = GameTooltip
+local GameTooltip_Hide = GameTooltip_Hide
 local ScrollBarMixin = ScrollBarMixin
 local CreateAnchor = AnchorUtil.CreateAnchor
 local issecretvalue = issecretvalue or function() return false end
@@ -47,6 +50,7 @@ local S = E:GetModule('Skins')
 local ICON_RESET = Private.IconPath .. 'DM_Reset.png'
 local ICON_SESSIONS = Private.IconPath .. 'DM_Sessions.png'
 local ICON_SETTINGS = Private.IconPath .. 'DM_Settings.png'
+local ICON_PINNED = Private.IconPath .. 'DM_Pinned.png'
 
 local MeterType = Enum.DamageMeterType
 local SessionType = Enum.DamageMeterSessionType
@@ -964,6 +968,12 @@ local function PopupHeader_OnDragStop(header)
 	popup:SetUserPlaced(false)
 end
 
+local function PopupPin_OnEnter(pin)
+	GameTooltip:SetOwner(pin, 'ANCHOR_RIGHT')
+	GameTooltip:AddLine(L["Right click the window to close it."], 1, 1, 1)
+	GameTooltip:Show()
+end
+
 -- The cursor corner is the anchor, the popup grows toward the screen center
 local function AnchorToCursor(popup)
 	local scale = popup:GetEffectiveScale()
@@ -1077,6 +1087,18 @@ function DM:GetPopup()
 
 	popup.typeText = CreateHeaderText(header)
 
+	local pin = CreateFrame('Frame', nil, header)
+	pin:EnableMouse(true)
+	pin:SetPassThroughButtons('LeftButton', 'RightButton', 'MiddleButton')
+	pin:SetScript('OnEnter', PopupPin_OnEnter)
+	pin:SetScript('OnLeave', GameTooltip_Hide)
+	pin:Hide()
+
+	pin.icon = pin:CreateTexture(nil, 'ARTWORK')
+	pin.icon:SetTexture(ICON_PINNED)
+	pin.icon:Point('CENTER')
+	popup.pin = pin
+
 	-- The Blizzard trim scroll bar with the ElvUI skin, the wheel keeps moving one row at a time
 	local scrollBar = CreateFrame('EventFrame', nil, popup, 'WowTrimScrollBar')
 	scrollBar:EnableMouseWheel(true)
@@ -1097,12 +1119,28 @@ function DM:ApplyPopupSettings(popup)
 	local wdb = db.windows[popup.owner.index]
 	local scrollWidth = 22
 	local r, g, b = HeaderColor()
+	local pin, sticky = popup.pin, popup.sticky
 
 	popup.header:Height(db.headerHeight)
 
+	-- Same spot and size as the reset button on the windows
+	pin:Size(db.headerIconSize, db.headerHeight)
+	pin.icon:Size(db.headerIconSize)
+	pin.icon:SetVertexColor(r, g, b)
+	pin:ClearAllPoints()
+	pin:Point('RIGHT', popup.header, 'RIGHT', 3, 0)
+	pin:SetShown(sticky)
+
+	-- The name hands its right edge over to the pin
 	popup.typeText:ClearAllPoints()
 	popup.typeText:Point('TOPLEFT', popup.header, 'TOPLEFT', db.headerTypeXOffset, db.headerTypeYOffset)
-	popup.typeText:Point('BOTTOMRIGHT', popup.header, 'BOTTOMRIGHT', db.headerTypeXOffset, db.headerTypeYOffset)
+
+	if sticky then
+		popup.typeText:Point('BOTTOMRIGHT', pin, 'BOTTOMLEFT', -4 + db.headerTypeXOffset, db.headerTypeYOffset)
+	else
+		popup.typeText:Point('BOTTOMRIGHT', popup.header, 'BOTTOMRIGHT', db.headerTypeXOffset, db.headerTypeYOffset)
+	end
+
 	popup.typeText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
 	popup.typeText:SetTextColor(r, g, b)
 
