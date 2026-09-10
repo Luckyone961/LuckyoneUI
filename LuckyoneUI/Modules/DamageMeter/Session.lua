@@ -22,6 +22,7 @@ local DoesAncestryIncludeAny = DoesAncestryIncludeAny
 local GetCursorPosition = GetCursorPosition
 local GetMouseFoci = GetMouseFoci
 local IsShiftKeyDown = IsShiftKeyDown
+local InCombatLockdown = InCombatLockdown
 local UnitGUID = UnitGUID
 local GetAvailableCombatSessions = C_DamageMeter.GetAvailableCombatSessions
 local GetCombatSessionFromID = C_DamageMeter.GetCombatSessionFromID
@@ -1025,6 +1026,28 @@ function DM:UpdateScrollBar(window)
 	scrollBar.locked = false
 end
 
+-- SetPassThroughButtons is protected in combat, frames created there get it once combat ends
+local passThroughQueue = CreateFrame('Frame')
+passThroughQueue.pending = {}
+passThroughQueue:SetScript('OnEvent', function(queue)
+	queue:UnregisterEvent('PLAYER_REGEN_ENABLED')
+
+	for frame, buttons in pairs(queue.pending) do
+		frame:SetPassThroughButtons(unpack(buttons))
+	end
+
+	wipe(queue.pending)
+end)
+
+local function SetPassThrough(frame, ...)
+	if InCombatLockdown() then
+		passThroughQueue.pending[frame] = { ... }
+		passThroughQueue:RegisterEvent('PLAYER_REGEN_ENABLED')
+	else
+		frame:SetPassThroughButtons(...)
+	end
+end
+
 -- The session windows and the popup are the same shape, a header on top and the bars below it
 local function CreateWindowFrames(frame)
 	frame.bars = {}
@@ -1089,7 +1112,7 @@ function DM:GetPopup()
 
 	local pin = CreateFrame('Frame', nil, header)
 	pin:EnableMouse(true)
-	pin:SetPassThroughButtons('LeftButton', 'RightButton', 'MiddleButton')
+	SetPassThrough(pin, 'LeftButton', 'RightButton', 'MiddleButton')
 	pin:SetScript('OnEnter', PopupPin_OnEnter)
 	pin:SetScript('OnLeave', GameTooltip_Hide)
 	pin:Hide()
@@ -1364,8 +1387,8 @@ function DM:GetWindow(index)
 	local header, content = CreateWindowFrames(window)
 
 	-- Only the right click belongs to the window, the rest goes through
-	header:SetPassThroughButtons('LeftButton', 'MiddleButton')
-	content:SetPassThroughButtons('LeftButton', 'MiddleButton')
+	SetPassThrough(header, 'LeftButton', 'MiddleButton')
+	SetPassThrough(content, 'LeftButton', 'MiddleButton')
 
 	SetHoverScripts(header)
 	SetHoverScripts(content)
