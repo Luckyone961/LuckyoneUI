@@ -112,10 +112,6 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.quest.objectiveTracker.menuTitle.font.size = 13
 	E.private.WT.quest.objectiveTracker.titleColor.classColor = true
 	E.private.WT.skins.actionStatus.size = 12
-	E.private.WT.skins.addons.auctionator = false
-	E.private.WT.skins.addons.bugSack = false
-	E.private.WT.skins.addons.simpleAddonManager = false
-	E.private.WT.skins.addons.warpDeplete = false
 	E.private.WT.skins.bigWigsSkin.emphasizedBar.colorOverride = false
 	E.private.WT.skins.bigWigsSkin.emphasizedBar.smooth = false
 	E.private.WT.skins.bigWigsSkin.emphasizedBar.spark = false
@@ -124,6 +120,7 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.skins.bigWigsSkin.normalBar.spark = false
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.name = Private.Font
 	E.private.WT.skins.bigWigsSkin.queueTimer.countDown.size = 12
+	E.private.WT.skins.blizzard.enable = true
 	E.private.WT.skins.cooldownViewer.enable = false
 	E.private.WT.skins.damageMeter.enable = false
 	E.private.WT.skins.elvui.enable = false
@@ -151,8 +148,10 @@ function Private:Setup_Private_WindTools()
 	E.private.WT.unitFrames.roleIcon.enable = false
 	E.private.WT.unitFrames.tags.enable = false
 
-	-- Handle Blizzard skins
-	E.private.WT.skins.blizzard.enable = true
+	-- Disable all AddOn skins
+	for key in pairs(V.WT.skins.addons) do
+		E.private.WT.skins.addons[key] = false
+	end
 
 	-- Disable all Blizzard skins
 	for key in pairs(V.WT.skins.blizzard) do
@@ -162,6 +161,9 @@ function Private:Setup_Private_WindTools()
 	end
 
 	-- Enable the skins we want
+	E.private.WT.skins.addons.bigWigs = true
+	E.private.WT.skins.addons.bigWigsQueueTimer = true
+	E.private.WT.skins.addons.plumber = true
 	E.private.WT.skins.blizzard.objectiveTracker = true
 	E.private.WT.skins.blizzard.scenario = true
 end
