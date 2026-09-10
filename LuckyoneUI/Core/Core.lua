@@ -306,8 +306,6 @@ local function CheckElvUI()
 		E.private.install_complete = E.version
 	end
 
-	Private:BuildConfig()
-
 	LibStub('LibElvUIPlugin-1.0'):RegisterPlugin(Name, Private.BuildConfig)
 end
 

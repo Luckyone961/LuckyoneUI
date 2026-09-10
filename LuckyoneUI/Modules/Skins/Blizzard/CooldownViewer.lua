@@ -20,7 +20,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 local function CooldownManager_PositionViewerTab(tab, _, _, _, x, y)
-	if x ~= 1 or y ~= 0 then
+	if x ~= 2 or y ~= -1 then
 		tab:ClearAllPoints()
 		tab:SetPoint('TOPLEFT', _G.CooldownViewerSettings, 'TOPRIGHT', 2, -1)
 	end

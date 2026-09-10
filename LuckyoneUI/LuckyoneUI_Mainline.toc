@@ -25,4 +25,7 @@ Core\Core.xml
 
 Media\Media.lua
 Modules\Modules.xml
+Modules\DamageMeter\DamageMeter.xml
+Modules\Skins\Blizzard\CooldownViewer.lua
 Profiles\Profiles.xml
+Profiles\Retail.xml

@@ -218,20 +218,25 @@ local function SkinRowCells(row)
 	end
 end
 
+-- ScrollBox update
+local rowR, rowG, rowB
+
+local function SkinResultRow(row)
+	SkinRowCells(row)
+
+	if row.isSkinned then return end
+
+	if row.NormalTexture then row.NormalTexture:SetAlpha(0) end
+	if row.HighlightTexture then row.HighlightTexture:SetColorTexture(rowR, rowG, rowB, .25) end
+	if row.SelectedHighlight then row.SelectedHighlight:SetColorTexture(rowR, rowG, rowB, .35) end
+
+	row.isSkinned = true
+end
+
 local function SkinResultRows(scrollBox)
-	local r, g, b = unpack(E.media.rgbvaluecolor)
+	rowR, rowG, rowB = unpack(E.media.rgbvaluecolor)
 
-	scrollBox:ForEachFrame(function(row)
-		SkinRowCells(row)
-
-		if row.isSkinned then return end
-
-		if row.NormalTexture then row.NormalTexture:SetAlpha(0) end
-		if row.HighlightTexture then row.HighlightTexture:SetColorTexture(r, g, b, .25) end
-		if row.SelectedHighlight then row.SelectedHighlight:SetColorTexture(r, g, b, .35) end
-
-		row.isSkinned = true
-	end)
+	scrollBox:ForEachFrame(SkinResultRow)
 end
 
 local function SkinResultsListing(listing)

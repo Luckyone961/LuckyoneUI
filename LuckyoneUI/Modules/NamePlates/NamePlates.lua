@@ -7,6 +7,7 @@ if not Private.ElvUI then
 end
 
 local ipairs = ipairs
+local next = next
 local pairs = pairs
 local unpack = unpack
 local wipe = table.wipe
@@ -46,6 +47,9 @@ function Private:UpdateSpecialNameplateTextures()
 	if not NP.Plates or not E.private.nameplates.enable then return end
 
 	local db = Private.Addon.db.profile.nameplates
+
+	-- Both textures off and nothing left to restore, every plate that spawns lands here
+	if not (db.targetTextureEnable or db.focusTextureEnable) and not next(styledPlates) then return end
 
 	-- Resolve the desired special plates, units order gives target priority over focus
 	wipe(desiredPlates)

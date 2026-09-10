@@ -13,6 +13,7 @@ end
 local ceil = math.ceil
 local floor = math.floor
 local pairs = pairs
+local select = select
 local sort = table.sort
 local tinsert = table.insert
 local unpack = unpack
@@ -250,59 +251,66 @@ local function SortCollectedButtons(buttons)
 	sort(buttons, CompareButtons)
 end
 
-local function TryCollect(buttons, seen, button)
-	if button and not seen[button] and button:IsShown() then
-		seen[button] = true
-		tinsert(buttons, button)
+-- Reused
+local collected, collectedSeen = {}, {}
+
+local function TryCollect(button)
+	if button and not collectedSeen[button] and button:IsShown() then
+		collectedSeen[button] = true
+		tinsert(collected, button)
 	end
 end
 
-local function CollectLibDBIconChildren(parent, buttons, seen)
-	if not parent then return end
-
-	local children = { parent:GetChildren() }
-	for i = 1, #children do
-		local child = children[i]
+local function CollectChildren(...)
+	for i = 1, select('#', ...) do
+		local child = select(i, ...)
 		local childName = child:GetName()
 		if childName and childName:match('^LibDBIcon10_') then
-			TryCollect(buttons, seen, child)
+			TryCollect(child)
 		end
 	end
 end
 
+local function CollectLibDBIconChildren(parent)
+	if not parent then return end
+
+	CollectChildren(parent:GetChildren())
+end
+
 local function CollectButtons()
-	local buttons = {}
-	local seen = {}
+	wipe(collected)
+	wipe(collectedSeen)
+
 	local bar = Map.buttonBar
 
 	-- Keep buttons we already manage. They are parented to the bar, so the Minimap
 	-- fallback below cannot see them and a missed LDBI lookup would Hide() them for good.
 	if bar then
 		for button in pairs(bar.buttons) do
-			TryCollect(buttons, seen, button)
+			TryCollect(button)
 		end
 	end
 
 	if Private.isRetail and Private.Addon.db.profile.map.minimap.buttons.blizzard.expansionLandingPage then
-		TryCollect(buttons, seen, _G.ExpansionLandingPageMinimapButton)
+		TryCollect(_G.ExpansionLandingPageMinimapButton)
 	end
 
 	local names = LDBI:GetButtonList()
 	for i = 1, #names do
 		-- Trust visibility only. Some addons keep db.hide = true while still showing the button.
-		TryCollect(buttons, seen, LDBI:GetMinimapButton(names[i]))
+		TryCollect(LDBI:GetMinimapButton(names[i]))
 	end
 
 	-- Fallback: LibDBIcon buttons the list missed (Minimap on first grab, bar after reparent)
-	CollectLibDBIconChildren(Minimap, buttons, seen)
-	CollectLibDBIconChildren(bar, buttons, seen)
+	CollectLibDBIconChildren(Minimap)
+	CollectLibDBIconChildren(bar)
 
 	for i = 1, #Private.CustomMinimapButtons do
-		TryCollect(buttons, seen, _G[Private.CustomMinimapButtons[i]])
+		TryCollect(_G[Private.CustomMinimapButtons[i]])
 	end
 
-	SortCollectedButtons(buttons)
-	return buttons, seen
+	SortCollectedButtons(collected)
+	return collected, collectedSeen
 end
 
 local function HoverBar(self)
