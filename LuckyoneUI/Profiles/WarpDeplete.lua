@@ -1,14 +1,9 @@
 local _, Private = ...
 local L = Private.Libs.ACL
 
--- Retail file
-if not Private.isRetail then
-	return
-end
-
 -- WarpDeplete profile
 function Private:Setup_WarpDeplete(installer)
-	if not (Private.IsAddOnLoaded('WarpDeplete') and Private.isRetail) then Private:Print('WarpDeplete ' .. L["is not installed or enabled."]) return end
+	if not Private.IsAddOnLoaded('WarpDeplete') then Private:Print('WarpDeplete ' .. L["is not installed or enabled."]) return end
 
 	-- Global dbs
 	local dev, scaled = Private.Addon.db.global.dev, Private.Addon.db.global.scaled

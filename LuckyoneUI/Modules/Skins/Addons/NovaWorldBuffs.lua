@@ -1,6 +1,6 @@
 local _, Private = ...
 
-if not Private.ElvUI or not (Private.isClassic or Private.isTBC) then
+if not Private.ElvUI then
 	return
 end
 

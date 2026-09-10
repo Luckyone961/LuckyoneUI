@@ -1,11 +1,6 @@
 local _, Private = ...
 local L = Private.Libs.ACL
 
--- Retail file
-if not Private.isRetail then
-	return
-end
-
 local _G = _G
 
 -- PermoksAccountManager profile
