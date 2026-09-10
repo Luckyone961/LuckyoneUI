@@ -188,6 +188,7 @@ Private.Defaults = {
 			LFGBulletinBoard = false,
 			NovaSpellRankChecker = false,
 			NovaWorldBuffs = false,
+			SimpleAddonManager = false,
 			Tabardy = false,
 			WhatsTraining = false,
 			Blizzard = {
