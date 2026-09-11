@@ -25,6 +25,7 @@ local _G = _G
 local LibStub = _G.LibStub
 
 local Settings_OpenToCategory = _G.Settings.OpenToCategory
+local SlashCmdList = _G.SlashCmdList
 local StaticPopupDialogs = _G.StaticPopupDialogs
 local StaticPopup_Show = _G.StaticPopup_Show
 
@@ -282,13 +283,16 @@ end
 
 -- Register all commands
 local function LoadCommands()
-	Private.Addon:RegisterChatCommand('lucky', Toggles)
+	_G.SLASH_LUCKYONEUI1 = '/lucky'
+	SlashCmdList.LUCKYONEUI = Toggles
 	if Private.isRetail then -- Retail chat commands
-		Private.Addon:RegisterChatCommand('vault', WeeklyRewards)
-		Private.Addon:RegisterChatCommand('weekly', WeeklyRewards)
+		_G.SLASH_LUCKYONEUI_WEEKLY1 = '/vault'
+		_G.SLASH_LUCKYONEUI_WEEKLY2 = '/weekly'
+		SlashCmdList.LUCKYONEUI_WEEKLY = WeeklyRewards
 	end
 	if Private.ElvUI then
-		Private.Addon:RegisterChatCommand('luckydebug', DebugMode)
+		_G.SLASH_LUCKYONEUI_DEBUG1 = '/luckydebug'
+		SlashCmdList.LUCKYONEUI_DEBUG = DebugMode
 	end
 end
 

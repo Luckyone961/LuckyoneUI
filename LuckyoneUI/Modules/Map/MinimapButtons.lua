@@ -19,6 +19,7 @@ local tinsert = table.insert
 local unpack = unpack
 local wipe = table.wipe
 
+local After = C_Timer.After
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 
@@ -438,13 +439,14 @@ local function ReleaseAll()
 end
 
 local function RunUpdate()
-	Map.updateTimer = nil
+	Map.updatePending = nil
 	Private:UpdateMinimapButtonBar()
 end
 
 local function ScheduleUpdate()
-	if Map.updating or Map.updateTimer then return end
-	Map.updateTimer = Private.Addon:ScheduleTimer(RunUpdate, 0.1)
+	if Map.updating or Map.updatePending then return end
+	Map.updatePending = true
+	After(0.1, RunUpdate)
 end
 
 local function RegisterLandingPageHooks()

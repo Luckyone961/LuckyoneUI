@@ -23,14 +23,13 @@ local WOW_PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
 local Name, Private = ...
 
 -- Create a new AceAddon instance
-local LuckyoneUI = LibStub('AceAddon-3.0'):NewAddon(Name, 'AceConsole-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
+local LuckyoneUI = LibStub('AceAddon-3.0'):NewAddon(Name, 'AceEvent-3.0')
 
 Private.Addon = LuckyoneUI
 
 Private.Libs = {
 	-- Ace
 	ADB = LibStub('AceDB-3.0'),
-	ABH = LibStub('AceDBOptions-3.0'),
 	GUI = LibStub('AceGUI-3.0'),
 	AC = LibStub('AceConfig-3.0'),
 	ACD = LibStub('AceConfigDialog-3.0'),
