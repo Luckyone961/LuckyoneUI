@@ -159,6 +159,7 @@ L["Displays the unit's status (dead, ghost, offline) and name with no color and 
 L["Displays the unit's target name with class color"] = "Zeigt den Namen des Einheitsziels mit Klassenfarbe an"
 L["Displays the unit's target name with no color"] = "Zeigt den Namen des Einheitsziels ohne Farbe an"
 L["Doubles the width of the merchant frame to show 20 items per page in four columns instead of 10 in two columns."] = true
+L["Doubles the width of the quest log to show the quest list and the quest details side by side.\n\nRequires the ElvUI quest skin."] = true
 L["DPS & Tanks"] = true -- No need to translate
 L["Drag a bookmark up or down to change its place in the panel."] = "Ziehe ein Lesezeichen hoch oder runter um es zu replatzieren."
 L["Drag and Drop"] = true -- No need to translate
@@ -184,6 +185,7 @@ L["Entering Text"] = true
 L["Evoker"] = "Rufer"
 L["Examples: Max camera distance, screenshot quality and tutorials."] = "Beispiele: Maximaler Kameraabstand, Screenshot-Qualität und Tutorials."
 L["Expand Merchant Frame"] = true
+L["Expand Quest Log"] = true
 L["Expansion Landing Page"] = true
 L["Faction Icon"] = true
 L["Fade Time"] = true

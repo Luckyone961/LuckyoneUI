@@ -217,6 +217,9 @@ function Blizzard:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	DisabledFrames()
 	EasyDelete()
 	Private:ExpandMerchant()
+	if Private.isClassic or Private.isTBC then
+		Private:ExpandQuestLog()
+	end
 	Private:FasterLoot()
 	Private:FriendsList()
 	Private:MailboxFavorites()

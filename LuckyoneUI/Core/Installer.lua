@@ -737,6 +737,7 @@ local function BuildPages()
 				Toggle('qualityOfLife', 'blizzard.qualityOfLife.autoDismount'),
 				Toggle('qualityOfLife', 'blizzard.qualityOfLife.easyDelete'),
 				Toggle('qualityOfLife', 'blizzard.qualityOfLife.expandMerchant'),
+				Toggle('qualityOfLife', 'blizzard.qualityOfLife.expandQuestLog'),
 				Toggle('qualityOfLife', 'blizzard.qualityOfLife.fasterLoot'),
 				Toggle('qualityOfLife', 'blizzard.qualityOfLife.preventLootAutoShow'),
 				Toggle('qualityOfLife', 'blizzard.qualityOfLife.privacyOverlay'),

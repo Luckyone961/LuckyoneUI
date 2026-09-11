@@ -20,6 +20,7 @@
 - Updated aura indicators for all healing specs (Size, Postion, Stack count, Style)  
 
 **Classic:**  
+- Added option for a wide quest log frame  
 - Fixed NovaSpellRankChecker skin (Sometimes the button was covering the entire spellbook)  
 
 **Damage Meter:**  

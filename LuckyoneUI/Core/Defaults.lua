@@ -234,6 +234,7 @@ Private.Defaults = {
 			autoDismount = false,
 			easyDelete = false,
 			expandMerchant = false,
+			expandQuestLog = false,
 			fasterLoot = false,
 			preventLootAutoShow = false,
 			privacyOverlay = false,

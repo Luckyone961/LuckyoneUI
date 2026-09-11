@@ -62,6 +62,7 @@ Modules\Blizzard\Merchant.lua
 Modules\Blizzard\MovableFrames.lua
 Modules\Blizzard\ObjectiveTracker.lua [AllowLoadGameType mainline]
 Modules\Blizzard\PrivacyOverlay.lua
+Modules\Blizzard\QuestLog.lua [AllowLoadGameType vanilla, tbc]
 Modules\Chat\Chat.lua
 Modules\DamageMeter\Core.lua [AllowLoadGameType mainline]
 Modules\DamageMeter\Session.lua [AllowLoadGameType mainline]
