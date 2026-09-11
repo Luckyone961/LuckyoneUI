@@ -74,6 +74,7 @@ Modules\Misc\Misc.lua
 Modules\Misc\MythicVisibility.lua
 Modules\NamePlates\NamePlates.lua
 Modules\Skins\Addons\Auctionator.lua
+Modules\Skins\Addons\BigWigs.lua [AllowLoadGameType mainline, mists]
 Modules\Skins\Addons\BugSack.lua
 Modules\Skins\Addons\DejaClassicStats.lua [AllowLoadGameType vanilla, tbc]
 Modules\Skins\Addons\LeatrixPlus.lua [AllowLoadGameType vanilla, tbc]

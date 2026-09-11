@@ -758,6 +758,7 @@ local function BuildPages()
 		Page('Skins', { L["Skin the Addons and Blizzard frames below in ElvUI style. Only installed Addons are listed."] }, nil, {
 			Group('AddOns',
 				Toggle('skins', 'skins.addons.Auctionator'),
+				Toggle('skins', 'skins.addons.BigWigs'),
 				Toggle('skins', 'skins.addons.BugSack'),
 				Toggle('skins', 'skins.addons.DejaClassicStats'),
 				Toggle('skins', 'skins.addons.LeatrixPlus'),

@@ -14,6 +14,7 @@
 **Retail:**  
 - Added option to Objective Tracker (Fonts, Colors, Header underlines, Find Group button skin)  
 - Added skin for Simulationcraft  
+- Added skin for the BigWigs /keys frame and LFG queue timer bar  
 - Removed the WarpDeplete profile (MPlusTimer replaces it)  
 - Removed the WindTools profile  
 - Updated aura indicators for all healing specs (Size, Postion, Stack count, Style)  

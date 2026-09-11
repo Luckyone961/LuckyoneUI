@@ -416,6 +416,7 @@ L["Skin the Addon in ElvUI style"] = "Habiller l'add-on dans le style ElvUI"
 L["Skin the Addons and Blizzard frames below in ElvUI style. Only installed Addons are listed."] = true
 L["Skin the full bulletin board frame in ElvUI style"] = "Habiller l'ensemble du cadre du tableau d'affichage dans le style ElvUI"
 L["Skin the group finder button next to quests in ElvUI style.\n\nDisabling needs a reload."] = true
+L["Skin the Keystones viewer (/keys, Retail only) and the LFG queue timer bar in ElvUI style. The rest of the Addon is not skinned."] = true
 L["Skin the small layer frame on the Minimap in ElvUI style and move it to the bottom left"] = "Habiller le petit cadre de 'layer' sur la minicarte dans le style ElvUI et le déplacer en bas à gauche"
 L["Skin the Spell Rank Checker button in ElvUI style"] = "Habiller le bouton de vérification du rang des sorts dans le style ElvUI"
 L["Skin the two small Head/Cloak toggle checkboxes on the character frame in ElvUI style"] = "Habiller les deux boutons bascules Tête et Cape sur le cadre de personnage dans le style ElvUI"
