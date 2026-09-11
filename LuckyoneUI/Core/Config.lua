@@ -49,6 +49,20 @@ local function OutlineSelect(order)
 	return (Private.ElvUI and ACH:FontFlags(L["Font Outline"], nil, order)) or ACH:Select(L["Font Outline"], nil, order, ACH.FontValues)
 end
 
+local function TextureValues()
+	local values = {}
+
+	for _, name in ipairs(LSM:List('statusbar')) do
+		values[name] = name
+	end
+
+	return values
+end
+
+local function TextureSelect(order, disabled)
+	return (Private.ElvUI and ACH:SharedMediaStatusbar(L["Texture"], nil, order, nil, nil, nil, disabled)) or ACH:Select(L["Texture"], nil, order, TextureValues, nil, nil, nil, nil, disabled)
+end
+
 -- Credits
 local CREDITS = {
 	author = {
@@ -665,6 +679,41 @@ local function FriendsListDisabled()
 	return not Private.Addon.db.profile.misc.friendsList.enable
 end
 
+-- Objective tracker, both header tabs share the same options
+local ObjectiveTrackerColors = { DEFAULT = L["Default"], CLASS = L["Class Color"], CUSTOM = L["Custom"] }
+
+local function ObjectiveTrackerDisabled()
+	return not Private.Addon.db.profile.misc.objectiveTracker.enable
+end
+
+local function ObjectiveTrackerHeaderGroup(name, key, order)
+	local function DB() return Private.Addon.db.profile.misc.objectiveTracker[key] end
+	local function NoUnderline() return not DB().underline end
+
+	local group = ACH:Group(name, nil, order, nil, function(info) return DB()[info[#info]] end, function(info, value) DB()[info[#info]] = value Private:ObjectiveTracker_Update() end, ObjectiveTrackerDisabled)
+	group.args.fontGroup = ACH:Group(L["Font"], nil, 1)
+	group.args.fontGroup.inline = true
+	group.args.fontGroup.args.font = FontSelect(1)
+	group.args.fontGroup.args.fontOutline = OutlineSelect(2)
+	group.args.fontGroup.args.fontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 32, step = 1 })
+	group.args.colorGroup = ACH:Group(L["Colors"], nil, 2)
+	group.args.colorGroup.inline = true
+	group.args.colorGroup.args.colorType = ACH:Select(L["Text Color"], nil, 1, ObjectiveTrackerColors)
+	group.args.colorGroup.args.color = ACH:Color(L["Custom Color"], nil, 2, nil, nil, function() local color = DB().color return color.r, color.g, color.b end, function(_, r, g, b) local color = DB().color color.r, color.g, color.b = r, g, b Private:ObjectiveTracker_Update() end, nil, function() return DB().colorType ~= 'CUSTOM' end)
+	group.args.colorGroup.args.hideBackground = ACH:Toggle(L["Hide Background"], L["Hide the Blizzard artwork behind the header text."], 3)
+	group.args.underlineGroup = ACH:Group(L["Underline"], nil, 3)
+	group.args.underlineGroup.inline = true
+	group.args.underlineGroup.args.underline = ACH:Toggle(L["Enable"], L["Show a colored bar below the header."], 1)
+	group.args.underlineGroup.args.underlineBorder = ACH:Toggle(L["Border"], L["Black one pixel border around the bar."], 2, nil, nil, nil, nil, nil, NoUnderline)
+	group.args.underlineGroup.args.underlineTexture = TextureSelect(3, NoUnderline)
+	group.args.underlineGroup.args.underlineColorType = ACH:Select(_G.COLOR, nil, 4, { CLASS = L["Class Color"], CUSTOM = L["Custom"] }, nil, nil, nil, nil, NoUnderline)
+	group.args.underlineGroup.args.underlineColor = ACH:Color(L["Custom Color"], nil, 5, nil, nil, function() local color = DB().underlineColor return color.r, color.g, color.b end, function(_, r, g, b) local color = DB().underlineColor color.r, color.g, color.b = r, g, b Private:ObjectiveTracker_Update() end, NoUnderline, function() return DB().underlineColorType ~= 'CUSTOM' end)
+	group.args.underlineGroup.args.underlineHeight = ACH:Range(L["Height"], L["Grows upward from the bottom edge of the header, a big value turns the bar into a background behind the text."], 6, { min = 1, max = 30, step = 1 }, nil, nil, nil, NoUnderline)
+	group.args.underlineGroup.args.underlineWidth = ACH:Range(L["Width"], L["Zero follows the width of the header."], 7, { min = 0, max = 400, step = 1 }, nil, nil, nil, NoUnderline)
+	group.args.underlineGroup.args.underlineOffset = ACH:Range(L["Y Offset"], nil, 8, { min = -30, max = 30, step = 1 }, nil, nil, nil, NoUnderline)
+	return group
+end
+
 -- Build Misc Section
 local function BuildMiscSection()
 	local section = ACH:Group(GetIconName(L["Misc"], 'Misc'), nil, 60, 'tab')
@@ -742,6 +791,36 @@ local function BuildMiscSection()
 	section.args.friendsList.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 5)
 	section.args.friendsList.args.defaults.inline = true
 	section.args.friendsList.args.defaults.args.friendsList = ACH:Execute(L["Restore Defaults"], L["Wipe all friends list settings, the option itself stays enabled."], 1, function() Private:FriendsList_ResetDefaults() end, nil, true)
+	section.args.objectiveTracker = ACH:Group(L["Objective Tracker"], nil, 5, 'tab', nil, nil, Private.IsAddOnLoaded('!KalielsTracker'), not Private.isRetail)
+	section.args.objectiveTracker.args.general = ACH:Group(L["General"], nil, 1, nil, function(info) return Private.Addon.db.profile.misc.objectiveTracker[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.objectiveTracker[info[#info]] = value if value then Private:ObjectiveTracker() else StaticPopup_Show(RELOAD_POPUP) end end)
+	section.args.objectiveTracker.args.general.args.kalielsTracker = ACH:Description(L["Disabled while Kaliel's Tracker is loaded."], 0, 'medium', nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('!KalielsTracker'))
+	section.args.objectiveTracker.args.general.args.generalOptions = ACH:Group(L["General"], nil, 1)
+	section.args.objectiveTracker.args.general.args.generalOptions.inline = true
+	section.args.objectiveTracker.args.general.args.generalOptions.args.enable = ACH:Toggle(L["Enable"], L["Customize the fonts and colors of the Blizzard objective tracker and put an underline below its headers.\n\nDisabling needs a reload."], 1)
+	section.args.objectiveTracker.args.general.args.generalOptions.args.findGroupSkin = ACH:Toggle(L["Find Group Button"], L["Skin the group finder button next to quests in ElvUI style.\n\nDisabling needs a reload."], 2, nil, nil, nil, nil, nil, ObjectiveTrackerDisabled, not Private.ElvUI)
+	section.args.objectiveTracker.args.general.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 2)
+	section.args.objectiveTracker.args.general.args.defaults.inline = true
+	section.args.objectiveTracker.args.general.args.defaults.args.objectiveTracker = ACH:Execute(L["Restore Defaults"], L["Wipe all objective tracker settings, the option itself stays enabled."], 1, function() Private:ObjectiveTracker_ResetDefaults() end, nil, true)
+	section.args.objectiveTracker.args.mainHeader = ObjectiveTrackerHeaderGroup(L["Main Header"], 'mainHeader', 2)
+	section.args.objectiveTracker.args.categoryHeader = ObjectiveTrackerHeaderGroup(L["Category Header"], 'categoryHeader', 3)
+	section.args.objectiveTracker.args.content = ACH:Group(L["Content"], nil, 4, nil, function(info) return Private.Addon.db.profile.misc.objectiveTracker.content[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.objectiveTracker.content[info[#info]] = value Private:ObjectiveTracker_Update() end, ObjectiveTrackerDisabled)
+	section.args.objectiveTracker.args.content.args.fontGroup = ACH:Group(L["Font"], nil, 1)
+	section.args.objectiveTracker.args.content.args.fontGroup.inline = true
+	section.args.objectiveTracker.args.content.args.fontGroup.args.font = FontSelect(1)
+	section.args.objectiveTracker.args.content.args.fontGroup.args.fontOutline = OutlineSelect(2)
+	section.args.objectiveTracker.args.content.args.fontGroup.args.fontSize = ACH:Range(L["Font Size"], L["Quest titles and objectives share one font. Size changes settle on the next tracker update, quest progress or a zone change."], 3, { min = 8, max = 24, step = 1 })
+	section.args.objectiveTracker.args.content.args.colorGroup = ACH:Group(L["Colors"], nil, 2)
+	section.args.objectiveTracker.args.content.args.colorGroup.inline = true
+	section.args.objectiveTracker.args.content.args.colorGroup.args.titleColorType = ACH:Select(L["Title Color"], nil, 1, ObjectiveTrackerColors)
+	section.args.objectiveTracker.args.content.args.colorGroup.args.titleColor = ACH:Color(L["Custom Color"], nil, 2, nil, nil, function() local color = Private.Addon.db.profile.misc.objectiveTracker.content.titleColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.misc.objectiveTracker.content.titleColor color.r, color.g, color.b = r, g, b Private:ObjectiveTracker_Update() end, nil, function() return Private.Addon.db.profile.misc.objectiveTracker.content.titleColorType ~= 'CUSTOM' end)
+	section.args.objectiveTracker.args.content.args.colorGroup.args.lineColorType = ACH:Select(L["Objective Color"], nil, 3, ObjectiveTrackerColors)
+	section.args.objectiveTracker.args.content.args.colorGroup.args.lineColor = ACH:Color(L["Custom Color"], nil, 4, nil, nil, function() local color = Private.Addon.db.profile.misc.objectiveTracker.content.lineColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.misc.objectiveTracker.content.lineColor color.r, color.g, color.b = r, g, b Private:ObjectiveTracker_Update() end, nil, function() return Private.Addon.db.profile.misc.objectiveTracker.content.lineColorType ~= 'CUSTOM' end)
+	section.args.objectiveTracker.args.content.args.colorGroup.args.completeColor = ACH:Color(L["Completed Color"], nil, 5, nil, nil, function() local color = Private.Addon.db.profile.misc.objectiveTracker.content.completeColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.misc.objectiveTracker.content.completeColor color.r, color.g, color.b = r, g, b Private:ObjectiveTracker_Update() end)
+	section.args.objectiveTracker.args.content.args.colorGroup.args.failedColor = ACH:Color(L["Failed Color"], nil, 6, nil, nil, function() local color = Private.Addon.db.profile.misc.objectiveTracker.content.failedColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.misc.objectiveTracker.content.failedColor color.r, color.g, color.b = r, g, b Private:ObjectiveTracker_Update() end)
+	section.args.objectiveTracker.args.content.args.poiGroup = ACH:Group(L["POI Button"], nil, 3)
+	section.args.objectiveTracker.args.content.args.poiGroup.inline = true
+	section.args.objectiveTracker.args.content.args.poiGroup.args.poiScale = ACH:Range(L["Scale"], L["The quest icon left of the title."], 1, { min = 0.5, max = 2, step = 0.05, isPercent = true })
+	section.args.objectiveTracker.args.content.args.poiGroup.args.poiOffset = ACH:Range(L["Y Offset"], nil, 2, { min = -20, max = 20, step = 1 })
 	return section
 end
 

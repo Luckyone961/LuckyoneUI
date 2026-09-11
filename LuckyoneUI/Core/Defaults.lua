@@ -1,5 +1,25 @@
 local _, Private = ...
 
+-- Both objective tracker header tabs share these
+local function ObjectiveTrackerHeader(fontSize)
+	return {
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		fontSize = fontSize,
+		colorType = 'CLASS',
+		color = { r = 1, g = 1, b = 1 },
+		hideBackground = true,
+		underline = true,
+		underlineTexture = Private.Texture,
+		underlineBorder = true,
+		underlineColorType = 'CLASS',
+		underlineColor = { r = 1, g = 1, b = 1 },
+		underlineHeight = 4,
+		underlineWidth = 0,
+		underlineOffset = 0,
+	}
+end
+
 -- LuckyoneDB defaults
 Private.Defaults = {
 	global = {
@@ -176,6 +196,25 @@ Private.Defaults = {
 				sort = 'index',
 			},
 			mythicVisibility = false,
+			objectiveTracker = {
+				enable = false,
+				findGroupSkin = true,
+				mainHeader = ObjectiveTrackerHeader(13),
+				categoryHeader = ObjectiveTrackerHeader(13),
+				content = {
+					font = Private.Font,
+					fontOutline = Private.Outline,
+					fontSize = 12,
+					titleColorType = 'DEFAULT',
+					titleColor = { r = 1, g = 1, b = 1 },
+					lineColorType = 'DEFAULT',
+					lineColor = { r = 1, g = 1, b = 1 },
+					completeColor = { r = 0.6, g = 0.6, b = 0.6 },
+					failedColor = { r = 0.8, g = 0.1, b = 0.1 },
+					poiScale = 0.9,
+					poiOffset = -6,
+				},
+			},
 			removeNameplateRealm = false,
 		},
 		movableFrames = {

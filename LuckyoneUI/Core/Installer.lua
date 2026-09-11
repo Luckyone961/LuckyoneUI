@@ -717,7 +717,8 @@ local function BuildPages()
 				Toggle('misc.combatText', 'misc.combatText.generalOptions.enable', 'misc.combatText'),
 				Toggle('movableFrames', 'blizzard.movableFrames.enable', 'blizzard.movableFrames'),
 				Toggle('misc.mailbox', 'misc.mailbox.generalOptions.enable', 'misc.mailbox'),
-				Toggle('misc.friendsList', 'misc.friendsList.generalOptions.enable', 'misc.friendsList')
+				Toggle('misc.friendsList', 'misc.friendsList.generalOptions.enable', 'misc.friendsList'),
+				Toggle('misc.objectiveTracker', 'misc.objectiveTracker.general.generalOptions.enable', 'misc.objectiveTracker')
 			),
 			Group(L["ElvUI Tweaks"],
 				Toggle('misc', 'elvuiTweaks.toggles.mythicVisibility', nil, 'elvuiTweaks.mythicVisibilityDesc.desc'),

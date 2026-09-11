@@ -227,6 +227,11 @@ function Blizzard:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 end
 
 function Blizzard:OnEnable()
+	-- Fonts have to be in place before the tracker builds its first layout at PLAYER_ENTERING_WORLD
+	if Private.isRetail then
+		Private:ObjectiveTracker()
+	end
+
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 	self:RegisterEvent('PLAYER_REGEN_DISABLED')
 	self:RegisterEvent('PLAYER_REGEN_ENABLED')
