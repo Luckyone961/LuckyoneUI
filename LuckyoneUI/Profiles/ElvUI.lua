@@ -260,7 +260,7 @@ local function Setup_GlobalDB()
 end
 
 -- E.private & Media
-function Private:Setup_PrivateDB(includePlugins)
+function Private:Setup_PrivateDB()
 
 	E.db.general.font = Private.Font
 	E.db.general.fonts.cooldown.outline = Private.Outline
@@ -300,12 +300,6 @@ function Private:Setup_PrivateDB(includePlugins)
 
 	E.private.skins.blizzard.cooldownManager = false
 	E.private.skins.parchmentRemoverEnable = true
-
-	if includePlugins and Private.isRetail then
-		if Private.IsAddOnLoaded('ElvUI_WindTools') then
-			Private:Setup_Private_WindTools()
-		end
-	end
 
 	-- This will make sure Shaman is blue instead of pink in Era/HC/SoD
 	if Private.isClassic then
@@ -2162,7 +2156,7 @@ function Private:Setup_AltProfile(profile, layout)
 		actionBarsDT.width = (layout == 'healing' and 704) or 395
 	end
 
-	Private:Setup_PrivateDB(true)
+	Private:Setup_PrivateDB()
 
 	Refresh()
 end

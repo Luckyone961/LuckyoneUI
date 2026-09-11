@@ -14,8 +14,8 @@
 - Added option to Objective Tracker (Fonts, Colors, Header underlines, Find Group button skin)  
 - Added skin for Simulationcraft  
 - Removed the WarpDeplete profile (MPlusTimer replaces it)  
+- Removed the WindTools profile  
 - Updated aura indicators for all healing specs (Size, Postion, Stack count, Style)  
-- Updated WindTools profile (Only skins left enabled) (Friendlist, Objective Tracker, Addons)  
 
 **Classic:**  
 - Fixed NovaSpellRankChecker skin (Sometimes the button was covering the entire spellbook)  

@@ -183,9 +183,6 @@ local function BuildAddonProfilesSection()
 	section.args.bossmods.inline = true
 	section.args.bossmods.args.bigwigsMain = ACH:Execute(L["BigWigs Main"], IMPORT_DEFAULTS_TEXT, 1, function() Private:Setup_BigWigs('main') end, nil, true)
 	section.args.bossmods.args.bigwigsHealing = ACH:Execute(L["BigWigs Healing"], IMPORT_DEFAULTS_TEXT, 2, function() Private:Setup_BigWigs('healing') end, nil, true)
-	section.args.plugins = ACH:Group(L["ElvUI Plugins"], nil, 5, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
-	section.args.plugins.inline = true
-	section.args.plugins.args.wt = ACH:Execute('|cff5385edWindTools|r', IMPORT_DEFAULTS_TEXT, 1, function() Private:Setup_WindTools() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not (Private.isRetail and Private.ElvUI))
 	section.args.header2 = ACH:Header(L["Blizzard Profiles"], 6, nil, nil, not Private.isRetail)
 	section.args.strings = ACH:Group(L["Profile strings"], nil, 7, nil, nil, nil, nil, not Private.isRetail)
 	section.args.strings.inline = true
@@ -201,10 +198,10 @@ local function BuildPrivateDBSection()
 	section.args.header = ACH:Header(L["Character Specific"], 1)
 	section.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 2)
 	section.args.defaults.inline = true
-	section.args.defaults.args.private = ACH:Execute(L["Restore Defaults"], nil, 1, function() Private:Setup_PrivateDB(true) ElvUI[1]:UpdateMediaItems(true) end, nil, true)
+	section.args.defaults.args.private = ACH:Execute(L["Restore Defaults"], nil, 1, function() Private:Setup_PrivateDB() ElvUI[1]:UpdateMediaItems(true) end, nil, true)
 	section.args.defaultsDesc = ACH:Group(L["The following data will be updated"], nil, 3)
 	section.args.defaultsDesc.inline = true
-	section.args.defaultsDesc.args.cvars = ACH:Description('- All Fonts: Expressway\n- All Font Outlines: Outline\n- All Textures: Minimalist\n\n- Friendly Nameplate Font Sizes\n- Totem Tracker: disabled\n- Parchment Remover: enabled\n\n- (Classic Only) Make Shamans blue instead of pink\n- (Retail Only) Character specific settings for WindTools', 1, 'medium')
+	section.args.defaultsDesc.args.cvars = ACH:Description('- All Fonts: Expressway\n- All Font Outlines: Outline\n- All Textures: Minimalist\n\n- Friendly Nameplate Font Sizes\n- Totem Tracker: disabled\n- Parchment Remover: enabled\n\n- (Classic Only) Make Shamans blue instead of pink', 1, 'medium')
 	return section
 end
 
