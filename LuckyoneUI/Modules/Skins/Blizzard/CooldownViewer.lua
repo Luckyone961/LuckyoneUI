@@ -7,7 +7,7 @@ end
 --[[
 	Modified version of:
 	ElvUI\Game\Mainline\Skins\CooldownManager.Lua
-	Removed all skinning except for the settings frame.
+	Removed all skinning except for the settings frame, added the alert editors.
 ]]
 
 local next = next
@@ -19,21 +19,23 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
-local function CooldownManager_PositionViewerTab(tab, _, _, _, x, y)
+local hookedItemPools = {}
+
+local function ViewerTab_SetPoint(tab, _, _, _, x, y)
 	if x ~= 2 or y ~= -1 then
 		tab:ClearAllPoints()
 		tab:SetPoint('TOPLEFT', _G.CooldownViewerSettings, 'TOPRIGHT', 2, -1)
 	end
 end
 
-local function CooldownManager_PositionTabIcons(icon, point)
+local function TabIcon_SetPoint(icon, point)
 	if point == 'CENTER' then return end
 
 	icon:ClearAllPoints()
 	icon:SetPoint('CENTER')
 end
 
-local function CooldownManager_HandleHeaders(header)
+local function SkinHeader(header)
 	if header.HighlightMiddle then header.HighlightMiddle:SetAlpha(0) end
 	if header.HighlightLeft then header.HighlightLeft:SetAlpha(0) end
 	if header.HighlightRight then header.HighlightRight:SetAlpha(0) end
@@ -46,7 +48,7 @@ local function CooldownManager_HandleHeaders(header)
 	header.IsSkinned = true
 end
 
-local function CooldownManager_HandleSettingItem(item)
+local function SkinSettingItem(item)
 	if item.IsSkinned then return end
 
 	local icon = item.Icon
@@ -63,49 +65,37 @@ local function CooldownManager_HandleSettingItem(item)
 	item.IsSkinned = true
 end
 
-local function CooldownManager_HandleSettingItemPool(pool)
+-- Items come from a pool
+local function ItemPool_Acquire(pool)
 	for frame in pool:EnumerateActive() do
-		CooldownManager_HandleSettingItem(frame)
+		SkinSettingItem(frame)
 	end
 end
 
-local hookedItemPools = {}
-
-local function RefreshContent(content)
-	if not content then return end
-
+local function SkinContent(content)
 	for _, child in next, { content:GetChildren() } do
 		local header = child.Header
 		if header and not header.IsSkinned then
-			CooldownManager_HandleHeaders(child.Header)
+			SkinHeader(header)
 		end
 
 		local itemPool = child.itemPool
 		if itemPool and not hookedItemPools[itemPool] then
 			hookedItemPools[itemPool] = true
 
-			CooldownManager_HandleSettingItemPool(itemPool)
+			ItemPool_Acquire(itemPool)
 
-			hooksecurefunc(itemPool, 'Acquire', CooldownManager_HandleSettingItemPool)
+			hooksecurefunc(itemPool, 'Acquire', ItemPool_Acquire)
 		end
 	end
 end
 
-local function CooldownManager_RefreshLayout()
-	local CooldownViewer = _G.CooldownViewerSettings
-	if not CooldownViewer then return end
-
-	if CooldownViewer.CooldownScroll then
-		RefreshContent(CooldownViewer.CooldownScroll.Content)
-	end
-
-	local groupBuffFilter = CooldownViewer.GroupBuffFilter
-	if groupBuffFilter and groupBuffFilter.Scroll then
-		RefreshContent(groupBuffFilter.Scroll.Content)
-	end
+local function Settings_RefreshLayout(viewer)
+	SkinContent(viewer.CooldownScroll.Content)
+	SkinContent(viewer.GroupBuffFilter.Scroll.Content)
 end
 
-local function CooldownManager_HandleAbilityTabs(viewer)
+local function SkinAbilityTabs(viewer)
 	for i, tab in next, { viewer.SpellsTab, viewer.AurasTab, viewer.GroupBuffsTab } do
 		tab:CreateBackdrop()
 		tab:Size(30, 40)
@@ -114,14 +104,14 @@ local function CooldownManager_HandleAbilityTabs(viewer)
 			tab:ClearAllPoints()
 			tab:SetPoint('TOPLEFT', viewer, 'TOPRIGHT', 2, -1)
 
-			hooksecurefunc(tab, 'SetPoint', CooldownManager_PositionViewerTab)
+			hooksecurefunc(tab, 'SetPoint', ViewerTab_SetPoint)
 		end
 
 		if tab.Icon then
 			tab.Icon:ClearAllPoints()
 			tab.Icon:SetPoint('CENTER')
 
-			hooksecurefunc(tab.Icon, 'SetPoint', CooldownManager_PositionTabIcons)
+			hooksecurefunc(tab.Icon, 'SetPoint', TabIcon_SetPoint)
 		end
 
 		if tab.Background then
@@ -145,9 +135,7 @@ local function CooldownManager_HandleAbilityTabs(viewer)
 	end
 end
 
-local function CooldownManager_HandleSettings(viewer)
-	if not viewer then return end
-
+local function SkinSettings(viewer)
 	S:HandlePortraitFrame(viewer)
 	S:HandleEditBox(viewer.SearchBox)
 	S:HandleTrimScrollBar(viewer.CooldownScroll.ScrollBar)
@@ -155,41 +143,58 @@ local function CooldownManager_HandleSettings(viewer)
 	S:HandleButton(viewer.UndoButton)
 	S:HandleDropDownBox(viewer.LayoutDropdown)
 
-	CooldownManager_HandleAbilityTabs(viewer)
-	CooldownManager_RefreshLayout()
+	SkinAbilityTabs(viewer)
+	Settings_RefreshLayout(viewer)
 
-	hooksecurefunc(viewer, 'RefreshLayout', CooldownManager_RefreshLayout)
+	hooksecurefunc(viewer, 'RefreshLayout', Settings_RefreshLayout)
+end
+
+local function SkinLayoutDialog(dialog)
+	dialog.Border:Hide()
+	dialog:SetTemplate('Transparent')
+
+	S:HandleButton(dialog.AcceptButton)
+	S:HandleButton(dialog.CancelButton)
+	S:HandleCheckBox(dialog.CharacterSpecificLayoutCheckButton.Button)
+	S:HandleEditBox(dialog.LayoutNameEditBox)
+	dialog.LayoutNameEditBox.backdrop:NudgePoint(0, -3, nil, 'TOPLEFT')
+	dialog.LayoutNameEditBox.backdrop:NudgePoint(0, 3, nil, 'BOTTOMRIGHT')
+end
+
+-- CooldownViewerSettingsEditAlert and GroupBuffFilterEditVisualAlert share CooldownViewerEditAlertBaseTemplate,
+-- the side panel that opens to the right of the settings frame when adding or editing an alert
+local function SkinEditAlert(frame, ...)
+	frame.BG:Hide()
+	frame:SetTemplate('Transparent')
+
+	S:HandleIcon(frame.Icon, true)
+	S:HandleCloseButton(frame.CloseButton)
+	S:HandleButton(frame.AddButton)
+
+	for _, dropdown in next, { ... } do
+		S:HandleDropDownBox(dropdown, 268)
+	end
 end
 
 local function Skin_CooldownViewer()
 	if not Private.Addon.db.profile.skins.Blizzard.CooldownViewer then return end
 
-	CooldownManager_HandleSettings(_G.CooldownViewerSettings)
+	SkinSettings(_G.CooldownViewerSettings)
 
-	local ImportLayoutDialog = _G.CooldownViewerImportLayoutDialog
-	if ImportLayoutDialog then
-		ImportLayoutDialog.Border:Hide()
-		ImportLayoutDialog:SetTemplate('Transparent')
+	local editAlert = _G.CooldownViewerSettingsEditAlert
+	SkinEditAlert(editAlert, editAlert.TypeDropdown, editAlert.EventDropdown, editAlert.PayloadDropdown)
 
-		S:HandleButton(ImportLayoutDialog.AcceptButton)
-		S:HandleButton(ImportLayoutDialog.CancelButton)
-		S:HandleEditBox(ImportLayoutDialog.ImportBox)
-		S:HandleEditBox(ImportLayoutDialog.LayoutNameEditBox)
-		ImportLayoutDialog.LayoutNameEditBox.backdrop:NudgePoint(0, -3, nil, 'TOPLEFT')
-		ImportLayoutDialog.LayoutNameEditBox.backdrop:NudgePoint(10, 3, nil, 'BOTTOMRIGHT')
-	end
+	local visualAlert = _G.GroupBuffFilterEditVisualAlert
+	SkinEditAlert(visualAlert, visualAlert.VisualDropdown)
 
-	local LayoutDialog = _G.CooldownViewerLayoutDialog
-	if LayoutDialog then
-		LayoutDialog.Border:Hide()
-		LayoutDialog:SetTemplate('Transparent')
+	SkinLayoutDialog(_G.CooldownViewerLayoutDialog)
 
-		S:HandleButton(LayoutDialog.AcceptButton)
-		S:HandleButton(LayoutDialog.CancelButton)
-		S:HandleEditBox(LayoutDialog.LayoutNameEditBox)
-		LayoutDialog.LayoutNameEditBox.backdrop:NudgePoint(0, -3, nil, 'TOPLEFT')
-		LayoutDialog.LayoutNameEditBox.backdrop:NudgePoint(0, 3, nil, 'BOTTOMRIGHT')
-	end
+	local importDialog = _G.CooldownViewerImportLayoutDialog
+	SkinLayoutDialog(importDialog)
+	S:HandleEditBox(importDialog.ImportBox)
+
+	-- Line up the right edge with the import box above it
+	importDialog.LayoutNameEditBox.backdrop:NudgePoint(10, 0, nil, 'BOTTOMRIGHT')
 end
 
 S:AddCallbackForAddon('Blizzard_CooldownViewer', 'LuckyoneUI_CooldownViewer', Skin_CooldownViewer)
