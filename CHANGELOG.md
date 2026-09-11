@@ -5,6 +5,7 @@
 - Added option to double the amount of icons on vendor frames (4 rows of 5 items per page)  
 - Added option to increase auto loot speed (Credits: Azilroka, Re-used with permission)  
 - Added option to move the Blizzard panels around, the position is never saved and resets on reload  
+- Added option to tweak the Blizzard friends list (Colors, Levels, Brackets, Faction icons, Realm, Status, Fonts)  
 - Added skin for Auctionator  
 - Added skin for SimpleAddonManager  
 - Alt setup button is back, one click to load all existing profiles and optionally setup chat  

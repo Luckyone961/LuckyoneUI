@@ -658,6 +658,10 @@ local function MailboxEntry()
 	end
 end
 
+local function FriendsListDisabled()
+	return not Private.Addon.db.profile.misc.friendsList.enable
+end
+
 -- Build Misc Section
 local function BuildMiscSection()
 	local section = ACH:Group(GetIconName(L["Misc"], 'Misc'), nil, 60, 'tab')
@@ -704,6 +708,34 @@ local function BuildMiscSection()
 	section.args.mailbox.args.fontGroup.args.font = FontSelect(1)
 	section.args.mailbox.args.fontGroup.args.fontOutline = OutlineSelect(2)
 	section.args.mailbox.args.fontGroup.args.fontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 26, step = 1 })
+	section.args.friendsList = ACH:Group(L["Friends List"], nil, 4, nil, function(info) return Private.Addon.db.profile.misc.friendsList[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.friendsList[info[#info]] = value Private:FriendsList() Private:FriendsList_Update() end)
+	section.args.friendsList.args.generalOptions = ACH:Group(L["General"], nil, 1)
+	section.args.friendsList.args.generalOptions.inline = true
+	section.args.friendsList.args.generalOptions.args.enable = ACH:Toggle(L["Enable"], L["Tweak the Blizzard friends list with class colors, levels, faction icons, realm names and custom fonts."], 1)
+	section.args.friendsList.args.generalOptions.args.level = ACH:Toggle(L["Show Level"], L["Show the character level behind the name."], 2, nil, nil, nil, nil, nil, FriendsListDisabled)
+	section.args.friendsList.args.generalOptions.args.factionIcon = ACH:Toggle(L["Faction Icon"], L["Replace the game icon next to the invite button with the faction icon of the character."], 3, nil, nil, nil, nil, nil, FriendsListDisabled)
+	section.args.friendsList.args.generalOptions.args.realm = ACH:Toggle(L["Realm Name"], L["Show the realm name next to the zone text."], 4, nil, nil, nil, nil, nil, FriendsListDisabled)
+	section.args.friendsList.args.generalOptions.args.bracketStyle = ACH:Select(L["Brackets"], L["Bracket style around the character name of Battle.net friends."], 6, { PARENTHESES = '( )', SQUARE = '[ ]', NONE = _G.NONE }, nil, nil, nil, nil, FriendsListDisabled)
+	section.args.friendsList.args.generalOptions.args.realmSeparator = ACH:Select(L["Separator"], L["Separator between the zone and the realm name."], 5, { DASH = '-', PIPE = '||' }, nil, nil, nil, nil, FriendsListDisabled, function() return not Private.Addon.db.profile.misc.friendsList.realm end)
+	section.args.friendsList.args.generalOptions.args.statusIcon = ACH:Select(L["Status Icon"], L["Style of the status icon in front of each friend."], 7, { DEFAULT = L["Default"], SQUARE = L["Square"] }, nil, nil, nil, nil, FriendsListDisabled)
+	section.args.friendsList.args.colorOptions = ACH:Group(L["Colors"], nil, 2, nil, nil, nil, FriendsListDisabled)
+	section.args.friendsList.args.colorOptions.inline = true
+	section.args.friendsList.args.colorOptions.args.classColor = ACH:Toggle(L["Class Color"], L["Color the character names by class."], 1)
+	section.args.friendsList.args.colorOptions.args.infoColorType = ACH:Select(L["Zone Color"], L["Color of the zone and realm text of online friends."], 2, { DEFAULT = L["Default"], CUSTOM = L["Custom"] })
+	section.args.friendsList.args.colorOptions.args.infoColor = ACH:Color(L["Custom Color"], nil, 3, nil, nil, function() local color = Private.Addon.db.profile.misc.friendsList.infoColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.misc.friendsList.infoColor color.r, color.g, color.b = r, g, b Private:FriendsList_Update() end, nil, function() return Private.Addon.db.profile.misc.friendsList.infoColorType ~= 'CUSTOM' end)
+	section.args.friendsList.args.nameFont = ACH:Group(L["Name Font"], nil, 3, nil, nil, nil, FriendsListDisabled)
+	section.args.friendsList.args.nameFont.inline = true
+	section.args.friendsList.args.nameFont.args.font = FontSelect(1)
+	section.args.friendsList.args.nameFont.args.fontOutline = OutlineSelect(2)
+	section.args.friendsList.args.nameFont.args.fontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 20, step = 1 })
+	section.args.friendsList.args.infoFont = ACH:Group(L["Zone Font"], nil, 4, nil, nil, nil, FriendsListDisabled)
+	section.args.friendsList.args.infoFont.inline = true
+	section.args.friendsList.args.infoFont.args.infoFont = FontSelect(1)
+	section.args.friendsList.args.infoFont.args.infoFontOutline = OutlineSelect(2)
+	section.args.friendsList.args.infoFont.args.infoFontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 20, step = 1 })
+	section.args.friendsList.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 5)
+	section.args.friendsList.args.defaults.inline = true
+	section.args.friendsList.args.defaults.args.friendsList = ACH:Execute(L["Restore Defaults"], L["Wipe all friends list settings, the option itself stays enabled."], 1, function() Private:FriendsList_ResetDefaults() end, nil, true)
 	return section
 end
 

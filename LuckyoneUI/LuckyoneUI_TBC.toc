@@ -59,6 +59,7 @@ Modules\Blizzard\Blizzard.lua
 Modules\Blizzard\CombatText.lua
 Modules\Blizzard\Console.lua
 Modules\Blizzard\FasterLoot.lua
+Modules\Blizzard\FriendsList.lua
 Modules\Blizzard\MailboxFavorites.lua
 Modules\Blizzard\Merchant.lua
 Modules\Blizzard\MovableFrames.lua
