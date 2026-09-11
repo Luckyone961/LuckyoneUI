@@ -2,20 +2,20 @@
 
 **All WoW Versions:**  
 - Added option to create a custom mailbox favorite list with autofill on button click  
-- Added option to double the amount of icons on vendor frames (4 rows of 5 items per page)  
+- Added option to double the amount of icons on vendor frames  
 - Added option to increase auto loot speed (Credits: Azilroka, Re-used with permission)  
 - Added option to move the Blizzard panels around, the position is never saved and resets on reload  
-- Added option to tweak the Blizzard friends list (Colors, Levels, Brackets, Faction icons, Realm, Status, Fonts)  
+- Added options to style and tweak the Blizzard friends list  
 - Added skin for Auctionator  
 - Added skin for SimpleAddonManager  
 - Alt setup button is back, one click to load all existing profiles and optionally setup chat  
 - Removed the Plater profile  
 
 **Retail:**  
-- Added option to Objective Tracker (Fonts, Colors, Header underlines, Find Group button skin)  
+- Added options to style and tweak the Objective Tracker  
 - Added skin for Simulationcraft  
 - Added skin for the BigWigs /keys frame and LFG queue timer bar  
-- Removed the WarpDeplete profile (MPlusTimer replaces it)  
+- Removed the WarpDeplete profile  
 - Removed the WindTools profile  
 - Updated aura indicators for all healing specs (Size, Postion, Stack count, Style)  
 
