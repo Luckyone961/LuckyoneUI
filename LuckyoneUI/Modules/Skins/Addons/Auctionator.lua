@@ -682,49 +682,24 @@ local function Skin_Auctionator()
 		end
 	end
 
-	-- The tracked recipe search is added to the objective tracker on login
-	E:Delay(0, SkinCraftingInfo)
-end
-
-local function Skin_AuctionatorAuctionHouse()
-	if not Private.Addon.db.profile.skins.Auctionator then return end
-	if not Private.IsAddOnLoaded('Auctionator') then return end
-
-	local frame = _G.AuctionHouseFrame or _G.AuctionFrame
-	if not frame then return end
-
-	-- Frames are build when the auction house opens. Skin them one frame later.
-	frame:HookScript('OnShow', function() E:Delay(0, SkinAuctionHouse) end)
-
-	if frame:IsShown() then
-		E:Delay(0, SkinAuctionHouse)
+	-- The tabs, listings and popups are built when the auction house opens, the mixin is copied onto the frame at that point
+	if _G.AuctionatorAHFrameMixin then
+		hooksecurefunc(_G.AuctionatorAHFrameMixin, 'OnShow', SkinAuctionHouse)
 	end
-end
 
-local function Skin_AuctionatorProfessions()
-	if not Private.Addon.db.profile.skins.Auctionator then return end
-	if not Private.IsAddOnLoaded('Auctionator') then return end
-
-	-- Search buttons are added while the profession window opens. Skin them one frame later.
-	for _, name in next, { 'CraftFrame', 'ProfessionsCustomerOrdersFrame', 'ProfessionsFrame', 'TradeSkillFrame' } do
-		local frame = _G[name]
-		if frame and not frame.LuckyoneUI_Auctionator then
-			frame:HookScript('OnShow', function() E:Delay(0, SkinCraftingInfo) end)
-
-			frame.LuckyoneUI_Auctionator = true
+	-- The crafting and enchanting info frames are created when the profession windows open
+	for _, name in next, { 'Initialize', 'InitializeProfessionsFrame', 'InitializeCustomerOrdersFrame', 'InitializeObjectiveTrackerFrame' } do
+		if Auctionator.CraftingInfo and Auctionator.CraftingInfo[name] then
+			hooksecurefunc(Auctionator.CraftingInfo, name, SkinCraftingInfo)
 		end
 	end
 
-	E:Delay(0, SkinCraftingInfo)
+	if Auctionator.EnchantInfo and Auctionator.EnchantInfo.Initialize then
+		hooksecurefunc(Auctionator.EnchantInfo, 'Initialize', SkinCraftingInfo)
+	end
+
+	-- The tracked recipe search is added to the objective tracker on login, which can run before this
+	SkinCraftingInfo()
 end
 
 S:AddCallbackForAddon('Auctionator', 'LuckyoneUI_Auctionator', Skin_Auctionator)
-S:AddCallbackForAddon(isModernAH and 'Blizzard_AuctionHouseUI' or 'Blizzard_AuctionUI', 'LuckyoneUI_Auctionator_AuctionHouse', Skin_AuctionatorAuctionHouse)
-
-if Private.isRetail then
-	S:AddCallbackForAddon('Blizzard_Professions', 'LuckyoneUI_Auctionator_Professions', Skin_AuctionatorProfessions)
-	S:AddCallbackForAddon('Blizzard_ProfessionsCustomerOrders', 'LuckyoneUI_Auctionator_CustomerOrders', Skin_AuctionatorProfessions)
-else
-	S:AddCallbackForAddon('Blizzard_CraftUI', 'LuckyoneUI_Auctionator_Craft', Skin_AuctionatorProfessions)
-	S:AddCallbackForAddon('Blizzard_TradeSkillUI', 'LuckyoneUI_Auctionator_TradeSkill', Skin_AuctionatorProfessions)
-end
