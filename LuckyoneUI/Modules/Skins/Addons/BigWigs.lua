@@ -42,6 +42,73 @@ local function BigWigs_FrameCreated(_, frame, name)
 	end
 end
 
+-- /keys main frame
+local function SkinPanel(panel)
+	if panel.isSkinned then return end
+
+	S:HandlePortraitFrame(panel)
+	panel.PortraitContainer:Hide()
+
+	panel.isSkinned = true
+end
+
+-- Solid backdrop on the entry cells for better readability
+local function SkinCell(cell)
+	if cell.backdrop then return end
+
+	cell.bg:Hide()
+	cell:CreateBackdrop()
+end
+
+local function SkinCells(scrollChild)
+	for _, cell in next, { scrollChild:GetChildren() } do
+		if cell.bg then
+			SkinCell(cell)
+		end
+	end
+end
+
+-- The cell pool grows with the list, the height update after each build catches new ones
+local function SkinScrollFrame(scrollFrame)
+	if scrollFrame.isSkinned then return end
+
+	S:HandleTrimScrollBar(scrollFrame.ScrollBar)
+
+	local scrollChild = scrollFrame:GetScrollChild()
+	SkinCells(scrollChild)
+	scrollChild:HookScript('OnSizeChanged', SkinCells)
+
+	scrollFrame.isSkinned = true
+end
+
+-- Reposition tabs and match tab spacing of our other skins, tabs are expected in display order
+local function SkinTabs(panel, tabs)
+	for i = 1, #tabs do
+		local tab = tabs[i]
+		S:HandleTab(tab)
+		tab:ClearAllPoints()
+
+		if i == 1 then
+			tab:Point('TOPLEFT', panel, 'BOTTOMLEFT', -3, 0)
+		else
+			tab:Point('TOPLEFT', tabs[i - 1], 'TOPRIGHT', -5, 0)
+		end
+	end
+end
+
+local function SkinTip(tip)
+	if tip.isSkinned then return end
+
+	tip:StripTextures()
+	tip:SetTemplate('Transparent')
+
+	for _, arrow in next, { tip:GetChildren() } do
+		arrow:Hide()
+	end
+
+	tip.isSkinned = true
+end
+
 -- /keys frame and childs are unnamed, look for BigWigs Keystones title
 local function FindKeystonesPanel()
 	local L = _G.BigWigsAPI:GetLocale('BigWigs')
@@ -56,57 +123,21 @@ local function FindKeystonesPanel()
 	end
 end
 
--- Solid backdrop on the entry cells for better readability
-local function SkinCells(scrollChild)
-	for _, child in next, { scrollChild:GetChildren() } do
-		if child.bg and not child.backdrop then
-			child.bg:Hide()
-			child:CreateBackdrop()
-		end
-	end
-end
-
 local function SkinKeystonesPanel(panel)
-	-- Main Frame
-	S:HandlePortraitFrame(panel)
-	panel.PortraitContainer:Hide()
+	SkinPanel(panel)
+	SkinTip(panel.tip)
 
-	-- Scroll Bar and Tabs
 	local tabs = {}
 
 	for _, child in next, { panel:GetChildren() } do
 		if child:IsObjectType('ScrollFrame') then
-			S:HandleTrimScrollBar(child.ScrollBar)
-
-			-- The cell pool grows with the list, the height update after each build catches new ones
-			local scrollChild = child:GetScrollChild()
-			SkinCells(scrollChild)
-			scrollChild:HookScript('OnSizeChanged', SkinCells)
+			SkinScrollFrame(child)
 		elseif child.LeftActive then
-			S:HandleTab(child)
 			tabs[#tabs + 1] = child
 		end
 	end
 
-	-- Reposition tabs and match tab spacing of our other skins
-	for i = 1, #tabs do
-		local tab = tabs[i]
-		tab:ClearAllPoints()
-
-		if i == 1 then
-			tab:Point('TOPLEFT', panel, 'BOTTOMLEFT', -3, 0)
-		else
-			tab:Point('TOPLEFT', tabs[i - 1], 'TOPRIGHT', -5, 0)
-		end
-	end
-
-	local tip = panel.tip
-	tip:StripTextures()
-	tip:SetTemplate('Transparent')
-
-	for _, arrow in next, { tip:GetChildren() } do
-		arrow:Hide()
-	end
+	SkinTabs(panel, tabs)
 end
 
 local function Skin_BigWigs()
