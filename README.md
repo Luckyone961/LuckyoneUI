@@ -53,7 +53,7 @@
 • Chattynator, Details, ElvUI  
 • MPlusTimer, Northern Sky Raid Tools, PermoksAccountManager  
 • Plater, Platynator, Plumber  
-• SkironCooldownManager, WarpDeplete, WindTools  
+• SkironCooldownManager, WindTools  
 
 ### **Shared media**  
 • Included Fonts: Expressway and Geist (Bold, Light, Medium, Regular, Semi Bold)  

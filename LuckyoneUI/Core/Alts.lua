@@ -209,13 +209,6 @@ local handlers = {
 		Profiles = AceProfiles('SkironCooldownManagerDB'),
 		Apply = AceApply('SkironCooldownManagerDB'),
 	},
-	{
-		name = 'WarpDeplete',
-		hidden = not Private.isRetail,
-		base = 'Luckyone',
-		Profiles = AceProfiles('WarpDepleteDB'),
-		Apply = AceApply('WarpDepleteDB'),
-	},
 }
 
 -- Quick setup for alts, loads every existing Luckyone profile

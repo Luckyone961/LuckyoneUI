@@ -104,5 +104,4 @@ Profiles\PermoksAccountManager.lua [AllowLoadGameType mainline]
 Profiles\Plater.lua
 Profiles\Platynator.lua
 Profiles\Plumber.lua [AllowLoadGameType mainline]
-Profiles\WarpDeplete.lua [AllowLoadGameType mainline]
 Profiles\WindTools.lua

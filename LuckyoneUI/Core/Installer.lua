@@ -683,12 +683,11 @@ local function BuildPages()
 			Button(L["LuckyoneUI Damage Meter"], EnableDamageMeter, 'luckyone', nil, not Private.Modules.DamageMeter),
 		}),
 
-		-- M+ timer choice
+		-- M+ timer profile
 		Page(L["Mythic+ Addons"], {
-			L["Choose between WarpDeplete and MPlusTimer."],
+			L["Please click the button below to apply Luckyones profile for MPlusTimer."],
 			recommended,
 		}, {
-			Button(L["Setup WarpDeplete"], function() Private:Setup_WarpDeplete(true) end, 'warpdeplete', 'WarpDeplete'),
 			Button(L["Setup MPlusTimer"], function() Private:Setup_MPlusTimer(true) end, 'mplustimer', 'MPlusTimer'),
 		}, nil, not Private.isRetail),
 

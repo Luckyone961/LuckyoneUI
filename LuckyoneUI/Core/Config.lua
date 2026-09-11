@@ -174,7 +174,6 @@ local function BuildAddonProfilesSection()
 	section.args.addons.args.nsrt = ACH:Execute('Northern Sky Raid Tools', IMPORT_DEFAULTS_TEXT, 5, function() Private:Setup_NSRT() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.addons.args.permoksAccountManager = ACH:Execute('PermoksAccountManager', IMPORT_DEFAULTS_TEXT, 6, function() Private:Setup_PermoksAccountManager() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.addons.args.plumber = ACH:Execute('Plumber', IMPORT_DEFAULTS_TEXT, 7, function() Private:Setup_Plumber() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.warpDeplete = ACH:Execute('WarpDeplete', IMPORT_DEFAULTS_TEXT, 8, function() Private:Setup_WarpDeplete() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.isRetail)
 	section.args.nameplates = ACH:Group(L["Nameplate Profiles"], nil, 3)
 	section.args.nameplates.inline = true
 	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', IMPORT_DEFAULTS_TEXT, 1, function() Private:Setup_NamePlates() StaticPopup_Show(RELOAD_POPUP) end, nil, true, nil, nil, nil, nil, not Private.ElvUI)
