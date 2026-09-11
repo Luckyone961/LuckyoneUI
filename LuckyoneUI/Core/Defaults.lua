@@ -199,6 +199,7 @@ Private.Defaults = {
 			objectiveTracker = {
 				enable = false,
 				findGroupSkin = true,
+				scenarioSkin = true,
 				mainHeader = ObjectiveTrackerHeader(13),
 				categoryHeader = ObjectiveTrackerHeader(13),
 				content = {

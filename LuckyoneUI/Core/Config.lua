@@ -793,6 +793,7 @@ local function BuildMiscSection()
 	section.args.objectiveTracker.args.general.args.generalOptions.inline = true
 	section.args.objectiveTracker.args.general.args.generalOptions.args.enable = ACH:Toggle(L["Enable"], L["Customize the fonts and colors of the Blizzard objective tracker and put an underline below its headers.\n\nDisabling needs a reload."], 1)
 	section.args.objectiveTracker.args.general.args.generalOptions.args.findGroupSkin = ACH:Toggle(L["Find Group Button"], L["Skin the group finder button next to quests in ElvUI style.\n\nDisabling needs a reload."], 2, nil, nil, nil, nil, nil, ObjectiveTrackerDisabled, not Private.ElvUI)
+	section.args.objectiveTracker.args.general.args.generalOptions.args.scenarioSkin = ACH:Toggle(L["Scenario Block"], L["Skin the block with the dungeon, delve or scenario stage name in ElvUI style.\n\nDisabling needs a reload."], 3, nil, nil, nil, nil, nil, ObjectiveTrackerDisabled, not Private.ElvUI)
 	section.args.objectiveTracker.args.general.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 2)
 	section.args.objectiveTracker.args.general.args.defaults.inline = true
 	section.args.objectiveTracker.args.general.args.defaults.args.objectiveTracker = ACH:Execute(L["Restore Defaults"], L["Wipe all objective tracker settings, the option itself stays enabled."], 1, function() Private:ObjectiveTracker_ResetDefaults() end, nil, true)

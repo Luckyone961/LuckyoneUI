@@ -19,7 +19,7 @@ local NORMAL_FONT_COLOR = NORMAL_FONT_COLOR
 local RAID_CLASS_COLORS = RAID_CLASS_COLORS
 
 local E = Private.ElvUI and ElvUI[1]
-local S -- Only while the find group skin is active
+local S -- ElvUI skins, only while its objective tracker skin is active
 
 local hooked
 
@@ -166,7 +166,7 @@ end
 -- Only textures and a backdrop child get touched, never the questID attribute
 local function SkinFindGroupButtons(module)
 	local frames = module.usedRightEdgeFrames
-	if not (S and frames) then return end
+	if not (S and frames and Private.Addon.db.profile.misc.objectiveTracker.findGroupSkin) then return end
 
 	for _, button in pairs(frames) do
 		if not skinned[button] and button.template == 'QuestObjectiveFindGroupButtonTemplate' then
@@ -185,6 +185,36 @@ local function SkinFindGroupButtons(module)
 			skinned[button] = true
 		end
 	end
+end
+
+-- Fixed block with the dungeon, delve or scenario stage name, Blizzard paints a toast behind it
+-- Alpha zero instead of clearing the textures, every stage change puts the atlas back on them
+local function UpdateStageBackdrop(block)
+	block.backdrop:SetShown(block.NormalBG:IsShown())
+end
+
+local function SkinStageBlock(module)
+	local block = module.StageBlock
+	if not (S and block) or skinned[block] or not Private.Addon.db.profile.misc.objectiveTracker.scenarioSkin then return end
+
+	block.NormalBG:SetAlpha(0)
+	block.FinalBG:SetAlpha(0)
+	block.ThemeOverlay:SetAlpha(0)
+	block.GlowTexture:SetTexture(nil) -- The new stage flash animates the alpha, so the texture has to go
+
+	block:CreateBackdrop('Transparent')
+
+	-- The created backdrop needs -2px width and -4px height
+	local backdrop = block.backdrop
+	backdrop:ClearAllPoints()
+	backdrop:SetPoint('TOPLEFT', block, 0, -1)
+	backdrop:SetPoint('BOTTOMRIGHT', block, 0, 1)
+
+	-- Widget driven stages hide the toast and show widgets instead, the backdrop follows
+	hooksecurefunc(block, 'UpdateWidgetRegistration', UpdateStageBackdrop)
+	UpdateStageBackdrop(block)
+
+	skinned[block] = true
 end
 
 -- Pooled quest icon left of the title, its pixel math reads the effective scale
@@ -250,6 +280,7 @@ local function UpdateModule(module)
 	end
 
 	SkinFindGroupButtons(module)
+	SkinStageBlock(module)
 end
 
 -- After PLAYER_ENTERING_WORLD
@@ -310,7 +341,7 @@ function Private:ObjectiveTracker()
 	if not (manager and _G.ObjectiveTrackerFrame) then return end
 
 	-- Follows the ElvUI objective tracker skin, same as the minimize buttons
-	S = (E and db.findGroupSkin and E.private.skins.blizzard.enable and E.private.skins.blizzard.objectiveTracker) and E:GetModule('Skins') or nil
+	S = (E and E.private.skins.blizzard.enable and E.private.skins.blizzard.objectiveTracker) and E:GetModule('Skins') or nil
 
 	if not hooked then
 		local styles = _G.OBJECTIVE_TRACKER_COLOR
