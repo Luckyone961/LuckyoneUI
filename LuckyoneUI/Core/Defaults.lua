@@ -206,7 +206,7 @@ Private.Defaults = {
 					font = Private.Font,
 					fontOutline = Private.Outline,
 					fontSize = 12,
-					titleColorType = 'DEFAULT',
+					titleColorType = 'CLASS',
 					titleColor = { r = 1, g = 1, b = 1 },
 					lineColorType = 'DEFAULT',
 					lineColor = { r = 1, g = 1, b = 1 },
