@@ -32,6 +32,13 @@ local blocks = setmetatable({}, { __mode = 'k' })
 local skinned = setmetatable({}, { __mode = 'k' })
 local poiAnchors = setmetatable({}, { __mode = 'k' }) -- Blizzard y offset of every quest icon, refreshed by each layout
 
+-- Delve, currency and timer headers inside the scenario widget containers
+local headerWidgets = {
+	[Enum.UIWidgetVisualizationType.ScenarioHeaderCurrenciesAndBackground] = true,
+	[Enum.UIWidgetVisualizationType.ScenarioHeaderDelves] = true,
+	[Enum.UIWidgetVisualizationType.ScenarioHeaderTimer] = true,
+}
+
 local function GetColor(colorType, custom)
 	if colorType == 'CLASS' then
 		return (E and E:ClassColor(Private.myClass, true)) or RAID_CLASS_COLORS[Private.myClass]
@@ -187,15 +194,70 @@ local function SkinFindGroupButtons(module)
 	end
 end
 
+-- Every setup puts the texture on the toast so alpha zero again
+local function SkinHeaderWidget(container, widgetID)
+	local widget = container.widgetFrames[widgetID]
+	if not widget or skinned[widget] or not headerWidgets[widget.widgetType] then return end
+
+	widget.Frame:SetAlpha(0)
+	widget.ThemeOverlay:SetAlpha(0)
+	widget.DecorationBottomLeft:SetAlpha(0)
+
+	-- The widget takes the size of its toast, so the backdrop can follow the frame
+	-- The level below the widget is only good until the next layout, see UpdateWidgetLevels
+	widget:CreateBackdrop('Transparent')
+
+	-- The created backdrop needs -2px width and -4px height
+	local backdrop = widget.backdrop
+	backdrop:ClearAllPoints()
+	backdrop:SetPoint('TOPLEFT', widget, 0, -1)
+	backdrop:SetPoint('BOTTOMRIGHT', widget, 0, 1)
+
+	skinned[widget] = true
+end
+
+-- Every layout re-parents and re-levels the widgets, a pooled one comes back with the backdrop on top of its content
+local function UpdateWidgetLevels(container)
+	if not container.widgetFrames then return end
+
+	for _, widget in pairs(container.widgetFrames) do
+		if skinned[widget] then
+			widget.backdrop:SetFrameLevel(widget:GetFrameLevel() - 1)
+		end
+	end
+end
+
+local function SkinWidgetContainer(container)
+	if skinned[container] then return end
+	skinned[container] = true
+
+	hooksecurefunc(container, 'CreateWidget', SkinHeaderWidget)
+	hooksecurefunc(container, 'UpdateWidgetLayout', UpdateWidgetLevels)
+
+	-- Whatever the container already holds, nil before its first widget set
+	if container.widgetFrames then
+		for widgetID in pairs(container.widgetFrames) do
+			SkinHeaderWidget(container, widgetID)
+		end
+	end
+end
+
 -- Fixed block with the dungeon, delve or scenario stage name, Blizzard paints a toast behind it
 -- Alpha zero instead of clearing the textures, every stage change puts the atlas back on them
 local function UpdateStageBackdrop(block)
 	block.backdrop:SetShown(block.NormalBG:IsShown())
 end
 
-local function SkinStageBlock(module)
+local function SkinScenario(module)
 	local block = module.StageBlock
-	if not (S and block) or skinned[block] or not Private.Addon.db.profile.misc.objectiveTracker.scenarioSkin then return end
+	if not (S and block) or not Private.Addon.db.profile.misc.objectiveTracker.scenarioSkin then return end
+
+	-- Delves and timed scenarios swap the stage toast for a widget
+	SkinWidgetContainer(block.WidgetContainer)
+	SkinWidgetContainer(module.TopWidgetContainerBlock.WidgetContainer)
+	SkinWidgetContainer(module.BottomWidgetContainerBlock.WidgetContainer)
+
+	if skinned[block] then return end
 
 	block.NormalBG:SetAlpha(0)
 	block.FinalBG:SetAlpha(0)
@@ -280,7 +342,7 @@ local function UpdateModule(module)
 	end
 
 	SkinFindGroupButtons(module)
-	SkinStageBlock(module)
+	SkinScenario(module)
 end
 
 -- After PLAYER_ENTERING_WORLD
