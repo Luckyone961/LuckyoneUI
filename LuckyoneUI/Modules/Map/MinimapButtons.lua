@@ -530,6 +530,20 @@ function Private:UpdateMinimapButtonBar()
 	LayoutButtons(holder, buttons)
 end
 
+-- Restore profile defaults config button
+function Private:MinimapButtons_ResetDefaults()
+	local db = Private.Addon.db.profile.map.minimap.buttons
+	local enable = db.enable
+
+	wipe(db)
+	E:CopyTable(db, Private.Defaults.profile.map.minimap.buttons)
+
+	-- Restoring the look should not switch the module off
+	db.enable = enable
+
+	Private:UpdateMinimapButtonBar()
+end
+
 function Map:PLAYER_ENTERING_WORLD()
 	RegisterHooks()
 	ScheduleUpdate()

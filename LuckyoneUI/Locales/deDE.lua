@@ -475,6 +475,7 @@ L["Wipe all combat text settings, the option itself stays enabled."] = true
 L["Wipe all Damage Meter data when you log out. Reloading the UI keeps the data."] = "Löscht alle Damage Meter Daten, wenn du dich ausloggst. Ein Neuladen vom UI behält die Daten."
 L["Wipe all Damage Meter settings, the module itself stays enabled."] = "Löscht alle Damage Meter Einstellungen, das Modul selbst bleibt eingeschaltet."
 L["Wipe all friends list settings, the option itself stays enabled."] = true
+L["Wipe all Minimap button settings, the module itself stays enabled."] = true
 L["X Offset"] = "X-Versatz"
 L["Y Offset"] = "Y-Versatz"
 L["Yes, no chat"] = "Ja, ohne Chat"

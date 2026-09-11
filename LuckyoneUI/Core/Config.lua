@@ -607,6 +607,9 @@ local function BuildMapSection()
 	section.args.minimapButtonsDesc = ACH:Group(L["Minimap Buttons explained"], nil, 4)
 	section.args.minimapButtonsDesc.inline = true
 	section.args.minimapButtonsDesc.args.desc = ACH:Description(L["The order of icons is sorted alphabetically, starting on the right side.\nException 1: BugSack - it's hardcoded to be the right-most icon.\nException 2: Blizzard buttons - they're hardcoded to be the last icon."], 1, 'medium')
+	section.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 5)
+	section.args.defaults.inline = true
+	section.args.defaults.args.minimapButtons = ACH:Execute(L["Restore Defaults"], L["Wipe all Minimap button settings, the module itself stays enabled."], 1, function() Private:MinimapButtons_ResetDefaults() end, nil, true)
 	return section
 end
 
