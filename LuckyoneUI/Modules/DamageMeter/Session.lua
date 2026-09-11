@@ -420,10 +420,11 @@ local function OpenMenu(button, generator, alignRight)
 	Menu.GetManager():OpenMenu(button, rootDescription, anchor)
 end
 
+-- Goes by the mouse focus instead of the window bounds, the buttons can be past the windoe edge
 function DM:UpdateHeaderButtons(window)
 	if not window.mouseoverButtons then return end
 
-	local alpha = window:IsMouseOver() and 1 or 0
+	local alpha = DoesAncestryIncludeAny(window, GetMouseFoci()) and 1 or 0
 	if window.buttonAlpha == alpha then return end -- Avoid firing twice
 	window.buttonAlpha = alpha
 
@@ -1442,7 +1443,7 @@ function DM:ApplyWindowSettings(window)
 
 	-- Hidden buttons stay hidden, mouseover only fades the enabled ones
 	local mouseover = wdb.mouseoverButtons
-	local alpha = (mouseover and not window:IsMouseOver()) and 0 or 1
+	local alpha = (mouseover and not DoesAncestryIncludeAny(window, GetMouseFoci())) and 0 or 1
 	window.mouseoverButtons = mouseover
 	window.buttonAlpha = alpha
 
