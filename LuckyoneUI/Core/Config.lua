@@ -685,6 +685,9 @@ local function BuildMiscSection()
 	section.args.combatText.args.fontGroup.args.font = FontSelect(1)
 	section.args.combatText.args.fontGroup.args.fontOutline = OutlineSelect(2)
 	section.args.combatText.args.fontGroup.args.fontSize = ACH:Range(L["Font Size"], nil, 3, { min = 8, max = 64, step = 1 })
+	section.args.combatText.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 4)
+	section.args.combatText.args.defaults.inline = true
+	section.args.combatText.args.defaults.args.combatText = ACH:Execute(L["Restore Defaults"], L["Wipe all combat text settings, the option itself stays enabled."], 1, function() Private:CombatText_ResetDefaults() end, nil, true)
 	section.args.mailbox = ACH:Group(L["Mailbox Favorites"], nil, 3, nil, function(info) return Private.Addon.db.profile.misc.mailbox[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.mailbox[info[#info]] = value Private:MailboxFavorites() Private:MailboxFavorites_Update() end)
 	section.args.mailbox.args.generalOptions = ACH:Group(L["General"], nil, 1)
 	section.args.mailbox.args.generalOptions.inline = true

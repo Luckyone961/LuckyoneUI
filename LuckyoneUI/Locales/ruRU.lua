@@ -471,6 +471,7 @@ L["Window %d"] = true
 L["Windows"] = true
 L["WindTools profile has been set."] = "Профиль WindTools установлен."
 L["Windwalker"] = "Танцующий с ветром"
+L["Wipe all combat text settings, the option itself stays enabled."] = true
 L["Wipe all Damage Meter data when you log out. Reloading the UI keeps the data."] = true
 L["Wipe all Damage Meter settings, the module itself stays enabled."] = true
 L["Wipe all friends list settings, the option itself stays enabled."] = true

@@ -53,6 +53,23 @@ function Private:CombatText_Update()
 	frame:SetPoint('CENTER', _G[db.anchor] or UIParent, 'CENTER', db.xOffset, db.yOffset)
 end
 
+-- Restore profile defaults config button
+function Private:CombatText_ResetDefaults()
+	local db = Private.Addon.db.profile.misc.combatText
+	local enable = db.enable
+
+	wipe(db)
+	for key, value in pairs(Private.Defaults.profile.misc.combatText) do
+		-- Sharing the table would write back into the defaults
+		db[key] = type(value) == 'table' and { r = value.r, g = value.g, b = value.b } or value
+	end
+
+	-- Restoring the look should not switch the option off
+	db.enable = enable
+
+	Private:CombatText_Update()
+end
+
 local function CombatText_Show(entering)
 	local db = Private.Addon.db.profile.misc.combatText
 	if not db.enable then return end
