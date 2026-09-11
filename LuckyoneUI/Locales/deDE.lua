@@ -328,7 +328,6 @@ L["Pick the entry the options below change."] = true
 L["Pin your own bar to the closest edge of the list while it would be scrolled out of view."] = "Heftet deine eigene Leiste an den nächstgelegenen Rand der Liste, solange sie sonst nicht sichtbar wäre."
 L["Place the session windows next to each other or stacked."] = "Platziere die Session-Fenster nebeneinander oder gestapelt."
 L["Placement"] = "Platzierung"
-L["Plater profile has been set."] = "Plater Profil wurde festgelegt."
 L["Platynator profile has been set."] = "Platynator Profil wurde festgelegt."
 L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."] = "Bitte klicke auf die Schaltfläche unten, um Luckyones Profil für BigWigs und LittleWigs anzuwenden."
 L["Please click the button below to apply Luckyones profile for Details! Damage Meter."] = "Bitte klicke auf die Schaltfläche unten, um Luckyones Profil für Details! Damage Meter anzuwenden."

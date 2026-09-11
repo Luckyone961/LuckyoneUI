@@ -101,6 +101,5 @@ Profiles\ElvUI.lua
 Profiles\MPlusTimer.lua [AllowLoadGameType mainline]
 Profiles\NSRT.lua [AllowLoadGameType mainline]
 Profiles\PermoksAccountManager.lua [AllowLoadGameType mainline]
-Profiles\Plater.lua
 Profiles\Platynator.lua
 Profiles\Plumber.lua [AllowLoadGameType mainline]

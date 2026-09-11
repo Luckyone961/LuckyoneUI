@@ -52,8 +52,7 @@
 • Baganator, BigWigs, BuffReminders  
 • Chattynator, Details, ElvUI  
 • MPlusTimer, Northern Sky Raid Tools, PermoksAccountManager  
-• Plater, Platynator, Plumber  
-• SkironCooldownManager  
+• Platynator, Plumber, SkironCooldownManager  
 
 ### **Shared media**  
 • Included Fonts: Expressway and Geist (Bold, Light, Medium, Regular, Semi Bold)  

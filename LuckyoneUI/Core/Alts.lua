@@ -191,12 +191,6 @@ local handlers = {
 		end,
 	},
 	{
-		name = 'Plater',
-		base = 'Luckyone',
-		Profiles = AceProfiles('PlaterDB'),
-		Apply = AceApply('PlaterDB'),
-	},
-	{
 		name = 'Platynator',
 		base = 'Luckyone',
 		Profiles = SharedProfiles('PLATYNATOR'),

@@ -328,7 +328,6 @@ L["Pick the entry the options below change."] = true
 L["Pin your own bar to the closest edge of the list while it would be scrolled out of view."] = true
 L["Place the session windows next to each other or stacked."] = true
 L["Placement"] = true
-L["Plater profile has been set."] = "Le profil Plater a été appliqué."
 L["Platynator profile has been set."] = "Le profil Platynator a été appliqué."
 L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."] = "Merci de cliquer sur le bouton ci-dessous pour appliquer le profil Luckyone pour BigWigs et LittleWigs."
 L["Please click the button below to apply Luckyones profile for Details! Damage Meter."] = "Merci de cliquer sur le bouton ci-dessous pour appliquer le profil Luckyone pour Details! Damage Meter."

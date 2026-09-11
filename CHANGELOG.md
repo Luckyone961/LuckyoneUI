@@ -9,6 +9,7 @@
 - Added skin for Auctionator  
 - Added skin for SimpleAddonManager  
 - Alt setup button is back, one click to load all existing profiles and optionally setup chat  
+- Removed the Plater profile  
 
 **Retail:**  
 - Added option to Objective Tracker (Fonts, Colors, Header underlines, Find Group button skin)  

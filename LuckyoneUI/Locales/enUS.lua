@@ -328,7 +328,6 @@ L["Pick the entry the options below change."] = true
 L["Pin your own bar to the closest edge of the list while it would be scrolled out of view."] = true
 L["Place the session windows next to each other or stacked."] = true
 L["Placement"] = true
-L["Plater profile has been set."] = true
 L["Platynator profile has been set."] = true
 L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."] = true
 L["Please click the button below to apply Luckyones profile for Details! Damage Meter."] = true
