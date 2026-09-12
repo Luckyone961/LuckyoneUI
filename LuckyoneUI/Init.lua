@@ -72,7 +72,7 @@ Private.Version = tonumber(strmatch(Private.VersionString, '^[%d%.]+'))
 
 -- Bump with every release, same as ElvUI does for source checkouts
 if not Private.Version then
-	Private.Version, Private.VersionString = 4.22, '4.22-git'
+	Private.Version, Private.VersionString = 4.23, '4.23-git'
 end
 
 -- Player utils

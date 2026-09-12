@@ -1,4 +1,4 @@
-﻿## Version 4.23 [In development, not yet released]
+﻿## Version 4.23 [12-09-2026]
 
 **All WoW Versions:**  
 - Added option to create a custom mailbox favorite list with autofill on button click  
