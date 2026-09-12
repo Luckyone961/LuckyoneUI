@@ -1,10 +1,12 @@
 local _, Private = ...
+local L = Private.Libs.ACL
 local DM = Private.Modules.DamageMeter
 
 if not DM then return end
 
 local unpack = unpack
 local format = string.format
+local upper = string.upper
 local ipairs = ipairs
 local pairs = pairs
 local wipe = wipe
@@ -20,29 +22,31 @@ local DoesAncestryIncludeAny = DoesAncestryIncludeAny
 local GetCursorPosition = GetCursorPosition
 local GetMouseFoci = GetMouseFoci
 local IsShiftKeyDown = IsShiftKeyDown
+local InCombatLockdown = InCombatLockdown
+local UnitGUID = UnitGUID
 local GetAvailableCombatSessions = C_DamageMeter.GetAvailableCombatSessions
 local GetCombatSessionFromID = C_DamageMeter.GetCombatSessionFromID
 local GetCombatSessionFromType = C_DamageMeter.GetCombatSessionFromType
 local GetCombatSessionSourceFromID = C_DamageMeter.GetCombatSessionSourceFromID
 local GetCombatSessionSourceFromType = C_DamageMeter.GetCombatSessionSourceFromType
+local GetRecapEvents = C_DeathRecap.GetRecapEvents
+local GetRecapMaxHealth = C_DeathRecap.GetRecapMaxHealth
 local After = C_Timer.After
 local SecondsToClock = SecondsToClock
 local MenuUtil = MenuUtil
 local MenuVariants = MenuVariants
 local Menu = Menu
+local GameTooltip = GameTooltip
+local GameTooltip_Hide = GameTooltip_Hide
 local ScrollBarMixin = ScrollBarMixin
 local CreateAnchor = AnchorUtil.CreateAnchor
-local issecretvalue = issecretvalue or function() return false end
+local issecretvalue = issecretvalue
 
 local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
 
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
-
-local ICON_RESET = Private.IconPath .. 'DM_Reset.png'
-local ICON_SESSIONS = Private.IconPath .. 'DM_Sessions.png'
-local ICON_SETTINGS = Private.IconPath .. 'DM_Settings.png'
 
 local MeterType = Enum.DamageMeterType
 local SessionType = Enum.DamageMeterSessionType
@@ -81,36 +85,11 @@ for _, category in ipairs(DM.TypeCategories) do
 	end
 end
 
-DM.TypePerSecondPrimary = {
-	[MeterType.Dps] = true,
-	[MeterType.Hps] = true,
-}
-
-DM.TypeSuppressPerSecond = {
-	[MeterType.Interrupts] = true,
-	[MeterType.Dispels] = true,
-	[MeterType.Deaths] = true,
-}
-
-DM.TypeSuppressIcon = {
-	[MeterType.EnemyDamageTaken] = true,
-}
-
--- Types that can pin your own bar, deaths and enemies never carry one
-DM.TypePinLocalPlayer = {
-	[MeterType.DamageDone] = true,
-	[MeterType.Dps] = true,
-	[MeterType.HealingDone] = true,
-	[MeterType.Hps] = true,
-	[MeterType.Absorbs] = true,
-	[MeterType.Interrupts] = true,
-	[MeterType.Dispels] = true,
-	[MeterType.DamageTaken] = true,
-	[MeterType.AvoidableDamageTaken] = true,
-}
-
 -- The popup pulls a single source, the windows pull the whole session
 function DM:FetchWindow(window)
+	-- The death log is built once when the popup opens
+	if window.recapMode then return end
+
 	local session
 
 	if window.spellMode then
@@ -140,7 +119,6 @@ local TestSources = {
 	{ name = _G.DAMAGE_METER_EDIT_MODE_SOURCE_5 or 'Uther', classFilename = 'PALADIN' },
 }
 
-local TestTopAmount, TestFalloff, TestDuration = 12400000, 0.88, 300
 local testSessions = {}
 
 -- The windows can have different heights
@@ -150,7 +128,7 @@ local function GetTestSession(count)
 	local session = testSessions[count]
 	if session then return session end
 
-	local sources, total, amount = {}, 0, TestTopAmount
+	local sources, total, amount = {}, 0, 12400000
 
 	for index = 1, count do
 		local source = TestSources[(index - 1) % #TestSources + 1]
@@ -159,17 +137,17 @@ local function GetTestSession(count)
 			name = source.name,
 			classFilename = source.classFilename,
 			totalAmount = amount,
-			amountPerSecond = amount / TestDuration,
+			amountPerSecond = amount / 300,
 		}
 
 		total = total + amount
-		amount = max(floor(amount * TestFalloff), 1)
+		amount = max(floor(amount * 0.88), 1)
 	end
 
 	-- The last source is the worst one, it previews the pinned player bar
 	sources[count].isLocalPlayer = true
 
-	session = { combatSources = sources, maxAmount = TestTopAmount, totalAmount = total }
+	session = { combatSources = sources, maxAmount = 12400000, totalAmount = total }
 	testSessions[count] = session
 
 	return session
@@ -191,7 +169,7 @@ function DM:RefreshWindow(window)
 	DM:RenderWindow(window)
 end
 
-local function Refresh(onlyDirty)
+function DM:RefreshAll(onlyDirty)
 	for _, window in pairs(DM.windows) do
 		if (window.dirty or not onlyDirty) and window:IsVisible() then
 			DM:RefreshWindow(window)
@@ -204,22 +182,18 @@ local function Refresh(onlyDirty)
 	end
 end
 
-function DM:RefreshAll()
-	Refresh(false)
-end
-
 local pendingFlush = false
 local function Flush()
 	pendingFlush = false
-	Refresh(true)
+	DM:RefreshAll(true)
 end
 
 function DM:MarkDirty(window)
 	window.dirty = true
 
-	-- The popup reads the same session as the window it was opened from
+	-- The popup reads the same session as the window it was opened from, the death recap never changes
 	local popup = DM.popup
-	if popup and popup.owner == window then
+	if popup and popup.owner == window and not popup.recapMode then
 		popup.dirty = true
 	end
 
@@ -237,10 +211,8 @@ end
 
 function DM:DAMAGE_METER_COMBAT_SESSION_UPDATED(_, meterType, sessionID)
 	for _, window in pairs(DM.windows) do
-		if window.meterType == meterType then
-			if window.sessionID == sessionID or (sessionID == 0 and window.sessionType ~= nil) then
-				DM:MarkDirty(window)
-			end
+		if window.meterType == meterType and (window.sessionID == sessionID or (sessionID == 0 and window.sessionType)) then
+			DM:MarkDirty(window)
 		end
 	end
 end
@@ -322,7 +294,7 @@ local function SetBackdropColor(backdrop, custom, color)
 end
 
 function DM:UpdateWindowBackdrop(window)
-	local wdb = DM:WindowDB(window.index)
+	local wdb = DM.db.windows[window.index]
 
 	if not wdb.backdrop then
 		if window.backdrop then
@@ -357,7 +329,7 @@ end
 
 function DM:SetWindowType(window, meterType)
 	window.meterType = meterType
-	DM:WindowDB(window.index).meterType = meterType
+	DM.db.windows[window.index].meterType = meterType
 
 	WindowChanged(window)
 end
@@ -366,7 +338,7 @@ end
 function DM:SetWindowSession(window, sessionType, sessionID)
 	window.sessionType = sessionType
 	window.sessionID = sessionID
-	DM:WindowDB(window.index).sessionType = sessionType
+	DM.db.windows[window.index].sessionType = sessionType
 
 	WindowChanged(window)
 end
@@ -438,10 +410,11 @@ local function OpenMenu(button, generator, alignRight)
 	Menu.GetManager():OpenMenu(button, rootDescription, anchor)
 end
 
+-- Goes by the mouse focus instead of the window bounds, the buttons can be past the windoe edge
 function DM:UpdateHeaderButtons(window)
 	if not window.mouseoverButtons then return end
 
-	local alpha = window:IsMouseOver() and 1 or 0
+	local alpha = DoesAncestryIncludeAny(window, GetMouseFoci()) and 1 or 0
 	if window.buttonAlpha == alpha then return end -- Avoid firing twice
 	window.buttonAlpha = alpha
 
@@ -511,9 +484,8 @@ end
 -- Secret safe bookmarks
 -- A right click panel over the bar area, it only carries damage meter types (the table)
 -- Every type is stored as its own place in the list so it can be dragged around
-local NEW_BOOKMARK = 99 -- Higher than the type count, anything new sorts to the end
-
-local bookmarkList, bookmarkPlaces = {}, {}
+local bookmarkList = {}
+local bookmarkPlaces -- The saved table the sort compares against
 
 local function SortBookmarks(a, b)
 	return bookmarkPlaces[a] < bookmarkPlaces[b]
@@ -521,17 +493,14 @@ end
 
 local function BuildBookmarkList()
 	wipe(bookmarkList)
-	wipe(bookmarkPlaces)
 
 	local saved = DM.db.bookmarks
+	bookmarkPlaces = saved
 
 	for _, category in ipairs(DM.TypeCategories) do
 		for _, meterType in ipairs(category.types) do
-			local place = saved[meterType]
-
-			if place then
+			if saved[meterType] then
 				bookmarkList[#bookmarkList + 1] = meterType
-				bookmarkPlaces[meterType] = place
 			end
 		end
 	end
@@ -553,7 +522,7 @@ end
 -- The options list and the plus menu both go through here, a dropped one is kept
 -- as false so the profile defaults cannot bring it back on the next login
 function DM:SetBookmark(meterType, enabled)
-	DM.db.bookmarks[meterType] = enabled and NEW_BOOKMARK or false
+	DM.db.bookmarks[meterType] = enabled and 99 or false -- Higher than the type count, anything new sorts to the end
 end
 
 local function AddBookmark(data)
@@ -602,29 +571,74 @@ local function BookmarkRow_OnClick(row, mouseButton)
 	DM:SetWindowType(window, row.meterType)
 end
 
+-- Scrolling
+local function Bookmarks_ScrollTo(frame, offset)
+	offset = min(max(offset, 0), max(frame.total - frame.visible, 0))
+	if offset == frame.offset then return false end
+
+	frame.offset = offset
+	DM:LayoutBookmarks(frame.window)
+
+	return true
+end
+
+local function Bookmarks_OnMouseWheel(frame, delta)
+	Bookmarks_ScrollTo(frame, frame.offset - delta)
+end
+
 -- Drag and drop reorder
 -- The row under the cursor, the plus slot never counts as one
-local function DropIndex(frame)
-	local _, y = GetCursorPosition()
-	y = y / frame:GetEffectiveScale()
-
+local function DropIndex(frame, y)
 	for index = 1, frame.dropCount do
 		if y >= frame.rows[index]:GetBottom() then
-			return index
+			return frame.offset + index
 		end
 	end
 
-	return frame.dropCount
+	return frame.offset + frame.dropCount
+end
+
+-- One row per step while a drag sits on an edge
+local function DragScroll(frame, y, elapsed)
+	local direction = 0
+
+	if y > frame.rows[1]:GetTop() then
+		direction = -1
+	elseif y < frame.rows[frame.visible]:GetBottom() then
+		direction = 1
+	end
+
+	if direction == 0 then
+		frame.scrollWait = nil
+		return
+	end
+
+	frame.scrollWait = (frame.scrollWait or 0.15) - elapsed
+	if frame.scrollWait > 0 then return end
+
+	frame.scrollWait = 0.15
+
+	-- The rows carry other types now, the marker has to find its place again
+	if Bookmarks_ScrollTo(frame, frame.offset + direction) then
+		frame.dropIndex = nil
+	end
 end
 
 -- The marker sits above the target while moving up and below it while moving down
-local function Bookmarks_OnUpdate(frame)
-	local index = DropIndex(frame)
+local function Bookmarks_OnUpdate(frame, elapsed)
+	local _, y = GetCursorPosition()
+	y = y / frame:GetEffectiveScale()
+
+	DragScroll(frame, y, elapsed or 0)
+
+	local index = DropIndex(frame, y)
 	if index == frame.dropIndex then return end
+
+	local row = frame.rows[index - frame.offset]
+	if not row then return end
 
 	frame.dropIndex = index
 
-	local row = frame.rows[index]
 	local marker = frame.marker
 
 	marker:ClearAllPoints()
@@ -644,6 +658,7 @@ local function BookmarkRow_OnDragStart(row)
 	local frame = row:GetParent()
 	frame.dragIndex = row.index
 	frame.dropIndex = nil
+	frame.scrollWait = nil
 
 	row:SetAlpha(0.4)
 	frame.marker:Show()
@@ -661,10 +676,11 @@ local function BookmarkRow_OnDragStop(row)
 
 	frame:SetScript('OnUpdate', nil)
 	frame.marker:Hide()
-	row:SetAlpha(1)
 
 	if to and to ~= from then
 		DM:MoveBookmark(row.window, from, to)
+	else
+		DM:LayoutBookmarks(row.window) -- Takes the dimming off again
 	end
 end
 
@@ -695,9 +711,7 @@ local function CreateBookmarkRow(frame)
 	CreateRowTexture(row, 'HIGHLIGHT')
 
 	-- Both edges so the longer type names get trimmed instead of spilling out
-	row.text = row:CreateFontString(nil, 'OVERLAY')
-	row.text:SetJustifyH('CENTER')
-	row.text:SetWordWrap(false)
+	row.text = DM:CreateText(row, 'CENTER')
 	row.text:Point('LEFT', row, 'LEFT', 4, 0)
 	row.text:Point('RIGHT', row, 'RIGHT', -4, 0)
 
@@ -709,7 +723,7 @@ local function Bookmarks_OnHide(frame)
 	frame:UnregisterEvent('GLOBAL_MOUSE_DOWN')
 	frame:SetScript('OnUpdate', nil)
 
-	frame.dragIndex, frame.dropIndex = nil, nil
+	frame.dragIndex, frame.dropIndex, frame.scrollWait = nil, nil, nil
 	frame.marker:Hide()
 	frame.window.content:Show()
 end
@@ -734,12 +748,16 @@ local function CreateBookmarks(window)
 	-- Set before the scripts, the first Hide already fires OnHide
 	frame.rows = {}
 	frame.window = window
+	frame.offset = 0
+	frame.total = 0
+	frame.visible = 0
 	window.bookmarks = frame
 
 	frame:SetFrameLevel(window.content:GetFrameLevel() + 5)
 	frame:Point('TOPLEFT', window.header, 'BOTTOMLEFT', 0, 0)
 	frame:Point('BOTTOMRIGHT', window, 'BOTTOMRIGHT', 0, 0)
 	frame:EnableMouse(true)
+	frame:EnableMouseWheel(true)
 
 	-- Shows where a dragged bookmark lands, above the rows so it stays visible
 	local marker = CreateFrame('Frame', nil, frame)
@@ -755,6 +773,7 @@ local function CreateBookmarks(window)
 	frame:SetScript('OnHide', Bookmarks_OnHide)
 	frame:SetScript('OnEvent', Bookmarks_OnEvent)
 	frame:SetScript('OnMouseDown', Bookmarks_OnMouseDown)
+	frame:SetScript('OnMouseWheel', Bookmarks_OnMouseWheel)
 	frame:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
 	frame:Hide()
 	SetHoverScripts(frame)
@@ -762,39 +781,63 @@ local function CreateBookmarks(window)
 	return frame
 end
 
--- The rows split whatever the header leaves over, so they always fit
-function DM:LayoutBookmarks(window)
+function DM:LayoutBookmarks(window, focus)
 	local frame = window.bookmarks
-	if not frame then return false end
-
 	local db = DM.db
 	local list = BuildBookmarkList()
 
 	-- The plus icon goes away once every type is bookmarked
-	local rows = #list + ((#list < typeCount) and 1 or 0)
-	if rows == 0 then return false end
+	local total = #list + ((#list < typeCount) and 1 or 0)
+	if total == 0 then return false end
 
 	local spacing = db.barSpacing
-	local rowHeight = floor(((window.contentHeight or 0) - (rows - 1) * spacing) / rows)
+	local contentHeight = window.contentHeight or 0
+	local visible, rowHeight = total, floor((contentHeight - (total - 1) * spacing) / total)
+
+	if rowHeight < db.barHeight then
+		rowHeight = min(db.barHeight, floor(contentHeight))
+		visible = max(floor((contentHeight + spacing) / (rowHeight + spacing)), 1)
+		visible = min(visible, total)
+	end
+
 	if rowHeight < 1 then return false end
+
+	local offset = min(frame.offset, total - visible)
+
+	-- A type picked somewhere else can sit outside the visible part
+	if focus and window.meterType then
+		for place = 1, #list do
+			if list[place] == window.meterType then
+				if place <= offset or place > offset + visible then
+					offset = min(place - 1, total - visible)
+				end
+
+				break
+			end
+		end
+	end
 
 	-- Whatever the list looked like, it comes out of here numbered from the top
 	SaveBookmarkOrder()
 
 	local r, g, b = HeaderColor()
 
-	frame.dropCount = #list
+	frame.offset = max(offset, 0)
+	frame.total = total
+	frame.visible = visible
+	frame.dropCount = min(visible, #list - frame.offset)
 	frame.marker:Height(max(spacing, 2))
 	frame.marker.texture:SetVertexColor(r, g, b)
 
-	for index = 1, rows do
+	for index = 1, visible do
 		local row = frame.rows[index]
 		if not row then
 			row = CreateBookmarkRow(frame)
 			frame.rows[index] = row
 		end
 
-		local meterType = list[index]
+		local place = frame.offset + index
+		local meterType = list[place]
 		local yOffset = -((index - 1) * (rowHeight + spacing))
 
 		row:ClearAllPoints()
@@ -802,9 +845,9 @@ function DM:LayoutBookmarks(window)
 		row:Point('TOPRIGHT', frame, 'TOPRIGHT', 0, yOffset)
 		row:Height(rowHeight)
 
-		row.index = index
+		row.index = place
 		row.meterType = meterType
-		row:SetAlpha(1) -- A drag that ended on a relayout leaves it dimmed
+		row:SetAlpha((place == frame.dragIndex) and 0.4 or 1) -- The dragged one stays dimmed while it scrolls
 		row.text:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
 		row.text:SetTextColor(r, g, b)
 		row.text:SetText(meterType and DM.TypeNames[meterType] or '+')
@@ -812,7 +855,7 @@ function DM:LayoutBookmarks(window)
 		row:Show()
 	end
 
-	for index = rows + 1, #frame.rows do
+	for index = visible + 1, #frame.rows do
 		frame.rows[index]:Hide()
 	end
 
@@ -823,7 +866,7 @@ local function OpenBookmarks(window)
 	if not DM.db.showBookmarks then return end
 
 	local frame = window.bookmarks or CreateBookmarks(window)
-	if not DM:LayoutBookmarks(window) then return end
+	if not DM:LayoutBookmarks(window, true) then return end
 
 	window.content:Hide()
 	frame:Show()
@@ -872,12 +915,14 @@ end
 -- Spell breakdown popup
 -- Same idea as the Blizzard source window, spawned at the cursor instead
 -- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSourceWindow.lua
+
 -- The source it showed is set again by the next OpenPopup
 local function Popup_OnHide(popup)
 	popup:UnregisterEvent('GLOBAL_MOUSE_DOWN')
 
 	popup.owner = nil
 	popup.session = nil
+	popup.recapMode = nil
 
 	-- The next one it opens rebuilds its bars with the current settings
 	popup.lastRows = nil
@@ -886,10 +931,13 @@ local function Popup_OnHide(popup)
 end
 
 -- Any click that misses the popup closes it again unless it was pinned
-local function Popup_OnEvent(popup)
-	if not popup.sticky and not DoesAncestryIncludeAny(popup, GetMouseFoci()) then
-		popup:Hide()
-	end
+-- A right click on a session window is left to WindowRightClick,
+-- hiding it on the press would let the same click open the bookmarks
+local function Popup_OnEvent(popup, _, button)
+	if popup.sticky or DoesAncestryIncludeAny(popup, GetMouseFoci()) then return end
+	if button == 'RightButton' and DoesAncestryIncludeAny(DM.holder, GetMouseFoci()) then return end
+
+	popup:Hide()
 end
 
 -- Only pinned popups are worth moving, the rest close on the next click
@@ -908,6 +956,12 @@ local function PopupHeader_OnDragStop(header)
 	popup:SetUserPlaced(false)
 end
 
+local function PopupPin_OnEnter(pin)
+	GameTooltip:SetOwner(pin, 'ANCHOR_RIGHT')
+	GameTooltip:AddLine(L["Right click the window to close it."], 1, 1, 1)
+	GameTooltip:Show()
+end
+
 -- The cursor corner is the anchor, the popup grows toward the screen center
 local function AnchorToCursor(popup)
 	local scale = popup:GetEffectiveScale()
@@ -918,7 +972,7 @@ local function AnchorToCursor(popup)
 	local vertical = (y > E.UIParent:GetHeight() / 2) and 'TOP' or 'BOTTOM'
 
 	popup:ClearAllPoints()
-	popup:SetPoint(vertical .. horizontal, E.UIParent, 'BOTTOMLEFT', x, y)
+	popup:SetPoint(vertical .. horizontal, E.UIParent, 'BOTTOMLEFT', x, y) -- Not Point, that would snap the cursor position to the pixel grid
 end
 
 -- The scroll bar works in percent, the render path works in rows
@@ -959,6 +1013,28 @@ function DM:UpdateScrollBar(window)
 	scrollBar.locked = false
 end
 
+-- SetPassThroughButtons is protected in combat, frames created there get it once combat ends
+local passThroughQueue = CreateFrame('Frame')
+passThroughQueue.pending = {}
+passThroughQueue:SetScript('OnEvent', function(queue)
+	queue:UnregisterEvent('PLAYER_REGEN_ENABLED')
+
+	for frame, buttons in pairs(queue.pending) do
+		frame:SetPassThroughButtons(unpack(buttons))
+	end
+
+	wipe(queue.pending)
+end)
+
+local function SetPassThrough(frame, ...)
+	if InCombatLockdown() then
+		passThroughQueue.pending[frame] = { ... }
+		passThroughQueue:RegisterEvent('PLAYER_REGEN_ENABLED')
+	else
+		frame:SetPassThroughButtons(...)
+	end
+end
+
 -- The session windows and the popup are the same shape, a header on top and the bars below it
 local function CreateWindowFrames(frame)
 	frame.bars = {}
@@ -985,9 +1061,9 @@ local function CreateWindowFrames(frame)
 	return header, content
 end
 
-local function CreateHeaderText(parent)
+function DM:CreateText(parent, justify)
 	local text = parent:CreateFontString(nil, 'OVERLAY')
-	text:SetJustifyH('LEFT')
+	text:SetJustifyH(justify)
 	text:SetWordWrap(false)
 
 	return text
@@ -1004,7 +1080,7 @@ function DM:GetPopup()
 	popup:SetScript('OnShow', Frame_OnShow)
 	popup:SetScript('OnHide', Popup_OnHide)
 	popup:SetScript('OnEvent', Popup_OnEvent)
-	popup:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
+	popup:CreateBackdrop('Default', nil, nil, nil, nil, nil, nil, true)
 	popup:Hide()
 
 	popup.spellMode = true
@@ -1019,7 +1095,19 @@ function DM:GetPopup()
 
 	content:EnableMouse(true)
 
-	popup.typeText = CreateHeaderText(header)
+	popup.typeText = DM:CreateText(header, 'LEFT')
+
+	local pin = CreateFrame('Frame', nil, header)
+	pin:EnableMouse(true)
+	SetPassThrough(pin, 'LeftButton', 'RightButton', 'MiddleButton')
+	pin:SetScript('OnEnter', PopupPin_OnEnter)
+	pin:SetScript('OnLeave', GameTooltip_Hide)
+	pin:Hide()
+
+	pin.icon = pin:CreateTexture(nil, 'ARTWORK')
+	pin.icon:SetTexture(Private.IconPath .. 'DM_Pinned.png')
+	pin.icon:Point('CENTER')
+	popup.pin = pin
 
 	-- The Blizzard trim scroll bar with the ElvUI skin, the wheel keeps moving one row at a time
 	local scrollBar = CreateFrame('EventFrame', nil, popup, 'WowTrimScrollBar')
@@ -1038,15 +1126,30 @@ end
 
 function DM:ApplyPopupSettings(popup)
 	local db = DM.db
-	local wdb = DM:WindowDB(popup.owner.index)
-	local scrollWidth = 22
+	local wdb = db.windows[popup.owner.index]
 	local r, g, b = HeaderColor()
+	local pin, sticky = popup.pin, popup.sticky
 
 	popup.header:Height(db.headerHeight)
 
+	-- Same spot and size as the reset button on the windows
+	pin:Size(db.headerIconSize, db.headerHeight)
+	pin.icon:Size(db.headerIconSize)
+	pin.icon:SetVertexColor(r, g, b)
+	pin:ClearAllPoints()
+	pin:Point('RIGHT', popup.header, 'RIGHT', 3, 0)
+	pin:SetShown(sticky)
+
+	-- The name hands its right edge over to the pin
 	popup.typeText:ClearAllPoints()
 	popup.typeText:Point('TOPLEFT', popup.header, 'TOPLEFT', db.headerTypeXOffset, db.headerTypeYOffset)
-	popup.typeText:Point('BOTTOMRIGHT', popup.header, 'BOTTOMRIGHT', db.headerTypeXOffset, db.headerTypeYOffset)
+
+	if sticky then
+		popup.typeText:Point('BOTTOMRIGHT', pin, 'BOTTOMLEFT', -4 + db.headerTypeXOffset, db.headerTypeYOffset)
+	else
+		popup.typeText:Point('BOTTOMRIGHT', popup.header, 'BOTTOMRIGHT', db.headerTypeXOffset, db.headerTypeYOffset)
+	end
+
 	popup.typeText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
 	popup.typeText:SetTextColor(r, g, b)
 
@@ -1054,17 +1157,10 @@ function DM:ApplyPopupSettings(popup)
 	popup.scrollBar:ClearAllPoints()
 	popup.scrollBar:Point('TOPLEFT', popup.content, 'TOPRIGHT', db.barSpacing, 0)
 	popup.scrollBar:Point('BOTTOMLEFT', popup.content, 'BOTTOMRIGHT', db.barSpacing, 0)
-	popup.scrollBar:Width(scrollWidth)
+	popup.scrollBar:Width(22)
 
-	-- Padding follows the window the popup was opened from, the color is always the ElvUI one
+	-- Padding follows the window the popup was opened from, the solid ElvUI backdrop keeps the spell text readable
 	popup.backdrop:SetOutside(popup, E.Border + E:Scale(wdb.backdropWidth), E.Border + E:Scale(wdb.backdropHeight), nil, true)
-	SetBackdropColor(popup.backdrop)
-end
-
-function DM:UpdatePopupHeader(popup)
-	local name = DM:StripRealm(popup.sourceName, popup.sourceClass) or _G.UNKNOWN
-
-	SetHeaderText(popup.typeText, name, popup)
 end
 
 function DM:RefreshPopup()
@@ -1079,7 +1175,7 @@ function DM:RefreshPopup()
 
 	-- It grows to fit the spells, the window it came from is the ceiling
 	local rows = max(min(entries and #entries or 0, owner.visibleCount), 1)
-	local width = owner:GetWidth()
+	local width = owner:GetWidth() * 1.5
 
 	if popup.lastRows ~= rows or popup.lastWidth ~= width then
 		popup.lastRows, popup.lastWidth = rows, width
@@ -1093,16 +1189,134 @@ function DM:RefreshPopup()
 	DM:UpdateScrollBar(popup)
 end
 
-function DM:OpenPopup(window, entry)
-	-- Death entries open the Blizzard death recap instead
-	if entry.deathRecapID and entry.deathRecapID ~= 0 then
-		_G.OpenDeathRecapUI(entry.deathRecapID)
-		return
+-- Death log
+-- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DeathRecap/Blizzard_DeathRecap.lua
+local EnvironmentalIcons = {
+	DROWNING = 'spell_shadow_demonbreath',
+	FALLING = 'ability_rogue_quickrecovery',
+	FIRE = 'spell_fire_fire',
+	LAVA = 'spell_fire_fire',
+	SLIME = 'inv_misc_slime_01',
+	FATIGUE = 'ability_creature_cursed_05',
+}
+
+-- Don't let secrets on to the bar
+local function BuildRecapEntry(event, classFilename, maxHealth, deathTime)
+	local spellID, spellName, texture = event.spellId, event.spellName, nil
+	local eventType = event.event
+
+	if not issecretvalue(eventType) then
+		if eventType == 'SWING_DAMAGE' then
+			spellID, spellName = 88163, _G.ACTION_SWING -- Swing damage
+		elseif eventType == 'ENVIRONMENTAL_DAMAGE' then
+			local damageType = event.environmentalType
+
+			if damageType and not issecretvalue(damageType) then
+				damageType = upper(damageType)
+
+				spellID = nil
+				spellName = _G['ACTION_ENVIRONMENTAL_DAMAGE_' .. damageType]
+				texture = 'Interface\\Icons\\' .. (EnvironmentalIcons[damageType] or 'ability_creature_cursed_05')
+			end
+		end
 	end
 
-	-- Secret identifiers cannot be passed back into the API while restricted
-	if issecretvalue(entry.sourceGUID) or issecretvalue(entry.sourceCreatureID) then return end
-	if not entry.sourceGUID and not entry.sourceCreatureID then return end
+	-- Environmental damage has no caster
+	local sourceName
+	if issecretvalue(event.hideCaster) or not event.hideCaster then
+		sourceName = event.sourceName
+	end
+
+	local amount = event.amount
+	if not issecretvalue(amount) then
+		amount = amount or 0
+	end
+
+	local currentHP, timestamp = event.currentHP, event.timestamp
+	local healthPercent, timeBeforeDeath
+
+	if maxHealth and not issecretvalue(currentHP) and currentHP then
+		healthPercent = currentHP / maxHealth * 100
+	end
+
+	if not issecretvalue(timestamp) and timestamp then
+		timeBeforeDeath = deathTime - timestamp
+	end
+
+	return {
+		spellID = spellID,
+		spellName = spellName,
+		texture = texture,
+		totalAmount = amount,
+		healthPercent = healthPercent,
+		timeBeforeDeath = timeBeforeDeath,
+		classFilename = classFilename, -- Class color the bar
+		combatSpellDetails = { unitName = sourceName },
+	}
+end
+
+-- The killing blow comes first, the bars keep that order
+local function BuildRecapSession(recapID, classFilename)
+	local events = GetRecapEvents(recapID)
+	if not events or #events == 0 then return end
+
+	local maxHealth = GetRecapMaxHealth(recapID)
+	if issecretvalue(maxHealth) or not maxHealth or maxHealth <= 0 then
+		maxHealth = nil
+	end
+
+	-- Bars scale against the biggest hit
+	local maxAmount, deathTime = 0, 0
+
+	for _, event in ipairs(events) do
+		local amount, timestamp = event.amount, event.timestamp
+
+		if not issecretvalue(amount) and amount and amount > maxAmount then
+			maxAmount = amount
+		end
+
+		if not issecretvalue(timestamp) and timestamp and timestamp > deathTime then
+			deathTime = timestamp
+		end
+	end
+
+	local entries = {}
+
+	for index, event in ipairs(events) do
+		entries[index] = BuildRecapEntry(event, classFilename, maxHealth, deathTime)
+	end
+
+	return { combatSpells = entries, maxAmount = maxAmount }
+end
+
+function DM:OpenPopup(window, entry)
+	local recapID = entry.deathRecapID
+	local recapSession
+
+	if recapID and recapID ~= 0 then
+		recapSession = DM.db.deathLogPopup and BuildRecapSession(recapID, entry.classFilename)
+
+		if not recapSession then
+			_G.OpenDeathRecapUI(recapID)
+			return
+		end
+	end
+
+	local sourceGUID, sourceCreatureID
+
+	if not recapSession then
+		sourceGUID, sourceCreatureID = entry.sourceGUID, entry.sourceCreatureID
+
+		if issecretvalue(sourceGUID) or issecretvalue(sourceCreatureID) then
+			if not entry.isLocalPlayer then return end
+
+			sourceGUID, sourceCreatureID = UnitGUID('player'), nil
+
+			if issecretvalue(sourceGUID) then return end
+		end
+
+		if not sourceGUID and not sourceCreatureID then return end
+	end
 
 	local popup = DM:GetPopup()
 
@@ -1110,17 +1324,17 @@ function DM:OpenPopup(window, entry)
 	popup.meterType = window.meterType
 	popup.sessionType = window.sessionType
 	popup.sessionID = window.sessionID
-	popup.sourceGUID = entry.sourceGUID
-	popup.sourceCreatureID = entry.sourceCreatureID
-	popup.sourceName = entry.name
-	popup.sourceClass = entry.classFilename
+	popup.sourceGUID = sourceGUID
+	popup.sourceCreatureID = sourceCreatureID
 	popup.offset = 0
+	popup.recapMode = recapSession ~= nil
+	popup.session = recapSession
 
 	-- Shift click pins it, otherwise the next click anywhere else closes it
 	popup.sticky = IsShiftKeyDown()
 
 	DM:ApplyPopupSettings(popup)
-	DM:UpdatePopupHeader(popup)
+	SetHeaderText(popup.typeText, DM:StripRealm(entry.name, entry.classFilename) or _G.UNKNOWN, popup)
 	DM:RefreshPopup()
 
 	AnchorToCursor(popup)
@@ -1133,11 +1347,22 @@ function DM:ClosePopup()
 	end
 end
 
+-- Right click carries through to the window like the rest of the header
+local function HeaderButton_OnClick(button, mouseButton)
+	if mouseButton == 'RightButton' then
+		DM:WindowRightClick(button.window)
+	else
+		button.onClick(button)
+	end
+end
+
 -- The click area grows with the header, the artwork stays centered in it
 local function CreateHeaderButton(window, icon, onClick)
 	local button = CreateFrame('Button', nil, window.header)
 	button:SetNormalTexture(icon)
-	button:SetScript('OnClick', onClick)
+	button:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
+	button:SetScript('OnClick', HeaderButton_OnClick)
+	button.onClick = onClick
 	button.window = window
 	SetHoverScripts(button)
 
@@ -1158,15 +1383,15 @@ function DM:GetWindow(index)
 	local header, content = CreateWindowFrames(window)
 
 	-- Only the right click belongs to the window, the rest goes through
-	header:SetPassThroughButtons('LeftButton', 'MiddleButton')
-	content:SetPassThroughButtons('LeftButton', 'MiddleButton')
+	SetPassThrough(header, 'LeftButton', 'MiddleButton')
+	SetPassThrough(content, 'LeftButton', 'MiddleButton')
 
 	SetHoverScripts(header)
 	SetHoverScripts(content)
 
-	window.resetButton = CreateHeaderButton(window, ICON_RESET, ResetButton_OnClick)
-	window.sessionButton = CreateHeaderButton(window, ICON_SESSIONS, SessionButton_OnClick)
-	window.settingsButton = CreateHeaderButton(window, ICON_SETTINGS, SettingsButton_OnClick)
+	window.resetButton = CreateHeaderButton(window, Private.IconPath .. 'DM_Reset.png', ResetButton_OnClick)
+	window.sessionButton = CreateHeaderButton(window, Private.IconPath .. 'DM_Sessions.png', SessionButton_OnClick)
+	window.settingsButton = CreateHeaderButton(window, Private.IconPath .. 'DM_Settings.png', SettingsButton_OnClick)
 
 	local typeButton = CreateFrame('Button', nil, header)
 	typeButton:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
@@ -1175,7 +1400,7 @@ function DM:GetWindow(index)
 	window.typeButton = typeButton
 	SetHoverScripts(typeButton)
 
-	window.typeText = CreateHeaderText(typeButton)
+	window.typeText = DM:CreateText(typeButton, 'LEFT')
 	window.typeText:Point('TOPLEFT')
 	window.typeText:Point('BOTTOMRIGHT')
 
@@ -1191,14 +1416,14 @@ end
 -- edge is the gap to the header, gap the one to the next button on the right and pad what the
 -- tighter settings artwork (trim) hands over to whatever sits on its left
 local HeaderButtons = {
-	{ button = 'resetButton', shown = 'showResetButton', x = 'headerResetXOffset', y = 'headerResetYOffset', edge = 3, gap = nil, pad = nil, trim = 2 },
+	{ button = 'resetButton', shown = 'showResetButton', x = 'headerResetXOffset', y = 'headerResetYOffset', edge = 3, trim = 2 },
 	{ button = 'sessionButton', shown = 'showSessionButton', x = 'headerSessionXOffset', y = 'headerSessionYOffset', edge = 3 },
 	{ button = 'settingsButton', shown = 'showSettingsButton', x = 'headerSettingsXOffset', y = 'headerSettingsYOffset', edge = 2, gap = -1, pad = -2, trim = 1 },
 }
 
 function DM:ApplyWindowSettings(window)
 	local db = DM.db
-	local wdb = DM:WindowDB(window.index)
+	local wdb = db.windows[window.index]
 
 	if window.meterType == nil then
 		window.meterType = wdb.meterType
@@ -1213,7 +1438,7 @@ function DM:ApplyWindowSettings(window)
 
 	-- Hidden buttons stay hidden, mouseover only fades the enabled ones
 	local mouseover = wdb.mouseoverButtons
-	local alpha = (mouseover and not window:IsMouseOver()) and 0 or 1
+	local alpha = (mouseover and not DoesAncestryIncludeAny(window, GetMouseFoci())) and 0 or 1
 	window.mouseoverButtons = mouseover
 	window.buttonAlpha = alpha
 

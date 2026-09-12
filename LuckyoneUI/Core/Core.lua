@@ -2,38 +2,43 @@ local Name, Private = ...
 local L = Private.Libs.ACL
 local LDB = Private.Libs.LDB
 local LDBI = Private.Libs.LDBI
+local LSM = Private.Libs.LSM
 local Core = Private.Modules.Core
 
 local format = string.format
-local ipairs = ipairs
+local gsub = string.gsub
 local next = next
 local pairs = pairs
 local print = print
 local strfind = string.find
 local strlower = string.lower
-local tinsert = table.insert
-local tonumber = tonumber
-local type = type
 local wipe = table.wipe
 
-local C_UI_Reload = C_UI.Reload
+local C_UI = C_UI
+local CopyTable = CopyTable
 local DisableAddOn = C_AddOns.DisableAddOn
 local EnableAddOn = C_AddOns.EnableAddOn
 local GetAddOnInfo = C_AddOns.GetAddOnInfo
 local GetNumAddOns = C_AddOns.GetNumAddOns
+local InCombatLockdown = InCombatLockdown
 local IsShiftKeyDown = IsShiftKeyDown
 local LoadAddOn = C_AddOns.LoadAddOn
+local MergeTable = MergeTable
 local SetCVar = C_CVar.SetCVar
 
 local _G = _G
 local LibStub = _G.LibStub
 
 local Settings_OpenToCategory = _G.Settings.OpenToCategory
+local SlashCmdList = _G.SlashCmdList
+local StaticPopupDialogs = _G.StaticPopupDialogs
 local StaticPopup_Show = _G.StaticPopup_Show
 
 local ACCEPT = ACCEPT
 local CANCEL = CANCEL
+local NO = NO
 local OKAY = OKAY
+local YES = YES
 
 -- Keep these enabled in debug mode
 local AddOns = {
@@ -48,13 +53,34 @@ function Private:Print(msg, installer)
 	print(Private.Name .. ': ' .. msg)
 
 	if installer then
-		_G.LuckyoneInstallStepComplete:ShowMessage(msg)
+		Private.Installer:ShowStatus(msg)
 	end
 end
 
+-- Restore defaults config buttons, the enable toggle survives the wipe
+function Private:ResetDefaults(db, defaults)
+	local enable = db.enable
+	wipe(db)
+	MergeTable(db, CopyTable(defaults))
+	db.enable = enable
+end
+
+-- Font strings and font objects share this
+function Private:SetFont(text, font, size, outline)
+	local shadow = strfind(outline, 'SHADOW')
+	if shadow then
+		outline = gsub(outline, 'SHADOW', '')
+	end
+
+	text:SetFont(LSM:Fetch('font', font), size, outline == 'NONE' and '' or outline)
+	text:SetShadowColor(0, 0, 0, shadow and 1 or 0)
+	text:SetShadowOffset(1, -1)
+end
+
+-- Layout profiles, the index doubles as the profile ID
 local activeProfiles = {
-	{ 'Luckyone Main', 1 },
-	{ 'Luckyone Healing', 2 },
+	'Luckyone Main',
+	'Luckyone Healing',
 }
 
 function Private:GetActiveProfile()
@@ -62,8 +88,8 @@ function Private:GetActiveProfile()
 
 	local data = ElvUI[1].data:GetCurrentProfile()
 	for i = 1, #activeProfiles do
-		if strfind(data, activeProfiles[i][1], 1, true) then
-			return activeProfiles[i][2]
+		if strfind(data, activeProfiles[i], 1, true) then
+			return i
 		end
 	end
 end
@@ -71,8 +97,9 @@ end
 -- Open settings helper
 local function OpenSettings()
 	if Private.ElvUI then
-		ElvUI[1]:ToggleOptions('LuckyoneUI')
-		ElvUI[1]:Config_UpdateSize(true)
+		local E = ElvUI[1]
+		E:ToggleOptions('LuckyoneUI')
+		E:Config_UpdateSize(true)
 	elseif Private.SettingsCategoryID then
 		Settings_OpenToCategory(Private.SettingsCategoryID)
 	end
@@ -80,12 +107,21 @@ end
 
 -- Installer toggle helper
 local function ToggleInstaller()
-	if not Private.Installer then return end
-
 	if Private.Installer:IsShown() then
 		Private.Installer:Hide()
 	else
-		Private.Installer:Show(Private.InstallerData)
+		Private.Installer:Show()
+	end
+end
+
+-- Minimap icon toggle helper
+local function SetMinimapHidden(hide)
+	Private.Addon.db.profile.minimap.hide = hide
+
+	if hide then
+		LDBI:Hide(Name)
+	else
+		LDBI:Show(Name)
 	end
 end
 
@@ -99,8 +135,7 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 			OpenSettings()
 		elseif button == 'RightButton' then
 			if IsShiftKeyDown() then
-				LDBI:Hide(Name)
-				Private.Addon.db.profile.minimap.hide = true
+				SetMinimapHidden(true)
 			else
 				ToggleInstaller()
 			end
@@ -120,18 +155,35 @@ end
 
 -- Reload popup
 -- StaticPopup_Show('LUCKYONE_RL')
-_G.StaticPopupDialogs['LUCKYONE_RL'] = {
+StaticPopupDialogs['LUCKYONE_RL'] = {
 	text = L["Reload required - continue?"],
 	button1 = ACCEPT,
 	button2 = CANCEL,
-	OnAccept = C_UI_Reload,
+	OnAccept = function() C_UI.Reload() end,
+	whileDead = 1,
+	hideOnEscape = false,
+}
+
+-- Alt setup popup
+-- StaticPopup_Show('LUCKYONE_ALTS')
+StaticPopupDialogs['LUCKYONE_ALTS'] = {
+	text = format('%s\n\n%s', L["Alt Setup"], L["Load your existing profiles and setup your chat tabs?"]),
+	button1 = YES, -- OnAccept
+	button2 = L["Yes, no chat"], -- OnCancel
+	button3 = NO, -- OnAlt
+	OnAccept = function() Private:HandleAlts(true) end,
+	OnCancel = function(_, _, reason)
+		if reason == 'clicked' then
+			Private:HandleAlts()
+		end
+	end,
 	whileDead = 1,
 	hideOnEscape = false,
 }
 
 -- ElvUI version check popup
 -- StaticPopup_Show('LUCKYONE_VC')
-_G.StaticPopupDialogs['LUCKYONE_VC'] = {
+StaticPopupDialogs['LUCKYONE_VC'] = {
 	text = format('|cffC80000%s|r', L["Your ElvUI is outdated - please update and reload."]),
 	whileDead = 1,
 	hideOnEscape = false,
@@ -139,32 +191,33 @@ _G.StaticPopupDialogs['LUCKYONE_VC'] = {
 
 -- Editbox popup
 -- StaticPopup_Show('LUCKYONE_EDITBOX', text_arg1, text_arg2, data)
-_G.StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
+local function CloseEditBox(self)
+	self:GetParent():Hide()
+end
+
+StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 	text = Private.Name,
 	button1 = OKAY,
 	hasEditBox = 1,
 	OnShow = function(self, data)
-		self.EditBox:SetAutoFocus(false)
-		self.EditBox.width = self.EditBox:GetWidth()
-		self.EditBox:SetWidth(280)
-		self.EditBox:AddHistoryLine('text')
-		self.EditBox.temptxt = data
-		self.EditBox:SetText(data)
-		self.EditBox:SetJustifyH('CENTER')
+		local editBox = self.EditBox
+		editBox:SetAutoFocus(false)
+		editBox.width = editBox:GetWidth()
+		editBox:SetWidth(280)
+		editBox.temptxt = data
+		editBox:SetText(data)
+		editBox:SetJustifyH('CENTER')
 	end,
 	OnHide = function(self)
-		self.EditBox:SetWidth(self.EditBox.width or 50)
-		self.EditBox.width = nil
-		self.EditBox.temptxt = nil
+		local editBox = self.EditBox
+		editBox:SetWidth(editBox.width or 50)
+		editBox.width = nil
+		editBox.temptxt = nil
 	end,
-	EditBoxOnEnterPressed = function(self)
-		self:GetParent():Hide()
-	end,
-	EditBoxOnEscapePressed = function(self)
-		self:GetParent():Hide()
-	end,
+	EditBoxOnEnterPressed = CloseEditBox,
+	EditBoxOnEscapePressed = CloseEditBox,
 	EditBoxOnTextChanged = function(self)
-		if self:GetText() ~= self.temptxt then
+		if self.temptxt and self:GetText() ~= self.temptxt then
 			self:SetText(self.temptxt)
 		end
 		self:HighlightText()
@@ -185,68 +238,66 @@ local function VersionCheck()
 end
 
 -- Scale helper
-function Private:ApplyScale(native)
+function Private:ApplyScale(native, installer)
+	Private.Addon.db.global.scaled = not native
+
+	if InCombatLockdown() then return end -- Secure CVars
+
 	SetCVar('useUiScale', 1)
-	if native then
-		SetCVar('uiScale', Private.UIScale1440)
-		Private.Addon.db.global.scaled = false
-		Private:Print(L["LuckyoneUI Scale"] .. ' 1440p')
-	else
-		SetCVar('uiScale', Private.UIScale1080)
-		Private.Addon.db.global.scaled = true
-		Private:Print(L["LuckyoneUI Scale"] .. ' 1080p')
-	end
+	SetCVar('uiScale', native and Private.UIScale1440 or Private.UIScale1080)
+	Private:Print(L["LuckyoneUI Scale"] .. (native and ' 1440p' or ' 1080p'), installer)
 end
 
 -- Weekly Rewards Frame chat commands
 local function WeeklyRewards()
 	LoadAddOn('Blizzard_WeeklyRewards')
-	if _G.WeeklyRewardsFrame:IsShown() then
-		_G.WeeklyRewardsFrame:Hide()
+
+	local frame = _G.WeeklyRewardsFrame
+	if not frame then return end
+
+	if frame:IsShown() then
+		frame:Hide()
 	else
-		_G.WeeklyRewardsFrame:Show()
+		frame:Show()
 	end
 end
 
 -- LuckyoneUI chat commands
+local commands = {
+	install = ToggleInstaller,
+	config = OpenSettings,
+	minimap = function() SetMinimapHidden(not Private.Addon.db.profile.minimap.hide) end,
+}
+
 local function Toggles(msg)
-	if msg == 'install' then
-		ToggleInstaller()
-	elseif msg == 'config' then
-		OpenSettings()
-	elseif msg == 'minimap' then
-		local hide = not Private.Addon.db.profile.minimap.hide
-		Private.Addon.db.profile.minimap.hide = hide
-		if hide then
-			LDBI:Hide(Name)
-		else
-			LDBI:Show(Name)
-		end
-	elseif msg == 'untrack' then
-		Private:UntrackAllQuests()
+	local command = commands[strlower(msg)]
+	if command then
+		command()
 	end
 end
 
 -- LuckyoneUI ElvUI debug mode
 local function DebugMode(msg)
 	local switch = strlower(msg)
+	local disabled = Private.Addon.db.global.DebugDisabledAddOns
+
 	if switch == 'on' then
 		for i = 1, GetNumAddOns() do
 			local name = GetAddOnInfo(i)
 			if not AddOns[name] and Private.IsAddOnLoaded(name) then
 				DisableAddOn(name, Private.myName)
-				Private.Addon.db.global.DebugDisabledAddOns[name] = true
+				disabled[name] = true
 			end
 		end
 		SetCVar('scriptErrors', 1)
-		C_UI_Reload()
+		C_UI.Reload()
 	elseif switch == 'off' then
-		if next(Private.Addon.db.global.DebugDisabledAddOns) then
-			for name in pairs(Private.Addon.db.global.DebugDisabledAddOns) do
+		if next(disabled) then
+			for name in pairs(disabled) do
 				EnableAddOn(name, Private.myName)
 			end
-			wipe(Private.Addon.db.global.DebugDisabledAddOns)
-			C_UI_Reload()
+			wipe(disabled)
+			C_UI.Reload()
 		end
 	else
 		Private:Print('/luckydebug on - /luckydebug off')
@@ -255,13 +306,17 @@ end
 
 -- Register all commands
 local function LoadCommands()
-	Private.Addon:RegisterChatCommand('lucky', Toggles)
+	_G.SLASH_LUCKYONEUI1 = '/lucky'
+	SlashCmdList.LUCKYONEUI = Toggles
 	if Private.isRetail then -- Retail chat commands
-		Private.Addon:RegisterChatCommand('vault', WeeklyRewards)
-		Private.Addon:RegisterChatCommand('weekly', WeeklyRewards)
+		commands.untrack = function() Private:UntrackAllQuests() end
+		_G.SLASH_LUCKYONEUI_WEEKLY1 = '/vault'
+		_G.SLASH_LUCKYONEUI_WEEKLY2 = '/weekly'
+		SlashCmdList.LUCKYONEUI_WEEKLY = WeeklyRewards
 	end
 	if Private.ElvUI then
-		Private.Addon:RegisterChatCommand('luckydebug', DebugMode)
+		_G.SLASH_LUCKYONEUI_DEBUG1 = '/luckydebug'
+		SlashCmdList.LUCKYONEUI_DEBUG = DebugMode
 	end
 end
 
@@ -270,7 +325,6 @@ local function CheckElvUI()
 	if not Private.ElvUI then return end
 
 	local E = ElvUI[1]
-	local EP = LibStub('LibElvUIPlugin-1.0')
 
 	-- Skip the ElvUI installer
 	if E.private.install_complete == nil then
@@ -280,24 +334,22 @@ local function CheckElvUI()
 		E.private.install_complete = E.version
 	end
 
-	Private:BuildConfig()
-
-	EP:RegisterPlugin(Name, Private.BuildConfig)
+	LibStub('LibElvUIPlugin-1.0'):RegisterPlugin(Name, Private.RegisterElvUIConfig)
 end
 
 function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	-- Only run the setup on login and reload, not on every loading screen
 	if not (initLogin or isReload) then return end
 
-	if initLogin or not Private.Addon.db.global.DebugDisabledAddOns then
-		Private.Addon.db.global.DebugDisabledAddOns = {}
+	-- Neither flag can be set again this session, so stop listening
+	self:UnregisterEvent('PLAYER_ENTERING_WORLD')
+
+	-- Debug mode only has to survive a reload
+	if initLogin then
+		wipe(Private.Addon.db.global.DebugDisabledAddOns)
 	end
 
-	if Private.ElvUI then
-		VersionCheck()
-	end
-
-	Private:HandleToons()
+	VersionCheck()
 
 	if Private.itsLuckyone then
 		Private.Addon.db.global.dev = true

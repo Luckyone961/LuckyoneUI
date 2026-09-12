@@ -40,16 +40,19 @@
 • Streamer privacy overlay for the big guild and community frame (Click to show chat)  
 • Double click to quickly signup for parties and raids without confirmation  
 • Remove realm names and the (*) indicator from friendly names in dungeons and raids  
+• Option to increase the speed of autolooting items  
+• Movable Blizzard frames for all game versions  
+• Double the size of vendor frames to display 4 rows of items instead of 2  
 • One click toggles with descriptions to disable useless graphic effects in the game  
 • Clean minimap addon button bar which supports LibDBIcon minimap buttons  
 • Lightweight replacement for entering combat and leaving combat floating text  
+• Favorite list with autofill on the mailbox to quickly send mail  
 
 ### **Optimized Addon profiles**  
 • Baganator, BigWigs, BuffReminders  
 • Chattynator, Details, ElvUI  
 • MPlusTimer, Northern Sky Raid Tools, PermoksAccountManager  
-• Plater, Platynator, Plumber  
-• SkironCooldownManager, WarpDeplete, WindTools  
+• Platynator, Plumber, SkironCooldownManager  
 
 ### **Shared media**  
 • Included Fonts: Expressway and Geist (Bold, Light, Medium, Regular, Semi Bold)  

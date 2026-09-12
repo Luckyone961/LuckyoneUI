@@ -5,6 +5,8 @@ if not Private.ElvUI then
 end
 
 local format = string.format
+local ipairs = ipairs
+local next = next
 local unpack = unpack
 
 local hooksecurefunc = hooksecurefunc
@@ -14,78 +16,72 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
-local function SkinBugSackFrame()
-	local BugSack = _G.BugSack
-	if not BugSack or BugSack.Skinned then return end
+local skinned
 
-	local BugSackFrame = _G.BugSackFrame
-	if not BugSackFrame then return end
+local function SkinBugSackFrame()
+	if skinned then return end
+
+	local frame = _G.BugSackFrame
+	if not frame then return end
 
 	-- Main Frame
-	S:HandleFrame(BugSackFrame)
+	S:HandleFrame(frame)
 
-	-- Scroll Frame
-	local BugSackScrollScrollBar = _G.BugSackScrollScrollBar
-	if BugSackScrollScrollBar then
-		S:HandleScrollBar(BugSackScrollScrollBar)
+	-- Scroll Bar
+	local scrollBar = _G.BugSackScrollScrollBar
+	if scrollBar then
+		S:HandleScrollBar(scrollBar)
 	end
 
 	-- Buttons
-	local buttonHeight = 24
-	local BugSackNextButton = _G.BugSackNextButton
-	local BugSackSendButton = _G.BugSackSendButton
-	local BugSackPrevButton = _G.BugSackPrevButton
+	local prevButton = _G.BugSackPrevButton
+	local nextButton = _G.BugSackNextButton
 
-	if BugSackNextButton then
-		S:HandleButton(BugSackNextButton)
-		BugSackNextButton:Height(buttonHeight)
-		BugSackNextButton:ClearAllPoints()
-		BugSackNextButton:Point('BOTTOMRIGHT', BugSackFrame, 'BOTTOMRIGHT', -12, 6)
+	for _, button in next, { prevButton, nextButton, _G.BugSackSendButton } do
+		S:HandleButton(button)
+		button:Height(24)
 	end
 
-	if BugSackSendButton then
-		S:HandleButton(BugSackSendButton)
-		BugSackSendButton:Height(buttonHeight)
+	-- Move the paging buttons into the bottom corners
+	if prevButton then
+		prevButton:ClearAllPoints()
+		prevButton:Point('BOTTOMLEFT', frame, 'BOTTOMLEFT', 12, 6)
 	end
 
-	if BugSackPrevButton then
-		S:HandleButton(BugSackPrevButton)
-		BugSackPrevButton:Height(buttonHeight)
-		BugSackPrevButton:ClearAllPoints()
-		BugSackPrevButton:Point('BOTTOMLEFT', BugSackFrame, 'BOTTOMLEFT', 12, 6)
+	if nextButton then
+		nextButton:ClearAllPoints()
+		nextButton:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', -12, 6)
 	end
 
 	-- Tabs
-	local BugSackTabAll = _G.BugSackTabAll
-	local BugSackTabSession = _G.BugSackTabSession
-	local BugSackTabLast = _G.BugSackTabLast
+	local sessionTab = _G.BugSackTabSession
+	local allTab = _G.BugSackTabAll
+	local lastTab = _G.BugSackTabLast
 
-	if BugSackTabSession then
-		S:HandleTab(BugSackTabSession)
-		BugSackTabSession:ClearAllPoints()
-		BugSackTabSession:Point('CENTER', BugSackFrame, 'BOTTOM', 0, -16)
+	for _, tab in next, { sessionTab, allTab, lastTab } do
+		S:HandleTab(tab)
 	end
 
-	if BugSackTabAll then
-		S:HandleTab(BugSackTabAll)
-		if BugSackTabSession then
-			BugSackTabAll:ClearAllPoints()
-			BugSackTabAll:Point('LEFT', BugSackTabSession, 'RIGHT', -5, 0)
+	-- Center the session tab below the frame, the other two attach to it
+	if sessionTab then
+		sessionTab:ClearAllPoints()
+		sessionTab:Point('CENTER', frame, 'BOTTOM', 0, -16)
+
+		if allTab then
+			allTab:ClearAllPoints()
+			allTab:Point('LEFT', sessionTab, 'RIGHT', -5, 0)
 		end
-	end
 
-	if BugSackTabLast then
-		S:HandleTab(BugSackTabLast)
-		if BugSackTabSession then
-			BugSackTabLast:ClearAllPoints()
-			BugSackTabLast:Point('RIGHT', BugSackTabSession, 'LEFT', 5, 0)
+		if lastTab then
+			lastTab:ClearAllPoints()
+			lastTab:Point('RIGHT', sessionTab, 'LEFT', 5, 0)
 		end
 	end
 
 	-- Close Button(s)
-	local children = { BugSackFrame:GetChildren() }
-	for i = 1, #children do
-		local child = children[i]
+	local BugSack = _G.BugSack
+
+	for _, child in ipairs({ frame:GetChildren() }) do
 		if child:IsObjectType('Button') and child:GetScript('OnClick') == BugSack.CloseSack then
 			S:HandleCloseButton(child)
 		end
@@ -93,9 +89,8 @@ local function SkinBugSackFrame()
 
 	-- Game version left of page count (top right)
 	local countLabel
-	local regions = { BugSackFrame:GetRegions() }
-	for i = 1, #regions do
-		local region = regions[i]
+
+	for _, region in ipairs({ frame:GetRegions() }) do
 		if region:IsObjectType('FontString') and region:GetJustifyH() == 'RIGHT' then
 			countLabel = region
 			break
@@ -104,16 +99,16 @@ local function SkinBugSackFrame()
 
 	if countLabel then
 		local _, elvVersion = E:ParseVersionString('ElvUI')
-		local classColor = E:ClassColor(Private.myClass)
-		local hex = format('|cff%02x%02x%02x', classColor.r * 255, classColor.g * 255, classColor.b * 255)
-		local versionLabel = BugSackFrame:CreateFontString(nil, 'ARTWORK')
+		local hex = '|c' .. E:ClassColor(Private.myClass).colorStr
+
+		local versionLabel = frame:CreateFontString(nil, 'ARTWORK')
 		versionLabel:SetFontObject(countLabel:GetFontObject())
 		versionLabel:SetTextColor(countLabel:GetTextColor())
 		versionLabel:SetText(format('%sElvUI:|r %s %sPatch:|r %s %sPage:|r', hex, elvVersion, hex, Private.GameVersion, hex))
 		versionLabel:SetPoint('RIGHT', countLabel, 'LEFT', -6, 0)
 	end
 
-	BugSack.Skinned = true
+	skinned = true
 end
 
 local function Skin_BugSack()

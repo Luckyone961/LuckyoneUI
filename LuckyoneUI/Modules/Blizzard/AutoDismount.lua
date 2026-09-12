@@ -12,13 +12,10 @@ local DisabledSpells = {
 	[425782] = true, -- Second Wind
 }
 
-local EventFrame
-
 function Private:AutoDismount()
-	if not (Private.isRetail and Private.Addon.db.profile.qualityOfLife.autoDismount) then return end
-	if EventFrame then return end
+	if not Private.Addon.db.profile.qualityOfLife.autoDismount then return end
 
-	EventFrame = CreateFrame('Frame')
+	local EventFrame = CreateFrame('Frame')
 	EventFrame:SetScript('OnEvent', function(_, _, _, _, _, spellID)
 		if DisabledSpells[spellID] and not IsFlying('player') then
 			Dismount()

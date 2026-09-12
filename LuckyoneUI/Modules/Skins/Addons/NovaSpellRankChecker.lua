@@ -6,27 +6,37 @@ end
 
 local unpack = unpack
 
+local hooksecurefunc = hooksecurefunc
+
 local C_Timer = C_Timer
 
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
+-- The addon reanchors the button on several events, which would stretch it across the frame
+local function NovaSpellRankChecker_PositionButton(button, point)
+	if point == 'BOTTOMLEFT' then return end
+
+	button:ClearAllPoints()
+	button:Point('BOTTOMLEFT', SpellBookFrame, 'BOTTOMLEFT', 19, 100)
+end
+
 local function Skin_NovaSpellRankChecker()
-	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.NovaSpellRankChecker then return end
+	if not Private.Addon.db.profile.skins.NovaSpellRankChecker then return end
 
-	if SpellBookFrameButton and not SpellBookFrameButton.isSkinned then
-		-- Skin and resize the spell rank checker button
-		S:HandleButton(SpellBookFrameButton)
-		SpellBookFrameButton:SetFrameStrata('HIGH')
-		SpellBookFrameButton:Width(120)
-		SpellBookFrameButton:Height(26)
+	local button = SpellBookFrameButton
+	if not button or button.isSkinned then return end
 
-		-- Move it to the bottom left of the spell book frame
-		SpellBookFrameButton:ClearAllPoints()
-		SpellBookFrameButton:Point('BOTTOMLEFT', SpellBookFrame, 'BOTTOMLEFT', 19, 100)
+	-- Skin and resize the spell rank checker button
+	S:HandleButton(button)
+	button:SetFrameStrata('HIGH')
+	button:Size(120, 26)
 
-		SpellBookFrameButton.isSkinned = true
-	end
+	-- Move it to the bottom left of the spell book frame
+	NovaSpellRankChecker_PositionButton(button)
+	hooksecurefunc(button, 'SetPoint', NovaSpellRankChecker_PositionButton)
+
+	button.isSkinned = true
 end
 
 S:AddCallbackForAddon('NovaSpellRankChecker', 'LuckyoneUI_NovaSpellRankChecker', function() C_Timer.After(2, Skin_NovaSpellRankChecker) end)

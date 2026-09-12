@@ -14,6 +14,12 @@ function Private:Setup_Theme(theme, installer)
 
 	local profile = Private:GetActiveProfile()
 
+	-- The custom name texts below only exist after a layout
+	if not E.db.unitframe.units.player.customTexts.Luckyone_Name then
+		Private:Print(L["Apply a LuckyoneUI layout first."], installer)
+		return
+	end
+
 	if theme == 'dark' then
 
 		-- Multiplier
@@ -142,7 +148,7 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
 	end
 
-	E:UpdateMediaItems(true)
+	E:UpdateMediaItems()
 	E:UpdateUnitFrames()
 
 	Private:Print(L["Theme has been set."], installer)

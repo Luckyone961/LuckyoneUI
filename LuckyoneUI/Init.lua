@@ -1,4 +1,6 @@
+local gsub = string.gsub
 local select = select
+local strmatch = string.match
 local tonumber = tonumber
 
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
@@ -20,14 +22,11 @@ local WOW_PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
 local Name, Private = ...
 
 -- Create a new AceAddon instance
-local LuckyoneUI = LibStub('AceAddon-3.0'):NewAddon(Name, 'AceConsole-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
-
-Private.Addon = LuckyoneUI
+Private.Addon = LibStub('AceAddon-3.0'):NewAddon(Name)
 
 Private.Libs = {
 	-- Ace
 	ADB = LibStub('AceDB-3.0'),
-	ABH = LibStub('AceDBOptions-3.0'),
 	GUI = LibStub('AceGUI-3.0'),
 	AC = LibStub('AceConfig-3.0'),
 	ACD = LibStub('AceConfigDialog-3.0'),
@@ -65,7 +64,16 @@ Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 
 -- API checks
 Private.IsAddOnLoaded = IsAddOnLoaded
-Private.Version = tonumber(GetAddOnMetadata(Name, 'Version'))
+
+-- Packager fills the TOC version from the git tag
+-- Alpha tags look like 4.23-alpha1 and source keeps raw @project-version@
+Private.VersionString = GetAddOnMetadata(Name, 'Version')
+Private.Version = tonumber(strmatch(Private.VersionString, '^[%d%.]+'))
+
+-- Bump with every release, same as ElvUI does for source checkouts
+if not Private.Version then
+	Private.Version, Private.VersionString = 4.23, '4.23-git'
+end
 
 -- Player utils
 Private.myClass = select(2, UnitClass('player'))
@@ -73,6 +81,8 @@ Private.myGUID = UnitGUID('player')
 Private.myName = UnitName('player')
 Private.myRealm = GetRealmName()
 Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
+-- Same as GetNormalizedRealmName, which is still nil this early
+Private.myNormalizedRealm = gsub(Private.myRealm, '[%s%-%.]', '')
 
 -- ElvUI compatibility
 Private.ElvUI = Private.IsAddOnLoaded('ElvUI')
@@ -93,10 +103,9 @@ function Private.Addon:OnInitialize()
 	-- SavedVariables
 	Private.Addon.db = Private.Libs.ADB:New('LuckyoneDB', Private.Defaults, true)
 
-	-- Register config
+	-- Register config, built on first open like ElvUI does it through the plugin callback
 	if not Private.ElvUI then
-		Private:BuildConfig()
-		Private.Libs.AC:RegisterOptionsTable('LuckyoneUI', Private.Config)
+		Private.Libs.AC:RegisterOptionsTable('LuckyoneUI', function() Private:BuildConfig() return Private.Config end)
 		Private.SettingsCategoryID = select(2, Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI'))
 	end
 end

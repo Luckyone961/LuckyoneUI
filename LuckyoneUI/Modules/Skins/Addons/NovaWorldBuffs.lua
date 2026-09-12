@@ -10,27 +10,27 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 local function Skin_NovaWorldBuffs()
-	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.NovaWorldBuffs then return end
+	if not Private.Addon.db.profile.skins.NovaWorldBuffs then return end
 
-	if MinimapLayerFrame and not MinimapLayerFrame.isSkinned then
-		-- Main Frame
-		S:HandleFrame(MinimapLayerFrame)
-		NWBVersionDragTooltip:StripTextures()
-		NWBVersionDragTooltip:SetTemplate('Transparent') -- Mouseover tooltip, list of all layers
+	local layerFrame = MinimapLayerFrame
+	if not layerFrame or layerFrame.isSkinned then return end
 
-		-- Move the layer box to the bottom left of the minimap
-		MinimapLayerFrame:ClearAllPoints()
-		MinimapLayerFrame:Point('BOTTOMLEFT', Minimap, -1, -1)
+	-- Main Frame
+	S:HandleFrame(layerFrame)
+	NWBVersionDragTooltip:StripTextures()
+	NWBVersionDragTooltip:SetTemplate('Transparent') -- Mouseover tooltip, list of all layers
 
-		-- Make sure we can't randomly drag it around
-		MinimapLayerFrame:SetMovable(false)
+	-- Move the layer box to the bottom left of the minimap
+	layerFrame:ClearAllPoints()
+	layerFrame:Point('BOTTOMLEFT', Minimap, -1, -1)
 
-		-- Adjust the actual size to fit our template
-		MinimapLayerFrame:Width(52)
-		MinimapLayerFrame:Height(18)
+	-- Make sure we can't randomly drag it around
+	layerFrame:SetMovable(false)
 
-		MinimapLayerFrame.isSkinned = true
-	end
+	-- Adjust the actual size to fit our template
+	layerFrame:Size(52, 18)
+
+	layerFrame.isSkinned = true
 end
 
 S:AddCallbackForAddon('NovaWorldBuffs', 'LuckyoneUI_NovaWorldBuffs', Skin_NovaWorldBuffs)

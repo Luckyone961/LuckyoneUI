@@ -71,10 +71,7 @@ local Toons = Private.isRetail and {
 	['Player-5233-01D27011'] = true, -- [H] Druid
 }
 
-function Private:HandleToons()
-	Private.itsLuckyone = Toons and Toons[Private.myGUID]
-	Toons = nil
-end
+Private.itsLuckyone = Toons and Toons[Private.myGUID]
 
 -- ElvDB
 local profileKeys = Private.isRetail and {
@@ -131,63 +128,6 @@ local profileKeys = Private.isRetail and {
 	["Unluckyone - Nek'Rosh"] = 'Luckyone Main',
 	['Unluckyone - Firemaw'] = 'Luckyone Main',
 	['Luckydruid - Firemaw'] = 'Luckyone Main',
-}
-
--- ElvPrivateDB
-local privateKeys = Private.isRetail and {
-	['Luckywl - Laughing Skull'] = true,
-	['Luckypriest - Laughing Skull'] = true,
-	['Luckyrogue - Laughing Skull'] = true,
-	['Luckyone - Laughing Skull'] = true,
-	['Luckypala - Laughing Skull'] = true,
-	['Luckyhunter - Laughing Skull'] = true,
-	['Luckytwo - Laughing Skull'] = true,
-	['Luckymage - Laughing Skull'] = true,
-	['Unluckyone - Laughing Skull'] = true,
-	['Luckymonkas - Laughing Skull'] = true,
-	['Taylorswift - Laughing Skull'] = true,
-	['Notlucky - Laughing Skull'] = true,
-	['Lucky - Laughing Skull'] = true,
-	['Luckydk - Laughing Skull'] = true,
-} or Private.isMists and {
-	['Luckymage - Garalon'] = true,
-	['Luckyone - Garalon'] = true,
-	['Luckymonk - Garalon'] = true,
-	["Luckydruid - Shek'zeer"] = true,
-	["Luckypriest - Shek'zeer"] = true,
-	["Luckywl - Shek'zeer"] = true,
-	["Luckyshaman - Shek'zeer"] = true,
-	["Luckywarrior - Shek'zeer"] = true,
-	["Luckyrogue - Shek'zeer"] = true,
-	["Luckypala - Shek'zeer"] = true,
-	["Luckydk - Shek'zeer"] = true,
-	["Luckymage - Shek'zeer"] = true,
-	["Luckyhunter - Shek'zeer"] = true,
-	['Luckydruid - Norushen'] = true,
-	['Luckypriest - Norushen'] = true,
-	['Luckyshaman - Norushen'] = true,
-	['Luckydk - Everlook'] = true,
-} or Private.isTBC and {
-	['Luckylock - Spineshatter'] = true,
-	['Luckyone - Spineshatter'] = true,
-	['Luckypriest - Spineshatter'] = true,
-	['Luckytwo - Spineshatter'] = true,
-	['Luckybank - Spineshatter'] = true,
-} or Private.isClassic and {
-	['Luckyone - Living Flame'] = true,
-	['Luckymage - Living Flame'] = true,
-	['Luckywl - Living Flame'] = true,
-	['Luckyrogue - Living Flame'] = true,
-	['Luckypriest - Living Flame'] = true,
-	['Luckydruid - Living Flame'] = true,
-	["Lucky - Nek'Rosh"] = true,
-	["Unluckyone - Nek'Rosh"] = true,
-	['Ðøñtçhëçkmæ - Living Flame'] = true,
-	['Luckywarrior - Living Flame'] = true,
-	["Luckyone - Nek'Rosh"] = true,
-	['Unluckyone - Living Flame'] = true,
-	['Unluckyone - Firemaw'] = true,
-	['Luckydruid - Firemaw'] = true,
 }
 
 -- LibDualSpec
@@ -256,11 +196,13 @@ function Private:HandleLuckyoneDB()
 	local ElvPrivateDB = _G.ElvPrivateDB
 	if not ElvDB or not ElvPrivateDB then return end
 
-	-- ProfileDB
+	-- ProfileDB and PrivateDB, all chars share the installing character's private profile
 	if profileKeys then
 		ElvDB.profileKeys = ElvDB.profileKeys or {}
+		ElvPrivateDB.profileKeys = ElvPrivateDB.profileKeys or {}
 		for char, profile in pairs(profileKeys) do
 			ElvDB.profileKeys[char] = profile
+			ElvPrivateDB.profileKeys[char] = Private.myNameRealm
 		end
 	end
 
@@ -275,15 +217,6 @@ function Private:HandleLuckyoneDB()
 		ns.char = ns.char or {}
 		for char, data in pairs(dualSpec) do
 			ns.char[char] = data
-		end
-	end
-
-	-- PrivateDB (all chars share the installing character's private profile)
-	if privateKeys then
-		ElvPrivateDB.profileKeys = ElvPrivateDB.profileKeys or {}
-		local privateProfile = Private.myNameRealm
-		for char in pairs(privateKeys) do
-			ElvPrivateDB.profileKeys[char] = privateProfile
 		end
 	end
 

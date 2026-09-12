@@ -10,37 +10,41 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 local function Skin_LFGBulletinBoard()
-	if not (Private.isClassic or Private.isTBC) or not Private.Addon.db.profile.skins.LFGBulletinBoard then return end
+	if not Private.Addon.db.profile.skins.LFGBulletinBoard then return end
 
-	if GroupBulletinBoardFrame and not GroupBulletinBoardFrame.isSkinned then
-		-- Main Frame
-		S:HandleFrame(GroupBulletinBoardFrame)
+	local frame = GroupBulletinBoardFrame
+	if not frame or frame.isSkinned then return end
 
-		-- Tabs
-		S:HandleTab(GroupBulletinBoardFrameTab1)
-		GroupBulletinBoardFrameTab1:ClearAllPoints()
-		GroupBulletinBoardFrameTab1:Point('TOPLEFT', GroupBulletinBoardFrame, 'BOTTOMLEFT', -10, 0)
+	-- Main Frame
+	S:HandleFrame(frame)
 
-		if GroupBulletinBoardFrameTab2 then
-			S:HandleTab(GroupBulletinBoardFrameTab2)
-			GroupBulletinBoardFrameTab2:ClearAllPoints()
-			GroupBulletinBoardFrameTab2:Point('LEFT', GroupBulletinBoardFrameTab1, 'RIGHT', -19, 0)
-		end
+	-- Tabs
+	local tab1 = GroupBulletinBoardFrameTab1
+	S:HandleTab(tab1)
+	tab1:ClearAllPoints()
+	tab1:Point('TOPLEFT', frame, 'BOTTOMLEFT', -10, 0)
 
-		-- Edit Box
-		S:HandleEditBox(GroupBulletinBoardFrameResultsFilter)
-		GroupBulletinBoardFrameResultsFilter:Height(20)
-
-		-- Close Button
-		GroupBulletinBoardFrameHeaderContainerCloseButton:StripTextures()
-		S:HandleCloseButton(GroupBulletinBoardFrameHeaderContainerCloseButton)
-
-		-- Scroll Bars
-		S:HandleScrollBar(GroupBulletinBoardFrame_ScrollFrameScrollBar)
-		S:HandleTrimScrollBar(LFGBulletinBoardLFGToolFrame.scrollBar)
-
-		GroupBulletinBoardFrame.isSkinned = true
+	local tab2 = GroupBulletinBoardFrameTab2
+	if tab2 then
+		S:HandleTab(tab2)
+		tab2:ClearAllPoints()
+		tab2:Point('LEFT', tab1, 'RIGHT', -19, 0)
 	end
+
+	-- Edit Box
+	local filter = GroupBulletinBoardFrameResultsFilter
+	S:HandleEditBox(filter)
+	filter:Height(20)
+
+	-- Close Button
+	local closeButton = GroupBulletinBoardFrameHeaderContainerCloseButton
+	S:HandleCloseButton(closeButton)
+
+	-- Scroll Bars
+	S:HandleScrollBar(GroupBulletinBoardFrame_ScrollFrameScrollBar)
+	S:HandleTrimScrollBar(LFGBulletinBoardLFGToolFrame.scrollBar)
+
+	frame.isSkinned = true
 end
 
 S:AddCallbackForAddon('LFGBulletinBoard', 'LuckyoneUI_LFGBulletinBoard', Skin_LFGBulletinBoard)

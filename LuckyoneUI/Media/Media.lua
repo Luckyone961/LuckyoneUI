@@ -1,6 +1,5 @@
-local LSM = LibStub('LibSharedMedia-3.0')
-
-if LSM == nil then return end
+local _, Private = ...
+local LSM = Private.Libs.LSM
 
 -------------------------------------------------------
 --------------------- File import ---------------------

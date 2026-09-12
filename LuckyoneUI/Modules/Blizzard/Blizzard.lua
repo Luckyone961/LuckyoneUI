@@ -19,90 +19,89 @@ local UIParent = UIParent
 local DELETE_ITEM_CONFIRM_STRING = DELETE_ITEM_CONFIRM_STRING
 local StaticPopupDialogs = StaticPopupDialogs
 
+local HiddenFrame
+
+-- Only created if one of the options below using it is enabled
+local function GetHiddenFrame()
+	if not HiddenFrame then
+		HiddenFrame = CreateFrame('Frame', nil, UIParent)
+		HiddenFrame:Hide()
+	end
+	return HiddenFrame
+end
+
+local function DisableFrame(name, mover)
+	local frame = _G[name]
+	if not frame then return end
+
+	frame:UnregisterAllEvents()
+
+	if mover and Private.ElvUI then
+		ElvUI[1]:DisableMover(mover)
+	end
+end
+
+-- Parks a frame on a invisible parent so shit stays hidden
+local function HideFrame(frame)
+	if not frame then return end
+
+	frame:UnregisterAllEvents()
+	frame:SetParent(GetHiddenFrame())
+	frame:Hide()
+end
+
+local function TalkingHead_Hide()
+	_G.TalkingHeadFrame:Hide()
+end
+
+-- PlayCurrent is too early, the frame shows itself right after
+local function TalkingHead_PlayCurrent()
+	RunNextFrame(TalkingHead_Hide)
+end
+
 -- Disabled Blizzard Frames (Loading on init)
 local function DisabledFrames()
 	local db = Private.Addon.db.profile.disabledFrames
-	local HiddenFrame
-
-	local function GetHiddenFrame()
-		if not HiddenFrame then
-			HiddenFrame = CreateFrame('Frame', nil, UIParent)
-			HiddenFrame:Hide()
-		end
-		return HiddenFrame
-	end
 
 	if db.AlertFrame then
-		local AlertFrame = _G.AlertFrame
-		if AlertFrame then
-			AlertFrame:UnregisterAllEvents()
-			if Private.ElvUI then
-				ElvUI[1]:DisableMover('AlertFrameMover')
-			end
-		end
+		DisableFrame('AlertFrame', 'AlertFrameMover')
 	end
 
 	if db.BossBanner and Private.isRetail then
-		local BossBanner = _G.BossBanner
-		if BossBanner then
-			BossBanner:UnregisterAllEvents()
-			if Private.ElvUI then
-				ElvUI[1]:DisableMover('BossBannerMover')
-			end
-		end
+		DisableFrame('BossBanner', 'BossBannerMover')
 	end
 
 	if db.ZoneTextFrame then
-		local ZoneTextFrame = _G.ZoneTextFrame
-		if ZoneTextFrame then
-			ZoneTextFrame:UnregisterAllEvents()
-		end
+		DisableFrame('ZoneTextFrame')
+	end
+
+	if db.LossOfControl and (Private.isRetail or Private.isMists) then
+		-- ElvUI only creates this mover on Retail and DisableMover errors on unknown movers
+		DisableFrame('LossOfControlFrame', Private.isRetail and 'LossControlMover' or nil)
 	end
 
 	if db.HousingDecorAlerts and Private.isRetail then
 		-- HousingEventHandler is local to Blizzard; EventRegistry unregister needs that owner.
-		-- No-op the alert system instead so the toast never queues.
+		-- Zero the queue limits instead, AddAlert drops the toast on its own.
 		local system = _G.HousingItemEarnedAlertFrameSystem
 		if system then
-			system.AddAlert = function() end
-		end
-	end
-
-	if db.LossOfControl and (Private.isRetail or Private.isMists) then
-		local LossOfControlFrame = _G.LossOfControlFrame
-		if LossOfControlFrame then
-			LossOfControlFrame:UnregisterAllEvents()
-			-- ElvUI only creates this mover on Retail and DisableMover errors on unknown movers
-			if Private.ElvUI and Private.isRetail then
-				ElvUI[1]:DisableMover('LossControlMover')
-			end
+			system.maxAlerts, system.maxQueue = 0, 0
 		end
 	end
 
 	if db.ApplicationCover and (Private.isRetail or Private.isMists) then
-		local Cover = _G.LFGListFrame.ApplicationViewer.UnempoweredCover
-		if Cover then
-			Cover:UnregisterAllEvents()
-			Cover:SetParent(GetHiddenFrame())
-			Cover:Hide()
-		end
+		local viewer = _G.LFGListFrame and _G.LFGListFrame.ApplicationViewer
+		HideFrame(viewer and viewer.UnempoweredCover)
 	end
 
 	if db.UIErrorsFrame then
-		local ErrorFrame = _G.UIErrorsFrame
-		if ErrorFrame then
-			ErrorFrame:UnregisterAllEvents()
-			ErrorFrame:SetParent(GetHiddenFrame())
-			ErrorFrame:Hide()
-		end
+		HideFrame(_G.UIErrorsFrame)
 	end
 
 	if db.TalkingHead and Private.isRetail then
 		local TalkingHeadFrame = _G.TalkingHeadFrame
 		if TalkingHeadFrame then
-			hooksecurefunc(TalkingHeadFrame, 'PlayCurrent', function(frame)
-				RunNextFrame(function() frame:Hide() end)
-			end)
+			hooksecurefunc(TalkingHeadFrame, 'PlayCurrent', TalkingHead_PlayCurrent)
 		end
 	end
 end
@@ -118,37 +117,43 @@ local function PreventLootAutoShow()
 end
 
 -- Easy delete
+local function EasyDelete_OnShow(frame)
+	frame.EditBox:SetText(DELETE_ITEM_CONFIRM_STRING)
+end
+
 local function EasyDelete()
 	if not Private.Addon.db.profile.qualityOfLife.easyDelete then return end
 
-	local function EasyDelete_OnShow(frame)
-		frame.EditBox:SetText(DELETE_ITEM_CONFIRM_STRING)
-	end
-
-	-- Higher quality than green
+	-- Higher quality than green, plus quests and quest starters
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM, 'OnShow', EasyDelete_OnShow)
-
-	-- Quests and Quest starters
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', EasyDelete_OnShow)
 end
 
--- Auto accept role check
+-- Auto accept role check, holding shift on show skips it
+local function AutoAcceptRole_OnShow(self)
+	if not IsShiftKeyDown() then
+		self:Click()
+	end
+end
+
+local function AutoSignUp_OnShow(self)
+	if not IsShiftKeyDown() then
+		self.SignUpButton:Click()
+	end
+end
+
 local function AutoAcceptRole()
 	if not ((Private.isRetail or Private.isMists) and Private.Addon.db.profile.qualityOfLife.autoAcceptRole) then return end
 
-	-- Auto click on show
-	_G.LFDRoleCheckPopupAcceptButton:HookScript('OnShow', function(self)
-		if not IsShiftKeyDown() then
-			self:Click()
-		end
-	end)
+	local AcceptButton = _G.LFDRoleCheckPopupAcceptButton
+	if AcceptButton then
+		AcceptButton:HookScript('OnShow', AutoAcceptRole_OnShow)
+	end
 
-	-- Allow skipping auto-accept while shift key is down
-	_G.LFGListApplicationDialog:HookScript('OnShow', function(self)
-		if not IsShiftKeyDown() then
-			self.SignUpButton:Click()
-		end
-	end)
+	local ApplicationDialog = _G.LFGListApplicationDialog
+	if ApplicationDialog then
+		ApplicationDialog:HookScript('OnShow', AutoSignUp_OnShow)
+	end
 end
 
 -- Quick signup (double-click LFG search results to open signup)
@@ -166,24 +171,25 @@ local function QuickSignup_OnDoubleClick(self, button)
 	LFGListSearchPanel_SignUp(panel)
 end
 
+local function QuickSignup_Update(entry)
+	if not entry.LuckyoneQuickSignup then
+		entry:HookScript('OnDoubleClick', QuickSignup_OnDoubleClick)
+		entry.LuckyoneQuickSignup = true
+	end
+end
+
 local function QuickSignup()
 	if not ((Private.isRetail or Private.isMists) and Private.Addon.db.profile.qualityOfLife.quickSignup) then return end
 
 	-- Update fires per entry on every list refresh, only set the handler once per entry
-	hooksecurefunc('LFGListSearchEntry_Update', function(entry)
-		if not entry.LuckyoneQuickSignup then
-			entry:SetScript('OnDoubleClick', QuickSignup_OnDoubleClick)
-			entry.LuckyoneQuickSignup = true
-		end
-	end)
+	hooksecurefunc('LFGListSearchEntry_Update', QuickSignup_Update)
 end
 
 -- Untrack All Quests
 -- Source and Credits:
 -- https://www.reddit.com/r/WowUI/comments/1qk96mg/otherfixworkaroundhidden_tracked_quests_caused_60/
 function Private:UntrackAllQuests()
-	local numShownEntries = GetNumQuestLogEntries()
-	for i = 1, numShownEntries do
+	for i = 1, GetNumQuestLogEntries() do
 		local info = GetQuestInfo(i)
 		if info and info.questID and info.questID > 0 then
 			RemoveQuestWatch(info.questID)
@@ -201,21 +207,38 @@ local function RemoveNameplateRealm()
 end
 
 function Blizzard:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
-	-- Retries until Blizzard_Communities is loaded, creates the overlay once
-	Private:PrivacyOverlay()
-
 	-- Only run the setup on login and reload, not on every loading screen
 	if not (initLogin or isReload) then return end
 
+	-- Neither flag can be set again this session, so stop listening
+	self:UnregisterEvent('PLAYER_ENTERING_WORLD')
+
 	AutoAcceptRole()
+	if Private.isRetail then
+		Private:AutoDismount()
+	end
 	DisabledFrames()
 	EasyDelete()
+	Private:ExpandMerchant()
+	if Private.isClassic or Private.isTBC then
+		Private:ExpandQuestLog()
+	end
+	Private:FasterLoot()
+	Private:FriendsList()
+	Private:MailboxFavorites()
+	Private:MovableFrames()
 	PreventLootAutoShow()
+	Private:PrivacyOverlay()
 	QuickSignup()
 	RemoveNameplateRealm()
 end
 
 function Blizzard:OnEnable()
+	-- Fonts have to be in place before the tracker builds its first layout at PLAYER_ENTERING_WORLD
+	if Private.isRetail then
+		Private:ObjectiveTracker()
+	end
+
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 	self:RegisterEvent('PLAYER_REGEN_DISABLED')
 	self:RegisterEvent('PLAYER_REGEN_ENABLED')

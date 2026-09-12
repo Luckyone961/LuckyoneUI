@@ -5,7 +5,7 @@
 
 ## DefaultState: enabled
 ## Author: Luckyone
-## Version: 4.22
+## Version: @project-version@
 
 ## Interface: 20506
 ## X-Required-ElvUI: 15.26
@@ -15,13 +15,87 @@
 
 ## IconTexture: Interface\AddOns\LuckyoneUI\Media\Textures\Compartment.png
 
-Libs\Libs.xml
-Locales\Locales.xml
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+Libs\Ace3\AceAddon-3.0\AceAddon-3.0.xml
+Libs\Ace3\AceEvent-3.0\AceEvent-3.0.xml
+Libs\Ace3\AceDB-3.0\AceDB-3.0.xml
+Libs\Ace3\AceLocale-3.0\AceLocale-3.0.xml
+Libs\Ace3\AceGUI-3.0\AceGUI-3.0.xml
+Libs\Ace3\AceConfig-3.0\AceConfig-3.0.xml
+Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+Libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
+Libs\LibSharedMedia-3.0\LibSharedMedia-3.0.lua
+Libs\LibAceConfigHelper\LibAceConfigHelper.lua
+
+Locales\enUS.lua
+Locales\deDE.lua
+Locales\frFR.lua
+Locales\ptBR.lua
+Locales\ruRU.lua
 
 Init.lua
 
-Core\Core.xml
-
 Media\Media.lua
-Modules\Modules.xml
-Profiles\Profiles.xml
+
+Core\Defaults.lua
+Core\Config.lua
+Core\Personal.lua
+Core\Core.lua
+Core\Alts.lua
+Core\Installer.lua
+Core\Themes.lua
+
+Modules\Auras\Filters_Classic.lua [AllowLoadGameType vanilla, tbc]
+Modules\Auras\Filters_Mists.lua [AllowLoadGameType mists]
+Modules\Auras\Filters_Retail.lua [AllowLoadGameType mainline]
+Modules\Blizzard\AutoDismount.lua [AllowLoadGameType mainline]
+Modules\Blizzard\Blizzard.lua
+Modules\Blizzard\CombatText.lua
+Modules\Blizzard\Console.lua
+Modules\Blizzard\FasterLoot.lua
+Modules\Blizzard\FriendsList.lua
+Modules\Blizzard\MailboxFavorites.lua
+Modules\Blizzard\Merchant.lua
+Modules\Blizzard\MovableFrames.lua
+Modules\Blizzard\ObjectiveTracker.lua [AllowLoadGameType mainline]
+Modules\Blizzard\PrivacyOverlay.lua
+Modules\Blizzard\QuestLog.lua [AllowLoadGameType vanilla, tbc]
+Modules\Chat\Chat.lua
+Modules\DamageMeter\Core.lua [AllowLoadGameType mainline]
+Modules\DamageMeter\Session.lua [AllowLoadGameType mainline]
+Modules\DamageMeter\Bars.lua [AllowLoadGameType mainline]
+Modules\Map\MinimapButtons.lua
+Modules\Misc\DataTextsTweaks.lua
+Modules\Misc\Misc.lua
+Modules\Misc\MythicVisibility.lua [AllowLoadGameType mainline]
+Modules\NamePlates\NamePlates.lua
+Modules\Skins\Addons\Auctionator.lua
+Modules\Skins\Addons\BigWigs.lua [AllowLoadGameType mainline, mists]
+Modules\Skins\Addons\BugSack.lua
+Modules\Skins\Addons\LFGBulletinBoard.lua [AllowLoadGameType vanilla, tbc]
+Modules\Skins\Addons\NovaSpellRankChecker.lua [AllowLoadGameType vanilla, tbc]
+Modules\Skins\Addons\NovaWorldBuffs.lua [AllowLoadGameType vanilla, tbc]
+Modules\Skins\Addons\SimpleAddonManager.lua
+Modules\Skins\Addons\Simulationcraft.lua [AllowLoadGameType mainline]
+Modules\Skins\Addons\Tabardy.lua
+Modules\Skins\Addons\WhatsTraining.lua [AllowLoadGameType vanilla, tbc]
+Modules\Skins\Blizzard\CooldownViewer.lua [AllowLoadGameType mainline]
+Modules\Skins\Blizzard\DeveloperConsole.lua
+Modules\Skins\Blizzard\Merchant.lua
+Modules\Tags\API.lua
+Modules\Tags\Tags.lua
+
+Profiles\Baganator.lua
+Profiles\BigWigs.lua
+Profiles\BuffReminders.lua [AllowLoadGameType mainline]
+Profiles\Chattynator.lua
+Profiles\CooldownManager.lua [AllowLoadGameType mainline]
+Profiles\Details.lua
+Profiles\EditMode.lua [AllowLoadGameType mainline]
+Profiles\ElvUI.lua
+Profiles\MPlusTimer.lua [AllowLoadGameType mainline]
+Profiles\NSRT.lua [AllowLoadGameType mainline]
+Profiles\PermoksAccountManager.lua [AllowLoadGameType mainline]
+Profiles\Platynator.lua
+Profiles\Plumber.lua [AllowLoadGameType mainline]

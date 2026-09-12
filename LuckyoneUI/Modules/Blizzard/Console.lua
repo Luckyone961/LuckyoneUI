@@ -1,11 +1,12 @@
 local _, Private = ...
 local L = Private.Libs.ACL
 
+local InCombatLockdown = InCombatLockdown
 local SetCVar = C_CVar.SetCVar
+local SetCVarBitfield = C_CVar.SetCVarBitfield
 
 -- General CVars
 function Private:Setup_CVars(noPrint, installer)
-
 	SetCVar('AutoPushSpellToActionBar', 0)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('countdownForCooldowns', 1)
@@ -18,15 +19,9 @@ function Private:Setup_CVars(noPrint, installer)
 	SetCVar('threatWarning', 3)
 	SetCVar('UberTooltips', 1)
 
-	if not Private.isRetail then
-		SetCVar('alwaysShowActionBars', 1)
-	end
-
 	if Private.itsLuckyone then
 		SetCVar('floatingCombatTextCombatDamage_v2', 0)
-		SetCVar('floatingCombatTextCombatDamage', 0)
 		SetCVar('floatingCombatTextCombatHealing_v2', 0)
-		SetCVar('floatingCombatTextCombatHealing', 0)
 	end
 
 	if not noPrint then
@@ -36,15 +31,14 @@ end
 
 -- NamePlate CVars
 function Private:NameplateCVars(noPrint)
+	if InCombatLockdown() then return end -- Secure CVars
 
-	SetCVar('nameplateLargerScale', 1)
 	SetCVar('nameplateMinAlpha', 1)
 	SetCVar('nameplateMinScale', 1)
 	SetCVar('nameplateOccludedAlphaMult', 1)
 	SetCVar('nameplateOverlapH', 1.1)
 	SetCVar('nameplateOverlapV', 1.7)
 	SetCVar('nameplateSelectedScale', 1)
-	SetCVar('nameplateSelfAlpha', 1)
 
 	SetCVar('UnitNameEnemyGuardianName', 1)
 	SetCVar('UnitNameEnemyMinionName', 1)
@@ -53,21 +47,14 @@ function Private:NameplateCVars(noPrint)
 	SetCVar('UnitNameEnemyTotemName', 1)
 
 	SetCVar('nameplateMaxDistance', (Private.isRetail and 100) or 41)
+	SetCVar('nameplateShowOnlyNameForFriendlyPlayerUnits', 1)
+	SetCVar('nameplateUseClassColorForFriendlyPlayerUnitNames', 1)
 
 	if Private.isRetail then
 		SetCVar('nameplateShowFriendlyRealmName', 0)
-		SetCVar('nameplateShowOnlyNameForFriendlyPlayerUnits', 1)
-		SetCVar('nameplateUseClassColorForFriendlyPlayerUnitNames', 1)
 	else
-		SetCVar('NamePlateHorizontalScale', 1)
-		SetCVar('nameplateLargeTopInset', -1)
-		SetCVar('nameplateMotion', 1)
 		SetCVar('nameplateNotSelectedAlpha', 1)
-		SetCVar('nameplateOtherBottomInset', -1)
-		SetCVar('nameplateOtherTopInset', -1)
-		SetCVar('nameplateSelfTopInset', -1)
-		SetCVar('nameplateShowOnlyNames', 1)
-		SetCVar('NamePlateVerticalScale', 1)
+		SetCVarBitfield('nameplateStackingTypes', Enum.NamePlateStackType.Enemy, true) -- Stacking plates, nameplateMotion is gone
 	end
 
 	if not noPrint then
@@ -79,6 +66,7 @@ end
 -- From top to bottom in ESC > Options
 -- Not accessible for the normal user (Developer mode only)
 function Private:SyncSettings()
+	if InCombatLockdown() then return end -- Secure CVars
 
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
@@ -124,7 +112,6 @@ function Private:SyncSettings()
 	SetCVar('instantQuestText', 1)
 	SetCVar('ReplaceOtherPlayerPortraits', 1)
 	SetCVar('ReplaceMyPlayerPortrait', 1)
-	SetCVar('previewTalentsOptions', 1)
 	SetCVar('showNewbieTips', 0)
 	SetCVar('useClassicGuildUI', 0)
 
@@ -176,7 +163,6 @@ function Private:SyncSettings()
 	SetCVar('encounterTimelineEnabled', 0)
 	SetCVar('cooldownViewerEnabled', 1)
 	SetCVar('externalDefensivesEnabled', 1)
-	SetCVar('damageMeterEnabled', 0)
 	SetCVar('spellDiminishPVPEnemiesEnabled', 0)
 
 	-- Gameplay > Interface > Nameplates > Names
@@ -193,20 +179,17 @@ function Private:SyncSettings()
 
 	-- Gameplay > Interface > Nameplates > Nameplates
 	SetCVar('nameplateShowAll', 1)
-	SetCVar('NamePlateClassificationScale', 1)
 	SetCVar('nameplateShowEnemies', 1)
 	SetCVar('nameplateShowEnemyPets', 1)
 	SetCVar('nameplateShowEnemyGuardians', 1)
 	SetCVar('nameplateShowEnemyTotems', 1)
 	SetCVar('nameplateShowEnemyMinions', 1)
 	SetCVar('nameplateShowEnemyMinus', 1)
-	SetCVar('nameplateShowFriends', 0)
-	SetCVar('nameplateShowFriendlyPets', 0)
-	SetCVar('nameplateShowFriendlyGuardians', 0)
-	SetCVar('nameplateShowFriendlyTotems', 0)
-	SetCVar('nameplateShowFriendlyMinions', 0)
+	SetCVar('nameplateShowFriendlyPlayerPets', 0)
+	SetCVar('nameplateShowFriendlyPlayerGuardians', 0)
+	SetCVar('nameplateShowFriendlyPlayerTotems', 0)
+	SetCVar('nameplateShowFriendlyPlayerMinions', 0)
 	SetCVar('nameplateShowOffscreen', 0)
-	SetCVar('ShowNamePlateLoseAggroFlash', 0)
 
 	-- Accessibility > Interface
 	SetCVar('userFontScale', 1)

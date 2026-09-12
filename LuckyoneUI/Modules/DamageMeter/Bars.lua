@@ -8,6 +8,7 @@ local LSM = Private.Libs.LSM
 local unpack = unpack
 local format = string.format
 local gsub = string.gsub
+local match = string.match
 local floor = math.floor
 local ipairs = ipairs
 local max = math.max
@@ -20,9 +21,10 @@ local GetClassAtlas = GetClassAtlas
 local GetSpellName = C_Spell.GetSpellName
 local GetSpellTexture = C_Spell.GetSpellTexture
 local IsDamageMeterAvailable = C_DamageMeter.IsDamageMeterAvailable
+local WrapString = C_StringUtil.WrapString
 local AbbreviateNumbers = AbbreviateNumbers
 local SecondsToClock = SecondsToClock
-local issecretvalue = issecretvalue or function() return false end
+local issecretvalue = issecretvalue
 
 local UNKNOWN = UNKNOWN
 local DAMAGE_METER_SOURCE_NAME = DAMAGE_METER_SOURCE_NAME
@@ -31,6 +33,33 @@ local DAMAGE_METER_SPELL_ENTRY_UNIT = DAMAGE_METER_SPELL_ENTRY_UNIT
 
 local E = unpack(ElvUI)
 
+local MeterType = Enum.DamageMeterType
+
+local TypePerSecondPrimary = {
+	[MeterType.Dps] = true,
+	[MeterType.Hps] = true,
+}
+
+local TypeSuppressPerSecond = {
+	[MeterType.Interrupts] = true,
+	[MeterType.Dispels] = true,
+	[MeterType.Deaths] = true,
+}
+
+local TypeSuppressIcon = {
+	[MeterType.EnemyDamageTaken] = true,
+}
+
+-- Deaths and enemies dont support "Always Show Yourself"
+local TypeSuppressPin = {
+	[MeterType.Deaths] = true,
+	[MeterType.EnemyDamageTaken] = true,
+}
+
+local TypeReverseOrder = {
+	[MeterType.Deaths] = true, -- By default first death shows at the bottom, reverse it to the top
+}
+
 local renderAbbrev, renderFormats
 
 -- Expand the ElvUI abbrev to support values below 1k
@@ -38,7 +67,6 @@ local renderAbbrev, renderFormats
 local abbrevSource, abbrevOptions
 local function GetAbbreviate()
 	local config = E.Abbreviate.short.config
-	if not config then return E.Abbreviate.short end
 
 	if abbrevSource ~= config then
 		abbrevSource = config
@@ -59,9 +87,12 @@ local function GetAbbreviate()
 	return abbrevOptions
 end
 
-local function FormatAmount(amount)
-	return AbbreviateNumbers(amount, renderAbbrev)
-end
+-- Bracket styling () [] etc
+local BracketChars = {
+	PARENTHESES = { '(', ')' },
+	SQUARE = { '[', ']' },
+	NONE = { '', '' },
+}
 
 -- Value formats for the secondary number
 -- Only rebuilt when the bracket style changes
@@ -72,7 +103,7 @@ local function GetValueFormats(db)
 	if formatKey ~= style then
 		formatKey = style
 
-		local chars = DM.BracketChars[style] or DM.BracketChars.PARENTHESES
+		local chars = BracketChars[style] or BracketChars.PARENTHESES
 		local open, close = chars[1], chars[2]
 
 		valueFormats = {
@@ -85,11 +116,17 @@ local function GetValueFormats(db)
 	return valueFormats
 end
 
-local SampleAmount = '999.9M'
-local SampleRanks = { 9, 99 }
-
 -- Blizzards format with the trailing name dropped, that space belongs to the slider now
 local RankFormat = gsub(DAMAGE_METER_SOURCE_NAME, '%s*%%s$', '')
+
+-- Everything the spell formats put around the source, WrapString wants those two halves
+local function SplitSourceFormat(sourceFormat, prefix, suffix)
+	local left, right = match(sourceFormat, '^%%s(.-)%%s(.*)$')
+	return left or prefix, right or suffix
+end
+
+local CreaturePrefix, CreatureSuffix = SplitSourceFormat(DAMAGE_METER_SPELL_ENTRY_CREATURE, ' (', ')')
+local UnitPrefix, UnitSuffix = SplitSourceFormat(DAMAGE_METER_SPELL_ENTRY_UNIT, ' - ', '')
 
 local sampleText
 local sampleWidths = {}
@@ -106,9 +143,9 @@ local function GetSampleWidth(db, key)
 	sampleText:FontTemplate(db.font, db.fontSize, db.fontOutline)
 
 	if key == 'value' then
-		sampleText:SetFormattedText(renderFormats.single, SampleAmount)
+		sampleText:SetFormattedText(renderFormats.single, '999.9M')
 	else
-		sampleText:SetFormattedText(RankFormat, SampleRanks[key], '')
+		sampleText:SetFormattedText(RankFormat, key, '')
 	end
 
 	width = sampleText:GetStringWidth()
@@ -138,15 +175,6 @@ local function Bar_OnLeave(bar)
 	bar.highlight:Hide()
 end
 
--- All four texts share the same setup, only the side they align to differs
-local function CreateBarText(status, justify)
-	local text = status:CreateFontString(nil, 'OVERLAY')
-	text:SetJustifyH(justify)
-	text:SetWordWrap(false)
-
-	return text
-end
-
 local function CreateBar(window)
 	local bar = CreateFrame('Button', nil, window.content)
 	bar:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
@@ -172,12 +200,12 @@ local function CreateBar(window)
 	bar.highlight:SetAllPoints(bar)
 	bar.highlight:Hide()
 
-	bar.persec = CreateBarText(status, 'RIGHT')
-	bar.value = CreateBarText(status, 'RIGHT')
+	bar.persec = DM:CreateText(status, 'RIGHT')
+	bar.value = DM:CreateText(status, 'RIGHT')
 
 	-- Custom font string so every name can start at the same position
-	bar.rank = CreateBarText(status, 'LEFT')
-	bar.name = CreateBarText(status, 'LEFT')
+	bar.rank = DM:CreateText(status, 'LEFT')
+	bar.name = DM:CreateText(status, 'LEFT')
 
 	return bar
 end
@@ -379,9 +407,13 @@ local function UpdateBarIcon(bar, entry, spellMode)
 		local details = entry.combatSpellDetails
 		local specIcon = details and details.specIconID
 
-		if specIcon and specIcon ~= 0 then
+		-- The death log brings its own icon for environment damage
+		if entry.texture then
+			fileID = entry.texture
+		elseif specIcon and specIcon ~= 0 then
 			fileID = specIcon
-		elseif entry.spellID and not issecretvalue(entry.spellID) then
+		elseif entry.spellID then
+			-- GetSpellTexture takes secret IDs
 			fileID = GetSpellTexture(entry.spellID)
 		end
 	else
@@ -395,8 +427,13 @@ local function UpdateBarIcon(bar, entry, spellMode)
 	end
 
 	local key = fileID or atlas
-	if bar.iconKey == key then return end
-	bar.iconKey = key
+
+	if issecretvalue(key) then
+		bar.iconKey = nil
+	else
+		if bar.iconKey == key then return end
+		bar.iconKey = key
+	end
 
 	if fileID then
 		bar.icon:SetTexture(fileID)
@@ -439,10 +476,10 @@ local function UpdateBarColor(db, bar, entry, spellMode)
 	bar.persec:SetTextColor(valueColor.r, valueColor.g, valueColor.b)
 end
 
-local function UpdateBarStatus(bar, entry, maxAmount, deathEntry)
+local function UpdateBarStatus(bar, entry, maxAmount, fullBar)
 	local status = bar.status
 
-	if deathEntry then
+	if fullBar then
 		status:SetMinMaxValues(0, 1)
 		status:SetValue(1)
 	else
@@ -456,32 +493,38 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 
 	if spellMode then
 		bar.lastName = nil
-		bar.rank:SetText('')
 
-		local spellID = entry.spellID
-		local spellName
-		if spellID and not issecretvalue(spellID) then
-			spellName = GetSpellName(spellID)
+		-- The popup has no rank column, zero is never a real rank
+		if bar.lastRank ~= 0 then
+			bar.lastRank = 0
+			bar.rank:SetText('')
+		end
+
+		-- GetSpellName takes secret IDs
+		local spellName = entry.spellName
+		if not spellName and entry.spellID then
+			spellName = GetSpellName(entry.spellID)
 		end
 
 		local creatureName = entry.creatureName
 		local details = entry.combatSpellDetails
 		local unitName = details and details.unitName
-		local source, sourceFormat
 
-		if creatureName and (issecretvalue(creatureName) or creatureName ~= '') then
-			source, sourceFormat = creatureName, DAMAGE_METER_SPELL_ENTRY_CREATURE
-		elseif unitName and (issecretvalue(unitName) or unitName ~= '') then
-			source, sourceFormat = DM:StripRealm(unitName, details.unitClassFilename), DAMAGE_METER_SPELL_ENTRY_UNIT
+		if unitName then
+			unitName = DM:StripRealm(unitName, details.unitClassFilename)
 		end
 
-		if not source then
-			nameText:SetText(spellName or UNKNOWN)
-		elseif spellName then
-			nameText:SetFormattedText(sourceFormat, spellName, source)
-		else
+		-- Blizzard sends an empty name when a spell has no source and secrets cant be compared, WrapString drops the brackets on those
+		local creature = creatureName and WrapString(creatureName, CreaturePrefix, CreatureSuffix) or ''
+		local unit = unitName and WrapString(unitName, UnitPrefix, UnitSuffix) or ''
+
+		if spellName then
+			nameText:SetFormattedText('%s%s%s', spellName, creature, unit)
+		elseif creatureName or unitName then
 			-- Enemy damage taken has no spell to name, the source alone beats "Unknown - Name"
-			nameText:SetText(source)
+			nameText:SetFormattedText('%s%s', creatureName or '', unitName or '')
+		else
+			nameText:SetText(UNKNOWN)
 		end
 
 		return
@@ -489,16 +532,21 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 
 	local rawName = entry.name
 	local nameSecret = issecretvalue(rawName)
+	local sameRank = rank == bar.lastRank
 
 	-- Comparisons are only safe on non-secret names
-	if not nameSecret and rawName == bar.lastName and rank == bar.lastRank then return end
+	if not nameSecret and sameRank and rawName == bar.lastName then return end
 	bar.lastName = not nameSecret and rawName or nil
-	bar.lastRank = rank
+
+	-- Only when the bar actually moved
+	if not sameRank then
+		bar.lastRank = rank
+
+		-- Second argument is only there for locales that keep the name in the format
+		bar.rank:SetText(rankColumn and format(RankFormat, rank, '') or '')
+	end
 
 	local name = DM:StripRealm(rawName or '', entry.classFilename)
-
-	-- Second argument is only there for locales that keep the name in the format
-	bar.rank:SetText(rankColumn and format(RankFormat, rank, '') or '')
 
 	if db.showRank and not rankColumn then
 		nameText:SetFormattedText(DAMAGE_METER_SOURCE_NAME, rank, name)
@@ -507,8 +555,26 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 	end
 end
 
-local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry)
+local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry, recapMode)
 	local valueText, persecText = bar.value, bar.persec
+
+	if recapMode then
+		local percent, seconds = entry.healthPercent, entry.timeBeforeDeath
+		local display = db.numberDisplay
+
+		valueText:SetText(AbbreviateNumbers(entry.totalAmount, renderAbbrev))
+		bar.persecSecret = false
+
+		if display == 'MINIMAL' or not percent then
+			persecText:SetText('')
+		elseif display == 'COMPLETE' and seconds then
+			persecText:SetFormattedText(renderFormats.both, format('%.1fs', seconds), percent)
+		else
+			persecText:SetFormattedText(renderFormats.percent, percent)
+		end
+
+		return
+	end
 
 	if deathEntry then
 		local deathTime = entry.deathTimeSeconds
@@ -519,6 +585,7 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 		end
 
 		persecText:SetText('')
+		bar.persecSecret = false
 		return
 	end
 
@@ -529,32 +596,38 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 		primary, secondary = secondary, primary
 	end
 
-	if suppressPersec or (not issecretvalue(secondary) and (not secondary or secondary <= 0)) then
+	local secret = issecretvalue(secondary)
+
+	if suppressPersec or (not secret and (not secondary or secondary <= 0)) then
 		secondary = nil
 	end
 
 	local display = db.numberDisplay
 
-	valueText:SetText(FormatAmount(primary))
+	valueText:SetText(AbbreviateNumbers(primary, renderAbbrev))
 
 	if display == 'COMPLETE' and not (sessionSecret or issecretvalue(total)) then
 		local percent = sessionTotal > 0 and (total / sessionTotal * 100) or 0
 
 		if secondary then
-			persecText:SetFormattedText(renderFormats.both, FormatAmount(secondary), percent)
+			persecText:SetFormattedText(renderFormats.both, AbbreviateNumbers(secondary, renderAbbrev), percent)
+			bar.persecSecret = secret
 		else
 			persecText:SetFormattedText(renderFormats.percent, percent)
+			bar.persecSecret = false
 		end
 	elseif display ~= 'MINIMAL' and secondary then
-		persecText:SetFormattedText(renderFormats.single, FormatAmount(secondary))
+		persecText:SetFormattedText(renderFormats.single, AbbreviateNumbers(secondary, renderAbbrev))
+		bar.persecSecret = secret
 	else
 		persecText:SetText('')
+		bar.persecSecret = false
 	end
 end
 
 -- Every rank shares the width of the widest one, that lines up the names behind them
 local function UpdateRankColumn(db, window, lastRank)
-	local width = lastRank > 0 and (GetSampleWidth(db, lastRank < 10 and 1 or 2) + E:Scale(db.rankSpacing)) or 0
+	local width = lastRank > 0 and (GetSampleWidth(db, lastRank < 10 and 9 or 99) + E:Scale(db.rankSpacing)) or 0
 
 	if window.rankWidth == width then return end
 	window.rankWidth = width
@@ -569,15 +642,16 @@ local function UpdateValueColumn(db, window)
 
 	-- Value spacing only applies if the slider is greater than 0 in the config
 	if db.valueSpacing > 0 then
-		for i = 1, window.visibleCount do
-			local bar = window.bars[i]
-			if bar.entry then
-				local barWidth = bar.persec:GetStringWidth()
+		local bars = window.bars
 
-				if issecretvalue(barWidth) then
+		for i = 1, window.visibleCount do
+			local bar = bars[i]
+
+			if bar.entry then
+				if bar.persecSecret or bar.persec:IsAnchoringSecret() then
 					secret = true
 				else
-					width = max(width, barWidth)
+					width = max(width, bar.persec:GetStringWidth())
 				end
 			end
 		end
@@ -613,7 +687,7 @@ end
 local function GetPinnedRow(db, window, entries, numEntries, offset, spellMode, meterType)
 	if not db.pinLocalPlayer or spellMode then return end
 	if numEntries <= window.visibleCount then return end
-	if not DM.TypePinLocalPlayer[meterType] then return end
+	if TypeSuppressPin[meterType] then return end
 
 	local index = FindLocalPlayer(entries, numEntries)
 	if not index then return end
@@ -627,29 +701,42 @@ end
 
 function DM:RenderWindow(window)
 	local db = DM.db
-	if not db or window.visibleCount == 0 then return end
+	if window.visibleCount == 0 then return end
 
 	renderAbbrev = GetAbbreviate()
 	renderFormats = GetValueFormats(db)
 
 	-- Only the session windows carry the availability message
-	if window.infoText then
-		local available, failureReason = IsDamageMeterAvailable()
-		local info = (not available and not DM.testMode) and failureReason or ''
+	local infoText = window.infoText
+
+	if infoText then
+		local info = ''
+
+		-- Fake data always renders, only the live data can be unavailable
+		if not DM.testMode then
+			local available, failureReason = IsDamageMeterAvailable()
+
+			if not available then
+				info = failureReason or ''
+			end
+		end
 
 		if window.lastInfo ~= info then
 			window.lastInfo = info
-			window.infoText:SetText(info)
+			infoText:SetText(info)
 		end
 	end
 
 	local session = DM:GetSession(window)
 	local spellMode = window.spellMode
+	local recapMode = window.recapMode
 	local entries = session and (spellMode and session.combatSpells or session.combatSources)
 	local numEntries = entries and #entries or 0
 	window.numEntries = numEntries
 
-	local maxOffset = max(0, numEntries - window.visibleCount)
+	local bars, visibleCount = window.bars, window.visibleCount
+
+	local maxOffset = max(0, numEntries - visibleCount)
 	if window.offset > maxOffset then
 		window.offset = maxOffset
 	end
@@ -660,33 +747,39 @@ function DM:RenderWindow(window)
 	local sessionSecret = issecretvalue(sessionTotal)
 
 	local meterType = window.meterType
-	local persecPrimary = DM.TypePerSecondPrimary[meterType]
-	local suppressPersec = DM.TypeSuppressPerSecond[meterType]
-	local iconsShown = db.showIcons and (spellMode or not DM.TypeSuppressIcon[meterType])
+	local persecPrimary = TypePerSecondPrimary[meterType]
+	local suppressPersec = TypeSuppressPerSecond[meterType]
+	local iconsShown = db.showIcons and (spellMode or not TypeSuppressIcon[meterType])
+	local reverseOrder = not spellMode and TypeReverseOrder[meterType]
+
+	-- For the death log, every hit fills its bar instead
+	local fullBars = recapMode and maxAmount == 0
 
 	local pinIndex, pinRow = GetPinnedRow(db, window, entries, numEntries, offset, spellMode, meterType)
 
 	-- Rank spacing only applies if the slider is greater than 0 in the config
 	local rankColumn = db.showRank and db.rankSpacing > 0 and not spellMode
-	local lastRank = rankColumn and max(pinIndex or 0, min(offset + window.visibleCount, numEntries)) or 0
+	local lastRank = rankColumn and max(pinIndex or 0, min(offset + visibleCount, numEntries)) or 0
 
-	for i = 1, window.visibleCount do
-		local bar = window.bars[i]
+	for i = 1, visibleCount do
+		local bar = bars[i]
 		local rank = (i == pinRow) and pinIndex or (offset + i)
-		local entry = entries and entries[rank]
+
+		-- Only the entry gets mirrored
+		local entry = entries and entries[reverseOrder and (numEntries - rank + 1) or rank]
 
 		if entry then
 			local deathEntry = not spellMode and entry.deathRecapID and entry.deathRecapID ~= 0
 
 			bar.entry = entry
 			SetBarAnchors(db, bar, iconsShown)
-			UpdateBarStatus(bar, entry, maxAmount, deathEntry)
+			UpdateBarStatus(bar, entry, maxAmount, deathEntry or fullBars)
 			UpdateBarColor(db, bar, entry, spellMode)
 			if iconsShown then
 				UpdateBarIcon(bar, entry, spellMode)
 			end
 			UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
-			UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry)
+			UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry, recapMode)
 			bar:Show()
 		else
 			bar.entry = nil

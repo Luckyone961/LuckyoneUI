@@ -14,12 +14,12 @@ local type = type
 local unpack = unpack
 local wipe = table.wipe
 
-local GenerateTextColorCode = C_ColorUtil and C_ColorUtil.GenerateTextColorCode
-local GetClassColor = C_ClassColor and C_ClassColor.GetClassColor
+local GenerateTextColorCode = C_ColorUtil.GenerateTextColorCode
+local GetClassColor = C_ClassColor.GetClassColor
 local hooksecurefunc = hooksecurefunc
 local issecretvalue = issecretvalue
-local WrapString = C_StringUtil and C_StringUtil.WrapString
-local WrapTextInColor = C_ColorUtil and C_ColorUtil.WrapTextInColor
+local WrapString = C_StringUtil.WrapString
+local WrapTextInColor = C_ColorUtil.WrapTextInColor
 local UnitClass = UnitClass
 local UnitInPartyIsAI = UnitInPartyIsAI
 local UnitIsConnected = UnitIsConnected
@@ -43,10 +43,10 @@ local DEFAULT_COLOR = '|cFFcccccc'
 local DEAD, GHOST, OFFLINE = L["DEAD"], L["GHOST"], L["OFFLINE"]
 
 Private.Tags.classificationText = {
-	rare = 'Rare',
-	rareelite = 'Rare Elite',
-	elite = 'Elite',
-	worldboss = 'Boss'
+	rare = L["Rare"],
+	rareelite = L["Rare Elite"],
+	elite = L["Elite"],
+	worldboss = L["Boss"]
 }
 
 -- Status check (dead, ghost, offline)
@@ -111,13 +111,12 @@ local reactionHexCache = setmetatable({}, { __index = function(t, reaction)
 end})
 
 -- Static power token colors only, alternate colors are unit specific and never cached
+-- Tokens without a color cache as false so misses do not rebuild every call
 local powerHexCache = setmetatable({}, { __index = function(t, token)
 	local color = ElvUF_colors_power[token]
-	if color then
-		local hex = Hex(color)
-		t[token] = hex
-		return hex
-	end
+	local hex = color and Hex(color) or false
+	t[token] = hex
+	return hex
 end})
 
 local powerTypeHexCache = setmetatable({}, { __index = function(t, pType)
@@ -136,89 +135,55 @@ end
 
 hooksecurefunc(E, 'UpdateMedia', WipeCaches)
 
+-- Shared with Tags.lua so static power colors stay in sync with UpdateMedia
+Private.Tags.powerColors = powerHexCache
+
 -- Class color for players, reaction color for NPCs
 -- Retail will not touch any tables if secrets exist
-if Private.isRetail then
-	function Private.Tags.getUnitColor(unit)
-		if UnitIsPlayer(unit) or UnitInPartyIsAI(unit) then
-			local _, unitClass = UnitClass(unit)
-			if unitClass and not issecretvalue(unitClass) then
-				return classHexCache[unitClass]
-			end
-		else
-			local reaction = UnitReaction(unit, 'player')
-			if reaction then
-				return reactionHexCache[reaction]
-			end
+function Private.Tags.getUnitColor(unit)
+	if UnitIsPlayer(unit) or UnitInPartyIsAI(unit) then
+		local _, unitClass = UnitClass(unit)
+		if unitClass and not issecretvalue(unitClass) then
+			return classHexCache[unitClass]
 		end
-
-		return DEFAULT_COLOR
-	end
-else
-	function Private.Tags.getUnitColor(unit)
-		if UnitIsPlayer(unit) then
-			local _, unitClass = UnitClass(unit)
-			if unitClass then
-				return classHexCache[unitClass]
-			end
-		else
-			local reaction = UnitReaction(unit, 'player')
-			if reaction then
-				return reactionHexCache[reaction]
-			end
+	else
+		local reaction = UnitReaction(unit, 'player')
+		if reaction then
+			return reactionHexCache[reaction]
 		end
-
-		return DEFAULT_COLOR
 	end
+
+	return DEFAULT_COLOR
 end
 
 local getUnitColor = Private.Tags.getUnitColor
 
--- The passed name arg is already checked for secrets
-if Private.isRetail then
-	function Private.Tags.getFormattedName(unit, length, color, abbrev, name)
-		if not name then
-			name = UnitName(unit) or UNKNOWN
-			if issecretvalue(name) then
-				return name
-			end
+-- Name arg is already secret-checked
+function Private.Tags.getFormattedName(unit, length, color, abbrev, name)
+	if not name then
+		name = UnitName(unit) or UNKNOWN
+		if issecretvalue(name) then
+			return name
 		end
-
-		if name ~= UNKNOWN then
-			if abbrev then
-				name = Abbrev(name)
-			end
-			name = E:ShortenString(name, length)
-		end
-
-		if not color then return name end
-
-		return getUnitColor(unit) .. name
 	end
-else
-	function Private.Tags.getFormattedName(unit, length, color, abbrev, name)
-		name = name or UnitName(unit) or UNKNOWN
 
-		if name ~= UNKNOWN then
-			if abbrev then
-				name = Abbrev(name)
-			end
-			name = E:ShortenString(name, length)
+	if name ~= UNKNOWN then
+		if abbrev then
+			name = Abbrev(name)
 		end
-
-		if not color then return name end
-
-		return getUnitColor(unit) .. name
+		name = E:ShortenString(name, length)
 	end
+
+	if not color then return name end
+
+	return getUnitColor(unit) .. name
 end
 
 function Private.Tags.getPowerColor(unit)
 	local pType, pToken, altR, altG, altB = UnitPowerType(unit)
 
-	if pToken then
-		local hex = powerHexCache[pToken]
-		if hex then return hex end
-	end
+	local hex = pToken and powerHexCache[pToken]
+	if hex then return hex end
 
 	if altR then
 		if altR > 1 or altG > 1 or altB > 1 then
@@ -232,50 +197,35 @@ function Private.Tags.getPowerColor(unit)
 end
 
 function Private.Tags.getLastNamePart(name)
-	if not name then return name end
-	return strmatch(name, '([%S]+)$') or name
+	return name and (strmatch(name, '(%S+)$') or name)
 end
 
 local getLastNamePart = Private.Tags.getLastNamePart
 
-if Private.isRetail then
-	function Private.Tags.formatTargetName(unit, lastPartOnly, withColor)
-		local targetUnit = targetUnits[unit]
+function Private.Tags.formatTargetName(unit, lastPartOnly, withColor)
+	local targetUnit = targetUnits[unit]
 
-		local targetName = UnitName(targetUnit)
-		if not targetName then return end
-		if issecretvalue(targetName) then
-			if not withColor then return targetName end
+	local targetName = UnitName(targetUnit)
+	if not targetName then return end
 
-			-- Class color for players, secret class tokens go through C_ClassColor
-			if UnitIsPlayer(targetUnit) or UnitInPartyIsAI(targetUnit) then
-				local _, classToken = UnitClass(targetUnit)
-				if issecretvalue(classToken) then
-					return WrapTextInColor(targetName, GetClassColor(classToken))
-				end
+	if issecretvalue(targetName) then
+		if not withColor then return targetName end
+
+		-- Class color for players, secret class tokens go through C_ClassColor
+		if UnitIsPlayer(targetUnit) or UnitInPartyIsAI(targetUnit) then
+			local _, classToken = UnitClass(targetUnit)
+			if issecretvalue(classToken) then
+				return WrapTextInColor(targetName, GetClassColor(classToken))
 			end
-
-			-- Non-secret color paths (reaction / cached class / fallback grey)
-			return WrapString(targetName, getUnitColor(targetUnit), '|r')
 		end
 
-		if lastPartOnly then
-			targetName = getLastNamePart(targetName)
-		end
-
-		return withColor and (getUnitColor(targetUnit) .. targetName) or targetName
+		-- Non-secret color paths (reaction / cached class / fallback grey)
+		return WrapString(targetName, getUnitColor(targetUnit), '|r')
 	end
-else
-	function Private.Tags.formatTargetName(unit, lastPartOnly, withColor)
-		local targetUnit = targetUnits[unit]
 
-		local targetName = UnitName(targetUnit)
-		if not targetName then return end
-
-		if lastPartOnly then
-			targetName = getLastNamePart(targetName)
-		end
-
-		return withColor and (getUnitColor(targetUnit) .. targetName) or targetName
+	if lastPartOnly then
+		targetName = getLastNamePart(targetName)
 	end
+
+	return withColor and (getUnitColor(targetUnit) .. targetName) or targetName
 end

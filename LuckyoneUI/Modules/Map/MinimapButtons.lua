@@ -10,13 +10,16 @@ end
 -- I've used them across multiple wow versions and wanted an all-in-one approach.
 -- Even if no code was re-used, the module is inspired by their work.
 
+local ceil = math.ceil
 local floor = math.floor
 local pairs = pairs
+local select = select
 local sort = table.sort
 local tinsert = table.insert
 local unpack = unpack
 local wipe = table.wipe
 
+local After = C_Timer.After
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 
@@ -26,13 +29,14 @@ local Minimap = _G.Minimap
 local E = unpack(ElvUI)
 local M = E:GetModule('Minimap')
 
--- List for non-LibDBIcon minimap buttons (frame names)
-Private.CustomMinimapButtons = {
-	-- 'AddonName_MinimapButton',
-}
-
 local function IsLandingPageButton(button)
 	return Private.isRetail and button == _G.ExpansionLandingPageMinimapButton
+end
+
+local function ApplyTemplate(button)
+	button:SetTemplate()
+	button:SetFixedFrameStrata(false)
+	button:SetFixedFrameLevel(false)
 end
 
 local function ApplyHighlight(button)
@@ -124,9 +128,14 @@ end
 
 local function SkinLandingPageButton(button)
 	if not button.LuckyoneSkinned then
-		button:SetTemplate()
-		button:SetFixedFrameStrata(false)
-		button:SetFixedFrameLevel(false)
+		ApplyTemplate(button)
+
+		-- A release hides the border frames, SetTemplate only creates them once
+		if button.iborder then
+			button.iborder:Show()
+			button.oborder:Show()
+		end
+
 		button.LuckyoneSkinned = true
 	end
 
@@ -162,9 +171,7 @@ local function SkinButton(button)
 		button.iconMini:SetAlpha(0)
 	end
 
-	button:SetTemplate()
-	button:SetFixedFrameStrata(false)
-	button:SetFixedFrameLevel(false)
+	ApplyTemplate(button)
 
 	if icon then
 		icon:SetAlpha(1)
@@ -202,6 +209,14 @@ local function ReleaseButton(button)
 	button.LuckyoneState = nil
 
 	if IsLandingPageButton(button) then
+		-- The template would stay behind the round Blizzard art
+		button:SetTemplate('NoBackdrop')
+		if button.iborder then
+			button.iborder:Hide()
+			button.oborder:Hide()
+		end
+		button.LuckyoneSkinned = nil
+
 		if button.LuckyoneIcon then
 			button.LuckyoneIcon:Hide()
 		end
@@ -215,89 +230,98 @@ local function ReleaseButton(button)
 end
 
 -- TOPRIGHT leftward: BugSack first, A-Z, landing page last
-local function GetButtonSortRank(button)
+local sortRanks, sortNames = {}, {}
+
+local function GetButtonSortRank(button, name)
 	if IsLandingPageButton(button) then
 		return 2
 	end
 
-	local name = button.GetName and button:GetName() or ''
-	if name:match('BugSack$') then
-		return 0
+	return name:match('BugSack$') and 0 or 1
+end
+
+local function CompareButtons(a, b)
+	if sortRanks[a] ~= sortRanks[b] then
+		return sortRanks[a] < sortRanks[b]
 	end
 
-	return 1
+	return sortNames[a] < sortNames[b]
 end
 
 local function SortCollectedButtons(buttons)
-	local keys = {}
+	wipe(sortRanks)
+	wipe(sortNames)
+
 	for i = 1, #buttons do
 		local button = buttons[i]
-		keys[button] = { GetButtonSortRank(button), button.GetName and button:GetName() or '' }
+		local name = button:GetName() or ''
+		sortRanks[button] = GetButtonSortRank(button, name)
+		sortNames[button] = name
 	end
 
-	sort(buttons, function(a, b)
-		local keyA, keyB = keys[a], keys[b]
-		if keyA[1] ~= keyB[1] then
-			return keyA[1] < keyB[1]
+	sort(buttons, CompareButtons)
+end
+
+-- Reused
+local collected, collectedSeen = {}, {}
+
+local function TryCollect(button)
+	if button and not collectedSeen[button] and button:IsShown() then
+		collectedSeen[button] = true
+		tinsert(collected, button)
+	end
+end
+
+local function CollectChildren(...)
+	for i = 1, select('#', ...) do
+		local child = select(i, ...)
+		local childName = child:GetName()
+		if childName and childName:match('^LibDBIcon10_') then
+			TryCollect(child)
 		end
-		return keyA[2] < keyB[2]
-	end)
-end
-
-local function TryCollect(buttons, seen, button)
-	if button and not seen[button] and button:IsShown() then
-		seen[button] = true
-		tinsert(buttons, button)
 	end
 end
 
-local function CollectLibDBIconChildren(parent, buttons, seen)
+local function CollectLibDBIconChildren(parent)
 	if not parent then return end
 
-	local children = { parent:GetChildren() }
-	for i = 1, #children do
-		local child = children[i]
-		local childName = child.GetName and child:GetName()
-		if childName and not seen[child] and child:IsShown() and childName:match('^LibDBIcon10_') then
-			seen[child] = true
-			tinsert(buttons, child)
-		end
-	end
+	CollectChildren(parent:GetChildren())
 end
 
 local function CollectButtons()
-	local buttons = {}
-	local seen = {}
+	wipe(collected)
+	wipe(collectedSeen)
+
 	local bar = Map.buttonBar
+	local landingPage = Private.isRetail and Private.Addon.db.profile.map.minimap.buttons.blizzard.expansionLandingPage
 
 	-- Keep buttons we already manage. They are parented to the bar, so the Minimap
 	-- fallback below cannot see them and a missed LDBI lookup would Hide() them for good.
+	-- The landing page button goes back to Blizzard once its option is off.
 	if bar then
 		for button in pairs(bar.buttons) do
-			TryCollect(buttons, seen, button)
+			if landingPage or not IsLandingPageButton(button) then
+				TryCollect(button)
+			end
 		end
 	end
 
-	if Private.isRetail and Private.Addon.db.profile.map.minimap.buttons.blizzard.expansionLandingPage then
-		TryCollect(buttons, seen, _G.ExpansionLandingPageMinimapButton)
+	if landingPage then
+		TryCollect(_G.ExpansionLandingPageMinimapButton)
 	end
 
 	local names = LDBI:GetButtonList()
 	for i = 1, #names do
 		-- Trust visibility only. Some addons keep db.hide = true while still showing the button.
-		TryCollect(buttons, seen, LDBI:GetMinimapButton(names[i]))
+		TryCollect(LDBI:GetMinimapButton(names[i]))
 	end
 
 	-- Fallback: LibDBIcon buttons the list missed (Minimap on first grab, bar after reparent)
-	CollectLibDBIconChildren(Minimap, buttons, seen)
-	CollectLibDBIconChildren(bar, buttons, seen)
+	CollectLibDBIconChildren(Minimap)
+	CollectLibDBIconChildren(bar)
 
-	for i = 1, #Private.CustomMinimapButtons do
-		TryCollect(buttons, seen, _G[Private.CustomMinimapButtons[i]])
-	end
-
-	SortCollectedButtons(buttons)
-	return buttons
+	SortCollectedButtons(collected)
+	return collected, collectedSeen
 end
 
 local function HoverBar(self)
@@ -363,7 +387,7 @@ local function LayoutButtons(holder, buttons)
 	local yStep = size + 1
 
 	local count = #buttons
-	local rows = count > 0 and floor((count - 1) / perRow) + 1 or 0
+	local rows = ceil(count / perRow)
 	local height = rows > 0 and (rows * yStep - 1) or 0
 
 	Map.updating = true
@@ -425,13 +449,14 @@ local function ReleaseAll()
 end
 
 local function RunUpdate()
-	Map.updateTimer = nil
+	Map.updatePending = nil
 	Private:UpdateMinimapButtonBar()
 end
 
 local function ScheduleUpdate()
-	if Map.updating or Map.updateTimer then return end
-	Map.updateTimer = Private.Addon:ScheduleTimer(RunUpdate, 0.1)
+	if Map.updating or Map.updatePending then return end
+	Map.updatePending = true
+	After(0.1, RunUpdate)
 end
 
 local function RegisterLandingPageHooks()
@@ -496,14 +521,10 @@ function Private:UpdateMinimapButtonBar()
 		holder:HookScript('OnSizeChanged', ScheduleUpdate)
 	end
 
-	local buttons = CollectButtons()
+	local buttons, keep = CollectButtons()
 
 	local bar = Map.buttonBar
 	if bar then
-		local keep = {}
-		for i = 1, #buttons do
-			keep[buttons[i]] = true
-		end
 		for button in pairs(bar.buttons) do
 			if not keep[button] then
 				bar.buttons[button] = nil
@@ -519,8 +540,13 @@ function Private:UpdateMinimapButtonBar()
 	LayoutButtons(holder, buttons)
 end
 
+-- Restore profile defaults config button
+function Private:MinimapButtons_ResetDefaults()
+	Private:ResetDefaults(Private.Addon.db.profile.map.minimap.buttons, Private.Defaults.profile.map.minimap.buttons)
+	Private:UpdateMinimapButtonBar()
+end
+
 function Map:PLAYER_ENTERING_WORLD()
-	RegisterHooks()
 	ScheduleUpdate()
 end
 

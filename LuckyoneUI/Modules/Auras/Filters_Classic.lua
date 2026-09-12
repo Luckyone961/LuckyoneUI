@@ -1,0 +1,196 @@
+local _, Private = ...
+local L = Private.Libs.ACL
+
+if not Private.ElvUI then
+	return
+end
+
+local ipairs = ipairs
+local pairs = pairs
+local unpack = unpack
+
+local E = unpack(ElvUI)
+
+-- Function to add IDs to a list (fresh table per ID)
+local function Add(list, ids)
+	for _, id in ipairs(ids) do
+		list[id] = list[id] or { enabled = true, color = {} }
+	end
+end
+
+-- Aura filters: TBC / Classic
+function Private:Setup_Filters(installer)
+	-- General vars
+	local aurawatch = E.global.unitframe.aurawatch
+
+	-- Classes setup
+	local classes = {
+		-- Healers
+		DRUID = aurawatch.DRUID,
+		PALADIN = aurawatch.PALADIN,
+		PRIEST = aurawatch.PRIEST,
+		SHAMAN = aurawatch.SHAMAN,
+		-- Others
+		MAGE = aurawatch.MAGE,
+		WARLOCK = aurawatch.WARLOCK,
+		HUNTER = aurawatch.HUNTER,
+		WARRIOR = aurawatch.WARRIOR
+	}
+
+	local ids = {
+		-- Healers
+		DRUID = { 21849, 467, 1126, 8936, 408120, 774, 29166 },
+		PALADIN = { 19740, 25894, 1044, 25782, 6940, 19746, 1022, 19742, 19977, 465 },
+		PRIEST = { 6346, 139, 27683, 1243, 10060, 402004, 17, 27681, 14752, 401877, 21562, 976 },
+		SHAMAN = { 8072, 25909, 10596, 8182, 29203, 8185, 16237, 16191, 5677, 5672 },
+		-- Others
+		MAGE = { 1008, 604, 1459, 23028, 130, 400735 },
+		WARLOCK = { 2970, 6512, 11743, 5697 },
+		HUNTER = { 19506, 13159, 20043 },
+		WARRIOR = { 6673 }
+	}
+
+	for class, classIDs in pairs(ids) do
+		Add(classes[class], classIDs)
+	end
+
+	-- Priest
+	classes['PRIEST'][6346] = { -- Fear Ward
+		['enabled'] = true,
+		['point'] = 'BOTTOMRIGHT',
+		['yOffset'] = -1,
+		['anyUnit'] = true,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 1,
+	}
+	classes['PRIEST'][139] = { -- Renew
+		['enabled'] = true,
+		['point'] = 'TOPLEFT',
+		['yOffset'] = 1,
+		['style'] = 'texturedIcon',
+		['xOffset'] = -1,
+	}
+	classes['PRIEST'][27683] = { -- Prayer of Shadow Protection
+		['enabled'] = true,
+		['yOffset'] = -1,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 25,
+	}
+	classes['PRIEST'][1243] = { -- Power Word: Fortitude
+		['enabled'] = true,
+		['point'] = 'BOTTOMLEFT',
+		['yOffset'] = -1,
+		['style'] = 'texturedIcon',
+		['xOffset'] = -1,
+	}
+	classes['PRIEST'][10060] = { -- Power Infusion
+		['enabled'] = true,
+		['yOffset'] = 1,
+		['style'] = 'texturedIcon',
+	}
+	classes['PRIEST'][402004] = { -- Pain Suppression
+		['enabled'] = true,
+		['yOffset'] = 1,
+		['style'] = 'texturedIcon',
+	}
+	classes['PRIEST'][17] = { -- Power Word: Shield
+		['enabled'] = true,
+		['point'] = 'TOPLEFT',
+		['yOffset'] = 1,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 25,
+	}
+	classes['PRIEST'][27681] = { -- Prayer of Spirit
+		['enabled'] = true,
+		['point'] = 'BOTTOMLEFT',
+		['yOffset'] = -1,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 12,
+	}
+	classes['PRIEST'][14752] = { -- Divine Spirit
+		['enabled'] = true,
+		['point'] = 'BOTTOMLEFT',
+		['yOffset'] = -1,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 12,
+	}
+	classes['PRIEST'][401877] = { -- Prayer of Mending
+		['enabled'] = true,
+		['point'] = 'TOPLEFT',
+		['yOffset'] = 1,
+		['countY'] = 0,
+		['style'] = 'texturedIcon',
+		['countX'] = 0,
+		['xOffset'] = 12,
+	}
+	classes['PRIEST'][21562] = { -- Prayer of Fortitude
+		['enabled'] = true,
+		['point'] = 'BOTTOMLEFT',
+		['yOffset'] = -1,
+		['style'] = 'texturedIcon',
+		['xOffset'] = -1,
+	}
+	classes['PRIEST'][976] = { -- Shadow Protection
+		['enabled'] = true,
+		['yOffset'] = -1,
+		['style'] = 'texturedIcon',
+		['xOffset'] = 25,
+	}
+
+	-- Druid
+	classes['DRUID'][21849]['style'] = 'texturedIcon' -- Gift of the Wild
+	classes['DRUID'][467]['style'] = 'texturedIcon' -- Thorns
+	classes['DRUID'][1126]['style'] = 'texturedIcon' -- Mark of the Wild
+	classes['DRUID'][8936]['style'] = 'texturedIcon' -- Regrowth
+	classes['DRUID'][408120]['style'] = 'texturedIcon' -- Wild Growth
+	classes['DRUID'][774]['style'] = 'texturedIcon' -- Rejuvenation
+	classes['DRUID'][29166]['style'] = 'texturedIcon' -- Innervate
+
+	-- Paladin
+	classes['PALADIN'][19740]['style'] = 'texturedIcon' -- Blessing of Might
+	classes['PALADIN'][25894]['style'] = 'texturedIcon' -- Greater Blessing of Wisdom
+	classes['PALADIN'][1044]['style'] = 'texturedIcon' -- Blessing of Freedom
+	classes['PALADIN'][25782]['style'] = 'texturedIcon' -- Greater Blessing of Might
+	classes['PALADIN'][6940]['style'] = 'texturedIcon' -- Blessing of Sacrifice
+	classes['PALADIN'][19746]['style'] = 'texturedIcon' -- Concentration Aura
+	classes['PALADIN'][1022]['style'] = 'texturedIcon' -- Blessing of Protection
+	classes['PALADIN'][19742]['style'] = 'texturedIcon' -- Blessing of Wisdom
+	classes['PALADIN'][19977]['style'] = 'texturedIcon' -- Blessing of Light
+	classes['PALADIN'][465]['style'] = 'texturedIcon' -- Devotion Aura
+
+	-- Shaman
+	classes['SHAMAN'][8072]['style'] = 'texturedIcon' -- Stoneskin Totem
+	classes['SHAMAN'][25909]['style'] = 'texturedIcon' -- Tranquil Air
+	classes['SHAMAN'][10596]['style'] = 'texturedIcon' -- Nature Resistance Totem
+	classes['SHAMAN'][8182]['style'] = 'texturedIcon' -- Frost Resistance Totem
+	classes['SHAMAN'][29203]['style'] = 'texturedIcon' -- Healing Way
+	classes['SHAMAN'][8185]['style'] = 'texturedIcon' -- Fire Resistance Totem
+	classes['SHAMAN'][16237]['style'] = 'texturedIcon' -- Ancestral Fortitude
+	classes['SHAMAN'][16191]['style'] = 'texturedIcon' -- Mana Tide Totem
+	classes['SHAMAN'][5677]['style'] = 'texturedIcon' -- Mana Spring Totem
+	classes['SHAMAN'][5672]['style'] = 'texturedIcon' -- Healing Stream Totem
+
+	-- Mage
+	classes['MAGE'][1008]['style'] = 'texturedIcon' -- Amplify Magic
+	classes['MAGE'][604]['style'] = 'texturedIcon' -- Dampen Magic
+	classes['MAGE'][1459]['style'] = 'texturedIcon' -- Arcane Intellect
+	classes['MAGE'][23028]['style'] = 'texturedIcon' -- Arcane Brilliance
+	classes['MAGE'][130]['style'] = 'texturedIcon' -- Slow Fall
+	classes['MAGE'][400735]['style'] = 'texturedIcon' -- Temporal Beacon
+
+	-- Warlock
+	classes['WARLOCK'][2970]['style'] = 'texturedIcon' -- Detect Invisibility
+	classes['WARLOCK'][6512]['style'] = 'texturedIcon' -- Detect Lesser Invisibility
+	classes['WARLOCK'][11743]['style'] = 'texturedIcon' -- Detect Greater Invisibility
+	classes['WARLOCK'][5697]['style'] = 'texturedIcon' -- Unending Breath
+
+	-- Hunter
+	classes['HUNTER'][19506]['style'] = 'texturedIcon' -- Trueshot Aura
+	classes['HUNTER'][13159]['style'] = 'texturedIcon' -- Aspect of the Pack
+	classes['HUNTER'][20043]['style'] = 'texturedIcon' -- Aspect of the Wild
+
+	-- Warrior
+	classes['WARRIOR'][6673]['style'] = 'texturedIcon' -- Battle Shout
+
+	Private:Print(L["Custom ElvUI aura filters loaded."], installer)
+end

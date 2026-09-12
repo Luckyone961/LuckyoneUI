@@ -1,8 +1,29 @@
 local _, Private = ...
 
+-- Both objective tracker header tabs share these
+local function ObjectiveTrackerHeader()
+	return {
+		font = Private.Font,
+		fontOutline = Private.Outline,
+		fontSize = 13,
+		colorType = 'CLASS',
+		color = { r = 1, g = 1, b = 1 },
+		hideBackground = true,
+		underline = true,
+		underlineTexture = Private.Texture,
+		underlineBorder = true,
+		underlineColorType = 'CLASS',
+		underlineColor = { r = 1, g = 1, b = 1 },
+		underlineHeight = 4,
+		underlineWidth = 0,
+		underlineOffset = 0,
+	}
+end
+
 -- LuckyoneDB defaults
 Private.Defaults = {
 	global = {
+		DebugDisabledAddOns = {},
 		dev = false,
 		scaled = false,
 	},
@@ -32,6 +53,7 @@ Private.Defaults = {
 			showIcons = true,
 			mouseoverHighlight = true,
 			pinLocalPlayer = false,
+			deathLogPopup = true,
 			font = Private.Font,
 			fontOutline = Private.Outline,
 			fontSize = 12,
@@ -145,8 +167,60 @@ Private.Defaults = {
 				fadeTime = 2,
 			},
 			dataTextsTweaks = false,
+			friendsList = {
+				enable = false,
+				classColor = true,
+				level = true,
+				bracketStyle = 'NONE',
+				factionIcon = true,
+				statusIcon = 'SQUARE',
+				realm = true,
+				realmSeparator = 'DASH',
+				infoColorType = 'CUSTOM',
+				infoColor = { r = 1, g = 1, b = 1 },
+				font = Private.Font,
+				fontOutline = Private.Outline,
+				fontSize = 12,
+				infoFont = Private.Font,
+				infoFontOutline = Private.Outline,
+				infoFontSize = 11,
+			},
+			mailbox = {
+				currentRealm = false,
+				enable = false,
+				-- { name = 'Luckyone-LaughingSkull', class = 'DRUID', faction = 'Alliance' }
+				favorites = {},
+				font = Private.Font,
+				fontOutline = Private.Outline,
+				fontSize = 12,
+			},
 			mythicVisibility = false,
+			objectiveTracker = {
+				enable = false,
+				findGroupSkin = true,
+				scenarioSkin = true,
+				mainHeader = ObjectiveTrackerHeader(),
+				categoryHeader = ObjectiveTrackerHeader(),
+				content = {
+					font = Private.Font,
+					fontOutline = Private.Outline,
+					fontSize = 12,
+					titleColorType = 'CLASS',
+					titleColor = { r = 1, g = 1, b = 1 },
+					lineColorType = 'DEFAULT',
+					lineColor = { r = 1, g = 1, b = 1 },
+					completeColor = { r = 0.6, g = 0.6, b = 0.6 },
+					failedColor = { r = 0.8, g = 0.1, b = 0.1 },
+					poiScale = 0.9,
+					poiOffset = -6,
+				},
+			},
 			removeNameplateRealm = false,
+		},
+		movableFrames = {
+			autoReset = true,
+			enable = false,
+			modifier = 'NONE',
 		},
 		nameplates = {
 			focusTexture = 'Luckyone Focus',
@@ -158,21 +232,27 @@ Private.Defaults = {
 			autoAcceptRole = false,
 			autoDismount = false,
 			easyDelete = false,
+			expandMerchant = false,
+			expandQuestLog = false,
+			fasterLoot = false,
 			preventLootAutoShow = false,
 			privacyOverlay = false,
 			quickSignup = false,
 		},
 		skins = {
+			Auctionator = false,
+			BigWigs = false,
 			BugSack = false,
-			DejaClassicStats = false,
-			LeatrixPlus = false,
 			LFGBulletinBoard = false,
 			NovaSpellRankChecker = false,
 			NovaWorldBuffs = false,
+			SimpleAddonManager = false,
+			Simulationcraft = false,
 			Tabardy = false,
 			WhatsTraining = false,
 			Blizzard = {
 				CooldownViewer = false,
+				DeveloperConsole = false,
 			}
 		},
 	}
