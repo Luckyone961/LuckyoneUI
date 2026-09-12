@@ -58,19 +58,13 @@ local function AutoComplete_DisplayResults(frame)
 end
 
 local function SkinAutoComplete(frame)
-	for _, element in next, frame.BackgroundElements do
-		element:SetAlpha(0)
-	end
+	frame:StripTextures(nil, true)
 
 	frame:CreateBackdrop('Transparent')
 	frame.backdrop:SetOutside(frame.Background)
 
 	local tooltip = frame.Tooltip
-	tooltip.Background:SetAlpha(0)
-	tooltip.BorderTop:SetAlpha(0)
-	tooltip.BorderLeft:SetAlpha(0)
-	tooltip.BorderRight:SetAlpha(0)
-	tooltip.BorderBottom:SetAlpha(0)
+	tooltip:StripTextures(nil, true)
 
 	tooltip:CreateBackdrop('Transparent')
 	tooltip.backdrop:SetOutside(tooltip.Background)

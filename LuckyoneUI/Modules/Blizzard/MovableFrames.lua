@@ -14,12 +14,6 @@ local _G = _G
 local UIParent = UIParent
 local UIPanelWindows = UIPanelWindows
 
--- The offsets clear the portrait and the close button
-local HANDLE_HEIGHT = 20
-local HANDLE_LEFT = 60
-local HANDLE_RIGHT = -40
-local HANDLE_TOP = -4
-
 -- Config option offers to require mod-click to move
 local Modifiers = {
 	ALT = IsAltKeyDown,
@@ -44,7 +38,6 @@ local Positions = {} -- The custom position, session only and reverted on reload
 local Restored = {} -- Frames that should ignore the Blizzard panel layout
 
 local EventFrame
-local initialized
 
 local function ModifierDown()
 	local isDown = Modifiers[Private.Addon.db.profile.movableFrames.modifier]
@@ -74,10 +67,6 @@ local function SetAnchor(frame, anchor)
 	frame:SetPoint(anchor.point, UIParent, anchor.relativePoint, anchor.x, anchor.y)
 end
 
-local function GetPosition(frame)
-	return Positions[frame] or Restored[frame]
-end
-
 -- Back to the Blizzard default position
 local function ResetPosition(frame)
 	local anchor = Positions[frame] and Defaults[frame]
@@ -97,7 +86,7 @@ end
 -- Blizzard re-anchors every open panel whenever one of them opens or closes
 local function ApplyPositions()
 	for frame in pairs(Handles) do
-		local anchor = GetPosition(frame)
+		local anchor = Positions[frame] or Restored[frame]
 		if anchor and frame:IsShown() and CanMove(frame) then
 			SetAnchor(frame, anchor)
 		end
@@ -105,7 +94,10 @@ local function ApplyPositions()
 end
 
 -- Blizzard blocks StartMoving on the panels, so the drag runs on the cursor itself
+-- A pull mid drag freezes the panel
 local function Handle_OnUpdate(self)
+	if InCombatLockdown() then return end
+
 	local frame = self:GetParent()
 	local anchor = self.anchor
 
@@ -126,7 +118,9 @@ local function StopDrag(self)
 	self:SetScript('OnUpdate', nil)
 
 	local frame = self:GetParent()
-	frame:SetClampedToScreen(self.clamped)
+	if not InCombatLockdown() then
+		frame:SetClampedToScreen(self.clamped)
+	end
 
 	return frame
 end
@@ -135,7 +129,7 @@ local function Handle_OnShow(self)
 	local frame = self:GetParent()
 	AutoReset(frame)
 
-	local anchor = GetPosition(frame)
+	local anchor = Positions[frame] or Restored[frame]
 	if anchor and CanMove(frame) then
 		SetAnchor(frame, anchor)
 	end
@@ -211,15 +205,16 @@ local function AddHandle(name)
 	handle:SetScript('OnShow', Handle_OnShow)
 
 	-- Frames like the Achievement one keep their title bar on a header that sticks out above the panel
+	-- The offsets clear the portrait and the close button
 	local title = frame.TitleContainer or (frame.BorderFrame and frame.BorderFrame.TitleContainer) or frame.Header or _G[name .. 'Header']
 	if not title then
-		handle:SetHeight(HANDLE_HEIGHT)
-		handle:SetPoint('TOPLEFT', frame, 'TOPLEFT', HANDLE_LEFT, HANDLE_TOP)
-		handle:SetPoint('TOPRIGHT', frame, 'TOPRIGHT', HANDLE_RIGHT, HANDLE_TOP)
+		handle:SetHeight(20)
+		handle:SetPoint('TOPLEFT', frame, 'TOPLEFT', 60, -4)
+		handle:SetPoint('TOPRIGHT', frame, 'TOPRIGHT', -40, -4)
 	elseif title.IsMouseEnabled and title:IsMouseEnabled() then
 		handle:SetFrameLevel(title:GetFrameLevel() + 1)
 		handle:SetPoint('TOPLEFT', title, 'TOPLEFT')
-		handle:SetPoint('BOTTOMRIGHT', title, 'BOTTOMRIGHT', HANDLE_RIGHT, 0)
+		handle:SetPoint('BOTTOMRIGHT', title, 'BOTTOMRIGHT', -40, 0)
 	else
 		handle:SetAllPoints(title)
 	end
@@ -243,7 +238,7 @@ local function OnEvent(_, event)
 end
 
 function Private:MovableFrames()
-	if initialized then return end
+	if EventFrame then return end
 	if not Private.Addon.db.profile.movableFrames.enable then return end
 
 	AddHandles()
@@ -254,6 +249,4 @@ function Private:MovableFrames()
 	EventFrame:SetScript('OnEvent', OnEvent)
 	EventFrame:RegisterEvent('ADDON_LOADED')
 	EventFrame:RegisterEvent('PLAYER_REGEN_ENABLED')
-
-	initialized = true
 end

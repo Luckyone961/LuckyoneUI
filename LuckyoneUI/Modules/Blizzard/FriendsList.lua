@@ -1,14 +1,9 @@
 local _, Private = ...
-local LSM = Private.Libs.LSM
 
-local format = string.format
-local gsub = string.gsub
 local next = next
 local pairs = pairs
 local setmetatable = setmetatable
-local strfind = string.find
 local strmatch = string.match
-local type = type
 local wipe = wipe
 
 local CreateFrame = CreateFrame
@@ -81,7 +76,7 @@ local function ClassColorCode(className)
 	local color = token and RAID_CLASS_COLORS[token]
 	if not color then return '|cff999999' end
 
-	return format('|cff%02x%02x%02x', color.r * 255, color.g * 255, color.b * 255)
+	return '|c' .. color.colorStr
 end
 
 local function GetCharacter(button, db)
@@ -177,20 +172,9 @@ local function InfoText(db, char, current)
 	return area .. (Separators[db.realmSeparator] or Separators.DASH) .. realm
 end
 
-local function SetFont(text, font, size, outline)
-	local shadow = strfind(outline, 'SHADOW')
-	if shadow then
-		outline = gsub(outline, 'SHADOW', '')
-	end
-
-	text:SetFont(LSM:Fetch('font', font), size, outline == 'NONE' and '' or outline)
-	text:SetShadowColor(0, 0, 0, shadow and 1 or 0)
-	text:SetShadowOffset(1, -1)
-end
-
 local function ApplyFonts(button, db)
-	SetFont(button.name, db.font, db.fontSize, db.fontOutline)
-	SetFont(button.info, db.infoFont, db.infoFontSize, db.infoFontOutline)
+	Private:SetFont(button.name, db.font, db.fontSize, db.fontOutline)
+	Private:SetFont(button.info, db.infoFont, db.infoFontSize, db.infoFontOutline)
 end
 
 -- Blizzard values from before the first tweak
@@ -318,18 +302,7 @@ end
 
 -- Restore profile defaults config button
 function Private:FriendsList_ResetDefaults()
-	local db = Private.Addon.db.profile.misc.friendsList
-	local enable = db.enable
-
-	wipe(db)
-	for key, value in pairs(Private.Defaults.profile.misc.friendsList) do
-		-- Sharing the table would write back into the defaults
-		db[key] = type(value) == 'table' and { r = value.r, g = value.g, b = value.b } or value
-	end
-
-	-- Restoring the look should not switch the option off
-	db.enable = enable
-
+	Private:ResetDefaults(Private.Addon.db.profile.misc.friendsList, Private.Defaults.profile.misc.friendsList)
 	Private:FriendsList_Update()
 end
 

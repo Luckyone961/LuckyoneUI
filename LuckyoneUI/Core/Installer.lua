@@ -12,7 +12,7 @@ local min = math.min
 local strmatch = string.match
 local wipe = table.wipe
 
-local C_UI_Reload = C_UI.Reload
+local C_UI = C_UI
 local CreateFrame = CreateFrame
 local GameTooltip_Hide = GameTooltip_Hide
 local PlaySound = PlaySound
@@ -56,7 +56,7 @@ end
 
 local function InstallComplete()
 	Private:HandleLuckyoneDB()
-	C_UI_Reload()
+	C_UI.Reload()
 end
 
 -- Our frame 'skin'
@@ -426,7 +426,7 @@ local function CreateMainFrame()
 
 	local steps = CreateText(sidebar, 16)
 	steps:SetPoint('CENTER', sidebar, 'TOP', 0, -18)
-	steps:SetText('Steps')
+	steps:SetText(L["Steps"])
 
 	local sidebarLine = CreateLine(sidebar)
 	sidebarLine:SetPoint('TOPLEFT', 0, -36)
@@ -568,14 +568,14 @@ local function Group(name, ...)
 	return group
 end
 
--- Missing sections (no ElvUI, other flavor) hide the toggle just like a hidden option
+-- Missing sections (no ElvUI, other flavor) and disabled groups (Kaliel's Tracker) hide the toggle just like a hidden option
 local function ConfigOption(path)
 	local option, hidden = Private.Config, false
 
 	for part in gmatch(path, '[^.]+') do
 		option = option.args and option.args[part]
 		if not option then return {}, true end
-		if option.hidden == true then hidden = true end
+		if option.hidden == true or option.disabled == true then hidden = true end
 	end
 
 	return option, hidden
@@ -610,8 +610,8 @@ local function BuildPages()
 			Red(L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor pixel offsets."]),
 			recommended,
 		}, {
-			Button('1440p', function() Private:ApplyScale(true) Installer:ShowStatus(L["LuckyoneUI Scale"] .. ' 1440p') end, 'native'),
-			Button('1080p', function() Private:ApplyScale(false) Installer:ShowStatus(L["LuckyoneUI Scale"] .. ' 1080p') end, 'scaled'),
+			Button('1440p', function() Private:ApplyScale(true, true) end, 'native'),
+			Button('1080p', function() Private:ApplyScale(false, true) end, 'scaled'),
 		}),
 
 		-- ElvUI profiles
@@ -627,10 +627,10 @@ local function BuildPages()
 
 		-- Aura indicators (Global)
 		Page(L["ElvUI Filters"], {
-			(Private.isRetail and L["This will apply Luckyones Aura Indicator edit and set the style to Textured."]) or L["This will apply Luckyones Aura Indicator edit and set the style to Textured.\nIt will also add custom IDs to Whitelist & Blacklist.\n"],
+			L["This will apply Luckyones Aura Indicator edit and set the style to Textured."],
 			recommended,
 		}, {
-			Button((Private.isRetail and L["Setup Aura Indicators"]) or L["Setup Aura Filters"], function() Private:Setup_Filters(true) end, 'filters'),
+			Button(L["Setup Aura Indicators"], function() Private:Setup_Filters(true) end, 'filters'),
 		}, nil, not Private.ElvUI),
 
 		-- UnitFrames color themes
@@ -646,7 +646,7 @@ local function BuildPages()
 		Page(L["Chat"], {
 			L["This step will configure your two chat panels."],
 			recommended,
-			L["Left panel: General - Log - Whisper - Guild - Party."] .. '\n' .. L["Right panel: Damage Meter."],
+			L["Left panel: Main - Log - Whisper - Guild - Party."] .. '\n' .. L["Right panel: Damage Meter."],
 		}, {
 			Button(L["Setup Chat"], function() Private:Setup_Chat(true) end, 'chat'),
 			Button(L["Use Chattynator Addon"], function() Private:Setup_Chattynator(true) end, 'chattynator', 'Chattynator'),
@@ -666,7 +666,7 @@ local function BuildPages()
 			L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."],
 			recommended,
 		}, {
-			Button('BigWigs', function() Private:Setup_BigWigs('main') end, 'main', 'BigWigs'),
+			Button(L["BigWigs Main"], function() Private:Setup_BigWigs('main') end, 'main', 'BigWigs'),
 			Button(L["BigWigs Healing"], function() Private:Setup_BigWigs('healing') end, 'healing', 'BigWigs'),
 		}, nil, nil, L["BigWigs profile"]),
 

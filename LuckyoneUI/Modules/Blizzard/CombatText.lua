@@ -1,9 +1,5 @@
 local _, Private = ...
-local LSM = Private.Libs.LSM
 local Blizzard = Private.Modules.Blizzard
-
-local gsub = string.gsub
-local strfind = string.find
 
 local CreateFrame = CreateFrame
 
@@ -11,13 +7,12 @@ local _G = _G
 local UIParent = UIParent
 
 local frame
-local HOLD_TIME = 1 -- Seconds at full alpha before the fade starts
 
 local function CombatText_OnUpdate(self, elapsed)
 	self.elapsed = self.elapsed + elapsed
-	if self.elapsed < HOLD_TIME then return end
+	if self.elapsed < 1 then return end -- One second at full alpha before the fade starts
 
-	local alpha = 1 - (self.elapsed - HOLD_TIME) / self.fadeTime
+	local alpha = 1 - (self.elapsed - 1) / self.fadeTime
 
 	if alpha > 0 then
 		self:SetAlpha(alpha)
@@ -39,15 +34,7 @@ function Private:CombatText_Update()
 		frame:Hide()
 	end
 
-	local outline = db.fontOutline
-	local shadow = strfind(outline, 'SHADOW')
-	if shadow then
-		outline = gsub(outline, 'SHADOW', '')
-	end
-
-	frame.text:SetFont(LSM:Fetch('font', db.font), db.fontSize, outline == 'NONE' and '' or outline)
-	frame.text:SetShadowColor(0, 0, 0, shadow and 1 or 0)
-	frame.text:SetShadowOffset(1, -1)
+	Private:SetFont(frame.text, db.font, db.fontSize, db.fontOutline)
 
 	frame:ClearAllPoints()
 	frame:SetPoint('CENTER', _G[db.anchor] or UIParent, 'CENTER', db.xOffset, db.yOffset)
@@ -55,18 +42,7 @@ end
 
 -- Restore profile defaults config button
 function Private:CombatText_ResetDefaults()
-	local db = Private.Addon.db.profile.misc.combatText
-	local enable = db.enable
-
-	wipe(db)
-	for key, value in pairs(Private.Defaults.profile.misc.combatText) do
-		-- Sharing the table would write back into the defaults
-		db[key] = type(value) == 'table' and { r = value.r, g = value.g, b = value.b } or value
-	end
-
-	-- Restoring the look should not switch the option off
-	db.enable = enable
-
+	Private:ResetDefaults(Private.Addon.db.profile.misc.combatText, Private.Defaults.profile.misc.combatText)
 	Private:CombatText_Update()
 end
 

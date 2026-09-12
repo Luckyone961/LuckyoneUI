@@ -1,13 +1,11 @@
 local _, Private = ...
 local L = Private.Libs.ACL
-local LSM = Private.Libs.LSM
 
 local ipairs = ipairs
 local floor = math.floor
 local max = math.max
 local min = math.min
 local gsub = string.gsub
-local strfind = string.find
 local strlower = string.lower
 local strmatch = string.match
 local tinsert = table.insert
@@ -17,6 +15,7 @@ local wipe = wipe
 local CreateFrame = CreateFrame
 local GetCursorPosition = GetCursorPosition
 local strtrim = strtrim
+local UnitFactionGroup = UnitFactionGroup
 
 local _G = _G
 local GameTooltip = GameTooltip
@@ -36,25 +35,13 @@ local display = {} -- Filtered copy of the favorites
 local myRealm = strlower(Private.myNormalizedRealm)
 local Layout -- The drag scripts on the buttons scroll
 
-local function SetFont(text)
+local function CreateText(parent, justify)
 	local db = Private.Addon.db.profile.misc.mailbox
 
-	local outline = db.fontOutline
-	local shadow = strfind(outline, 'SHADOW')
-	if shadow then
-		outline = gsub(outline, 'SHADOW', '')
-	end
-
-	text:SetFont(LSM:Fetch('font', db.font), db.fontSize, outline == 'NONE' and '' or outline)
-	text:SetShadowColor(0, 0, 0, shadow and 1 or 0)
-	text:SetShadowOffset(1, -1)
-end
-
-local function CreateText(parent, justify)
 	local text = parent:CreateFontString(nil, 'OVERLAY')
 	text:SetJustifyH(justify or 'CENTER')
 	text:SetWordWrap(false)
-	SetFont(text)
+	Private:SetFont(text, db.font, db.fontSize, db.fontOutline)
 
 	return text
 end
@@ -66,7 +53,7 @@ end
 
 local function IsCurrentRealm(name)
 	local _, realm = SplitName(name)
-	return not realm or strlower(gsub(realm, '%s', '')) == myRealm
+	return not realm or strlower(gsub(realm, '[%s%-%.]', '')) == myRealm
 end
 
 local function FindFavorite(name)
@@ -260,11 +247,13 @@ local function UpdateButton(button, favorite)
 end
 
 local function UpdateFonts()
-	SetFont(panel.title)
+	local db = Private.Addon.db.profile.misc.mailbox
+
+	Private:SetFont(panel.title, db.font, db.fontSize, db.fontOutline)
 
 	for _, button in ipairs(panel.buttons) do
-		SetFont(button.text)
-		SetFont(button.faction)
+		Private:SetFont(button.text, db.font, db.fontSize, db.fontOutline)
+		Private:SetFont(button.faction, db.font, db.fontSize, db.fontOutline)
 	end
 end
 
@@ -382,8 +371,8 @@ local function CreatePanel()
 end
 
 function Private:MailboxFavorites_Add(name, realm)
-	-- No spaces in the realm part inside the send editbox
-	local entry = strtrim(name or '') .. '-' .. gsub(strtrim(realm or ''), '%s', '')
+	-- The send editbox wants the normalized realm, no spaces, hyphens or periods
+	local entry = strtrim(name or '') .. '-' .. gsub(strtrim(realm or ''), '[%s%-%.]', '')
 
 	if not strmatch(entry, '^[^%-]+%-[^%-]+$') then
 		Private:Print(L["Enter a character and a realm name."])
@@ -395,7 +384,8 @@ function Private:MailboxFavorites_Add(name, realm)
 		return
 	end
 
-	tinsert(Private.Addon.db.profile.misc.mailbox.favorites, { name = entry, class = Private.myClass, faction = 'Alliance' })
+	-- Pandaren
+	tinsert(Private.Addon.db.profile.misc.mailbox.favorites, { name = entry, class = Private.myClass, faction = UnitFactionGroup('player') == 'Horde' and 'Horde' or 'Alliance' })
 	Private:MailboxFavorites_Update()
 
 	return entry
@@ -428,10 +418,6 @@ function Private:MailboxFavorites_Update()
 	end
 end
 
-local function SendMailFrame_OnToggle()
-	Private:MailboxFavorites_Update()
-end
-
 function Private:MailboxFavorites()
 	if hooked or not Private.Addon.db.profile.misc.mailbox.enable then return end
 
@@ -439,8 +425,8 @@ function Private:MailboxFavorites()
 	if not SendMailFrame then return end
 
 	-- The list only exists on Send Mail tab
-	SendMailFrame:HookScript('OnShow', SendMailFrame_OnToggle)
-	SendMailFrame:HookScript('OnHide', SendMailFrame_OnToggle)
+	SendMailFrame:HookScript('OnShow', Private.MailboxFavorites_Update)
+	SendMailFrame:HookScript('OnHide', Private.MailboxFavorites_Update)
 
 	hooked = true
 end

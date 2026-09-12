@@ -40,18 +40,13 @@ local GameTooltip = GameTooltip
 local GameTooltip_Hide = GameTooltip_Hide
 local ScrollBarMixin = ScrollBarMixin
 local CreateAnchor = AnchorUtil.CreateAnchor
-local issecretvalue = issecretvalue or function() return false end
+local issecretvalue = issecretvalue
 
 local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
 
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
-
-local ICON_RESET = Private.IconPath .. 'DM_Reset.png'
-local ICON_SESSIONS = Private.IconPath .. 'DM_Sessions.png'
-local ICON_SETTINGS = Private.IconPath .. 'DM_Settings.png'
-local ICON_PINNED = Private.IconPath .. 'DM_Pinned.png'
 
 local MeterType = Enum.DamageMeterType
 local SessionType = Enum.DamageMeterSessionType
@@ -124,7 +119,6 @@ local TestSources = {
 	{ name = _G.DAMAGE_METER_EDIT_MODE_SOURCE_5 or 'Uther', classFilename = 'PALADIN' },
 }
 
-local TestTopAmount, TestFalloff, TestDuration = 12400000, 0.88, 300
 local testSessions = {}
 
 -- The windows can have different heights
@@ -134,7 +128,7 @@ local function GetTestSession(count)
 	local session = testSessions[count]
 	if session then return session end
 
-	local sources, total, amount = {}, 0, TestTopAmount
+	local sources, total, amount = {}, 0, 12400000
 
 	for index = 1, count do
 		local source = TestSources[(index - 1) % #TestSources + 1]
@@ -143,17 +137,17 @@ local function GetTestSession(count)
 			name = source.name,
 			classFilename = source.classFilename,
 			totalAmount = amount,
-			amountPerSecond = amount / TestDuration,
+			amountPerSecond = amount / 300,
 		}
 
 		total = total + amount
-		amount = max(floor(amount * TestFalloff), 1)
+		amount = max(floor(amount * 0.88), 1)
 	end
 
 	-- The last source is the worst one, it previews the pinned player bar
 	sources[count].isLocalPlayer = true
 
-	session = { combatSources = sources, maxAmount = TestTopAmount, totalAmount = total }
+	session = { combatSources = sources, maxAmount = 12400000, totalAmount = total }
 	testSessions[count] = session
 
 	return session
@@ -175,7 +169,7 @@ function DM:RefreshWindow(window)
 	DM:RenderWindow(window)
 end
 
-local function Refresh(onlyDirty)
+function DM:RefreshAll(onlyDirty)
 	for _, window in pairs(DM.windows) do
 		if (window.dirty or not onlyDirty) and window:IsVisible() then
 			DM:RefreshWindow(window)
@@ -188,22 +182,18 @@ local function Refresh(onlyDirty)
 	end
 end
 
-function DM:RefreshAll()
-	Refresh(false)
-end
-
 local pendingFlush = false
 local function Flush()
 	pendingFlush = false
-	Refresh(true)
+	DM:RefreshAll(true)
 end
 
 function DM:MarkDirty(window)
 	window.dirty = true
 
-	-- The popup reads the same session as the window it was opened from
+	-- The popup reads the same session as the window it was opened from, the death recap never changes
 	local popup = DM.popup
-	if popup and popup.owner == window then
+	if popup and popup.owner == window and not popup.recapMode then
 		popup.dirty = true
 	end
 
@@ -494,9 +484,6 @@ end
 -- Secret safe bookmarks
 -- A right click panel over the bar area, it only carries damage meter types (the table)
 -- Every type is stored as its own place in the list so it can be dragged around
-local NEW_BOOKMARK = 99 -- Higher than the type count, anything new sorts to the end
-local DRAG_SCROLL_DELAY = 0.15 -- One row per step while a drag sits on an edge
-
 local bookmarkList = {}
 local bookmarkPlaces -- The saved table the sort compares against
 
@@ -535,7 +522,7 @@ end
 -- The options list and the plus menu both go through here, a dropped one is kept
 -- as false so the profile defaults cannot bring it back on the next login
 function DM:SetBookmark(meterType, enabled)
-	DM.db.bookmarks[meterType] = enabled and NEW_BOOKMARK or false
+	DM.db.bookmarks[meterType] = enabled and 99 or false -- Higher than the type count, anything new sorts to the end
 end
 
 local function AddBookmark(data)
@@ -611,6 +598,7 @@ local function DropIndex(frame, y)
 	return frame.offset + frame.dropCount
 end
 
+-- One row per step while a drag sits on an edge
 local function DragScroll(frame, y, elapsed)
 	local direction = 0
 
@@ -625,10 +613,10 @@ local function DragScroll(frame, y, elapsed)
 		return
 	end
 
-	frame.scrollWait = (frame.scrollWait or DRAG_SCROLL_DELAY) - elapsed
+	frame.scrollWait = (frame.scrollWait or 0.15) - elapsed
 	if frame.scrollWait > 0 then return end
 
-	frame.scrollWait = DRAG_SCROLL_DELAY
+	frame.scrollWait = 0.15
 
 	-- The rows carry other types now, the marker has to find its place again
 	if Bookmarks_ScrollTo(frame, frame.offset + direction) then
@@ -723,9 +711,7 @@ local function CreateBookmarkRow(frame)
 	CreateRowTexture(row, 'HIGHLIGHT')
 
 	-- Both edges so the longer type names get trimmed instead of spilling out
-	row.text = row:CreateFontString(nil, 'OVERLAY')
-	row.text:SetJustifyH('CENTER')
-	row.text:SetWordWrap(false)
+	row.text = DM:CreateText(row, 'CENTER')
 	row.text:Point('LEFT', row, 'LEFT', 4, 0)
 	row.text:Point('RIGHT', row, 'RIGHT', -4, 0)
 
@@ -797,8 +783,6 @@ end
 
 function DM:LayoutBookmarks(window, focus)
 	local frame = window.bookmarks
-	if not frame then return false end
-
 	local db = DM.db
 	local list = BuildBookmarkList()
 
@@ -931,7 +915,6 @@ end
 -- Spell breakdown popup
 -- Same idea as the Blizzard source window, spawned at the cursor instead
 -- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSourceWindow.lua
-local POPUP_WIDTH_SCALE = 1.5
 
 -- The source it showed is set again by the next OpenPopup
 local function Popup_OnHide(popup)
@@ -948,10 +931,13 @@ local function Popup_OnHide(popup)
 end
 
 -- Any click that misses the popup closes it again unless it was pinned
-local function Popup_OnEvent(popup)
-	if not popup.sticky and not DoesAncestryIncludeAny(popup, GetMouseFoci()) then
-		popup:Hide()
-	end
+-- A right click on a session window is left to WindowRightClick,
+-- hiding it on the press would let the same click open the bookmarks
+local function Popup_OnEvent(popup, _, button)
+	if popup.sticky or DoesAncestryIncludeAny(popup, GetMouseFoci()) then return end
+	if button == 'RightButton' and DoesAncestryIncludeAny(DM.holder, GetMouseFoci()) then return end
+
+	popup:Hide()
 end
 
 -- Only pinned popups are worth moving, the rest close on the next click
@@ -986,7 +972,7 @@ local function AnchorToCursor(popup)
 	local vertical = (y > E.UIParent:GetHeight() / 2) and 'TOP' or 'BOTTOM'
 
 	popup:ClearAllPoints()
-	popup:SetPoint(vertical .. horizontal, E.UIParent, 'BOTTOMLEFT', x, y)
+	popup:SetPoint(vertical .. horizontal, E.UIParent, 'BOTTOMLEFT', x, y) -- Not Point, that would snap the cursor position to the pixel grid
 end
 
 -- The scroll bar works in percent, the render path works in rows
@@ -1075,9 +1061,9 @@ local function CreateWindowFrames(frame)
 	return header, content
 end
 
-local function CreateHeaderText(parent)
+function DM:CreateText(parent, justify)
 	local text = parent:CreateFontString(nil, 'OVERLAY')
-	text:SetJustifyH('LEFT')
+	text:SetJustifyH(justify)
 	text:SetWordWrap(false)
 
 	return text
@@ -1109,7 +1095,7 @@ function DM:GetPopup()
 
 	content:EnableMouse(true)
 
-	popup.typeText = CreateHeaderText(header)
+	popup.typeText = DM:CreateText(header, 'LEFT')
 
 	local pin = CreateFrame('Frame', nil, header)
 	pin:EnableMouse(true)
@@ -1119,7 +1105,7 @@ function DM:GetPopup()
 	pin:Hide()
 
 	pin.icon = pin:CreateTexture(nil, 'ARTWORK')
-	pin.icon:SetTexture(ICON_PINNED)
+	pin.icon:SetTexture(Private.IconPath .. 'DM_Pinned.png')
 	pin.icon:Point('CENTER')
 	popup.pin = pin
 
@@ -1141,7 +1127,6 @@ end
 function DM:ApplyPopupSettings(popup)
 	local db = DM.db
 	local wdb = db.windows[popup.owner.index]
-	local scrollWidth = 22
 	local r, g, b = HeaderColor()
 	local pin, sticky = popup.pin, popup.sticky
 
@@ -1172,7 +1157,7 @@ function DM:ApplyPopupSettings(popup)
 	popup.scrollBar:ClearAllPoints()
 	popup.scrollBar:Point('TOPLEFT', popup.content, 'TOPRIGHT', db.barSpacing, 0)
 	popup.scrollBar:Point('BOTTOMLEFT', popup.content, 'BOTTOMRIGHT', db.barSpacing, 0)
-	popup.scrollBar:Width(scrollWidth)
+	popup.scrollBar:Width(22)
 
 	-- Padding follows the window the popup was opened from, the solid ElvUI backdrop keeps the spell text readable
 	popup.backdrop:SetOutside(popup, E.Border + E:Scale(wdb.backdropWidth), E.Border + E:Scale(wdb.backdropHeight), nil, true)
@@ -1190,7 +1175,7 @@ function DM:RefreshPopup()
 
 	-- It grows to fit the spells, the window it came from is the ceiling
 	local rows = max(min(entries and #entries or 0, owner.visibleCount), 1)
-	local width = owner:GetWidth() * POPUP_WIDTH_SCALE
+	local width = owner:GetWidth() * 1.5
 
 	if popup.lastRows ~= rows or popup.lastWidth ~= width then
 		popup.lastRows, popup.lastWidth = rows, width
@@ -1206,8 +1191,7 @@ end
 
 -- Death log
 -- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DeathRecap/Blizzard_DeathRecap.lua
-local SWING_SPELL_ID = 88163 -- Swing damage
-local ENVIRONMENTAL_ICONS = {
+local EnvironmentalIcons = {
 	DROWNING = 'spell_shadow_demonbreath',
 	FALLING = 'ability_rogue_quickrecovery',
 	FIRE = 'spell_fire_fire',
@@ -1223,7 +1207,7 @@ local function BuildRecapEntry(event, classFilename, maxHealth, deathTime)
 
 	if not issecretvalue(eventType) then
 		if eventType == 'SWING_DAMAGE' then
-			spellID, spellName = SWING_SPELL_ID, _G.ACTION_SWING
+			spellID, spellName = 88163, _G.ACTION_SWING -- Swing damage
 		elseif eventType == 'ENVIRONMENTAL_DAMAGE' then
 			local damageType = event.environmentalType
 
@@ -1232,7 +1216,7 @@ local function BuildRecapEntry(event, classFilename, maxHealth, deathTime)
 
 				spellID = nil
 				spellName = _G['ACTION_ENVIRONMENTAL_DAMAGE_' .. damageType]
-				texture = 'Interface\\Icons\\' .. (ENVIRONMENTAL_ICONS[damageType] or 'ability_creature_cursed_05')
+				texture = 'Interface\\Icons\\' .. (EnvironmentalIcons[damageType] or 'ability_creature_cursed_05')
 			end
 		end
 	end
@@ -1363,11 +1347,22 @@ function DM:ClosePopup()
 	end
 end
 
+-- Right click carries through to the window like the rest of the header
+local function HeaderButton_OnClick(button, mouseButton)
+	if mouseButton == 'RightButton' then
+		DM:WindowRightClick(button.window)
+	else
+		button.onClick(button)
+	end
+end
+
 -- The click area grows with the header, the artwork stays centered in it
 local function CreateHeaderButton(window, icon, onClick)
 	local button = CreateFrame('Button', nil, window.header)
 	button:SetNormalTexture(icon)
-	button:SetScript('OnClick', onClick)
+	button:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
+	button:SetScript('OnClick', HeaderButton_OnClick)
+	button.onClick = onClick
 	button.window = window
 	SetHoverScripts(button)
 
@@ -1394,9 +1389,9 @@ function DM:GetWindow(index)
 	SetHoverScripts(header)
 	SetHoverScripts(content)
 
-	window.resetButton = CreateHeaderButton(window, ICON_RESET, ResetButton_OnClick)
-	window.sessionButton = CreateHeaderButton(window, ICON_SESSIONS, SessionButton_OnClick)
-	window.settingsButton = CreateHeaderButton(window, ICON_SETTINGS, SettingsButton_OnClick)
+	window.resetButton = CreateHeaderButton(window, Private.IconPath .. 'DM_Reset.png', ResetButton_OnClick)
+	window.sessionButton = CreateHeaderButton(window, Private.IconPath .. 'DM_Sessions.png', SessionButton_OnClick)
+	window.settingsButton = CreateHeaderButton(window, Private.IconPath .. 'DM_Settings.png', SettingsButton_OnClick)
 
 	local typeButton = CreateFrame('Button', nil, header)
 	typeButton:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
@@ -1405,7 +1400,7 @@ function DM:GetWindow(index)
 	window.typeButton = typeButton
 	SetHoverScripts(typeButton)
 
-	window.typeText = CreateHeaderText(typeButton)
+	window.typeText = DM:CreateText(typeButton, 'LEFT')
 	window.typeText:Point('TOPLEFT')
 	window.typeText:Point('BOTTOMRIGHT')
 

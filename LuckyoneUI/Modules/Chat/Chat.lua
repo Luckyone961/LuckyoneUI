@@ -7,54 +7,20 @@ local next = next
 local SetCVar = C_CVar.SetCVar
 
 local _G = _G
-local ChatFrameUtil = _G.ChatFrameUtil
-
-local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
-local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
-local ChatFrame_RemoveMessageGroup = ChatFrame_RemoveMessageGroup
-local FCF_DockFrame = ChatFrameUtil and ChatFrameUtil.DockFrame or FCF_DockFrame
-local FCF_OpenNewWindow = ChatFrameUtil and ChatFrameUtil.OpenNewWindow or FCF_OpenNewWindow
-local FCF_ResetChatWindow = ChatFrameUtil and ChatFrameUtil.ResetChatWindow or FCF_ResetChatWindow
-local FCF_ResetChatWindows = ChatFrameUtil and ChatFrameUtil.ResetChatWindows or FCF_ResetChatWindows
-local FCF_SavePositionAndDimensions = ChatFrameUtil and ChatFrameUtil.SavePositionAndDimensions or FCF_SavePositionAndDimensions
-local FCF_SetChatWindowFontSize = ChatFrameUtil and ChatFrameUtil.SetChatWindowFontSize or FCF_SetChatWindowFontSize
-local FCF_SetWindowName = ChatFrameUtil and ChatFrameUtil.SetWindowName or FCF_SetWindowName
-local FCF_StopDragging = ChatFrameUtil and ChatFrameUtil.StopDragging or FCF_StopDragging
-local FCFDock_SelectWindow = ChatFrameUtil and ChatFrameUtil.Dock_SelectWindow or FCFDock_SelectWindow
+local FCF_DockFrame = FCF_DockFrame
+local FCF_OpenNewWindow = FCF_OpenNewWindow
+local FCF_ResetChatWindow = FCF_ResetChatWindow
+local FCF_ResetChatWindows = FCF_ResetChatWindows
+local FCF_SavePositionAndDimensions = FCF_SavePositionAndDimensions
+local FCF_SetChatWindowFontSize = FCF_SetChatWindowFontSize
+local FCF_SetWindowName = FCF_SetWindowName
+local FCF_StopDragging = FCF_StopDragging
+local FCFDock_SelectWindow = FCFDock_SelectWindow
 local VoiceTranscriptionFrame_UpdateEditBox = VoiceTranscriptionFrame_UpdateEditBox
 local VoiceTranscriptionFrame_UpdateVisibility = VoiceTranscriptionFrame_UpdateVisibility
 local VoiceTranscriptionFrame_UpdateVoiceTab = VoiceTranscriptionFrame_UpdateVoiceTab
 
 local VOICE = VOICE
-
-local WHISPER_TAB = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }
-local GUILD_TAB = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }
-local PARTY_TAB = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER', 'SYSTEM' }
-
--- Compatibility for Mists & Era
-local function AddMessageGroup(frame, group)
-	if frame.AddMessageGroup then
-		frame:AddMessageGroup(group)
-	else
-		ChatFrame_AddMessageGroup(frame, group)
-	end
-end
-
-local function RemoveAllMessageGroups(frame)
-	if frame.RemoveAllMessageGroups then
-		frame:RemoveAllMessageGroups()
-	else
-		ChatFrame_RemoveAllMessageGroups(frame)
-	end
-end
-
-local function RemoveMessageGroup(frame, group)
-	if frame.RemoveMessageGroup then
-		frame:RemoveMessageGroup(group)
-	else
-		ChatFrame_RemoveMessageGroup(frame, group)
-	end
-end
 
 -- Chat setup for tabs, windows and channels
 function Private:Setup_Chat(installer)
@@ -126,27 +92,27 @@ function Private:Setup_Chat(installer)
 	end
 
 	-- Whisper tab
-	RemoveAllMessageGroups(_G.ChatFrame4)
-	for _, v in ipairs(WHISPER_TAB) do
-		AddMessageGroup(_G.ChatFrame4, v)
+	_G.ChatFrame4:RemoveAllMessageGroups()
+	for _, v in ipairs({ 'WHISPER', 'BN_WHISPER', 'IGNORED' }) do
+		_G.ChatFrame4:AddMessageGroup(v)
 	end
 
 	-- Guild tab
-	RemoveAllMessageGroups(_G.ChatFrame5)
-	for _, v in ipairs(GUILD_TAB) do
-		AddMessageGroup(_G.ChatFrame5, v)
+	_G.ChatFrame5:RemoveAllMessageGroups()
+	for _, v in ipairs({ 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }) do
+		_G.ChatFrame5:AddMessageGroup(v)
 	end
 
 	-- Party tab
-	RemoveAllMessageGroups(_G.ChatFrame6)
-	for _, v in ipairs(PARTY_TAB) do
-		AddMessageGroup(_G.ChatFrame6, v)
+	_G.ChatFrame6:RemoveAllMessageGroups()
+	for _, v in ipairs({ 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER', 'SYSTEM' }) do
+		_G.ChatFrame6:AddMessageGroup(v)
 	end
 
 	-- Remove whispers from main tab
-	RemoveMessageGroup(_G.ChatFrame1, 'IGNORED')
-	RemoveMessageGroup(_G.ChatFrame1, 'WHISPER')
-	RemoveMessageGroup(_G.ChatFrame1, 'BN_WHISPER')
+	_G.ChatFrame1:RemoveMessageGroup('IGNORED')
+	_G.ChatFrame1:RemoveMessageGroup('WHISPER')
+	_G.ChatFrame1:RemoveMessageGroup('BN_WHISPER')
 
 	-- Select the main tab
 	FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)

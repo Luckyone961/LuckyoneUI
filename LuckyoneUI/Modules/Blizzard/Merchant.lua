@@ -8,26 +8,11 @@ local hooksecurefunc = hooksecurefunc
 
 local _G = _G
 
-local COLUMNS = 4
-local ROWS = 5
-local COLUMN_GAP = 12 -- Blizzards own gap between the two default columns
-local ROW_GAP = 8 -- Blizzards own gap between the merchant rows
-
-local DEFAULT_COLUMNS = 2
-local ITEMS_PER_PAGE = COLUMNS * ROWS
-
-local DEFAULT_BUYBACK_ANCHOR = 'MerchantItem' .. (DEFAULT_COLUMNS * ROWS)
-local BUYBACK_ANCHOR = (ROWS - 1) * COLUMNS + DEFAULT_COLUMNS
-
 local initialized
-
-local function GetItem(index)
-	return _G['MerchantItem' .. index]
-end
 
 -- Blizzard re-anchors the odd slots on every update
 local function LayoutItems(count)
-	local firstItem = GetItem(1)
+	local firstItem = _G.MerchantItem1
 	if not firstItem then return end
 
 	-- ElvUI moves the first slot around and the rest of the grid should follow it
@@ -37,13 +22,14 @@ local function LayoutItems(count)
 	local itemWidth, itemHeight = firstItem:GetSize()
 
 	for i = 1, count do
-		local item = GetItem(i)
+		local item = _G['MerchantItem' .. i]
 		if item then
-			local column = (i - 1) % COLUMNS
-			local row = floor((i - 1) / COLUMNS)
+			local column = (i - 1) % 4
+			local row = floor((i - 1) / 4)
 
+			-- 12 and 8 are Blizzards own column and row gaps
 			item:ClearAllPoints()
-			item:SetPoint('TOPLEFT', _G.MerchantFrame, 'TOPLEFT', offsetX + column * (itemWidth + COLUMN_GAP), offsetY - row * (itemHeight + ROW_GAP))
+			item:SetPoint('TOPLEFT', _G.MerchantFrame, 'TOPLEFT', offsetX + column * (itemWidth + 12), offsetY - row * (itemHeight + 8))
 			item:Show()
 		end
 	end
@@ -51,7 +37,7 @@ end
 
 -- Blizzard hides slot eleven and twelve here because they belong to the buyback tab
 local function Merchant_UpdateMerchantInfo()
-	LayoutItems(ITEMS_PER_PAGE)
+	LayoutItems(20)
 end
 
 -- The buyback tab only fills its own twelve slots
@@ -60,8 +46,8 @@ local function Merchant_UpdateBuybackInfo()
 
 	LayoutItems(buybackItems)
 
-	for i = buybackItems + 1, ITEMS_PER_PAGE do
-		local item = GetItem(i)
+	for i = buybackItems + 1, 20 do
+		local item = _G['MerchantItem' .. i]
 		if item then
 			item:Hide()
 		end
@@ -113,7 +99,7 @@ function Private:ExpandMerchant()
 	if not Private.Addon.db.profile.qualityOfLife.expandMerchant then return end
 
 	local MerchantFrame = _G.MerchantFrame
-	local firstItem = GetItem(1)
+	local firstItem = _G.MerchantItem1
 	if not (MerchantFrame and firstItem) then return end
 
 	local _, _, _, offsetX = firstItem:GetPoint()
@@ -123,8 +109,8 @@ function Private:ExpandMerchant()
 	-- The template carries the item button, money and currency frames
 	local itemWidth, itemHeight = firstItem:GetSize()
 
-	for i = 1, ITEMS_PER_PAGE do
-		if not GetItem(i) then
+	for i = 1, 20 do
+		if not _G['MerchantItem' .. i] then
 			local item = CreateFrame('Frame', 'MerchantItem' .. i, MerchantFrame, 'MerchantItemTemplate')
 			item:SetSize(itemWidth, itemHeight)
 		end
@@ -132,14 +118,14 @@ function Private:ExpandMerchant()
 
 	-- ElvUI stops skinning the slots at twelve
 	if Private.Skin_Merchant then
-		Private:Skin_Merchant(_G.BUYBACK_ITEMS_PER_PAGE + 1, ITEMS_PER_PAGE)
+		Private:Skin_Merchant(_G.BUYBACK_ITEMS_PER_PAGE + 1, 20)
 	end
 
 	local oldWidth = MerchantFrame:GetWidth()
 
 	-- Keep whatever space is left over on the right of the last column
-	local margin = oldWidth - (offsetX + itemWidth * DEFAULT_COLUMNS + COLUMN_GAP * (DEFAULT_COLUMNS - 1))
-	local width = offsetX + itemWidth * COLUMNS + COLUMN_GAP * (COLUMNS - 1) + margin
+	local margin = oldWidth - (offsetX + itemWidth * 2 + 12)
+	local width = offsetX + itemWidth * 4 + 12 * 3 + margin
 	local grown = width - oldWidth
 
 	MerchantFrame:SetWidth(width)
@@ -155,19 +141,19 @@ function Private:ExpandMerchant()
 	local buyback = _G.MerchantBuyBackItem
 	if buyback then
 		local point, relativeTo, relativePoint, x, y = buyback:GetPoint()
-		if relativeTo == _G[DEFAULT_BUYBACK_ANCHOR] then
+		if relativeTo == _G.MerchantItem10 then
 			buyback:ClearAllPoints()
-			buyback:SetPoint(point, GetItem(BUYBACK_ANCHOR), relativePoint, x, y)
+			buyback:SetPoint(point, _G.MerchantItem18, relativePoint, x, y)
 		end
 	end
 
 	-- Merchant paths are not protected
-	_G.MERCHANT_ITEMS_PER_PAGE = ITEMS_PER_PAGE
+	_G.MERCHANT_ITEMS_PER_PAGE = 20
 
 	hooksecurefunc('MerchantFrame_UpdateMerchantInfo', Merchant_UpdateMerchantInfo)
 	hooksecurefunc('MerchantFrame_UpdateBuybackInfo', Merchant_UpdateBuybackInfo)
 
-	LayoutItems(ITEMS_PER_PAGE)
+	LayoutItems(20)
 
 	initialized = true
 end

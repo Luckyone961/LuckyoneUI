@@ -38,7 +38,6 @@ local function Skin_LFGBulletinBoard()
 
 	-- Close Button
 	local closeButton = GroupBulletinBoardFrameHeaderContainerCloseButton
-	closeButton:StripTextures()
 	S:HandleCloseButton(closeButton)
 
 	-- Scroll Bars

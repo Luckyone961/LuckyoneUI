@@ -3,7 +3,6 @@ local L = Private.Libs.ACL
 
 local concat = table.concat
 local format = string.format
-local gsub = string.gsub
 local ipairs = ipairs
 local pairs = pairs
 local select = select
@@ -15,13 +14,12 @@ local wipe = table.wipe
 local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
 
-local GetNormalizedRealmName = GetNormalizedRealmName
 local GetSpecialization = C_SpecializationInfo and C_SpecializationInfo.GetSpecialization or _G.GetSpecialization
 local GetSpecializationInfo = C_SpecializationInfo and C_SpecializationInfo.GetSpecializationInfo or _G.GetSpecializationInfo
 
 -- Character keys used by the addon databases
 local charKey = Private.myNameRealm
-local compactKey = Private.myName .. '-' .. ((GetNormalizedRealmName and GetNormalizedRealmName()) or gsub(Private.myRealm, '%s', ''))
+local compactKey = Private.myName .. '-' .. Private.myNormalizedRealm
 
 -- Profile names by layout
 local layoutNames = {
@@ -36,8 +34,8 @@ local function GetLayout()
 	local spec = GetSpecialization()
 	if not spec then return 'main' end
 
-	-- Retail returns the role as the fifth value, the others add a background texture before it
-	local role = select(Private.isRetail and 5 or 6, GetSpecializationInfo(spec))
+	-- C_SpecializationInfo returns the role fifth on every client
+	local role = select(5, GetSpecializationInfo(spec))
 
 	return (role == 'HEALER' and 'healing') or 'main'
 end

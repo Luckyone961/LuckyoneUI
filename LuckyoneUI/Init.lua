@@ -5,7 +5,6 @@ local tonumber = tonumber
 
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local GetBuildInfo = GetBuildInfo
-local GetNormalizedRealmName = GetNormalizedRealmName
 local GetRealmName = GetRealmName
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 local UnitClass = UnitClass
@@ -23,9 +22,7 @@ local WOW_PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
 local Name, Private = ...
 
 -- Create a new AceAddon instance
-local LuckyoneUI = LibStub('AceAddon-3.0'):NewAddon(Name, 'AceEvent-3.0')
-
-Private.Addon = LuckyoneUI
+Private.Addon = LibStub('AceAddon-3.0'):NewAddon(Name)
 
 Private.Libs = {
 	-- Ace
@@ -84,14 +81,12 @@ Private.myGUID = UnitGUID('player')
 Private.myName = UnitName('player')
 Private.myRealm = GetRealmName()
 Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
-Private.myNormalizedRealm = (GetNormalizedRealmName and GetNormalizedRealmName()) or gsub(Private.myRealm, '%s', '')
+-- Same as GetNormalizedRealmName, which is still nil this early
+Private.myNormalizedRealm = gsub(Private.myRealm, '[%s%-%.]', '')
 
 -- ElvUI compatibility
 Private.ElvUI = Private.IsAddOnLoaded('ElvUI')
 Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
-
--- Helpers
-Private.Noop = function() end
 
 -- Modules
 Private.Modules = {
@@ -99,7 +94,7 @@ Private.Modules = {
 	Blizzard = Private.Addon:NewModule('Blizzard', 'AceEvent-3.0'),
 	DamageMeter = (Private.ElvUI and Private.isRetail) and Private.Addon:NewModule('DamageMeter', 'AceEvent-3.0') or nil,
 	Map = Private.ElvUI and Private.Addon:NewModule('Map', 'AceEvent-3.0') or nil,
-	Misc = Private.ElvUI and Private.Addon:NewModule('Misc', 'AceEvent-3.0') or nil,
+	Misc = (Private.ElvUI and Private.isRetail) and Private.Addon:NewModule('Misc', 'AceEvent-3.0') or nil,
 	NamePlates = Private.ElvUI and Private.Addon:NewModule('NamePlates', 'AceEvent-3.0') or nil,
 }
 
@@ -108,10 +103,9 @@ function Private.Addon:OnInitialize()
 	-- SavedVariables
 	Private.Addon.db = Private.Libs.ADB:New('LuckyoneDB', Private.Defaults, true)
 
-	-- Register config
+	-- Register config, built on first open like ElvUI does it through the plugin callback
 	if not Private.ElvUI then
-		Private:BuildConfig()
-		Private.Libs.AC:RegisterOptionsTable('LuckyoneUI', Private.Config)
+		Private.Libs.AC:RegisterOptionsTable('LuckyoneUI', function() Private:BuildConfig() return Private.Config end)
 		Private.SettingsCategoryID = select(2, Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI'))
 	end
 end

@@ -1,20 +1,18 @@
 local _, Private = ...
+local L = Private.Libs.ACL
 
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 
 local _G = _G
 
-local created
-
 -- Privacy overlay for the guild chat, useful for streamers and recordings, based on a outdated WeakAura on Wago
 function Private:PrivacyOverlay()
-	if created then return end
 	if not Private.Addon.db.profile.qualityOfLife.privacyOverlay then return end
-	if not Private.IsAddOnLoaded('Blizzard_Communities') then return end
 
-	-- Blizzard_Communities is load on demand, both of these only exist once it loaded
 	local CommunitiesFrame = _G.CommunitiesFrame
+	if not CommunitiesFrame then return end
+
 	local ChatDisplayMode = _G.COMMUNITIES_FRAME_DISPLAY_MODES.CHAT
 
 	-- Parented to the chat inset, so it takes the anchors and hides along with the frame
@@ -26,14 +24,14 @@ function Private:PrivacyOverlay()
 
 	local texture = PrivacyOverlay:CreateTexture(nil, 'BACKGROUND')
 	texture:SetAllPoints()
-	texture:SetColorTexture(0.1, 0.1, 0.1, 1) -- R, G, B, A
+	texture:SetColorTexture(0.1, 0.1, 0.1, 1)
 
 	-- Text on the overlay
 	local text = PrivacyOverlay:CreateFontString()
 	text:SetFontObject(Private.ElvUI and 'ElvUIFontNormal' or 'GameFontNormal')
 	text:SetPoint('CENTER')
-	text:SetTextColor(1, 1, 1, 1) -- R, G, B, A
-	text:SetText('Chat Hidden. Click to show.')
+	text:SetTextColor(1, 1, 1, 1)
+	text:SetText(L["Chat Hidden. Click to show."])
 
 	-- The parent handles hiding it
 	local function UpdateOverlay()
@@ -43,8 +41,6 @@ function Private:PrivacyOverlay()
 	hooksecurefunc(CommunitiesFrame, 'SetDisplayMode', UpdateOverlay)
 	hooksecurefunc(CommunitiesFrame, 'OnClubSelected', UpdateOverlay)
 	CommunitiesFrame:HookScript('OnShow', UpdateOverlay)
-
-	created = true
 
 	UpdateOverlay()
 end

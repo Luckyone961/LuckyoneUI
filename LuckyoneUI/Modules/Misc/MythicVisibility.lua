@@ -32,33 +32,27 @@ local GroupFrames = { 'party', 'raid1', 'raid2', 'raid3' }
 
 local function HasVisibility(preset)
 	local units = E.db.unitframe.units
-	return units.party.visibility == preset.party
-		and units.raid1.visibility == preset.raid1
-		and units.raid2.visibility == preset.raid2
-		and units.raid3.visibility == preset.raid3
+	for _, frame in ipairs(GroupFrames) do
+		if units[frame].visibility ~= preset[frame] then return end
+	end
+
+	return true
 end
 
 local function ApplyVisibility(preset)
 	if HasVisibility(preset) then return end
 
 	local units = E.db.unitframe.units
-	units.party.visibility = preset.party
-	units.raid1.visibility = preset.raid1
-	units.raid2.visibility = preset.raid2
-	units.raid3.visibility = preset.raid3
-
-	-- Only update headers if ElvUI frames are actually enabled
 	for _, frame in ipairs(GroupFrames) do
-		if units[frame].enable then
-			UF:CreateAndUpdateHeaderGroup(frame)
-		end
+		units[frame].visibility = preset[frame]
 	end
+
+	-- The headers are secure, ElvUI rebuilds them through its coroutine which waits for combat to end
+	UF:UpdateAllHeaders()
 end
 
 -- Update visibility for group unitframes based on instance type and difficulty
 local function UpdateRaidVisibility()
-	if not Private.isRetail then return end
-
 	-- Make sure maxAllowedGroups is enabled
 	E.db.unitframe.maxAllowedGroups = true
 
@@ -69,7 +63,10 @@ local function UpdateRaidVisibility()
 end
 
 function Private:MythicVisibility()
-	if not (Private.isRetail and Private.Addon.db.profile.misc.mythicVisibility) then return end
-
-	E:Delay(1, UpdateRaidVisibility)
+	if Private.Addon.db.profile.misc.mythicVisibility then
+		E:Delay(1, UpdateRaidVisibility)
+	elseif HasVisibility(MythicVisibility) then
+		-- Switching the option off hands the default visibility back
+		ApplyVisibility(DefaultVisibility)
+	end
 end

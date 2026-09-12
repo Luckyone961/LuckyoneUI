@@ -1,11 +1,11 @@
 local _, Private = ...
 
 -- Both objective tracker header tabs share these
-local function ObjectiveTrackerHeader(fontSize)
+local function ObjectiveTrackerHeader()
 	return {
 		font = Private.Font,
 		fontOutline = Private.Outline,
-		fontSize = fontSize,
+		fontSize = 13,
 		colorType = 'CLASS',
 		color = { r = 1, g = 1, b = 1 },
 		hideBackground = true,
@@ -199,8 +199,8 @@ Private.Defaults = {
 				enable = false,
 				findGroupSkin = true,
 				scenarioSkin = true,
-				mainHeader = ObjectiveTrackerHeader(13),
-				categoryHeader = ObjectiveTrackerHeader(13),
+				mainHeader = ObjectiveTrackerHeader(),
+				categoryHeader = ObjectiveTrackerHeader(),
 				content = {
 					font = Private.Font,
 					fontOutline = Private.Outline,

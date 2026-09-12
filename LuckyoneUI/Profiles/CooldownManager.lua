@@ -42,5 +42,4 @@ function Private:Setup_SCM(installer)
 	end
 
 	Private:Print(L["SkironCooldownManager profile has been set."], installer)
-	Private:Print(L["Note: If the position is wrong after the UI reload, use X and Y offset in the /scm Cooldown Manager - Specialization: Icons tab to adjust it."])
 end

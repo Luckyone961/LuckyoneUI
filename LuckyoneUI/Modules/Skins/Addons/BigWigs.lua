@@ -52,18 +52,12 @@ local function SkinPanel(panel)
 	panel.isSkinned = true
 end
 
--- Solid backdrop on the entry cells for better readability
-local function SkinCell(cell)
-	if cell.backdrop then return end
-
-	cell.bg:Hide()
-	cell:CreateBackdrop()
-end
-
 local function SkinCells(scrollChild)
+	-- Solid backdrop on the entry cells for better readability
 	for _, cell in next, { scrollChild:GetChildren() } do
-		if cell.bg then
-			SkinCell(cell)
+		if cell.bg and not cell.backdrop then
+			cell.bg:Hide()
+			cell:CreateBackdrop()
 		end
 	end
 end

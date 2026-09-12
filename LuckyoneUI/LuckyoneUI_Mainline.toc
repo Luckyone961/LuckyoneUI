@@ -31,14 +31,9 @@ Libs\LibAceConfigHelper\LibAceConfigHelper.lua
 
 Locales\enUS.lua
 Locales\deDE.lua
-Locales\esMX.lua
 Locales\frFR.lua
-Locales\itIT.lua
-Locales\koKR.lua
 Locales\ptBR.lua
 Locales\ruRU.lua
-Locales\zhTW.lua
-Locales\zhCN.lua
 
 Init.lua
 
@@ -52,7 +47,9 @@ Core\Alts.lua
 Core\Installer.lua
 Core\Themes.lua
 
-Modules\Auras\Filters.lua
+Modules\Auras\Filters_Classic.lua [AllowLoadGameType vanilla, tbc]
+Modules\Auras\Filters_Mists.lua [AllowLoadGameType mists]
+Modules\Auras\Filters_Retail.lua [AllowLoadGameType mainline]
 Modules\Blizzard\AutoDismount.lua [AllowLoadGameType mainline]
 Modules\Blizzard\Blizzard.lua
 Modules\Blizzard\CombatText.lua
@@ -70,9 +67,9 @@ Modules\DamageMeter\Core.lua [AllowLoadGameType mainline]
 Modules\DamageMeter\Session.lua [AllowLoadGameType mainline]
 Modules\DamageMeter\Bars.lua [AllowLoadGameType mainline]
 Modules\Map\MinimapButtons.lua
-Modules\Misc\DataTextsTweaks.lua
-Modules\Misc\Misc.lua
-Modules\Misc\MythicVisibility.lua
+Modules\Misc\DataTextsTweaks.lua [AllowLoadGameType mainline]
+Modules\Misc\Misc.lua [AllowLoadGameType mainline]
+Modules\Misc\MythicVisibility.lua [AllowLoadGameType mainline]
 Modules\NamePlates\NamePlates.lua
 Modules\Skins\Addons\Auctionator.lua
 Modules\Skins\Addons\BigWigs.lua [AllowLoadGameType mainline, mists]
@@ -96,7 +93,7 @@ Profiles\BuffReminders.lua [AllowLoadGameType mainline]
 Profiles\Chattynator.lua
 Profiles\CooldownManager.lua [AllowLoadGameType mainline]
 Profiles\Details.lua
-Profiles\EditMode.lua
+Profiles\EditMode.lua [AllowLoadGameType mainline]
 Profiles\ElvUI.lua
 Profiles\MPlusTimer.lua [AllowLoadGameType mainline]
 Profiles\NSRT.lua [AllowLoadGameType mainline]

@@ -4,7 +4,7 @@ local L = Private.Libs.ACL
 local _G = _G
 
 -- Platynator profile
-function Private:Setup_Platynator(installer)
+function Private:Setup_Platynator()
 	if not Private.IsAddOnLoaded('Platynator') then Private:Print('Platynator ' .. L["is not installed or enabled."]) return end
 
 	-- Disable ElvUI nameplates
@@ -25,5 +25,5 @@ function Private:Setup_Platynator(installer)
 	local API = _G.Platynator.API
 	API.ImportString(importString, name)
 
-	Private:Print(L["Platynator profile has been set."], installer)
+	Private:Print(L["Platynator profile has been set."])
 end

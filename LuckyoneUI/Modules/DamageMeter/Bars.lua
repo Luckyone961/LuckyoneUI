@@ -24,7 +24,7 @@ local IsDamageMeterAvailable = C_DamageMeter.IsDamageMeterAvailable
 local WrapString = C_StringUtil.WrapString
 local AbbreviateNumbers = AbbreviateNumbers
 local SecondsToClock = SecondsToClock
-local issecretvalue = issecretvalue or function() return false end
+local issecretvalue = issecretvalue
 
 local UNKNOWN = UNKNOWN
 local DAMAGE_METER_SOURCE_NAME = DAMAGE_METER_SOURCE_NAME
@@ -67,7 +67,6 @@ local renderAbbrev, renderFormats
 local abbrevSource, abbrevOptions
 local function GetAbbreviate()
 	local config = E.Abbreviate.short.config
-	if not config then return E.Abbreviate.short end
 
 	if abbrevSource ~= config then
 		abbrevSource = config
@@ -86,10 +85,6 @@ local function GetAbbreviate()
 	end
 
 	return abbrevOptions
-end
-
-local function FormatAmount(amount)
-	return AbbreviateNumbers(amount, renderAbbrev)
 end
 
 -- Bracket styling () [] etc
@@ -121,9 +116,6 @@ local function GetValueFormats(db)
 	return valueFormats
 end
 
-local SampleAmount = '999.9M'
-local SampleRanks = { 9, 99 }
-
 -- Blizzards format with the trailing name dropped, that space belongs to the slider now
 local RankFormat = gsub(DAMAGE_METER_SOURCE_NAME, '%s*%%s$', '')
 
@@ -151,9 +143,9 @@ local function GetSampleWidth(db, key)
 	sampleText:FontTemplate(db.font, db.fontSize, db.fontOutline)
 
 	if key == 'value' then
-		sampleText:SetFormattedText(renderFormats.single, SampleAmount)
+		sampleText:SetFormattedText(renderFormats.single, '999.9M')
 	else
-		sampleText:SetFormattedText(RankFormat, SampleRanks[key], '')
+		sampleText:SetFormattedText(RankFormat, key, '')
 	end
 
 	width = sampleText:GetStringWidth()
@@ -183,15 +175,6 @@ local function Bar_OnLeave(bar)
 	bar.highlight:Hide()
 end
 
--- All four texts share the same setup, only the side they align to differs
-local function CreateBarText(status, justify)
-	local text = status:CreateFontString(nil, 'OVERLAY')
-	text:SetJustifyH(justify)
-	text:SetWordWrap(false)
-
-	return text
-end
-
 local function CreateBar(window)
 	local bar = CreateFrame('Button', nil, window.content)
 	bar:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
@@ -217,12 +200,12 @@ local function CreateBar(window)
 	bar.highlight:SetAllPoints(bar)
 	bar.highlight:Hide()
 
-	bar.persec = CreateBarText(status, 'RIGHT')
-	bar.value = CreateBarText(status, 'RIGHT')
+	bar.persec = DM:CreateText(status, 'RIGHT')
+	bar.value = DM:CreateText(status, 'RIGHT')
 
 	-- Custom font string so every name can start at the same position
-	bar.rank = CreateBarText(status, 'LEFT')
-	bar.name = CreateBarText(status, 'LEFT')
+	bar.rank = DM:CreateText(status, 'LEFT')
+	bar.name = DM:CreateText(status, 'LEFT')
 
 	return bar
 end
@@ -539,7 +522,7 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 			nameText:SetFormattedText('%s%s%s', spellName, creature, unit)
 		elseif creatureName or unitName then
 			-- Enemy damage taken has no spell to name, the source alone beats "Unknown - Name"
-			nameText:SetFormattedText('%s%s', WrapString(creatureName or '', '', ''), WrapString(unitName or '', '', ''))
+			nameText:SetFormattedText('%s%s', creatureName or '', unitName or '')
 		else
 			nameText:SetText(UNKNOWN)
 		end
@@ -579,7 +562,7 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 		local percent, seconds = entry.healthPercent, entry.timeBeforeDeath
 		local display = db.numberDisplay
 
-		valueText:SetText(FormatAmount(entry.totalAmount))
+		valueText:SetText(AbbreviateNumbers(entry.totalAmount, renderAbbrev))
 		bar.persecSecret = false
 
 		if display == 'MINIMAL' or not percent then
@@ -621,20 +604,20 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 
 	local display = db.numberDisplay
 
-	valueText:SetText(FormatAmount(primary))
+	valueText:SetText(AbbreviateNumbers(primary, renderAbbrev))
 
 	if display == 'COMPLETE' and not (sessionSecret or issecretvalue(total)) then
 		local percent = sessionTotal > 0 and (total / sessionTotal * 100) or 0
 
 		if secondary then
-			persecText:SetFormattedText(renderFormats.both, FormatAmount(secondary), percent)
+			persecText:SetFormattedText(renderFormats.both, AbbreviateNumbers(secondary, renderAbbrev), percent)
 			bar.persecSecret = secret
 		else
 			persecText:SetFormattedText(renderFormats.percent, percent)
 			bar.persecSecret = false
 		end
 	elseif display ~= 'MINIMAL' and secondary then
-		persecText:SetFormattedText(renderFormats.single, FormatAmount(secondary))
+		persecText:SetFormattedText(renderFormats.single, AbbreviateNumbers(secondary, renderAbbrev))
 		bar.persecSecret = secret
 	else
 		persecText:SetText('')
@@ -644,7 +627,7 @@ end
 
 -- Every rank shares the width of the widest one, that lines up the names behind them
 local function UpdateRankColumn(db, window, lastRank)
-	local width = lastRank > 0 and (GetSampleWidth(db, lastRank < 10 and 1 or 2) + E:Scale(db.rankSpacing)) or 0
+	local width = lastRank > 0 and (GetSampleWidth(db, lastRank < 10 and 9 or 99) + E:Scale(db.rankSpacing)) or 0
 
 	if window.rankWidth == width then return end
 	window.rankWidth = width
@@ -718,7 +701,7 @@ end
 
 function DM:RenderWindow(window)
 	local db = DM.db
-	if not db or window.visibleCount == 0 then return end
+	if window.visibleCount == 0 then return end
 
 	renderAbbrev = GetAbbreviate()
 	renderFormats = GetValueFormats(db)

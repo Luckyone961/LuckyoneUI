@@ -24,12 +24,10 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
-local QUEST_ICON = [[Interface\ContainerFrame\UI-Icon-QuestBang]]
-
 local firstSlot, lastSlot
 
 local function QuestIcon_SetTexture(iconQuest, texture)
-	if texture == QUEST_ICON then
+	if texture == [[Interface\ContainerFrame\UI-Icon-QuestBang]] then
 		iconQuest:SetTexture(E.Media.Textures.BagQuestIcon)
 	end
 end
@@ -58,7 +56,6 @@ local function Merchant_UpdateMerchantInfo()
 end
 
 function Private:Skin_Merchant(first, last)
-	if first > last then return end
 	if not (E.private.skins.blizzard.enable and E.private.skins.blizzard.merchant) then return end
 
 	firstSlot, lastSlot = first, last

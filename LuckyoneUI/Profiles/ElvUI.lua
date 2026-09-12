@@ -6,10 +6,10 @@ if not Private.ElvUI then
 end
 
 local unpack = unpack
+local wipe = table.wipe
 
+local InCombatLockdown = InCombatLockdown
 local SetCVar = C_CVar.SetCVar
-
-local _G = _G
 
 local E, _, _, P = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
@@ -200,6 +200,7 @@ end
 
 -- E.global & Custom DataText
 local function Setup_GlobalDB()
+	if InCombatLockdown() then return end -- Secure CVars
 
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
@@ -214,7 +215,6 @@ local function Setup_GlobalDB()
 	E.global.datatexts.settings.System.latency = 'HOME'
 	E.global.datatexts.settings.System.NoLabel = true
 	E.global.datatexts.settings.Time.time24 = true
-	E.global.general.commandBarSetting = 'DISABLED'
 	E.global.general.fadeMapWhenMoving = false
 	E.global.general.mapAlphaWhenMoving = 0.35
 	E.global.general.smallerWorldMapScale = 0.8
@@ -296,8 +296,6 @@ function Private:Setup_PrivateDB()
 	E.private.general.normTex = Private.Texture
 	E.private.general.totemTracker = false
 
-	E.private.install_complete = E.version
-
 	E.private.skins.blizzard.cooldownManager = false
 	E.private.skins.parchmentRemoverEnable = true
 
@@ -344,7 +342,6 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.general.backdropfadecolor.b = 0.05
 	E.db.general.backdropfadecolor.g = 0.05
 	E.db.general.backdropfadecolor.r = 0.05
-	E.db.general.bonusObjectivePosition = 'AUTO'
 	E.db.general.bottomPanel = false
 	E.db.general.customGlow.color.a = 1
 	E.db.general.customGlow.color.b = 1
@@ -402,7 +399,6 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.general.talkingHeadFrameBackdrop = true
 	E.db.general.talkingHeadFrameScale = 1
 	E.db.general.valuecolor = E:NewColorTable(classColor.r, classColor.g, classColor.b, classColor.a)
-	E.db.general.vehicleSeatIndicatorSize = 64
 
 	-- Prepare all ActionBars
 	for i = 1, 15 do
@@ -1532,7 +1528,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid3.buffs.sizeOverride = 20
 	E.db.unitframe.units.raid3.classbar.enable = false
 	E.db.unitframe.units.raid3.debuffs.anchorPoint = 'BOTTOMRIGHT'
-	E.db.unitframe.units.raid3.debuffs.countFont = 'Expressway'
+	E.db.unitframe.units.raid3.debuffs.countFont = Private.Font
 	E.db.unitframe.units.raid3.debuffs.countFontSize = 10
 	E.db.unitframe.units.raid3.debuffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.raid3.debuffs.countXOffset = 2
@@ -1632,7 +1628,6 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.PlayerPowerBarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,341') or 'BOTTOM,ElvUIParent,BOTTOM,-320,481'
 	E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-180'
-	E.db.movers.PrivateAurasMover = (scaled and 'TOP,ElvUIParent,TOP,-185,-506') or 'BOTTOM,ElvUIParent,BOTTOM,-217,660'
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-200'
 	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-24'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
@@ -1825,11 +1820,12 @@ local function Setup_ElvUI(layout, partyStyle)
 end
 
 -- ElvUI NamePlates
-function Private:Setup_NamePlates(installer)
-	E.private.nameplates.enable = true
+function Private:Setup_NamePlates()
+	-- Same rule as the dev block in Setup_PrivateDB, Platynator owns the plates there
+	E.private.nameplates.enable = not (Private.Addon.db.global.dev and Private.IsAddOnLoaded('Platynator'))
 
-	-- Restore defaults
-	E.db.nameplates = E:CopyTable({}, P.nameplates)
+	-- Restore defaults, in place so NP.db keeps pointing at it
+	E:CopyTable(wipe(E.db.nameplates), P.nameplates)
 
 	-- NamePlates CVars
 	Private:NameplateCVars()
@@ -1881,7 +1877,6 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.overlapH = 1.1
 	E.db.nameplates.overlapV = 1.7
 	E.db.nameplates.statusbar = Private.Texture
-	E.db.nameplates.threat.skipGoodColor = true
 	E.db.nameplates.threat.useSoloColor = true
 
 	-- NamePlates misc
@@ -2116,10 +2111,10 @@ function Private:Setup_NamePlates(installer)
 	E.db.nameplates.units.FRIENDLY_PLAYER.title.font = Private.Font
 
 	if NP.Initialized then
-		E:UpdateNamePlates(true)
+		E:UpdateNamePlates()
 	end
 
-	Private:Print(L["NamePlate profile and CVars have been set."], installer)
+	Private:Print(L["NamePlate profile and CVars have been set."])
 end
 
 -- Initial layout setup

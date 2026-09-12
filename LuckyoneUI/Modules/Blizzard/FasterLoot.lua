@@ -4,12 +4,6 @@ local CreateFrame = CreateFrame
 local GetNumLootItems = GetNumLootItems
 local LootSlot = LootSlot
 
-local _G = _G
-
--- Blizzards pacing for the classic loot window
-local AUTOLOOT_DELAY = 0.1
-local AUTOLOOT_RATE = 0.1
-
 local EventFrame
 local lootedSlots = 0
 
@@ -43,12 +37,6 @@ end
 function Private:FasterLoot()
 	if EventFrame then return end
 	if not Private.Addon.db.profile.qualityOfLife.fasterLoot then return end
-
-	-- Retail dropped both globals, only the classic loot frame paces its own auto loot
-	if not Private.isRetail then
-		_G.LOOTFRAME_AUTOLOOT_DELAY = AUTOLOOT_DELAY
-		_G.LOOTFRAME_AUTOLOOT_RATE = AUTOLOOT_RATE
-	end
 
 	EventFrame = CreateFrame('Frame')
 	EventFrame:SetScript('OnEvent', OnEvent)

@@ -18,7 +18,7 @@ local function Skin_WhatsTraining()
 	if not frame or frame.isSkinned then return end
 
 	-- Main Frame
-	S:HandleFrame(frame, true, true, 11, -50, -32, 76)
+	S:HandleFrame(frame, true, 'Default', 11, -50, -32, 76)
 
 	-- Scroll Bar
 	S:HandleScrollBar(WhatsTrainingFrameScrollBarScrollBar)

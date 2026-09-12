@@ -16,13 +16,13 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
-local DROPDOWN_LIST = 'ElioteDDM_DropDownList'
 local function SkinDropDownLists(lib)
 	for level = 1, lib.UIDROPDOWNMENU_MAXLEVELS do
-		local list = _G[DROPDOWN_LIST .. level]
+		local name = 'ElioteDDM_DropDownList' .. level
+		local list = _G[name]
 
 		if list and not list.isSkinned then
-			for _, backdrop in next, { _G[DROPDOWN_LIST .. level .. 'Backdrop'], _G[DROPDOWN_LIST .. level .. 'MenuBackdrop'] } do
+			for _, backdrop in next, { _G[name .. 'Backdrop'], _G[name .. 'MenuBackdrop'] } do
 				backdrop:SetTemplate('Transparent')
 			end
 

@@ -4,14 +4,11 @@ local LSM = Private.Libs.LSM
 -- Credits: WindTools
 -- The module is inspired by their Objective Tracker styling
 
-local gsub = string.gsub
 local ipairs = ipairs
 local pairs = pairs
 local setmetatable = setmetatable
-local strfind = string.find
 local type = type
 local unpack = unpack
-local wipe = wipe
 
 local hooksecurefunc = hooksecurefunc
 
@@ -46,19 +43,6 @@ local function GetColor(colorType, custom)
 	end
 
 	return custom
-end
-
--- Font strings and font objects share these
-local function SetFont(text, db)
-	local outline = db.fontOutline
-	local shadow = strfind(outline, 'SHADOW')
-	if shadow then
-		outline = gsub(outline, 'SHADOW', '')
-	end
-
-	text:SetFont(LSM:Fetch('font', db.font), db.fontSize, outline == 'NONE' and '' or outline)
-	text:SetShadowColor(0, 0, 0, shadow and 1 or 0)
-	text:SetShadowOffset(1, -1)
 end
 
 local function UpdateUnderline(header, db)
@@ -120,7 +104,7 @@ end
 -- Main header of the tracker and the header of every module (Quests, Campaign, World Quests)
 local function UpdateHeader(header, db)
 	local text = header.Text
-	SetFont(text, db)
+	Private:SetFont(text, db.font, db.fontSize, db.fontOutline)
 
 	-- Blizzard only colors these through the font object, so a color sticks
 	local color = db.colorType == 'DEFAULT' and NORMAL_FONT_COLOR or GetColor(db.colorType, db.color)
@@ -400,7 +384,7 @@ local function Update()
 
 	-- One font object behind quest titles, objectives and dashes
 	-- Blizzard keeps the old line heights until its next tracker update
-	SetFont(_G.ObjectiveTrackerLineFont, db.content)
+	Private:SetFont(_G.ObjectiveTrackerLineFont, db.content.font, db.content.fontSize, db.content.fontOutline)
 	UpdateHeader(_G.ObjectiveTrackerFrame.Header, db.mainHeader)
 
 	for container in pairs(_G.ObjectiveTrackerManager.containers) do
@@ -411,26 +395,9 @@ local function Update()
 end
 Private.ObjectiveTracker_Update = Update
 
-local function CopyDefaults(db, defaults)
-	for key, value in pairs(defaults) do
-		-- Sharing a table would write back into the defaults
-		db[key] = type(value) == 'table' and CopyDefaults({}, value) or value
-	end
-
-	return db
-end
-
 -- Restore profile defaults config button
 function Private:ObjectiveTracker_ResetDefaults()
-	local db = Private.Addon.db.profile.misc.objectiveTracker
-	local enable = db.enable
-
-	wipe(db)
-	CopyDefaults(db, Private.Defaults.profile.misc.objectiveTracker)
-
-	-- Restoring the look should not switch the option off
-	db.enable = enable
-
+	Private:ResetDefaults(Private.Addon.db.profile.misc.objectiveTracker, Private.Defaults.profile.misc.objectiveTracker)
 	Update()
 end
 

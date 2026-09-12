@@ -29,11 +29,6 @@ local Minimap = _G.Minimap
 local E = unpack(ElvUI)
 local M = E:GetModule('Minimap')
 
--- List for non-LibDBIcon minimap buttons (frame names)
-Private.CustomMinimapButtons = {
-	-- 'AddonName_MinimapButton',
-}
-
 local function IsLandingPageButton(button)
 	return Private.isRetail and button == _G.ExpansionLandingPageMinimapButton
 end
@@ -134,6 +129,13 @@ end
 local function SkinLandingPageButton(button)
 	if not button.LuckyoneSkinned then
 		ApplyTemplate(button)
+
+		-- A release hides the border frames, SetTemplate only creates them once
+		if button.iborder then
+			button.iborder:Show()
+			button.oborder:Show()
+		end
+
 		button.LuckyoneSkinned = true
 	end
 
@@ -207,6 +209,14 @@ local function ReleaseButton(button)
 	button.LuckyoneState = nil
 
 	if IsLandingPageButton(button) then
+		-- The template would stay behind the round Blizzard art
+		button:SetTemplate('NoBackdrop')
+		if button.iborder then
+			button.iborder:Hide()
+			button.oborder:Hide()
+		end
+		button.LuckyoneSkinned = nil
+
 		if button.LuckyoneIcon then
 			button.LuckyoneIcon:Hide()
 		end
@@ -283,16 +293,20 @@ local function CollectButtons()
 	wipe(collectedSeen)
 
 	local bar = Map.buttonBar
+	local landingPage = Private.isRetail and Private.Addon.db.profile.map.minimap.buttons.blizzard.expansionLandingPage
 
 	-- Keep buttons we already manage. They are parented to the bar, so the Minimap
 	-- fallback below cannot see them and a missed LDBI lookup would Hide() them for good.
+	-- The landing page button goes back to Blizzard once its option is off.
 	if bar then
 		for button in pairs(bar.buttons) do
-			TryCollect(button)
+			if landingPage or not IsLandingPageButton(button) then
+				TryCollect(button)
+			end
 		end
 	end
 
-	if Private.isRetail and Private.Addon.db.profile.map.minimap.buttons.blizzard.expansionLandingPage then
+	if landingPage then
 		TryCollect(_G.ExpansionLandingPageMinimapButton)
 	end
 
@@ -305,10 +319,6 @@ local function CollectButtons()
 	-- Fallback: LibDBIcon buttons the list missed (Minimap on first grab, bar after reparent)
 	CollectLibDBIconChildren(Minimap)
 	CollectLibDBIconChildren(bar)
-
-	for i = 1, #Private.CustomMinimapButtons do
-		TryCollect(_G[Private.CustomMinimapButtons[i]])
-	end
 
 	SortCollectedButtons(collected)
 	return collected, collectedSeen
@@ -532,20 +542,11 @@ end
 
 -- Restore profile defaults config button
 function Private:MinimapButtons_ResetDefaults()
-	local db = Private.Addon.db.profile.map.minimap.buttons
-	local enable = db.enable
-
-	wipe(db)
-	E:CopyTable(db, Private.Defaults.profile.map.minimap.buttons)
-
-	-- Restoring the look should not switch the module off
-	db.enable = enable
-
+	Private:ResetDefaults(Private.Addon.db.profile.map.minimap.buttons, Private.Defaults.profile.map.minimap.buttons)
 	Private:UpdateMinimapButtonBar()
 end
 
 function Map:PLAYER_ENTERING_WORLD()
-	RegisterHooks()
 	ScheduleUpdate()
 end
 

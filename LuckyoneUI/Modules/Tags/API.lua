@@ -14,14 +14,14 @@ local type = type
 local unpack = unpack
 local wipe = table.wipe
 
-local GenerateTextColorCode = C_ColorUtil and C_ColorUtil.GenerateTextColorCode
-local GetClassColor = C_ClassColor and C_ClassColor.GetClassColor
+local GenerateTextColorCode = C_ColorUtil.GenerateTextColorCode
+local GetClassColor = C_ClassColor.GetClassColor
 local hooksecurefunc = hooksecurefunc
-local issecretvalue = issecretvalue or function() return false end
-local WrapString = C_StringUtil and C_StringUtil.WrapString
-local WrapTextInColor = C_ColorUtil and C_ColorUtil.WrapTextInColor
+local issecretvalue = issecretvalue
+local WrapString = C_StringUtil.WrapString
+local WrapTextInColor = C_ColorUtil.WrapTextInColor
 local UnitClass = UnitClass
-local UnitInPartyIsAI = UnitInPartyIsAI or function() return false end
+local UnitInPartyIsAI = UnitInPartyIsAI
 local UnitIsConnected = UnitIsConnected
 local UnitIsDead = UnitIsDead
 local UnitIsGhost = UnitIsGhost
@@ -43,10 +43,10 @@ local DEFAULT_COLOR = '|cFFcccccc'
 local DEAD, GHOST, OFFLINE = L["DEAD"], L["GHOST"], L["OFFLINE"]
 
 Private.Tags.classificationText = {
-	rare = 'Rare',
-	rareelite = 'Rare Elite',
-	elite = 'Elite',
-	worldboss = 'Boss'
+	rare = L["Rare"],
+	rareelite = L["Rare Elite"],
+	elite = L["Elite"],
+	worldboss = L["Boss"]
 }
 
 -- Status check (dead, ghost, offline)

@@ -44,18 +44,9 @@ local EditBoxKeys = { 'InputBox', 'MaxBox', 'MinBox', 'NumStacks', 'Quantity', '
 
 local auctionHouseSkinned
 
--- Classic & TBC borders (InsetFrameTemplate4)
-local function IsInsetBorder(frame)
-	return frame.BorderTopLeft or frame.NineSlice or frame.Bg
-end
-
 local function SkinInsetBorder(frame)
 	frame:StripTextures()
 	S:HandleInsetFrame(frame)
-
-	if frame.NineSlice then
-		frame.NineSlice:StripTextures()
-	end
 end
 
 local function SkinInset(inset)
@@ -63,8 +54,9 @@ local function SkinInset(inset)
 
 	SkinInsetBorder(inset)
 
+	-- Classic & TBC borders (InsetFrameTemplate4)
 	for _, child in next, { inset:GetChildren() } do
-		if IsInsetBorder(child) then
+		if child.BorderTopLeft or child.NineSlice or child.Bg then
 			SkinInsetBorder(child)
 		end
 	end
@@ -78,18 +70,6 @@ local function SkinPanel(panel)
 	if not panel or panel.isSkinned then return end
 
 	panel:StripTextures()
-
-	for _, key in next, { 'Background', 'Border', 'NineSlice' } do
-		local border = panel[key]
-		if border then
-			if border.StripTextures then
-				border:StripTextures()
-			else
-				border:SetTexture(E.ClearTexture)
-			end
-		end
-	end
-
 	panel:SetTemplate()
 	panel.isSkinned = true
 end
@@ -102,6 +82,12 @@ local function SkinResetButton(button)
 	if button.texture then
 		button.texture:SetDrawLayer('OVERLAY')
 		button.texture:SetInside(button, 2, 2)
+	end
+end
+
+local function SkinButtons(buttons)
+	for _, button in next, buttons do
+		S:HandleButton(button)
 	end
 end
 
@@ -120,9 +106,7 @@ local function SkinMoneyInput(frame)
 	if not frame then return end
 
 	for _, box in next, { frame.GoldBox, frame.SilverBox, frame.CopperBox } do
-		if box then
-			S:HandleEditBox(box)
-		end
+		S:HandleEditBox(box)
 	end
 end
 
@@ -326,35 +310,29 @@ local function SkinShoppingDialogs(frame)
 
 	-- Import, Export and Price History
 	for _, dialog in next, { frame.exportDialog, frame.importDialog, frame.exportCSVDialog, frame.itemHistoryDialog } do
-		if dialog then
-			SkinPanel(dialog)
-			SkinInset(dialog.Inset)
-			SkinResultsListing(dialog.ResultsListing)
+		SkinPanel(dialog)
+		SkinInset(dialog.Inset)
+		SkinResultsListing(dialog.ResultsListing)
 
-			if dialog.ScrollBar then
-				S:HandleTrimScrollBar(dialog.ScrollBar)
-			end
-
-			if dialog.Recipient then
-				S:HandleEditBox(dialog.Recipient.InputBox)
-			end
-
-			if dialog.CloseDialog then
-				S:HandleCloseButton(dialog.CloseDialog)
-			end
-
-			-- One checkbox per shopping list, they are pooled and rebuilt whenever the lists change
-			if dialog.checkBoxPool then
-				SkinExportLists(dialog)
-				hooksecurefunc(dialog, 'RefreshLists', SkinExportLists)
-			end
-
-			for _, button in next, { dialog.Close, dialog.Dock, dialog.Export, dialog.Import, dialog.SelectAll, dialog.UnselectAll } do
-				if button then
-					S:HandleButton(button)
-				end
-			end
+		if dialog.ScrollBar then
+			S:HandleTrimScrollBar(dialog.ScrollBar)
 		end
+
+		if dialog.Recipient then
+			S:HandleEditBox(dialog.Recipient.InputBox)
+		end
+
+		if dialog.CloseDialog then
+			S:HandleCloseButton(dialog.CloseDialog)
+		end
+
+		-- One checkbox per shopping list, they are pooled and rebuilt whenever the lists change
+		if dialog.checkBoxPool then
+			SkinExportLists(dialog)
+			hooksecurefunc(dialog, 'RefreshLists', SkinExportLists)
+		end
+
+		SkinButtons({ dialog.Close, dialog.Dock, dialog.Export, dialog.Import, dialog.SelectAll, dialog.UnselectAll })
 	end
 end
 
@@ -370,17 +348,13 @@ local function SkinShoppingTab(frame)
 		S:HandleEditBox(options.SearchString)
 		SkinResetButton(options.ResetSearchStringButton)
 
-		for _, button in next, { options.SearchButton, options.MoreButton, options.AddToListButton } do
-			S:HandleButton(button)
-		end
+		SkinButtons({ options.SearchButton, options.MoreButton, options.AddToListButton })
 	end
 
 	-- Lists and Recent Searches
 	for _, container in next, { frame.ListsContainer, frame.RecentsContainer } do
-		if container then
-			SkinInset(container.Inset)
-			S:HandleTrimScrollBar(container.ScrollBar)
-		end
+		SkinInset(container.Inset)
+		S:HandleTrimScrollBar(container.ScrollBar)
 	end
 
 	local containerTabs = frame.ContainerTabs
@@ -390,11 +364,7 @@ local function SkinShoppingTab(frame)
 	end
 
 	-- Buttons
-	for _, button in next, { frame.NewListButton, frame.ExportButton, frame.ImportButton, frame.ExportCSV, frame.LoadAllPagesButton } do
-		if button then
-			S:HandleButton(button)
-		end
-	end
+	SkinButtons({ frame.NewListButton, frame.ExportButton, frame.ImportButton, frame.ExportCSV, frame.LoadAllPagesButton })
 
 	SkinShoppingDialogs(frame)
 
@@ -444,11 +414,7 @@ local function SkinCancellingTab(frame)
 
 	local scan = frame.UndercutScanContainer
 	if scan then
-		for _, button in next, { scan.CancelNextButton, scan.StartScanButton } do
-			if button then
-				S:HandleButton(button)
-			end
-		end
+		SkinButtons({ scan.CancelNextButton, scan.StartScanButton })
 	end
 
 	frame.isSkinned = true
@@ -459,14 +425,10 @@ local function SkinConfigTab(frame)
 
 	SkinInset(frame)
 
-	for _, button in next, { frame.ScanButton, frame.OptionsButton } do
-		if button then
-			S:HandleButton(button)
-		end
-	end
+	SkinButtons({ frame.ScanButton, frame.OptionsButton })
 
 	for _, link in next, { frame.ContributeLink, frame.DiscordLink, frame.BugReportLink } do
-		if link and link.InputBox then
+		if link.InputBox then
 			S:HandleEditBox(link.InputBox)
 		end
 	end
@@ -494,20 +456,14 @@ local function SkinBuyFrame(frame)
 	end
 
 	for _, dialog in next, { frame.BuyDialog, frame.WidePriceRangeWarningDialog, frame.FinalConfirmationDialog, frame.QuantityCheckConfirmationDialog } do
-		if dialog then
-			SkinPanel(dialog)
-			SkinItemIcon(dialog.IconAndName)
+		SkinPanel(dialog)
+		SkinItemIcon(dialog.IconAndName)
 
-			if dialog.QuantityInput then
-				S:HandleEditBox(dialog.QuantityInput)
-			end
-
-			for _, button in next, { dialog.AcceptButton, dialog.ContinueButton, dialog.CancelButton, dialog.Cancel, dialog.Buy } do
-				if button then
-					S:HandleButton(button)
-				end
-			end
+		if dialog.QuantityInput then
+			S:HandleEditBox(dialog.QuantityInput)
 		end
+
+		SkinButtons({ dialog.AcceptButton, dialog.ContinueButton, dialog.CancelButton, dialog.Cancel, dialog.Buy })
 	end
 
 	frame.isSkinned = true
@@ -517,22 +473,14 @@ end
 local function SkinLegacyBuyFrame(frame)
 	if not frame or frame.isSkinned then return end
 
-	for _, button in next, { frame.HistoryButton, frame.ReturnButton } do
-		if button then
-			S:HandleButton(button)
-		end
-	end
+	SkinButtons({ frame.HistoryButton, frame.ReturnButton })
 
 	local current = frame.CurrentPrices
 	if current then
 		SkinInset(current.Inset)
 		SkinResultsListing(current.SearchResultsListing)
 
-		for _, button in next, { current.LoadAllPagesButton, current.StopLoadingNowButton, current.CancelButton, current.BuyButton, current.RefreshButton } do
-			if button then
-				S:HandleButton(button)
-			end
-		end
+		SkinButtons({ current.LoadAllPagesButton, current.StopLoadingNowButton, current.CancelButton, current.BuyButton, current.RefreshButton })
 
 		local dialog = current.BuyDialog
 		if dialog then
@@ -548,11 +496,7 @@ local function SkinLegacyBuyFrame(frame)
 		SkinResultsListing(history.RealmHistoryResultsListing)
 		SkinResultsListing(history.PostingHistoryResultsListing)
 
-		for _, button in next, { history.PostingHistoryButton, history.RealmHistoryButton } do
-			if button then
-				S:HandleButton(button)
-			end
-		end
+		SkinButtons({ history.PostingHistoryButton, history.RealmHistoryButton })
 	end
 
 	frame.isSkinned = true
@@ -598,11 +542,7 @@ local function SkinDialogs()
 				S:HandleEditBox(dialog.editBox)
 			end
 
-			for _, button in next, { dialog.acceptButton, dialog.altButton, dialog.cancelButton } do
-				if button then
-					S:HandleButton(button)
-				end
-			end
+			SkinButtons({ dialog.acceptButton, dialog.altButton, dialog.cancelButton })
 
 			dialog.isSkinned = true
 		end

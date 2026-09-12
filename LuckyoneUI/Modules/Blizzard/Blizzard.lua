@@ -82,10 +82,10 @@ local function DisabledFrames()
 
 	if db.HousingDecorAlerts and Private.isRetail then
 		-- HousingEventHandler is local to Blizzard; EventRegistry unregister needs that owner.
-		-- No-op the alert system instead so the toast never queues.
+		-- Zero the queue limits instead, AddAlert drops the toast on its own.
 		local system = _G.HousingItemEarnedAlertFrameSystem
 		if system then
-			system.AddAlert = Private.Noop
+			system.maxAlerts, system.maxQueue = 0, 0
 		end
 	end
 
@@ -173,7 +173,7 @@ end
 
 local function QuickSignup_Update(entry)
 	if not entry.LuckyoneQuickSignup then
-		entry:SetScript('OnDoubleClick', QuickSignup_OnDoubleClick)
+		entry:HookScript('OnDoubleClick', QuickSignup_OnDoubleClick)
 		entry.LuckyoneQuickSignup = true
 	end
 end
@@ -207,11 +207,11 @@ local function RemoveNameplateRealm()
 end
 
 function Blizzard:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
-	-- Retries until Blizzard_Communities is loaded, creates the overlay once
-	Private:PrivacyOverlay()
-
 	-- Only run the setup on login and reload, not on every loading screen
 	if not (initLogin or isReload) then return end
+
+	-- Neither flag can be set again this session, so stop listening
+	self:UnregisterEvent('PLAYER_ENTERING_WORLD')
 
 	AutoAcceptRole()
 	if Private.isRetail then
@@ -228,6 +228,7 @@ function Blizzard:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	Private:MailboxFavorites()
 	Private:MovableFrames()
 	PreventLootAutoShow()
+	Private:PrivacyOverlay()
 	QuickSignup()
 	RemoveNameplateRealm()
 end

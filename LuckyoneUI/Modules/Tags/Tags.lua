@@ -13,10 +13,9 @@ local unpack = unpack
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
 local GetPetHappiness = GetPetHappiness
 local HasPetUI = HasPetUI
-local issecretvalue = issecretvalue or function() return false end
-local ScaleTo100 = CurveConstants and CurveConstants.ScaleTo100
+local issecretvalue = issecretvalue
+local ScaleTo100 = CurveConstants.ScaleTo100
 local UnitClassification = UnitClassification
-local UnitEffectiveLevel = UnitEffectiveLevel
 local UnitGetTotalAbsorbs = UnitGetTotalAbsorbs
 local UnitGroupRolesAssigned = UnitGroupRolesAssigned
 local UnitHealth = UnitHealth
@@ -25,6 +24,7 @@ local UnitHealthPercent = UnitHealthPercent
 local UnitInPartyIsAI = UnitInPartyIsAI
 local UnitIsFriend = UnitIsFriend
 local UnitIsUnit = UnitIsUnit
+local UnitLevel = UnitLevel
 local UnitName = UnitName
 local UnitPower = UnitPower
 local UnitPowerMax = UnitPowerMax
@@ -158,7 +158,7 @@ if Private.isRetail then
 		if issecretvalue(role) or role ~= 'HEALER' then return end
 		if UnitInPartyIsAI(unit) then return end -- Exclude NPC Healers (Delve companion etc)
 
-		return getPowerColor(unit) .. format('%d', UnitPowerPercent(unit, POWERTYPE_MANA, true, ScaleTo100))
+		return powerColors.MANA .. format('%d', UnitPowerPercent(unit, POWERTYPE_MANA, true, ScaleTo100))
 	end)
 else
 	-- Display mana (current) if the unit is flagged healer (Classic only)
@@ -218,7 +218,7 @@ if not Private.isRetail then
 	E:AddTag('luckyone:level', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 		if E:XPIsLevelMax() then return end
 
-		local level = UnitEffectiveLevel(unit)
+		local level = UnitLevel(unit)
 		local color = GetCreatureDifficultyColor(level)
 
 		return Hex(color.r, color.g, color.b) .. ((level > 0) and level or '??')
@@ -260,7 +260,7 @@ end
 ---------------------- Pet Frame ----------------------
 -------------------------------------------------------
 
--- Display pet name and happiness status (Classic and TBC only)
+-- Hunter pet happiness status (Classic and TBC only), 'Pet' for everything else
 if Private.isClassic or Private.isTBC then
 	local happinessColors = ElvUF.colors.happiness
 	local happinessStrings = { PET_HAPPINESS1, PET_HAPPINESS2, PET_HAPPINESS3 } -- [1] "Unhappy", [2] "Content", [3] "Happy"
@@ -275,14 +275,14 @@ if Private.isClassic or Private.isTBC then
 		end
 
 		-- Other Pet Classes, Shadowfiend and others
-		return 'Pet'
+		return L["Pet"]
 	end)
 else
 	E:AddTag('luckyone:pet:name-and-happiness', 'UNIT_NAME_UPDATE PET_UI_UPDATE', function()
-		return 'Pet'
+		return L["Pet"]
 	end)
 end
-E:AddTagInfo('luckyone:pet:name-and-happiness', Private.Name, L["Displays the pet's name and includes (in Classic only) the full happiness status"])
+E:AddTagInfo('luckyone:pet:name-and-happiness', Private.Name, L["Displays the hunter pet's happiness status on Vanilla and TBC, 'Pet' otherwise"])
 
 -------------------------------------------------------
 ------------------- Name Formatting -------------------

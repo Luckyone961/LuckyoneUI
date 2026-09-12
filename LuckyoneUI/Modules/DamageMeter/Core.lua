@@ -49,9 +49,14 @@ local function HideBlizzardMeter()
 	meter:SetShown(false) -- Same as "Hidden" visibility in Edit Mode settings
 end
 
--- The native meter is our only data source, mirror the CVar with our module state
+-- The native meter is our only data source, it goes on with the module
+-- Switching the module off at runtime takes it down again, a login with the module off leaves it alone
 function DM:HandleBlizzardMeter()
-	SetCVar('damageMeterEnabled', DM.db.enable and 1 or 0)
+	if DM.db.enable then
+		SetCVar('damageMeterEnabled', 1)
+	elseif DM.blizzardHooked then
+		SetCVar('damageMeterEnabled', 0)
+	end
 
 	local meter = _G.DamageMeter
 	if not meter or meter:IsForbidden() then return end
@@ -86,8 +91,6 @@ function DM:ShouldShow()
 end
 
 function DM:UpdateShown()
-	if not DM.holder then return end
-
 	local shown = DM:ShouldShow()
 	DM.holder:SetShown(shown)
 
@@ -171,19 +174,17 @@ local function PlaceAttached(index, count, vertical, inner)
 	for child = 1, count do
 		if hosts[child] == index then
 			local sub = DM.windows[child]
-			if sub then
-				sub:ClearAllPoints()
-				sub:Size(widths[child], heights[child])
+			sub:ClearAllPoints()
+			sub:Size(widths[child], heights[child])
 
-				if vertical then
-					sub:Point('TOPLEFT', anchor, 'TOPRIGHT', inner, 0)
-				else
-					sub:Point('TOPLEFT', anchor, 'BOTTOMLEFT', 0, -inner)
-				end
-
-				sub:Show()
-				anchor = sub
+			if vertical then
+				sub:Point('TOPLEFT', anchor, 'TOPRIGHT', inner, 0)
+			else
+				sub:Point('TOPLEFT', anchor, 'BOTTOMLEFT', 0, -inner)
 			end
+
+			sub:Show()
+			anchor = sub
 		end
 	end
 end
@@ -223,7 +224,6 @@ end
 function DM:Layout()
 	local db = DM.db
 	local holder = DM.holder
-	if not holder then return end
 
 	local vertical = db.orientation == 'VERTICAL'
 	local count = db.windowCount
@@ -260,34 +260,30 @@ function DM:Layout()
 
 	for _, index in ipairs(columns) do
 		local window = DM.windows[index]
-		if window then
-			window:ClearAllPoints()
-			window:Size(widths[index], heights[index])
+		window:ClearAllPoints()
+		window:Size(widths[index], heights[index])
 
-			if not previous then
-				window:Point('TOPLEFT', holder, 'TOPLEFT', vertical and 0 or outer, vertical and -outer or 0)
-			elseif vertical then
-				window:Point('TOPLEFT', previous, 'BOTTOMLEFT', 0, -inner)
-			else
-				window:Point('TOPLEFT', previous, 'TOPRIGHT', inner, 0)
-			end
-
-			window:Show()
-			previous = window
-
-			PlaceAttached(index, count, vertical, inner)
+		if not previous then
+			window:Point('TOPLEFT', holder, 'TOPLEFT', vertical and 0 or outer, vertical and -outer or 0)
+		elseif vertical then
+			window:Point('TOPLEFT', previous, 'BOTTOMLEFT', 0, -inner)
+		else
+			window:Point('TOPLEFT', previous, 'TOPRIGHT', inner, 0)
 		end
+
+		window:Show()
+		previous = window
+
+		PlaceAttached(index, count, vertical, inner)
 	end
 
 	-- The mover owns the position, the layout only keeps the size
 	for _, index in ipairs(floating) do
 		local window = DM.windows[index]
-		if window then
-			window:Size(widths[index], heights[index])
-			window:Show()
+		window:Size(widths[index], heights[index])
+		window:Show()
 
-			PlaceAttached(index, count, vertical, inner)
-		end
+		PlaceAttached(index, count, vertical, inner)
 	end
 
 	for index, window in pairs(DM.windows) do
@@ -336,8 +332,11 @@ function DM:Initialize()
 	-- Make sure both WindTools modules are off
 	-- Their layout forces Blizzard Meter to be shown
 	if Private.IsAddOnLoaded('ElvUI_WindTools') then
-		E.db.WT.combat.damageMeterLayout.enable = false
-		E.private.WT.skins.damageMeter.enable = false
+		local layout = E.db.WT and E.db.WT.combat and E.db.WT.combat.damageMeterLayout
+		if layout then layout.enable = false end
+
+		local skin = E.private.WT and E.private.WT.skins and E.private.WT.skins.damageMeter
+		if skin then skin.enable = false end
 	end
 
 	DM:RegisterEvent('DAMAGE_METER_COMBAT_SESSION_UPDATED')
@@ -405,6 +404,9 @@ function DM:CheckAutoReset(initLogin, isReload)
 end
 
 function DM:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
+	-- The events stay registered after the module is switched off
+	if not DM.db.enable then return end
+
 	DM:HandleBlizzardMeter()
 	DM:UpdateShown()
 	DM:MarkAllDirty()
@@ -437,6 +439,11 @@ function Private:DamageMeter_UpdateAll()
 
 	if not db.enable then
 		if DM.holder then
+			-- Custom placed windows would keep their mover
+			for index, window in pairs(DM.windows) do
+				UpdateWindowMover(window, index, false)
+			end
+
 			DM.holder:Hide()
 			DM.lastShown = false
 		end
@@ -458,11 +465,9 @@ end
 function Private:DamageMeter_ResetDefaults()
 	local db = Private.Addon.db.profile.damageMeter
 	local defaults = Private.Defaults.profile.damageMeter
-	local enable = db.enable
 	local windows = db.windows
 
-	wipe(db)
-	E:CopyTable(db, defaults)
+	Private:ResetDefaults(db, defaults)
 
 	-- New windows come out of the AceDB ['**'] wildcard
 	db.windows = windows
@@ -472,9 +477,6 @@ function Private:DamageMeter_ResetDefaults()
 		E:CopyTable(wdb, defaults.windows['**'])
 		E:CopyTable(wdb, defaults.windows[index])
 	end
-
-	-- Restoring the look should not switch the module off
-	db.enable = enable
 
 	for _, window in pairs(DM.windows) do
 		window.meterType = nil

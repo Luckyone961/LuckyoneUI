@@ -6,14 +6,11 @@ local StaticPopup_Show = _G.StaticPopup_Show
 -- Edit Mode helper
 function Private:ToggleEditMode()
 	local EM = _G.EditModeManagerFrame
-	if not EM then return end
 	EM:SetShown(not EM:IsShown())
 end
 
 -- Edit Mode profiles
 function Private:Return_EditModeString()
-	if not _G.EditModeManagerFrame then return end
-
 	-- Global db
 	local scaled = Private.Addon.db.global.scaled
 

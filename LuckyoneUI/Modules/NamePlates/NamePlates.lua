@@ -81,13 +81,6 @@ function Private:UpdateSpecialNameplateTextures()
 	end
 end
 
--- Used in the config file and OnDisable
-function Private:RestoreNameplateTextures()
-	if NP.StatusBars then
-		NP:Update_StatusBars()
-	end
-end
-
 local function CheckHook()
 	if hooked or not NP.Update_StatusBars or not NP.PostUpdateAllElements then return end
 	hooked = true
@@ -121,8 +114,4 @@ function NamePlates:OnEnable()
 	end
 
 	Private:UpdateSpecialNameplateTextures()
-end
-
-function NamePlates:OnDisable()
-	Private:RestoreNameplateTextures()
 end
