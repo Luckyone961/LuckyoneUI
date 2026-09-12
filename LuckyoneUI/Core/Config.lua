@@ -653,21 +653,11 @@ local function MailboxClasses()
 	return values
 end
 
-local function MailboxPositions()
-	local values = {}
-
-	for index in ipairs(Private.Addon.db.profile.misc.mailbox.favorites) do
-		values[index] = tostring(index)
-	end
-
-	return values
-end
-
 local function MailboxEntry()
 	if not mailboxSelected then return end
 
-	for index, favorite in ipairs(Private.Addon.db.profile.misc.mailbox.favorites) do
-		if favorite.name == mailboxSelected then return favorite, index end
+	for _, favorite in ipairs(Private.Addon.db.profile.misc.mailbox.favorites) do
+		if favorite.name == mailboxSelected then return favorite end
 	end
 end
 
@@ -741,7 +731,6 @@ local function BuildMiscSection()
 	section.args.mailbox.args.generalOptions.inline = true
 	section.args.mailbox.args.generalOptions.args.enable = ACH:Toggle(L["Enable"], L["Show a favorite list next to the Mailbox while the Send Mail tab is open."], 1)
 	section.args.mailbox.args.generalOptions.args.currentRealm = ACH:Toggle(L["Current Realm Only"], L["Only show favorites that are on the realm you are playing on."], 2, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.misc.mailbox.enable end)
-	section.args.mailbox.args.generalOptions.args.sort = ACH:Select(L["Sort"], nil, 3, { index = L["Index"], name = L["Alphabetical"] }, nil, nil, nil, nil, function() return not Private.Addon.db.profile.misc.mailbox.enable end)
 	section.args.mailbox.args.favorites = ACH:Group(L["Favorites"], nil, 2, nil, nil, nil, function() return not Private.Addon.db.profile.misc.mailbox.enable end)
 	section.args.mailbox.args.favorites.inline = true
 	section.args.mailbox.args.favorites.args.name = ACH:Input(_G.NAME, nil, 1, nil, 'full', function() return mailboxName end, function(_, value) mailboxName = strtrim(value) end)
@@ -752,8 +741,7 @@ local function BuildMiscSection()
 	section.args.mailbox.args.favoriteOptions.args.selected = ACH:Select(L["Favorite"], L["Pick the entry the options below change."], 1, MailboxEntries, nil, 'full', function() return mailboxSelected end, function(_, value) mailboxSelected = value end)
 	section.args.mailbox.args.favoriteOptions.args.class = ACH:Select(_G.CLASS, nil, 2, MailboxClasses, nil, nil, function() local favorite = MailboxEntry() return favorite and favorite.class end, function(_, value) local favorite = MailboxEntry() if favorite then favorite.class = value Private:MailboxFavorites_Update() end end, function() return not MailboxEntry() end)
 	section.args.mailbox.args.favoriteOptions.args.faction = ACH:Select(_G.FACTION, nil, 3, { Alliance = _G.FACTION_ALLIANCE, Horde = _G.FACTION_HORDE }, nil, nil, function() local favorite = MailboxEntry() return favorite and favorite.faction end, function(_, value) local favorite = MailboxEntry() if favorite then favorite.faction = value Private:MailboxFavorites_Update() end end, function() return not MailboxEntry() end)
-	section.args.mailbox.args.favoriteOptions.args.position = ACH:Select(L["Position"], nil, 4, MailboxPositions, nil, nil, function() local _, index = MailboxEntry() return index end, function(_, value) Private:MailboxFavorites_Move(mailboxSelected, value) end, function() return not MailboxEntry() end, function() return Private.Addon.db.profile.misc.mailbox.sort ~= 'index' end)
-	section.args.mailbox.args.favoriteOptions.args.remove = ACH:Execute(_G.REMOVE, nil, 5, function() Private:MailboxFavorites_Remove(mailboxSelected) mailboxSelected = nil end, nil, true, nil, nil, nil, function() return not MailboxEntry() end)
+	section.args.mailbox.args.favoriteOptions.args.remove = ACH:Execute(_G.REMOVE, nil, 4, function() Private:MailboxFavorites_Remove(mailboxSelected) mailboxSelected = nil end, nil, true, nil, nil, nil, function() return not MailboxEntry() end)
 	section.args.mailbox.args.fontGroup = ACH:Group(L["Font"], nil, 4, nil, nil, nil, function() return not Private.Addon.db.profile.misc.mailbox.enable end)
 	section.args.mailbox.args.fontGroup.inline = true
 	section.args.mailbox.args.fontGroup.args.font = FontSelect(1)

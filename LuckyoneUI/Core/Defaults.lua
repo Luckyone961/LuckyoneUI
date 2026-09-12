@@ -193,7 +193,6 @@ Private.Defaults = {
 				font = Private.Font,
 				fontOutline = Private.Outline,
 				fontSize = 12,
-				sort = 'index',
 			},
 			mythicVisibility = false,
 			objectiveTracker = {

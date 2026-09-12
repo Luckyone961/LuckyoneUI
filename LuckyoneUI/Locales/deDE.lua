@@ -14,7 +14,6 @@ L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on y
 L["Affliction"] = true
 L["Alert Frame"] = "Alarmfenster"
 L["Allows you to move Blizzard panels.\n\nRight-Click restores Blizzard default position.\n\nPosition is not stored and resets on reload and relog."] = true
-L["Alphabetical"] = true
 L["Also used for creatures and sources without a class."] = "Wird auch für Kreaturen und Quellen ohne Klasse verwendet."
 L["Alt Setup"] = "Twink Einrichtung"
 L["Always"] = "Immer"
@@ -249,7 +248,6 @@ L["Import LuckyoneUI defaults."] = "Importiere LuckyoneUI Standardwerte."
 L["In Combat"] = "Im Kampf"
 L["In Group"] = "In Gruppe"
 L["Include the Expansion Landing Page button in the Minimap button bar."] = true
-L["Index"] = true
 L["Inner Spacing"] = "Innenabstand"
 L["Install"] = "Installieren"
 L["Installation Complete"] = "Installation Vollständig"
@@ -425,7 +423,6 @@ L["Skin the small layer frame on the Minimap in ElvUI style and move it to the b
 L["Skin the Spell Rank Checker button in ElvUI style"] = "Skinne die Taste „Rank Checker button“ im ElvUI-Stil."
 L["Skin the WhatsTraining page in the Spellbook in ElvUI style"] = "Skinne die Seite WhatsTraining im Zauberbuch im ElvUI-Stil."
 L["Small tweaks that speed up daily tasks and hide Blizzard frames you do not need."] = true
-L["Sort"] = true
 L["Space between the frame border and the session windows."] = "Abstand zwischen dem Hintergrundrand und dem Session-Fenster."
 L["Space between the primary and the secondary number."] = "Abstand zwischen der ersten und zweiten Nummer."
 L["Space between the rank number and the name. Every name lines up at the same position."] = "Abstand zwischen der Platzierung und dem Namen. Jeder Name beginnt an der gleichen Position."

@@ -10,12 +10,12 @@ local gsub = string.gsub
 local strfind = string.find
 local strlower = string.lower
 local strmatch = string.match
-local sort = table.sort
 local tinsert = table.insert
 local tremove = table.remove
 local wipe = wipe
 
 local CreateFrame = CreateFrame
+local GetCursorPosition = GetCursorPosition
 local strtrim = strtrim
 
 local _G = _G
@@ -32,8 +32,9 @@ local WHITE = { r = 1, g = 1, b = 1 }
 
 local panel, hooked, skinned
 local inset = 6 -- Row padding inside the list
-local display = {} -- Filtered and sorted copy of the favorites
+local display = {} -- Filtered copy of the favorites
 local myRealm = strlower(Private.myNormalizedRealm)
+local Layout -- The drag scripts on the buttons scroll
 
 local function SetFont(text)
 	local db = Private.Addon.db.profile.misc.mailbox
@@ -78,13 +79,19 @@ local function FindFavorite(name)
 	end
 end
 
-local function SortByName(a, b)
-	return strlower(a.name) < strlower(b.name)
+local function MoveFavorite(favorite, target)
+	local list = Private.Addon.db.profile.misc.mailbox.favorites
+	local from, to = FindFavorite(favorite.name), FindFavorite(target.name)
+	if not from or not to then return end
+
+	-- Everything between the old and the new spot shifts over
+	tinsert(list, to, tremove(list, from))
+	Private:MailboxFavorites_Update()
 end
 
 local function Button_OnEnter(button)
 	local favorite = button.favorite
-	if not favorite then return end
+	if not favorite or panel.dragIndex then return end
 
 	local color = RAID_CLASS_COLORS[favorite.class] or WHITE
 	local info = FACTIONS[favorite.faction] or FACTIONS.Alliance
@@ -109,10 +116,113 @@ local function Button_OnClick(button)
 	end
 end
 
+-- Drag and drop reorder
+local function ScrollTo(offset)
+	offset = min(max(offset, 0), max(panel.total - panel.visible, 0))
+	if offset == panel.offset then return end
+
+	panel.offset = offset
+	Layout()
+end
+
+-- The row under the cursor
+local function DropIndex(y)
+	for index = 1, panel.dropCount do
+		if y >= panel.buttons[index]:GetBottom() then
+			return panel.offset + index
+		end
+	end
+
+	return panel.offset + panel.dropCount
+end
+
+-- One row per step while the drag sits on an edge
+local function DragScroll(y, elapsed)
+	if panel.total <= panel.visible then return end
+
+	local direction = 0
+
+	if y > panel.buttons[1]:GetTop() then
+		direction = -1
+	elseif y < panel.buttons[panel.visible]:GetBottom() then
+		direction = 1
+	end
+
+	if direction == 0 then
+		panel.scrollWait = nil
+		return
+	end
+
+	panel.scrollWait = (panel.scrollWait or 0.15) - elapsed
+	if panel.scrollWait > 0 then return end
+
+	panel.scrollWait = 0.15
+	ScrollTo(panel.offset + direction)
+end
+
+-- The marker sits above the target while moving up and below it while moving down
+local function Panel_OnUpdate(self, elapsed)
+	local _, y = GetCursorPosition()
+	y = y / self:GetEffectiveScale()
+
+	DragScroll(y, elapsed or 0)
+
+	local index = DropIndex(y)
+	if index == self.dropIndex then return end
+
+	local row = self.buttons[index - self.offset]
+	if not row then return end
+
+	self.dropIndex = index
+
+	self.marker:ClearAllPoints()
+
+	if index <= self.dragIndex then
+		self.marker:SetPoint('BOTTOMLEFT', row, 'TOPLEFT', 0, 0)
+		self.marker:SetPoint('BOTTOMRIGHT', row, 'TOPRIGHT', 0, 0)
+	else
+		self.marker:SetPoint('TOPLEFT', row, 'BOTTOMLEFT', 0, 0)
+		self.marker:SetPoint('TOPRIGHT', row, 'BOTTOMRIGHT', 0, 0)
+	end
+end
+
+local function Button_OnDragStart(button)
+	if not button.favorite then return end
+
+	panel.dragIndex = button.index
+	panel.dropIndex = nil
+	panel.scrollWait = nil
+
+	GameTooltip:Hide()
+	button:SetAlpha(0.4)
+	panel.marker:Show()
+	panel:SetScript('OnUpdate', Panel_OnUpdate)
+
+	Panel_OnUpdate(panel)
+end
+
+local function Button_OnDragStop()
+	local from, to = panel.dragIndex, panel.dropIndex
+	if not from then return end
+
+	panel.dragIndex, panel.dropIndex, panel.scrollWait = nil, nil, nil
+	panel.marker:Hide()
+	panel:SetScript('OnUpdate', nil)
+
+	if to and to ~= from then
+		MoveFavorite(panel.entries[from], panel.entries[to])
+	else
+		Layout() -- Takes the dimming off again
+	end
+end
+
 local function CreateButton(index)
 	-- The Blizzard button brings its own art and highlight, the ElvUI template needs ours
 	local button = CreateFrame('Button', nil, panel.list, skinned and 'BackdropTemplate' or 'UIPanelButtonTemplate')
+	button:RegisterForDrag('LeftButton')
 	button:SetScript('OnClick', Button_OnClick)
+	button:SetScript('OnDragStart', Button_OnDragStart)
+	button:SetScript('OnDragStop', Button_OnDragStop)
 	button:SetScript('OnEnter', Button_OnEnter)
 	button:SetScript('OnLeave', GameTooltip_Hide)
 
@@ -158,21 +268,16 @@ local function UpdateFonts()
 	end
 end
 
-local function Layout()
+function Layout()
 	local db = Private.Addon.db.profile.misc.mailbox
 	local list = db.favorites
 
-	-- The database keeps its own order
-	if db.currentRealm or db.sort == 'name' then
+	if db.currentRealm then
 		wipe(display)
 		for _, favorite in ipairs(list) do
-			if not db.currentRealm or IsCurrentRealm(favorite.name) then
+			if IsCurrentRealm(favorite.name) then
 				tinsert(display, favorite)
 			end
-		end
-
-		if db.sort == 'name' then
-			sort(display, SortByName)
 		end
 
 		list = display
@@ -184,19 +289,23 @@ local function Layout()
 	local total = #list
 	local visible = max(1, floor((panel.list:GetHeight() - top - inset) / (rowHeight + 2)))
 
+	panel.entries = list
 	panel.total = total
 	panel.visible = visible
 	panel.offset = min(panel.offset, max(0, total - visible))
+	panel.dropCount = min(visible, total - panel.offset)
 
 	for index = 1, max(visible, #panel.buttons) do
 		local button = panel.buttons[index] or CreateButton(index)
 		button.favorite = index <= visible and list[index + panel.offset] or nil
+		button.index = index + panel.offset
 
 		if button.favorite then
 			local y = -(top + ((index - 1) * (rowHeight + 2)))
 			button:SetHeight(rowHeight)
 			button:SetPoint('TOPLEFT', inset, y)
 			button:SetPoint('TOPRIGHT', -inset, y)
+			button:SetAlpha((button.index == panel.dragIndex) and 0.4 or 1) -- The dragged one stays dimmed while it scrolls
 			UpdateButton(button, button.favorite)
 		end
 
@@ -205,11 +314,13 @@ local function Layout()
 end
 
 local function Panel_OnMouseWheel(self, delta)
-	local maxOffset = max(0, self.total - self.visible)
-	if maxOffset == 0 then return end
+	ScrollTo(self.offset - delta)
+end
 
-	self.offset = min(max(self.offset - delta, 0), maxOffset)
-	Layout()
+local function Panel_OnHide(self)
+	self:SetScript('OnUpdate', nil)
+	self.dragIndex, self.dropIndex, self.scrollWait = nil, nil, nil
+	self.marker:Hide()
 end
 
 local function CreatePanel()
@@ -255,6 +366,19 @@ local function CreatePanel()
 	panel.offset = 0
 	panel.total = 0
 	panel.visible = 0
+
+	-- Shows where a dragged favorite lands, above the rows so it stays visible
+	panel.marker = CreateFrame('Frame', nil, panel.list)
+	panel.marker:SetFrameLevel(panel.list:GetFrameLevel() + 3)
+	panel.marker:SetHeight(2)
+	panel.marker:Hide()
+
+	panel.marker.texture = panel.marker:CreateTexture(nil, 'OVERLAY')
+	panel.marker.texture:SetColorTexture(1, 1, 1, 0.8)
+	panel.marker.texture:SetAllPoints()
+
+	-- A drag does not survive the frame going away
+	panel:SetScript('OnHide', Panel_OnHide)
 end
 
 function Private:MailboxFavorites_Add(name, realm)
@@ -282,19 +406,6 @@ function Private:MailboxFavorites_Remove(name)
 	if not index then return end
 
 	tremove(Private.Addon.db.profile.misc.mailbox.favorites, index)
-	Private:MailboxFavorites_Update()
-end
-
-function Private:MailboxFavorites_Move(name, position)
-	local list = Private.Addon.db.profile.misc.mailbox.favorites
-	local index = FindFavorite(name)
-	if not index then return end
-
-	-- Everything between the old and the new spot shifts over
-	position = min(max(position, 1), #list)
-	if position == index then return end
-
-	tinsert(list, position, tremove(list, index))
 	Private:MailboxFavorites_Update()
 end
 

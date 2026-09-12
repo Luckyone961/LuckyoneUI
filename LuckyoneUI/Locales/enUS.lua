@@ -14,7 +14,6 @@ L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on y
 L["Affliction"] = true
 L["Alert Frame"] = true
 L["Allows you to move Blizzard panels.\n\nRight-Click restores Blizzard default position.\n\nPosition is not stored and resets on reload and relog."] = true
-L["Alphabetical"] = true
 L["Also used for creatures and sources without a class."] = true
 L["Alt Setup"] = true
 L["Always"] = true
@@ -249,7 +248,6 @@ L["Import LuckyoneUI defaults."] = true
 L["In Combat"] = true
 L["In Group"] = true
 L["Include the Expansion Landing Page button in the Minimap button bar."] = true
-L["Index"] = true
 L["Inner Spacing"] = true
 L["Install"] = true
 L["Installation Complete"] = true
@@ -425,7 +423,6 @@ L["Skin the small layer frame on the Minimap in ElvUI style and move it to the b
 L["Skin the Spell Rank Checker button in ElvUI style"] = true
 L["Skin the WhatsTraining page in the Spellbook in ElvUI style"] = true
 L["Small tweaks that speed up daily tasks and hide Blizzard frames you do not need."] = true
-L["Sort"] = true
 L["Space between the frame border and the session windows."] = true
 L["Space between the primary and the secondary number."] = true
 L["Space between the rank number and the name. Every name lines up at the same position."] = true
