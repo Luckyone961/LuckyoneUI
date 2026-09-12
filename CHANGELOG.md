@@ -10,6 +10,7 @@
 - Added skin for SimpleAddonManager  
 - Alt setup button is back, one click to load all existing profiles and optionally setup chat  
 - Removed the Plater profile  
+- Reworked the installer process  
 
 **Retail:**  
 - Added options to style and tweak the Objective Tracker  
@@ -18,6 +19,7 @@
 - Removed the WarpDeplete profile  
 - Removed the WindTools profile  
 - Updated aura indicators for all healing specs (Size, Postion, Stack count, Style)  
+- Updated MPlusTimer profile (Requires Alpha)  
 
 **Classic:**  
 - Added option for a wide quest log frame  
