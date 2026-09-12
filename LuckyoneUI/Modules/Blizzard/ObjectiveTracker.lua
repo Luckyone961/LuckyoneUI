@@ -10,6 +10,7 @@ local pairs = pairs
 local setmetatable = setmetatable
 local strfind = string.find
 local type = type
+local unpack = unpack
 local wipe = wipe
 
 local hooksecurefunc = hooksecurefunc
@@ -194,6 +195,18 @@ local function SkinFindGroupButtons(module)
 	end
 end
 
+-- ElvUI paints the bar backdrop with a darkened copy of the fill color
+-- This faded backdrop color fits the rest of the UI better
+local function ColorProgressBar(module, key)
+	if not S then return end
+
+	local progressBar = module.usedProgressBars[key]
+	local backdrop = progressBar and progressBar.Bar.backdrop
+	if backdrop then
+		backdrop:SetBackdropColor(unpack(E.media.backdropfadecolor))
+	end
+end
+
 -- Every setup puts the texture on the toast so alpha zero again
 local function SkinHeaderWidget(container, widgetID)
 	local widget = container.widgetFrames[widgetID]
@@ -323,6 +336,7 @@ local function UpdateModule(module)
 		modules[module] = true
 		hooksecurefunc(module, 'LayoutBlock', Module_LayoutBlock)
 		hooksecurefunc(module, 'EndLayout', SkinFindGroupButtons) -- The right edge frames are all there once the layout is done
+		hooksecurefunc(module, 'GetProgressBar', ColorProgressBar)
 	end
 
 	-- Whatever is on screen right now, pooled quest blocks and the fixed scenario ones
@@ -338,6 +352,12 @@ local function UpdateModule(module)
 	if module.FixedBlocks then
 		for _, block in ipairs(module.FixedBlocks) do
 			Module_LayoutBlock(module, block, true)
+		end
+	end
+
+	if module.usedProgressBars then
+		for key in pairs(module.usedProgressBars) do
+			ColorProgressBar(module, key)
 		end
 	end
 
