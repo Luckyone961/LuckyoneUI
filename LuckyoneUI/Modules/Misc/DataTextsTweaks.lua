@@ -43,6 +43,6 @@ function Private:DataTextsTweaks()
 		callbackRegistered = true
 	end
 
-	-- Technically duplicate OnProfileChanged but harmless due to early return
+	-- Initial sync on login and when the option gets toggled
 	E:Delay(1, UpdateDataTextWidth)
 end

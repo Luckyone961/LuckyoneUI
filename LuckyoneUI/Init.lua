@@ -94,7 +94,7 @@ Private.Modules = {
 	Blizzard = Private.Addon:NewModule('Blizzard', 'AceEvent-3.0'),
 	DamageMeter = (Private.ElvUI and Private.isRetail) and Private.Addon:NewModule('DamageMeter', 'AceEvent-3.0') or nil,
 	Map = Private.ElvUI and Private.Addon:NewModule('Map', 'AceEvent-3.0') or nil,
-	Misc = (Private.ElvUI and Private.isRetail) and Private.Addon:NewModule('Misc', 'AceEvent-3.0') or nil,
+	Misc = Private.ElvUI and Private.Addon:NewModule('Misc', 'AceEvent-3.0') or nil,
 	NamePlates = Private.ElvUI and Private.Addon:NewModule('NamePlates', 'AceEvent-3.0') or nil,
 }
 

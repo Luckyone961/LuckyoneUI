@@ -6,19 +6,23 @@ if not Private.ElvUI then
 end
 
 function Misc:PLAYER_ENTERING_WORLD()
-	Private:MythicVisibility()
 	Private:DataTextsTweaks()
+	if Private.isRetail then
+		Private:MythicVisibility()
+	end
 end
 
+-- DataTextsTweaks follows spec switches through the ElvUI OnProfileChanged callback instead
 function Misc:PLAYER_SPECIALIZATION_CHANGED(_, unit)
 	-- Fires for other units as well, only react to the player
 	if unit ~= 'player' then return end
 
-	Private:DataTextsTweaks()
 	Private:MythicVisibility()
 end
 
 function Misc:OnEnable()
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
-	self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
+	if Private.isRetail then
+		self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
+	end
 end

@@ -9,7 +9,7 @@ L["- All Fonts: Expressway\n- All Font Outlines: Outline\n- All Textures: Minima
 L["1440p = Default | 1080p = Downscaled"] = "1440p = по умолчанию | 1080p = уменьшенный масштаб"
 L["Addon download:"] = "Загрузить аддон:"
 L["Addon Profiles"] = "Профили дополнений"
-L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your specialization\nIt also assumes you have properly setup specialization-based profile loading in ElvUI profiles"] = "Регулирует ширину DataText 'FPS - Время в бою - Прочность' в зависимости от Вашей компоновки LuckyoneUI\n\nКомпоновка для ДД и танков будет соответствовать стандартной ширине моих панелей действий\nКомпоновка для лекарей будет соответствовать стандартной ширине моих рамок рейда\n\nВсе вышеуказанные изменения сработают при смене Вашей специализации\nТакже предполагается, что Вы правильно настроили загрузку профилей ElvUI в зависимости от специализации"
+L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your ElvUI profile\nThis includes specialization-based profile loading in ElvUI profiles"] = true
 L["Affliction"] = "Колдовство"
 L["Alert Frame"] = "Рамка оповещения"
 L["Allows you to move Blizzard panels.\n\nRight-Click restores Blizzard default position.\n\nPosition is not stored and resets on reload and relog."] = true

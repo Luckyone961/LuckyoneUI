@@ -67,8 +67,8 @@ Modules\DamageMeter\Core.lua [AllowLoadGameType mainline]
 Modules\DamageMeter\Session.lua [AllowLoadGameType mainline]
 Modules\DamageMeter\Bars.lua [AllowLoadGameType mainline]
 Modules\Map\MinimapButtons.lua
-Modules\Misc\DataTextsTweaks.lua [AllowLoadGameType mainline]
-Modules\Misc\Misc.lua [AllowLoadGameType mainline]
+Modules\Misc\DataTextsTweaks.lua
+Modules\Misc\Misc.lua
 Modules\Misc\MythicVisibility.lua [AllowLoadGameType mainline]
 Modules\NamePlates\NamePlates.lua
 Modules\Skins\Addons\Auctionator.lua
