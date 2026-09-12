@@ -207,6 +207,13 @@ local function ColorProgressBar(module, key)
 	end
 end
 
+-- Every setup puts the texture kit fill back on the bar
+local function UpdateTimerBar(widget)
+	local bar = widget.TimerBar
+	bar:SetStatusBarTexture(E.media.normTex)
+	bar:SetStatusBarColor(0.294, 0.922, 0.173)
+end
+
 -- Every setup puts the texture on the toast so alpha zero again
 local function SkinHeaderWidget(container, widgetID)
 	local widget = container.widgetFrames[widgetID]
@@ -226,6 +233,16 @@ local function SkinHeaderWidget(container, widgetID)
 	backdrop:SetPoint('TOPLEFT', widget, 0, -1)
 	backdrop:SetPoint('BOTTOMRIGHT', widget, 0, 1)
 
+	-- The bar only shows while the texture kit has a fill
+	local bar = widget.TimerBar
+	if bar then
+		bar:CreateBackdrop()
+		E:RegisterStatusBar(bar)
+
+		hooksecurefunc(widget, 'Setup', UpdateTimerBar)
+		UpdateTimerBar(widget)
+	end
+
 	skinned[widget] = true
 end
 
@@ -236,6 +253,11 @@ local function UpdateWidgetLevels(container)
 	for _, widget in pairs(container.widgetFrames) do
 		if skinned[widget] then
 			widget.backdrop:SetFrameLevel(widget:GetFrameLevel() - 1)
+
+			local bar = widget.TimerBar
+			if bar then
+				bar.backdrop:SetFrameLevel(bar:GetFrameLevel() - 1)
+			end
 		end
 	end
 end
