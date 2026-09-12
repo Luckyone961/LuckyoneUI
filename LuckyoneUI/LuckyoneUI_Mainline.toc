@@ -53,6 +53,7 @@ Core\Installer.lua
 Core\Themes.lua
 
 Modules\Auras\Filters.lua
+Modules\Blizzard\AutoDismount.lua [AllowLoadGameType mainline]
 Modules\Blizzard\Blizzard.lua
 Modules\Blizzard\CombatText.lua
 Modules\Blizzard\Console.lua
@@ -69,7 +70,6 @@ Modules\DamageMeter\Core.lua [AllowLoadGameType mainline]
 Modules\DamageMeter\Session.lua [AllowLoadGameType mainline]
 Modules\DamageMeter\Bars.lua [AllowLoadGameType mainline]
 Modules\Map\MinimapButtons.lua
-Modules\Misc\AutoDismount.lua
 Modules\Misc\DataTextsTweaks.lua
 Modules\Misc\Misc.lua
 Modules\Misc\MythicVisibility.lua

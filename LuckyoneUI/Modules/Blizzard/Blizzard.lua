@@ -214,6 +214,9 @@ function Blizzard:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	if not (initLogin or isReload) then return end
 
 	AutoAcceptRole()
+	if Private.isRetail then
+		Private:AutoDismount()
+	end
 	DisabledFrames()
 	EasyDelete()
 	Private:ExpandMerchant()
