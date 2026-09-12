@@ -10,6 +10,7 @@ local gmatch = string.gmatch
 local ipairs = ipairs
 local min = math.min
 local strmatch = string.match
+local unpack = unpack
 local wipe = table.wipe
 
 local C_UI = C_UI
@@ -22,6 +23,8 @@ local CLOSE = CLOSE
 local GameTooltip = GameTooltip
 local StaticPopup_Show = _G.StaticPopup_Show
 local UIParent = UIParent
+
+local E = Private.ElvUI and unpack(ElvUI)
 
 -- Installer module
 local Installer = {}
@@ -41,7 +44,7 @@ local function Red(text)
 end
 
 local function ToggleDB(toggle)
-	local db = Private.Addon.db.profile
+	local db = toggle.elvui and E.db or Private.Addon.db.profile
 	for part in gmatch(toggle.section, '[^.]+') do
 		db = db[part]
 	end
@@ -239,6 +242,11 @@ local function CheckBox_OnValueChanged(widget, _, value)
 	local toggle = widget:GetUserData('toggle')
 
 	ToggleDB(toggle)[toggle.key] = value and true or false
+
+	if toggle.mirror then
+		ToggleDB(toggle.mirror)[toggle.mirror.key] = value and true or false
+	end
+
 	installerFrame.Sidebar.Buttons[currentPage].icon:Show()
 end
 
@@ -547,7 +555,12 @@ function Installer:SetPage(index)
 	UpdateSidebar()
 end
 
+-- Checkbox pages only write the db, the note tells the user why nothing changes yet
 local function Page(name, desc, buttons, toggles, hidden, title)
+	if toggles then
+		desc[#desc + 1] = L["Checkbox changes are applied on the reload at the end of the installer and might not be visible until then."]
+	end
+
 	return { name = name, title = title or name, desc = concat(desc, '\n\n'), buttons = buttons, toggles = toggles, hidden = hidden }
 end
 
@@ -588,6 +601,11 @@ local function Toggle(section, path, labelPath, descPath)
 	local desc = (descPath and ConfigOption(descPath).name) or option.desc
 
 	return { section = section, key = strmatch(path, '[^.]+$'), label = label, desc = desc, hidden = hidden }
+end
+
+-- ElvUI db keys, the mirror path is written along with the value (player castbar custom color)
+local function ElvUIToggle(label, path, mirror)
+	return { elvui = true, section = strmatch(path, '(.+)%.'), key = strmatch(path, '[^.]+$'), label = label, mirror = mirror and ElvUIToggle(nil, mirror), hidden = not Private.ElvUI }
 end
 
 local function BuildPages()
@@ -640,7 +658,17 @@ local function BuildPages()
 		}, {
 			Button(L["Dark"], function() Private:Setup_Theme('dark', true) end, 'dark'),
 			Button(L["Class Color"], function() Private:Setup_Theme('class', true) end, 'class'),
-		}, nil, not Private.ElvUI),
+		}, {
+			Group(L["Transparency"],
+				ElvUIToggle(L["Action Bars"], 'actionbar.transparent'),
+				ElvUIToggle(L["Bags"], 'bags.transparent')
+			),
+			Group(L["UnitFrames Transparency"],
+				ElvUIToggle(L["Health"], 'unitframe.colors.transparentHealth'),
+				ElvUIToggle(L["Power"], 'unitframe.colors.transparentPower'),
+				ElvUIToggle(L["Castbar"], 'unitframe.colors.transparentCastbar', 'unitframe.units.player.castbar.customColor.transparent')
+			)
+		}, not Private.ElvUI),
 
 		-- Chat tabs setup & Chattynator option
 		Page(L["Chat"], {
