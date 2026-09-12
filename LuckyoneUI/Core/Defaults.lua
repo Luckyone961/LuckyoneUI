@@ -244,7 +244,6 @@ Private.Defaults = {
 			Auctionator = false,
 			BigWigs = false,
 			BugSack = false,
-			LeatrixPlus = false,
 			LFGBulletinBoard = false,
 			NovaSpellRankChecker = false,
 			NovaWorldBuffs = false,

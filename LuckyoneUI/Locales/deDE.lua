@@ -423,7 +423,6 @@ L["Skin the group finder button next to quests in ElvUI style.\n\nDisabling need
 L["Skin the Keystones viewer (/keys, Retail only) and the LFG queue timer bar in ElvUI style. The rest of the Addon is not skinned."] = true
 L["Skin the small layer frame on the Minimap in ElvUI style and move it to the bottom left"] = "Skinne das kleine Ebenenfenster auf der Minikarte im ElvUI-Stil und verschiebe dies nach unten links."
 L["Skin the Spell Rank Checker button in ElvUI style"] = "Skinne die Taste „Rank Checker button“ im ElvUI-Stil."
-L["Skin the two small Head/Cloak toggle checkboxes on the character frame in ElvUI style"] = "Skinne die beiden kleinen Kontrollkästchen zum Umschalten von Kopf/Umhang im Charakterfenster im ElvUI-Stil."
 L["Skin the WhatsTraining page in the Spellbook in ElvUI style"] = "Skinne die Seite WhatsTraining im Zauberbuch im ElvUI-Stil."
 L["Small tweaks that speed up daily tasks and hide Blizzard frames you do not need."] = true
 L["Sort"] = true
