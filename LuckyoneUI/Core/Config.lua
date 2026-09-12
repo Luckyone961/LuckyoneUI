@@ -87,6 +87,7 @@ local CREDITS = {
 		'|cffe6cc80Hollicsh|r',
 		'|cffF58CBAIllusion|r',
 		'|cffC41F3BKringel|r',
+		'|cffABD473Nightwalker|r',
 		'|cffFFFFFFOniria|r',
 	},
 	support = {
