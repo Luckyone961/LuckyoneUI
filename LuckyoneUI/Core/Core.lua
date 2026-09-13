@@ -315,6 +315,7 @@ local function LoadCommands()
 		SlashCmdList.LUCKYONEUI_WEEKLY = WeeklyRewards
 	end
 	if Private.ElvUI then
+		commands.bars = function() Private:ToggleActionBarConverter() end
 		_G.SLASH_LUCKYONEUI_DEBUG1 = '/luckydebug'
 		SlashCmdList.LUCKYONEUI_DEBUG = DebugMode
 	end
