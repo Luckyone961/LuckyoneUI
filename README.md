@@ -82,15 +82,19 @@
 • /vault and /weekly -> Open your great vault in retail to check weekly progress  
 
 ***
-### **Installer:**  
+### **Ingame Installer**  
 ***
-![LuckyoneUI Installer](https://i.imgur.com/DMqSb1j.png)  
+![LuckyoneUI Installer](https://i.imgur.com/k8sgCBC.jpeg)  
 ***
-### **[ElvUI Plugin Version] Main Layout:**  
+### **Layout 1: DPS & Tanks**  
 ***
-![LuckyoneUI Main Layout](https://i.imgur.com/cpv4RVu.jpeg)  
+![LuckyoneUI Main Layout](https://i.imgur.com/pyuizhA.jpeg)  
 ***
-### **[ElvUI Plugin Version] Healing Layout:**  
+### **Layout 2: Healing**  
 ***
-![LuckyoneUI Healing Layout](https://i.imgur.com/JkgNXXu.jpeg)  
+![LuckyoneUI Healing Layout](https://i.imgur.com/2uyXgMv.jpeg)  
+***
+### **Ingame Options**  
+***
+![LuckyoneUI Options](https://i.imgur.com/Wy1uUri.jpeg)  
 ***
