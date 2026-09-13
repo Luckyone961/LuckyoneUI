@@ -25,15 +25,28 @@
 • Lightweight tags used for everything. Every text on frames is custom.  
 • Themes available for dark mode and class colored layouts. Your choice.  
 • Mythic raidframe handling. Benched people beyond group 4 are hidden.  
-• Skins for BugSack and some other Addons to match general ElvUI style.  
+• Alt setup button. One click loads your existing profiles in every supported Addon.  
 • Option to pick a different texture for targeted nameplates.  
 • Option to pick a different texture for focused nameplates.  
+• DataText width tweaks that follow your active layout and spec profile.  
+
+### **ElvUI skins**  
+• Addons: Auctionator, BigWigs (/keys and queue timer), BugSack, LFG Bulletin Board  
+• Addons: Nova Spell Rank Checker, Nova World Buffs, Simple Addon Manager  
+• Addons: Simulationcraft, Tabardy, WhatsTraining  
+• Blizzard: Cooldown Settings viewer, Developer Console  
 
 ### **The core features**  
 • Custom damage meter with hundreds of settings based on Blizzards native combat data API  
+• Damage meter extras: Multiple windows, bookmarks, death log at your cursor, test mode  
 • Unregister and hide useless Blizzard elements (Alert frame, Boss banner, Housing alerts)  
+• Hide the Loss of Control frame, UI errors ("Out of range") and zone text  
 • Restore mouseover tooltips for party and raid applicants even if you are not the leader  
 • Hide the talking head frame but keep sounds and voicelines functionality  
+• Style the Blizzard friends list (Class colors, levels, faction icons, realm names)  
+• Style the Blizzard Objective Tracker (Fonts, colors, header underline, status bars, skins)  
+• Wide quest log for Classic to show the quest list and details side by side  
+• Automatically dismount when pressing skyriding abilities on the ground  
 • Automatically accept role checks during signup  
 • Automatically fill in the delete text when destroying items  
 • Block the loot list frame from showing after boss kills and keystones  
@@ -71,7 +84,7 @@
 ***
 ### **Installer:**  
 ***
-![LuckyoneUI Installer](https://i.imgur.com/vSdTjzI.jpeg)  
+![LuckyoneUI Installer](https://i.imgur.com/DMqSb1j.png)  
 ***
 ### **[ElvUI Plugin Version] Main Layout:**  
 ***
