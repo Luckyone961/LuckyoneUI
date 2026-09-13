@@ -430,27 +430,15 @@ local function Setup_ElvUI(layout, partyStyle)
 	end
 
 	-- Side ActionBar is vertical and on mouseover
-	E.db.actionbar.bar5.buttonsPerRow = 1
-	E.db.actionbar.bar5.mouseover = true
+	E.db.actionbar.bar3.buttonsPerRow = 1
+	E.db.actionbar.bar3.mouseover = true
 
 	-- Turn off all ActionBars except the ones we use by default
-	for i = 1, 14 do
-		if i ~= 1 and i ~= 2 and i ~= 3 and i ~= 5 and i ~= 11 and i ~= 12 then
+	for i = 1, 15 do
+		if i ~= 1 and i ~= 3 and i ~= 5 and i ~= 6 and i ~= 11 and i ~= 12 then
 			E.db.actionbar['bar'..i].enabled = false
 		end
 	end
-
-	-- Player Frame ActionBar for consumables and trinket
-	E.db.actionbar.bar15.buttons = 4
-	E.db.actionbar.bar15.buttonSize = 28
-	E.db.actionbar.bar15.buttonsPerRow = 4
-	E.db.actionbar.bar15.countFontSize = 12
-	E.db.actionbar.bar15.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar15.countTextYOffset = -5
-	E.db.actionbar.bar15.enabled = false
-	E.db.actionbar.bar15.hotkeytext = false
-	E.db.actionbar.bar15.point = 'TOPRIGHT'
-	E.db.actionbar.bar15.showGrid = false
 
 	E.db.actionbar.barPet.backdrop = false
 	E.db.actionbar.barPet.buttonSize = 28
@@ -1592,16 +1580,16 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-68,-180'
 	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,232,1'
-	E.db.movers.ElvAB_4 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-578'
-	E.db.movers.ElvAB_5 = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,343') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,522'
-	E.db.movers.ElvAB_6 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-545'
+	E.db.movers.ElvAB_2 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-578'
+	E.db.movers.ElvAB_3 = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,343') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,522'
+	E.db.movers.ElvAB_4 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-545'
 	E.db.movers.ElvAB_7 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-512'
 	E.db.movers.ElvAB_8 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-479'
 	E.db.movers.ElvAB_9 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-446'
 	E.db.movers.ElvAB_10 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-413'
 	E.db.movers.ElvAB_13 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-380'
 	E.db.movers.ElvAB_14 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-347'
-	E.db.movers.ElvAB_15 = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-215,411') or 'BOTTOM,ElvUIParent,BOTTOM,-247,551'
+	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-314'
 	E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-338,440') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-628,630'
 	E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,322,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,610,-400'
 	E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,451,360') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,739,500'
@@ -1770,8 +1758,8 @@ local function Setup_ElvUI(layout, partyStyle)
 		-- Main movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
 		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-		E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,82'
-		E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,49'
+		E.db.movers.ElvAB_5 = 'BOTTOM,ElvUIParent,BOTTOM,0,82'
+		E.db.movers.ElvAB_6 = 'BOTTOM,ElvUIParent,BOTTOM,0,49'
 		E.db.movers.ElvUF_Raid1Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
@@ -1783,8 +1771,8 @@ local function Setup_ElvUI(layout, partyStyle)
 		-- Healing movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
 		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.ElvAB_2 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
-		E.db.movers.ElvAB_3 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
+		E.db.movers.ElvAB_5 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
+		E.db.movers.ElvAB_6 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
 		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
@@ -1799,8 +1787,8 @@ local function Setup_ElvUI(layout, partyStyle)
 	-- Custom AB changes
 	if Private.itsLuckyone and layout == 'healing' then
 		E.db.actionbar.bar1.mouseover = true
-		E.db.actionbar.bar2.mouseover = true
-		E.db.actionbar.bar3.mouseover = true
+		E.db.actionbar.bar5.mouseover = true
+		E.db.actionbar.bar6.mouseover = true
 	end
 
 	-- Custom nonRetail changes
