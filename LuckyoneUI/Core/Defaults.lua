@@ -247,6 +247,7 @@ Private.Defaults = {
 			LFGBulletinBoard = false,
 			NovaSpellRankChecker = false,
 			NovaWorldBuffs = false,
+			PremadeGroupsFilter = false,
 			SimpleAddonManager = false,
 			Simulationcraft = false,
 			Tabardy = false,

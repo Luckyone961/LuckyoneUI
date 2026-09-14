@@ -32,8 +32,8 @@
 
 ### **ElvUI skins**  
 • Addons: Auctionator, BigWigs (/keys and queue timer), BugSack, LFG Bulletin Board  
-• Addons: Nova Spell Rank Checker, Nova World Buffs, Simple Addon Manager  
-• Addons: Simulationcraft, Tabardy, WhatsTraining  
+• Addons: Nova Spell Rank Checker, Nova World Buffs, Premade Groups Filter  
+• Addons: Simple Addon Manager, Simulationcraft, Tabardy, WhatsTraining  
 • Blizzard: Cooldown Settings viewer, Developer Console  
 
 ### **The core features**  
