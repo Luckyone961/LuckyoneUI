@@ -1801,7 +1801,7 @@ local function Setup_ElvUI(layout, partyStyle)
 
 	-- Custom nonRetail changes
 	-- Extra bar next to the left chat panel
-	if Private.itsLuckyone and not Private.isRetail then
+	if not Private.isRetail then
 		E.db.actionbar.bar4.enabled = true
 		E.db.actionbar.bar4.buttons = 8
 		E.db.actionbar.bar4.buttonsPerRow = 1
