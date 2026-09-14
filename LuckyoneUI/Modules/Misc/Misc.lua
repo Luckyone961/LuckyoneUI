@@ -20,9 +20,14 @@ function Misc:PLAYER_SPECIALIZATION_CHANGED(_, unit)
 	Private:MythicVisibility()
 end
 
+function Misc:PLAYER_DIFFICULTY_CHANGED()
+	Private:MythicVisibility()
+end
+
 function Misc:OnEnable()
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 	if Private.isRetail then
 		self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
+		self:RegisterEvent('PLAYER_DIFFICULTY_CHANGED')
 	end
 end
