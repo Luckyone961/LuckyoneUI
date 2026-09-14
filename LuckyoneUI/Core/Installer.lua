@@ -1,5 +1,5 @@
 local _, Private = ...
-local L = Private.Libs.ACL
+local L = Private.L
 local AceGUI = Private.Libs.GUI
 local LSM = Private.Libs.LSM
 

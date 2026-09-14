@@ -3,7 +3,7 @@ local DM = Private.Modules.DamageMeter
 
 if not DM then return end
 
-local L = Private.Libs.ACL
+local L = Private.L
 
 local unpack = unpack
 local pairs = pairs

@@ -1,5 +1,5 @@
 local _, Private = ...
-local L = Private.Libs.ACL
+local L = Private.L
 
 local InCombatLockdown = InCombatLockdown
 local SetCVar = C_CVar.SetCVar

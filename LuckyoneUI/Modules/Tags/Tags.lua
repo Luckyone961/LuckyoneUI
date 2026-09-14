@@ -1,5 +1,5 @@
 local _, Private = ...
-local L = Private.Libs.ACL
+local L = Private.L
 
 if not Private.ElvUI then
 	return

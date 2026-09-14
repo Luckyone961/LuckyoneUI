@@ -1,5 +1,5 @@
 local Name, Private = ...
-local L = Private.Libs.ACL
+local L = Private.L
 local LDB = Private.Libs.LDB
 local LDBI = Private.Libs.LDBI
 local LSM = Private.Libs.LSM

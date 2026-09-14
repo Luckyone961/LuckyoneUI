@@ -1,5 +1,6 @@
 local gsub = string.gsub
 local select = select
+local setmetatable = setmetatable
 local strmatch = string.match
 local tonumber = tonumber
 
@@ -28,9 +29,8 @@ Private.Libs = {
 	-- Ace
 	ADB = LibStub('AceDB-3.0'),
 	GUI = LibStub('AceGUI-3.0'),
-	AC = LibStub('AceConfig-3.0'),
+	ACR = LibStub('AceConfigRegistry-3.0'),
 	ACD = LibStub('AceConfigDialog-3.0'),
-	ACL = LibStub('AceLocale-3.0'):GetLocale(Name),
 	-- Extras
 	LSM = LibStub('LibSharedMedia-3.0'),
 	LDB = LibStub('LibDataBroker-1.1'),
@@ -38,6 +38,13 @@ Private.Libs = {
 	-- Custom
 	ACH = LibStub('LibAceConfigHelper'),
 }
+
+-- Locales
+local translations = {}
+Private.L = setmetatable({}, {
+	__index = function(_, key) return translations[key] or key end,
+	__newindex = function(_, key, value) if value ~= true then translations[key] = value end end,
+})
 
 -- Logo, Name
 Private.Logo = 'Interface\\AddOns\\LuckyoneUI\\Media\\Textures\\Clover.tga'
@@ -105,7 +112,7 @@ function Private.Addon:OnInitialize()
 
 	-- Register config, built on first open like ElvUI does it through the plugin callback
 	if not Private.ElvUI then
-		Private.Libs.AC:RegisterOptionsTable('LuckyoneUI', function() Private:BuildConfig() return Private.Config end)
+		Private.Libs.ACR:RegisterOptionsTable('LuckyoneUI', function() Private:BuildConfig() return Private.Config end)
 		Private.SettingsCategoryID = select(2, Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI'))
 	end
 end
