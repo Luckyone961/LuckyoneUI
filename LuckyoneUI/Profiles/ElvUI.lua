@@ -622,6 +622,8 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.cooldown.auras.thresholdText.colors.expiring.g = 1
 	E.db.cooldown.auras.thresholdText.colors.hours.r = 1
 	E.db.cooldown.auras.thresholdText.colors.seconds.b = 1
+	E.db.cooldown.auras.thresholdText.expireThreshold = -1
+	E.db.cooldown.auras.thresholdText.secondsThreshold = -1
 	E.db.cooldown.bags.colors.edge.a = 0
 	E.db.cooldown.bags.fontSize = 12
 	E.db.cooldown.bags.hideBling = true
