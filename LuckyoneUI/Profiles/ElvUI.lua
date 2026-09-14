@@ -855,7 +855,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.arena.buffs.priority = 'Whitelist,TurtleBuffs,Dispellable'
 	E.db.unitframe.units.arena.buffs.sizeOverride = 24
 	E.db.unitframe.units.arena.buffs.xOffset = 1
-	E.db.unitframe.units.arena.buffs.yOffset = 1
+	E.db.unitframe.units.arena.buffs.yOffset = 0
 	E.db.unitframe.units.arena.castbar.customTextFont.enable = true
 	E.db.unitframe.units.arena.castbar.customTextFont.font = Private.Font
 	E.db.unitframe.units.arena.castbar.customTimeFont.enable = true
@@ -886,7 +886,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.arena.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
 	E.db.unitframe.units.arena.debuffs.sizeOverride = 24
 	E.db.unitframe.units.arena.debuffs.xOffset = -1
-	E.db.unitframe.units.arena.debuffs.yOffset = 1
+	E.db.unitframe.units.arena.debuffs.yOffset = 0
 	E.db.unitframe.units.arena.disableFocusGlow = true
 	E.db.unitframe.units.arena.disableTargetGlow = true
 	E.db.unitframe.units.arena.fader.minAlpha = 0.5
@@ -962,7 +962,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.boss.buffs.priority = 'Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.boss.buffs.sizeOverride = 24
 	E.db.unitframe.units.boss.buffs.xOffset = 1
-	E.db.unitframe.units.boss.buffs.yOffset = 1
+	E.db.unitframe.units.boss.buffs.yOffset = 0
 	E.db.unitframe.units.boss.castbar.customTextFont.enable = true
 	E.db.unitframe.units.boss.castbar.customTextFont.font = Private.Font
 	E.db.unitframe.units.boss.castbar.customTimeFont.enable = true
@@ -993,7 +993,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Personal'
 	E.db.unitframe.units.boss.debuffs.sizeOverride = 24
 	E.db.unitframe.units.boss.debuffs.xOffset = -1
-	E.db.unitframe.units.boss.debuffs.yOffset = 1
+	E.db.unitframe.units.boss.debuffs.yOffset = 0
 	E.db.unitframe.units.boss.disableFocusGlow = true
 	E.db.unitframe.units.boss.disableTargetGlow = true
 	E.db.unitframe.units.boss.fader.minAlpha = 0.5
@@ -1612,7 +1612,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-111'
 	E.db.movers.ExperienceBarMover = 'TOP,ElvUIParent,TOP,0,-1'
 	E.db.movers.FocusPowerBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-660,580'
-	E.db.movers.GMMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-515,-1'
+	E.db.movers.GMMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-574,-1'
 	E.db.movers.LeftChatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1'
 	E.db.movers.LootFrameMover = 'TOP,ElvUIParent,TOP,0,-88'
 	E.db.movers.LossControlMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,490') or 'TOP,ElvUIParent,TOP,0,-640'
