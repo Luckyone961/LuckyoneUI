@@ -7,6 +7,7 @@
 - Updated deDE locales  
 - Updated friends list tweaks (Option to move favorites star icon + Bugfixes)  
 - Updated themes installer step to include transparency choice  
+- Updated top auras at the minimap area (Text inside, Size increase, Spacing adjustments)  
 
 **Retail:**  
 - Added skin for Premade Groups Filter  
