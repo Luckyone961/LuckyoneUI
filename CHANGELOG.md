@@ -10,6 +10,7 @@
 
 **Retail:**  
 - Added skin for Premade Groups Filter  
+- Added skin for RCLootCouncil  
 
 ## Version 4.23 [12-09-2026]
 

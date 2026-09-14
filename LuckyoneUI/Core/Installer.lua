@@ -793,6 +793,7 @@ local function BuildPages()
 				Toggle('skins', 'skins.addons.NovaSpellRankChecker'),
 				Toggle('skins', 'skins.addons.NovaWorldBuffs'),
 				Toggle('skins', 'skins.addons.PremadeGroupsFilter'),
+				Toggle('skins', 'skins.addons.RCLootCouncil'),
 				Toggle('skins', 'skins.addons.SimpleAddonManager'),
 				Toggle('skins', 'skins.addons.Simulationcraft'),
 				Toggle('skins', 'skins.addons.Tabardy'),

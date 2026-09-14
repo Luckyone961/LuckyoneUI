@@ -32,7 +32,7 @@
 
 ### **ElvUI skins**  
 • Addons: Auctionator, BigWigs (/keys and queue timer), BugSack, LFG Bulletin Board  
-• Addons: Nova Spell Rank Checker, Nova World Buffs, Premade Groups Filter  
+• Addons: Nova Spell Rank Checker, Nova World Buffs, Premade Groups Filter, RCLootCouncil  
 • Addons: Simple Addon Manager, Simulationcraft, Tabardy, WhatsTraining  
 • Blizzard: Cooldown Settings viewer, Developer Console  
 

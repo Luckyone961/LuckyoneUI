@@ -248,6 +248,7 @@ Private.Defaults = {
 			NovaSpellRankChecker = false,
 			NovaWorldBuffs = false,
 			PremadeGroupsFilter = false,
+			RCLootCouncil = false,
 			SimpleAddonManager = false,
 			Simulationcraft = false,
 			Tabardy = false,
