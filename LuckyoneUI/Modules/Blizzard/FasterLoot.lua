@@ -2,15 +2,16 @@ local _, Private = ...
 
 local CreateFrame = CreateFrame
 local GetNumLootItems = GetNumLootItems
+local IsModifiedClick = IsModifiedClick
 local LootSlot = LootSlot
 
 local EventFrame
 local lootedSlots = 0
 
--- Both loot events pass the auto loot state, it already accounts for the modifier key
+-- Both loot events only pass the autoLootDefault cvar, the auto loot key flips it
 -- Reverse order because Blizzard clears the slots
 local function LootItems(autoLoot)
-	if not autoLoot then return end
+	if autoLoot == IsModifiedClick('AUTOLOOTTOGGLE') then return end
 
 	-- Looted slots keep their index until the loot closes
 	local numItems = GetNumLootItems()
