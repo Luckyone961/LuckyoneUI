@@ -12,12 +12,14 @@ local unpack = unpack
 
 local CreateFrame = CreateFrame
 local GameTooltip_Hide = GameTooltip_Hide
+local GetActionInfo = GetActionInfo
 local GetBindingKey = GetBindingKey
 local GetCurrentBindingSet = GetCurrentBindingSet
 local GetCursorInfo = GetCursorInfo
 local GetSpellName = C_Spell.GetSpellName
 local hooksecurefunc = hooksecurefunc
 local InCombatLockdown = InCombatLockdown
+local IsSpellPassive = C_Spell.IsSpellPassive
 local PickupAction = PickupAction
 local PlaceAction = PlaceAction
 local SaveBindings = SaveBindings
@@ -40,6 +42,7 @@ local AB = E:GetModule('ActionBars')
 local S = E:GetModule('Skins')
 
 local frame, selected
+local rows = {} -- Per page
 local cells = {} -- Per slot
 
 -- Edit Mode numbers the Blizzard bars differently than the slots
@@ -56,8 +59,8 @@ elseif Private.myClass == 'ROGUE' then
 	end
 elseif Private.myClass == 'WARRIOR' and not Private.isRetail then
 	forms[1], forms[2], forms[3] = 2457, 71, 2458 -- Battle Stance, Defensive Stance, Berserker Stance
-elseif Private.myClass == 'PRIEST' and Private.isMists then
-	forms[1] = 15473 -- Shadowform
+elseif Private.myClass == 'PRIEST' then
+	forms[1] = Private.isRetail and 232698 or 15473 -- Shadowform
 elseif Private.myClass == 'WARLOCK' and Private.isMists then
 	forms[1] = 103958 -- Metamorphosis
 end
@@ -101,7 +104,15 @@ local function Refresh()
 	end
 end
 
+local function IsPassive(slot)
+	local kind, id = GetActionInfo(slot)
+	return kind == 'spell' and IsSpellPassive(id)
+end
+
+-- Passive spells cannot be moved, a pair with one in it stays put
 local function SwapSlots(a, b)
+	if IsPassive(a) or IsPassive(b) then return end
+
 	if HasAction(a) then
 		PickupAction(a)
 		PlaceAction(b)
@@ -184,6 +195,37 @@ local function Swap_OnClick(button)
 	end
 end
 
+-- The profile before the renumbering had the bottom bars on 2 and 3 and the side bar on 5
+-- The last swap sorts out what the first two left behind, so the order matters
+local migration = { { 2, 5 }, { 3, 6 }, { 2, 3 } }
+local function MigrateStep(step)
+	local pair = migration[step]
+	if not pair then
+		frame.migrate:Enable()
+		return
+	end
+
+	if not InCombatLockdown() and not GetCursorInfo() then
+		SwapBars(rows[pair[1]], rows[pair[2]])
+		step = step + 1
+	end
+
+	E:Delay(1, MigrateStep, step)
+end
+
+local function Migrate_OnClick()
+	if InCombatLockdown() then return end
+
+	if GetCursorInfo() then
+		Private:Print('Clear your cursor first.')
+		return
+	end
+
+	frame.migrate:Disable()
+	SetSelected(nil)
+	MigrateStep(1)
+end
+
 local function UpdateCharacter()
 	frame.character:SetChecked(GetCurrentBindingSet() == BindingSet.Character)
 end
@@ -220,6 +262,7 @@ local function CreateRow(page)
 	row:SetPoint('TOPLEFT', 10, -(90 + (page - 1) * 40))
 	row.first = (page - 1) * 12 + 1
 	row.bindButtons = defaults and defaults.bindButtons
+	rows[page] = row
 
 	row.selection = row:CreateTexture(nil, 'BACKGROUND')
 	row.selection:SetAllPoints()
@@ -287,8 +330,8 @@ local function Frame_OnShow(self)
 	self:RegisterEvent('UPDATE_BINDINGS')
 	self:RegisterEvent('PLAYER_REGEN_ENABLED')
 
-	-- Keybinds follow the content unless the box gets unchecked for another spec
-	self.keybinds:SetChecked(true)
+	-- Keybind swap off by default, usually only used once
+	self.keybinds:SetChecked(false)
 	UpdateCharacter()
 	Refresh()
 end
@@ -330,8 +373,17 @@ local function CreateConverter()
 
 	local close = CreateFrame('Button', nil, frame, 'UIPanelCloseButton')
 	close:SetPoint('TOPRIGHT', 2, 2)
+	close:SetFrameLevel(header:GetFrameLevel() + 1) -- Only the Retail template raises it above the drag handle
 	close:SetScript('OnClick', function() frame:Hide() end)
 	S:HandleCloseButton(close)
+
+	local migrate = CreateFrame('Button', nil, frame, 'UIPanelButtonTemplate')
+	migrate:SetSize(220, 22)
+	migrate:SetPoint('TOPRIGHT', -10, -35)
+	migrate:SetText('Migrate from previous LuckyoneUI')
+	migrate:SetScript('OnClick', Migrate_OnClick)
+	S:HandleButton(migrate)
+	frame.migrate = migrate
 
 	local keybinds = CreateFrame('CheckButton', nil, frame, 'UICheckButtonTemplate')
 	keybinds:SetSize(20, 20)
