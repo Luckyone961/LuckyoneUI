@@ -696,6 +696,7 @@ local function BuildMiscSection()
 	section.args.friendsList.args.generalOptions.args.bracketStyle = ACH:Select(L["Brackets"], L["Bracket style around the character name of Battle.net friends."], 6, { PARENTHESES = '( )', SQUARE = '[ ]', NONE = _G.NONE }, nil, nil, nil, nil, FriendsListDisabled)
 	section.args.friendsList.args.generalOptions.args.realmSeparator = ACH:Select(L["Separator"], L["Separator between the zone and the realm name."], 5, { DASH = '-', PIPE = '||' }, nil, nil, nil, nil, FriendsListDisabled, function() return not Private.Addon.db.profile.misc.friendsList.realm end)
 	section.args.friendsList.args.generalOptions.args.statusIcon = ACH:Select(L["Status Icon"], L["Style of the status icon in front of each friend."], 7, { DEFAULT = L["Default"], SQUARE = L["Square"] }, nil, nil, nil, nil, FriendsListDisabled)
+	section.args.friendsList.args.generalOptions.args.favoritePosition = ACH:Select(L["Favorite Icon"], L["Position of the favorite star of Battle.net friends."], 8, { NAME = L["Behind Name"], RIGHT = L["Right Side"] }, nil, nil, nil, nil, FriendsListDisabled, not Private.isRetail)
 	section.args.friendsList.args.colorOptions = ACH:Group(L["Colors"], nil, 2, nil, nil, nil, FriendsListDisabled)
 	section.args.friendsList.args.colorOptions.inline = true
 	section.args.friendsList.args.colorOptions.args.classColor = ACH:Toggle(L["Class Color"], L["Color the character names by class."], 1)

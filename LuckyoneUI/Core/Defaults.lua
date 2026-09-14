@@ -174,6 +174,7 @@ Private.Defaults = {
 				bracketStyle = 'NONE',
 				factionIcon = true,
 				statusIcon = 'SQUARE',
+				favoritePosition = 'RIGHT',
 				realm = true,
 				realmSeparator = 'DASH',
 				infoColorType = 'CUSTOM',
