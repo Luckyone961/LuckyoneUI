@@ -35,6 +35,7 @@ Private.Defaults = {
 			autoReset = 'NONE',
 			autoResetTypes = { party = true, raid = true, scenario = true },
 			resetOnLogout = false,
+			contentWindows = { world = 0, dungeon = 0, raid = 0, pvp = 0 },
 			orientation = 'HORIZONTAL',
 			windowCount = 2,
 			innerSpacing = 2,

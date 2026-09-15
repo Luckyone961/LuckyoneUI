@@ -220,15 +220,36 @@ local function UpdateWindowMover(window, index, custom)
 	end
 end
 
+-- Content types
+local ContentScopes = {
+	none = 'world',
+	party = 'dungeon',
+	scenario = 'dungeon', -- Includes Delve
+	raid = 'raid',
+	pvp = 'pvp',
+	arena = 'pvp',
+}
+
+-- Override, zero leaves it alone
+function DM:GetWindowCount()
+	local _, instanceType = GetInstanceInfo()
+	local override = DM.db.contentWindows[ContentScopes[instanceType] or 'world']
+
+	return override > 0 and override or DM.db.windowCount
+end
+
 -- Columns split the holder along one axis, custom placed windows sit outside of it
 function DM:Layout()
 	local db = DM.db
 	local holder = DM.holder
 
 	local vertical = db.orientation == 'VERTICAL'
-	local count = db.windowCount
+	local count = DM:GetWindowCount()
 	local inner, outer = db.innerSpacing, db.outerSpacing
 	local minSize = db.headerHeight + db.barHeight
+
+	-- Zone changes compare against this to see if the count moved
+	DM.activeCount = count
 
 	BuildRoots(count)
 
@@ -407,9 +428,15 @@ function DM:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	-- The events stay registered after the module is switched off
 	if not DM.db.enable then return end
 
-	DM:HandleBlizzardMeter()
-	DM:UpdateShown()
-	DM:MarkAllDirty()
+	-- New content type?
+	if DM:GetWindowCount() ~= DM.activeCount then
+		Private:DamageMeter_UpdateAll()
+	else
+		DM:HandleBlizzardMeter()
+		DM:UpdateShown()
+		DM:MarkAllDirty()
+	end
+
 	DM:CheckAutoReset(initLogin, isReload)
 end
 
@@ -452,7 +479,7 @@ function Private:DamageMeter_UpdateAll()
 
 	DM:Initialize()
 
-	for index = 1, db.windowCount do
+	for index = 1, DM:GetWindowCount() do
 		DM:ApplyWindowSettings(DM:GetWindow(index))
 	end
 

@@ -4,6 +4,7 @@ local ACH = Private.Libs.ACH
 local LSM = Private.Libs.LSM
 
 local ipairs = ipairs
+local pairs = pairs
 local concat = table.concat
 local format = string.format
 
@@ -290,6 +291,7 @@ end
 local WINDOW_NAMES = {}
 local PlacementValues = { AUTO = L["Automatic"], ATTACH = L["Attached"], CUSTOM = L["Custom"] }
 local SoloPlacementValues = { AUTO = L["Automatic"], CUSTOM = L["Custom"] }
+local ContentWindowValues = { [0] = L["Disabled"], [1] = '1', [2] = '2', [3] = '3', [4] = '4' }
 
 local function DamageMeterGet(info)
 	return Private.Addon.db.profile.damageMeter[info[#info]]
@@ -338,6 +340,17 @@ local function ReleaseAttached(db, index)
 	end
 end
 
+local function DamageMeterMaxWindows()
+	local db = Private.Addon.db.profile.damageMeter
+	local count = db.windowCount
+
+	for _, override in pairs(db.contentWindows) do
+		if override > count then count = override end
+	end
+
+	return count
+end
+
 -- Damage Meter window group, one per session window
 local function BuildWindowGroup(index, order)
 	WINDOW_NAMES[index] = format(L["Window %d"], index) -- The attach menu picks them up from here
@@ -347,11 +360,11 @@ local function BuildWindowGroup(index, order)
 	local function NotCustom() return Private.Addon.db.profile.damageMeter.windows[index].placement ~= 'CUSTOM' end
 	local function NoBackdrop() return not Private.Addon.db.profile.damageMeter.windows[index].backdrop end
 
-	local group = ACH:Group(WINDOW_NAMES[index], nil, order, nil, WindowGet, WindowSet, nil, function() return Private.Addon.db.profile.damageMeter.windowCount < index end)
+	local group = ACH:Group(WINDOW_NAMES[index], nil, order, nil, WindowGet, WindowSet, nil, function() return DamageMeterMaxWindows() < index end)
 	group.inline = true
 	group.args.meterType = ACH:Select(L["Type"], nil, 1, DamageMeterTypes, nil, nil, nil, function(_, value) Private.Addon.db.profile.damageMeter.windows[index].meterType = value local DM = Private.Modules.DamageMeter local window = DM.windows[index] if window then DM:SetWindowType(window, value) end end)
-	group.args.placement = ACH:Select(L["Placement"], L["Give this window its own slot, attach it to another window or move it with its own mover."], 2, function() return Private.Addon.db.profile.damageMeter.windowCount > 1 and PlacementValues or SoloPlacementValues end, nil, nil, nil, function(_, value) local db = Private.Addon.db.profile.damageMeter db.windows[index].placement = value if value == 'ATTACH' then ReleaseAttached(db, index) else db.windows[index].attachTo = 0 end Private:DamageMeter_UpdateAll() end)
-	group.args.attachTo = ACH:Select(L["Attach To"], L["Stack this window under another one instead of giving it its own slot."], 3, function() local db = Private.Addon.db.profile.damageMeter local values = { [0] = _G.NONE } for target = 1, db.windowCount do if target ~= index and db.windows[target].placement ~= 'ATTACH' then values[target] = WINDOW_NAMES[target] end end return values end, nil, nil, nil, function(_, value) local db = Private.Addon.db.profile.damageMeter db.windows[index].attachTo = value if value ~= 0 then ReleaseAttached(db, index) end Private:DamageMeter_UpdateAll() end, nil, function() local db = Private.Addon.db.profile.damageMeter return db.windowCount < 2 or db.windows[index].placement ~= 'ATTACH' end)
+	group.args.placement = ACH:Select(L["Placement"], L["Give this window its own slot, attach it to another window or move it with its own mover."], 2, function() return DamageMeterMaxWindows() > 1 and PlacementValues or SoloPlacementValues end, nil, nil, nil, function(_, value) local db = Private.Addon.db.profile.damageMeter db.windows[index].placement = value if value == 'ATTACH' then ReleaseAttached(db, index) else db.windows[index].attachTo = 0 end Private:DamageMeter_UpdateAll() end)
+	group.args.attachTo = ACH:Select(L["Attach To"], L["Stack this window under another one instead of giving it its own slot."], 3, function() local db = Private.Addon.db.profile.damageMeter local values = { [0] = _G.NONE } for target = 1, DamageMeterMaxWindows() do if target ~= index and db.windows[target].placement ~= 'ATTACH' then values[target] = WINDOW_NAMES[target] end end return values end, nil, nil, nil, function(_, value) local db = Private.Addon.db.profile.damageMeter db.windows[index].attachTo = value if value ~= 0 then ReleaseAttached(db, index) end Private:DamageMeter_UpdateAll() end, nil, function() return DamageMeterMaxWindows() < 2 or Private.Addon.db.profile.damageMeter.windows[index].placement ~= 'ATTACH' end)
 	group.args.attachSize = ACH:Range(L["Attached Size"], L["Share of the parent window taken by the attached window."], 4, { min = 10, max = 90, step = 1 }, nil, nil, nil, nil, function() local wdb = Private.Addon.db.profile.damageMeter.windows[index] return wdb.placement ~= 'ATTACH' or wdb.attachTo == 0 end)
 	group.args.width = ACH:Range(L["Width"], nil, 5, { min = 100, max = 1200, step = 1 }, nil, nil, nil, nil, NotCustom)
 	group.args.height = ACH:Range(L["Height"], nil, 6, { min = 60, max = 800, step = 1 }, nil, nil, nil, nil, NotCustom)
@@ -383,7 +396,13 @@ local function BuildDamageMeterSection()
 	section.args.general.args.resetOptions.args.autoReset = ACH:Select(L["Auto Reset"], L["Reset all Damage Meter data when you enter a new instance."], 1, { NONE = _G.NONE, ASK = L["Ask"], AUTO = L["Automatic"] }, nil, nil, nil, nil, DamageMeterDisabled)
 	section.args.general.args.resetOptions.args.autoResetTypes = ACH:MultiSelect(L["Instances"], L["Which instance types trigger the reset. Scenarios include Delves."], 2, { party = L["Dungeon"], raid = L["Raid"], scenario = L["Scenario"] }, nil, nil, function(_, key) return Private.Addon.db.profile.damageMeter.autoResetTypes[key] end, function(_, key, value) Private.Addon.db.profile.damageMeter.autoResetTypes[key] = value Private:DamageMeter_UpdateAll() end, DamageMeterDisabled, function() return Private.Addon.db.profile.damageMeter.autoReset == 'NONE' end)
 	section.args.general.args.resetOptions.args.resetOnLogout = ACH:Toggle(L["Reset on Logout"], L["Wipe all Damage Meter data when you log out. Reloading the UI keeps the data."], 3, nil, nil, nil, nil, nil, DamageMeterDisabled)
-	section.args.general.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 3)
+	section.args.general.args.contentOptions = ACH:Group(L["Window Count"], nil, 3, nil, function(info) return Private.Addon.db.profile.damageMeter.contentWindows[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter.contentWindows[info[#info]] = value Private:DamageMeter_UpdateAll() end, DamageMeterDisabled)
+	section.args.general.args.contentOptions.inline = true
+	section.args.general.args.contentOptions.args.world = ACH:Select(L["Open World"], L["Number of session windows in this content. Disabled uses the count from the Windows tab."], 1, ContentWindowValues)
+	section.args.general.args.contentOptions.args.dungeon = ACH:Select(L["Dungeons / Delves"], L["Number of session windows in this content. Disabled uses the count from the Windows tab."], 2, ContentWindowValues)
+	section.args.general.args.contentOptions.args.raid = ACH:Select(L["Raids"], L["Number of session windows in this content. Disabled uses the count from the Windows tab."], 3, ContentWindowValues)
+	section.args.general.args.contentOptions.args.pvp = ACH:Select(L["PvP"], L["Number of session windows in this content. Disabled uses the count from the Windows tab."], 4, ContentWindowValues)
+	section.args.general.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 4)
 	section.args.general.args.defaults.inline = true
 	section.args.general.args.defaults.args.damageMeter = ACH:Execute(L["Restore Defaults"], L["Wipe all Damage Meter settings, the module itself stays enabled."], 1, function() Private:DamageMeter_ResetDefaults() end, nil, true)
 	section.args.windows = ACH:Group(L["Windows"], nil, 3, nil, nil, nil, DamageMeterDisabled)
@@ -393,7 +412,7 @@ local function BuildDamageMeterSection()
 	section.args.windows.args.generalOptions.args.orientation = ACH:Select(L["Orientation"], L["Place the session windows next to each other or stacked."], 2, { HORIZONTAL = L["Horizontal"], VERTICAL = L["Vertical"] })
 	section.args.windows.args.spacingOptions = ACH:Group(L["Spacing"], nil, 2, nil, DamageMeterGet, DamageMeterSet)
 	section.args.windows.args.spacingOptions.inline = true
-	section.args.windows.args.spacingOptions.args.innerSpacing = ACH:Range(L["Inner Spacing"], L["Space between the session windows."], 1, { min = -20, max = 20, step = 1 }, nil, nil, nil, function() local db = Private.Addon.db.profile.damageMeter return not db.enable or db.windowCount < 2 end)
+	section.args.windows.args.spacingOptions.args.innerSpacing = ACH:Range(L["Inner Spacing"], L["Space between the session windows."], 1, { min = -20, max = 20, step = 1 }, nil, nil, nil, function() return DamageMeterDisabled() or DamageMeterMaxWindows() < 2 end)
 	section.args.windows.args.spacingOptions.args.outerSpacing = ACH:Range(L["Outer Spacing"], L["Space between the frame border and the session windows."], 2, { min = -20, max = 20, step = 1 })
 
 	for index = 1, 4 do
