@@ -152,6 +152,28 @@ local Toons = Private.isRetail and {
 
 Private.itsLuckyone = Toons and Toons[Private.myGUID]
 
+-- Mailbox favorites, only my characters get them in the preset
+local mailboxFavorites = Private.isRetail and {
+	{ name = 'Lucky-LaughingSkull', class = 'EVOKER', faction = 'Horde' },
+	{ name = 'Luckytwo-LaughingSkull', class = 'EVOKER', faction = 'Horde' },
+	{ name = 'Luckyone-LaughingSkull', class = 'DRUID', faction = 'Alliance' },
+	{ name = 'Luckyrogue-LaughingSkull', class = 'ROGUE', faction = 'Horde' },
+	{ name = 'Luckymonkas-LaughingSkull', class = 'MONK', faction = 'Alliance' },
+	{ name = 'Taylorswift-LaughingSkull', class = 'DEMONHUNTER', faction = 'Alliance' },
+	{ name = 'Luckyhunter-LaughingSkull', class = 'HUNTER', faction = 'Horde' },
+	{ name = 'Luckypriest-LaughingSkull', class = 'PRIEST', faction = 'Horde' },
+	{ name = 'Notlucky-LaughingSkull', class = 'WARRIOR', faction = 'Horde' },
+	{ name = 'Luckywl-LaughingSkull', class = 'WARLOCK', faction = 'Horde' },
+	{ name = 'Luckymage-LaughingSkull', class = 'MAGE', faction = 'Horde' },
+	{ name = 'Luckydk-LaughingSkull', class = 'DEATHKNIGHT', faction = 'Horde' },
+	{ name = 'Luckypala-LaughingSkull', class = 'PALADIN', faction = 'Horde' },
+	{ name = 'Unluckyone-LaughingSkull', class = 'SHAMAN', faction = 'Horde' },
+} or nil
+
+if Private.itsLuckyone and mailboxFavorites then
+	Private.LuckyoneProfile.misc.mailbox.favorites = mailboxFavorites
+end
+
 -- ElvDB
 local profileKeys = Private.isRetail and {
 	['Luckywl - Laughing Skull'] = 'Luckyone Main',
