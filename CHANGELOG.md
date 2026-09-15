@@ -12,6 +12,13 @@
 **Retail:**  
 - Added skin for Premade Groups Filter  
 - Added skin for RCLootCouncil  
+- Updated arena and boss frames (Pixel offset fix on buffs/debuffs)  
+
+**Classic:**  
+- An additional vertical actionbar(4) is enabled by default next to the left chat panel  
+
+**Damage Meter:**  
+- You can now have a different amount of windows based on content (World, Dungeon/Delve, Raid, PvP)  
 
 ## Version 4.23 [12-09-2026]
 
