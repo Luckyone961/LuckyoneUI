@@ -16,7 +16,6 @@ ignore:
   - CHANGELOG.md
   - CURRENT.md
   - README.md
-  - LICENSE.txt
 
 manual-changelog:
   filename: CURRENT.md
