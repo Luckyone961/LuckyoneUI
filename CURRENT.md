@@ -3,6 +3,7 @@
 **All WoW Versions:**  
 - Actionbars now match Blizzard bars, this changes the default enabled LuckyoneUI bar numbers  
 - Actionbars received a converter/migration tool available via chat /lucky bars  
+- Added profile management to the config (Select, Import, Export)  
 - Updated credits  
 - Updated deDE locales  
 - Updated friends list tweaks (Option to move favorites star icon + Bugfixes)  

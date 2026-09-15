@@ -42,6 +42,7 @@ Core\Defaults.lua
 Core\Config.lua
 Core\Personal.lua
 Core\Core.lua
+Core\Profiles.lua
 Core\Alts.lua
 Core\Installer.lua
 Core\Themes.lua
