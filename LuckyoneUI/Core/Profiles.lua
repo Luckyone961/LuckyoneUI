@@ -28,8 +28,9 @@ local CANCEL = CANCEL
 local function StripDefaults(data, defaults)
 	for key, value in pairs(data) do
 		local default = defaults[key]
-		if default == nil then
-			default = defaults['**'] -- Damage meter windows
+		if defaults['**'] then -- Damage meter windows
+			default = CopyTable(defaults['**'])
+			MergeTable(default, defaults[key] or {})
 		end
 
 		if type(value) == 'table' and type(default) == 'table' then
@@ -105,6 +106,29 @@ function Private:LoadProfile(name, data, movers)
 	end
 
 	StaticPopup_Show('LUCKYONE_RL')
+end
+
+-- Luckyone preset
+function Private:SetupLuckyoneProfile()
+	local db = Private.Addon.db
+	if not db.profiles.Luckyone then
+		db.profiles.Luckyone = CopyTable(Private.LuckyoneProfile)
+	end
+
+	if Private.itsLuckyone then
+		db:SetProfile('Luckyone')
+	end
+end
+
+-- Restore defaults button, the preset returns to its default values
+function Private:ResetProfile()
+	local db = Private.Addon.db
+	if db:GetCurrentProfile() == 'Luckyone' then
+		Private:LoadProfile('Luckyone', CopyTable(Private.LuckyoneProfile))
+	else
+		db:ResetProfile()
+		StaticPopup_Show('LUCKYONE_RL')
+	end
 end
 
 function Private:ImportProfile(text)

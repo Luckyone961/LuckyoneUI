@@ -109,6 +109,7 @@ Private.Modules = {
 function Private.Addon:OnInitialize()
 	-- SavedVariables
 	Private.Addon.db = Private.Libs.ADB:New('LuckyoneDB', Private.Defaults, true)
+	Private:SetupLuckyoneProfile()
 
 	-- Register config, built on first open like ElvUI does it through the plugin callback
 	if not Private.ElvUI then

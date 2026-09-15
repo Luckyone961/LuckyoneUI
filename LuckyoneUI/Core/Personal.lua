@@ -4,6 +4,85 @@ local pairs = pairs
 
 local _G = _G
 
+-- LuckyoneDB profile preset
+Private.LuckyoneProfile = {
+	damageMeter = {
+		enable = true,
+		pinLocalPlayer = true,
+		resetOnLogout = true,
+	},
+	disabledFrames = {
+		AlertFrame = true,
+		ApplicationCover = true,
+		BossBanner = true,
+		HousingDecorAlerts = true,
+		LossOfControl = true,
+		TalkingHead = true,
+	},
+	map = {
+		minimap = {
+			buttons = {
+				enable = true,
+				blizzard = {
+					expansionLandingPage = true,
+				},
+			},
+		},
+	},
+	misc = {
+		combatText = {
+			enable = true,
+		},
+		dataTextsTweaks = true,
+		friendsList = {
+			enable = true,
+		},
+		mailbox = {
+			enable = true,
+		},
+		mythicVisibility = true,
+		objectiveTracker = {
+			enable = true,
+		},
+		removeNameplateRealm = true,
+	},
+	movableFrames = {
+		enable = true,
+	},
+	nameplates = {
+		focusTextureEnable = true,
+		targetTextureEnable = true,
+	},
+	qualityOfLife = {
+		autoAcceptRole = true,
+		autoDismount = true,
+		easyDelete = true,
+		expandMerchant = true,
+		fasterLoot = true,
+		preventLootAutoShow = true,
+		privacyOverlay = true,
+		quickSignup = true,
+	},
+	skins = {
+		Auctionator = true,
+		BigWigs = true,
+		BugSack = true,
+		LFGBulletinBoard = true,
+		NovaSpellRankChecker = true,
+		NovaWorldBuffs = true,
+		PremadeGroupsFilter = true,
+		RCLootCouncil = true,
+		SimpleAddonManager = true,
+		Simulationcraft = true,
+		Tabardy = true,
+		WhatsTraining = true,
+		Blizzard = {
+			CooldownViewer = true,
+			DeveloperConsole = true,
+		},
+	},
+}
+
 -- Luckyone characters by GUID
 local Toons = Private.isRetail and {
 	-- (1598: LaughingSkull)
