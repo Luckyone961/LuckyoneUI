@@ -41,8 +41,8 @@ end
 local function Skin_Simulationcraft()
 	if not Private.Addon.db.profile.skins.Simulationcraft then return end
 
-	-- The addon object is not a global, only AceAddon knows it
-	local Simulationcraft = LibStub('AceAddon-3.0'):GetAddon('Simulationcraft', true)
+	local AceAddon = LibStub('AceAddon-3.0', true)
+	local Simulationcraft = AceAddon and AceAddon:GetAddon('Simulationcraft', true)
 	if Simulationcraft then
 		hooksecurefunc(Simulationcraft, 'GetMainFrame', SkinSimcFrame)
 	end

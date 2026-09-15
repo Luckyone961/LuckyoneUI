@@ -1,9 +1,13 @@
+local geterrorhandler = geterrorhandler
 local gsub = string.gsub
 local select = select
 local setmetatable = setmetatable
 local strmatch = string.match
 local tonumber = tonumber
+local wipe = table.wipe
+local xpcall = xpcall
 
+local CreateFrame = CreateFrame
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local GetBuildInfo = GetBuildInfo
 local GetRealmName = GetRealmName
@@ -21,9 +25,7 @@ local WOW_PROJECT_MISTS_CLASSIC = WOW_PROJECT_MISTS_CLASSIC
 local WOW_PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
 
 local Name, Private = ...
-
--- Create a new AceAddon instance
-Private.Addon = LibStub('AceAddon-3.0'):NewAddon(Name)
+Private.Addon = {}
 
 Private.Libs = {
 	-- Ace
@@ -88,6 +90,7 @@ Private.myGUID = UnitGUID('player')
 Private.myName = UnitName('player')
 Private.myRealm = GetRealmName()
 Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
+
 -- Same as GetNormalizedRealmName, which is still nil this early
 Private.myNormalizedRealm = gsub(Private.myRealm, '[%s%-%.]', '')
 
@@ -95,25 +98,58 @@ Private.myNormalizedRealm = gsub(Private.myRealm, '[%s%-%.]', '')
 Private.ElvUI = Private.IsAddOnLoaded('ElvUI')
 Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
 
--- Modules
+-- Modules: Plain tables with their own event frame
+-- Events dispatch to module[method](module, event, ...) (AceEvent style)
+local modules = {}
+local function NewModule()
+	local module, events = {}, {}
+	local frame = CreateFrame('Frame')
+	frame:SetScript('OnEvent', function(_, event, ...) module[events[event]](module, event, ...) end)
+
+	function module:RegisterEvent(event, method) events[event] = method or event frame:RegisterEvent(event) end
+	function module:UnregisterEvent(event) events[event] = nil frame:UnregisterEvent(event) end
+	function module:UnregisterAllEvents() wipe(events) frame:UnregisterAllEvents() end
+
+	modules[#modules + 1] = module
+	return module
+end
+
 Private.Modules = {
-	Core = Private.Addon:NewModule('Core', 'AceEvent-3.0'),
-	Blizzard = Private.Addon:NewModule('Blizzard', 'AceEvent-3.0'),
-	DamageMeter = (Private.ElvUI and Private.isRetail) and Private.Addon:NewModule('DamageMeter', 'AceEvent-3.0') or nil,
-	Map = Private.ElvUI and Private.Addon:NewModule('Map', 'AceEvent-3.0') or nil,
-	Misc = Private.ElvUI and Private.Addon:NewModule('Misc', 'AceEvent-3.0') or nil,
-	NamePlates = Private.ElvUI and Private.Addon:NewModule('NamePlates', 'AceEvent-3.0') or nil,
+	Core = NewModule(),
+	Blizzard = NewModule(),
+	DamageMeter = (Private.ElvUI and Private.isRetail) and NewModule() or nil,
+	Map = Private.ElvUI and NewModule() or nil,
+	Misc = Private.ElvUI and NewModule() or nil,
+	NamePlates = Private.ElvUI and NewModule() or nil,
 }
 
--- Called directly after the addon is fully loaded
-function Private.Addon:OnInitialize()
-	-- SavedVariables
-	Private.Addon.db = Private.Libs.ADB:New('LuckyoneDB', Private.Defaults, true)
-	Private:SetupLuckyoneProfile()
+-- SavedVariables are ready at ADDON_LOADED
+-- Modules enable at PLAYER_LOGIN in creation order
+local loader = CreateFrame('Frame')
+loader:RegisterEvent('ADDON_LOADED')
+loader:RegisterEvent('PLAYER_LOGIN')
+loader:SetScript('OnEvent', function(self, event, addon)
+	if event == 'ADDON_LOADED' then
+		if addon ~= Name then return end
+		self:UnregisterEvent(event)
 
-	-- Register config, built on first open like ElvUI does it through the plugin callback
-	if not Private.ElvUI then
-		Private.Libs.ACR:RegisterOptionsTable('LuckyoneUI', function() Private:BuildConfig() return Private.Config end)
-		Private.SettingsCategoryID = select(2, Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI'))
+		Private.Addon.db = Private.Libs.ADB:New('LuckyoneDB', Private.Defaults, true)
+		Private:SetupLuckyoneProfile()
+
+		-- Register config, built on first open like ElvUI does it through the plugin callback
+		if not Private.ElvUI then
+			Private.Libs.ACR:RegisterOptionsTable('LuckyoneUI', function() Private:BuildConfig() return Private.Config end)
+			Private.SettingsCategoryID = select(2, Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI'))
+		end
+	else
+		self:UnregisterEvent(event)
+
+		-- One failing module doesn't stop the others
+		for i = 1, #modules do
+			local module = modules[i]
+			if module.OnEnable then
+				xpcall(module.OnEnable, geterrorhandler(), module)
+			end
+		end
 	end
-end
+end)
