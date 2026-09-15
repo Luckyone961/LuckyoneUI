@@ -1,7 +1,6 @@
 local _, Private = ...
 local L = Private.L
 
-local next = next
 local pairs = pairs
 local pcall = pcall
 local strmatch = string.match
@@ -24,26 +23,6 @@ local StaticPopup_Show = _G.StaticPopup_Show
 local ACCEPT = ACCEPT
 local CANCEL = CANCEL
 
--- Profile export, we skip values which match defaults
-local function StripDefaults(data, defaults)
-	for key, value in pairs(data) do
-		local default = defaults[key]
-		if defaults['**'] then -- Damage meter windows
-			default = CopyTable(defaults['**'])
-			MergeTable(default, defaults[key] or {})
-		end
-
-		if type(value) == 'table' and type(default) == 'table' then
-			StripDefaults(value, default)
-			if not next(value) then
-				data[key] = nil
-			end
-		elseif value == default then
-			data[key] = nil
-		end
-	end
-end
-
 -- Custom placed damage meter windows are positioned by ElvUI movers
 -- Temporary snapshot
 local function ExportMovers()
@@ -58,9 +37,10 @@ local function ExportMovers()
 	return movers
 end
 
+-- Profile export, we skip values which match defaults
 function Private:ExportProfile()
 	local data = CopyTable(Private.Addon.db.profile)
-	StripDefaults(data, Private.Defaults.profile)
+	Private:StripDefaults(data, Private.Defaults.profile)
 
 	local compressed = CompressString(SerializeCBOR({ name = Private.Addon.db:GetCurrentProfile(), profile = data, movers = ExportMovers() }))
 	return compressed and '!L1UI!' .. EncodeBase64(compressed) or ''
@@ -90,7 +70,7 @@ end
 function Private:LoadProfile(name, data, movers)
 	local db = Private.Addon.db
 	if name == db:GetCurrentProfile() then
-		-- SetProfile ignores the active profile
+		-- Merged in place so module references stay on the live table
 		db:ResetProfile()
 		MergeProfile(db.profile, data)
 	else
@@ -149,7 +129,7 @@ StaticPopupDialogs['LUCKYONE_IMPORT'] = {
 	button1 = ACCEPT,
 	button2 = CANCEL,
 	hasEditBox = 1,
-	maxLetters = 50, -- AceDB limit
+	maxLetters = 50,
 	OnShow = function(self, data)
 		self.EditBox:SetText(data.name)
 		self.EditBox:HighlightText()

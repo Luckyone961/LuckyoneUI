@@ -512,20 +512,7 @@ end
 
 -- Restore profile defaults config button
 function Private:DamageMeter_ResetDefaults()
-	local db = Private.Addon.db.profile.damageMeter
-	local defaults = Private.Defaults.profile.damageMeter
-	local windows = db.windows
-
-	Private:ResetDefaults(db, defaults)
-
-	-- New windows come out of the AceDB ['**'] wildcard
-	db.windows = windows
-
-	for index, wdb in pairs(windows) do
-		wipe(wdb)
-		E:CopyTable(wdb, defaults.windows['**'])
-		E:CopyTable(wdb, defaults.windows[index])
-	end
+	Private:ResetDefaults(Private.Addon.db.profile.damageMeter, Private.Defaults.profile.damageMeter)
 
 	for _, window in pairs(DM.windows) do
 		window.meterType = nil

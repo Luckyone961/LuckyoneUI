@@ -840,7 +840,7 @@ local function BuildDevSection()
 	return section
 end
 
--- LuckyoneDB profiles, AceDB creates a profile on the first switch to an unknown name
+-- LuckyoneDB profiles, a switch to an unknown name creates it
 local function ProfileValues()
 	local values = {}
 

@@ -20,6 +20,28 @@ local function ObjectiveTrackerHeader()
 	}
 end
 
+-- Session windows, the meter type each one starts on
+local function DamageMeterWindow(meterType)
+	return {
+		meterType = meterType,
+		sessionType = 1, -- Current
+		width = 240,
+		height = 208,
+		placement = 'AUTO',
+		attachTo = 0,
+		attachSize = 50,
+		showSessionButton = true,
+		showResetButton = true,
+		showSettingsButton = false,
+		mouseoverButtons = false,
+		backdrop = false,
+		backdropColorType = 'ELVUI',
+		backdropColor = { r = 0, g = 0, b = 0, a = 0.8 },
+		backdropWidth = 0,
+		backdropHeight = 0,
+	}
+end
+
 -- LuckyoneDB defaults
 Private.Defaults = {
 	global = {
@@ -97,29 +119,10 @@ Private.Defaults = {
 				[10] = 6, -- Enemy Damage Taken
 			},
 			windows = {
-				['**'] = { -- AceDB hands out every window from this table
-					meterType = 0, -- Damage Done
-					sessionType = 1, -- Current
-					width = 240,
-					height = 208,
-					placement = 'AUTO',
-					attachTo = 0,
-					attachSize = 50,
-					showSessionButton = true,
-					showResetButton = true,
-					showSettingsButton = false,
-					mouseoverButtons = false,
-					backdrop = false,
-					backdropColorType = 'ELVUI',
-					backdropColor = { r = 0, g = 0, b = 0, a = 0.8 },
-					backdropWidth = 0,
-					backdropHeight = 0,
-				},
-				-- Meter type each window starts on
-				[1] = { meterType = 0 }, -- Damage Done
-				[2] = { meterType = 2 }, -- Healing Done
-				[3] = { meterType = 9 }, -- Deaths
-				[4] = { meterType = 10 }, -- Enemy Damage Taken
+				DamageMeterWindow(0), -- Damage Done
+				DamageMeterWindow(2), -- Healing Done
+				DamageMeterWindow(9), -- Deaths
+				DamageMeterWindow(10), -- Enemy Damage Taken
 			},
 		},
 		disabledFrames = {

@@ -1,21 +1,27 @@
 local geterrorhandler = geterrorhandler
 local gsub = string.gsub
+local next = next
+local pairs = pairs
 local select = select
 local setmetatable = setmetatable
 local strmatch = string.match
 local tonumber = tonumber
+local type = type
 local wipe = table.wipe
 local xpcall = xpcall
 
+local CopyTable = CopyTable
 local CreateFrame = CreateFrame
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local GetBuildInfo = GetBuildInfo
 local GetRealmName = GetRealmName
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
+local MergeTable = MergeTable
 local UnitClass = UnitClass
 local UnitGUID = UnitGUID
 local UnitName = UnitName
 
+local _G = _G
 local LibStub = LibStub
 
 local WOW_PROJECT_ID = WOW_PROJECT_ID
@@ -29,7 +35,6 @@ Private.Addon = {}
 
 Private.Libs = {
 	-- Ace
-	ADB = LibStub('AceDB-3.0'),
 	GUI = LibStub('AceGUI-3.0'),
 	ACR = LibStub('AceConfigRegistry-3.0'),
 	ACD = LibStub('AceConfigDialog-3.0'),
@@ -98,6 +103,82 @@ Private.myNormalizedRealm = gsub(Private.myRealm, '[%s%-%.]', '')
 Private.ElvUI = Private.IsAddOnLoaded('ElvUI')
 Private.RequiredElvUI = tonumber(GetAddOnMetadata(Name, 'X-Required-ElvUI'))
 
+-- SavedVariables: LuckyoneDB keeps the AceDB layout (profileKeys, profiles, global)
+-- Missing keys are filled from the defaults at load and stripped again at logout
+local sv
+local db = {}
+local function FillDefaults(data, defaults)
+	for key, value in pairs(defaults) do
+		if type(value) == 'table' then
+			if type(data[key]) ~= 'table' then
+				data[key] = {}
+			end
+
+			FillDefaults(data[key], value)
+		elseif data[key] == nil then
+			data[key] = value
+		end
+	end
+end
+
+-- Profile export uses this too
+function Private:StripDefaults(data, defaults)
+	for key, value in pairs(data) do
+		local default = defaults[key]
+		if type(value) == 'table' and type(default) == 'table' then
+			Private:StripDefaults(value, default)
+			if not next(value) then
+				data[key] = nil
+			end
+		elseif value == default then
+			data[key] = nil
+		end
+	end
+end
+
+function db:GetCurrentProfile()
+	return sv.profileKeys[Private.myNameRealm]
+end
+
+function db:GetProfiles()
+	local names = {}
+	for name in pairs(sv.profiles) do
+		names[#names + 1] = name
+	end
+
+	return names
+end
+
+-- Unknown names start as a new profile with defaults
+function db:SetProfile(name)
+	sv.profileKeys[Private.myNameRealm] = name
+	sv.profiles[name] = sv.profiles[name] or {}
+	self.profile = sv.profiles[name]
+	FillDefaults(self.profile, Private.Defaults.profile)
+end
+
+function db:ResetProfile()
+	wipe(self.profile)
+	FillDefaults(self.profile, Private.Defaults.profile)
+end
+
+function db:CopyProfile(name)
+	wipe(self.profile)
+	MergeTable(self.profile, CopyTable(sv.profiles[name]))
+	FillDefaults(self.profile, Private.Defaults.profile)
+end
+
+-- Characters on the deleted profile fall back to Default
+function db:DeleteProfile(name)
+	sv.profiles[name] = nil
+
+	for char, profile in pairs(sv.profileKeys) do
+		if profile == name then
+			sv.profileKeys[char] = nil
+		end
+	end
+end
+
 -- Modules: Plain tables with their own event frame
 -- Events dispatch to module[method](module, event, ...) (AceEvent style)
 local modules = {}
@@ -128,12 +209,24 @@ Private.Modules = {
 local loader = CreateFrame('Frame')
 loader:RegisterEvent('ADDON_LOADED')
 loader:RegisterEvent('PLAYER_LOGIN')
+loader:RegisterEvent('PLAYER_LOGOUT')
 loader:SetScript('OnEvent', function(self, event, addon)
 	if event == 'ADDON_LOADED' then
 		if addon ~= Name then return end
 		self:UnregisterEvent(event)
 
-		Private.Addon.db = Private.Libs.ADB:New('LuckyoneDB', Private.Defaults, true)
+		sv = _G.LuckyoneDB or {}
+		_G.LuckyoneDB = sv
+		sv.profileKeys = sv.profileKeys or {}
+		sv.profiles = sv.profiles or {}
+		sv.global = sv.global or {}
+		FillDefaults(sv.global, Private.Defaults.global)
+
+		db.global = sv.global
+		db.profiles = sv.profiles
+		db:SetProfile(sv.profileKeys[Private.myNameRealm] or 'Default')
+
+		Private.Addon.db = db
 		Private:SetupLuckyoneProfile()
 
 		-- Register config, built on first open like ElvUI does it through the plugin callback
@@ -141,7 +234,7 @@ loader:SetScript('OnEvent', function(self, event, addon)
 			Private.Libs.ACR:RegisterOptionsTable('LuckyoneUI', function() Private:BuildConfig() return Private.Config end)
 			Private.SettingsCategoryID = select(2, Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI'))
 		end
-	else
+	elseif event == 'PLAYER_LOGIN' then
 		self:UnregisterEvent(event)
 
 		-- One failing module doesn't stop the others
@@ -150,6 +243,12 @@ loader:SetScript('OnEvent', function(self, event, addon)
 			if module.OnEnable then
 				xpcall(module.OnEnable, geterrorhandler(), module)
 			end
+		end
+	else
+		Private:StripDefaults(sv.global, Private.Defaults.global)
+
+		for _, profile in pairs(sv.profiles) do
+			Private:StripDefaults(profile, Private.Defaults.profile)
 		end
 	end
 end)
