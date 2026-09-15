@@ -18,6 +18,7 @@ local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 local SetCVar = C_CVar.SetCVar
 local GetInstanceInfo = GetInstanceInfo
+local HasActiveDelve = C_DelvesUI.HasActiveDelve
 local IsInGroup = IsInGroup
 local UnitAffectingCombat = UnitAffectingCombat
 local ResetAllCombatSessions = C_DamageMeter.ResetAllCombatSessions
@@ -231,11 +232,21 @@ local ContentScopes = {
 }
 
 -- Override, zero leaves it alone
+-- Delves need special treatment, they don't fire a real loading screen
 function DM:GetWindowCount()
 	local _, instanceType = GetInstanceInfo()
-	local override = DM.db.contentWindows[ContentScopes[instanceType] or 'world']
+	local scope = HasActiveDelve() and 'dungeon' or ContentScopes[instanceType] or 'world'
+	local override = DM.db.contentWindows[scope]
 
 	return override > 0 and override or DM.db.windowCount
+end
+
+function DM:UpdateWindowCount()
+	if not DM.db.enable then return end
+
+	if DM:GetWindowCount() ~= DM.activeCount then
+		Private:DamageMeter_UpdateAll()
+	end
 end
 
 -- Columns split the holder along one axis, custom placed windows sit outside of it
@@ -244,12 +255,9 @@ function DM:Layout()
 	local holder = DM.holder
 
 	local vertical = db.orientation == 'VERTICAL'
-	local count = DM:GetWindowCount()
+	local count = DM.activeCount
 	local inner, outer = db.innerSpacing, db.outerSpacing
 	local minSize = db.headerHeight + db.barHeight
-
-	-- Zone changes compare against this to see if the count moved
-	DM.activeCount = count
 
 	BuildRoots(count)
 
@@ -367,6 +375,9 @@ function DM:Initialize()
 	DM:RegisterEvent('PLAYER_ENTERING_WORLD')
 	DM:RegisterEvent('PLAYER_LOGOUT')
 
+	-- Delves skip the loading screen
+	DM:RegisterEvent('ACTIVE_DELVE_DATA_UPDATE')
+
 	-- Combat and group changes only touch the visibility rule
 	DM:RegisterEvent('PLAYER_REGEN_DISABLED', 'UpdateShown')
 	DM:RegisterEvent('GROUP_ROSTER_UPDATE', 'UpdateShown')
@@ -398,12 +409,13 @@ local InstanceScopes = {
 }
 
 -- Offer a data reset when the instance actually changes
+-- A Delve keeps the outdoor instance ID, leaving it clears the last one so the next Delve counts again
 function DM:CheckAutoReset(initLogin, isReload)
 	-- The events stay registered after the module is switched off
 	if not DM.db.enable then return end
 
 	local _, instanceType, _, _, _, _, _, instanceID = GetInstanceInfo()
-	local scope = InstanceScopes[instanceType] and instanceType or nil
+	local scope = HasActiveDelve() and 'scenario' or InstanceScopes[instanceType] and instanceType or nil
 	local last = DM.lastInstanceID
 
 	-- Track where we are even while the option is off
@@ -438,6 +450,12 @@ function DM:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	end
 
 	DM:CheckAutoReset(initLogin, isReload)
+end
+
+-- Fires when a Delve starts or shuts down, without a loading screen
+function DM:ACTIVE_DELVE_DATA_UPDATE()
+	DM:UpdateWindowCount()
+	DM:CheckAutoReset()
 end
 
 function DM:PLAYER_LOGOUT()
@@ -479,7 +497,11 @@ function Private:DamageMeter_UpdateAll()
 
 	DM:Initialize()
 
-	for index = 1, DM:GetWindowCount() do
+	-- Content changes compare against this
+	local count = DM:GetWindowCount()
+	DM.activeCount = count
+
+	for index = 1, count do
 		DM:ApplyWindowSettings(DM:GetWindow(index))
 	end
 
