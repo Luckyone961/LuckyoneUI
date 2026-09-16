@@ -1,6 +1,5 @@
 local _, Private = ...
 local L = Private.L
-local AceGUI = Private.Libs.GUI
 local LSM = Private.Libs.LSM
 
 local concat = table.concat
@@ -236,37 +235,47 @@ local function LayoutOptions(count)
 	end
 end
 
--- Checkboxes, AceGUI widgets so they match the config (ElvUI skins them as well)
+-- Checkboxes, the label belongs to the click area and ElvUI skins the box
 -- Only the db is written, the reload at the end of the installer loads everything
-local function CheckBox_OnValueChanged(widget, _, value)
-	local toggle = widget:GetUserData('toggle')
+local function CheckBox_OnClick(self)
+	local toggle = self.toggle
+	local value = self:GetChecked() and true or false
 
-	ToggleDB(toggle)[toggle.key] = value and true or false
+	ToggleDB(toggle)[toggle.key] = value
 
 	if toggle.mirror then
-		ToggleDB(toggle.mirror)[toggle.mirror.key] = value and true or false
+		ToggleDB(toggle.mirror)[toggle.mirror.key] = value
 	end
 
 	installerFrame.Sidebar.Buttons[currentPage].icon:Show()
 end
 
-local function CheckBox_OnEnter(widget)
-	local toggle = widget:GetUserData('toggle')
+local function CheckBox_OnEnter(self)
+	local toggle = self.toggle
 	if toggle.desc then
 		ShowTooltip(toggle.label, toggle.desc)
 	end
 end
 
 local function CreateCheckBox(parent)
-	local widget = AceGUI:Create('CheckBox')
-	widget.frame:SetParent(parent)
-	widget:SetWidth(325)
-	widget:SetCallback('OnValueChanged', CheckBox_OnValueChanged)
-	widget:SetCallback('OnEnter', CheckBox_OnEnter)
-	widget:SetCallback('OnLeave', GameTooltip_Hide)
-	widget.text:SetFont(LSM:Fetch('font', Private.Font), 12, Private.Outline)
+	local check = CreateFrame('CheckButton', nil, parent, 'UICheckButtonArtTemplate')
+	check:SetSize(22, 22)
+	check:SetHitRectInsets(0, -304, 0, 0)
+	check:SetScript('OnClick', CheckBox_OnClick)
+	check:SetScript('OnEnter', CheckBox_OnEnter)
+	check:SetScript('OnLeave', GameTooltip_Hide)
 
-	return widget
+	check.text = CreateText(check, 12)
+	check.text:SetPoint('LEFT', check, 'RIGHT', 4, 0)
+	check.text:SetWidth(300)
+	check.text:SetJustifyH('LEFT')
+	check.text:SetWordWrap(false)
+
+	if E then
+		E:GetModule('Skins'):HandleCheckBox(check)
+	end
+
+	return check
 end
 
 -- Two columns
@@ -310,12 +319,12 @@ local function LayoutToggles(page)
 					container.Checks[checks] = check
 				end
 
-				check:SetUserData('toggle', toggle)
-				check:SetLabel(toggle.label)
-				check:SetValue(ToggleDB(toggle)[toggle.key])
+				check.toggle = toggle
+				check.text:SetText(toggle.label)
+				check:SetChecked(ToggleDB(toggle)[toggle.key])
 				check:ClearAllPoints()
 				check:SetPoint('TOPLEFT', column * 350, -(row * 24))
-				check.frame:Show()
+				check:Show()
 				row = row + 1
 			end
 		end
@@ -326,7 +335,7 @@ local function LayoutToggles(page)
 	end
 
 	for index = checks + 1, #container.Checks do
-		container.Checks[index].frame:Hide()
+		container.Checks[index]:Hide()
 	end
 end
 

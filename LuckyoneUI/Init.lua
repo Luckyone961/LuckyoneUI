@@ -34,10 +34,6 @@ local Name, Private = ...
 Private.Addon = {}
 
 Private.Libs = {
-	-- Ace
-	GUI = LibStub('AceGUI-3.0'),
-	ACR = LibStub('AceConfigRegistry-3.0'),
-	ACD = LibStub('AceConfigDialog-3.0'),
 	-- Extras
 	LSM = LibStub('LibSharedMedia-3.0'),
 	LDB = LibStub('LibDataBroker-1.1'),
@@ -229,11 +225,6 @@ loader:SetScript('OnEvent', function(self, event, addon)
 		Private.Addon.db = db
 		Private:SetupLuckyoneProfile()
 
-		-- Register config, built on first open like ElvUI does it through the plugin callback
-		if not Private.ElvUI then
-			Private.Libs.ACR:RegisterOptionsTable('LuckyoneUI', function() Private:BuildConfig() return Private.Config end)
-			Private.SettingsCategoryID = select(2, Private.Libs.ACD:AddToBlizOptions('LuckyoneUI', 'LuckyoneUI'))
-		end
 	elseif event == 'PLAYER_LOGIN' then
 		self:UnregisterEvent(event)
 
@@ -243,6 +234,12 @@ loader:SetScript('OnEvent', function(self, event, addon)
 			if module.OnEnable then
 				xpcall(module.OnEnable, geterrorhandler(), module)
 			end
+		end
+
+		-- Standalone config inside the Blizzard settings panel
+		if not Private.ElvUI then
+			Private:BuildConfig()
+			Private:RegisterSettings()
 		end
 	else
 		Private:StripDefaults(sv.global, Private.Defaults.global)

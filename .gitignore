@@ -25,7 +25,5 @@ $RECYCLE.BIN/
 .idea
 
 # Libraries
-LuckyoneUI/Libs/Ace3/AceConfig-3.0
-LuckyoneUI/Libs/Ace3/AceGUI-3.0
 LuckyoneUI/Libs/LibDBIcon-1.0
 LuckyoneUI/Libs/LibSharedMedia-3.0
