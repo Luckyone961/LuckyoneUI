@@ -771,7 +771,7 @@ local function BuildSkinsSection()
 	section.args.addons.args.RCLootCouncil = ACH:Toggle('RCLootCouncil', L["Skin the Addon in ElvUI style"], 8, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('RCLootCouncil')))
 	section.args.addons.args.SimpleAddonManager = ACH:Toggle('Simple Addon Manager', L["Skin the Addon in ElvUI style"], 9, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('SimpleAddonManager'))
 	section.args.addons.args.Simulationcraft = ACH:Toggle('Simulationcraft', L["Skin the Addon in ElvUI style"], 10, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('Simulationcraft')))
-	section.args.addons.args.Tabardy = ACH:Toggle('Tabardy', L["Skin the Addon in ElvUI style"], 11, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('Tabardy'))
+	section.args.addons.args.Tabardy = ACH:Toggle('Tabardy', L["Skin the Addon in ElvUI style"], 11, nil, nil, nil, nil, nil, nil, Private.isForever or not Private.IsAddOnLoaded('Tabardy'))
 	section.args.addons.args.WhatsTraining = ACH:Toggle('WhatsTraining', L["Skin the WhatsTraining page in the Spellbook in ElvUI style"], 12, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC) and Private.IsAddOnLoaded('WhatsTraining')))
 	section.args.blizzard = ACH:Group('Blizzard', nil, 2, nil, function(info) return Private.Addon.db.profile.skins.Blizzard[info[#info]] end, function(info, value) Private.Addon.db.profile.skins.Blizzard[info[#info]] = value StaticPopup_Show('LUCKYONE_RL') end)
 	section.args.blizzard.inline = true
