@@ -56,7 +56,7 @@ end
 
 -- Color table or r, g, b values to a hex escape code
 local Hex
-if Private.isRetail then
+if Private.isRetail or Private.isForever then
 	function Hex(r, g, b)
 		if type(r) == 'table' then
 			return '|c' .. GenerateTextColorCode(r)

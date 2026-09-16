@@ -75,9 +75,9 @@ local function DisabledFrames()
 		DisableFrame('ZoneTextFrame')
 	end
 
-	if db.LossOfControl and (Private.isRetail or Private.isMists) then
+	if db.LossOfControl and (Private.isRetail or Private.isForever or Private.isMists) then
 		-- ElvUI only creates this mover on Retail and DisableMover errors on unknown movers
-		DisableFrame('LossOfControlFrame', Private.isRetail and 'LossControlMover' or nil)
+		DisableFrame('LossOfControlFrame', (Private.isRetail or Private.isForever) and 'LossControlMover' or nil)
 	end
 
 	if db.HousingDecorAlerts and Private.isRetail then
@@ -89,7 +89,7 @@ local function DisabledFrames()
 		end
 	end
 
-	if db.ApplicationCover and (Private.isRetail or Private.isMists) then
+	if db.ApplicationCover and (Private.isRetail or Private.isForever or Private.isMists) then
 		local viewer = _G.LFGListFrame and _G.LFGListFrame.ApplicationViewer
 		HideFrame(viewer and viewer.UnempoweredCover)
 	end
@@ -143,7 +143,7 @@ local function AutoSignUp_OnShow(self)
 end
 
 local function AutoAcceptRole()
-	if not ((Private.isRetail or Private.isMists) and Private.Addon.db.profile.qualityOfLife.autoAcceptRole) then return end
+	if not ((Private.isRetail or Private.isForever or Private.isMists) and Private.Addon.db.profile.qualityOfLife.autoAcceptRole) then return end
 
 	local AcceptButton = _G.LFDRoleCheckPopupAcceptButton
 	if AcceptButton then
@@ -179,7 +179,7 @@ local function QuickSignup_Update(entry)
 end
 
 local function QuickSignup()
-	if not ((Private.isRetail or Private.isMists) and Private.Addon.db.profile.qualityOfLife.quickSignup) then return end
+	if not ((Private.isRetail or Private.isForever or Private.isMists) and Private.Addon.db.profile.qualityOfLife.quickSignup) then return end
 
 	-- Update fires per entry on every list refresh, only set the handler once per entry
 	hooksecurefunc('LFGListSearchEntry_Update', QuickSignup_Update)
@@ -202,7 +202,7 @@ end
 -- Removes the Realm names from friendly Nameplates in name-only mode while in a Dungeon/Raid/Battleground
 -- This sets (NamePlateFriendlyFrameOptions.updateNameUsesGetUnitName = nil) without tainting
 local function RemoveNameplateRealm()
-	if not (Private.isRetail and Private.Addon.db.profile.misc.removeNameplateRealm) then return end
+	if not ((Private.isRetail or Private.isForever) and Private.Addon.db.profile.misc.removeNameplateRealm) then return end
 	_G.TextureLoadingGroupMixin.RemoveTexture({textures = _G.NamePlateFriendlyFrameOptions}, 'updateNameUsesGetUnitName')
 end
 
@@ -235,7 +235,7 @@ end
 
 function Blizzard:OnEnable()
 	-- Fonts have to be in place before the tracker builds its first layout at PLAYER_ENTERING_WORLD
-	if Private.isRetail then
+	if Private.isRetail or Private.isForever then
 		Private:ObjectiveTracker()
 	end
 

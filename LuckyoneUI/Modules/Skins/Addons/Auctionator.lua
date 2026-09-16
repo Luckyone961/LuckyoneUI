@@ -16,7 +16,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 -- Only Retail and Mists run the modern auction house for now
-local isModernAH = Private.isRetail or Private.isMists
+local isModernAH = Private.isRetail or Private.isForever or Private.isMists
 
 local ConfigPanels = {
 	'AuctionatorConfigAdvancedFrame',

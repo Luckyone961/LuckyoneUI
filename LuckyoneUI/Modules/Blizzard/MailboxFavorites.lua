@@ -320,7 +320,7 @@ local function CreatePanel()
 	skinned = Private.ElvUI and ElvUI[1].private.skins.blizzard.enable and ElvUI[1].private.skins.blizzard.mail
 
 	-- Non retail got an empty close button the DefaultPanel corner
-	local header = not skinned and Private.isRetail
+	local header = not skinned and (Private.isRetail or Private.isForever)
 	inset = (skinned and 6) or (header and 4) or 12
 
 	panel = CreateFrame('Frame', 'LuckyoneMailboxFavorites', MailFrame, (skinned and 'BackdropTemplate') or (header and 'DefaultPanelTemplate') or 'TranslucentFrameTemplate')

@@ -65,12 +65,14 @@ Private.UIScale1080 = 768 / 1080
 
 -- Build info
 Private.GameVersion = GetBuildInfo()
+Private.GameTOC = select(4, GetBuildInfo())
 
 -- Game flavors
 Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 Private.isTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 Private.isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
+Private.isForever = Private.GameTOC == 16001
 
 -- API checks
 Private.IsAddOnLoaded = IsAddOnLoaded
@@ -194,7 +196,7 @@ end
 Private.Modules = {
 	Core = NewModule(),
 	Blizzard = NewModule(),
-	DamageMeter = (Private.ElvUI and Private.isRetail) and NewModule() or nil,
+	DamageMeter = (Private.ElvUI and (Private.isRetail or Private.isForever)) and NewModule() or nil,
 	Map = Private.ElvUI and NewModule() or nil,
 	Misc = Private.ElvUI and NewModule() or nil,
 	NamePlates = Private.ElvUI and NewModule() or nil,
