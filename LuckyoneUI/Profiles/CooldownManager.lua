@@ -3,13 +3,6 @@ local L = Private.L
 
 local _G = _G
 
--- Toggle Cooldown Viewer helper function
-function Private:ShowCooldownViewerSettings()
-	local CVS = _G.CooldownViewerSettings
-	if not CVS then return end
-	CVS:SetShown(not CVS:IsShown())
-end
-
 -- SkironCooldownManager profile
 function Private:Setup_SCM(installer)
 	if not Private.IsAddOnLoaded('SkironCooldownManager') then Private:Print('SkironCooldownManager ' .. L["is not installed or enabled."]) return end

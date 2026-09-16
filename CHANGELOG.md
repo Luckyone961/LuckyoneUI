@@ -13,6 +13,7 @@
 **Retail:**  
 - Added skin for Premade Groups Filter  
 - Added skin for RCLootCouncil  
+- Removed shortcuts into Edit Mode and Cooldown Settings to avoid taint errors  
 - Updated arena and boss frames (Pixel offset fix on buffs/debuffs)  
 
 **Classic:**  

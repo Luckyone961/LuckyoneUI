@@ -1,19 +1,7 @@
 local _, Private = ...
 
 local _G = _G
-local InCombatLockdown = InCombatLockdown
 local StaticPopup_Show = _G.StaticPopup_Show
-
--- Edit Mode helper, enter only
--- Leaving Edit Mode from addon code runs the exit layout tainted and blocks the action bars in combat
-function Private:EnterEditMode()
-	if InCombatLockdown() then return end
-
-	local EM = _G.EditModeManagerFrame
-	if not EM:IsShown() then
-		EM:Show()
-	end
-end
 
 -- Edit Mode profiles
 function Private:Return_EditModeString()

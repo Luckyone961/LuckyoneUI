@@ -193,7 +193,6 @@ local function BuildAddonProfilesSection()
 	section.args.strings = ACH:Group(L["Profile strings"], nil, 7, nil, nil, nil, nil, not Private.isRetail)
 	section.args.strings.inline = true
 	section.args.strings.args.editModeString = ACH:Execute(L["Copy Editmode String"], nil, 1, function() Private:Return_EditModeString() end)
-	section.args.strings.args.editModeToggle = ACH:Execute(format('|cff4beb2c%s|r', L["Enter Edit Mode"]), nil, 2, function() Private:EnterEditMode() if Private.ElvUI then ElvUI[1]:ToggleOptions() end end)
 	return section
 end
 
@@ -278,14 +277,11 @@ local function BuildCDMSection()
 
 	section.args.desc = ACH:Group(L["Description"], nil, 15)
 	section.args.desc.inline = true
-	section.args.desc.args.desc = ACH:Description(L["Specializations are only displayed for the class you're currently logged into.\n\nGrab the updated import string from the Wago URL and import it manually.\n\nFor quick access to the Blizzard cooldown viewer panel use the button below."], 1, 'medium')
+	section.args.desc.args.desc = ACH:Description(L["Specializations are only displayed for the class you're currently logged into.\n\nGrab the updated import string from the Wago URL and import it manually."], 1, 'medium')
 	section.args.header2 = ACH:Header(L["Cooldown Settings"], 16)
 	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 17)
 	section.args.addons.inline = true
 	section.args.addons.args.scm = ACH:Execute('SkironCooldownManager', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_SCM() StaticPopup_Show('LUCKYONE_RL') end, nil, true)
-	section.args.utilities = ACH:Group(L["Utilities"], nil, 18)
-	section.args.utilities.inline = true
-	section.args.utilities.args.toggleViewer = ACH:Execute(format('|cff4beb2c%s|r', L["Toggle Cooldown Settings"]), L["Shortcut to the Cooldown Settings.\nYou can import the profiles in the bottom left dropdown."], 1, function() Private:ShowCooldownViewerSettings() end)
 	return section
 end
 
