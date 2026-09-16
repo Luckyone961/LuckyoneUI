@@ -23,12 +23,14 @@ local strtrim = strtrim
 local strcmputf8i = strcmputf8i
 
 local _G = _G
+local CreateAndInitFromMixin = CreateAndInitFromMixin
 local CreateColor = CreateColor
 local CreateColorFromHexString = CreateColorFromHexString
 local CreateFrame = CreateFrame
 local FormatPercentage = FormatPercentage
 local MinimalSliderWithSteppersMixin = MinimalSliderWithSteppersMixin
 local PlaySound = PlaySound
+local ProxySettingMixin = ProxySettingMixin
 local SOUNDKIT = SOUNDKIT
 local Settings = Settings
 local SettingsTooltip = SettingsTooltip
@@ -74,8 +76,8 @@ end
 
 -- We have our own reset buttons
 -- So the Defaults button top right should be no-op
-local function RegisterProxy(category, info, varType, name, get, set)
-	local setting = Settings.RegisterProxySetting(category, 'LUCKYONEUI_' .. concat(info, '_'), varType, name, get, get, set)
+local function CreateProxy(info, varType, name, get, set)
+	local setting = CreateAndInitFromMixin(ProxySettingMixin, name, 'LUCKYONEUI_' .. concat(info, '_'), varType, get, get, set)
 	proxies[#proxies + 1] = { setting = setting, get = get }
 
 	return setting
@@ -233,7 +235,7 @@ local function AddRange(category, info, name, desc, get, set, option)
 	local min, max, step = option.min or 0, option.max or 1, option.step or 1
 	local fmt = (step >= 1 and '%.0f') or (step >= 0.1 and '%.1f') or '%.2f'
 
-	local setting = RegisterProxy(category, info, Settings.VarType.Number, name, function() return tonumber(get(info)) or min end, function(value)
+	local setting = CreateProxy(info, Settings.VarType.Number, name, function() return tonumber(get(info)) or min end, function(value)
 		value = tonumber(format(fmt, value)) -- Sliders hand out float noise
 		if value == get(info) then return end
 
@@ -293,7 +295,7 @@ local function AddSelect(category, info, name, desc, get, set, option, path)
 
 	-- A declined confirm puts the dropdown back on the stored value
 	local setting
-	setting = RegisterProxy(category, info, Settings.VarType.String, name, function()
+	setting = CreateProxy(info, Settings.VarType.String, name, function()
 		local value = get(info)
 		return value == nil and '' or tostring(value)
 	end, function(id)
@@ -315,7 +317,7 @@ local function AddColor(category, info, name, desc, get, set, option, path)
 		error(format('LuckyoneUI: %s uses alpha, not supported without ElvUI', concat(path, '.')))
 	end
 
-	local setting = RegisterProxy(category, info, Settings.VarType.String, name, function()
+	local setting = CreateProxy(info, Settings.VarType.String, name, function()
 		local r, g, b = get(info)
 		return CreateColor(r or 1, g or 1, b or 1):GenerateHexColor()
 	end, function(hex)
@@ -727,7 +729,7 @@ function Private:RegisterSettings()
 	local config = Private.Config
 	local root = Settings.RegisterVerticalLayoutCategory(CategoryName(config.name))
 
-	refreshSetting = Settings.RegisterProxySetting(root, 'LUCKYONEUI_REFRESH', Settings.VarType.Boolean, 'LuckyoneUI', false, function() return false end, function() end)
+	refreshSetting = CreateAndInitFromMixin(ProxySettingMixin, 'LuckyoneUI', 'LUCKYONEUI_REFRESH', Settings.VarType.Boolean, false, function() return false end, function() end)
 
 	AddOptions(root, config.args, {}, config.get, config.set, {}, {}, false, {})
 

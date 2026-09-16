@@ -34,7 +34,7 @@ local CANCEL = CANCEL
 local CHARACTER_SPECIFIC_KEYBINDINGS = CHARACTER_SPECIFIC_KEYBINDINGS
 local GameTooltip = GameTooltip
 local HUD_EDIT_MODE_ACTION_BAR_LABEL = HUD_EDIT_MODE_ACTION_BAR_LABEL
-local Settings_SetValue = _G.Settings.SetValue
+local Settings_SelectCharacterBindings = _G.Settings.SelectCharacterBindings
 local StaticPopup_Show = _G.StaticPopup_Show
 
 local E = unpack(ElvUI)
@@ -238,7 +238,7 @@ local function Character_OnClick(check)
 	end
 
 	if check:GetChecked() then
-		Settings_SetValue('PROXY_CHARACTER_SPECIFIC_BINDINGS', true)
+		Settings_SelectCharacterBindings()
 	else
 		-- The box follows the answer through the hooks
 		check:SetChecked(true)
