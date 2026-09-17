@@ -308,7 +308,7 @@ end
 local function LoadCommands()
 	_G.SLASH_LUCKYONEUI1 = '/lucky'
 	SlashCmdList.LUCKYONEUI = Toggles
-	if Private.isRetail or Private.isForever then
+	if Private.isModern then
 		commands.untrack = function() Private:UntrackAllQuests() end
 	end
 	if Private.isRetail then -- Retail chat commands

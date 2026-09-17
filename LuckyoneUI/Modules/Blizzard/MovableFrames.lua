@@ -29,7 +29,7 @@ local Blocked = {
 -- Non-Retail registers the Worldmap as a left area panel
 -- Opening it drags it out of the screen center
 local Centered = {
-	WorldMapFrame = not (Private.isRetail or Private.isForever),
+	WorldMapFrame = not Private.isModern,
 }
 
 local Defaults = {} -- The position it had before the first drag

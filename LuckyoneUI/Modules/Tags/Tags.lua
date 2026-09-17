@@ -61,7 +61,7 @@ E:AddTagInfo('luckyone:classification', Private.Name, L["Displays the unit's cla
 -------------------------------------------------------
 
 -- Display percentage health
-if Private.isRetail or Private.isForever then
+if Private.isModern then
 	E:AddTag('luckyone:health:percent', 'UNIT_HEALTH UNIT_MAXHEALTH', function(unit)
 		return format('%d', UnitHealthPercent(unit, true, ScaleTo100))
 	end)
@@ -108,7 +108,7 @@ end
 -------------------------------------------------------
 
 -- Display percentage power with powercolor / with no color
-if Private.isRetail or Private.isForever then
+if Private.isModern then
 	E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 		return getPowerColor(unit) .. format('%d', UnitPowerPercent(unit, nil, true, ScaleTo100))
 	end)
@@ -152,7 +152,7 @@ E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percent
 -------------------------------------------------------
 
 -- Display mana (percent) if the unit is flagged healer
-if Private.isRetail or Private.isForever then
+if Private.isModern then
 	E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER GROUP_ROSTER_UPDATE PLAYER_ROLES_ASSIGNED', function(unit)
 		local role = UnitGroupRolesAssigned(unit)
 		if issecretvalue(role) or role ~= 'HEALER' then return end
@@ -184,7 +184,7 @@ E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's
 ------------------------ Names ------------------------
 -------------------------------------------------------
 
-if Private.isRetail or Private.isForever then
+if Private.isModern then
 	-- Display name with classcolor/reactioncolor (Retail only)
 	E:AddTag('luckyone:name-color', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 		return getUnitColor(unit) .. (UnitName(unit) or UNKNOWN)
@@ -214,7 +214,7 @@ end
 ------------------------ Level ------------------------
 -------------------------------------------------------
 
-if not (Private.isRetail or Private.isForever) then
+if not Private.isModern then
 	E:AddTag('luckyone:level', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 		if E:XPIsLevelMax() then return end
 
@@ -243,7 +243,7 @@ end)
 E:AddTagInfo('luckyone:target:name-nocolor', Private.Name, L["Displays the unit's target name with no color"])
 
 -- Displays the last part of the unit's target name with class color (Classic only)
-if not (Private.isRetail or Private.isForever) then
+if not Private.isModern then
 	E:AddTag('luckyone:target:last-classcolor', 'UNIT_TARGET UNIT_FACTION', function(unit)
 		return formatTargetName(unit, true, true)
 	end)
@@ -288,7 +288,7 @@ E:AddTagInfo('luckyone:pet:name-and-happiness', Private.Name, L["Displays the hu
 ------------------- Name Formatting -------------------
 -------------------------------------------------------
 
-if Private.isRetail or Private.isForever then
+if Private.isModern then
 	-- Maximum length with classcolor or no color (friendly only), full name (if enemy), secret names pass through for display
 	local function buildNameTag(length, withColor)
 		return function(unit)

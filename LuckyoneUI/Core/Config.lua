@@ -136,16 +136,16 @@ local function BuildGeneralSection()
 	section.args.disabledFrames = ACH:Group(L["Hide Blizzard Frames"], nil, 2, nil, function(info) return Private.Addon.db.profile.disabledFrames[info[#info]] end, function(info, value) Private.Addon.db.profile.disabledFrames[info[#info]] = value StaticPopup_Show('LUCKYONE_RL') end)
 	section.args.disabledFrames.inline = true
 	section.args.disabledFrames.args.AlertFrame = ACH:Toggle(L["Alert Frame"], L["Hide the Loot/Alert Frame"], 1)
-	section.args.disabledFrames.args.ApplicationCover = ACH:Toggle(L["Application Cover"], L["Removes the LFG frame overlay and animation which blocks your mouse inputs and tooltip when you are not the party leader."], 2, nil, nil, nil, nil, nil, nil, not (Private.isRetail or Private.isForever or Private.isMists))
+	section.args.disabledFrames.args.ApplicationCover = ACH:Toggle(L["Application Cover"], L["Removes the LFG frame overlay and animation which blocks your mouse inputs and tooltip when you are not the party leader."], 2, nil, nil, nil, nil, nil, nil, not (Private.isModern or Private.isMists))
 	section.args.disabledFrames.args.BossBanner = ACH:Toggle(L["Boss Banner"], L["Hide the Boss Banner"], 3, nil, nil, nil, nil, nil, nil, not Private.isRetail)
 	section.args.disabledFrames.args.HousingDecorAlerts = ACH:Toggle(L["Housing Decor Alerts"], L["Hide the Housing Alerts for \n\'New Decor Added\'"], 4, nil, nil, nil, nil, nil, nil, not Private.isRetail)
-	section.args.disabledFrames.args.LossOfControl = ACH:Toggle(L["Loss of Control Frame"], L["Hide the Loss of Control Frame"], 5, nil, nil, nil, nil, nil, nil, not (Private.isRetail or Private.isForever or Private.isMists))
+	section.args.disabledFrames.args.LossOfControl = ACH:Toggle(L["Loss of Control Frame"], L["Hide the Loss of Control Frame"], 5, nil, nil, nil, nil, nil, nil, not (Private.isModern or Private.isMists))
 	section.args.disabledFrames.args.TalkingHead = ACH:Toggle(L["Talking Head"], L["Hide the Talking Head Frame but keep it's sounds and voicelines."], 6, nil, nil, nil, nil, nil, nil, not Private.isRetail)
 	section.args.disabledFrames.args.UIErrorsFrame = ACH:Toggle(L["UI Errors Frame"], L["Hide the UI Errors Frame which usually displays messages like 'Out of range', 'Not enough mana', 'You have no target' - This will also block all quest progress update messages."], 7)
 	section.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle(L["Zone Text"], L["Hide the Zone Text"], 8)
 	section.args.qualityOfLife = ACH:Group(L["Quality of Life"], nil, 3, nil, function(info) return Private.Addon.db.profile.qualityOfLife[info[#info]] end, function(info, value) Private.Addon.db.profile.qualityOfLife[info[#info]] = value StaticPopup_Show('LUCKYONE_RL') end)
 	section.args.qualityOfLife.inline = true
-	section.args.qualityOfLife.args.autoAcceptRole = ACH:Toggle(L["Auto Accept Role"], L["Automatically accept the role check popup when signing up for groups and raids. Hold down the shift key to add a signup note."], 1, nil, nil, nil, nil, nil, nil, not (Private.isRetail or Private.isForever or Private.isMists))
+	section.args.qualityOfLife.args.autoAcceptRole = ACH:Toggle(L["Auto Accept Role"], L["Automatically accept the role check popup when signing up for groups and raids. Hold down the shift key to add a signup note."], 1, nil, nil, nil, nil, nil, nil, not (Private.isModern or Private.isMists))
 	section.args.qualityOfLife.args.autoDismount = ACH:Toggle(L["Auto Dismount"], L["Automatically dismounts you if all of the following conditions are true:\n\n- You are on a skyriding mount\n- You are on the ground\n- You press any skyriding spell except Skyward Ascent\n\nDoes not work for Druid Travel Form."], 2, nil, nil, nil, nil, nil, nil, not Private.isRetail)
 	section.args.qualityOfLife.args.easyDelete = ACH:Toggle(L["Easy Delete"], L["Automatically fill out the confirmation text to delete items."], 3)
 	section.args.qualityOfLife.args.expandMerchant = ACH:Toggle(L["Expand Merchant Frame"], L["Doubles the width of the merchant frame to show 20 items per page in four columns instead of 10 in two columns."], 4)
@@ -153,16 +153,16 @@ local function BuildGeneralSection()
 	section.args.qualityOfLife.args.fasterLoot = ACH:Toggle(L["Faster Loot"], L["Speed up auto looting by grabbing everything the moment the loot becomes available instead of waiting for the loot window."], 6)
 	section.args.qualityOfLife.args.preventLootAutoShow = ACH:Toggle(L["Prevent Loot Overview"], L["Prevents the Blizzard group loot overview frame from auto opening after a boss kill."], 7, nil, nil, nil, nil, nil, nil, not Private.isRetail)
 	section.args.qualityOfLife.args.privacyOverlay = ACH:Toggle(L["Privacy Overlay"], L["Creates an overlay to hide the chat frame in the Communities Frame until you click on it."], 8)
-	section.args.qualityOfLife.args.quickSignup = ACH:Toggle(L["Quick Signup"], L["Speed up the signup process for party and raid applications by double clicking the listing instead of clicking the signup button."], 9, nil, nil, nil, nil, nil, nil, not (Private.isRetail or Private.isForever or Private.isMists))
+	section.args.qualityOfLife.args.quickSignup = ACH:Toggle(L["Quick Signup"], L["Speed up the signup process for party and raid applications by double clicking the listing instead of clicking the signup button."], 9, nil, nil, nil, nil, nil, nil, not (Private.isModern or Private.isMists))
 	section.args.movableFrames = ACH:Group(L["Movable Frames"], nil, 4, nil, function(info) return Private.Addon.db.profile.movableFrames[info[#info]] end, function(info, value) Private.Addon.db.profile.movableFrames[info[#info]] = value StaticPopup_Show('LUCKYONE_RL') end)
 	section.args.movableFrames.inline = true
 	section.args.movableFrames.args.enable = ACH:Toggle(L["Enable"], L["Allows you to move Blizzard panels.\n\nRight-Click restores Blizzard default position.\n\nPosition is not stored and resets on reload and relog."], 1)
 	section.args.movableFrames.args.autoReset = ACH:Toggle(L["Auto Reset"], L["Panels return to the Blizzard default position when they open or close.\n\nDisable this to keep a moved panel where you left it until you reload."], 2, nil, nil, nil, nil, function(_, value) Private.Addon.db.profile.movableFrames.autoReset = value end, function() return not Private.Addon.db.profile.movableFrames.enable end)
 	section.args.movableFrames.args.modifier = ACH:Select(L["Modifier"], L["Hold this key down to drag or reset a panel."], 3, { NONE = _G.NONE, SHIFT = _G.SHIFT_KEY_TEXT, ALT = _G.ALT_KEY_TEXT, CTRL = _G.CTRL_KEY_TEXT }, nil, nil, nil, function(_, value) Private.Addon.db.profile.movableFrames.modifier = value end, function() return not Private.Addon.db.profile.movableFrames.enable end)
-	section.args.misc = ACH:Group(L["Misc"], nil, 5, nil, nil, nil, nil, not (Private.isRetail or Private.isForever))
+	section.args.misc = ACH:Group(L["Misc"], nil, 5, nil, nil, nil, nil, not Private.isModern)
 	section.args.misc.inline = true
 	section.args.misc.args.removeNameplateRealm = ACH:Toggle(L["Remove Nameplate Realms"], L["Removes the realm names from friendly nameplates in name-only mode while in a Dungeon/Raid/Battleground."], 1, nil, nil, nil, function() return Private.Addon.db.profile.misc.removeNameplateRealm end, function(_, value) Private.Addon.db.profile.misc.removeNameplateRealm = value StaticPopup_Show('LUCKYONE_RL') end)
-	section.args.performance = ACH:Group(L["Performance Tweaks"], nil, 6, nil, nil, nil, nil, not (Private.isRetail or Private.isForever))
+	section.args.performance = ACH:Group(L["Performance Tweaks"], nil, 6, nil, nil, nil, nil, not Private.isModern)
 	section.args.performance.inline = true
 	section.args.performance.args.performance = ACH:Execute(L["Untrack Hidden Quests"], L["People found out some characters have a big amount of hidden quests which will cause performance issues. This button will untrack all your quests, including the hidden ones and might give you an increase in average FPS."], 1, function() Private:UntrackAllQuests() end)
 	return section
@@ -240,7 +240,7 @@ local function BuildCVarsSection()
 	section.args.generalDesc.args.cvars = ACH:Description('- AutoPushSpellToActionBar 0\n- cameraDistanceMaxZoomFactor 2.6\n- countdownForCooldowns 1\n- fstack_preferParentKeys 0\n- lockActionBars 1\n- minimapTrackingShowAll 1\n- screenshotQuality 10\n- showNPETutorials 0\n- showTutorials 0\n- threatWarning 3\n- UberTooltips 1\n', 1, 'medium')
 	section.args.nameplateDesc = ACH:Group(L["Nameplate CVars"], nil, 4)
 	section.args.nameplateDesc.inline = true
-	section.args.nameplateDesc.args.cvars = ACH:Description('- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1.1\n- nameplateOverlapV 1.7\n- nameplateSelectedScale 1\n- nameplateMaxDistance ' .. ((Private.isRetail or Private.isForever) and 100 or 41) .. '\n- nameplateShowOnlyNameForFriendlyPlayerUnits 1\n- nameplateUseClassColorForFriendlyPlayerUnitNames 1\n' .. ((Private.isRetail or Private.isForever) and '- nameplateShowFriendlyRealmName 0' or '- nameplateNotSelectedAlpha 1\n- nameplateStackingTypes Enemy') .. '\n\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1\n- UnitNameEnemyTotemName 1', 1, 'medium')
+	section.args.nameplateDesc.args.cvars = ACH:Description('- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateOccludedAlphaMult 1\n- nameplateOverlapH 1.1\n- nameplateOverlapV 1.7\n- nameplateSelectedScale 1\n- nameplateMaxDistance ' .. (Private.isModern and 100 or 41) .. '\n- nameplateShowOnlyNameForFriendlyPlayerUnits 1\n- nameplateUseClassColorForFriendlyPlayerUnitNames 1\n' .. (Private.isModern and '- nameplateShowFriendlyRealmName 0' or '- nameplateNotSelectedAlpha 1\n- nameplateStackingTypes Enemy') .. '\n\n- UnitNameEnemyGuardianName 1\n- UnitNameEnemyMinionName 1\n- UnitNameEnemyPetName 1\n- UnitNameEnemyPlayerName 1\n- UnitNameEnemyTotemName 1', 1, 'medium')
 	return section
 end
 
@@ -379,7 +379,7 @@ end
 
 -- Build Damage Meter Section
 local function BuildDamageMeterSection()
-	if not (Private.ElvUI and (Private.isRetail or Private.isForever)) then return end -- Retail + ElvUI section
+	if not (Private.ElvUI and Private.isModern) then return end -- Retail + ElvUI section
 	local section = ACH:Group(GetIconName(L["Damage Meter"], 'DamageMeter'), nil, 35, 'tab')
 	section.args.header = ACH:Header(L["Damage Meter"], 1)
 	section.args.general = ACH:Group(L["General"], nil, 2, nil, DamageMeterGet, DamageMeterSet)
@@ -712,7 +712,7 @@ local function BuildMiscSection()
 	section.args.friendsList.args.generalOptions.args.bracketStyle = ACH:Select(L["Brackets"], L["Bracket style around the character name of Battle.net friends."], 6, { PARENTHESES = '( )', SQUARE = '[ ]', NONE = _G.NONE }, nil, nil, nil, nil, FriendsListDisabled)
 	section.args.friendsList.args.generalOptions.args.realmSeparator = ACH:Select(L["Separator"], L["Separator between the zone and the realm name."], 5, { DASH = '-', PIPE = '||' }, nil, nil, nil, nil, FriendsListDisabled, function() return not Private.Addon.db.profile.misc.friendsList.realm end)
 	section.args.friendsList.args.generalOptions.args.statusIcon = ACH:Select(L["Status Icon"], L["Style of the status icon in front of each friend."], 7, { DEFAULT = L["Default"], SQUARE = L["Square"] }, nil, nil, nil, nil, FriendsListDisabled)
-	section.args.friendsList.args.generalOptions.args.favoritePosition = ACH:Select(L["Favorite Icon"], L["Position of the favorite star of Battle.net friends."], 8, { NAME = L["Behind Name"], RIGHT = L["Right Side"] }, nil, nil, nil, nil, FriendsListDisabled, not (Private.isRetail or Private.isForever))
+	section.args.friendsList.args.generalOptions.args.favoritePosition = ACH:Select(L["Favorite Icon"], L["Position of the favorite star of Battle.net friends."], 8, { NAME = L["Behind Name"], RIGHT = L["Right Side"] }, nil, nil, nil, nil, FriendsListDisabled, not Private.isModern)
 	section.args.friendsList.args.colorOptions = ACH:Group(L["Colors"], nil, 2, nil, nil, nil, FriendsListDisabled)
 	section.args.friendsList.args.colorOptions.inline = true
 	section.args.friendsList.args.colorOptions.args.classColor = ACH:Toggle(L["Class Color"], L["Color the character names by class."], 1)
@@ -723,7 +723,7 @@ local function BuildMiscSection()
 	section.args.friendsList.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 5)
 	section.args.friendsList.args.defaults.inline = true
 	section.args.friendsList.args.defaults.args.friendsList = ACH:Execute(L["Restore Defaults"], L["Wipe all friends list settings, the option itself stays enabled."], 1, function() Private:FriendsList_ResetDefaults() end, nil, true)
-	section.args.objectiveTracker = ACH:Group(L["Objective Tracker"], nil, 5, 'tab', nil, nil, Private.IsAddOnLoaded('!KalielsTracker'), not (Private.isRetail or Private.isForever))
+	section.args.objectiveTracker = ACH:Group(L["Objective Tracker"], nil, 5, 'tab', nil, nil, Private.IsAddOnLoaded('!KalielsTracker'), not Private.isModern)
 	section.args.objectiveTracker.args.general = ACH:Group(L["General"], nil, 1, nil, function(info) return Private.Addon.db.profile.misc.objectiveTracker[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.objectiveTracker[info[#info]] = value if value then Private:ObjectiveTracker() else StaticPopup_Show('LUCKYONE_RL') end end)
 	section.args.objectiveTracker.args.general.args.kalielsTracker = ACH:Description(L["Disabled while Kaliel's Tracker is loaded."], 0, 'medium', nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('!KalielsTracker'))
 	section.args.objectiveTracker.args.general.args.generalOptions = ACH:Group(L["General"], nil, 1)
