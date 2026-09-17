@@ -66,6 +66,7 @@ Modules\NamePlates\NamePlates.lua
 Modules\Skins\Addons\Auctionator.lua
 Modules\Skins\Addons\BugSack.lua
 Modules\Skins\Addons\SimpleAddonManager.lua
+Modules\Skins\Blizzard\CooldownViewer.lua
 Modules\Skins\Blizzard\DeveloperConsole.lua
 Modules\Skins\Blizzard\Merchant.lua
 Modules\Tags\API.lua

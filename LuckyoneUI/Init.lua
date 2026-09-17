@@ -71,8 +71,8 @@ Private.GameTOC = select(4, GetBuildInfo())
 Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 Private.isTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 Private.isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
-Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 Private.isForever = Private.GameTOC == 16001
+Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and not Private.isForever
 Private.isModern = Private.isRetail or Private.isForever
 
 -- API checks

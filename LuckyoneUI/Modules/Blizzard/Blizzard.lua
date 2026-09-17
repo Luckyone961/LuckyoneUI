@@ -67,7 +67,7 @@ local function DisabledFrames()
 		DisableFrame('AlertFrame', 'AlertFrameMover')
 	end
 
-	if db.BossBanner and Private.isRetail then
+	if db.BossBanner and Private.isModern then
 		DisableFrame('BossBanner', 'BossBannerMover')
 	end
 
@@ -89,7 +89,7 @@ local function DisabledFrames()
 		end
 	end
 
-	if db.ApplicationCover and (Private.isModern or Private.isMists) then
+	if db.ApplicationCover and (Private.isRetail or Private.isMists) then
 		local viewer = _G.LFGListFrame and _G.LFGListFrame.ApplicationViewer
 		HideFrame(viewer and viewer.UnempoweredCover)
 	end
@@ -143,7 +143,7 @@ local function AutoSignUp_OnShow(self)
 end
 
 local function AutoAcceptRole()
-	if not ((Private.isModern or Private.isMists) and Private.Addon.db.profile.qualityOfLife.autoAcceptRole) then return end
+	if not ((Private.isRetail or Private.isMists) and Private.Addon.db.profile.qualityOfLife.autoAcceptRole) then return end
 
 	local AcceptButton = _G.LFDRoleCheckPopupAcceptButton
 	if AcceptButton then
@@ -179,7 +179,7 @@ local function QuickSignup_Update(entry)
 end
 
 local function QuickSignup()
-	if not ((Private.isModern or Private.isMists) and Private.Addon.db.profile.qualityOfLife.quickSignup) then return end
+	if not ((Private.isRetail or Private.isMists) and Private.Addon.db.profile.qualityOfLife.quickSignup) then return end
 
 	-- Update fires per entry on every list refresh, only set the handler once per entry
 	hooksecurefunc('LFGListSearchEntry_Update', QuickSignup_Update)

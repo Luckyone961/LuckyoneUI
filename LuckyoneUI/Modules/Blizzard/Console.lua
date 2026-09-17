@@ -50,7 +50,7 @@ function Private:NameplateCVars(noPrint)
 	SetCVar('nameplateShowOnlyNameForFriendlyPlayerUnits', 1)
 	SetCVar('nameplateUseClassColorForFriendlyPlayerUnitNames', 1)
 
-	if Private.isRetail then
+	if Private.isModern then
 		SetCVar('nameplateShowFriendlyRealmName', 0)
 	else
 		SetCVar('nameplateNotSelectedAlpha', 1)
