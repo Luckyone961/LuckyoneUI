@@ -73,6 +73,7 @@ Private.isTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 Private.isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 Private.isForever = Private.GameTOC == 16001
+Private.isModern = Private.isRetail or Private.isForever
 
 -- API checks
 Private.IsAddOnLoaded = IsAddOnLoaded
