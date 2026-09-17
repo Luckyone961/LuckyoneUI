@@ -41,6 +41,9 @@ end
 local function SkinIconBordered(button)
 	button:SetTemplate()
 
+	-- The addon draws the icon in the backdrop layer, keep the backdrop below it
+	button.Center:SetDrawLayer('BACKGROUND', -1)
+
 	local normal = button:GetNormalTexture()
 	S:HandleIcon(normal)
 	normal:SetInside()
