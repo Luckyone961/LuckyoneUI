@@ -1,4 +1,4 @@
-## Version 4.24 [Alpha - In Development - Not Yet Released]
+## Version 4.24 [18-09-2026]
 
 **All WoW Versions:**  
 - Actionbars now match Blizzard bars, this changes the default enabled LuckyoneUI bar numbers  
@@ -13,7 +13,12 @@
 **Retail:**  
 - Added skin for Premade Groups Filter  
 - Added skin for RCLootCouncil  
+- Removed shortcuts into Edit Mode and Cooldown Settings to avoid taint errors  
 - Updated arena and boss frames (Pixel offset fix on buffs/debuffs)  
+
+**Forever:**  
+- Initial support but addons will not work correctly until further Blizzard hotfixes  
+- I recommend using the alpha version of LuckyoneUI for more frequent updates  
 
 **Classic:**  
 - An additional vertical actionbar(4) is enabled by default next to the left chat panel  
