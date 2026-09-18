@@ -1,22 +1,18 @@
 ## Interface: 120100, 16001, 50504, 20506, 11509
+## Version: @project-version@
+## Author: Luckyone
 
+## OptionalDeps: ElvUI
+## SavedVariables: LuckyoneDB
+
+## Notes: Luckyone's user interface and Addon profiles
 ## Title: |cff4beb2cLuckyoneUI|r |cff00b17eMists|r [AllowLoadGameType mists]
 ## Title: |cff4beb2cLuckyoneUI|r [AllowLoadGameType standard]
 ## Title: |cff4beb2cLuckyoneUI|r |cffFF7E40Classic|r [AllowLoadGameType vanilla]
 ## Title: |cff4beb2cLuckyoneUI|r |cff67f100TBC|r [AllowLoadGameType tbc]
 ## Title: |cff4beb2cLuckyoneUI|r |cffe6cc80Forever|r [AllowLoadGameType camelot][ExcludeLoadGameType standard, classic]
 
-## Notes: Luckyone's user interface and Addon profiles
-
-## OptionalDeps: ElvUI
-
-## SavedVariables: LuckyoneDB
-
-## Author: Luckyone
-## Version: @project-version@
-
 ## X-Required-ElvUI: 15.26
-
 ## X-Curse-Project-ID: 363472
 ## X-Wago-ID: Rn6VLGdB
 
