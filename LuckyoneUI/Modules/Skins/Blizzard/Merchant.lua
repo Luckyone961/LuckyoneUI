@@ -73,7 +73,7 @@ function Private:Skin_Merchant(first, last)
 		button:StyleButton()
 		button:SetTemplate(nil, true)
 
-		if Private.isRetail then
+		if Private.isModern then
 			item:Size(155, 45)
 			item.backdrop:Point('TOPLEFT', -3, 2)
 			item.backdrop:Point('BOTTOMRIGHT', 2, -3)
@@ -140,7 +140,7 @@ function Private:Skin_Merchant(first, last)
 		end
 	end
 
-	if not Private.isRetail then
+	if not Private.isModern then
 		hooksecurefunc('MerchantFrame_UpdateMerchantInfo', Merchant_UpdateMerchantInfo)
 	end
 end

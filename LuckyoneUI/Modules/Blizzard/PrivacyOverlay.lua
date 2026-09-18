@@ -1,5 +1,5 @@
 local _, Private = ...
-local L = Private.Libs.ACL
+local L = Private.L
 
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc

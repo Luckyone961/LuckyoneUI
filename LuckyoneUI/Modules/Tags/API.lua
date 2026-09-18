@@ -1,5 +1,5 @@
 local _, Private = ...
-local L = Private.Libs.ACL
+local L = Private.L
 
 if not Private.ElvUI then
 	return
@@ -56,7 +56,7 @@ end
 
 -- Color table or r, g, b values to a hex escape code
 local Hex
-if Private.isRetail then
+if Private.isModern then
 	function Hex(r, g, b)
 		if type(r) == 'table' then
 			return '|c' .. GenerateTextColorCode(r)

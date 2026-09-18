@@ -1,14 +1,7 @@
 local _, Private = ...
-local L = Private.Libs.ACL
+local L = Private.L
 
 local _G = _G
-
--- Toggle Cooldown Viewer helper function
-function Private:ShowCooldownViewerSettings()
-	local CVS = _G.CooldownViewerSettings
-	if not CVS then return end
-	CVS:SetShown(not CVS:IsShown())
-end
 
 -- SkironCooldownManager profile
 function Private:Setup_SCM(installer)

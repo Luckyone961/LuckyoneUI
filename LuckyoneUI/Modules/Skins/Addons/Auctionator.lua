@@ -16,7 +16,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
 -- Only Retail and Mists run the modern auction house for now
-local isModernAH = Private.isRetail or Private.isMists
+local isModernAH = Private.isModern or Private.isMists
 
 local ConfigPanels = {
 	'AuctionatorConfigAdvancedFrame',
@@ -507,7 +507,7 @@ local function SkinTabs()
 	if not container or not container.Tabs then return end
 
 	-- ElvUI insets the tab backdrop by three pixels on Retail and by ten on every other client
-	local offset = E.Retail and -5 or -19
+	local offset = E.Modern and -5 or -19
 
 	local auctionHouse = _G.AuctionHouseFrame
 	local lastTab = isModernAH and auctionHouse and auctionHouse.Tabs and auctionHouse.Tabs[#auctionHouse.Tabs]

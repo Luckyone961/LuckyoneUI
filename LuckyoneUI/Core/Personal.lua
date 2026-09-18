@@ -4,6 +4,85 @@ local pairs = pairs
 
 local _G = _G
 
+-- LuckyoneDB profile preset
+Private.LuckyoneProfile = {
+	damageMeter = {
+		enable = true,
+		pinLocalPlayer = true,
+		resetOnLogout = true,
+	},
+	disabledFrames = {
+		AlertFrame = true,
+		ApplicationCover = true,
+		BossBanner = true,
+		HousingDecorAlerts = true,
+		LossOfControl = true,
+		TalkingHead = true,
+	},
+	map = {
+		minimap = {
+			buttons = {
+				enable = true,
+				blizzard = {
+					expansionLandingPage = true,
+				},
+			},
+		},
+	},
+	misc = {
+		combatText = {
+			enable = true,
+		},
+		dataTextsTweaks = true,
+		friendsList = {
+			enable = true,
+		},
+		mailbox = {
+			enable = true,
+		},
+		mythicVisibility = true,
+		objectiveTracker = {
+			enable = true,
+		},
+		removeNameplateRealm = true,
+	},
+	movableFrames = {
+		enable = true,
+	},
+	nameplates = {
+		focusTextureEnable = true,
+		targetTextureEnable = true,
+	},
+	qualityOfLife = {
+		autoAcceptRole = true,
+		autoDismount = true,
+		easyDelete = true,
+		expandMerchant = true,
+		fasterLoot = true,
+		preventLootAutoShow = true,
+		privacyOverlay = true,
+		quickSignup = true,
+	},
+	skins = {
+		Auctionator = true,
+		BigWigs = true,
+		BugSack = true,
+		LFGBulletinBoard = true,
+		NovaSpellRankChecker = true,
+		NovaWorldBuffs = true,
+		PremadeGroupsFilter = true,
+		RCLootCouncil = true,
+		SimpleAddonManager = true,
+		Simulationcraft = true,
+		Tabardy = true,
+		WhatsTraining = true,
+		Blizzard = {
+			CooldownViewer = true,
+			DeveloperConsole = true,
+		},
+	},
+}
+
 -- Luckyone characters by GUID
 local Toons = Private.isRetail and {
 	-- (1598: LaughingSkull)
@@ -72,6 +151,28 @@ local Toons = Private.isRetail and {
 }
 
 Private.itsLuckyone = Toons and Toons[Private.myGUID]
+
+-- Mailbox favorites, only my characters get them in the preset
+local mailboxFavorites = Private.isRetail and {
+	{ name = 'Lucky-LaughingSkull', class = 'EVOKER', faction = 'Horde' },
+	{ name = 'Luckytwo-LaughingSkull', class = 'EVOKER', faction = 'Horde' },
+	{ name = 'Luckyone-LaughingSkull', class = 'DRUID', faction = 'Alliance' },
+	{ name = 'Luckyrogue-LaughingSkull', class = 'ROGUE', faction = 'Horde' },
+	{ name = 'Luckymonkas-LaughingSkull', class = 'MONK', faction = 'Alliance' },
+	{ name = 'Taylorswift-LaughingSkull', class = 'DEMONHUNTER', faction = 'Alliance' },
+	{ name = 'Luckyhunter-LaughingSkull', class = 'HUNTER', faction = 'Horde' },
+	{ name = 'Luckypriest-LaughingSkull', class = 'PRIEST', faction = 'Horde' },
+	{ name = 'Notlucky-LaughingSkull', class = 'WARRIOR', faction = 'Horde' },
+	{ name = 'Luckywl-LaughingSkull', class = 'WARLOCK', faction = 'Horde' },
+	{ name = 'Luckymage-LaughingSkull', class = 'MAGE', faction = 'Horde' },
+	{ name = 'Luckydk-LaughingSkull', class = 'DEATHKNIGHT', faction = 'Horde' },
+	{ name = 'Luckypala-LaughingSkull', class = 'PALADIN', faction = 'Horde' },
+	{ name = 'Unluckyone-LaughingSkull', class = 'SHAMAN', faction = 'Horde' },
+} or nil
+
+if Private.itsLuckyone and mailboxFavorites then
+	Private.LuckyoneProfile.misc.mailbox.favorites = mailboxFavorites
+end
 
 -- ElvDB
 local profileKeys = Private.isRetail and {

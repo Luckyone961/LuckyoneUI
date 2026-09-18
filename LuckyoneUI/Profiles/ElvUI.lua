@@ -1,5 +1,5 @@
 local _, Private = ...
-local L = Private.Libs.ACL
+local L = Private.L
 
 if not Private.ElvUI then
 	return
@@ -64,7 +64,7 @@ local function ApplyPartyShared()
 	E.db.unitframe.units.party.buffs.countFont = Private.Font
 	E.db.unitframe.units.party.buffs.countFontSize = 10
 	E.db.unitframe.units.party.buffs.countPosition = 'TOPRIGHT'
-	E.db.unitframe.units.party.buffs.enable = Private.isRetail
+	E.db.unitframe.units.party.buffs.enable = Private.isModern
 	E.db.unitframe.units.party.buffs.perrow = 3
 	E.db.unitframe.units.party.buffs.sizeOverride = 24
 	E.db.unitframe.units.party.buffs.spacing = -1
@@ -79,7 +79,7 @@ local function ApplyPartyShared()
 	E.db.unitframe.units.party.disableTargetGlow = true
 	E.db.unitframe.units.party.fader.minAlpha = 0.5
 	E.db.unitframe.units.party.fader.smooth = 0
-	E.db.unitframe.units.party.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.party.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.party.health.text_format = ''
 	E.db.unitframe.units.party.horizontalSpacing = 1
 	E.db.unitframe.units.party.name.text_format = ''
@@ -194,7 +194,7 @@ local function SetupHealingParty(partyStyle, scaled)
 		end
 	end
 
-	E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
+	E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isModern and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
 	E.db.unitframe.units.party.healPrediction.enable = true
 end
 
@@ -430,27 +430,15 @@ local function Setup_ElvUI(layout, partyStyle)
 	end
 
 	-- Side ActionBar is vertical and on mouseover
-	E.db.actionbar.bar5.buttonsPerRow = 1
-	E.db.actionbar.bar5.mouseover = true
+	E.db.actionbar.bar3.buttonsPerRow = 1
+	E.db.actionbar.bar3.mouseover = true
 
 	-- Turn off all ActionBars except the ones we use by default
-	for i = 1, 14 do
-		if i ~= 1 and i ~= 2 and i ~= 3 and i ~= 5 and i ~= 11 and i ~= 12 then
+	for i = 1, 15 do
+		if i ~= 1 and i ~= 3 and i ~= 5 and i ~= 6 and i ~= 11 and i ~= 12 then
 			E.db.actionbar['bar'..i].enabled = false
 		end
 	end
-
-	-- Player Frame ActionBar for consumables and trinket
-	E.db.actionbar.bar15.buttons = 4
-	E.db.actionbar.bar15.buttonSize = 28
-	E.db.actionbar.bar15.buttonsPerRow = 4
-	E.db.actionbar.bar15.countFontSize = 12
-	E.db.actionbar.bar15.countTextPosition = 'BOTTOM'
-	E.db.actionbar.bar15.countTextYOffset = -5
-	E.db.actionbar.bar15.enabled = false
-	E.db.actionbar.bar15.hotkeytext = false
-	E.db.actionbar.bar15.point = 'TOPRIGHT'
-	E.db.actionbar.bar15.showGrid = false
 
 	E.db.actionbar.barPet.backdrop = false
 	E.db.actionbar.barPet.buttonSize = 28
@@ -539,27 +527,26 @@ local function Setup_ElvUI(layout, partyStyle)
 	-- Auras
 	E.db.auras.buffs.countFont = Private.Font
 	E.db.auras.buffs.countFontOutline = Private.Outline
-	E.db.auras.buffs.countFontSize = 11
-	E.db.auras.buffs.countXOffset = 1
-	E.db.auras.buffs.countYOffset = 12
+	E.db.auras.buffs.countFontSize = 12
+	E.db.auras.buffs.countYOffset = 17
 	E.db.auras.buffs.fadeThreshold = -1
-	E.db.auras.buffs.horizontalSpacing = 2
+	E.db.auras.buffs.horizontalSpacing = 1
+	E.db.auras.buffs.maxWraps = 4
 	E.db.auras.buffs.seperateOwn = 0
-	E.db.auras.buffs.size = 24
+	E.db.auras.buffs.size = 30
 	E.db.auras.buffs.sortMethod = 'INDEX'
-	E.db.auras.buffs.verticalSpacing = 14
+	E.db.auras.buffs.verticalSpacing = 1
 	E.db.auras.debuffs.countFont = Private.Font
 	E.db.auras.debuffs.countFontOutline = Private.Outline
-	E.db.auras.debuffs.countFontSize = 11
-	E.db.auras.debuffs.countXOffset = 1
-	E.db.auras.debuffs.countYOffset = 12
+	E.db.auras.debuffs.countFontSize = 12
+	E.db.auras.debuffs.countYOffset = 17
 	E.db.auras.debuffs.fadeThreshold = -1
-	E.db.auras.debuffs.horizontalSpacing = 2
+	E.db.auras.debuffs.horizontalSpacing = 1
 	E.db.auras.debuffs.maxWraps = 2
 	E.db.auras.debuffs.seperateOwn = 0
-	E.db.auras.debuffs.size = 24
+	E.db.auras.debuffs.size = 30
 	E.db.auras.debuffs.sortMethod = 'INDEX'
-	E.db.auras.debuffs.verticalSpacing = 14
+	E.db.auras.debuffs.verticalSpacing = 1
 
 	-- Chat
 	E.db.chat.customTimeColor.b = 1
@@ -623,11 +610,20 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.cooldown.auraindicator.thresholdText.colors.seconds.b = 1
 	E.db.cooldown.auras.colors.edge.a = 0
 	E.db.cooldown.auras.colors.swipe.a = 0
+	E.db.cooldown.auras.fontOutline = 'SHADOWOUTLINE'
 	E.db.cooldown.auras.fontSize = 12
 	E.db.cooldown.auras.hideBling = true
 	E.db.cooldown.auras.offsetX = 1
-	E.db.cooldown.auras.offsetY = -7
+	E.db.cooldown.auras.offsetY = 0
+	E.db.cooldown.auras.position = 'CENTER'
+	E.db.cooldown.auras.thresholdText.colors.days.g = 1
+	E.db.cooldown.auras.thresholdText.colors.days.r = 1
+	E.db.cooldown.auras.thresholdText.colors.expiring.b = 1
+	E.db.cooldown.auras.thresholdText.colors.expiring.g = 1
+	E.db.cooldown.auras.thresholdText.colors.hours.r = 1
 	E.db.cooldown.auras.thresholdText.colors.seconds.b = 1
+	E.db.cooldown.auras.thresholdText.expireThreshold = -1
+	E.db.cooldown.auras.thresholdText.secondsThreshold = -1
 	E.db.cooldown.bags.colors.edge.a = 0
 	E.db.cooldown.bags.fontSize = 12
 	E.db.cooldown.bags.hideBling = true
@@ -820,7 +816,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isModern and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
@@ -831,7 +827,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
+		text_format = Private.isModern and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = -2,
 		yOffset = 14
 	}
@@ -859,7 +855,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.arena.buffs.priority = 'Whitelist,TurtleBuffs,Dispellable'
 	E.db.unitframe.units.arena.buffs.sizeOverride = 24
 	E.db.unitframe.units.arena.buffs.xOffset = 1
-	E.db.unitframe.units.arena.buffs.yOffset = 1
+	E.db.unitframe.units.arena.buffs.yOffset = 0
 	E.db.unitframe.units.arena.castbar.customTextFont.enable = true
 	E.db.unitframe.units.arena.castbar.customTextFont.font = Private.Font
 	E.db.unitframe.units.arena.castbar.customTimeFont.enable = true
@@ -890,12 +886,12 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.arena.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
 	E.db.unitframe.units.arena.debuffs.sizeOverride = 24
 	E.db.unitframe.units.arena.debuffs.xOffset = -1
-	E.db.unitframe.units.arena.debuffs.yOffset = 1
+	E.db.unitframe.units.arena.debuffs.yOffset = 0
 	E.db.unitframe.units.arena.disableFocusGlow = true
 	E.db.unitframe.units.arena.disableTargetGlow = true
 	E.db.unitframe.units.arena.fader.minAlpha = 0.5
 	E.db.unitframe.units.arena.fader.smooth = 0
-	E.db.unitframe.units.arena.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.arena.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.arena.health.attachTextTo = 'Frame'
 	E.db.unitframe.units.arena.health.text_format = ''
 	E.db.unitframe.units.arena.height = 49
@@ -927,7 +923,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isModern and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
@@ -938,7 +934,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
+		text_format = Private.isModern and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = -2,
 		yOffset = 14
 	}
@@ -966,7 +962,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.boss.buffs.priority = 'Dispellable,RaidBuffsElvUI'
 	E.db.unitframe.units.boss.buffs.sizeOverride = 24
 	E.db.unitframe.units.boss.buffs.xOffset = 1
-	E.db.unitframe.units.boss.buffs.yOffset = 1
+	E.db.unitframe.units.boss.buffs.yOffset = 0
 	E.db.unitframe.units.boss.castbar.customTextFont.enable = true
 	E.db.unitframe.units.boss.castbar.customTextFont.font = Private.Font
 	E.db.unitframe.units.boss.castbar.customTimeFont.enable = true
@@ -997,12 +993,12 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.boss.debuffs.priority = 'Blacklist,Personal'
 	E.db.unitframe.units.boss.debuffs.sizeOverride = 24
 	E.db.unitframe.units.boss.debuffs.xOffset = -1
-	E.db.unitframe.units.boss.debuffs.yOffset = 1
+	E.db.unitframe.units.boss.debuffs.yOffset = 0
 	E.db.unitframe.units.boss.disableFocusGlow = true
 	E.db.unitframe.units.boss.disableTargetGlow = true
 	E.db.unitframe.units.boss.fader.minAlpha = 0.5
 	E.db.unitframe.units.boss.fader.smooth = 0
-	E.db.unitframe.units.boss.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.boss.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.boss.health.text_format = ''
 	E.db.unitframe.units.boss.height = 49
 	E.db.unitframe.units.boss.middleClickFocus = true
@@ -1026,7 +1022,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
+		text_format = Private.isModern and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1084,7 +1080,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.focus.disableTargetGlow = true
 	E.db.unitframe.units.focus.fader.minAlpha = 0.5
 	E.db.unitframe.units.focus.fader.smooth = 0
-	E.db.unitframe.units.focus.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.focus.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.focus.height = 40
 	E.db.unitframe.units.focus.name.text_format = ''
 	E.db.unitframe.units.focus.orientation = 'LEFT'
@@ -1129,7 +1125,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.pet.disableMouseoverGlow = true
 	E.db.unitframe.units.pet.fader.minAlpha = 0.5
 	E.db.unitframe.units.pet.fader.smooth = 0
-	E.db.unitframe.units.pet.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.pet.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.pet.health.colorHappiness = false
 	E.db.unitframe.units.pet.height = 50
 	E.db.unitframe.units.pet.name.text_format = ''
@@ -1152,7 +1148,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:health:current:shortvalue] • [luckyone:health:percent<%]' or '[health:current:shortvalue] • [luckyone:health:percent]',
+		text_format = Private.isModern and '[luckyone:health:current:shortvalue] • [luckyone:health:percent<%]' or '[health:current:shortvalue] • [luckyone:health:percent]',
 		xOffset = -2,
 		yOffset = 0
 	}
@@ -1163,7 +1159,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
+		text_format = Private.isModern and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = 5,
 		yOffset = 0
 	}
@@ -1188,7 +1184,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.player.buffs.countPosition = 'TOPRIGHT'
 	E.db.unitframe.units.player.buffs.countXOffset = 2
 	E.db.unitframe.units.player.buffs.countYOffset = 0
-	E.db.unitframe.units.player.buffs.enable = Private.isRetail
+	E.db.unitframe.units.player.buffs.enable = Private.isModern
 	E.db.unitframe.units.player.buffs.filterLists.group2.enable = false
 	E.db.unitframe.units.player.buffs.perrow = 3
 	E.db.unitframe.units.player.buffs.priority = 'Blacklist,Personal,NonPersonal'
@@ -1232,16 +1228,16 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.player.classbar.enable = false
 	E.db.unitframe.units.player.CombatIcon.enable = false
 	E.db.unitframe.units.player.debuffs.countFont = Private.Font
-	E.db.unitframe.units.player.debuffs.countFontSize = Private.isRetail and 14 or 10
+	E.db.unitframe.units.player.debuffs.countFontSize = Private.isModern and 14 or 10
 	E.db.unitframe.units.player.debuffs.countPosition = 'TOPRIGHT'
-	E.db.unitframe.units.player.debuffs.countXOffset = Private.isRetail and 0 or 2
+	E.db.unitframe.units.player.debuffs.countXOffset = Private.isModern and 0 or 2
 	E.db.unitframe.units.player.debuffs.countYOffset = 0
 	E.db.unitframe.units.player.debuffs.desaturate = false
-	E.db.unitframe.units.player.debuffs.enable = Private.isRetail
-	E.db.unitframe.units.player.debuffs.numrows = Private.isRetail and 1 or 2
-	E.db.unitframe.units.player.debuffs.perrow = Private.isRetail and 4 or 12
+	E.db.unitframe.units.player.debuffs.enable = Private.isModern
+	E.db.unitframe.units.player.debuffs.numrows = Private.isModern and 1 or 2
+	E.db.unitframe.units.player.debuffs.perrow = Private.isModern and 4 or 12
 	E.db.unitframe.units.player.disableMouseoverGlow = true
-	E.db.unitframe.units.player.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.player.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.player.health.text_format = ''
 	E.db.unitframe.units.player.height = 50
 	E.db.unitframe.units.player.partyIndicator.enable = false
@@ -1256,7 +1252,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.player.width = 260
 
 	-- Player debuffs anchor + filters for retail
-	if Private.isRetail then
+	if Private.isModern then
 		E.db.unitframe.units.player.debuffs.anchorPoint = 'TOPRIGHT'
 		E.db.unitframe.units.player.debuffs.growthX = 'LEFT'
 		E.db.unitframe.units.player.debuffs.sizeOverride = 54
@@ -1274,7 +1270,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isModern and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
 		xOffset = 3,
 		yOffset = 0
 	}
@@ -1285,7 +1281,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		fontOutline = Private.Outline,
 		justifyH = 'RIGHT',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:name-color][ ||r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-classcolor][ ||r» >luckyone:target:last-classcolor]',
+		text_format = Private.isModern and '[luckyone:name-color][ ||r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-classcolor][ ||r» >luckyone:target:last-classcolor]',
 		xOffset = -2,
 		yOffset = 14
 	}
@@ -1340,7 +1336,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.target.disableMouseoverGlow = true
 	E.db.unitframe.units.target.fader.minAlpha = 0.5
 	E.db.unitframe.units.target.fader.smooth = 0
-	E.db.unitframe.units.target.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.target.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.target.health.text_format = ''
 	E.db.unitframe.units.target.height = 50
 	E.db.unitframe.units.target.middleClickFocus = false
@@ -1373,7 +1369,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 12,
-		text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
+		text_format = Private.isModern and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1383,7 +1379,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.targettarget.disableMouseoverGlow = true
 	E.db.unitframe.units.targettarget.fader.minAlpha = 0.5
 	E.db.unitframe.units.targettarget.fader.smooth = 0
-	E.db.unitframe.units.targettarget.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.targettarget.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.targettarget.height = 22
 	E.db.unitframe.units.targettarget.name.text_format = ''
 	E.db.unitframe.units.targettarget.orientation = 'LEFT'
@@ -1403,11 +1399,11 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raidpet.disableFocusGlow = true
 	E.db.unitframe.units.raidpet.disableTargetGlow = true
 	E.db.unitframe.units.raidpet.enable = Private.isClassic
-	E.db.unitframe.units.raidpet.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.raidpet.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.raidpet.health.text_format = ''
 	E.db.unitframe.units.raidpet.horizontalSpacing = 1
 	E.db.unitframe.units.raidpet.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.raidpet.name.text_format = Private.isRetail and '[luckyone:name-color]' or '[luckyone:name:veryshort-classcolor]'
+	E.db.unitframe.units.raidpet.name.text_format = Private.isModern and '[luckyone:name-color]' or '[luckyone:name:veryshort-classcolor]'
 	E.db.unitframe.units.raidpet.numGroups = 2
 	E.db.unitframe.units.raidpet.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.raidpet.phaseIndicator.scale = 0.5
@@ -1483,11 +1479,11 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid1.disableTargetGlow = true
 	E.db.unitframe.units.raid1.fader.minAlpha = 0.5
 	E.db.unitframe.units.raid1.fader.smooth = 0
-	E.db.unitframe.units.raid1.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.raid1.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.raid1.health.text_format = ''
 	E.db.unitframe.units.raid1.horizontalSpacing = 1
 	E.db.unitframe.units.raid1.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.raid1.name.text_format = Private.isRetail and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
+	E.db.unitframe.units.raid1.name.text_format = Private.isModern and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 	E.db.unitframe.units.raid1.numGroups = 4
 	E.db.unitframe.units.raid1.phaseIndicator.anchorPoint = 'TOP'
 	E.db.unitframe.units.raid1.phaseIndicator.scale = 0.5
@@ -1542,11 +1538,11 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid3.disableTargetGlow = true
 	E.db.unitframe.units.raid3.fader.minAlpha = 0.5
 	E.db.unitframe.units.raid3.fader.smooth = 0
-	E.db.unitframe.units.raid3.healPrediction.absorbStyle = Private.isRetail and 'REVERSED' or 'WRAPPED'
+	E.db.unitframe.units.raid3.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.raid3.health.text_format = ''
 	E.db.unitframe.units.raid3.horizontalSpacing = 1
 	E.db.unitframe.units.raid3.name.attachTextTo = 'Frame'
-	E.db.unitframe.units.raid3.name.text_format = Private.isRetail and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
+	E.db.unitframe.units.raid3.name.text_format = Private.isModern and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 	E.db.unitframe.units.raid3.phaseIndicator.anchorPoint = 'LEFT'
 	E.db.unitframe.units.raid3.phaseIndicator.scale = 0.5
 	E.db.unitframe.units.raid3.pvpclassificationindicator.enable = false
@@ -1587,21 +1583,21 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.BNETMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-30'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
 	E.db.movers.BossHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-342,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-402,-280'
-	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-1'
-	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-202,-116'
+	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-201,-1'
+	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-201,-170'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-68,-180'
 	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,232,1'
-	E.db.movers.ElvAB_4 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-578'
-	E.db.movers.ElvAB_5 = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,343') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,522'
-	E.db.movers.ElvAB_6 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-545'
+	E.db.movers.ElvAB_2 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-578'
+	E.db.movers.ElvAB_3 = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,343') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,522'
+	E.db.movers.ElvAB_4 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-545'
 	E.db.movers.ElvAB_7 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-512'
 	E.db.movers.ElvAB_8 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-479'
 	E.db.movers.ElvAB_9 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-446'
 	E.db.movers.ElvAB_10 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-413'
 	E.db.movers.ElvAB_13 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-380'
 	E.db.movers.ElvAB_14 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-347'
-	E.db.movers.ElvAB_15 = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-215,411') or 'BOTTOM,ElvUIParent,BOTTOM,-247,551'
+	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-314'
 	E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-338,440') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-628,630'
 	E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,322,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,610,-400'
 	E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,451,360') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,739,500'
@@ -1616,7 +1612,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-111'
 	E.db.movers.ExperienceBarMover = 'TOP,ElvUIParent,TOP,0,-1'
 	E.db.movers.FocusPowerBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-660,580'
-	E.db.movers.GMMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-515,-1'
+	E.db.movers.GMMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-574,-1'
 	E.db.movers.LeftChatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,1'
 	E.db.movers.LootFrameMover = 'TOP,ElvUIParent,TOP,0,-88'
 	E.db.movers.LossControlMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,490') or 'TOP,ElvUIParent,TOP,0,-640'
@@ -1649,7 +1645,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.player.power.enable = false
 
 		-- Main Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isRetail and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. (not Private.isRetail and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]')
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isModern and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. (not Private.isModern and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]')
 
 		-- Main Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 10
@@ -1713,9 +1709,9 @@ local function Setup_ElvUI(layout, partyStyle)
 
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
-		E.db.unitframe.units.raid1.buffs.enable = Private.isRetail
+		E.db.unitframe.units.raid1.buffs.enable = Private.isModern
 		E.db.unitframe.units.raid1.buffs.sizeOverride = 26
-		E.db.unitframe.units.raid1.debuffs.enable = Private.isRetail
+		E.db.unitframe.units.raid1.debuffs.enable = Private.isModern
 		E.db.unitframe.units.raid1.debuffs.sizeOverride = 26
 		E.db.unitframe.units.raid1.height = (scaled and 60) or 80
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'RIGHT'
@@ -1730,9 +1726,9 @@ local function Setup_ElvUI(layout, partyStyle)
 
 		-- Healing Raid2
 		E.db.unitframe.units.raid2.buffIndicator.size = 14
-		E.db.unitframe.units.raid2.buffs.enable = Private.isRetail
+		E.db.unitframe.units.raid2.buffs.enable = Private.isModern
 		E.db.unitframe.units.raid2.buffs.sizeOverride = 24
-		E.db.unitframe.units.raid2.debuffs.enable = Private.isRetail
+		E.db.unitframe.units.raid2.debuffs.enable = Private.isModern
 		E.db.unitframe.units.raid2.debuffs.sizeOverride = 24
 		E.db.unitframe.units.raid2.height = (scaled and 44) or 54
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'RIGHT'
@@ -1770,8 +1766,8 @@ local function Setup_ElvUI(layout, partyStyle)
 		-- Main movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
 		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-		E.db.movers.ElvAB_2 = 'BOTTOM,ElvUIParent,BOTTOM,0,82'
-		E.db.movers.ElvAB_3 = 'BOTTOM,ElvUIParent,BOTTOM,0,49'
+		E.db.movers.ElvAB_5 = 'BOTTOM,ElvUIParent,BOTTOM,0,82'
+		E.db.movers.ElvAB_6 = 'BOTTOM,ElvUIParent,BOTTOM,0,49'
 		E.db.movers.ElvUF_Raid1Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
@@ -1783,8 +1779,8 @@ local function Setup_ElvUI(layout, partyStyle)
 		-- Healing movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
 		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.ElvAB_2 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
-		E.db.movers.ElvAB_3 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
+		E.db.movers.ElvAB_5 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
+		E.db.movers.ElvAB_6 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
 		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
@@ -1799,13 +1795,13 @@ local function Setup_ElvUI(layout, partyStyle)
 	-- Custom AB changes
 	if Private.itsLuckyone and layout == 'healing' then
 		E.db.actionbar.bar1.mouseover = true
-		E.db.actionbar.bar2.mouseover = true
-		E.db.actionbar.bar3.mouseover = true
+		E.db.actionbar.bar5.mouseover = true
+		E.db.actionbar.bar6.mouseover = true
 	end
 
 	-- Custom nonRetail changes
 	-- Extra bar next to the left chat panel
-	if Private.itsLuckyone and not Private.isRetail then
+	if not Private.isRetail then
 		E.db.actionbar.bar4.enabled = true
 		E.db.actionbar.bar4.buttons = 8
 		E.db.actionbar.bar4.buttonsPerRow = 1
@@ -1964,7 +1960,7 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_NPC.eliteIcon.xOffset = 3
 	E.db.nameplates.units.ENEMY_NPC.health.height = 22
 	E.db.nameplates.units.ENEMY_NPC.health.text.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
+	E.db.nameplates.units.ENEMY_NPC.health.text.format = Private.isModern and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
 	E.db.nameplates.units.ENEMY_NPC.health.text.parent = 'Health'
 	E.db.nameplates.units.ENEMY_NPC.health.text.position = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_NPC.health.text.xOffset = -1
@@ -1974,12 +1970,12 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_NPC.health.width = 210
 	E.db.nameplates.units.ENEMY_NPC.level.enable = false
 	E.db.nameplates.units.ENEMY_NPC.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
+	E.db.nameplates.units.ENEMY_NPC.name.format = Private.isModern and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
 	E.db.nameplates.units.ENEMY_NPC.name.parent = 'Health'
 	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -16
 	E.db.nameplates.units.ENEMY_NPC.pvpindicator.size = 35
-	E.db.nameplates.units.ENEMY_NPC.questIcon.enable = Private.isRetail
+	E.db.nameplates.units.ENEMY_NPC.questIcon.enable = Private.isModern
 	E.db.nameplates.units.ENEMY_NPC.questIcon.font = Private.Font
 	E.db.nameplates.units.ENEMY_NPC.questIcon.position = 'TOP'
 	E.db.nameplates.units.ENEMY_NPC.questIcon.size = 30
@@ -2063,7 +2059,7 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = -1
 	E.db.nameplates.units.ENEMY_PLAYER.health.height = 22
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
+	E.db.nameplates.units.ENEMY_PLAYER.health.text.format = Private.isModern and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.parent = 'Health'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.position = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_PLAYER.health.text.xOffset = -1
@@ -2073,7 +2069,7 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_PLAYER.level.format = ''
 	E.db.nameplates.units.ENEMY_PLAYER.markHealers = false
 	E.db.nameplates.units.ENEMY_PLAYER.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.name.format = Private.isRetail and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
+	E.db.nameplates.units.ENEMY_PLAYER.name.format = Private.isModern and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
 	E.db.nameplates.units.ENEMY_PLAYER.name.parent = 'Health'
 	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -16
@@ -2086,7 +2082,7 @@ function Private:Setup_NamePlates()
 	-- Friendly NPC
 	E.db.nameplates.units.FRIENDLY_NPC.buffs.enable = false
 	E.db.nameplates.units.FRIENDLY_NPC.debuffs.enable = false
-	E.db.nameplates.units.FRIENDLY_NPC.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
+	E.db.nameplates.units.FRIENDLY_NPC.health.text.format = Private.isModern and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
 	E.db.nameplates.units.FRIENDLY_NPC.name.font = Private.Font
 	E.db.nameplates.units.FRIENDLY_NPC.name.fontSize = 14
 	E.db.nameplates.units.FRIENDLY_NPC.name.yOffset = 0
@@ -2099,7 +2095,7 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.FRIENDLY_PLAYER.auras.enable = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.buffs.enable = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.debuffs.enable = false
-	E.db.nameplates.units.FRIENDLY_PLAYER.health.text.format = Private.isRetail and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
+	E.db.nameplates.units.FRIENDLY_PLAYER.health.text.format = Private.isModern and '[luckyone:health:percent<%]' or '[luckyone:health:percent]'
 	E.db.nameplates.units.FRIENDLY_PLAYER.markHealers = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.markTanks = false
 	E.db.nameplates.units.FRIENDLY_PLAYER.name.font = Private.Font

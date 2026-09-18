@@ -1,5 +1,5 @@
 local _, Private = ...
-local L = Private.Libs.ACL
+local L = Private.L
 local Blizzard = Private.Modules.Blizzard
 
 local CreateFrame = CreateFrame
@@ -67,7 +67,7 @@ local function DisabledFrames()
 		DisableFrame('AlertFrame', 'AlertFrameMover')
 	end
 
-	if db.BossBanner and Private.isRetail then
+	if db.BossBanner and Private.isModern then
 		DisableFrame('BossBanner', 'BossBannerMover')
 	end
 
@@ -75,9 +75,9 @@ local function DisabledFrames()
 		DisableFrame('ZoneTextFrame')
 	end
 
-	if db.LossOfControl and (Private.isRetail or Private.isMists) then
+	if db.LossOfControl and (Private.isModern or Private.isMists) then
 		-- ElvUI only creates this mover on Retail and DisableMover errors on unknown movers
-		DisableFrame('LossOfControlFrame', Private.isRetail and 'LossControlMover' or nil)
+		DisableFrame('LossOfControlFrame', Private.isModern and 'LossControlMover' or nil)
 	end
 
 	if db.HousingDecorAlerts and Private.isRetail then
@@ -202,7 +202,7 @@ end
 -- Removes the Realm names from friendly Nameplates in name-only mode while in a Dungeon/Raid/Battleground
 -- This sets (NamePlateFriendlyFrameOptions.updateNameUsesGetUnitName = nil) without tainting
 local function RemoveNameplateRealm()
-	if not (Private.isRetail and Private.Addon.db.profile.misc.removeNameplateRealm) then return end
+	if not (Private.isModern and Private.Addon.db.profile.misc.removeNameplateRealm) then return end
 	_G.TextureLoadingGroupMixin.RemoveTexture({textures = _G.NamePlateFriendlyFrameOptions}, 'updateNameUsesGetUnitName')
 end
 
@@ -235,7 +235,7 @@ end
 
 function Blizzard:OnEnable()
 	-- Fonts have to be in place before the tracker builds its first layout at PLAYER_ENTERING_WORLD
-	if Private.isRetail then
+	if Private.isModern then
 		Private:ObjectiveTracker()
 	end
 

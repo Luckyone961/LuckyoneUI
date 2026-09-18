@@ -56,6 +56,8 @@ local function UpdateRaidVisibility()
 	-- Make sure maxAllowedGroups is enabled
 	E.db.unitframe.maxAllowedGroups = true
 
+	UF:ZONE_CHANGED_NEW_AREA()
+
 	local _, instanceType, difficultyID = GetInstanceInfo()
 	local isMythicRaid = (instanceType == 'raid' and difficultyID == 16)
 

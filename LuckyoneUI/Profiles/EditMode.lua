@@ -3,12 +3,6 @@ local _, Private = ...
 local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
 
--- Edit Mode helper
-function Private:ToggleEditMode()
-	local EM = _G.EditModeManagerFrame
-	EM:SetShown(not EM:IsShown())
-end
-
 -- Edit Mode profiles
 function Private:Return_EditModeString()
 	-- Global db

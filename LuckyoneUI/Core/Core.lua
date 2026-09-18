@@ -1,5 +1,5 @@
 local Name, Private = ...
-local L = Private.Libs.ACL
+local L = Private.L
 local LDB = Private.Libs.LDB
 local LDBI = Private.Libs.LDBI
 local LSM = Private.Libs.LSM
@@ -308,13 +308,16 @@ end
 local function LoadCommands()
 	_G.SLASH_LUCKYONEUI1 = '/lucky'
 	SlashCmdList.LUCKYONEUI = Toggles
-	if Private.isRetail then -- Retail chat commands
+	if Private.isModern then
 		commands.untrack = function() Private:UntrackAllQuests() end
+	end
+	if Private.isRetail then -- Retail chat commands
 		_G.SLASH_LUCKYONEUI_WEEKLY1 = '/vault'
 		_G.SLASH_LUCKYONEUI_WEEKLY2 = '/weekly'
 		SlashCmdList.LUCKYONEUI_WEEKLY = WeeklyRewards
 	end
 	if Private.ElvUI then
+		commands.bars = function() Private:ToggleActionBarConverter() end
 		_G.SLASH_LUCKYONEUI_DEBUG1 = '/luckydebug'
 		SlashCmdList.LUCKYONEUI_DEBUG = DebugMode
 	end
