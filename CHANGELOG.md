@@ -1,6 +1,7 @@
 ﻿## Version 4.25 [Alpha - In Development - Not Yet Released]
 
 **All WoW Versions:**  
+- Fixed Auctionator skin (Tabs overlapping)  
 - Updated BugSack skin  
 
 **Forever:**  
