@@ -1,4 +1,9 @@
-﻿## Version 4.24 [18-09-2026]
+﻿## Version 4.25 [Alpha - In Development - Not Yet Released]
+
+**All WoW Versions:**  
+- Updated BugSack skin  
+
+## Version 4.24 [18-09-2026]
 
 **All WoW Versions:**  
 - Actionbars now match Blizzard bars, this changes the default enabled LuckyoneUI bar numbers  

@@ -27,18 +27,25 @@ local function SkinBugSackFrame()
 	-- Main Frame
 	S:HandleFrame(frame)
 
-	-- Scroll Bar
-	local scrollBar = _G.BugSackScrollScrollBar
+	-- Scroll Bar (the scroll frame is unnamed, reach it through the text area)
+	local textArea = _G.BugSackScrollText
+	local scrollBar = textArea and textArea:GetParent().ScrollBar
 	if scrollBar then
-		S:HandleScrollBar(scrollBar)
+		if Private.isModern then
+			S:HandleTrimScrollBar(scrollBar)
+		else
+			S:HandleScrollBar(scrollBar)
+		end
 	end
 
 	-- Buttons
 	local prevButton = _G.BugSackPrevButton
 	local nextButton = _G.BugSackNextButton
+	local sendButton = _G.BugSackSendButton
 
-	for _, button in next, { prevButton, nextButton, _G.BugSackSendButton } do
-		S:HandleButton(button)
+	-- Three-slice buttons (SharedButtonTemplate) need the child backdrop
+	for _, button in next, { prevButton, nextButton, sendButton } do
+		S:HandleButton(button, nil, nil, nil, true)
 		button:Height(24)
 	end
 
@@ -51,6 +58,13 @@ local function SkinBugSackFrame()
 	if nextButton then
 		nextButton:ClearAllPoints()
 		nextButton:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', -12, 6)
+	end
+
+	-- Send fills the space between them with a 1px gap on each side
+	if sendButton then
+		sendButton:ClearAllPoints()
+		sendButton:Point('LEFT', prevButton, 'RIGHT', 1, 0)
+		sendButton:Point('RIGHT', nextButton, 'LEFT', -1, 0)
 	end
 
 	-- Tabs
@@ -69,12 +83,12 @@ local function SkinBugSackFrame()
 
 		if allTab then
 			allTab:ClearAllPoints()
-			allTab:Point('LEFT', sessionTab, 'RIGHT', -5, 0)
+			allTab:Point('LEFT', sessionTab, 'RIGHT', -4, 0)
 		end
 
 		if lastTab then
 			lastTab:ClearAllPoints()
-			lastTab:Point('RIGHT', sessionTab, 'LEFT', 5, 0)
+			lastTab:Point('RIGHT', sessionTab, 'LEFT', 4, 0)
 		end
 	end
 
@@ -87,10 +101,11 @@ local function SkinBugSackFrame()
 		end
 	end
 
-	-- Game version left of page count (top right)
+	-- Game version left of page count (top right), modern clients keep the count label in the title container
+	local labelParent = frame.TitleContainer or frame
 	local countLabel
 
-	for _, region in ipairs({ frame:GetRegions() }) do
+	for _, region in ipairs({ labelParent:GetRegions() }) do
 		if region:IsObjectType('FontString') and region:GetJustifyH() == 'RIGHT' then
 			countLabel = region
 			break
@@ -101,7 +116,7 @@ local function SkinBugSackFrame()
 		local _, elvVersion = E:ParseVersionString('ElvUI')
 		local hex = '|c' .. E:ClassColor(Private.myClass).colorStr
 
-		local versionLabel = frame:CreateFontString(nil, 'ARTWORK')
+		local versionLabel = labelParent:CreateFontString(nil, 'ARTWORK')
 		versionLabel:SetFontObject(countLabel:GetFontObject())
 		versionLabel:SetTextColor(countLabel:GetTextColor())
 		versionLabel:SetText(format('%sElvUI:|r %s %sPatch:|r %s %sPage:|r', hex, elvVersion, hex, Private.GameVersion, hex))
