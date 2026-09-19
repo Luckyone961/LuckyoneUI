@@ -189,8 +189,8 @@ local function BuildAddonProfilesSection()
 	section.args.bossmods.inline = true
 	section.args.bossmods.args.bigwigsMain = ACH:Execute(L["BigWigs Main"], L["Import LuckyoneUI defaults."], 1, function() Private:Setup_BigWigs('main') end, nil, true)
 	section.args.bossmods.args.bigwigsHealing = ACH:Execute(L["BigWigs Healing"], L["Import LuckyoneUI defaults."], 2, function() Private:Setup_BigWigs('healing') end, nil, true)
-	section.args.header2 = ACH:Header(L["Blizzard Profiles"], 6, nil, nil, not Private.isRetail)
-	section.args.strings = ACH:Group(L["Profile strings"], nil, 7, nil, nil, nil, nil, not Private.isRetail)
+	section.args.header2 = ACH:Header(L["Blizzard Profiles"], 6, nil, nil, not Private.isModern)
+	section.args.strings = ACH:Group(L["Profile strings"], nil, 7, nil, nil, nil, nil, not Private.isModern)
 	section.args.strings.inline = true
 	section.args.strings.args.editModeString = ACH:Execute(L["Copy Editmode String"], nil, 1, function() Private:Return_EditModeString() end)
 	return section

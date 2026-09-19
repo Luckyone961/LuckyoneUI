@@ -95,7 +95,7 @@ Profiles\BuffReminders.lua [AllowLoadGameType standard]
 Profiles\Chattynator.lua
 Profiles\CooldownManager.lua [AllowLoadGameType standard]
 Profiles\Details.lua
-Profiles\EditMode.lua [AllowLoadGameType standard]
+Profiles\EditMode.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
 Profiles\ElvUI.lua
 Profiles\MPlusTimer.lua [AllowLoadGameType standard]
 Profiles\NSRT.lua [AllowLoadGameType standard]

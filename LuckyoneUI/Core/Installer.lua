@@ -743,7 +743,7 @@ local function BuildPages()
 			Green(L["Step 2:"]) .. '\n' .. L["Press Escape, click Edit Mode and select Import on the Dropdown.\nUse CTRL+V to paste string, then pick a name and click import."],
 		}, {
 			Button(L["Copy Editmode String"], function() Private:Return_EditModeString() end, 'copy'),
-		}, nil, not Private.isRetail),
+		}, nil, not Private.isModern),
 
 		-- LuckyoneUI module checkboxes
 		Page(L["Modules"], { L["Enable the LuckyoneUI modules you want to use. Hover over a checkbox for details."] }, nil, {
