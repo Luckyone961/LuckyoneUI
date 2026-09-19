@@ -557,6 +557,9 @@ local function BuildGraphicsSection()
 	section.args.cosmetic.args.ffxNether = ACH:Toggle('ffx Nether', L["Game Default: on | Suggestion: off\n\nBox checked means on/enabled"], 3)
 	section.args.cosmetic.args.ffxVenari = ACH:Toggle('ffx Venari', L["Game Default: on | Suggestion: off\n\nBox checked means on/enabled"], 4)
 	section.args.cosmetic.args.ffxLingeringVenari = ACH:Toggle('ffx Lingering Venari', L["Game Default: on | Suggestion: off\n\nBox checked means on/enabled"], 5)
+	section.args.forever = ACH:Group('WoW: Forever', nil, 4, nil, nil, nil, nil, not Private.isForever)
+	section.args.forever.inline = true
+	section.args.forever.args.volumeFog = ACH:Toggle('Volume Fog', L["Game Default: on | Suggestion: personal preference\n\nBox checked means on/enabled"], 1)
 	return section
 end
 

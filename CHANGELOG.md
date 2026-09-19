@@ -3,6 +3,9 @@
 **All WoW Versions:**  
 - Updated BugSack skin  
 
+**Forever:**  
+- Added toggle to the Graphics section to easily switch on/off the new screen fog  
+
 ## Version 4.24 [18-09-2026]
 
 **All WoW Versions:**  
