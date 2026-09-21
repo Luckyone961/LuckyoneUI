@@ -11,7 +11,7 @@ local pairs = pairs
 local unpack = unpack
 
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
-local GetPetHappiness = GetPetHappiness
+local GetPetHappiness = (C_PetInfo and C_PetInfo.GetPetHappiness) or GetPetHappiness
 local HasPetUI = HasPetUI
 local issecretvalue = issecretvalue
 local ScaleTo100 = CurveConstants.ScaleTo100
