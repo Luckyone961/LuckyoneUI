@@ -309,10 +309,6 @@ local function DamageMeterNoSecondary()
 	return not db.enable or db.numberDisplay == 'MINIMAL'
 end
 
-local function DamageMeterTypes()
-	return Private.Modules.DamageMeter.TypeMenuNames
-end
-
 local function DamageMeterColorGet(info)
 	local color = Private.Addon.db.profile.damageMeter[info[#info]]
 
@@ -359,7 +355,7 @@ local function BuildWindowGroup(index, order)
 
 	local group = ACH:Group(WINDOW_NAMES[index], nil, order, nil, WindowGet, WindowSet, nil, function() return DamageMeterMaxWindows() < index end)
 	group.inline = true
-	group.args.meterType = ACH:Select(L["Type"], nil, 1, DamageMeterTypes, nil, nil, nil, function(_, value) Private.Addon.db.profile.damageMeter.windows[index].meterType = value local DM = Private.Modules.DamageMeter local window = DM.windows[index] if window then DM:SetWindowType(window, value) end end)
+	group.args.meterType = ACH:Select(L["Type"], nil, 1, Private.Modules.DamageMeter.TypeMenuNames, nil, nil, nil, function(_, value) Private.Addon.db.profile.damageMeter.windows[index].meterType = value local DM = Private.Modules.DamageMeter local window = DM.windows[index] if window then DM:SetWindowType(window, value) end end)
 	group.args.placement = ACH:Select(L["Placement"], L["Give this window its own slot, attach it to another window or move it with its own mover."], 2, function() return DamageMeterMaxWindows() > 1 and PlacementValues or SoloPlacementValues end, nil, nil, nil, function(_, value) local db = Private.Addon.db.profile.damageMeter db.windows[index].placement = value if value == 'ATTACH' then ReleaseAttached(db, index) else db.windows[index].attachTo = 0 end Private:DamageMeter_UpdateAll() end)
 	group.args.attachTo = ACH:Select(L["Attach To"], L["Stack this window under another one instead of giving it its own slot."], 3, function() local db = Private.Addon.db.profile.damageMeter local values = { [0] = _G.NONE } for target = 1, DamageMeterMaxWindows() do if target ~= index and db.windows[target].placement ~= 'ATTACH' then values[target] = WINDOW_NAMES[target] end end return values end, nil, nil, nil, function(_, value) local db = Private.Addon.db.profile.damageMeter db.windows[index].attachTo = value if value ~= 0 then ReleaseAttached(db, index) end Private:DamageMeter_UpdateAll() end, nil, function() return DamageMeterMaxWindows() < 2 or Private.Addon.db.profile.damageMeter.windows[index].placement ~= 'ATTACH' end)
 	group.args.attachSize = ACH:Range(L["Attached Size"], L["Share of the parent window taken by the attached window."], 4, { min = 10, max = 90, step = 1 }, nil, nil, nil, nil, function() local wdb = Private.Addon.db.profile.damageMeter.windows[index] return wdb.placement ~= 'ATTACH' or wdb.attachTo == 0 end)
@@ -388,6 +384,7 @@ local function BuildDamageMeterSection()
 	section.args.general.args.generalOptions.args.enable = ACH:Toggle(L["Enable"], L["Lightweight Damage Meter powered by the native Blizzard combat data."], 1)
 	section.args.general.args.generalOptions.args.testMode = ACH:Toggle(L["Test Mode"], L["Show fake bars to preview settings. Resets on reload."], 2, nil, nil, nil, function() return Private.Modules.DamageMeter.testMode end, function(_, value) Private.Modules.DamageMeter:SetTestMode(value) end, DamageMeterDisabled)
 	section.args.general.args.generalOptions.args.visibility = ACH:Select(L["Visibility"], nil, 3, { SHOW = L["Always"], COMBAT = L["In Combat"], GROUP = L["In Group"] }, nil, nil, nil, nil, DamageMeterDisabled)
+	section.args.general.args.generalOptions.args.updateInterval = ACH:Range(L["Update Interval"], L["Seconds between bar updates in combat. Lower is smoother, higher uses less CPU."], 4, { min = 0.1, max = 1, step = 0.01 }, nil, nil, function(_, value) Private.Addon.db.profile.damageMeter.updateInterval = value end, DamageMeterDisabled)
 	section.args.general.args.resetOptions = ACH:Group(L["Reset"], nil, 2)
 	section.args.general.args.resetOptions.inline = true
 	section.args.general.args.resetOptions.args.autoReset = ACH:Select(L["Auto Reset"], L["Reset all Damage Meter data when you enter a new instance."], 1, { NONE = _G.NONE, ASK = L["Ask"], AUTO = L["Automatic"] }, nil, nil, nil, nil, DamageMeterDisabled)
@@ -488,7 +485,7 @@ local function BuildDamageMeterSection()
 	section.args.bookmarkOptions.args.generalOptions.inline = true
 	section.args.bookmarkOptions.args.generalOptions.args.showBookmarks = ACH:Toggle(L["Enable"], L["Open the bookmark panel with a right click on a session window."], 1)
 	section.args.bookmarkOptions.args.generalOptions.args.bookmarkDragDrop = ACH:Toggle(L["Drag and Drop"], L["Drag a bookmark up or down to change its place in the panel."], 2, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.showBookmarks end)
-	section.args.bookmarkOptions.args.bookmarks = ACH:MultiSelect(L["Bookmarks"], L["Types the panel offers, new ones are added to the end of the list."], 3, DamageMeterTypes, nil, nil, function(_, key) return Private.Addon.db.profile.damageMeter.bookmarks[key] and true or false end, function(_, key, value) Private.Modules.DamageMeter:SetBookmark(key, value) Private:DamageMeter_UpdateAll() end, function() local db = Private.Addon.db.profile.damageMeter return not db.enable or not db.showBookmarks end)
+	section.args.bookmarkOptions.args.bookmarks = ACH:MultiSelect(L["Bookmarks"], L["Types the panel offers, new ones are added to the end of the list."], 3, Private.Modules.DamageMeter.TypeMenuNames, nil, nil, function(_, key) return Private.Addon.db.profile.damageMeter.bookmarks[key] and true or false end, function(_, key, value) Private.Addon.db.profile.damageMeter.bookmarks[key] = value and 99 or false Private:DamageMeter_UpdateAll() end, function() local db = Private.Addon.db.profile.damageMeter return not db.enable or not db.showBookmarks end)
 	return section
 end
 

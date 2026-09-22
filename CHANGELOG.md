@@ -7,6 +7,10 @@
 **Forever:**  
 - Added toggle to the Graphics section to easily switch on/off the new screen fog  
 
+**Damage Meter:**  
+- Added option to change update interval for bars/text (Default was 0.25, is now 0.33)  
+- Blizzard meter is no longer enabled and hidden in the background (Both CVars are 0 now)  
+
 ## Version 4.24 [18-09-2026]
 
 **All WoW Versions:**  

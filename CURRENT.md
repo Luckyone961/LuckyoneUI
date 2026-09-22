@@ -1,27 +1,12 @@
-## Version 4.24 [18-09-2026]
+## Version 4.25 [Alpha - In Development - Not Yet Released]
 
 **All WoW Versions:**  
-- Actionbars now match Blizzard bars, this changes the default enabled LuckyoneUI bar numbers  
-- Actionbars received a converter/migration tool available via chat /lucky bars  
-- Added profile management to the config (Select, Import, Export)  
-- Updated credits  
-- Updated deDE locales  
-- Updated friends list tweaks (Option to move favorites star icon + Bugfixes)  
-- Updated themes installer step to include transparency choice  
-- Updated top auras at the minimap area (Text inside, Size increase, Spacing adjustments)  
-
-**Retail:**  
-- Added skin for Premade Groups Filter  
-- Added skin for RCLootCouncil  
-- Removed shortcuts into Edit Mode and Cooldown Settings to avoid taint errors  
-- Updated arena and boss frames (Pixel offset fix on buffs/debuffs)  
+- Fixed Auctionator skin (Tabs overlapping)  
+- Updated BugSack skin  
 
 **Forever:**  
-- Initial support but addons will not work correctly until further Blizzard hotfixes  
-- I recommend using the alpha version of LuckyoneUI for more frequent updates  
-
-**Classic:**  
-- An additional vertical actionbar(4) is enabled by default next to the left chat panel  
+- Added toggle to the Graphics section to easily switch on/off the new screen fog  
 
 **Damage Meter:**  
-- You can now have a different amount of windows based on content (World, Dungeon/Delve, Raid, PvP)  
+- Added option to change update interval for bars/text (Default was 0.25, is now 0.33)  
+- Blizzard meter is no longer enabled and hidden in the background (Both CVars are 0 now)  

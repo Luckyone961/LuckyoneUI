@@ -54,6 +54,7 @@ Private.Defaults = {
 		damageMeter = {
 			enable = false,
 			visibility = 'SHOW',
+			updateInterval = 0.33,
 			autoReset = 'NONE',
 			autoResetTypes = { party = true, raid = true, scenario = true },
 			resetOnLogout = false,

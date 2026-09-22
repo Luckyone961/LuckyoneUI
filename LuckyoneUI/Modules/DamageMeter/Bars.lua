@@ -727,7 +727,7 @@ function DM:RenderWindow(window)
 		end
 	end
 
-	local session = DM:GetSession(window)
+	local session = window.session
 	local spellMode = window.spellMode
 	local recapMode = window.recapMode
 	local entries = session and (spellMode and session.combatSpells or session.combatSources)

@@ -85,28 +85,6 @@ for _, category in ipairs(DM.TypeCategories) do
 	end
 end
 
--- The popup pulls a single source, the windows pull the whole session
-function DM:FetchWindow(window)
-	-- The death log is built once when the popup opens
-	if window.recapMode then return end
-
-	local session
-
-	if window.spellMode then
-		if window.sessionType then
-			session = GetCombatSessionSourceFromType(window.sessionType, window.meterType, window.sourceGUID, window.sourceCreatureID)
-		elseif window.sessionID then
-			session = GetCombatSessionSourceFromID(window.sessionID, window.meterType, window.sourceGUID, window.sourceCreatureID)
-		end
-	elseif window.sessionType then
-		session = GetCombatSessionFromType(window.sessionType, window.meterType)
-	elseif window.sessionID then
-		session = GetCombatSessionFromID(window.sessionID, window.meterType)
-	end
-
-	window.session = session
-end
-
 -- Fake data for the test mode preview, same names Blizzard uses in Edit Mode
 -- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua#L76-L89
 local TestSources = {
@@ -154,13 +132,29 @@ local function GetTestSession(count)
 end
 
 -- DamageMeterSessionWindowMixin:GetCombatSession
+-- The popup pulls a single source, the windows pull the whole session
 -- Fake data replaces the live data
-function DM:GetSession(window)
+function DM:FetchWindow(window)
+	-- The death log is built once when the popup opens
+	if window.recapMode then return end
+
+	local session
+
 	if DM.testMode then
-		return GetTestSession(window.visibleCount)
+		session = GetTestSession(window.visibleCount)
+	elseif window.spellMode then
+		if window.sessionType then
+			session = GetCombatSessionSourceFromType(window.sessionType, window.meterType, window.sourceGUID, window.sourceCreatureID)
+		elseif window.sessionID then
+			session = GetCombatSessionSourceFromID(window.sessionID, window.meterType, window.sourceGUID, window.sourceCreatureID)
+		end
+	elseif window.sessionType then
+		session = GetCombatSessionFromType(window.sessionType, window.meterType)
+	elseif window.sessionID then
+		session = GetCombatSessionFromID(window.sessionID, window.meterType)
 	end
 
-	return window.session
+	window.session = session
 end
 
 function DM:RefreshWindow(window)
@@ -199,13 +193,24 @@ function DM:MarkDirty(window)
 
 	if not pendingFlush then
 		pendingFlush = true
-		After(0.25, Flush)
+		After(DM.db.updateInterval, Flush)
 	end
 end
 
 function DM:MarkAllDirty()
 	for _, window in pairs(DM.windows) do
 		DM:MarkDirty(window)
+	end
+end
+
+-- The current session stays unmarked, only overall and numbered segments get a suffix
+local function SetHeaderText(text, name, window)
+	if window.sessionType == SessionType.Current then
+		text:SetText(name)
+	elseif window.sessionType == SessionType.Overall then
+		text:SetFormattedText('%s %s', name, _G.DAMAGE_METER_OVERALL_SESSION)
+	else
+		text:SetFormattedText('%s %s', name, window.sessionID)
 	end
 end
 
@@ -234,7 +239,7 @@ function DM:DAMAGE_METER_RESET()
 		if window.sessionID then
 			window.sessionType = SessionType.Current
 			window.sessionID = nil
-			DM:UpdateHeader(window)
+			SetHeaderText(window.typeText, DM.TypeNames[window.meterType], window)
 		end
 
 		window.offset = 0
@@ -242,22 +247,7 @@ function DM:DAMAGE_METER_RESET()
 	end
 end
 
--- Header text and colors
--- The current session stays unmarked, only overall and numbered segments get a suffix
-local function SetHeaderText(text, name, window)
-	if window.sessionType == SessionType.Current then
-		text:SetText(name)
-	elseif window.sessionType == SessionType.Overall then
-		text:SetFormattedText('%s %s', name, _G.DAMAGE_METER_OVERALL_SESSION)
-	else
-		text:SetFormattedText('%s %s', name, window.sessionID)
-	end
-end
-
-function DM:UpdateHeader(window)
-	SetHeaderText(window.typeText, DM.TypeNames[window.meterType], window)
-end
-
+-- Header colors
 local function HeaderColor()
 	if DM.db.useValueColor then
 		return unpack(E.media.rgbvaluecolor)
@@ -323,7 +313,7 @@ local function WindowChanged(window)
 
 	DM:ClosePopup()
 	DM:CloseBookmarks(window)
-	DM:UpdateHeader(window)
+	SetHeaderText(window.typeText, DM.TypeNames[window.meterType], window)
 	DM:RefreshWindow(window)
 end
 
@@ -519,14 +509,8 @@ local function SaveBookmarkOrder()
 	end
 end
 
--- The options list and the plus menu both go through here, a dropped one is kept
--- as false so the profile defaults cannot bring it back on the next login
-function DM:SetBookmark(meterType, enabled)
-	DM.db.bookmarks[meterType] = enabled and 99 or false -- Higher than the type count, anything new sorts to the end
-end
-
 local function AddBookmark(data)
-	DM:SetBookmark(data.meterType, true)
+	DM.db.bookmarks[data.meterType] = 99 -- Higher than the type count, anything new sorts to the end
 	DM:LayoutBookmarks(data.window)
 end
 
@@ -562,8 +546,9 @@ local function BookmarkRow_OnClick(row, mouseButton)
 	end
 
 	-- Right click drops the bookmark again, the panel stays open
+	-- Kept as false so the profile defaults cannot bring it back on the next login
 	if mouseButton == 'RightButton' then
-		DM:SetBookmark(row.meterType, false)
+		DM.db.bookmarks[row.meterType] = false
 		DM:LayoutBookmarks(window)
 		return
 	end
@@ -1494,5 +1479,5 @@ function DM:ApplyWindowSettings(window)
 
 	DM:UpdateWindowBackdrop(window)
 	DM:UpdateHeaderColors(window)
-	DM:UpdateHeader(window)
+	SetHeaderText(window.typeText, DM.TypeNames[window.meterType], window)
 end
