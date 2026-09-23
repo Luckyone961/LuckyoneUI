@@ -18,12 +18,28 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
--- House cards are created on the first list update, the illustrated card art is dropped like on Blizzard's list
+-- Crop cards to the inner art so the ElvUI border "skin" applies properly
+local function CropArtwork(background)
+	local left, top, _, bottom, right = background:GetTexCoord()
+	background:SetTexCoord(left + 64 / 512, right - 24 / 512, top + 24 / 512, bottom - 24 / 512)
+end
+
+-- Plumber resets the tex coords on every refresh
+local function Card_SetHouseInfo(card, houseInfo)
+	if houseInfo then
+		CropArtwork(card.Background)
+	end
+end
+
+-- House cards are created on a list update, right after their first refresh
 local function HouseList_Update(frame)
 	for _, card in next, frame.cards do
 		if not card.IsSkinned then
-			card.Background:Hide()
-			card:SetTemplate()
+			card:SetTemplate('Transparent')
+			card.Background:SetInside()
+			CropArtwork(card.Background)
+			hooksecurefunc(card, 'SetHouseInfo', Card_SetHouseInfo)
+
 			S:HandleButton(card.VisitHouseButton)
 
 			card.IsSkinned = true
