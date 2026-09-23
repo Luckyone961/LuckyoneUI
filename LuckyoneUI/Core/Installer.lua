@@ -800,6 +800,7 @@ local function BuildPages()
 				Toggle('skins', 'skins.addons.LFGBulletinBoard'),
 				Toggle('skins', 'skins.addons.NovaSpellRankChecker'),
 				Toggle('skins', 'skins.addons.NovaWorldBuffs'),
+				Toggle('skins', 'skins.addons.Plumber'),
 				Toggle('skins', 'skins.addons.PremadeGroupsFilter'),
 				Toggle('skins', 'skins.addons.RCLootCouncil'),
 				Toggle('skins', 'skins.addons.SimpleAddonManager'),

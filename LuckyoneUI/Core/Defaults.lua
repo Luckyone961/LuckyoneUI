@@ -252,6 +252,7 @@ Private.Defaults = {
 			LFGBulletinBoard = false,
 			NovaSpellRankChecker = false,
 			NovaWorldBuffs = false,
+			Plumber = false,
 			PremadeGroupsFilter = false,
 			RCLootCouncil = false,
 			SimpleAddonManager = false,

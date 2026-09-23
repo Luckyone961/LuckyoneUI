@@ -4,6 +4,9 @@
 - Fixed Auctionator skin (Tabs overlapping)  
 - Updated BugSack skin  
 
+**Retail:**  
+- Added skin for Plumber (Only skins peoples House list and the Editmode checkbox)  
+
 **Forever:**  
 - Added toggle to the Graphics section to easily switch on/off the new screen fog  
 

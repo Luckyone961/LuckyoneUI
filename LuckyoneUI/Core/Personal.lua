@@ -70,6 +70,7 @@ Private.LuckyoneProfile = {
 		LFGBulletinBoard = true,
 		NovaSpellRankChecker = true,
 		NovaWorldBuffs = true,
+		Plumber = true,
 		PremadeGroupsFilter = true,
 		RCLootCouncil = true,
 		SimpleAddonManager = true,

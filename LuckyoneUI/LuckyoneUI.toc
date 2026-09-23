@@ -77,6 +77,7 @@ Modules\Skins\Addons\BugSack.lua
 Modules\Skins\Addons\LFGBulletinBoard.lua [AllowLoadGameType vanilla, tbc, mists]
 Modules\Skins\Addons\NovaSpellRankChecker.lua [AllowLoadGameType vanilla, tbc]
 Modules\Skins\Addons\NovaWorldBuffs.lua [AllowLoadGameType vanilla, tbc]
+Modules\Skins\Addons\Plumber.lua [AllowLoadGameType standard]
 Modules\Skins\Addons\PremadeGroupsFilter.lua [AllowLoadGameType standard]
 Modules\Skins\Addons\RCLootCouncil.lua [AllowLoadGameType standard]
 Modules\Skins\Addons\SimpleAddonManager.lua
