@@ -308,8 +308,8 @@ local function SkinShoppingDialogs(frame)
 		SkinOptions(itemDialog)
 	end
 
-	-- Import, Export and Price History
-	for _, dialog in next, { frame.exportDialog, frame.importDialog, frame.exportCSVDialog, frame.itemHistoryDialog } do
+	-- Import, Export, Copy Text (CSV and list export) and Price History
+	for _, dialog in next, { frame.exportDialog, frame.exportDialog.copyTextDialog, frame.importDialog, frame.exportCSVDialog, frame.itemHistoryDialog } do
 		SkinPanel(dialog)
 		SkinInset(dialog.Inset)
 		SkinResultsListing(dialog.ResultsListing)
