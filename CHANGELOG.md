@@ -1,6 +1,7 @@
 ﻿## Version 4.25 [Alpha - In Development - Not Yet Released]
 
 **All WoW Versions:**  
+- Added skin for RXPGuides (I consider this still WIP for now)  
 - Fixed Auctionator skin (Tabs overlapping)  
 - Updated BugSack skin  
 

@@ -80,6 +80,7 @@ Modules\Skins\Addons\NovaWorldBuffs.lua [AllowLoadGameType vanilla, tbc]
 Modules\Skins\Addons\Plumber.lua [AllowLoadGameType standard]
 Modules\Skins\Addons\PremadeGroupsFilter.lua [AllowLoadGameType standard]
 Modules\Skins\Addons\RCLootCouncil.lua [AllowLoadGameType standard]
+Modules\Skins\Addons\RXPGuides.lua
 Modules\Skins\Addons\SimpleAddonManager.lua
 Modules\Skins\Addons\Simulationcraft.lua [AllowLoadGameType standard]
 Modules\Skins\Addons\Tabardy.lua [AllowLoadGameType standard, vanilla, tbc, mists]

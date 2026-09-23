@@ -255,6 +255,7 @@ Private.Defaults = {
 			Plumber = false,
 			PremadeGroupsFilter = false,
 			RCLootCouncil = false,
+			RXPGuides = false,
 			SimpleAddonManager = false,
 			Simulationcraft = false,
 			Tabardy = false,

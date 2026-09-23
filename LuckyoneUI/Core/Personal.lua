@@ -73,6 +73,7 @@ Private.LuckyoneProfile = {
 		Plumber = true,
 		PremadeGroupsFilter = true,
 		RCLootCouncil = true,
+		RXPGuides = true,
 		SimpleAddonManager = true,
 		Simulationcraft = true,
 		Tabardy = true,

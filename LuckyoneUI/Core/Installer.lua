@@ -803,6 +803,7 @@ local function BuildPages()
 				Toggle('skins', 'skins.addons.Plumber'),
 				Toggle('skins', 'skins.addons.PremadeGroupsFilter'),
 				Toggle('skins', 'skins.addons.RCLootCouncil'),
+				Toggle('skins', 'skins.addons.RXPGuides'),
 				Toggle('skins', 'skins.addons.SimpleAddonManager'),
 				Toggle('skins', 'skins.addons.Simulationcraft'),
 				Toggle('skins', 'skins.addons.Tabardy'),

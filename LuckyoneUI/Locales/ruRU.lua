@@ -459,6 +459,7 @@ L["Skin the Addons and Blizzard frames below in ElvUI style. Only installed Addo
 L["Skin the block with the dungeon, delve or scenario stage name in ElvUI style.\n\nDisabling needs a reload."] = true
 L["Skin the full bulletin board frame in ElvUI style"] = "Оформить всю рамку доски объявлений в стиле ElvUI"
 L["Skin the group finder button next to quests in ElvUI style.\n\nDisabling needs a reload."] = true
+L["Skin the guide window, Active Items, Active Targets and the other RestedXP windows in ElvUI style. The V2 interface (beta) is not skinned."] = true
 L["Skin the Keystones viewer (/keys, Retail only) and the LFG queue timer bar in ElvUI style. The rest of the Addon is not skinned."] = true
 L["Skin the small layer frame on the Minimap in ElvUI style and move it to the bottom left"] = "Оформить маленькую рамку слоя на миникарте в стиле ElvUI и переместить её вниз слева"
 L["Skin the Spell Rank Checker button in ElvUI style"] = "Оформить кнопку проверки рангов заклинаний в стиле ElvUI"
