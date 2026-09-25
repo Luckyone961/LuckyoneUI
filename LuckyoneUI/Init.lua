@@ -16,6 +16,7 @@ local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local GetBuildInfo = GetBuildInfo
 local GetRealmName = GetRealmName
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
+local IsGameRuleActive = C_GameRules.IsGameRuleActive
 local MergeTable = MergeTable
 local UnitClass = UnitClass
 local UnitGUID = UnitGUID
@@ -71,7 +72,7 @@ Private.GameTOC = select(4, GetBuildInfo())
 Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 Private.isTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 Private.isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
-Private.isForever = Private.GameTOC == 16001
+Private.isForever = Private.GameTOC >= 16000 and Private.GameTOC < 20000
 Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and not Private.isForever
 Private.isModern = Private.isRetail or Private.isForever
 
@@ -94,6 +95,12 @@ Private.myGUID = UnitGUID('player')
 Private.myName = UnitName('player')
 Private.myRealm = GetRealmName()
 Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
+
+-- Use the game ruleset in place of server names in Forever (Like AceDB)
+if Private.isForever then
+	local ruleset = (IsGameRuleActive(Enum.GameRule.HardcoreRuleset) and 'Hardcore') or (IsGameRuleActive(Enum.GameRule.RPRuleset) and 'RP') or (IsGameRuleActive(Enum.GameRule.PvPRuleset) and 'PvP') or 'PvE'
+	Private.myNameRealm = Private.myName .. ' - ' .. ruleset
+end
 
 -- Same as GetNormalizedRealmName, which is still nil this early
 Private.myNormalizedRealm = gsub(Private.myRealm, '[%s%-%.]', '')

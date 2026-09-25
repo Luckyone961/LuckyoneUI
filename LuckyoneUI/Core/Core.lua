@@ -281,11 +281,12 @@ local function DebugMode(msg)
 	local switch = strlower(msg)
 	local disabled = Private.Addon.db.global.DebugDisabledAddOns
 
+	-- GUID like Blizzard's AddOn list
 	if switch == 'on' then
 		for i = 1, GetNumAddOns() do
 			local name = GetAddOnInfo(i)
 			if not AddOns[name] and Private.IsAddOnLoaded(name) then
-				DisableAddOn(name, Private.myName)
+				DisableAddOn(name, Private.myGUID)
 				disabled[name] = true
 			end
 		end
@@ -294,7 +295,7 @@ local function DebugMode(msg)
 	elseif switch == 'off' then
 		if next(disabled) then
 			for name in pairs(disabled) do
-				EnableAddOn(name, Private.myName)
+				EnableAddOn(name, Private.myGUID)
 			end
 			wipe(disabled)
 			C_UI.Reload()

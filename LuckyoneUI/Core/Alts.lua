@@ -12,6 +12,7 @@ local type = type
 local wipe = table.wipe
 
 local _G = _G
+local LibStub = LibStub
 local StaticPopup_Show = _G.StaticPopup_Show
 
 local GetSpecialization = C_SpecializationInfo and C_SpecializationInfo.GetSpecialization or _G.GetSpecialization
@@ -85,7 +86,19 @@ local function AceApply(global)
 	return function(profile)
 		local db = _G[global]
 		db.profileKeys = db.profileKeys or {}
-		db.profileKeys[charKey] = profile
+
+		local key = charKey
+		local AceDB = LibStub('AceDB-3.0', true)
+		if AceDB then
+			for object in pairs(AceDB.db_registry) do
+				if object.sv == db then
+					key = object.keys.char
+					break
+				end
+			end
+		end
+
+		db.profileKeys[key] = profile
 	end
 end
 
