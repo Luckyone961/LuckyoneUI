@@ -833,7 +833,7 @@ function DM:LayoutBookmarks(window, focus)
 		row.index = place
 		row.meterType = meterType
 		row:SetAlpha((place == frame.dragIndex) and 0.4 or 1) -- The dragged one stays dimmed while it scrolls
-		row.text:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
+		Private:SetFont(row.text, db.headerFont, db.headerFontSize, db.headerFontOutline)
 		row.text:SetTextColor(r, g, b)
 		row.text:SetText(meterType and DM.TypeNames[meterType] or '+')
 		row.selected:SetShown(meterType == window.meterType)
@@ -1135,7 +1135,7 @@ function DM:ApplyPopupSettings(popup)
 		popup.typeText:Point('BOTTOMRIGHT', popup.header, 'BOTTOMRIGHT', db.headerTypeXOffset, db.headerTypeYOffset)
 	end
 
-	popup.typeText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
+	Private:SetFont(popup.typeText, db.headerFont, db.headerFontSize, db.headerFontOutline)
 	popup.typeText:SetTextColor(r, g, b)
 
 	-- Kept off the bars by the same gap the bars keep from each other
@@ -1474,8 +1474,8 @@ function DM:ApplyWindowSettings(window)
 	header:EnableMouse(takeMouse)
 	window.content:EnableMouse(takeMouse)
 
-	window.typeText:FontTemplate(db.headerFont, db.headerFontSize, db.headerFontOutline)
-	window.infoText:FontTemplate(db.font, db.fontSize, db.fontOutline)
+	Private:SetFont(window.typeText, db.headerFont, db.headerFontSize, db.headerFontOutline)
+	Private:SetFont(window.infoText, db.font, db.fontSize, db.fontOutline)
 
 	DM:UpdateWindowBackdrop(window)
 	DM:UpdateHeaderColors(window)

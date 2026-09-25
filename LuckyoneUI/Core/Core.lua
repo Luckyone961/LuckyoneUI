@@ -73,7 +73,7 @@ function Private:SetFont(text, font, size, outline)
 	end
 
 	text:SetFont(LSM:Fetch('font', font), size, outline == 'NONE' and '' or outline)
-	text:SetShadowColor(0, 0, 0, shadow and 1 or 0)
+	text:SetShadowColor(0, 0, 0, shadow and (outline == '' and 1 or 0.6) or 0) -- Same as ElvUI, lighter under an outline
 	text:SetShadowOffset(1, -1)
 end
 

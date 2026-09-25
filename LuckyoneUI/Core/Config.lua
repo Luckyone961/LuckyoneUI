@@ -9,6 +9,7 @@ local pairs = pairs
 local concat = table.concat
 local format = string.format
 
+local CopyTable = CopyTable
 local GetCVarBool = C_CVar.GetCVarBool
 local SetCVar = C_CVar.SetCVar
 local HideUIPanel = HideUIPanel
@@ -40,8 +41,13 @@ local function FontSelect(order)
 	return (Private.ElvUI and ACH:SharedMediaFont(L["Font"], nil, order)) or ACH:Select(L["Font"], nil, order, FontValues)
 end
 
+-- Slug renders only with None and Outline, not with Shadow, Mono or Thick
+local OutlineValues = CopyTable(ACH.FontValues)
+OutlineValues.SLUG = 'Slug'
+OutlineValues.OUTLINESLUG = 'Outline Slug'
+
 local function OutlineSelect(order)
-	return (Private.ElvUI and ACH:FontFlags(L["Font Outline"], nil, order)) or ACH:Select(L["Font Outline"], nil, order, ACH.FontValues)
+	return ACH:Select(L["Font Outline"], nil, order, OutlineValues, nil, nil, nil, nil, nil, nil, Private.ElvUI)
 end
 
 local function FontGroup(name, order, maxSize, disabled, prefix)

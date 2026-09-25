@@ -140,7 +140,7 @@ local function GetSampleWidth(db, key)
 		sampleText:SetWordWrap(false)
 	end
 
-	sampleText:FontTemplate(db.font, db.fontSize, db.fontOutline)
+	Private:SetFont(sampleText, db.font, db.fontSize, db.fontOutline)
 
 	if key == 'value' then
 		sampleText:SetFormattedText(renderFormats.single, '999.9M')
@@ -353,10 +353,10 @@ local function ApplyBarSettings(db, window, bar, index, texture)
 
 	bar.highlight:Hide()
 
-	bar.rank:FontTemplate(db.font, db.fontSize, db.fontOutline)
-	bar.name:FontTemplate(db.font, db.fontSize, db.fontOutline)
-	bar.value:FontTemplate(db.font, db.fontSize, db.fontOutline)
-	bar.persec:FontTemplate(db.font, db.fontSize, db.fontOutline)
+	Private:SetFont(bar.rank, db.font, db.fontSize, db.fontOutline)
+	Private:SetFont(bar.name, db.font, db.fontSize, db.fontOutline)
+	Private:SetFont(bar.value, db.font, db.fontSize, db.fontOutline)
+	Private:SetFont(bar.persec, db.font, db.fontSize, db.fontOutline)
 
 	-- Wipe cached states so we can insta display setting changes
 	bar.colorKey = nil
