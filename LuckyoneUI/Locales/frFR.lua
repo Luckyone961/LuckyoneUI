@@ -230,7 +230,6 @@ L["Fury"] = "Fureur"
 L["Game Default: off | Suggestion: off\n\nBox checked means on/enabled"] = true
 L["Game Default: off | Suggestion: on\n\nBox checked means on/enabled"] = true
 L["Game Default: on | Suggestion: off\n\nBox checked means on/enabled"] = true
-L["Game Default: on | Suggestion: personal preference\n\nBox checked means on/enabled"] = true
 L["General CVars"] = "CVars générales"
 L["General"] = "Général"
 L["Generate a string of the current profile."] = true

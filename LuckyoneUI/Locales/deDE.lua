@@ -230,7 +230,6 @@ L["Fury"] = "Furor"
 L["Game Default: off | Suggestion: off\n\nBox checked means on/enabled"] = "Spielstandard: aus | Empfehlung: aus\n\nHäkchen gesetzt bedeutet an/aktiviert"
 L["Game Default: off | Suggestion: on\n\nBox checked means on/enabled"] = "Spielstandard: aus | Empfehlung: an\n\nHäkchen gesetzt bedeutet an/aktiviert"
 L["Game Default: on | Suggestion: off\n\nBox checked means on/enabled"] = "Spielstandard: an | Empfehlung: aus\n\nHäkchen gesetzt bedeutet an/aktiviert"
-L["Game Default: on | Suggestion: personal preference\n\nBox checked means on/enabled"] = true
 L["General CVars"] = "Allgemeine CVars"
 L["General"] = "Allgemein"
 L["Generate a string of the current profile."] = true
