@@ -37,11 +37,15 @@ end
 
 -- Blizzard hides slot eleven and twelve here because they belong to the buyback tab
 local function Merchant_UpdateMerchantInfo()
+	if not _G.MerchantFrame:IsShown() then return end -- Blizzard runs MerchantFrame_Update on every BAG_UPDATE with the vendor closed
+
 	LayoutItems(20)
 end
 
 -- The buyback tab only fills its own twelve slots
 local function Merchant_UpdateBuybackInfo()
+	if not _G.MerchantFrame:IsShown() then return end
+
 	local buybackItems = _G.BUYBACK_ITEMS_PER_PAGE
 
 	LayoutItems(buybackItems)

@@ -261,8 +261,12 @@ local function SkinTargetButtons(buttons)
 		end
 
 		local icon = button.icon
-		S:HandleIcon(icon)
-		icon:SetInside()
+		-- RXP re-anchors the cached portraits every update
+		if icon ~= button.placeholder or not icon.IsSkinned then
+			S:HandleIcon(icon)
+			icon:SetInside()
+			icon.IsSkinned = true
+		end
 	end
 end
 

@@ -153,6 +153,8 @@ E:AddTagInfo('luckyone:power:percent-nocolor', Private.Name, L["Displays percent
 
 -- Display mana (percent) if the unit is flagged healer
 if Private.isModern then
+	ElvUF.Tags.SharedEvents.PLAYER_ROLES_ASSIGNED = true -- carries no unit
+
 	E:AddTag('luckyone:healermana:percent', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER GROUP_ROSTER_UPDATE PLAYER_ROLES_ASSIGNED', function(unit)
 		local role = UnitGroupRolesAssigned(unit)
 		if issecretvalue(role) or role ~= 'HEALER' then return end
