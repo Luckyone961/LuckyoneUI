@@ -735,7 +735,7 @@ local function BuildPages()
 			L["For position adjustments use /scm X and Y offset options."],
 		}, {
 			Button('SkironCooldownManager', function() Private:Setup_SCM(true) end, 'scm', 'SkironCooldownManager'),
-		}, nil, not Private.isRetail, L["Cooldown Manager profile"]),
+		}, nil, not Private.isModern, L["Cooldown Manager profile"]),
 
 		-- Edit mode string and guide
 		Page(L["Blizzard Edit Mode"], {

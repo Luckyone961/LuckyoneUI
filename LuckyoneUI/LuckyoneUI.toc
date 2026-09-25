@@ -95,7 +95,7 @@ Profiles\Baganator.lua
 Profiles\BigWigs.lua
 Profiles\BuffReminders.lua [AllowLoadGameType standard]
 Profiles\Chattynator.lua
-Profiles\CooldownManager.lua [AllowLoadGameType standard]
+Profiles\CooldownManager.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
 Profiles\Details.lua
 Profiles\EditMode.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
 Profiles\ElvUI.lua

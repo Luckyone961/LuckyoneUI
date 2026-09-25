@@ -269,22 +269,22 @@ local CDMSpecs = {
 
 -- Build Cooldown Manager Section
 local function BuildCDMSection()
-	if not Private.isRetail then return end -- Retail only section
+	if not Private.isModern then return end -- Retail and Forever only section, Wago specs are Retail only
 	local section = ACH:Group(GetIconName(L["Cooldown Manager"], 'Cdm'), nil, 30)
 	section.args.header1 = ACH:Header(L["Cooldown Manager"], 1)
 	local specs = CDMSpecs[Private.myClass]
 	local color = RAID_CLASS_COLORS[Private.myClass]
-	section.args.specs = ACH:Group(specs.name, nil, 2)
+	section.args.specs = ACH:Group(specs.name, nil, 2, nil, nil, nil, nil, not Private.isRetail)
 	section.args.specs.inline = true
 
 	for index, spec in ipairs(specs) do
 		section.args.specs.args['spec' .. index] = ACH:Execute(color:WrapTextInColorCode(spec[1]), nil, index, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-' .. spec[2]) end)
 	end
 
-	section.args.desc = ACH:Group(L["Description"], nil, 15)
+	section.args.desc = ACH:Group(L["Description"], nil, 15, nil, nil, nil, nil, not Private.isRetail)
 	section.args.desc.inline = true
 	section.args.desc.args.desc = ACH:Description(L["Specializations are only displayed for the class you're currently logged into.\n\nGrab the updated import string from the Wago URL and import it manually."], 1, 'medium')
-	section.args.header2 = ACH:Header(L["Cooldown Settings"], 16)
+	section.args.header2 = ACH:Header(L["Cooldown Settings"], 16, nil, nil, not Private.isRetail)
 	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 17)
 	section.args.addons.inline = true
 	section.args.addons.args.scm = ACH:Execute('SkironCooldownManager', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_SCM() StaticPopup_Show('LUCKYONE_RL') end, nil, true)

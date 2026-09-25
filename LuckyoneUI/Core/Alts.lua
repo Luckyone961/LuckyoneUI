@@ -209,7 +209,7 @@ local handlers = {
 	},
 	{
 		name = 'SkironCooldownManager',
-		hidden = not Private.isRetail,
+		hidden = not Private.isModern,
 		base = 'Luckyone',
 		Profiles = AceProfiles('SkironCooldownManagerDB'),
 		Apply = AceApply('SkironCooldownManagerDB'),
