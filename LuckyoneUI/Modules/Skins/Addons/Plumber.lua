@@ -4,8 +4,7 @@ if not Private.ElvUI then
 	return
 end
 
--- We only skin two parts of Plumber
--- The View Houses frame and the Plumber checkbox next to Edit Mode
+-- We only skin the View Houses frame of Plumber
 -- Modules, options and everything else remain untouched
 
 local next = next
@@ -61,36 +60,10 @@ local function ViewHouses_OnClick()
 	frame.IsSkinned = true
 end
 
--- Edit Mode panel and its checkbox are unnamed, look for the panel Plumber attached to the Edit Mode frame
-local function FindEditModePanel()
-	local editMode = _G.EditModeManagerFrame
-
-	for _, child in next, { _G.UIParent:GetChildren() } do
-		if not child:IsForbidden() and child.owner == editMode and child.Checkbox then
-			return child
-		end
-	end
-end
-
--- Plumber builds the panel in its own Edit Mode callback, which has run by the time this hook fires
-local searched
-local function EditMode_Enter()
-	if searched then return end
-	searched = true
-
-	local panel = FindEditModePanel()
-	if not panel then return end
-
-	panel.Border:Hide()
-	panel:SetTemplate('Transparent')
-	S:HandleCheckBox(panel.Checkbox.Button)
-end
-
 local function Skin_Plumber()
 	if not Private.Addon.db.profile.skins.Plumber then return end
 
 	hooksecurefunc(_G.UnitPopupViewHousesButtonMixin, 'OnClick', ViewHouses_OnClick)
-	hooksecurefunc(_G.EditModeManagerFrame, 'EnterEditMode', EditMode_Enter)
 end
 
 S:AddCallbackForAddon('Plumber', 'LuckyoneUI_Plumber', Skin_Plumber)

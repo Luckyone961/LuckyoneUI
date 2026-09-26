@@ -7,7 +7,7 @@
 - Updated BugSack skin  
 
 **Retail:**  
-- Added skin for Plumber (Only skins peoples House list and the Editmode checkbox)  
+- Added skin for Plumber (Only skins peoples House list)  
 
 **Forever:**  
 - Added toggle to the Graphics section to easily switch on/off the new screen fog  
