@@ -16,6 +16,7 @@ local type = type
 local unpack = unpack
 local concat = table.concat
 local sort = table.sort
+local tremove = table.remove
 local wipe = table.wipe
 local format = string.format
 local gsub = string.gsub
@@ -33,6 +34,7 @@ local PlaySound = PlaySound
 local ProxySettingMixin = ProxySettingMixin
 local SOUNDKIT = SOUNDKIT
 local Settings = Settings
+local SettingsPanel = SettingsPanel
 local SettingsTooltip = SettingsTooltip
 local StaticPopup_Show = StaticPopup_Show
 local StaticPopupDialogs = StaticPopupDialogs
@@ -57,6 +59,7 @@ StaticPopupDialogs['LUCKYONE_CONFIRM'] = {
 }
 
 local proxies = {} -- Every value setting
+local queued = {} -- Subcategory pages, built when the panel opens the first time
 local refreshSetting -- Dummy setting so the disabled states follow the values
 
 -- Values that changed under the hood
@@ -678,10 +681,11 @@ local function AddOptions(category, args, path, get, set, disabled, hidden, nest
 
 					AddOptions(category, option.args, path, optionGet, optionSet, optionDisabled, optionHidden, nested, groupTags)
 				else
-					AddOptions(Settings.RegisterVerticalLayoutSubcategory(category, CategoryName(name)), option.args, path, optionGet, optionSet, optionDisabled, optionHidden, true, groupTags)
+					local subcategory, subPath = Settings.RegisterVerticalLayoutSubcategory(category, CategoryName(name)), { unpack(path) }
+					queued[#queued + 1] = function() AddOptions(subcategory, option.args, subPath, optionGet, optionSet, optionDisabled, optionHidden, true, groupTags) end
 				end
 			elseif optionType == 'header' then
-				if name ~= '' and CategoryName(name) ~= category:GetName() then -- The panel already shows the category name as the page title
+				if name ~= '' and StripCodes(CategoryName(name)) ~= StripCodes(category:GetName()) then -- The panel already shows the category name as the page title
 					AddHeader(category, name, optionHidden)
 				end
 			elseif optionType == 'description' then
@@ -732,6 +736,13 @@ function Private:RegisterSettings()
 	refreshSetting = CreateAndInitFromMixin(ProxySettingMixin, 'LuckyoneUI', 'LUCKYONEUI_REFRESH', Settings.VarType.Boolean, false, function() return false end, function() end)
 
 	AddOptions(root, config.args, {}, config.get, config.set, {}, {}, false, {})
+
+	-- The category list only needs the names, the pages wait for the panel
+	SettingsPanel:HookScript('OnShow', function()
+		while #queued > 0 do
+			tremove(queued)()
+		end
+	end)
 
 	Settings.RegisterAddOnCategory(root)
 	Private.SettingsCategoryID = root:GetID()
