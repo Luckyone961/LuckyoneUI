@@ -11,7 +11,7 @@
 
 **Forever:**  
 - Added toggle to the Graphics section to easily switch on/off the new screen fog  
-- Improved profile handling to use Name-Ruleset instead of Name-Realm for the database  
+- Improved profile handling to use "Name Surname" instead of "Name-Realm" for the database  
 
 **Damage Meter:**  
 - Added option to change update interval for bars/text (Default was 0.25, is now 0.33)  

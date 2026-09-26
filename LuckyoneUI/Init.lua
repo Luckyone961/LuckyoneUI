@@ -16,11 +16,11 @@ local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 local GetBuildInfo = GetBuildInfo
 local GetRealmName = GetRealmName
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
-local IsGameRuleActive = C_GameRules.IsGameRuleActive
 local MergeTable = MergeTable
+local RegionalUniqueNamesEnabled = RegionalUniqueNamesEnabled
 local UnitClass = UnitClass
 local UnitGUID = UnitGUID
-local UnitName = UnitName
+local UnitNameUnmodified = UnitNameUnmodified
 
 local _G = _G
 local LibStub = LibStub
@@ -92,14 +92,14 @@ end
 -- Player utils
 Private.myClass = select(2, UnitClass('player'))
 Private.myGUID = UnitGUID('player')
-Private.myName = UnitName('player')
+Private.myName = UnitNameUnmodified('player')
 Private.myRealm = GetRealmName()
 Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
 
--- Use the game ruleset in place of server names in Forever (Like AceDB)
-if Private.isForever then
-	local ruleset = (IsGameRuleActive(Enum.GameRule.HardcoreRuleset) and 'Hardcore') or (IsGameRuleActive(Enum.GameRule.RPRuleset) and 'RP') or (IsGameRuleActive(Enum.GameRule.PvPRuleset) and 'PvP') or 'PvE'
-	Private.myNameRealm = Private.myName .. ' - ' .. ruleset
+-- Forever names are unique per region, so the key is the full name without a server (Like AceDB)
+if RegionalUniqueNamesEnabled and RegionalUniqueNamesEnabled() then
+	local surname = select(2, UnitNameUnmodified('player'))
+	Private.myNameRealm = (surname and Private.myName .. ' ' .. surname) or Private.myName
 end
 
 -- Same as GetNormalizedRealmName, which is still nil this early
