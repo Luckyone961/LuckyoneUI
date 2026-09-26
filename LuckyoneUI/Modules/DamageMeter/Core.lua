@@ -39,41 +39,6 @@ function DM:StripRealm(name, classFilename)
 	return Ambiguate(name, 'short')
 end
 
-local function HideBlizzardMeter()
-	local meter = _G.DamageMeter
-	if not meter or meter:IsForbidden() then return end
-	if not DM.db.enable then return end
-
-	-- Edit Mode needs the system frame visible while editing
-	if meter.IsEditing and meter:IsEditing() then return end
-
-	meter:SetShown(false) -- Same as "Hidden" visibility in Edit Mode settings
-end
-
--- The native meter is our only data source, it goes on with the module
--- Switching the module off at runtime takes it down again, a login with the module off leaves it alone
-function DM:HandleBlizzardMeter()
-	if DM.db.enable then
-		SetCVar('damageMeterEnabled', 1)
-	elseif DM.blizzardHooked then
-		SetCVar('damageMeterEnabled', 0)
-	end
-
-	local meter = _G.DamageMeter
-	if not meter or meter:IsForbidden() then return end
-
-	if DM.db.enable then
-		if not DM.blizzardHooked then
-			hooksecurefunc(meter, 'UpdateShownState', HideBlizzardMeter)
-			DM.blizzardHooked = true
-		end
-
-		HideBlizzardMeter()
-	elseif DM.blizzardHooked then
-		meter:UpdateShownState()
-	end
-end
-
 function DM:ShouldShow()
 	if not DM.db.enable then return false end
 
@@ -91,18 +56,19 @@ function DM:ShouldShow()
 	return true
 end
 
+-- Roster updates fire in bursts, only an actual change does any work
 function DM:UpdateShown()
 	local shown = DM:ShouldShow()
+	if shown == DM.holder:IsShown() then return end
+
 	DM.holder:SetShown(shown)
 
-	if shown and not DM.lastShown then
+	if shown then
 		DM:MarkAllDirty()
-	elseif not shown then
+	else
 		DM:ClosePopup()
 		DM:CloseAllBookmarks()
 	end
-
-	DM.lastShown = shown
 end
 
 -- A reload always drops back to the live data
@@ -239,14 +205,6 @@ function DM:GetWindowCount()
 	local override = DM.db.contentWindows[scope]
 
 	return override > 0 and override or DM.db.windowCount
-end
-
-function DM:UpdateWindowCount()
-	if not DM.db.enable then return end
-
-	if DM:GetWindowCount() ~= DM.activeCount then
-		Private:DamageMeter_UpdateAll()
-	end
 end
 
 -- Columns split the holder along one axis, custom placed windows sit outside of it
@@ -444,7 +402,8 @@ function DM:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	if DM:GetWindowCount() ~= DM.activeCount then
 		Private:DamageMeter_UpdateAll()
 	else
-		DM:HandleBlizzardMeter()
+		SetCVar('damageMeterEnabled', 0)
+		SetCVar('damageMeterResetOnNewInstance', 0)
 		DM:UpdateShown()
 		DM:MarkAllDirty()
 	end
@@ -454,7 +413,13 @@ end
 
 -- Fires when a Delve starts or shuts down, without a loading screen
 function DM:ACTIVE_DELVE_DATA_UPDATE()
-	DM:UpdateWindowCount()
+	-- The events stay registered after the module is switched off
+	if not DM.db.enable then return end
+
+	if DM:GetWindowCount() ~= DM.activeCount then
+		Private:DamageMeter_UpdateAll()
+	end
+
 	DM:CheckAutoReset()
 end
 
@@ -476,8 +441,6 @@ function Private:DamageMeter_UpdateAll()
 	local db = Private.Addon.db.profile.damageMeter
 	DM.db = db
 
-	DM:HandleBlizzardMeter()
-
 	-- The popup and the bookmarks rebuild themselves the next time they open
 	DM:ClosePopup()
 	DM:CloseAllBookmarks()
@@ -490,12 +453,16 @@ function Private:DamageMeter_UpdateAll()
 			end
 
 			DM.holder:Hide()
-			DM.lastShown = false
 		end
 		return
 	end
 
 	DM:Initialize()
+
+	-- The data comes from the client either way, we don't need their meter on+hidden
+	-- Its auto reset would wipe the data behind our own Auto Reset option
+	SetCVar('damageMeterEnabled', 0)
+	SetCVar('damageMeterResetOnNewInstance', 0)
 
 	-- Content changes compare against this
 	local count = DM:GetWindowCount()

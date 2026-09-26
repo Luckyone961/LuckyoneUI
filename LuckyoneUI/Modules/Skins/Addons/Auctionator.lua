@@ -308,8 +308,8 @@ local function SkinShoppingDialogs(frame)
 		SkinOptions(itemDialog)
 	end
 
-	-- Import, Export and Price History
-	for _, dialog in next, { frame.exportDialog, frame.importDialog, frame.exportCSVDialog, frame.itemHistoryDialog } do
+	-- Import, Export, Copy Text (CSV and list export) and Price History
+	for _, dialog in next, { frame.exportDialog, frame.exportDialog.copyTextDialog, frame.importDialog, frame.exportCSVDialog, frame.itemHistoryDialog } do
 		SkinPanel(dialog)
 		SkinInset(dialog.Inset)
 		SkinResultsListing(dialog.ResultsListing)
@@ -507,7 +507,7 @@ local function SkinTabs()
 	if not container or not container.Tabs then return end
 
 	-- ElvUI insets the tab backdrop by three pixels on Retail and by ten on every other client
-	local offset = E.Modern and -5 or -19
+	local offset = E.Retail and -5 or -19
 
 	local auctionHouse = _G.AuctionHouseFrame
 	local lastTab = isModernAH and auctionHouse and auctionHouse.Tabs and auctionHouse.Tabs[#auctionHouse.Tabs]

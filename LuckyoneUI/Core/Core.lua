@@ -73,7 +73,7 @@ function Private:SetFont(text, font, size, outline)
 	end
 
 	text:SetFont(LSM:Fetch('font', font), size, outline == 'NONE' and '' or outline)
-	text:SetShadowColor(0, 0, 0, shadow and 1 or 0)
+	text:SetShadowColor(0, 0, 0, shadow and (outline == '' and 1 or 0.6) or 0) -- Same as ElvUI, lighter under an outline
 	text:SetShadowOffset(1, -1)
 end
 
@@ -281,11 +281,12 @@ local function DebugMode(msg)
 	local switch = strlower(msg)
 	local disabled = Private.Addon.db.global.DebugDisabledAddOns
 
+	-- GUID like Blizzard's AddOn list
 	if switch == 'on' then
 		for i = 1, GetNumAddOns() do
 			local name = GetAddOnInfo(i)
 			if not AddOns[name] and Private.IsAddOnLoaded(name) then
-				DisableAddOn(name, Private.myName)
+				DisableAddOn(name, Private.myGUID)
 				disabled[name] = true
 			end
 		end
@@ -294,7 +295,7 @@ local function DebugMode(msg)
 	elseif switch == 'off' then
 		if next(disabled) then
 			for name in pairs(disabled) do
-				EnableAddOn(name, Private.myName)
+				EnableAddOn(name, Private.myGUID)
 			end
 			wipe(disabled)
 			C_UI.Reload()

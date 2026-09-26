@@ -735,7 +735,7 @@ local function BuildPages()
 			L["For position adjustments use /scm X and Y offset options."],
 		}, {
 			Button('SkironCooldownManager', function() Private:Setup_SCM(true) end, 'scm', 'SkironCooldownManager'),
-		}, nil, not Private.isRetail, L["Cooldown Manager profile"]),
+		}, nil, not Private.isModern, L["Cooldown Manager profile"]),
 
 		-- Edit mode string and guide
 		Page(L["Blizzard Edit Mode"], {
@@ -743,7 +743,7 @@ local function BuildPages()
 			Green(L["Step 2:"]) .. '\n' .. L["Press Escape, click Edit Mode and select Import on the Dropdown.\nUse CTRL+V to paste string, then pick a name and click import."],
 		}, {
 			Button(L["Copy Editmode String"], function() Private:Return_EditModeString() end, 'copy'),
-		}, nil, not Private.isRetail),
+		}, nil, not Private.isModern),
 
 		-- LuckyoneUI module checkboxes
 		Page(L["Modules"], { L["Enable the LuckyoneUI modules you want to use. Hover over a checkbox for details."] }, nil, {
@@ -800,8 +800,10 @@ local function BuildPages()
 				Toggle('skins', 'skins.addons.LFGBulletinBoard'),
 				Toggle('skins', 'skins.addons.NovaSpellRankChecker'),
 				Toggle('skins', 'skins.addons.NovaWorldBuffs'),
+				Toggle('skins', 'skins.addons.Plumber'),
 				Toggle('skins', 'skins.addons.PremadeGroupsFilter'),
 				Toggle('skins', 'skins.addons.RCLootCouncil'),
+				Toggle('skins', 'skins.addons.RXPGuides'),
 				Toggle('skins', 'skins.addons.SimpleAddonManager'),
 				Toggle('skins', 'skins.addons.Simulationcraft'),
 				Toggle('skins', 'skins.addons.Tabardy'),

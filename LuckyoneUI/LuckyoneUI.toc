@@ -77,8 +77,10 @@ Modules\Skins\Addons\BugSack.lua
 Modules\Skins\Addons\LFGBulletinBoard.lua [AllowLoadGameType vanilla, tbc, mists]
 Modules\Skins\Addons\NovaSpellRankChecker.lua [AllowLoadGameType vanilla, tbc]
 Modules\Skins\Addons\NovaWorldBuffs.lua [AllowLoadGameType vanilla, tbc]
+Modules\Skins\Addons\Plumber.lua [AllowLoadGameType standard]
 Modules\Skins\Addons\PremadeGroupsFilter.lua [AllowLoadGameType standard]
 Modules\Skins\Addons\RCLootCouncil.lua [AllowLoadGameType standard]
+Modules\Skins\Addons\RXPGuides.lua
 Modules\Skins\Addons\SimpleAddonManager.lua
 Modules\Skins\Addons\Simulationcraft.lua [AllowLoadGameType standard]
 Modules\Skins\Addons\Tabardy.lua [AllowLoadGameType standard, vanilla, tbc, mists]
@@ -93,9 +95,9 @@ Profiles\Baganator.lua
 Profiles\BigWigs.lua
 Profiles\BuffReminders.lua [AllowLoadGameType standard]
 Profiles\Chattynator.lua
-Profiles\CooldownManager.lua [AllowLoadGameType standard]
+Profiles\CooldownManager.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
 Profiles\Details.lua
-Profiles\EditMode.lua [AllowLoadGameType standard]
+Profiles\EditMode.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
 Profiles\ElvUI.lua
 Profiles\MPlusTimer.lua [AllowLoadGameType standard]
 Profiles\NSRT.lua [AllowLoadGameType standard]

@@ -28,10 +28,11 @@ local function DisableLibDualSpec()
 	local namespaces = ElvDB.namespaces
 	namespaces['LibDualSpec-1.0'] = namespaces['LibDualSpec-1.0'] or {}
 
+	local charKey = E.data.keys.char
 	local libDualSpec = namespaces['LibDualSpec-1.0']
 	libDualSpec.char = libDualSpec.char or {}
-	libDualSpec.char[Private.myNameRealm] = libDualSpec.char[Private.myNameRealm] or {}
-	libDualSpec.char[Private.myNameRealm].enabled = false
+	libDualSpec.char[charKey] = libDualSpec.char[charKey] or {}
+	libDualSpec.char[charKey].enabled = false
 end
 
 -- Frontend refresh

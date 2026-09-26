@@ -496,6 +496,13 @@ local function RegisterHooks()
 		LDBI.RegisterCallback(Map, 'LibDBIcon_IconCreated', ScheduleUpdate)
 		hooksecurefunc(LDBI, 'Hide', ScheduleUpdate)
 		hooksecurefunc(LDBI, 'Show', ScheduleUpdate)
+
+		-- These put a button back on the Minimap ring or make it draggable again
+		hooksecurefunc(LDBI, 'Refresh', ScheduleUpdate)
+		hooksecurefunc(LDBI, 'Unlock', ScheduleUpdate)
+		hooksecurefunc(LDBI, 'SetButtonRadius', ScheduleUpdate)
+		hooksecurefunc(LDBI, 'SetButtonToPosition', ScheduleUpdate)
+
 		hooksecurefunc(M, 'UpdateSettings', ScheduleUpdate)
 	end
 

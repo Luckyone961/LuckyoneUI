@@ -48,7 +48,8 @@ local function ApplyVisibility(preset)
 	end
 
 	-- The headers are secure, ElvUI rebuilds them through its coroutine which waits for combat to end
-	UF:UpdateAllHeaders()
+	-- Skip mode still registers the visibility drivers, the frames themselves did not change
+	UF:UpdateAllHeaders(true)
 end
 
 -- Update visibility for group unitframes based on instance type and difficulty

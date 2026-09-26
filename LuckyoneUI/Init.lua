@@ -17,9 +17,10 @@ local GetBuildInfo = GetBuildInfo
 local GetRealmName = GetRealmName
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 local MergeTable = MergeTable
+local RegionalUniqueNamesEnabled = RegionalUniqueNamesEnabled
 local UnitClass = UnitClass
 local UnitGUID = UnitGUID
-local UnitName = UnitName
+local UnitNameUnmodified = UnitNameUnmodified
 
 local _G = _G
 local LibStub = LibStub
@@ -71,7 +72,7 @@ Private.GameTOC = select(4, GetBuildInfo())
 Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 Private.isTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 Private.isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
-Private.isForever = Private.GameTOC == 16001
+Private.isForever = Private.GameTOC >= 16000 and Private.GameTOC < 20000
 Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and not Private.isForever
 Private.isModern = Private.isRetail or Private.isForever
 
@@ -79,21 +80,27 @@ Private.isModern = Private.isRetail or Private.isForever
 Private.IsAddOnLoaded = IsAddOnLoaded
 
 -- Packager fills the TOC version from the git tag
--- Alpha tags look like 4.25-alpha1 and source keeps raw @project-version@
+-- Alpha tags look like 4.26-alpha1 and source keeps raw @project-version@
 Private.VersionString = GetAddOnMetadata(Name, 'Version')
 Private.Version = tonumber(strmatch(Private.VersionString, '^[%d%.]+'))
 
 -- Bump with every release, same as ElvUI does for source checkouts
 if not Private.Version then
-	Private.Version, Private.VersionString = 4.24, '4.24-git'
+	Private.Version, Private.VersionString = 4.25, '4.25-git'
 end
 
 -- Player utils
 Private.myClass = select(2, UnitClass('player'))
 Private.myGUID = UnitGUID('player')
-Private.myName = UnitName('player')
+Private.myName = UnitNameUnmodified('player')
 Private.myRealm = GetRealmName()
 Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
+
+-- Forever names are unique per region, so the key is the full name without a server (Like AceDB)
+if RegionalUniqueNamesEnabled and RegionalUniqueNamesEnabled() then
+	local surname = select(2, UnitNameUnmodified('player'))
+	Private.myNameRealm = (surname and Private.myName .. ' ' .. surname) or Private.myName
+end
 
 -- Same as GetNormalizedRealmName, which is still nil this early
 Private.myNormalizedRealm = gsub(Private.myRealm, '[%s%-%.]', '')
