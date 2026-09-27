@@ -5,7 +5,7 @@ local function ObjectiveTrackerHeader()
 	return {
 		font = Private.Font,
 		fontOutline = Private.Outline,
-		fontSize = 13,
+		fontSize = 14,
 		colorType = 'CLASS',
 		color = { r = 1, g = 1, b = 1 },
 		hideBackground = true,
@@ -142,7 +142,7 @@ Private.Defaults = {
 					enable = false,
 					mouseover = false,
 					holder = 'ElvUI_MinimapHolder',
-					size = 24,
+					size = 26,
 					spacing = 1,
 					perRow = 8,
 					xOffset = 0,
@@ -210,7 +210,7 @@ Private.Defaults = {
 				content = {
 					font = Private.Font,
 					fontOutline = Private.Outline,
-					fontSize = 12,
+					fontSize = 13,
 					titleColorType = 'CLASS',
 					titleColor = { r = 1, g = 1, b = 1 },
 					lineColorType = 'DEFAULT',

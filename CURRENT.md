@@ -1,18 +1,10 @@
-## Version 4.25 [27-09-2026]
+## Version 4.26 [Alpha - In Development - Not Yet Released]
 
 **All WoW Versions:**  
-- Added skin for RXPGuides (I consider this still WIP for now)  
-- Added slug outline selections to all config options  
-- Fixed Auctionator skin (Tabs overlapping)  
-- Updated BugSack skin  
-- Updated minimap button bar (It can now add/release buttons without a reload)  
+- Updated minimap button bar defaults (Icon size 24 > 26)  
+- Updated objective tracker defaults (Header font 13 > 14, Content font 12 > 13)  
+- Updated player unitframe debuffs (Font size override to match icon size)  
+- Updated the top right screen area (Minimap size, Buffs, Debuffs)  
 
 **Retail:**  
-- Added skin for Plumber (Only skins peoples House list)  
-
-**Forever:**  
-- Fixed the custom pet happiness tag  
-
-**Damage Meter:**  
-- Added option to change update interval for bars/text (Default was 0.25, is now 0.33)  
-- Blizzard meter is no longer enabled and hidden in the background (Both CVars are 0 now)  
+- Updated MPlusTimer profile (Requires Alpha)  
