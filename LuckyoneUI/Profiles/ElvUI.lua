@@ -227,14 +227,14 @@ local function Setup_GlobalDB()
 	local ActionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 	ActionBarsDT.fonts.enable = true
 	ActionBarsDT.fonts.font = Private.Font
-	ActionBarsDT.fonts.fontSize = 12
+	ActionBarsDT.fonts.fontSize = 14
 	ActionBarsDT.frameStrata = 'BACKGROUND'
-	ActionBarsDT.height = 14
+	ActionBarsDT.height = 18
 	ActionBarsDT.name = 'Luckyone_ActionBars_DT'
 	ActionBarsDT.panelTransparency = true
 	ActionBarsDT.tooltipAnchor = 'ANCHOR_TOP'
 	ActionBarsDT.tooltipXOffset = 0
-	ActionBarsDT.tooltipYOffset = 5
+	ActionBarsDT.tooltipYOffset = 3
 	ActionBarsDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
 
 	if not E.global.datatexts.customPanels.Luckyone_MiniMap_DT then
@@ -564,10 +564,10 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.chat.panelColor.b = 0.05
 	E.db.chat.panelColor.g = 0.05
 	E.db.chat.panelColor.r = 0.05
-	E.db.chat.panelHeight = (scaled and 170) or 208
-	E.db.chat.panelHeightRight = (scaled and 170) or 208
-	E.db.chat.panelWidth = (scaled and 434) or 484
-	E.db.chat.panelWidthRight = (scaled and 440) or 486
+	E.db.chat.panelHeight = (scaled and 210) or 231
+	E.db.chat.panelHeightRight = (scaled and 210) or 231
+	E.db.chat.panelWidth = (scaled and 444) or 544
+	E.db.chat.panelWidthRight = (scaled and 450) or 540
 	E.db.chat.separateSizes = true
 	E.db.chat.showHistory.CHANNEL = false
 	E.db.chat.showHistory.EMOTE = false
@@ -579,7 +579,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.chat.showHistory.YELL = false
 	E.db.chat.tabFont = Private.Font
 	E.db.chat.tabFontOutline = Private.Outline
-	E.db.chat.tabFontSize = 11
+	E.db.chat.tabFontSize = 14
 	E.db.chat.tabSelector = 'NONE'
 	E.db.chat.throttleInterval = 0
 	E.db.chat.timeStampFormat = '%H:%M '
@@ -670,9 +670,9 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.databars.petExperience.enable = false
 	E.db.databars.reputation.enable = true
 	E.db.databars.reputation.font = Private.Font
-	E.db.databars.reputation.height = (scaled and 170) or 208
+	E.db.databars.reputation.height = (scaled and 210) or 231
 	E.db.databars.reputation.orientation = 'VERTICAL'
-	E.db.databars.reputation.width = 12
+	E.db.databars.reputation.width = 14
 	E.db.databars.threat.enable = false
 
 	-- DataTexts custom
@@ -1560,6 +1560,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid3.verticalSpacing = 1
 
 	-- Shared movers
+	E.db.movers.AdditionalPowerMover = 'BOTTOM,ElvUIParent,BOTTOM,0,160'
 	E.db.movers.AddonCompartmentMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66'
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-202'
 	E.db.movers.AltPowerBarMover = 'TOP,ElvUIParent,TOP,0,-22'
@@ -1614,10 +1615,10 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-24'
 	E.db.movers.QuestWatchFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-230'
 	E.db.movers.QueueStatusMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-192'
-	E.db.movers.ReputationBarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-442,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-488,1'
+	E.db.movers.ReputationBarMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-452,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,1'
 	E.db.movers.RightChatMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,1'
 	E.db.movers.ShiftAB = 'TOPLEFT,ElvUIParent,TOPLEFT,325,-1'
-	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,134') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,172'
+	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,174') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,195'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-67'
 	E.db.movers.TorghastChoiceToggle = 'TOP,ElvUIParent,TOP,0,-598'
 	E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,543,412') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,831,552'
@@ -1635,7 +1636,7 @@ local function Setup_ElvUI(layout, partyStyle)
 
 		-- Main Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 10
-		E.db.unitframe.units.raid1.height = 40
+		E.db.unitframe.units.raid1.height = (scaled and 40) or 50
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid1.raidicon.attachToObject = 'Health'
 		E.db.unitframe.units.raid1.raidicon.size = 12
@@ -1645,11 +1646,11 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.raid1.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid1.rdebuffs.yOffset = 13
 		E.db.unitframe.units.raid1.roleIcon.size = 12
-		E.db.unitframe.units.raid1.width = (scaled and 86) or 96
+		E.db.unitframe.units.raid1.width = (scaled and 88) or 108
 
 		-- Main Raid2
 		E.db.unitframe.units.raid2.buffIndicator.size = 10
-		E.db.unitframe.units.raid2.height = 40
+		E.db.unitframe.units.raid2.height = (scaled and 40) or 50
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid2.raidicon.attachToObject = 'Health'
 		E.db.unitframe.units.raid2.raidicon.size = 12
@@ -1659,17 +1660,17 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.raid2.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid2.rdebuffs.yOffset = 13
 		E.db.unitframe.units.raid2.roleIcon.size = 12
-		E.db.unitframe.units.raid2.width = (scaled and 86) or 96
+		E.db.unitframe.units.raid2.width = (scaled and 88) or 108
 
 		-- Main Raid3
-		E.db.unitframe.units.raid3.height = 30
+		E.db.unitframe.units.raid3.height = (scaled and 30) or 40
 		E.db.unitframe.units.raid3.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid3.raidicon.attachToObject = 'Health'
 		E.db.unitframe.units.raid3.raidicon.xOffset = 1
 		E.db.unitframe.units.raid3.raidicon.yOffset = 1
 		E.db.unitframe.units.raid3.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid3.rdebuffs.yOffset = 8
-		E.db.unitframe.units.raid3.width = (scaled and 86) or 96
+		E.db.unitframe.units.raid3.width = (scaled and 88) or 108
 
 		-- Main Heal Prediction
 		E.db.unitframe.units.arena.healPrediction.enable = false
@@ -1699,7 +1700,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.raid1.buffs.sizeOverride = 26
 		E.db.unitframe.units.raid1.debuffs.enable = Private.isModern
 		E.db.unitframe.units.raid1.debuffs.sizeOverride = 26
-		E.db.unitframe.units.raid1.height = (scaled and 60) or 80
+		E.db.unitframe.units.raid1.height = (scaled and 56) or 80
 		E.db.unitframe.units.raid1.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid1.raidicon.size = 14
 		E.db.unitframe.units.raid1.raidicon.xOffset = -2
@@ -1716,7 +1717,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.raid2.buffs.sizeOverride = 24
 		E.db.unitframe.units.raid2.debuffs.enable = Private.isModern
 		E.db.unitframe.units.raid2.debuffs.sizeOverride = 24
-		E.db.unitframe.units.raid2.height = (scaled and 44) or 54
+		E.db.unitframe.units.raid2.height = (scaled and 40) or 54
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid2.raidicon.size = 14
 		E.db.unitframe.units.raid2.raidicon.xOffset = -2
@@ -1729,7 +1730,7 @@ local function Setup_ElvUI(layout, partyStyle)
 
 		-- Healing Raid3
 		E.db.unitframe.units.raid3.buffIndicator.size = 10
-		E.db.unitframe.units.raid3.height = (scaled and 32) or 36
+		E.db.unitframe.units.raid3.height = (scaled and 28) or 36
 		E.db.unitframe.units.raid3.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid3.raidicon.xOffset = -2
 		E.db.unitframe.units.raid3.raidicon.yOffset = 0
@@ -1751,26 +1752,26 @@ local function Setup_ElvUI(layout, partyStyle)
 
 		-- Main movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
-		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-		E.db.movers.ElvAB_5 = 'BOTTOM,ElvUIParent,BOTTOM,0,86'
-		E.db.movers.ElvAB_6 = 'BOTTOM,ElvUIParent,BOTTOM,0,51'
-		E.db.movers.ElvUF_Raid1Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,121'
+		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,20'
+		E.db.movers.ElvAB_5 = 'BOTTOM,ElvUIParent,BOTTOM,0,90'
+		E.db.movers.ElvAB_6 = 'BOTTOM,ElvUIParent,BOTTOM,0,55'
+		E.db.movers.ElvUF_Raid1Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,212') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,233'
+		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,212') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,233'
+		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,212') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,233'
+		E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,125'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 
 	elseif layout == 'healing' then
 
 		-- Healing movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
-		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.ElvAB_5 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,242') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,280'
-		E.db.movers.ElvAB_6 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,207') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,245'
-		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,277') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,315'
+		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,212') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,233'
+		E.db.movers.ElvAB_5 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,282') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,303'
+		E.db.movers.ElvAB_6 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,247') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,268'
+		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,20'
+		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,20'
+		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,20'
+		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,317') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,338'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 
 	end
