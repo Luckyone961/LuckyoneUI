@@ -18,7 +18,8 @@ local function CallbackFunction(accepted, name)
 	if scaled then -- 1080p x/y offsets
 		local bres = BigWigs3DB.namespaces.BigWigs_Plugins_BattleRes
 		if bres and bres.profiles and bres.profiles[name] then
-			bres.profiles[name].position = { nil, nil, -499, -514 } -- 1440p is -769, -694
+			-- ToDo: 1080p value
+			bres.profiles[name].position = { nil, nil, -499, -514 } -- 1440p is -709, -694
 		end
 	end
 end
