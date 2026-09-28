@@ -27,6 +27,7 @@ local Normal, Header, Complete, Failed
 local underlines = setmetatable({}, { __mode = 'k' })
 local modules = setmetatable({}, { __mode = 'k' })
 local blocks = setmetatable({}, { __mode = 'k' })
+local lines = setmetatable({}, { __mode = 'k' })
 local skinned = setmetatable({}, { __mode = 'k' })
 local poiAnchors = setmetatable({}, { __mode = 'k' }) -- Blizzard y offset of every quest icon, refreshed by each layout
 
@@ -317,6 +318,12 @@ local function UpdatePOIButton(block, fresh)
 	end
 end
 
+-- Blizzard bug workaround, see:
+-- https://github.com/Gethe/wow-ui-source/blob/09b9db7948abc9b9648dedaab51eb0cf3ee67b31/Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_BonusObjectiveTracker.lua#L398
+local function CheckAnim_OnFinished(anim)
+	anim:GetParent().CheckGlow:SetAlpha(0)
+end
+
 -- Runs as the hook after every layout
 local function Module_LayoutBlock(_, block, stale)
 	-- Mouseover resets the colors
@@ -326,6 +333,16 @@ local function Module_LayoutBlock(_, block, stale)
 
 		if type(block.UpdateHighlight) == 'function' then
 			hooksecurefunc(block, 'UpdateHighlight', ColorBlock)
+		end
+	end
+
+	-- Only the animated templates have the check
+	if block.usedLines then
+		for _, line in pairs(block.usedLines) do
+			if line.CheckAnim and not lines[line] then
+				lines[line] = true
+				line.CheckAnim:HookScript('OnFinished', CheckAnim_OnFinished)
+			end
 		end
 	end
 
@@ -376,6 +393,13 @@ local function Manager_SetModuleContainer(_, module)
 	UpdateModule(module)
 end
 
+-- Every toggle puts the collapse all art with its red backdrop back, the category header art has none
+local function Header_SetCollapsed(header, collapsed)
+	local button = header.MinimizeButton
+	button:GetNormalTexture():SetAtlas(collapsed and 'ui-questtrackerbutton-secondary-expand' or 'ui-questtrackerbutton-secondary-collapse', true)
+	button:GetPushedTexture():SetAtlas(collapsed and 'ui-questtrackerbutton-secondary-expand-pressed' or 'ui-questtrackerbutton-secondary-collapse-pressed', true)
+end
+
 -- Config, also runs after Edit Mode swaps the font objects for its text size and after ElvUI puts its font on them
 local function Update()
 	if not hooked then return end
@@ -423,6 +447,19 @@ function Private:ObjectiveTracker()
 
 		if E then
 			hooksecurefunc(E, 'UpdateBlizzardFonts', Update)
+		end
+
+		-- Two pixels further right lines it up with the category header buttons
+		local header = _G.ObjectiveTrackerFrame.Header
+		local button = header.MinimizeButton
+		button:SetPoint('RIGHT', 1, 0)
+
+		if not S then
+			button:SetSize(16, 16)
+			button:SetHighlightAtlas('ui-questtrackerbutton-yellow-highlight', 'ADD')
+
+			hooksecurefunc(header, 'SetCollapsed', Header_SetCollapsed)
+			Header_SetCollapsed(header, _G.ObjectiveTrackerFrame:IsCollapsed())
 		end
 
 		hooked = true
