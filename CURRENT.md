@@ -1,6 +1,7 @@
 ## Version 4.26 [Alpha - In Development - Not Yet Released]
 
 **All WoW Versions:**  
+- Updated Chattynator profile to match the layout updates  
 - Updated minimap button bar defaults (Icon size 24 > 26)  
 - Updated objective tracker defaults (Header font 13 > 14, Content font 12 > 13)  
 - Updated player unitframe debuffs (Font size override to match icon size)  
