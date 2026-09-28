@@ -10,3 +10,6 @@
 
 **Retail:**  
 - Updated MPlusTimer profile (Requires Alpha)  
+
+**Forever:**  
+- Initial setup for party pets and raid pets  

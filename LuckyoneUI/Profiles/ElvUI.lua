@@ -102,6 +102,19 @@ local function ApplyPartyShared()
 	E.db.unitframe.units.party.summonIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.party.threatStyle = 'NONE'
 	E.db.unitframe.units.party.verticalSpacing = 1
+
+	-- Party pet frames for nonRetail
+	if not Private.isRetail then
+		E.db.unitframe.units.party.petsGroup.enable = true
+		E.db.unitframe.units.party.petsGroup.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
+		E.db.unitframe.units.party.petsGroup.height = 31
+		E.db.unitframe.units.party.petsGroup.name.text_format = '[luckyone:name:short-color-friendly]'
+		E.db.unitframe.units.party.petsGroup.raidicon.attachTo = 'RIGHT'
+		E.db.unitframe.units.party.petsGroup.raidicon.size = 14
+		E.db.unitframe.units.party.petsGroup.raidicon.xOffset = -3
+		E.db.unitframe.units.party.petsGroup.raidicon.yOffset = 0
+		E.db.unitframe.units.party.petsGroup.threatStyle = 'NONE'
+	end
 end
 
 -- Vertical Party
@@ -128,6 +141,14 @@ local function ApplyPartyVertical()
 	E.db.unitframe.units.party.summonIcon.size = 24
 	E.db.unitframe.units.party.summonIcon.xOffset = -15
 	E.db.unitframe.units.party.width = 220
+
+	-- Party pet frames for nonRetail
+	if not Private.isRetail then
+		E.db.unitframe.units.party.petsGroup.anchorPoint = 'LEFT'
+		E.db.unitframe.units.party.petsGroup.width = 110
+		E.db.unitframe.units.party.petsGroup.xOffset = -1
+		E.db.unitframe.units.party.petsGroup.yOffset = 16
+	end
 end
 
 -- Horizontal Party
@@ -163,6 +184,14 @@ local function ApplyPartyHorizontal()
 	E.db.unitframe.units.party.showPlayer = true
 	E.db.unitframe.units.party.summonIcon.size = 18
 	E.db.unitframe.units.party.width = 140
+
+	-- Party pet frames for nonRetail
+	if not Private.isRetail then
+		E.db.unitframe.units.party.petsGroup.anchorPoint = 'BOTTOMLEFT'
+		E.db.unitframe.units.party.petsGroup.width = 140
+		E.db.unitframe.units.party.petsGroup.xOffset = 0
+		E.db.unitframe.units.party.petsGroup.yOffset = -1
+	end
 end
 
 -- Healing party orientation
@@ -176,21 +205,6 @@ local function SetupHealingParty(partyStyle, scaled)
 		E.db.movers.ElvUF_PartyMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,215') or 'BOTTOM,ElvUIParent,BOTTOM,0,275'
 	else
 		ApplyPartyVertical()
-
-		-- Party pet frames for Classic & Anniversary
-		if (Private.isClassic or Private.isTBC) then
-			E.db.unitframe.units.party.petsGroup.anchorPoint = 'LEFT'
-			E.db.unitframe.units.party.petsGroup.enable = true
-			E.db.unitframe.units.party.petsGroup.height = 31
-			E.db.unitframe.units.party.petsGroup.name.attachTextTo = 'Frame'
-			E.db.unitframe.units.party.petsGroup.raidicon.attachTo = 'LEFT'
-			E.db.unitframe.units.party.petsGroup.raidicon.size = 22
-			E.db.unitframe.units.party.petsGroup.raidicon.xOffset = -24
-			E.db.unitframe.units.party.petsGroup.raidicon.yOffset = 0
-			E.db.unitframe.units.party.petsGroup.threatStyle = 'NONE'
-			E.db.unitframe.units.party.petsGroup.xOffset = -1
-			E.db.unitframe.units.party.petsGroup.yOffset = 16
-		end
 	end
 
 	E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isModern and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
@@ -455,6 +469,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.actionbar.extraActionButton.hotkeyTextPosition = 'TOP'
 	E.db.actionbar.extraActionButton.hotkeyTextYOffset = -1
 	E.db.actionbar.extraActionButton.scale = 0.89
+	E.db.actionbar.flyoutSize = 34
 	E.db.actionbar.font = Private.Font
 	E.db.actionbar.fontOutline = Private.Outline
 	E.db.actionbar.fontSize = 9
@@ -1390,9 +1405,10 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raidpet.debuffs.priority = 'Dispellable,RaidDebuffs'
 	E.db.unitframe.units.raidpet.disableFocusGlow = true
 	E.db.unitframe.units.raidpet.disableTargetGlow = true
-	E.db.unitframe.units.raidpet.enable = Private.isClassic
+	E.db.unitframe.units.raidpet.enable = false
 	E.db.unitframe.units.raidpet.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.raidpet.health.text_format = ''
+	E.db.unitframe.units.raidpet.height = 40
 	E.db.unitframe.units.raidpet.horizontalSpacing = 1
 	E.db.unitframe.units.raidpet.name.attachTextTo = 'Frame'
 	E.db.unitframe.units.raidpet.name.text_format = Private.isModern and '[luckyone:name-color]' or '[luckyone:name:veryshort-classcolor]'
@@ -1430,7 +1446,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raidpet.summonIcon.size = 18
 	E.db.unitframe.units.raidpet.threatStyle = 'NONE'
 	E.db.unitframe.units.raidpet.verticalSpacing = 1
-	E.db.unitframe.units.raidpet.width = 92
+	E.db.unitframe.units.raidpet.width = 108
 
 	-- Shared growth directions
 	E.db.unitframe.units.raidpet.growthDirection = 'RIGHT_DOWN'
@@ -1592,7 +1608,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,451,360') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,739,500'
 	E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,306') or 'BOTTOM,ElvUIParent,BOTTOM,0,446'
 	E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,360') or 'BOTTOM,ElvUIParent,BOTTOM,-320,500'
-	E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,458'
+	E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,580' -- ToDo: 1080p value
 	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,337') or 'BOTTOM,ElvUIParent,BOTTOM,320,477'
 	E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,360') or 'BOTTOM,ElvUIParent,BOTTOM,320,500'
 	E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,314') or 'BOTTOM,ElvUIParent,BOTTOM,380,454'
@@ -1623,6 +1639,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,174') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,195'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-67'
 	E.db.movers.TorghastChoiceToggle = 'TOP,ElvUIParent,TOP,0,-598'
+	E.db.movers.TotemTrackerMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,575,1' -- ToDo: 1080p value
 	E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,543,412') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,831,552'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-83'
 
@@ -1797,9 +1814,9 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.actionbar.bar4.enabled = true
 		E.db.actionbar.bar4.buttons = 8
 		E.db.actionbar.bar4.buttonsPerRow = 1
-		E.db.actionbar.bar4.buttonSize = 25
+		E.db.actionbar.bar4.buttonSize = 28
 		E.db.actionbar.bar4.point = 'BOTTOMRIGHT'
-		E.db.movers.ElvAB_4 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,2'
+		E.db.movers.ElvAB_4 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,546,1' -- ToDo: 1080p value
 	end
 
 	if layout == 'healing' then

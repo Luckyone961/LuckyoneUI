@@ -11,6 +11,9 @@
 **Retail:**  
 - Updated MPlusTimer profile (Requires Alpha)  
 
+**Forever:**  
+- Initial setup for party pets and raid pets  
+
 ## Version 4.25 [27-09-2026]
 
 **All WoW Versions:**  
