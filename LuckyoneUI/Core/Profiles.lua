@@ -1,7 +1,6 @@
 local _, Private = ...
 local L = Private.L
 
-local pairs = pairs
 local pcall = pcall
 local strmatch = string.match
 local type = type
@@ -26,7 +25,7 @@ local CANCEL = CANCEL
 -- Custom placed damage meter windows are positioned by ElvUI movers
 -- Temporary snapshot
 local function ExportMovers()
-	if not Private.ElvUI then return end
+	if not Private.Modules.DamageMeter then return end
 
 	local movers, db = {}, ElvUI[1].db.movers
 	for index = 1, 4 do
@@ -57,26 +56,10 @@ local function DecodeProfile(text)
 	end
 end
 
-local function MergeProfile(profile, data)
-	for key, value in pairs(data) do
-		if type(value) == 'table' and type(profile[key]) == 'table' then
-			MergeProfile(profile[key], value)
-		else
-			profile[key] = value
-		end
-	end
-end
-
 function Private:LoadProfile(name, data, movers)
 	local db = Private.Addon.db
-	if name == db:GetCurrentProfile() then
-		-- Merged in place so module references stay on the live table
-		db:ResetProfile()
-		MergeProfile(db.profile, data)
-	else
-		db.profiles[name] = data
-		db:SetProfile(name)
-	end
+	db.profiles[name] = data
+	db:SetProfile(name)
 
 	-- The reload applies them through E:SetMoversPositions
 	if movers and Private.ElvUI then

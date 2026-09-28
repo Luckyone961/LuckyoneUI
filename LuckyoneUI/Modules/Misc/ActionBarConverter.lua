@@ -41,7 +41,7 @@ local E = unpack(ElvUI)
 local AB = E:GetModule('ActionBars')
 local S = E:GetModule('Skins')
 
-local frame, selected
+local frame, selected, swapping
 local rows = {} -- Per page
 local cells = {} -- Per slot
 
@@ -151,6 +151,10 @@ local function SwapBars(source, target)
 
 	-- The skyriding page and the unused one after it have no keybinds of their own
 	local keys = frame.keybinds:GetChecked() and source.bindButtons and target.bindButtons
+
+	-- Every SetBinding fires UPDATE_BINDINGS, one Refresh at the end covers the whole swap
+	swapping = true
+
 	for i = 1, 12 do
 		SwapSlots(source.first + i - 1, target.first + i - 1)
 
@@ -163,6 +167,7 @@ local function SwapBars(source, target)
 		SaveBindings(GetCurrentBindingSet())
 	end
 
+	swapping = nil
 	Refresh()
 end
 
@@ -313,7 +318,7 @@ local function CreateRow(page)
 end
 
 local function Frame_OnEvent(_, event, slot)
-	if InCombatLockdown() then return end
+	if swapping or InCombatLockdown() then return end
 
 	if event == 'ACTIONBAR_SLOT_CHANGED' and slot and slot > 0 then
 		local cell = cells[slot]

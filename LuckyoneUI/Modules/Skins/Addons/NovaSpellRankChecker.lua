@@ -24,7 +24,7 @@ end
 local function Skin_NovaSpellRankChecker()
 	if not Private.Addon.db.profile.skins.NovaSpellRankChecker then return end
 
-	local button = SpellBookFrameButton
+	local button = SpellBookFrameScanButton
 	if not button or button.isSkinned then return end
 
 	-- Skin and resize the spell rank checker button

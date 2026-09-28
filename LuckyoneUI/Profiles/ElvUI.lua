@@ -177,7 +177,6 @@ local function SetupHealingParty(partyStyle, scaled)
 		E.db.movers.ElvUF_PartyMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,215') or 'BOTTOM,ElvUIParent,BOTTOM,0,275'
 	else
 		ApplyPartyVertical()
-		E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,322,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,610,-400'
 
 		-- Party pet frames for Classic & Anniversary
 		if (Private.isClassic or Private.isTBC) then
@@ -414,7 +413,7 @@ local function Setup_ElvUI(layout, partyStyle)
 			E.db.actionbar['bar'..i].countTextPosition = 'BOTTOM'
 			E.db.actionbar['bar'..i].countTextXOffset = 1
 			E.db.actionbar['bar'..i].countTextYOffset = 1
-			E.db.actionbar['bar'..i].enabled = true
+			E.db.actionbar['bar'..i].enabled = (i == 1 or i == 3 or i == 5 or i == 6) -- Only the bars we use by default
 			E.db.actionbar['bar'..i].hotkeyFont = Private.Font
 			E.db.actionbar['bar'..i].hotkeyFontOutline = Private.Outline
 			E.db.actionbar['bar'..i].hotkeyTextPosition = 'TOP'
@@ -434,13 +433,6 @@ local function Setup_ElvUI(layout, partyStyle)
 	-- Side ActionBar is vertical and on mouseover
 	E.db.actionbar.bar3.buttonsPerRow = 1
 	E.db.actionbar.bar3.mouseover = true
-
-	-- Turn off all ActionBars except the ones we use by default
-	for i = 1, 15 do
-		if i ~= 1 and i ~= 3 and i ~= 5 and i ~= 6 and i ~= 11 and i ~= 12 then
-			E.db.actionbar['bar'..i].enabled = false
-		end
-	end
 
 	E.db.actionbar.barPet.backdrop = false
 	E.db.actionbar.barPet.buttonSize = 34
@@ -1249,7 +1241,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.player.threatStyle = 'NONE'
 	E.db.unitframe.units.player.width = 260
 
-	-- Player debuffs anchor + filters for retail
+	-- Player debuffs anchor for Retail & Forever
 	if Private.isModern then
 		E.db.unitframe.units.player.debuffs.anchorPoint = 'TOPRIGHT'
 		E.db.unitframe.units.player.debuffs.growthX = 'LEFT'
@@ -1441,10 +1433,6 @@ local function Setup_ElvUI(layout, partyStyle)
 	-- Shared growth directions
 	E.db.unitframe.units.raidpet.growthDirection = 'RIGHT_DOWN'
 
-	-- Shared Party
-	ApplyPartyShared()
-	ApplyPartyVertical()
-
 	-- Shared Raid1
 	E.db.unitframe.units.raid1.buffIndicator.countFont = Private.Font
 	E.db.unitframe.units.raid1.buffIndicator.countFontSize = 10
@@ -1512,8 +1500,8 @@ local function Setup_ElvUI(layout, partyStyle)
 
 	-- Shared Raid2
 	E:CopyTable(E.db.unitframe.units.raid2, E.db.unitframe.units.raid1)
-	E.db.unitframe.units.raid2.numGroups = Private.isRetail and 6 or 5
-	E.db.unitframe.units.raid2.visibility = Private.isRetail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
+	E.db.unitframe.units.raid2.numGroups = Private.isModern and 6 or 5
+	E.db.unitframe.units.raid2.visibility = Private.isModern and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
 
 	-- Shared Raid3
 	E.db.unitframe.units.raid3.buffIndicator.countFont = Private.Font
@@ -1632,9 +1620,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,134') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,172'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-67'
 	E.db.movers.TorghastChoiceToggle = 'TOP,ElvUIParent,TOP,0,-598'
-	E.db.movers.UIErrorsFrameMover = 'TOP,ElvUIParent,TOP,0,-117'
 	E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,543,412') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,831,552'
-	E.db.movers.VehicleSeatMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,486,1'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-83'
 
 	if layout == 'main' then
@@ -1642,8 +1628,10 @@ local function Setup_ElvUI(layout, partyStyle)
 		-- Main Player
 		E.db.unitframe.units.player.power.enable = false
 
-		-- Main Party
-		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isModern and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]') .. (not Private.isModern and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]')
+		-- Main Party, the healing layout builds its own in SetupHealingParty
+		ApplyPartyShared()
+		ApplyPartyVertical()
+		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = Private.isModern and '[luckyone:name:short-color-friendly][ ||r- >luckyone:healermana:percent<%]' or '[luckyone:name:short-classcolor][ ||r- >luckyone:healermana:percent]'
 
 		-- Main Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 10
@@ -1787,8 +1775,11 @@ local function Setup_ElvUI(layout, partyStyle)
 
 	end
 
-	-- Initial DT width
-	E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (layout == 'main' and 419) or (layout == 'healing' and 704)
+	-- Initial DT width, the panel is missing when Setup_GlobalDB bailed out in combat
+	local actionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
+	if actionBarsDT then
+		actionBarsDT.width = (layout == 'main' and 419) or (layout == 'healing' and 704)
+	end
 
 	-- Custom AB changes
 	if Private.itsLuckyone and layout == 'healing' then
@@ -1821,8 +1812,8 @@ function Private:Setup_NamePlates()
 	-- Restore defaults, in place so NP.db keeps pointing at it
 	E:CopyTable(wipe(E.db.nameplates), P.nameplates)
 
-	-- NamePlates CVars
-	Private:NameplateCVars()
+	-- NamePlates CVars, the combined message below covers them
+	Private:NameplateCVars(true)
 
 	-- NamePlates colors
 	E.db.nameplates.colors.auraByType = false

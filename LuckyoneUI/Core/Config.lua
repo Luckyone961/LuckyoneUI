@@ -381,7 +381,7 @@ end
 
 -- Build Damage Meter Section
 local function BuildDamageMeterSection()
-	if not (Private.ElvUI and Private.isModern) then return end -- Retail + ElvUI section
+	if not (Private.ElvUI and Private.isModern) then return end -- Retail/Forever + ElvUI section
 	local section = ACH:Group(GetIconName(L["Damage Meter"], 'DamageMeter'), nil, 35, 'tab')
 	section.args.header = ACH:Header(L["Damage Meter"], 1)
 	section.args.general = ACH:Group(L["General"], nil, 2, nil, DamageMeterGet, DamageMeterSet)
@@ -940,9 +940,9 @@ end
 	ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
 	ACH:Header(name, order, get, set, hidden)
 	ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
-	ACH:MultiSelect(name, desc, order, values, confirm, width, get, set, disabled, hidden)
+	ACH:MultiSelect(name, desc, order, values, confirm, width, get, set, disabled, hidden, sortByValue)
 	ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
-	ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
+	ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden, sortByValue)
 	ACH:Spacer(order, width, hidden)
 	ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
 ]]

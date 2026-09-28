@@ -15,8 +15,8 @@ local _G = _G
 local LibStub = LibStub
 local StaticPopup_Show = _G.StaticPopup_Show
 
-local GetSpecialization = C_SpecializationInfo and C_SpecializationInfo.GetSpecialization or _G.GetSpecialization
-local GetSpecializationInfo = C_SpecializationInfo and C_SpecializationInfo.GetSpecializationInfo or _G.GetSpecializationInfo
+local GetSpecialization = C_SpecializationInfo.GetSpecialization
+local GetSpecializationInfo = C_SpecializationInfo.GetSpecializationInfo
 
 -- Character keys used by the addon databases
 local charKey = Private.myNameRealm
@@ -30,8 +30,6 @@ local layoutNames = {
 
 -- Healers get the healing profiles, everyone else the main ones
 local function GetLayout()
-	if not (GetSpecialization and GetSpecializationInfo) then return 'main' end
-
 	local spec = GetSpecialization()
 	if not spec then return 'main' end
 
@@ -124,7 +122,6 @@ end
 local handlers = {
 	{
 		name = 'ElvUI',
-		hidden = not Private.ElvUI,
 		base = function(layout) return layoutNames[layout] end,
 		Profiles = AceProfiles('ElvDB'),
 		Apply = function(profile, layout) Private:Setup_AltProfile(profile, layout) end,

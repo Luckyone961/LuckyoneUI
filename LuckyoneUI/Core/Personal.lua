@@ -300,13 +300,11 @@ function Private:HandleLuckyoneDB()
 	if not ElvDB or not ElvPrivateDB then return end
 
 	-- ProfileDB and PrivateDB, all chars share the installing character's private profile
-	if profileKeys then
-		ElvDB.profileKeys = ElvDB.profileKeys or {}
-		ElvPrivateDB.profileKeys = ElvPrivateDB.profileKeys or {}
-		for char, profile in pairs(profileKeys) do
-			ElvDB.profileKeys[char] = profile
-			ElvPrivateDB.profileKeys[char] = Private.myNameRealm
-		end
+	ElvDB.profileKeys = ElvDB.profileKeys or {}
+	ElvPrivateDB.profileKeys = ElvPrivateDB.profileKeys or {}
+	for char, profile in pairs(profileKeys) do
+		ElvDB.profileKeys[char] = profile
+		ElvPrivateDB.profileKeys[char] = Private.myNameRealm
 	end
 
 	-- LibDualSpec

@@ -1,6 +1,5 @@
 local _, Private = ...
 local L = Private.L
-local LSM = Private.Libs.LSM
 
 local concat = table.concat
 local floor = math.floor
@@ -85,7 +84,7 @@ end
 
 local function CreateText(parent, size)
 	local text = parent:CreateFontString(nil, 'OVERLAY')
-	text:SetFont(LSM:Fetch('font', Private.Font), size, Private.Outline)
+	Private:SetFont(text, Private.Font, size, Private.Outline)
 	return text
 end
 
@@ -614,7 +613,7 @@ end
 
 -- ElvUI db keys, the mirror path is written along with the value (player castbar custom color)
 local function ElvUIToggle(label, path, mirror)
-	return { elvui = true, section = strmatch(path, '(.+)%.'), key = strmatch(path, '[^.]+$'), label = label, mirror = mirror and ElvUIToggle(nil, mirror), hidden = not Private.ElvUI }
+	return { elvui = true, section = strmatch(path, '(.+)%.'), key = strmatch(path, '[^.]+$'), label = label, mirror = mirror and ElvUIToggle(nil, mirror) }
 end
 
 local function BuildPages()
