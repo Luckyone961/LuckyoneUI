@@ -247,7 +247,7 @@ local function Setup_GlobalDB()
 	MiniMapDT.border = false
 	MiniMapDT.fonts.enable = true
 	MiniMapDT.fonts.font = Private.Font
-	MiniMapDT.fonts.fontSize = 20
+	MiniMapDT.fonts.fontSize = 18
 	MiniMapDT.frameStrata = 'HIGH'
 	MiniMapDT.height = 20
 	MiniMapDT.name = 'Luckyone_MiniMap_DT'
@@ -257,7 +257,7 @@ local function Setup_GlobalDB()
 	MiniMapDT.tooltipXOffset = -50
 	MiniMapDT.tooltipYOffset = -28
 	MiniMapDT.visibility = (Private.isRetail or Private.isMists) and '[petbattle] hide;show' or 'show'
-	MiniMapDT.width = 60
+	MiniMapDT.width = 66
 end
 
 -- E.private & Media
@@ -1583,7 +1583,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-217,-1'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-217,-186'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
-	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-75,-193'
+	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-75,-194'
 	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,232,1'
 	E.db.movers.ElvAB_2 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-578'
 	E.db.movers.ElvAB_3 = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,343') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,522'
