@@ -282,7 +282,7 @@ function Private:Setup_PrivateDB()
 	E.db.general.fonts.questtitle.size = 14
 	E.db.general.fonts.talkingtext.outline = Private.Outline
 	E.db.general.fonts.talkingtitle.outline = Private.Outline
-	E.db.general.fontSize = 11
+	E.db.general.fontSize = 12
 
 	E.private.bags.bagBar = false
 	E.private.general.chatBubbleFont = Private.Font
@@ -291,9 +291,9 @@ function Private:Setup_PrivateDB()
 	E.private.general.glossTex = Private.Texture
 	E.private.general.minimap.hideTracking = not Private.isClassic
 	E.private.general.nameplateFont = Private.Font
-	E.private.general.nameplateFontSize = 9
+	E.private.general.nameplateFontSize = 10
 	E.private.general.nameplateLargeFont = Private.Font
-	E.private.general.nameplateLargeFontSize = 11
+	E.private.general.nameplateLargeFontSize = 12
 	E.private.general.normTex = Private.Texture
 	E.private.general.totemTracker = false
 
