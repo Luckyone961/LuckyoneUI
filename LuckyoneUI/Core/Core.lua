@@ -12,6 +12,7 @@ local pairs = pairs
 local print = print
 local strfind = string.find
 local strlower = string.lower
+local tonumber = tonumber
 local wipe = table.wipe
 
 local C_UI = C_UI
@@ -19,6 +20,8 @@ local CopyTable = CopyTable
 local DisableAddOn = C_AddOns.DisableAddOn
 local EnableAddOn = C_AddOns.EnableAddOn
 local GetAddOnInfo = C_AddOns.GetAddOnInfo
+local GetCVar = C_CVar.GetCVar
+local GetCVarBool = C_CVar.GetCVarBool
 local GetNumAddOns = C_AddOns.GetNumAddOns
 local InCombatLockdown = InCombatLockdown
 local IsShiftKeyDown = IsShiftKeyDown
@@ -28,6 +31,7 @@ local SetCVar = C_CVar.SetCVar
 
 local _G = _G
 local LibStub = _G.LibStub
+local UIParent = _G.UIParent
 
 local Settings_OpenToCategory = _G.Settings.OpenToCategory
 local SlashCmdList = _G.SlashCmdList
@@ -237,6 +241,24 @@ local function VersionCheck()
 	end
 end
 
+-- Without ElvUI we set UIParent ourselves like ElvUI does
+function Core:UpdateScale()
+	if Private.ElvUI or not GetCVarBool('useUiScale') then return end
+
+	-- UIParent holds protected frames, try again after combat
+	if InCombatLockdown() then
+		self:RegisterEvent('PLAYER_REGEN_ENABLED', 'UpdateScale')
+		return
+	end
+
+	self:UnregisterEvent('PLAYER_REGEN_ENABLED')
+
+	local scale = tonumber(GetCVar('uiScale'))
+	if scale and scale < UIParent:GetScale() then
+		UIParent:SetScale(scale)
+	end
+end
+
 -- Scale helper
 function Private:ApplyScale(native, installer)
 	Private.Addon.db.global.scaled = not native
@@ -245,6 +267,7 @@ function Private:ApplyScale(native, installer)
 
 	SetCVar('useUiScale', 1)
 	SetCVar('uiScale', native and Private.UIScale1440 or Private.UIScale1080)
+	Core:UpdateScale()
 	Private:Print(L["LuckyoneUI Scale"] .. (native and ' 1440p' or ' 1080p'), installer)
 end
 
@@ -365,4 +388,9 @@ function Core:OnEnable()
 	LoadCommands()
 	CheckElvUI()
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
+
+	if not Private.ElvUI then
+		self:UpdateScale()
+		self:RegisterEvent('UI_SCALE_CHANGED', 'UpdateScale')
+	end
 end
