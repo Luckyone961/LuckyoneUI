@@ -51,7 +51,7 @@ local function ApplyPartyShared()
 		font = Private.Font,
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
-		size = 12,
+		size = 14,
 		text_format = '',
 		xOffset = 0,
 		yOffset = 0
@@ -93,9 +93,12 @@ local function ApplyPartyShared()
 	E.db.unitframe.units.party.raidRoleIcons.yOffset = 1
 	E.db.unitframe.units.party.rdebuffs.enable = false
 	E.db.unitframe.units.party.readycheckIcon.yOffset = 0
+	E.db.unitframe.units.party.roleIcon.attachTo = 'Frame'
 	E.db.unitframe.units.party.roleIcon.damager = false
 	E.db.unitframe.units.party.roleIcon.position = 'LEFT'
-	E.db.unitframe.units.party.roleIcon.xOffset = 0
+	E.db.unitframe.units.party.roleIcon.size = 14
+	E.db.unitframe.units.party.roleIcon.xOffset = 2
+	E.db.unitframe.units.party.roleIcon.yOffset = 0
 	E.db.unitframe.units.party.summonIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.party.threatStyle = 'NONE'
 	E.db.unitframe.units.party.verticalSpacing = 1
@@ -121,7 +124,6 @@ local function ApplyPartyVertical()
 	E.db.unitframe.units.party.readycheckIcon.position = 'RIGHT'
 	E.db.unitframe.units.party.readycheckIcon.size = 18
 	E.db.unitframe.units.party.readycheckIcon.xOffset = -2
-	E.db.unitframe.units.party.roleIcon.size = 14
 	E.db.unitframe.units.party.showPlayer = false
 	E.db.unitframe.units.party.summonIcon.size = 24
 	E.db.unitframe.units.party.summonIcon.xOffset = -15
@@ -158,9 +160,6 @@ local function ApplyPartyHorizontal()
 	E.db.unitframe.units.party.readycheckIcon.size = 14
 	E.db.unitframe.units.party.resurrectIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.party.resurrectIcon.size = 18
-	E.db.unitframe.units.party.roleIcon.attachTo = 'Frame'
-	E.db.unitframe.units.party.roleIcon.size = 16
-	E.db.unitframe.units.party.roleIcon.yOffset = 0
 	E.db.unitframe.units.party.showPlayer = true
 	E.db.unitframe.units.party.summonIcon.size = 18
 	E.db.unitframe.units.party.width = 140
@@ -791,7 +790,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.colors.useDeadBackdrop = true
 	E.db.unitframe.font = Private.Font
 	E.db.unitframe.fontOutline = Private.Outline
-	E.db.unitframe.fontSize = 11
+	E.db.unitframe.fontSize = 14
 	E.db.unitframe.multiplier = 0.1
 	E.db.unitframe.statusbar = Private.Texture
 	E.db.unitframe.targetOnMouseDown = true
@@ -1424,8 +1423,8 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raidpet.roleIcon.attachTo = 'Frame'
 	E.db.unitframe.units.raidpet.roleIcon.damager = false
 	E.db.unitframe.units.raidpet.roleIcon.position = 'LEFT'
-	E.db.unitframe.units.raidpet.roleIcon.size = 12
-	E.db.unitframe.units.raidpet.roleIcon.xOffset = 0
+	E.db.unitframe.units.raidpet.roleIcon.size = 14
+	E.db.unitframe.units.raidpet.roleIcon.xOffset = 2
 	E.db.unitframe.units.raidpet.roleIcon.yOffset = 0
 	E.db.unitframe.units.raidpet.summonIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.raidpet.summonIcon.size = 18
@@ -1494,7 +1493,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid1.roleIcon.attachTo = 'Frame'
 	E.db.unitframe.units.raid1.roleIcon.damager = false
 	E.db.unitframe.units.raid1.roleIcon.position = 'LEFT'
-	E.db.unitframe.units.raid1.roleIcon.xOffset = 0
+	E.db.unitframe.units.raid1.roleIcon.xOffset = 2
 	E.db.unitframe.units.raid1.roleIcon.yOffset = 0
 	E.db.unitframe.units.raid1.summonIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.raid1.summonIcon.size = 18
@@ -1554,8 +1553,8 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid3.roleIcon.damager = false
 	E.db.unitframe.units.raid3.roleIcon.enable = true
 	E.db.unitframe.units.raid3.roleIcon.position = 'LEFT'
-	E.db.unitframe.units.raid3.roleIcon.size = 12
-	E.db.unitframe.units.raid3.roleIcon.xOffset = 0
+	E.db.unitframe.units.raid3.roleIcon.size = 14
+	E.db.unitframe.units.raid3.roleIcon.xOffset = 2
 	E.db.unitframe.units.raid3.roleIcon.yOffset = 0
 	E.db.unitframe.units.raid3.summonIcon.attachTo = 'RIGHT'
 	E.db.unitframe.units.raid3.summonIcon.size = 18
@@ -1648,7 +1647,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.raid1.rdebuffs.size = 14
 		E.db.unitframe.units.raid1.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid1.rdebuffs.yOffset = 13
-		E.db.unitframe.units.raid1.roleIcon.size = 12
+		E.db.unitframe.units.raid1.roleIcon.size = 14
 		E.db.unitframe.units.raid1.width = (scaled and 88) or 108
 
 		-- Main Raid2
@@ -1662,7 +1661,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.raid2.rdebuffs.size = 14
 		E.db.unitframe.units.raid2.rdebuffs.xOffset = 40
 		E.db.unitframe.units.raid2.rdebuffs.yOffset = 13
-		E.db.unitframe.units.raid2.roleIcon.size = 12
+		E.db.unitframe.units.raid2.roleIcon.size = 14
 		E.db.unitframe.units.raid2.width = (scaled and 88) or 108
 
 		-- Main Raid3
