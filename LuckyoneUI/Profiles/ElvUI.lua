@@ -406,6 +406,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		if i ~= 11 and i ~= 12 then
 			E.db.actionbar['bar'..i].backdrop = false
 			E.db.actionbar['bar'..i].buttons = 12
+			E.db.actionbar['bar'..i].buttonSize = 34
 			E.db.actionbar['bar'..i].buttonSpacing = 1
 			E.db.actionbar['bar'..i].buttonsPerRow = 12
 			E.db.actionbar['bar'..i].countFont = Private.Font
@@ -442,7 +443,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	end
 
 	E.db.actionbar.barPet.backdrop = false
-	E.db.actionbar.barPet.buttonSize = 28
+	E.db.actionbar.barPet.buttonSize = 34
 	E.db.actionbar.barPet.buttonSpacing = 1
 	E.db.actionbar.barPet.buttonsPerRow = 10
 	E.db.actionbar.barPet.countFont = Private.Font
@@ -1585,15 +1586,15 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-75,-194'
 	E.db.movers.DurabilityFrameMover = 'BOTTOM,ElvUIParent,BOTTOM,232,1'
-	E.db.movers.ElvAB_2 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-578'
-	E.db.movers.ElvAB_3 = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,343') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,522'
-	E.db.movers.ElvAB_4 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-545'
-	E.db.movers.ElvAB_7 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-512'
-	E.db.movers.ElvAB_8 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-479'
-	E.db.movers.ElvAB_9 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-446'
-	E.db.movers.ElvAB_10 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-413'
-	E.db.movers.ElvAB_13 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-380'
-	E.db.movers.ElvAB_14 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-347'
+	E.db.movers.ElvAB_2 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-594'
+	E.db.movers.ElvAB_3 = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,330') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,510'
+	E.db.movers.ElvAB_4 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-559'
+	E.db.movers.ElvAB_7 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-524'
+	E.db.movers.ElvAB_8 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-489'
+	E.db.movers.ElvAB_9 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-454'
+	E.db.movers.ElvAB_10 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-419'
+	E.db.movers.ElvAB_13 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-384'
+	E.db.movers.ElvAB_14 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-349'
 	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-314'
 	E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-338,440') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-628,630'
 	E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,322,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,610,-400'
@@ -1603,7 +1604,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,458'
 	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,337') or 'BOTTOM,ElvUIParent,BOTTOM,320,477'
 	E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,360') or 'BOTTOM,ElvUIParent,BOTTOM,320,500'
-	E.db.movers.ElvUF_TargetTargetMover = 'BOTTOM,ElvUIParent,BOTTOM,380,454'
+	E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,314') or 'BOTTOM,ElvUIParent,BOTTOM,380,454'
 	E.db.movers.ElvUIBagMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,172') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,210'
 	E.db.movers.ElvUIBankMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-111'
@@ -1763,12 +1764,12 @@ local function Setup_ElvUI(layout, partyStyle)
 		-- Main movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
 		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-		E.db.movers.ElvAB_5 = 'BOTTOM,ElvUIParent,BOTTOM,0,82'
-		E.db.movers.ElvAB_6 = 'BOTTOM,ElvUIParent,BOTTOM,0,49'
+		E.db.movers.ElvAB_5 = 'BOTTOM,ElvUIParent,BOTTOM,0,86'
+		E.db.movers.ElvAB_6 = 'BOTTOM,ElvUIParent,BOTTOM,0,51'
 		E.db.movers.ElvUF_Raid1Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_Raid2Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
 		E.db.movers.ElvUF_Raid3Mover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,115'
+		E.db.movers.PetAB = 'BOTTOM,ElvUIParent,BOTTOM,0,121'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,236') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 
 	elseif layout == 'healing' then
@@ -1776,18 +1777,18 @@ local function Setup_ElvUI(layout, partyStyle)
 		-- Healing movers
 		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,401'
 		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
-		E.db.movers.ElvAB_5 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,238') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,276'
-		E.db.movers.ElvAB_6 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,205') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,243'
+		E.db.movers.ElvAB_5 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,242') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,280'
+		E.db.movers.ElvAB_6 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,207') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,245'
 		E.db.movers.ElvUF_Raid1Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid2Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
 		E.db.movers.ElvUF_Raid3Mover = 'BOTTOM,ElvUIParent,BOTTOM,0,16'
-		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,271') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,309'
+		E.db.movers.PetAB = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,277') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,315'
 		E.db.movers.ZoneAbility = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,353'
 
 	end
 
 	-- Initial DT width
-	E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (layout == 'main' and 395) or (layout == 'healing' and 704)
+	E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = (layout == 'main' and 419) or (layout == 'healing' and 704)
 
 	-- Custom AB changes
 	if Private.itsLuckyone and layout == 'healing' then
@@ -2141,7 +2142,7 @@ function Private:Setup_AltProfile(profile, layout)
 	-- Correct initial DT width
 	local actionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 	if actionBarsDT then
-		actionBarsDT.width = (layout == 'healing' and 704) or 395
+		actionBarsDT.width = (layout == 'healing' and 704) or 419
 	end
 
 	Private:Setup_PrivateDB()

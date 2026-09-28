@@ -20,7 +20,7 @@ local function UpdateDataTextWidth()
 	local profile = Private:GetActiveProfile()
 	local width
 	if profile == 1 then
-		width = 395 -- Main layout default value
+		width = 419 -- Main layout default value
 	elseif profile == 2 then
 		width = 704 -- Healer layout default value
 	end
