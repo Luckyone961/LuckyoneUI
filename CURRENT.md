@@ -6,6 +6,7 @@
 - Updated the majority of the ElvUI layout (Size increase 1440p!)  
 
 **Retail:**  
+- Updated BuffReminders profile  
 - Updated MPlusTimer profile (Requires Alpha)  
 
 **Forever:**  
