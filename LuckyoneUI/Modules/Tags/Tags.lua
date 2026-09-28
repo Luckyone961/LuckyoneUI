@@ -30,6 +30,7 @@ local UnitPower = UnitPower
 local UnitPowerMax = UnitPowerMax
 local UnitPowerPercent = UnitPowerPercent
 
+local QuestDifficultyColors = QuestDifficultyColors
 local UNKNOWN = UNKNOWN
 
 local E = unpack(ElvUI)
@@ -216,12 +217,12 @@ end
 ------------------------ Level ------------------------
 -------------------------------------------------------
 
-if not Private.isModern then
+if not Private.isRetail then
 	E:AddTag('luckyone:level', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 		if E:XPIsLevelMax() then return end
 
 		local level = UnitLevel(unit)
-		local color = GetCreatureDifficultyColor(level)
+		local color = (level > 0) and GetCreatureDifficultyColor(level) or QuestDifficultyColors.impossible
 
 		return Hex(color.r, color.g, color.b) .. ((level > 0) and level or '??')
 	end)
