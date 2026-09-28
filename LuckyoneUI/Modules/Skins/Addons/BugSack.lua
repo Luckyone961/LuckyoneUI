@@ -76,21 +76,12 @@ local function SkinBugSackFrame()
 		S:HandleTab(tab)
 	end
 
-	-- Center the session tab below the frame, the other two attach to it
-	if sessionTab then
-		sessionTab:ClearAllPoints()
-		sessionTab:Point('CENTER', frame, 'BOTTOM', 0, -16)
+	allTab:ClearAllPoints()
+	allTab:Point('BOTTOMLEFT', frame, -3, -32)
 
-		if allTab then
-			allTab:ClearAllPoints()
-			allTab:Point('LEFT', sessionTab, 'RIGHT', -4, 0)
-		end
+	sessionTab:Point('LEFT', allTab, 'RIGHT', -5)
 
-		if lastTab then
-			lastTab:ClearAllPoints()
-			lastTab:Point('RIGHT', sessionTab, 'LEFT', 4, 0)
-		end
-	end
+	lastTab:Point('LEFT', sessionTab, 'RIGHT', -5)
 
 	-- Close Button(s)
 	local BugSack = _G.BugSack
