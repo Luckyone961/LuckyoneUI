@@ -486,38 +486,41 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.actionbar.zoneActionButton.scale = 0.89
 
 	-- Bags
-	E.db.bags.autoToggle.guildBank = true
+	E.db.bags.autoToggle.soulBind = false
 	E.db.bags.bagBar.backdropSpacing = 1
 	E.db.bags.bagBar.font = Private.Font
 	E.db.bags.bagBar.size = 23
 	E.db.bags.bagBar.spacing = 0
-	E.db.bags.bagSize = 32
-	E.db.bags.bagWidth = (scaled and 440) or 486
-	E.db.bags.bankCombined = true
-	E.db.bags.bankSize = (scaled and 30) or 32
-	E.db.bags.bankWidth = (scaled and 760) or 710
+	E.db.bags.bagButtonSpacing = 4
+	E.db.bags.bagSize = (scaled and 32) or 36
+	E.db.bags.bagWidth = (scaled and 450) or 540
+	E.db.bags.bankButtonSpacing = 4
+	E.db.bags.bankSize = (scaled and 32) or 36
+	E.db.bags.bankWidth = 1080
 	E.db.bags.clearSearchOnClose = true
 	E.db.bags.countFont = Private.Font
 	E.db.bags.countFontOutline = Private.Outline
-	E.db.bags.countFontSize = 11
+	E.db.bags.countFontSize = 14
 	E.db.bags.itemInfoFont = Private.Font
 	E.db.bags.itemInfoFontOutline = Private.Outline
-	E.db.bags.itemInfoFontSize = 11
+	E.db.bags.itemInfoFontSize = 14
+	E.db.bags.itemLevelCustomColorEnable = true
 	E.db.bags.itemLevelFont = Private.Font
 	E.db.bags.itemLevelFontOutline = Private.Outline
-	E.db.bags.itemLevelFontSize = 11
+	E.db.bags.itemLevelFontSize = 14
 	E.db.bags.moneyFormat = 'FULL'
 	E.db.bags.specialtyColors = false
 	E.db.bags.spinner.size = 60
 	E.db.bags.split.bag5 = true
 	E.db.bags.split.bagSpacing = 1
-	E.db.bags.split.player = true
 	E.db.bags.upgradeIcon = false
 	E.db.bags.useBlizzardCleanupBank = false
 	E.db.bags.vendorGrays.enable = true
 	E.db.bags.vendorGrays.interval = 0.1
-	E.db.bags.warbandSize = 30
-	E.db.bags.warbandWidth = 700
+	E.db.bags.warbandButtonSpacing = 4
+	E.db.bags.warbandCombined = false
+	E.db.bags.warbandSize = (scaled and 32) or 36
+	E.db.bags.warbandWidth = 1080
 
 	-- Auras
 	E.db.auras.buffs.countFont = Private.Font
@@ -1594,8 +1597,8 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,337') or 'BOTTOM,ElvUIParent,BOTTOM,320,477'
 	E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,360') or 'BOTTOM,ElvUIParent,BOTTOM,320,500'
 	E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,314') or 'BOTTOM,ElvUIParent,BOTTOM,380,454'
-	E.db.movers.ElvUIBagMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,172') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,210'
-	E.db.movers.ElvUIBankMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,172') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,210'
+	E.db.movers.ElvUIBagMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,212') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,233'
+	E.db.movers.ElvUIBankMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,212') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,233'
 	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-111'
 	E.db.movers.ExperienceBarMover = 'TOP,ElvUIParent,TOP,0,-1'
 	E.db.movers.FocusPowerBarMover = 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-660,580'
