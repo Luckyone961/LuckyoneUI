@@ -371,9 +371,9 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.general.guildBank.itemLevelFont = Private.Font
 	E.db.general.guildBank.itemLevelFontOutline = Private.Outline
 	E.db.general.itemLevel.itemLevelFont = Private.Font
-	E.db.general.itemLevel.itemLevelFontSize = 10
+	E.db.general.itemLevel.itemLevelFontSize = 12
 	E.db.general.itemLevel.totalLevelFont = Private.Font
-	E.db.general.itemLevel.totalLevelFontSize = 22
+	E.db.general.itemLevel.totalLevelFontSize = 24
 	E.db.general.loginmessage = false
 	E.db.general.lootRoll.buttonSize = 22
 	E.db.general.lootRoll.spacing = 3
