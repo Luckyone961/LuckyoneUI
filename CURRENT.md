@@ -9,6 +9,7 @@
 **Retail:**  
 - Updated BuffReminders profile  
 - Updated MPlusTimer profile (Requires Alpha)  
+- Updated SkironCooldownManager profile  
 
 **Forever:**  
 - Added initial layout setup for party pets and raid pets  
