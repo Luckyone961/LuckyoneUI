@@ -368,8 +368,11 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.general.enhancedPvpMessages = false
 	E.db.general.guildBank.countFont = Private.Font
 	E.db.general.guildBank.countFontOutline = Private.Outline
+	E.db.general.guildBank.countFontSize = 14
+	E.db.general.guildBank.itemLevelCustomColorEnable = true
 	E.db.general.guildBank.itemLevelFont = Private.Font
 	E.db.general.guildBank.itemLevelFontOutline = Private.Outline
+	E.db.general.guildBank.itemLevelFontSize = 14
 	E.db.general.itemLevel.itemLevelFont = Private.Font
 	E.db.general.itemLevel.itemLevelFontSize = 12
 	E.db.general.itemLevel.totalLevelFont = Private.Font
@@ -386,13 +389,13 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.general.minimap.icons.calendar.position = 'RIGHT'
 	E.db.general.minimap.icons.calendar.scale = 1
 	E.db.general.minimap.icons.calendar.xOffset = 2
-	E.db.general.minimap.icons.classHall.scale = 0.6
+	E.db.general.minimap.icons.classHall.scale = 0.8
 	E.db.general.minimap.icons.classHall.xOffset = -4
 	E.db.general.minimap.icons.classHall.yOffset = -4
 	E.db.general.minimap.icons.crafting.position = 'LEFT'
 	E.db.general.minimap.icons.crafting.xOffset = 2
 	E.db.general.minimap.icons.crafting.yOffset = 0
-	E.db.general.minimap.icons.difficulty.scale = 0.7
+	E.db.general.minimap.icons.difficulty.scale = 0.8
 	E.db.general.minimap.icons.difficulty.xOffset = 1
 	E.db.general.minimap.icons.difficulty.yOffset = -1
 	E.db.general.minimap.icons.mail.texture = 'Mail1'
@@ -423,12 +426,14 @@ local function Setup_ElvUI(layout, partyStyle)
 			E.db.actionbar['bar'..i].buttonsPerRow = 12
 			E.db.actionbar['bar'..i].countFont = Private.Font
 			E.db.actionbar['bar'..i].countFontOutline = Private.Outline
+			E.db.actionbar['bar'..i].countFontSize = 11
 			E.db.actionbar['bar'..i].countTextPosition = 'BOTTOM'
 			E.db.actionbar['bar'..i].countTextXOffset = 1
 			E.db.actionbar['bar'..i].countTextYOffset = 1
 			E.db.actionbar['bar'..i].enabled = (i == 1 or i == 3 or i == 5 or i == 6) -- Only the bars we use by default
 			E.db.actionbar['bar'..i].hotkeyFont = Private.Font
 			E.db.actionbar['bar'..i].hotkeyFontOutline = Private.Outline
+			E.db.actionbar['bar'..i].hotkeyFontSize = 11
 			E.db.actionbar['bar'..i].hotkeyTextPosition = 'TOP'
 			E.db.actionbar['bar'..i].hotkeyTextXOffset = 1
 			E.db.actionbar['bar'..i].hotkeyTextYOffset = -1
@@ -677,12 +682,13 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.databars.azerite.enable = false
 	E.db.databars.experience.font = Private.Font
 	E.db.databars.experience.fontOutline = Private.Outline
-	E.db.databars.experience.height = 22
+	E.db.databars.experience.fontSize = 14
+	E.db.databars.experience.height = 24
 	E.db.databars.experience.orientation = 'HORIZONTAL'
 	E.db.databars.experience.questCompletedOnly = true
 	E.db.databars.experience.showLevel = true
 	E.db.databars.experience.textFormat = 'PERCENT'
-	E.db.databars.experience.width = 500
+	E.db.databars.experience.width = 580
 	E.db.databars.honor.enable = false
 	E.db.databars.petExperience.enable = false
 	E.db.databars.reputation.enable = true
@@ -742,11 +748,10 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.tooltip.fontOutline = Private.Outline
 	E.db.tooltip.headerFont = Private.Font
 	E.db.tooltip.headerFontOutline = Private.Outline
-	E.db.tooltip.headerFontSize = 12
+	E.db.tooltip.headerFontSize = 14
 	E.db.tooltip.healthBar.font = Private.Font
 	E.db.tooltip.healthBar.fontOutline = Private.Outline
-	E.db.tooltip.healthBar.fontSize = 10
-	E.db.tooltip.healthBar.height = 6
+	E.db.tooltip.healthBar.height = 10
 	E.db.tooltip.healthBar.statusPosition = 'DISABLED'
 	E.db.tooltip.inspectDataEnable = false
 	E.db.tooltip.itemCount.bags = false
@@ -755,7 +760,9 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.tooltip.role = false
 	E.db.tooltip.showElvUIUsers = true
 	E.db.tooltip.showMount = false
+	E.db.tooltip.smallTextFontSize = 13
 	E.db.tooltip.targetInfo = false
+	E.db.tooltip.textFontSize = 13
 
 	-- Shared UnitFrames
 	E.db.unitframe.colors.castbar_backdrop.b = 0.05
