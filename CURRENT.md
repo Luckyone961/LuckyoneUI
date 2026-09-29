@@ -9,6 +9,7 @@
 **Retail:**  
 - Updated BuffReminders profile  
 - Updated MPlusTimer profile (Requires Alpha)  
+- Updated NSRT profile  
 - Updated SkironCooldownManager profile  
 
 **Forever:**  
