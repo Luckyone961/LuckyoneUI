@@ -67,8 +67,6 @@ function Private:LoadProfile(name, data, movers)
 		E.db.movers = E.db.movers or {}
 		MergeTable(E.db.movers, movers)
 	end
-
-	StaticPopup_Show('LUCKYONE_RL')
 end
 
 -- Luckyone preset
@@ -90,8 +88,9 @@ function Private:ResetProfile()
 		Private:LoadProfile('Luckyone', CopyTable(Private.LuckyoneProfile))
 	else
 		db:ResetProfile()
-		StaticPopup_Show('LUCKYONE_RL')
 	end
+
+	StaticPopup_Show('LUCKYONE_RL')
 end
 
 function Private:ImportProfile(text)
@@ -102,8 +101,25 @@ function Private:ImportProfile(text)
 		StaticPopup_Show('LUCKYONE_IMPORT', name, nil, { name = name, profile = data, movers = movers })
 	else
 		Private:LoadProfile(name, data, movers)
+		StaticPopup_Show('LUCKYONE_RL')
 	end
 end
+
+-- Public API for other addons, called with a dot
+-- LuckyoneUI.ExportProfile() returns the current profile string
+-- LuckyoneUI.ImportProfile(text[, name]) returns the profile name, or nil for an invalid string
+-- Import overwrites an existing profile and switches to it, no popups, the caller reloads
+_G.LuckyoneUI = {
+	ExportProfile = Private.ExportProfile,
+	ImportProfile = function(text, name)
+		local imported, data, movers = DecodeProfile(text)
+		if data then
+			name = name or imported
+			Private:LoadProfile(name, data, movers)
+			return name
+		end
+	end,
+}
 
 -- Import popup, the profile name from the string already exists
 -- StaticPopup_Show('LUCKYONE_IMPORT', name, nil, data)
@@ -119,11 +135,13 @@ StaticPopupDialogs['LUCKYONE_IMPORT'] = {
 	end,
 	OnAccept = function(self, data)
 		Private:LoadProfile(strtrim(self.EditBox:GetText()), data.profile, data.movers)
+		StaticPopup_Show('LUCKYONE_RL')
 	end,
 	EditBoxOnEnterPressed = function(self, data)
 		local dialog = self:GetParent()
 		if dialog.Button1:IsEnabled() then
 			Private:LoadProfile(strtrim(self:GetText()), data.profile, data.movers)
+			StaticPopup_Show('LUCKYONE_RL')
 			dialog:Hide()
 		end
 	end,
