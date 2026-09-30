@@ -13,12 +13,11 @@ function Private:PrivacyOverlay()
 	local CommunitiesFrame = _G.CommunitiesFrame
 	if not CommunitiesFrame then return end
 
-	local ChatDisplayMode = _G.COMMUNITIES_FRAME_DISPLAY_MODES.CHAT
+	local MinimizedDisplayMode = _G.COMMUNITIES_FRAME_DISPLAY_MODES.MINIMIZED
 
-	-- Parented to the chat inset, so it takes the anchors and hides along with the frame
-	local PrivacyOverlay = CreateFrame('Button', nil, CommunitiesFrame.Chat.InsetFrame)
+	-- Parented to the chat, which only shows in the full and minimized chat modes
+	local PrivacyOverlay = CreateFrame('Button', nil, CommunitiesFrame.Chat)
 	PrivacyOverlay:SetFrameStrata('HIGH')
-	PrivacyOverlay:SetAllPoints()
 	PrivacyOverlay:RegisterForClicks('AnyUp')
 	PrivacyOverlay:SetScript('OnClick', function(self) self:Hide() end)
 
@@ -33,9 +32,19 @@ function Private:PrivacyOverlay()
 	text:SetTextColor(1, 1, 1, 1)
 	text:SetText(L["Chat Hidden. Click to show."])
 
-	-- The parent handles hiding it
+	-- Covers the chat again on every mode change (minimize and maximize included), club change and reopen, the parent handles hiding it
 	local function UpdateOverlay()
-		PrivacyOverlay:SetShown(CommunitiesFrame:GetDisplayMode() == ChatDisplayMode)
+		PrivacyOverlay:ClearAllPoints()
+
+		-- Minimized hides the inset, so only cover the messages, lined up with the scroll bar and clear of the edit box
+		if CommunitiesFrame:GetDisplayMode() == MinimizedDisplayMode then
+			PrivacyOverlay:SetPoint('TOPLEFT', CommunitiesFrame.Chat, 'TOPLEFT', -4, 0)
+			PrivacyOverlay:SetPoint('BOTTOMRIGHT', CommunitiesFrame.Chat, 'BOTTOMRIGHT', 4, -4)
+		else
+			PrivacyOverlay:SetAllPoints(CommunitiesFrame.Chat.InsetFrame)
+		end
+
+		PrivacyOverlay:Show()
 	end
 
 	hooksecurefunc(CommunitiesFrame, 'SetDisplayMode', UpdateOverlay)
