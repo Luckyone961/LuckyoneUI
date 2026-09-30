@@ -3,6 +3,7 @@
 **All WoW Versions:**  
 - Updated Baganator profile  
 - Updated BigWigs profile  
+- Updated BugSack skin (Tabs match ElvUI frames now)  
 - Updated Chattynator profile  
 - Updated the majority of the ElvUI layout (Size increase 1440p!)  
 

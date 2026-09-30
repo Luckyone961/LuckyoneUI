@@ -67,21 +67,22 @@ local function SkinBugSackFrame()
 		sendButton:Point('RIGHT', nextButton, 'LEFT', -1, 0)
 	end
 
-	-- Tabs
-	local sessionTab = _G.BugSackTabSession
-	local allTab = _G.BugSackTabAll
-	local lastTab = _G.BugSackTabLast
+	-- Tabs under the bottom left corner with a 1px gap, ElvUI insets the tab backdrop by 3px on modern clients and 10px on classic
+	local inset = Private.isModern and 3 or 10
+	local lastTab
 
-	for _, tab in next, { sessionTab, allTab, lastTab } do
+	for _, tab in next, { _G.BugSackTabAll, _G.BugSackTabSession, _G.BugSackTabLast } do
 		S:HandleTab(tab)
+		tab:ClearAllPoints()
+
+		if lastTab then
+			tab:Point('TOPLEFT', lastTab, 'TOPRIGHT', 1 - inset * 2, 0)
+		else
+			tab:Point('TOPLEFT', frame, 'BOTTOMLEFT', -inset, 0)
+		end
+
+		lastTab = tab
 	end
-
-	allTab:ClearAllPoints()
-	allTab:Point('BOTTOMLEFT', frame, -3, -32)
-
-	sessionTab:Point('LEFT', allTab, 'RIGHT', -5)
-
-	lastTab:Point('LEFT', sessionTab, 'RIGHT', -5)
 
 	-- Close Button(s)
 	local BugSack = _G.BugSack
