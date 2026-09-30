@@ -36,9 +36,14 @@ local function DisableFrame(name, mover)
 
 	frame:UnregisterAllEvents()
 
+	local E = Private.ElvUI and ElvUI[1]
+
 	-- Older ElvUI versions lack some movers and DisableMover errors on unknown ones
-	if mover and Private.ElvUI and ElvUI[1]:GetMoverHolder(mover) then
-		ElvUI[1]:DisableMover(mover)
+	if mover and E and E:GetMoverHolder(mover) then
+		E:DisableMover(mover)
+
+		-- ElvUI profile switches re-enable disabled movers unless shouldDisable returns true
+		E.DisabledMovers[mover].shouldDisable = function() return true end
 	end
 end
 

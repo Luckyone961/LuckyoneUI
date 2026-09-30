@@ -164,6 +164,9 @@ local function ToggleMover(name, enabled)
 		end
 	elseif E.CreatedMovers[name] then
 		E:DisableMover(name)
+
+		-- ElvUI profile switches re-enable disabled movers unless shouldDisable returns true
+		E.DisabledMovers[name].shouldDisable = function() return true end
 	end
 end
 
