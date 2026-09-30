@@ -1905,7 +1905,7 @@ function Private:Setup_NamePlates()
 	-- Enemy NPC
 	E.db.nameplates.units.ENEMY_NPC.auras.attachTo = 'HEALTH'
 	E.db.nameplates.units.ENEMY_NPC.auras.countFont = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.auras.countFontSize = 10
+	E.db.nameplates.units.ENEMY_NPC.auras.countFontSize = 12
 	E.db.nameplates.units.ENEMY_NPC.auras.countPosition = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_NPC.auras.countXOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.auras.countYOffset = -1
@@ -1923,7 +1923,7 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_NPC.buffs.anchorPoint = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_NPC.buffs.attachTo = 'HEALTH'
 	E.db.nameplates.units.ENEMY_NPC.buffs.countFont = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.buffs.countFontSize = 10
+	E.db.nameplates.units.ENEMY_NPC.buffs.countFontSize = 12
 	E.db.nameplates.units.ENEMY_NPC.buffs.countPosition = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_NPC.buffs.countXOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.buffs.countYOffset = -1
@@ -1958,7 +1958,7 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_NPC.debuffs.anchorPoint = 'LEFT'
 	E.db.nameplates.units.ENEMY_NPC.debuffs.attachTo = 'HEALTH'
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countFont = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.debuffs.countFontSize = 10
+	E.db.nameplates.units.ENEMY_NPC.debuffs.countFontSize = 12
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countPosition = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countXOffset = 1
 	E.db.nameplates.units.ENEMY_NPC.debuffs.countYOffset = -1
@@ -2007,7 +2007,7 @@ function Private:Setup_NamePlates()
 	-- Enemy Player
 	E.db.nameplates.units.ENEMY_PLAYER.auras.attachTo = 'HEALTH'
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countFont = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.auras.countFontSize = 10
+	E.db.nameplates.units.ENEMY_PLAYER.auras.countFontSize = 12
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countPosition = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countXOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.auras.countYOffset = -1
@@ -2025,7 +2025,7 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.anchorPoint = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.attachTo = 'HEALTH'
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.countFont = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.buffs.countFontSize = 10
+	E.db.nameplates.units.ENEMY_PLAYER.buffs.countFontSize = 12
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.countPosition = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.countXOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.buffs.countYOffset = -1
@@ -2059,7 +2059,7 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.anchorPoint = 'LEFT'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.attachTo = 'HEALTH'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFont = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFontSize = 10
+	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countFontSize = 12
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countPosition = 'TOPRIGHT'
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countXOffset = 1
 	E.db.nameplates.units.ENEMY_PLAYER.debuffs.countYOffset = -1
