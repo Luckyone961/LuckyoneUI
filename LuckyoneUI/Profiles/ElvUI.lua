@@ -635,7 +635,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.cooldown.bags.offsetX = 1
 	E.db.cooldown.bags.thresholdText.colors.seconds.b = 1
 	E.db.cooldown.bossbutton.colors.edge.a = 0
-	E.db.cooldown.bossbutton.fontSize = 14
+	E.db.cooldown.bossbutton.fontSize = 18
 	E.db.cooldown.bossbutton.hideBling = true
 	E.db.cooldown.bossbutton.offsetX = 1
 	E.db.cooldown.bossbutton.thresholdText.colors.seconds.b = 1
@@ -674,7 +674,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.cooldown.unitframe.override.player.debuffs.offsetX = 1
 	E.db.cooldown.unitframe.thresholdText.colors.seconds.b = 1
 	E.db.cooldown.zonebutton.colors.edge.a = 0
-	E.db.cooldown.zonebutton.fontSize = 14
+	E.db.cooldown.zonebutton.fontSize = 18
 	E.db.cooldown.zonebutton.hideBling = true
 	E.db.cooldown.zonebutton.offsetX = 1
 	E.db.cooldown.zonebutton.thresholdText.colors.seconds.b = 1
