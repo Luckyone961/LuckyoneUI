@@ -36,7 +36,8 @@ local function DisableFrame(name, mover)
 
 	frame:UnregisterAllEvents()
 
-	if mover and Private.ElvUI then
+	-- Older ElvUI versions lack some movers and DisableMover errors on unknown ones
+	if mover and Private.ElvUI and ElvUI[1]:GetMoverHolder(mover) then
 		ElvUI[1]:DisableMover(mover)
 	end
 end
@@ -76,8 +77,7 @@ local function DisabledFrames()
 	end
 
 	if db.LossOfControl and (Private.isModern or Private.isMists) then
-		-- ElvUI only creates this mover on Retail and DisableMover errors on unknown movers
-		DisableFrame('LossOfControlFrame', Private.isModern and 'LossControlMover' or nil)
+		DisableFrame('LossOfControlFrame', 'LossControlMover')
 	end
 
 	if db.HousingDecorAlerts and Private.isRetail then
