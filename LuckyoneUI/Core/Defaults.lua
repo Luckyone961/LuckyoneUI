@@ -152,6 +152,13 @@ Private.Defaults = {
 					},
 				},
 			},
+			worldMap = {
+				fog = {
+					enable = false,
+					color = { r = 0.294, g = 0.922, b = 0.173 }, -- #4beb2c
+					alpha = 0.8,
+				},
+			},
 		},
 		minimap = {
 			hide = false,

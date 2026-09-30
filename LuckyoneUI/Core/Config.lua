@@ -565,28 +565,34 @@ end
 
 -- Build Map Section
 local function BuildMapSection()
-	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(GetIconName(L["Map"], 'Map'), nil, 55)
+	local section = ACH:Group(GetIconName(L["Map"], 'Map'), nil, 55, 'tab')
 	section.args.header = ACH:Header(L["Map"], 1)
-	section.args.minimapButtons = ACH:Group(L["Minimap Buttons"], nil, 2, nil, function(info) return Private.Addon.db.profile.map.minimap.buttons[info[#info]] end, function(info, value) Private.Addon.db.profile.map.minimap.buttons[info[#info]] = value Private:UpdateMinimapButtonBar() end)
-	section.args.minimapButtons.inline = true
-	section.args.minimapButtons.args.enable = ACH:Toggle(L["Enable"], L["Collect LibDBIcon minimap buttons into a squared bar under the Minimap."], 1, nil, nil, nil, nil, function(_, value) Private.Addon.db.profile.map.minimap.buttons.enable = value StaticPopup_Show('LUCKYONE_RL') end)
-	section.args.minimapButtons.args.mouseover = ACH:Toggle(L["Mouseover"], L["Show the Minimap button bar only on mouseover."], 2, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
-	section.args.minimapButtons.args.holder = ACH:Input(L["Anchor"], L["Frame name the Minimap button bar is anchored to."], 3, nil, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
-	section.args.minimapButtons.args.xOffset = ACH:Range(L["X Offset"], nil, 4, { min = -200, max = 200, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
-	section.args.minimapButtons.args.yOffset = ACH:Range(L["Y Offset"], nil, 5, { min = -200, max = 200, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
-	section.args.minimapButtons.args.size = ACH:Range(L["Icon Size"], nil, 6, { min = 8, max = 54, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
-	section.args.minimapButtons.args.spacing = ACH:Range(L["Spacing"], nil, 7, { min = -1, max = 12, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
-	section.args.minimapButtons.args.perRow = ACH:Range(L["Buttons Per Row"], nil, 8, { min = 1, max = 20, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
-	section.args.blizzardButtons = ACH:Group(L["Blizzard Buttons"], nil, 3, nil, function(info) return Private.Addon.db.profile.map.minimap.buttons.blizzard[info[#info]] end, function(info, value) Private.Addon.db.profile.map.minimap.buttons.blizzard[info[#info]] = value StaticPopup_Show('LUCKYONE_RL') end, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end, not Private.isRetail)
-	section.args.blizzardButtons.inline = true
-	section.args.blizzardButtons.args.expansionLandingPage = ACH:Toggle(L["Expansion Landing Page"], L["Include the Expansion Landing Page button in the Minimap button bar."], 1)
-	section.args.minimapButtonsDesc = ACH:Group(L["Minimap Buttons explained"], nil, 4)
-	section.args.minimapButtonsDesc.inline = true
-	section.args.minimapButtonsDesc.args.desc = ACH:Description(L["The order of icons is sorted alphabetically, starting on the right side.\nException 1: BugSack - it's hardcoded to be the right-most icon.\nException 2: Blizzard buttons - they're hardcoded to be the last icon."], 1, 'medium')
-	section.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 5)
-	section.args.defaults.inline = true
-	section.args.defaults.args.minimapButtons = ACH:Execute(L["Restore Defaults"], L["Wipe all Minimap button settings, the module itself stays enabled."], 1, function() Private:MinimapButtons_ResetDefaults() end, nil, true)
+	section.args.minimapButtons = ACH:Group(L["Minimap Buttons"], nil, 2, nil, function(info) return Private.Addon.db.profile.map.minimap.buttons[info[#info]] end, function(info, value) Private.Addon.db.profile.map.minimap.buttons[info[#info]] = value Private:UpdateMinimapButtonBar() end, nil, not Private.ElvUI)
+	section.args.minimapButtons.args.generalOptions = ACH:Group(L["General"], nil, 1)
+	section.args.minimapButtons.args.generalOptions.inline = true
+	section.args.minimapButtons.args.generalOptions.args.enable = ACH:Toggle(L["Enable"], L["Collect LibDBIcon minimap buttons into a squared bar under the Minimap."], 1, nil, nil, nil, nil, function(_, value) Private.Addon.db.profile.map.minimap.buttons.enable = value StaticPopup_Show('LUCKYONE_RL') end)
+	section.args.minimapButtons.args.generalOptions.args.mouseover = ACH:Toggle(L["Mouseover"], L["Show the Minimap button bar only on mouseover."], 2, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
+	section.args.minimapButtons.args.generalOptions.args.holder = ACH:Input(L["Anchor"], L["Frame name the Minimap button bar is anchored to."], 3, nil, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
+	section.args.minimapButtons.args.generalOptions.args.xOffset = ACH:Range(L["X Offset"], nil, 4, { min = -200, max = 200, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
+	section.args.minimapButtons.args.generalOptions.args.yOffset = ACH:Range(L["Y Offset"], nil, 5, { min = -200, max = 200, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
+	section.args.minimapButtons.args.generalOptions.args.size = ACH:Range(L["Icon Size"], nil, 6, { min = 8, max = 54, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
+	section.args.minimapButtons.args.generalOptions.args.spacing = ACH:Range(L["Spacing"], nil, 7, { min = -1, max = 12, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
+	section.args.minimapButtons.args.generalOptions.args.perRow = ACH:Range(L["Buttons Per Row"], nil, 8, { min = 1, max = 20, step = 1 }, nil, nil, nil, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end)
+	section.args.minimapButtons.args.blizzardButtons = ACH:Group(L["Blizzard Buttons"], nil, 2, nil, function(info) return Private.Addon.db.profile.map.minimap.buttons.blizzard[info[#info]] end, function(info, value) Private.Addon.db.profile.map.minimap.buttons.blizzard[info[#info]] = value StaticPopup_Show('LUCKYONE_RL') end, function() return not Private.Addon.db.profile.map.minimap.buttons.enable end, not Private.isRetail)
+	section.args.minimapButtons.args.blizzardButtons.inline = true
+	section.args.minimapButtons.args.blizzardButtons.args.expansionLandingPage = ACH:Toggle(L["Expansion Landing Page"], L["Include the Expansion Landing Page button in the Minimap button bar."], 1)
+	section.args.minimapButtons.args.minimapButtonsDesc = ACH:Group(L["Minimap Buttons explained"], nil, 3)
+	section.args.minimapButtons.args.minimapButtonsDesc.inline = true
+	section.args.minimapButtons.args.minimapButtonsDesc.args.desc = ACH:Description(L["The order of icons is sorted alphabetically, starting on the right side.\nException 1: BugSack - it's hardcoded to be the right-most icon.\nException 2: Blizzard buttons - they're hardcoded to be the last icon."], 1, 'medium')
+	section.args.minimapButtons.args.defaults = ACH:Group(L["Restore LuckyoneUI Defaults"], nil, 4)
+	section.args.minimapButtons.args.defaults.inline = true
+	section.args.minimapButtons.args.defaults.args.minimapButtons = ACH:Execute(L["Restore Defaults"], L["Wipe all Minimap button settings, the module itself stays enabled."], 1, function() Private:MinimapButtons_ResetDefaults() end, nil, true)
+	section.args.worldMap = ACH:Group(L["World Map"], nil, 3)
+	section.args.worldMap.args.fog = ACH:Group(L["Fog of War"], nil, 1, nil, function(info) return Private.Addon.db.profile.map.worldMap.fog[info[#info]] end, function(info, value) Private.Addon.db.profile.map.worldMap.fog[info[#info]] = value Private:WorldMap() end)
+	section.args.worldMap.args.fog.inline = true
+	section.args.worldMap.args.fog.args.enable = ACH:Toggle(L["Enable"], L["Reveal the unexplored areas of the World Map in a custom color and opacity."], 1)
+	section.args.worldMap.args.fog.args.color = ACH:Color(L["Color"], nil, 2, nil, nil, function() local color = Private.Addon.db.profile.map.worldMap.fog.color return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.map.worldMap.fog.color color.r, color.g, color.b = r, g, b Private:WorldMap() end, function() return not Private.Addon.db.profile.map.worldMap.fog.enable end)
+	section.args.worldMap.args.fog.args.alpha = ACH:Range(L["Opacity"], nil, 3, { min = 0.1, max = 1, step = 0.05, isPercent = true }, nil, nil, nil, function() return not Private.Addon.db.profile.map.worldMap.fog.enable end)
 	return section
 end
 

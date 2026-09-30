@@ -747,7 +747,8 @@ local function BuildPages()
 		-- LuckyoneUI module checkboxes
 		Page(L["Modules"], { L["Enable the LuckyoneUI modules you want to use. Hover over a checkbox for details."] }, nil, {
 			Group(L["Modules"],
-				Toggle('map.minimap.buttons', 'map.minimapButtons.enable', 'map.minimapButtons'),
+				Toggle('map.minimap.buttons', 'map.minimapButtons.generalOptions.enable', 'map.minimapButtons'),
+				Toggle('map.worldMap.fog', 'map.worldMap.fog.enable', 'map.worldMap.fog'),
 				Toggle('misc.combatText', 'misc.combatText.generalOptions.enable', 'misc.combatText'),
 				Toggle('movableFrames', 'blizzard.movableFrames.enable', 'blizzard.movableFrames'),
 				Toggle('misc.mailbox', 'misc.mailbox.generalOptions.enable', 'misc.mailbox'),

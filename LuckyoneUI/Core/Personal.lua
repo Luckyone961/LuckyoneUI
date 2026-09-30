@@ -28,6 +28,11 @@ Private.LuckyoneProfile = {
 				},
 			},
 		},
+		worldMap = {
+			fog = {
+				enable = true,
+			},
+		},
 	},
 	misc = {
 		combatText = {

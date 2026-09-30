@@ -1,6 +1,7 @@
 ## Version 4.26 [Alpha - In Development - Not Yet Released]
 
 **All WoW Versions:**  
+- Added new option to see through world map fog of war (data from wago.tools)  
 - Updated Baganator profile  
 - Updated BigWigs profile  
 - Updated BugSack skin (Tabs match ElvUI frames now)  
