@@ -1986,7 +1986,7 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_NPC.health.width = 210
 	E.db.nameplates.units.ENEMY_NPC.level.enable = false
 	E.db.nameplates.units.ENEMY_NPC.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_NPC.name.format = Private.isModern and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
+	E.db.nameplates.units.ENEMY_NPC.name.format = '[luckyone:level< ||cffffffff- ]' .. (Private.isModern and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]')
 	E.db.nameplates.units.ENEMY_NPC.name.parent = 'Health'
 	E.db.nameplates.units.ENEMY_NPC.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_NPC.name.yOffset = -16
@@ -2085,7 +2085,7 @@ function Private:Setup_NamePlates()
 	E.db.nameplates.units.ENEMY_PLAYER.level.format = ''
 	E.db.nameplates.units.ENEMY_PLAYER.markHealers = false
 	E.db.nameplates.units.ENEMY_PLAYER.name.font = Private.Font
-	E.db.nameplates.units.ENEMY_PLAYER.name.format = Private.isModern and '[luckyone:name-nocolor]' or '[luckyone:level< ||cffffffff- ][luckyone:name:last-nocolor]'
+	E.db.nameplates.units.ENEMY_PLAYER.name.format = '[luckyone:level< ||cffffffff- ]' .. (Private.isModern and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]')
 	E.db.nameplates.units.ENEMY_PLAYER.name.parent = 'Health'
 	E.db.nameplates.units.ENEMY_PLAYER.name.xOffset = 2
 	E.db.nameplates.units.ENEMY_PLAYER.name.yOffset = -16
