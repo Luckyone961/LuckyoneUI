@@ -215,6 +215,9 @@ local function SetHeaderText(text, name, window)
 end
 
 function DM:DAMAGE_METER_COMBAT_SESSION_UPDATED(_, meterType, sessionID)
+	-- The events stay registered after the module is switched off
+	if not DM.db.enable then return end
+
 	for _, window in pairs(DM.windows) do
 		if window.meterType == meterType and (window.sessionID == sessionID or (sessionID == 0 and window.sessionType)) then
 			DM:MarkDirty(window)

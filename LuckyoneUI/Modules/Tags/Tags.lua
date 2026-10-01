@@ -23,7 +23,6 @@ local UnitHealthMax = UnitHealthMax
 local UnitHealthPercent = UnitHealthPercent
 local UnitInPartyIsAI = UnitInPartyIsAI
 local UnitIsFriend = UnitIsFriend
-local UnitIsUnit = UnitIsUnit
 local UnitLevel = UnitLevel
 local UnitName = UnitName
 local UnitPower = UnitPower
@@ -270,7 +269,8 @@ if Private.isClassic or Private.isTBC or Private.isForever then
 
 	E:AddTag('luckyone:pet:name-and-happiness', 'UNIT_NAME_UPDATE UNIT_HAPPINESS PET_UI_UPDATE', function(unit)
 		local hasPetUI, isHunterPet = HasPetUI()
-		if hasPetUI and isHunterPet and UnitIsUnit('pet', unit) then
+		-- E:UnitIsUnit returns nil instead of a secret when the comparison is restricted (Forever)
+		if hasPetUI and isHunterPet and E:UnitIsUnit('pet', unit) then
 			local petHappiness = GetPetHappiness()
 			if petHappiness then -- Return for Hunters
 				return Hex(happinessColors[petHappiness]) .. happinessStrings[petHappiness]
@@ -318,8 +318,8 @@ if Private.isModern then
 	for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long = 20 }) do
 		E:AddTag('luckyone:name:' .. textFormat .. '-color-friendly', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', buildNameTag(length, true))
 		E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', buildNameTag(length, false))
-		E:AddTag('luckyone:name:' .. textFormat .. '-color-friendly:status', 'UNIT_HEALTH UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT PLAYER_UPDATE_RESTING UNIT_CONNECTION PLAYER_FLAGS_CHANGED', buildNameStatusTag(length, true))
-		E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly:status', 'UNIT_HEALTH UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT PLAYER_UPDATE_RESTING UNIT_CONNECTION PLAYER_FLAGS_CHANGED', buildNameStatusTag(length, false))
+		E:AddTag('luckyone:name:' .. textFormat .. '-color-friendly:status', 'UNIT_HEALTH UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_CONNECTION PLAYER_FLAGS_CHANGED', buildNameStatusTag(length, true))
+		E:AddTag('luckyone:name:' .. textFormat .. '-nocolor-friendly:status', 'UNIT_HEALTH UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_CONNECTION PLAYER_FLAGS_CHANGED', buildNameStatusTag(length, false))
 
 		E:AddTagInfo('luckyone:name:' .. textFormat .. '-color-friendly', Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters (friendly only) or full name (if enemy)"], length))
 		E:AddTagInfo('luckyone:name:' .. textFormat .. '-nocolor-friendly', Private.Name, format(L["Displays the unit's name with no color and a maximum length of %s characters (friendly only) or full name (if enemy)"], length))

@@ -13,7 +13,6 @@ end
 local ceil = math.ceil
 local floor = math.floor
 local pairs = pairs
-local select = select
 local sort = table.sort
 local tinsert = table.insert
 local unpack = unpack
@@ -272,20 +271,18 @@ local function TryCollect(button)
 	end
 end
 
-local function CollectChildren(...)
-	for i = 1, select('#', ...) do
-		local child = select(i, ...)
+-- One table instead of select() per child, which copies every vararg each time (map pin addons parent hundreds of frames to the Minimap)
+local function CollectLibDBIconChildren(parent)
+	if not parent then return end
+
+	local children = { parent:GetChildren() }
+	for i = 1, #children do
+		local child = children[i]
 		local childName = child:GetName()
 		if childName and childName:match('^LibDBIcon10_') then
 			TryCollect(child)
 		end
 	end
-end
-
-local function CollectLibDBIconChildren(parent)
-	if not parent then return end
-
-	CollectChildren(parent:GetChildren())
 end
 
 local function CollectButtons()

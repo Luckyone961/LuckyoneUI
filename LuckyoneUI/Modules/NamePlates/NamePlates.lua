@@ -103,6 +103,9 @@ function NamePlates:UpdateTextures()
 end
 
 function NamePlates:OnEnable()
+	-- ElvUI nameplates off (e.g. Platynator), enabling them again needs a reload
+	if not E.private.nameplates.enable then return end
+
 	CheckHook()
 
 	self:RegisterEvent('PLAYER_ENTERING_WORLD', 'UpdateTextures')

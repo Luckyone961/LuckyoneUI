@@ -399,9 +399,9 @@ function DM:UpdateWindowGeometry(window, height)
 	end
 end
 
--- A file ID and an atlas name never collide, so one key covers both
+-- A file ID and a class name never collide, so one key covers both
 local function UpdateBarIcon(bar, entry, spellMode)
-	local fileID, atlas
+	local fileID, classFilename
 
 	if spellMode then
 		local details = entry.combatSpellDetails
@@ -422,11 +422,11 @@ local function UpdateBarIcon(bar, entry, spellMode)
 		if specIcon and specIcon ~= 0 then
 			fileID = specIcon
 		elseif entry.classFilename and entry.classFilename ~= '' then
-			atlas = GetClassAtlas(entry.classFilename)
+			classFilename = entry.classFilename
 		end
 	end
 
-	local key = fileID or atlas
+	local key = fileID or classFilename
 
 	if issecretvalue(key) then
 		bar.iconKey = nil
@@ -438,8 +438,8 @@ local function UpdateBarIcon(bar, entry, spellMode)
 	if fileID then
 		bar.icon:SetTexture(fileID)
 		bar.icon:SetTexCoord(unpack(E.TexCoords))
-	elseif atlas then
-		bar.icon:SetAtlas(atlas)
+	elseif classFilename then
+		bar.icon:SetAtlas(GetClassAtlas(classFilename))
 	else
 		bar.icon:SetTexture(nil)
 	end

@@ -16,6 +16,7 @@ local floor = math.floor
 local Ambiguate = Ambiguate
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
+local GetCVarBool = C_CVar.GetCVarBool
 local SetCVar = C_CVar.SetCVar
 local GetInstanceInfo = GetInstanceInfo
 local HasActiveDelve = C_DelvesUI.HasActiveDelve
@@ -405,8 +406,8 @@ function DM:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	if DM:GetWindowCount() ~= DM.activeCount then
 		Private:DamageMeter_UpdateAll()
 	else
-		SetCVar('damageMeterEnabled', 0)
-		SetCVar('damageMeterResetOnNewInstance', 0)
+		if GetCVarBool('damageMeterEnabled') then SetCVar('damageMeterEnabled', 0) end
+		if GetCVarBool('damageMeterResetOnNewInstance') then SetCVar('damageMeterResetOnNewInstance', 0) end
 		DM:UpdateShown()
 		DM:MarkAllDirty()
 	end
@@ -464,8 +465,8 @@ function Private:DamageMeter_UpdateAll()
 
 	-- The data comes from the client either way, we don't need their meter on+hidden
 	-- Its auto reset would wipe the data behind our own Auto Reset option
-	SetCVar('damageMeterEnabled', 0)
-	SetCVar('damageMeterResetOnNewInstance', 0)
+	if GetCVarBool('damageMeterEnabled') then SetCVar('damageMeterEnabled', 0) end
+	if GetCVarBool('damageMeterResetOnNewInstance') then SetCVar('damageMeterResetOnNewInstance', 0) end
 
 	-- Content changes compare against this
 	local count = DM:GetWindowCount()

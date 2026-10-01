@@ -250,8 +250,8 @@ local function BuildCVarsSection()
 	return section
 end
 
--- Cooldown Manager wago profiles, only the class you are logged into gets built
-local CDMSpecs = {
+-- Cooldown Manager wago profiles (Retail), only the class you are logged into gets built
+local CDMSpecs = Private.isRetail and ({
 	HUNTER = { name = L["Hunter"], { L["Beast Mastery"], 'Beastmastery' }, { L["Marksmanship"], 'Marksmanship' }, { L["Survival"], 'Survival' } },
 	SHAMAN = { name = L["Shaman"], { L["Enhancement"], 'Enhancement' }, { L["Elemental"], 'Elemental' }, { L["Restoration"], 'Restoration-Shaman' } },
 	MONK = { name = L["Monk"], { L["Windwalker"], 'Windwalker' }, { L["Brewmaster"], 'Brewmaster' }, { L["Mistweaver"], 'Mistweaver' } },
@@ -265,26 +265,28 @@ local CDMSpecs = {
 	WARLOCK = { name = L["Warlock"], { L["Destruction"], 'Destruction' }, { L["Affliction"], 'Affliction' }, { L["Demonology"], 'Demonology' } },
 	MAGE = { name = L["Mage"], { L["Fire"], 'Fire' }, { L["Frost"], 'Frost-Mage' }, { L["Arcane"], 'Arcane' } },
 	ROGUE = { name = L["Rogue"], { L["Assassination"], 'Assassination' }, { L["Outlaw"], 'Outlaw' }, { L["Subtlety"], 'Subtlety' } },
-}
+})[Private.myClass]
 
 -- Build Cooldown Manager Section
 local function BuildCDMSection()
 	if not Private.isModern then return end -- Retail and Forever only section, Wago specs are Retail only
 	local section = ACH:Group(GetIconName(L["Cooldown Manager"], 'Cdm'), nil, 30)
 	section.args.header1 = ACH:Header(L["Cooldown Manager"], 1)
-	local specs = CDMSpecs[Private.myClass]
-	local color = RAID_CLASS_COLORS[Private.myClass]
-	section.args.specs = ACH:Group(specs.name, nil, 2, nil, nil, nil, nil, not Private.isRetail)
-	section.args.specs.inline = true
+	if Private.isRetail then
+		local color = RAID_CLASS_COLORS[Private.myClass]
+		section.args.specs = ACH:Group(CDMSpecs.name, nil, 2)
+		section.args.specs.inline = true
 
-	for index, spec in ipairs(specs) do
-		section.args.specs.args['spec' .. index] = ACH:Execute(color:WrapTextInColorCode(spec[1]), nil, index, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-' .. spec[2]) end)
+		for index, spec in ipairs(CDMSpecs) do
+			section.args.specs.args['spec' .. index] = ACH:Execute(color:WrapTextInColorCode(spec[1]), nil, index, function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://wago.io/LuckyoneUI-' .. spec[2]) end)
+		end
+
+		section.args.desc = ACH:Group(L["Description"], nil, 15)
+		section.args.desc.inline = true
+		section.args.desc.args.desc = ACH:Description(L["Specializations are only displayed for the class you're currently logged into.\n\nGrab the updated import string from the Wago URL and import it manually."], 1, 'medium')
+		section.args.header2 = ACH:Header(L["Cooldown Settings"], 16)
 	end
 
-	section.args.desc = ACH:Group(L["Description"], nil, 15, nil, nil, nil, nil, not Private.isRetail)
-	section.args.desc.inline = true
-	section.args.desc.args.desc = ACH:Description(L["Specializations are only displayed for the class you're currently logged into.\n\nGrab the updated import string from the Wago URL and import it manually."], 1, 'medium')
-	section.args.header2 = ACH:Header(L["Cooldown Settings"], 16, nil, nil, not Private.isRetail)
 	section.args.addons = ACH:Group(L["Addon Profiles"], nil, 17)
 	section.args.addons.inline = true
 	section.args.addons.args.scm = ACH:Execute('SkironCooldownManager', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_SCM() StaticPopup_Show('LUCKYONE_RL') end, nil, true)

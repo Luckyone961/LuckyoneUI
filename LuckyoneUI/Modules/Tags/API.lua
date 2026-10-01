@@ -125,7 +125,7 @@ local powerTypeHexCache = setmetatable({}, { __index = function(t, pType)
 	return hex
 end})
 
--- Wipe hex caches when ElvUI media updates so color changes apply without a reload
+-- Wipe hex caches when ElvUI media or unitframe colors update so color changes apply without a reload
 local function WipeCaches()
 	wipe(classHexCache)
 	wipe(reactionHexCache)
@@ -134,6 +134,7 @@ local function WipeCaches()
 end
 
 hooksecurefunc(E, 'UpdateMedia', WipeCaches)
+hooksecurefunc(E:GetModule('UnitFrames'), 'UpdateColors', WipeCaches)
 
 -- Shared with Tags.lua so static power colors stay in sync with UpdateMedia
 Private.Tags.powerColors = powerHexCache
