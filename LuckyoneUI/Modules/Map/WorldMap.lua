@@ -1,8 +1,11 @@
 local _, Private = ...
 
 local ceil = math.ceil
+local floor = math.floor
+local gmatch = string.gmatch
 local ipairs = ipairs
 local min = math.min
+local tonumber = tonumber
 local wipe = wipe
 
 local GetExploredMapTextures = C_MapExplorationInfo.GetExploredMapTextures
@@ -49,34 +52,35 @@ local function RevealOverlays()
 		end
 	end
 
-	local color, tileWidth, tileHeight = db.color, layer.tileWidth, layer.tileHeight
+	local r, g, b, alpha = db.color.r, db.color.g, db.color.b, db.alpha
+	local tileWidth, tileHeight = layer.tileWidth, layer.tileHeight
 	local count = 0
 
-	for _, overlay in ipairs(overlays) do
-		if not explored[overlay[5]] then
-			local width, height, offsetX, offsetY = overlay[1], overlay[2], overlay[3], overlay[4]
-			local columns = ceil(width / tileWidth)
+	-- Every line of the art string is one overlay: width, height, offsetX, offsetY and its tile files row by row
+	for width, height, offsetX, offsetY, files, firstFile in gmatch(overlays, '(%d+),(%d+),(%d+),(%d+),((%d+)[%d,]*)') do
+		if not explored[tonumber(firstFile)] then
+			width, height, offsetX, offsetY = tonumber(width), tonumber(height), tonumber(offsetX), tonumber(offsetY)
+			local columns, index = ceil(width / tileWidth), 0
 
-			for row = 1, ceil(height / tileHeight) do
-				local pixelHeight = min(tileHeight, height - tileHeight * (row - 1))
+			for file in gmatch(files, '%d+') do
+				local row, column = floor(index / columns), index % columns
+				local pixelWidth = min(tileWidth, width - tileWidth * column)
+				local pixelHeight = min(tileHeight, height - tileHeight * row)
+				index = index + 1
 
-				for column = 1, columns do
-					local pixelWidth = min(tileWidth, width - tileWidth * (column - 1))
-
-					count = count + 1
-					local texture = textures[count]
-					if not texture then
-						texture = pin:CreateTexture(nil, 'ARTWORK', nil, -1)
-						textures[count] = texture
-					end
-
-					texture:SetSize(pixelWidth, pixelHeight)
-					texture:SetTexCoord(0, pixelWidth / FileSize(pixelWidth), 0, pixelHeight / FileSize(pixelHeight))
-					texture:SetPoint('TOPLEFT', offsetX + tileWidth * (column - 1), -(offsetY + tileHeight * (row - 1)))
-					texture:SetTexture(overlay[4 + (row - 1) * columns + column], nil, nil, 'TRILINEAR')
-					texture:SetVertexColor(color.r, color.g, color.b, db.alpha)
-					texture:Show()
+				count = count + 1
+				local texture = textures[count]
+				if not texture then
+					texture = pin:CreateTexture(nil, 'ARTWORK', nil, -1)
+					textures[count] = texture
 				end
+
+				texture:SetSize(pixelWidth, pixelHeight)
+				texture:SetTexCoord(0, pixelWidth / FileSize(pixelWidth), 0, pixelHeight / FileSize(pixelHeight))
+				texture:SetPoint('TOPLEFT', offsetX + tileWidth * column, -(offsetY + tileHeight * row))
+				texture:SetTexture(tonumber(file), nil, nil, 'TRILINEAR')
+				texture:SetVertexColor(r, g, b, alpha)
+				texture:Show()
 			end
 		end
 	end

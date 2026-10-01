@@ -236,7 +236,6 @@ function Blizzard:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	Private:PrivacyOverlay()
 	QuickSignup()
 	RemoveNameplateRealm()
-	Private:WorldMap()
 end
 
 function Blizzard:OnEnable()

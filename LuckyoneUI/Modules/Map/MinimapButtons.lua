@@ -553,14 +553,10 @@ function Private:MinimapButtons_ResetDefaults()
 	Private:UpdateMinimapButtonBar()
 end
 
-function Map:PLAYER_ENTERING_WORLD()
-	ScheduleUpdate()
-end
-
-function Map:OnEnable()
+-- Collected again after every loading screen, other addons create their buttons late
+function Private:MinimapButtons()
 	local db = Private.Addon.db.profile.map.minimap.buttons
 	if not db.enable or not E.private.general.minimap.enable then return end
 
-	self:RegisterEvent('PLAYER_ENTERING_WORLD')
-	self:PLAYER_ENTERING_WORLD()
+	ScheduleUpdate()
 end
