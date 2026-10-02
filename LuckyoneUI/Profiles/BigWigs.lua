@@ -3,25 +3,36 @@ local L = Private.L
 
 local LibStub = LibStub
 
--- Runs after successful profile import
-local function CallbackFunction(accepted, name)
+-- Runs only after successful profile import
+local function CallbackFunction(accepted)
 	if not accepted then return end
 
-	-- 1080p
-	local scaled = Private.Addon.db.global.scaled
-
-	-- Handle minimap icon
+	-- Minimap icon
 	local LDBI = LibStub('LibDBIcon-1.0')
 	BigWigsIconDB.hide = true
 	LDBI:Hide('BigWigs')
 
-	-- 1080p: X -489, Y -514
-	-- 1440p: X -709, Y -694
-	if scaled then
-		local bres = BigWigs3DB.namespaces.BigWigs_Plugins_BattleRes
-		if bres and bres.profiles and bres.profiles[name] then
-			bres.profiles[name].position = { nil, nil, -489, -514 }
-		end
+	-- 1080p
+	local scaled = Private.Addon.db.global.scaled
+	local bres = BigWigsLoader.db:GetNamespace('BigWigs_Plugins_BattleRes', true)
+	if (scaled and bres) then
+		bres.profile.position[3] = -489 -- 1440p: -709
+		bres.profile.position[4] = -514 -- 1440p: -694
+	end
+
+	local block = BigWigsLoader.db:GetNamespace('BigWigs_Plugins_BossBlock', true)
+	if block then -- LuckyoneUI hides talking head while keeping its audio
+		block.profile.blockTalkingHeads = { false, false, false, false, false, false }
+	end
+
+	local auras = BigWigsLoader.db:GetNamespace('BigWigs_Plugins_Auras', true)
+	if auras then -- We use ElvUI player frame debuffs with filter strings
+		auras.profile.player.disabled = true
+	end
+
+	local mplus = BigWigsLoader.db:GetNamespace('MythicPlus', true)
+	if mplus then -- MPlusTimer already adds tooltip progress
+		mplus.profile.progressTooltip = false
 	end
 end
 
@@ -33,8 +44,8 @@ function Private:Setup_BigWigs()
 	local name = 'Luckyone'
 
 	-- Profile string
-	local importString = [[BW2:hVe9j+PGFRf3fHBgGEbgItD6fHfrwDFS3wXBnZF4IYnUSqsPSiK14gEBgllylhqY4hDkaPeUKsCta1cu7M4OAldpAhhw2iRNOsOGi/wBceEUaaTifI1nhuTMkBSzAlZLzbx5H7/3e+8N/zJZwSQBPpzgBBGEw+SzIVxFy/zndcc2J+yv8Vj7ahzieAUCsdftGGPbmGX/Gk1vlCnr4ADHyefdaB1HAXz24vi7C/5piCf9PFizjX99zD6fvDj+d/qgGX4MYSh3NPGkuxugbmjdDQwCfPVMozJ/Sxe7OAahD59pzx81xGInht4zTbGVPZiZtxYkBIV+8tcTvCYBCuGJObeH/bHRu8AhsdAf4OtjhskIh9hdxngFtxyjLt0dgxU8NZ5GMVV1BTZinZ1qNnV3Cch2lARrfwZDD8bUzK63TiByKdK7UzcASeIysHYjdnIeRTB2QQJ3BgiQH2bInq6kZe5TyerAj/HVPLoCsZdsB0yRWQxkytasohcXwIMEreDz9xoDDyVRADbs58HUxeuQePgqzHH5vBaX5q8HBD4lRgjOA+jtRuKoTTXdvslt4xIjFw6N0A9Qsnz3qLXamEJDSqFP++wcf/5TK9ZafqN13pitNmSJ3EmwTnIXvzxy7kYx9plmZoVGQ6BJljA2Ly4SSJ40nDuVfSWfUxQmBIQuHMBN0mLQ60Oja/9/pU7TW6jnTpQsFBRy/681+jnl8Z1V4nbuVQzZIPYhyd1PgbEIiIlFn7xRG/kL5CfvHg1x6NuqtZryfKyNDrXHzhuqqLXEV60gmNDcwzjZOs1quCUiVQS2lqqwJF7wKy+Lnzr3K1q6eZY5vAwqWsDO3YJqtqOvaXXjUADKpA73amM/JmNM8JEFwuRoBD20XjlH9ZZTvHmWalTyTpBy3Ag9noaxSEMrAPFqD8m425xRxqx/0rOdN2syrcjMcxEb44CgqMvaLrl1A0koHVN6taGPwttnKngK1asMyEClMW33mCi2jUpGSzW92IMcc16bqwd7yIM2IgHc9s9BnJb6n0f0sQ3c92kzo8he//DbyVdfK1/HDx8+ZCI2bTjWEtAecd1oNLSTbIknrpdru37+K9r/v7335fS/H9x/cfyfv3/4u1/u/qGx8wZthSChqfSuNXb+kjKfVkunvXgwE91HTMNPe9GeSfjHAVUkes/Py/1xkM7JBfLI8lD72QTmJmcwYRW87cGnEd9t/k9no2CnX6Ag2M6TiE60fughFxAKSZrXgy5r7+toe1M/tS5RgmgjboN4iFaIsEhvj4TxEb7MzjEiv2qWpG/3+chhnTtlYZ862YPIX5LXTaHkJHVFZ6Nid5JEwKUQ3JJG2PGfsDRYZBNAwwgu532nSTV1cLTprBOCV63QXeKYh7917qRQ7d8d5s6ySF7tCyO7zFWadt6mFyXc8uzxTau0yfS9NGSoF8R0Nsh2J+x7HcPTEQoR9QslZJh6mCFhSTjXrDQDBGPNLJloTM8Boeym6RYkeXvkrWPAzMlp0KNzl0/O7YReFGglJ2McQrk/OMcxrbt0gZF96NKGwPhpeD7c6syN5oMxi0WHCSDMALyl0mSY6W0pt4k5i9ERwWdeaXz5SWXZLkh3UnWaqIoPSkPm4J+PD77ozfsTEMOQnKYBMJ4aFg6Qd8Z8tVOMu9RDiwOnH05eykRZdrRp5nXKCCbe/kViKRDl3fg15zBHVZS12JsJwFU1Zg5hP2SVTyFKDae11hjl29YViuBunuN3CVDAUiWTY4fwaqbs8HmgM+9EplXUyz3irOK4VD3J90Qs84o0K7SGHmD3/Z2+wh7UnGbZV3G6z1BXPC9kOktpY19HGdJCli8GA1rGk/15bzxyRdJLbwkVyfaQdYXu79Nbh+XiFa0WFo7sqKdTEG46fKN2ltvnOElSmUKCZ3K9HwKXoEuoj82xMWHr9AJFY01rudk8E1Y4OLk4A+nF8TcP+ceWxwpmpIc1gR5q3z/6SIBiCfG25Lmiu10qlImMIvfWaUodYkyK3kBvQsqZIeUFbStTuVK6mZlClwCj7ExWEfOS59nyVIqXVI/FgXTEPTClF+nKb0x5OFs5kzIFMzMpWchmGU+JnF3akd2zAjdPwkLhUS0LFDfENXYiDJUAcO4oyaMTBMcbRu/0InSgxK72B4W2dYQ6eEchlPPmvjiF8zTeIoVrwJJbjNeZiwpQysVxXoZPIjsuFhLvMjJDNXWjZ8NvVwJ3b7UvlDKszZJZSiX3Q/qmwu3ckwWQpojeST1Ip0K6uHXeUsItlttNICuYnZWttFbsivmKc7eck3rNCjPqX2zuKN2tQjnnqEJIOrkgBYleWXhvp688ikN7u4vsGFlzUViicCeNrEKTvZGlRvdinBl17pcBLDn+cnFS8MKUSzUtQ30beqs27r0umyUecoopvFM5tqignmV/vjf5vJKkkxJTTRldGfbOG2VclHSXCMMxUWpM1F2lL/B+qEjWNiJfbURHdWPpJjYLR34E]]
+	local importString = [[BW2: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]]
 
 	-- Profile import
-	BigWigsAPI.RegisterProfile('LuckyoneUI', importString, name, function(accepted) CallbackFunction(accepted, name) end)
+	BigWigsAPI.RegisterProfile('LuckyoneUI', importString, name, CallbackFunction)
 end
