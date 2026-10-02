@@ -105,6 +105,8 @@ local function OpenSettings()
 		E:ToggleOptions('LuckyoneUI')
 		E:Config_UpdateSize(true)
 	elseif Private.SettingsCategoryID then
+		if InCombatLockdown() then return end
+
 		Settings_OpenToCategory(Private.SettingsCategoryID)
 	end
 end

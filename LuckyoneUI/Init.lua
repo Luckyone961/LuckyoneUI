@@ -204,7 +204,7 @@ end
 Private.Modules = {
 	Core = NewModule(),
 	Blizzard = NewModule(),
-	DamageMeter = (Private.ElvUI and Private.isModern) and NewModule() or nil,
+	DamageMeter = Private.isModern and NewModule() or nil,
 	Map = NewModule(),
 	Misc = Private.ElvUI and NewModule() or nil,
 	NamePlates = Private.ElvUI and NewModule() or nil,

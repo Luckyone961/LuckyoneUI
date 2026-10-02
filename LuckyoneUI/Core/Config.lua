@@ -7,6 +7,7 @@ local ipairs = ipairs
 local next = next
 local pairs = pairs
 local concat = table.concat
+local floor = math.floor
 local format = string.format
 
 local CopyTable = CopyTable
@@ -18,6 +19,7 @@ local strtrim = strtrim
 local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
 local SettingsPanel = _G.SettingsPanel
+local UIParent = _G.UIParent
 local CLASS_SORT_ORDER = _G.CLASS_SORT_ORDER
 local LOCALIZED_CLASS_NAMES_MALE = _G.LOCALIZED_CLASS_NAMES_MALE
 local RAID_CLASS_COLORS = _G.RAID_CLASS_COLORS
@@ -70,8 +72,8 @@ local function TextureValues()
 	return values
 end
 
-local function TextureSelect(order, disabled)
-	return (Private.ElvUI and ACH:SharedMediaStatusbar(L["Texture"], nil, order, nil, nil, nil, disabled)) or ACH:Select(L["Texture"], nil, order, TextureValues, nil, nil, nil, nil, disabled)
+local function TextureSelect(name, order, disabled)
+	return (Private.ElvUI and ACH:SharedMediaStatusbar(name, nil, order, nil, nil, nil, disabled)) or ACH:Select(name, nil, order, TextureValues, nil, nil, nil, nil, disabled)
 end
 
 -- Credits
@@ -364,26 +366,33 @@ local function BuildWindowGroup(index, order)
 	local group = ACH:Group(WINDOW_NAMES[index], nil, order, nil, WindowGet, WindowSet, nil, function() return DamageMeterMaxWindows() < index end)
 	group.inline = true
 	group.args.meterType = ACH:Select(L["Type"], nil, 1, Private.Modules.DamageMeter.TypeMenuNames, nil, nil, nil, function(_, value) Private.Addon.db.profile.damageMeter.windows[index].meterType = value local DM = Private.Modules.DamageMeter local window = DM.windows[index] if window then DM:SetWindowType(window, value) end end)
-	group.args.placement = ACH:Select(L["Placement"], L["Give this window its own slot, attach it to another window or move it with its own mover."], 2, function() return DamageMeterMaxWindows() > 1 and PlacementValues or SoloPlacementValues end, nil, nil, nil, function(_, value) local db = Private.Addon.db.profile.damageMeter db.windows[index].placement = value if value == 'ATTACH' then ReleaseAttached(db, index) else db.windows[index].attachTo = 0 end Private:DamageMeter_UpdateAll() end)
+	group.args.placement = ACH:Select(L["Placement"], Private.ElvUI and L["Give this window its own slot, attach it to another window or move it with its own mover."] or L["Give this window its own slot, attach it to another window or place it anywhere with its own offsets."], 2, function() return DamageMeterMaxWindows() > 1 and PlacementValues or SoloPlacementValues end, nil, nil, nil, function(_, value) local db = Private.Addon.db.profile.damageMeter if value == 'CUSTOM' and not Private.ElvUI then Private.Modules.DamageMeter:KeepWindowPosition(index) end db.windows[index].placement = value if value == 'ATTACH' then ReleaseAttached(db, index) else db.windows[index].attachTo = 0 end Private:DamageMeter_UpdateAll() end)
 	group.args.attachTo = ACH:Select(L["Attach To"], L["Stack this window under another one instead of giving it its own slot."], 3, function() local db = Private.Addon.db.profile.damageMeter local values = { [0] = _G.NONE } for target = 1, DamageMeterMaxWindows() do if target ~= index and db.windows[target].placement ~= 'ATTACH' then values[target] = WINDOW_NAMES[target] end end return values end, nil, nil, nil, function(_, value) local db = Private.Addon.db.profile.damageMeter db.windows[index].attachTo = value if value ~= 0 then ReleaseAttached(db, index) end Private:DamageMeter_UpdateAll() end, nil, function() return DamageMeterMaxWindows() < 2 or Private.Addon.db.profile.damageMeter.windows[index].placement ~= 'ATTACH' end)
 	group.args.attachSize = ACH:Range(L["Attached Size"], L["Share of the parent window taken by the attached window."], 4, { min = 10, max = 90, step = 1 }, nil, nil, nil, nil, function() local wdb = Private.Addon.db.profile.damageMeter.windows[index] return wdb.placement ~= 'ATTACH' or wdb.attachTo == 0 end)
 	group.args.width = ACH:Range(L["Width"], nil, 5, { min = 100, max = 1200, step = 1 }, nil, nil, nil, nil, NotCustom)
 	group.args.height = ACH:Range(L["Height"], nil, 6, { min = 60, max = 800, step = 1 }, nil, nil, nil, nil, NotCustom)
-	group.args.showSessionButton = ACH:Toggle(L["Session Button"], L["Show the session button in the header."], 7)
-	group.args.showResetButton = ACH:Toggle(L["Reset Button"], L["Show the reset button in the header. Shift click to reset without confirmation."], 8)
-	group.args.showSettingsButton = ACH:Toggle(L["Settings Button"], L["Show the settings button in the header."], 9)
-	group.args.mouseoverButtons = ACH:Toggle(L["Mouseover"], L["Only show the header buttons while the cursor is over the window."], 10)
-	group.args.backdrop = ACH:Toggle(L["Frame Backdrop"], L["Show a backdrop behind this window."], 11)
-	group.args.backdropColorType = ACH:Select(L["Backdrop Color"], L["Follow the ElvUI backdrop fade color or use a custom color."], 12, { ELVUI = 'ElvUI', CUSTOM = L["Custom"] }, nil, nil, nil, nil, nil, NoBackdrop)
-	group.args.backdropColor = ACH:Color(L["Custom Color"], nil, 13, true, nil, function() local color = Private.Addon.db.profile.damageMeter.windows[index].backdropColor return color.r, color.g, color.b, color.a end, function(_, r, g, b, a) local color = Private.Addon.db.profile.damageMeter.windows[index].backdropColor color.r, color.g, color.b, color.a = r, g, b, a Private:DamageMeter_UpdateAll() end, nil, function() local wdb = Private.Addon.db.profile.damageMeter.windows[index] return not wdb.backdrop or wdb.backdropColorType ~= 'CUSTOM' end)
-	group.args.backdropWidth = ACH:Range(L["Backdrop Width"], L["Grow or shrink the backdrop horizontally, 0 matches the window."], 14, { min = -20, max = 50, step = 1 }, nil, nil, nil, nil, NoBackdrop)
-	group.args.backdropHeight = ACH:Range(L["Backdrop Height"], L["Grow or shrink the backdrop vertically, 0 matches the window."], 15, { min = -20, max = 50, step = 1 }, nil, nil, nil, nil, NoBackdrop)
+
+	-- Without ElvUI movers the offsets place custom windows
+	if not Private.ElvUI then
+		group.args.xOffset = ACH:Range(L["X Offset"], L["Offset from the bottom right corner of the screen."], 7, { min = -floor(UIParent:GetWidth()), max = 0, step = 1 }, nil, nil, nil, nil, NotCustom)
+		group.args.yOffset = ACH:Range(L["Y Offset"], L["Offset from the bottom right corner of the screen."], 8, { min = 0, max = floor(UIParent:GetHeight()), step = 1 }, nil, nil, nil, nil, NotCustom)
+	end
+
+	group.args.showSessionButton = ACH:Toggle(L["Session Button"], L["Show the session button in the header."], 9)
+	group.args.showResetButton = ACH:Toggle(L["Reset Button"], L["Show the reset button in the header. Shift click to reset without confirmation."], 10)
+	group.args.showSettingsButton = ACH:Toggle(L["Settings Button"], L["Show the settings button in the header."], 11)
+	group.args.mouseoverButtons = ACH:Toggle(L["Mouseover"], L["Only show the header buttons while the cursor is over the window."], 12)
+	group.args.backdrop = ACH:Toggle(L["Frame Backdrop"], L["Show a backdrop behind this window."], 13)
+	group.args.backdropColorType = ACH:Select(L["Backdrop Color"], Private.ElvUI and L["Follow the ElvUI backdrop fade color or use a custom color."] or nil, 14, { ELVUI = Private.ElvUI and 'ElvUI' or L["Default"], CUSTOM = L["Custom"] }, nil, nil, nil, nil, nil, NoBackdrop)
+	group.args.backdropColor = ACH:Color(L["Custom Color"], nil, 15, true, nil, function() local color = Private.Addon.db.profile.damageMeter.windows[index].backdropColor return color.r, color.g, color.b, color.a end, function(_, r, g, b, a) local color = Private.Addon.db.profile.damageMeter.windows[index].backdropColor color.r, color.g, color.b, color.a = r, g, b, a Private:DamageMeter_UpdateAll() end, nil, function() local wdb = Private.Addon.db.profile.damageMeter.windows[index] return not wdb.backdrop or wdb.backdropColorType ~= 'CUSTOM' end)
+	group.args.backdropWidth = ACH:Range(L["Backdrop Width"], L["Grow or shrink the backdrop horizontally, 0 matches the window."], 16, { min = -20, max = 50, step = 1 }, nil, nil, nil, nil, NoBackdrop)
+	group.args.backdropHeight = ACH:Range(L["Backdrop Height"], L["Grow or shrink the backdrop vertically, 0 matches the window."], 17, { min = -20, max = 50, step = 1 }, nil, nil, nil, nil, NoBackdrop)
 	return group
 end
 
 -- Build Damage Meter Section
 local function BuildDamageMeterSection()
-	if not (Private.ElvUI and Private.isModern) then return end -- Retail/Forever + ElvUI section
+	if not Private.isModern then return end -- Retail/Forever section
 	local section = ACH:Group(GetIconName(L["Damage Meter"], 'DamageMeter'), nil, 35, 'tab')
 	section.args.header = ACH:Header(L["Damage Meter"], 1)
 	section.args.general = ACH:Group(L["General"], nil, 2, nil, DamageMeterGet, DamageMeterSet)
@@ -396,8 +405,8 @@ local function BuildDamageMeterSection()
 	section.args.general.args.resetOptions = ACH:Group(L["Reset"], nil, 2)
 	section.args.general.args.resetOptions.inline = true
 	section.args.general.args.resetOptions.args.autoReset = ACH:Select(L["Auto Reset"], L["Reset all Damage Meter data when you enter a new instance."], 1, { NONE = _G.NONE, ASK = L["Ask"], AUTO = L["Automatic"] }, nil, nil, nil, nil, DamageMeterDisabled)
-	section.args.general.args.resetOptions.args.autoResetTypes = ACH:MultiSelect(L["Instances"], L["Which instance types trigger the reset. Scenarios include Delves."], 2, { party = L["Dungeon"], raid = L["Raid"], scenario = L["Scenario"] }, nil, nil, function(_, key) return Private.Addon.db.profile.damageMeter.autoResetTypes[key] end, function(_, key, value) Private.Addon.db.profile.damageMeter.autoResetTypes[key] = value Private:DamageMeter_UpdateAll() end, DamageMeterDisabled, function() return Private.Addon.db.profile.damageMeter.autoReset == 'NONE' end)
-	section.args.general.args.resetOptions.args.resetOnLogout = ACH:Toggle(L["Reset on Logout"], L["Wipe all Damage Meter data when you log out. Reloading the UI keeps the data."], 3, nil, nil, nil, nil, nil, DamageMeterDisabled)
+	section.args.general.args.resetOptions.args.autoResetTypes = ACH:MultiSelect(L["Instances"], L["Which instance types trigger the reset. Scenarios include Delves."], Private.ElvUI and 2 or 3, { party = L["Dungeon"], raid = L["Raid"], scenario = L["Scenario"] }, nil, nil, function(_, key) return Private.Addon.db.profile.damageMeter.autoResetTypes[key] end, function(_, key, value) Private.Addon.db.profile.damageMeter.autoResetTypes[key] = value Private:DamageMeter_UpdateAll() end, DamageMeterDisabled, function() return Private.Addon.db.profile.damageMeter.autoReset == 'NONE' end) -- Standalone shows the logout toggle before the instance rows
+	section.args.general.args.resetOptions.args.resetOnLogout = ACH:Toggle(L["Reset on Logout"], L["Wipe all Damage Meter data when you log out. Reloading the UI keeps the data."], Private.ElvUI and 3 or 2, nil, nil, nil, nil, nil, DamageMeterDisabled)
 	section.args.general.args.contentOptions = ACH:Group(L["Window Count"], nil, 3, nil, function(info) return Private.Addon.db.profile.damageMeter.contentWindows[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter.contentWindows[info[#info]] = value Private:DamageMeter_UpdateAll() end, DamageMeterDisabled)
 	section.args.general.args.contentOptions.inline = true
 	section.args.general.args.contentOptions.args.world = ACH:Select(L["Open World"], L["Number of session windows in this content. Disabled uses the count from the Windows tab."], 1, ContentWindowValues)
@@ -412,6 +421,15 @@ local function BuildDamageMeterSection()
 	section.args.windows.args.generalOptions.inline = true
 	section.args.windows.args.generalOptions.args.windowCount = ACH:Range(L["Windows"], L["Number of session windows."], 1, { min = 1, max = 4, step = 1 })
 	section.args.windows.args.generalOptions.args.orientation = ACH:Select(L["Orientation"], L["Place the session windows next to each other or stacked."], 2, { HORIZONTAL = L["Horizontal"], VERTICAL = L["Vertical"] })
+
+	-- Without ElvUI there is no right chat panel to fill, the meter brings its own size and spot
+	if not Private.ElvUI then
+		section.args.windows.args.generalOptions.args.width = ACH:Range(L["Width"], L["Size of the whole Damage Meter. Zero uses the LuckyoneUI default for your scale (1080p or 1440p)."], 3, { min = 0, max = 1200, step = 1 })
+		section.args.windows.args.generalOptions.args.height = ACH:Range(L["Height"], L["Size of the whole Damage Meter. Zero uses the LuckyoneUI default for your scale (1080p or 1440p)."], 4, { min = 0, max = 800, step = 1 })
+		section.args.windows.args.generalOptions.args.xOffset = ACH:Range(L["X Offset"], L["Offset from the bottom right corner of the screen."], 5, { min = -floor(UIParent:GetWidth()), max = 0, step = 1 })
+		section.args.windows.args.generalOptions.args.yOffset = ACH:Range(L["Y Offset"], L["Offset from the bottom right corner of the screen."], 6, { min = 0, max = floor(UIParent:GetHeight()), step = 1 })
+	end
+
 	section.args.windows.args.spacingOptions = ACH:Group(L["Spacing"], nil, 2, nil, DamageMeterGet, DamageMeterSet)
 	section.args.windows.args.spacingOptions.inline = true
 	section.args.windows.args.spacingOptions.args.innerSpacing = ACH:Range(L["Inner Spacing"], L["Space between the session windows."], 1, { min = -20, max = 20, step = 1 }, nil, nil, nil, function() return DamageMeterDisabled() or DamageMeterMaxWindows() < 2 end)
@@ -426,7 +444,7 @@ local function BuildDamageMeterSection()
 	section.args.bars.args.generalOptions.inline = true
 	section.args.bars.args.generalOptions.args.barStyle = ACH:Select(L["Bar Style"], L["Layout of each bar, matches the Blizzard Edit Mode styles."], 1, { DEFAULT = L["Default"], BORDERED = L["Bordered"], THIN = L["Thin"] })
 	section.args.bars.args.generalOptions.args.thinBarHeight = ACH:Range(L["Thin Bar Height"], L["Height of the bar below the text. Zero attempts to match Blizzards default."], 2, { min = 0, max = 50, step = 1 }, nil, nil, nil, nil, function() return Private.Addon.db.profile.damageMeter.barStyle ~= 'THIN' end)
-	section.args.bars.args.generalOptions.args.barTexture = ACH:SharedMediaStatusbar(L["Bar Texture"], nil, 3)
+	section.args.bars.args.generalOptions.args.barTexture = TextureSelect(L["Bar Texture"], 3)
 	section.args.bars.args.generalOptions.args.showIcons = ACH:Toggle(L["Bar Icons"], L["Show the class or spec icon in front of each bar."], 4)
 	section.args.bars.args.generalOptions.args.mouseoverHighlight = ACH:Toggle(L["Mouseover Highlight"], L["Highlight the bar under your cursor."], 5)
 	section.args.bars.args.generalOptions.args.pinLocalPlayer = ACH:Toggle(L["Always Show Yourself"], L["Pin your own bar to the closest edge of the list while it would be scrolled out of view."], 6)
@@ -467,9 +485,13 @@ local function BuildDamageMeterSection()
 	section.args.text.args.colorOptions.args.valueColor = ACH:Color(L["Custom Color"], nil, 4, nil, nil, DamageMeterColorGet, DamageMeterColorSet, nil, function() return Private.Addon.db.profile.damageMeter.valueColorType ~= 'CUSTOM' end)
 	section.args.text.args.fontOptions = FontGroup(L["Font"], 4, 26)
 	section.args.headerOptions = ACH:Group(L["Header"], nil, 6, nil, DamageMeterGet, DamageMeterSet, DamageMeterDisabled)
-	section.args.headerOptions.args.generalOptions = ACH:Group(L["General"], nil, 1)
-	section.args.headerOptions.args.generalOptions.inline = true
-	section.args.headerOptions.args.generalOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 1)
+
+	if Private.ElvUI then
+		section.args.headerOptions.args.generalOptions = ACH:Group(L["General"], nil, 1)
+		section.args.headerOptions.args.generalOptions.inline = true
+		section.args.headerOptions.args.generalOptions.args.useValueColor = ACH:Toggle(L["Use Value Color"], L["Color the header text with the ElvUI value color instead of white."], 1)
+	end
+
 	section.args.headerOptions.args.sizeOptions = ACH:Group(L["Size"], nil, 2)
 	section.args.headerOptions.args.sizeOptions.inline = true
 	section.args.headerOptions.args.sizeOptions.args.headerHeight = ACH:Range(L["Header Height"], nil, 1, { min = 12, max = 40, step = 1 })
@@ -685,7 +707,7 @@ local function ObjectiveTrackerHeaderGroup(name, key, order)
 	group.args.underlineGroup.inline = true
 	group.args.underlineGroup.args.underline = ACH:Toggle(L["Enable"], L["Show a colored bar below the header."], 1)
 	group.args.underlineGroup.args.underlineBorder = ACH:Toggle(L["Border"], L["Black one pixel border around the bar."], 2, nil, nil, nil, nil, nil, NoUnderline)
-	group.args.underlineGroup.args.underlineTexture = TextureSelect(3, NoUnderline)
+	group.args.underlineGroup.args.underlineTexture = TextureSelect(L["Texture"], 3, NoUnderline)
 	group.args.underlineGroup.args.underlineColorType = ACH:Select(_G.COLOR, nil, 4, { CLASS = L["Class Color"], CUSTOM = L["Custom"] }, nil, nil, nil, nil, NoUnderline)
 	group.args.underlineGroup.args.underlineColor = ACH:Color(L["Custom Color"], nil, 5, nil, nil, function() local color = Private.Addon.db.profile.misc.objectiveTracker[key].underlineColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.misc.objectiveTracker[key].underlineColor color.r, color.g, color.b = r, g, b Private:ObjectiveTracker_Update() end, NoUnderline, function() return Private.Addon.db.profile.misc.objectiveTracker[key].underlineColorType ~= 'CUSTOM' end)
 	group.args.underlineGroup.args.underlineHeight = ACH:Range(L["Height"], L["Grows upward from the bottom edge of the header, a big value turns the bar into a background behind the text."], 6, { min = 1, max = 30, step = 1 }, nil, nil, nil, NoUnderline)

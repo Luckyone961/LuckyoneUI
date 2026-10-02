@@ -43,10 +43,12 @@ local CreateAnchor = AnchorUtil.CreateAnchor
 local issecretvalue = issecretvalue
 
 local _G = _G
+local Settings_OpenToCategory = _G.Settings.OpenToCategory
 local StaticPopup_Show = _G.StaticPopup_Show
+local UIParent = _G.UIParent
 
-local E = unpack(ElvUI)
-local S = E:GetModule('Skins')
+local E = Private.ElvUI and ElvUI[1]
+local S = E and E:GetModule('Skins')
 
 local MeterType = Enum.DamageMeterType
 local SessionType = Enum.DamageMeterSessionType
@@ -252,7 +254,7 @@ end
 
 -- Header colors
 local function HeaderColor()
-	if DM.db.useValueColor then
+	if E and DM.db.useValueColor then
 		return unpack(E.media.rgbvaluecolor)
 	end
 
@@ -266,6 +268,42 @@ function DM:UpdateHeaderColors(window)
 	window.sessionButton.icon:SetVertexColor(r, g, b)
 	window.resetButton.icon:SetVertexColor(r, g, b)
 	window.settingsButton.icon:SetVertexColor(r, g, b)
+end
+
+-- ElvUI backdrops follow its theme, without ElvUI they carry the LuckyoneUI ElvUI colors
+local function CreateBackdrop(frame, template)
+	if E then
+		frame:CreateBackdrop(template, nil, nil, nil, nil, nil, nil, true)
+		return
+	end
+
+	local backdrop = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
+	backdrop:SetFrameLevel(max(frame:GetFrameLevel() - 1, 0))
+	backdrop:SetAllPoints()
+	backdrop:SetBackdrop({ bgFile = 'Interface\\Buttons\\WHITE8x8', edgeFile = 'Interface\\Buttons\\WHITE8x8', edgeSize = 1 }) -- One pixel on the LuckyoneUI scales like the ElvUI edge
+	backdrop:SetBackdropBorderColor(0, 0, 0)
+
+	if template == 'Transparent' then
+		backdrop:SetBackdropColor(0.05, 0.05, 0.05, 0.9)
+	else
+		backdrop:SetBackdropColor(0.12, 0.12, 0.12)
+	end
+
+	frame.backdrop = backdrop
+end
+
+-- Padding grows the backdrop past the frame
+local function PlaceBackdrop(backdrop, frame, wdb)
+	if E then
+		backdrop:SetOutside(frame, E.Border + E:Scale(wdb.backdropWidth), E.Border + E:Scale(wdb.backdropHeight), nil, true)
+		return
+	end
+
+	local x, y = 1 + wdb.backdropWidth, 1 + wdb.backdropHeight
+
+	backdrop:ClearAllPoints()
+	backdrop:SetPoint('TOPLEFT', frame, 'TOPLEFT', -x, y)
+	backdrop:SetPoint('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', x, -y)
 end
 
 -- ElvUI keeps calling this whenever its media updates
@@ -282,7 +320,12 @@ local function SetBackdropColor(backdrop, custom, color)
 	else
 		backdrop.customColor = nil
 		backdrop.callbackBackdropColor = nil
-		backdrop:SetBackdropColor(unpack(E.media.backdropfadecolor))
+
+		if E then
+			backdrop:SetBackdropColor(unpack(E.media.backdropfadecolor))
+		else
+			backdrop:SetBackdropColor(0.05, 0.05, 0.05, 0.9)
+		end
 	end
 end
 
@@ -298,13 +341,11 @@ function DM:UpdateWindowBackdrop(window)
 	end
 
 	if not window.backdrop then
-		window:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
+		CreateBackdrop(window, 'Transparent')
 	end
 
 	local backdrop = window.backdrop
-
-	-- Padding grows the backdrop past the window
-	backdrop:SetOutside(window, E.Border + E:Scale(wdb.backdropWidth), E.Border + E:Scale(wdb.backdropHeight), nil, true)
+	PlaceBackdrop(backdrop, window, wdb)
 
 	SetBackdropColor(backdrop, wdb.backdropColorType == 'CUSTOM', wdb.backdropColor)
 	backdrop:Show()
@@ -443,8 +484,16 @@ local function SessionButton_OnClick(button)
 	OpenMenu(button, SessionMenu, true)
 end
 
+-- Without ElvUI it opens our page in the Blizzard settings
 local function SettingsButton_OnClick()
-	E:ToggleOptions('LuckyoneUI,damageMeter')
+	if E then
+		E:ToggleOptions('LuckyoneUI,damageMeter')
+		return
+	end
+
+	if InCombatLockdown() or not Private.SettingsSubcategoryIDs then return end
+
+	Settings_OpenToCategory(Private.SettingsSubcategoryIDs.damageMeter)
 end
 
 -- Shift click skips the confirmation
@@ -674,15 +723,14 @@ end
 
 local function CreateRowTexture(row, layer)
 	local texture = row:CreateTexture(nil, layer)
-	texture:SetTexture(E.media.blankTex)
-	texture:SetVertexColor(1, 1, 1, 0.2)
+	texture:SetColorTexture(1, 1, 1, 0.2)
 	texture:SetAllPoints()
 
 	return texture
 end
 
 local function CreateBookmarkRow(frame)
-	local row = CreateFrame('Button', nil, frame)
+	local row = DM:AddToolkit(CreateFrame('Button', nil, frame))
 	row.window = frame.window
 
 	row:SetFrameLevel(frame:GetFrameLevel() + 2) -- Keeps its backdrop above the one behind the whole panel
@@ -691,7 +739,7 @@ local function CreateBookmarkRow(frame)
 	row:SetScript('OnClick', BookmarkRow_OnClick)
 	row:SetScript('OnDragStart', BookmarkRow_OnDragStart)
 	row:SetScript('OnDragStop', BookmarkRow_OnDragStop)
-	row:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
+	CreateBackdrop(row, 'Transparent')
 	SetHoverScripts(row)
 
 	-- Marks the type the window is showing right now
@@ -731,7 +779,7 @@ local function Bookmarks_OnMouseDown(frame, button)
 end
 
 local function CreateBookmarks(window)
-	local frame = CreateFrame('Frame', nil, window)
+	local frame = DM:AddToolkit(CreateFrame('Frame', nil, window))
 
 	-- Set before the scripts, the first Hide already fires OnHide
 	frame.rows = {}
@@ -748,13 +796,13 @@ local function CreateBookmarks(window)
 	frame:EnableMouseWheel(true)
 
 	-- Shows where a dragged bookmark lands, above the rows so it stays visible
-	local marker = CreateFrame('Frame', nil, frame)
+	local marker = DM:AddToolkit(CreateFrame('Frame', nil, frame))
 	marker:SetFrameLevel(frame:GetFrameLevel() + 4)
 	marker:Hide()
 	frame.marker = marker
 
 	marker.texture = marker:CreateTexture(nil, 'OVERLAY')
-	marker.texture:SetTexture(E.media.blankTex)
+	marker.texture:SetColorTexture(1, 1, 1)
 	marker.texture:SetAllPoints()
 
 	frame:SetScript('OnShow', Frame_OnShow)
@@ -762,7 +810,7 @@ local function CreateBookmarks(window)
 	frame:SetScript('OnEvent', Bookmarks_OnEvent)
 	frame:SetScript('OnMouseDown', Bookmarks_OnMouseDown)
 	frame:SetScript('OnMouseWheel', Bookmarks_OnMouseWheel)
-	frame:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
+	CreateBackdrop(frame, 'Transparent')
 	frame:Hide()
 	SetHoverScripts(frame)
 
@@ -952,15 +1000,16 @@ end
 
 -- The cursor corner is the anchor, the popup grows toward the screen center
 local function AnchorToCursor(popup)
+	local parent = popup:GetParent()
 	local scale = popup:GetEffectiveScale()
 	local x, y = GetCursorPosition()
 	x, y = x / scale, y / scale
 
-	local horizontal = (x > E.UIParent:GetWidth() / 2) and 'RIGHT' or 'LEFT'
-	local vertical = (y > E.UIParent:GetHeight() / 2) and 'TOP' or 'BOTTOM'
+	local horizontal = (x > parent:GetWidth() / 2) and 'RIGHT' or 'LEFT'
+	local vertical = (y > parent:GetHeight() / 2) and 'TOP' or 'BOTTOM'
 
 	popup:ClearAllPoints()
-	popup:SetPoint(vertical .. horizontal, E.UIParent, 'BOTTOMLEFT', x, y) -- Not Point, that would snap the cursor position to the pixel grid
+	popup:SetPoint(vertical .. horizontal, parent, 'BOTTOMLEFT', x, y) -- Not Point, that would snap the cursor position to the pixel grid
 end
 
 -- The scroll bar works in percent, the render path works in rows
@@ -1030,14 +1079,14 @@ local function CreateWindowFrames(frame)
 	frame.visibleCount = 0
 	frame.numEntries = 0
 
-	local header = CreateFrame('Frame', nil, frame)
+	local header = DM:AddToolkit(CreateFrame('Frame', nil, frame))
 	header:Point('TOPLEFT')
 	header:Point('TOPRIGHT')
 	header:SetScript('OnMouseDown', Content_OnMouseDown)
 	header.window = frame
 	frame.header = header
 
-	local content = CreateFrame('Frame', nil, frame)
+	local content = DM:AddToolkit(CreateFrame('Frame', nil, frame))
 	content:Point('TOPLEFT', header, 'BOTTOMLEFT', 0, 0)
 	content:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', 0, 0)
 	content:EnableMouseWheel(true)
@@ -1050,7 +1099,7 @@ local function CreateWindowFrames(frame)
 end
 
 function DM:CreateText(parent, justify)
-	local text = parent:CreateFontString(nil, 'OVERLAY')
+	local text = DM:AddToolkit(parent:CreateFontString(nil, 'OVERLAY'))
 	text:SetJustifyH(justify)
 	text:SetWordWrap(false)
 
@@ -1061,14 +1110,14 @@ function DM:GetPopup()
 	local popup = DM.popup
 	if popup then return popup end
 
-	popup = CreateFrame('Frame', 'LuckyoneUI_DamageMeterPopup', E.UIParent)
+	popup = DM:AddToolkit(CreateFrame('Frame', 'LuckyoneUI_DamageMeterPopup', E and E.UIParent or UIParent))
 	popup:SetFrameStrata('DIALOG')
 	popup:SetClampedToScreen(true)
 	popup:SetMovable(true)
 	popup:SetScript('OnShow', Frame_OnShow)
 	popup:SetScript('OnHide', Popup_OnHide)
 	popup:SetScript('OnEvent', Popup_OnEvent)
-	popup:CreateBackdrop('Default', nil, nil, nil, nil, nil, nil, true)
+	CreateBackdrop(popup, 'Default')
 	popup:Hide()
 
 	popup.spellMode = true
@@ -1085,20 +1134,21 @@ function DM:GetPopup()
 
 	popup.typeText = DM:CreateText(header, 'LEFT')
 
-	local pin = CreateFrame('Frame', nil, header)
+	local pin = DM:AddToolkit(CreateFrame('Frame', nil, header))
 	pin:EnableMouse(true)
 	SetPassThrough(pin, 'LeftButton', 'RightButton', 'MiddleButton')
 	pin:SetScript('OnEnter', PopupPin_OnEnter)
 	pin:SetScript('OnLeave', GameTooltip_Hide)
 	pin:Hide()
 
-	pin.icon = pin:CreateTexture(nil, 'ARTWORK')
+	pin.icon = DM:AddToolkit(pin:CreateTexture(nil, 'ARTWORK'))
 	pin.icon:SetTexture(Private.IconPath .. 'DM_Pinned.png')
 	pin.icon:Point('CENTER')
 	popup.pin = pin
 
 	-- The Blizzard trim scroll bar with the ElvUI skin, the wheel keeps moving one row at a time
-	local scrollBar = CreateFrame('EventFrame', nil, popup, 'WowTrimScrollBar')
+	-- Without ElvUI the plain minimal one fits the flat look better
+	local scrollBar = DM:AddToolkit(CreateFrame('EventFrame', nil, popup, S and 'WowTrimScrollBar' or 'MinimalScrollBar'))
 	scrollBar:EnableMouseWheel(true)
 	scrollBar:SetScript('OnMouseWheel', Content_OnMouseWheel)
 	scrollBar:RegisterCallback(ScrollBarMixin.Event.OnScroll, ScrollBar_OnScroll, popup)
@@ -1106,7 +1156,9 @@ function DM:GetPopup()
 	scrollBar.window = popup
 	popup.scrollBar = scrollBar
 
-	S:HandleTrimScrollBar(scrollBar)
+	if S then
+		S:HandleTrimScrollBar(scrollBar)
+	end
 
 	DM.popup = popup
 	return popup
@@ -1122,7 +1174,7 @@ function DM:ApplyPopupSettings(popup)
 
 	-- Same spot and size as the reset button on the windows
 	pin:Size(db.headerIconSize, db.headerHeight)
-	pin.icon:Size(db.headerIconSize)
+	pin.icon:Size(db.headerIconSize, db.headerIconSize)
 	pin.icon:SetVertexColor(r, g, b)
 	pin:ClearAllPoints()
 	pin:Point('RIGHT', popup.header, 'RIGHT', 3, 0)
@@ -1145,10 +1197,10 @@ function DM:ApplyPopupSettings(popup)
 	popup.scrollBar:ClearAllPoints()
 	popup.scrollBar:Point('TOPLEFT', popup.content, 'TOPRIGHT', db.barSpacing, 0)
 	popup.scrollBar:Point('BOTTOMLEFT', popup.content, 'BOTTOMRIGHT', db.barSpacing, 0)
-	popup.scrollBar:Width(22)
+	popup.scrollBar:Width(S and 22 or 8)
 
 	-- Padding follows the window the popup was opened from, the solid ElvUI backdrop keeps the spell text readable
-	popup.backdrop:SetOutside(popup, E.Border + E:Scale(wdb.backdropWidth), E.Border + E:Scale(wdb.backdropHeight), nil, true)
+	PlaceBackdrop(popup.backdrop, popup, wdb)
 end
 
 function DM:RefreshPopup()
@@ -1346,7 +1398,7 @@ end
 
 -- The click area grows with the header, the artwork stays centered in it
 local function CreateHeaderButton(window, icon, onClick)
-	local button = CreateFrame('Button', nil, window.header)
+	local button = DM:AddToolkit(CreateFrame('Button', nil, window.header))
 	button:SetNormalTexture(icon)
 	button:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
 	button:SetScript('OnClick', HeaderButton_OnClick)
@@ -1354,7 +1406,7 @@ local function CreateHeaderButton(window, icon, onClick)
 	button.window = window
 	SetHoverScripts(button)
 
-	button.icon = button:GetNormalTexture()
+	button.icon = DM:AddToolkit(button:GetNormalTexture())
 	button.icon:ClearAllPoints()
 	button.icon:Point('CENTER')
 
@@ -1365,7 +1417,7 @@ function DM:GetWindow(index)
 	local window = DM.windows[index]
 	if window then return window end
 
-	window = CreateFrame('Frame', 'LuckyoneUI_DamageMeterWindow' .. index, DM.holder)
+	window = DM:AddToolkit(CreateFrame('Frame', 'LuckyoneUI_DamageMeterWindow' .. index, DM.holder))
 	window.index = index
 
 	local header, content = CreateWindowFrames(window)
@@ -1381,7 +1433,7 @@ function DM:GetWindow(index)
 	window.sessionButton = CreateHeaderButton(window, Private.IconPath .. 'DM_Sessions.png', SessionButton_OnClick)
 	window.settingsButton = CreateHeaderButton(window, Private.IconPath .. 'DM_Settings.png', SettingsButton_OnClick)
 
-	local typeButton = CreateFrame('Button', nil, header)
+	local typeButton = DM:AddToolkit(CreateFrame('Button', nil, header))
 	typeButton:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
 	typeButton:SetScript('OnClick', TypeButton_OnClick)
 	typeButton.window = window
@@ -1392,7 +1444,7 @@ function DM:GetWindow(index)
 	window.typeText:Point('TOPLEFT')
 	window.typeText:Point('BOTTOMRIGHT')
 
-	window.infoText = content:CreateFontString(nil, 'OVERLAY')
+	window.infoText = DM:AddToolkit(content:CreateFontString(nil, 'OVERLAY'))
 	window.infoText:SetJustifyH('CENTER')
 	window.infoText:Point('CENTER')
 
@@ -1439,9 +1491,10 @@ function DM:ApplyWindowSettings(window)
 		local button = window[info.button]
 		local shown = wdb[info.shown]
 		local x, y = db[info.x], db[info.y]
+		local artSize = iconSize - (info.trim or 0)
 
 		button:Size(iconSize, headerHeight)
-		button.icon:Size(iconSize - (info.trim or 0))
+		button.icon:Size(artSize, artSize)
 		button:ClearAllPoints()
 
 		if previous then

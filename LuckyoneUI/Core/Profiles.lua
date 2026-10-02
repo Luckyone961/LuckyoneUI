@@ -23,9 +23,10 @@ local ACCEPT = ACCEPT
 local CANCEL = CANCEL
 
 -- Custom placed damage meter windows are positioned by ElvUI movers
+-- Without ElvUI their offsets are part of the profile already
 -- Temporary snapshot
 local function ExportMovers()
-	if not Private.Modules.DamageMeter then return end
+	if not Private.ElvUI or not Private.Modules.DamageMeter then return end
 
 	local movers, db = {}, ElvUI[1].db.movers
 	for index = 1, 4 do

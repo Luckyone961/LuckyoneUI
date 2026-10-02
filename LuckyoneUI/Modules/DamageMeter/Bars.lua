@@ -18,6 +18,7 @@ local wipe = wipe
 local CreateAbbreviateConfig = CreateAbbreviateConfig
 local CreateFrame = CreateFrame
 local GetClassAtlas = GetClassAtlas
+local GetDefaultAbbreviationBreakpoints = C_StringUtil.GetDefaultAbbreviationBreakpoints
 local GetSpellName = C_Spell.GetSpellName
 local GetSpellTexture = C_Spell.GetSpellTexture
 local IsDamageMeterAvailable = C_DamageMeter.IsDamageMeterAvailable
@@ -30,8 +31,13 @@ local UNKNOWN = UNKNOWN
 local DAMAGE_METER_SOURCE_NAME = DAMAGE_METER_SOURCE_NAME
 local DAMAGE_METER_SPELL_ENTRY_CREATURE = DAMAGE_METER_SPELL_ENTRY_CREATURE
 local DAMAGE_METER_SPELL_ENTRY_UNIT = DAMAGE_METER_SPELL_ENTRY_UNIT
+local RAID_CLASS_COLORS = RAID_CLASS_COLORS
+local UIParent = UIParent
 
-local E = unpack(ElvUI)
+local E = Private.ElvUI and ElvUI[1]
+
+-- Cropped like the ElvUI default without ElvUI, ElvUI applies its crop setting inside that same table
+local TexCoords = E and E.TexCoords or { 0.08, 0.92, 0.08, 0.92 }
 
 local MeterType = Enum.DamageMeterType
 
@@ -64,14 +70,15 @@ local renderAbbrev, renderFormats
 
 -- Expand the ElvUI abbrev to support values below 1k
 -- This fixes 13 random decimals showing for low dps/hps numbers
+-- Without ElvUI the client defaults for the game language take its place
 local abbrevSource, abbrevOptions
 local function GetAbbreviate()
-	local config = E.Abbreviate.short.config
+	local config = E and E.Abbreviate.short.config
 
-	if abbrevSource ~= config then
+	if not abbrevOptions or abbrevSource ~= config then
 		abbrevSource = config
 
-		local data = config:GetAbbreviateNumberData()
+		local data = config and config:GetAbbreviateNumberData() or GetDefaultAbbreviationBreakpoints()
 
 		data[#data + 1] = {
 			breakpoint = 1e-9, -- This is 0.000000001 because 0 is not accepted/valid
@@ -136,7 +143,11 @@ local function GetSampleWidth(db, key)
 	if width then return width end
 
 	if not sampleText then
-		sampleText = E.HiddenFrame:CreateFontString(nil, 'OVERLAY')
+		-- Same scale as the bars, never shown
+		local hidden = CreateFrame('Frame', nil, UIParent)
+		hidden:Hide()
+
+		sampleText = hidden:CreateFontString(nil, 'OVERLAY')
 		sampleText:SetWordWrap(false)
 	end
 
@@ -176,7 +187,7 @@ local function Bar_OnLeave(bar)
 end
 
 local function CreateBar(window)
-	local bar = CreateFrame('Button', nil, window.content)
+	local bar = DM:AddToolkit(CreateFrame('Button', nil, window.content))
 	bar:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
 	bar:SetScript('OnClick', Bar_OnClick)
 	bar:SetScript('OnEnter', Bar_OnEnter)
@@ -186,17 +197,16 @@ local function CreateBar(window)
 	bar.bg = bar:CreateTexture(nil, 'BACKGROUND')
 	bar.bg:SetAllPoints()
 
-	bar.icon = bar:CreateTexture(nil, 'ARTWORK')
+	bar.icon = DM:AddToolkit(bar:CreateTexture(nil, 'ARTWORK'))
 	bar.icon:Point('LEFT')
 
-	local status = CreateFrame('StatusBar', nil, bar)
+	local status = DM:AddToolkit(CreateFrame('StatusBar', nil, bar))
 	status:SetFrameLevel(bar:GetFrameLevel() + 1)
 	bar.status = status
 
 	-- Parented to the status bar to sit above the fill, below the texts
 	bar.highlight = status:CreateTexture(nil, 'OVERLAY', nil, -1)
-	bar.highlight:SetTexture(E.media.blankTex)
-	bar.highlight:SetVertexColor(1, 1, 1, 0.2)
+	bar.highlight:SetColorTexture(1, 1, 1, 0.2)
 	bar.highlight:SetAllPoints(bar)
 	bar.highlight:Hide()
 
@@ -224,14 +234,19 @@ local function SetBarBorder(bar, size, iconShown)
 		bar.border = border
 
 		for _, edge in ipairs(BorderEdges) do
-			local texture = bar:CreateTexture(nil, 'OVERLAY')
-			texture:SetTexture(E.media.blankTex)
+			local texture = DM:AddToolkit(bar:CreateTexture(nil, 'OVERLAY'))
+			texture:SetColorTexture(1, 1, 1)
 			border[edge] = texture
 		end
 	end
 
 	local shown = size > 0
-	local r, g, b = unpack(E.media.bordercolor)
+
+	-- Black like the ElvUI default without ElvUI
+	local r, g, b = 0, 0, 0
+	if E then
+		r, g, b = unpack(E.media.bordercolor)
+	end
 
 	for _, edge in ipairs(BorderEdges) do
 		local texture = border[edge]
@@ -281,7 +296,7 @@ local function SetBarAnchors(db, bar, iconShown)
 	local relativePoint = iconShown and 'RIGHT' or 'LEFT'
 
 	-- Bordered wraps the bar and splits off the icon with the same border
-	local border = (style == 'BORDERED') and (E.twoPixelsPlease and 2 or 1) or 0
+	local border = (style == 'BORDERED') and 1 or 0
 	local separator = iconShown and border or 0
 
 	status:ClearAllPoints()
@@ -345,7 +360,7 @@ local function ApplyBarSettings(db, window, bar, index, texture)
 	bar:Point('TOPLEFT', window.content, 'TOPLEFT', 0, yOffset)
 	bar:Point('TOPRIGHT', window.content, 'TOPRIGHT', 0, yOffset)
 	bar:Height(db.barHeight)
-	bar.icon:Size(db.barHeight)
+	bar.icon:Size(db.barHeight, db.barHeight)
 
 	bar.status:SetStatusBarTexture(texture)
 	bar.bg:SetTexture(texture)
@@ -437,7 +452,7 @@ local function UpdateBarIcon(bar, entry, spellMode)
 
 	if fileID then
 		bar.icon:SetTexture(fileID)
-		bar.icon:SetTexCoord(unpack(E.TexCoords))
+		bar.icon:SetTexCoord(unpack(TexCoords))
 	elseif classFilename then
 		bar.icon:SetAtlas(GetClassAtlas(classFilename))
 	else
@@ -457,7 +472,7 @@ local function UpdateBarColor(db, bar, entry, spellMode)
 	if classFilename == bar.colorKey then return end
 	bar.colorKey = classFilename
 
-	local classColor = classFilename ~= '' and E:ClassColor(classFilename, true)
+	local classColor = classFilename ~= '' and (E and E:ClassColor(classFilename, true) or RAID_CLASS_COLORS[classFilename])
 	local color = (db.barColorType == 'CLASS' and classColor) or db.barColor
 
 	bar.status:SetStatusBarColor(color.r, color.g, color.b, db.barAlpha)
@@ -627,7 +642,7 @@ end
 
 -- Every rank shares the width of the widest one, that lines up the names behind them
 local function UpdateRankColumn(db, window, lastRank)
-	local width = lastRank > 0 and (GetSampleWidth(db, lastRank < 10 and 9 or 99) + E:Scale(db.rankSpacing)) or 0
+	local width = lastRank > 0 and (GetSampleWidth(db, lastRank < 10 and 9 or 99) + (E and E:Scale(db.rankSpacing) or db.rankSpacing)) or 0
 
 	if window.rankWidth == width then return end
 	window.rankWidth = width
@@ -661,7 +676,7 @@ local function UpdateValueColumn(db, window)
 		end
 
 		if width > 0 then
-			width = width + E:Scale(db.valueSpacing)
+			width = width + (E and E:Scale(db.valueSpacing) or db.valueSpacing)
 		end
 	end
 

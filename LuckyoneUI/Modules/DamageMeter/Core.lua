@@ -5,7 +5,6 @@ if not DM then return end
 
 local L = Private.L
 
-local unpack = unpack
 local pairs = pairs
 local ipairs = ipairs
 local wipe = wipe
@@ -27,10 +26,21 @@ local C_UI = C_UI
 
 local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
+local UIParent = _G.UIParent
 
-local E = unpack(ElvUI)
+local E = Private.ElvUI and ElvUI[1]
 
 DM.windows = {}
+
+-- ElvUI gives every widget its pixel perfect Point, Size, Width and Height
+-- Without ElvUI the same names lead to the plain setters, so the calls stay the same in both modes
+function DM:AddToolkit(object)
+	if not E then
+		object.Point, object.Size, object.Width, object.Height = object.SetPoint, object.SetSize, object.SetWidth, object.SetHeight
+	end
+
+	return object
+end
 
 -- Ambiguate accepts secret names
 function DM:StripRealm(name, classFilename)
@@ -172,7 +182,18 @@ local function ToggleMover(name, enabled)
 end
 
 -- Custom placed windows are dragged around with their own mover
+-- Without ElvUI their offsets place them from the bottom right corner instead
 local function UpdateWindowMover(window, index, custom)
+	if not E then
+		if custom then
+			local wdb = DM.db.windows[index]
+			window:ClearAllPoints()
+			window:SetPoint('BOTTOMRIGHT', UIParent, 'BOTTOMRIGHT', wdb.xOffset, wdb.yOffset)
+		end
+
+		return
+	end
+
 	local name = 'LuckyoneUI_DamageMeterWindow' .. index .. 'Mover'
 
 	if window.mover then
@@ -189,6 +210,19 @@ local function UpdateWindowMover(window, index, custom)
 
 		E:CreateMover(window, name, Private.Name .. ' ' .. L["Damage Meter"] .. ' ' .. index, nil, nil, nil, 'ALL,GENERAL', nil, 'LuckyoneUI,damageMeter')
 	end
+end
+
+-- Without ElvUI a window switched to custom keeps its spot, the offsets start from there
+function DM:KeepWindowPosition(index)
+	local window = DM.windows[index]
+	if not window or not window:IsShown() then return end
+
+	local right, bottom = window:GetRight(), window:GetBottom()
+	if not right then return end
+
+	local wdb = DM.db.windows[index]
+	wdb.xOffset = floor(right - UIParent:GetRight() + 0.5)
+	wdb.yOffset = floor(bottom + 0.5)
 end
 
 -- Content types
@@ -224,9 +258,19 @@ function DM:Layout()
 	BuildRoots(count)
 
 	-- The chat panel gives the holder its size, the columns split it evenly
-	local chat = E.db.chat
-	local holderWidth = chat.separateSizes and chat.panelWidthRight or chat.panelWidth
-	local holderHeight = chat.separateSizes and chat.panelHeightRight or chat.panelHeight
+	-- Without ElvUI it brings its own, zero follows the LuckyoneUI chat panel of the chosen scale
+	local holderWidth, holderHeight
+
+	if E then
+		local chat = E.db.chat
+		holderWidth = chat.separateSizes and chat.panelWidthRight or chat.panelWidth
+		holderHeight = chat.separateSizes and chat.panelHeightRight or chat.panelHeight
+	else
+		local scaled = Private.Addon.db.global.scaled
+		holderWidth = (db.width > 0 and db.width) or (scaled and 450) or 540
+		holderHeight = (db.height > 0 and db.height) or (scaled and 210) or 231
+	end
+
 	local columnCount = #columns
 
 	if columnCount > 0 then
@@ -246,6 +290,12 @@ function DM:Layout()
 	end
 
 	holder:Size(max(holderWidth, minSize), max(holderHeight, minSize))
+
+	-- The chat panel carries it around with ElvUI
+	if not E then
+		holder:ClearAllPoints()
+		holder:SetPoint('BOTTOMRIGHT', UIParent, 'BOTTOMRIGHT', db.xOffset, db.yOffset)
+	end
 
 	local previous
 
@@ -292,42 +342,46 @@ function DM:Initialize()
 	if DM.initialized then return end
 	DM.initialized = true
 
-	local holder = CreateFrame('Frame', 'LuckyoneUI_DamageMeterHolder', E.UIParent)
+	-- Without ElvUI the layout anchors it with the profile offsets
+	local holder = DM:AddToolkit(CreateFrame('Frame', 'LuckyoneUI_DamageMeterHolder', E and E.UIParent or UIParent))
 	holder:SetFrameStrata('LOW')
-	holder:Point('BOTTOMRIGHT', _G.RightChatPanel or E.UIParent, 'BOTTOMRIGHT', 0, 0)
 	DM.holder = holder
 
 	-- Attempt to keep data on reloads
 	hooksecurefunc(C_UI, 'Reload', function() DM.reloadingUI = true end)
 
-	-- The holder follows the right chat panel around
-	hooksecurefunc(E:GetModule('Chat'), 'PositionChats', function()
-		if DM.db.enable then
-			DM:Layout()
-			DM:RefreshAll()
-		end
-	end)
+	if E then
+		holder:Point('BOTTOMRIGHT', _G.RightChatPanel or E.UIParent, 'BOTTOMRIGHT', 0, 0)
 
-	E.valueColorUpdateFuncs.LuckyoneUI_DamageMeterModule = function()
-		if DM.db.enable and DM.db.useValueColor then
-			for _, window in pairs(DM.windows) do
-				DM:UpdateHeaderColors(window)
+		-- The holder follows the right chat panel around
+		hooksecurefunc(E:GetModule('Chat'), 'PositionChats', function()
+			if DM.db.enable then
+				DM:Layout()
+				DM:RefreshAll()
 			end
+		end)
 
-			if DM.popup and DM.popup:IsShown() then
-				DM:ApplyPopupSettings(DM.popup)
+		E.valueColorUpdateFuncs.LuckyoneUI_DamageMeterModule = function()
+			if DM.db.enable and DM.db.useValueColor then
+				for _, window in pairs(DM.windows) do
+					DM:UpdateHeaderColors(window)
+				end
+
+				if DM.popup and DM.popup:IsShown() then
+					DM:ApplyPopupSettings(DM.popup)
+				end
 			end
 		end
-	end
 
-	-- Make sure both WindTools modules are off
-	-- Their layout forces Blizzard Meter to be shown
-	if Private.IsAddOnLoaded('ElvUI_WindTools') then
-		local layout = E.db.WT and E.db.WT.combat and E.db.WT.combat.damageMeterLayout
-		if layout then layout.enable = false end
+		-- Make sure both WindTools modules are off
+		-- Their layout forces Blizzard Meter to be shown
+		if Private.IsAddOnLoaded('ElvUI_WindTools') then
+			local layout = E.db.WT and E.db.WT.combat and E.db.WT.combat.damageMeterLayout
+			if layout then layout.enable = false end
 
-		local skin = E.private.WT and E.private.WT.skins and E.private.WT.skins.damageMeter
-		if skin then skin.enable = false end
+			local skin = E.private.WT and E.private.WT.skins and E.private.WT.skins.damageMeter
+			if skin then skin.enable = false end
+		end
 	end
 
 	DM:RegisterEvent('DAMAGE_METER_COMBAT_SESSION_UPDATED')
