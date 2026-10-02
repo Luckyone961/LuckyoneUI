@@ -6,6 +6,10 @@
 • **Download link:** [Get ElvUI on the official website](https://www.tukui.org/)  
 • **Note:** ElvUI is also available in the WowUp client and Wago app.  
 
+### **Supported game versions**  
+• Retail, WoW: Forever, Mists, TBC and Classic. All in one download.  
+• WoW: Forever is supported since the beta. Layouts, aura filters and tags are tuned for its Classic game systems.  
+
 ### **Gameplay and UI support**  
 • **Twitch link:** [Luckyone1996 on Twitch](https://www.twitch.tv/Luckyone1996)  
 • **YouTube link:** [LuckyoneWoW on YouTube](https://www.youtube.com/@LuckyoneWoW)  
