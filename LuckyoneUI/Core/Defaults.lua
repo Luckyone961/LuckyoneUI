@@ -236,8 +236,12 @@ Private.Defaults = {
 			modifier = 'NONE',
 		},
 		nameplates = {
+			absorbTexture = 'Luckyone Bubbles',
+			absorbTextureEnable = false,
 			focusTexture = 'Luckyone Focus',
 			focusTextureEnable = false,
+			healAbsorbTexture = 'Luckyone Bubbles',
+			healAbsorbTextureEnable = false,
 			targetTexture = 'ElvUI Blank',
 			targetTextureEnable = false,
 		},
@@ -271,6 +275,12 @@ Private.Defaults = {
 				CooldownViewer = false,
 				DeveloperConsole = false,
 			}
+		},
+		unitframes = {
+			absorbTexture = 'Luckyone Bubbles',
+			absorbTextureEnable = false,
+			healAbsorbTexture = 'Luckyone Bubbles',
+			healAbsorbTextureEnable = false,
 		},
 	}
 }

@@ -756,13 +756,19 @@ local function BuildPages()
 				Toggle('misc.objectiveTracker', 'misc.objectiveTracker.general.generalOptions.enable', 'misc.objectiveTracker')
 			),
 			Group(L["ElvUI Tweaks"],
-				Toggle('misc', 'elvuiTweaks.toggles.mythicVisibility', nil, 'elvuiTweaks.mythicVisibilityDesc.desc'),
-				Toggle('misc', 'elvuiTweaks.toggles.dataTextsTweaks', nil, 'elvuiTweaks.dataTextsTweaksDesc.desc')
+				Toggle('misc', 'elvuiTweaks.general.toggles.dataTextsTweaks', nil, 'elvuiTweaks.general.dataTextsTweaksDesc.desc')
 			),
 			Group(L["Nameplates"],
-				Toggle('nameplates', 'elvuiTweaks.nameplates.targetTextureEnable'),
-				Toggle('nameplates', 'elvuiTweaks.nameplates.focusTextureEnable'),
+				Toggle('nameplates', 'elvuiTweaks.nameplates.textures.targetTextureEnable'),
+				Toggle('nameplates', 'elvuiTweaks.nameplates.textures.focusTextureEnable'),
+				Toggle('nameplates', 'elvuiTweaks.nameplates.absorbs.absorbTextureEnable'),
+				Toggle('nameplates', 'elvuiTweaks.nameplates.absorbs.healAbsorbTextureEnable'),
 				Toggle('misc', 'blizzard.misc.removeNameplateRealm')
+			),
+			Group(L["UnitFrames"],
+				Toggle('misc', 'elvuiTweaks.unitframes.toggles.mythicVisibility', nil, 'elvuiTweaks.unitframes.mythicVisibilityDesc.desc'),
+				Toggle('unitframes', 'elvuiTweaks.unitframes.absorbs.absorbTextureEnable'),
+				Toggle('unitframes', 'elvuiTweaks.unitframes.absorbs.healAbsorbTextureEnable')
 			),
 		}),
 

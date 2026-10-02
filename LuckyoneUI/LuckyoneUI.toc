@@ -73,6 +73,7 @@ Modules\Map\WorldMap_Forever.lua [AllowLoadGameType camelot][ExcludeLoadGameType
 Modules\Map\WorldMap_Retail.lua [AllowLoadGameType standard]
 Modules\Map\WorldMap_TBC.lua [AllowLoadGameType tbc]
 Modules\Map\WorldMap_Vanilla.lua [AllowLoadGameType vanilla]
+Modules\Misc\AbsorbTextures.lua [AllowLoadGameType standard, camelot, mists][ExcludeLoadGameType vanilla, tbc]
 Modules\Misc\ActionBarConverter.lua
 Modules\Misc\DataTextsTweaks.lua
 Modules\Misc\Misc.lua

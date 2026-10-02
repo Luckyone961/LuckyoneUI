@@ -167,7 +167,7 @@ local function BuildGeneralSection()
 	section.args.movableFrames.args.modifier = ACH:Select(L["Modifier"], L["Hold this key down to drag or reset a panel."], 3, { NONE = _G.NONE, SHIFT = _G.SHIFT_KEY_TEXT, ALT = _G.ALT_KEY_TEXT, CTRL = _G.CTRL_KEY_TEXT }, nil, nil, nil, function(_, value) Private.Addon.db.profile.movableFrames.modifier = value end, function() return not Private.Addon.db.profile.movableFrames.enable end)
 	section.args.misc = ACH:Group(L["Misc"], nil, 5, nil, nil, nil, nil, not Private.isModern)
 	section.args.misc.inline = true
-	section.args.misc.args.removeNameplateRealm = ACH:Toggle(L["Remove Nameplate Realms"], L["Removes the realm names from friendly nameplates in name-only mode while in a Dungeon/Raid/Battleground."], 1, nil, nil, nil, function() return Private.Addon.db.profile.misc.removeNameplateRealm end, function(_, value) Private.Addon.db.profile.misc.removeNameplateRealm = value StaticPopup_Show('LUCKYONE_RL') end)
+	section.args.misc.args.removeNameplateRealm = ACH:Toggle(L["Remove Nameplate Realms"], L["Removes the realm names from friendly nameplates in name-only mode while in a Dungeon/Raid/Battleground."], 1, nil, nil, 'double', function() return Private.Addon.db.profile.misc.removeNameplateRealm end, function(_, value) Private.Addon.db.profile.misc.removeNameplateRealm = value StaticPopup_Show('LUCKYONE_RL') end)
 	section.args.performance = ACH:Group(L["Performance Tweaks"], nil, 6, nil, nil, nil, nil, not Private.isModern)
 	section.args.performance.inline = true
 	section.args.performance.args.performance = ACH:Execute(L["Untrack Hidden Quests"], L["People found out some characters have a big amount of hidden quests which will cause performance issues. This button will untrack all your quests, including the hidden ones and might give you an increase in average FPS."], 1, function() Private:UntrackAllQuests() end)
@@ -522,28 +522,48 @@ local function BuildElvUILayoutSection()
 	return section
 end
 
+-- Unitframes and nameplates get the same absorb options, each with its own db table
+local function AbsorbsGroup(key, order)
+	local group = ACH:Group(L["Absorbs"], nil, order, nil, function(info) return Private.Addon.db.profile[key][info[#info]] end, function(info, value) Private.Addon.db.profile[key][info[#info]] = value Private:UpdateAbsorbTextures(key) end, nil, not (Private.isModern or Private.isMists))
+	group.inline = true
+	group.args.absorbTextureEnable = ACH:Toggle(L["Enable Absorb Texture"], nil, 1, nil, nil, 'double')
+	group.args.absorbTexture = ACH:SharedMediaStatusbar(L["Select Texture"], nil, 2, nil, nil, nil, function() return not Private.Addon.db.profile[key].absorbTextureEnable end)
+	group.args.spacer = ACH:Spacer(3, 'full')
+	group.args.healAbsorbTextureEnable = ACH:Toggle(L["Enable Heal Absorb Texture"], nil, 4, nil, nil, 'double')
+	group.args.healAbsorbTexture = ACH:SharedMediaStatusbar(L["Select Texture"], nil, 5, nil, nil, nil, function() return not Private.Addon.db.profile[key].healAbsorbTextureEnable end)
+	return group
+end
+
 -- Build ElvUI Tweaks Section
 local function BuildElvUITweaksSection()
 	if not Private.ElvUI then return end -- ElvUI section
-	local section = ACH:Group(GetIconName(L["ElvUI Tweaks"], 'Tweaks'), nil, 45)
+	local section = ACH:Group(GetIconName(L["ElvUI Tweaks"], 'Tweaks'), nil, 45, 'tab')
 	section.args.header = ACH:Header(L["ElvUI Tweaks"], 1)
-	section.args.toggles = ACH:Group(L["Toggles"], nil, 2)
-	section.args.toggles.inline = true
-	section.args.toggles.args.mythicVisibility = ACH:Toggle(L["Mythic Raidframe Visibility"], L["Feature explained in the description below"], 1, nil, nil, nil, function() return Private.Addon.db.profile.misc.mythicVisibility end, function(_, value) Private.Addon.db.profile.misc.mythicVisibility = value Private:MythicVisibility() end, nil, not Private.isRetail)
-	section.args.toggles.args.dataTextsTweaks = ACH:Toggle(L["DataTexts Tweaks"], L["Feature explained in the description below"], 2, nil, nil, nil, function() return Private.Addon.db.profile.misc.dataTextsTweaks end, function(_, value) Private.Addon.db.profile.misc.dataTextsTweaks = value Private:DataTextsTweaks() end)
+	section.args.general = ACH:Group(L["General"], nil, 2)
+	section.args.general.args.toggles = ACH:Group(L["Toggles"], nil, 1)
+	section.args.general.args.toggles.inline = true
+	section.args.general.args.toggles.args.dataTextsTweaks = ACH:Toggle(L["DataTexts Tweaks"], L["Feature explained in the description below"], 1, nil, nil, 'double', function() return Private.Addon.db.profile.misc.dataTextsTweaks end, function(_, value) Private.Addon.db.profile.misc.dataTextsTweaks = value Private:DataTextsTweaks() end)
+	section.args.general.args.dataTextsTweaksDesc = ACH:Group(L["DataTexts Tweaks explained"], nil, 2)
+	section.args.general.args.dataTextsTweaksDesc.inline = true
+	section.args.general.args.dataTextsTweaksDesc.args.desc = ACH:Description(L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your ElvUI profile\nThis includes specialization-based profile loading in ElvUI profiles"], 1, 'medium')
 	section.args.nameplates = ACH:Group(L["Nameplates"], nil, 3)
-	section.args.nameplates.inline = true
-	section.args.nameplates.args.focusTextureEnable = ACH:Toggle(L["Enable Focus Texture"], nil, 1, nil, nil, nil, function() return Private.Addon.db.profile.nameplates.focusTextureEnable end, function(_, value) Private.Addon.db.profile.nameplates.focusTextureEnable = value Private:UpdateSpecialNameplateTextures() end, nil, Private.isClassic)
-	section.args.nameplates.args.focusTexture = ACH:SharedMediaStatusbar(L["Select Texture"], nil, 2, nil, function() return Private.Addon.db.profile.nameplates.focusTexture end, function(_, value) Private.Addon.db.profile.nameplates.focusTexture = value Private:UpdateSpecialNameplateTextures() end, function() return not Private.Addon.db.profile.nameplates.focusTextureEnable end, Private.isClassic)
-	section.args.nameplates.args.spacer = ACH:Spacer(3, 'full', Private.isClassic)
-	section.args.nameplates.args.targetTextureEnable = ACH:Toggle(L["Enable Target Texture"], nil, 4, nil, nil, nil, function() return Private.Addon.db.profile.nameplates.targetTextureEnable end, function(_, value) Private.Addon.db.profile.nameplates.targetTextureEnable = value Private:UpdateSpecialNameplateTextures() end)
-	section.args.nameplates.args.targetTexture = ACH:SharedMediaStatusbar(L["Select Texture"], nil, 5, nil, function() return Private.Addon.db.profile.nameplates.targetTexture end, function(_, value) Private.Addon.db.profile.nameplates.targetTexture = value Private:UpdateSpecialNameplateTextures() end, function() return not Private.Addon.db.profile.nameplates.targetTextureEnable end)
-	section.args.mythicVisibilityDesc = ACH:Group(L["Mythic Raidframe Visibility explained"], nil, 4, nil, nil, nil, nil, not Private.isRetail)
-	section.args.mythicVisibilityDesc.inline = true
-	section.args.mythicVisibilityDesc.args.desc = ACH:Description(L["Your Raid 1 frames will be enabled if you enter Mythic difficulty (Triggers after loading screen)\nYour Raid 2 frames will be disabled if you enter Mythic difficulty (Triggers after loading screen)\n\nAdditionally the maxAllowedGroups setting will be enabled and the visibility state gets modified\nBenched people in groups 5-8 while not show up when you're Mythic raiding\n\nAll changes mentioned above will revert back to default upon leaving the raid"], 1, 'medium')
-	section.args.dataTextsTweaksDesc = ACH:Group(L["DataTexts Tweaks explained"], nil, 5)
-	section.args.dataTextsTweaksDesc.inline = true
-	section.args.dataTextsTweaksDesc.args.desc = ACH:Description(L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your ElvUI profile\nThis includes specialization-based profile loading in ElvUI profiles"], 1, 'medium')
+	section.args.nameplates.args.textures = ACH:Group(L["Textures"], nil, 1)
+	section.args.nameplates.args.textures.inline = true
+	section.args.nameplates.args.textures.args.focusTextureEnable = ACH:Toggle(L["Enable Focus Texture"], nil, 1, nil, nil, 'double', function() return Private.Addon.db.profile.nameplates.focusTextureEnable end, function(_, value) Private.Addon.db.profile.nameplates.focusTextureEnable = value Private:UpdateSpecialNameplateTextures() end, nil, Private.isClassic)
+	section.args.nameplates.args.textures.args.focusTexture = ACH:SharedMediaStatusbar(L["Select Texture"], nil, 2, nil, function() return Private.Addon.db.profile.nameplates.focusTexture end, function(_, value) Private.Addon.db.profile.nameplates.focusTexture = value Private:UpdateSpecialNameplateTextures() end, function() return not Private.Addon.db.profile.nameplates.focusTextureEnable end, Private.isClassic)
+	section.args.nameplates.args.textures.args.spacer = ACH:Spacer(3, 'full', Private.isClassic)
+	section.args.nameplates.args.textures.args.targetTextureEnable = ACH:Toggle(L["Enable Target Texture"], nil, 4, nil, nil, 'double', function() return Private.Addon.db.profile.nameplates.targetTextureEnable end, function(_, value) Private.Addon.db.profile.nameplates.targetTextureEnable = value Private:UpdateSpecialNameplateTextures() end)
+	section.args.nameplates.args.textures.args.targetTexture = ACH:SharedMediaStatusbar(L["Select Texture"], nil, 5, nil, function() return Private.Addon.db.profile.nameplates.targetTexture end, function(_, value) Private.Addon.db.profile.nameplates.targetTexture = value Private:UpdateSpecialNameplateTextures() end, function() return not Private.Addon.db.profile.nameplates.targetTextureEnable end)
+	section.args.nameplates.args.absorbs = AbsorbsGroup('nameplates', 2)
+	-- Nothing in here on TBC and Vanilla, Mythic Raidframe Visibility is Retail only and absorbs need Mists or newer
+	section.args.unitframes = ACH:Group(L["UnitFrames"], nil, 4, nil, nil, nil, nil, not (Private.isModern or Private.isMists))
+	section.args.unitframes.args.toggles = ACH:Group(L["Toggles"], nil, 1, nil, nil, nil, nil, not Private.isRetail)
+	section.args.unitframes.args.toggles.inline = true
+	section.args.unitframes.args.toggles.args.mythicVisibility = ACH:Toggle(L["Mythic Raidframe Visibility"], L["Feature explained in the description below"], 1, nil, nil, 'double', function() return Private.Addon.db.profile.misc.mythicVisibility end, function(_, value) Private.Addon.db.profile.misc.mythicVisibility = value Private:MythicVisibility() end)
+	section.args.unitframes.args.absorbs = AbsorbsGroup('unitframes', 2)
+	section.args.unitframes.args.mythicVisibilityDesc = ACH:Group(L["Mythic Raidframe Visibility explained"], nil, 3, nil, nil, nil, nil, not Private.isRetail)
+	section.args.unitframes.args.mythicVisibilityDesc.inline = true
+	section.args.unitframes.args.mythicVisibilityDesc.args.desc = ACH:Description(L["Your Raid 1 frames will be enabled if you enter Mythic difficulty (Triggers after loading screen)\nYour Raid 2 frames will be disabled if you enter Mythic difficulty (Triggers after loading screen)\n\nAdditionally the maxAllowedGroups setting will be enabled and the visibility state gets modified\nBenched people in groups 5-8 while not show up when you're Mythic raiding\n\nAll changes mentioned above will revert back to default upon leaving the raid"], 1, 'medium')
 	return section
 end
 
