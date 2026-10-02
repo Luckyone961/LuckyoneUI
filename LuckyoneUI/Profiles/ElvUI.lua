@@ -339,6 +339,9 @@ local function Setup_ElvUI(layout, partyStyle)
 	-- AB conversion
 	E.db.convertPages = true
 
+	-- Mover grid
+	E.db.gridSize = 128
+
 	-- General
 	E.db.general.addonCompartment.hide = true
 	E.db.general.afk = false
