@@ -3,6 +3,7 @@
 **All WoW Versions:**  
 - Added new option to see through world map fog of war (data from wago.tools)  
 - Added new option to change absorb texture on nameplates and unitframes  
+- Power texts now auto hides at 0 and 100  
 - Updated Baganator profile  
 - Updated BigWigs profile  
 - Updated BugSack skin (Tabs match ElvUI frames now)  

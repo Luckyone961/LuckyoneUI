@@ -15,6 +15,7 @@ local GetPetHappiness = (C_PetInfo and C_PetInfo.GetPetHappiness) or GetPetHappi
 local HasPetUI = HasPetUI
 local issecretvalue = issecretvalue
 local ScaleTo100 = CurveConstants.ScaleTo100
+local TruncateWhenZero = C_StringUtil.TruncateWhenZero
 local UnitClassification = UnitClassification
 local UnitGetTotalAbsorbs = UnitGetTotalAbsorbs
 local UnitGroupRolesAssigned = UnitGroupRolesAssigned
@@ -28,6 +29,7 @@ local UnitName = UnitName
 local UnitPower = UnitPower
 local UnitPowerMax = UnitPowerMax
 local UnitPowerPercent = UnitPowerPercent
+local WrapString = C_StringUtil.WrapString
 
 local QuestDifficultyColors = QuestDifficultyColors
 local UNKNOWN = UNKNOWN
@@ -107,19 +109,30 @@ end
 ------------------------ Power ------------------------
 -------------------------------------------------------
 
--- Display percentage power with powercolor / with no color
+-- Display percentage power with powercolor / with no color, hidden when empty or full
 if Private.isModern then
+	-- Floors to 0-99 and maps full to 0, so TruncateWhenZero hides both ends
+	local hideFullCurve = C_CurveUtil.CreateCurve()
+	hideFullCurve:SetType(Enum.LuaCurveType.Step)
+	for i = 0, 99 do
+		hideFullCurve:AddPoint(i / 100, i)
+	end
+	hideFullCurve:AddPoint(1, 0)
+
+	-- nil instead of an empty string so oUF skips the suffix, an empty secret is dropped by oUF's WrapString
 	E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
-		return getPowerColor(unit) .. format('%d', UnitPowerPercent(unit, nil, true, ScaleTo100))
+		local text = WrapString(TruncateWhenZero(UnitPowerPercent(unit, nil, true, hideFullCurve)), getPowerColor(unit))
+		if issecretvalue(text) or text ~= '' then return text end
 	end)
 
 	E:AddTag('luckyone:power:percent-nocolor', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
-		return format('%d', UnitPowerPercent(unit, nil, true, ScaleTo100))
+		local text = TruncateWhenZero(UnitPowerPercent(unit, nil, true, hideFullCurve))
+		if issecretvalue(text) or text ~= '' then return text end
 	end)
 else
 	E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 		local min, max = UnitPower(unit), UnitPowerMax(unit)
-		if max == 0 then return end
+		if max == 0 or min == max then return end
 
 		local percentage = floor(min / max * 100 + .5)
 
@@ -130,7 +143,7 @@ else
 
 	E:AddTag('luckyone:power:percent-nocolor', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 		local min, max = UnitPower(unit), UnitPowerMax(unit)
-		if min ~= 0 and max ~= 0 then
+		if min ~= 0 and max ~= 0 and min ~= max then
 			return floor(min / max * 100 + .5)
 		end
 	end)
