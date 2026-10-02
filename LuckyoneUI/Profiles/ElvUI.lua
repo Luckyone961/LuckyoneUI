@@ -202,7 +202,7 @@ local function SetupHealingParty(partyStyle, scaled)
 
 	if partyStyle == 'horizontal' then
 		ApplyPartyHorizontal()
-		E.db.movers.ElvUF_PartyMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,215') or 'BOTTOM,ElvUIParent,BOTTOM,0,257'
+		E.db.movers.ElvUF_PartyMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,169') or 'BOTTOM,ElvUIParent,BOTTOM,0,257'
 	else
 		ApplyPartyVertical()
 	end
@@ -1245,7 +1245,12 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.player.castbar.width = 297
 	E.db.unitframe.units.player.castbar.xOffsetText = 2
 	E.db.unitframe.units.player.castbar.xOffsetTime = -2
+	E.db.unitframe.units.player.classAdditional.height = 16
+	E.db.unitframe.units.player.classAdditional.width = 359
+	E.db.unitframe.units.player.classbar.detachedWidth = 359
+	E.db.unitframe.units.player.classbar.detachFromFrame = true
 	E.db.unitframe.units.player.classbar.enable = false
+	E.db.unitframe.units.player.classbar.height = 16
 	E.db.unitframe.units.player.CombatIcon.enable = false
 	E.db.unitframe.units.player.debuffs.countFont = Private.Font
 	E.db.unitframe.units.player.debuffs.countFontSize = Private.isModern and 14 or 10
@@ -1259,8 +1264,17 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.player.disableMouseoverGlow = true
 	E.db.unitframe.units.player.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.player.health.text_format = ''
-	E.db.unitframe.units.player.height = 54
+	E.db.unitframe.units.player.height = (scaled and 53) or 54
 	E.db.unitframe.units.player.partyIndicator.enable = false
+	E.db.unitframe.units.player.power.attachTextTo = 'Power'
+	E.db.unitframe.units.player.power.detachedWidth = 359
+	E.db.unitframe.units.player.power.detachFromFrame = true
+	E.db.unitframe.units.player.power.enable = false
+	E.db.unitframe.units.player.power.height = 16
+	E.db.unitframe.units.player.power.position = 'CENTER'
+	E.db.unitframe.units.player.power.powerPrediction = true
+	E.db.unitframe.units.player.power.strataAndLevel.frameStrata = 'MEDIUM'
+	E.db.unitframe.units.player.power.strataAndLevel.useCustomStrata = true
 	E.db.unitframe.units.player.power.text_format = ''
 	E.db.unitframe.units.player.pvp.text_format = ''
 	E.db.unitframe.units.player.pvpIcon.scale = 0.85
@@ -1270,6 +1284,11 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.player.RestIcon.enable = false
 	E.db.unitframe.units.player.threatStyle = 'NONE'
 	E.db.unitframe.units.player.width = 280
+
+	-- Player power regen ticks for Vanilla & TBC
+	if Private.isClassic or Private.isTBC then
+		E.db.unitframe.units.player.power.EnergyManaRegen = true
+	end
 
 	-- Player debuffs anchor for Retail & Forever
 	if Private.isModern then
@@ -1360,7 +1379,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.target.fader.smooth = 0
 	E.db.unitframe.units.target.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 	E.db.unitframe.units.target.health.text_format = ''
-	E.db.unitframe.units.target.height = 54
+	E.db.unitframe.units.target.height = (scaled and 53) or 54
 	E.db.unitframe.units.target.middleClickFocus = false
 	E.db.unitframe.units.target.name.text_format = ''
 	E.db.unitframe.units.target.orientation = 'LEFT'
@@ -1593,17 +1612,18 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raid3.verticalSpacing = 1
 
 	-- Shared movers
-	E.db.movers.AdditionalPowerMover = 'BOTTOM,ElvUIParent,BOTTOM,0,160'
+	E.db.movers.AdditionalPowerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,414') or 'BOTTOM,ElvUIParent,BOTTOM,0,534'
 	E.db.movers.AddonCompartmentMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-66'
 	E.db.movers.AlertFrameMover = 'TOP,ElvUIParent,TOP,0,-202'
 	E.db.movers.AltPowerBarMover = 'TOP,ElvUIParent,TOP,0,-22'
-	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-342,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-407,-296'
+	E.db.movers.ArenaHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-330,-261') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-407,-296'
 	E.db.movers.BagsMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-455,1') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-501,1'
 	E.db.movers.BelowMinimapContainerMover = 'TOP,ElvUIParent,TOP,0,-36'
 	E.db.movers.BNETMover = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-32'
 	E.db.movers.BossBannerMover = 'TOP,ElvUIParent,TOP,0,-202'
-	E.db.movers.BossHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-342,-240') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-407,-296'
+	E.db.movers.BossHeaderMover = (scaled and 'TOPRIGHT,ElvUIParent,TOPRIGHT,-330,-261') or 'TOPRIGHT,ElvUIParent,TOPRIGHT,-407,-296'
 	E.db.movers.BuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-217,-1'
+	E.db.movers.ClassBarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,414') or 'BOTTOM,ElvUIParent,BOTTOM,0,534'
 	E.db.movers.DebuffsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-217,-186'
 	E.db.movers.DTPanelLuckyone_ActionBars_DTMover = 'BOTTOM,ElvUIParent,BOTTOM,0,1'
 	E.db.movers.DTPanelLuckyone_MiniMap_DTMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-75,-194'
@@ -1618,15 +1638,15 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.ElvAB_13 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-384'
 	E.db.movers.ElvAB_14 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-349'
 	E.db.movers.ElvAB_15 = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-314'
-	E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-338,440') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-580,620'
+	E.db.movers.ElvUF_FocusMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-260,401') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-580,620'
 	E.db.movers.ElvUF_PartyMover = (scaled and 'TOPLEFT,ElvUIParent,TOPLEFT,322,-240') or 'TOPLEFT,ElvUIParent,TOPLEFT,610,-400'
-	E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,451,360') or 'BOTTOM,ElvUIParent,BOTTOM,-251,451'
+	E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-251,331') or 'BOTTOM,ElvUIParent,BOTTOM,-251,451'
 	E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,306') or 'BOTTOM,ElvUIParent,BOTTOM,0,426'
-	E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,360') or 'BOTTOM,ElvUIParent,BOTTOM,-321,480'
+	E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-321,360') or 'BOTTOM,ElvUIParent,BOTTOM,-321,480'
 	E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,580' -- ToDo: 1080p value
-	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,337') or 'BOTTOM,ElvUIParent,BOTTOM,320,426'
-	E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,288,360') or 'BOTTOM,ElvUIParent,BOTTOM,320,480'
-	E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-542,314') or 'BOTTOM,ElvUIParent,BOTTOM,250,451'
+	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,319,306') or 'BOTTOM,ElvUIParent,BOTTOM,320,426'
+	E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,320,360') or 'BOTTOM,ElvUIParent,BOTTOM,320,480'
+	E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,250,331') or 'BOTTOM,ElvUIParent,BOTTOM,250,451'
 	E.db.movers.ElvUIBagMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,212') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,233'
 	E.db.movers.ElvUIBankMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,212') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,233'
 	E.db.movers.EventToastMover = 'TOP,ElvUIParent,TOP,0,-111'
@@ -1642,7 +1662,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.MirrorTimer2Mover = 'TOP,ElvUIParent,TOP,0,-131'
 	E.db.movers.MirrorTimer3Mover = 'TOP,ElvUIParent,TOP,0,-150'
 	E.db.movers.ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-120,-260'
-	E.db.movers.PlayerPowerBarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-288,341') or 'BOTTOM,ElvUIParent,BOTTOM,-320,481'
+	E.db.movers.PlayerPowerBarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,397') or 'BOTTOM,ElvUIParent,BOTTOM,0,517'
 	E.db.movers.PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-180'
 	E.db.movers.PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-200'
 	E.db.movers.QuestTimerFrameMover = 'TOP,ElvUIParent,TOP,0,-24'
@@ -1655,13 +1675,10 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-67'
 	E.db.movers.TorghastChoiceToggle = 'TOP,ElvUIParent,TOP,0,-598'
 	E.db.movers.TotemTrackerMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,575,1' -- ToDo: 1080p value
-	E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,543,412') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,820,536'
+	E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,500,415') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,820,536'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-83'
 
 	if layout == 'main' then
-
-		-- Main Player
-		E.db.unitframe.units.player.power.enable = false
 
 		-- Main Party, the healing layout builds its own in SetupHealingParty
 		ApplyPartyShared()
@@ -1684,7 +1701,7 @@ local function Setup_ElvUI(layout, partyStyle)
 
 		-- Main Raid2
 		E.db.unitframe.units.raid2.buffIndicator.size = 10
-		E.db.unitframe.units.raid2.height = (scaled and 40) or 50
+		E.db.unitframe.units.raid2.height = (scaled and 38) or 50
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'TOPRIGHT'
 		E.db.unitframe.units.raid2.raidicon.attachToObject = 'Health'
 		E.db.unitframe.units.raid2.raidicon.size = 12
@@ -1713,21 +1730,6 @@ local function Setup_ElvUI(layout, partyStyle)
 
 	elseif layout == 'healing' then
 
-		-- Healing Player
-		E.db.unitframe.units.player.power.attachTextTo = 'Power'
-		E.db.unitframe.units.player.power.detachedWidth = 260
-		E.db.unitframe.units.player.power.detachFromFrame = true
-		E.db.unitframe.units.player.power.enable = (not Private.IsAddOnLoaded('SkironCooldownManager'))
-		E.db.unitframe.units.player.power.height = 18
-		E.db.unitframe.units.player.power.position = 'CENTER'
-		E.db.unitframe.units.player.power.powerPrediction = true
-		E.db.unitframe.units.player.power.strataAndLevel.frameStrata = 'MEDIUM'
-		E.db.unitframe.units.player.power.strataAndLevel.useCustomStrata = true
-
-		if (Private.isClassic or Private.isTBC) then
-			E.db.unitframe.units.player.power.EnergyManaRegen = true
-		end
-
 		-- Healing Raid1
 		E.db.unitframe.units.raid1.buffIndicator.size = 14
 		E.db.unitframe.units.raid1.buffs.enable = Private.isModern
@@ -1751,7 +1753,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.raid2.buffs.sizeOverride = 24
 		E.db.unitframe.units.raid2.debuffs.enable = Private.isModern
 		E.db.unitframe.units.raid2.debuffs.sizeOverride = 24
-		E.db.unitframe.units.raid2.height = (scaled and 40) or 52
+		E.db.unitframe.units.raid2.height = (scaled and 38) or 52
 		E.db.unitframe.units.raid2.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.raid2.raidicon.size = 14
 		E.db.unitframe.units.raid2.raidicon.xOffset = -2
