@@ -1,7 +1,7 @@
 local _, Private = ...
 
 --[[
-	Status: client build 1.60.1.70124
+	Status: client build 1.60.1.70170
 	Source: https://wago.tools/db2/WorldMapOverlay and https://wago.tools/db2/WorldMapOverlayTile
 	Format: [UiMapArtID] = string with one overlay per line: width,height,offsetX,offsetY,fileDataID,...
 ]]

@@ -29,6 +29,7 @@ local WOW_PROJECT_ID = WOW_PROJECT_ID
 local WOW_PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
 local WOW_PROJECT_BURNING_CRUSADE_CLASSIC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 local WOW_PROJECT_MISTS_CLASSIC = WOW_PROJECT_MISTS_CLASSIC
+local WOW_PROJECT_CAMELOT = WOW_PROJECT_CAMELOT
 local WOW_PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
 
 local Name, Private = ...
@@ -66,14 +67,13 @@ Private.UIScale1080 = 768 / 1080
 
 -- Build info
 Private.GameVersion = GetBuildInfo()
-Private.GameTOC = select(4, GetBuildInfo())
 
 -- Game flavors
 Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 Private.isTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 Private.isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
-Private.isForever = Private.GameTOC >= 16000 and Private.GameTOC < 20000
-Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and not Private.isForever
+Private.isForever = WOW_PROJECT_ID == WOW_PROJECT_CAMELOT
+Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 Private.isModern = Private.isRetail or Private.isForever
 
 -- API checks
