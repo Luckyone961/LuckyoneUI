@@ -134,7 +134,7 @@ local handlers = {
 	},
 	{
 		name = 'BigWigs',
-		base = function(layout) return layoutNames[layout] end,
+		base = 'Luckyone',
 		Profiles = AceProfiles('BigWigs3DB'),
 		Apply = AceApply('BigWigs3DB'),
 	},

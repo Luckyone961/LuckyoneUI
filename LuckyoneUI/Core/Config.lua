@@ -195,8 +195,7 @@ local function BuildAddonProfilesSection()
 	section.args.nameplates.args.platynator = ACH:Execute('Platynator', L["Import LuckyoneUI defaults."], 2, function() Private:Setup_Platynator() StaticPopup_Show('LUCKYONE_RL') end, nil, true)
 	section.args.bossmods = ACH:Group(L["BossMods Profiles"], nil, 4)
 	section.args.bossmods.inline = true
-	section.args.bossmods.args.bigwigsMain = ACH:Execute(L["BigWigs Main"], L["Import LuckyoneUI defaults."], 1, function() Private:Setup_BigWigs('main') end, nil, true)
-	section.args.bossmods.args.bigwigsHealing = ACH:Execute(L["BigWigs Healing"], L["Import LuckyoneUI defaults."], 2, function() Private:Setup_BigWigs('healing') end, nil, true)
+	section.args.bossmods.args.bigwigs = ACH:Execute('BigWigs', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_BigWigs() end, nil, true)
 	section.args.header2 = ACH:Header(L["Blizzard Profiles"], 6, nil, nil, not Private.isRetail)
 	section.args.strings = ACH:Group(L["Profile strings"], nil, 7, nil, nil, nil, nil, not Private.isRetail)
 	section.args.strings.inline = true

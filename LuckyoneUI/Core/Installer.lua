@@ -697,13 +697,12 @@ local function BuildPages()
 			Button(L["Setup CVars"], function() Private:Setup_CVars(nil, true) end, 'cvars'),
 		}),
 
-		-- BigWigs profiles
+		-- BigWigs profile
 		Page('BigWigs', {
 			L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."],
 			recommended,
 		}, {
-			Button(L["BigWigs Main"], function() Private:Setup_BigWigs('main') end, 'main', 'BigWigs'),
-			Button(L["BigWigs Healing"], function() Private:Setup_BigWigs('healing') end, 'healing', 'BigWigs'),
+			Button('BigWigs', function() Private:Setup_BigWigs() end, 'bigwigs', 'BigWigs'),
 		}, nil, nil, L["BigWigs profile"]),
 
 		-- Damage Meter choice
