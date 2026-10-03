@@ -1074,12 +1074,14 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.focus.buffs.enable = true
 	E.db.unitframe.units.focus.buffs.growthX = 'LEFT'
 	E.db.unitframe.units.focus.buffs.numrows = 3
-	E.db.unitframe.units.focus.buffs.perrow = 12
+	E.db.unitframe.units.focus.buffs.perrow = 6
 	E.db.unitframe.units.focus.buffs.priority = 'Dispellable,RaidBuffsElvUI,Mount'
 	E.db.unitframe.units.focus.castbar.customTextFont.enable = true
 	E.db.unitframe.units.focus.castbar.customTextFont.font = Private.Font
+	E.db.unitframe.units.focus.castbar.customTextFont.fontSize = 14
 	E.db.unitframe.units.focus.castbar.customTimeFont.enable = true
 	E.db.unitframe.units.focus.castbar.customTimeFont.font = Private.Font
+	E.db.unitframe.units.focus.castbar.customTimeFont.fontSize = 14
 	E.db.unitframe.units.focus.castbar.iconAttached = false
 	E.db.unitframe.units.focus.castbar.iconAttachedTo = 'Castbar'
 	E.db.unitframe.units.focus.castbar.iconSize = 40
@@ -1100,7 +1102,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.focus.debuffs.countYOffset = 0
 	E.db.unitframe.units.focus.debuffs.desaturate = false
 	E.db.unitframe.units.focus.debuffs.numrows = 2
-	E.db.unitframe.units.focus.debuffs.perrow = 12
+	E.db.unitframe.units.focus.debuffs.perrow = 6
 	E.db.unitframe.units.focus.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
 	E.db.unitframe.units.focus.disableMouseoverGlow = true
 	E.db.unitframe.units.focus.disableTargetGlow = true
