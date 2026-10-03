@@ -1488,7 +1488,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.raidpet.summonIcon.size = 18
 	E.db.unitframe.units.raidpet.threatStyle = 'NONE'
 	E.db.unitframe.units.raidpet.verticalSpacing = 1
-	E.db.unitframe.units.raidpet.width = 108
+	E.db.unitframe.units.raidpet.width = (scaled and 88) or 108
 
 	-- Shared growth directions
 	E.db.unitframe.units.raidpet.growthDirection = 'RIGHT_DOWN'
@@ -1651,7 +1651,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.ElvUF_PetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-251,331') or 'BOTTOM,ElvUIParent,BOTTOM,-251,451'
 	E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,306') or 'BOTTOM,ElvUIParent,BOTTOM,0,426'
 	E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-321,360') or 'BOTTOM,ElvUIParent,BOTTOM,-321,480'
-	E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,580' -- ToDo: 1080p value
+	E.db.movers.ElvUF_RaidpetMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,463') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,580'
 	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,319,335') or 'BOTTOM,ElvUIParent,BOTTOM,320,455'
 	E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,320,360') or 'BOTTOM,ElvUIParent,BOTTOM,320,480'
 	E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,250,331') or 'BOTTOM,ElvUIParent,BOTTOM,250,451'
@@ -1682,7 +1682,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.TooltipMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,174') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,195'
 	E.db.movers.TopCenterContainerMover = 'TOP,ElvUIParent,TOP,0,-67'
 	E.db.movers.TorghastChoiceToggle = 'TOP,ElvUIParent,TOP,0,-598'
-	E.db.movers.TotemTrackerMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,575,1' -- ToDo: 1080p value
+	E.db.movers.TotemTrackerMover = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,475,1') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,575,1'
 	E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,500,415') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,820,536'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-83'
 
@@ -1838,9 +1838,9 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.actionbar.bar4.enabled = true
 		E.db.actionbar.bar4.buttons = 8
 		E.db.actionbar.bar4.buttonsPerRow = 1
-		E.db.actionbar.bar4.buttonSize = 28
+		E.db.actionbar.bar4.buttonSize = (scaled and 25) or 28
 		E.db.actionbar.bar4.point = 'BOTTOMRIGHT'
-		E.db.movers.ElvAB_4 = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,546,1' -- ToDo: 1080p value
+		E.db.movers.ElvAB_4 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,446,1') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,546,1'
 	end
 
 	if layout == 'healing' then
