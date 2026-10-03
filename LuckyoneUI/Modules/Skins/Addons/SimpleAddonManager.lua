@@ -108,13 +108,6 @@ local function SkinSimpleAddonManager(frame)
 	-- CPU Profiler
 	SkinProfilerFrame(frame.ProfilerFrame)
 
-	-- Dropdown Menus
-	local EDDM = LibStub('ElioteDropDownMenu-1.0', true)
-	if EDDM then
-		SkinDropDownLists(EDDM)
-		hooksecurefunc(EDDM, 'UIDropDownMenu_CreateFrames', function() SkinDropDownLists(EDDM) end)
-	end
-
 	frame.isSkinned = true
 end
 
@@ -125,6 +118,13 @@ local function Skin_SimpleAddonManager()
 	if not frame then return end
 
 	frame:HookScript('OnShow', SkinSimpleAddonManager)
+
+	-- Dropdown Menus (also opened by the minimap button without the main frame)
+	local EDDM = LibStub('ElioteDropDownMenu-1.0', true)
+	if EDDM then
+		SkinDropDownLists(EDDM)
+		hooksecurefunc(EDDM, 'UIDropDownMenu_CreateFrames', function() SkinDropDownLists(EDDM) end)
+	end
 end
 
 S:AddCallbackForAddon('SimpleAddonManager', 'LuckyoneUI_SimpleAddonManager', Skin_SimpleAddonManager)
