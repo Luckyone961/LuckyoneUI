@@ -381,11 +381,14 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.general.itemLevel.totalLevelFont = Private.Font
 	E.db.general.itemLevel.totalLevelFontSize = 24
 	E.db.general.loginmessage = false
-	E.db.general.lootRoll.buttonSize = 22
+	E.db.general.lootRoll.buttonSize = 24
+	E.db.general.lootRoll.height = 32
+	E.db.general.lootRoll.maxBars = 6
+	E.db.general.lootRoll.nameFontSize = 14
 	E.db.general.lootRoll.spacing = 3
 	E.db.general.lootRoll.statusBarTexture = Private.Texture
 	E.db.general.lootRoll.style = 'fullbar'
-	E.db.general.lootRoll.width = 340
+	E.db.general.lootRoll.width = 400
 	E.db.general.minimap.icons.battlefield.position = 'BOTTOMLEFT'
 	E.db.general.minimap.icons.battlefield.xOffset = 0
 	E.db.general.minimap.icons.battlefield.yOffset = 0
@@ -831,22 +834,22 @@ local function Setup_ElvUI(layout, partyStyle)
 		enable = true,
 		font = Private.Font,
 		fontOutline = Private.Outline,
-		justifyH = 'LEFT',
+		justifyH = 'CENTER',
 		size = 14,
 		text_format = Private.isModern and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
-		xOffset = 3,
-		yOffset = 0
+		xOffset = 0,
+		yOffset = -10
 	}
 	E.db.unitframe.units.arena.customTexts.Luckyone_Name = {
 		attachTextTo = 'Frame',
 		enable = true,
 		font = Private.Font,
 		fontOutline = Private.Outline,
-		justifyH = 'RIGHT',
+		justifyH = 'CENTER',
 		size = 14,
 		text_format = Private.isModern and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
-		xOffset = -3,
-		yOffset = 0
+		xOffset = 0,
+		yOffset = 10
 	}
 	E.db.unitframe.units.arena.customTexts.Luckyone_Power = {
 		attachTextTo = 'Frame',
@@ -889,7 +892,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.arena.castbar.textColor.g = 1
 	E.db.unitframe.units.arena.castbar.textColor.r = 1
 	E.db.unitframe.units.arena.castbar.timeToHold = 2
-	E.db.unitframe.units.arena.castbar.width = 261
+	E.db.unitframe.units.arena.castbar.width = 221
 	E.db.unitframe.units.arena.castbar.xOffsetText = 2
 	E.db.unitframe.units.arena.castbar.xOffsetTime = -2
 	E.db.unitframe.units.arena.debuffs.anchorPoint = 'TOPLEFT'
@@ -932,7 +935,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.arena.raidicon.xOffset = 42
 	E.db.unitframe.units.arena.raidicon.yOffset = 1
 	E.db.unitframe.units.arena.spacing = 26
-	E.db.unitframe.units.arena.width = 260
+	E.db.unitframe.units.arena.width = 220
 
 	-- Shared Boss
 	E.db.unitframe.units.boss.customTexts = {}
@@ -941,22 +944,22 @@ local function Setup_ElvUI(layout, partyStyle)
 		enable = true,
 		font = Private.Font,
 		fontOutline = Private.Outline,
-		justifyH = 'LEFT',
+		justifyH = 'CENTER',
 		size = 14,
 		text_format = Private.isModern and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
-		xOffset = 3,
-		yOffset = 0
+		xOffset = 0,
+		yOffset = -10
 	}
 	E.db.unitframe.units.boss.customTexts.Luckyone_Name = {
 		attachTextTo = 'Frame',
 		enable = true,
 		font = Private.Font,
 		fontOutline = Private.Outline,
-		justifyH = 'RIGHT',
+		justifyH = 'CENTER',
 		size = 14,
 		text_format = Private.isModern and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
-		xOffset = -3,
-		yOffset = 0
+		xOffset = 0,
+		yOffset = 10
 	}
 	E.db.unitframe.units.boss.customTexts.Luckyone_Power = {
 		attachTextTo = 'Frame',
@@ -1000,7 +1003,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.boss.castbar.textColor.g = 1
 	E.db.unitframe.units.boss.castbar.textColor.r = 1
 	E.db.unitframe.units.boss.castbar.timeToHold = 2
-	E.db.unitframe.units.boss.castbar.width = 261
+	E.db.unitframe.units.boss.castbar.width = 221
 	E.db.unitframe.units.boss.castbar.xOffsetText = 2
 	E.db.unitframe.units.boss.castbar.xOffsetTime = -2
 	E.db.unitframe.units.boss.debuffs.anchorPoint = 'TOPLEFT'
@@ -1034,7 +1037,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.boss.raidicon.xOffset = 42
 	E.db.unitframe.units.boss.raidicon.yOffset = 1
 	E.db.unitframe.units.boss.spacing = 26
-	E.db.unitframe.units.boss.width = 260
+	E.db.unitframe.units.boss.width = 220
 
 	-- Shared Focus
 	E.db.unitframe.units.focus.customTexts = {}
@@ -1169,22 +1172,22 @@ local function Setup_ElvUI(layout, partyStyle)
 		enable = true,
 		font = Private.Font,
 		fontOutline = Private.Outline,
-		justifyH = 'RIGHT',
+		justifyH = 'CENTER',
 		size = 14,
 		text_format = Private.isModern and '[luckyone:health:current:shortvalue] • [luckyone:health:percent<%]' or '[health:current:shortvalue] • [luckyone:health:percent]',
-		xOffset = -2,
-		yOffset = 0
+		xOffset = 0,
+		yOffset = -10
 	}
 	E.db.unitframe.units.player.customTexts.Luckyone_Name = {
 		attachTextTo = 'Frame',
 		enable = true,
 		font = Private.Font,
 		fontOutline = Private.Outline,
-		justifyH = 'LEFT',
+		justifyH = 'CENTER',
 		size = 14,
 		text_format = Private.isModern and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
-		xOffset = 3,
-		yOffset = 0
+		xOffset = 0,
+		yOffset = 10
 	}
 	E.db.unitframe.units.player.customTexts.Luckyone_Power = {
 		attachTextTo = 'Power',
@@ -1310,22 +1313,22 @@ local function Setup_ElvUI(layout, partyStyle)
 		enable = true,
 		font = Private.Font,
 		fontOutline = Private.Outline,
-		justifyH = 'LEFT',
+		justifyH = 'CENTER',
 		size = 14,
 		text_format = Private.isModern and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
-		xOffset = 3,
-		yOffset = 0
+		xOffset = 0,
+		yOffset = -10
 	}
 	E.db.unitframe.units.target.customTexts.Luckyone_Name = {
 		attachTextTo = 'Frame',
 		enable = true,
 		font = Private.Font,
 		fontOutline = Private.Outline,
-		justifyH = 'RIGHT',
+		justifyH = 'CENTER',
 		size = 14,
-		text_format = Private.isModern and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]',
-		xOffset = -3,
-		yOffset = 0
+		text_format = Private.isModern and '[luckyone:name-color][ ||r» >luckyone:target:name-classcolor]' or '[luckyone:name:last-classcolor][ ||r» >luckyone:target:last-classcolor]',
+		xOffset = 0,
+		yOffset = 10
 	}
 	E.db.unitframe.units.target.customTexts.Luckyone_Power = {
 		attachTextTo = 'Frame',
@@ -1342,6 +1345,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.target.aurabar.enable = false
 	E.db.unitframe.units.target.auras.enable = false
 	E.db.unitframe.units.target.buffs.attachTo = 'DEBUFFS'
+	E.db.unitframe.units.target.buffs.enable = false
 	E.db.unitframe.units.target.buffs.countFont = Private.Font
 	E.db.unitframe.units.target.buffs.countFontSize = 10
 	E.db.unitframe.units.target.buffs.countPosition = 'TOPRIGHT'
@@ -1418,7 +1422,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		yOffset = 0
 	}
 
-	E.db.unitframe.units.targettarget.enable = true
+	E.db.unitframe.units.targettarget.enable = false
 	E.db.unitframe.units.targettarget.debuffs.enable = false
 	E.db.unitframe.units.targettarget.disableMouseoverGlow = true
 	E.db.unitframe.units.targettarget.fader.minAlpha = 0.5
@@ -1647,7 +1651,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.ElvUF_PlayerCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,306') or 'BOTTOM,ElvUIParent,BOTTOM,0,426'
 	E.db.movers.ElvUF_PlayerMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-321,360') or 'BOTTOM,ElvUIParent,BOTTOM,-321,480'
 	E.db.movers.ElvUF_RaidpetMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,580' -- ToDo: 1080p value
-	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,319,306') or 'BOTTOM,ElvUIParent,BOTTOM,320,426'
+	E.db.movers.ElvUF_TargetCastbarMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,319,335') or 'BOTTOM,ElvUIParent,BOTTOM,320,455'
 	E.db.movers.ElvUF_TargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,320,360') or 'BOTTOM,ElvUIParent,BOTTOM,320,480'
 	E.db.movers.ElvUF_TargetTargetMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,250,331') or 'BOTTOM,ElvUIParent,BOTTOM,250,451'
 	E.db.movers.ElvUIBagMover = (scaled and 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,212') or 'BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-1,233'
