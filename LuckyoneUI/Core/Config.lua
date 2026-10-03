@@ -213,7 +213,7 @@ local function BuildPrivateDBSection()
 	section.args.defaults.args.private = ACH:Execute(L["Restore Defaults"], nil, 1, function() Private:Setup_PrivateDB() ElvUI[1]:UpdateMediaItems() end, nil, true)
 	section.args.defaultsDesc = ACH:Group(L["The following data will be updated"], nil, 3)
 	section.args.defaultsDesc.inline = true
-	section.args.defaultsDesc.args.cvars = ACH:Description(L["- All Fonts: Expressway\n- All Font Outlines: Outline\n- All Textures: Minimalist\n- General Font Size: 11\n- Quest, Objective and Error Text Font Sizes\n- Chat Bubble Font Size: 12\n\n- Friendly Nameplate Font Sizes\n- Totem Tracker: disabled\n- Bag Bar: disabled\n- Minimap Tracking Icon: hidden (not Classic)\n- Parchment Remover: enabled\n- ElvUI Cooldown Manager Skin: disabled\n\n- (Classic Only) Make Shamans blue instead of pink"], 1, 'medium')
+	section.args.defaultsDesc.args.cvars = ACH:Description(L["- All Fonts: Expressway\n- All Font Outlines: Outline\n- All Textures: Minimalist\n- General Font Size: 12\n- Quest, Objective and Error Text Font Sizes\n- Chat Bubble Font Size: 12\n\n- Friendly Nameplate Font Sizes\n- Totem Tracker: disabled\n- Bag Bar: disabled\n- Minimap Tracking Icon: hidden (not Classic)\n- Parchment Remover: enabled\n- ElvUI Cooldown Manager Skin: disabled\n\n- (Classic Only) Make Shamans blue instead of pink"], 1, 'medium')
 	return section
 end
 

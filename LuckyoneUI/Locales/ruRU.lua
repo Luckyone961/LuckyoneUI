@@ -2,7 +2,7 @@ local _, Private = ...
 if GetLocale() ~= 'ruRU' then return end
 local L = Private.L
 
-L["- All Fonts: Expressway\n- All Font Outlines: Outline\n- All Textures: Minimalist\n- General Font Size: 11\n- Quest, Objective and Error Text Font Sizes\n- Chat Bubble Font Size: 12\n\n- Friendly Nameplate Font Sizes\n- Totem Tracker: disabled\n- Bag Bar: disabled\n- Minimap Tracking Icon: hidden (not Classic)\n- Parchment Remover: enabled\n- ElvUI Cooldown Manager Skin: disabled\n\n- (Classic Only) Make Shamans blue instead of pink"] = true
+L["- All Fonts: Expressway\n- All Font Outlines: Outline\n- All Textures: Minimalist\n- General Font Size: 12\n- Quest, Objective and Error Text Font Sizes\n- Chat Bubble Font Size: 12\n\n- Friendly Nameplate Font Sizes\n- Totem Tracker: disabled\n- Bag Bar: disabled\n- Minimap Tracking Icon: hidden (not Classic)\n- Parchment Remover: enabled\n- ElvUI Cooldown Manager Skin: disabled\n\n- (Classic Only) Make Shamans blue instead of pink"] = true
 L["1440p = Default | 1080p = Downscaled"] = "1440p = по умолчанию | 1080p = уменьшенный масштаб"
 L["Absorbs"] = true
 L["Action Bars"] = true
