@@ -836,7 +836,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 14,
-		text_format = Private.isModern and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isModern and '[luckyone:health:percent<%] - [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] - [health:current:shortvalue]',
 		xOffset = 0,
 		yOffset = -10
 	}
@@ -946,7 +946,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 14,
-		text_format = Private.isModern and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isModern and '[luckyone:health:percent<%] - [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] - [health:current:shortvalue]',
 		xOffset = 0,
 		yOffset = -10
 	}
@@ -1174,7 +1174,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 14,
-		text_format = Private.isModern and '[luckyone:health:current:shortvalue] • [luckyone:health:percent<%]' or '[health:current:shortvalue] • [luckyone:health:percent]',
+		text_format = Private.isModern and '[luckyone:health:current:shortvalue] - [luckyone:health:percent<%]' or '[health:current:shortvalue] - [luckyone:health:percent]',
 		xOffset = 0,
 		yOffset = -10
 	}
@@ -1315,7 +1315,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 14,
-		text_format = Private.isModern and '[luckyone:health:percent<%] • [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] • [health:current:shortvalue]',
+		text_format = Private.isModern and '[luckyone:health:percent<%] - [luckyone:health:current:shortvalue]' or '[luckyone:health:percent] - [health:current:shortvalue]',
 		xOffset = 0,
 		yOffset = -10
 	}
@@ -1372,6 +1372,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.target.castbar.xOffsetTime = -2
 	E.db.unitframe.units.target.CombatIcon.enable = false
 	E.db.unitframe.units.target.debuffs.attachTo = 'FRAME'
+	E.db.unitframe.units.target.debuffs.enable = false
 	E.db.unitframe.units.target.debuffs.countFont = Private.Font
 	E.db.unitframe.units.target.debuffs.countFontSize = 10
 	E.db.unitframe.units.target.debuffs.countPosition = 'TOPRIGHT'
