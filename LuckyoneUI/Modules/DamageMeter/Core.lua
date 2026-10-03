@@ -1,8 +1,6 @@
 local _, Private = ...
 local DM = Private.Modules.DamageMeter
 
-if not DM then return end
-
 local L = Private.L
 
 local pairs = pairs

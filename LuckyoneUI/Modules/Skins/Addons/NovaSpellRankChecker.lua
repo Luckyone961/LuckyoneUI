@@ -25,7 +25,7 @@ local function Skin_NovaSpellRankChecker()
 	if not Private.Addon.db.profile.skins.NovaSpellRankChecker then return end
 
 	local button = SpellBookFrameScanButton
-	if not button or button.isSkinned then return end
+	if not button then return end
 
 	-- Skin and resize the spell rank checker button
 	S:HandleButton(button)
@@ -35,8 +35,6 @@ local function Skin_NovaSpellRankChecker()
 	-- Move it to the bottom left of the spell book frame
 	NovaSpellRankChecker_PositionButton(button)
 	hooksecurefunc(button, 'SetPoint', NovaSpellRankChecker_PositionButton)
-
-	button.isSkinned = true
 end
 
 S:AddCallbackForAddon('NovaSpellRankChecker', 'LuckyoneUI_NovaSpellRankChecker', function() C_Timer.After(2, Skin_NovaSpellRankChecker) end)

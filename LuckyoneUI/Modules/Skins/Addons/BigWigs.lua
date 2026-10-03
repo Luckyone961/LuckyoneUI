@@ -44,12 +44,8 @@ end
 
 -- /keys main frame
 local function SkinPanel(panel)
-	if panel.isSkinned then return end
-
 	S:HandlePortraitFrame(panel)
 	panel.PortraitContainer:Hide()
-
-	panel.isSkinned = true
 end
 
 local function SkinCells(scrollChild)
@@ -64,15 +60,11 @@ end
 
 -- The cell pool grows with the list, the height update after each build catches new ones
 local function SkinScrollFrame(scrollFrame)
-	if scrollFrame.isSkinned then return end
-
 	S:HandleTrimScrollBar(scrollFrame.ScrollBar)
 
 	local scrollChild = scrollFrame:GetScrollChild()
 	SkinCells(scrollChild)
 	scrollChild:HookScript('OnSizeChanged', SkinCells)
-
-	scrollFrame.isSkinned = true
 end
 
 -- Reposition tabs and match tab spacing of our other skins, tabs are expected in display order
@@ -91,16 +83,12 @@ local function SkinTabs(panel, tabs)
 end
 
 local function SkinTip(tip)
-	if tip.isSkinned then return end
-
 	tip:StripTextures()
 	tip:SetTemplate('Transparent')
 
 	for _, arrow in next, { tip:GetChildren() } do
 		arrow:Hide()
 	end
-
-	tip.isSkinned = true
 end
 
 -- /keys frame and childs are unnamed, look for BigWigs Keystones title

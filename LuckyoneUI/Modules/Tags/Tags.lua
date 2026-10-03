@@ -121,8 +121,8 @@ if Private.isModern then
 
 	-- nil instead of an empty string so oUF skips the suffix, an empty secret is dropped by oUF's WrapString
 	E:AddTag('luckyone:power:percent-color', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
-		local text = WrapString(TruncateWhenZero(UnitPowerPercent(unit, nil, true, hideFullCurve)), getPowerColor(unit))
-		if issecretvalue(text) or text ~= '' then return text end
+		local text = TruncateWhenZero(UnitPowerPercent(unit, nil, true, hideFullCurve))
+		if issecretvalue(text) or text ~= '' then return WrapString(text, getPowerColor(unit)) end
 	end)
 
 	E:AddTag('luckyone:power:percent-nocolor', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)

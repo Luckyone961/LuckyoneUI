@@ -36,6 +36,7 @@ local PlaySound = PlaySound
 local ProxySettingMixin = ProxySettingMixin
 local SOUNDKIT = SOUNDKIT
 local Settings = Settings
+local SettingsInbound = SettingsInbound
 local SettingsPanel = SettingsPanel
 local SettingsTooltip = SettingsTooltip
 local StaticPopup_Show = StaticPopup_Show
@@ -77,6 +78,9 @@ local function Refresh()
 	end
 
 	refreshSetting:NotifyUpdate()
+
+	-- Rows whose shown state flipped join or leave the page
+	SettingsInbound.RepairDisplay()
 end
 
 -- We have our own reset buttons

@@ -13,7 +13,7 @@ local function Skin_NovaWorldBuffs()
 	if not Private.Addon.db.profile.skins.NovaWorldBuffs then return end
 
 	local layerFrame = MinimapLayerFrame
-	if not layerFrame or layerFrame.isSkinned then return end
+	if not layerFrame then return end
 
 	-- Main Frame
 	S:HandleFrame(layerFrame)
@@ -29,8 +29,6 @@ local function Skin_NovaWorldBuffs()
 
 	-- Adjust the actual size to fit our template
 	layerFrame:Size(52, 18)
-
-	layerFrame.isSkinned = true
 end
 
 S:AddCallbackForAddon('NovaWorldBuffs', 'LuckyoneUI_NovaWorldBuffs', Skin_NovaWorldBuffs)

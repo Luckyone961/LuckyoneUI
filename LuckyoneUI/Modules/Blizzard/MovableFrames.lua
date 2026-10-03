@@ -37,8 +37,6 @@ local Handles = {}
 local Positions = {} -- The custom position, session only and reverted on reload
 local Restored = {} -- Frames that should ignore the Blizzard panel layout
 
-local EventFrame
-
 local function ModifierDown()
 	local isDown = Modifiers[Private.Addon.db.profile.movableFrames.modifier]
 	return not isDown or isDown()
@@ -238,15 +236,14 @@ local function OnEvent(_, event)
 end
 
 function Private:MovableFrames()
-	if EventFrame then return end
 	if not Private.Addon.db.profile.movableFrames.enable then return end
 
 	AddHandles()
 
 	hooksecurefunc('UpdateUIPanelPositions', ApplyPositions)
 
-	EventFrame = CreateFrame('Frame')
-	EventFrame:SetScript('OnEvent', OnEvent)
-	EventFrame:RegisterEvent('ADDON_LOADED')
-	EventFrame:RegisterEvent('PLAYER_REGEN_ENABLED')
+	local frame = CreateFrame('Frame')
+	frame:SetScript('OnEvent', OnEvent)
+	frame:RegisterEvent('ADDON_LOADED')
+	frame:RegisterEvent('PLAYER_REGEN_ENABLED')
 end

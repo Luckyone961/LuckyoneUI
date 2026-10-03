@@ -22,7 +22,7 @@ local function Skin_Tabardy()
 	if not Private.Addon.db.profile.skins.Tabardy then return end
 
 	local designer = _G.TabardyDesigner
-	if not designer or designer.isSkinned then return end
+	if not designer then return end
 
 	-- Main Frame
 	designer:SetTemplate('Transparent')
@@ -50,8 +50,6 @@ local function Skin_Tabardy()
 
 	-- The portrait border comes back on every refresh
 	hooksecurefunc(designer, 'LoadPortrait', Tabardy_LoadPortrait)
-
-	designer.isSkinned = true
 end
 
 S:AddCallbackForAddon('Tabardy', 'LuckyoneUI_Tabardy', Skin_Tabardy)

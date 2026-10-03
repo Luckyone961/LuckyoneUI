@@ -108,7 +108,7 @@ local function ApplyPartyShared()
 		E.db.unitframe.units.party.petsGroup.enable = true
 		E.db.unitframe.units.party.petsGroup.healPrediction.absorbStyle = Private.isModern and 'REVERSED' or 'WRAPPED'
 		E.db.unitframe.units.party.petsGroup.height = 31
-		E.db.unitframe.units.party.petsGroup.name.text_format = '[luckyone:name:short-color-friendly]'
+		E.db.unitframe.units.party.petsGroup.name.text_format = Private.isModern and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
 		E.db.unitframe.units.party.petsGroup.raidicon.attachTo = 'RIGHT'
 		E.db.unitframe.units.party.petsGroup.raidicon.size = 14
 		E.db.unitframe.units.party.petsGroup.raidicon.xOffset = -3

@@ -6,8 +6,6 @@ local SetUIPanelAttribute = SetUIPanelAttribute
 
 local _G = _G
 
-local initialized
-
 -- FauxScrollFrame_Update hides the whole list once everything fits
 -- Keep the list and only toggle the scrollbar, the empty log shows its own text instead
 local function QuestLog_UpdateList()
@@ -20,7 +18,6 @@ end
 
 -- Doubles the quest log so the quest list and the quest details sit side by side like in Wrath
 function Private:ExpandQuestLog()
-	if initialized then return end
 	if not Private.Addon.db.profile.qualityOfLife.expandQuestLog then return end
 
 	-- Without the ElvUI skin the Blizzard textures get too stretched and text becomes unreadable
@@ -58,6 +55,4 @@ function Private:ExpandQuestLog()
 	end
 
 	hooksecurefunc('QuestLog_Update', QuestLog_UpdateList)
-
-	initialized = true
 end

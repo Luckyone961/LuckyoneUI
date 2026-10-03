@@ -19,8 +19,6 @@ local C_NamePlate_GetNamePlateForUnit = C_NamePlate.GetNamePlateForUnit
 local E = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 
-local hooked
-
 local units = {
 	{ unit = 'target', enable = 'targetTextureEnable', texture = 'targetTexture' },
 	{ unit = 'focus', enable = 'focusTextureEnable', texture = 'focusTexture' },
@@ -81,20 +79,15 @@ function Private:UpdateSpecialNameplateTextures()
 	end
 end
 
-local function CheckHook()
-	if hooked or not NP.Update_StatusBars or not NP.PostUpdateAllElements then return end
-	hooked = true
-
+local function RegisterHooks()
 	hooksecurefunc(NP, 'Update_StatusBars', function()
 		wipe(styledPlates)
 		Private:UpdateSpecialNameplateTextures()
 	end)
 
 	-- Plates are recycled and keep the last texture, so re-resolve whenever a unit is assigned
-	hooksecurefunc(NP, 'PostUpdateAllElements', function(_, event)
-		if event == 'NAME_PLATE_UNIT_ADDED' then
-			Private:UpdateSpecialNameplateTextures()
-		end
+	hooksecurefunc(NP, 'UpdatePlateBase', function()
+		Private:UpdateSpecialNameplateTextures()
 	end)
 end
 
@@ -106,7 +99,7 @@ function NamePlates:OnEnable()
 	-- ElvUI nameplates off (e.g. Platynator), enabling them again needs a reload
 	if not E.private.nameplates.enable then return end
 
-	CheckHook()
+	RegisterHooks()
 
 	self:RegisterEvent('PLAYER_ENTERING_WORLD', 'UpdateTextures')
 	self:RegisterEvent('PLAYER_TARGET_CHANGED', 'UpdateTextures')

@@ -2,8 +2,6 @@ local _, Private = ...
 local L = Private.L
 local DM = Private.Modules.DamageMeter
 
-if not DM then return end
-
 local unpack = unpack
 local format = string.format
 local upper = string.upper

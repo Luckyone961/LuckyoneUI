@@ -5,7 +5,6 @@ local GetNumLootItems = GetNumLootItems
 local IsModifiedClick = IsModifiedClick
 local LootSlot = LootSlot
 
-local EventFrame
 local lootedSlots = 0
 
 -- Both loot events only pass the autoLootDefault cvar, the auto loot key flips it
@@ -36,12 +35,11 @@ end
 -- Loots everything the moment the data arrives instead of waiting for the loot window
 -- Source and Credits: Azilroka (ProjectAzilroka - FasterLoot) (Re-used with permission)
 function Private:FasterLoot()
-	if EventFrame then return end
 	if not Private.Addon.db.profile.qualityOfLife.fasterLoot then return end
 
-	EventFrame = CreateFrame('Frame')
-	EventFrame:SetScript('OnEvent', OnEvent)
-	EventFrame:RegisterEvent('LOOT_READY')
-	EventFrame:RegisterEvent('LOOT_OPENED')
-	EventFrame:RegisterEvent('LOOT_CLOSED')
+	local frame = CreateFrame('Frame')
+	frame:SetScript('OnEvent', OnEvent)
+	frame:RegisterEvent('LOOT_READY')
+	frame:RegisterEvent('LOOT_OPENED')
+	frame:RegisterEvent('LOOT_CLOSED')
 end

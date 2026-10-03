@@ -190,7 +190,7 @@ end
 
 local function Skin_Frame()
 	local frame = ForeverDungeonJournalFrame
-	if not frame or frame.isSkinned then return end
+	if not frame then return end
 
 	-- Main Frame
 	frame:SetBackdrop()
@@ -337,8 +337,6 @@ local function Skin_Frame()
 	S:HandleButton(frame.routeMapButton)
 	S:HandleScrollBar(frame.routeStepScroll.ScrollBar)
 	hooksecurefunc(frame.routeStepContent, 'SetHeight', RouteContent_SetHeight)
-
-	frame.isSkinned = true
 end
 
 local function Skin_ForeverDungeonJournal()

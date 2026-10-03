@@ -471,8 +471,6 @@ local function RegisterLandingPageHooks()
 		ScheduleUpdate()
 	end)
 
-	-- RefreshButton does Hide -> UpdateIcon -> Show when the overlay changes
-	hooksecurefunc(button, 'RefreshButton', ScheduleUpdate)
 	button:HookScript('OnShow', ScheduleUpdate)
 	button:HookScript('OnHide', ScheduleUpdate)
 
