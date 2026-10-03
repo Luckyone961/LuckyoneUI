@@ -70,30 +70,6 @@ function Private:LoadProfile(name, data, movers)
 	end
 end
 
--- Luckyone preset
-function Private:SetupLuckyoneProfile()
-	local db = Private.Addon.db
-	if not db.profiles.Luckyone then
-		db.profiles.Luckyone = CopyTable(Private.LuckyoneProfile)
-	end
-
-	if Private.itsLuckyone then
-		db:SetProfile('Luckyone')
-	end
-end
-
--- Restore defaults button, the preset returns to its default values
-function Private:ResetProfile()
-	local db = Private.Addon.db
-	if db:GetCurrentProfile() == 'Luckyone' then
-		Private:LoadProfile('Luckyone', CopyTable(Private.LuckyoneProfile))
-	else
-		db:ResetProfile()
-	end
-
-	StaticPopup_Show('LUCKYONE_RL')
-end
-
 function Private:ImportProfile(text)
 	local name, data, movers = DecodeProfile(text)
 	if not data then

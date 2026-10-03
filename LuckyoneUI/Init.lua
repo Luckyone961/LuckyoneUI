@@ -233,7 +233,6 @@ loader:SetScript('OnEvent', function(self, event, addon)
 		db:SetProfile(sv.profileKeys[Private.myNameRealm] or 'Default')
 
 		Private.Addon.db = db
-		Private:SetupLuckyoneProfile()
 
 	elseif event == 'PLAYER_LOGIN' then
 		self:UnregisterEvent(event)
