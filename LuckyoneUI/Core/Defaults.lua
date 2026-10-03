@@ -82,7 +82,7 @@ Private.Defaults = {
 			backdropAlpha = 0,
 			showIcons = true,
 			mouseoverHighlight = true,
-			pinLocalPlayer = false,
+			pinLocalPlayer = true,
 			deathLogPopup = true,
 			font = Private.Font,
 			fontOutline = 'OUTLINESLUG',
@@ -263,6 +263,7 @@ Private.Defaults = {
 			quickSignup = false,
 		},
 		skins = {
+			Attune = false,
 			Auctionator = false,
 			BigWigs = false,
 			BugSack = false,

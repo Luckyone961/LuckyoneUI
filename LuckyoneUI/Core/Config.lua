@@ -813,20 +813,21 @@ local function BuildSkinsSection()
 	section.args.header = ACH:Header('Skins', 1)
 	section.args.addons = ACH:Group('AddOns', nil, 2, nil, function(info) return Private.Addon.db.profile.skins[info[#info]] end, function(info, value) Private.Addon.db.profile.skins[info[#info]] = value StaticPopup_Show('LUCKYONE_RL') end)
 	section.args.addons.inline = true
-	section.args.addons.args.Auctionator = ACH:Toggle('Auctionator', L["Skin the Addon in ElvUI style"], 1, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('Auctionator'))
-	section.args.addons.args.BigWigs = ACH:Toggle('BigWigs', L["Skin the Keystones viewer (/keys, Retail only) and the LFG queue timer bar in ElvUI style. The rest of the Addon is not skinned."], 2, nil, nil, nil, nil, nil, nil, not ((Private.isRetail or Private.isMists) and Private.IsAddOnLoaded('BigWigs')))
-	section.args.addons.args.BugSack = ACH:Toggle('BugSack', L["Skin the Addon in ElvUI style"], 3, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('BugSack'))
-	section.args.addons.args.LFGBulletinBoard = ACH:Toggle('LFG Bulletin Board', L["Skin the full bulletin board frame in ElvUI style"], 4, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC or Private.isMists) and Private.IsAddOnLoaded('LFGBulletinBoard')))
-	section.args.addons.args.NovaSpellRankChecker = ACH:Toggle('Nova Spell Rank Checker', L["Skin the Spell Rank Checker button in ElvUI style"], 5, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC) and Private.IsAddOnLoaded('NovaSpellRankChecker')))
-	section.args.addons.args.NovaWorldBuffs = ACH:Toggle('Nova World Buffs', L["Skin the small layer frame on the Minimap in ElvUI style and move it to the bottom left"], 6, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC) and Private.IsAddOnLoaded('NovaWorldBuffs')))
-	section.args.addons.args.Plumber = ACH:Toggle('Plumber', L["Skin the View Houses frame in ElvUI style. The rest of the Addon is not skinned."], 7, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('Plumber')))
-	section.args.addons.args.PremadeGroupsFilter = ACH:Toggle('Premade Groups Filter', L["Skin the Addon in ElvUI style"], 8, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('PremadeGroupsFilter')))
-	section.args.addons.args.RCLootCouncil = ACH:Toggle('RCLootCouncil', L["Skin the Addon in ElvUI style"], 9, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('RCLootCouncil')))
-	section.args.addons.args.RXPGuides = ACH:Toggle('RestedXP Guides', L["Skin the guide window, Active Items, Active Targets and the other RestedXP windows in ElvUI style. The V2 interface (beta) is not skinned."], 10, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('RXPGuides'))
-	section.args.addons.args.SimpleAddonManager = ACH:Toggle('Simple Addon Manager', L["Skin the Addon in ElvUI style"], 11, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('SimpleAddonManager'))
-	section.args.addons.args.Simulationcraft = ACH:Toggle('Simulationcraft', L["Skin the Addon in ElvUI style"], 12, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('Simulationcraft')))
-	section.args.addons.args.Tabardy = ACH:Toggle('Tabardy', L["Skin the Addon in ElvUI style"], 13, nil, nil, nil, nil, nil, nil, Private.isForever or not Private.IsAddOnLoaded('Tabardy'))
-	section.args.addons.args.WhatsTraining = ACH:Toggle('WhatsTraining', L["Skin the WhatsTraining page in the Spellbook in ElvUI style"], 14, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC or Private.isForever) and Private.IsAddOnLoaded('WhatsTraining')))
+	section.args.addons.args.Attune = ACH:Toggle('Attune', L["Skin the Addon in ElvUI style"], 1, nil, nil, nil, nil, nil, nil, not (Private.isForever and Private.IsAddOnLoaded('Attune')))
+	section.args.addons.args.Auctionator = ACH:Toggle('Auctionator', L["Skin the Addon in ElvUI style"], 2, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('Auctionator'))
+	section.args.addons.args.BigWigs = ACH:Toggle('BigWigs', L["Skin the Keystones viewer (/keys, Retail only) and the LFG queue timer bar in ElvUI style. The rest of the Addon is not skinned."], 3, nil, nil, nil, nil, nil, nil, not ((Private.isRetail or Private.isMists) and Private.IsAddOnLoaded('BigWigs')))
+	section.args.addons.args.BugSack = ACH:Toggle('BugSack', L["Skin the Addon in ElvUI style"], 4, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('BugSack'))
+	section.args.addons.args.LFGBulletinBoard = ACH:Toggle('LFG Bulletin Board', L["Skin the full bulletin board frame in ElvUI style"], 5, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC or Private.isMists) and Private.IsAddOnLoaded('LFGBulletinBoard')))
+	section.args.addons.args.NovaSpellRankChecker = ACH:Toggle('Nova Spell Rank Checker', L["Skin the Spell Rank Checker button in ElvUI style"], 6, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC) and Private.IsAddOnLoaded('NovaSpellRankChecker')))
+	section.args.addons.args.NovaWorldBuffs = ACH:Toggle('Nova World Buffs', L["Skin the small layer frame on the Minimap in ElvUI style and move it to the bottom left"], 7, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC) and Private.IsAddOnLoaded('NovaWorldBuffs')))
+	section.args.addons.args.Plumber = ACH:Toggle('Plumber', L["Skin the View Houses frame in ElvUI style. The rest of the Addon is not skinned."], 8, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('Plumber')))
+	section.args.addons.args.PremadeGroupsFilter = ACH:Toggle('Premade Groups Filter', L["Skin the Addon in ElvUI style"], 9, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('PremadeGroupsFilter')))
+	section.args.addons.args.RCLootCouncil = ACH:Toggle('RCLootCouncil', L["Skin the Addon in ElvUI style"], 10, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('RCLootCouncil')))
+	section.args.addons.args.RXPGuides = ACH:Toggle('RestedXP Guides', L["Skin the guide window, Active Items, Active Targets and the other RestedXP windows in ElvUI style. The V2 interface (beta) is not skinned."], 11, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('RXPGuides'))
+	section.args.addons.args.SimpleAddonManager = ACH:Toggle('Simple Addon Manager', L["Skin the Addon in ElvUI style"], 12, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('SimpleAddonManager'))
+	section.args.addons.args.Simulationcraft = ACH:Toggle('Simulationcraft', L["Skin the Addon in ElvUI style"], 13, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('Simulationcraft')))
+	section.args.addons.args.Tabardy = ACH:Toggle('Tabardy', L["Skin the Addon in ElvUI style"], 14, nil, nil, nil, nil, nil, nil, Private.isForever or not Private.IsAddOnLoaded('Tabardy'))
+	section.args.addons.args.WhatsTraining = ACH:Toggle('WhatsTraining', L["Skin the WhatsTraining page in the Spellbook in ElvUI style"], 15, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC or Private.isForever) and Private.IsAddOnLoaded('WhatsTraining')))
 	section.args.blizzard = ACH:Group('Blizzard', nil, 2, nil, function(info) return Private.Addon.db.profile.skins.Blizzard[info[#info]] end, function(info, value) Private.Addon.db.profile.skins.Blizzard[info[#info]] = value StaticPopup_Show('LUCKYONE_RL') end)
 	section.args.blizzard.inline = true
 	section.args.blizzard.args.CooldownViewer = ACH:Toggle(L["Cooldown Settings"], nil, 1, nil, nil, nil, nil, nil, nil, not Private.isModern)
@@ -907,13 +908,6 @@ local function OtherProfileValues()
 	return values
 end
 
--- The Luckyone preset stays
-local function DeleteProfileValues()
-	local values = OtherProfileValues()
-	values.Luckyone = nil
-	return values
-end
-
 local exportText -- Generated by the export button, the box stays hidden until then
 
 -- Build Profiles Section
@@ -925,8 +919,8 @@ local function BuildProfilesSection()
 	section.args.profile.args.current = ACH:Select(L["Current Profile"], nil, 1, ProfileValues, nil, nil, function() return Private.Addon.db:GetCurrentProfile() end, function(_, value) Private.Addon.db:SetProfile(value) StaticPopup_Show('LUCKYONE_RL') end)
 	section.args.profile.args.new = ACH:Input(L["New Profile"], L["Create a profile with LuckyoneUI defaults and switch to it."], 2, nil, nil, function() return '' end, function(_, value) value = strtrim(value) if value ~= '' then Private.Addon.db:SetProfile(value) StaticPopup_Show('LUCKYONE_RL') end end)
 	section.args.profile.args.copy = ACH:Select(L["Copy From"], L["Copy the settings of another profile into the current one."], 3, OtherProfileValues, true, nil, function() end, function(_, value) Private.Addon.db:CopyProfile(value) StaticPopup_Show('LUCKYONE_RL') end, function() return not next(OtherProfileValues()) end)
-	section.args.profile.args.delete = ACH:Select(_G.DELETE, L["Delete a profile, the current one and the Luckyone preset cannot be deleted."], 4, DeleteProfileValues, true, nil, function() end, function(_, value) Private.Addon.db:DeleteProfile(value) end, function() return not next(DeleteProfileValues()) end)
-	section.args.profile.args.reset = ACH:Execute(L["Restore Defaults"], L["Wipe every setting of the current profile, the Luckyone profile returns to its preset."], 5, function() Private:ResetProfile() end, nil, true)
+	section.args.profile.args.delete = ACH:Select(_G.DELETE, L["Delete a profile, the current one cannot be deleted."], 4, OtherProfileValues, true, nil, function() end, function(_, value) Private.Addon.db:DeleteProfile(value) end, function() return not next(OtherProfileValues()) end)
+	section.args.profile.args.reset = ACH:Execute(L["Restore Defaults"], L["Wipe every setting of the current profile."], 5, function() Private.Addon.db:ResetProfile() StaticPopup_Show('LUCKYONE_RL') end, nil, true)
 	section.args.import = ACH:Group(L["Import"], nil, 3)
 	section.args.import.inline = true
 	section.args.import.args.text = ACH:Input(L["Paste a LuckyoneUI profile string and accept it."], nil, 1, 8, 'full', function() return '' end, function(_, value) Private:ImportProfile(value) end)

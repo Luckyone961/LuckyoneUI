@@ -79,6 +79,7 @@ Modules\Misc\DataTextsTweaks.lua
 Modules\Misc\Misc.lua
 Modules\Misc\MythicVisibility.lua [AllowLoadGameType standard]
 Modules\NamePlates\NamePlates.lua
+Modules\Skins\Addons\Attune.lua [AllowLoadGameType camelot][ExcludeLoadGameType standard, classic]
 Modules\Skins\Addons\Auctionator.lua
 Modules\Skins\Addons\BigWigs.lua [AllowLoadGameType standard, mists]
 Modules\Skins\Addons\BugSack.lua
