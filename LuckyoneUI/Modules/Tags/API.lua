@@ -19,7 +19,6 @@ local GetClassColor = C_ClassColor.GetClassColor
 local hooksecurefunc = hooksecurefunc
 local issecretvalue = issecretvalue
 local WrapString = C_StringUtil.WrapString
-local WrapTextInColor = C_ColorUtil.WrapTextInColor
 local UnitClass = UnitClass
 local UnitInPartyIsAI = UnitInPartyIsAI
 local UnitIsConnected = UnitIsConnected
@@ -140,11 +139,16 @@ hooksecurefunc(E:GetModule('UnitFrames'), 'UpdateColors', WipeCaches)
 Private.Tags.powerColors = powerHexCache
 
 -- Class color for players, reaction color for NPCs
--- Retail will not touch any tables if secrets exist
+-- Secret class tokens (identity restricted units, e.g. a group member as targettarget of an NPC) go through C_ClassColor
 function Private.Tags.getUnitColor(unit)
 	if UnitIsPlayer(unit) or UnitInPartyIsAI(unit) then
 		local _, unitClass = UnitClass(unit)
-		if unitClass and not issecretvalue(unitClass) then
+		if issecretvalue(unitClass) then
+			local color = GetClassColor(unitClass)
+			if color then
+				return Hex(color)
+			end
+		elseif unitClass then
 			return classHexCache[unitClass]
 		end
 	else
@@ -212,15 +216,6 @@ function Private.Tags.formatTargetName(unit, lastPartOnly, withColor)
 	if issecretvalue(targetName) then
 		if not withColor then return targetName end
 
-		-- Class color for players, secret class tokens go through C_ClassColor
-		if UnitIsPlayer(targetUnit) or UnitInPartyIsAI(targetUnit) then
-			local _, classToken = UnitClass(targetUnit)
-			if issecretvalue(classToken) then
-				return WrapTextInColor(targetName, GetClassColor(classToken))
-			end
-		end
-
-		-- Non-secret color paths (reaction / cached class / fallback grey)
 		return WrapString(targetName, getUnitColor(targetUnit), '|r')
 	end
 
