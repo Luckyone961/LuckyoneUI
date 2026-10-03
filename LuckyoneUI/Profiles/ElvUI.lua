@@ -1789,6 +1789,12 @@ local function Setup_ElvUI(layout, partyStyle)
 		E.db.unitframe.units.raid3.healPrediction.enable = true
 		E.db.unitframe.units.raidpet.healPrediction.enable = true
 		E.db.unitframe.units.targettarget.healPrediction.enable = true
+
+		-- Healing Actionbars
+		E.db.actionbar.bar1.mouseover = true
+		E.db.actionbar.bar5.mouseover = true
+		E.db.actionbar.bar6.mouseover = true
+		E.db.actionbar.barPet.mouseover = true
 	end
 
 	-- Layout specific movers
@@ -1824,13 +1830,6 @@ local function Setup_ElvUI(layout, partyStyle)
 	local actionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 	if actionBarsDT then
 		actionBarsDT.width = (layout == 'main' and 419) or (layout == 'healing' and 704)
-	end
-
-	-- Custom AB changes
-	if Private.itsLuckyone and layout == 'healing' then
-		E.db.actionbar.bar1.mouseover = true
-		E.db.actionbar.bar5.mouseover = true
-		E.db.actionbar.bar6.mouseover = true
 	end
 
 	-- Custom nonRetail changes
