@@ -857,7 +857,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		font = Private.Font,
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
-		size = 12,
+		size = 14,
 		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 3,
 		yOffset = -16
@@ -967,7 +967,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		font = Private.Font,
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
-		size = 12,
+		size = 14,
 		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 3,
 		yOffset = -16
@@ -1058,7 +1058,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		font = Private.Font,
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
-		size = 11,
+		size = 14,
 		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 0,
 		yOffset = 0
@@ -1143,7 +1143,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		font = Private.Font,
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
-		size = 11,
+		size = 14,
 		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 0,
 		yOffset = 0
@@ -1197,7 +1197,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		font = Private.Font,
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
-		size = 11,
+		size = 14,
 		text_format = '[luckyone:power:percent-nocolor<%]',
 		xOffset = 0,
 		yOffset = 0
@@ -1338,7 +1338,7 @@ local function Setup_ElvUI(layout, partyStyle)
 		font = Private.Font,
 		fontOutline = Private.Outline,
 		justifyH = 'LEFT',
-		size = 12,
+		size = 14,
 		text_format = '[luckyone:power:percent-color<%]',
 		xOffset = 3,
 		yOffset = -16
