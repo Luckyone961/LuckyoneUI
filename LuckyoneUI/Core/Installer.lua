@@ -803,6 +803,7 @@ local function BuildPages()
 				Toggle('skins', 'skins.addons.Auctionator'),
 				Toggle('skins', 'skins.addons.BigWigs'),
 				Toggle('skins', 'skins.addons.BugSack'),
+				Toggle('skins', 'skins.addons.ForeverDungeonJournal'),
 				Toggle('skins', 'skins.addons.LFGBulletinBoard'),
 				Toggle('skins', 'skins.addons.NovaSpellRankChecker'),
 				Toggle('skins', 'skins.addons.NovaWorldBuffs'),

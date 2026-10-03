@@ -83,6 +83,7 @@ Modules\Skins\Addons\Attune.lua [AllowLoadGameType camelot][ExcludeLoadGameType 
 Modules\Skins\Addons\Auctionator.lua
 Modules\Skins\Addons\BigWigs.lua [AllowLoadGameType standard, mists]
 Modules\Skins\Addons\BugSack.lua
+Modules\Skins\Addons\ForeverDungeonJournal.lua [AllowLoadGameType camelot][ExcludeLoadGameType standard, classic]
 Modules\Skins\Addons\LFGBulletinBoard.lua [AllowLoadGameType vanilla, tbc, mists]
 Modules\Skins\Addons\NovaSpellRankChecker.lua [AllowLoadGameType vanilla, tbc]
 Modules\Skins\Addons\NovaWorldBuffs.lua [AllowLoadGameType vanilla, tbc]

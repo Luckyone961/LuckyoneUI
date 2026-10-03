@@ -267,6 +267,7 @@ Private.Defaults = {
 			Auctionator = false,
 			BigWigs = false,
 			BugSack = false,
+			ForeverDungeonJournal = false,
 			LFGBulletinBoard = false,
 			NovaSpellRankChecker = false,
 			NovaWorldBuffs = false,
