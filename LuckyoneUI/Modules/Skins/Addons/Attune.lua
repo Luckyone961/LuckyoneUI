@@ -32,7 +32,7 @@ local function Skin_Frame()
 	end
 end
 
--- Attune darkens every new TreeGroup after ElvUI's Ace3 skin styled it
+-- Attune darkens its TreeGroup after ElvUI's Ace3 skin styled it
 local function Skin_ToggleView()
 	for _, widget in next, Attune_MainFrame.obj.children do
 		if widget.type == 'TreeGroup' then

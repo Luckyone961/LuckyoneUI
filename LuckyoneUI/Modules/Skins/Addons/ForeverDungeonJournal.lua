@@ -174,6 +174,57 @@ local function Map_Render()
 	end
 end
 
+-- Loot Filter window, built on the first click
+local function Skin_LootFilterWindow(frame)
+	local window = frame.lootFilterWindow
+	if window.IsSkinned then return end
+
+	window:SetTemplate()
+	S:HandleCloseButton((window:GetChildren()))
+
+	-- The filter starts disabled, ElvUI only clears its disabled texture when the state changes
+	for _, check in next, window.checks do
+		S:HandleCheckBox(check)
+
+		if not check:IsEnabled() and not check:GetChecked() then
+			check:SetDisabledTexture('')
+		end
+	end
+
+	S:HandleEditBox(window.minBox)
+	S:HandleButton(window.toggle)
+	S:HandleButton(window.clear)
+	S:HandleButton(window.ok)
+	S:HandleButton(window.show)
+
+	window.IsSkinned = true
+end
+
+local function ResultsContent_SetHeight(content)
+	for _, row in next, { content:GetChildren() } do
+		if not row.IsSkinned then
+			row:GetHighlightTexture():SetColorTexture(1, 1, 1, .25)
+			row.IsSkinned = true
+		end
+	end
+end
+
+-- Loot Filter results list, covers the journal when no boss matches
+local function Skin_LootFilterResults(frame)
+	local panel = frame.lootFilterResults
+	if panel.IsSkinned then return end
+
+	panel:SetTemplate()
+	S:HandleButton(panel.back)
+	S:HandleButton(panel.filter)
+	S:HandleScrollBar(panel.scroll.ScrollBar)
+
+	hooksecurefunc(panel.content, 'SetHeight', ResultsContent_SetHeight)
+	ResultsContent_SetHeight(panel.content)
+
+	panel.IsSkinned = true
+end
+
 local function Text_SetTextColor(text, r, g, b)
 	if r ~= 1 or g ~= 1 or b ~= 1 then
 		text:SetTextColor(1, 1, 1)
@@ -236,6 +287,14 @@ local function Skin_Frame()
 	local hideButton = frame.hideDungeonsButton
 	hideButton:SetBackdrop()
 	S:HandleButton(hideButton, nil, nil, nil, true)
+
+	-- Loot Filter
+	local filterButton = frame.lootFilterButton
+	filterButton:SetBackdrop()
+	S:HandleButton(filterButton, nil, nil, nil, true)
+
+	hooksecurefunc(FDJ, 'ToggleLootFilterWindow', Skin_LootFilterWindow)
+	hooksecurefunc(FDJ, 'ShowLootFilterList', Skin_LootFilterResults)
 
 	S:HandleScrollBar(frame.homeScroll.ScrollBar)
 
