@@ -888,7 +888,10 @@ local function BuildDevSection()
 	section.args.syncInfo.inline = true
 	section.args.syncInfo.args.desc = ACH:Description('Clicking this button will override every single option of the games ESC > Options with Luckyone\'s settings.\n\nThis includes all of gameplay, accessibility, graphics, audio and network.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r', 1, 'medium')
 	section.args.spacer = ACH:Spacer(7, 'full', function() return not Private.Addon.db.global.dev end)
-	section.args.execute = ACH:Execute('Sync Game Settings', '|cffC80000Do not click without reading the important information!|r', 8, function() Private:SyncSettings() end, nil, true, nil, nil, nil, nil, function() return not Private.Addon.db.global.dev end)
+	section.args.execute = ACH:Execute('Account CVars', '|cffC80000Do not click without reading the important information!|r', 8, function() Private:SyncSettings() end, nil, true, nil, nil, nil, nil, function() return not Private.Addon.db.global.dev end)
+	section.args.executeCharacter = ACH:Execute('Character CVars', 'Set character specific CVars only.', 9, function() Private:SyncSettings(true) end, nil, true, nil, nil, nil, nil, function() return not Private.Addon.db.global.dev end)
+	section.args.exportCVars = ACH:Execute('Export CVars', 'Export into the global cvarDump SV table.', 10, function() Private:ExportCVars() end, nil, nil, nil, nil, nil, nil, function() return not Private.Addon.db.global.dev end)
+	section.args.wipeCVars = ACH:Execute('Wipe exported CVars', 'Wipe the global cvarDump SV table.', 11, function() Private.Addon.db.global.cvarDump = nil end, nil, nil, nil, nil, nil, nil, function() return not (Private.Addon.db.global.dev and Private.Addon.db.global.cvarDump) end)
 	return section
 end
 

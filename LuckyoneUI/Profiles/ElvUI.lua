@@ -8,7 +8,6 @@ end
 local unpack = unpack
 local wipe = table.wipe
 
-local InCombatLockdown = InCombatLockdown
 local SetCVar = C_CVar.SetCVar
 
 local E, _, _, P = unpack(ElvUI)
@@ -204,8 +203,6 @@ end
 
 -- E.global & Custom DataText
 local function Setup_GlobalDB()
-	if InCombatLockdown() then return end -- Secure CVars
-
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled
 

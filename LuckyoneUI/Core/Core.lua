@@ -265,8 +265,6 @@ end
 function Private:ApplyScale(native, installer)
 	Private.Addon.db.global.scaled = not native
 
-	if InCombatLockdown() then return end -- Secure CVars
-
 	SetCVar('useUiScale', 1)
 	SetCVar('uiScale', native and Private.UIScale1440 or Private.UIScale1080)
 	Core:UpdateScale()
