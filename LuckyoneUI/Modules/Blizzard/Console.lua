@@ -170,6 +170,7 @@ function Private:SyncSettings(characterOnly)
 	end
 
 	-- Graphics quality masters first, the engine derives the leaf CVars from them
+	-- They would otherwise override things like farClip, density, dist, etc
 	Set('graphicsComputeEffects', 0)
 	Set('graphicsLiquidDetail', 3)
 	Set('graphicsOutlineMode', 2)
