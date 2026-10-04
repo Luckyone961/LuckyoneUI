@@ -4,7 +4,7 @@ local _, Private = ...
 local function ObjectiveTrackerHeader()
 	return {
 		font = Private.Font,
-		fontOutline = Private.Outline,
+		fontOutline = 'OUTLINESLUG',
 		fontSize = 14,
 		colorType = 'CLASS',
 		color = { r = 1, g = 1, b = 1 },
@@ -175,7 +175,7 @@ Private.Defaults = {
 				enterText = '+Combat',
 				leaveText = '-Combat',
 				font = Private.Font,
-				fontOutline = Private.Outline,
+				fontOutline = 'OUTLINESLUG',
 				fontSize = 22,
 				enterColor = { r = 1, g = 0, b = 0 },
 				leaveColor = { r = 0, g = 1, b = 0 },
@@ -198,10 +198,10 @@ Private.Defaults = {
 				infoColorType = 'CUSTOM',
 				infoColor = { r = 1, g = 1, b = 1 },
 				font = Private.Font,
-				fontOutline = Private.Outline,
+				fontOutline = 'OUTLINESLUG',
 				fontSize = 12,
 				infoFont = Private.Font,
-				infoFontOutline = Private.Outline,
+				infoFontOutline = 'OUTLINESLUG',
 				infoFontSize = 11,
 			},
 			mailbox = {
@@ -210,7 +210,7 @@ Private.Defaults = {
 				-- { name = 'Luckyone-LaughingSkull', class = 'DRUID', faction = 'Alliance' }
 				favorites = {},
 				font = Private.Font,
-				fontOutline = Private.Outline,
+				fontOutline = 'OUTLINESLUG',
 				fontSize = 12,
 			},
 			mythicVisibility = false,
@@ -222,7 +222,7 @@ Private.Defaults = {
 				categoryHeader = ObjectiveTrackerHeader(),
 				content = {
 					font = Private.Font,
-					fontOutline = Private.Outline,
+					fontOutline = 'OUTLINESLUG',
 					fontSize = 13,
 					titleColorType = 'CLASS',
 					titleColor = { r = 1, g = 1, b = 1 },
