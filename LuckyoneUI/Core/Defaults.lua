@@ -211,7 +211,7 @@ Private.Defaults = {
 				favorites = {},
 				font = Private.Font,
 				fontOutline = 'OUTLINESLUG',
-				fontSize = 12,
+				fontSize = 14,
 			},
 			mythicVisibility = false,
 			objectiveTracker = {
