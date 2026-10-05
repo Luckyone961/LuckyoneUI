@@ -225,6 +225,26 @@ local function Skin_LootFilterResults(frame)
 	panel.IsSkinned = true
 end
 
+-- Report window, built on the first click
+local function Skin_BugReportWindow(frame)
+	local window = frame.bugReportWindow
+	if window.IsSkinned then return end
+
+	window:SetTemplate()
+	S:HandleEditBox(window.link)
+	S:HandleButton(window.close)
+
+	window.IsSkinned = true
+end
+
+-- Dungeon map on the world map, the button switches back to the world map
+local function Skin_WorldMapToggle()
+	local toggle = ForeverDungeonJournalWorldMapToggle
+	if toggle then
+		S:HandleButton(toggle)
+	end
+end
+
 local function Text_SetTextColor(text, r, g, b)
 	if r ~= 1 or g ~= 1 or b ~= 1 then
 		text:SetTextColor(1, 1, 1)
@@ -256,10 +276,10 @@ local function Skin_Frame()
 
 	S:HandleButton(frame.backButton)
 
-	-- Language select top right
+	-- Language select and Report top right
 	S:HandleButton(frame.languageSelectorButton)
-	S:HandleNextPrevButton(frame.languageLeftButton, 'left', nil, true)
-	S:HandleNextPrevButton(frame.languageRightButton, 'right', nil, true)
+	S:HandleButton(frame.bugReportButton)
+	hooksecurefunc(FDJ, 'ToggleBugReportWindow', Skin_BugReportWindow)
 
 	local languageMenu = frame.languageMenu
 	for _, option in next, { languageMenu:GetChildren() } do
@@ -387,6 +407,7 @@ local function Skin_Frame()
 	frame.dungeonMapPanel:SetTemplate()
 	frame.dungeonMapCanvas:SetBackdrop()
 	hooksecurefunc(FDJ, 'RenderCustomDungeonMap', Map_Render)
+	hooksecurefunc(FDJ, 'RefreshWorldMapOverlay', Skin_WorldMapToggle)
 
 	-- Route Guide
 	local routePanel = frame.routePanel
