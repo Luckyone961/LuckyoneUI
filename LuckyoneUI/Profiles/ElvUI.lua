@@ -1748,7 +1748,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	if layout == 'main' then
 
 		-- Main movers
-		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,381'
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,0,258') or 'BOTTOM,ElvUIParent,BOTTOM,0,379'
 		E.db.movers.ElvAB_1 = 'BOTTOM,ElvUIParent,BOTTOM,0,20'
 		E.db.movers.ElvAB_5 = 'BOTTOM,ElvUIParent,BOTTOM,0,90'
 		E.db.movers.ElvAB_6 = 'BOTTOM,ElvUIParent,BOTTOM,0,55'
@@ -1761,7 +1761,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	elseif layout == 'healing' then
 
 		-- Healing movers
-		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,260') or 'BOTTOM,ElvUIParent,BOTTOM,0,381'
+		E.db.movers.BossButton = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,26,258') or 'BOTTOM,ElvUIParent,BOTTOM,0,379'
 		E.db.movers.ElvAB_1 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,212') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,233'
 		E.db.movers.ElvAB_5 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,282') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,303'
 		E.db.movers.ElvAB_6 = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,247') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,1,268'
