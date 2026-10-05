@@ -8,11 +8,13 @@ end
 local floor = floor
 local format = string.format
 local pairs = pairs
+local strfind = string.find
 local unpack = unpack
 
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
 local GetPetHappiness = (C_PetInfo and C_PetInfo.GetPetHappiness) or GetPetHappiness
 local HasPetUI = HasPetUI
+local hooksecurefunc = hooksecurefunc
 local issecretvalue = issecretvalue
 local ScaleTo100 = CurveConstants.ScaleTo100
 local TruncateWhenZero = C_StringUtil.TruncateWhenZero
@@ -35,6 +37,8 @@ local QuestDifficultyColors = QuestDifficultyColors
 local UNKNOWN = UNKNOWN
 
 local E = unpack(ElvUI)
+local NP = E:GetModule('NamePlates')
+local UF = E:GetModule('UnitFrames')
 
 local Hex = Private.Tags.Hex
 local classificationText = Private.Tags.classificationText
@@ -358,4 +362,37 @@ else
 		E:AddTagInfo('luckyone:name:abbrev:' .. textFormat .. '-classcolor', Private.Name, format(L["Displays the unit's name with classcolor and a maximum length of %s characters and abbreviates long names"], length))
 		E:AddTagInfo('luckyone:name:abbrev:' .. textFormat .. '-nocolor', Private.Name, format(L["Displays the unit's name with no color and a maximum length of %s characters and abbreviates long names"], length))
 	end
+end
+
+-------------------------------------------------------
+---------------- Name Shortening Hooks ----------------
+-------------------------------------------------------
+
+if Private.isModern then
+	local cappedPlates = { ENEMY_NPC = true, ENEMY_PLAYER = true }
+	local cappedUnits = { boss = true, focus = true, pet = true, target = true, targettarget = true }
+
+	-- Cap secret name text width and let the client cut it with '...' at the end
+	hooksecurefunc(UF, 'Configure_CustomTexts', function(_, frame)
+		local text = cappedUnits[frame.unitframeType] and frame.customTexts.Luckyone_Name
+		if not text then return end
+
+		text:SetWidth(frame.UNIT_WIDTH * 0.99)
+		text:SetWordWrap(false)
+	end)
+
+	-- Same for enemy nameplate names, plates get reused across types so everything else goes back to auto width
+	hooksecurefunc(NP, 'Update_Tags', function(_, nameplate)
+		local text = nameplate.Name
+		local db = NP:PlateDB(nameplate)
+
+		if cappedPlates[nameplate.frameType] and not db.nameOnly then
+			local point = E.InversePoints[db.name.position]
+			text:SetJustifyH((strfind(point, 'LEFT') and 'LEFT') or (strfind(point, 'RIGHT') and 'RIGHT') or 'CENTER')
+			text:SetWidth(db.health.width * 0.8)
+			text:SetWordWrap(false)
+		else
+			text:SetWidth(0)
+		end
+	end)
 end
