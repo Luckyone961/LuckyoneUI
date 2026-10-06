@@ -6,6 +6,7 @@ local LSM = Private.Libs.LSM
 local ipairs = ipairs
 local next = next
 local pairs = pairs
+local tonumber = tonumber
 local concat = table.concat
 local format = string.format
 
@@ -747,11 +748,24 @@ local function BuildMiscSection()
 	section.args.combatLogging.args.generalOptions.inline = true
 	section.args.combatLogging.args.generalOptions.args.enable = ACH:Toggle(L["Enable"], L["Start combat logging when you enter the selected content and stop it again when you leave. Advanced Combat Logging is turned on when needed."], 1)
 	section.args.combatLogging.args.generalOptions.args.notify = ACH:Toggle(L["Chat Notice"], L["Print a chat message when automatic combat logging starts and stops."], 2, nil, nil, nil, nil, nil, CombatLoggingDisabled)
-	section.args.combatLogging.args.content = ACH:Group(L["Content"], nil, 2, nil, function(info, key) return Private.Addon.db.profile.misc.combatLogging[info[#info]][key] end, function(info, key, value) Private.Addon.db.profile.misc.combatLogging[info[#info]][key] = value Private:CombatLogging() end)
+	-- Toggles instead of multiselects so they keep their order - difficulty toggles are keyed by the difficultyID as a string
+	section.args.combatLogging.args.content = ACH:Group(L["Content"], nil, 2, nil, function(info) return Private.Addon.db.profile.misc.combatLogging[info[#info - 1]][tonumber(info[#info]) or info[#info]] end, function(info, value) Private.Addon.db.profile.misc.combatLogging[info[#info - 1]][tonumber(info[#info]) or info[#info]] = value Private:CombatLogging() end)
 	section.args.combatLogging.args.content.inline = true
-	section.args.combatLogging.args.content.args.instances = ACH:MultiSelect(L["Instances"], Private.isRetail and L["Scenarios include Delves."] or nil, 1, { party = L["Dungeon"], raid = L["Raid"], scenario = (Private.isRetail or Private.isMists) and L["Scenario"] or nil }, nil, nil, nil, nil, CombatLoggingDisabled)
-	section.args.combatLogging.args.content.args.dungeon = ACH:MultiSelect(L["Dungeon Difficulty"], nil, 2, { [8] = L["Mythic Keystone"], [23] = L["Mythic"] }, nil, nil, nil, nil, function() return CombatLoggingDifficultyDisabled('party') end, not Private.isRetail)
-	section.args.combatLogging.args.content.args.raid = ACH:MultiSelect(L["Raid Difficulty"], nil, 3, { [14] = L["Normal"], [15] = L["Heroic"], [16] = L["Mythic"], [17] = L["Looking For Raid"] }, nil, nil, nil, nil, function() return CombatLoggingDifficultyDisabled('raid') end, not Private.isRetail)
+	section.args.combatLogging.args.content.args.instances = ACH:Group(L["Instances"], nil, 1, nil, nil, nil, CombatLoggingDisabled)
+	section.args.combatLogging.args.content.args.instances.inline = true
+	section.args.combatLogging.args.content.args.instances.args.raid = ACH:Toggle(L["Raid"], nil, 1)
+	section.args.combatLogging.args.content.args.instances.args.party = ACH:Toggle(L["Dungeon"], nil, 2)
+	section.args.combatLogging.args.content.args.instances.args.scenario = ACH:Toggle(L["Scenario"], Private.isRetail and L["Scenarios include Delves."] or nil, 3, nil, nil, nil, nil, nil, nil, not (Private.isRetail or Private.isMists))
+	section.args.combatLogging.args.content.args.dungeon = ACH:Group(L["Dungeon Difficulty"], nil, 2, nil, nil, nil, function() return CombatLoggingDifficultyDisabled('party') end, not Private.isRetail)
+	section.args.combatLogging.args.content.args.dungeon.inline = true
+	section.args.combatLogging.args.content.args.dungeon.args['8'] = ACH:Toggle(L["Mythic Keystone"], nil, 1)
+	section.args.combatLogging.args.content.args.dungeon.args['23'] = ACH:Toggle(L["Mythic"], nil, 2)
+	section.args.combatLogging.args.content.args.raid = ACH:Group(L["Raid Difficulty"], nil, 3, nil, nil, nil, function() return CombatLoggingDifficultyDisabled('raid') end, not Private.isRetail)
+	section.args.combatLogging.args.content.args.raid.inline = true
+	section.args.combatLogging.args.content.args.raid.args['16'] = ACH:Toggle(L["Mythic"], nil, 1)
+	section.args.combatLogging.args.content.args.raid.args['15'] = ACH:Toggle(L["Heroic"], nil, 2)
+	section.args.combatLogging.args.content.args.raid.args['14'] = ACH:Toggle(L["Normal"], nil, 3)
+	section.args.combatLogging.args.content.args.raid.args['17'] = ACH:Toggle(L["Looking For Raid"], nil, 4)
 	return section
 end
 
