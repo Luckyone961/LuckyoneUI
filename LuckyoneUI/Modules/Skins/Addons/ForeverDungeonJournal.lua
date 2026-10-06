@@ -417,6 +417,14 @@ local function Skin_Frame()
 	S:HandleButton(frame.routeMapButton)
 	S:HandleScrollBar(frame.routeStepScroll.ScrollBar)
 	hooksecurefunc(frame.routeStepContent, 'SetHeight', RouteContent_SetHeight)
+
+	-- Options > AddOns page
+	local options = ForeverDungeonJournalOptionsPanel
+	if options then
+		for _, button in next, { options:GetChildren() } do
+			S:HandleButton(button)
+		end
+	end
 end
 
 local function Skin_ForeverDungeonJournal()
