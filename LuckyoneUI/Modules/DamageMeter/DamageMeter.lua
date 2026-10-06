@@ -23,6 +23,7 @@ local SetCVar = C_CVar.SetCVar
 local GetInstanceInfo = GetInstanceInfo
 local HasActiveDelve = C_DelvesUI.HasActiveDelve
 local IsInGroup = IsInGroup
+local MergeTable = MergeTable
 local UnitAffectingCombat = UnitAffectingCombat
 local ResetAllCombatSessions = C_DamageMeter.ResetAllCombatSessions
 local C_UI = C_UI
@@ -50,7 +51,7 @@ function DM:StripRealm(name, classFilename)
 	return Ambiguate(name, 'short')
 end
 
-function DM:ShouldShow()
+local function ShouldShow()
 	if not DM.db.enable then return false end
 
 	-- The preview ignores the visibility rule, same as Edit Mode
@@ -69,7 +70,7 @@ end
 
 -- Roster updates fire in bursts, only an actual change does any work
 function DM:UpdateShown()
-	local shown = DM:ShouldShow()
+	local shown = ShouldShow()
 	if shown == DM.holder:IsShown() then return end
 
 	DM.holder:SetShown(shown)
@@ -96,6 +97,7 @@ end
 
 local widths, heights = {}, {}
 local hosts, columns, floating = {}, {}, {}
+local activeCount -- Content changes compare against this
 
 local function BuildRoots(count)
 	wipe(hosts)
@@ -212,6 +214,12 @@ function Private:DamageMeter_ExportMovers()
 	return movers
 end
 
+-- Profile import, the reload applies them through E:SetMoversPositions
+function Private:DamageMeter_ImportMovers(movers)
+	E.db.movers = E.db.movers or {}
+	MergeTable(E.db.movers, movers)
+end
+
 -- Windows attached to this one get their own slot back
 local function ReleaseAttached(db, index)
 	for other = 1, 4 do
@@ -249,6 +257,27 @@ function DM:SetWindowAttachTo(index, value)
 	Private:DamageMeter_Update()
 end
 
+-- An existing window switches right away
+function DM:SetWindowMeterType(index, value)
+	Private.Addon.db.profile.damageMeter.windows[index].meterType = value
+
+	local window = DM.windows[index]
+	if window then
+		DM:SetWindowType(window, value)
+	end
+end
+
+-- Delves need special treatment, they don't fire a real loading screen
+-- The party keeps its delve after leaving it, real instances keep their own type
+local function GetInstanceType()
+	local _, instanceType, _, _, _, _, _, instanceID = GetInstanceInfo()
+	if instanceType == 'none' and HasActiveDelve() then
+		instanceType = 'scenario'
+	end
+
+	return instanceType, instanceID
+end
+
 -- Content types
 local ContentScopes = {
 	none = 'world',
@@ -260,23 +289,20 @@ local ContentScopes = {
 }
 
 -- Override, zero leaves it alone
--- Delves need special treatment, they don't fire a real loading screen
--- The party keeps its delve after leaving it, real instances keep their own type
-function DM:GetWindowCount()
-	local _, instanceType = GetInstanceInfo()
-	local scope = instanceType == 'none' and HasActiveDelve() and 'dungeon' or ContentScopes[instanceType] or 'world'
+local function GetWindowCount()
+	local scope = ContentScopes[GetInstanceType()] or 'world'
 	local override = DM.db.contentWindows[scope]
 
 	return override > 0 and override or DM.db.windowCount
 end
 
 -- Columns split the holder along one axis, custom placed windows sit outside of it
-function DM:Layout()
+local function LayoutWindows()
 	local db = DM.db
 	local holder = DM.holder
 
 	local vertical = db.orientation == 'VERTICAL'
-	local count = DM.activeCount
+	local count = activeCount
 	local inner, outer = db.innerSpacing, db.outerSpacing
 	local minSize = db.headerHeight + db.barHeight
 
@@ -347,9 +373,11 @@ function DM:Layout()
 	end
 end
 
-function DM:Initialize()
-	if DM.initialized then return end
-	DM.initialized = true
+local initialized, reloadingUI
+
+local function Initialize()
+	if initialized then return end
+	initialized = true
 
 	local holder = CreateFrame('Frame', 'LuckyoneUI_DamageMeterHolder', E.UIParent)
 	holder:SetFrameStrata('LOW')
@@ -357,12 +385,12 @@ function DM:Initialize()
 	DM.holder = holder
 
 	-- Attempt to keep data on reloads
-	hooksecurefunc(C_UI, 'Reload', function() DM.reloadingUI = true end)
+	hooksecurefunc(C_UI, 'Reload', function() reloadingUI = true end)
 
 	-- The holder follows the right chat panel around
 	hooksecurefunc(E:GetModule('Chat'), 'PositionChats', function()
 		if DM.db.enable then
-			DM:Layout()
+			LayoutWindows()
 			DM:RefreshAll()
 		end
 	end)
@@ -429,18 +457,20 @@ local InstanceScopes = {
 	scenario = true,
 }
 
+local lastInstanceID
+
 -- Offer a data reset when the instance actually changes
 -- A Delve keeps the outdoor instance ID, leaving it clears the last one so the next Delve counts again
-function DM:CheckAutoReset(initLogin, isReload)
+local function CheckAutoReset(initLogin, isReload)
 	-- The events stay registered after the module is switched off
 	if not DM.db.enable then return end
 
-	local _, instanceType, _, _, _, _, _, instanceID = GetInstanceInfo()
-	local scope = instanceType == 'none' and HasActiveDelve() and 'scenario' or InstanceScopes[instanceType] and instanceType or nil
-	local last = DM.lastInstanceID
+	local instanceType, instanceID = GetInstanceType()
+	local scope = InstanceScopes[instanceType] and instanceType or nil
+	local last = lastInstanceID
 
 	-- Track where we are even while the option is off
-	DM.lastInstanceID = scope and instanceID or nil
+	lastInstanceID = scope and instanceID or nil
 
 	if initLogin or isReload then return end
 	if not scope or instanceID == last then return end
@@ -457,21 +487,27 @@ function DM:CheckAutoReset(initLogin, isReload)
 	end
 end
 
+-- The data comes from the client either way, we don't need their meter on+hidden
+-- Its auto reset would wipe the data behind our own Auto Reset option
+local function DisableBlizzardMeter()
+	if GetCVarBool('damageMeterEnabled') then SetCVar('damageMeterEnabled', 0) end
+	if GetCVarBool('damageMeterResetOnNewInstance') then SetCVar('damageMeterResetOnNewInstance', 0) end
+end
+
 function DM:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	-- The events stay registered after the module is switched off
 	if not DM.db.enable then return end
 
 	-- New content type?
-	if DM:GetWindowCount() ~= DM.activeCount then
+	if GetWindowCount() ~= activeCount then
 		Private:DamageMeter_Update()
 	else
-		if GetCVarBool('damageMeterEnabled') then SetCVar('damageMeterEnabled', 0) end
-		if GetCVarBool('damageMeterResetOnNewInstance') then SetCVar('damageMeterResetOnNewInstance', 0) end
+		DisableBlizzardMeter()
 		DM:UpdateShown()
 		DM:MarkAllDirty()
 	end
 
-	DM:CheckAutoReset(initLogin, isReload)
+	CheckAutoReset(initLogin, isReload)
 end
 
 -- Fires when a Delve starts or shuts down, without a loading screen
@@ -479,17 +515,17 @@ function DM:ACTIVE_DELVE_DATA_UPDATE()
 	-- The events stay registered after the module is switched off
 	if not DM.db.enable then return end
 
-	if DM:GetWindowCount() ~= DM.activeCount then
+	if GetWindowCount() ~= activeCount then
 		Private:DamageMeter_Update()
 	end
 
-	DM:CheckAutoReset()
+	CheckAutoReset()
 end
 
 function DM:PLAYER_LOGOUT()
 	if not DM.db.enable then return end
 	if not DM.db.resetOnLogout then return end
-	if DM.reloadingUI then return end
+	if reloadingUI then return end
 
 	ResetAllCombatSessions()
 end
@@ -520,22 +556,17 @@ function Private:DamageMeter_Update()
 		return
 	end
 
-	DM:Initialize()
+	Initialize()
+	DisableBlizzardMeter()
 
-	-- The data comes from the client either way, we don't need their meter on+hidden
-	-- Its auto reset would wipe the data behind our own Auto Reset option
-	if GetCVarBool('damageMeterEnabled') then SetCVar('damageMeterEnabled', 0) end
-	if GetCVarBool('damageMeterResetOnNewInstance') then SetCVar('damageMeterResetOnNewInstance', 0) end
-
-	-- Content changes compare against this
-	local count = DM:GetWindowCount()
-	DM.activeCount = count
+	local count = GetWindowCount()
+	activeCount = count
 
 	for index = 1, count do
 		DM:ApplyWindowSettings(DM:GetWindow(index))
 	end
 
-	DM:Layout()
+	LayoutWindows()
 	DM:UpdateShown()
 	DM:RefreshAll()
 end

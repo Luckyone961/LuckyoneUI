@@ -66,12 +66,12 @@ local function SkinInset(inset)
 end
 
 -- The popups spawn on top of the auction house, a solid background keeps them readable
-local function SkinPanel(panel)
-	if not panel or panel.isSkinned then return end
+local function SkinDialog(dialog)
+	if not dialog or dialog.isSkinned then return end
 
-	panel:StripTextures()
-	panel:SetTemplate()
-	panel.isSkinned = true
+	dialog:StripTextures()
+	dialog:SetTemplate()
+	dialog.isSkinned = true
 end
 
 local function SkinResetButton(button)
@@ -278,6 +278,15 @@ local function SkinOptions(frame)
 	end
 end
 
+-- Search term options and the custom crafting quantity
+local function SkinPortraitDialog(dialog)
+	if not dialog then return end
+
+	S:HandlePortraitFrame(dialog)
+	dialog:SetTemplate() -- Overwrite the transparent template of the portrait handler
+	SkinOptions(dialog)
+end
+
 local function SkinConfigPanels()
 	for _, name in next, ConfigPanels do
 		local panel = _G[name]
@@ -301,16 +310,11 @@ end
 
 local function SkinShoppingDialogs(frame)
 	-- Search Term Options
-	local itemDialog = frame.itemDialog
-	if itemDialog then
-		S:HandlePortraitFrame(itemDialog)
-		itemDialog:SetTemplate() -- Overwrite the transparent template of the portrait handler
-		SkinOptions(itemDialog)
-	end
+	SkinPortraitDialog(frame.itemDialog)
 
 	-- Import, Export, Copy Text (CSV and list export) and Price History
 	for _, dialog in next, { frame.exportDialog, frame.exportDialog.copyTextDialog, frame.importDialog, frame.exportCSVDialog, frame.itemHistoryDialog } do
-		SkinPanel(dialog)
+		SkinDialog(dialog)
 		SkinInset(dialog.Inset)
 		SkinResultsListing(dialog.ResultsListing)
 
@@ -456,7 +460,7 @@ local function SkinBuyFrame(frame)
 	end
 
 	for _, dialog in next, { frame.BuyDialog, frame.WidePriceRangeWarningDialog, frame.FinalConfirmationDialog, frame.QuantityCheckConfirmationDialog } do
-		SkinPanel(dialog)
+		SkinDialog(dialog)
 		SkinItemIcon(dialog.IconAndName)
 
 		if dialog.QuantityInput then
@@ -484,8 +488,8 @@ local function SkinLegacyBuyFrame(frame)
 
 		local dialog = current.BuyDialog
 		if dialog then
-			SkinPanel(dialog)
-			SkinPanel(dialog.WarningDialog)
+			SkinDialog(dialog)
+			SkinDialog(dialog.WarningDialog)
 			SkinOptions(dialog)
 		end
 	end
@@ -536,15 +540,13 @@ local function SkinDialogs()
 
 	while dialog do
 		if not dialog.isSkinned then
-			SkinPanel(dialog)
+			SkinDialog(dialog)
 
 			if dialog.editBox then
 				S:HandleEditBox(dialog.editBox)
 			end
 
 			SkinButtons({ dialog.acceptButton, dialog.altButton, dialog.cancelButton })
-
-			dialog.isSkinned = true
 		end
 
 		index = index + 1
@@ -575,8 +577,8 @@ local function SkinAuctionHouse()
 			SkinLegacyBuyFrame(selling.BuyFrame)
 		end
 
-		SkinPanel(_G.AuctionatorPageStatusDialogFrame)
-		SkinPanel(_G.AuctionatorThrottlingTimeoutDialogFrame)
+		SkinDialog(_G.AuctionatorPageStatusDialogFrame)
+		SkinDialog(_G.AuctionatorThrottlingTimeoutDialogFrame)
 	end
 
 	auctionHouseSkinned = true
@@ -591,12 +593,7 @@ local function SkinCraftingInfo()
 				S:HandleButton(frame.SearchButton)
 			end
 
-			local quantity = frame.CustomQuantity
-			if quantity then
-				S:HandlePortraitFrame(quantity)
-				quantity:SetTemplate() -- Overwrite the transparent template of the portrait handler
-				SkinOptions(quantity)
-			end
+			SkinPortraitDialog(frame.CustomQuantity)
 
 			frame.isSkinned = true
 		end

@@ -64,6 +64,16 @@ function Private:Setup_NameplateCVars(noPrint)
 	end
 end
 
+-- Scale helper
+function Private:Setup_Scale(native, installer)
+	Private.Addon.db.global.scaled = not native
+
+	SetCVar('useUiScale', 1)
+	SetCVar('uiScale', native and Private.UIScale1440 or Private.UIScale1080)
+	Private.Modules.Core:UpdateScale()
+	Private:Print(L["LuckyoneUI Scale"] .. (native and ' 1440p' or ' 1080p'), installer)
+end
+
 -- Live value, default, scope and help text
 -- 'Export CVars' button writes db.global.cvarDump
 -- 'Wipe exported CVars' button wipes db.global.cvarDump

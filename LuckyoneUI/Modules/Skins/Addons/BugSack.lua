@@ -9,6 +9,7 @@ local ipairs = ipairs
 local next = next
 local unpack = unpack
 
+local GetBuildInfo = GetBuildInfo
 local hooksecurefunc = hooksecurefunc
 
 local _G = _G
@@ -106,12 +107,13 @@ local function SkinBugSackFrame()
 
 	if countLabel then
 		local _, elvVersion = E:ParseVersionString('ElvUI')
+		local gameVersion = GetBuildInfo()
 		local hex = '|c' .. E:ClassColor(Private.myClass).colorStr
 
 		local versionLabel = labelParent:CreateFontString(nil, 'ARTWORK')
 		versionLabel:SetFontObject(countLabel:GetFontObject())
 		versionLabel:SetTextColor(countLabel:GetTextColor())
-		versionLabel:SetText(format('%sElvUI:|r %s %sPatch:|r %s %sPage:|r', hex, elvVersion, hex, Private.GameVersion, hex))
+		versionLabel:SetText(format('%sElvUI:|r %s %sPatch:|r %s %sPage:|r', hex, elvVersion, hex, gameVersion, hex))
 		versionLabel:SetPoint('RIGHT', countLabel, 'LEFT', -6, 0)
 	end
 

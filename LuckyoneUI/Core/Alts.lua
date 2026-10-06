@@ -8,7 +8,6 @@ local pairs = pairs
 local select = select
 local tinsert = table.insert
 local tonumber = tonumber
-local type = type
 local wipe = table.wipe
 
 local _G = _G
@@ -27,7 +26,7 @@ local charKey = Private.myNameRealm
 local compactKey = Private.myName .. '-' .. Private.myNormalizedRealm
 
 -- Healers get the healing profiles, everyone else the main ones
-local function GetLayout()
+local function GetSpecLayout()
 	local spec = GetSpecialization()
 	if not spec then return 'main' end
 
@@ -113,7 +112,7 @@ local function SharedApply(global)
 end
 
 -- Name: Addon name (TOC file)
--- Base: Profile name without the version suffix (string or function)
+-- Base: Returns the profile name without the version suffix (Luckyone when not set)
 -- Hidden: Skips this handler completely (Wrong game version, no ElvUI, etc)
 -- Profiles: Returns the profile table, keyed by profile name
 -- Apply: Loads the profile on the current character
@@ -126,52 +125,36 @@ local handlers = {
 	},
 	{
 		name = 'Baganator',
-		base = 'Luckyone',
 		Profiles = SharedProfiles('BAGANATOR'),
 		Apply = SharedApply('BAGANATOR'),
 	},
 	{
 		name = 'BigWigs',
-		base = 'Luckyone',
 		Profiles = AceProfiles('BigWigs3DB'),
 		Apply = AceApply('BigWigs3DB'),
 	},
 	{
 		name = 'BuffReminders',
 		hidden = not Private.isRetail,
-		base = 'Luckyone',
 		Profiles = AceProfiles('BuffRemindersDB'),
 		Apply = AceApply('BuffRemindersDB'),
 	},
 	{
 		name = 'Chattynator',
-		base = 'Luckyone',
 		Profiles = SharedProfiles('CHATTYNATOR'),
 		Apply = SharedApply('CHATTYNATOR'),
 	},
 	{
 		name = 'Details',
-		base = 'Luckyone',
 		Profiles = function()
 			local db = _G._detalhes_global
 			return db and db.__profiles
 		end,
-		Apply = function(profile)
-			local Details = _G.Details
-
-			if Details:GetCurrentProfileName() ~= profile then
-				Details:ApplyProfile(profile)
-			end
-
-			-- Load the profile on all characters
-			Details.always_use_profile = true
-			Details.always_use_profile_name = profile
-		end,
+		Apply = function(profile) Private:Details_ApplyProfile(profile) end,
 	},
 	{
 		name = 'MPlusTimer',
 		hidden = not Private.isRetail,
-		base = 'Luckyone',
 		Profiles = function()
 			local db = _G.MPTSV
 			return db and db.Profiles
@@ -185,7 +168,6 @@ local handlers = {
 	{
 		name = 'NorthernSkyRaidTools',
 		hidden = not Private.isRetail,
-		base = 'Luckyone',
 		Profiles = function()
 			local db = _G.NSRT
 			return db and db.Profiles
@@ -198,14 +180,12 @@ local handlers = {
 	},
 	{
 		name = 'Platynator',
-		base = 'Luckyone',
 		Profiles = SharedProfiles('PLATYNATOR'),
 		Apply = SharedApply('PLATYNATOR'),
 	},
 	{
 		name = 'SkironCooldownManager',
 		hidden = not Private.isModern,
-		base = 'Luckyone',
 		Profiles = AceProfiles('SkironCooldownManagerDB'),
 		Apply = AceApply('SkironCooldownManagerDB'),
 	},
@@ -214,14 +194,14 @@ local handlers = {
 -- Quick setup for alts, loads every existing Luckyone profile
 local applied, skipped = {}, {}
 function Private:Setup_Alts(includeChat)
-	local layout = GetLayout()
+	local layout = GetSpecLayout()
 
 	wipe(applied)
 	wipe(skipped)
 
 	for _, handler in ipairs(handlers) do
 		if not handler.hidden and Private.IsAddOnLoaded(handler.name) then
-			local base = (type(handler.base) == 'function' and handler.base(layout)) or handler.base
+			local base = (handler.base and handler.base(layout)) or 'Luckyone'
 			local profile = FindProfile(handler.Profiles(), base)
 
 			if profile then

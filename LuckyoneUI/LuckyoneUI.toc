@@ -45,19 +45,6 @@ Core\Options.lua
 Core\Personal.lua
 Core\Profiles.lua
 
-Modules\Blizzard\AutoAcceptRole.lua [AllowLoadGameType standard, mists]
-Modules\Blizzard\AutoDismount.lua [AllowLoadGameType standard]
-Modules\Blizzard\Blizzard.lua
-Modules\Blizzard\Chat.lua
-Modules\Blizzard\Console.lua
-Modules\Blizzard\DisabledFrames.lua
-Modules\Blizzard\ExpandMerchant.lua
-Modules\Blizzard\ExpandQuestLog.lua [AllowLoadGameType vanilla, tbc]
-Modules\Blizzard\FasterLoot.lua
-Modules\Blizzard\MovableFrames.lua
-Modules\Blizzard\PrivacyOverlay.lua
-Modules\Blizzard\QuickSignup.lua [AllowLoadGameType standard, mists]
-Modules\Blizzard\UntrackAllQuests.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
 Modules\DamageMeter\DamageMeter.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
 Modules\DamageMeter\Session.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
 Modules\DamageMeter\Bars.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
@@ -66,8 +53,19 @@ Modules\ElvUI\ActionBarConverter.lua
 Modules\ElvUI\DataTextsTweaks.lua
 Modules\ElvUI\ElvUI.lua
 Modules\ElvUI\MythicVisibility.lua [AllowLoadGameType standard]
-Modules\ElvUI\NamePlates.lua
 Modules\ElvUI\Tags.lua
+Modules\ElvUI\TargetTextures.lua
+Modules\General\AutoAcceptRole.lua [AllowLoadGameType standard, mists]
+Modules\General\AutoDismount.lua [AllowLoadGameType standard]
+Modules\General\DisabledFrames.lua
+Modules\General\ExpandMerchant.lua
+Modules\General\ExpandQuestLog.lua [AllowLoadGameType vanilla, tbc]
+Modules\General\FasterLoot.lua
+Modules\General\General.lua
+Modules\General\MovableFrames.lua
+Modules\General\PrivacyOverlay.lua
+Modules\General\QuickSignup.lua [AllowLoadGameType standard, mists]
+Modules\General\UntrackAllQuests.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
 Modules\Map\Map.lua
 Modules\Map\MinimapButtons.lua
 Modules\Map\WorldMap.lua
@@ -100,22 +98,24 @@ Modules\Skins\Addons\Tabardy.lua [AllowLoadGameType standard, vanilla, tbc, mist
 Modules\Skins\Addons\WhatsTraining.lua [AllowLoadGameType vanilla, tbc, camelot][ExcludeLoadGameType standard, mists]
 Modules\Skins\Blizzard\CooldownViewer.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
 Modules\Skins\Blizzard\DeveloperConsole.lua
-Modules\Skins\Blizzard\Merchant.lua
+Modules\Skins\Blizzard\ExpandMerchant.lua
 
-Profiles\Baganator.lua
-Profiles\BigWigs.lua
-Profiles\BuffReminders.lua [AllowLoadGameType standard]
-Profiles\Chattynator.lua
-Profiles\Details.lua
-Profiles\EditMode.lua [AllowLoadGameType standard]
-Profiles\ElvUI.lua
-Profiles\ElvUI_Filters_Mists.lua [AllowLoadGameType mists]
-Profiles\ElvUI_Filters_Classic.lua [AllowLoadGameType vanilla, tbc, camelot][ExcludeLoadGameType standard, mists]
-Profiles\ElvUI_Filters_Retail.lua [AllowLoadGameType standard]
-Profiles\ElvUI_Themes.lua
-Profiles\MPlusTimer.lua [AllowLoadGameType standard]
-Profiles\NSRT.lua [AllowLoadGameType standard]
-Profiles\PermoksAccountManager.lua [AllowLoadGameType standard]
-Profiles\Platynator.lua
-Profiles\Plumber.lua [AllowLoadGameType standard]
-Profiles\SkironCooldownManager.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
+Profiles\Addons\Baganator.lua
+Profiles\Addons\BigWigs.lua
+Profiles\Addons\BuffReminders.lua [AllowLoadGameType standard]
+Profiles\Addons\Chattynator.lua
+Profiles\Addons\Details.lua
+Profiles\Addons\MPlusTimer.lua [AllowLoadGameType standard]
+Profiles\Addons\NorthernSkyRaidTools.lua [AllowLoadGameType standard]
+Profiles\Addons\PermoksAccountManager.lua [AllowLoadGameType standard]
+Profiles\Addons\Platynator.lua
+Profiles\Addons\Plumber.lua [AllowLoadGameType standard]
+Profiles\Addons\SkironCooldownManager.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
+Profiles\Blizzard\Chat.lua
+Profiles\Blizzard\Console.lua
+Profiles\Blizzard\EditMode.lua [AllowLoadGameType standard]
+Profiles\ElvUI\ElvUI.lua
+Profiles\ElvUI\Filters_Mists.lua [AllowLoadGameType mists]
+Profiles\ElvUI\Filters_Classic.lua [AllowLoadGameType vanilla, tbc, camelot][ExcludeLoadGameType standard, mists]
+Profiles\ElvUI\Filters_Retail.lua [AllowLoadGameType standard]
+Profiles\ElvUI\Themes.lua

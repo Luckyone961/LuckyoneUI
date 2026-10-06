@@ -199,6 +199,16 @@ local function UpdateTimerBar(widget)
 	bar:SetStatusBarColor(0.294, 0.922, 0.173)
 end
 
+-- Backdrop in place of the toast, the created one needs -2px width and -4px height
+local function CreateToastBackdrop(frame)
+	frame:CreateBackdrop('Transparent')
+
+	local backdrop = frame.backdrop
+	backdrop:ClearAllPoints()
+	backdrop:SetPoint('TOPLEFT', frame, 0, -1)
+	backdrop:SetPoint('BOTTOMRIGHT', frame, 0, 1)
+end
+
 -- Every setup puts the texture on the toast so alpha zero again
 local function SkinHeaderWidget(container, widgetID)
 	local widget = container.widgetFrames[widgetID]
@@ -210,13 +220,7 @@ local function SkinHeaderWidget(container, widgetID)
 
 	-- The widget takes the size of its toast, so the backdrop can follow the frame
 	-- The level below the widget is only good until the next layout, see UpdateWidgetLevels
-	widget:CreateBackdrop('Transparent')
-
-	-- The created backdrop needs -2px width and -4px height
-	local backdrop = widget.backdrop
-	backdrop:ClearAllPoints()
-	backdrop:SetPoint('TOPLEFT', widget, 0, -1)
-	backdrop:SetPoint('BOTTOMRIGHT', widget, 0, 1)
+	CreateToastBackdrop(widget)
 
 	-- The bar only shows while the texture kit has a fill
 	local bar = widget.TimerBar
@@ -284,13 +288,7 @@ local function SkinScenario(module)
 	block.ThemeOverlay:SetAlpha(0)
 	block.GlowTexture:SetTexture(nil) -- The new stage flash animates the alpha, so the texture has to go
 
-	block:CreateBackdrop('Transparent')
-
-	-- The created backdrop needs -2px width and -4px height
-	local backdrop = block.backdrop
-	backdrop:ClearAllPoints()
-	backdrop:SetPoint('TOPLEFT', block, 0, -1)
-	backdrop:SetPoint('BOTTOMRIGHT', block, 0, 1)
+	CreateToastBackdrop(block)
 
 	-- Widget driven stages hide the toast and show widgets instead, the backdrop follows
 	hooksecurefunc(block, 'UpdateWidgetRegistration', UpdateStageBackdrop)

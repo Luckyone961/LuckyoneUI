@@ -6,6 +6,8 @@ local LSM = Private.Libs.LSM
 local Core = Private.Modules.Core
 
 local gsub = string.gsub
+local max = math.max
+local min = math.min
 local next = next
 local pairs = pairs
 local print = print
@@ -18,7 +20,9 @@ local C_UI = C_UI
 local CopyTable = CopyTable
 local DisableAddOn = C_AddOns.DisableAddOn
 local EnableAddOn = C_AddOns.EnableAddOn
+local GetAddOnEnableState = C_AddOns.GetAddOnEnableState
 local GetAddOnInfo = C_AddOns.GetAddOnInfo
+local GetCursorPosition = GetCursorPosition
 local GetCVar = C_CVar.GetCVar
 local GetCVarBool = C_CVar.GetCVarBool
 local GetNumAddOns = C_AddOns.GetNumAddOns
@@ -74,6 +78,122 @@ function Private:SetFont(text, font, size, outline)
 	text:SetFont(LSM:Fetch('font', font), size, outline == 'NONE' and '' or outline)
 	text:SetShadowColor(0, 0, 0, shadow and (outline == '' and 1 or 0.6) or 0) -- Same as ElvUI, lighter under an outline
 	text:SetShadowOffset(1, -1)
+end
+
+-- Drag and drop reorder for the scrolling lists (damage meter bookmarks, mailbox favorites)
+-- The list frame keeps rows, offset, total, visible, dropCount and a marker, its Layout fills the rows from the offset
+local function DragList_ScrollTo(frame, offset)
+	offset = min(max(offset, 0), max(frame.total - frame.visible, 0))
+	if offset == frame.offset then return end
+
+	frame.offset = offset
+	frame.Layout(frame)
+
+	return true
+end
+
+local function DragList_OnMouseWheel(frame, delta)
+	DragList_ScrollTo(frame, frame.offset - delta)
+end
+
+-- The row under the cursor
+local function DropIndex(frame, y)
+	for index = 1, frame.dropCount do
+		if y >= frame.rows[index]:GetBottom() then
+			return frame.offset + index
+		end
+	end
+
+	return frame.offset + frame.dropCount
+end
+
+-- One row per step while the drag sits on an edge
+local function DragScroll(frame, y, elapsed)
+	-- Nothing to scroll, spare rows past the end have no position either
+	if frame.total <= frame.visible then return end
+
+	local direction = 0
+
+	if y > frame.rows[1]:GetTop() then
+		direction = -1
+	elseif y < frame.rows[frame.visible]:GetBottom() then
+		direction = 1
+	end
+
+	if direction == 0 then
+		frame.scrollWait = nil
+		return
+	end
+
+	frame.scrollWait = (frame.scrollWait or 0.15) - elapsed
+	if frame.scrollWait > 0 then return end
+
+	frame.scrollWait = 0.15
+
+	-- The rows carry other entries now, the marker has to find its place again
+	if DragList_ScrollTo(frame, frame.offset + direction) then
+		frame.dropIndex = nil
+	end
+end
+
+-- The marker sits above the target while moving up and below it while moving down
+local function DragList_OnUpdate(frame, elapsed)
+	local _, y = GetCursorPosition()
+	y = y / frame:GetEffectiveScale()
+
+	DragScroll(frame, y, elapsed or 0)
+
+	local index = DropIndex(frame, y)
+	if index == frame.dropIndex then return end
+
+	local row = frame.rows[index - frame.offset]
+	if not row then return end
+
+	frame.dropIndex = index
+
+	local marker = frame.marker
+	marker:ClearAllPoints()
+
+	if index <= frame.dragIndex then
+		marker:SetPoint('BOTTOMLEFT', row, 'TOPLEFT', 0, 0)
+		marker:SetPoint('BOTTOMRIGHT', row, 'TOPRIGHT', 0, 0)
+	else
+		marker:SetPoint('TOPLEFT', row, 'BOTTOMLEFT', 0, 0)
+		marker:SetPoint('TOPRIGHT', row, 'BOTTOMRIGHT', 0, 0)
+	end
+end
+
+function Private:DragList_Init(frame, layout)
+	frame.Layout = layout
+	frame.rows = {}
+	frame.offset, frame.total, frame.visible = 0, 0, 0
+
+	frame:EnableMouseWheel(true)
+	frame:SetScript('OnMouseWheel', DragList_OnMouseWheel)
+end
+
+-- The dragged row stays dimmed until the layout runs again
+function Private:DragList_Start(frame, row)
+	frame.dragIndex = row.index
+	frame.dropIndex = nil
+	frame.scrollWait = nil
+
+	row:SetAlpha(0.4)
+	frame.marker:Show()
+	frame:SetScript('OnUpdate', DragList_OnUpdate)
+
+	DragList_OnUpdate(frame)
+end
+
+-- Ends a running drag, returns where the row came from and where it was dropped
+function Private:DragList_Stop(frame)
+	local from, to = frame.dragIndex, frame.dropIndex
+
+	frame:SetScript('OnUpdate', nil)
+	frame.dragIndex, frame.dropIndex, frame.scrollWait = nil, nil, nil
+	frame.marker:Hide()
+
+	return from, to
 end
 
 -- Open settings helper
@@ -158,6 +278,8 @@ StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 	text = Private.Name,
 	button1 = OKAY,
 	hasEditBox = 1,
+	-- Pooled dialogs keep the letter limit of the last popup, 0 lifts it for long strings
+	maxLetters = 0,
 	OnShow = function(self, data)
 		local editBox = self.EditBox
 		editBox:SetAutoFocus(false)
@@ -204,16 +326,6 @@ function Core:UpdateScale()
 	end
 end
 
--- Scale helper
-function Private:Setup_Scale(native, installer)
-	Private.Addon.db.global.scaled = not native
-
-	SetCVar('useUiScale', 1)
-	SetCVar('uiScale', native and Private.UIScale1440 or Private.UIScale1080)
-	Core:UpdateScale()
-	Private:Print(L["LuckyoneUI Scale"] .. (native and ' 1440p' or ' 1080p'), installer)
-end
-
 -- Weekly Rewards Frame chat commands
 local function WeeklyRewards()
 	LoadAddOn('Blizzard_WeeklyRewards')
@@ -251,7 +363,7 @@ local function DebugMode(msg)
 	if switch == 'on' then
 		for i = 1, GetNumAddOns() do
 			local name = GetAddOnInfo(i)
-			if not AddOns[name] and Private.IsAddOnLoaded(name) then
+			if not AddOns[name] and GetAddOnEnableState(name, Private.myGUID) > 0 then
 				DisableAddOn(name, Private.myGUID)
 				disabled[name] = true
 			end
@@ -290,13 +402,7 @@ local function LoadCommands()
 	end
 end
 
-function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
-	-- Only run the setup on login and reload, not on every loading screen
-	if not (initLogin or isReload) then return end
-
-	-- Neither flag can be set again this session, so stop listening
-	self:UnregisterEvent('PLAYER_ENTERING_WORLD')
-
+function Core:OnLogin(initLogin)
 	-- Debug mode only has to survive a reload
 	if initLogin then
 		wipe(Private.Addon.db.global.DebugDisabledAddOns)
@@ -310,7 +416,6 @@ end
 function Core:OnEnable()
 	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
 	LoadCommands()
-	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 
 	if not Private.ElvUI then
 		self:UpdateScale()

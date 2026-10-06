@@ -194,17 +194,16 @@ end
 local function Option_OnClick(self)
 	local data = self.data
 
-	if data.key then
-		selections[currentPage] = data.key
+	-- A step that bails out returns false and stays unchecked
+	if data.func() == false or not data.key then return end
 
-		for _, button in ipairs(installerFrame.Content.Options) do
-			SetButtonSelected(button, button.data == data)
-		end
+	selections[currentPage] = data.key
 
-		installerFrame.Sidebar.Buttons[currentPage].icon:Show()
+	for _, button in ipairs(installerFrame.Content.Options) do
+		SetButtonSelected(button, button.data == data)
 	end
 
-	data.func()
+	installerFrame.Sidebar.Buttons[currentPage].icon:Show()
 end
 
 local function Option_OnEnter(self)
@@ -664,8 +663,8 @@ local function BuildPages()
 			L["Select your preferred UnitFrames color theme."],
 			Green(L["Optional step. Dark is applied by default."]),
 		}, {
-			Button(L["Dark"], function() Private:Setup_Theme('dark', true) end, 'dark'),
-			Button(L["Class Color"], function() Private:Setup_Theme('class', true) end, 'class'),
+			Button(L["Dark"], function() return Private:Setup_Theme('dark', true) end, 'dark'),
+			Button(L["Class Color"], function() return Private:Setup_Theme('class', true) end, 'class'),
 		}, {
 			Group(L["Transparency"],
 				ElvUIToggle(L["Action Bars"], 'actionbar.transparent'),
@@ -749,7 +748,7 @@ local function BuildPages()
 				Toggle('map.minimap.buttons', 'map.minimapButtons.generalOptions.enable', 'map.minimapButtons'),
 				Toggle('map.worldMap.fog', 'map.worldMap.fog.enable', 'map.worldMap.fog'),
 				Toggle('misc.combatText', 'misc.combatText.generalOptions.enable', 'misc.combatText'),
-				Toggle('misc.combatLog', 'misc.combatLog.generalOptions.enable', 'misc.combatLog'),
+				Toggle('misc.combatLogging', 'misc.combatLogging.generalOptions.enable', 'misc.combatLogging'),
 				Toggle('movableFrames', 'general.movableFrames.enable', 'general.movableFrames'),
 				Toggle('misc.mailbox', 'misc.mailbox.generalOptions.enable', 'misc.mailbox'),
 				Toggle('misc.friendsList', 'misc.friendsList.generalOptions.enable', 'misc.friendsList'),
@@ -828,7 +827,7 @@ local function BuildPages()
 			L["You have completed the installation process, please click 'Finished' to reload the UI."],
 			L["Feel free to join our community Discord for support and social chats."],
 		}, {
-			Button('Discord', function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://discord.gg/xRY4bwA') end),
+			Button('Discord', function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://discord.luckyone.dev') end),
 			Button(Green(L["Finished"]), InstallComplete),
 		}),
 	}

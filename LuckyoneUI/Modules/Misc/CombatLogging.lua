@@ -35,7 +35,7 @@ local function IsSelectedContent(db)
 end
 
 local function Update()
-	local db = Private.Addon.db.profile.misc.combatLog
+	local db = Private.Addon.db.profile.misc.combatLogging
 	local logging = IsLoggingCombat()
 
 	if db.enable and IsSelectedContent(db) then
@@ -62,7 +62,7 @@ local function Update()
 end
 
 function Private:CombatLogging()
-	if not EventFrame and Private.Addon.db.profile.misc.combatLog.enable then
+	if not EventFrame and Private.Addon.db.profile.misc.combatLogging.enable then
 		EventFrame = CreateFrame('Frame')
 		EventFrame:SetScript('OnEvent', Update)
 		EventFrame:RegisterEvent('PLAYER_ENTERING_WORLD')

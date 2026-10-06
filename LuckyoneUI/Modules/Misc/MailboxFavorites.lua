@@ -13,7 +13,6 @@ local tremove = table.remove
 local wipe = wipe
 
 local CreateFrame = CreateFrame
-local GetCursorPosition = GetCursorPosition
 local strtrim = strtrim
 local UnitFactionGroup = UnitFactionGroup
 
@@ -21,19 +20,18 @@ local _G = _G
 local GameTooltip = GameTooltip
 local GameTooltip_Hide = GameTooltip_Hide
 local RAID_CLASS_COLORS = RAID_CLASS_COLORS
+local WHITE_FONT_COLOR = WHITE_FONT_COLOR
 
-local FACTIONS = {
+local Factions = {
 	Alliance = { label = 'A', name = FACTION_ALLIANCE, r = 0, g = 0.44, b = 0.87 },
 	Horde = { label = 'H', name = FACTION_HORDE, r = 0.77, g = 0.12, b = 0.23 },
 }
-
-local WHITE = { r = 1, g = 1, b = 1 }
 
 local panel, hooked, skinned
 local inset = 6 -- Row padding inside the list
 local display = {} -- Filtered copy of the favorites
 local myRealm = strlower(Private.myNormalizedRealm)
-local Layout -- The drag scripts on the buttons scroll
+local Layout -- The drag scripts on the buttons redraw through it
 
 local function CreateText(parent, justify)
 	local db = Private.Addon.db.profile.misc.mailbox
@@ -82,8 +80,8 @@ local function Button_OnEnter(button)
 	local favorite = button.favorite
 	if not favorite or panel.dragIndex then return end
 
-	local color = RAID_CLASS_COLORS[favorite.class] or WHITE
-	local info = FACTIONS[favorite.faction] or FACTIONS.Alliance
+	local color = RAID_CLASS_COLORS[favorite.class] or WHITE_FONT_COLOR
+	local info = Factions[favorite.faction] or Factions.Alliance
 	local name, realm = SplitName(favorite.name)
 
 	GameTooltip:SetOwner(button, 'ANCHOR_RIGHT')
@@ -106,97 +104,16 @@ local function Button_OnClick(button)
 end
 
 -- Drag and drop reorder
-local function ScrollTo(offset)
-	offset = min(max(offset, 0), max(panel.total - panel.visible, 0))
-	if offset == panel.offset then return end
-
-	panel.offset = offset
-	Layout()
-end
-
--- The row under the cursor
-local function DropIndex(y)
-	for index = 1, panel.dropCount do
-		if y >= panel.buttons[index]:GetBottom() then
-			return panel.offset + index
-		end
-	end
-
-	return panel.offset + panel.dropCount
-end
-
--- One row per step while the drag sits on an edge
-local function DragScroll(y, elapsed)
-	if panel.total <= panel.visible then return end
-
-	local direction = 0
-
-	if y > panel.buttons[1]:GetTop() then
-		direction = -1
-	elseif y < panel.buttons[panel.visible]:GetBottom() then
-		direction = 1
-	end
-
-	if direction == 0 then
-		panel.scrollWait = nil
-		return
-	end
-
-	panel.scrollWait = (panel.scrollWait or 0.15) - elapsed
-	if panel.scrollWait > 0 then return end
-
-	panel.scrollWait = 0.15
-	ScrollTo(panel.offset + direction)
-end
-
--- The marker sits above the target while moving up and below it while moving down
-local function Panel_OnUpdate(self, elapsed)
-	local _, y = GetCursorPosition()
-	y = y / self:GetEffectiveScale()
-
-	DragScroll(y, elapsed or 0)
-
-	local index = DropIndex(y)
-	if index == self.dropIndex then return end
-
-	local row = self.buttons[index - self.offset]
-	if not row then return end
-
-	self.dropIndex = index
-
-	self.marker:ClearAllPoints()
-
-	if index <= self.dragIndex then
-		self.marker:SetPoint('BOTTOMLEFT', row, 'TOPLEFT', 0, 0)
-		self.marker:SetPoint('BOTTOMRIGHT', row, 'TOPRIGHT', 0, 0)
-	else
-		self.marker:SetPoint('TOPLEFT', row, 'BOTTOMLEFT', 0, 0)
-		self.marker:SetPoint('TOPRIGHT', row, 'BOTTOMRIGHT', 0, 0)
-	end
-end
-
 local function Button_OnDragStart(button)
 	if not button.favorite then return end
 
-	panel.dragIndex = button.index
-	panel.dropIndex = nil
-	panel.scrollWait = nil
-
 	GameTooltip:Hide()
-	button:SetAlpha(0.4)
-	panel.marker:Show()
-	panel:SetScript('OnUpdate', Panel_OnUpdate)
-
-	Panel_OnUpdate(panel)
+	Private:DragList_Start(panel, button)
 end
 
 local function Button_OnDragStop()
-	local from, to = panel.dragIndex, panel.dropIndex
+	local from, to = Private:DragList_Stop(panel)
 	if not from then return end
-
-	panel.dragIndex, panel.dropIndex, panel.scrollWait = nil, nil, nil
-	panel.marker:Hide()
-	panel:SetScript('OnUpdate', nil)
 
 	if to and to ~= from then
 		MoveFavorite(panel.entries[from], panel.entries[to])
@@ -232,14 +149,14 @@ local function CreateButton(index)
 	button.text:SetPoint('LEFT', 4, 0)
 	button.text:SetPoint('RIGHT', button.faction, 'LEFT', -2, 0)
 
-	panel.buttons[index] = button
+	panel.rows[index] = button
 
 	return button
 end
 
 local function UpdateButton(button, favorite)
-	local color = RAID_CLASS_COLORS[favorite.class] or WHITE
-	local info = FACTIONS[favorite.faction] or FACTIONS.Alliance
+	local color = RAID_CLASS_COLORS[favorite.class] or WHITE_FONT_COLOR
+	local info = Factions[favorite.faction] or Factions.Alliance
 
 	-- The realm only shows up in the tooltip, the click sends the full name
 	button.text:SetText((SplitName(favorite.name)))
@@ -253,7 +170,7 @@ local function UpdateFonts()
 
 	Private:SetFont(panel.title, db.font, db.fontSize, db.fontOutline)
 
-	for _, button in ipairs(panel.buttons) do
+	for _, button in ipairs(panel.rows) do
 		Private:SetFont(button.text, db.font, db.fontSize, db.fontOutline)
 		Private:SetFont(button.faction, db.font, db.fontSize, db.fontOutline)
 	end
@@ -286,8 +203,8 @@ function Layout()
 	panel.offset = min(panel.offset, max(0, total - visible))
 	panel.dropCount = min(visible, total - panel.offset)
 
-	for index = 1, max(visible, #panel.buttons) do
-		local button = panel.buttons[index] or CreateButton(index)
+	for index = 1, max(visible, #panel.rows) do
+		local button = panel.rows[index] or CreateButton(index)
 		button.favorite = index <= visible and list[index + panel.offset] or nil
 		button.index = index + panel.offset
 
@@ -304,14 +221,8 @@ function Layout()
 	end
 end
 
-local function Panel_OnMouseWheel(self, delta)
-	ScrollTo(self.offset - delta)
-end
-
 local function Panel_OnHide(self)
-	self:SetScript('OnUpdate', nil)
-	self.dragIndex, self.dropIndex, self.scrollWait = nil, nil, nil
-	self.marker:Hide()
+	Private:DragList_Stop(self)
 end
 
 local function CreatePanel()
@@ -330,8 +241,6 @@ local function CreatePanel()
 	panel:SetPoint('TOPLEFT', MailFrame, 'TOPRIGHT', skinned and 1 or 0, 0)
 	panel:SetPoint('BOTTOMLEFT', MailFrame, 'BOTTOMRIGHT', skinned and 1 or 0, 0)
 	panel:EnableMouse(true)
-	panel:EnableMouseWheel(true)
-	panel:SetScript('OnMouseWheel', Panel_OnMouseWheel)
 	panel:Hide()
 
 	if skinned then
@@ -353,10 +262,7 @@ local function CreatePanel()
 
 	panel.title:SetText(L["Favorites"])
 
-	panel.buttons = {}
-	panel.offset = 0
-	panel.total = 0
-	panel.visible = 0
+	Private:DragList_Init(panel, Layout)
 
 	-- Shows where a dragged favorite lands, above the rows so it stays visible
 	panel.marker = CreateFrame('Frame', nil, panel.list)

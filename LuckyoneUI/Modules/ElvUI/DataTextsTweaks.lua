@@ -17,13 +17,8 @@ local callbackRegistered
 local function UpdateDataTextWidth()
 	if InCombatLockdown() or not Private.Addon.db.profile.misc.dataTextsTweaks then return end
 
-	local layout = Private:GetActiveProfile()
-	local width
-	if layout == 'main' then
-		width = 419 -- Main layout default value
-	elseif layout == 'healing' then
-		width = 704 -- Healer layout default value
-	end
+	-- Foreign profiles keep their own width
+	local width = Private.ActionBarsDTWidth[Private:GetActiveLayout()]
 	if not width then return end
 
 	-- Nothing to resize if the width already matches

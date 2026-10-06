@@ -28,12 +28,12 @@ function ElvUI:PLAYER_ENTERING_WORLD()
 	if Private.isRetail then
 		Private:MythicVisibility()
 	end
-	Private:NamePlates_Update()
+	Private:TargetTextures_Update()
 end
 
 -- Target and focus changes
-function ElvUI:NamePlates_Update()
-	Private:NamePlates_Update()
+function ElvUI:TargetTextures_Update()
+	Private:TargetTextures_Update()
 end
 
 -- DataTextsTweaks follows spec switches through the ElvUI OnProfileChanged callback instead
@@ -64,17 +64,17 @@ function ElvUI:OnEnable()
 		Private:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
 	end
 
-	Private:NamePlates()
+	Private:TargetTextures()
 
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 
 	-- ElvUI nameplates off (e.g. Platynator), enabling them again needs a reload
 	if E.private.nameplates.enable then
-		self:RegisterEvent('PLAYER_TARGET_CHANGED', 'NamePlates_Update')
+		self:RegisterEvent('PLAYER_TARGET_CHANGED', 'TargetTextures_Update')
 
 		-- Focus unit does not exist on Classic Era
 		if not Private.isClassic then
-			self:RegisterEvent('PLAYER_FOCUS_CHANGED', 'NamePlates_Update')
+			self:RegisterEvent('PLAYER_FOCUS_CHANGED', 'TargetTextures_Update')
 		end
 	end
 

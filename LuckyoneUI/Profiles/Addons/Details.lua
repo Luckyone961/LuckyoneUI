@@ -1,6 +1,18 @@
 local _, Private = ...
 local L = Private.L
 
+-- Alt Setup applies an existing profile through this as well
+function Private:Details_ApplyProfile(name)
+	-- Apply the profile
+	if Details:GetCurrentProfileName() ~= name then
+		Details:ApplyProfile(name)
+	end
+
+	-- Load the profile on all characters
+	Details.always_use_profile = true
+	Details.always_use_profile_name = name
+end
+
 -- Details profiles
 function Private:Setup_Details(installer)
 	if not Private.IsAddOnLoaded('Details') then Private:Print('Details ' .. L["is not installed or enabled."]) return end
@@ -17,15 +29,7 @@ function Private:Setup_Details(installer)
 
 	-- Profile import, true overwrites an existing profile with that name instead of making a renamed copy
 	Details:ImportProfile(importString, name, nil, nil, true)
-
-	-- Apply the profile
-	if Details:GetCurrentProfileName() ~= name then
-		Details:ApplyProfile(name)
-	end
-
-	-- Load the profile on all characters
-	Details.always_use_profile = true
-	Details.always_use_profile_name = name
+	Private:Details_ApplyProfile(name)
 
 	Private:Print(L["Details profile has been set."], installer)
 end

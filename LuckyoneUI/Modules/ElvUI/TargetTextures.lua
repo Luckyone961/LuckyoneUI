@@ -40,7 +40,7 @@ end
 
 -- Only touches plates whose texture actually changed (old special -> default, new special -> texture)
 -- instead of re-applying textures to every visible plate
-function Private:NamePlates_Update()
+function Private:TargetTextures_Update()
 	if not NP.Plates or not E.private.nameplates.enable then return end
 
 	local db = Private.Addon.db.profile.nameplates
@@ -79,19 +79,19 @@ function Private:NamePlates_Update()
 end
 
 -- Target and focus changes come in through the ElvUI hub
-function Private:NamePlates()
+function Private:TargetTextures()
 	-- ElvUI nameplates off (e.g. Platynator), enabling them again needs a reload
 	if not E.private.nameplates.enable then return end
 
 	hooksecurefunc(NP, 'Update_StatusBars', function()
 		wipe(styledPlates)
-		Private:NamePlates_Update()
+		Private:TargetTextures_Update()
 	end)
 
 	-- Plates are recycled and keep the last texture, so re-resolve whenever a unit is assigned
 	hooksecurefunc(NP, 'UpdatePlateBase', function()
-		Private:NamePlates_Update()
+		Private:TargetTextures_Update()
 	end)
 
-	Private:NamePlates_Update()
+	Private:TargetTextures_Update()
 end

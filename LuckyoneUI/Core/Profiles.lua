@@ -11,7 +11,6 @@ local DecodeBase64 = C_EncodingUtil.DecodeBase64
 local DecompressString = C_EncodingUtil.DecompressString
 local DeserializeCBOR = C_EncodingUtil.DeserializeCBOR
 local EncodeBase64 = C_EncodingUtil.EncodeBase64
-local MergeTable = MergeTable
 local SerializeCBOR = C_EncodingUtil.SerializeCBOR
 local strtrim = strtrim
 
@@ -33,7 +32,7 @@ end
 
 -- Profile import, string carries the export name
 local function DecodeProfile(text)
-	local encoded = strmatch(strtrim(text), '^!L1UI!(.+)$')
+	local encoded = type(text) == 'string' and strmatch(strtrim(text), '^!L1UI!(.+)$')
 	local compressed = encoded and DecodeBase64(encoded)
 	local serialized = compressed and DecompressString(compressed)
 	local success, data = pcall(DeserializeCBOR, serialized)
@@ -42,16 +41,14 @@ local function DecodeProfile(text)
 	end
 end
 
-function Private:LoadProfile(name, data, movers)
+local function LoadProfile(name, data, movers)
 	local db = Private.Addon.db
 	db.profiles[name] = data
 	db:SetProfile(name)
 
-	-- The reload applies them through E:SetMoversPositions
-	if movers and Private.ElvUI then
-		local E = ElvUI[1]
-		E.db.movers = E.db.movers or {}
-		MergeTable(E.db.movers, movers)
+	-- Damage meter windows placed with their own mover
+	if movers and Private.Modules.DamageMeter then
+		Private:DamageMeter_ImportMovers(movers)
 	end
 end
 
@@ -62,7 +59,7 @@ function Private:ImportProfile(text)
 	elseif Private.Addon.db.profiles[name] then
 		StaticPopup_Show('LUCKYONE_IMPORT', name, nil, { name = name, profile = data, movers = movers })
 	else
-		Private:LoadProfile(name, data, movers)
+		LoadProfile(name, data, movers)
 		StaticPopup_Show('LUCKYONE_RL')
 	end
 end
@@ -77,7 +74,7 @@ _G.LuckyoneUI = {
 		local imported, data, movers = DecodeProfile(text)
 		if data then
 			name = name or imported
-			Private:LoadProfile(name, data, movers)
+			LoadProfile(name, data, movers)
 			return name
 		end
 	end,
@@ -96,13 +93,13 @@ StaticPopupDialogs['LUCKYONE_IMPORT'] = {
 		self.EditBox:HighlightText()
 	end,
 	OnAccept = function(self, data)
-		Private:LoadProfile(strtrim(self.EditBox:GetText()), data.profile, data.movers)
+		LoadProfile(strtrim(self.EditBox:GetText()), data.profile, data.movers)
 		StaticPopup_Show('LUCKYONE_RL')
 	end,
 	EditBoxOnEnterPressed = function(self, data)
 		local dialog = self:GetParent()
 		if dialog.Button1:IsEnabled() then
-			Private:LoadProfile(strtrim(self:GetText()), data.profile, data.movers)
+			LoadProfile(strtrim(self:GetText()), data.profile, data.movers)
 			StaticPopup_Show('LUCKYONE_RL')
 			dialog:Hide()
 		end

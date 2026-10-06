@@ -337,8 +337,7 @@ local function ReplaceLabelFonts(widget)
 	for _, child in next, widget.children do
 		local fontObject = child.fontObject
 		if fontObject then
-			local _, size, flags = fontObject:GetFont()
-			fontObject:SetFont(E.media.normFont, size, flags)
+			ReplaceFont(fontObject)
 		end
 
 		if child.children then
@@ -389,6 +388,8 @@ local function BrandedExport_Open()
 end
 
 -- Guide importer
+local ImporterButtons = { 'importButton', 'importSplicedString', 'purgeButton', 'reloadButton', 'deleteButton' }
+
 local function SkinImporterButton(button)
 	addon.ui.v2:SetFrameBackdropShown(button, false)
 	S:HandleButton(button)
@@ -430,8 +431,8 @@ local function Importer_UpdateTheme(importer)
 		ReplaceFont(text)
 	end
 
-	for _, button in next, { widgets.importButton, widgets.importSplicedString, widgets.purgeButton, widgets.reloadButton, widgets.deleteButton } do
-		ReplaceFont(button.text)
+	for _, key in next, ImporterButtons do
+		ReplaceFont(widgets[key].text)
 	end
 end
 
@@ -485,8 +486,8 @@ local function Importer_Open()
 	addon.ui.v2:SetFrameBackdropShown(field, false)
 	field:SetTemplate()
 
-	for _, button in next, { widgets.importButton, widgets.importSplicedString, widgets.purgeButton, widgets.reloadButton, widgets.deleteButton } do
-		SkinImporterButton(button.frame)
+	for _, key in next, ImporterButtons do
+		SkinImporterButton(widgets[key].frame)
 	end
 
 	if E.private.skins.ace3Enable then

@@ -1,5 +1,5 @@
 local _, Private = ...
-local Blizzard = Private.Modules.Blizzard
+local General = Private.Modules.General
 
 local hooksecurefunc = hooksecurefunc
 
@@ -31,13 +31,14 @@ local function EasyDelete()
 	hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM, 'OnShow', EasyDelete_OnShow)
 end
 
-function Blizzard:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
-	-- Only run the setup on login and reload, not on every loading screen
-	if not (initLogin or isReload) then return end
+-- Removes the Realm names from friendly Nameplates in name-only mode while in a Dungeon/Raid/Battleground
+-- This sets (NamePlateFriendlyFrameOptions.updateNameUsesGetUnitName = nil) without tainting
+local function RemoveNameplateRealm()
+	if not (Private.isModern and Private.Addon.db.profile.misc.removeNameplateRealm) then return end
+	_G.TextureLoadingGroupMixin.RemoveTexture({textures = _G.NamePlateFriendlyFrameOptions}, 'updateNameUsesGetUnitName')
+end
 
-	-- Neither flag can be set again this session, so stop listening
-	self:UnregisterEvent('PLAYER_ENTERING_WORLD')
-
+function General:OnLogin()
 	if Private.isRetail or Private.isMists then
 		Private:AutoAcceptRole()
 	end
@@ -57,8 +58,5 @@ function Blizzard:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 	if Private.isRetail or Private.isMists then
 		Private:QuickSignup()
 	end
-end
-
-function Blizzard:OnEnable()
-	self:RegisterEvent('PLAYER_ENTERING_WORLD')
+	RemoveNameplateRealm()
 end

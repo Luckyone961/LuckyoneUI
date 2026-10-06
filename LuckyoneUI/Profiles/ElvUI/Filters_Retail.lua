@@ -23,17 +23,6 @@ function Private:Setup_Filters(installer)
 	-- General vars
 	local aurawatch = E.global.unitframe.aurawatch
 
-	-- Classes setup
-	local classes = {
-		-- Healers
-		DRUID = aurawatch.DRUID,
-		EVOKER = aurawatch.EVOKER,
-		MONK = aurawatch.MONK,
-		PALADIN = aurawatch.PALADIN,
-		PRIEST = aurawatch.PRIEST,
-		SHAMAN = aurawatch.SHAMAN,
-	}
-
 	local ids = {
 		DRUID = {
 			-- Restoration
@@ -99,11 +88,11 @@ function Private:Setup_Filters(installer)
 	}
 
 	for class, classIDs in pairs(ids) do
-		Add(classes[class], classIDs)
+		Add(aurawatch[class], classIDs)
 	end
 
 	-- Restoration
-	classes['DRUID'][774] = { -- Rejuvenation
+	aurawatch['DRUID'][774] = { -- Rejuvenation
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -112,7 +101,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
-	classes['DRUID'][155777] = { -- Rejuvenation (Germination)
+	aurawatch['DRUID'][155777] = { -- Rejuvenation (Germination)
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -121,7 +110,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = 20,
 	}
-	classes['DRUID'][33763] = { -- Lifebloom
+	aurawatch['DRUID'][33763] = { -- Lifebloom
 		['enabled'] = true,
 		['xOffset'] = 41,
 		['displayText'] = true,
@@ -131,7 +120,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['countX'] = 13,
 	}
-	classes['DRUID'][8936] = { -- Regrowth
+	aurawatch['DRUID'][8936] = { -- Regrowth
 		['enabled'] = true,
 		['point'] = 'TOPRIGHT',
 		['displayText'] = true,
@@ -140,7 +129,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -20,
 	}
-	classes['DRUID'][48438] = { -- Wild Growth
+	aurawatch['DRUID'][48438] = { -- Wild Growth
 		['enabled'] = true,
 		['point'] = 'TOPRIGHT',
 		['displayText'] = true,
@@ -149,7 +138,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = 1,
 	}
-	classes['DRUID'][474754] = { -- Symbiotic Relationship
+	aurawatch['DRUID'][474754] = { -- Symbiotic Relationship
 		['enabled'] = true,
 		['point'] = 'LEFT',
 		['sizeOffset'] = 6,
@@ -158,7 +147,7 @@ function Private:Setup_Filters(installer)
 	}
 
 	-- Preservation
-	classes['EVOKER'][366155] = { -- Reversion
+	aurawatch['EVOKER'][366155] = { -- Reversion
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -167,7 +156,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
-	classes['EVOKER'][367364] = { -- Reversion (Echo)
+	aurawatch['EVOKER'][367364] = { -- Reversion (Echo)
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -176,7 +165,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = 20,
 	}
-	classes['EVOKER'][355941] = { -- Dream Breath
+	aurawatch['EVOKER'][355941] = { -- Dream Breath
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -185,7 +174,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = 41,
 	}
-	classes['EVOKER'][376788] = { -- Dream Breath (Echo)
+	aurawatch['EVOKER'][376788] = { -- Dream Breath (Echo)
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -195,7 +184,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = 62,
 	}
-	classes['EVOKER'][373267] = { -- Lifebind
+	aurawatch['EVOKER'][373267] = { -- Lifebind
 		['enabled'] = true,
 		['point'] = 'TOPRIGHT',
 		['displayText'] = true,
@@ -204,7 +193,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -20,
 	}
-	classes['EVOKER'][364343] = { -- Echo
+	aurawatch['EVOKER'][364343] = { -- Echo
 		['enabled'] = true,
 		['point'] = 'TOPRIGHT',
 		['displayText'] = true,
@@ -213,10 +202,10 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = 1,
 	}
-	classes['EVOKER'][363502]['enabled'] = false -- Dream Flight
+	aurawatch['EVOKER'][363502]['enabled'] = false -- Dream Flight
 
 	-- Augmentation
-	classes['EVOKER'][360827] = { -- Blistering Scales
+	aurawatch['EVOKER'][360827] = { -- Blistering Scales
 		['enabled'] = true,
 		['countAnchor'] = 'CENTER',
 		['point'] = 'TOPLEFT',
@@ -225,7 +214,7 @@ function Private:Setup_Filters(installer)
 		['xOffset'] = -1,
 		['yOffset'] = 1,
 	}
-	classes['EVOKER'][410089] = { -- Prescience
+	aurawatch['EVOKER'][410089] = { -- Prescience
 		['enabled'] = true,
 		['displayText'] = true,
 		['yOffset'] = 1,
@@ -235,20 +224,20 @@ function Private:Setup_Filters(installer)
 		['xOffset'] = 1,
 	}
 
-	classes['EVOKER'][369459] = { -- Source of Magic
+	aurawatch['EVOKER'][369459] = { -- Source of Magic
 		['enabled'] = true,
 		['point'] = 'LEFT',
 		['sizeOffset'] = 6,
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
-	classes['EVOKER'][395152]['enabled'] = false -- Ebon Might (Others)
-	classes['EVOKER'][410263]['enabled'] = false -- Inferno's Blessing
-	classes['EVOKER'][410686]['enabled'] = false -- Symbiotic Bloom
-	classes['EVOKER'][413984]['enabled'] = false -- Shifting Sands
+	aurawatch['EVOKER'][395152]['enabled'] = false -- Ebon Might (Others)
+	aurawatch['EVOKER'][410263]['enabled'] = false -- Inferno's Blessing
+	aurawatch['EVOKER'][410686]['enabled'] = false -- Symbiotic Bloom
+	aurawatch['EVOKER'][413984]['enabled'] = false -- Shifting Sands
 
 	-- Monk
-	classes['MONK'][119611] = { -- Renewing Mist
+	aurawatch['MONK'][119611] = { -- Renewing Mist
 		['enabled'] = true,
 		['displayText'] = true,
 		['yOffset'] = 1,
@@ -257,7 +246,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
-	classes['MONK'][450769] = { -- Aspect of Harmony
+	aurawatch['MONK'][450769] = { -- Aspect of Harmony
 		['enabled'] = true,
 		['displayText'] = true,
 		['yOffset'] = 1,
@@ -266,7 +255,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
-	classes['MONK'][124682] = { -- Enveloping Mist
+	aurawatch['MONK'][124682] = { -- Enveloping Mist
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -277,7 +266,7 @@ function Private:Setup_Filters(installer)
 		['countX'] = 0,
 		['xOffset'] = 20,
 	}
-	classes['MONK'][115175] = { -- Soothing Mist
+	aurawatch['MONK'][115175] = { -- Soothing Mist
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -288,7 +277,7 @@ function Private:Setup_Filters(installer)
 	}
 
 	-- Holy
-	classes['PALADIN'][53563] = { -- Beacon of Light
+	aurawatch['PALADIN'][53563] = { -- Beacon of Light
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -297,7 +286,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
-	classes['PALADIN'][156910] = { -- Beacon of Faith
+	aurawatch['PALADIN'][156910] = { -- Beacon of Faith
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -306,7 +295,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
-	classes['PALADIN'][200025] = { -- Beacon of Virtue
+	aurawatch['PALADIN'][200025] = { -- Beacon of Virtue
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -315,7 +304,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
-	classes['PALADIN'][156322] = { -- Eternal Flame
+	aurawatch['PALADIN'][156322] = { -- Eternal Flame
 		['enabled'] = true,
 		['displayText'] = true,
 		['yOffset'] = 1,
@@ -323,7 +312,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = 20,
 	}
-	classes['PALADIN'][1244893] = { -- Beacon of the Savior
+	aurawatch['PALADIN'][1244893] = { -- Beacon of the Savior
 		['enabled'] = true,
 		['point'] = 'TOP',
 		['displayText'] = true,
@@ -333,7 +322,7 @@ function Private:Setup_Filters(installer)
 	}
 
 	-- Holy
-	classes['PRIEST'][139] = { -- Renew
+	aurawatch['PRIEST'][139] = { -- Renew
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -342,7 +331,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
-	classes['PRIEST'][77489] = { -- Echo of Light
+	aurawatch['PRIEST'][77489] = { -- Echo of Light
 		['enabled'] = false,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -353,7 +342,7 @@ function Private:Setup_Filters(installer)
 	}
 
 	-- Discipline
-	classes['PRIEST'][41635] = { -- Prayer of Mending
+	aurawatch['PRIEST'][41635] = { -- Prayer of Mending
 		['enabled'] = true,
 		['point'] = 'TOP',
 		['displayText'] = true,
@@ -363,7 +352,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['countX'] = 13,
 	}
-	classes['PRIEST'][17] = {  -- Power Word: Shield
+	aurawatch['PRIEST'][17] = {  -- Power Word: Shield
 		['enabled'] = true,
 		['point'] = 'TOPRIGHT',
 		['displayText'] = true,
@@ -373,7 +362,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -20,
 	}
-	classes['PRIEST'][1253593] = { -- Void Shield
+	aurawatch['PRIEST'][1253593] = { -- Void Shield
 		['enabled'] = true,
 		['point'] = 'TOPRIGHT',
 		['displayText'] = true,
@@ -382,7 +371,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -20,
 	}
-	classes['PRIEST'][194384] = { -- Atonement
+	aurawatch['PRIEST'][194384] = { -- Atonement
 		['enabled'] = true,
 		['displayText'] = true,
 		['yOffset'] = 1,
@@ -392,7 +381,7 @@ function Private:Setup_Filters(installer)
 	}
 
 	-- Restoration
-	classes['SHAMAN'][974] = { -- Earth Shield
+	aurawatch['SHAMAN'][974] = { -- Earth Shield
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -401,7 +390,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
-	classes['SHAMAN'][383648] = { -- Earth Shield (Elemental Orbit)
+	aurawatch['SHAMAN'][383648] = { -- Earth Shield (Elemental Orbit)
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -410,7 +399,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -1,
 	}
-	classes['SHAMAN'][61295] = { -- Riptide
+	aurawatch['SHAMAN'][61295] = { -- Riptide
 		['enabled'] = true,
 		['point'] = 'TOPLEFT',
 		['displayText'] = true,
@@ -419,7 +408,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = 20,
 	}
-	classes['SHAMAN'][382024] = { -- Earthliving Weapon
+	aurawatch['SHAMAN'][382024] = { -- Earthliving Weapon
 		['enabled'] = true,
 		['point'] = 'TOPRIGHT',
 		['displayText'] = true,
@@ -428,7 +417,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = -20,
 	}
-	classes['SHAMAN'][207400] = { -- Ancestral Vigor
+	aurawatch['SHAMAN'][207400] = { -- Ancestral Vigor
 		['enabled'] = true,
 		['point'] = 'TOPRIGHT',
 		['displayText'] = true,
@@ -437,7 +426,7 @@ function Private:Setup_Filters(installer)
 		['style'] = 'texturedIcon',
 		['xOffset'] = 1,
 	}
-	classes['SHAMAN'][444490]['enabled'] = false -- Hydrobubble
+	aurawatch['SHAMAN'][444490]['enabled'] = false -- Hydrobubble
 
 	Private:Print(L["Custom ElvUI aura filters loaded."], installer)
 end

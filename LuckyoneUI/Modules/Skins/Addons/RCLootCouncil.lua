@@ -19,19 +19,19 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
--- Windows: transparent content with a solid title
--- The addon reapplies its own backdrop on every skin update
-local function SkinContent(content)
-	content:SetTemplate('Transparent')
+-- Window content and LibDialog popups, the addon reapplies its own backdrop on every update and reset
+local function SkinTransparent(frame)
+	frame:SetTemplate('Transparent')
 end
 
 local function SkinTitle(title)
 	title:SetTemplate()
 end
 
+-- Windows: transparent content with a solid title
 local function SkinFrame(frame)
-	SkinContent(frame.content)
-	hooksecurefunc(frame.content, 'Update', SkinContent)
+	SkinTransparent(frame.content)
+	hooksecurefunc(frame.content, 'Update', SkinTransparent)
 
 	SkinTitle(frame.title)
 	hooksecurefunc(frame.title, 'Update', SkinTitle)
@@ -93,15 +93,11 @@ local function SkinScrollTable(lib, _, _, _, _, parent)
 end
 
 -- LibDialog popups, the dialog frames and their widgets
-local function Dialog_Reset(dialog)
-	dialog:SetTemplate('Transparent')
-end
-
 local function SkinDialogs(lib)
 	for _, dialog in next, lib.active_dialogs do
 		if not dialog.isSkinned then
-			Dialog_Reset(dialog)
-			hooksecurefunc(dialog, 'Reset', Dialog_Reset)
+			SkinTransparent(dialog)
+			hooksecurefunc(dialog, 'Reset', SkinTransparent)
 			S:HandleCloseButton(dialog.close_button)
 
 			dialog.isSkinned = true
@@ -129,9 +125,7 @@ local function SkinDropDownLists()
 
 		if list and not list.isSkinned then
 			for _, backdrop in next, { _G[name .. 'Backdrop'], _G[name .. 'MenuBackdrop'] } do
-				if backdrop then
-					backdrop:SetTemplate('Transparent')
-				end
+				backdrop:SetTemplate('Transparent')
 			end
 
 			list.isSkinned = true

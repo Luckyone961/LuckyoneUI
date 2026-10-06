@@ -164,7 +164,7 @@ Private.Defaults = {
 			hide = false,
 		},
 		misc = {
-			combatLog = {
+			combatLogging = {
 				enable = false,
 				notify = true,
 				instances = { party = true, raid = true, scenario = false },

@@ -118,8 +118,8 @@ function Private:ExpandMerchant()
 	end
 
 	-- ElvUI stops skinning the slots at twelve
-	if Private.Skin_Merchant then
-		Private:Skin_Merchant(_G.BUYBACK_ITEMS_PER_PAGE + 1, 20)
+	if Private.Skin_ExpandMerchant then
+		Private:Skin_ExpandMerchant(_G.BUYBACK_ITEMS_PER_PAGE + 1, 20)
 	end
 
 	local oldWidth = MerchantFrame:GetWidth()

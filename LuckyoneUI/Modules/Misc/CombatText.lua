@@ -1,5 +1,7 @@
 local _, Private = ...
 
+local type = type
+
 local CreateFrame = CreateFrame
 
 local _G = _G
@@ -35,8 +37,14 @@ function Private:CombatText_Update()
 
 	Private:SetFont(frame.text, db.font, db.fontSize, db.fontOutline)
 
+	-- The anchor is typed in by hand, anything that isn't a frame falls back to UIParent
+	local anchor = _G[db.anchor]
+	if not (type(anchor) == 'table' and anchor.IsObjectType and anchor:IsObjectType('Frame')) then
+		anchor = UIParent
+	end
+
 	frame:ClearAllPoints()
-	frame:SetPoint('CENTER', _G[db.anchor] or UIParent, 'CENTER', db.xOffset, db.yOffset)
+	frame:SetPoint('CENTER', anchor, 'CENTER', db.xOffset, db.yOffset)
 end
 
 -- Restore profile defaults config button

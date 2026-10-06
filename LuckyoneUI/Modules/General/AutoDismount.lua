@@ -3,6 +3,7 @@ local _, Private = ...
 local CreateFrame = CreateFrame
 local Dismount = Dismount
 local IsFlying = IsFlying
+local issecretvalue = issecretvalue
 
 -- Spells list
 local DisabledSpells = {
@@ -17,7 +18,8 @@ function Private:AutoDismount()
 
 	local EventFrame = CreateFrame('Frame')
 	EventFrame:SetScript('OnEvent', function(_, _, _, _, _, spellID)
-		if DisabledSpells[spellID] and not IsFlying('player') then
+		-- Spells flagged as always secret can't be used as a table key
+		if not issecretvalue(spellID) and DisabledSpells[spellID] and not IsFlying('player') then
 			Dismount()
 		end
 	end)

@@ -21,8 +21,14 @@ Private.LayoutNames = {
 	healing = 'Luckyone Healing',
 }
 
+-- ActionBars DataText width by layout
+Private.ActionBarsDTWidth = {
+	main = 419,
+	healing = 704,
+}
+
 -- Layout of the active ElvUI profile, nil for a foreign one
-function Private:GetActiveProfile()
+function Private:GetActiveLayout()
 	local name = E.data:GetCurrentProfile()
 	if strfind(name, Private.LayoutNames.main, 1, true) then
 		return 'main'
@@ -62,7 +68,6 @@ local function ApplyPartyShared()
 		fontOutline = Private.Outline,
 		justifyH = 'CENTER',
 		size = 14,
-		text_format = '',
 		xOffset = 0,
 		yOffset = 0
 	}
@@ -1784,11 +1789,8 @@ local function Setup_ElvUI(layout, partyStyle)
 
 	end
 
-	-- Initial DT width, the panel is missing when Setup_GlobalDB bailed out in combat
-	local actionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
-	if actionBarsDT then
-		actionBarsDT.width = (layout == 'main' and 419) or (layout == 'healing' and 704)
-	end
+	-- Initial DT width
+	E.global.datatexts.customPanels.Luckyone_ActionBars_DT.width = Private.ActionBarsDTWidth[layout]
 
 	-- Custom nonRetail changes
 	-- Extra bar next to the left chat panel
@@ -1857,7 +1859,6 @@ function Private:Setup_NamePlates()
 
 	-- NamePlates general
 	E.db.nameplates.classColorNames = true
-	E.db.nameplates.fadeIn = false
 	E.db.nameplates.lowHealthThreshold = 0
 	E.db.nameplates.overlapH = 1.1
 	E.db.nameplates.overlapV = 1.7
@@ -2142,7 +2143,7 @@ function Private:Setup_AltProfile(profile, layout)
 	-- Correct initial DT width
 	local actionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 	if actionBarsDT then
-		actionBarsDT.width = (layout == 'healing' and 704) or 419
+		actionBarsDT.width = Private.ActionBarsDTWidth[layout]
 	end
 
 	Private:Setup_PrivateDB()

@@ -58,16 +58,12 @@ local function AutoComplete_DisplayResults(frame)
 end
 
 local function SkinAutoComplete(frame)
-	frame:StripTextures(nil, true)
+	for _, panel in next, { frame, frame.Tooltip } do
+		panel:StripTextures(nil, true)
 
-	frame:CreateBackdrop('Transparent')
-	frame.backdrop:SetOutside(frame.Background)
-
-	local tooltip = frame.Tooltip
-	tooltip:StripTextures(nil, true)
-
-	tooltip:CreateBackdrop('Transparent')
-	tooltip.backdrop:SetOutside(tooltip.Background)
+		panel:CreateBackdrop('Transparent')
+		panel.backdrop:SetOutside(panel.Background)
+	end
 
 	hooksecurefunc(frame, 'DisplayResults', AutoComplete_DisplayResults)
 end

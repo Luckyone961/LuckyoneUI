@@ -21,10 +21,20 @@ local function SkinPanel(panel)
 	panel:CreateBackdrop()
 end
 
-local function CreateHighlight(button)
-	local highlight = button:CreateTexture(nil, 'HIGHLIGHT')
+-- Buttons that bring their own backdrop, the ElvUI one goes on a child
+local function SkinBackdropButton(button)
+	button:SetBackdrop()
+	S:HandleButton(button, nil, nil, nil, true)
+end
+
+-- Transparent backdrop with the hover highlight inside it
+local function SkinRowBackdrop(row)
+	row:SetBackdrop()
+	row:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
+
+	local highlight = row:CreateTexture(nil, 'HIGHLIGHT')
 	highlight:SetColorTexture(1, 1, 1, .25)
-	highlight:SetInside(button.backdrop)
+	highlight:SetInside(row.backdrop)
 end
 
 -- The selected row is painted in the theme color of the dungeon
@@ -46,10 +56,7 @@ end
 -- Boss and quest rows, faction buttons
 local function SkinListRow(row)
 	local r, g, b = row:GetBackdropColor()
-
-	row:SetBackdrop()
-	row:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
-	CreateHighlight(row)
+	SkinRowBackdrop(row)
 
 	local selected = row:CreateTexture(nil, 'BACKGROUND')
 	local vr, vg, vb = unpack(E.media.rgbvaluecolor)
@@ -79,9 +86,7 @@ end
 
 -- Loot rows, quest rewards and the quest item buttons
 local function SkinItemButton(button)
-	button:SetBackdrop()
-	button:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
-	CreateHighlight(button)
+	SkinRowBackdrop(button)
 
 	local icon = button.icon
 	icon:SetTexCoords()
@@ -133,8 +138,7 @@ local function HomeContent_SetHeight(content)
 	for _, card in next, { content:GetChildren() } do
 		if not card.IsSkinned then
 			-- Border around the dungeon art
-			card:SetBackdrop()
-			card:CreateBackdrop()
+			SkinPanel(card)
 			card.backdrop:SetInside(card, 3, 3)
 			card.innerGlow:Hide()
 
@@ -152,7 +156,8 @@ local function RouteContent_SetHeight(content)
 	end
 end
 
-local function SearchResults_SetHeight(results)
+-- Search results and loot filter results
+local function Results_SetHeight(results)
 	for _, row in next, { results:GetChildren() } do
 		-- Skip the template borders without thin borders
 		if not row.IsSkinned and row:IsObjectType('Button') then
@@ -200,15 +205,6 @@ local function Skin_LootFilterWindow(frame)
 	window.IsSkinned = true
 end
 
-local function ResultsContent_SetHeight(content)
-	for _, row in next, { content:GetChildren() } do
-		if not row.IsSkinned then
-			row:GetHighlightTexture():SetColorTexture(1, 1, 1, .25)
-			row.IsSkinned = true
-		end
-	end
-end
-
 -- Loot Filter results list, covers the journal when no boss matches
 local function Skin_LootFilterResults(frame)
 	local panel = frame.lootFilterResults
@@ -219,8 +215,8 @@ local function Skin_LootFilterResults(frame)
 	S:HandleButton(panel.filter)
 	S:HandleScrollBar(panel.scroll.ScrollBar)
 
-	hooksecurefunc(panel.content, 'SetHeight', ResultsContent_SetHeight)
-	ResultsContent_SetHeight(panel.content)
+	hooksecurefunc(panel.content, 'SetHeight', Results_SetHeight)
+	Results_SetHeight(panel.content)
 
 	panel.IsSkinned = true
 end
@@ -297,21 +293,17 @@ local function Skin_Frame()
 
 	local searchResults = frame.searchResultsFrame
 	searchResults:SetTemplate('Transparent')
-	hooksecurefunc(searchResults, 'SetHeight', SearchResults_SetHeight)
+	hooksecurefunc(searchResults, 'SetHeight', Results_SetHeight)
 
 	-- Dungeon List
 	local home = frame.homePanel
 	home:SetBackdrop()
 	home:StripTextures()
 
-	local hideButton = frame.hideDungeonsButton
-	hideButton:SetBackdrop()
-	S:HandleButton(hideButton, nil, nil, nil, true)
+	SkinBackdropButton(frame.hideDungeonsButton)
 
 	-- Loot Filter
-	local filterButton = frame.lootFilterButton
-	filterButton:SetBackdrop()
-	S:HandleButton(filterButton, nil, nil, nil, true)
+	SkinBackdropButton(frame.lootFilterButton)
 
 	hooksecurefunc(FDJ, 'ToggleLootFilterWindow', Skin_LootFilterWindow)
 	hooksecurefunc(FDJ, 'ShowLootFilterList', Skin_LootFilterResults)
@@ -385,9 +377,7 @@ local function Skin_Frame()
 		frame.questParchment:SetInside(frame.questRightPanel.backdrop)
 	end
 
-	local shareButton = frame.questShareButton
-	shareButton:SetBackdrop()
-	S:HandleButton(shareButton, nil, nil, nil, true)
+	SkinBackdropButton(frame.questShareButton)
 
 	S:HandleButton(frame.questMapButton)
 	S:HandleButton(frame.questChainButton)

@@ -4,7 +4,7 @@ local L = Private.L
 local _G = _G
 
 -- Northern Sky Raid Tools profile
-function Private:Setup_NSRT()
+function Private:Setup_NorthernSkyRaidTools()
 	if not Private.IsAddOnLoaded('NorthernSkyRaidTools') then Private:Print('NorthernSkyRaidTools ' .. L["is not installed or enabled."]) return end
 
 	-- Global db

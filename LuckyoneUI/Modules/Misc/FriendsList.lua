@@ -187,7 +187,8 @@ end
 -- Blizzard anchors the star behind the width of its own name text, ours is a different length
 -- Blizzard re-anchors it to the name on every update, so the text boxes may never anchor to the star
 local function UpdateFavorite(button, db)
-	local favorite = button.Favorite -- Retail only
+	-- Retail and Forever only
+	local favorite = button.Favorite
 	if not favorite then return end
 
 	local name, info, gameIcon = button.name, button.info, button.gameIcon

@@ -13,7 +13,6 @@ local xpcall = xpcall
 local CopyTable = CopyTable
 local CreateFrame = CreateFrame
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
-local GetBuildInfo = GetBuildInfo
 local GetRealmName = GetRealmName
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 local MergeTable = MergeTable
@@ -64,9 +63,6 @@ Private.Texture = 'Minimalist'
 -- UI scale values
 Private.UIScale1440 = 768 / 1440
 Private.UIScale1080 = 768 / 1080
-
--- Build info
-Private.GameVersion = GetBuildInfo()
 
 -- Game flavors
 Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
@@ -203,21 +199,23 @@ end
 
 Private.Modules = {
 	Core = NewModule(),
-	Blizzard = NewModule(),
 	DamageMeter = (Private.ElvUI and Private.isModern) and NewModule() or nil,
 	ElvUI = Private.ElvUI and NewModule() or nil,
+	General = NewModule(),
 	Map = NewModule(),
 	Misc = NewModule(),
 }
 
 -- SavedVariables are ready at ADDON_LOADED
--- Modules enable at PLAYER_LOGIN in creation order
+-- Modules enable at PLAYER_LOGIN in creation order, OnLogin runs on the first loading screen (login or reload)
 local loader = CreateFrame('Frame')
 loader:RegisterEvent('ADDON_LOADED')
 loader:RegisterEvent('PLAYER_LOGIN')
+loader:RegisterEvent('PLAYER_ENTERING_WORLD')
 loader:RegisterEvent('PLAYER_LOGOUT')
-loader:SetScript('OnEvent', function(self, event, addon)
+loader:SetScript('OnEvent', function(self, event, ...)
 	if event == 'ADDON_LOADED' then
+		local addon = ...
 		if addon ~= Name then return end
 		self:UnregisterEvent(event)
 
@@ -247,8 +245,17 @@ loader:SetScript('OnEvent', function(self, event, addon)
 
 		-- Standalone config inside the Blizzard settings panel
 		if not Private.ElvUI then
-			Private:BuildConfig()
 			Private:RegisterSettings()
+		end
+	elseif event == 'PLAYER_ENTERING_WORLD' then
+		self:UnregisterEvent(event)
+
+		local initLogin = ...
+		for i = 1, #modules do
+			local module = modules[i]
+			if module.OnLogin then
+				xpcall(module.OnLogin, geterrorhandler(), module, initLogin)
+			end
 		end
 	else
 		Private:StripDefaults(sv.global, Private.Defaults.global)

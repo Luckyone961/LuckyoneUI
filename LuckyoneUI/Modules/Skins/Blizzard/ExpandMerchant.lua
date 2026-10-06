@@ -55,7 +55,7 @@ local function Merchant_UpdateMerchantInfo()
 	end
 end
 
-function Private:Skin_Merchant(first, last)
+function Private:Skin_ExpandMerchant(first, last)
 	if not (E.private.skins.blizzard.enable and E.private.skins.blizzard.merchant) then return end
 
 	firstSlot, lastSlot = first, last

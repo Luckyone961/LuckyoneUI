@@ -15,6 +15,7 @@ local floor = math.floor
 local pairs = pairs
 local sort = table.sort
 local tinsert = table.insert
+local type = type
 local unpack = unpack
 local wipe = table.wipe
 
@@ -27,6 +28,9 @@ local Minimap = _G.Minimap
 
 local E = unpack(ElvUI)
 local M = E:GetModule('Minimap')
+
+local buttonBar -- Created by the first layout
+local hooked, updating, updatePending
 
 local function IsLandingPageButton(button)
 	return Private.isRetail and button == _G.ExpansionLandingPageMinimapButton
@@ -96,7 +100,7 @@ local function FitLandingPageButton(button, size)
 end
 
 local function FitManagedLandingPage(button)
-	if Map.buttonBar and Map.buttonBar.buttons[button] then
+	if buttonBar and buttonBar.buttons[button] then
 		FitLandingPageButton(button, Private.Addon.db.profile.map.minimap.buttons.size)
 		return true
 	end
@@ -289,7 +293,7 @@ local function CollectButtons()
 	wipe(collected)
 	wipe(collectedSeen)
 
-	local bar = Map.buttonBar
+	local bar = buttonBar
 	local landingPage = Private.isRetail and Private.Addon.db.profile.map.minimap.buttons.blizzard.expansionLandingPage
 
 	-- Keep buttons we already manage. They are parented to the bar, so the Minimap
@@ -322,7 +326,7 @@ local function CollectButtons()
 end
 
 local function HoverBar(self)
-	local bar = Map.buttonBar
+	local bar = buttonBar
 	if not bar or not Private.Addon.db.profile.map.minimap.buttons.mouseover then return end
 	if self ~= bar and not bar.buttons[self] then return end
 	return bar
@@ -358,7 +362,7 @@ local function ApplyMouseover(bar)
 end
 
 local function EnsureBar(holder)
-	local bar = Map.buttonBar
+	local bar = buttonBar
 	if bar then
 		if bar:GetParent() ~= holder then
 			bar:SetParent(holder)
@@ -371,7 +375,7 @@ local function EnsureBar(holder)
 	bar.buttons = {}
 	bar:Hide()
 
-	Map.buttonBar = bar
+	buttonBar = bar
 	return bar
 end
 
@@ -387,7 +391,7 @@ local function LayoutButtons(holder, buttons)
 	local rows = ceil(count / perRow)
 	local height = rows > 0 and (rows * yStep - 1) or 0
 
-	Map.updating = true
+	updating = true
 
 	bar:ClearAllPoints()
 	bar:SetPoint('TOP', holder, 'BOTTOM', db.xOffset, db.yOffset)
@@ -419,14 +423,14 @@ local function LayoutButtons(holder, buttons)
 	if count > 0 then
 		ApplyMouseover(bar)
 	end
-	Map.updating = nil
+	updating = nil
 end
 
 local function ReleaseAll()
-	local bar = Map.buttonBar
+	local bar = buttonBar
 	if not bar then return end
 
-	Map.updating = true
+	updating = true
 
 	for button in pairs(bar.buttons) do
 		-- Clear before releasing so the UpdateIcon hook does not re-fit during restore
@@ -442,17 +446,17 @@ local function ReleaseAll()
 		LDBI:Refresh(names[i])
 	end
 
-	Map.updating = nil
+	updating = nil
 end
 
 local function RunUpdate()
-	Map.updatePending = nil
+	updatePending = nil
 	Private:MinimapButtons_Update()
 end
 
 local function ScheduleUpdate()
-	if Map.updating or Map.updatePending then return end
-	Map.updatePending = true
+	if updating or updatePending then return end
+	updatePending = true
 	After(0.1, RunUpdate)
 end
 
@@ -485,8 +489,8 @@ local function RegisterLandingPageHooks()
 end
 
 local function RegisterHooks()
-	if not Map.buttonBarHooks then
-		Map.buttonBarHooks = true
+	if not hooked then
+		hooked = true
 
 		LDBI.RegisterCallback(Map, 'LibDBIcon_IconCreated', ScheduleUpdate)
 		hooksecurefunc(LDBI, 'Hide', ScheduleUpdate)
@@ -514,7 +518,7 @@ function Private:MinimapButtons_Update()
 	RegisterHooks()
 
 	local holder = _G[db.holder]
-	if not (holder and holder.IsObjectType and holder:IsObjectType('Frame')) then
+	if not (type(holder) == 'table' and holder.IsObjectType and holder:IsObjectType('Frame')) then
 		holder = Minimap
 	end
 
@@ -525,7 +529,7 @@ function Private:MinimapButtons_Update()
 
 	local buttons, keep = CollectButtons()
 
-	local bar = Map.buttonBar
+	local bar = buttonBar
 	if bar then
 		for button in pairs(bar.buttons) do
 			if not keep[button] then
