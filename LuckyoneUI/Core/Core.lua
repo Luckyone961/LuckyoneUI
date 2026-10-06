@@ -5,7 +5,6 @@ local LDBI = Private.Libs.LDBI
 local LSM = Private.Libs.LSM
 local Core = Private.Modules.Core
 
-local format = string.format
 local gsub = string.gsub
 local next = next
 local pairs = pairs
@@ -30,19 +29,15 @@ local MergeTable = MergeTable
 local SetCVar = C_CVar.SetCVar
 
 local _G = _G
-local LibStub = _G.LibStub
 local UIParent = _G.UIParent
 
 local Settings_OpenToCategory = _G.Settings.OpenToCategory
 local SlashCmdList = _G.SlashCmdList
 local StaticPopupDialogs = _G.StaticPopupDialogs
-local StaticPopup_Show = _G.StaticPopup_Show
 
 local ACCEPT = ACCEPT
 local CANCEL = CANCEL
-local NO = NO
 local OKAY = OKAY
-local YES = YES
 
 -- Keep these enabled in debug mode
 local AddOns = {
@@ -79,23 +74,6 @@ function Private:SetFont(text, font, size, outline)
 	text:SetFont(LSM:Fetch('font', font), size, outline == 'NONE' and '' or outline)
 	text:SetShadowColor(0, 0, 0, shadow and (outline == '' and 1 or 0.6) or 0) -- Same as ElvUI, lighter under an outline
 	text:SetShadowOffset(1, -1)
-end
-
--- Layout profiles, the index doubles as the profile ID
-local activeProfiles = {
-	'Luckyone Main',
-	'Luckyone Healing',
-}
-
-function Private:GetActiveProfile()
-	if not Private.ElvUI then return end
-
-	local data = ElvUI[1].data:GetCurrentProfile()
-	for i = 1, #activeProfiles do
-		if strfind(data, activeProfiles[i], 1, true) then
-			return i
-		end
-	end
 end
 
 -- Open settings helper
@@ -170,31 +148,6 @@ StaticPopupDialogs['LUCKYONE_RL'] = {
 	hideOnEscape = false,
 }
 
--- Alt setup popup
--- StaticPopup_Show('LUCKYONE_ALTS')
-StaticPopupDialogs['LUCKYONE_ALTS'] = {
-	text = format('%s\n\n%s', L["Alt Setup"], L["Load your existing profiles and setup your chat tabs?"]),
-	button1 = YES, -- OnAccept
-	button2 = L["Yes, no chat"], -- OnCancel
-	button3 = NO, -- OnAlt
-	OnAccept = function() Private:HandleAlts(true) end,
-	OnCancel = function(_, _, reason)
-		if reason == 'clicked' then
-			Private:HandleAlts()
-		end
-	end,
-	whileDead = 1,
-	hideOnEscape = false,
-}
-
--- ElvUI version check popup
--- StaticPopup_Show('LUCKYONE_VC')
-StaticPopupDialogs['LUCKYONE_VC'] = {
-	text = format('|cffC80000%s|r', L["Your ElvUI is outdated - please update and reload."]),
-	whileDead = 1,
-	hideOnEscape = false,
-}
-
 -- Editbox popup
 -- StaticPopup_Show('LUCKYONE_EDITBOX', text_arg1, text_arg2, data)
 local function CloseEditBox(self)
@@ -233,17 +186,7 @@ StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 	hideOnEscape = 1,
 }
 
--- ElvUI version check
-local function VersionCheck()
-	if not Private.ElvUI then return end
-
-	if ElvUI[1].version < Private.RequiredElvUI then
-		StaticPopup_Show('LUCKYONE_VC')
-		Private:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
-	end
-end
-
--- Without ElvUI we set UIParent ourselves like ElvUI does
+-- Without ElvUI we set UIParent scale ourselves like ElvUI does
 function Core:UpdateScale()
 	if Private.ElvUI or not GetCVarBool('useUiScale') then return end
 
@@ -262,7 +205,7 @@ function Core:UpdateScale()
 end
 
 -- Scale helper
-function Private:ApplyScale(native, installer)
+function Private:Setup_Scale(native, installer)
 	Private.Addon.db.global.scaled = not native
 
 	SetCVar('useUiScale', 1)
@@ -341,27 +284,10 @@ local function LoadCommands()
 		SlashCmdList.LUCKYONEUI_WEEKLY = WeeklyRewards
 	end
 	if Private.ElvUI then
-		commands.bars = function() Private:ToggleActionBarConverter() end
+		commands.bars = function() Private:ActionBarConverter() end
 		_G.SLASH_LUCKYONEUI_DEBUG1 = '/luckydebug'
 		SlashCmdList.LUCKYONEUI_DEBUG = DebugMode
 	end
-end
-
--- ElvUI init
-local function CheckElvUI()
-	if not Private.ElvUI then return end
-
-	local E = ElvUI[1]
-
-	-- Skip the ElvUI installer
-	if E.private.install_complete == nil then
-		if E.InstallFrame and E.InstallFrame:IsShown() then
-			E.InstallFrame:Hide()
-		end
-		E.private.install_complete = E.version
-	end
-
-	LibStub('LibElvUIPlugin-1.0'):RegisterPlugin(Name, Private.RegisterElvUIConfig)
 end
 
 function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
@@ -376,8 +302,6 @@ function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 		wipe(Private.Addon.db.global.DebugDisabledAddOns)
 	end
 
-	VersionCheck()
-
 	if Private.itsLuckyone then
 		Private.Addon.db.global.dev = true
 	end
@@ -386,7 +310,6 @@ end
 function Core:OnEnable()
 	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
 	LoadCommands()
-	CheckElvUI()
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 
 	if not Private.ElvUI then

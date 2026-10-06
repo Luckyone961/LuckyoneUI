@@ -8,8 +8,6 @@ local hooksecurefunc = hooksecurefunc
 
 local _G = _G
 
-local initialized
-
 -- Blizzard re-anchors the odd slots on every update
 local function LayoutItems(count)
 	local firstItem = _G.MerchantItem1
@@ -99,7 +97,6 @@ end
 
 -- Doubles the merchant frame so it shows four rows of items instead of two
 function Private:ExpandMerchant()
-	if initialized then return end
 	if not Private.Addon.db.profile.qualityOfLife.expandMerchant then return end
 
 	local MerchantFrame = _G.MerchantFrame
@@ -158,6 +155,4 @@ function Private:ExpandMerchant()
 	hooksecurefunc('MerchantFrame_UpdateBuybackInfo', Merchant_UpdateBuybackInfo)
 
 	LayoutItems(20)
-
-	initialized = true
 end

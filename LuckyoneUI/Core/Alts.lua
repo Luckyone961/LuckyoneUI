@@ -13,20 +13,18 @@ local wipe = table.wipe
 
 local _G = _G
 local LibStub = LibStub
+local StaticPopupDialogs = _G.StaticPopupDialogs
 local StaticPopup_Show = _G.StaticPopup_Show
 
 local GetSpecialization = C_SpecializationInfo.GetSpecialization
 local GetSpecializationInfo = C_SpecializationInfo.GetSpecializationInfo
 
+local NO = NO
+local YES = YES
+
 -- Character keys used by the addon databases
 local charKey = Private.myNameRealm
 local compactKey = Private.myName .. '-' .. Private.myNormalizedRealm
-
--- Profile names by layout
-local layoutNames = {
-	main = 'Luckyone Main',
-	healing = 'Luckyone Healing',
-}
 
 -- Healers get the healing profiles, everyone else the main ones
 local function GetLayout()
@@ -122,7 +120,7 @@ end
 local handlers = {
 	{
 		name = 'ElvUI',
-		base = function(layout) return layoutNames[layout] end,
+		base = function(layout) return Private.LayoutNames[layout] end,
 		Profiles = AceProfiles('ElvDB'),
 		Apply = function(profile, layout) Private:Setup_AltProfile(profile, layout) end,
 	},
@@ -215,7 +213,7 @@ local handlers = {
 
 -- Quick setup for alts, loads every existing Luckyone profile
 local applied, skipped = {}, {}
-function Private:HandleAlts(includeChat)
+function Private:Setup_Alts(includeChat)
 	local layout = GetLayout()
 
 	wipe(applied)
@@ -241,7 +239,7 @@ function Private:HandleAlts(includeChat)
 	end
 
 	Private:Setup_CVars(true)
-	Private:NameplateCVars(true)
+	Private:Setup_NameplateCVars(true)
 
 	if #applied > 0 then
 		Private:Print(L["Applied profiles:"] .. ' ' .. concat(applied, ', '))
@@ -256,3 +254,20 @@ function Private:HandleAlts(includeChat)
 	-- Prompt for reload to fix everything
 	StaticPopup_Show('LUCKYONE_RL')
 end
+
+-- Alt setup popup
+-- StaticPopup_Show('LUCKYONE_ALTS')
+StaticPopupDialogs['LUCKYONE_ALTS'] = {
+	text = format('%s\n\n%s', L["Alt Setup"], L["Load your existing profiles and setup your chat tabs?"]),
+	button1 = YES, -- OnAccept
+	button2 = L["Yes, no chat"], -- OnCancel
+	button3 = NO, -- OnAlt
+	OnAccept = function() Private:Setup_Alts(true) end,
+	OnCancel = function(_, _, reason)
+		if reason == 'clicked' then
+			Private:Setup_Alts()
+		end
+	end,
+	whileDead = 1,
+	hideOnEscape = false,
+}

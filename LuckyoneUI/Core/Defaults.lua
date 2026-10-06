@@ -27,8 +27,6 @@ local function DamageMeterWindow(meterType)
 		sessionType = 1, -- Current
 		width = 240,
 		height = 208,
-		xOffset = 0, -- Custom placement without ElvUI movers
-		yOffset = 0,
 		placement = 'AUTO',
 		attachTo = 0,
 		attachSize = 50,
@@ -36,7 +34,7 @@ local function DamageMeterWindow(meterType)
 		showResetButton = true,
 		showSettingsButton = false,
 		mouseoverButtons = false,
-		backdrop = not Private.ElvUI, -- No chat panel behind the windows without ElvUI
+		backdrop = false,
 		backdropColorType = 'ELVUI',
 		backdropColor = { r = 0, g = 0, b = 0, a = 0.8 },
 		backdropWidth = 0,
@@ -63,14 +61,10 @@ Private.Defaults = {
 			contentWindows = { world = 0, dungeon = 0, raid = 0, pvp = 0 },
 			orientation = 'HORIZONTAL',
 			windowCount = 2,
-			width = 0, -- Without ElvUI, zero follows the LuckyoneUI chat panel of the chosen scale
-			height = 0,
-			xOffset = -1, -- Without ElvUI, from the bottom right corner like the ElvUI chat panel
-			yOffset = 2,
 			innerSpacing = 2,
 			outerSpacing = 2,
 			barStyle = 'DEFAULT',
-			barTexture = Private.ElvUI and Private.Texture or 'Solid', -- Minimalist ships with ElvUI
+			barTexture = Private.Texture,
 			barHeight = 20,
 			thinBarHeight = 0,
 			barSpacing = 1,
@@ -170,6 +164,13 @@ Private.Defaults = {
 			hide = false,
 		},
 		misc = {
+			combatLog = {
+				enable = false,
+				notify = true,
+				instances = { party = true, raid = true, scenario = false },
+				dungeon = { [8] = true, [23] = true }, -- Mythic Keystone, Mythic
+				raid = { [14] = true, [15] = true, [16] = true, [17] = false }, -- Normal, Heroic, Mythic, Looking For Raid
+			},
 			combatText = {
 				enable = false,
 				enterText = '+Combat',

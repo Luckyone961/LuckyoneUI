@@ -1,5 +1,4 @@
 local _, Private = ...
-local L = Private.L
 
 if Private.ElvUI then
 	return
@@ -11,7 +10,6 @@ end
 local ipairs = ipairs
 local next = next
 local pairs = pairs
-local select = select
 local tonumber = tonumber
 local tostring = tostring
 local type = type
@@ -320,14 +318,18 @@ local function AddSelect(category, info, name, desc, get, set, option, path)
 	return Settings.CreateDropdown(category, setting, Options, desc)
 end
 
--- Colors, the swatch has no opacity so the stored alpha goes back along with the new color
-local function AddColor(category, info, name, desc, get, set)
+-- Colors
+local function AddColor(category, info, name, desc, get, set, option, path)
+	if option.hasAlpha then
+		error(format('LuckyoneUI: %s uses alpha, not supported without ElvUI', concat(path, '.')))
+	end
+
 	local setting = CreateProxy(info, Settings.VarType.String, name, function()
 		local r, g, b = get(info)
 		return CreateColor(r or 1, g or 1, b or 1):GenerateHexColor()
 	end, function(hex)
 		local r, g, b = CreateColorFromHexString(hex):GetRGB()
-		set(info, r, g, b, select(4, get(info)))
+		set(info, r, g, b)
 		Refresh()
 	end)
 
@@ -684,7 +686,6 @@ local function AddOptions(category, args, path, get, set, disabled, hidden, nest
 					AddOptions(category, option.args, path, optionGet, optionSet, optionDisabled, optionHidden, nested, groupTags)
 				else
 					local subcategory, subPath = Settings.RegisterVerticalLayoutSubcategory(category, CategoryName(name)), { unpack(path) }
-					Private.SettingsSubcategoryIDs[key] = subcategory:GetID()
 					queued[#queued + 1] = function() AddOptions(subcategory, option.args, subPath, optionGet, optionSet, optionDisabled, optionHidden, true, groupTags) end
 				end
 			elseif optionType == 'header' then
@@ -737,20 +738,9 @@ local function AddOptions(category, args, path, get, set, disabled, hidden, nest
 				ApplyChecks(initializer, optionDisabled, optionHidden)
 			elseif optionType == 'color' then
 				-- A disabled color leaves the list like a hidden one
-				local colorHidden = Inherit(optionHidden, #optionDisabled > 0 and function() return AnyTrue(optionDisabled) end)
-				local initializer = AddColor(category, info, name, desc, optionGet, optionSet)
+				local initializer = AddColor(category, info, name, desc, optionGet, optionSet, option, path)
 				initializer:AddSearchTags(unpack(tags))
-				ApplyChecks(initializer, {}, colorHidden)
-
-				-- The opacity gets a slider of its own below the swatch
-				if option.hasAlpha then
-					local alphaInfo = { unpack(info) }
-					alphaInfo[#alphaInfo + 1] = 'alpha'
-
-					local slider = AddRange(category, alphaInfo, L["Opacity"], nil, function() return (select(4, optionGet(info))) or 1 end, function(_, value) local r, g, b = optionGet(info) optionSet(info, r, g, b, value) end, { min = 0, max = 1, step = 0.01, isPercent = true })
-					slider:AddSearchTags(unpack(tags))
-					ApplyChecks(slider, {}, colorHidden)
-				end
+				ApplyChecks(initializer, {}, Inherit(optionHidden, #optionDisabled > 0 and function() return AnyTrue(optionDisabled) end))
 			elseif optionType == 'input' then
 				local initializer = AddInput(category, info, name, desc, optionGet, optionSet, option, optionDisabled)
 				initializer:AddSearchTags(name, unpack(tags))
@@ -773,9 +763,6 @@ function Private:RegisterSettings()
 	local root = Settings.RegisterVerticalLayoutCategory(CategoryName(config.name))
 
 	refreshSetting = CreateAndInitFromMixin(ProxySettingMixin, 'LuckyoneUI', 'LUCKYONEUI_REFRESH', Settings.VarType.Boolean, false, function() return false end, function() end)
-
-	-- Section key to its page, buttons outside the panel open them directly
-	Private.SettingsSubcategoryIDs = {}
 
 	AddOptions(root, config.args, {}, config.get, config.set, {}, {}, false, {})
 

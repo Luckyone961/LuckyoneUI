@@ -1,6 +1,7 @@
 ﻿## Version 4.26 [Alpha - In Development - Not Yet Released]
 
 **All WoW Versions:**  
+- Added new option to automate advanced combat logging based on instance type and difficulty  
 - Added new option to change absorb texture on nameplates and unitframes  
 - Added new option to see through world map fog of war (data from wago.tools)  
 - Power texts now auto hides at 0 and 100  

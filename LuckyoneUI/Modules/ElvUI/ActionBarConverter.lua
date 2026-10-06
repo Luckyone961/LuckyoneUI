@@ -435,7 +435,7 @@ local function CreateConverter()
 	end
 end
 
-function Private:ToggleActionBarConverter()
+function Private:ActionBarConverter()
 	if not frame then
 		CreateConverter()
 	end

@@ -20,11 +20,7 @@ local S = E:GetModule('Skins')
 local function SkinQueueTimer(bar)
 	local dialog = _G.LFGDungeonReadyDialog
 
-	bar:StripTextures()
-	bar:SetStatusBarTexture(E.media.normTex)
-	bar:SetStatusBarColor(0.294, 0.922, 0.173)
-	bar:CreateBackdrop('Transparent')
-	E:RegisterStatusBar(bar)
+	S:HandleStatusBar(bar, { 0.294, 0.922, 0.173 })
 
 	bar:ClearAllPoints()
 	bar:Point('TOPLEFT', dialog, 'BOTTOMLEFT', E.Border, -(E.Border * 2 + E.Spacing))

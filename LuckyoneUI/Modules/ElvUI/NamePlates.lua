@@ -1,6 +1,5 @@
 local _, Private = ...
 local LSM = Private.Libs.LSM
-local NamePlates = Private.Modules.NamePlates
 
 if not Private.ElvUI then
 	return
@@ -41,7 +40,7 @@ end
 
 -- Only touches plates whose texture actually changed (old special -> default, new special -> texture)
 -- instead of re-applying textures to every visible plate
-function Private:UpdateSpecialNameplateTextures()
+function Private:NamePlates_Update()
 	if not NP.Plates or not E.private.nameplates.enable then return end
 
 	local db = Private.Addon.db.profile.nameplates
@@ -79,35 +78,20 @@ function Private:UpdateSpecialNameplateTextures()
 	end
 end
 
-local function RegisterHooks()
+-- Target and focus changes come in through the ElvUI hub
+function Private:NamePlates()
+	-- ElvUI nameplates off (e.g. Platynator), enabling them again needs a reload
+	if not E.private.nameplates.enable then return end
+
 	hooksecurefunc(NP, 'Update_StatusBars', function()
 		wipe(styledPlates)
-		Private:UpdateSpecialNameplateTextures()
+		Private:NamePlates_Update()
 	end)
 
 	-- Plates are recycled and keep the last texture, so re-resolve whenever a unit is assigned
 	hooksecurefunc(NP, 'UpdatePlateBase', function()
-		Private:UpdateSpecialNameplateTextures()
+		Private:NamePlates_Update()
 	end)
-end
 
-function NamePlates:UpdateTextures()
-	Private:UpdateSpecialNameplateTextures()
-end
-
-function NamePlates:OnEnable()
-	-- ElvUI nameplates off (e.g. Platynator), enabling them again needs a reload
-	if not E.private.nameplates.enable then return end
-
-	RegisterHooks()
-
-	self:RegisterEvent('PLAYER_ENTERING_WORLD', 'UpdateTextures')
-	self:RegisterEvent('PLAYER_TARGET_CHANGED', 'UpdateTextures')
-
-	-- Focus unit does not exist on Classic Era
-	if not Private.isClassic then
-		self:RegisterEvent('PLAYER_FOCUS_CHANGED', 'UpdateTextures')
-	end
-
-	Private:UpdateSpecialNameplateTextures()
+	Private:NamePlates_Update()
 end

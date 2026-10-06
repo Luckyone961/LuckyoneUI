@@ -4,7 +4,7 @@ local L = Private.L
 local _G = _G
 
 -- SkironCooldownManager profile
-function Private:Setup_SCM(installer)
+function Private:Setup_SkironCooldownManager(installer)
 	if not Private.IsAddOnLoaded('SkironCooldownManager') then Private:Print('SkironCooldownManager ' .. L["is not installed or enabled."]) return end
 
 	-- Disable unused ElvUI elements

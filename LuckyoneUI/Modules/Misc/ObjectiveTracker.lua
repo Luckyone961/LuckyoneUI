@@ -401,7 +401,7 @@ local function Header_SetCollapsed(header, collapsed)
 end
 
 -- Config, also runs after Edit Mode swaps the font objects for its text size and after ElvUI puts its font on them
-local function Update()
+function Private:ObjectiveTracker_Update()
 	if not hooked then return end
 
 	local db = Private.Addon.db.profile.misc.objectiveTracker
@@ -417,12 +417,11 @@ local function Update()
 		end
 	end
 end
-Private.ObjectiveTracker_Update = Update
 
 -- Restore profile defaults config button
 function Private:ObjectiveTracker_ResetDefaults()
 	Private:ResetDefaults(Private.Addon.db.profile.misc.objectiveTracker, Private.Defaults.profile.misc.objectiveTracker)
-	Update()
+	Private:ObjectiveTracker_Update()
 end
 
 -- Runs on enable, the fonts have to be in place before the tracker builds its first layout at PLAYER_ENTERING_WORLD
@@ -443,10 +442,10 @@ function Private:ObjectiveTracker()
 		Normal, Header, Complete, Failed = styles.Normal, styles.Header, styles.Complete, styles.Failed
 
 		hooksecurefunc(manager, 'SetModuleContainer', Manager_SetModuleContainer)
-		hooksecurefunc(manager, 'SetTextSize', Update)
+		hooksecurefunc(manager, 'SetTextSize', Private.ObjectiveTracker_Update)
 
 		if E then
-			hooksecurefunc(E, 'UpdateBlizzardFonts', Update)
+			hooksecurefunc(E, 'UpdateBlizzardFonts', Private.ObjectiveTracker_Update)
 		end
 
 		-- Two pixels further right lines it up with the category header buttons
@@ -465,5 +464,5 @@ function Private:ObjectiveTracker()
 		hooked = true
 	end
 
-	Update()
+	Private:ObjectiveTracker_Update()
 end

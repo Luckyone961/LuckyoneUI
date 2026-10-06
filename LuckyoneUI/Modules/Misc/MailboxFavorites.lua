@@ -56,19 +56,21 @@ local function IsCurrentRealm(name)
 	return not realm or strlower(gsub(realm, '[%s%-%.]', '')) == myRealm
 end
 
-local function FindFavorite(name)
+-- The config picks its selected entry through this as well
+function Private:MailboxFavorites_Find(name)
 	if not name then return end
 
 	for index, favorite in ipairs(Private.Addon.db.profile.misc.mailbox.favorites) do
 		if strlower(favorite.name) == strlower(name) then
-			return index, favorite
+			return favorite, index
 		end
 	end
 end
 
 local function MoveFavorite(favorite, target)
 	local list = Private.Addon.db.profile.misc.mailbox.favorites
-	local from, to = FindFavorite(favorite.name), FindFavorite(target.name)
+	local _, from = Private:MailboxFavorites_Find(favorite.name)
+	local _, to = Private:MailboxFavorites_Find(target.name)
 	if not from or not to then return end
 
 	-- Everything between the old and the new spot shifts over
@@ -379,7 +381,7 @@ function Private:MailboxFavorites_Add(name, realm)
 		return
 	end
 
-	if FindFavorite(entry) then
+	if Private:MailboxFavorites_Find(entry) then
 		Private:Print(L["This character is already in your favorites."])
 		return
 	end
@@ -392,7 +394,7 @@ function Private:MailboxFavorites_Add(name, realm)
 end
 
 function Private:MailboxFavorites_Remove(name)
-	local index = FindFavorite(name)
+	local _, index = Private:MailboxFavorites_Find(name)
 	if not index then return end
 
 	tremove(Private.Addon.db.profile.misc.mailbox.favorites, index)

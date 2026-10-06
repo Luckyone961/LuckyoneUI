@@ -5,6 +5,7 @@ if not Private.ElvUI then
 	return
 end
 
+local strfind = string.find
 local unpack = unpack
 local wipe = table.wipe
 
@@ -14,11 +15,21 @@ local E, _, _, P = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
 local NP = E:GetModule('NamePlates')
 
--- Profile names by layout
-local layoutNames = {
+-- Profile names by layout, the alt setup and the layout dependent tweaks key on them
+Private.LayoutNames = {
 	main = 'Luckyone Main',
 	healing = 'Luckyone Healing',
 }
+
+-- Layout of the active ElvUI profile, nil for a foreign one
+function Private:GetActiveProfile()
+	local name = E.data:GetCurrentProfile()
+	if strfind(name, Private.LayoutNames.main, 1, true) then
+		return 'main'
+	elseif strfind(name, Private.LayoutNames.healing, 1, true) then
+		return 'healing'
+	end
+end
 
 -- LibDualSpec handler
 local function DisableLibDualSpec()
@@ -1804,7 +1815,7 @@ function Private:Setup_NamePlates()
 	E:CopyTable(wipe(E.db.nameplates), P.nameplates)
 
 	-- NamePlates CVars, the combined message below covers them
-	Private:NameplateCVars(true)
+	Private:Setup_NameplateCVars(true)
 
 	-- NamePlates colors
 	E.db.nameplates.colors.auraByType = false
@@ -2094,7 +2105,7 @@ end
 -- Initial layout setup
 function Private:Setup_Layout(layout, installer, partyStyle)
 	-- Create a fresh profile in ElvUI
-	local name = layoutNames[layout]
+	local name = Private.LayoutNames[layout]
 	local profile = Private.Addon.db.global.dev and name or name .. ' ' .. Private.Version
 	local exists = ElvDB.profiles[profile]
 	DisableLibDualSpec()

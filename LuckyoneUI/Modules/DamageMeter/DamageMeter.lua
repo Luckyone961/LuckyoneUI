@@ -1,8 +1,13 @@
 local _, Private = ...
 local DM = Private.Modules.DamageMeter
 
+if not Private.ElvUI then
+	return
+end
+
 local L = Private.L
 
+local unpack = unpack
 local pairs = pairs
 local ipairs = ipairs
 local wipe = wipe
@@ -24,20 +29,17 @@ local C_UI = C_UI
 
 local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
-local UIParent = _G.UIParent
 
-local E = Private.ElvUI and ElvUI[1]
+local E = unpack(ElvUI)
 
 DM.windows = {}
 
--- ElvUI gives every widget its pixel perfect Point, Size, Width and Height
--- Without ElvUI the same names lead to the plain setters, so the calls stay the same in both modes
-function DM:AddToolkit(object)
-	if not E then
-		object.Point, object.Size, object.Width, object.Height = object.SetPoint, object.SetSize, object.SetWidth, object.SetHeight
-	end
+function DM:CreateText(parent, justify)
+	local text = parent:CreateFontString(nil, 'OVERLAY')
+	text:SetJustifyH(justify)
+	text:SetWordWrap(false)
 
-	return object
+	return text
 end
 
 -- Ambiguate accepts secret names
@@ -89,7 +91,7 @@ function DM:SetTestMode(value)
 		window.offset = 0
 	end
 
-	Private:DamageMeter_UpdateAll()
+	Private:DamageMeter_Update()
 end
 
 local widths, heights = {}, {}
@@ -180,18 +182,7 @@ local function ToggleMover(name, enabled)
 end
 
 -- Custom placed windows are dragged around with their own mover
--- Without ElvUI their offsets place them from the bottom right corner instead
 local function UpdateWindowMover(window, index, custom)
-	if not E then
-		if custom then
-			local wdb = DM.db.windows[index]
-			window:ClearAllPoints()
-			window:SetPoint('BOTTOMRIGHT', UIParent, 'BOTTOMRIGHT', wdb.xOffset, wdb.yOffset)
-		end
-
-		return
-	end
-
 	local name = 'LuckyoneUI_DamageMeterWindow' .. index .. 'Mover'
 
 	if window.mover then
@@ -210,17 +201,52 @@ local function UpdateWindowMover(window, index, custom)
 	end
 end
 
--- Without ElvUI a window switched to custom keeps its spot, the offsets start from there
-function DM:KeepWindowPosition(index)
-	local window = DM.windows[index]
-	if not window or not window:IsShown() then return end
+-- Custom placed windows are positioned by ElvUI movers, the profile export carries them along
+function Private:DamageMeter_ExportMovers()
+	local movers, db = {}, E.db.movers
+	for index = 1, 4 do
+		local name = 'LuckyoneUI_DamageMeterWindow' .. index .. 'Mover'
+		movers[name] = db and db[name]
+	end
 
-	local right, bottom = window:GetRight(), window:GetBottom()
-	if not right then return end
+	return movers
+end
 
-	local wdb = DM.db.windows[index]
-	wdb.xOffset = floor(right - UIParent:GetRight() + 0.5)
-	wdb.yOffset = floor(bottom + 0.5)
+-- Windows attached to this one get their own slot back
+local function ReleaseAttached(db, index)
+	for other = 1, 4 do
+		local wdb = db.windows[other]
+
+		if wdb.attachTo == index then
+			wdb.attachTo = 0
+			wdb.placement = 'AUTO'
+		end
+	end
+end
+
+-- Config setters, DM.db follows the profile only in DamageMeter_Update
+function DM:SetWindowPlacement(index, value)
+	local db = Private.Addon.db.profile.damageMeter
+	db.windows[index].placement = value
+
+	if value == 'ATTACH' then
+		ReleaseAttached(db, index)
+	else
+		db.windows[index].attachTo = 0
+	end
+
+	Private:DamageMeter_Update()
+end
+
+function DM:SetWindowAttachTo(index, value)
+	local db = Private.Addon.db.profile.damageMeter
+	db.windows[index].attachTo = value
+
+	if value ~= 0 then
+		ReleaseAttached(db, index)
+	end
+
+	Private:DamageMeter_Update()
 end
 
 -- Content types
@@ -235,9 +261,10 @@ local ContentScopes = {
 
 -- Override, zero leaves it alone
 -- Delves need special treatment, they don't fire a real loading screen
+-- The party keeps its delve after leaving it, real instances keep their own type
 function DM:GetWindowCount()
 	local _, instanceType = GetInstanceInfo()
-	local scope = HasActiveDelve() and 'dungeon' or ContentScopes[instanceType] or 'world'
+	local scope = instanceType == 'none' and HasActiveDelve() and 'dungeon' or ContentScopes[instanceType] or 'world'
 	local override = DM.db.contentWindows[scope]
 
 	return override > 0 and override or DM.db.windowCount
@@ -256,19 +283,9 @@ function DM:Layout()
 	BuildRoots(count)
 
 	-- The chat panel gives the holder its size, the columns split it evenly
-	-- Without ElvUI it brings its own, zero follows the LuckyoneUI chat panel of the chosen scale
-	local holderWidth, holderHeight
-
-	if E then
-		local chat = E.db.chat
-		holderWidth = chat.separateSizes and chat.panelWidthRight or chat.panelWidth
-		holderHeight = chat.separateSizes and chat.panelHeightRight or chat.panelHeight
-	else
-		local scaled = Private.Addon.db.global.scaled
-		holderWidth = (db.width > 0 and db.width) or (scaled and 450) or 540
-		holderHeight = (db.height > 0 and db.height) or (scaled and 210) or 231
-	end
-
+	local chat = E.db.chat
+	local holderWidth = chat.separateSizes and chat.panelWidthRight or chat.panelWidth
+	local holderHeight = chat.separateSizes and chat.panelHeightRight or chat.panelHeight
 	local columnCount = #columns
 
 	if columnCount > 0 then
@@ -288,12 +305,6 @@ function DM:Layout()
 	end
 
 	holder:Size(max(holderWidth, minSize), max(holderHeight, minSize))
-
-	-- The chat panel carries it around with ElvUI
-	if not E then
-		holder:ClearAllPoints()
-		holder:SetPoint('BOTTOMRIGHT', UIParent, 'BOTTOMRIGHT', db.xOffset, db.yOffset)
-	end
 
 	local previous
 
@@ -340,46 +351,42 @@ function DM:Initialize()
 	if DM.initialized then return end
 	DM.initialized = true
 
-	-- Without ElvUI the layout anchors it with the profile offsets
-	local holder = DM:AddToolkit(CreateFrame('Frame', 'LuckyoneUI_DamageMeterHolder', E and E.UIParent or UIParent))
+	local holder = CreateFrame('Frame', 'LuckyoneUI_DamageMeterHolder', E.UIParent)
 	holder:SetFrameStrata('LOW')
+	holder:Point('BOTTOMRIGHT', _G.RightChatPanel or E.UIParent, 'BOTTOMRIGHT', 0, 0)
 	DM.holder = holder
 
 	-- Attempt to keep data on reloads
 	hooksecurefunc(C_UI, 'Reload', function() DM.reloadingUI = true end)
 
-	if E then
-		holder:Point('BOTTOMRIGHT', _G.RightChatPanel or E.UIParent, 'BOTTOMRIGHT', 0, 0)
+	-- The holder follows the right chat panel around
+	hooksecurefunc(E:GetModule('Chat'), 'PositionChats', function()
+		if DM.db.enable then
+			DM:Layout()
+			DM:RefreshAll()
+		end
+	end)
 
-		-- The holder follows the right chat panel around
-		hooksecurefunc(E:GetModule('Chat'), 'PositionChats', function()
-			if DM.db.enable then
-				DM:Layout()
-				DM:RefreshAll()
+	E.valueColorUpdateFuncs.LuckyoneUI_DamageMeterModule = function()
+		if DM.db.enable and DM.db.useValueColor then
+			for _, window in pairs(DM.windows) do
+				DM:UpdateHeaderColors(window)
 			end
-		end)
 
-		E.valueColorUpdateFuncs.LuckyoneUI_DamageMeterModule = function()
-			if DM.db.enable and DM.db.useValueColor then
-				for _, window in pairs(DM.windows) do
-					DM:UpdateHeaderColors(window)
-				end
-
-				if DM.popup and DM.popup:IsShown() then
-					DM:ApplyPopupSettings(DM.popup)
-				end
+			if DM.popup and DM.popup:IsShown() then
+				DM:ApplyPopupSettings(DM.popup)
 			end
 		end
+	end
 
-		-- Make sure both WindTools modules are off
-		-- Their layout forces Blizzard Meter to be shown
-		if Private.IsAddOnLoaded('ElvUI_WindTools') then
-			local layout = E.db.WT and E.db.WT.combat and E.db.WT.combat.damageMeterLayout
-			if layout then layout.enable = false end
+	-- Make sure both WindTools modules are off
+	-- Their layout forces Blizzard Meter to be shown
+	if Private.IsAddOnLoaded('ElvUI_WindTools') then
+		local layout = E.db.WT and E.db.WT.combat and E.db.WT.combat.damageMeterLayout
+		if layout then layout.enable = false end
 
-			local skin = E.private.WT and E.private.WT.skins and E.private.WT.skins.damageMeter
-			if skin then skin.enable = false end
-		end
+		local skin = E.private.WT and E.private.WT.skins and E.private.WT.skins.damageMeter
+		if skin then skin.enable = false end
 	end
 
 	DM:RegisterEvent('DAMAGE_METER_COMBAT_SESSION_UPDATED')
@@ -429,7 +436,7 @@ function DM:CheckAutoReset(initLogin, isReload)
 	if not DM.db.enable then return end
 
 	local _, instanceType, _, _, _, _, _, instanceID = GetInstanceInfo()
-	local scope = HasActiveDelve() and 'scenario' or InstanceScopes[instanceType] and instanceType or nil
+	local scope = instanceType == 'none' and HasActiveDelve() and 'scenario' or InstanceScopes[instanceType] and instanceType or nil
 	local last = DM.lastInstanceID
 
 	-- Track where we are even while the option is off
@@ -456,7 +463,7 @@ function DM:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
 
 	-- New content type?
 	if DM:GetWindowCount() ~= DM.activeCount then
-		Private:DamageMeter_UpdateAll()
+		Private:DamageMeter_Update()
 	else
 		if GetCVarBool('damageMeterEnabled') then SetCVar('damageMeterEnabled', 0) end
 		if GetCVarBool('damageMeterResetOnNewInstance') then SetCVar('damageMeterResetOnNewInstance', 0) end
@@ -473,7 +480,7 @@ function DM:ACTIVE_DELVE_DATA_UPDATE()
 	if not DM.db.enable then return end
 
 	if DM:GetWindowCount() ~= DM.activeCount then
-		Private:DamageMeter_UpdateAll()
+		Private:DamageMeter_Update()
 	end
 
 	DM:CheckAutoReset()
@@ -493,7 +500,7 @@ function DM:PLAYER_REGEN_ENABLED()
 	DM:MarkAllDirty()
 end
 
-function Private:DamageMeter_UpdateAll()
+function Private:DamageMeter_Update()
 	local db = Private.Addon.db.profile.damageMeter
 	DM.db = db
 
@@ -544,9 +551,9 @@ function Private:DamageMeter_ResetDefaults()
 		window.offset = 0
 	end
 
-	Private:DamageMeter_UpdateAll()
+	Private:DamageMeter_Update()
 end
 
 function DM:OnEnable()
-	Private:DamageMeter_UpdateAll()
+	Private:DamageMeter_Update()
 end

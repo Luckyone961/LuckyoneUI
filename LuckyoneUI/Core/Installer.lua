@@ -51,12 +51,12 @@ end
 
 local function EnableDamageMeter()
 	Private.Addon.db.profile.damageMeter.enable = true
-	Private:DamageMeter_UpdateAll()
+	Private:DamageMeter_Update()
 	Private:Print(L["Damage Meter module enabled."], true)
 end
 
 local function InstallComplete()
-	Private:HandleLuckyoneDB()
+	Private:Setup_Personal()
 	C_UI.Reload()
 end
 
@@ -636,8 +636,8 @@ local function BuildPages()
 			Red(L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor pixel offsets."]),
 			recommended,
 		}, {
-			Button('1440p', function() Private:ApplyScale(true, true) end, 'native'),
-			Button('1080p', function() Private:ApplyScale(false, true) end, 'scaled'),
+			Button('1440p', function() Private:Setup_Scale(true, true) end, 'native'),
+			Button('1080p', function() Private:Setup_Scale(false, true) end, 'scaled'),
 		}),
 
 		-- ElvUI profiles
@@ -732,7 +732,7 @@ local function BuildPages()
 			recommended,
 			L["For position adjustments use /scm X and Y offset options."],
 		}, {
-			Button('SkironCooldownManager', function() Private:Setup_SCM(true) end, 'scm', 'SkironCooldownManager'),
+			Button('SkironCooldownManager', function() Private:Setup_SkironCooldownManager(true) end, 'scm', 'SkironCooldownManager'),
 		}, nil, not Private.isModern, L["Cooldown Manager profile"]),
 
 		-- Edit mode string and guide
@@ -740,7 +740,7 @@ local function BuildPages()
 			Green(L["Step 1:"]) .. '\n' .. L["Click the first button for the import.\nUse CTRL+C to copy the string from the popup."],
 			Green(L["Step 2:"]) .. '\n' .. L["Press Escape, click Edit Mode and select Import on the Dropdown.\nUse CTRL+V to paste string, then pick a name and click import."],
 		}, {
-			Button(L["Copy Editmode String"], function() Private:Return_EditModeString() end, 'copy'),
+			Button(L["Copy Editmode String"], function() Private:Setup_EditMode() end, 'copy'),
 		}, nil, not Private.isRetail),
 
 		-- LuckyoneUI module checkboxes
@@ -749,7 +749,8 @@ local function BuildPages()
 				Toggle('map.minimap.buttons', 'map.minimapButtons.generalOptions.enable', 'map.minimapButtons'),
 				Toggle('map.worldMap.fog', 'map.worldMap.fog.enable', 'map.worldMap.fog'),
 				Toggle('misc.combatText', 'misc.combatText.generalOptions.enable', 'misc.combatText'),
-				Toggle('movableFrames', 'blizzard.movableFrames.enable', 'blizzard.movableFrames'),
+				Toggle('misc.combatLog', 'misc.combatLog.generalOptions.enable', 'misc.combatLog'),
+				Toggle('movableFrames', 'general.movableFrames.enable', 'general.movableFrames'),
 				Toggle('misc.mailbox', 'misc.mailbox.generalOptions.enable', 'misc.mailbox'),
 				Toggle('misc.friendsList', 'misc.friendsList.generalOptions.enable', 'misc.friendsList'),
 				Toggle('misc.objectiveTracker', 'misc.objectiveTracker.general.generalOptions.enable', 'misc.objectiveTracker')
@@ -762,7 +763,7 @@ local function BuildPages()
 				Toggle('nameplates', 'elvuiTweaks.nameplates.textures.focusTextureEnable'),
 				Toggle('nameplates', 'elvuiTweaks.nameplates.absorbs.absorbTextureEnable'),
 				Toggle('nameplates', 'elvuiTweaks.nameplates.absorbs.healAbsorbTextureEnable'),
-				Toggle('misc', 'blizzard.misc.removeNameplateRealm')
+				Toggle('misc', 'general.misc.removeNameplateRealm')
 			),
 			Group(L["UnitFrames"],
 				Toggle('misc', 'elvuiTweaks.unitframes.toggles.mythicVisibility', nil, 'elvuiTweaks.unitframes.mythicVisibilityDesc.desc'),
@@ -774,25 +775,25 @@ local function BuildPages()
 		-- LuckyoneUI general tab checkboxes
 		Page(L["Quality of Life"], { L["Small tweaks that speed up daily tasks and hide Blizzard frames you do not need."] }, nil, {
 			Group(L["Quality of Life"],
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.autoAcceptRole'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.autoDismount'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.easyDelete'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.expandMerchant'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.expandQuestLog'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.fasterLoot'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.preventLootAutoShow'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.privacyOverlay'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.quickSignup')
+				Toggle('qualityOfLife', 'general.qualityOfLife.autoAcceptRole'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.autoDismount'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.easyDelete'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.expandMerchant'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.expandQuestLog'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.fasterLoot'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.preventLootAutoShow'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.privacyOverlay'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.quickSignup')
 			),
 			Group(L["Hide Blizzard Frames"],
-				Toggle('disabledFrames', 'blizzard.disabledFrames.AlertFrame'),
-				Toggle('disabledFrames', 'blizzard.disabledFrames.ApplicationCover'),
-				Toggle('disabledFrames', 'blizzard.disabledFrames.BossBanner'),
-				Toggle('disabledFrames', 'blizzard.disabledFrames.HousingDecorAlerts'),
-				Toggle('disabledFrames', 'blizzard.disabledFrames.LossOfControl'),
-				Toggle('disabledFrames', 'blizzard.disabledFrames.TalkingHead'),
-				Toggle('disabledFrames', 'blizzard.disabledFrames.UIErrorsFrame'),
-				Toggle('disabledFrames', 'blizzard.disabledFrames.ZoneTextFrame')
+				Toggle('disabledFrames', 'general.disabledFrames.AlertFrame'),
+				Toggle('disabledFrames', 'general.disabledFrames.ApplicationCover'),
+				Toggle('disabledFrames', 'general.disabledFrames.BossBanner'),
+				Toggle('disabledFrames', 'general.disabledFrames.HousingDecorAlerts'),
+				Toggle('disabledFrames', 'general.disabledFrames.LossOfControl'),
+				Toggle('disabledFrames', 'general.disabledFrames.TalkingHead'),
+				Toggle('disabledFrames', 'general.disabledFrames.UIErrorsFrame'),
+				Toggle('disabledFrames', 'general.disabledFrames.ZoneTextFrame')
 			),
 		}),
 

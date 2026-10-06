@@ -189,7 +189,7 @@ local dualSpec = Private.isRetail and {
 } or nil
 
 -- Setup the correct profile for each character after installation
-function Private:HandleLuckyoneDB()
+function Private:Setup_Personal()
 	if not Private.itsLuckyone then return end
 
 	local ElvDB = _G.ElvDB

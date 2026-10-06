@@ -8,9 +8,15 @@ end
 local floor = floor
 local format = string.format
 local pairs = pairs
+local setmetatable = setmetatable
 local strfind = string.find
+local strmatch = string.match
+local type = type
 local unpack = unpack
+local wipe = table.wipe
 
+local GenerateTextColorCode = C_ColorUtil.GenerateTextColorCode
+local GetClassColor = C_ClassColor.GetClassColor
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
 local GetPetHappiness = (C_PetInfo and C_PetInfo.GetPetHappiness) or GetPetHappiness
 local HasPetUI = HasPetUI
@@ -18,6 +24,7 @@ local hooksecurefunc = hooksecurefunc
 local issecretvalue = issecretvalue
 local ScaleTo100 = CurveConstants.ScaleTo100
 local TruncateWhenZero = C_StringUtil.TruncateWhenZero
+local UnitClass = UnitClass
 local UnitClassification = UnitClassification
 local UnitGetTotalAbsorbs = UnitGetTotalAbsorbs
 local UnitGroupRolesAssigned = UnitGroupRolesAssigned
@@ -25,12 +32,18 @@ local UnitHealth = UnitHealth
 local UnitHealthMax = UnitHealthMax
 local UnitHealthPercent = UnitHealthPercent
 local UnitInPartyIsAI = UnitInPartyIsAI
+local UnitIsConnected = UnitIsConnected
+local UnitIsDead = UnitIsDead
 local UnitIsFriend = UnitIsFriend
+local UnitIsGhost = UnitIsGhost
+local UnitIsPlayer = UnitIsPlayer
 local UnitLevel = UnitLevel
 local UnitName = UnitName
 local UnitPower = UnitPower
 local UnitPowerMax = UnitPowerMax
 local UnitPowerPercent = UnitPowerPercent
+local UnitPowerType = UnitPowerType
+local UnitReaction = UnitReaction
 local WrapString = C_StringUtil.WrapString
 
 local QuestDifficultyColors = QuestDifficultyColors
@@ -39,18 +52,192 @@ local UNKNOWN = UNKNOWN
 local E = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
+local Abbrev = ElvUF.Tags.Env.Abbrev
 
-local Hex = Private.Tags.Hex
-local classificationText = Private.Tags.classificationText
-local formatTargetName = Private.Tags.formatTargetName
-local getFormattedName = Private.Tags.getFormattedName
-local getLastNamePart = Private.Tags.getLastNamePart
-local getPowerColor = Private.Tags.getPowerColor
-local getUnitColor = Private.Tags.getUnitColor
-local getUnitStatus = Private.Tags.getUnitStatus
-local powerColors = Private.Tags.powerColors
+local ElvUF_colors_class = ElvUF.colors.class
+local ElvUF_colors_power = ElvUF.colors.power
+local ElvUF_colors_reaction = ElvUF.colors.reaction
 
 local POWERTYPE_MANA = Enum.PowerType.Mana
+
+local DEFAULT_COLOR = '|cFFcccccc'
+local DEAD, GHOST, OFFLINE = L["DEAD"], L["GHOST"], L["OFFLINE"]
+
+local classificationText = {
+	rare = L["Rare"],
+	rareelite = L["Rare Elite"],
+	elite = L["Elite"],
+	worldboss = L["Boss"]
+}
+
+-- Status check (dead, ghost, offline)
+local function getUnitStatus(unit)
+	return UnitIsDead(unit) and DEAD or UnitIsGhost(unit) and GHOST or not UnitIsConnected(unit) and OFFLINE
+end
+
+-- Color table or r, g, b values to a hex escape code
+local Hex
+if Private.isModern then
+	function Hex(r, g, b)
+		if type(r) == 'table' then
+			return '|c' .. GenerateTextColorCode(r)
+		end
+
+		if type(r) == 'number' and g and b then
+			return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
+		end
+
+		return '|cffFFFFFF'
+	end
+else
+	function Hex(r, g, b)
+		if type(r) == 'table' then
+			if r.r then
+				r, g, b = r.r, r.g, r.b
+			else
+				r, g, b = unpack(r)
+			end
+		end
+
+		if type(r) == 'number' and g and b then
+			return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
+		end
+
+		return '|cffFFFFFF'
+	end
+end
+
+-- Avoids a concat per tag call
+local targetUnits = setmetatable({}, { __index = function(t, unit)
+	local targetUnit = unit .. 'target'
+	t[unit] = targetUnit
+	return targetUnit
+end})
+
+-- Lazily built hex caches
+local classHexCache = setmetatable({}, { __index = function(t, token)
+	local cs = ElvUF_colors_class[token]
+	local hex = cs and Hex(cs.r, cs.g, cs.b) or DEFAULT_COLOR
+	t[token] = hex
+	return hex
+end})
+
+local reactionHexCache = setmetatable({}, { __index = function(t, reaction)
+	local cr = ElvUF_colors_reaction[reaction]
+	local hex = cr and Hex(cr.r, cr.g, cr.b) or DEFAULT_COLOR
+	t[reaction] = hex
+	return hex
+end})
+
+-- Static power token colors only, alternate colors are unit specific and never cached
+-- Tokens without a color cache as false so misses do not rebuild every call
+local powerHexCache = setmetatable({}, { __index = function(t, token)
+	local color = ElvUF_colors_power[token]
+	local hex = color and Hex(color) or false
+	t[token] = hex
+	return hex
+end})
+
+local powerTypeHexCache = setmetatable({}, { __index = function(t, pType)
+	local hex = Hex(ElvUF_colors_power[pType] or ElvUF_colors_power.MANA)
+	t[pType] = hex
+	return hex
+end})
+
+-- Wipe hex caches when ElvUI media or unitframe colors update so color changes apply without a reload
+local function WipeCaches()
+	wipe(classHexCache)
+	wipe(reactionHexCache)
+	wipe(powerHexCache)
+	wipe(powerTypeHexCache)
+end
+
+hooksecurefunc(E, 'UpdateMedia', WipeCaches)
+hooksecurefunc(UF, 'UpdateColors', WipeCaches)
+
+-- Class color for players, reaction color for NPCs
+-- Secret class tokens (identity restricted units, e.g. a group member as targettarget of an NPC) go through C_ClassColor
+local function getUnitColor(unit)
+	if UnitIsPlayer(unit) or UnitInPartyIsAI(unit) then
+		local _, unitClass = UnitClass(unit)
+		if issecretvalue(unitClass) then
+			local color = GetClassColor(unitClass)
+			if color then
+				return Hex(color)
+			end
+		elseif unitClass then
+			return classHexCache[unitClass]
+		end
+	else
+		local reaction = UnitReaction(unit, 'player')
+		if reaction then
+			return reactionHexCache[reaction]
+		end
+	end
+
+	return DEFAULT_COLOR
+end
+
+-- Name arg is already secret-checked
+local function getFormattedName(unit, length, color, abbrev, name)
+	if not name then
+		name = UnitName(unit) or UNKNOWN
+		if issecretvalue(name) then
+			return name
+		end
+	end
+
+	if name ~= UNKNOWN then
+		if abbrev then
+			name = Abbrev(name)
+		end
+		name = E:ShortenString(name, length)
+	end
+
+	if not color then return name end
+
+	return getUnitColor(unit) .. name
+end
+
+local function getPowerColor(unit)
+	local pType, pToken, altR, altG, altB = UnitPowerType(unit)
+
+	local hex = pToken and powerHexCache[pToken]
+	if hex then return hex end
+
+	if altR then
+		if altR > 1 or altG > 1 or altB > 1 then
+			return Hex(altR / 255, altG / 255, altB / 255)
+		end
+
+		return Hex(altR, altG, altB)
+	end
+
+	return powerTypeHexCache[pType or 0]
+end
+
+local function getLastNamePart(name)
+	return name and (strmatch(name, '(%S+)$') or name)
+end
+
+local function formatTargetName(unit, lastPartOnly, withColor)
+	local targetUnit = targetUnits[unit]
+
+	local targetName = UnitName(targetUnit)
+	if not targetName then return end
+
+	if issecretvalue(targetName) then
+		if not withColor then return targetName end
+
+		return WrapString(targetName, getUnitColor(targetUnit), '|r')
+	end
+
+	if lastPartOnly then
+		targetName = getLastNamePart(targetName)
+	end
+
+	return withColor and (getUnitColor(targetUnit) .. targetName) or targetName
+end
 
 -------------------------------------------------------
 -------------------- Classification -------------------
@@ -177,14 +364,14 @@ if Private.isModern then
 		if issecretvalue(role) or role ~= 'HEALER' then return end
 		if UnitInPartyIsAI(unit) then return end -- Exclude NPC Healers (Delve companion etc)
 
-		return powerColors.MANA .. format('%d', UnitPowerPercent(unit, POWERTYPE_MANA, true, ScaleTo100))
+		return powerHexCache.MANA .. format('%d', UnitPowerPercent(unit, POWERTYPE_MANA, true, ScaleTo100))
 	end)
 else
 	-- Display mana (current) if the unit is flagged healer (Classic only)
 	E:AddTag('luckyone:healermana:current', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 		if UnitGroupRolesAssigned(unit) ~= 'HEALER' then return end
 
-		return powerColors.MANA .. UnitPower(unit, POWERTYPE_MANA)
+		return powerHexCache.MANA .. UnitPower(unit, POWERTYPE_MANA)
 	end)
 	E:AddTagInfo('luckyone:healermana:current', Private.Name, L["Displays the unit's Mana with manacolor (Role: Healer)"])
 
@@ -194,7 +381,7 @@ else
 		local max = UnitPowerMax(unit, POWERTYPE_MANA)
 		if max == 0 then return end -- Avoid the "%inf" on frames
 
-		return powerColors.MANA .. format('%.0f%%', UnitPower(unit, POWERTYPE_MANA) / max * 100)
+		return powerHexCache.MANA .. format('%.0f%%', UnitPower(unit, POWERTYPE_MANA) / max * 100)
 	end)
 end
 E:AddTagInfo('luckyone:healermana:percent', Private.Name, L["Displays the unit's Mana with manacolor in percent (Role: Healer)"])

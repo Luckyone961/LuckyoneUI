@@ -4,7 +4,7 @@ local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
 
 -- Edit Mode profiles
-function Private:Return_EditModeString()
+function Private:Setup_EditMode()
 	-- Global db
 	local scaled = Private.Addon.db.global.scaled
 

@@ -447,7 +447,7 @@ end
 
 local function RunUpdate()
 	Map.updatePending = nil
-	Private:UpdateMinimapButtonBar()
+	Private:MinimapButtons_Update()
 end
 
 local function ScheduleUpdate()
@@ -504,7 +504,7 @@ local function RegisterHooks()
 	RegisterLandingPageHooks()
 end
 
-function Private:UpdateMinimapButtonBar()
+function Private:MinimapButtons_Update()
 	local db = Private.Addon.db.profile.map.minimap.buttons
 	if not db.enable or not E.private.general.minimap.enable then
 		ReleaseAll()
@@ -545,7 +545,7 @@ end
 -- Restore profile defaults config button
 function Private:MinimapButtons_ResetDefaults()
 	Private:ResetDefaults(Private.Addon.db.profile.map.minimap.buttons, Private.Defaults.profile.map.minimap.buttons)
-	Private:UpdateMinimapButtonBar()
+	Private:MinimapButtons_Update()
 end
 
 -- Collected again after every loading screen, other addons create their buttons late

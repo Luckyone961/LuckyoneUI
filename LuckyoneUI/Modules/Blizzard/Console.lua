@@ -34,7 +34,7 @@ function Private:Setup_CVars(noPrint, installer)
 end
 
 -- NamePlate CVars
-function Private:NameplateCVars(noPrint)
+function Private:Setup_NameplateCVars(noPrint)
 	SetCVar('nameplateMinAlpha', 1)
 	SetCVar('nameplateMinScale', 1)
 	SetCVar('nameplateOccludedAlphaMult', 1)

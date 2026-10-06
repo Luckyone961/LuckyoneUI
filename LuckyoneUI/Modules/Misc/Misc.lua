@@ -1,33 +1,43 @@
 local _, Private = ...
 local Misc = Private.Modules.Misc
 
-if not Private.ElvUI then
-	return
+local _G = _G
+
+-- Removes the Realm names from friendly Nameplates in name-only mode while in a Dungeon/Raid/Battleground
+-- This sets (NamePlateFriendlyFrameOptions.updateNameUsesGetUnitName = nil) without tainting
+local function RemoveNameplateRealm()
+	if not (Private.isModern and Private.Addon.db.profile.misc.removeNameplateRealm) then return end
+	_G.TextureLoadingGroupMixin.RemoveTexture({textures = _G.NamePlateFriendlyFrameOptions}, 'updateNameUsesGetUnitName')
 end
 
-function Misc:PLAYER_ENTERING_WORLD()
-	Private:DataTextsTweaks()
-	if Private.isRetail then
-		Private:MythicVisibility()
-	end
+function Misc:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
+	-- Only run the setup on login and reload, not on every loading screen
+	if not (initLogin or isReload) then return end
+
+	-- Neither flag can be set again this session, so stop listening
+	self:UnregisterEvent('PLAYER_ENTERING_WORLD')
+
+	Private:CombatLogging()
+	Private:FriendsList()
+	Private:MailboxFavorites()
+	RemoveNameplateRealm()
 end
 
--- DataTextsTweaks follows spec switches through the ElvUI OnProfileChanged callback instead
-function Misc:PLAYER_SPECIALIZATION_CHANGED(_, unit)
-	-- Fires for other units as well, only react to the player
-	if unit ~= 'player' then return end
-
-	Private:MythicVisibility()
+function Misc:PLAYER_REGEN_DISABLED()
+	Private:CombatText(true)
 end
 
-function Misc:PLAYER_DIFFICULTY_CHANGED()
-	Private:MythicVisibility()
+function Misc:PLAYER_REGEN_ENABLED()
+	Private:CombatText(false)
 end
 
 function Misc:OnEnable()
-	self:RegisterEvent('PLAYER_ENTERING_WORLD')
-	if Private.isRetail then
-		self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
-		self:RegisterEvent('PLAYER_DIFFICULTY_CHANGED')
+	-- Fonts have to be in place before the tracker builds its first layout at PLAYER_ENTERING_WORLD
+	if Private.isModern then
+		Private:ObjectiveTracker()
 	end
+
+	self:RegisterEvent('PLAYER_ENTERING_WORLD')
+	self:RegisterEvent('PLAYER_REGEN_DISABLED')
+	self:RegisterEvent('PLAYER_REGEN_ENABLED')
 end

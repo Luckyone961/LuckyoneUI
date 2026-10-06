@@ -12,7 +12,7 @@ local E = unpack(ElvUI)
 -- UnitFrame color themes
 function Private:Setup_Theme(theme, installer)
 
-	local profile = Private:GetActiveProfile()
+	local layout = Private:GetActiveProfile()
 
 	-- The custom name texts below only exist after a layout
 	if not E.db.unitframe.units.player.customTexts.Luckyone_Name then
@@ -73,7 +73,7 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.arena.customTexts.Luckyone_Name.text_format = Private.isModern and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]'
 		E.db.unitframe.units.boss.customTexts.Luckyone_Name.text_format = Private.isModern and '[luckyone:name-color]' or '[luckyone:name:last-classcolor]'
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isModern and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]')
-			.. (profile == 1 and (not Private.isModern and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]') or '')
+			.. (layout == 'main' and (not Private.isModern and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]') or '')
 		E.db.unitframe.units.party.petsGroup.name.text_format = Private.isModern and '[luckyone:name:short-color-friendly]' or '[luckyone:name:short-classcolor]'
 		E.db.unitframe.units.raid1.name.text_format = Private.isModern and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
 		E.db.unitframe.units.raid2.name.text_format = Private.isModern and '[luckyone:name:veryshort-color-friendly]' or '[luckyone:name:veryshort-classcolor]'
@@ -136,7 +136,7 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.arena.customTexts.Luckyone_Name.text_format = Private.isModern and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
 		E.db.unitframe.units.boss.customTexts.Luckyone_Name.text_format = Private.isModern and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
 		E.db.unitframe.units.party.customTexts.Luckyone_Name.text_format = (Private.isModern and '[luckyone:name:short-nocolor-friendly]' or '[luckyone:name:short-nocolor]')
-			.. (profile == 1 and (not Private.isModern and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]') or '')
+			.. (layout == 'main' and (not Private.isModern and '[ ||r- >luckyone:healermana:percent]' or '[ ||r- >luckyone:healermana:percent<%]') or '')
 		E.db.unitframe.units.party.petsGroup.name.text_format = Private.isModern and '[luckyone:name:short-nocolor-friendly]' or '[luckyone:name:short-nocolor]'
 		E.db.unitframe.units.raid1.name.text_format = Private.isModern and '[luckyone:name:veryshort-nocolor-friendly]' or '[luckyone:name:veryshort-nocolor]'
 		E.db.unitframe.units.raid2.name.text_format = Private.isModern and '[luckyone:name:veryshort-nocolor-friendly]' or '[luckyone:name:veryshort-nocolor]'

@@ -1,5 +1,4 @@
 local _, Private = ...
-local Blizzard = Private.Modules.Blizzard
 
 local CreateFrame = CreateFrame
 
@@ -46,7 +45,8 @@ function Private:CombatText_ResetDefaults()
 	Private:CombatText_Update()
 end
 
-local function CombatText_Show(entering)
+-- The Misc hub calls this on PLAYER_REGEN_DISABLED and PLAYER_REGEN_ENABLED
+function Private:CombatText(entering)
 	local db = Private.Addon.db.profile.misc.combatText
 	if not db.enable then return end
 
@@ -62,12 +62,4 @@ local function CombatText_Show(entering)
 	frame:SetAlpha(1)
 	frame:Show()
 	frame:SetScript('OnUpdate', CombatText_OnUpdate)
-end
-
-function Blizzard:PLAYER_REGEN_DISABLED()
-	CombatText_Show(true)
-end
-
-function Blizzard:PLAYER_REGEN_ENABLED()
-	CombatText_Show(false)
 end

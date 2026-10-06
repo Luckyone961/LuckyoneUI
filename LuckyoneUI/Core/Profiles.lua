@@ -22,27 +22,12 @@ local StaticPopup_Show = _G.StaticPopup_Show
 local ACCEPT = ACCEPT
 local CANCEL = CANCEL
 
--- Custom placed damage meter windows are positioned by ElvUI movers
--- Without ElvUI their offsets are part of the profile already
--- Temporary snapshot
-local function ExportMovers()
-	if not Private.ElvUI or not Private.Modules.DamageMeter then return end
-
-	local movers, db = {}, ElvUI[1].db.movers
-	for index = 1, 4 do
-		local name = 'LuckyoneUI_DamageMeterWindow' .. index .. 'Mover'
-		movers[name] = db and db[name]
-	end
-
-	return movers
-end
-
 -- Profile export, we skip values which match defaults
 function Private:ExportProfile()
 	local data = CopyTable(Private.Addon.db.profile)
 	Private:StripDefaults(data, Private.Defaults.profile)
 
-	local compressed = CompressString(SerializeCBOR({ name = Private.Addon.db:GetCurrentProfile(), profile = data, movers = ExportMovers() }))
+	local compressed = CompressString(SerializeCBOR({ name = Private.Addon.db:GetCurrentProfile(), profile = data, movers = Private.Modules.DamageMeter and Private:DamageMeter_ExportMovers() }))
 	return compressed and '!L1UI!' .. EncodeBase64(compressed) or ''
 end
 

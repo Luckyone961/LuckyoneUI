@@ -44,7 +44,7 @@ hooksecurefunc(NP, 'Update_StatusBars', function()
 end)
 
 -- Let ElvUI reapply its own textures first, so switching an option off restores the default
-function Private:UpdateAbsorbTextures(key)
+function Private:AbsorbTextures_Update(key)
 	if key == 'unitframes' then
 		if UF.Initialized then
 			UF:Update_AllFrames()
