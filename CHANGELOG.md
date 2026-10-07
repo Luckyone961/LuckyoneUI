@@ -10,6 +10,7 @@
 - Updated pretty much every single addon profile  
 
 **Retail:**  
+- Added skin for KeystoneLoot  
 - Limited the amount of letters in names on target frame and nameplates  
 - Updated EditMode strings  
 - Updated SkironCooldownManager profile  

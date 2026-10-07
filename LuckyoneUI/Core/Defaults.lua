@@ -269,6 +269,7 @@ Private.Defaults = {
 			BigWigs = false,
 			BugSack = false,
 			ForeverDungeonJournal = false,
+			KeystoneLoot = false,
 			LFGBulletinBoard = false,
 			NovaSpellRankChecker = false,
 			NovaWorldBuffs = false,

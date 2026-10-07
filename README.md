@@ -36,10 +36,10 @@
 • DataText width tweaks that follow your active layout and spec profile.  
 
 ### **ElvUI skins**  
-• Addons: Auctionator, BigWigs (/keys and queue timer), BugSack, LFG Bulletin Board  
-• Addons: Nova Spell Rank Checker, Nova World Buffs, Plumber (House list), Premade Groups Filter  
-• Addons: RCLootCouncil, RXPGuides, Simple Addon Manager, Simulationcraft  
-• Addons: Tabardy, WhatsTraining  
+• Addons: Auctionator, BigWigs (/keys and queue timer), BugSack, KeystoneLoot  
+• Addons: LFG Bulletin Board, Nova Spell Rank Checker, Nova World Buffs, Plumber (House list)  
+• Addons: Premade Groups Filter, RCLootCouncil, RXPGuides, Simple Addon Manager  
+• Addons: Simulationcraft, Tabardy, WhatsTraining  
 • Blizzard: Cooldown Settings viewer, Developer Console  
 
 ### **The core features**  
