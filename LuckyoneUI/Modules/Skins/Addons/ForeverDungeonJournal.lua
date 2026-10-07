@@ -70,15 +70,17 @@ local function SkinListRow(row)
 	row.IsSkinned = true
 end
 
-local function SkinQuestRow(row)
-	SkinListRow(row)
-
-	-- Completed quests get a green border
-	local glow = row.completeGlow
+-- Completed quests and owned favourites get a green border
+local function SkinCompleteGlow(glow)
 	glow:SetTemplate(nil, nil, true, true)
 	glow:SetBackdropColor(0, 0, 0, 0)
 	glow:SetBackdropBorderColor(.12, 1, .25)
 	glow:SetAllPoints()
+end
+
+local function SkinQuestRow(row)
+	SkinListRow(row)
+	SkinCompleteGlow(row.completeGlow)
 
 	-- Quest Chain
 	row.chainPanel:SetTemplate('Transparent')
@@ -130,6 +132,17 @@ local function ItemContent_SetHeight(content)
 	for _, button in next, { content:GetChildren() } do
 		if button.icon and button.name and not button.IsSkinned then
 			SkinItemButton(button)
+		end
+	end
+end
+
+-- Favourites rows bring their own highlight, skip the dungeon dividers
+local function FavouritesContent_SetHeight(content)
+	for _, row in next, { content:GetChildren() } do
+		if row.icon and not row.IsSkinned then
+			row:SetHighlightTexture(E.ClearTexture)
+			SkinItemButton(row)
+			SkinCompleteGlow(row.completeGlow)
 		end
 	end
 end
@@ -221,6 +234,32 @@ local function Skin_LootFilterResults(frame)
 	panel.IsSkinned = true
 end
 
+-- Favourites window, built on the first click
+local function Skin_FavouritesWindow(frame)
+	local window = frame.favouritesWindow
+	if window.IsSkinned then return end
+
+	S:HandlePortraitFrame(window)
+	window.fdjStarBackground:Hide()
+	S:HandleScrollBar(window.fdjScroll.ScrollBar)
+
+	hooksecurefunc(window.fdjContent, 'SetHeight', FavouritesContent_SetHeight)
+	FavouritesContent_SetHeight(window.fdjContent)
+
+	window.IsSkinned = true
+end
+
+-- Right-click menu on items, built on the first use
+local function Skin_FavouriteMenu()
+	local menu = ForeverDungeonJournalFavouriteContextMenu
+	if not menu or menu.IsSkinned then return end
+
+	menu:SetTemplate('Transparent')
+	menu.button:GetHighlightTexture():SetColorTexture(1, 1, 1, .25)
+
+	menu.IsSkinned = true
+end
+
 -- Report window, built on the first click
 local function Skin_BugReportWindow(frame)
 	local window = frame.bugReportWindow
@@ -233,11 +272,18 @@ local function Skin_BugReportWindow(frame)
 	window.IsSkinned = true
 end
 
--- Dungeon map on the world map, the button switches back to the world map
-local function Skin_WorldMapToggle()
+-- Dungeon map on the world map, the toggle switches back to the world map
+-- Scarlet Monastery adds wing buttons, the current wing is disabled
+local function Skin_WorldMapButtons()
 	local toggle = ForeverDungeonJournalWorldMapToggle
-	if toggle then
-		S:HandleButton(toggle)
+	if not toggle then return end
+
+	S:HandleButton(toggle)
+
+	for _, button in next, { WorldMapFrame:GetChildren() } do
+		if button.fdjWing and not button.IsSkinned then
+			SkinTab(button)
+		end
 	end
 end
 
@@ -252,6 +298,19 @@ local function QuestDetail_SetHeight()
 	local header = ForeverDungeonJournalFrame.questAlsoReceiveHeader
 	if header then
 		header:SetTextColor(1, 1, 1)
+	end
+end
+
+-- Reputation rewards are created on demand
+local function RepPills_Layout()
+	local pills = ForeverDungeonJournalFrame.questRepPills
+	if not pills then return end
+
+	for _, pill in next, pills do
+		if not pill.IsSkinned then
+			pill:SetTemplate('Transparent')
+			pill.IsSkinned = true
+		end
 	end
 end
 
@@ -307,6 +366,12 @@ local function Skin_Frame()
 
 	hooksecurefunc(FDJ, 'ToggleLootFilterWindow', Skin_LootFilterWindow)
 	hooksecurefunc(FDJ, 'ShowLootFilterList', Skin_LootFilterResults)
+
+	-- Favourites
+	SkinBackdropButton(frame.favouritesButton)
+
+	hooksecurefunc(FDJ, 'ToggleFavouritesWindow', Skin_FavouritesWindow)
+	hooksecurefunc(FDJ, 'ShowItemFavouriteMenu', Skin_FavouriteMenu)
 
 	S:HandleScrollBar(frame.homeScroll.ScrollBar)
 
@@ -389,6 +454,7 @@ local function Skin_Frame()
 	-- Same look as the reward rows
 	frame.questXPReward:SetTemplate('Transparent')
 	frame.questMoneyReward:SetTemplate('Transparent')
+	hooksecurefunc(FDJ, 'LayoutRepPills', RepPills_Layout)
 
 	hooksecurefunc(frame.questDetailContent, 'SetHeight', ItemContent_SetHeight)
 	ItemContent_SetHeight(frame.questDetailContent)
@@ -397,7 +463,7 @@ local function Skin_Frame()
 	frame.dungeonMapPanel:SetTemplate()
 	frame.dungeonMapCanvas:SetBackdrop()
 	hooksecurefunc(FDJ, 'RenderCustomDungeonMap', Map_Render)
-	hooksecurefunc(FDJ, 'RefreshWorldMapOverlay', Skin_WorldMapToggle)
+	hooksecurefunc(FDJ, 'RefreshWorldMapOverlay', Skin_WorldMapButtons)
 
 	-- Route Guide
 	local routePanel = frame.routePanel
