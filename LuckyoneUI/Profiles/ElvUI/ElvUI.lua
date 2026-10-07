@@ -514,7 +514,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.bags.bagWidth = (scaled and 450) or 540
 	E.db.bags.bankButtonSpacing = 4
 	E.db.bags.bankSize = (scaled and 32) or 36
-	E.db.bags.bankWidth = 1080
+	E.db.bags.bankWidth = (not Private.isRetail and 544) or 1080
 	E.db.bags.clearSearchOnClose = true
 	E.db.bags.countFont = Private.Font
 	E.db.bags.countFontOutline = Private.Outline
