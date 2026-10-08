@@ -272,6 +272,27 @@ local function UpdateStageBackdrop(block)
 	block.backdrop:SetShown(block.NormalBG:IsShown())
 end
 
+-- Pooled spell buttons below the objectives, Blizzard refills them on every scenario update
+-- Not a protected frame, the click casts from Blizzard code and only textures and a backdrop child get touched
+local function SkinSpellButtons(module)
+	local pool = module.spellFramePool
+	if not pool then return end
+
+	for spellFrame in pool:EnumerateActive() do
+		local button = spellFrame.SpellButton
+		if not skinned[button] then
+			-- The ring around the icon goes, ElvUI's hover and yellow click flash take over
+			button:SetNormalTexture(E.ClearTexture)
+			button:StyleButton()
+
+			S:HandleIcon(button.Icon, true)
+			button.Icon:SetInside()
+
+			skinned[button] = true
+		end
+	end
+end
+
 local function SkinScenario(module)
 	local block = module.StageBlock
 	if not (S and block) or not Private.Addon.db.profile.misc.objectiveTracker.scenarioSkin then return end
@@ -280,6 +301,9 @@ local function SkinScenario(module)
 	SkinWidgetContainer(block.WidgetContainer)
 	SkinWidgetContainer(module.TopWidgetContainerBlock.WidgetContainer)
 	SkinWidgetContainer(module.BottomWidgetContainerBlock.WidgetContainer)
+
+	-- Whatever spells are up right now, enabling from the config comes after the layout
+	SkinSpellButtons(module)
 
 	if skinned[block] then return end
 
@@ -293,6 +317,8 @@ local function SkinScenario(module)
 	-- Widget driven stages hide the toast and show widgets instead, the backdrop follows
 	hooksecurefunc(block, 'UpdateWidgetRegistration', UpdateStageBackdrop)
 	UpdateStageBackdrop(block)
+
+	hooksecurefunc(module, 'AddSpells', SkinSpellButtons)
 
 	skinned[block] = true
 end
