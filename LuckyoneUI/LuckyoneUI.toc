@@ -99,7 +99,6 @@ Modules\Skins\Addons\Tabardy.lua [AllowLoadGameType standard, vanilla, tbc, mist
 Modules\Skins\Addons\WhatsTraining.lua [AllowLoadGameType vanilla, tbc, camelot][ExcludeLoadGameType standard, mists]
 Modules\Skins\Blizzard\CooldownViewer.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
 Modules\Skins\Blizzard\DeveloperConsole.lua
-Modules\Skins\Blizzard\ExpandMerchant.lua
 
 Profiles\Addons\Baganator.lua
 Profiles\Addons\BigWigs.lua
