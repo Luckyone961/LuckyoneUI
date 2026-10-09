@@ -4,14 +4,20 @@ if not Private.ElvUI then
 	return
 end
 
--- We only skin the legacy guide window and the frames around it
--- The V2 interface (beta) and the Guide Configurator keep the addon's own look
+--[[
+	NOT skinned:
+	- Guide Configurator
+	- Guide importer
+	- feedback and export windows
+	- Leveling report
+	- Active Party Steps
+	- Auction House upgrades tab
+]]
 
 local ceil = ceil
 local next = next
 local unpack = unpack
 
-local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 local InCombatLockdown = InCombatLockdown
 
@@ -29,6 +35,12 @@ local function ReplaceFont(text)
 	text:SetFont(E.media.normFont, size, flags)
 end
 
+local function AddHover(frame, anchor)
+	local hover = frame:CreateTexture(nil, 'HIGHLIGHT')
+	hover:SetInside(anchor)
+	hover:SetColorTexture(1, 1, 1, .25)
+end
+
 local function Backdrop_SetBackdrop(frame, backdrop)
 	local backdrops = addon.RXPFrame.backdrop
 	if backdrop == backdrops.edge or backdrop == backdrops.guideName or backdrop == backdrops.bottom then
@@ -37,12 +49,16 @@ local function Backdrop_SetBackdrop(frame, backdrop)
 end
 
 local function Backdrop_SetBackdropColor(frame)
+	local center = frame.Center
+	if not center then return end
+
 	local transparent = frame.template == 'Transparent'
 	local r, g, b, a = unpack(transparent and E.media.backdropfadecolor or E.media.backdropcolor)
-	frame.Center:SetVertexColor(r, g, b, transparent and a or 1)
+	center:SetVertexColor(r, g, b, transparent and a or 1)
 end
 
 local function SkinBackdrop(frame, template)
+	-- A frame with its background hidden gets the template on the next SetBackdrop
 	if frame.backdropInfo then
 		frame:SetTemplate(template)
 	else
@@ -53,68 +69,70 @@ local function SkinBackdrop(frame, template)
 	hooksecurefunc(frame, 'SetBackdropColor', Backdrop_SetBackdropColor)
 end
 
-local function ResetArrow(button, direction, r, g, b)
-	local rotation = S.ArrowRotation[direction]
-	local normal, pushed, disabled = button:GetNormalTexture(), button:GetPushedTexture(), button:GetDisabledTexture()
+local function HideV2Backdrop(frame)
+	local background, border, shadow = frame.rxpBackground, frame.rxpBorder, frame.rxpShadow
+	if background then background:SetAlpha(0) end
+	if border then border:SetAlpha(0) end
+	if shadow then shadow:SetAlpha(0) end
+end
 
-	for _, texture in next, { normal, pushed, disabled } do
-		texture:SetTexture(E.Media.Textures.ArrowUp)
-		texture:SetRotation(rotation)
-		texture:SetDesaturated(false)
+local function SkinV2Backdrop(frame, template)
+	HideV2Backdrop(frame)
+
+	frame:CreateBackdrop(template, nil, nil, nil, nil, nil, nil, true)
+	frame.v2Backdrop = true
+
+	-- Icon frames with Hide Background on get no ElvUI background either
+	local background = frame.rxpBackground
+	if not (background and background:IsShown()) then
+		frame.backdrop:Hide()
 	end
-
-	normal:SetVertexColor(r or 1, g or 1, b or 1)
-	pushed:SetVertexColor(1, 1, 1)
-	disabled:SetVertexColor(.3, .3, .3)
-
-	local highlight = button:GetHighlightTexture()
-	highlight:SetTexture(E.ClearTexture)
 end
 
--- Step list rows
-local function Row_SetBackdropColor(row)
-	row.hover:SetShown(row:IsMouseOver())
+-- The icon frames get their border and shadow on the first background toggle
+local function V2_ApplyFrameBackdrop(_, frame)
+	if frame.v2Backdrop then
+		HideV2Backdrop(frame)
+	end
 end
 
-local function SkinRow(row)
-	SkinBackdrop(row, 'Transparent')
-
-	local hover = row:CreateTexture(nil, 'ARTWORK')
-	hover:SetInside()
-	hover:SetColorTexture(1, 1, 1, .25)
-	hover:Hide()
-	row.hover = hover
-
-	hooksecurefunc(row, 'SetBackdropColor', Row_SetBackdropColor)
-
-	row.IsSkinned = true
+local function V2_SetFrameBackdropShown(_, frame, shown)
+	if frame.v2Backdrop then
+		frame.backdrop:SetShown(shown)
+	end
 end
 
--- Rows are created per guide step on guide load
+-- Legacy step list rows, created per step on guide load
 local function Guide_Load()
 	for _, row in next, addon.RXPFrame.ScrollChild.framePool do
 		if not row.IsSkinned then
-			SkinRow(row)
+			SkinBackdrop(row, 'Transparent')
+			AddHover(row)
+
+			row.IsSkinned = true
 		end
 	end
 end
 
 local function ScrollBar_Update()
 	local scrollBar = addon.RXPFrame.ScrollFrame.ScrollBar
+	for _, button in next, { scrollBar.ScrollUpButton, scrollBar.ScrollDownButton } do
+		button.Normal:SetTexture(E.Media.Textures.ArrowUp)
+		button.Pushed:SetTexture(E.Media.Textures.ArrowUp)
+		button.Disabled:SetTexture(E.Media.Textures.ArrowUp)
+		button.Highlight:SetTexture(E.ClearTexture)
+	end
 
-	ResetArrow(scrollBar.ScrollUpButton, 'up')
-	ResetArrow(scrollBar.ScrollDownButton, 'down')
-
-	local thumb = scrollBar:GetThumbTexture()
-	thumb:SetTexture()
+	scrollBar:GetThumbTexture():SetTexture()
 end
 
+-- Legacy active steps, their frames and element rows are created in SetStep, which ends in UpdateText
 local function CurrentStep_UpdateText()
 	for _, stepFrame in next, addon.RXPFrame.CurrentStepFrame.framePool do
 		if not stepFrame.IsSkinned then
 			SkinBackdrop(stepFrame, 'Transparent')
 
-			-- Step label in the top right corner, above the step text (elements and their checkboxes)
+			-- Step label in the top right corner, above the step text
 			local number = stepFrame.number
 			SkinBackdrop(number)
 			number:ClearAllPoints()
@@ -125,46 +143,22 @@ local function CurrentStep_UpdateText()
 		end
 
 		for _, element in next, stepFrame.elements do
-			local button = not element.button.IsSkinned and element.button
-			if button then
+			local button = element.button
+			if not button.IsSkinned then
 				S:HandleCheckBox(button)
 				button.backdrop:SetAllPoints()
 
-				local disabledChecked = button:GetDisabledCheckedTexture()
-				disabledChecked:SetAlpha(0)
+				button:GetDisabledCheckedTexture():SetAlpha(0)
 			end
 		end
 	end
 end
 
--- Timer bars come from a library shared with other addons
-local timerBars = {}
-local function Timer_Start(_, label)
-	local bar = addon.RXPFrame.BarContainer.bars[label or '']
-	if not bar then return end
-
-	bar:SetTexture(E.media.normTex)
-
-	local _, size, flags = bar.candyBarLabel:GetFont()
-	bar:SetFont(E.media.normFont, size, flags)
-
-	local backdrop = bar.candyBarBackdrop
-	backdrop:SetTemplate('Transparent', nil, true, true)
-	backdrop:SetOutside(bar)
-	backdrop:Show()
-
-	timerBars[bar] = true
-end
-
-local function CandyBar_Stop(_, bar)
-	if timerBars[bar] then
-		bar.candyBarBackdrop:Hide()
-		timerBars[bar] = nil
-	end
-end
-
 local function SkinGuideWindow()
 	local frame = addon.RXPFrame
+
+	-- The visible frames sit 3px inside the clamped window, let them reach the screen edge
+	frame:SetClampRectInsets(3, -3, 0, 0)
 
 	-- Step list
 	SkinBackdrop(frame.BottomFrame, 'Transparent')
@@ -191,18 +185,167 @@ local function SkinGuideWindow()
 	-- Active steps
 	CurrentStep_UpdateText()
 	hooksecurefunc(frame.CurrentStepFrame, 'UpdateText', CurrentStep_UpdateText)
-
-	-- Timers below the window
-	hooksecurefunc(addon, 'StartTimer', Timer_Start)
-
-	local LibCandyBar = LibStub('LibCandyBar-3.0')
-	LibCandyBar.RegisterCallback('LuckyoneUI_RXPGuides', 'LibCandyBar_Stop', CandyBar_Stop)
 end
 
--- Active Items and Active Targets title
-local function SkinTitle(frame)
+-- V2 step list scroll bar, RXP recolors it on every theme update
+local function V2Scroll_RefreshVisuals(scroll)
+	local scrollBar = scroll.scrollbar
+	scrollBar.ScrollUpButton.Normal:SetVertexColor(1, 1, 1)
+	scrollBar.ScrollDownButton.Normal:SetVertexColor(1, 1, 1)
+end
+
+-- V2 step list rows, pooled and re-themed by SetRow
+local function GuideSteps_SetRows(guideSteps)
+	for _, item in next, guideSteps.items do
+		local frame = item.frame
+		if not frame.IsSkinned then
+			SkinV2Backdrop(frame, 'Transparent')
+			AddHover(frame, frame.backdrop)
+
+			-- Step number without the badge
+			HideV2Backdrop(item.numberFrame)
+
+			ReplaceFont(item.text)
+			ReplaceFont(item.number)
+
+			frame.IsSkinned = true
+		end
+	end
+end
+
+local function V2_UpdateMenuTheme(_, listFrame, enabled)
+	if not (enabled and listFrame) then return end
+
+	HideV2Backdrop(listFrame)
+
+	local menuBackdrop = _G[listFrame:GetName() .. 'MenuBackdrop']
+	if menuBackdrop then
+		menuBackdrop:Show()
+	end
+end
+
+-- Active step checkboxes, StripTextures in HandleCheckBox also clears RXP's check mark lines
+local function ActiveStepItem_SetElements(item)
+	for _, row in next, item.elementRows do
+		local button = row.button
+		if not button.IsSkinned then
+			HideV2Backdrop(button)
+			S:HandleCheckBox(button)
+			button.backdrop:SetAllPoints()
+
+			-- RXP disables completed elements, they keep the checked look
+			button:GetDisabledTexture():SetAlpha(0)
+
+			-- Skip icon on hover without the border
+			HideV2Backdrop(button.rxpHoverFrame)
+		end
+	end
+end
+
+-- Active step cards of the V2 window, the party members' cards keep the party window's look
+local function V2_ReconcileActiveStepItems(v2, playerState)
+	if playerState ~= v2.state.player[addon.player.name] then return end
+
+	for _, item in next, playerState.activeStepItems do
+		if not item.IsSkinned then
+			SkinV2Backdrop(item.card, 'Transparent')
+			SkinV2Backdrop(item.title)
+			ReplaceFont(item.titletext)
+
+			ActiveStepItem_SetElements(item)
+			hooksecurefunc(item, 'SetElements', ActiveStepItem_SetElements)
+
+			item.IsSkinned = true
+		end
+	end
+end
+
+local function SkinV2GuideWindow()
+	local v2 = addon.v2
+	local window = v2:GetGuideWindow()
+	if not window then return end
+
+	-- Header with the logo, guide name and menu buttons
+	local header = window.upperFrame
+	SkinV2Backdrop(header)
+	HideV2Backdrop(window.guideNameFrame)
+	window.banner:SetAlpha(0)
+	S:HandleCloseButton(window.closebutton, header)
+
+	-- Step list, its top border sits under the header's bottom border
+	local list = window.guideStepsFrame
+	SkinV2Backdrop(list, 'Transparent')
+	list.backdrop:Point('TOPLEFT', list, 'TOPLEFT', 0, E.Border)
+	window.footerBackground:SetAlpha(0)
+
+	local guideSteps = window.guideSteps
+	local scroll = guideSteps.scroll
+	S:HandleScrollBar(scroll.scrollbar)
+	scroll.scrollbg:SetAlpha(0)
+	V2Scroll_RefreshVisuals(scroll)
+	hooksecurefunc(scroll, 'RefreshVisuals', V2Scroll_RefreshVisuals)
+
+	GuideSteps_SetRows(guideSteps)
+	hooksecurefunc(guideSteps, 'SetRows', GuideSteps_SetRows)
+
+	-- Texts created with the theme font
+	ReplaceFont(window.title)
+	ReplaceFont(window.subtitle)
+	ReplaceFont(window.footerText)
+
+	hooksecurefunc(v2, 'UpdateMenuTheme', V2_UpdateMenuTheme)
+
+	local ui = addon.ui.v2
+	hooksecurefunc(ui, 'ApplyFrameBackdrop', V2_ApplyFrameBackdrop)
+	hooksecurefunc(ui, 'AddFrameShadow', V2_ApplyFrameBackdrop)
+	hooksecurefunc(ui, 'SetFrameBackdropShown', V2_SetFrameBackdropShown)
+
+	-- Cards RXP built in its own initialization
+	local playerState = v2.state.player[addon.player.name]
+	if playerState and playerState.activeStepItems then
+		V2_ReconcileActiveStepItems(v2, playerState)
+	end
+
+	hooksecurefunc(v2, 'ReconcileActiveStepItems', V2_ReconcileActiveStepItems)
+end
+
+-- Timer bars below the window come from a library pool shared with other addons
+local timerBars = {}
+local function Timer_Start(_, label)
+	local bar = addon.RXPFrame.BarContainer.bars[label or '']
+	if not bar then return end
+
+	bar:SetTexture(E.media.normTex)
+
+	local _, size, flags = bar.candyBarLabel:GetFont()
+	bar:SetFont(E.media.normFont, size, flags)
+
+	local backdrop = bar.candyBarBackdrop
+	backdrop:SetTemplate('Transparent', nil, true, true)
+	backdrop:SetOutside(bar)
+	backdrop:Show()
+
+	timerBars[bar] = true
+end
+
+local function CandyBar_Stop(_, bar)
+	if timerBars[bar] then
+		bar.candyBarBackdrop:Hide()
+		timerBars[bar] = nil
+	end
+end
+
+-- Active Items and Active Targets, the title sits above the frame
+local function SkinIconFrame(frame)
 	local title = frame.title
-	SkinBackdrop(title)
+	if frame.v2 then
+		SkinV2Backdrop(frame, 'Transparent')
+		SkinV2Backdrop(title)
+	else
+		SkinBackdrop(frame, 'Transparent')
+		SkinBackdrop(title)
+	end
+
 	title:ClearAllPoints()
 	title:Point('BOTTOMLEFT', frame, 'TOPLEFT', 5, 1)
 end
@@ -217,7 +360,6 @@ local function SkinIconButton(button)
 	end
 
 	button:SetTemplate()
-
 	button.Center:SetDrawLayer('BACKGROUND', -1)
 
 	button.IsSkinned = true
@@ -242,37 +384,22 @@ local function ActiveItems_Update()
 	frame:Height(29)
 end
 
-local function SkinActiveItems()
-	local frame = addon.activeItemFrame
-
-	SkinBackdrop(frame, 'Transparent')
-	SkinTitle(frame)
-
-	ActiveItems_Update()
-	hooksecurefunc(addon, 'UpdateItemFrame', ActiveItems_Update)
-
-	hooksecurefunc(frame, 'UpdateFrame', ActiveItems_Update)
-end
-
+-- Returns the rows of shown buttons, RXP puts 4 in a row
 local function SkinTargetButtons(buttons)
+	local shown = 0
 	for _, button in next, buttons do
 		if not button.IsSkinned then
 			SkinIconButton(button)
 		end
 
-		local icon = button.icon
 		-- RXP re-anchors the cached portraits every update
+		local icon = button.icon
 		if icon ~= button.placeholder or not icon.IsSkinned then
 			S:HandleIcon(icon)
 			icon:SetInside()
 			icon.IsSkinned = true
 		end
-	end
-end
 
-local function CountRows(buttons)
-	local shown = 0
-	for _, button in next, buttons do
 		if button:IsShown() then
 			shown = shown + 1
 		end
@@ -286,10 +413,9 @@ local function ActiveTargets_Update(targeting)
 
 	local frame = targeting.activeTargetFrame
 	local enemies, friendlies = frame.enemyTargetButtons, frame.friendlyTargetButtons
-	SkinTargetButtons(enemies)
-	SkinTargetButtons(friendlies)
+	local enemyRows, friendlyRows = SkinTargetButtons(enemies), SkinTargetButtons(friendlies)
 
-	local enemyRows, friendlyRows = CountRows(enemies), CountRows(friendlies)
+	-- RXP keeps room on top for the title, which sits above the frame here
 	if enemyRows > 0 then
 		local first = enemies[1]
 		first:ClearAllPoints()
@@ -306,12 +432,18 @@ local function ActiveTargets_Update(targeting)
 	frame:Height(12 + (enemyRows + friendlyRows) * 25 + (enemyRows > 0 and friendlyRows > 0 and 2 or 0))
 end
 
-local function SkinActiveTargets()
-	local targeting = addon.targeting
-	local frame = targeting.activeTargetFrame
+local function SkinIconFrames()
+	local itemFrame = addon.activeItemFrame
+	SkinIconFrame(itemFrame)
 
-	SkinBackdrop(frame, 'Transparent')
-	SkinTitle(frame)
+	ActiveItems_Update()
+	hooksecurefunc(addon, 'UpdateItemFrame', ActiveItems_Update)
+
+	-- The frame keeps the original function as its UpdateFrame
+	hooksecurefunc(itemFrame, 'UpdateFrame', ActiveItems_Update)
+
+	local targeting = addon.targeting
+	SkinIconFrame(targeting.activeTargetFrame)
 
 	ActiveTargets_Update(targeting)
 	hooksecurefunc(targeting, 'UpdateTargetFrame', ActiveTargets_Update)
@@ -321,9 +453,19 @@ local function Theme_Load()
 	addon.font = E.media.normFont
 end
 
+-- V2 texts read the font from the theme tables, RXP rebuilds those from the legacy themes
+local function Themes_Convert()
+	for _, theme in next, addon.v2.themes do
+		theme.font = E.media.normFont
+	end
+end
+
 local function SkinFonts()
 	Theme_Load()
 	hooksecurefunc(addon, 'LoadActiveTheme', Theme_Load)
+
+	Themes_Convert()
+	hooksecurefunc(addon.v2, 'ConvertThemes', Themes_Convert)
 
 	-- Texts the addon already created with the theme font
 	addon.UpdateGuideFontSize()
@@ -332,43 +474,13 @@ local function SkinFonts()
 	ReplaceFont(addon.arrowFrame.text)
 end
 
--- Leveling report
-local function ReplaceLabelFonts(widget)
-	for _, child in next, widget.children do
-		local fontObject = child.fontObject
-		if fontObject then
-			ReplaceFont(fontObject)
-		end
-
-		if child.children then
-			ReplaceLabelFonts(child)
-		end
-	end
-end
-
-local function Tracker_CreateGui()
-	for _, report in next, addon.tracker.ui do
-		local frame = report.frame
-		if not frame.IsSkinned then
-			if E.private.skins.ace3Enable then
-				SkinBackdrop(frame, 'Transparent')
-			end
-
-			ReplaceLabelFonts(report)
-
-			frame.IsSkinned = true
-		end
-	end
-end
-
--- Level splits
+-- Level Splits, title centered above the frame
 local function Tracker_CreateLevelSplits(tracker)
 	local frame = tracker.levelSplits
 	if not frame or frame.IsSkinned then return end
 
 	SkinBackdrop(frame, 'Transparent')
 
-	-- Centered title
 	local title = frame.title
 	SkinBackdrop(title)
 	ReplaceFont(title.text)
@@ -376,177 +488,6 @@ local function Tracker_CreateLevelSplits(tracker)
 	title:Point('BOTTOM', frame, 'TOP', 0, 1)
 
 	frame.IsSkinned = true
-end
-
--- Feedback form and export windows
-local function BugReport_Open()
-	_G.RESTEDXP_BUG_REPORT_WINDOW:SetTemplate('Transparent')
-end
-
-local function BrandedExport_Open()
-	_G.RESTEDXP_BRANDED_EXPORT:SetTemplate('Transparent')
-end
-
--- Guide importer
-local ImporterButtons = { 'importButton', 'importSplicedString', 'purgeButton', 'reloadButton', 'deleteButton' }
-
-local function SkinImporterButton(button)
-	addon.ui.v2:SetFrameBackdropShown(button, false)
-	S:HandleButton(button)
-end
-
-local function Popup_UpdateTheme(popup)
-	ReplaceFont(popup.title)
-	ReplaceFont(popup.message)
-
-	for _, button in next, popup.buttons do
-		ReplaceFont(button.text)
-	end
-end
-
-local function SkinPopup(popup)
-	local frame = popup.frame
-	addon.ui.v2:SetFrameBackdropShown(frame, false)
-	frame:SetTemplate('Transparent')
-
-	-- The close button is the only child button without an index
-	for _, child in next, { frame:GetChildren() } do
-		if child:IsObjectType('Button') and not child.index then
-			S:HandleCloseButton(child, frame)
-		end
-	end
-
-	for _, button in next, popup.buttons do
-		SkinImporterButton(button)
-	end
-
-	Popup_UpdateTheme(popup)
-	hooksecurefunc(popup, 'UpdateSubTheme', Popup_UpdateTheme)
-end
-
-local function Importer_UpdateTheme(importer)
-	local widgets = addon.guideImporter.widgets
-
-	for _, text in next, { importer.title, importer.description, widgets.importLabel, widgets.importBox.editBox, widgets.guidesLabel, widgets.currentGuides.text, widgets.progressLabel, widgets.progressText, widgets.history } do
-		ReplaceFont(text)
-	end
-
-	for _, key in next, ImporterButtons do
-		ReplaceFont(widgets[key].text)
-	end
-end
-
--- Imported guides dropdown
-local function Dropdown_ApplyTheme(_, dropdown)
-	if dropdown ~= addon.guideImporter.widgets.currentGuides then return end
-
-	ResetArrow(dropdown.button, 'down', 1, .8, 0)
-
-	local pullout = dropdown.pullout
-	local frame = pullout.frame
-	frame:SetTemplate(nil, true)
-
-	local slider = pullout.rxpV2Slider
-	if not pullout.IsSkinned then
-		addon.ui.v2:SetFrameBackdropShown(frame, false)
-		pullout.rxpV2Background:Hide()
-		pullout.rxpV2SliderBackground:Hide()
-		S:HandleScrollBar(slider)
-
-		pullout.IsSkinned = true
-	end
-
-	ResetArrow(slider.ScrollUpButton, 'up')
-	ResetArrow(slider.ScrollDownButton, 'down')
-
-	for _, item in next, pullout.items do
-		ReplaceFont(item.text)
-		item.highlight:SetColorTexture(1, 1, 1, .25)
-	end
-end
-
--- Built on first open
-local function Importer_Open()
-	local widgets = addon.guideImporter.widgets
-	local importer = widgets.import
-	local frame = importer and importer.frame
-	if not frame or frame.IsSkinned then return end
-
-	-- Window
-	addon.ui.v2:SetFrameBackdropShown(frame, false)
-	for _, texture in next, { frame.importerBackground, frame.importerBody, frame.importerHeader } do
-		texture:Hide()
-	end
-
-	frame:SetTemplate('Transparent')
-	S:HandleCloseButton(importer.closebutton, frame)
-
-	-- Paste field and buttons
-	local field = widgets.importBox.background
-	addon.ui.v2:SetFrameBackdropShown(field, false)
-	field:SetTemplate()
-
-	for _, key in next, ImporterButtons do
-		SkinImporterButton(widgets[key].frame)
-	end
-
-	if E.private.skins.ace3Enable then
-		local dropdown = widgets.currentGuides
-		addon.ui.v2:SetFrameBackdropShown(dropdown.frame, false)
-
-		local backdrop = dropdown.dropdown.backdrop
-		local button = dropdown.button
-		button:ClearAllPoints()
-		button:Point('TOPLEFT', backdrop, 'TOPRIGHT', -22, -2)
-		button:Point('BOTTOMRIGHT', backdrop, 'BOTTOMRIGHT', -2, 2)
-	end
-
-	-- Progress bar
-	local progress = widgets.progress
-	addon.ui.v2:SetFrameBackdropShown(progress, false)
-	widgets.progressBackground:Hide()
-	progress:SetStatusBarTexture(E.media.normTex)
-	progress:CreateBackdrop('Transparent')
-	E:RegisterStatusBar(progress)
-
-	-- Purge and delete confirmations
-	SkinPopup(widgets.purgeConfirmation)
-	SkinPopup(widgets.deleteConfirmation)
-
-	Importer_UpdateTheme(importer)
-	hooksecurefunc(importer, 'UpdateSubTheme', Importer_UpdateTheme)
-
-	frame.IsSkinned = true
-end
-
-local function SkinWindows()
-	local tracker = addon.tracker
-
-	Tracker_CreateGui()
-	hooksecurefunc(tracker, 'CreateGui', Tracker_CreateGui)
-
-	Tracker_CreateLevelSplits(tracker)
-	hooksecurefunc(tracker, 'CreateLevelSplits', Tracker_CreateLevelSplits)
-
-	-- AceGUI windows, only when ElvUI skins them
-	if E.private.skins.ace3Enable then
-		local comms = addon.comms
-
-		local openBugReport = comms.OpenBugReport
-		for _, entry in next, addon.RXPFrame.bottomMenu do
-			if entry.func == openBugReport then
-				hooksecurefunc(entry, 'func', BugReport_Open)
-			end
-		end
-
-		hooksecurefunc(comms, 'OpenBugReport', BugReport_Open)
-		hooksecurefunc(comms, 'OpenBrandedExport', BrandedExport_Open)
-
-		hooksecurefunc(addon.ui.v2, 'ApplyDropdownTheme', Dropdown_ApplyTheme)
-	end
-
-	Importer_Open()
-	hooksecurefunc(addon.guideImporter, 'Open', Importer_Open)
 end
 
 -- Talent guides button, styled like the spec tabs it sits below (Vanilla and TBC)
@@ -567,91 +508,7 @@ local function Talents_UpdateButton(talents)
 	button.IsSkinned = true
 end
 
--- Item upgrade results (Vanilla and TBC)
-local function SkinUpgradeRow(row)
-	row:StripTextures()
-	row:SetHighlightTexture(E.media.blankTex)
-
-	-- The same highlight marks the selected row
-	local highlight = row:GetHighlightTexture()
-	highlight:SetVertexColor(1, 1, 1, .2)
-	highlight:ClearAllPoints()
-	highlight:Point('TOPLEFT', row.ItemIcon, 'TOPRIGHT', 2, 0)
-	highlight:Point('BOTTOMRIGHT', row, 'BOTTOMRIGHT', -2, 5)
-
-	local button = row.ItemIcon
-	button:SetTemplate()
-	button:StyleButton()
-
-	local normal = button:GetNormalTexture()
-	normal:SetTexture()
-
-	local icon = button.IconTexture
-	S:HandleIcon(icon)
-	icon:SetInside()
-end
-
-local function AuctionHouse_DisplayResults()
-	local panel = addon.ui.v2.auctionHouse
-	if not panel then return end
-
-	for _, block in next, panel.Results.children do
-		local frame = block.frame
-		if not frame.IsSkinned then
-			frame.Header:StripTextures()
-			SkinUpgradeRow(frame.Best)
-			SkinUpgradeRow(frame.Budget)
-
-			frame.IsSkinned = true
-		end
-	end
-end
-
--- Auction House tab and upgrades panel
-local function AuctionHouse_CreateGui()
-	local panel = addon.ui.v2.auctionHouse
-	local frame = panel and panel.frame
-	if not frame or frame.IsSkinned then return end
-
-	local AuctionFrame = _G.AuctionFrame
-	for i = 1, AuctionFrame.numTabs do
-		local tab = _G['AuctionFrameTab' .. i]
-		if tab.isRXP then
-			S:HandleTab(tab)
-			tab:Point('TOPLEFT', _G['AuctionFrameTab' .. (i - 1)], 'TOPRIGHT', -19, 0)
-		end
-	end
-
-	-- Title at the same spot as the Blizzard tab titles
-	local title = frame.Title
-	title:ClearAllPoints()
-	title:Point('TOP', AuctionFrame, 'TOP', 0, -5)
-
-	-- Column headers, then the close button, the buy and search buttons are keyed
-	local itemName, level, upgradeEP, buyout, closeButton = frame:GetChildren()
-	for _, header in next, { itemName, level, upgradeEP, buyout } do
-		header:StripTextures()
-	end
-
-	local buyButton, searchButton = frame.buyButton, frame.searchButton
-	for _, button in next, { closeButton, buyButton, searchButton } do
-		S:HandleButton(button, true)
-	end
-
-	closeButton:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', -8, 6)
-	buyButton:Point('RIGHT', closeButton, 'LEFT', -4, 0)
-	searchButton:Point('RIGHT', buyButton, 'LEFT', -4, 0)
-
-	-- Results list background
-	local background = CreateFrame('Frame', nil, frame)
-	background:SetTemplate('Transparent')
-	background:Point('TOPLEFT', frame, 'TOPLEFT', 21, -74)
-	background:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', -9, 37)
-
-	frame.IsSkinned = true
-end
-
--- Buttons the addon adds to Blizzard frames, only when ElvUI skins that frame
+-- Buttons the addon adds to Blizzard frames
 local function SkinBlizzardAdditions()
 	local blizzard = E.private.skins.blizzard
 	if not blizzard.enable then return end
@@ -667,26 +524,31 @@ local function SkinBlizzardAdditions()
 		Talents_UpdateButton(talents)
 		hooksecurefunc(talents, 'UpdateTalentsButton', Talents_UpdateButton)
 	end
-
-	local itemUpgrades = addon.itemUpgrades
-	if itemUpgrades and blizzard.auctionhouse then
-		local auctionHouse = itemUpgrades.AH
-		hooksecurefunc(auctionHouse, 'CreateEmbeddedGui', AuctionHouse_CreateGui)
-		hooksecurefunc(auctionHouse, 'DisplayEmbeddedResults', AuctionHouse_DisplayResults)
-	end
 end
 
 local function Skin_RXPGuides()
 	if not Private.Addon.db.profile.skins.RXPGuides then return end
 
 	addon = LibStub('AceAddon-3.0'):GetAddon('RXPGuides', true)
-	if not addon or addon.v2:IsGuideWindowEnabled() then return end
+	if not addon then return end
 
 	SkinFonts()
-	SkinGuideWindow()
-	SkinActiveItems()
-	SkinActiveTargets()
-	SkinWindows()
+
+	if addon.v2:IsGuideWindowEnabled() then
+		SkinV2GuideWindow()
+	else
+		SkinGuideWindow()
+	end
+
+	hooksecurefunc(addon, 'StartTimer', Timer_Start)
+	LibStub('LibCandyBar-3.0').RegisterCallback('LuckyoneUI_RXPGuides', 'LibCandyBar_Stop', CandyBar_Stop)
+
+	SkinIconFrames()
+
+	local tracker = addon.tracker
+	Tracker_CreateLevelSplits(tracker)
+	hooksecurefunc(tracker, 'CreateLevelSplits', Tracker_CreateLevelSplits)
+
 	SkinBlizzardAdditions()
 end
 
