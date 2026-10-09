@@ -8,6 +8,7 @@ local abs = abs
 local next = next
 local unpack = unpack
 
+local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 local RunNextFrame = RunNextFrame
 
@@ -192,6 +193,24 @@ local function Map_Render()
 	end
 end
 
+-- Armor type options, the tick box follows ElvUI's menu checkboxes
+local function SkinArmorOption(option)
+	option:GetHighlightTexture():SetColorTexture(1, 1, 1, .25)
+	option.box:SetTexture(E.ClearTexture)
+
+	local box = CreateFrame('Frame', nil, option)
+	box:Size(12)
+	box:SetPoint('CENTER', option.box)
+	box:SetTemplate()
+
+	-- DungeonJournal shows the check texture on the ticked types
+	local check = option.check
+	check:SetParent(box)
+	check:SetTexture(E.media.normTex)
+	check:SetVertexColor(unpack(E.media.rgbvaluecolor))
+	check:SetInside(box)
+end
+
 -- Loot Filter window, built on the first click
 local function Skin_LootFilterWindow(frame)
 	local window = frame.lootFilterWindow
@@ -210,6 +229,16 @@ local function Skin_LootFilterWindow(frame)
 	end
 
 	S:HandleEditBox(window.minBox)
+
+	-- Armor type drop-down
+	local armor = window.armor
+	S:HandleButton(armor)
+	armor.menu:SetTemplate('Transparent')
+
+	for _, option in next, armor.options do
+		SkinArmorOption(option)
+	end
+
 	S:HandleButton(window.toggle)
 	S:HandleButton(window.clear)
 	S:HandleButton(window.ok)
@@ -270,6 +299,26 @@ local function Skin_BugReportWindow(frame)
 	S:HandleButton(window.close)
 
 	window.IsSkinned = true
+end
+
+-- Settings window (minimap right-click, /dj options), built on the first toggle
+local function Skin_SettingsPanel()
+	local panel = ForeverDungeonJournalSettings
+	if panel.IsSkinned then return end
+
+	panel:SetTemplate()
+	S:HandleCloseButton((panel:GetChildren()))
+
+	for _, check in next, panel.checks do
+		S:HandleCheckBox(check)
+	end
+
+	-- The key binding button recolors its border on every show
+	for _, button in next, panel.keybinds do
+		SkinBackdropButton(button)
+	end
+
+	panel.IsSkinned = true
 end
 
 -- Dungeon map on the world map, the toggle switches back to the world map
@@ -473,6 +522,9 @@ local function Skin_Frame()
 	S:HandleButton(frame.routeMapButton)
 	S:HandleScrollBar(frame.routeStepScroll.ScrollBar)
 	hooksecurefunc(frame.routeStepContent, 'SetHeight', RouteContent_SetHeight)
+
+	-- Settings window
+	hooksecurefunc(FDJ, 'ToggleSettingsPanel', Skin_SettingsPanel)
 
 	-- Options > AddOns page
 	local options = ForeverDungeonJournalOptionsPanel
