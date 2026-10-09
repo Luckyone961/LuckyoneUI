@@ -7,6 +7,7 @@
 - Power texts now auto hides at 0 and 100  
 - Updated ElvUI layouts (Big reworks, size increase in 1440p and more)  
 - Updated multiple skins (BugSack, SimpleAddonManager)  
+- Updated objective tracker module to also skin item and spell buttons  
 - Updated pretty much every single addon profile  
 
 **Retail:**  
@@ -21,3 +22,4 @@
 - Added skin for Attune  
 - Added skin for ForeverDungeonJournal  
 - Added skin for WhatsTraining  
+- Damage Meter should now properly remove lastname  
