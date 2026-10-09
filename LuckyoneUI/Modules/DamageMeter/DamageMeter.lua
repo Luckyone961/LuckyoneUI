@@ -14,6 +14,7 @@ local wipe = wipe
 local max = math.max
 local min = math.min
 local floor = math.floor
+local match = string.match
 
 local Ambiguate = Ambiguate
 local CreateFrame = CreateFrame
@@ -25,8 +26,12 @@ local HasActiveDelve = C_DelvesUI.HasActiveDelve
 local IsInGroup = IsInGroup
 local MergeTable = MergeTable
 local UnitAffectingCombat = UnitAffectingCombat
+local UnitNameFromGUID = UnitNameFromGUID
+local issecretvalue = issecretvalue
 local ResetAllCombatSessions = C_DamageMeter.ResetAllCombatSessions
 local C_UI = C_UI
+
+local UNKNOWNOBJECT = UNKNOWNOBJECT
 
 local _G = _G
 local StaticPopup_Show = _G.StaticPopup_Show
@@ -44,9 +49,18 @@ function DM:CreateText(parent, justify)
 end
 
 -- Ambiguate accepts secret names
-function DM:StripRealm(name, classFilename)
+function DM:StripRealm(name, classFilename, guid)
 	if not name or not DM.db.stripRealm then return name end
 	if not classFilename or classFilename == '' then return name end
+
+	if Private.isForever then
+		local mainName = guid and UnitNameFromGUID(guid)
+		if mainName and (issecretvalue(mainName) or mainName ~= UNKNOWNOBJECT) then return mainName end
+
+		if not issecretvalue(name) then
+			return match(name, '^[^%s%-]+') or name
+		end
+	end
 
 	return Ambiguate(name, 'short')
 end

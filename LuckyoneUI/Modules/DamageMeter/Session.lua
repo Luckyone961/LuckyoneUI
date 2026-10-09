@@ -1225,7 +1225,7 @@ function DM:OpenPopup(window, entry)
 	popup.sticky = IsShiftKeyDown()
 
 	DM:ApplyPopupSettings(popup)
-	SetHeaderText(popup.typeText, DM:StripRealm(entry.name, entry.classFilename) or _G.UNKNOWN, popup)
+	SetHeaderText(popup.typeText, DM:StripRealm(entry.name, entry.classFilename, entry.sourceGUID) or _G.UNKNOWN, popup)
 	RefreshPopup()
 
 	AnchorToCursor(popup)

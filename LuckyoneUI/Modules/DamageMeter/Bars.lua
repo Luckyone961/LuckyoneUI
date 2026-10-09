@@ -548,7 +548,7 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 		bar.rank:SetText(rankColumn and format(RankFormat, rank, '') or '')
 	end
 
-	local name = DM:StripRealm(rawName or '', entry.classFilename)
+	local name = DM:StripRealm(rawName or '', entry.classFilename, entry.sourceGUID)
 
 	if db.showRank and not rankColumn then
 		nameText:SetFormattedText(DAMAGE_METER_SOURCE_NAME, rank, name)

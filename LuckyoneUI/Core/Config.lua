@@ -380,7 +380,7 @@ local function BuildDamageMeterSection()
 	section.args.text.args.generalOptions.args.valueSpacing = ACH:Range(L["Number Spacing"], L["Space between the primary and the secondary number."], 3, { min = 0, max = 30, step = 1 }, nil, nil, nil, DamageMeterNoSecondary)
 	section.args.text.args.generalOptions.args.showRank = ACH:Toggle(L["Show Rank Numbers"], L["Show the rank number in front of each name."], 4)
 	section.args.text.args.generalOptions.args.rankSpacing = ACH:Range(L["Rank Spacing"], L["Space between the rank number and the name. Every name lines up at the same position."], 5, { min = 0, max = 30, step = 1 }, nil, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.showRank end)
-	section.args.text.args.generalOptions.args.stripRealm = ACH:Toggle(L["Strip Realm Names"], L["Remove the realm name from cross realm players."], 6)
+	section.args.text.args.generalOptions.args.stripRealm = ACH:Toggle(Private.isForever and L["Strip Secondary Names"] or L["Strip Realm Names"], Private.isForever and L["Remove the secondary name from players."] or L["Remove the realm name from cross realm players."], 6)
 	section.args.text.args.positionOptions = ACH:Group(L["Position"], nil, 2)
 	section.args.text.args.positionOptions.inline = true
 	section.args.text.args.positionOptions.args.nameXOffset = ACH:Range(L["Name X Offset"], nil, 1, { min = -100, max = 100, step = 1 })
