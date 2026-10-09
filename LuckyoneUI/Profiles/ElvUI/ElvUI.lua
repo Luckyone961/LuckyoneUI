@@ -352,13 +352,6 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.general.altPowerBar.statusBarColorGradient = true
 	E.db.general.autoAcceptInvite = true
 	E.db.general.autoRepair = (Private.isRetail and 'GUILD') or 'PLAYER'
-	E.db.general.backdropcolor.b = 0.12
-	E.db.general.backdropcolor.g = 0.12
-	E.db.general.backdropcolor.r = 0.12
-	E.db.general.backdropfadecolor.a = 0.9
-	E.db.general.backdropfadecolor.b = 0.05
-	E.db.general.backdropfadecolor.g = 0.05
-	E.db.general.backdropfadecolor.r = 0.05
 	E.db.general.bottomPanel = false
 	E.db.general.customGlow.color.a = 1
 	E.db.general.customGlow.color.b = 1
@@ -581,10 +574,6 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.chat.lfgIcons = false
 	E.db.chat.maxLines = 500
 	E.db.chat.numScrollMessages = 2
-	E.db.chat.panelColor.a = 0.9
-	E.db.chat.panelColor.b = 0.05
-	E.db.chat.panelColor.g = 0.05
-	E.db.chat.panelColor.r = 0.05
 	E.db.chat.panelHeight = (scaled and 210) or 231
 	E.db.chat.panelHeightRight = (scaled and 210) or 231
 	E.db.chat.panelWidth = (scaled and 444) or 544
@@ -741,7 +730,6 @@ local function Setup_ElvUI(layout, partyStyle)
 	-- Tooltip
 	E.db.tooltip.alwaysShowRealm = true
 	E.db.tooltip.anchorToBags = 'DISABLED'
-	E.db.tooltip.colorAlpha = 0.9
 	E.db.tooltip.font = Private.Font
 	E.db.tooltip.fontOutline = Private.Outline
 	E.db.tooltip.headerFont = Private.Font

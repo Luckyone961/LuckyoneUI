@@ -68,8 +68,8 @@ local function ApplyTemplate(frame)
 		edgeSize = 1,
 	})
 
-	-- Background color: #0d0d0d + alpha 90
-	frame:SetBackdropColor(0.051, 0.051, 0.051, 0.9)
+	-- Background color: #0f0f0f + alpha 80
+	frame:SetBackdropColor(0.06, 0.06, 0.06, 0.8)
 
 	-- Border color: #000000 + alpha 100
 	frame:SetBackdropBorderColor(0, 0, 0, 1)
@@ -118,7 +118,7 @@ local function CreateButton(parent, width, height)
 	button:SetBackdropColor(0.2, 0.2, 0.2, 0.8)
 	CreateHighlight(button)
 
-	button.text = CreateText(button, 12)
+	button.text = CreateText(button, 13)
 	button.text:SetPoint('CENTER')
 
 	return button
@@ -263,7 +263,7 @@ local function CreateCheckBox(parent)
 	check:SetScript('OnEnter', CheckBox_OnEnter)
 	check:SetScript('OnLeave', GameTooltip_Hide)
 
-	check.text = CreateText(check, 12)
+	check.text = CreateText(check, 13)
 	check.text:SetPoint('LEFT', check, 'RIGHT', 4, 0)
 	check.text:SetWidth(300)
 	check.text:SetJustifyH('LEFT')
@@ -293,7 +293,7 @@ local function LayoutToggles(page)
 			headers = headers + 1
 			local header = container.Headers[headers]
 			if not header then
-				header = CreateText(container, 13)
+				header = CreateText(container, 14)
 				header:SetJustifyH('LEFT')
 				header:SetTextColor(0.294, 0.922, 0.173)
 				container.Headers[headers] = header
@@ -427,7 +427,7 @@ local function CreateMainFrame()
 	bar:SetStatusBarTexture('Interface\\Buttons\\WHITE8X8')
 	frame.StatusBar = bar
 
-	bar.text = CreateText(bar, 12)
+	bar.text = CreateText(bar, 13)
 	bar.text:SetPoint('CENTER')
 
 	-- Step list, its own frame next to the main one so it moves and hides along with it
@@ -456,7 +456,7 @@ local function CreateMainFrame()
 	content.SubTitle = CreateText(content, 16)
 	content.SubTitle:SetPoint('TOP', 0, -16)
 
-	content.Desc = CreateText(content, 12)
+	content.Desc = CreateText(content, 13)
 	content.Desc:SetPoint('TOPLEFT', 20, -44)
 	content.Desc:SetWidth(700)
 	content.Desc:SetJustifyH('CENTER')
@@ -482,7 +482,7 @@ local function CreateMainFrame()
 	end
 
 	-- Status line, holds for three seconds and fades out over one
-	local status = CreateText(content, 13)
+	local status = CreateText(content, 14)
 	status:SetHeight(20)
 	status:SetPoint('BOTTOMLEFT', 20, 12)
 	status:SetPoint('BOTTOMRIGHT', -20, 12)
