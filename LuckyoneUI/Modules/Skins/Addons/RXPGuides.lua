@@ -249,7 +249,13 @@ local function V2_ReconcileActiveStepItems(v2, playerState)
 	for _, item in next, playerState.activeStepItems do
 		if not item.IsSkinned then
 			SkinV2Backdrop(item.card, 'Transparent')
-			SkinV2Backdrop(item.title)
+
+			-- Step label in the top right corner, above the element rows and their buttons
+			local title = item.title
+			title:ClearAllPoints()
+			title:Point('TOPRIGHT', item.card, 'TOPRIGHT')
+			title:OffsetFrameLevel(5, item.card)
+			SkinV2Backdrop(title)
 			ReplaceFont(item.titletext)
 
 			ActiveStepItem_SetElements(item)
