@@ -126,7 +126,7 @@ function Private:SyncSettings(characterOnly)
 		'CAATargetDeathBehavior', 'CAATargetHealthFormat', 'CAATargetHealthPercent', 'CAATargetHealthThrottle', 'CAATargetHealthVoice', 'CAATargetHealthVolume',
 		'CAAVoice', 'CAAVolume', 'cameraBobbing', 'cameraFov', 'cameraPivot', 'cameraSmoothTrackingStyle', 'cameraTerrainTilt', 'cameraWaterCollision', 'chatBubbles',
 		'chatBubblesParty', 'chatBubblesRaid', 'classicStyleWorldText', 'ClipCursor', 'colorblindMode', 'colorblindSimulator', 'colorblindWeaknessFactor',
-		'combatWarningsEnabled', 'componentTextureLevel', 'consolidateBuffs', 'coordsByTenths', 'cursorSizePreferred', 'damageMeterResetOnNewInstance',
+		'combatWarningsEnabled', 'componentTextureLevel', 'consolidateBuffs', 'Contrast', 'coordsByTenths', 'cursorSizePreferred', 'damageMeterResetOnNewInstance',
 		'DepthBasedOpacity', 'disableServerNagle', 'discordDisplayName', 'displayFreeBagSlots', 'doodadLodScale', 'enableCollectionToasts', 'enableFloatingCombatText',
 		'enableLearnedRecipeToasts', 'enableLootToasts', 'enableMouseoverCast', 'enableMouseSpeed', 'enableMovePad', 'enablePings',
 		'encounterTimelineHideForOtherRoles', 'encounterTimelineHideLongCountdowns', 'encounterTimelineHideQueuedCountdowns',
@@ -226,7 +226,6 @@ function Private:SyncSettings(characterOnly)
 	Set('clusteredShading', 0)
 	Set('colorChatNamesByClass', 1)
 	Set('combinedBags', 1)
-	Set('Contrast', 55)
 	Set('cooldownViewerEnabled', 1)
 	Set('countdownForCooldowns', 1)
 	Set('CursorFreelookStartDelta', 0)
