@@ -138,7 +138,7 @@ local function SkinItemButton(button)
 	end
 
 	if button.Highlight then
-		button.Highlight:SetColorTexture(1, 1, 1, .25)
+		button.Highlight:SetColorTexture(1, 1, 1, 0.25)
 		button.Highlight:SetInside()
 	end
 
@@ -211,8 +211,8 @@ local function SkinResultRow(row)
 	if row.isSkinned then return end
 
 	if row.NormalTexture then row.NormalTexture:SetAlpha(0) end
-	if row.HighlightTexture then row.HighlightTexture:SetColorTexture(rowR, rowG, rowB, .25) end
-	if row.SelectedHighlight then row.SelectedHighlight:SetColorTexture(rowR, rowG, rowB, .35) end
+	if row.HighlightTexture then row.HighlightTexture:SetColorTexture(rowR, rowG, rowB, 0.25) end
+	if row.SelectedHighlight then row.SelectedHighlight:SetColorTexture(rowR, rowG, rowB, 0.35) end
 
 	row.isSkinned = true
 end

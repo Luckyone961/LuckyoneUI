@@ -46,8 +46,8 @@ local function SkinRows(scrollFrame)
 		if not button.isSkinned then
 			S:HandleCheckBox(button.EnabledButton)
 
-			button.HighlightTexture:SetColorTexture(r, g, b, .25)
-			button.PushedTexture:SetColorTexture(r, g, b, .1)
+			button.HighlightTexture:SetColorTexture(r, g, b, 0.25)
+			button.PushedTexture:SetColorTexture(r, g, b, 0.1)
 
 			button.isSkinned = true
 		end
@@ -70,7 +70,7 @@ local function SkinProfilerFrame(frame)
 	r, g, b = unpack(E.media.rgbvaluecolor)
 
 	for _, button in next, { frame.Left.CurrentCPUButton, frame.Left.AverageCPUButton, frame.Right.EncounterCPUButton, frame.Right.PeakCPUButton } do
-		button:GetHighlightTexture():SetColorTexture(r, g, b, .25)
+		button:GetHighlightTexture():SetColorTexture(r, g, b, 0.25)
 	end
 end
 

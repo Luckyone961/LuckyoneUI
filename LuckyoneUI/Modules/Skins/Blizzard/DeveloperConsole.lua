@@ -49,8 +49,8 @@ local function AutoComplete_DisplayResults(frame)
 
 	for _, entry in next, entries do
 		if not entry.IsSkinned then
-			entry.Selected:SetColorTexture(r, g, b, .4)
-			entry.Highlight:SetColorTexture(r, g, b, .25)
+			entry.Selected:SetColorTexture(r, g, b, 0.4)
+			entry.Highlight:SetColorTexture(r, g, b, 0.25)
 
 			entry.IsSkinned = true
 		end
@@ -88,7 +88,7 @@ local function Skin_DeveloperConsole()
 	progressBar:SetStatusBarTexture(E.media.normTex)
 
 	r, g, b = unpack(E.media.rgbvaluecolor)
-	progressBar:SetStatusBarColor(r, g, b, .2)
+	progressBar:SetStatusBarColor(r, g, b, 0.2)
 
 	SkinClearButton(filters.EditBox.ClearTextButton)
 

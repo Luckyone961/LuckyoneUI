@@ -34,7 +34,7 @@ local function SkinRowBackdrop(row)
 	row:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
 
 	local highlight = row:CreateTexture(nil, 'HIGHLIGHT')
-	highlight:SetColorTexture(1, 1, 1, .25)
+	highlight:SetColorTexture(1, 1, 1, 0.25)
 	highlight:SetInside(row.backdrop)
 end
 
@@ -42,7 +42,7 @@ end
 local function IsSelectedColor(r, g, b)
 	for _, theme in next, FDJ.THEMES do
 		local color = theme.rowSelected
-		if abs(r - color[1]) < .001 and abs(g - color[2]) < .001 and abs(b - color[3]) < .001 then
+		if abs(r - color[1]) < 0.001 and abs(g - color[2]) < 0.001 and abs(b - color[3]) < 0.001 then
 			return true
 		end
 	end
@@ -61,7 +61,7 @@ local function SkinListRow(row)
 
 	local selected = row:CreateTexture(nil, 'BACKGROUND')
 	local vr, vg, vb = unpack(E.media.rgbvaluecolor)
-	selected:SetColorTexture(vr, vg, vb, .25)
+	selected:SetColorTexture(vr, vg, vb, 0.25)
 	selected:SetInside(row.backdrop)
 	row.selectedTexture = selected
 
@@ -75,7 +75,7 @@ end
 local function SkinCompleteGlow(glow)
 	glow:SetTemplate(nil, nil, true, true)
 	glow:SetBackdropColor(0, 0, 0, 0)
-	glow:SetBackdropBorderColor(.12, 1, .25)
+	glow:SetBackdropBorderColor(0.12, 1, 0.25)
 	glow:SetAllPoints()
 end
 
@@ -175,7 +175,7 @@ local function Results_SetHeight(results)
 	for _, row in next, { results:GetChildren() } do
 		-- Skip the template borders without thin borders
 		if not row.IsSkinned and row:IsObjectType('Button') then
-			row:GetHighlightTexture():SetColorTexture(1, 1, 1, .25)
+			row:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
 			row.IsSkinned = true
 		end
 	end
@@ -195,7 +195,7 @@ end
 
 -- Armor type options, the tick box follows ElvUI's menu checkboxes
 local function SkinArmorOption(option)
-	option:GetHighlightTexture():SetColorTexture(1, 1, 1, .25)
+	option:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
 	option.box:SetTexture(E.ClearTexture)
 
 	local box = CreateFrame('Frame', nil, option)
@@ -284,7 +284,7 @@ local function Skin_FavouriteMenu()
 	if not menu or menu.IsSkinned then return end
 
 	menu:SetTemplate('Transparent')
-	menu.button:GetHighlightTexture():SetColorTexture(1, 1, 1, .25)
+	menu.button:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
 
 	menu.IsSkinned = true
 end
@@ -387,7 +387,7 @@ local function Skin_Frame()
 
 	local languageMenu = frame.languageMenu
 	for _, option in next, { languageMenu:GetChildren() } do
-		option:GetHighlightTexture():SetColorTexture(1, 1, 1, .25)
+		option:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
 	end
 
 	languageMenu:SetTemplate('Transparent')

@@ -13,6 +13,7 @@ local _G = _G
 
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
+local TT = E:GetModule('Tooltip')
 
 -- Compact list, shared by the Vanilla/TBC Spellbook page and the Forever /wt window
 local function SkinCompactFrame(frame)
@@ -80,12 +81,22 @@ local function Skin_Legacy()
 	frame.isSkinned = true
 end
 
+local function LayoutTabIcon(tab)
+	local scale = tab.inverted and 0.8 or 1
+	local icon = tab.icon
+	icon:Size(36 * scale, 35 * scale)
+	icon:ClearAllPoints()
+	icon:Point(tab.inverted and 'TOP' or 'BOTTOM')
+end
+
 local function TabActive_SetShown(active, shown)
-	local backdrop = active:GetParent().backdrop
+	local tab = active:GetParent()
+	LayoutTabIcon(tab)
+
 	if shown then
-		backdrop:SetBackdropBorderColor(1, .8, .1)
+		tab.backdrop:SetBackdropBorderColor(1, 0.8, 0.1)
 	else
-		backdrop:SetBackdropBorderColor(unpack(E.media.bordercolor))
+		tab.backdrop:SetBackdropBorderColor(unpack(E.media.bordercolor))
 	end
 end
 
@@ -95,12 +106,8 @@ local function SkinTab(tab)
 	tab.active:SetAlpha(0)
 	tab.glow:SetAlpha(0)
 
-	-- ElvUI drops the native icon mask, which WhatsTraining simulates with a smaller icon
 	local icon = tab.icon
 	icon:SetTexCoords()
-	icon:Size(36, 35)
-	icon:ClearAllPoints()
-	icon:Point('BOTTOM')
 
 	tab:CreateBackdrop()
 	tab.backdrop:SetOutside(icon)
@@ -108,7 +115,7 @@ local function SkinTab(tab)
 	tab:SetHighlightTexture(E.media.blankTex)
 
 	local highlight = tab:GetHighlightTexture()
-	highlight:SetVertexColor(1, 1, 1, .25)
+	highlight:SetVertexColor(1, 1, 1, 0.25)
 	highlight:SetAllPoints(icon)
 
 	hooksecurefunc(tab.active, 'SetShown', TabActive_SetShown)
@@ -179,6 +186,13 @@ end
 -- WhatsTraining builds its frames on PLAYER_ENTERING_WORLD (Forever controls once Blizzard_PlayerSpells loads), so skin on the first Spellbook open
 local function Skin_WhatsTraining()
 	if not Private.Addon.db.profile.skins.WhatsTraining then return end
+
+	local blizzard = E.private.skins.blizzard
+	if blizzard.enable and blizzard.tooltip then
+		for _, tooltip in next, { WhatsTrainingTooltip, WhatsTrainingCompareTooltip, WhatsTrainingForeverTooltip } do
+			TT:SetStyle(tooltip)
+		end
+	end
 
 	if Private.isForever then
 		-- Needs an owner, an ownerless callback taints Blizzard's shared owner ID counter

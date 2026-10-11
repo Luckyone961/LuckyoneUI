@@ -49,7 +49,7 @@ local function SkinIconBordered(button)
 	normal:SetInside()
 
 	local highlight = button:GetHighlightTexture()
-	highlight:SetColorTexture(1, 1, 1, .3)
+	highlight:SetColorTexture(1, 1, 1, 0.3)
 	highlight:SetInside()
 end
 

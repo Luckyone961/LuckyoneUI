@@ -38,7 +38,7 @@ end
 local function AddHover(frame, anchor)
 	local hover = frame:CreateTexture(nil, 'HIGHLIGHT')
 	hover:SetInside(anchor)
-	hover:SetColorTexture(1, 1, 1, .25)
+	hover:SetColorTexture(1, 1, 1, 0.25)
 end
 
 local function Backdrop_SetBackdrop(frame, backdrop)
@@ -360,7 +360,7 @@ end
 local function SkinIconButton(button)
 	for _, region in next, { button:GetRegions() } do
 		if region:GetDrawLayer() == 'HIGHLIGHT' then
-			region:SetColorTexture(1, 1, 1, .3)
+			region:SetColorTexture(1, 1, 1, 0.3)
 			region:SetInside()
 		end
 	end
