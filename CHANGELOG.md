@@ -9,6 +9,7 @@
 - Updated multiple skins (BugSack, SimpleAddonManager)  
 - Updated objective tracker module to also skin item and spell buttons  
 - Updated pretty much every single addon profile  
+- Updated ptBR localization (Credits: Eltreum)  
 
 **Retail:**  
 - Added skin for KeystoneLoot  
