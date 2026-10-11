@@ -320,7 +320,7 @@ else
 		local min, max = UnitPower(unit), UnitPowerMax(unit)
 		if max == 0 or min == max then return end
 
-		local percentage = floor(min / max * 100 + .5)
+		local percentage = floor(min / max * 100 + 0.5)
 
 		if percentage ~= 0 then
 			return GetPowerColor(unit) .. percentage
@@ -330,7 +330,7 @@ else
 	E:AddTag('luckyone:power:percent-nocolor', 'UNIT_MAXPOWER UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function(unit)
 		local min, max = UnitPower(unit), UnitPowerMax(unit)
 		if min ~= 0 and max ~= 0 and min ~= max then
-			return floor(min / max * 100 + .5)
+			return floor(min / max * 100 + 0.5)
 		end
 	end)
 
