@@ -101,7 +101,7 @@ function Private:DisabledFrames()
 		HideFrame(_G.UIErrorsFrame)
 	end
 
-	if db.TalkingHead and Private.isRetail then
+	if db.TalkingHead and Private.isModern then
 		local TalkingHeadFrame = _G.TalkingHeadFrame
 		if TalkingHeadFrame then
 			TalkingHead_IgnoreManager(TalkingHeadFrame)
