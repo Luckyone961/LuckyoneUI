@@ -1637,6 +1637,10 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.VehicleLeaveButton = (scaled and 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,500,415') or 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,820,536'
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-83'
 
+	if Private.isForever then
+		E.db.movers.ShardTransferMover = 'TOPLEFT,ElvUIParent,TOPLEFT,30,-32'
+	end
+
 	if layout == 'main' then
 
 		-- Main Party, the healing layout builds its own in SetupHealingParty
