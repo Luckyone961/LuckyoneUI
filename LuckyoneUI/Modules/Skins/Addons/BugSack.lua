@@ -119,7 +119,7 @@ local function SkinBugSackFrame()
 		end
 	end
 
-	-- Game version left of page count (top right), modern clients keep the count label in the title container
+	-- Addon and game versions left of page count (top right), modern clients keep the count label in the title container
 	local labelParent = frame.TitleContainer or frame
 	local countLabel
 
@@ -138,7 +138,7 @@ local function SkinBugSackFrame()
 		versionLabel = labelParent:CreateFontString(nil, 'ARTWORK')
 		versionLabel:SetFontObject(countLabel:GetFontObject())
 		versionLabel:SetTextColor(countLabel:GetTextColor())
-		versionLabel:SetText(format('%sElvUI:|r %s %sPatch:|r %s %sPage:|r', hex, elvVersion, hex, gameVersion, hex))
+		versionLabel:SetText(format('%sElvUI:|r %s %sLuckyoneUI:|r %s %sPatch:|r %s %sPage:|r', hex, elvVersion, hex, Private.VersionString, hex, gameVersion, hex))
 		versionLabel:SetPoint('RIGHT', countLabel, 'LEFT', -6, 0)
 
 		hooksecurefunc(countLabel, 'SetText', CountLabel_SetText)
