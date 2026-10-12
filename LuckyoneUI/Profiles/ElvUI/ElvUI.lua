@@ -307,7 +307,7 @@ function Private:Setup_PrivateDB()
 	E.private.general.glossTex = Private.Texture
 	E.private.general.minimap.hideTracking = not Private.isClassic
 	E.private.general.nameplateFont = Private.Font
-	E.private.general.nameplateFontSize = 10
+	E.private.general.nameplateFontSize = 12
 	E.private.general.nameplateLargeFont = Private.Font
 	E.private.general.nameplateLargeFontSize = 12
 	E.private.general.normTex = Private.Texture
@@ -707,7 +707,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.datatexts.battlePanel.RightChatDataPanel[3] = ''
 	E.db.datatexts.font = Private.Font
 	E.db.datatexts.fontOutline = Private.Outline
-	E.db.datatexts.fontSize = 11
+	E.db.datatexts.fontSize = 14
 	E.db.datatexts.noCombatClick = true
 	E.db.datatexts.noCombatHover = true
 	E.db.datatexts.panels.LeftChatDataPanel.battleground = false
