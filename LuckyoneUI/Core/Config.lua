@@ -428,6 +428,16 @@ local function AbsorbsGroup(key, order)
 	return group
 end
 
+local function CopyChatDisabled()
+	return not Private.Addon.db.profile.misc.copyChat.enable
+end
+
+local function CopyChatNotCustom()
+	local db = Private.Addon.db.profile.misc.copyChat
+
+	return not db.enable or db.sizing ~= 'CUSTOM'
+end
+
 -- Build ElvUI Tweaks Section
 local function BuildElvUITweaksSection()
 	if not Private.ElvUI then return end -- ElvUI section
@@ -437,6 +447,13 @@ local function BuildElvUITweaksSection()
 	section.args.general.args.toggles = InlineGroup(L["Toggles"], 1)
 	section.args.general.args.toggles.args.dataTextsTweaks = ACH:Toggle(L["DataTexts Tweaks"], L["Feature explained in the description below"], 1, nil, nil, 'double', function() return Private.Addon.db.profile.misc.dataTextsTweaks end, function(_, value) Private.Addon.db.profile.misc.dataTextsTweaks = value Private:DataTextsTweaks() end)
 	section.args.general.args.dataTextsTweaksDesc = DescriptionGroup(L["DataTexts Tweaks explained"], 2, L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your ElvUI profile\nThis includes specialization-based profile loading in ElvUI profiles"])
+	section.args.general.args.copyChat = InlineGroup(L["Copy Chat Frame"], 3, function(info) return Private.Addon.db.profile.misc.copyChat[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.copyChat[info[#info]] = value Private:CopyChat() end)
+	section.args.general.args.copyChat.args.enable = ACH:Toggle(L["Enable"], L["Change the font and size of the ElvUI copy chat frame."], 1)
+	section.args.general.args.copyChat.args.sizeOptions = InlineGroup(L["Size"], 2, nil, nil, CopyChatDisabled)
+	section.args.general.args.copyChat.args.sizeOptions.args.sizing = ACH:Select(L["Sizing"], L["Set the size with the sliders below or drag the button in the bottom right corner of the frame.\n\nA dragged size is not stored and resets on reload."], 1, { CUSTOM = L["Custom"], BUTTON = L["Resize Button"] })
+	section.args.general.args.copyChat.args.sizeOptions.args.width = ACH:Range(L["Width"], nil, 2, { min = 200, max = 2000, step = 1 }, nil, nil, nil, CopyChatNotCustom)
+	section.args.general.args.copyChat.args.sizeOptions.args.height = ACH:Range(L["Height"], nil, 3, { min = 120, max = 1200, step = 1 }, nil, nil, nil, CopyChatNotCustom)
+	section.args.general.args.copyChat.args.fontOptions = FontGroup(L["Font"], 3, 32, CopyChatDisabled)
 	section.args.nameplates = ACH:Group(L["Nameplates"], nil, 3)
 	section.args.nameplates.args.textures = InlineGroup(L["Textures"], 1, function(info) return Private.Addon.db.profile.nameplates[info[#info]] end, function(info, value) Private.Addon.db.profile.nameplates[info[#info]] = value Private:TargetTextures_Update() end)
 	section.args.nameplates.args.textures.args.focusTextureEnable = ACH:Toggle(L["Enable Focus Texture"], nil, 1, nil, nil, 'double', nil, nil, nil, Private.isClassic)

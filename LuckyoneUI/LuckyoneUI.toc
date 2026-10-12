@@ -50,6 +50,7 @@ Modules\DamageMeter\Session.lua [AllowLoadGameType standard, camelot][ExcludeLoa
 Modules\DamageMeter\Bars.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
 Modules\ElvUI\AbsorbTextures.lua [AllowLoadGameType standard, camelot, mists][ExcludeLoadGameType vanilla, tbc]
 Modules\ElvUI\ActionBarConverter.lua
+Modules\ElvUI\CopyChat.lua
 Modules\ElvUI\DataTextsTweaks.lua
 Modules\ElvUI\ElvUI.lua
 Modules\ElvUI\MythicVisibility.lua [AllowLoadGameType standard]

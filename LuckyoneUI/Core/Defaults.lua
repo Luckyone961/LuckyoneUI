@@ -185,6 +185,15 @@ Private.Defaults = {
 				yOffset = -100,
 				fadeTime = 2,
 			},
+			copyChat = {
+				enable = false,
+				sizing = 'CUSTOM',
+				width = 700,
+				height = 200,
+				font = Private.Font,
+				fontOutline = 'OUTLINESLUG',
+				fontSize = 14,
+			},
 			dataTextsTweaks = false,
 			friendsList = {
 				enable = false,

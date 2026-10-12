@@ -64,6 +64,7 @@ function ElvUI:OnEnable()
 		Private:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
 	end
 
+	Private:CopyChat()
 	Private:TargetTextures()
 
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
