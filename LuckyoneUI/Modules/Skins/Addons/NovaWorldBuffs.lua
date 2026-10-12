@@ -19,8 +19,7 @@ local function Skin_NovaWorldBuffs()
 	S:HandleFrame(layerFrame)
 
 	-- Mouseover tooltip, list of all layers (NWB gives its version window tooltip the same global name)
-	layerFrame.tooltip:StripTextures()
-	layerFrame.tooltip:SetTemplate('Transparent')
+	S:HandleFrame(layerFrame.tooltip)
 
 	-- Move the layer box to the bottom left of the minimap
 	layerFrame:ClearAllPoints()

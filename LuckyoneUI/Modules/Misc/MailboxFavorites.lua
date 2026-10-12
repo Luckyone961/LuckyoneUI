@@ -28,7 +28,7 @@ local Factions = {
 }
 
 local panel, hooked, skinned
-local inset = 6 -- Row padding inside the list
+local inset -- Row padding inside the list
 local display = {} -- Filtered copy of the favorites
 local myRealm = strlower(Private.myNormalizedRealm)
 local Layout -- The drag scripts on the buttons redraw through it

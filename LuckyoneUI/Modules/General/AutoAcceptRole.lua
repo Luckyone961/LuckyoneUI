@@ -11,12 +11,6 @@ local function AutoAcceptRole_OnShow(self)
 	end
 end
 
-local function AutoSignUp_OnShow(self)
-	if not IsShiftKeyDown() then
-		self.SignUpButton:Click()
-	end
-end
-
 function Private:AutoAcceptRole()
 	if not Private.Addon.db.profile.qualityOfLife.autoAcceptRole then return end
 
@@ -27,6 +21,6 @@ function Private:AutoAcceptRole()
 
 	local ApplicationDialog = _G.LFGListApplicationDialog
 	if ApplicationDialog then
-		ApplicationDialog:HookScript('OnShow', AutoSignUp_OnShow)
+		ApplicationDialog.SignUpButton:HookScript('OnShow', AutoAcceptRole_OnShow)
 	end
 end

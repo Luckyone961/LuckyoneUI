@@ -87,7 +87,7 @@ local function Skin_QuestDetail()
 	local panel = AttuneQuestDetail
 	if not panel or panel.isSkinned then return end
 
-	panel:SetTemplate('Transparent')
+	panel:SetTemplate()
 
 	-- Close Button
 	S:HandleCloseButton((panel:GetChildren()))

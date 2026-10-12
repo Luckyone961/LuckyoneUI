@@ -6,7 +6,6 @@ local LSM = Private.Libs.LSM
 
 local ipairs = ipairs
 local pairs = pairs
-local setmetatable = setmetatable
 local type = type
 local unpack = unpack
 
@@ -24,12 +23,12 @@ local hooked
 -- Blizzard color styles, the highlight ones stay untouched so mouseover keeps working
 local Normal, Header, Complete, Failed
 
-local underlines = setmetatable({}, { __mode = 'k' })
-local modules = setmetatable({}, { __mode = 'k' })
-local blocks = setmetatable({}, { __mode = 'k' })
-local lines = setmetatable({}, { __mode = 'k' })
-local skinned = setmetatable({}, { __mode = 'k' })
-local poiAnchors = setmetatable({}, { __mode = 'k' }) -- Blizzard y offset of every quest icon, refreshed by each layout
+local underlines = {}
+local modules = {}
+local blocks = {}
+local lines = {}
+local skinned = {}
+local poiAnchors = {} -- Blizzard y offset of every quest icon, refreshed by each layout
 
 -- Delve, currency and timer headers inside the scenario widget containers
 local headerWidgets = {
@@ -374,7 +373,7 @@ local function Module_LayoutBlock(_, block, stale)
 	UpdatePOIButton(block, not stale)
 end
 
-local function UpdateModule(module)
+local function UpdateModule(_, module)
 	if module.Header then
 		UpdateHeader(module.Header, Private.Addon.db.profile.misc.objectiveTracker.categoryHeader)
 	end
@@ -412,11 +411,6 @@ local function UpdateModule(module)
 	SkinScenario(module)
 end
 
--- After PLAYER_ENTERING_WORLD
-local function Manager_SetModuleContainer(_, module)
-	UpdateModule(module)
-end
-
 -- Every toggle puts the collapse all art with its red backdrop back, the category header art has none
 local function Header_SetCollapsed(header, collapsed)
 	local button = header.MinimizeButton
@@ -437,7 +431,7 @@ function Private:ObjectiveTracker_Update()
 
 	for container in pairs(_G.ObjectiveTrackerManager.containers) do
 		for _, module in ipairs(container.modules) do
-			UpdateModule(module)
+			UpdateModule(nil, module)
 		end
 	end
 end
@@ -458,14 +452,15 @@ function Private:ObjectiveTracker()
 	local manager = _G.ObjectiveTrackerManager
 	if not (manager and _G.ObjectiveTrackerFrame) then return end
 
-	-- Follows the ElvUI objective tracker skin, same as the minimize buttons
-	S = (E and E.private.skins.blizzard.enable and E.private.skins.blizzard.objectiveTracker) and E:GetModule('Skins') or nil
-
 	if not hooked then
+		-- Follows the ElvUI objective tracker skin, same as the minimize buttons
+		S = (E and E.private.skins.blizzard.enable and E.private.skins.blizzard.objectiveTracker) and E:GetModule('Skins') or nil
+
 		local styles = _G.OBJECTIVE_TRACKER_COLOR
 		Normal, Header, Complete, Failed = styles.Normal, styles.Header, styles.Complete, styles.Failed
 
-		hooksecurefunc(manager, 'SetModuleContainer', Manager_SetModuleContainer)
+		-- After PLAYER_ENTERING_WORLD
+		hooksecurefunc(manager, 'SetModuleContainer', UpdateModule)
 		hooksecurefunc(manager, 'SetTextSize', Private.ObjectiveTracker_Update)
 
 		if E then

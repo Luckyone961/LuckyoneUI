@@ -1,16 +1,13 @@
 local _, Private = ...
 local L = Private.L
 
-local LibStub = LibStub
-
 -- Runs only after successful profile import
 local function CallbackFunction(accepted)
 	if not accepted then return end
 
 	-- Minimap icon
-	local LDBI = LibStub('LibDBIcon-1.0')
 	BigWigsIconDB.hide = true
-	LDBI:Hide('BigWigs')
+	Private.Libs.LDBI:Hide('BigWigs')
 
 	-- 1080p
 	local scaled = Private.Addon.db.global.scaled

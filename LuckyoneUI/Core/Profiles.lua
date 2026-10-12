@@ -16,7 +16,10 @@ local strtrim = strtrim
 
 local _G = _G
 local StaticPopupDialogs = _G.StaticPopupDialogs
+local StaticPopup_OnClick = _G.StaticPopup_OnClick
 local StaticPopup_Show = _G.StaticPopup_Show
+local StaticPopup_StandardEditBoxOnEscapePressed = _G.StaticPopup_StandardEditBoxOnEscapePressed
+local StaticPopup_StandardNonEmptyTextHandler = _G.StaticPopup_StandardNonEmptyTextHandler
 
 local ACCEPT = ACCEPT
 local CANCEL = CANCEL
@@ -24,6 +27,9 @@ local CANCEL = CANCEL
 -- Profile export, we skip values which match defaults
 function Private:ExportProfile()
 	local data = CopyTable(Private.Addon.db.profile)
+
+	-- Never export character list of mailbox favorites
+	data.misc.mailbox.favorites = nil
 	Private:StripDefaults(data, Private.Defaults.profile)
 
 	local compressed = CompressString(SerializeCBOR({ name = Private.Addon.db:GetCurrentProfile(), profile = data, movers = Private.Modules.DamageMeter and Private:DamageMeter_ExportMovers() }))
@@ -43,6 +49,15 @@ end
 
 local function LoadProfile(name, data, movers)
 	local db = Private.Addon.db
+
+	local old = db.profiles[name]
+	local favorites = old and old.misc and old.misc.mailbox and old.misc.mailbox.favorites
+	if favorites then
+		data.misc = data.misc or {}
+		data.misc.mailbox = data.misc.mailbox or {}
+		data.misc.mailbox.favorites = favorites
+	end
+
 	db.profiles[name] = data
 	db:SetProfile(name)
 
@@ -96,20 +111,14 @@ StaticPopupDialogs['LUCKYONE_IMPORT'] = {
 		LoadProfile(strtrim(self.EditBox:GetText()), data.profile, data.movers)
 		StaticPopup_Show('LUCKYONE_RL')
 	end,
-	EditBoxOnEnterPressed = function(self, data)
+	EditBoxOnEnterPressed = function(self)
 		local dialog = self:GetParent()
-		if dialog.Button1:IsEnabled() then
-			LoadProfile(strtrim(self:GetText()), data.profile, data.movers)
-			StaticPopup_Show('LUCKYONE_RL')
-			dialog:Hide()
+		if dialog:GetButton1():IsEnabled() then
+			StaticPopup_OnClick(dialog, 1)
 		end
 	end,
-	EditBoxOnEscapePressed = function(self)
-		self:GetParent():Hide()
-	end,
-	EditBoxOnTextChanged = function(self)
-		self:GetParent().Button1:SetEnabled(strtrim(self:GetText()) ~= '')
-	end,
+	EditBoxOnEscapePressed = StaticPopup_StandardEditBoxOnEscapePressed,
+	EditBoxOnTextChanged = StaticPopup_StandardNonEmptyTextHandler,
 	whileDead = 1,
 	preferredIndex = 3,
 	hideOnEscape = 1,

@@ -8,8 +8,6 @@ local unpack = unpack
 
 local hooksecurefunc = hooksecurefunc
 
-local C_Timer = C_Timer
-
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
@@ -37,4 +35,4 @@ local function Skin_NovaSpellRankChecker()
 	hooksecurefunc(button, 'SetPoint', NovaSpellRankChecker_PositionButton)
 end
 
-S:AddCallbackForAddon('NovaSpellRankChecker', 'LuckyoneUI_NovaSpellRankChecker', function() C_Timer.After(2, Skin_NovaSpellRankChecker) end)
+S:AddCallbackForAddon('NovaSpellRankChecker', 'LuckyoneUI_NovaSpellRankChecker', Skin_NovaSpellRankChecker)

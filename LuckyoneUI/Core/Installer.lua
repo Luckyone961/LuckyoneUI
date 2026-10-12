@@ -55,11 +55,6 @@ local function EnableDamageMeter()
 	Private:Print(L["Damage Meter module enabled."], true)
 end
 
-local function InstallComplete()
-	Private:Setup_Personal()
-	C_UI.Reload()
-end
-
 -- Our frame 'skin'
 local function ApplyTemplate(frame)
 	frame:SetBackdrop({
@@ -170,7 +165,6 @@ local function CreateStepButton(sidebar, index, name)
 
 	button.bg = button:CreateTexture(nil, 'BACKGROUND')
 	button.bg:SetAllPoints()
-	button.bg:SetColorTexture(0.2, 0.2, 0.2, 0.5)
 
 	CreateHighlight(button)
 
@@ -178,7 +172,6 @@ local function CreateStepButton(sidebar, index, name)
 	button.icon:SetSize(14, 14)
 	button.icon:SetPoint('RIGHT', -6, 0)
 	button.icon:SetTexture('Interface\\RaidFrame\\ReadyCheck-Ready')
-	button.icon:Hide()
 
 	button.text = CreateText(button, 12)
 	button.text:SetPoint('LEFT', 26, 0)
@@ -362,6 +355,8 @@ local function CreateMainFrame()
 	frame:SetMovable(true)
 	frame:SetClampedToScreen(true)
 	frame:EnableMouse(true)
+
+	frame:SetClampRectInsets(0, 201, 0, 0)
 	frame:Hide()
 
 	ApplyTemplate(frame)
@@ -434,6 +429,7 @@ local function CreateMainFrame()
 	local sidebar = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
 	sidebar:SetSize(200, 500)
 	sidebar:SetPoint('TOPLEFT', frame, 'TOPRIGHT', 1, 0)
+	sidebar:EnableMouse(true)
 	sidebar.Buttons = {}
 	frame.Sidebar = sidebar
 
@@ -465,7 +461,6 @@ local function CreateMainFrame()
 	local toggles = CreateFrame('Frame', nil, content)
 	toggles:SetPoint('TOPLEFT', content.Desc, 'BOTTOMLEFT', 0, -16)
 	toggles:SetPoint('BOTTOMRIGHT', -20, 100)
-	toggles:Hide()
 	toggles.Headers = {}
 	toggles.Checks = {}
 	content.Toggles = toggles
@@ -477,7 +472,6 @@ local function CreateMainFrame()
 		button:SetScript('OnClick', Option_OnClick)
 		button:SetScript('OnEnter', Option_OnEnter)
 		button:SetScript('OnLeave', GameTooltip_Hide)
-		button:Hide()
 		content.Options[index] = button
 	end
 
@@ -488,7 +482,6 @@ local function CreateMainFrame()
 	status:SetPoint('BOTTOMRIGHT', -20, 12)
 	status:SetJustifyH('CENTER')
 	status:SetTextColor(0.294, 0.922, 0.173)
-	status:Hide()
 	content.Status = status
 
 	status.fade = status:CreateAnimationGroup()
@@ -505,8 +498,6 @@ end
 
 -- Used by Private:Print with the installer flag
 function Installer:ShowStatus(msg)
-	if not installerFrame then return end
-
 	local status = installerFrame.Content.Status
 	status:SetText(msg)
 	status:Show()
@@ -610,7 +601,7 @@ local function Toggle(section, path, labelPath, descPath)
 	return { section = section, key = strmatch(path, '[^.]+$'), label = label, desc = desc, hidden = hidden }
 end
 
--- ElvUI db keys, the mirror path is written along with the value (player castbar custom color)
+-- ElvUI db keys, the mirror path is written along with the value (castbar transparency)
 local function ElvUIToggle(label, path, mirror)
 	return { elvui = true, section = strmatch(path, '(.+)%.'), key = strmatch(path, '[^.]+$'), label = label, mirror = mirror and ElvUIToggle(nil, mirror) }
 end
@@ -673,7 +664,7 @@ local function BuildPages()
 			Group(L["UnitFrames Transparency"],
 				ElvUIToggle(L["Health"], 'unitframe.colors.transparentHealth'),
 				ElvUIToggle(L["Power"], 'unitframe.colors.transparentPower'),
-				ElvUIToggle(L["Castbar"], 'unitframe.colors.transparentCastbar', 'unitframe.units.player.castbar.customColor.transparent')
+				ElvUIToggle(L["Castbar"], 'unitframe.units.player.castbar.customColor.transparent', 'unitframe.colors.transparentCastbar')
 			)
 		}, not Private.ElvUI),
 
@@ -829,7 +820,7 @@ local function BuildPages()
 			L["Feel free to join our community Discord for support and social chats."],
 		}, {
 			Button('Discord', function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://discord.luckyone.dev') end),
-			Button(Green(L["Finished"]), InstallComplete),
+			Button(Green(L["Finished"]), function() Private:Setup_Personal() C_UI.Reload() end),
 		}),
 	}
 end
@@ -866,9 +857,7 @@ function Installer:Show()
 end
 
 function Installer:Hide()
-	if installerFrame then
-		installerFrame:Hide()
-	end
+	installerFrame:Hide()
 end
 
 function Installer:IsShown()

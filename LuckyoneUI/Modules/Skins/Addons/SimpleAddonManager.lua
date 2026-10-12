@@ -31,11 +31,6 @@ local function SkinDropDownLists(lib)
 	end
 end
 
-local function SkinSquareButton(button)
-	S:HandleButton(button)
-	button.icon:SetDrawLayer('OVERLAY')
-end
-
 local function SkinRows(scrollFrame)
 	local buttons = scrollFrame.buttons
 	if not buttons then return end
@@ -82,22 +77,17 @@ local function SkinSimpleAddonManager(frame)
 
 	-- Header
 	S:HandleDropDownBox(frame.CharacterDropDown, 120)
-	S:HandleButton(frame.SetsButton)
 	S:HandleEditBox(frame.SearchBox)
 
-	SkinSquareButton(frame.ResultOptionsButton)
-	SkinSquareButton(frame.ConfigButton)
-	SkinSquareButton(frame.CategoryButton)
-
-	-- Bottom Buttons
-	for _, button in next, { frame.EnableAllButton, frame.DisableAllButton, frame.OkButton, frame.CancelButton } do
+	for _, button in next, { frame.ResultOptionsButton, frame.ConfigButton, frame.CategoryButton } do
 		S:HandleButton(button)
+		button.icon:SetDrawLayer('OVERLAY')
 	end
 
-	-- Category Frame
+	-- Header, bottom and category frame buttons
 	local categoryFrame = frame.CategoryFrame
 
-	for _, button in next, { categoryFrame.NewButton, categoryFrame.SelectAllButton, categoryFrame.ClearSelectionButton } do
+	for _, button in next, { frame.SetsButton, frame.EnableAllButton, frame.DisableAllButton, frame.OkButton, frame.CancelButton, categoryFrame.NewButton, categoryFrame.SelectAllButton, categoryFrame.ClearSelectionButton } do
 		S:HandleButton(button)
 	end
 

@@ -57,7 +57,7 @@ elseif Private.myClass == 'ROGUE' then
 	if Private.isMists then
 		forms[2] = 51713 -- Shadow Dance
 	end
-elseif Private.myClass == 'WARRIOR' and not Private.isRetail then
+elseif Private.myClass == 'WARRIOR' and not (Private.isRetail or Private.isMists) then
 	forms[1], forms[2], forms[3] = 2457, 71, 2458 -- Battle Stance, Defensive Stance, Berserker Stance
 elseif Private.myClass == 'PRIEST' then
 	forms[1] = Private.isRetail and 232698 or 15473 -- Shadowform

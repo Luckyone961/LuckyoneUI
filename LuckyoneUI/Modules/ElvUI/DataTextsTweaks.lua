@@ -11,8 +11,6 @@ local InCombatLockdown = InCombatLockdown
 local E = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
 
-local callbackRegistered
-
 -- Update ActionBars DataText width based on active LuckyoneUI profile
 local function UpdateDataTextWidth()
 	if InCombatLockdown() or not Private.Addon.db.profile.misc.dataTextsTweaks then return end
@@ -32,10 +30,8 @@ end
 function Private:DataTextsTweaks()
 	if not Private.Addon.db.profile.misc.dataTextsTweaks then return end
 
-	-- Manual ElvUI profile changes
-	if not callbackRegistered and E.data then
+	if E.data then -- Manual ElvUI profile changes
 		E.data.RegisterCallback(Private, 'OnProfileChanged', UpdateDataTextWidth)
-		callbackRegistered = true
 	end
 
 	-- Initial sync on login and when the option gets toggled

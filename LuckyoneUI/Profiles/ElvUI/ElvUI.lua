@@ -2125,9 +2125,6 @@ function Private:Setup_AltProfile(profile, layout)
 	DisableLibDualSpec()
 	E.data:SetProfile(profile)
 
-	-- Protect movers error
-	E.db.movers = E.db.movers or {}
-
 	-- Correct initial DT width
 	local actionBarsDT = E.global.datatexts.customPanels.Luckyone_ActionBars_DT
 	if actionBarsDT then

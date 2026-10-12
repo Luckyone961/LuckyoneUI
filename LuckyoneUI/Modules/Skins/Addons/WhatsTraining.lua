@@ -73,7 +73,6 @@ local function Skin_Legacy()
 
 	-- Frame Positioning
 	frame:Point('TOPLEFT', SpellBookFrame, 'TOPLEFT', 0, 38)
-	frame:Point('BOTTOMRIGHT', SpellBookFrame, 'BOTTOMRIGHT', 0, 0)
 
 	-- Close Button
 	SpellBookCloseButton:SetFrameStrata('HIGH')
@@ -201,7 +200,7 @@ local function Skin_WhatsTraining()
 		-- The window is created on its first open, from /wt or the Broker button
 		hooksecurefunc(SlashCmdList, 'WHATSTRAINING', Skin_FloatingFrame)
 
-		local broker = LibStub('LibDataBroker-1.1'):GetDataObjectByName('WhatsTraining')
+		local broker = Private.Libs.LDB:GetDataObjectByName('WhatsTraining')
 		if broker then
 			hooksecurefunc(broker, 'OnClick', Skin_FloatingFrame)
 		end

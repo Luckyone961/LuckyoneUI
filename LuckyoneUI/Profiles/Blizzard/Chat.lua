@@ -11,7 +11,6 @@ local FCF_DockFrame = FCF_DockFrame
 local FCF_OpenNewWindow = FCF_OpenNewWindow
 local FCF_ResetChatWindow = FCF_ResetChatWindow
 local FCF_ResetChatWindows = FCF_ResetChatWindows
-local FCF_SavePositionAndDimensions = FCF_SavePositionAndDimensions
 local FCF_SetChatWindowFontSize = FCF_SetChatWindowFontSize
 local FCF_SetWindowName = FCF_SetWindowName
 local FCF_StopDragging = FCF_StopDragging
@@ -56,11 +55,9 @@ function Private:Setup_Chat(installer)
 	for id, name in next, chats do
 		local frame = _G[name]
 
-		if Private.ElvUI then
-			if ElvUI[1].private.chat.enable then
-				local module = ElvUI[1]:GetModule('Chat')
-				module:FCFTab_UpdateColors(module:GetTab(frame))
-			end
+		if Private.ElvUI and ElvUI[1].private.chat.enable then
+			local module = ElvUI[1]:GetModule('Chat')
+			module:FCFTab_UpdateColors(module:GetTab(frame))
 		end
 
 		-- Font size for all tabs
@@ -87,26 +84,20 @@ function Private:Setup_Chat(installer)
 			FCF_SetWindowName(frame, 'Party')
 		end
 
-		FCF_SavePositionAndDimensions(frame)
+		-- Saves the position and dimensions as well
 		FCF_StopDragging(frame)
 	end
 
-	-- Whisper tab
-	_G.ChatFrame4:RemoveAllMessageGroups()
-	for _, v in ipairs({ 'WHISPER', 'BN_WHISPER', 'IGNORED' }) do
-		_G.ChatFrame4:AddMessageGroup(v)
-	end
-
-	-- Guild tab
-	_G.ChatFrame5:RemoveAllMessageGroups()
-	for _, v in ipairs({ 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }) do
-		_G.ChatFrame5:AddMessageGroup(v)
-	end
-
-	-- Party tab
-	_G.ChatFrame6:RemoveAllMessageGroups()
-	for _, v in ipairs({ 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER', 'SYSTEM' }) do
-		_G.ChatFrame6:AddMessageGroup(v)
+	for id, groups in next, {
+		[4] = { 'WHISPER', 'BN_WHISPER', 'IGNORED' }, -- Whisper tab
+		[5] = { 'GUILD', 'GUILD_ACHIEVEMENT', 'OFFICER' }, -- Guild tab
+		[6] = { 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER', 'SYSTEM' }, -- Party tab
+	} do
+		local frame = _G['ChatFrame' .. id]
+		frame:RemoveAllMessageGroups()
+		for _, group in ipairs(groups) do
+			frame:AddMessageGroup(group)
+		end
 	end
 
 	-- Remove whispers from main tab

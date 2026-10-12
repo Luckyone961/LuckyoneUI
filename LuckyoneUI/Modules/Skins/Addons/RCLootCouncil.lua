@@ -89,7 +89,6 @@ local function SkinScrollTable(lib, _, _, _, _, parent)
 	local name = frame:GetName()
 	S:HandleScrollBar(_G[name .. 'ScrollFrameScrollBar'])
 	_G[name .. 'ScrollTrough']:Hide()
-	_G[name .. 'ScrollTroughBorder']:Hide()
 end
 
 -- LibDialog popups, the dialog frames and their widgets
@@ -191,9 +190,7 @@ local function SessionData_GetFrame(sessionData)
 	local frame = sessionData.frame
 	if not frame or frame.isSkinned then return end
 
-	if frame.NineSlice then
-		frame.NineSlice:SetAlpha(0)
-	end
+	frame.NineSlice:SetAlpha(0)
 
 	frame:SetTemplate('Transparent')
 

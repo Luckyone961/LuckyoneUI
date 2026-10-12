@@ -207,11 +207,8 @@ function Private:Setup_Personal()
 	-- LibDualSpec
 	if dualSpec then
 		ElvDB.namespaces = ElvDB.namespaces or {}
-		local ns = ElvDB.namespaces['LibDualSpec-1.0']
-		if not ns then
-			ns = {}
-			ElvDB.namespaces['LibDualSpec-1.0'] = ns
-		end
+		local ns = ElvDB.namespaces['LibDualSpec-1.0'] or {}
+		ElvDB.namespaces['LibDualSpec-1.0'] = ns
 		ns.char = ns.char or {}
 		for char, data in pairs(dualSpec) do
 			ns.char[char] = data

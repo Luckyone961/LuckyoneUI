@@ -10,8 +10,7 @@ local GetFriendAccountInfo = C_BattleNet.GetFriendAccountInfo
 local GetFriendInfoByIndex = C_FriendList.GetFriendInfoByIndex
 local hooksecurefunc = hooksecurefunc
 
-local _G = _G
-local AddSmallIcon = TimerunningUtil and TimerunningUtil.AddSmallIcon -- Retail only
+local AddSmallIcon = TimerunningUtil and TimerunningUtil.AddSmallIcon
 local BNET_CLIENT_WOW = BNET_CLIENT_WOW
 local FRIENDS_BUTTON_TYPE_BNET = FRIENDS_BUTTON_TYPE_BNET
 local FRIENDS_BUTTON_TYPE_WOW = FRIENDS_BUTTON_TYPE_WOW
@@ -153,7 +152,7 @@ end
 
 local function UpdateStatus(button, db, status)
 	local square = button.LuckyoneStatus
-	if db.statusIcon ~= 'SQUARE' then
+	if not db.enable or db.statusIcon ~= 'SQUARE' then
 		if square then
 			square:Hide()
 			button.status:Show()
@@ -255,25 +254,21 @@ end
 function Private:FriendsList_Update()
 	local db = Private.Addon.db.profile.misc.friendsList
 
+	-- No-Taint-Please
 	for button in next, buttons do
 		if db.enable then
 			ApplyFonts(button, db)
+
+			if button:IsVisible() then
+				UpdateFriendButton(button)
+			end
 		else
 			button.name:SetFontObject(FriendsFont_Normal)
 			button.info:SetFontObject(FriendsFont_Small)
 			button.info:SetTextColor(FRIENDS_GRAY_COLOR.r, FRIENDS_GRAY_COLOR.g, FRIENDS_GRAY_COLOR.b)
 			UpdateFavorite(button, db)
-
-			if button.LuckyoneStatus then
-				button.LuckyoneStatus:Hide()
-				button.status:Show()
-			end
+			UpdateStatus(button, db)
 		end
-	end
-
-	-- Blizzard rebuilds the text, the hook does the rest
-	if _G.FriendsListFrame:IsVisible() then
-		_G.FriendsList_Update(true)
 	end
 end
 

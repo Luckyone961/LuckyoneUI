@@ -50,15 +50,11 @@ local function SkinBugSackFrame()
 	S:HandleFrame(frame)
 
 	-- Scroll Bar (the scroll frame is unnamed, reach it through the text area)
-	local textArea = _G.BugSackScrollText
-	local scrollArea = textArea and textArea:GetParent()
-	local scrollBar = scrollArea and scrollArea.ScrollBar
-	if scrollBar then
-		if Private.isModern then
-			S:HandleTrimScrollBar(scrollBar)
-		else
-			S:HandleScrollBar(scrollBar)
-		end
+	local scrollArea = _G.BugSackScrollText:GetParent()
+	if Private.isModern then
+		S:HandleTrimScrollBar(scrollArea.ScrollBar)
+	else
+		S:HandleScrollBar(scrollArea.ScrollBar)
 	end
 
 	-- Buttons
@@ -74,15 +70,10 @@ local function SkinBugSackFrame()
 	end
 
 	-- Move the paging buttons into the bottom corners
-	if prevButton then
-		prevButton:ClearAllPoints()
-		prevButton:Point('BOTTOMLEFT', frame, 'BOTTOMLEFT', 12, 6)
-	end
-
-	if nextButton then
-		nextButton:ClearAllPoints()
-		nextButton:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', -12, 6)
-	end
+	prevButton:ClearAllPoints()
+	prevButton:Point('BOTTOMLEFT', frame, 'BOTTOMLEFT', 12, 6)
+	nextButton:ClearAllPoints()
+	nextButton:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', -12, 6)
 
 	-- Send (bug tabs) and Wipe (Options tab) fill the space between them with a 1px gap on each side
 	for _, button in next, { sendButton, wipeButton } do

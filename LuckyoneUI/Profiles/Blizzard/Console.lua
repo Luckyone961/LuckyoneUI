@@ -178,16 +178,17 @@ function Private:SyncSettings(characterOnly)
 		end
 	end
 
-	-- Graphics quality masters first, the engine derives the leaf CVars from them
+	-- Graphics quality masters first (each preset ahead of its sub-masters), the engine derives the leaf CVars from them
 	-- They would otherwise override things like farClip, density, dist, etc
+	Set('graphicsQuality', 9)
 	Set('graphicsComputeEffects', 0)
 	Set('graphicsLiquidDetail', 3)
 	Set('graphicsOutlineMode', 2)
 	Set('graphicsParticleDensity', 4)
-	Set('graphicsQuality', 9)
 	Set('graphicsSpellDensity', 0)
 	Set('graphicsTextureResolution', 2)
 	Set('graphicsViewDistance', 6)
+	Set('RAIDgraphicsQuality', 9)
 	Set('raidGraphicsComputeEffects', 0)
 	Set('raidGraphicsDepthEffects', 0)
 	Set('raidGraphicsEnvironmentDetail', 0)
@@ -195,7 +196,6 @@ function Private:SyncSettings(characterOnly)
 	Set('raidGraphicsLiquidDetail', 0)
 	Set('raidGraphicsOutlineMode', 2)
 	Set('raidGraphicsParticleDensity', 1)
-	Set('RAIDgraphicsQuality', 9)
 	Set('raidGraphicsShadowQuality', 0)
 	Set('raidGraphicsSpellDensity', 0)
 	Set('raidGraphicsSSAO', 0)

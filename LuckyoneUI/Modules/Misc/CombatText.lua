@@ -18,7 +18,6 @@ local function CombatText_OnUpdate(self, elapsed)
 	if alpha > 0 then
 		self:SetAlpha(alpha)
 	else
-		self:SetScript('OnUpdate', nil)
 		self:Hide()
 	end
 end
@@ -32,6 +31,7 @@ function Private:CombatText_Update()
 		frame:SetFrameStrata('HIGH')
 		frame.text = frame:CreateFontString(nil, 'OVERLAY')
 		frame.text:SetPoint('CENTER')
+		frame:SetScript('OnUpdate', CombatText_OnUpdate)
 		frame:Hide()
 	end
 
@@ -69,5 +69,4 @@ function Private:CombatText(entering)
 	frame.fadeTime = db.fadeTime
 	frame:SetAlpha(1)
 	frame:Show()
-	frame:SetScript('OnUpdate', CombatText_OnUpdate)
 end

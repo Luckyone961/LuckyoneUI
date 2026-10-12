@@ -78,11 +78,11 @@ Private.IsAddOnLoaded = IsAddOnLoaded
 -- Packager fills the TOC version from the git tag
 -- Alpha tags look like 4.26-alpha1 and source keeps raw @project-version@
 Private.VersionString = GetAddOnMetadata(Name, 'Version')
-Private.Version = tonumber(strmatch(Private.VersionString, '^[%d%.]+'))
+Private.Version = strmatch(Private.VersionString, '^[%d%.]+')
 
 -- Bump with every release, same as ElvUI does for source checkouts
 if not Private.Version then
-	Private.Version, Private.VersionString = 4.25, '4.25-git'
+	Private.Version, Private.VersionString = '4.25', '4.25-git'
 end
 
 -- Player utils
@@ -191,7 +191,6 @@ local function NewModule()
 
 	function module:RegisterEvent(event, method) events[event] = method or event frame:RegisterEvent(event) end
 	function module:UnregisterEvent(event) events[event] = nil frame:UnregisterEvent(event) end
-	function module:UnregisterAllEvents() wipe(events) frame:UnregisterAllEvents() end
 
 	modules[#modules + 1] = module
 	return module

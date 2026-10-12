@@ -319,7 +319,10 @@ end
 local function WindowChanged(window)
 	window.offset = 0
 
-	DM:ClosePopup()
+	if DM.popup and DM.popup.owner == window then
+		DM:ClosePopup()
+	end
+
 	CloseBookmarks(window)
 	SetHeaderText(window.typeText, TypeNames[window.meterType], window)
 	RefreshWindow(window)
@@ -483,17 +486,14 @@ end
 -- A right click panel over the bar area, it only carries damage meter types (the table)
 -- Every type is stored as its own place in the list so it can be dragged around
 local bookmarkList = {}
-local bookmarkPlaces -- The saved table the sort compares against
-
 local function SortBookmarks(a, b)
-	return bookmarkPlaces[a] < bookmarkPlaces[b]
+	return DM.db.bookmarks[a] < DM.db.bookmarks[b]
 end
 
 local function BuildBookmarkList()
 	wipe(bookmarkList)
 
 	local saved = DM.db.bookmarks
-	bookmarkPlaces = saved
 
 	for _, category in ipairs(TypeCategories) do
 		for _, meterType in ipairs(category.types) do
@@ -697,7 +697,6 @@ function LayoutBookmarks(frame, focus)
 
 	-- The plus icon goes away once every type is bookmarked
 	local total = #list + ((#list < typeCount) and 1 or 0)
-	if total == 0 then return false end
 
 	local spacing = db.barSpacing
 	local contentHeight = window.contentHeight or 0

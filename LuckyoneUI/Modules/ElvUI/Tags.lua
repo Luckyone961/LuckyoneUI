@@ -11,11 +11,9 @@ local pairs = pairs
 local setmetatable = setmetatable
 local strfind = string.find
 local strmatch = string.match
-local type = type
 local unpack = unpack
 local wipe = table.wipe
 
-local GenerateTextColorCode = C_ColorUtil.GenerateTextColorCode
 local GetClassColor = C_ClassColor.GetClassColor
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
 local GetPetHappiness = (C_PetInfo and C_PetInfo.GetPetHappiness) or GetPetHappiness
@@ -53,6 +51,7 @@ local E = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
 local Abbrev = ElvUF.Tags.Env.Abbrev
+local Hex = ElvUF.Tags.Env.Hex
 
 local ElvUF_colors_class = ElvUF.colors.class
 local ElvUF_colors_power = ElvUF.colors.power
@@ -68,38 +67,6 @@ local classificationText = {
 -- Status check (dead, ghost, offline)
 local function GetUnitStatus(unit)
 	return UnitIsDead(unit) and L["DEAD"] or UnitIsGhost(unit) and L["GHOST"] or not UnitIsConnected(unit) and L["OFFLINE"]
-end
-
--- Color table or r, g, b values to a hex escape code
-local Hex
-if Private.isModern then
-	function Hex(r, g, b)
-		if type(r) == 'table' then
-			return '|c' .. GenerateTextColorCode(r)
-		end
-
-		if type(r) == 'number' and g and b then
-			return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
-		end
-
-		return '|cffFFFFFF'
-	end
-else
-	function Hex(r, g, b)
-		if type(r) == 'table' then
-			if r.r then
-				r, g, b = r.r, r.g, r.b
-			else
-				r, g, b = unpack(r)
-			end
-		end
-
-		if type(r) == 'number' and g and b then
-			return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
-		end
-
-		return '|cffFFFFFF'
-	end
 end
 
 -- Avoids a concat per tag call
@@ -175,13 +142,6 @@ end
 
 -- Name arg is already secret-checked
 local function GetFormattedName(unit, length, color, abbrev, name)
-	if not name then
-		name = UnitName(unit) or UNKNOWN
-		if issecretvalue(name) then
-			return name
-		end
-	end
-
 	if name ~= UNKNOWN then
 		if abbrev then
 			name = Abbrev(name)
@@ -533,7 +493,7 @@ else
 	-- Maximum length with classcolor or no color, optionally abbreviated
 	local function BuildNameTag(length, withColor, abbrev)
 		return function(unit)
-			return GetFormattedName(unit, length, withColor, abbrev)
+			return GetFormattedName(unit, length, withColor, abbrev, UnitName(unit) or UNKNOWN)
 		end
 	end
 

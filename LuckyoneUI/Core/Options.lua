@@ -271,32 +271,23 @@ local function ByLabel(a, b)
 	return strcmputf8i(a.plain, b.plain) < 0
 end
 
-local function ByKey(a, b)
-	return a.key < b.key
-end
-
 local function AddSelect(category, info, name, desc, get, set, option, path)
 	if option.dialogControl then
 		error(format('LuckyoneUI: %s uses %s, not supported without ElvUI', concat(path, '.'), option.dialogControl))
 	end
 
-	local keys, labels = {}, {}
+	local labels = {}
 
 	local function Options()
 		local entries = {}
-		local numeric = true
-		wipe(keys)
 		wipe(labels)
 
 		for key, label in pairs(Resolve(option.values, info)) do
-			local id = tostring(key)
-			keys[id] = key
-			labels[id] = label
+			labels[key] = label
 			entries[#entries + 1] = { key = key, label = label, plain = StripCodes(label) }
-			if type(key) ~= 'number' then numeric = false end
 		end
 
-		sort(entries, numeric and ByKey or ByLabel)
+		sort(entries, ByLabel)
 
 		local container = Settings.CreateControlTextContainer()
 		for _, entry in ipairs(entries) do
@@ -312,11 +303,8 @@ local function AddSelect(category, info, name, desc, get, set, option, path)
 		local value = get(info)
 		return value == nil and '' or tostring(value)
 	end, function(id)
-		local key = keys[id]
-		if key == nil then key = id end
-
 		Ask(option, info, format('%s\n\n%s', name, labels[id] or id), function()
-			set(info, key)
+			set(info, id)
 			Refresh()
 		end, function() setting:NotifyUpdate() end)
 	end)
@@ -370,11 +358,8 @@ local function ToggleClick(self)
 	local checked = self:GetChecked()
 	PlaySound(checked and SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON or SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF)
 
-	-- A declined confirm reads the box back from the config
-	Ask(entry.option, entry.info, EntryText(entry), function()
-		entry.set(entry.info, checked)
-		Refresh()
-	end, Refresh)
+	entry.set(entry.info, checked)
+	Refresh()
 end
 
 local function CreateSlotButton(frame)
@@ -442,13 +427,8 @@ local function AddSlots(category, row, rowType, tags)
 				frame.slots[i] = slot
 			end
 
+			(slot.Label or slot):SetText(entry.name)
 			slot.entry = entry
-
-			if slot.Label then
-				slot.Label:SetText(entry.name)
-			else
-				slot:SetText(entry.name)
-			end
 		end
 
 		UpdateSlots(frame)
@@ -504,10 +484,6 @@ local function InputEscapePressed(self)
 	self:ClearFocus()
 end
 
-local function InputFocusGained(self)
-	self:HighlightText()
-end
-
 local function InputFocusLost(self)
 	local row = self:GetParent().row
 	self:SetText(tostring(row.get(row.info) or ''))
@@ -526,21 +502,17 @@ end
 local function MultilineAccept(self)
 	local frame = self:GetParent()
 	local row = frame.row
+	frame.Multiline:ClearFocus()
+
 	if row.set then
 		row.set(row.info, frame.Multiline:GetText())
 		Refresh()
 	end
-
-	frame.Multiline:ClearFocus()
 end
 
 -- Multiline input, the scroll frame keeps the cursor in view like Blizzard's InputScrollFrameTemplate
 local function MultilineTextChanged(self)
 	ScrollingEdit_OnTextChanged(self, self:GetParent())
-end
-
-local function MultilineUpdate(self, elapsed)
-	ScrollingEdit_OnUpdate(self, elapsed, self:GetParent())
 end
 
 local function MultilineScrollMouseDown(self)
@@ -625,7 +597,7 @@ local function AddInput(category, info, name, desc, get, set, option, disabled)
 				box:SetScript('OnEscapePressed', InputEscapePressed)
 				box:SetScript('OnCursorChanged', ScrollingEdit_OnCursorChanged)
 				box:SetScript('OnTextChanged', MultilineTextChanged)
-				box:SetScript('OnUpdate', MultilineUpdate)
+				box:SetScript('OnUpdate', ScrollingEdit_OnUpdate)
 				ScrollingEdit_SetCursorOffsets(box, 0, 0)
 				scroll:SetScrollChild(box)
 				frame.Multiline = box
@@ -650,8 +622,6 @@ local function AddInput(category, info, name, desc, get, set, option, disabled)
 				box:SetHeight(20)
 				box:SetAutoFocus(false)
 				box:SetScript('OnEnterPressed', InputEnterPressed)
-				box:SetScript('OnEscapePressed', InputEscapePressed)
-				box:SetScript('OnEditFocusGained', InputFocusGained)
 				box:SetScript('OnEditFocusLost', InputFocusLost)
 				box:SetScript('OnEnter', InputEnter)
 				box:SetScript('OnLeave', TooltipLeave)
@@ -758,31 +728,6 @@ local function AddOptions(category, args, path, get, set, disabled, hidden, nest
 				if #pending == 3 then
 					Flush()
 				end
-			elseif optionType == 'multiselect' then
-				-- One toggle per value below the name, sorted by key like AceConfig
-				if name ~= '' then
-					AddHeader(category, name, optionHidden)
-				end
-
-				local values = Resolve(option.values, info)
-				local keys = {}
-				for key in pairs(values) do
-					keys[#keys + 1] = key
-				end
-
-				sort(keys)
-				pendingType = 'toggle'
-
-				for _, key in ipairs(keys) do
-					pending[#pending + 1] = { name = values[key], desc = desc, option = option, info = info, get = function() return optionGet(info, key) end, set = function(_, value) optionSet(info, key, value) end, disabled = optionDisabled, hidden = optionHidden }
-
-					if #pending == 3 then
-						Flush()
-					end
-				end
-
-				-- Toggles after it start a row of their own
-				Flush()
 			elseif optionType == 'range' then
 				local initializer = AddRange(category, info, name, desc, optionGet, optionSet, option)
 				initializer:AddSearchTags(unpack(tags))

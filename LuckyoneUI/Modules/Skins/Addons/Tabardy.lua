@@ -4,7 +4,7 @@ if not Private.ElvUI then
 	return
 end
 
-local ipairs = ipairs
+local next = next
 local unpack = unpack
 
 local hooksecurefunc = hooksecurefunc
@@ -34,7 +34,7 @@ local function Skin_Tabardy()
 
 	-- Buttons and Pickers
 	local customizations = designer.Customizations
-	local buttons = {
+	for _, button in next, {
 		designer.AcceptButton,
 		designer.CancelButton,
 		customizations.EmblemPicker,
@@ -42,9 +42,7 @@ local function Skin_Tabardy()
 		customizations.BackgroundPicker,
 		customizations.BorderPicker,
 		customizations.BorderColorPicker
-	}
-
-	for _, button in ipairs(buttons) do
+	} do
 		S:HandleButton(button)
 	end
 

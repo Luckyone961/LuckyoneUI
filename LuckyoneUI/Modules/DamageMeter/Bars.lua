@@ -494,14 +494,6 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 	local nameText = bar.name
 
 	if spellMode then
-		bar.lastName = nil
-
-		-- The popup has no rank column, zero is never a real rank
-		if bar.lastRank ~= 0 then
-			bar.lastRank = 0
-			bar.rank:SetText('')
-		end
-
 		-- GetSpellName takes secret IDs
 		local spellName = entry.spellName
 		if not spellName and entry.spellID then
@@ -653,7 +645,7 @@ local function UpdateValueColumn(db, window)
 				if bar.secondarySecret or bar.secondary:IsAnchoringSecret() then
 					secret = true
 				else
-					width = max(width, bar.secondary:GetStringWidth())
+					width = max(width, bar.secondary:GetUnboundedStringWidth())
 				end
 			end
 		end

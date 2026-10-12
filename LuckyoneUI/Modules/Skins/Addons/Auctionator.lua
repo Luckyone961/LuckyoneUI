@@ -40,7 +40,7 @@ local CraftingFrames = {
 }
 
 -- Option widget editboxes
-local EditBoxKeys = { 'InputBox', 'MaxBox', 'MinBox', 'NumStacks', 'Quantity', 'QuantityInput', 'SearchString', 'StackSize' }
+local EditBoxKeys = { 'CopperBox', 'GoldBox', 'InputBox', 'MaxBox', 'MinBox', 'NumStacks', 'SearchString', 'SilverBox', 'StackSize' }
 
 local auctionHouseSkinned
 
@@ -99,14 +99,6 @@ local function SkinRefreshButton(parent)
 			S:HandleButton(child)
 			child:Size(22)
 		end
-	end
-end
-
-local function SkinMoneyInput(frame)
-	if not frame then return end
-
-	for _, box in next, { frame.GoldBox, frame.SilverBox, frame.CopperBox } do
-		S:HandleEditBox(box)
 	end
 end
 
@@ -258,8 +250,8 @@ local function SkinOptions(frame)
 			if child.RadioButton then S:HandleRadioButton(child.RadioButton) end
 			if child.DropDown and child.DropDown:IsObjectType('Button') then
 				S:HandleDropDownBox(child.DropDown, child.DropDown:GetWidth())
+				child.DropDown.isSkinned = true
 			end
-			if child.MoneyInput then SkinMoneyInput(child.MoneyInput) end
 			if child.ResetButton then SkinResetButton(child.ResetButton) end
 			if child.Button and child.Description then S:HandleButton(child.Button) end
 
@@ -291,6 +283,11 @@ local function SkinConfigPanels()
 	for _, name in next, ConfigPanels do
 		local panel = _G[name]
 		if panel and not panel.isSkinned then
+			if panel.ScrollBar then
+				S:HandleTrimScrollBar(panel.ScrollBar)
+				panel.ScrollBar:GetThumb().IsSkinned = true
+			end
+
 			SkinOptions(panel)
 
 			panel.isSkinned = true
@@ -598,11 +595,6 @@ local function SkinCraftingInfo()
 			frame.isSkinned = true
 		end
 	end
-
-	local search = _G.AuctionatorTradeSkillSearch
-	if search and not search.IsSkinned then
-		S:HandleButton(search)
-	end
 end
 
 local function Skin_Auctionator()
@@ -625,7 +617,7 @@ local function Skin_Auctionator()
 	end
 
 	-- The crafting and enchanting info frames are created when the profession windows open
-	for _, name in next, { 'Initialize', 'InitializeProfessionsFrame', 'InitializeCustomerOrdersFrame', 'InitializeObjectiveTrackerFrame' } do
+	for _, name in next, { 'Initialize', 'InitializeProfessionsFrame', 'InitializeObjectiveTrackerFrame' } do
 		if Auctionator.CraftingInfo and Auctionator.CraftingInfo[name] then
 			hooksecurefunc(Auctionator.CraftingInfo, name, SkinCraftingInfo)
 		end

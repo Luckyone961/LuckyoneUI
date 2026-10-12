@@ -37,6 +37,7 @@ local UIParent = _G.UIParent
 
 local Settings_OpenToCategory = _G.Settings.OpenToCategory
 local SlashCmdList = _G.SlashCmdList
+local StaticPopup_StandardEditBoxOnEscapePressed = _G.StaticPopup_StandardEditBoxOnEscapePressed
 local StaticPopupDialogs = _G.StaticPopupDialogs
 
 local ACCEPT = ACCEPT
@@ -253,9 +254,7 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 })
 
 -- Addon Compartment OnClick TOC func
-function LuckyoneUI_OnAddonCompartmentClick()
-	OpenSettings()
-end
+LuckyoneUI_OnAddonCompartmentClick = OpenSettings
 
 -- Reload popup
 -- StaticPopup_Show('LUCKYONE_RL')
@@ -270,33 +269,30 @@ StaticPopupDialogs['LUCKYONE_RL'] = {
 
 -- Editbox popup
 -- StaticPopup_Show('LUCKYONE_EDITBOX', text_arg1, text_arg2, data)
-local function CloseEditBox(self)
-	self:GetParent():Hide()
-end
-
 StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 	text = Private.Name,
 	button1 = OKAY,
 	hasEditBox = 1,
 	-- Pooled dialogs keep the letter limit of the last popup, 0 lifts it for long strings
 	maxLetters = 0,
+	-- Blizzard sets the box width again on every show
 	OnShow = function(self, data)
 		local editBox = self.EditBox
 		editBox:SetAutoFocus(false)
-		editBox.width = editBox:GetWidth()
 		editBox:SetWidth(280)
 		editBox.temptxt = data
 		editBox:SetText(data)
 		editBox:SetJustifyH('CENTER')
 	end,
+	-- The pooled editbox goes back to Blizzard's defaults for the next popup
 	OnHide = function(self)
 		local editBox = self.EditBox
-		editBox:SetWidth(editBox.width or 50)
-		editBox.width = nil
+		editBox:SetAutoFocus(true)
+		editBox:SetJustifyH('LEFT')
 		editBox.temptxt = nil
 	end,
-	EditBoxOnEnterPressed = CloseEditBox,
-	EditBoxOnEscapePressed = CloseEditBox,
+	EditBoxOnEnterPressed = StaticPopup_StandardEditBoxOnEscapePressed,
+	EditBoxOnEscapePressed = StaticPopup_StandardEditBoxOnEscapePressed,
 	EditBoxOnTextChanged = function(self)
 		if self.temptxt and self:GetText() ~= self.temptxt then
 			self:SetText(self.temptxt)
@@ -333,11 +329,7 @@ local function WeeklyRewards()
 	local frame = _G.WeeklyRewardsFrame
 	if not frame then return end
 
-	if frame:IsShown() then
-		frame:Hide()
-	else
-		frame:Show()
-	end
+	frame:SetShown(not frame:IsShown())
 end
 
 -- LuckyoneUI chat commands

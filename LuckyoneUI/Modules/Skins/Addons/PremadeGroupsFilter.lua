@@ -96,11 +96,11 @@ local function Skin_PremadeGroupsFilter()
 		SkinFilterPanel(_G['PremadeGroupsFilter' .. name .. 'Panel'])
 	end
 
-	-- Dropdown Menu, the addon resets the border to grey every time it opens
+	-- Dropdown Menu, the addon resets the border to grey every time it opens, also when it switches from another open menu
 	local popup = _G.PremadeGroupsFilter.PopupMenuFrame
 	popup:StripTextures()
 	popup:SetTemplate('Transparent')
-	popup:HookScript('OnShow', PopupMenu_OnShow)
+	hooksecurefunc(popup, 'Show', PopupMenu_OnShow)
 
 	-- PGF toggle on the Group Finder
 	S:HandleCheckBox(_G.UsePGFButton)

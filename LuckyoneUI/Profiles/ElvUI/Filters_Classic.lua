@@ -14,7 +14,7 @@ local E = unpack(ElvUI)
 -- Function to add IDs to a list (fresh table per ID)
 local function Add(list, ids)
 	for _, id in ipairs(ids) do
-		list[id] = list[id] or { enabled = true, color = {} }
+		list[id] = list[id] or { enabled = true, color = { r = 1, g = 1, b = 1 } }
 	end
 end
 
@@ -43,6 +43,7 @@ function Private:Setup_Filters(installer)
 	-- Priest
 	aurawatch['PRIEST'][6346] = { -- Fear Ward
 		['enabled'] = true,
+		['color'] = { r = 0.89, g = 0.45, b = 0 },
 		['point'] = 'BOTTOMRIGHT',
 		['yOffset'] = -1,
 		['anyUnit'] = true,
@@ -71,11 +72,15 @@ function Private:Setup_Filters(installer)
 	}
 	aurawatch['PRIEST'][10060] = { -- Power Infusion
 		['enabled'] = true,
+		['color'] = { r = 0.17, g = 1, b = 0.45 },
+		['point'] = 'TOP',
 		['yOffset'] = 1,
 		['style'] = 'texturedIcon',
 	}
 	aurawatch['PRIEST'][402004] = { -- Pain Suppression
 		['enabled'] = true,
+		['color'] = { r = 0, g = 0, b = 0.83 },
+		['point'] = 'TOP',
 		['yOffset'] = 1,
 		['style'] = 'texturedIcon',
 	}
@@ -102,6 +107,7 @@ function Private:Setup_Filters(installer)
 	}
 	aurawatch['PRIEST'][401877] = { -- Prayer of Mending
 		['enabled'] = true,
+		['color'] = { r = 0, g = 0, b = 0.9 },
 		['point'] = 'TOPLEFT',
 		['yOffset'] = 1,
 		['countY'] = 0,
@@ -179,9 +185,16 @@ function Private:Setup_Filters(installer)
 	aurawatch['WARRIOR'][6673]['style'] = 'texturedIcon' -- Battle Shout
 
 	-- Forever matches indicators by id only, entries without an ElvUI default get none back on reload
+	-- TBC and Forever watch some ranks through another entry's includeIDs, that entry gets the style instead of a duplicate
 	for class, classIDs in pairs(ids) do
 		for _, id in ipairs(classIDs) do
-			aurawatch[class][id].id = id
+			local mainID = E.Filters.Included[id]
+			if mainID and aurawatch[class][mainID] then
+				aurawatch[class][mainID].style = 'texturedIcon'
+				aurawatch[class][id] = nil
+			else
+				aurawatch[class][id].id = id
+			end
 		end
 	end
 

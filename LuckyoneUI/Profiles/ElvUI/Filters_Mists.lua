@@ -14,7 +14,7 @@ local E = unpack(ElvUI)
 -- Function to add IDs to a list (fresh table per ID)
 local function Add(list, ids)
 	for _, id in ipairs(ids) do
-		list[id] = list[id] or { enabled = true, color = {} }
+		list[id] = list[id] or { enabled = true, color = { r = 1, g = 1, b = 1 } }
 	end
 end
 

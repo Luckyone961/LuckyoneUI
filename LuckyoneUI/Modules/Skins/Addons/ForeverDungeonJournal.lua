@@ -252,10 +252,9 @@ local function Skin_LootFilterWindow(frame)
 		SkinArmorOption(option)
 	end
 
-	S:HandleButton(window.toggle)
-	S:HandleButton(window.clear)
-	S:HandleButton(window.ok)
-	S:HandleButton(window.show)
+	for _, button in next, { window.toggle, window.clear, window.ok, window.show } do
+		S:HandleButton(button)
+	end
 
 	window.IsSkinned = true
 end
@@ -365,10 +364,7 @@ end
 
 -- Reputation rewards are created on demand
 local function RepPills_Layout()
-	local pills = ForeverDungeonJournalFrame.questRepPills
-	if not pills then return end
-
-	for _, pill in next, pills do
+	for _, pill in next, ForeverDungeonJournalFrame.questRepPills do
 		if not pill.IsSkinned then
 			pill:SetTemplate('Transparent')
 			pill.IsSkinned = true
@@ -449,10 +445,9 @@ local function Skin_Frame()
 	SkinPanel(frame.headerPanel)
 	frame.headerParchment:Hide()
 
-	SkinTab(frame.bossesTab)
-	SkinTab(frame.questsTab)
-	SkinTab(frame.mapTab)
-	SkinTab(frame.dungeonRouteButton)
+	for _, tab in next, { frame.bossesTab, frame.questsTab, frame.mapTab, frame.dungeonRouteButton } do
+		SkinTab(tab)
+	end
 
 	-- Bosses
 	SkinPanel(frame.leftPanel)
@@ -506,10 +501,9 @@ local function Skin_Frame()
 
 	SkinBackdropButton(frame.questShareButton)
 
-	S:HandleButton(frame.questMapButton)
-	S:HandleButton(frame.questChainButton)
-	S:HandleButton(frame.questStartLinkButton)
-	S:HandleButton(frame.questLeadsToButton)
+	for _, button in next, { frame.questMapButton, frame.questChainButton, frame.questStartLinkButton, frame.questLeadsToButton } do
+		S:HandleButton(button)
+	end
 	S:HandleNextPrevButton(frame.questPrevStepButton, 'left', nil, true)
 	S:HandleNextPrevButton(frame.questNextStepButton, 'right', nil, true)
 

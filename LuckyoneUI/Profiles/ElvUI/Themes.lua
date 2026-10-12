@@ -154,7 +154,6 @@ function Private:Setup_Theme(theme, installer)
 		E.db.unitframe.units.targettarget.customTexts.Luckyone_Name.text_format = Private.isModern and '[luckyone:name-nocolor]' or '[luckyone:name:last-nocolor]'
 	end
 
-	E:UpdateMediaItems()
 	E:UpdateUnitFrames()
 
 	Private:Print(L["Theme has been set."], installer)

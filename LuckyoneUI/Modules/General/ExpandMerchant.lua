@@ -33,29 +33,6 @@ local function LayoutItems(count)
 	end
 end
 
--- Blizzard hides slot eleven and twelve here because they belong to the buyback tab
-local function Merchant_UpdateMerchantInfo()
-	if not _G.MerchantFrame:IsShown() then return end -- Blizzard runs MerchantFrame_Update on every BAG_UPDATE with the vendor closed
-
-	LayoutItems(20)
-end
-
--- The buyback tab only fills its own twelve slots
-local function Merchant_UpdateBuybackInfo()
-	if not _G.MerchantFrame:IsShown() then return end
-
-	local buybackItems = _G.BUYBACK_ITEMS_PER_PAGE
-
-	LayoutItems(buybackItems)
-
-	for i = buybackItems + 1, 20 do
-		local item = _G['MerchantItem' .. i]
-		if item then
-			item:Hide()
-		end
-	end
-end
-
 local function GetAnchor(frame, anchor, keyword)
 	for i = 1, frame:GetNumPoints() do
 		local point, relativeTo, relativePoint, x, y = frame:GetPoint(i)
@@ -95,6 +72,50 @@ local function LayoutPageButtons(grown)
 	end
 end
 
+local sizedWidth
+local function ExpandFrame()
+	local itemWidth = _G.MerchantItem1:GetWidth()
+	if itemWidth == sizedWidth then return end
+
+	local grown = sizedWidth and (itemWidth - sizedWidth) * 2 or (itemWidth + 12) * 2
+	sizedWidth = itemWidth
+
+	local MerchantFrame = _G.MerchantFrame
+	MerchantFrame:SetWidth(MerchantFrame:GetWidth() + grown)
+
+	-- Fixed size texture, on Classic the right half of the border is anchored to it and follows
+	local border = _G.MerchantFrameBottomLeftBorder
+	if border then
+		border:SetWidth(border:GetWidth() + grown)
+	end
+
+	LayoutPageButtons(grown)
+end
+
+-- Blizzard hides slot eleven and twelve here because they belong to the buyback tab
+local function Merchant_UpdateMerchantInfo()
+	if not _G.MerchantFrame:IsShown() then return end -- Blizzard runs MerchantFrame_Update on every BAG_UPDATE with the vendor closed
+
+	ExpandFrame()
+	LayoutItems(20)
+end
+
+-- The buyback tab only fills its own twelve slots
+local function Merchant_UpdateBuybackInfo()
+	if not _G.MerchantFrame:IsShown() then return end
+
+	local buybackItems = _G.BUYBACK_ITEMS_PER_PAGE
+
+	LayoutItems(buybackItems)
+
+	for i = buybackItems + 1, 20 do
+		local item = _G['MerchantItem' .. i]
+		if item then
+			item:Hide()
+		end
+	end
+end
+
 -- Doubles the merchant frame so it shows four rows of items instead of two
 function Private:ExpandMerchant()
 	if not Private.Addon.db.profile.qualityOfLife.expandMerchant then return end
@@ -102,9 +123,6 @@ function Private:ExpandMerchant()
 	local MerchantFrame = _G.MerchantFrame
 	local firstItem = _G.MerchantItem1
 	if not (MerchantFrame and firstItem) then return end
-
-	local _, _, _, offsetX = firstItem:GetPoint()
-	if not offsetX then return end
 
 	-- Blizzard indexes the slots by name
 	-- The template carries the item button, money and currency frames
@@ -117,22 +135,7 @@ function Private:ExpandMerchant()
 		end
 	end
 
-	local oldWidth = MerchantFrame:GetWidth()
-
-	-- Keep whatever space is left over on the right of the last column
-	local margin = oldWidth - (offsetX + itemWidth * 2 + 12)
-	local width = offsetX + itemWidth * 4 + 12 * 3 + margin
-	local grown = width - oldWidth
-
-	MerchantFrame:SetWidth(width)
-
-	-- Fixed size texture, on Classic the right half of the border is anchored to it and follows
-	local border = _G.MerchantFrameBottomLeftBorder
-	if border then
-		border:SetWidth(border:GetWidth() + grown)
-	end
-
-	LayoutPageButtons(grown)
+	ExpandFrame()
 
 	local buyback = _G.MerchantBuyBackItem
 	if buyback then
@@ -148,6 +151,4 @@ function Private:ExpandMerchant()
 
 	hooksecurefunc('MerchantFrame_UpdateMerchantInfo', Merchant_UpdateMerchantInfo)
 	hooksecurefunc('MerchantFrame_UpdateBuybackInfo', Merchant_UpdateBuybackInfo)
-
-	LayoutItems(20)
 end

@@ -92,6 +92,4 @@ function Private:TargetTextures()
 	hooksecurefunc(NP, 'UpdatePlateBase', function()
 		Private:TargetTextures_Update()
 	end)
-
-	Private:TargetTextures_Update()
 end

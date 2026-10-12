@@ -16,8 +16,10 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
--- Stretched to the ready dialog width
-local function SkinQueueTimer(bar)
+-- BigWigs announces the queue timer through its own message system, stretched to the ready dialog width
+local function BigWigs_FrameCreated(_, bar, name)
+	if name ~= 'QueueTimer' then return end
+
 	local dialog = _G.LFGDungeonReadyDialog
 
 	S:HandleStatusBar(bar, { 0.294, 0.922, 0.173 })
@@ -29,19 +31,6 @@ local function SkinQueueTimer(bar)
 
 	bar.text:FontTemplate()
 	bar.text:Point('CENTER', 0, 1)
-end
-
--- BigWigs announces the bar through its own message system
-local function BigWigs_FrameCreated(_, frame, name)
-	if name == 'QueueTimer' then
-		SkinQueueTimer(frame)
-	end
-end
-
--- /keys main frame
-local function SkinPanel(panel)
-	S:HandlePortraitFrame(panel)
-	panel.PortraitContainer:Hide()
 end
 
 local function SkinCells(scrollChild)
@@ -78,13 +67,14 @@ local function SkinTabs(panel, tabs)
 	end
 end
 
+-- The arrow is the only child until SetTemplate adds the border frames
 local function SkinTip(tip)
-	tip:StripTextures()
-	tip:SetTemplate('Transparent')
-
 	for _, arrow in next, { tip:GetChildren() } do
 		arrow:Hide()
 	end
+
+	tip:StripTextures()
+	tip:SetTemplate('Transparent')
 end
 
 -- /keys frame and childs are unnamed, look for BigWigs Keystones title
@@ -102,7 +92,8 @@ local function FindKeystonesPanel()
 end
 
 local function SkinKeystonesPanel(panel)
-	SkinPanel(panel)
+	S:HandlePortraitFrame(panel)
+	panel.PortraitContainer:Hide()
 	SkinTip(panel.tip)
 
 	local tabs = {}

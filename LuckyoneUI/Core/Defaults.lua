@@ -10,7 +10,7 @@ local function ObjectiveTrackerHeader()
 		color = { r = 1, g = 1, b = 1 },
 		hideBackground = true,
 		underline = true,
-		underlineTexture = Private.Texture,
+		underlineTexture = Private.ElvUI and Private.Texture or 'Solid',
 		underlineBorder = true,
 		underlineColorType = 'CLASS',
 		underlineColor = { r = 1, g = 1, b = 1 },

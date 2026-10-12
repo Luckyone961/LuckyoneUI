@@ -46,6 +46,8 @@ local function ApplyHighlight(button)
 	button:SetHighlightTexture(E.Media.Textures.White8x8)
 	local highlight = button:GetHighlightTexture()
 	if highlight then
+		-- SkinButton stripped LibDBIcon's highlight as well
+		highlight:SetAlpha(1)
 		highlight:SetVertexColor(1, 1, 1, 0.3)
 		highlight:SetInside()
 	end
@@ -296,9 +298,8 @@ local function CollectButtons()
 	local bar = buttonBar
 	local landingPage = Private.isRetail and Private.Addon.db.profile.map.minimap.buttons.blizzard.expansionLandingPage
 
-	-- Keep buttons we already manage. They are parented to the bar, so the Minimap
-	-- fallback below cannot see them and a missed LDBI lookup would Hide() them for good.
-	-- The landing page button goes back to Blizzard once its option is off.
+	-- Keep buttons we already manage, they are parented to the bar and the Minimap fallback below cannot see them
+	-- The landing page button goes back to Blizzard once its option is off
 	if bar then
 		for button in pairs(bar.buttons) do
 			if landingPage or not IsLandingPageButton(button) then
@@ -535,10 +536,6 @@ function Private:MinimapButtons_Update()
 			if not keep[button] then
 				bar.buttons[button] = nil
 				ReleaseButton(button)
-				-- LibDBIcon hides stay hidden: Leave Expansion Landing Page to Blizzard show/hide events
-				if not IsLandingPageButton(button) then
-					button:Hide()
-				end
 			end
 		end
 	end

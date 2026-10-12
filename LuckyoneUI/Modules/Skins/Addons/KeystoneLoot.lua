@@ -72,6 +72,20 @@ local function List_OnLoad(list)
 	list.Inset:CreateBackdrop('Transparent')
 end
 
+-- Raid picker, an inline dropdown
+local function RaidsFrame_OnLoad(frame)
+	local dropdown = frame.DropdownButton
+	dropdown:GetNormalTexture():SetAlpha(0)
+	dropdown:GetHighlightTexture():SetAlpha(0)
+	dropdown:CreateBackdrop()
+
+	local arrow = dropdown:CreateTexture(nil, 'ARTWORK')
+	arrow:SetTexture(E.Media.Textures.ArrowUp)
+	arrow:SetRotation(3.14)
+	arrow:Point('RIGHT', -2, 0)
+	arrow:Size(14)
+end
+
 -- Loot spec cards keep their spec art
 local function ReminderSpec_OnLoad(card)
 	card.NineSlice:Hide()
@@ -127,6 +141,7 @@ local function Skin_KeystoneLoot()
 
 	-- Lists, rows and icons are created from the first loading screen on
 	hooksecurefunc(_G.KeystoneLootDungeonsFrameMixin, 'OnLoad', List_OnLoad)
+	hooksecurefunc(_G.KeystoneLootRaidsFrameMixin, 'OnLoad', RaidsFrame_OnLoad)
 	hooksecurefunc(_G.KeystoneLootRaidBlockMixin, 'OnLoad', List_OnLoad)
 	hooksecurefunc(_G.KeystoneLootEntryFrameMixin, 'OnLoad', Entry_OnLoad)
 	hooksecurefunc(_G.KeystoneLootLootIconButtonMixin, 'OnLoad', LootIcon_OnLoad)
