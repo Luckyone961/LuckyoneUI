@@ -271,6 +271,7 @@ Private.Defaults = {
 			ForeverDungeonJournal = false,
 			KeystoneLoot = false,
 			LFGBulletinBoard = false,
+			NovaInstanceTracker = false,
 			NovaSpellRankChecker = false,
 			NovaWorldBuffs = false,
 			Plumber = false,

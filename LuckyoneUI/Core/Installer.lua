@@ -797,6 +797,7 @@ local function BuildPages()
 				Toggle('skins', 'skins.addons.ForeverDungeonJournal'),
 				Toggle('skins', 'skins.addons.KeystoneLoot'),
 				Toggle('skins', 'skins.addons.LFGBulletinBoard'),
+				Toggle('skins', 'skins.addons.NovaInstanceTracker'),
 				Toggle('skins', 'skins.addons.NovaSpellRankChecker'),
 				Toggle('skins', 'skins.addons.NovaWorldBuffs'),
 				Toggle('skins', 'skins.addons.Plumber'),
