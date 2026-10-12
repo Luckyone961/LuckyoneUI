@@ -137,6 +137,19 @@ local function ItemContent_SetHeight(content)
 	end
 end
 
+-- Loot rows
+local function LootContent_SetHeight(content)
+	ItemContent_SetHeight(content)
+
+	local frame = ForeverDungeonJournalFrame
+	for _, line in next, { frame.lootRecipeLine, frame.lootSharedLine } do
+		if not line.IsSkinned then
+			line:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
+			line.IsSkinned = true
+		end
+	end
+end
+
 -- Favourites rows bring their own highlight, skip the dungeon dividers
 local function FavouritesContent_SetHeight(content)
 	for _, row in next, { content:GetChildren() } do
@@ -451,9 +464,9 @@ local function Skin_Frame()
 	S:HandleScrollBar(frame.lootScroll.ScrollBar)
 
 	hooksecurefunc(frame.bossContent, 'SetHeight', BossContent_SetHeight)
-	hooksecurefunc(frame.lootContent, 'SetHeight', ItemContent_SetHeight)
+	hooksecurefunc(frame.lootContent, 'SetHeight', LootContent_SetHeight)
 	BossContent_SetHeight(frame.bossContent)
-	ItemContent_SetHeight(frame.lootContent)
+	LootContent_SetHeight(frame.lootContent)
 
 	-- Quests
 	SkinPanel(frame.questLeftPanel)
@@ -531,6 +544,19 @@ local function Skin_Frame()
 	if options then
 		for _, button in next, { options:GetChildren() } do
 			S:HandleButton(button)
+		end
+	end
+
+	-- Item tooltips
+	local blizzard = E.private.skins.blizzard
+	if blizzard.enable and blizzard.tooltip then
+		ForeverDungeonJournalCompareTooltip1.fdjSolidBackground:Hide()
+		ForeverDungeonJournalCompareTooltip2.fdjSolidBackground:Hide()
+
+		for _, tooltip in next, { GameTooltip, ShoppingTooltip1, ShoppingTooltip2 } do
+			local backing = tooltip:CreateTexture()
+			backing:Hide()
+			tooltip.fdjJournalBacking = backing
 		end
 	end
 end
