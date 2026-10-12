@@ -745,7 +745,6 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.tooltip.mythicDataEnable = false
 	E.db.tooltip.role = false
 	E.db.tooltip.showElvUIUsers = true
-	E.db.tooltip.showMount = false
 	E.db.tooltip.smallTextFontSize = 13
 	E.db.tooltip.targetInfo = false
 	E.db.tooltip.textFontSize = 13
