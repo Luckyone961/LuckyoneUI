@@ -34,12 +34,14 @@
 • Option to pick a different texture for focused nameplates.  
 • Option to pick different absorb and heal absorb textures for unitframes and nameplates.  
 • DataText width tweaks that follow your active layout and spec profile.  
+• Copy chat frame tweaks. Custom font and size, set with sliders or a resize button.  
 
 ### **ElvUI skins**  
-• Addons: Auctionator, BigWigs (/keys and queue timer), BugSack, KeystoneLoot  
-• Addons: LFG Bulletin Board, Nova Spell Rank Checker, Nova World Buffs, Plumber (House list)  
-• Addons: Premade Groups Filter, RCLootCouncil, RXPGuides, Simple Addon Manager  
-• Addons: Simulationcraft, Tabardy, WhatsTraining  
+• Addons: Attune, Auctionator, BigWigs (/keys and queue timer), BugSack  
+• Addons: ForeverDungeonJournal, KeystoneLoot, LFG Bulletin Board, Nova Instance Tracker  
+• Addons: Nova Spell Rank Checker, Nova World Buffs, Plumber (House list), Premade Groups Filter  
+• Addons: RCLootCouncil, RXPGuides, Simple Addon Manager, Simulationcraft  
+• Addons: Tabardy, WhatsTraining  
 • Blizzard: Cooldown Settings viewer, Developer Console  
 
 ### **The core features**  
@@ -56,6 +58,7 @@
 • Automatically accept role checks during signup  
 • Automatically fill in the delete text when destroying items  
 • Block the loot list frame from showing after boss kills and keystones  
+• Automate advanced combat logging based on instance type and difficulty  
 • Streamer privacy overlay for the guild and community frame, full and minimized (Click to show chat)  
 • Double click to quickly signup for parties and raids without confirmation  
 • Remove realm names and the (*) indicator from friendly names in dungeons and raids  
