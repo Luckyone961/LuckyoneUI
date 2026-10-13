@@ -273,6 +273,7 @@ Private.Defaults = {
 			quickSignup = false,
 		},
 		skins = {
+			AllTheThings = false,
 			Attune = false,
 			Auctionator = false,
 			BigWigs = false,

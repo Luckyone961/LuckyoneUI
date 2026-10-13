@@ -81,6 +81,7 @@ Modules\Misc\FriendsList.lua
 Modules\Misc\MailboxFavorites.lua
 Modules\Misc\Misc.lua
 Modules\Misc\ObjectiveTracker.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
+Modules\Skins\Addons\AllTheThings.lua
 Modules\Skins\Addons\Attune.lua [AllowLoadGameType camelot][ExcludeLoadGameType standard, classic]
 Modules\Skins\Addons\Auctionator.lua
 Modules\Skins\Addons\BigWigs.lua [AllowLoadGameType standard, mists]

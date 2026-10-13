@@ -4,6 +4,8 @@
 - Added new option to automate advanced combat logging based on instance type and difficulty  
 - Added new option to change absorb texture on nameplates and unitframes  
 - Added new option to see through world map fog of war (data from wago.tools)  
+- Added skin for AllTheThings as requested  
+- Added skin for NovaInstanceTracker  
 - Power texts now auto hides at 0 and 100  
 - Updated ElvUI layouts (Big reworks, size increase in 1440p and more)  
 - Updated multiple skins (BugSack, SimpleAddonManager)  
@@ -12,7 +14,7 @@
 - Updated ptBR localization (Credits: Eltreum)  
 
 **Retail:**  
-- Added skin for KeystoneLoot  
+- Added skin for KeystoneLoot as requested  
 - Limited the amount of letters in names on target frame and nameplates  
 - Updated EditMode strings  
 - Updated SkironCooldownManager profile  
