@@ -1177,7 +1177,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	}
 
 	E.db.unitframe.units.player.aurabar.enable = false
-	E.db.unitframe.units.player.buffs.anchorPoint = 'BOTTOM'
+	E.db.unitframe.units.player.buffs.anchorPoint = 'TOPRIGHT'
 	E.db.unitframe.units.player.buffs.attachTo = 'FRAME'
 	E.db.unitframe.units.player.buffs.clickThrough = true
 	E.db.unitframe.units.player.buffs.countFont = Private.Font
@@ -1187,10 +1187,12 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.player.buffs.countYOffset = 0
 	E.db.unitframe.units.player.buffs.enable = Private.isModern
 	E.db.unitframe.units.player.buffs.filterLists.group2.enable = false
+	E.db.unitframe.units.player.buffs.growthX = 'LEFT'
 	E.db.unitframe.units.player.buffs.perrow = 3
 	E.db.unitframe.units.player.buffs.priority = 'Blacklist,Personal,NonPersonal'
 	E.db.unitframe.units.player.buffs.sizeOverride = 30
-	E.db.unitframe.units.player.buffs.yOffset = 25
+	E.db.unitframe.units.player.buffs.xOffset = -2
+	E.db.unitframe.units.player.buffs.yOffset = -43
 	E.db.unitframe.units.player.castbar.customColor.color.b = 0.05
 	E.db.unitframe.units.player.castbar.customColor.color.g = 0.05
 	E.db.unitframe.units.player.castbar.customColor.color.r = 0.05
