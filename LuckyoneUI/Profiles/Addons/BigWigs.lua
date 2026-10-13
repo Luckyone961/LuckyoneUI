@@ -31,6 +31,19 @@ local function CallbackFunction(accepted)
 	if mplus then -- MPlusTimer already adds tooltip progress
 		mplus.profile.progressTooltip = false
 	end
+
+	-- Personal: no alarm and victory sounds
+	if Private.itsLuckyone then
+		local sounds = BigWigsLoader.db:GetNamespace('BigWigs_Plugins_Sounds', true)
+		if sounds then
+			sounds.profile.media.Alarm = 'None'
+		end
+
+		local victory = BigWigsLoader.db:GetNamespace('BigWigs_Plugins_Victory', true)
+		if victory then
+			victory.profile.soundName = 'None'
+		end
+	end
 end
 
 -- BigWigs profile
