@@ -87,6 +87,7 @@
 • /lucky config -> Opens the ingame options  
 • /lucky install -> Run the installation process  
 • /lucky minimap -> Hide or show the minimap icon  
+• /lucky toggle -> Hide or show the damage meter  
 • /lucky untrack -> Remove all tracked quests, including hidden, to boost performance  
 • /luckydebug on -> Disables all Addons except ElvUI and LuckyoneUI for troubleshooting  
 • /luckydebug off -> Re-Enables all Addons disabled by the command above  

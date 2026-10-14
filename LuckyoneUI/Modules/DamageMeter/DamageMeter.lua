@@ -65,6 +65,9 @@ function DM:StripRealm(name, classFilename, guid)
 	return Ambiguate(name, 'short')
 end
 
+-- Set by the chat command, a reload drops it
+local manualShown
+
 local function ShouldShow()
 	if not DM.db.enable then return false end
 
@@ -72,14 +75,22 @@ local function ShouldShow()
 	if DM.testMode then return true end
 
 	local visibility = DM.db.visibility
+	local shown = true
 
 	if visibility == 'COMBAT' then
-		return UnitAffectingCombat('player')
+		shown = UnitAffectingCombat('player')
 	elseif visibility == 'GROUP' then
-		return IsInGroup()
+		shown = IsInGroup()
 	end
 
-	return true
+	-- The chat command wins until the visibility rule catches up with it
+	if manualShown == shown then
+		manualShown = nil
+	elseif manualShown ~= nil then
+		return manualShown
+	end
+
+	return shown
 end
 
 -- Roster updates fire in bursts, only an actual change does any work
@@ -95,6 +106,14 @@ function DM:UpdateShown()
 		DM:ClosePopup()
 		DM:CloseAllBookmarks()
 	end
+end
+
+-- /lucky toggle flips what is on screen
+function Private:DamageMeter_Toggle()
+	if not DM.holder or not DM.db.enable or DM.testMode then return end
+
+	manualShown = not DM.holder:IsShown()
+	DM:UpdateShown()
 end
 
 -- A reload always drops back to the live data
@@ -559,6 +578,9 @@ function Private:DamageMeter_Update()
 	DM:CloseAllBookmarks()
 
 	if not db.enable then
+		-- Switching the module back on starts from the visibility rule
+		manualShown = nil
+
 		if DM.holder then
 			-- Custom placed windows would keep their mover
 			for index, window in pairs(DM.windows) do

@@ -389,6 +389,9 @@ local function LoadCommands()
 	end
 	if Private.ElvUI then
 		commands.bars = function() Private:ActionBarConverter() end
+		if Private.isModern then
+			commands.toggle = function() Private:DamageMeter_Toggle() end
+		end
 		_G.SLASH_LUCKYONEUI_DEBUG1 = '/luckydebug'
 		SlashCmdList.LUCKYONEUI_DEBUG = DebugMode
 	end
