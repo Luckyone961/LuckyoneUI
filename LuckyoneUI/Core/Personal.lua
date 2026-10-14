@@ -190,7 +190,7 @@ local dualSpec = Private.isRetail and {
 
 -- Setup the correct profile for each character after installation
 function Private:Setup_Personal()
-	if not Private.itsLuckyone then return end
+	if not (Private.itsLuckyone and profileKeys) then return end
 
 	local ElvDB = _G.ElvDB
 	local ElvPrivateDB = _G.ElvPrivateDB
