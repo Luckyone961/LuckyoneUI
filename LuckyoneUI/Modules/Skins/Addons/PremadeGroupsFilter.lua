@@ -32,7 +32,7 @@ local function InfoButton_OnEnter(button)
 	_G.GameTooltip:Point('BOTTOMLEFT', button, 'TOPRIGHT', 1, 0)
 end
 
-local function SkinPanel(panel)
+local function SkinFilterPanel(panel)
 	for _, section in next, { panel:GetChildren() } do
 		-- Advanced expression box, or the sorting line on the mini panel
 		if section.Expression then
@@ -93,14 +93,14 @@ local function Skin_PremadeGroupsFilter()
 
 	-- Filter Panels
 	for _, name in next, { 'Dungeon', 'Delve', 'Role', 'Arena', 'RBG', 'Raid', 'Mini' } do
-		SkinPanel(_G['PremadeGroupsFilter' .. name .. 'Panel'])
+		SkinFilterPanel(_G['PremadeGroupsFilter' .. name .. 'Panel'])
 	end
 
-	-- Dropdown Menu, the addon resets the border to grey every time it opens
+	-- Dropdown Menu, the addon resets the border to grey every time it opens, also when it switches from another open menu
 	local popup = _G.PremadeGroupsFilter.PopupMenuFrame
 	popup:StripTextures()
 	popup:SetTemplate('Transparent')
-	popup:HookScript('OnShow', PopupMenu_OnShow)
+	hooksecurefunc(popup, 'Show', PopupMenu_OnShow)
 
 	-- PGF toggle on the Group Finder
 	S:HandleCheckBox(_G.UsePGFButton)

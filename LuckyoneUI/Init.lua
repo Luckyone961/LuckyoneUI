@@ -13,7 +13,6 @@ local xpcall = xpcall
 local CopyTable = CopyTable
 local CreateFrame = CreateFrame
 local GetAddOnMetadata = C_AddOns.GetAddOnMetadata
-local GetBuildInfo = GetBuildInfo
 local GetRealmName = GetRealmName
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 local MergeTable = MergeTable
@@ -29,6 +28,7 @@ local WOW_PROJECT_ID = WOW_PROJECT_ID
 local WOW_PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
 local WOW_PROJECT_BURNING_CRUSADE_CLASSIC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 local WOW_PROJECT_MISTS_CLASSIC = WOW_PROJECT_MISTS_CLASSIC
+local WOW_PROJECT_CAMELOT = WOW_PROJECT_CAMELOT
 local WOW_PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
 
 local Name, Private = ...
@@ -64,29 +64,25 @@ Private.Texture = 'Minimalist'
 Private.UIScale1440 = 768 / 1440
 Private.UIScale1080 = 768 / 1080
 
--- Build info
-Private.GameVersion = GetBuildInfo()
-Private.GameTOC = select(4, GetBuildInfo())
-
 -- Game flavors
 Private.isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 Private.isTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 Private.isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
-Private.isForever = Private.GameTOC >= 16000 and Private.GameTOC < 20000
-Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and not Private.isForever
+Private.isForever = WOW_PROJECT_ID == WOW_PROJECT_CAMELOT
+Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 Private.isModern = Private.isRetail or Private.isForever
 
 -- API checks
 Private.IsAddOnLoaded = IsAddOnLoaded
 
 -- Packager fills the TOC version from the git tag
--- Alpha tags look like 4.26-alpha1 and source keeps raw @project-version@
+-- Alpha tags look like 4.27-alpha1 and source keeps raw @project-version@
 Private.VersionString = GetAddOnMetadata(Name, 'Version')
-Private.Version = tonumber(strmatch(Private.VersionString, '^[%d%.]+'))
+Private.Version = strmatch(Private.VersionString, '^[%d%.]+')
 
 -- Bump with every release, same as ElvUI does for source checkouts
 if not Private.Version then
-	Private.Version, Private.VersionString = 4.25, '4.25-git'
+	Private.Version, Private.VersionString = '4.26', '4.26-git'
 end
 
 -- Player utils
@@ -195,7 +191,6 @@ local function NewModule()
 
 	function module:RegisterEvent(event, method) events[event] = method or event frame:RegisterEvent(event) end
 	function module:UnregisterEvent(event) events[event] = nil frame:UnregisterEvent(event) end
-	function module:UnregisterAllEvents() wipe(events) frame:UnregisterAllEvents() end
 
 	modules[#modules + 1] = module
 	return module
@@ -203,21 +198,23 @@ end
 
 Private.Modules = {
 	Core = NewModule(),
-	Blizzard = NewModule(),
 	DamageMeter = (Private.ElvUI and Private.isModern) and NewModule() or nil,
-	Map = Private.ElvUI and NewModule() or nil,
-	Misc = Private.ElvUI and NewModule() or nil,
-	NamePlates = Private.ElvUI and NewModule() or nil,
+	ElvUI = Private.ElvUI and NewModule() or nil,
+	General = NewModule(),
+	Map = NewModule(),
+	Misc = NewModule(),
 }
 
 -- SavedVariables are ready at ADDON_LOADED
--- Modules enable at PLAYER_LOGIN in creation order
+-- Modules enable at PLAYER_LOGIN in creation order, OnLogin runs on the first loading screen (login or reload)
 local loader = CreateFrame('Frame')
 loader:RegisterEvent('ADDON_LOADED')
 loader:RegisterEvent('PLAYER_LOGIN')
+loader:RegisterEvent('PLAYER_ENTERING_WORLD')
 loader:RegisterEvent('PLAYER_LOGOUT')
-loader:SetScript('OnEvent', function(self, event, addon)
+loader:SetScript('OnEvent', function(self, event, ...)
 	if event == 'ADDON_LOADED' then
+		local addon = ...
 		if addon ~= Name then return end
 		self:UnregisterEvent(event)
 
@@ -233,7 +230,6 @@ loader:SetScript('OnEvent', function(self, event, addon)
 		db:SetProfile(sv.profileKeys[Private.myNameRealm] or 'Default')
 
 		Private.Addon.db = db
-		Private:SetupLuckyoneProfile()
 
 	elseif event == 'PLAYER_LOGIN' then
 		self:UnregisterEvent(event)
@@ -248,8 +244,17 @@ loader:SetScript('OnEvent', function(self, event, addon)
 
 		-- Standalone config inside the Blizzard settings panel
 		if not Private.ElvUI then
-			Private:BuildConfig()
 			Private:RegisterSettings()
+		end
+	elseif event == 'PLAYER_ENTERING_WORLD' then
+		self:UnregisterEvent(event)
+
+		local initLogin = ...
+		for i = 1, #modules do
+			local module = modules[i]
+			if module.OnLogin then
+				xpcall(module.OnLogin, geterrorhandler(), module, initLogin)
+			end
 		end
 	else
 		Private:StripDefaults(sv.global, Private.Defaults.global)

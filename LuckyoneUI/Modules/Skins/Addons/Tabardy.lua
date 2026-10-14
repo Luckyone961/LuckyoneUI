@@ -4,7 +4,7 @@ if not Private.ElvUI then
 	return
 end
 
-local ipairs = ipairs
+local next = next
 local unpack = unpack
 
 local hooksecurefunc = hooksecurefunc
@@ -22,7 +22,7 @@ local function Skin_Tabardy()
 	if not Private.Addon.db.profile.skins.Tabardy then return end
 
 	local designer = _G.TabardyDesigner
-	if not designer or designer.isSkinned then return end
+	if not designer then return end
 
 	-- Main Frame
 	designer:SetTemplate('Transparent')
@@ -34,7 +34,7 @@ local function Skin_Tabardy()
 
 	-- Buttons and Pickers
 	local customizations = designer.Customizations
-	local buttons = {
+	for _, button in next, {
 		designer.AcceptButton,
 		designer.CancelButton,
 		customizations.EmblemPicker,
@@ -42,16 +42,12 @@ local function Skin_Tabardy()
 		customizations.BackgroundPicker,
 		customizations.BorderPicker,
 		customizations.BorderColorPicker
-	}
-
-	for _, button in ipairs(buttons) do
+	} do
 		S:HandleButton(button)
 	end
 
 	-- The portrait border comes back on every refresh
 	hooksecurefunc(designer, 'LoadPortrait', Tabardy_LoadPortrait)
-
-	designer.isSkinned = true
 end
 
 S:AddCallbackForAddon('Tabardy', 'LuckyoneUI_Tabardy', Skin_Tabardy)

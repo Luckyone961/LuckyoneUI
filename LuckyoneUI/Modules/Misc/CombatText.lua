@@ -1,0 +1,72 @@
+local _, Private = ...
+
+local type = type
+
+local CreateFrame = CreateFrame
+
+local _G = _G
+local UIParent = UIParent
+
+local frame
+
+local function CombatText_OnUpdate(self, elapsed)
+	self.elapsed = self.elapsed + elapsed
+	if self.elapsed < 1 then return end -- One second at full alpha before the fade starts
+
+	local alpha = 1 - (self.elapsed - 1) / self.fadeTime
+
+	if alpha > 0 then
+		self:SetAlpha(alpha)
+	else
+		self:Hide()
+	end
+end
+
+function Private:CombatText_Update()
+	local db = Private.Addon.db.profile.misc.combatText
+
+	if not frame then
+		frame = CreateFrame('Frame', 'LuckyoneCombatText', UIParent)
+		frame:SetSize(400, 40)
+		frame:SetFrameStrata('HIGH')
+		frame.text = frame:CreateFontString(nil, 'OVERLAY')
+		frame.text:SetPoint('CENTER')
+		frame:SetScript('OnUpdate', CombatText_OnUpdate)
+		frame:Hide()
+	end
+
+	Private:SetFont(frame.text, db.font, db.fontSize, db.fontOutline)
+
+	-- The anchor is typed in by hand, anything that isn't a frame falls back to UIParent
+	local anchor = _G[db.anchor]
+	if not (type(anchor) == 'table' and anchor.IsObjectType and anchor:IsObjectType('Frame')) then
+		anchor = UIParent
+	end
+
+	frame:ClearAllPoints()
+	frame:SetPoint('CENTER', anchor, 'CENTER', db.xOffset, db.yOffset)
+end
+
+-- Restore profile defaults config button
+function Private:CombatText_ResetDefaults()
+	Private:ResetDefaults(Private.Addon.db.profile.misc.combatText, Private.Defaults.profile.misc.combatText)
+	Private:CombatText_Update()
+end
+
+-- The Misc hub calls this on PLAYER_REGEN_DISABLED and PLAYER_REGEN_ENABLED
+function Private:CombatText(entering)
+	local db = Private.Addon.db.profile.misc.combatText
+	if not db.enable then return end
+
+	-- Styling only has to run once, the config updates it on the fly
+	if not frame then Private:CombatText_Update() end
+
+	local color = entering and db.enterColor or db.leaveColor
+	frame.text:SetText(entering and db.enterText or db.leaveText)
+	frame.text:SetTextColor(color.r, color.g, color.b)
+
+	frame.elapsed = 0
+	frame.fadeTime = db.fadeTime
+	frame:SetAlpha(1)
+	frame:Show()
+end

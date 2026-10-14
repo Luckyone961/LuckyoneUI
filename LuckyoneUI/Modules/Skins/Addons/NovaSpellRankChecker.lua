@@ -8,8 +8,6 @@ local unpack = unpack
 
 local hooksecurefunc = hooksecurefunc
 
-local C_Timer = C_Timer
-
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
@@ -24,8 +22,8 @@ end
 local function Skin_NovaSpellRankChecker()
 	if not Private.Addon.db.profile.skins.NovaSpellRankChecker then return end
 
-	local button = SpellBookFrameButton
-	if not button or button.isSkinned then return end
+	local button = SpellBookFrameScanButton
+	if not button then return end
 
 	-- Skin and resize the spell rank checker button
 	S:HandleButton(button)
@@ -35,8 +33,6 @@ local function Skin_NovaSpellRankChecker()
 	-- Move it to the bottom left of the spell book frame
 	NovaSpellRankChecker_PositionButton(button)
 	hooksecurefunc(button, 'SetPoint', NovaSpellRankChecker_PositionButton)
-
-	button.isSkinned = true
 end
 
-S:AddCallbackForAddon('NovaSpellRankChecker', 'LuckyoneUI_NovaSpellRankChecker', function() C_Timer.After(2, Skin_NovaSpellRankChecker) end)
+S:AddCallbackForAddon('NovaSpellRankChecker', 'LuckyoneUI_NovaSpellRankChecker', Skin_NovaSpellRankChecker)

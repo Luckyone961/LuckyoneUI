@@ -16,15 +16,13 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
--- Stretched to the ready dialog width
-local function SkinQueueTimer(bar)
+-- BigWigs announces the queue timer through its own message system, stretched to the ready dialog width
+local function BigWigs_FrameCreated(_, bar, name)
+	if name ~= 'QueueTimer' then return end
+
 	local dialog = _G.LFGDungeonReadyDialog
 
-	bar:StripTextures()
-	bar:SetStatusBarTexture(E.media.normTex)
-	bar:SetStatusBarColor(0.294, 0.922, 0.173)
-	bar:CreateBackdrop('Transparent')
-	E:RegisterStatusBar(bar)
+	S:HandleStatusBar(bar, { 0.294, 0.922, 0.173 })
 
 	bar:ClearAllPoints()
 	bar:Point('TOPLEFT', dialog, 'BOTTOMLEFT', E.Border, -(E.Border * 2 + E.Spacing))
@@ -33,23 +31,6 @@ local function SkinQueueTimer(bar)
 
 	bar.text:FontTemplate()
 	bar.text:Point('CENTER', 0, 1)
-end
-
--- BigWigs announces the bar through its own message system
-local function BigWigs_FrameCreated(_, frame, name)
-	if name == 'QueueTimer' then
-		SkinQueueTimer(frame)
-	end
-end
-
--- /keys main frame
-local function SkinPanel(panel)
-	if panel.isSkinned then return end
-
-	S:HandlePortraitFrame(panel)
-	panel.PortraitContainer:Hide()
-
-	panel.isSkinned = true
 end
 
 local function SkinCells(scrollChild)
@@ -64,15 +45,11 @@ end
 
 -- The cell pool grows with the list, the height update after each build catches new ones
 local function SkinScrollFrame(scrollFrame)
-	if scrollFrame.isSkinned then return end
-
 	S:HandleTrimScrollBar(scrollFrame.ScrollBar)
 
 	local scrollChild = scrollFrame:GetScrollChild()
 	SkinCells(scrollChild)
 	scrollChild:HookScript('OnSizeChanged', SkinCells)
-
-	scrollFrame.isSkinned = true
 end
 
 -- Reposition tabs and match tab spacing of our other skins, tabs are expected in display order
@@ -90,17 +67,14 @@ local function SkinTabs(panel, tabs)
 	end
 end
 
+-- The arrow is the only child until SetTemplate adds the border frames
 local function SkinTip(tip)
-	if tip.isSkinned then return end
-
-	tip:StripTextures()
-	tip:SetTemplate('Transparent')
-
 	for _, arrow in next, { tip:GetChildren() } do
 		arrow:Hide()
 	end
 
-	tip.isSkinned = true
+	tip:StripTextures()
+	tip:SetTemplate('Transparent')
 end
 
 -- /keys frame and childs are unnamed, look for BigWigs Keystones title
@@ -118,7 +92,8 @@ local function FindKeystonesPanel()
 end
 
 local function SkinKeystonesPanel(panel)
-	SkinPanel(panel)
+	S:HandlePortraitFrame(panel)
+	panel.PortraitContainer:Hide()
 	SkinTip(panel.tip)
 
 	local tabs = {}

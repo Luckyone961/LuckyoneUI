@@ -15,7 +15,7 @@ local _G = _G
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 
--- Only Retail and Mists run the modern auction house for now
+-- Only Retail, Forever and Mists run the modern auction house for now
 local isModernAH = Private.isModern or Private.isMists
 
 local ConfigPanels = {
@@ -40,7 +40,7 @@ local CraftingFrames = {
 }
 
 -- Option widget editboxes
-local EditBoxKeys = { 'InputBox', 'MaxBox', 'MinBox', 'NumStacks', 'Quantity', 'QuantityInput', 'SearchString', 'StackSize' }
+local EditBoxKeys = { 'CopperBox', 'GoldBox', 'InputBox', 'MaxBox', 'MinBox', 'NumStacks', 'SearchString', 'SilverBox', 'StackSize' }
 
 local auctionHouseSkinned
 
@@ -66,12 +66,12 @@ local function SkinInset(inset)
 end
 
 -- The popups spawn on top of the auction house, a solid background keeps them readable
-local function SkinPanel(panel)
-	if not panel or panel.isSkinned then return end
+local function SkinDialog(dialog)
+	if not dialog or dialog.isSkinned then return end
 
-	panel:StripTextures()
-	panel:SetTemplate()
-	panel.isSkinned = true
+	dialog:StripTextures()
+	dialog:SetTemplate()
+	dialog.isSkinned = true
 end
 
 local function SkinResetButton(button)
@@ -99,14 +99,6 @@ local function SkinRefreshButton(parent)
 			S:HandleButton(child)
 			child:Size(22)
 		end
-	end
-end
-
-local function SkinMoneyInput(frame)
-	if not frame then return end
-
-	for _, box in next, { frame.GoldBox, frame.SilverBox, frame.CopperBox } do
-		S:HandleEditBox(box)
 	end
 end
 
@@ -138,7 +130,7 @@ local function SkinItemButton(button)
 	end
 
 	if button.Highlight then
-		button.Highlight:SetColorTexture(1, 1, 1, .25)
+		button.Highlight:SetColorTexture(1, 1, 1, 0.25)
 		button.Highlight:SetInside()
 	end
 
@@ -211,8 +203,8 @@ local function SkinResultRow(row)
 	if row.isSkinned then return end
 
 	if row.NormalTexture then row.NormalTexture:SetAlpha(0) end
-	if row.HighlightTexture then row.HighlightTexture:SetColorTexture(rowR, rowG, rowB, .25) end
-	if row.SelectedHighlight then row.SelectedHighlight:SetColorTexture(rowR, rowG, rowB, .35) end
+	if row.HighlightTexture then row.HighlightTexture:SetColorTexture(rowR, rowG, rowB, 0.25) end
+	if row.SelectedHighlight then row.SelectedHighlight:SetColorTexture(rowR, rowG, rowB, 0.35) end
 
 	row.isSkinned = true
 end
@@ -258,8 +250,8 @@ local function SkinOptions(frame)
 			if child.RadioButton then S:HandleRadioButton(child.RadioButton) end
 			if child.DropDown and child.DropDown:IsObjectType('Button') then
 				S:HandleDropDownBox(child.DropDown, child.DropDown:GetWidth())
+				child.DropDown.isSkinned = true
 			end
-			if child.MoneyInput then SkinMoneyInput(child.MoneyInput) end
 			if child.ResetButton then SkinResetButton(child.ResetButton) end
 			if child.Button and child.Description then S:HandleButton(child.Button) end
 
@@ -278,10 +270,24 @@ local function SkinOptions(frame)
 	end
 end
 
+-- Search term options and the custom crafting quantity
+local function SkinPortraitDialog(dialog)
+	if not dialog then return end
+
+	S:HandlePortraitFrame(dialog)
+	dialog:SetTemplate() -- Overwrite the transparent template of the portrait handler
+	SkinOptions(dialog)
+end
+
 local function SkinConfigPanels()
 	for _, name in next, ConfigPanels do
 		local panel = _G[name]
 		if panel and not panel.isSkinned then
+			if panel.ScrollBar then
+				S:HandleTrimScrollBar(panel.ScrollBar)
+				panel.ScrollBar:GetThumb().IsSkinned = true
+			end
+
 			SkinOptions(panel)
 
 			panel.isSkinned = true
@@ -301,16 +307,11 @@ end
 
 local function SkinShoppingDialogs(frame)
 	-- Search Term Options
-	local itemDialog = frame.itemDialog
-	if itemDialog then
-		S:HandlePortraitFrame(itemDialog)
-		itemDialog:SetTemplate() -- Overwrite the transparent template of the portrait handler
-		SkinOptions(itemDialog)
-	end
+	SkinPortraitDialog(frame.itemDialog)
 
 	-- Import, Export, Copy Text (CSV and list export) and Price History
 	for _, dialog in next, { frame.exportDialog, frame.exportDialog.copyTextDialog, frame.importDialog, frame.exportCSVDialog, frame.itemHistoryDialog } do
-		SkinPanel(dialog)
+		SkinDialog(dialog)
 		SkinInset(dialog.Inset)
 		SkinResultsListing(dialog.ResultsListing)
 
@@ -456,7 +457,7 @@ local function SkinBuyFrame(frame)
 	end
 
 	for _, dialog in next, { frame.BuyDialog, frame.WidePriceRangeWarningDialog, frame.FinalConfirmationDialog, frame.QuantityCheckConfirmationDialog } do
-		SkinPanel(dialog)
+		SkinDialog(dialog)
 		SkinItemIcon(dialog.IconAndName)
 
 		if dialog.QuantityInput then
@@ -484,8 +485,8 @@ local function SkinLegacyBuyFrame(frame)
 
 		local dialog = current.BuyDialog
 		if dialog then
-			SkinPanel(dialog)
-			SkinPanel(dialog.WarningDialog)
+			SkinDialog(dialog)
+			SkinDialog(dialog.WarningDialog)
 			SkinOptions(dialog)
 		end
 	end
@@ -506,8 +507,8 @@ local function SkinTabs()
 	local container = _G.AuctionatorAHTabsContainer
 	if not container or not container.Tabs then return end
 
-	-- ElvUI insets the tab backdrop by three pixels on Retail and by ten on every other client
-	local offset = E.Retail and -5 or -19
+	-- ElvUI insets the tab backdrop by three pixels on Retail and Forever and by ten on every other client
+	local offset = Private.isModern and -5 or -19
 
 	local auctionHouse = _G.AuctionHouseFrame
 	local lastTab = isModernAH and auctionHouse and auctionHouse.Tabs and auctionHouse.Tabs[#auctionHouse.Tabs]
@@ -536,15 +537,13 @@ local function SkinDialogs()
 
 	while dialog do
 		if not dialog.isSkinned then
-			SkinPanel(dialog)
+			SkinDialog(dialog)
 
 			if dialog.editBox then
 				S:HandleEditBox(dialog.editBox)
 			end
 
 			SkinButtons({ dialog.acceptButton, dialog.altButton, dialog.cancelButton })
-
-			dialog.isSkinned = true
 		end
 
 		index = index + 1
@@ -575,8 +574,8 @@ local function SkinAuctionHouse()
 			SkinLegacyBuyFrame(selling.BuyFrame)
 		end
 
-		SkinPanel(_G.AuctionatorPageStatusDialogFrame)
-		SkinPanel(_G.AuctionatorThrottlingTimeoutDialogFrame)
+		SkinDialog(_G.AuctionatorPageStatusDialogFrame)
+		SkinDialog(_G.AuctionatorThrottlingTimeoutDialogFrame)
 	end
 
 	auctionHouseSkinned = true
@@ -591,20 +590,10 @@ local function SkinCraftingInfo()
 				S:HandleButton(frame.SearchButton)
 			end
 
-			local quantity = frame.CustomQuantity
-			if quantity then
-				S:HandlePortraitFrame(quantity)
-				quantity:SetTemplate() -- Overwrite the transparent template of the portrait handler
-				SkinOptions(quantity)
-			end
+			SkinPortraitDialog(frame.CustomQuantity)
 
 			frame.isSkinned = true
 		end
-	end
-
-	local search = _G.AuctionatorTradeSkillSearch
-	if search and not search.IsSkinned then
-		S:HandleButton(search)
 	end
 end
 
@@ -628,7 +617,7 @@ local function Skin_Auctionator()
 	end
 
 	-- The crafting and enchanting info frames are created when the profession windows open
-	for _, name in next, { 'Initialize', 'InitializeProfessionsFrame', 'InitializeCustomerOrdersFrame', 'InitializeObjectiveTrackerFrame' } do
+	for _, name in next, { 'Initialize', 'InitializeProfessionsFrame', 'InitializeObjectiveTrackerFrame' } do
 		if Auctionator.CraftingInfo and Auctionator.CraftingInfo[name] then
 			hooksecurefunc(Auctionator.CraftingInfo, name, SkinCraftingInfo)
 		end

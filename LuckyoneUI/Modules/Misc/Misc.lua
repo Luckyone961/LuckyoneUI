@@ -1,33 +1,26 @@
 local _, Private = ...
 local Misc = Private.Modules.Misc
 
-if not Private.ElvUI then
-	return
+function Misc:OnLogin()
+	Private:CombatLogging()
+	Private:FriendsList()
+	Private:MailboxFavorites()
 end
 
-function Misc:PLAYER_ENTERING_WORLD()
-	Private:DataTextsTweaks()
-	if Private.isRetail then
-		Private:MythicVisibility()
-	end
+function Misc:PLAYER_REGEN_DISABLED()
+	Private:CombatText(true)
 end
 
--- DataTextsTweaks follows spec switches through the ElvUI OnProfileChanged callback instead
-function Misc:PLAYER_SPECIALIZATION_CHANGED(_, unit)
-	-- Fires for other units as well, only react to the player
-	if unit ~= 'player' then return end
-
-	Private:MythicVisibility()
-end
-
-function Misc:PLAYER_DIFFICULTY_CHANGED()
-	Private:MythicVisibility()
+function Misc:PLAYER_REGEN_ENABLED()
+	Private:CombatText(false)
 end
 
 function Misc:OnEnable()
-	self:RegisterEvent('PLAYER_ENTERING_WORLD')
-	if Private.isRetail then
-		self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
-		self:RegisterEvent('PLAYER_DIFFICULTY_CHANGED')
+	-- Fonts have to be in place before the tracker builds its first layout at PLAYER_ENTERING_WORLD
+	if Private.isModern then
+		Private:ObjectiveTracker()
 	end
+
+	self:RegisterEvent('PLAYER_REGEN_DISABLED')
+	self:RegisterEvent('PLAYER_REGEN_ENABLED')
 end

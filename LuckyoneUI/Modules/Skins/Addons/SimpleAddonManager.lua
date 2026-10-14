@@ -31,11 +31,6 @@ local function SkinDropDownLists(lib)
 	end
 end
 
-local function SkinSquareButton(button)
-	S:HandleButton(button)
-	button.icon:SetDrawLayer('OVERLAY')
-end
-
 local function SkinRows(scrollFrame)
 	local buttons = scrollFrame.buttons
 	if not buttons then return end
@@ -46,8 +41,8 @@ local function SkinRows(scrollFrame)
 		if not button.isSkinned then
 			S:HandleCheckBox(button.EnabledButton)
 
-			button.HighlightTexture:SetColorTexture(r, g, b, .25)
-			button.PushedTexture:SetColorTexture(r, g, b, .1)
+			button.HighlightTexture:SetColorTexture(r, g, b, 0.25)
+			button.PushedTexture:SetColorTexture(r, g, b, 0.1)
 
 			button.isSkinned = true
 		end
@@ -70,7 +65,7 @@ local function SkinProfilerFrame(frame)
 	r, g, b = unpack(E.media.rgbvaluecolor)
 
 	for _, button in next, { frame.Left.CurrentCPUButton, frame.Left.AverageCPUButton, frame.Right.EncounterCPUButton, frame.Right.PeakCPUButton } do
-		button:GetHighlightTexture():SetColorTexture(r, g, b, .25)
+		button:GetHighlightTexture():SetColorTexture(r, g, b, 0.25)
 	end
 end
 
@@ -82,22 +77,17 @@ local function SkinSimpleAddonManager(frame)
 
 	-- Header
 	S:HandleDropDownBox(frame.CharacterDropDown, 120)
-	S:HandleButton(frame.SetsButton)
 	S:HandleEditBox(frame.SearchBox)
 
-	SkinSquareButton(frame.ResultOptionsButton)
-	SkinSquareButton(frame.ConfigButton)
-	SkinSquareButton(frame.CategoryButton)
-
-	-- Bottom Buttons
-	for _, button in next, { frame.EnableAllButton, frame.DisableAllButton, frame.OkButton, frame.CancelButton } do
+	for _, button in next, { frame.ResultOptionsButton, frame.ConfigButton, frame.CategoryButton } do
 		S:HandleButton(button)
+		button.icon:SetDrawLayer('OVERLAY')
 	end
 
-	-- Category Frame
+	-- Header, bottom and category frame buttons
 	local categoryFrame = frame.CategoryFrame
 
-	for _, button in next, { categoryFrame.NewButton, categoryFrame.SelectAllButton, categoryFrame.ClearSelectionButton } do
+	for _, button in next, { frame.SetsButton, frame.EnableAllButton, frame.DisableAllButton, frame.OkButton, frame.CancelButton, categoryFrame.NewButton, categoryFrame.SelectAllButton, categoryFrame.ClearSelectionButton } do
 		S:HandleButton(button)
 	end
 
@@ -107,13 +97,6 @@ local function SkinSimpleAddonManager(frame)
 
 	-- CPU Profiler
 	SkinProfilerFrame(frame.ProfilerFrame)
-
-	-- Dropdown Menus
-	local EDDM = LibStub('ElioteDropDownMenu-1.0', true)
-	if EDDM then
-		SkinDropDownLists(EDDM)
-		hooksecurefunc(EDDM, 'UIDropDownMenu_CreateFrames', function() SkinDropDownLists(EDDM) end)
-	end
 
 	frame.isSkinned = true
 end
@@ -125,6 +108,13 @@ local function Skin_SimpleAddonManager()
 	if not frame then return end
 
 	frame:HookScript('OnShow', SkinSimpleAddonManager)
+
+	-- Dropdown Menus (also opened by the minimap button without the main frame)
+	local EDDM = LibStub('ElioteDropDownMenu-1.0', true)
+	if EDDM then
+		SkinDropDownLists(EDDM)
+		hooksecurefunc(EDDM, 'UIDropDownMenu_CreateFrames', function() SkinDropDownLists(EDDM) end)
+	end
 end
 
 S:AddCallbackForAddon('SimpleAddonManager', 'LuckyoneUI_SimpleAddonManager', Skin_SimpleAddonManager)

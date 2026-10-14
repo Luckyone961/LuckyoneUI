@@ -1,7 +1,6 @@
 local _, Private = ...
 local L = Private.L
 
-local pairs = pairs
 local pcall = pcall
 local strmatch = string.match
 local type = type
@@ -12,43 +11,34 @@ local DecodeBase64 = C_EncodingUtil.DecodeBase64
 local DecompressString = C_EncodingUtil.DecompressString
 local DeserializeCBOR = C_EncodingUtil.DeserializeCBOR
 local EncodeBase64 = C_EncodingUtil.EncodeBase64
-local MergeTable = MergeTable
 local SerializeCBOR = C_EncodingUtil.SerializeCBOR
 local strtrim = strtrim
 
 local _G = _G
 local StaticPopupDialogs = _G.StaticPopupDialogs
+local StaticPopup_OnClick = _G.StaticPopup_OnClick
 local StaticPopup_Show = _G.StaticPopup_Show
+local StaticPopup_StandardEditBoxOnEscapePressed = _G.StaticPopup_StandardEditBoxOnEscapePressed
+local StaticPopup_StandardNonEmptyTextHandler = _G.StaticPopup_StandardNonEmptyTextHandler
 
 local ACCEPT = ACCEPT
 local CANCEL = CANCEL
 
--- Custom placed damage meter windows are positioned by ElvUI movers
--- Temporary snapshot
-local function ExportMovers()
-	if not Private.ElvUI then return end
-
-	local movers, db = {}, ElvUI[1].db.movers
-	for index = 1, 4 do
-		local name = 'LuckyoneUI_DamageMeterWindow' .. index .. 'Mover'
-		movers[name] = db and db[name]
-	end
-
-	return movers
-end
-
 -- Profile export, we skip values which match defaults
 function Private:ExportProfile()
 	local data = CopyTable(Private.Addon.db.profile)
+
+	-- Never export character list of mailbox favorites
+	data.misc.mailbox.favorites = nil
 	Private:StripDefaults(data, Private.Defaults.profile)
 
-	local compressed = CompressString(SerializeCBOR({ name = Private.Addon.db:GetCurrentProfile(), profile = data, movers = ExportMovers() }))
+	local compressed = CompressString(SerializeCBOR({ name = Private.Addon.db:GetCurrentProfile(), profile = data, movers = Private.Modules.DamageMeter and Private:DamageMeter_ExportMovers() }))
 	return compressed and '!L1UI!' .. EncodeBase64(compressed) or ''
 end
 
 -- Profile import, string carries the export name
 local function DecodeProfile(text)
-	local encoded = strmatch(strtrim(text), '^!L1UI!(.+)$')
+	local encoded = type(text) == 'string' and strmatch(strtrim(text), '^!L1UI!(.+)$')
 	local compressed = encoded and DecodeBase64(encoded)
 	local serialized = compressed and DecompressString(compressed)
 	local success, data = pcall(DeserializeCBOR, serialized)
@@ -57,57 +47,23 @@ local function DecodeProfile(text)
 	end
 end
 
-local function MergeProfile(profile, data)
-	for key, value in pairs(data) do
-		if type(value) == 'table' and type(profile[key]) == 'table' then
-			MergeProfile(profile[key], value)
-		else
-			profile[key] = value
-		end
-	end
-end
-
-function Private:LoadProfile(name, data, movers)
+local function LoadProfile(name, data, movers)
 	local db = Private.Addon.db
-	if name == db:GetCurrentProfile() then
-		-- Merged in place so module references stay on the live table
-		db:ResetProfile()
-		MergeProfile(db.profile, data)
-	else
-		db.profiles[name] = data
-		db:SetProfile(name)
+
+	local old = db.profiles[name]
+	local favorites = old and old.misc and old.misc.mailbox and old.misc.mailbox.favorites
+	if favorites then
+		data.misc = data.misc or {}
+		data.misc.mailbox = data.misc.mailbox or {}
+		data.misc.mailbox.favorites = favorites
 	end
 
-	-- The reload applies them through E:SetMoversPositions
-	if movers and Private.ElvUI then
-		local E = ElvUI[1]
-		E.db.movers = E.db.movers or {}
-		MergeTable(E.db.movers, movers)
-	end
+	db.profiles[name] = data
+	db:SetProfile(name)
 
-	StaticPopup_Show('LUCKYONE_RL')
-end
-
--- Luckyone preset
-function Private:SetupLuckyoneProfile()
-	local db = Private.Addon.db
-	if not db.profiles.Luckyone then
-		db.profiles.Luckyone = CopyTable(Private.LuckyoneProfile)
-	end
-
-	if Private.itsLuckyone then
-		db:SetProfile('Luckyone')
-	end
-end
-
--- Restore defaults button, the preset returns to its default values
-function Private:ResetProfile()
-	local db = Private.Addon.db
-	if db:GetCurrentProfile() == 'Luckyone' then
-		Private:LoadProfile('Luckyone', CopyTable(Private.LuckyoneProfile))
-	else
-		db:ResetProfile()
-		StaticPopup_Show('LUCKYONE_RL')
+	-- Damage meter windows placed with their own mover
+	if movers and Private.Modules.DamageMeter then
+		Private:DamageMeter_ImportMovers(movers)
 	end
 end
 
@@ -118,9 +74,26 @@ function Private:ImportProfile(text)
 	elseif Private.Addon.db.profiles[name] then
 		StaticPopup_Show('LUCKYONE_IMPORT', name, nil, { name = name, profile = data, movers = movers })
 	else
-		Private:LoadProfile(name, data, movers)
+		LoadProfile(name, data, movers)
+		StaticPopup_Show('LUCKYONE_RL')
 	end
 end
+
+-- Public API for other addons, called with a dot
+-- LuckyoneUI.ExportProfile() returns the current profile string
+-- LuckyoneUI.ImportProfile(text[, name]) returns the profile name, or nil for an invalid string
+-- Import overwrites an existing profile and switches to it, no popups, the caller reloads
+_G.LuckyoneUI = {
+	ExportProfile = Private.ExportProfile,
+	ImportProfile = function(text, name)
+		local imported, data, movers = DecodeProfile(text)
+		if data then
+			name = name or imported
+			LoadProfile(name, data, movers)
+			return name
+		end
+	end,
+}
 
 -- Import popup, the profile name from the string already exists
 -- StaticPopup_Show('LUCKYONE_IMPORT', name, nil, data)
@@ -135,21 +108,17 @@ StaticPopupDialogs['LUCKYONE_IMPORT'] = {
 		self.EditBox:HighlightText()
 	end,
 	OnAccept = function(self, data)
-		Private:LoadProfile(strtrim(self.EditBox:GetText()), data.profile, data.movers)
+		LoadProfile(strtrim(self.EditBox:GetText()), data.profile, data.movers)
+		StaticPopup_Show('LUCKYONE_RL')
 	end,
-	EditBoxOnEnterPressed = function(self, data)
+	EditBoxOnEnterPressed = function(self)
 		local dialog = self:GetParent()
-		if dialog.Button1:IsEnabled() then
-			Private:LoadProfile(strtrim(self:GetText()), data.profile, data.movers)
-			dialog:Hide()
+		if dialog:GetButton1():IsEnabled() then
+			StaticPopup_OnClick(dialog, 1)
 		end
 	end,
-	EditBoxOnEscapePressed = function(self)
-		self:GetParent():Hide()
-	end,
-	EditBoxOnTextChanged = function(self)
-		self:GetParent().Button1:SetEnabled(strtrim(self:GetText()) ~= '')
-	end,
+	EditBoxOnEscapePressed = StaticPopup_StandardEditBoxOnEscapePressed,
+	EditBoxOnTextChanged = StaticPopup_StandardNonEmptyTextHandler,
 	whileDead = 1,
 	preferredIndex = 3,
 	hideOnEscape = 1,

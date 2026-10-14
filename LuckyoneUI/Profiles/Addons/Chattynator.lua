@@ -1,0 +1,34 @@
+local _, Private = ...
+local L = Private.L
+
+local _G = _G
+
+-- Chattynator profile
+function Private:Setup_Chattynator(installer)
+	if not Private.IsAddOnLoaded('Chattynator') then Private:Print('Chattynator ' .. L["is not installed or enabled."]) return end
+
+	-- Disable ElvUI chat
+	if Private.ElvUI then
+		ElvUI[1].private.chat.enable = false
+	end
+
+	-- 1080p
+	local scaled = Private.Addon.db.global.scaled
+
+	-- Profile name
+	local name = (Private.Addon.db.global.dev and 'Luckyone') or 'Luckyone ' .. Private.Version
+
+	-- Profile string
+	local importString = [[CHATTY!1!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]]
+
+	-- Profile import
+	local API = _G.Chattynator.API
+	API.ImportString(importString, name)
+
+	-- The values are always ElvUI chat panel db values -2
+	if scaled then
+		_G.CHATTYNATOR_CONFIG.Profiles[name].windows[1].size = { 442, 208 } -- Width, Height
+	end
+
+	Private:Print(L["Chattynator profile has been set."], installer)
+end

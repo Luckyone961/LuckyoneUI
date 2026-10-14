@@ -8,6 +8,8 @@ end
 -- Made for the ACH table from Config.lua
 
 local ipairs = ipairs
+local max = math.max
+local min = math.min
 local next = next
 local pairs = pairs
 local tonumber = tonumber
@@ -33,7 +35,12 @@ local MinimalSliderWithSteppersMixin = MinimalSliderWithSteppersMixin
 local PlaySound = PlaySound
 local ProxySettingMixin = ProxySettingMixin
 local SOUNDKIT = SOUNDKIT
+local ScrollingEdit_OnCursorChanged = ScrollingEdit_OnCursorChanged
+local ScrollingEdit_OnTextChanged = ScrollingEdit_OnTextChanged
+local ScrollingEdit_OnUpdate = ScrollingEdit_OnUpdate
+local ScrollingEdit_SetCursorOffsets = ScrollingEdit_SetCursorOffsets
 local Settings = Settings
+local SettingsInbound = SettingsInbound
 local SettingsPanel = SettingsPanel
 local SettingsTooltip = SettingsTooltip
 local StaticPopup_Show = StaticPopup_Show
@@ -75,6 +82,9 @@ local function Refresh()
 	end
 
 	refreshSetting:NotifyUpdate()
+
+	-- Rows whose shown state flipped join or leave the page
+	SettingsInbound.RepairDisplay()
 end
 
 -- We have our own reset buttons
@@ -261,32 +271,23 @@ local function ByLabel(a, b)
 	return strcmputf8i(a.plain, b.plain) < 0
 end
 
-local function ByKey(a, b)
-	return a.key < b.key
-end
-
 local function AddSelect(category, info, name, desc, get, set, option, path)
 	if option.dialogControl then
 		error(format('LuckyoneUI: %s uses %s, not supported without ElvUI', concat(path, '.'), option.dialogControl))
 	end
 
-	local keys, labels = {}, {}
+	local labels = {}
 
 	local function Options()
 		local entries = {}
-		local numeric = true
-		wipe(keys)
 		wipe(labels)
 
 		for key, label in pairs(Resolve(option.values, info)) do
-			local id = tostring(key)
-			keys[id] = key
-			labels[id] = label
+			labels[key] = label
 			entries[#entries + 1] = { key = key, label = label, plain = StripCodes(label) }
-			if type(key) ~= 'number' then numeric = false end
 		end
 
-		sort(entries, numeric and ByKey or ByLabel)
+		sort(entries, ByLabel)
 
 		local container = Settings.CreateControlTextContainer()
 		for _, entry in ipairs(entries) do
@@ -302,11 +303,8 @@ local function AddSelect(category, info, name, desc, get, set, option, path)
 		local value = get(info)
 		return value == nil and '' or tostring(value)
 	end, function(id)
-		local key = keys[id]
-		if key == nil then key = id end
-
 		Ask(option, info, format('%s\n\n%s', name, labels[id] or id), function()
-			set(info, key)
+			set(info, id)
 			Refresh()
 		end, function() setting:NotifyUpdate() end)
 	end)
@@ -360,11 +358,8 @@ local function ToggleClick(self)
 	local checked = self:GetChecked()
 	PlaySound(checked and SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON or SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF)
 
-	-- A declined confirm reads the box back from the config
-	Ask(entry.option, entry.info, EntryText(entry), function()
-		entry.set(entry.info, checked)
-		Refresh()
-	end, Refresh)
+	entry.set(entry.info, checked)
+	Refresh()
 end
 
 local function CreateSlotButton(frame)
@@ -432,13 +427,8 @@ local function AddSlots(category, row, rowType, tags)
 				frame.slots[i] = slot
 			end
 
+			(slot.Label or slot):SetText(entry.name)
 			slot.entry = entry
-
-			if slot.Label then
-				slot.Label:SetText(entry.name)
-			else
-				slot:SetText(entry.name)
-			end
 		end
 
 		UpdateSlots(frame)
@@ -494,10 +484,6 @@ local function InputEscapePressed(self)
 	self:ClearFocus()
 end
 
-local function InputFocusGained(self)
-	self:HighlightText()
-end
-
 local function InputFocusLost(self)
 	local row = self:GetParent().row
 	self:SetText(tostring(row.get(row.info) or ''))
@@ -516,12 +502,37 @@ end
 local function MultilineAccept(self)
 	local frame = self:GetParent()
 	local row = frame.row
+	frame.Multiline:ClearFocus()
+
 	if row.set then
-		row.set(row.info, frame.Multiline:GetInputText())
+		row.set(row.info, frame.Multiline:GetText())
 		Refresh()
 	end
+end
 
-	frame.Multiline:ClearFocus()
+-- Multiline input, the scroll frame keeps the cursor in view like Blizzard's InputScrollFrameTemplate
+local function MultilineTextChanged(self)
+	ScrollingEdit_OnTextChanged(self, self:GetParent())
+end
+
+local function MultilineScrollMouseDown(self)
+	self:GetScrollChild():SetFocus()
+end
+
+local function MultilineScrollWheel(self, delta)
+	self:SetVerticalScroll(max(0, min(self:GetVerticalScroll() - delta * 20, self:GetVerticalScrollRange())))
+end
+
+local function MultilineScrollSizeChanged(self, width)
+	self:GetScrollChild():SetWidth(width)
+end
+
+-- Shorter text (or a pooled row with another value) would keep the old offset
+local function MultilineScrollRangeChanged(self)
+	local range = self:GetVerticalScrollRange()
+	if self:GetVerticalScroll() > range then
+		self:SetVerticalScroll(range)
+	end
 end
 
 local function UpdateInput(frame)
@@ -565,12 +576,30 @@ local function AddInput(category, info, name, desc, get, set, option, disabled)
 				local backdrop = CreateBox(frame)
 				frame.MultilineBackdrop = backdrop
 
-				box = CreateFrame('Frame', nil, frame, 'ScrollingEditBoxTemplate')
-				box:SetPoint('TOPLEFT', 37, -26)
-				box:SetPoint('BOTTOMRIGHT', -60, 6)
+				-- Plain frames, the OnLoad of ScrollingEditBoxTemplate registers callbacks without an owner (taint)
+				local scroll = CreateFrame('ScrollFrame', nil, frame)
+				scroll:SetPoint('TOPLEFT', 37, -26)
+				scroll:SetPoint('BOTTOMRIGHT', -60, 6)
+				scroll:EnableMouse(true)
+				scroll:SetScript('OnMouseDown', MultilineScrollMouseDown)
+				scroll:SetScript('OnMouseWheel', MultilineScrollWheel)
+				scroll:SetScript('OnSizeChanged', MultilineScrollSizeChanged)
+				scroll:SetScript('OnScrollRangeChanged', MultilineScrollRangeChanged)
+				backdrop:SetPoint('TOPLEFT', scroll, -1, 1)
+				backdrop:SetPoint('BOTTOMRIGHT', scroll, 1, -1)
+				frame.MultilineScroll = scroll
+
+				box = CreateFrame('EditBox', nil, scroll)
+				box:SetMultiLine(true)
+				box:SetAutoFocus(false)
+				box:SetFontObject('GameFontHighlight')
 				box:SetTextInsets(4, 4, 4, 4)
-				backdrop:SetPoint('TOPLEFT', box, -1, 1)
-				backdrop:SetPoint('BOTTOMRIGHT', box, 1, -1)
+				box:SetScript('OnEscapePressed', InputEscapePressed)
+				box:SetScript('OnCursorChanged', ScrollingEdit_OnCursorChanged)
+				box:SetScript('OnTextChanged', MultilineTextChanged)
+				box:SetScript('OnUpdate', ScrollingEdit_OnUpdate)
+				ScrollingEdit_SetCursorOffsets(box, 0, 0)
+				scroll:SetScrollChild(box)
 				frame.Multiline = box
 
 				local accept = CreateFrame('Button', nil, frame, 'UIPanelButtonTemplate')
@@ -585,7 +614,7 @@ local function AddInput(category, info, name, desc, get, set, option, disabled)
 			label:SetPoint('RIGHT', frame.MultilineAccept, 'LEFT', -10, 0)
 			frame.MultilineBackdrop:Show()
 			frame.MultilineAccept:Show()
-			box:Show()
+			frame.MultilineScroll:Show()
 		else
 			local box = frame.Input
 			if not box then
@@ -593,8 +622,6 @@ local function AddInput(category, info, name, desc, get, set, option, disabled)
 				box:SetHeight(20)
 				box:SetAutoFocus(false)
 				box:SetScript('OnEnterPressed', InputEnterPressed)
-				box:SetScript('OnEscapePressed', InputEscapePressed)
-				box:SetScript('OnEditFocusGained', InputFocusGained)
 				box:SetScript('OnEditFocusLost', InputFocusLost)
 				box:SetScript('OnEnter', InputEnter)
 				box:SetScript('OnLeave', TooltipLeave)
@@ -623,15 +650,17 @@ local function AddInput(category, info, name, desc, get, set, option, disabled)
 			frame.refreshHandle = nil
 		end
 
-		frame.row = nil
 		frame.InputLabel:Hide()
 
 		if frame.Input then frame.Input:Hide() end
 		if frame.Multiline then
-			frame.Multiline:Hide()
+			frame.MultilineScroll:Hide()
 			frame.MultilineBackdrop:Hide()
 			frame.MultilineAccept:Hide()
 		end
+
+		-- Hiding a focused box runs its focus lost handler, which still reads the row
+		frame.row = nil
 	end)
 
 	return initializer
@@ -730,6 +759,8 @@ end
 
 -- Called once at PLAYER_LOGIN inside Init.lua, the panel keeps the categories for the session
 function Private:RegisterSettings()
+	Private:BuildConfig()
+
 	local config = Private.Config
 	local root = Settings.RegisterVerticalLayoutCategory(CategoryName(config.name))
 

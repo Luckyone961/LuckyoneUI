@@ -6,6 +6,10 @@
 • **Download link:** [Get ElvUI on the official website](https://www.tukui.org/)  
 • **Note:** ElvUI is also available in the WowUp client and Wago app.  
 
+### **Supported game versions**  
+• Retail, WoW: Forever, Mists, TBC and Classic. All in one download.  
+• WoW: Forever is supported since the beta. Layouts, aura filters and tags are tuned for its Classic game systems.  
+
 ### **Gameplay and UI support**  
 • **Twitch link:** [Luckyone1996 on Twitch](https://www.twitch.tv/Luckyone1996)  
 • **YouTube link:** [LuckyoneWoW on YouTube](https://www.youtube.com/@LuckyoneWoW)  
@@ -28,17 +32,21 @@
 • Alt setup button. One click loads your existing profiles in every supported Addon.  
 • Option to pick a different texture for targeted nameplates.  
 • Option to pick a different texture for focused nameplates.  
+• Option to pick different absorb and heal absorb textures for unitframes and nameplates.  
 • DataText width tweaks that follow your active layout and spec profile.  
+• Copy chat frame tweaks. Custom font and size, set with sliders or a resize button.  
 
 ### **ElvUI skins**  
-• Addons: Auctionator, BigWigs (/keys and queue timer), BugSack, LFG Bulletin Board  
-• Addons: Nova Spell Rank Checker, Nova World Buffs, Premade Groups Filter, RCLootCouncil  
-• Addons: Simple Addon Manager, Simulationcraft, Tabardy, WhatsTraining  
+• Addons: AllTheThings, Attune, Auctionator, BigWigs (/keys and queue timer), BugSack  
+• Addons: ForeverDungeonJournal, KeystoneLoot, LFG Bulletin Board, Nova Instance Tracker  
+• Addons: Nova Spell Rank Checker, Nova World Buffs, Plumber (House list), Premade Groups Filter  
+• Addons: RCLootCouncil, RXPGuides, Simple Addon Manager, Simulationcraft  
+• Addons: Tabardy, WhatsTraining  
 • Blizzard: Cooldown Settings viewer, Developer Console  
 
 ### **The core features**  
 • Custom damage meter with hundreds of settings based on Blizzards native combat data API  
-• Damage meter extras: Multiple windows, bookmarks, death log at your cursor, test mode  
+• Damage meter extras: Multiple windows per content type, bookmarks, death log at your cursor, test mode  
 • Unregister and hide useless Blizzard elements (Alert frame, Boss banner, Housing alerts)  
 • Hide the Loss of Control frame, UI errors ("Out of range") and zone text  
 • Restore mouseover tooltips for party and raid applicants even if you are not the leader  
@@ -50,7 +58,8 @@
 • Automatically accept role checks during signup  
 • Automatically fill in the delete text when destroying items  
 • Block the loot list frame from showing after boss kills and keystones  
-• Streamer privacy overlay for the big guild and community frame (Click to show chat)  
+• Automate advanced combat logging based on instance type and difficulty  
+• Streamer privacy overlay for the guild and community frame, full and minimized (Click to show chat)  
 • Double click to quickly signup for parties and raids without confirmation  
 • Remove realm names and the (*) indicator from friendly names in dungeons and raids  
 • Option to increase the speed of autolooting items  
@@ -58,8 +67,10 @@
 • Double the size of vendor frames to display 4 rows of items instead of 2  
 • One click toggles with descriptions to disable useless graphic effects in the game  
 • Clean minimap addon button bar which supports LibDBIcon minimap buttons  
+• Reveal unexplored areas on the world map (Fog of war) in a color of your choice  
 • Lightweight replacement for entering combat and leaving combat floating text  
 • Favorite list with autofill on the mailbox to quickly send mail  
+• Profile management for your LuckyoneUI settings (Select, Import, Export)  
 
 ### **Optimized Addon profiles**  
 • Baganator, BigWigs, BuffReminders  
@@ -76,6 +87,7 @@
 • /lucky config -> Opens the ingame options  
 • /lucky install -> Run the installation process  
 • /lucky minimap -> Hide or show the minimap icon  
+• /lucky toggle -> Hide or show the damage meter  
 • /lucky untrack -> Remove all tracked quests, including hidden, to boost performance  
 • /luckydebug on -> Disables all Addons except ElvUI and LuckyoneUI for troubleshooting  
 • /luckydebug off -> Re-Enables all Addons disabled by the command above  

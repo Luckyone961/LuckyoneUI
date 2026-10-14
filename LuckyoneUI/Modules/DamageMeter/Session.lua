@@ -2,7 +2,9 @@ local _, Private = ...
 local L = Private.L
 local DM = Private.Modules.DamageMeter
 
-if not DM then return end
+if not Private.ElvUI then
+	return
+end
 
 local unpack = unpack
 local format = string.format
@@ -51,9 +53,12 @@ local S = E:GetModule('Skins')
 local MeterType = Enum.DamageMeterType
 local SessionType = Enum.DamageMeterSessionType
 
+-- Defined further down, code above them calls them first
+local CloseBookmarks, LayoutBookmarks, RefreshPopup, UpdateScrollBar
+
 -- Localized names come from GlobalStrings, same source as the Blizzard meter
 -- https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua#L1-L46
-DM.TypeNames = {
+local TypeNames = {
 	[MeterType.DamageDone] = _G.DAMAGE_METER_TYPE_DAMAGE_DONE,
 	[MeterType.Dps] = _G.DAMAGE_METER_TYPE_DPS,
 	[MeterType.HealingDone] = _G.DAMAGE_METER_TYPE_HEALING_DONE,
@@ -68,7 +73,7 @@ DM.TypeNames = {
 }
 
 -- Blizzard keeps Absorbs out of the categories, it has a name but no menu entry
-DM.TypeCategories = {
+local TypeCategories = {
 	{ name = _G.DAMAGE_METER_CATEGORY_DAMAGE, types = { MeterType.DamageDone, MeterType.Dps, MeterType.DamageTaken, MeterType.AvoidableDamageTaken, MeterType.EnemyDamageTaken } },
 	{ name = _G.DAMAGE_METER_CATEGORY_HEALING, types = { MeterType.HealingDone, MeterType.Hps } },
 	{ name = _G.DAMAGE_METER_CATEGORY_ACTIONS, types = { MeterType.Interrupts, MeterType.Dispels, MeterType.Deaths } },
@@ -78,9 +83,9 @@ DM.TypeCategories = {
 DM.TypeMenuNames = {}
 
 local typeCount = 0
-for _, category in ipairs(DM.TypeCategories) do
+for _, category in ipairs(TypeCategories) do
 	for _, meterType in ipairs(category.types) do
-		DM.TypeMenuNames[meterType] = DM.TypeNames[meterType]
+		DM.TypeMenuNames[meterType] = TypeNames[meterType]
 		typeCount = typeCount + 1
 	end
 end
@@ -134,7 +139,7 @@ end
 -- DamageMeterSessionWindowMixin:GetCombatSession
 -- The popup pulls a single source, the windows pull the whole session
 -- Fake data replaces the live data
-function DM:FetchWindow(window)
+local function FetchSession(window)
 	-- The death log is built once when the popup opens
 	if window.recapMode then return end
 
@@ -157,22 +162,22 @@ function DM:FetchWindow(window)
 	window.session = session
 end
 
-function DM:RefreshWindow(window)
+local function RefreshWindow(window)
 	window.dirty = false
-	DM:FetchWindow(window)
+	FetchSession(window)
 	DM:RenderWindow(window)
 end
 
 function DM:RefreshAll(onlyDirty)
 	for _, window in pairs(DM.windows) do
 		if (window.dirty or not onlyDirty) and window:IsVisible() then
-			DM:RefreshWindow(window)
+			RefreshWindow(window)
 		end
 	end
 
 	local popup = DM.popup
 	if popup and popup:IsShown() and (popup.dirty or not onlyDirty) then
-		DM:RefreshPopup()
+		RefreshPopup()
 	end
 end
 
@@ -182,7 +187,7 @@ local function Flush()
 	DM:RefreshAll(true)
 end
 
-function DM:MarkDirty(window)
+local function MarkDirty(window)
 	window.dirty = true
 
 	-- The popup reads the same session as the window it was opened from, the death recap never changes
@@ -199,7 +204,7 @@ end
 
 function DM:MarkAllDirty()
 	for _, window in pairs(DM.windows) do
-		DM:MarkDirty(window)
+		MarkDirty(window)
 	end
 end
 
@@ -215,9 +220,12 @@ local function SetHeaderText(text, name, window)
 end
 
 function DM:DAMAGE_METER_COMBAT_SESSION_UPDATED(_, meterType, sessionID)
+	-- The events stay registered after the module is switched off
+	if not DM.db.enable then return end
+
 	for _, window in pairs(DM.windows) do
 		if window.meterType == meterType and (window.sessionID == sessionID or (sessionID == 0 and window.sessionType)) then
-			DM:MarkDirty(window)
+			MarkDirty(window)
 		end
 	end
 end
@@ -226,7 +234,7 @@ function DM:DAMAGE_METER_CURRENT_SESSION_UPDATED()
 	for _, window in pairs(DM.windows) do
 		if window.sessionType == SessionType.Current then
 			window.offset = 0
-			DM:MarkDirty(window)
+			MarkDirty(window)
 		end
 	end
 end
@@ -239,11 +247,11 @@ function DM:DAMAGE_METER_RESET()
 		if window.sessionID then
 			window.sessionType = SessionType.Current
 			window.sessionID = nil
-			SetHeaderText(window.typeText, DM.TypeNames[window.meterType], window)
+			SetHeaderText(window.typeText, TypeNames[window.meterType], window)
 		end
 
 		window.offset = 0
-		DM:MarkDirty(window)
+		MarkDirty(window)
 	end
 end
 
@@ -283,7 +291,7 @@ local function SetBackdropColor(backdrop, custom, color)
 	end
 end
 
-function DM:UpdateWindowBackdrop(window)
+local function UpdateWindowBackdrop(window)
 	local wdb = DM.db.windows[window.index]
 
 	if not wdb.backdrop then
@@ -311,10 +319,13 @@ end
 local function WindowChanged(window)
 	window.offset = 0
 
-	DM:ClosePopup()
-	DM:CloseBookmarks(window)
-	SetHeaderText(window.typeText, DM.TypeNames[window.meterType], window)
-	DM:RefreshWindow(window)
+	if DM.popup and DM.popup.owner == window then
+		DM:ClosePopup()
+	end
+
+	CloseBookmarks(window)
+	SetHeaderText(window.typeText, TypeNames[window.meterType], window)
+	RefreshWindow(window)
 end
 
 function DM:SetWindowType(window, meterType)
@@ -325,7 +336,7 @@ function DM:SetWindowType(window, meterType)
 end
 
 -- Session IDs are per login session, only the type is saved
-function DM:SetWindowSession(window, sessionType, sessionID)
+local function SetWindowSession(window, sessionType, sessionID)
 	window.sessionType = sessionType
 	window.sessionID = sessionID
 	DM.db.windows[window.index].sessionType = sessionType
@@ -345,11 +356,11 @@ end
 local function TypeMenu(owner, rootDescription)
 	rootDescription:SetTag('MENU_LUCKYONEUI_DAMAGE_METER_TYPE')
 
-	for _, category in ipairs(DM.TypeCategories) do
+	for _, category in ipairs(TypeCategories) do
 		local submenu = rootDescription:CreateButton(category.name)
 
 		for _, meterType in ipairs(category.types) do
-			submenu:CreateRadio(DM.TypeNames[meterType], IsTypeSelected, SetTypeSelected, { window = owner.window, meterType = meterType })
+			submenu:CreateRadio(TypeNames[meterType], IsTypeSelected, SetTypeSelected, { window = owner.window, meterType = meterType })
 		end
 	end
 end
@@ -359,7 +370,7 @@ local function IsSessionSelected(data)
 end
 
 local function SetSessionSelected(data)
-	DM:SetWindowSession(data.window, data.sessionType, data.sessionID)
+	SetWindowSession(data.window, data.sessionType, data.sessionID)
 end
 
 local function SessionMenu(owner, rootDescription)
@@ -430,7 +441,7 @@ end
 -- Right click carries through to the window so the bookmarks open from here too
 local function TypeButton_OnClick(button, mouseButton)
 	if mouseButton == 'RightButton' then
-		DM:WindowRightClick(button.window)
+		DM:OnWindowRightClick(button.window)
 	else
 		OpenMenu(button, TypeMenu)
 	end
@@ -461,13 +472,13 @@ local function Content_OnMouseWheel(content, delta)
 	if offset ~= window.offset then
 		window.offset = offset
 		DM:RenderWindow(window)
-		DM:UpdateScrollBar(window)
+		UpdateScrollBar(window)
 	end
 end
 
 local function Content_OnMouseDown(frame, button)
 	if button == 'RightButton' then
-		DM:WindowRightClick(frame.window)
+		DM:OnWindowRightClick(frame.window)
 	end
 end
 
@@ -475,19 +486,16 @@ end
 -- A right click panel over the bar area, it only carries damage meter types (the table)
 -- Every type is stored as its own place in the list so it can be dragged around
 local bookmarkList = {}
-local bookmarkPlaces -- The saved table the sort compares against
-
 local function SortBookmarks(a, b)
-	return bookmarkPlaces[a] < bookmarkPlaces[b]
+	return DM.db.bookmarks[a] < DM.db.bookmarks[b]
 end
 
 local function BuildBookmarkList()
 	wipe(bookmarkList)
 
 	local saved = DM.db.bookmarks
-	bookmarkPlaces = saved
 
-	for _, category in ipairs(DM.TypeCategories) do
+	for _, category in ipairs(TypeCategories) do
 		for _, meterType in ipairs(category.types) do
 			if saved[meterType] then
 				bookmarkList[#bookmarkList + 1] = meterType
@@ -509,9 +517,28 @@ local function SaveBookmarkOrder()
 	end
 end
 
+-- The list is rebuilt from the places, so the places are what has to move
+local function MoveBookmark(frame, from, to)
+	local list = BuildBookmarkList()
+
+	local meterType = tremove(list, from)
+	if not meterType then return end
+
+	tinsert(list, to, meterType)
+	SaveBookmarkOrder()
+
+	LayoutBookmarks(frame)
+end
+
+-- New ones get a place higher than the type count, anything new sorts to the end
+-- Dropped ones stay false so the profile defaults cannot bring them back on the next login
+function DM:SetBookmark(meterType, enabled)
+	Private.Addon.db.profile.damageMeter.bookmarks[meterType] = enabled and 99 or false
+end
+
 local function AddBookmark(data)
-	DM.db.bookmarks[data.meterType] = 99 -- Higher than the type count, anything new sorts to the end
-	DM:LayoutBookmarks(data.window)
+	DM:SetBookmark(data.meterType, true)
+	LayoutBookmarks(data.window.bookmarks)
 end
 
 -- The plus icon only offers types which are still missing in the bookmarks
@@ -521,13 +548,13 @@ local function BookmarkMenu(owner, rootDescription)
 	local saved = DM.db.bookmarks
 	local window = owner.window
 
-	for _, category in ipairs(DM.TypeCategories) do
+	for _, category in ipairs(TypeCategories) do
 		local submenu
 
 		for _, meterType in ipairs(category.types) do
 			if not saved[meterType] then
 				submenu = submenu or rootDescription:CreateButton(category.name)
-				submenu:CreateButton(DM.TypeNames[meterType], AddBookmark, { window = window, meterType = meterType })
+				submenu:CreateButton(TypeNames[meterType], AddBookmark, { window = window, meterType = meterType })
 			end
 		end
 	end
@@ -546,133 +573,36 @@ local function BookmarkRow_OnClick(row, mouseButton)
 	end
 
 	-- Right click drops the bookmark again, the panel stays open
-	-- Kept as false so the profile defaults cannot bring it back on the next login
 	if mouseButton == 'RightButton' then
-		DM.db.bookmarks[row.meterType] = false
-		DM:LayoutBookmarks(window)
+		DM:SetBookmark(row.meterType, false)
+		LayoutBookmarks(window.bookmarks)
 		return
 	end
 
 	DM:SetWindowType(window, row.meterType)
 end
 
--- Scrolling
-local function Bookmarks_ScrollTo(frame, offset)
-	offset = min(max(offset, 0), max(frame.total - frame.visible, 0))
-	if offset == frame.offset then return false end
-
-	frame.offset = offset
-	DM:LayoutBookmarks(frame.window)
-
-	return true
-end
-
-local function Bookmarks_OnMouseWheel(frame, delta)
-	Bookmarks_ScrollTo(frame, frame.offset - delta)
-end
-
--- Drag and drop reorder
--- The row under the cursor, the plus slot never counts as one
-local function DropIndex(frame, y)
-	for index = 1, frame.dropCount do
-		if y >= frame.rows[index]:GetBottom() then
-			return frame.offset + index
-		end
-	end
-
-	return frame.offset + frame.dropCount
-end
-
--- One row per step while a drag sits on an edge
-local function DragScroll(frame, y, elapsed)
-	local direction = 0
-
-	if y > frame.rows[1]:GetTop() then
-		direction = -1
-	elseif y < frame.rows[frame.visible]:GetBottom() then
-		direction = 1
-	end
-
-	if direction == 0 then
-		frame.scrollWait = nil
-		return
-	end
-
-	frame.scrollWait = (frame.scrollWait or 0.15) - elapsed
-	if frame.scrollWait > 0 then return end
-
-	frame.scrollWait = 0.15
-
-	-- The rows carry other types now, the marker has to find its place again
-	if Bookmarks_ScrollTo(frame, frame.offset + direction) then
-		frame.dropIndex = nil
-	end
-end
-
--- The marker sits above the target while moving up and below it while moving down
-local function Bookmarks_OnUpdate(frame, elapsed)
-	local _, y = GetCursorPosition()
-	y = y / frame:GetEffectiveScale()
-
-	DragScroll(frame, y, elapsed or 0)
-
-	local index = DropIndex(frame, y)
-	if index == frame.dropIndex then return end
-
-	local row = frame.rows[index - frame.offset]
-	if not row then return end
-
-	frame.dropIndex = index
-
-	local marker = frame.marker
-
-	marker:ClearAllPoints()
-
-	if index <= frame.dragIndex then
-		marker:Point('BOTTOMLEFT', row, 'TOPLEFT', 0, 0)
-		marker:Point('BOTTOMRIGHT', row, 'TOPRIGHT', 0, 0)
-	else
-		marker:Point('TOPLEFT', row, 'BOTTOMLEFT', 0, 0)
-		marker:Point('TOPRIGHT', row, 'BOTTOMRIGHT', 0, 0)
-	end
-end
-
 local function BookmarkRow_OnDragStart(row)
 	if not DM.db.bookmarkDragDrop or not row.meterType then return end
 
-	local frame = row:GetParent()
-	frame.dragIndex = row.index
-	frame.dropIndex = nil
-	frame.scrollWait = nil
-
-	row:SetAlpha(0.4)
-	frame.marker:Show()
-	frame:SetScript('OnUpdate', Bookmarks_OnUpdate)
-
-	Bookmarks_OnUpdate(frame)
+	Private:DragList_Start(row:GetParent(), row)
 end
 
 local function BookmarkRow_OnDragStop(row)
 	local frame = row:GetParent()
-	local from, to = frame.dragIndex, frame.dropIndex
-
-	frame.dragIndex, frame.dropIndex = nil, nil
+	local from, to = Private:DragList_Stop(frame)
 	if not from then return end
 
-	frame:SetScript('OnUpdate', nil)
-	frame.marker:Hide()
-
 	if to and to ~= from then
-		DM:MoveBookmark(row.window, from, to)
+		MoveBookmark(frame, from, to)
 	else
-		DM:LayoutBookmarks(row.window) -- Takes the dimming off again
+		LayoutBookmarks(frame) -- Takes the dimming off again
 	end
 end
 
 local function CreateRowTexture(row, layer)
 	local texture = row:CreateTexture(nil, layer)
-	texture:SetTexture(E.media.blankTex)
-	texture:SetVertexColor(1, 1, 1, 0.2)
+	texture:SetColorTexture(1, 1, 1, 0.2)
 	texture:SetAllPoints()
 
 	return texture
@@ -705,11 +635,10 @@ end
 
 -- The bars come back whichever way the panel went away
 local function Bookmarks_OnHide(frame)
+	-- Hidden along with its window counts as closed
+	frame:Hide()
 	frame:UnregisterEvent('GLOBAL_MOUSE_DOWN')
-	frame:SetScript('OnUpdate', nil)
-
-	frame.dragIndex, frame.dropIndex, frame.scrollWait = nil, nil, nil
-	frame.marker:Hide()
+	Private:DragList_Stop(frame)
 	frame.window.content:Show()
 end
 
@@ -731,18 +660,14 @@ local function CreateBookmarks(window)
 	local frame = CreateFrame('Frame', nil, window)
 
 	-- Set before the scripts, the first Hide already fires OnHide
-	frame.rows = {}
 	frame.window = window
-	frame.offset = 0
-	frame.total = 0
-	frame.visible = 0
 	window.bookmarks = frame
+	Private:DragList_Init(frame, LayoutBookmarks)
 
 	frame:SetFrameLevel(window.content:GetFrameLevel() + 5)
 	frame:Point('TOPLEFT', window.header, 'BOTTOMLEFT', 0, 0)
 	frame:Point('BOTTOMRIGHT', window, 'BOTTOMRIGHT', 0, 0)
 	frame:EnableMouse(true)
-	frame:EnableMouseWheel(true)
 
 	-- Shows where a dragged bookmark lands, above the rows so it stays visible
 	local marker = CreateFrame('Frame', nil, frame)
@@ -751,14 +676,13 @@ local function CreateBookmarks(window)
 	frame.marker = marker
 
 	marker.texture = marker:CreateTexture(nil, 'OVERLAY')
-	marker.texture:SetTexture(E.media.blankTex)
+	marker.texture:SetColorTexture(1, 1, 1)
 	marker.texture:SetAllPoints()
 
 	frame:SetScript('OnShow', Frame_OnShow)
 	frame:SetScript('OnHide', Bookmarks_OnHide)
 	frame:SetScript('OnEvent', Bookmarks_OnEvent)
 	frame:SetScript('OnMouseDown', Bookmarks_OnMouseDown)
-	frame:SetScript('OnMouseWheel', Bookmarks_OnMouseWheel)
 	frame:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
 	frame:Hide()
 	SetHoverScripts(frame)
@@ -766,14 +690,13 @@ local function CreateBookmarks(window)
 	return frame
 end
 
-function DM:LayoutBookmarks(window, focus)
-	local frame = window.bookmarks
+function LayoutBookmarks(frame, focus)
+	local window = frame.window
 	local db = DM.db
 	local list = BuildBookmarkList()
 
 	-- The plus icon goes away once every type is bookmarked
 	local total = #list + ((#list < typeCount) and 1 or 0)
-	if total == 0 then return false end
 
 	local spacing = db.barSpacing
 	local contentHeight = window.contentHeight or 0
@@ -810,7 +733,7 @@ function DM:LayoutBookmarks(window, focus)
 	frame.offset = max(offset, 0)
 	frame.total = total
 	frame.visible = visible
-	frame.dropCount = min(visible, #list - frame.offset)
+	frame.dropCount = min(visible, #list - frame.offset) -- The plus slot never counts as a drop target
 	frame.marker:Height(max(spacing, 2))
 	frame.marker.texture:SetVertexColor(r, g, b)
 
@@ -835,7 +758,7 @@ function DM:LayoutBookmarks(window, focus)
 		row:SetAlpha((place == frame.dragIndex) and 0.4 or 1) -- The dragged one stays dimmed while it scrolls
 		Private:SetFont(row.text, db.headerFont, db.headerFontSize, db.headerFontOutline)
 		row.text:SetTextColor(r, g, b)
-		row.text:SetText(meterType and DM.TypeNames[meterType] or '+')
+		row.text:SetText(meterType and TypeNames[meterType] or '+')
 		row.selected:SetShown(meterType == window.meterType)
 		row:Show()
 	end
@@ -851,26 +774,13 @@ local function OpenBookmarks(window)
 	if not DM.db.showBookmarks then return end
 
 	local frame = window.bookmarks or CreateBookmarks(window)
-	if not DM:LayoutBookmarks(window, true) then return end
+	if not LayoutBookmarks(frame, true) then return end
 
 	window.content:Hide()
 	frame:Show()
 end
 
--- The list is rebuilt from the places, so the places are what has to move
-function DM:MoveBookmark(window, from, to)
-	local list = BuildBookmarkList()
-
-	local meterType = tremove(list, from)
-	if not meterType then return end
-
-	tinsert(list, to, meterType)
-	SaveBookmarkOrder()
-
-	DM:LayoutBookmarks(window)
-end
-
-function DM:CloseBookmarks(window)
+function CloseBookmarks(window)
 	if window.bookmarks then
 		window.bookmarks:Hide()
 	end
@@ -878,13 +788,13 @@ end
 
 function DM:CloseAllBookmarks()
 	for _, window in pairs(DM.windows) do
-		DM:CloseBookmarks(window)
+		CloseBookmarks(window)
 	end
 end
 
 -- The popup goes first, the bookmarks only take over once it is gone
 -- The popup has no bookmarks of its own, a right click on it only closes it
-function DM:WindowRightClick(window)
+function DM:OnWindowRightClick(window)
 	local popup = DM.popup
 	local bookmarks = window.bookmarks
 
@@ -903,6 +813,8 @@ end
 
 -- The source it showed is set again by the next OpenPopup
 local function Popup_OnHide(popup)
+	-- Hidden along with UIParent counts as closed, it would come back without an owner
+	popup:Hide()
 	popup:UnregisterEvent('GLOBAL_MOUSE_DOWN')
 
 	popup.owner = nil
@@ -916,7 +828,7 @@ local function Popup_OnHide(popup)
 end
 
 -- Any click that misses the popup closes it again unless it was pinned
--- A right click on a session window is left to WindowRightClick,
+-- A right click on a session window is left to OnWindowRightClick,
 -- hiding it on the press would let the same click open the bookmarks
 local function Popup_OnEvent(popup, _, button)
 	if popup.sticky or DoesAncestryIncludeAny(popup, GetMouseFoci()) then return end
@@ -949,15 +861,16 @@ end
 
 -- The cursor corner is the anchor, the popup grows toward the screen center
 local function AnchorToCursor(popup)
+	local parent = popup:GetParent()
 	local scale = popup:GetEffectiveScale()
 	local x, y = GetCursorPosition()
 	x, y = x / scale, y / scale
 
-	local horizontal = (x > E.UIParent:GetWidth() / 2) and 'RIGHT' or 'LEFT'
-	local vertical = (y > E.UIParent:GetHeight() / 2) and 'TOP' or 'BOTTOM'
+	local horizontal = (x > parent:GetWidth() / 2) and 'RIGHT' or 'LEFT'
+	local vertical = (y > parent:GetHeight() / 2) and 'TOP' or 'BOTTOM'
 
 	popup:ClearAllPoints()
-	popup:SetPoint(vertical .. horizontal, E.UIParent, 'BOTTOMLEFT', x, y) -- Not Point, that would snap the cursor position to the pixel grid
+	popup:SetPoint(vertical .. horizontal, parent, 'BOTTOMLEFT', x, y) -- Not Point, that would snap the cursor position to the pixel grid
 end
 
 -- The scroll bar works in percent, the render path works in rows
@@ -974,7 +887,7 @@ local function ScrollBar_OnScroll(window, percentage)
 end
 
 -- Only shows up once the list outgrows the popup, the bars give up their right edge for it
-function DM:UpdateScrollBar(window)
+function UpdateScrollBar(window)
 	local scrollBar = window.scrollBar
 	if not scrollBar then return end
 
@@ -1046,15 +959,7 @@ local function CreateWindowFrames(frame)
 	return header, content
 end
 
-function DM:CreateText(parent, justify)
-	local text = parent:CreateFontString(nil, 'OVERLAY')
-	text:SetJustifyH(justify)
-	text:SetWordWrap(false)
-
-	return text
-end
-
-function DM:GetPopup()
+local function GetPopup()
 	local popup = DM.popup
 	if popup then return popup end
 
@@ -1119,18 +1024,18 @@ function DM:ApplyPopupSettings(popup)
 
 	-- Same spot and size as the reset button on the windows
 	pin:Size(db.headerIconSize, db.headerHeight)
-	pin.icon:Size(db.headerIconSize)
+	pin.icon:Size(db.headerIconSize, db.headerIconSize)
 	pin.icon:SetVertexColor(r, g, b)
 	pin:ClearAllPoints()
-	pin:Point('RIGHT', popup.header, 'RIGHT', 3, 0)
+	pin:Point('RIGHT', popup.header, 'RIGHT', 3 + db.headerResetXOffset, db.headerResetYOffset)
 	pin:SetShown(sticky)
 
-	-- The name hands its right edge over to the pin
+	-- The name hands its right edge over to the pin, the pin offsets cancel out like on the windows
 	popup.typeText:ClearAllPoints()
 	popup.typeText:Point('TOPLEFT', popup.header, 'TOPLEFT', db.headerTypeXOffset, db.headerTypeYOffset)
 
 	if sticky then
-		popup.typeText:Point('BOTTOMRIGHT', pin, 'BOTTOMLEFT', -4 + db.headerTypeXOffset, db.headerTypeYOffset)
+		popup.typeText:Point('BOTTOMRIGHT', pin, 'BOTTOMLEFT', -4 + db.headerTypeXOffset - db.headerResetXOffset, db.headerTypeYOffset - db.headerResetYOffset)
 	else
 		popup.typeText:Point('BOTTOMRIGHT', popup.header, 'BOTTOMRIGHT', db.headerTypeXOffset, db.headerTypeYOffset)
 	end
@@ -1148,13 +1053,13 @@ function DM:ApplyPopupSettings(popup)
 	popup.backdrop:SetOutside(popup, E.Border + E:Scale(wdb.backdropWidth), E.Border + E:Scale(wdb.backdropHeight), nil, true)
 end
 
-function DM:RefreshPopup()
+function RefreshPopup()
 	local db = DM.db
 	local popup = DM.popup
 	local owner = popup.owner
 
 	popup.dirty = false
-	DM:FetchWindow(popup)
+	FetchSession(popup)
 
 	local entries = popup.session and popup.session.combatSpells
 
@@ -1171,7 +1076,7 @@ function DM:RefreshPopup()
 	end
 
 	DM:RenderWindow(popup)
-	DM:UpdateScrollBar(popup)
+	UpdateScrollBar(popup)
 end
 
 -- Death log
@@ -1303,7 +1208,7 @@ function DM:OpenPopup(window, entry)
 		if not sourceGUID and not sourceCreatureID then return end
 	end
 
-	local popup = DM:GetPopup()
+	local popup = GetPopup()
 
 	popup.owner = window
 	popup.meterType = window.meterType
@@ -1319,8 +1224,8 @@ function DM:OpenPopup(window, entry)
 	popup.sticky = IsShiftKeyDown()
 
 	DM:ApplyPopupSettings(popup)
-	SetHeaderText(popup.typeText, DM:StripRealm(entry.name, entry.classFilename) or _G.UNKNOWN, popup)
-	DM:RefreshPopup()
+	SetHeaderText(popup.typeText, DM:StripRealm(entry.name, entry.classFilename, entry.sourceGUID) or _G.UNKNOWN, popup)
+	RefreshPopup()
 
 	AnchorToCursor(popup)
 	popup:Show()
@@ -1335,7 +1240,7 @@ end
 -- Right click carries through to the window like the rest of the header
 local function HeaderButton_OnClick(button, mouseButton)
 	if mouseButton == 'RightButton' then
-		DM:WindowRightClick(button.window)
+		DM:OnWindowRightClick(button.window)
 	else
 		button.onClick(button)
 	end
@@ -1389,8 +1294,7 @@ function DM:GetWindow(index)
 	window.typeText:Point('TOPLEFT')
 	window.typeText:Point('BOTTOMRIGHT')
 
-	window.infoText = content:CreateFontString(nil, 'OVERLAY')
-	window.infoText:SetJustifyH('CENTER')
+	window.infoText = DM:CreateText(content, 'CENTER')
 	window.infoText:Point('CENTER')
 
 	DM.windows[index] = window
@@ -1436,9 +1340,10 @@ function DM:ApplyWindowSettings(window)
 		local button = window[info.button]
 		local shown = wdb[info.shown]
 		local x, y = db[info.x], db[info.y]
+		local artSize = iconSize - (info.trim or 0)
 
 		button:Size(iconSize, headerHeight)
-		button.icon:Size(iconSize - (info.trim or 0))
+		button.icon:Size(artSize, artSize)
 		button:ClearAllPoints()
 
 		if previous then
@@ -1477,7 +1382,7 @@ function DM:ApplyWindowSettings(window)
 	Private:SetFont(window.typeText, db.headerFont, db.headerFontSize, db.headerFontOutline)
 	Private:SetFont(window.infoText, db.font, db.fontSize, db.fontOutline)
 
-	DM:UpdateWindowBackdrop(window)
+	UpdateWindowBackdrop(window)
 	DM:UpdateHeaderColors(window)
-	SetHeaderText(window.typeText, DM.TypeNames[window.meterType], window)
+	SetHeaderText(window.typeText, TypeNames[window.meterType], window)
 end

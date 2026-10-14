@@ -1,6 +1,5 @@
 local _, Private = ...
 local L = Private.L
-local LSM = Private.Libs.LSM
 
 local concat = table.concat
 local floor = math.floor
@@ -52,13 +51,8 @@ end
 
 local function EnableDamageMeter()
 	Private.Addon.db.profile.damageMeter.enable = true
-	Private:DamageMeter_UpdateAll()
+	Private:DamageMeter_Update()
 	Private:Print(L["Damage Meter module enabled."], true)
-end
-
-local function InstallComplete()
-	Private:HandleLuckyoneDB()
-	C_UI.Reload()
 end
 
 -- Our frame 'skin'
@@ -69,8 +63,8 @@ local function ApplyTemplate(frame)
 		edgeSize = 1,
 	})
 
-	-- Background color: #0d0d0d + alpha 90
-	frame:SetBackdropColor(0.051, 0.051, 0.051, 0.9)
+	-- Background color: #0f0f0f + alpha 80
+	frame:SetBackdropColor(0.06, 0.06, 0.06, 0.8)
 
 	-- Border color: #000000 + alpha 100
 	frame:SetBackdropBorderColor(0, 0, 0, 1)
@@ -85,7 +79,7 @@ end
 
 local function CreateText(parent, size)
 	local text = parent:CreateFontString(nil, 'OVERLAY')
-	text:SetFont(LSM:Fetch('font', Private.Font), size, Private.Outline)
+	Private:SetFont(text, Private.Font, size, Private.Outline)
 	return text
 end
 
@@ -119,7 +113,7 @@ local function CreateButton(parent, width, height)
 	button:SetBackdropColor(0.2, 0.2, 0.2, 0.8)
 	CreateHighlight(button)
 
-	button.text = CreateText(button, 12)
+	button.text = CreateText(button, 13)
 	button.text:SetPoint('CENTER')
 
 	return button
@@ -171,7 +165,6 @@ local function CreateStepButton(sidebar, index, name)
 
 	button.bg = button:CreateTexture(nil, 'BACKGROUND')
 	button.bg:SetAllPoints()
-	button.bg:SetColorTexture(0.2, 0.2, 0.2, 0.5)
 
 	CreateHighlight(button)
 
@@ -179,7 +172,6 @@ local function CreateStepButton(sidebar, index, name)
 	button.icon:SetSize(14, 14)
 	button.icon:SetPoint('RIGHT', -6, 0)
 	button.icon:SetTexture('Interface\\RaidFrame\\ReadyCheck-Ready')
-	button.icon:Hide()
 
 	button.text = CreateText(button, 12)
 	button.text:SetPoint('LEFT', 26, 0)
@@ -195,17 +187,16 @@ end
 local function Option_OnClick(self)
 	local data = self.data
 
-	if data.key then
-		selections[currentPage] = data.key
+	-- A step that bails out returns false and stays unchecked
+	if data.func() == false or not data.key then return end
 
-		for _, button in ipairs(installerFrame.Content.Options) do
-			SetButtonSelected(button, button.data == data)
-		end
+	selections[currentPage] = data.key
 
-		installerFrame.Sidebar.Buttons[currentPage].icon:Show()
+	for _, button in ipairs(installerFrame.Content.Options) do
+		SetButtonSelected(button, button.data == data)
 	end
 
-	data.func()
+	installerFrame.Sidebar.Buttons[currentPage].icon:Show()
 end
 
 local function Option_OnEnter(self)
@@ -265,7 +256,7 @@ local function CreateCheckBox(parent)
 	check:SetScript('OnEnter', CheckBox_OnEnter)
 	check:SetScript('OnLeave', GameTooltip_Hide)
 
-	check.text = CreateText(check, 12)
+	check.text = CreateText(check, 13)
 	check.text:SetPoint('LEFT', check, 'RIGHT', 4, 0)
 	check.text:SetWidth(300)
 	check.text:SetJustifyH('LEFT')
@@ -295,7 +286,7 @@ local function LayoutToggles(page)
 			headers = headers + 1
 			local header = container.Headers[headers]
 			if not header then
-				header = CreateText(container, 13)
+				header = CreateText(container, 14)
 				header:SetJustifyH('LEFT')
 				header:SetTextColor(0.294, 0.922, 0.173)
 				container.Headers[headers] = header
@@ -364,6 +355,8 @@ local function CreateMainFrame()
 	frame:SetMovable(true)
 	frame:SetClampedToScreen(true)
 	frame:EnableMouse(true)
+
+	frame:SetClampRectInsets(0, 201, 0, 0)
 	frame:Hide()
 
 	ApplyTemplate(frame)
@@ -429,13 +422,14 @@ local function CreateMainFrame()
 	bar:SetStatusBarTexture('Interface\\Buttons\\WHITE8X8')
 	frame.StatusBar = bar
 
-	bar.text = CreateText(bar, 12)
+	bar.text = CreateText(bar, 13)
 	bar.text:SetPoint('CENTER')
 
 	-- Step list, its own frame next to the main one so it moves and hides along with it
 	local sidebar = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
 	sidebar:SetSize(200, 500)
 	sidebar:SetPoint('TOPLEFT', frame, 'TOPRIGHT', 1, 0)
+	sidebar:EnableMouse(true)
 	sidebar.Buttons = {}
 	frame.Sidebar = sidebar
 
@@ -458,7 +452,7 @@ local function CreateMainFrame()
 	content.SubTitle = CreateText(content, 16)
 	content.SubTitle:SetPoint('TOP', 0, -16)
 
-	content.Desc = CreateText(content, 12)
+	content.Desc = CreateText(content, 13)
 	content.Desc:SetPoint('TOPLEFT', 20, -44)
 	content.Desc:SetWidth(700)
 	content.Desc:SetJustifyH('CENTER')
@@ -467,7 +461,6 @@ local function CreateMainFrame()
 	local toggles = CreateFrame('Frame', nil, content)
 	toggles:SetPoint('TOPLEFT', content.Desc, 'BOTTOMLEFT', 0, -16)
 	toggles:SetPoint('BOTTOMRIGHT', -20, 100)
-	toggles:Hide()
 	toggles.Headers = {}
 	toggles.Checks = {}
 	content.Toggles = toggles
@@ -479,18 +472,16 @@ local function CreateMainFrame()
 		button:SetScript('OnClick', Option_OnClick)
 		button:SetScript('OnEnter', Option_OnEnter)
 		button:SetScript('OnLeave', GameTooltip_Hide)
-		button:Hide()
 		content.Options[index] = button
 	end
 
 	-- Status line, holds for three seconds and fades out over one
-	local status = CreateText(content, 13)
+	local status = CreateText(content, 14)
 	status:SetHeight(20)
 	status:SetPoint('BOTTOMLEFT', 20, 12)
 	status:SetPoint('BOTTOMRIGHT', -20, 12)
 	status:SetJustifyH('CENTER')
 	status:SetTextColor(0.294, 0.922, 0.173)
-	status:Hide()
 	content.Status = status
 
 	status.fade = status:CreateAnimationGroup()
@@ -507,8 +498,6 @@ end
 
 -- Used by Private:Print with the installer flag
 function Installer:ShowStatus(msg)
-	if not installerFrame then return end
-
 	local status = installerFrame.Content.Status
 	status:SetText(msg)
 	status:Show()
@@ -612,9 +601,9 @@ local function Toggle(section, path, labelPath, descPath)
 	return { section = section, key = strmatch(path, '[^.]+$'), label = label, desc = desc, hidden = hidden }
 end
 
--- ElvUI db keys, the mirror path is written along with the value (player castbar custom color)
+-- ElvUI db keys, the mirror path is written along with the value (castbar transparency)
 local function ElvUIToggle(label, path, mirror)
-	return { elvui = true, section = strmatch(path, '(.+)%.'), key = strmatch(path, '[^.]+$'), label = label, mirror = mirror and ElvUIToggle(nil, mirror), hidden = not Private.ElvUI }
+	return { elvui = true, section = strmatch(path, '(.+)%.'), key = strmatch(path, '[^.]+$'), label = label, mirror = mirror and ElvUIToggle(nil, mirror) }
 end
 
 local function BuildPages()
@@ -637,8 +626,8 @@ local function BuildPages()
 			Red(L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor pixel offsets."]),
 			recommended,
 		}, {
-			Button('1440p', function() Private:ApplyScale(true, true) end, 'native'),
-			Button('1080p', function() Private:ApplyScale(false, true) end, 'scaled'),
+			Button('1440p', function() Private:Setup_Scale(true, true) end, 'native'),
+			Button('1080p', function() Private:Setup_Scale(false, true) end, 'scaled'),
 		}),
 
 		-- ElvUI profiles
@@ -665,8 +654,8 @@ local function BuildPages()
 			L["Select your preferred UnitFrames color theme."],
 			Green(L["Optional step. Dark is applied by default."]),
 		}, {
-			Button(L["Dark"], function() Private:Setup_Theme('dark', true) end, 'dark'),
-			Button(L["Class Color"], function() Private:Setup_Theme('class', true) end, 'class'),
+			Button(L["Dark"], function() return Private:Setup_Theme('dark', true) end, 'dark'),
+			Button(L["Class Color"], function() return Private:Setup_Theme('class', true) end, 'class'),
 		}, {
 			Group(L["Transparency"],
 				ElvUIToggle(L["Action Bars"], 'actionbar.transparent'),
@@ -675,7 +664,7 @@ local function BuildPages()
 			Group(L["UnitFrames Transparency"],
 				ElvUIToggle(L["Health"], 'unitframe.colors.transparentHealth'),
 				ElvUIToggle(L["Power"], 'unitframe.colors.transparentPower'),
-				ElvUIToggle(L["Castbar"], 'unitframe.colors.transparentCastbar', 'unitframe.units.player.castbar.customColor.transparent')
+				ElvUIToggle(L["Castbar"], 'unitframe.units.player.castbar.customColor.transparent', 'unitframe.colors.transparentCastbar')
 			)
 		}, not Private.ElvUI),
 
@@ -698,13 +687,12 @@ local function BuildPages()
 			Button(L["Setup CVars"], function() Private:Setup_CVars(nil, true) end, 'cvars'),
 		}),
 
-		-- BigWigs profiles
+		-- BigWigs profile
 		Page('BigWigs', {
 			L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."],
 			recommended,
 		}, {
-			Button(L["BigWigs Main"], function() Private:Setup_BigWigs('main') end, 'main', 'BigWigs'),
-			Button(L["BigWigs Healing"], function() Private:Setup_BigWigs('healing') end, 'healing', 'BigWigs'),
+			Button('BigWigs', function() Private:Setup_BigWigs() end, 'bigwigs', 'BigWigs'),
 		}, nil, nil, L["BigWigs profile"]),
 
 		-- Damage Meter choice
@@ -734,7 +722,7 @@ local function BuildPages()
 			recommended,
 			L["For position adjustments use /scm X and Y offset options."],
 		}, {
-			Button('SkironCooldownManager', function() Private:Setup_SCM(true) end, 'scm', 'SkironCooldownManager'),
+			Button('SkironCooldownManager', function() Private:Setup_SkironCooldownManager(true) end, 'scm', 'SkironCooldownManager'),
 		}, nil, not Private.isModern, L["Cooldown Manager profile"]),
 
 		-- Edit mode string and guide
@@ -742,62 +730,75 @@ local function BuildPages()
 			Green(L["Step 1:"]) .. '\n' .. L["Click the first button for the import.\nUse CTRL+C to copy the string from the popup."],
 			Green(L["Step 2:"]) .. '\n' .. L["Press Escape, click Edit Mode and select Import on the Dropdown.\nUse CTRL+V to paste string, then pick a name and click import."],
 		}, {
-			Button(L["Copy Editmode String"], function() Private:Return_EditModeString() end, 'copy'),
-		}, nil, not Private.isModern),
+			Button(L["Copy Editmode String"], function() Private:Setup_EditMode() end, 'copy'),
+		}, nil, not Private.isRetail),
 
 		-- LuckyoneUI module checkboxes
 		Page(L["Modules"], { L["Enable the LuckyoneUI modules you want to use. Hover over a checkbox for details."] }, nil, {
 			Group(L["Modules"],
-				Toggle('map.minimap.buttons', 'map.minimapButtons.enable', 'map.minimapButtons'),
+				Toggle('map.minimap.buttons', 'map.minimapButtons.generalOptions.enable', 'map.minimapButtons'),
+				Toggle('map.worldMap.fog', 'map.worldMap.fog.enable', 'map.worldMap.fog'),
 				Toggle('misc.combatText', 'misc.combatText.generalOptions.enable', 'misc.combatText'),
-				Toggle('movableFrames', 'blizzard.movableFrames.enable', 'blizzard.movableFrames'),
+				Toggle('misc.combatLogging', 'misc.combatLogging.generalOptions.enable', 'misc.combatLogging'),
+				Toggle('movableFrames', 'general.movableFrames.enable', 'general.movableFrames'),
 				Toggle('misc.mailbox', 'misc.mailbox.generalOptions.enable', 'misc.mailbox'),
 				Toggle('misc.friendsList', 'misc.friendsList.generalOptions.enable', 'misc.friendsList'),
 				Toggle('misc.objectiveTracker', 'misc.objectiveTracker.general.generalOptions.enable', 'misc.objectiveTracker')
 			),
 			Group(L["ElvUI Tweaks"],
-				Toggle('misc', 'elvuiTweaks.toggles.mythicVisibility', nil, 'elvuiTweaks.mythicVisibilityDesc.desc'),
-				Toggle('misc', 'elvuiTweaks.toggles.dataTextsTweaks', nil, 'elvuiTweaks.dataTextsTweaksDesc.desc')
+				Toggle('misc', 'elvuiTweaks.general.toggles.dataTextsTweaks', nil, 'elvuiTweaks.general.dataTextsTweaksDesc.desc')
 			),
 			Group(L["Nameplates"],
-				Toggle('nameplates', 'elvuiTweaks.nameplates.targetTextureEnable'),
-				Toggle('nameplates', 'elvuiTweaks.nameplates.focusTextureEnable'),
-				Toggle('misc', 'blizzard.misc.removeNameplateRealm')
+				Toggle('nameplates', 'elvuiTweaks.nameplates.textures.targetTextureEnable'),
+				Toggle('nameplates', 'elvuiTweaks.nameplates.textures.focusTextureEnable'),
+				Toggle('nameplates', 'elvuiTweaks.nameplates.absorbs.absorbTextureEnable'),
+				Toggle('nameplates', 'elvuiTweaks.nameplates.absorbs.healAbsorbTextureEnable'),
+				Toggle('misc', 'general.misc.removeNameplateRealm')
+			),
+			Group(L["UnitFrames"],
+				Toggle('misc', 'elvuiTweaks.unitframes.toggles.mythicVisibility', nil, 'elvuiTweaks.unitframes.mythicVisibilityDesc.desc'),
+				Toggle('unitframes', 'elvuiTweaks.unitframes.absorbs.absorbTextureEnable'),
+				Toggle('unitframes', 'elvuiTweaks.unitframes.absorbs.healAbsorbTextureEnable')
 			),
 		}),
 
 		-- LuckyoneUI general tab checkboxes
 		Page(L["Quality of Life"], { L["Small tweaks that speed up daily tasks and hide Blizzard frames you do not need."] }, nil, {
 			Group(L["Quality of Life"],
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.autoAcceptRole'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.autoDismount'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.easyDelete'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.expandMerchant'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.expandQuestLog'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.fasterLoot'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.preventLootAutoShow'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.privacyOverlay'),
-				Toggle('qualityOfLife', 'blizzard.qualityOfLife.quickSignup')
+				Toggle('qualityOfLife', 'general.qualityOfLife.autoAcceptRole'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.autoDismount'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.easyDelete'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.expandMerchant'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.expandQuestLog'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.fasterLoot'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.preventLootAutoShow'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.privacyOverlay'),
+				Toggle('qualityOfLife', 'general.qualityOfLife.quickSignup')
 			),
 			Group(L["Hide Blizzard Frames"],
-				Toggle('disabledFrames', 'blizzard.disabledFrames.AlertFrame'),
-				Toggle('disabledFrames', 'blizzard.disabledFrames.ApplicationCover'),
-				Toggle('disabledFrames', 'blizzard.disabledFrames.BossBanner'),
-				Toggle('disabledFrames', 'blizzard.disabledFrames.HousingDecorAlerts'),
-				Toggle('disabledFrames', 'blizzard.disabledFrames.LossOfControl'),
-				Toggle('disabledFrames', 'blizzard.disabledFrames.TalkingHead'),
-				Toggle('disabledFrames', 'blizzard.disabledFrames.UIErrorsFrame'),
-				Toggle('disabledFrames', 'blizzard.disabledFrames.ZoneTextFrame')
+				Toggle('disabledFrames', 'general.disabledFrames.AlertFrame'),
+				Toggle('disabledFrames', 'general.disabledFrames.ApplicationCover'),
+				Toggle('disabledFrames', 'general.disabledFrames.BossBanner'),
+				Toggle('disabledFrames', 'general.disabledFrames.HousingDecorAlerts'),
+				Toggle('disabledFrames', 'general.disabledFrames.LossOfControl'),
+				Toggle('disabledFrames', 'general.disabledFrames.TalkingHead'),
+				Toggle('disabledFrames', 'general.disabledFrames.UIErrorsFrame'),
+				Toggle('disabledFrames', 'general.disabledFrames.ZoneTextFrame')
 			),
 		}),
 
 		-- LuckyoneUI custom skins
 		Page('Skins', { L["Skin the Addons and Blizzard frames below in ElvUI style. Only installed Addons are listed."] }, nil, {
 			Group('AddOns',
+				Toggle('skins', 'skins.addons.AllTheThings'),
+				Toggle('skins', 'skins.addons.Attune'),
 				Toggle('skins', 'skins.addons.Auctionator'),
 				Toggle('skins', 'skins.addons.BigWigs'),
 				Toggle('skins', 'skins.addons.BugSack'),
+				Toggle('skins', 'skins.addons.ForeverDungeonJournal'),
+				Toggle('skins', 'skins.addons.KeystoneLoot'),
 				Toggle('skins', 'skins.addons.LFGBulletinBoard'),
+				Toggle('skins', 'skins.addons.NovaInstanceTracker'),
 				Toggle('skins', 'skins.addons.NovaSpellRankChecker'),
 				Toggle('skins', 'skins.addons.NovaWorldBuffs'),
 				Toggle('skins', 'skins.addons.Plumber'),
@@ -820,8 +821,8 @@ local function BuildPages()
 			L["You have completed the installation process, please click 'Finished' to reload the UI."],
 			L["Feel free to join our community Discord for support and social chats."],
 		}, {
-			Button('Discord', function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://discord.gg/xRY4bwA') end),
-			Button(Green(L["Finished"]), InstallComplete),
+			Button('Discord', function() StaticPopup_Show('LUCKYONE_EDITBOX', nil, nil, 'https://discord.luckyone.dev') end),
+			Button(Green(L["Finished"]), function() Private:Setup_Personal() C_UI.Reload() end),
 		}),
 	}
 end
@@ -858,9 +859,7 @@ function Installer:Show()
 end
 
 function Installer:Hide()
-	if installerFrame then
-		installerFrame:Hide()
-	end
+	installerFrame:Hide()
 end
 
 function Installer:IsShown()

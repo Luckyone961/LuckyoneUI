@@ -13,12 +13,13 @@ local function Skin_NovaWorldBuffs()
 	if not Private.Addon.db.profile.skins.NovaWorldBuffs then return end
 
 	local layerFrame = MinimapLayerFrame
-	if not layerFrame or layerFrame.isSkinned then return end
+	if not layerFrame then return end
 
 	-- Main Frame
 	S:HandleFrame(layerFrame)
-	NWBVersionDragTooltip:StripTextures()
-	NWBVersionDragTooltip:SetTemplate('Transparent') -- Mouseover tooltip, list of all layers
+
+	-- Mouseover tooltip, list of all layers (NWB gives its version window tooltip the same global name)
+	S:HandleFrame(layerFrame.tooltip)
 
 	-- Move the layer box to the bottom left of the minimap
 	layerFrame:ClearAllPoints()
@@ -27,10 +28,9 @@ local function Skin_NovaWorldBuffs()
 	-- Make sure we can't randomly drag it around
 	layerFrame:SetMovable(false)
 
-	-- Adjust the actual size to fit our template
+	-- Adjust the actual size to fit our template, NWB re-applies .width on every layer update
+	layerFrame.width = E:Scale(52)
 	layerFrame:Size(52, 18)
-
-	layerFrame.isSkinned = true
 end
 
 S:AddCallbackForAddon('NovaWorldBuffs', 'LuckyoneUI_NovaWorldBuffs', Skin_NovaWorldBuffs)

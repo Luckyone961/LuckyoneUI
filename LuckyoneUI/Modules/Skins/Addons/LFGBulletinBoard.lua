@@ -51,16 +51,13 @@ local function Skin_LFGBulletinBoard()
 	LayoutTabs(frame, frame.Tabs[1].position)
 	hooksecurefunc(addon.Tool, 'ChangeTabPositions', LayoutTabs)
 
-	-- Header
+	-- Header and Footer
 	local header = _G.GroupBulletinBoardFrameHeaderContainer
-	for _, button in next, { header.CloseButton, header.SettingsButton, header.RefreshButton } do
+	local footer = _G.GroupBulletinBoardFrameFooterContainer
+	for _, button in next, { header.CloseButton, header.SettingsButton, header.RefreshButton, footer.AnnounceChannelSelect, footer.AnnounceButton } do
 		S:HandleButton(button)
 	end
 
-	-- Footer
-	local footer = _G.GroupBulletinBoardFrameFooterContainer
-	S:HandleButton(footer.AnnounceChannelSelect)
-	S:HandleButton(footer.AnnounceButton)
 	S:HandleEditBox(footer.AnnounceInput)
 
 	-- Chat Requests Tab

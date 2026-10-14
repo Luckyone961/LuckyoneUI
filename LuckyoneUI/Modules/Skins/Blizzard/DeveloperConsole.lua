@@ -49,8 +49,8 @@ local function AutoComplete_DisplayResults(frame)
 
 	for _, entry in next, entries do
 		if not entry.IsSkinned then
-			entry.Selected:SetColorTexture(r, g, b, .4)
-			entry.Highlight:SetColorTexture(r, g, b, .25)
+			entry.Selected:SetColorTexture(r, g, b, 0.4)
+			entry.Highlight:SetColorTexture(r, g, b, 0.25)
 
 			entry.IsSkinned = true
 		end
@@ -58,16 +58,12 @@ local function AutoComplete_DisplayResults(frame)
 end
 
 local function SkinAutoComplete(frame)
-	frame:StripTextures(nil, true)
+	for _, panel in next, { frame, frame.Tooltip } do
+		panel:StripTextures(nil, true)
 
-	frame:CreateBackdrop('Transparent')
-	frame.backdrop:SetOutside(frame.Background)
-
-	local tooltip = frame.Tooltip
-	tooltip:StripTextures(nil, true)
-
-	tooltip:CreateBackdrop('Transparent')
-	tooltip.backdrop:SetOutside(tooltip.Background)
+		panel:CreateBackdrop('Transparent')
+		panel.backdrop:SetOutside(panel.Background)
+	end
 
 	hooksecurefunc(frame, 'DisplayResults', AutoComplete_DisplayResults)
 end
@@ -92,7 +88,7 @@ local function Skin_DeveloperConsole()
 	progressBar:SetStatusBarTexture(E.media.normTex)
 
 	r, g, b = unpack(E.media.rgbvaluecolor)
-	progressBar:SetStatusBarColor(r, g, b, .2)
+	progressBar:SetStatusBarColor(r, g, b, 0.2)
 
 	SkinClearButton(filters.EditBox.ClearTextButton)
 

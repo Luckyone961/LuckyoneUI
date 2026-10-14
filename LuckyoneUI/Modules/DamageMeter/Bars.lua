@@ -1,7 +1,9 @@
 local _, Private = ...
 local DM = Private.Modules.DamageMeter
 
-if not DM then return end
+if not Private.ElvUI then
+	return
+end
 
 local LSM = Private.Libs.LSM
 
@@ -156,7 +158,7 @@ end
 
 local function Bar_OnClick(bar, mouseButton)
 	if mouseButton == 'RightButton' then
-		DM:WindowRightClick(bar.window)
+		DM:OnWindowRightClick(bar.window)
 	elseif bar.entry and not bar.window.spellMode then
 		DM:OpenPopup(bar.window, bar.entry)
 	end
@@ -195,12 +197,11 @@ local function CreateBar(window)
 
 	-- Parented to the status bar to sit above the fill, below the texts
 	bar.highlight = status:CreateTexture(nil, 'OVERLAY', nil, -1)
-	bar.highlight:SetTexture(E.media.blankTex)
-	bar.highlight:SetVertexColor(1, 1, 1, 0.2)
+	bar.highlight:SetColorTexture(1, 1, 1, 0.2)
 	bar.highlight:SetAllPoints(bar)
 	bar.highlight:Hide()
 
-	bar.persec = DM:CreateText(status, 'RIGHT')
+	bar.secondary = DM:CreateText(status, 'RIGHT')
 	bar.value = DM:CreateText(status, 'RIGHT')
 
 	-- Custom font string so every name can start at the same position
@@ -225,7 +226,7 @@ local function SetBarBorder(bar, size, iconShown)
 
 		for _, edge in ipairs(BorderEdges) do
 			local texture = bar:CreateTexture(nil, 'OVERLAY')
-			texture:SetTexture(E.media.blankTex)
+			texture:SetColorTexture(1, 1, 1)
 			border[edge] = texture
 		end
 	end
@@ -275,7 +276,7 @@ local function SetBarAnchors(db, bar, iconShown)
 	bar.icon:SetShown(iconShown)
 
 	local style = db.barStyle
-	local status, rank, name, value, persec = bar.status, bar.rank, bar.name, bar.value, bar.persec
+	local status, rank, name, value, secondary = bar.status, bar.rank, bar.name, bar.value, bar.secondary
 
 	local relative = iconShown and bar.icon or bar
 	local relativePoint = iconShown and 'RIGHT' or 'LEFT'
@@ -288,18 +289,18 @@ local function SetBarAnchors(db, bar, iconShown)
 	rank:ClearAllPoints()
 	name:ClearAllPoints()
 	value:ClearAllPoints()
-	persec:ClearAllPoints()
+	secondary:ClearAllPoints()
 
 	-- Only the thin style sets a fixed height, zero hands it back to the anchors
 	status:Height(0)
 
 	if style == 'THIN' then
 		-- Both texts sit on top, the bar only fills the leftover height
-		persec:Point('TOP', bar, 'TOP', 0, db.valueYOffset)
-		persec:Point('RIGHT', bar, 'RIGHT', -2 + db.valueXOffset, 0)
+		secondary:Point('TOP', bar, 'TOP', 0, db.valueYOffset)
+		secondary:Point('RIGHT', bar, 'RIGHT', -2 + db.valueXOffset, 0)
 
 		value:Point('TOP', bar, 'TOP', 0, db.valueYOffset)
-		value:Point('RIGHT', persec, 'LEFT', 0, 0)
+		value:Point('RIGHT', secondary, 'LEFT', 0, 0)
 
 		-- Empty rank has no width, the name keeps its spot without it
 		rank:Point('TOP', bar, 'TOP', 0, db.nameYOffset)
@@ -325,8 +326,8 @@ local function SetBarAnchors(db, bar, iconShown)
 		status:Point('TOPLEFT', relative, iconShown and 'TOPRIGHT' or 'TOPLEFT', separator, 0)
 		status:Point('BOTTOMRIGHT', bar, 'BOTTOMRIGHT', 0, 0)
 
-		persec:Point('RIGHT', status, 'RIGHT', -2 + db.valueXOffset, db.valueYOffset)
-		value:Point('RIGHT', persec, 'LEFT', 0, 0)
+		secondary:Point('RIGHT', status, 'RIGHT', -2 + db.valueXOffset, db.valueYOffset)
+		value:Point('RIGHT', secondary, 'LEFT', 0, 0)
 
 		rank:Point('LEFT', status, 'LEFT', 2 + db.nameXOffset, db.nameYOffset)
 
@@ -345,7 +346,7 @@ local function ApplyBarSettings(db, window, bar, index, texture)
 	bar:Point('TOPLEFT', window.content, 'TOPLEFT', 0, yOffset)
 	bar:Point('TOPRIGHT', window.content, 'TOPRIGHT', 0, yOffset)
 	bar:Height(db.barHeight)
-	bar.icon:Size(db.barHeight)
+	bar.icon:Size(db.barHeight, db.barHeight)
 
 	bar.status:SetStatusBarTexture(texture)
 	bar.bg:SetTexture(texture)
@@ -356,7 +357,7 @@ local function ApplyBarSettings(db, window, bar, index, texture)
 	Private:SetFont(bar.rank, db.font, db.fontSize, db.fontOutline)
 	Private:SetFont(bar.name, db.font, db.fontSize, db.fontOutline)
 	Private:SetFont(bar.value, db.font, db.fontSize, db.fontOutline)
-	Private:SetFont(bar.persec, db.font, db.fontSize, db.fontOutline)
+	Private:SetFont(bar.secondary, db.font, db.fontSize, db.fontOutline)
 
 	-- Wipe cached states so we can insta display setting changes
 	bar.colorKey = nil
@@ -399,9 +400,9 @@ function DM:UpdateWindowGeometry(window, height)
 	end
 end
 
--- A file ID and an atlas name never collide, so one key covers both
+-- A file ID and a class name never collide, so one key covers both
 local function UpdateBarIcon(bar, entry, spellMode)
-	local fileID, atlas
+	local fileID, classFilename
 
 	if spellMode then
 		local details = entry.combatSpellDetails
@@ -422,11 +423,12 @@ local function UpdateBarIcon(bar, entry, spellMode)
 		if specIcon and specIcon ~= 0 then
 			fileID = specIcon
 		elseif entry.classFilename and entry.classFilename ~= '' then
-			atlas = GetClassAtlas(entry.classFilename)
+			classFilename = entry.classFilename
 		end
 	end
 
-	local key = fileID or atlas
+	-- false marks a bar without icon, nil is the wiped cache
+	local key = fileID or classFilename or false
 
 	if issecretvalue(key) then
 		bar.iconKey = nil
@@ -438,8 +440,8 @@ local function UpdateBarIcon(bar, entry, spellMode)
 	if fileID then
 		bar.icon:SetTexture(fileID)
 		bar.icon:SetTexCoord(unpack(E.TexCoords))
-	elseif atlas then
-		bar.icon:SetAtlas(atlas)
+	elseif classFilename then
+		bar.icon:SetAtlas(GetClassAtlas(classFilename))
 	else
 		bar.icon:SetTexture(nil)
 	end
@@ -473,7 +475,7 @@ local function UpdateBarColor(db, bar, entry, spellMode)
 	bar.rank:SetTextColor(nameColor.r, nameColor.g, nameColor.b)
 	bar.name:SetTextColor(nameColor.r, nameColor.g, nameColor.b)
 	bar.value:SetTextColor(valueColor.r, valueColor.g, valueColor.b)
-	bar.persec:SetTextColor(valueColor.r, valueColor.g, valueColor.b)
+	bar.secondary:SetTextColor(valueColor.r, valueColor.g, valueColor.b)
 end
 
 local function UpdateBarStatus(bar, entry, maxAmount, fullBar)
@@ -492,14 +494,6 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 	local nameText = bar.name
 
 	if spellMode then
-		bar.lastName = nil
-
-		-- The popup has no rank column, zero is never a real rank
-		if bar.lastRank ~= 0 then
-			bar.lastRank = 0
-			bar.rank:SetText('')
-		end
-
 		-- GetSpellName takes secret IDs
 		local spellName = entry.spellName
 		if not spellName and entry.spellID then
@@ -546,7 +540,7 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 		bar.rank:SetText(rankColumn and format(RankFormat, rank, '') or '')
 	end
 
-	local name = DM:StripRealm(rawName or '', entry.classFilename)
+	local name = DM:StripRealm(rawName or '', entry.classFilename, entry.sourceGUID)
 
 	if db.showRank and not rankColumn then
 		nameText:SetFormattedText(DAMAGE_METER_SOURCE_NAME, rank, name)
@@ -556,21 +550,21 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 end
 
 local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry, recapMode)
-	local valueText, persecText = bar.value, bar.persec
+	local valueText, secondaryText = bar.value, bar.secondary
 
 	if recapMode then
 		local percent, seconds = entry.healthPercent, entry.timeBeforeDeath
 		local display = db.numberDisplay
 
 		valueText:SetText(AbbreviateNumbers(entry.totalAmount, renderAbbrev))
-		bar.persecSecret = false
+		bar.secondarySecret = false
 
 		if display == 'MINIMAL' or not percent then
-			persecText:SetText('')
+			secondaryText:SetText('')
 		elseif display == 'COMPLETE' and seconds then
-			persecText:SetFormattedText(renderFormats.both, format('%.1fs', seconds), percent)
+			secondaryText:SetFormattedText(renderFormats.both, format('%.1fs', seconds), percent)
 		else
-			persecText:SetFormattedText(renderFormats.percent, percent)
+			secondaryText:SetFormattedText(renderFormats.percent, percent)
 		end
 
 		return
@@ -584,8 +578,8 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 			valueText:SetText(SecondsToClock(deathTime))
 		end
 
-		persecText:SetText('')
-		bar.persecSecret = false
+		secondaryText:SetText('')
+		bar.secondarySecret = false
 		return
 	end
 
@@ -610,24 +604,24 @@ local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, perse
 		local percent = sessionTotal > 0 and (total / sessionTotal * 100) or 0
 
 		if secondary then
-			persecText:SetFormattedText(renderFormats.both, AbbreviateNumbers(secondary, renderAbbrev), percent)
-			bar.persecSecret = secret
+			secondaryText:SetFormattedText(renderFormats.both, AbbreviateNumbers(secondary, renderAbbrev), percent)
+			bar.secondarySecret = secret
 		else
-			persecText:SetFormattedText(renderFormats.percent, percent)
-			bar.persecSecret = false
+			secondaryText:SetFormattedText(renderFormats.percent, percent)
+			bar.secondarySecret = false
 		end
 	elseif display ~= 'MINIMAL' and secondary then
-		persecText:SetFormattedText(renderFormats.single, AbbreviateNumbers(secondary, renderAbbrev))
-		bar.persecSecret = secret
+		secondaryText:SetFormattedText(renderFormats.single, AbbreviateNumbers(secondary, renderAbbrev))
+		bar.secondarySecret = secret
 	else
-		persecText:SetText('')
-		bar.persecSecret = false
+		secondaryText:SetText('')
+		bar.secondarySecret = false
 	end
 end
 
 -- Every rank shares the width of the widest one, that lines up the names behind them
 local function UpdateRankColumn(db, window, lastRank)
-	local width = lastRank > 0 and (GetSampleWidth(db, lastRank < 10 and 9 or 99) + E:Scale(db.rankSpacing)) or 0
+	local width = lastRank > 0 and (GetSampleWidth(db, lastRank < 10 and 9 or lastRank < 100 and 99 or 999) + E:Scale(db.rankSpacing)) or 0
 
 	if window.rankWidth == width then return end
 	window.rankWidth = width
@@ -648,10 +642,10 @@ local function UpdateValueColumn(db, window)
 			local bar = bars[i]
 
 			if bar.entry then
-				if bar.persecSecret or bar.persec:IsAnchoringSecret() then
+				if bar.secondarySecret or bar.secondary:IsAnchoringSecret() then
 					secret = true
 				else
-					width = max(width, bar.persec:GetStringWidth())
+					width = max(width, bar.secondary:GetUnboundedStringWidth())
 				end
 			end
 		end
@@ -669,7 +663,7 @@ local function UpdateValueColumn(db, window)
 	window.columnWidth = width
 
 	for i = 1, window.visibleCount do
-		window.bars[i].persec:SetWidth(width)
+		window.bars[i].secondary:SetWidth(width)
 	end
 end
 

@@ -1,0 +1,571 @@
+local _, Private = ...
+
+if not Private.ElvUI then
+	return
+end
+
+local abs = abs
+local next = next
+local unpack = unpack
+
+local CreateFrame = CreateFrame
+local hooksecurefunc = hooksecurefunc
+local RunNextFrame = RunNextFrame
+
+local E = unpack(ElvUI)
+local S = E:GetModule('Skins')
+
+local FDJ
+
+local function SkinPanel(panel)
+	panel:SetBackdrop()
+	panel:CreateBackdrop()
+end
+
+-- Buttons that bring their own backdrop, the ElvUI one goes on a child
+local function SkinBackdropButton(button)
+	button:SetBackdrop()
+	S:HandleButton(button, nil, nil, nil, true)
+end
+
+-- Transparent backdrop with the hover highlight inside it
+local function SkinRowBackdrop(row)
+	row:SetBackdrop()
+	row:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
+
+	local highlight = row:CreateTexture(nil, 'HIGHLIGHT')
+	highlight:SetColorTexture(1, 1, 1, 0.25)
+	highlight:SetInside(row.backdrop)
+end
+
+-- The selected row is painted in the theme color of the dungeon
+local function IsSelectedColor(r, g, b)
+	for _, theme in next, FDJ.THEMES do
+		local color = theme.rowSelected
+		if abs(r - color[1]) < 0.001 and abs(g - color[2]) < 0.001 and abs(b - color[3]) < 0.001 then
+			return true
+		end
+	end
+
+	return false
+end
+
+local function Row_SetBackdropColor(row, r, g, b)
+	row.selectedTexture:SetShown(IsSelectedColor(r, g, b))
+end
+
+-- Boss and quest rows, faction buttons
+local function SkinListRow(row)
+	local r, g, b = row:GetBackdropColor()
+	SkinRowBackdrop(row)
+
+	local selected = row:CreateTexture(nil, 'BACKGROUND')
+	local vr, vg, vb = unpack(E.media.rgbvaluecolor)
+	selected:SetColorTexture(vr, vg, vb, 0.25)
+	selected:SetInside(row.backdrop)
+	row.selectedTexture = selected
+
+	Row_SetBackdropColor(row, r, g, b)
+	hooksecurefunc(row, 'SetBackdropColor', Row_SetBackdropColor)
+
+	row.IsSkinned = true
+end
+
+-- Completed quests and owned favourites get a green border
+local function SkinCompleteGlow(glow)
+	glow:SetTemplate(nil, nil, true, true)
+	glow:SetBackdropColor(0, 0, 0, 0)
+	glow:SetBackdropBorderColor(0.12, 1, 0.25)
+	glow:SetAllPoints()
+end
+
+local function SkinQuestRow(row)
+	SkinListRow(row)
+	SkinCompleteGlow(row.completeGlow)
+
+	-- Quest Chain
+	row.chainPanel:SetTemplate('Transparent')
+end
+
+-- Loot rows, quest rewards and the quest item buttons
+local function SkinItemButton(button)
+	SkinRowBackdrop(button)
+
+	local icon = button.icon
+	icon:SetTexCoords()
+	icon:CreateBackdrop(nil, nil, nil, nil, nil, nil, nil, nil, true)
+	icon:SetParent(icon.backdrop)
+
+	button.IsSkinned = true
+end
+
+local function Tab_UpdateBorder(tab)
+	tab:SetBackdropBorderColor(unpack(tab:IsEnabled() and E.media.bordercolor or E.media.rgbvaluecolor))
+end
+
+-- DungeonJournal disables the active tab
+local function SkinTab(tab)
+	S:HandleButton(tab)
+
+	tab:HookScript('OnEnable', Tab_UpdateBorder)
+	tab:HookScript('OnDisable', Tab_UpdateBorder)
+	Tab_UpdateBorder(tab)
+end
+
+local function BossContent_SetHeight(content)
+	for _, row in next, { content:GetChildren() } do
+		if not row.IsSkinned then
+			row:Width(306)
+			SkinListRow(row)
+		end
+	end
+end
+
+local function QuestContent_SetHeight(content)
+	for _, row in next, { content:GetChildren() } do
+		if not row.IsSkinned then
+			SkinQuestRow(row)
+		end
+	end
+end
+
+local function ItemContent_SetHeight(content)
+	for _, button in next, { content:GetChildren() } do
+		if button.icon and button.name and not button.IsSkinned then
+			SkinItemButton(button)
+		end
+	end
+end
+
+-- Loot rows
+local function LootContent_SetHeight(content)
+	ItemContent_SetHeight(content)
+
+	local frame = ForeverDungeonJournalFrame
+	for _, line in next, { frame.lootRecipeLine, frame.lootSharedLine } do
+		if not line.IsSkinned then
+			line:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
+			line.IsSkinned = true
+		end
+	end
+end
+
+-- Favourites rows bring their own highlight, skip the dungeon dividers
+local function FavouritesContent_SetHeight(content)
+	for _, row in next, { content:GetChildren() } do
+		if row.icon and not row.IsSkinned then
+			row:SetHighlightTexture(E.ClearTexture)
+			SkinItemButton(row)
+			SkinCompleteGlow(row.completeGlow)
+		end
+	end
+end
+
+local function HomeContent_SetHeight(content)
+	for _, card in next, { content:GetChildren() } do
+		if not card.IsSkinned then
+			-- Border around the dungeon art
+			SkinPanel(card)
+			card.backdrop:SetInside(card, 3, 3)
+			card.innerGlow:Hide()
+
+			card:HookScript('OnEnter', S.SetModifiedBackdrop)
+			card:HookScript('OnLeave', S.SetOriginalBackdrop)
+
+			card.IsSkinned = true
+		end
+	end
+end
+
+local function RouteContent_SetHeight(content)
+	for _, row in next, { content:GetChildren() } do
+		S:HandleButton(row.mapButton)
+	end
+end
+
+-- Search results and loot filter results
+local function Results_SetHeight(results)
+	for _, row in next, { results:GetChildren() } do
+		-- Skip the template borders without thin borders
+		if not row.IsSkinned and row:IsObjectType('Button') then
+			row:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
+			row.IsSkinned = true
+		end
+	end
+end
+
+-- Floor buttons of multi level dungeons
+local function Map_Render()
+	local buttons = ForeverDungeonJournalFrame.dungeonMapFloorButtons
+	if not buttons then return end
+
+	for _, button in next, buttons do
+		if not button.IsSkinned then
+			SkinTab(button)
+		end
+	end
+end
+
+-- Armor type options, the tick box follows ElvUI's menu checkboxes
+local function SkinArmorOption(option)
+	option:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
+	option.box:SetTexture(E.ClearTexture)
+
+	local box = CreateFrame('Frame', nil, option)
+	box:Size(12)
+	box:SetPoint('CENTER', option.box)
+	box:SetTemplate()
+
+	-- DungeonJournal shows the check texture on the ticked types
+	local check = option.check
+	check:SetParent(box)
+	check:SetTexture(E.media.normTex)
+	check:SetVertexColor(unpack(E.media.rgbvaluecolor))
+	check:SetInside(box)
+end
+
+-- Loot Filter window, built on the first click
+local function Skin_LootFilterWindow(frame)
+	local window = frame.lootFilterWindow
+	if window.IsSkinned then return end
+
+	window:SetTemplate()
+	S:HandleCloseButton((window:GetChildren()))
+
+	-- The filter starts disabled, ElvUI only clears its disabled texture when the state changes
+	for _, check in next, window.checks do
+		S:HandleCheckBox(check)
+
+		if not check:IsEnabled() and not check:GetChecked() then
+			check:SetDisabledTexture('')
+		end
+	end
+
+	S:HandleEditBox(window.minBox)
+
+	-- Armor type drop-down
+	local armor = window.armor
+	S:HandleButton(armor)
+	armor.menu:SetTemplate('Transparent')
+
+	for _, option in next, armor.options do
+		SkinArmorOption(option)
+	end
+
+	for _, button in next, { window.toggle, window.clear, window.ok, window.show } do
+		S:HandleButton(button)
+	end
+
+	window.IsSkinned = true
+end
+
+-- Loot Filter results list, covers the journal when no boss matches
+local function Skin_LootFilterResults(frame)
+	local panel = frame.lootFilterResults
+	if panel.IsSkinned then return end
+
+	panel:SetTemplate()
+	S:HandleButton(panel.back)
+	S:HandleButton(panel.filter)
+	S:HandleScrollBar(panel.scroll.ScrollBar)
+
+	hooksecurefunc(panel.content, 'SetHeight', Results_SetHeight)
+	Results_SetHeight(panel.content)
+
+	panel.IsSkinned = true
+end
+
+-- Favourites window, built on the first click
+local function Skin_FavouritesWindow(frame)
+	local window = frame.favouritesWindow
+	if window.IsSkinned then return end
+
+	S:HandlePortraitFrame(window)
+	window.fdjStarBackground:Hide()
+	S:HandleScrollBar(window.fdjScroll.ScrollBar)
+
+	hooksecurefunc(window.fdjContent, 'SetHeight', FavouritesContent_SetHeight)
+	FavouritesContent_SetHeight(window.fdjContent)
+
+	window.IsSkinned = true
+end
+
+-- Right-click menu on items, built on the first use
+local function Skin_FavouriteMenu()
+	local menu = ForeverDungeonJournalFavouriteContextMenu
+	if not menu or menu.IsSkinned then return end
+
+	menu:SetTemplate('Transparent')
+	menu.button:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
+
+	menu.IsSkinned = true
+end
+
+-- Report window, built on the first click
+local function Skin_BugReportWindow(frame)
+	local window = frame.bugReportWindow
+	if window.IsSkinned then return end
+
+	window:SetTemplate()
+	S:HandleEditBox(window.link)
+	S:HandleButton(window.close)
+
+	window.IsSkinned = true
+end
+
+-- Settings window (minimap right-click, /dj options), built on the first toggle
+local function Skin_SettingsPanel()
+	local panel = ForeverDungeonJournalSettings
+	if panel.IsSkinned then return end
+
+	panel:SetTemplate()
+	S:HandleCloseButton((panel:GetChildren()))
+
+	for _, check in next, panel.checks do
+		S:HandleCheckBox(check)
+	end
+
+	-- The key binding button recolors its border on every show
+	for _, button in next, panel.keybinds do
+		SkinBackdropButton(button)
+	end
+
+	panel.IsSkinned = true
+end
+
+-- Dungeon map on the world map, the toggle switches back to the world map
+-- Scarlet Monastery adds wing buttons, the current wing is disabled
+local function Skin_WorldMapButtons()
+	local toggle = ForeverDungeonJournalWorldMapToggle
+	if not toggle then return end
+
+	S:HandleButton(toggle)
+
+	for _, button in next, { WorldMapFrame:GetChildren() } do
+		if button.fdjWing and not button.IsSkinned then
+			SkinTab(button)
+		end
+	end
+end
+
+local function Text_SetTextColor(text, r, g, b)
+	if r ~= 1 or g ~= 1 or b ~= 1 then
+		text:SetTextColor(1, 1, 1)
+	end
+end
+
+-- The "You will also receive" header is created on demand in a black font
+local function QuestDetail_SetHeight()
+	local header = ForeverDungeonJournalFrame.questAlsoReceiveHeader
+	if header then
+		header:SetTextColor(1, 1, 1)
+	end
+end
+
+-- Reputation rewards are created on demand
+local function RepPills_Layout()
+	for _, pill in next, ForeverDungeonJournalFrame.questRepPills do
+		if not pill.IsSkinned then
+			pill:SetTemplate('Transparent')
+			pill.IsSkinned = true
+		end
+	end
+end
+
+local function Skin_Frame()
+	local frame = ForeverDungeonJournalFrame
+	if not frame then return end
+
+	-- Main Frame
+	frame:SetBackdrop()
+	frame:StripTextures()
+	frame:CreateBackdrop('Transparent')
+
+	for _, child in next, { frame:GetChildren() } do
+		if child:IsObjectType('Button') and child:GetScript('OnClick') == UIPanelCloseButton_OnClick then
+			S:HandleCloseButton(child)
+		end
+	end
+
+	S:HandleButton(frame.backButton)
+
+	-- Language select and Report top right
+	S:HandleButton(frame.languageSelectorButton)
+	S:HandleButton(frame.bugReportButton)
+	hooksecurefunc(FDJ, 'ToggleBugReportWindow', Skin_BugReportWindow)
+
+	local languageMenu = frame.languageMenu
+	for _, option in next, { languageMenu:GetChildren() } do
+		option:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
+	end
+
+	languageMenu:SetTemplate('Transparent')
+
+	-- Search
+	local searchBox = frame.searchEditBox
+	searchBox:SetBackdrop()
+	S:HandleEditBox(searchBox)
+	searchBox.backdrop:SetAllPoints()
+	frame.searchClearButton:SetNormalTexture(E.Media.Textures.Close)
+
+	local searchResults = frame.searchResultsFrame
+	searchResults:SetTemplate('Transparent')
+	hooksecurefunc(searchResults, 'SetHeight', Results_SetHeight)
+
+	-- Dungeon List
+	local home = frame.homePanel
+	home:SetBackdrop()
+	home:StripTextures()
+
+	SkinBackdropButton(frame.hideDungeonsButton)
+
+	-- Loot Filter
+	SkinBackdropButton(frame.lootFilterButton)
+
+	hooksecurefunc(FDJ, 'ToggleLootFilterWindow', Skin_LootFilterWindow)
+	hooksecurefunc(FDJ, 'ShowLootFilterList', Skin_LootFilterResults)
+
+	-- Favourites
+	SkinBackdropButton(frame.favouritesButton)
+
+	hooksecurefunc(FDJ, 'ToggleFavouritesWindow', Skin_FavouritesWindow)
+	hooksecurefunc(FDJ, 'ShowItemFavouriteMenu', Skin_FavouriteMenu)
+
+	S:HandleScrollBar(frame.homeScroll.ScrollBar)
+
+	hooksecurefunc(frame.homeCardsContent, 'SetHeight', HomeContent_SetHeight)
+	HomeContent_SetHeight(frame.homeCardsContent)
+
+	-- Dungeon Page
+	frame.contentPanel:SetBackdrop()
+	frame.contentParchment:Hide()
+	frame.atmosphere:Hide()
+	frame.dungeonBackgroundArt:Kill()
+
+	SkinPanel(frame.headerPanel)
+	frame.headerParchment:Hide()
+
+	for _, tab in next, { frame.bossesTab, frame.questsTab, frame.mapTab, frame.dungeonRouteButton } do
+		SkinTab(tab)
+	end
+
+	-- Bosses
+	SkinPanel(frame.leftPanel)
+	SkinPanel(frame.rightPanel)
+	frame.leftParchment:Hide()
+	frame.rightParchment:Hide()
+
+	S:HandleScrollBar(frame.bossListScroll.ScrollBar)
+	S:HandleScrollBar(frame.lootScroll.ScrollBar)
+
+	hooksecurefunc(frame.bossContent, 'SetHeight', BossContent_SetHeight)
+	hooksecurefunc(frame.lootContent, 'SetHeight', LootContent_SetHeight)
+	BossContent_SetHeight(frame.bossContent)
+	LootContent_SetHeight(frame.lootContent)
+
+	-- Quests
+	SkinPanel(frame.questLeftPanel)
+	SkinPanel(frame.questRightPanel)
+	frame.questLeftParchment:Hide()
+	frame.questRightParchment:Hide()
+
+	SkinListRow(frame.allianceQuestButton)
+	SkinListRow(frame.hordeQuestButton)
+
+	S:HandleScrollBar(frame.questListScroll.ScrollBar)
+	S:HandleScrollBar(frame.questDetailScroll.ScrollBar)
+
+	hooksecurefunc(frame.questContent, 'SetHeight', QuestContent_SetHeight)
+	QuestContent_SetHeight(frame.questContent)
+
+	-- Quest Details
+	frame.questTextInset:SetBackdrop()
+	frame.questHeaderSeparator:Hide()
+
+	for _, edge in next, frame.questInsetEdges do
+		edge:Hide()
+	end
+
+	if E.private.skins.parchmentRemoverEnable then
+		frame.questParchment:Hide()
+
+		for _, text in next, { frame.selectedQuestMeta, frame.questDetailText, frame.questStartsText, frame.questTurninText, frame.questNotesText, frame.questRewardSummary, frame.noQuestMessage } do
+			text:SetTextColor(1, 1, 1)
+			hooksecurefunc(text, 'SetTextColor', Text_SetTextColor)
+		end
+
+		hooksecurefunc(frame.questDetailContent, 'SetHeight', QuestDetail_SetHeight)
+	else
+		frame.questParchment:SetInside(frame.questRightPanel.backdrop)
+	end
+
+	SkinBackdropButton(frame.questShareButton)
+
+	for _, button in next, { frame.questMapButton, frame.questChainButton, frame.questStartLinkButton, frame.questLeadsToButton } do
+		S:HandleButton(button)
+	end
+	S:HandleNextPrevButton(frame.questPrevStepButton, 'left', nil, true)
+	S:HandleNextPrevButton(frame.questNextStepButton, 'right', nil, true)
+
+	-- Same look as the reward rows
+	frame.questXPReward:SetTemplate('Transparent')
+	frame.questMoneyReward:SetTemplate('Transparent')
+	hooksecurefunc(FDJ, 'LayoutRepPills', RepPills_Layout)
+
+	hooksecurefunc(frame.questDetailContent, 'SetHeight', ItemContent_SetHeight)
+	ItemContent_SetHeight(frame.questDetailContent)
+
+	-- Dungeon Map
+	frame.dungeonMapPanel:SetTemplate()
+	frame.dungeonMapCanvas:SetBackdrop()
+	hooksecurefunc(FDJ, 'RenderCustomDungeonMap', Map_Render)
+	hooksecurefunc(FDJ, 'RefreshWorldMapOverlay', Skin_WorldMapButtons)
+
+	-- Route Guide
+	local routePanel = frame.routePanel
+	routePanel:StripTextures()
+	routePanel:SetTemplate()
+
+	S:HandleButton(frame.routeMapButton)
+	S:HandleScrollBar(frame.routeStepScroll.ScrollBar)
+	hooksecurefunc(frame.routeStepContent, 'SetHeight', RouteContent_SetHeight)
+
+	-- Settings window
+	hooksecurefunc(FDJ, 'ToggleSettingsPanel', Skin_SettingsPanel)
+
+	-- Options > AddOns page
+	local options = ForeverDungeonJournalOptionsPanel
+	if options then
+		for _, button in next, { options:GetChildren() } do
+			S:HandleButton(button)
+		end
+	end
+
+	-- Item tooltips
+	local blizzard = E.private.skins.blizzard
+	if blizzard.enable and blizzard.tooltip then
+		ForeverDungeonJournalCompareTooltip1.fdjSolidBackground:Hide()
+		ForeverDungeonJournalCompareTooltip2.fdjSolidBackground:Hide()
+
+		for _, tooltip in next, { GameTooltip, ShoppingTooltip1, ShoppingTooltip2 } do
+			local backing = tooltip:CreateTexture()
+			backing:Hide()
+			tooltip.fdjJournalBacking = backing
+		end
+	end
+end
+
+local function Skin_ForeverDungeonJournal()
+	if not Private.Addon.db.profile.skins.ForeverDungeonJournal then return end
+
+	FDJ = ForeverDungeonJournal_NS
+
+	-- DungeonJournal builds its window on PLAYER_LOGIN
+	if ForeverDungeonJournalFrame then
+		Skin_Frame()
+	else
+		RunNextFrame(Skin_Frame)
+	end
+end
+
+S:AddCallbackForAddon('ForeverDungeonJournal', 'LuckyoneUI_ForeverDungeonJournal', Skin_ForeverDungeonJournal)

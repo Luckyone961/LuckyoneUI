@@ -1,4 +1,36 @@
-﻿## Version 4.25 [27-09-2026]
+﻿## Version 4.26 [14-10-2026]
+
+**All WoW Versions:**  
+- Added new option to automate advanced combat logging based on instance type and difficulty  
+- Added new option to change absorb texture on nameplates and unitframes  
+- Added new option to see through world map fog of war (data from wago.tools)  
+- Added skin for AllTheThings as requested  
+- Added skin for NovaInstanceTracker  
+- Power texts now auto hides at 0 and 100  
+- Updated ElvUI layouts (Big reworks, size increase in 1440p and more)  
+- Updated multiple skins (BugSack, SimpleAddonManager)  
+- Updated objective tracker module to also skin item and spell buttons  
+- Updated pretty much every single addon profile  
+- Updated ptBR localization (Credits: Eltreum)  
+
+**Retail:**  
+- Added skin for KeystoneLoot as requested  
+- Limited the amount of letters in names on target frame and nameplates  
+- Updated EditMode strings  
+- Updated SkironCooldownManager profile  
+
+**Forever:**  
+- Added initial layout setup for party pets and raid pets  
+- Added luckyone:level tag which shows gray/green/yellow/orange/red colored unit level  
+- Added skin for Attune  
+- Added skin for ForeverDungeonJournal  
+- Added skin for WhatsTraining  
+
+**Damage Meter:**  
+- Added /lucky toggle chat command to hide or show the damage meter  
+- Should now properly remove lastname in Forever  
+
+## Version 4.25 [27-09-2026]
 
 **All WoW Versions:**  
 - Added skin for RXPGuides (I consider this still WIP for now)  

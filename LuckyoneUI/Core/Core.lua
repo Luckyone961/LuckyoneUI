@@ -5,20 +5,26 @@ local LDBI = Private.Libs.LDBI
 local LSM = Private.Libs.LSM
 local Core = Private.Modules.Core
 
-local format = string.format
 local gsub = string.gsub
+local max = math.max
+local min = math.min
 local next = next
 local pairs = pairs
 local print = print
 local strfind = string.find
 local strlower = string.lower
+local tonumber = tonumber
 local wipe = table.wipe
 
 local C_UI = C_UI
 local CopyTable = CopyTable
 local DisableAddOn = C_AddOns.DisableAddOn
 local EnableAddOn = C_AddOns.EnableAddOn
+local GetAddOnEnableState = C_AddOns.GetAddOnEnableState
 local GetAddOnInfo = C_AddOns.GetAddOnInfo
+local GetCursorPosition = GetCursorPosition
+local GetCVar = C_CVar.GetCVar
+local GetCVarBool = C_CVar.GetCVarBool
 local GetNumAddOns = C_AddOns.GetNumAddOns
 local InCombatLockdown = InCombatLockdown
 local IsShiftKeyDown = IsShiftKeyDown
@@ -27,18 +33,16 @@ local MergeTable = MergeTable
 local SetCVar = C_CVar.SetCVar
 
 local _G = _G
-local LibStub = _G.LibStub
+local UIParent = _G.UIParent
 
 local Settings_OpenToCategory = _G.Settings.OpenToCategory
 local SlashCmdList = _G.SlashCmdList
+local StaticPopup_StandardEditBoxOnEscapePressed = _G.StaticPopup_StandardEditBoxOnEscapePressed
 local StaticPopupDialogs = _G.StaticPopupDialogs
-local StaticPopup_Show = _G.StaticPopup_Show
 
 local ACCEPT = ACCEPT
 local CANCEL = CANCEL
-local NO = NO
 local OKAY = OKAY
-local YES = YES
 
 -- Keep these enabled in debug mode
 local AddOns = {
@@ -77,21 +81,120 @@ function Private:SetFont(text, font, size, outline)
 	text:SetShadowOffset(1, -1)
 end
 
--- Layout profiles, the index doubles as the profile ID
-local activeProfiles = {
-	'Luckyone Main',
-	'Luckyone Healing',
-}
+-- Drag and drop reorder for the scrolling lists (damage meter bookmarks, mailbox favorites)
+-- The list frame keeps rows, offset, total, visible, dropCount and a marker, its Layout fills the rows from the offset
+local function DragList_ScrollTo(frame, offset)
+	offset = min(max(offset, 0), max(frame.total - frame.visible, 0))
+	if offset == frame.offset then return end
 
-function Private:GetActiveProfile()
-	if not Private.ElvUI then return end
+	frame.offset = offset
+	frame.Layout(frame)
 
-	local data = ElvUI[1].data:GetCurrentProfile()
-	for i = 1, #activeProfiles do
-		if strfind(data, activeProfiles[i], 1, true) then
-			return i
+	return true
+end
+
+local function DragList_OnMouseWheel(frame, delta)
+	DragList_ScrollTo(frame, frame.offset - delta)
+end
+
+-- The row under the cursor
+local function DropIndex(frame, y)
+	for index = 1, frame.dropCount do
+		if y >= frame.rows[index]:GetBottom() then
+			return frame.offset + index
 		end
 	end
+
+	return frame.offset + frame.dropCount
+end
+
+-- One row per step while the drag sits on an edge
+local function DragScroll(frame, y, elapsed)
+	-- Nothing to scroll, spare rows past the end have no position either
+	if frame.total <= frame.visible then return end
+
+	local direction = 0
+
+	if y > frame.rows[1]:GetTop() then
+		direction = -1
+	elseif y < frame.rows[frame.visible]:GetBottom() then
+		direction = 1
+	end
+
+	if direction == 0 then
+		frame.scrollWait = nil
+		return
+	end
+
+	frame.scrollWait = (frame.scrollWait or 0.15) - elapsed
+	if frame.scrollWait > 0 then return end
+
+	frame.scrollWait = 0.15
+
+	-- The rows carry other entries now, the marker has to find its place again
+	if DragList_ScrollTo(frame, frame.offset + direction) then
+		frame.dropIndex = nil
+	end
+end
+
+-- The marker sits above the target while moving up and below it while moving down
+local function DragList_OnUpdate(frame, elapsed)
+	local _, y = GetCursorPosition()
+	y = y / frame:GetEffectiveScale()
+
+	DragScroll(frame, y, elapsed or 0)
+
+	local index = DropIndex(frame, y)
+	if index == frame.dropIndex then return end
+
+	local row = frame.rows[index - frame.offset]
+	if not row then return end
+
+	frame.dropIndex = index
+
+	local marker = frame.marker
+	marker:ClearAllPoints()
+
+	if index <= frame.dragIndex then
+		marker:SetPoint('BOTTOMLEFT', row, 'TOPLEFT', 0, 0)
+		marker:SetPoint('BOTTOMRIGHT', row, 'TOPRIGHT', 0, 0)
+	else
+		marker:SetPoint('TOPLEFT', row, 'BOTTOMLEFT', 0, 0)
+		marker:SetPoint('TOPRIGHT', row, 'BOTTOMRIGHT', 0, 0)
+	end
+end
+
+function Private:DragList_Init(frame, layout)
+	frame.Layout = layout
+	frame.rows = {}
+	frame.offset, frame.total, frame.visible = 0, 0, 0
+
+	frame:EnableMouseWheel(true)
+	frame:SetScript('OnMouseWheel', DragList_OnMouseWheel)
+end
+
+-- The dragged row stays dimmed until the layout runs again
+function Private:DragList_Start(frame, row)
+	frame.dragIndex = row.index
+	frame.dropIndex = nil
+	frame.scrollWait = nil
+
+	row:SetAlpha(0.4)
+	frame.marker:Show()
+	frame:SetScript('OnUpdate', DragList_OnUpdate)
+
+	DragList_OnUpdate(frame)
+end
+
+-- Ends a running drag, returns where the row came from and where it was dropped
+function Private:DragList_Stop(frame)
+	local from, to = frame.dragIndex, frame.dropIndex
+
+	frame:SetScript('OnUpdate', nil)
+	frame.dragIndex, frame.dropIndex, frame.scrollWait = nil, nil, nil
+	frame.marker:Hide()
+
+	return from, to
 end
 
 -- Open settings helper
@@ -101,6 +204,8 @@ local function OpenSettings()
 		E:ToggleOptions('LuckyoneUI')
 		E:Config_UpdateSize(true)
 	elseif Private.SettingsCategoryID then
+		if InCombatLockdown() then return end
+
 		Settings_OpenToCategory(Private.SettingsCategoryID)
 	end
 end
@@ -149,9 +254,7 @@ local LuckyoneLDB = LDB:NewDataObject(Name, {
 })
 
 -- Addon Compartment OnClick TOC func
-function LuckyoneUI_OnAddonCompartmentClick()
-	OpenSettings()
-end
+LuckyoneUI_OnAddonCompartmentClick = OpenSettings
 
 -- Reload popup
 -- StaticPopup_Show('LUCKYONE_RL')
@@ -164,58 +267,32 @@ StaticPopupDialogs['LUCKYONE_RL'] = {
 	hideOnEscape = false,
 }
 
--- Alt setup popup
--- StaticPopup_Show('LUCKYONE_ALTS')
-StaticPopupDialogs['LUCKYONE_ALTS'] = {
-	text = format('%s\n\n%s', L["Alt Setup"], L["Load your existing profiles and setup your chat tabs?"]),
-	button1 = YES, -- OnAccept
-	button2 = L["Yes, no chat"], -- OnCancel
-	button3 = NO, -- OnAlt
-	OnAccept = function() Private:HandleAlts(true) end,
-	OnCancel = function(_, _, reason)
-		if reason == 'clicked' then
-			Private:HandleAlts()
-		end
-	end,
-	whileDead = 1,
-	hideOnEscape = false,
-}
-
--- ElvUI version check popup
--- StaticPopup_Show('LUCKYONE_VC')
-StaticPopupDialogs['LUCKYONE_VC'] = {
-	text = format('|cffC80000%s|r', L["Your ElvUI is outdated - please update and reload."]),
-	whileDead = 1,
-	hideOnEscape = false,
-}
-
 -- Editbox popup
 -- StaticPopup_Show('LUCKYONE_EDITBOX', text_arg1, text_arg2, data)
-local function CloseEditBox(self)
-	self:GetParent():Hide()
-end
-
 StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 	text = Private.Name,
 	button1 = OKAY,
 	hasEditBox = 1,
+	-- Pooled dialogs keep the letter limit of the last popup, 0 lifts it for long strings
+	maxLetters = 0,
+	-- Blizzard sets the box width again on every show
 	OnShow = function(self, data)
 		local editBox = self.EditBox
 		editBox:SetAutoFocus(false)
-		editBox.width = editBox:GetWidth()
 		editBox:SetWidth(280)
 		editBox.temptxt = data
 		editBox:SetText(data)
 		editBox:SetJustifyH('CENTER')
 	end,
+	-- The pooled editbox goes back to Blizzard's defaults for the next popup
 	OnHide = function(self)
 		local editBox = self.EditBox
-		editBox:SetWidth(editBox.width or 50)
-		editBox.width = nil
+		editBox:SetAutoFocus(true)
+		editBox:SetJustifyH('LEFT')
 		editBox.temptxt = nil
 	end,
-	EditBoxOnEnterPressed = CloseEditBox,
-	EditBoxOnEscapePressed = CloseEditBox,
+	EditBoxOnEnterPressed = StaticPopup_StandardEditBoxOnEscapePressed,
+	EditBoxOnEscapePressed = StaticPopup_StandardEditBoxOnEscapePressed,
 	EditBoxOnTextChanged = function(self)
 		if self.temptxt and self:GetText() ~= self.temptxt then
 			self:SetText(self.temptxt)
@@ -227,25 +304,22 @@ StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 	hideOnEscape = 1,
 }
 
--- ElvUI version check
-local function VersionCheck()
-	if not Private.ElvUI then return end
+-- Without ElvUI we set UIParent scale ourselves like ElvUI does
+function Core:UpdateScale()
+	if Private.ElvUI or not GetCVarBool('useUiScale') then return end
 
-	if ElvUI[1].version < Private.RequiredElvUI then
-		StaticPopup_Show('LUCKYONE_VC')
-		Private:Print(format('|cffbf0008%s|r', L["Your ElvUI is outdated - please update and reload."]))
+	-- UIParent holds protected frames, try again after combat
+	if InCombatLockdown() then
+		self:RegisterEvent('PLAYER_REGEN_ENABLED', 'UpdateScale')
+		return
 	end
-end
 
--- Scale helper
-function Private:ApplyScale(native, installer)
-	Private.Addon.db.global.scaled = not native
+	self:UnregisterEvent('PLAYER_REGEN_ENABLED')
 
-	if InCombatLockdown() then return end -- Secure CVars
-
-	SetCVar('useUiScale', 1)
-	SetCVar('uiScale', native and Private.UIScale1440 or Private.UIScale1080)
-	Private:Print(L["LuckyoneUI Scale"] .. (native and ' 1440p' or ' 1080p'), installer)
+	local scale = tonumber(GetCVar('uiScale'))
+	if scale and scale < UIParent:GetScale() then
+		UIParent:SetScale(scale)
+	end
 end
 
 -- Weekly Rewards Frame chat commands
@@ -255,11 +329,7 @@ local function WeeklyRewards()
 	local frame = _G.WeeklyRewardsFrame
 	if not frame then return end
 
-	if frame:IsShown() then
-		frame:Hide()
-	else
-		frame:Show()
-	end
+	frame:SetShown(not frame:IsShown())
 end
 
 -- LuckyoneUI chat commands
@@ -285,7 +355,7 @@ local function DebugMode(msg)
 	if switch == 'on' then
 		for i = 1, GetNumAddOns() do
 			local name = GetAddOnInfo(i)
-			if not AddOns[name] and Private.IsAddOnLoaded(name) then
+			if not AddOns[name] and GetAddOnEnableState(name, Private.myGUID) > 0 then
 				DisableAddOn(name, Private.myGUID)
 				disabled[name] = true
 			end
@@ -318,42 +388,20 @@ local function LoadCommands()
 		SlashCmdList.LUCKYONEUI_WEEKLY = WeeklyRewards
 	end
 	if Private.ElvUI then
-		commands.bars = function() Private:ToggleActionBarConverter() end
+		commands.bars = function() Private:ActionBarConverter() end
+		if Private.isModern then
+			commands.toggle = function() Private:DamageMeter_Toggle() end
+		end
 		_G.SLASH_LUCKYONEUI_DEBUG1 = '/luckydebug'
 		SlashCmdList.LUCKYONEUI_DEBUG = DebugMode
 	end
 end
 
--- ElvUI init
-local function CheckElvUI()
-	if not Private.ElvUI then return end
-
-	local E = ElvUI[1]
-
-	-- Skip the ElvUI installer
-	if E.private.install_complete == nil then
-		if E.InstallFrame and E.InstallFrame:IsShown() then
-			E.InstallFrame:Hide()
-		end
-		E.private.install_complete = E.version
-	end
-
-	LibStub('LibElvUIPlugin-1.0'):RegisterPlugin(Name, Private.RegisterElvUIConfig)
-end
-
-function Core:PLAYER_ENTERING_WORLD(_, initLogin, isReload)
-	-- Only run the setup on login and reload, not on every loading screen
-	if not (initLogin or isReload) then return end
-
-	-- Neither flag can be set again this session, so stop listening
-	self:UnregisterEvent('PLAYER_ENTERING_WORLD')
-
+function Core:OnLogin(initLogin)
 	-- Debug mode only has to survive a reload
 	if initLogin then
 		wipe(Private.Addon.db.global.DebugDisabledAddOns)
 	end
-
-	VersionCheck()
 
 	if Private.itsLuckyone then
 		Private.Addon.db.global.dev = true
@@ -363,6 +411,9 @@ end
 function Core:OnEnable()
 	LDBI:Register(Name, LuckyoneLDB, Private.Addon.db.profile.minimap)
 	LoadCommands()
-	CheckElvUI()
-	self:RegisterEvent('PLAYER_ENTERING_WORLD')
+
+	if not Private.ElvUI then
+		self:UpdateScale()
+		self:RegisterEvent('UI_SCALE_CHANGED', 'UpdateScale')
+	end
 end
