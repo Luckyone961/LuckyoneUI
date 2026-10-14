@@ -269,11 +269,12 @@ local function CreateCheckBox(parent)
 	return check
 end
 
--- Two columns
+-- Two columns, returns the number used so the installer can grow until a page fits
 local function LayoutToggles(page)
 	local content = installerFrame.Content
 	local container = content.Toggles
-	local rows = floor((422 - 44 - content.Desc:GetStringHeight() - 16 - (page.buttons and 100 or 40)) / 24)
+	-- Header and footer take 78 of the frame height, pages without buttons never show the status line
+	local rows = floor((installerFrame:GetHeight() - 78 - 44 - content.Desc:GetStringHeight() - 16 - (page.buttons and 100 or 16)) / 24)
 	local column, row = 0, 0
 	local headers, checks = 0, 0
 
@@ -327,6 +328,23 @@ local function LayoutToggles(page)
 
 	for index = checks + 1, #container.Checks do
 		container.Checks[index]:Hide()
+	end
+
+	return column + 1
+end
+
+-- Grow the installer one row at a time until every checkbox page fits in two columns
+local function FitToggles()
+	local desc = installerFrame.Content.Desc
+
+	for _, page in ipairs(pages) do
+		if page.toggles then
+			desc:SetText(page.desc)
+
+			while LayoutToggles(page) > 2 do
+				installerFrame:SetHeight(installerFrame:GetHeight() + 24)
+			end
+		end
 	end
 end
 
@@ -425,10 +443,11 @@ local function CreateMainFrame()
 	bar.text = CreateText(bar, 13)
 	bar.text:SetPoint('CENTER')
 
-	-- Step list, its own frame next to the main one so it moves and hides along with it
+	-- Step list, its own frame next to the main one so it moves, hides and grows along with it
 	local sidebar = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
-	sidebar:SetSize(200, 500)
+	sidebar:SetWidth(200)
 	sidebar:SetPoint('TOPLEFT', frame, 'TOPRIGHT', 1, 0)
+	sidebar:SetPoint('BOTTOMLEFT', frame, 'BOTTOMRIGHT', 1, 0)
 	sidebar:EnableMouse(true)
 	sidebar.Buttons = {}
 	frame.Sidebar = sidebar
@@ -445,8 +464,8 @@ local function CreateMainFrame()
 
 	-- Content: Subtitle, description, checkboxes, option buttons and the status line
 	local content = CreateFrame('Frame', nil, frame)
-	content:SetSize(740, 422)
 	content:SetPoint('TOPLEFT', header, 'BOTTOMLEFT', 0, -1)
+	content:SetPoint('BOTTOMRIGHT', footer, 'TOPRIGHT', 0, 1)
 	frame.Content = content
 
 	content.SubTitle = CreateText(content, 16)
@@ -855,6 +874,9 @@ function Installer:Show()
 	end
 
 	installerFrame:Show()
+
+	-- Sized on the shown frame before page one, so it never changes size while paging
+	FitToggles()
 	self:SetPage(1)
 end
 

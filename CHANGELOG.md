@@ -1,4 +1,9 @@
-﻿## Version 4.26 [14-10-2026]
+﻿## Version 4.27 [Alpha - In Development - Not Yet Released]
+
+**All WoW Versions:**  
+- Installer frame size is now dynamic to avoid text overlaps on certain languages  
+
+## Version 4.26 [14-10-2026]
 
 **All WoW Versions:**  
 - Added new option to automate advanced combat logging based on instance type and difficulty  
