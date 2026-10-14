@@ -76,13 +76,13 @@ Private.isModern = Private.isRetail or Private.isForever
 Private.IsAddOnLoaded = IsAddOnLoaded
 
 -- Packager fills the TOC version from the git tag
--- Alpha tags look like 4.26-alpha1 and source keeps raw @project-version@
+-- Alpha tags look like 4.27-alpha1 and source keeps raw @project-version@
 Private.VersionString = GetAddOnMetadata(Name, 'Version')
 Private.Version = strmatch(Private.VersionString, '^[%d%.]+')
 
 -- Bump with every release, same as ElvUI does for source checkouts
 if not Private.Version then
-	Private.Version, Private.VersionString = '4.25', '4.25-git'
+	Private.Version, Private.VersionString = '4.26', '4.26-git'
 end
 
 -- Player utils

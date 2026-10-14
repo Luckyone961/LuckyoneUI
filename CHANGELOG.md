@@ -1,4 +1,4 @@
-﻿## Version 4.26 [Alpha - In Development - Not Yet Released]
+﻿## Version 4.26 [14-10-2026]
 
 **All WoW Versions:**  
 - Added new option to automate advanced combat logging based on instance type and difficulty  
@@ -25,7 +25,10 @@
 - Added skin for Attune  
 - Added skin for ForeverDungeonJournal  
 - Added skin for WhatsTraining  
-- Damage Meter should now properly remove lastname  
+
+**Damage Meter:**  
+- Added /lucky toggle chat command to hide or show the damage meter  
+- Should now properly remove lastname in Forever  
 
 ## Version 4.25 [27-09-2026]
 

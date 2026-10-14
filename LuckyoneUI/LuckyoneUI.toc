@@ -1,4 +1,4 @@
-## Interface: 11509, 16001, 20506, 50504, 120100
+## Interface: 11509, 16001, 20506, 50504, 120105
 ## Version: @project-version@
 ## Author: Luckyone
 
@@ -12,7 +12,7 @@
 ## Title: |cff4beb2cLuckyoneUI|r |cff67f100TBC|r [AllowLoadGameType tbc]
 ## Title: |cff4beb2cLuckyoneUI|r |cffe6cc80Forever|r [AllowLoadGameType camelot][ExcludeLoadGameType standard, classic]
 
-## X-Required-ElvUI: 15.26
+## X-Required-ElvUI: 16.00
 ## X-Curse-Project-ID: 363472
 ## X-Wago-ID: Rn6VLGdB
 
