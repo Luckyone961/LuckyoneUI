@@ -10,6 +10,7 @@ local tonumber = tonumber
 local concat = table.concat
 local format = string.format
 
+local C_UI = C_UI
 local CopyTable = CopyTable
 local GetCVarBool = C_CVar.GetCVarBool
 local SetCVar = C_CVar.SetCVar
@@ -851,8 +852,8 @@ local function BuildDevSection()
 	section.args.header2 = ACH:Header('Luckyone\'s Private Section', 5, nil, nil, DevHidden)
 	section.args.syncInfo = DescriptionGroup('Important information', 6, 'Clicking this button will override every single option of the games ESC > Options with Luckyone\'s settings.\n\nThis includes all of gameplay, accessibility, graphics, audio and network.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r', DevHidden)
 	section.args.spacer = ACH:Spacer(7, 'full', DevHidden)
-	section.args.execute = ACH:Execute('Account CVars', '|cffC80000Do not click without reading the important information!|r', 8, function() Private:SyncSettings() end, nil, true, nil, nil, nil, nil, DevHidden)
-	section.args.executeCharacter = ACH:Execute('Character CVars', 'Set character specific CVars only.', 9, function() Private:SyncSettings(true) end, nil, true, nil, nil, nil, nil, DevHidden)
+	section.args.execute = ACH:Execute('Account CVars', '|cffC80000Do not click without reading the important information!|r', 8, function() Private:SyncSettings() C_UI.Reload() end, nil, true, nil, nil, nil, nil, DevHidden)
+	section.args.executeCharacter = ACH:Execute('Character CVars', 'Set character specific CVars only.', 9, function() Private:SyncSettings(true) C_UI.Reload() end, nil, true, nil, nil, nil, nil, DevHidden)
 	section.args.exportCVars = ACH:Execute('Export CVars', 'Export into the global cvarDump SV table.', 10, function() Private:ExportCVars() end, nil, nil, nil, nil, nil, nil, DevHidden)
 	section.args.wipeCVars = ACH:Execute('Wipe exported CVars', 'Wipe the global cvarDump SV table.', 11, function() Private.Addon.db.global.cvarDump = nil end, nil, nil, nil, nil, nil, nil, function() return not (Private.Addon.db.global.dev and Private.Addon.db.global.cvarDump) end)
 	return section

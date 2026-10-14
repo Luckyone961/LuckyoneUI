@@ -93,7 +93,7 @@ function Private:ExportCVars()
 	C_UI.Reload()
 end
 
--- Full export of all game settings
+-- Full export of all game settings, the caller reloads
 -- 1: Every option back to its default
 -- 2: Then override with our personal values
 -- characterOnly: just the character CVars, for every other character of a client that already had the full run
@@ -416,6 +416,4 @@ function Private:SyncSettings(characterOnly)
 	if not characterOnly then
 		C_VoiceChat.SetPushToTalkBinding({ 'CAPSLOCK' }) -- Writes VoicePushToTalkKeybind the way Blizzard's settings do
 	end
-
-	C_UI.Reload()
 end
