@@ -41,6 +41,7 @@ Core\Config.lua
 Core\Core.lua
 Core\Defaults.lua
 Core\Installer.lua
+Core\Oneshot.lua [AllowLoadGameType camelot][ExcludeLoadGameType standard, classic]
 Core\Options.lua
 Core\Personal.lua
 Core\Profiles.lua

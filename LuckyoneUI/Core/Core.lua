@@ -389,6 +389,7 @@ local function LoadCommands()
 	end
 	if Private.ElvUI then
 		commands.bars = function() Private:ActionBarConverter() end
+		commands.oneshot = function() Private:Oneshot() end
 		if Private.isModern then
 			commands.toggle = function() Private:DamageMeter_Toggle() end
 		end
