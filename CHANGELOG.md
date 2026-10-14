@@ -3,6 +3,9 @@
 **All WoW Versions:**  
 - Installer frame size is now dynamic to avoid text overlaps on certain languages  
 
+**Retail:**  
+- Fixed Northern Sky Raid Tools profile import  
+
 ## Version 4.26 [14-10-2026]
 
 **All WoW Versions:**  
