@@ -127,50 +127,49 @@ function Private:SyncSettings(characterOnly)
 		'CAAVoice', 'CAAVolume', 'cameraBobbing', 'cameraFov', 'cameraPivot', 'cameraSmoothTrackingStyle', 'cameraTerrainTilt', 'cameraWaterCollision', 'chatBubbles',
 		'chatBubblesParty', 'chatBubblesRaid', 'classicStyleWorldText', 'ClipCursor', 'colorblindMode', 'colorblindSimulator', 'colorblindWeaknessFactor',
 		'combatWarningsEnabled', 'componentTextureLevel', 'consolidateBuffs', 'Contrast', 'coordsByTenths', 'cursorSizePreferred', 'damageMeterResetOnNewInstance',
-		'DepthBasedOpacity', 'disableServerNagle', 'discordDisplayName', 'displayFreeBagSlots', 'doodadLodScale', 'enableCollectionToasts', 'enableFloatingCombatText',
-		'enableLearnedRecipeToasts', 'enableLootToasts', 'enableMouseoverCast', 'enableMouseSpeed', 'enableMovePad', 'enablePings',
-		'encounterTimelineHideForOtherRoles', 'encounterTimelineHideLongCountdowns', 'encounterTimelineHideQueuedCountdowns',
-		'encounterWarningsHideIfNotTargetingPlayer', 'encounterWarningsLevel', 'entityLodDist', 'equipmentManager', 'externalDefensivesEnabled', 'ffxAntiAliasingMode',
+		'DepthBasedOpacity', 'disableServerNagle', 'discordDisplayName', 'doodadLodScale', 'enableFloatingCombatText', 'enableMouseoverCast', 'enableMouseSpeed',
+		'enableMovePad', 'enablePings', 'encounterTimelineHideForOtherRoles', 'encounterTimelineHideLongCountdowns', 'encounterTimelineHideQueuedCountdowns',
+		'encounterWarningsHideIfNotTargetingPlayer', 'encounterWarningsLevel', 'entityLodDist', 'equipmentManager', 'externalDefensivesEnabled',
 		'findYourselfAnywhere', 'findYourselfModeCircle', 'findYourselfModeIcon', 'floatingCombatTextAuraFade_v2', 'floatingCombatTextAuras_v2',
-		'floatingCombatTextCombatLogPeriodicSpells_v2', 'floatingCombatTextCombatState_v2', 'floatingCombatTextComboPoints_v2', 'floatingCombatTextDamageReduction_v2',
-		'floatingCombatTextDodgeParryMiss_v2', 'floatingCombatTextEnergyGains_v2', 'floatingCombatTextFloatMode_v2', 'floatingCombatTextFriendlyHealers_v2',
-		'floatingCombatTextHonorGains_v2', 'floatingCombatTextLowManaHealth_v2', 'floatingCombatTextReactives_v2', 'floatingCombatTextRepChanges_v2',
-		'GamePadBackPedalThreshold', 'GamepadCameraFollowOnStick', 'GamepadCameraFollowPitchOffset', 'GamePadCameraPitchSpeed', 'GamePadCameraYawSpeed',
-		'GamePadFaceMovementFreeFlying', 'GamePadFaceMovementMaxAngle', 'GamePadFaceMovementMaxAngleCombat', 'GamePadFaceMovementMount', 'GamePadFaceMovementSwimming',
-		'GamepadFocusStateColor', 'GamepadFocusStateOpacity', 'GamepadHudModifierUsesToggle', 'gamepadInvertPitch', 'gamepadInvertYaw', 'GamepadPossessBarOverride',
-		'GamepadRaidTargetingHoverMode', 'GamePadRunThreshold', 'GamepadShowPersistentInputLegend', 'GamepadStanceBarOverride', 'GamepadSwapFriendlyTargetActions',
-		'GamepadSwapHostileTargetActions', 'GamepadSwapTargetModifiers', 'GamePadTurnWithCamera', 'GamepadUsePartyTargeting', 'graphicsBloomUserMult',
-		'graphicsDepthEffects', 'graphicsEnvironmentDetail', 'graphicsGroundClutter', 'graphicsLightMode', 'graphicsPBRLiquidDetail', 'graphicsProjectedTextures',
-		'graphicsShadowQuality', 'graphicsSSAO', 'graphicsSunshafts', 'guildMemberNotify', 'GxAdapter', 'GxApi', 'GxCompatAsyncShaderCompilation',
-		'GxCompatCommandListMultiThreading', 'GxCompatOptionalGpuFeatures', 'GxCompatWorkSubmitOptimizations', 'GxMaximize', 'GxMonitor', 'GxNewResolution',
-		'hardcoreDeathAlertType', 'hardcoreDeathChatType', 'housingDecorLightRadiusIndicatorsEnabled', 'housingOtherDecorLightRadiusIndicatorType',
+		'floatingCombatTextCombatHealingAbsorbSelf_v2', 'floatingCombatTextCombatHealingAbsorbTarget_v2', 'floatingCombatTextCombatLogPeriodicSpells_v2',
+		'floatingCombatTextCombatState_v2', 'floatingCombatTextComboPoints_v2', 'floatingCombatTextDamageReduction_v2', 'floatingCombatTextDodgeParryMiss_v2',
+		'floatingCombatTextEnergyGains_v2', 'floatingCombatTextFloatMode_v2', 'floatingCombatTextFriendlyHealers_v2', 'floatingCombatTextHonorGains_v2',
+		'floatingCombatTextLowManaHealth_v2', 'floatingCombatTextPeriodicEnergyGains_v2', 'floatingCombatTextReactives_v2', 'floatingCombatTextRepChanges_v2',
+		'floatingCombatTextSpellMechanics_v2', 'floatingCombatTextSpellMechanicsOther_v2', 'GamePadBackPedalThreshold', 'GamepadCameraFollowOnStick',
+		'GamepadCameraFollowPitchOffset', 'GamePadCameraPitchSpeed', 'GamePadCameraYawSpeed', 'GamePadFaceMovementFreeFlying', 'GamePadFaceMovementMaxAngle',
+		'GamePadFaceMovementMaxAngleCombat', 'GamePadFaceMovementMount', 'GamePadFaceMovementSwimming', 'GamepadFocusStateColor', 'GamepadFocusStateOpacity',
+		'GamepadHudModifierUsesToggle', 'gamepadInvertPitch', 'gamepadInvertYaw', 'GamepadPossessBarOverride', 'GamepadRaidTargetingHoverMode', 'GamePadRunThreshold',
+		'GamepadShowPersistentInputLegend', 'GamepadStanceBarOverride', 'GamepadSwapFriendlyTargetActions', 'GamepadSwapHostileTargetActions',
+		'GamepadSwapTargetModifiers', 'GamePadTurnWithCamera', 'GamepadUsePartyTargeting', 'graphicsDepthEffects', 'graphicsEnvironmentDetail',
+		'graphicsGroundClutter', 'graphicsLightMode', 'graphicsPBRLiquidDetail', 'graphicsProjectedTextures', 'graphicsShadowQuality', 'graphicsSSAO',
+		'graphicsSunshafts', 'guildMemberNotify', 'GxAdapter', 'GxApi', 'GxCompatAsyncShaderCompilation', 'GxCompatCommandListMultiThreading',
+		'GxCompatOptionalGpuFeatures', 'GxCompatWorkSubmitOptimizations', 'GxMaximize', 'GxMonitor', 'GxNewResolution', 'hardcoreDeathAlertType',
+		'hardcoreDeathChatType', 'housingDecorLightRadiusIndicatorsEnabled', 'housingOtherDecorLightRadiusIndicatorType',
 		'housingSelectedDecorLightRadiusIndicatorType', 'InputDeviceInterfaceStyle', 'lockActionBars', 'lodObjectFadeScale', 'lossOfControl', 'maxFPSBk',
-		'minimapShowPlayerCoords', 'motionSicknessFocalCircle', 'motionSicknessLandscapeDarkening', 'mouseInvertPitch', 'movieSubtitle', 'movieSubtitleBackground',
+		'motionSicknessFocalCircle', 'motionSicknessLandscapeDarkening', 'mouseInvertPitch', 'movieSubtitle', 'movieSubtitleBackground',
 		'movieSubtitleBackgroundAlpha', 'MSAAAlphaTest', 'MSAAQuality', 'nameplateAuraScale', 'nameplateCastBarDisplay', 'nameplateDebuffPadding',
 		'nameplateEnemyNpcAuraDisplay', 'nameplateEnemyPlayerAuraDisplay', 'nameplateFriendlyPlayerAuraDisplay', 'nameplateInfoDisplay', 'nameplateShowClassColor',
 		'nameplateShowEnemyPets', 'nameplateShowEnemyTotems', 'nameplateShowFriendlyClassColor', 'nameplateShowFriendlyNpcs', 'nameplateShowFriendlyPlayerGuardians',
 		'nameplateShowFriendlyPlayerMinions', 'nameplateShowFriendlyPlayerPets', 'nameplateShowFriendlyPlayers', 'nameplateShowFriendlyPlayerTotems',
 		'nameplateShowOffscreen', 'nameplateShowSelf', 'nameplateSimplifiedTypes', 'nameplateStyle', 'nameplateThreatDisplay', 'NotchedDisplayMode', 'pbrLiquidDetail',
-		'physicsLevel', 'pingCategoryTutorialShown', 'pingMode', 'pingTarget', 'previewTalentsOption', 'pvpFramesDisplayClassColor',
-		'pvpFramesDisplayOnlyHealerPowerBars', 'pvpFramesDisplayPowerBars', 'pvpFramesHealthText', 'pvpOptionDisplayPets', 'questTextContrast',
-		'RAIDcomponentTextureLevel', 'raidFramesCenterBigDefensive', 'raidFramesDispelIndicatorAnimatedBorder', 'raidFramesDispelIndicatorOverlay',
-		'raidFramesDispelIndicatorOverlayAnimation', 'raidFramesDispelIndicatorType', 'raidFramesDisplayAggroHighlight', 'raidFramesDisplayClassColor',
-		'raidFramesDisplayDebuffs', 'raidFramesDisplayIncomingHeals', 'raidFramesDisplayLargerRoleSpecificDebuffs', 'raidFramesDisplayOnlyDispellableDebuffs',
-		'raidFramesDisplayOnlyHealerPowerBars', 'raidFramesDisplayPowerBars', 'raidFramesHealthBarColor', 'raidFramesHealthBarColorBG', 'raidFramesHealthText',
-		'raidGraphicsBloomUserMult', 'raidGraphicsLightMode', 'raidGraphicsPBRLiquidDetail', 'raidGraphicsProjectedTextures', 'raidGraphicsSunshafts',
-		'RAIDgroundEffectDensity', 'raidOptionDisplayMainTankAndAssist', 'raidOptionDisplayPets', 'RAIDrefraction', 'RAIDshadowBlendCascades', 'RAIDshadowMode',
-		'RAIDshadowNumCascades', 'RAIDshadowTextureSize', 'RAIDSSAO', 'RAIDsunShafts', 'RAIDterrainMipLevel', 'RAIDWaterDetail', 'reflectionMode',
-		'remoteTextToSpeech', 'remoteTextToSpeechVoice', 'RenderScale', 'restrictCalendarInvites', 'rippleDetail', 'shadowRt', 'shadowSoft', 'showDynamicBuffSize',
-		'showLoadingScreenTips', 'showMaxLevelAnnouncements', 'showMinimapClock', 'showPingsInChat', 'showPingsOnRaidFrames', 'ShowQuestUnitCircles', 'showSwingTimer',
-		'showTargetCastbar', 'showToastBroadcast', 'showToastFriendRequest', 'SoftTargetIconEnemy', 'SoftTargetIconGameObject', 'SoftTargetIconInteract',
-		'SoftTargetLowPriorityIcons', 'SoftTargetTooltipEnemy', 'SoftTargetTooltipInteract', 'Sound_EnableAllSound', 'Sound_EnableDialog', 'Sound_EnableEmoteSounds',
-		'Sound_EnableEncounterWarningsSounds', 'Sound_EnableGameplaySFX', 'Sound_EnablePetSounds', 'Sound_EnablePingSounds', 'Sound_EnableSFX',
-		'Sound_EncounterWarningsVolume', 'Sound_GameplaySFX', 'Sound_MaxCacheSizeInBytes', 'Sound_ZoneMusicNoDelay', 'speechToText',
-		'spellDiminishPVPOnlyTriggerableByMe', 'targetFPS', 'terrainMipLevel', 'textToSpeech', 'textureFilteringMode', 'threatShowNumeric', 'threatWarning',
-		'unitFramesDisplayIncomingHeals', 'UnitNameEnemyGuardianName', 'UnitNameEnemyMinionName', 'UnitNameEnemyPetName', 'UnitNameEnemyPlayerName',
-		'UnitNameEnemyTotemName', 'UnitNameFriendlyPlayerName', 'UnitNameNonCombatCreatureName', 'UnitNameOwn', 'UnitSurnameOwn', 'useHighResTextures', 'useIPv6',
-		'useMaxFPSBk', 'userFontScale', 'VoiceChatMasterVolumeScale', 'VoiceCommunicationMode', 'VoiceInputVolume', 'VoiceOutputVolume', 'VoiceVADSensitivity',
-		'vrsValar', 'worldMapShowCursorCoords', 'worldMapShowPlayerCoords',
+		'physicsLevel', 'pingMode', 'pingTarget', 'previewTalentsOption', 'pvpFramesDisplayClassColor', 'pvpFramesDisplayOnlyHealerPowerBars',
+		'pvpFramesDisplayPowerBars', 'pvpFramesHealthText', 'pvpOptionDisplayPets', 'questTextContrast', 'RAIDcomponentTextureLevel', 'raidFramesCenterBigDefensive',
+		'raidFramesDispelIndicatorAnimatedBorder', 'raidFramesDispelIndicatorOverlay', 'raidFramesDispelIndicatorOverlayAnimation', 'raidFramesDispelIndicatorType',
+		'raidFramesDisplayAggroHighlight', 'raidFramesDisplayClassColor', 'raidFramesDisplayDebuffs', 'raidFramesDisplayIncomingHeals',
+		'raidFramesDisplayLargerRoleSpecificDebuffs', 'raidFramesDisplayOnlyDispellableDebuffs', 'raidFramesDisplayOnlyHealerPowerBars', 'raidFramesDisplayPowerBars',
+		'raidFramesHealthBarColor', 'raidFramesHealthBarColorBG', 'raidFramesHealthText', 'raidGraphicsLightMode', 'raidGraphicsPBRLiquidDetail',
+		'raidGraphicsProjectedTextures', 'raidGraphicsSunshafts', 'RAIDgroundEffectDensity', 'raidOptionDisplayMainTankAndAssist', 'raidOptionDisplayPets',
+		'RAIDrefraction', 'RAIDshadowBlendCascades', 'RAIDshadowMode', 'RAIDshadowNumCascades', 'RAIDshadowTextureSize', 'RAIDSSAO', 'RAIDsunShafts',
+		'RAIDterrainMipLevel', 'RAIDWaterDetail', 'reflectionMode', 'remoteTextToSpeech', 'remoteTextToSpeechVoice', 'RenderScale', 'restrictCalendarInvites',
+		'rippleDetail', 'shadowRt', 'shadowSoft', 'showDynamicBuffSize', 'showLoadingScreenTips', 'showMaxLevelAnnouncements', 'showMinimapClock', 'showPingsInChat',
+		'showPingsOnRaidFrames', 'ShowQuestUnitCircles', 'showSwingTimer', 'showTargetCastbar', 'showToastBroadcast', 'showToastFriendRequest', 'SoftTargetIconEnemy',
+		'SoftTargetIconGameObject', 'SoftTargetIconInteract', 'SoftTargetLowPriorityIcons', 'SoftTargetTooltipEnemy', 'SoftTargetTooltipInteract',
+		'Sound_EnableAllSound', 'Sound_EnableDialog', 'Sound_EnableEmoteSounds', 'Sound_EnableEncounterWarningsSounds', 'Sound_EnableGameplaySFX',
+		'Sound_EnablePetSounds', 'Sound_EnablePingSounds', 'Sound_EnableSFX', 'Sound_EncounterWarningsVolume', 'Sound_GameplaySFX', 'Sound_MaxCacheSizeInBytes',
+		'Sound_ZoneMusicNoDelay', 'speechToText', 'spellDiminishPVPOnlyTriggerableByMe', 'targetFPS', 'terrainMipLevel', 'textToSpeech', 'textureFilteringMode',
+		'threatShowNumeric', 'threatWarning', 'unitFramesDisplayIncomingHeals', 'UnitNameEnemyGuardianName', 'UnitNameEnemyMinionName', 'UnitNameEnemyPetName',
+		'UnitNameEnemyPlayerName', 'UnitNameEnemyTotemName', 'UnitNameFriendlyPlayerName', 'UnitNameNonCombatCreatureName', 'UnitNameOwn', 'useHighResTextures',
+		'useMaxFPSBk', 'userFontScale', 'VoiceChatMasterVolumeScale', 'vrsValar',
 	}) do
 		local value, default, _, character = GetCVarInfo(cvar) -- nothing on a client without the CVar
 		if default and value ~= default and (not characterOnly or character) then
@@ -211,6 +210,7 @@ function Private:SyncSettings(characterOnly)
 	Set('AutoPushSpellToActionBar', 0)
 	Set('autoQuestProgress', 0)
 	Set('blockChannelInvites', 1)
+	Set('bloomUserMult', 0)
 	Set('cameraDistanceMaxZoomFactor', 2.6)
 	Set('cameraIndirectOffset', 10)
 	Set('CameraKeepCharacterCentered', 0)
@@ -220,6 +220,7 @@ function Private:SyncSettings(characterOnly)
 	Set('cameraSmoothStyle', 0)
 	Set('cameraYawMoveSpeed', 230)
 	Set('cameraYawSmoothSpeed', 270)
+	Set('categorizeTrainerUI', 1)
 	Set('chatClassColorOverride', 0)
 	Set('chatStyle', 'classic')
 	Set('checkAddonVersion', 0)
@@ -232,15 +233,21 @@ function Private:SyncSettings(characterOnly)
 	Set('deselectOnClick', 1)
 	Set('DisableAdvancedFlyingFullScreenEffects', 1)
 	Set('DisableAdvancedFlyingVelocityVFX', 1)
+	Set('disableSuggestedLevelActivityFilter', 1)
+	Set('displayFreeBagSlots', 1)
 	Set('displaySpellActivationOverlays', 0)
 	Set('doNotFlashLowHealthWarning', 1)
 	Set('emphasizeMySpellEffects', 0)
 	Set('empowerTapControls', 1)
+	Set('enableCollectionToasts', 0)
+	Set('enableLearnedRecipeToasts', 0)
+	Set('enableLootToasts', 0)
 	Set('encounterTimelineEnabled', 0)
 	Set('encounterWarningsEnabled', 0)
 	Set('entityShadowFadeScale', 25)
 	Set('excludedCensorSources', 255)
 	Set('farclip', 7000)
+	Set('ffxAntiAliasingMode', 0)
 	Set('ffxDeath', 0)
 	Set('ffxGlow', 0)
 	Set('ffxLingeringVenari', 0)
@@ -265,9 +272,10 @@ function Private:SyncSettings(characterOnly)
 	Set('lodObjectCullSize', 18)
 	Set('lodObjectMinSize', 0)
 	Set('lootUnderMouse', 1)
-	Set('LowLatencyMode', 2)
+	Set('LowLatencyMode', (Private.isForever and 1) or 0)
 	Set('maxFPS', 60)
 	Set('maxFPSLoading', 30)
+	Set('minimapShowPlayerCoords', 0)
 	Set('minimapTrackingShowAll', 1)
 	Set('mountJournalShowPlayer', 1)
 	Set('nameplateMaxDistance', (Private.isRetail and 100) or 41)
@@ -340,12 +348,14 @@ function Private:SyncSettings(characterOnly)
 	Set('shadowMode', 3)
 	Set('shadowNumCascades', 3)
 	Set('shadowTextureSize', 2048)
-	Set('ShakeStrengthCamera', 0.25)
-	Set('ShakeStrengthUI', 0.25)
+	Set('ShakeStrengthCamera', 0)
+	Set('ShakeStrengthUI', 0)
+	Set('ShowAllSpellRanks', 1)
 	Set('showInGameNavigation', 1)
 	Set('showNewbieTips', 0)
 	Set('showNPETutorials', 0)
 	Set('showPhotosensitivityWarning', 11)
+	Set('showQuestLevel', 1)
 	Set('showTargetOfTarget', 1)
 	Set('showTimestamps', '%H:%M ')
 	Set('showToastOffline', 0)
@@ -383,6 +393,8 @@ function Private:SyncSettings(characterOnly)
 	Set('ThreadPoolPerThreadAllocator', 2)
 	Set('threatPlaySounds', 0)
 	Set('timeMgrUseLocalTime', 1)
+	Set('timeMgrUseMilitaryTime', 1)
+	Set('tooltipShowAuraCasterNames', 1)
 	Set('TurnSpeed', 100)
 	Set('uiScale', (Private.Addon.db.global.scaled and Private.UIScale1080) or Private.UIScale1440)
 	Set('UnitNameFriendlyGuardianName', 0)
@@ -396,7 +408,9 @@ function Private:SyncSettings(characterOnly)
 	Set('UnitNameNPC', 1)
 	Set('UnitNamePlayerGuild', 0)
 	Set('UnitNamePlayerPVPTitle', 0)
+	Set('UnitSurnameOwn', 0)
 	Set('useClassicGuildUI', 0)
+	Set('useIPv6', 1)
 	Set('useMaxFPS', 1)
 	Set('userFontScaleGlue', 1)
 	Set('useTargetFPS', 0)
@@ -410,6 +424,8 @@ function Private:SyncSettings(characterOnly)
 	Set('wholeChatWindowClickable', 0)
 	Set('wmoLodDist', 400)
 	Set('worldBaseMip', 0)
+	Set('worldMapShowCursorCoords', 0)
+	Set('worldMapShowPlayerCoords', 0)
 	Set('WorldTextMinSize', 14)
 	Set('xpBarText', 1)
 
