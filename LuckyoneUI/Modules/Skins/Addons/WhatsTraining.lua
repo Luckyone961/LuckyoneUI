@@ -15,6 +15,13 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local TT = E:GetModule('Tooltip')
 
+-- Waypoint provider radios
+local function GroupingPopup_OnShow(popup)
+	for _, radio in next, popup.providerRadios do
+		S:HandleRadioButton(radio)
+	end
+end
+
 -- Compact list, shared by the Vanilla/TBC Spellbook page and the Forever /wt window
 local function SkinCompactFrame(frame)
 	local name = frame:GetName()
@@ -46,6 +53,11 @@ local function SkinCompactFrame(frame)
 
 	for _, radio in next, popup.radios do
 		S:HandleRadioButton(radio)
+	end
+
+	-- WhatsTraining 11.0.0-beta20+
+	if popup.providerRadios then
+		popup:HookScript('OnShow', GroupingPopup_OnShow)
 	end
 
 	S:HandleButton(_G[name..'GroupingPopupDone'])

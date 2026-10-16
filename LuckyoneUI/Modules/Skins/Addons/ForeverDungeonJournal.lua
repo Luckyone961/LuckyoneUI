@@ -194,9 +194,20 @@ local function Results_SetHeight(results)
 	end
 end
 
--- Floor buttons of multi level dungeons
+-- Floor buttons of multi level dungeons and the boss icon size control
 local function Map_Render()
-	local buttons = ForeverDungeonJournalFrame.dungeonMapFloorButtons
+	local frame = ForeverDungeonJournalFrame
+
+	local sizer = frame.dungeonMapPanel.fdjBossSizer
+	if sizer and not sizer.IsSkinned then
+		sizer:SetTemplate('Transparent')
+		S:HandleButton(sizer.minus)
+		S:HandleButton(sizer.plus)
+
+		sizer.IsSkinned = true
+	end
+
+	local buttons = frame.dungeonMapFloorButtons
 	if not buttons then return end
 
 	for _, button in next, buttons do
@@ -299,6 +310,26 @@ local function Skin_FavouriteMenu()
 	menu.button:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
 
 	menu.IsSkinned = true
+end
+
+-- Right-click menu on the Looking For Group eye
+local function Skin_LFGMenu()
+	local menu = ForeverDungeonJournalLFGMenu
+	if menu.IsSkinned then return end
+
+	menu:SetTemplate('Transparent')
+	menu.disable:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
+
+	menu.IsSkinned = true
+end
+
+-- Points at the Group Browser tab
+local function Skin_BrowseHint()
+	local hint = FDJ.browseHint
+	if not hint or hint.IsSkinned then return end
+
+	hint:SetTemplate('Transparent')
+	hint.IsSkinned = true
 end
 
 -- Report window, built on the first click
@@ -448,6 +479,9 @@ local function Skin_Frame()
 	for _, tab in next, { frame.bossesTab, frame.questsTab, frame.mapTab, frame.dungeonRouteButton } do
 		SkinTab(tab)
 	end
+
+	hooksecurefunc(FDJ, 'ShowLFGMenu', Skin_LFGMenu)
+	hooksecurefunc(FDJ, 'ShowBrowseHint', Skin_BrowseHint)
 
 	-- Bosses
 	SkinPanel(frame.leftPanel)
