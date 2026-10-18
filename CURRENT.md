@@ -5,6 +5,7 @@
 
 **Retail:**  
 - Fixed Northern Sky Raid Tools profile import  
+- Updated SkironCooldownManager profile  
 
 **Forever:**  
 - Added SkironCooldownManager global anchor for trinkets, bandages, healthstone and racials  
