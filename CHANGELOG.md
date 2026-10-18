@@ -6,6 +6,11 @@
 **Retail:**  
 - Fixed Northern Sky Raid Tools profile import  
 
+**Forever:**  
+- Added SkironCooldownManager global anchor for trinkets, bandages, healthstone and racials  
+- Added SkironCooldownManager profile for all 9 classes  
+- Updated Skins for Attune, ForeverDungeonJournal and WhatsTraining  
+
 ## Version 4.26 [14-10-2026]
 
 **All WoW Versions:**  
