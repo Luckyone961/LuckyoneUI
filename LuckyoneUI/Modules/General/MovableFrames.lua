@@ -237,6 +237,7 @@ end
 
 function Private:MovableFrames()
 	if not Private.Addon.db.profile.movableFrames.enable then return end
+	if Private.isGamepadUI then return end
 
 	AddHandles()
 

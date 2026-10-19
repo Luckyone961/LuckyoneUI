@@ -581,7 +581,10 @@ local function AddInput(category, info, name, desc, get, set, option, disabled)
 				scroll:SetPoint('TOPLEFT', 37, -26)
 				scroll:SetPoint('BOTTOMRIGHT', -60, 6)
 				scroll:EnableMouse(true)
-				scroll:SetScript('OnMouseDown', MultilineScrollMouseDown)
+				-- Gamepad navigation reads the mouse scripts of plain frames inside the settings panel and taints
+				if not Private.isGamepadUI then
+					scroll:SetScript('OnMouseDown', MultilineScrollMouseDown)
+				end
 				scroll:SetScript('OnMouseWheel', MultilineScrollWheel)
 				scroll:SetScript('OnSizeChanged', MultilineScrollSizeChanged)
 				scroll:SetScript('OnScrollRangeChanged', MultilineScrollRangeChanged)

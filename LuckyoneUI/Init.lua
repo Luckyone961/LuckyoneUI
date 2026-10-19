@@ -17,6 +17,7 @@ local GetRealmName = GetRealmName
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 local MergeTable = MergeTable
 local RegionalUniqueNamesEnabled = RegionalUniqueNamesEnabled
+local StaticPopup_Show = StaticPopup_Show
 local UnitClass = UnitClass
 local UnitGUID = UnitGUID
 local UnitNameUnmodified = UnitNameUnmodified
@@ -71,6 +72,7 @@ Private.isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 Private.isForever = WOW_PROJECT_ID == WOW_PROJECT_CAMELOT
 Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 Private.isModern = Private.isRetail or Private.isForever
+Private.isGamepadUI = Private.isForever and C_InputInterfaceStyle.GetCurrentStyle() == Enum.InputDeviceInterfaceType.Gamepad
 
 -- API checks
 Private.IsAddOnLoaded = IsAddOnLoaded
@@ -212,6 +214,9 @@ loader:RegisterEvent('ADDON_LOADED')
 loader:RegisterEvent('PLAYER_LOGIN')
 loader:RegisterEvent('PLAYER_ENTERING_WORLD')
 loader:RegisterEvent('PLAYER_LOGOUT')
+if Private.isForever then
+	loader:RegisterEvent('INPUT_DEVICE_INTERFACE_TRANSITION')
+end
 loader:SetScript('OnEvent', function(self, event, ...)
 	if event == 'ADDON_LOADED' then
 		local addon = ...
@@ -255,6 +260,11 @@ loader:SetScript('OnEvent', function(self, event, ...)
 			if module.OnLogin then
 				xpcall(module.OnLogin, geterrorhandler(), module, initLogin)
 			end
+		end
+	elseif event == 'INPUT_DEVICE_INTERFACE_TRANSITION' then
+		local newMode = ... -- Modules read the gamepad UI mode at login
+		if not Private.ElvUI and (newMode == Enum.InputDeviceInterfaceType.Gamepad) ~= Private.isGamepadUI then
+			StaticPopup_Show('LUCKYONE_RL')
 		end
 	else
 		Private:StripDefaults(sv.global, Private.Defaults.global)
