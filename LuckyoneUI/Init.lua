@@ -72,7 +72,10 @@ Private.isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 Private.isForever = WOW_PROJECT_ID == WOW_PROJECT_CAMELOT
 Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 Private.isModern = Private.isRetail or Private.isForever
-Private.isGamepadUI = Private.isForever and C_InputInterfaceStyle.GetCurrentStyle() == Enum.InputDeviceInterfaceType.Gamepad
+
+local inputTypes = Enum.InputDeviceInterfaceType
+local inputCurrent = C_InputInterfaceStyle and C_InputInterfaceStyle.GetCurrentStyle()
+Private.isGamepadUI = inputTypes and inputTypes.Gamepad == inputCurrent
 
 -- API checks
 Private.IsAddOnLoaded = IsAddOnLoaded
