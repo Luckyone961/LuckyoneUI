@@ -44,6 +44,13 @@ local function SkinRows(scrollFrame)
 			button.HighlightTexture:SetColorTexture(r, g, b, 0.25)
 			button.PushedTexture:SetColorTexture(r, g, b, 0.1)
 
+			-- Dependency tree view expand/collapse (addon list rows only)
+			local expandButton = button.ExpandOrCollapseButton
+			if expandButton then
+				S:HandleCollapseTexture(expandButton, nil, true)
+				expandButton:SetHighlightTexture(E.ClearTexture)
+			end
+
 			button.isSkinned = true
 		end
 	end
@@ -54,6 +61,16 @@ local function SkinScrollFrame(scrollFrame)
 
 	SkinRows(scrollFrame)
 	hooksecurefunc(scrollFrame, 'update', function() SkinRows(scrollFrame) end)
+end
+
+-- Shrink the 20px title icons to 16px so they stay inside the 20px rows
+local function ResizeAddonIcons(scrollFrame)
+	for _, button in next, scrollFrame.buttons do
+		local text = button.Name:GetText()
+		if text then
+			button.Name:SetText((text:gsub('^(|[TA][^|]-):20:20:', '%1:16:16:', 1)))
+		end
+	end
 end
 
 local function SkinProfilerFrame(frame)
@@ -92,8 +109,12 @@ local function SkinSimpleAddonManager(frame)
 	end
 
 	-- Addon and Category Lists
-	SkinScrollFrame(frame.AddonListFrame.ScrollFrame)
+	local addonScrollFrame = frame.AddonListFrame.ScrollFrame
+	SkinScrollFrame(addonScrollFrame)
 	SkinScrollFrame(categoryFrame.ScrollFrame)
+
+	ResizeAddonIcons(addonScrollFrame)
+	hooksecurefunc(addonScrollFrame, 'update', function() ResizeAddonIcons(addonScrollFrame) end)
 
 	-- CPU Profiler
 	SkinProfilerFrame(frame.ProfilerFrame)
