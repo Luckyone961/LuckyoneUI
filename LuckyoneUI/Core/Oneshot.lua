@@ -284,6 +284,7 @@ local function Setup_Addons()
 		guides.frameHeight = 271
 		guides.framePositions.activeItemFrame = { { 'CENTER', 'UIParent', 'CENTER', -424, -44 } }
 		guides.framePositions.activeTargetFrame = { { 'CENTER', 'UIParent', 'CENTER', -419, -98 } }
+		guides.framePositions.arrowFrame = { { 'TOP', 'UIParent', 'TOP', 0, -340 } }
 		guides.framePositions.RXPFrame = { { 'BOTTOMLEFT', 'UIParent', 'BOTTOMLEFT', -2, 280.5 } }
 		guides.frameSizes.RXPFrame = { 402, 271 }
 		guides.guideFontSize = 14
@@ -344,6 +345,7 @@ function Private:Oneshot()
 	Private:Setup_Layout('main')
 	Private:Setup_Filters()
 	Private:Setup_Chat()
+	Private:Setup_SkironCooldownManager()
 
 	Setup_LuckyoneDB()
 	Setup_Addons()
