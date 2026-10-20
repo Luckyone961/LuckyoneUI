@@ -90,10 +90,8 @@ local function FitLandingPageButton(button, size)
 		icon:SetAtlas(atlas, false)
 	end
 
-	-- Atlas art sits slightly high-left: Small down-right nudge to optically center it
-	local inset = 2
 	icon:ClearAllPoints()
-	icon:SetSize(size - (inset * 2), size - (inset * 2))
+	icon:SetSize(size - 4, size - 4)
 	icon:SetPoint('CENTER', -1, -1)
 	icon:Show()
 
@@ -318,9 +316,8 @@ local function CollectButtons()
 		TryCollect(LDBI:GetMinimapButton(names[i]))
 	end
 
-	-- Fallback: LibDBIcon buttons the list missed (Minimap on first grab, bar after reparent)
+	-- Fallback: LibDBIcon buttons the list missed, the bar loop at the top keeps them once they sit on the bar
 	CollectLibDBIconChildren(Minimap)
-	CollectLibDBIconChildren(bar)
 
 	SortCollectedButtons(collected)
 	return collected, collectedSeen

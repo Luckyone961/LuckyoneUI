@@ -101,7 +101,7 @@ function DM:UpdateShown()
 	DM.holder:SetShown(shown)
 
 	if shown then
-		DM:MarkAllDirty()
+		DM:RefreshAll()
 	else
 		DM:ClosePopup()
 		DM:CloseAllBookmarks()
@@ -480,7 +480,6 @@ _G.StaticPopupDialogs['LUCKYONE_DM_RESET'] = {
 	OnAccept = function() DM:ResetData() end,
 	whileDead = 1,
 	hideOnEscape = 1,
-	preferredIndex = 3,
 }
 
 -- Instance types the auto reset can watch, scenarios cover Delves

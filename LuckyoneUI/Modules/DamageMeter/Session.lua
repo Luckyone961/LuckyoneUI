@@ -253,6 +253,8 @@ function DM:DAMAGE_METER_RESET()
 		window.offset = 0
 		MarkDirty(window)
 	end
+
+	DM:RefreshAll(true)
 end
 
 -- Header colors
@@ -438,13 +440,8 @@ local function Frame_OnShow(frame)
 	frame:RegisterEvent('GLOBAL_MOUSE_DOWN')
 end
 
--- Right click carries through to the window so the bookmarks open from here too
-local function TypeButton_OnClick(button, mouseButton)
-	if mouseButton == 'RightButton' then
-		DM:OnWindowRightClick(button.window)
-	else
-		OpenMenu(button, TypeMenu)
-	end
+local function TypeButton_OnClick(button)
+	OpenMenu(button, TypeMenu)
 end
 
 local function SessionButton_OnClick(button)
@@ -1285,7 +1282,8 @@ function DM:GetWindow(index)
 
 	local typeButton = CreateFrame('Button', nil, header)
 	typeButton:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
-	typeButton:SetScript('OnClick', TypeButton_OnClick)
+	typeButton:SetScript('OnClick', HeaderButton_OnClick)
+	typeButton.onClick = TypeButton_OnClick
 	typeButton.window = window
 	window.typeButton = typeButton
 	SetHoverScripts(typeButton)

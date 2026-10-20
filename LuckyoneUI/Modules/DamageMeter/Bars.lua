@@ -138,8 +138,7 @@ local function GetSampleWidth(db, key)
 	if width then return width end
 
 	if not sampleText then
-		sampleText = E.HiddenFrame:CreateFontString(nil, 'OVERLAY')
-		sampleText:SetWordWrap(false)
+		sampleText = DM:CreateText(E.HiddenFrame, 'LEFT')
 	end
 
 	Private:SetFont(sampleText, db.font, db.fontSize, db.fontOutline)
@@ -166,10 +165,7 @@ end
 
 local function Bar_OnEnter(bar)
 	DM:UpdateHeaderButtons(bar.window)
-
-	if not DM.db.mouseoverHighlight then return end
-
-	bar.highlight:Show()
+	bar.highlight:SetShown(DM.db.mouseoverHighlight)
 end
 
 local function Bar_OnLeave(bar)
@@ -634,8 +630,8 @@ end
 local function UpdateValueColumn(db, window)
 	local width, secret = 0, false
 
-	-- Value spacing only applies if the slider is greater than 0 in the config
-	if db.valueSpacing > 0 then
+	-- Value spacing only applies if the slider is greater than 0 and Minimal is not hiding the secondary number
+	if db.valueSpacing > 0 and db.numberDisplay ~= 'MINIMAL' then
 		local bars = window.bars
 
 		for i = 1, window.visibleCount do

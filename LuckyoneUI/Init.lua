@@ -94,8 +94,8 @@ end
 Private.myClass = select(2, UnitClass('player'))
 Private.myGUID = UnitGUID('player')
 Private.myName = UnitNameUnmodified('player')
-Private.myRealm = GetRealmName()
-Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
+local myRealm = GetRealmName()
+Private.myNameRealm = Private.myName .. ' - ' .. myRealm
 
 -- Forever names are unique per region, so the key is the full name without a server (Like AceDB)
 if RegionalUniqueNamesEnabled and RegionalUniqueNamesEnabled() then
@@ -104,7 +104,7 @@ if RegionalUniqueNamesEnabled and RegionalUniqueNamesEnabled() then
 end
 
 -- Same as GetNormalizedRealmName, which is still nil this early
-Private.myNormalizedRealm = gsub(Private.myRealm, '[%s%-%.]', '')
+Private.myNormalizedRealm = gsub(myRealm, '[%s%-%.]', '')
 
 -- ElvUI compatibility
 Private.ElvUI = Private.IsAddOnLoaded('ElvUI')
@@ -165,13 +165,11 @@ function db:SetProfile(name)
 end
 
 function db:ResetProfile()
-	wipe(self.profile)
-	FillDefaults(self.profile, Private.Defaults.profile)
+	FillDefaults(wipe(self.profile), Private.Defaults.profile)
 end
 
 function db:CopyProfile(name)
-	wipe(self.profile)
-	MergeTable(self.profile, CopyTable(sv.profiles[name]))
+	MergeTable(wipe(self.profile), CopyTable(sv.profiles[name]))
 	FillDefaults(self.profile, Private.Defaults.profile)
 end
 
@@ -217,7 +215,8 @@ loader:RegisterEvent('ADDON_LOADED')
 loader:RegisterEvent('PLAYER_LOGIN')
 loader:RegisterEvent('PLAYER_ENTERING_WORLD')
 loader:RegisterEvent('PLAYER_LOGOUT')
-if Private.isForever then
+-- ElvUI shows its own reload popup for this
+if Private.isForever and not Private.ElvUI then
 	loader:RegisterEvent('INPUT_DEVICE_INTERFACE_TRANSITION')
 end
 loader:SetScript('OnEvent', function(self, event, ...)
@@ -266,7 +265,7 @@ loader:SetScript('OnEvent', function(self, event, ...)
 		end
 	elseif event == 'INPUT_DEVICE_INTERFACE_TRANSITION' then
 		local newMode = ... -- Modules read the gamepad UI mode at login
-		if not Private.ElvUI and (newMode == Enum.InputDeviceInterfaceType.Gamepad) ~= Private.isGamepadUI then
+		if (newMode == Enum.InputDeviceInterfaceType.Gamepad) ~= Private.isGamepadUI then
 			StaticPopup_Show('LUCKYONE_RL')
 		end
 	else

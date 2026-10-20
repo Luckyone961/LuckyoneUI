@@ -7,16 +7,10 @@ end
 local next = next
 local unpack = unpack
 
-local hooksecurefunc = hooksecurefunc
-
 local _G = _G
 
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
-
-local function Tabardy_LoadPortrait()
-	_G.TabardyDesignerPortrait:StripTextures()
-end
 
 local function Skin_Tabardy()
 	if not Private.Addon.db.profile.skins.Tabardy then return end
@@ -46,8 +40,8 @@ local function Skin_Tabardy()
 		S:HandleButton(button)
 	end
 
-	-- The portrait border comes back on every refresh
-	hooksecurefunc(designer, 'LoadPortrait', Tabardy_LoadPortrait)
+	-- LoadPortrait only sets the texture on every show, the alpha keeps it hidden
+	_G.TabardyDesignerPortrait:SetAlpha(0)
 end
 
 S:AddCallbackForAddon('Tabardy', 'LuckyoneUI_Tabardy', Skin_Tabardy)

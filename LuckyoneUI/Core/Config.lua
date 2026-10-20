@@ -137,16 +137,16 @@ local function BuildAddonProfilesSection()
 	local section = ACH:Group(GetIconName(L["Addon Profiles"], 'Addons'), nil, 10)
 	section.args.header1 = ACH:Header(L["Addon Profiles"], 1)
 	section.args.addons = InlineGroup(L["Profiles"], 2)
-	section.args.addons.args.baganator = ACH:Execute('Baganator', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_Baganator() StaticPopup_Show('LUCKYONE_RL') end, nil, true)
-	section.args.addons.args.buffReminders = ACH:Execute('BuffReminders', L["Import LuckyoneUI defaults."], 2, function() Private:Setup_BuffReminders() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.details = ACH:Execute('Details', L["Import LuckyoneUI defaults."], 3, function() Private:Setup_Details() StaticPopup_Show('LUCKYONE_RL') end, nil, true)
-	section.args.addons.args.mplustimer = ACH:Execute('MPlusTimer', L["Import LuckyoneUI defaults."], 4, function() Private:Setup_MPlusTimer() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.nsrt = ACH:Execute('Northern Sky Raid Tools', L["Import LuckyoneUI defaults."], 5, function() Private:Setup_NorthernSkyRaidTools() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.permoksAccountManager = ACH:Execute('PermoksAccountManager', L["Import LuckyoneUI defaults."], 6, function() Private:Setup_PermoksAccountManager() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.plumber = ACH:Execute('Plumber', L["Import LuckyoneUI defaults."], 7, function() Private:Setup_Plumber() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.baganator = ACH:Execute('Baganator', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_Baganator() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('Baganator'))
+	section.args.addons.args.buffReminders = ACH:Execute('BuffReminders', L["Import LuckyoneUI defaults."], 2, function() Private:Setup_BuffReminders() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('BuffReminders'), not Private.isRetail)
+	section.args.addons.args.details = ACH:Execute('Details', L["Import LuckyoneUI defaults."], 3, function() Private:Setup_Details() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('Details'))
+	section.args.addons.args.mplustimer = ACH:Execute('MPlusTimer', L["Import LuckyoneUI defaults."], 4, function() Private:Setup_MPlusTimer() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('MPlusTimer'), not Private.isRetail)
+	section.args.addons.args.nsrt = ACH:Execute('Northern Sky Raid Tools', L["Import LuckyoneUI defaults."], 5, function() Private:Setup_NorthernSkyRaidTools() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('NorthernSkyRaidTools'), not Private.isRetail)
+	section.args.addons.args.permoksAccountManager = ACH:Execute('PermoksAccountManager', L["Import LuckyoneUI defaults."], 6, function() Private:Setup_PermoksAccountManager() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('PermoksAccountManager'), not Private.isRetail)
+	section.args.addons.args.plumber = ACH:Execute('Plumber', L["Import LuckyoneUI defaults."], 7, function() Private:Setup_Plumber() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('Plumber'), not Private.isRetail)
 	section.args.nameplates = InlineGroup(L["Nameplate Profiles"], 3)
 	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_NamePlates() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, nil, not Private.ElvUI)
-	section.args.nameplates.args.platynator = ACH:Execute('Platynator', L["Import LuckyoneUI defaults."], 2, function() Private:Setup_Platynator() StaticPopup_Show('LUCKYONE_RL') end, nil, true)
+	section.args.nameplates.args.platynator = ACH:Execute('Platynator', L["Import LuckyoneUI defaults."], 2, function() Private:Setup_Platynator() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('Platynator'))
 	section.args.bossmods = InlineGroup(L["BossMods Profiles"], 4)
 	section.args.bossmods.args.bigwigs = ACH:Execute('BigWigs', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_BigWigs() end, nil, true)
 	section.args.header2 = ACH:Header(L["Blizzard Profiles"], 6, nil, nil, not Private.isRetail)
@@ -171,7 +171,7 @@ local function BuildChatSection()
 	section.args.header = ACH:Header(L["Chat"], 1)
 	section.args.chatSetup = InlineGroup(L["Setup Chat"], 2)
 	section.args.chatSetup.args.chat = ACH:Execute(L["Setup Chat"], nil, 1, function() Private:Setup_Chat() end)
-	section.args.chatSetup.args.chattynator = ACH:Execute(L["Use Chattynator Addon"], nil, 2, function() Private:Setup_Chattynator() StaticPopup_Show('LUCKYONE_RL') end, nil, true)
+	section.args.chatSetup.args.chattynator = ACH:Execute(L["Use Chattynator Addon"], nil, 2, function() Private:Setup_Chattynator() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('Chattynator'))
 	section.args.chatDesc = DescriptionGroup(L["Description"], 3, L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nChat tabs: [ Main - Log - Whisper - Guild - Party ]"])
 	section.args.chatVars = DescriptionGroup(L["Chat CVars"], 4, '- chatClassColorOverride 0\n- chatMouseScroll 1\n- chatStyle classic\n- colorChatNamesByClass 1\n- showTimestamps %H:%M\n- speechToText 0\n- textToSpeech 0\n- whisperMode inline\n- wholeChatWindowClickable 0')
 	return section
@@ -224,7 +224,7 @@ local function BuildCDMSection()
 	end
 
 	section.args.addons = InlineGroup(L["Addon Profiles"], 17)
-	section.args.addons.args.scm = ACH:Execute('SkironCooldownManager', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_SkironCooldownManager() StaticPopup_Show('LUCKYONE_RL') end, nil, true)
+	section.args.addons.args.scm = ACH:Execute('SkironCooldownManager', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_SkironCooldownManager() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('SkironCooldownManager'))
 	return section
 end
 
@@ -393,7 +393,7 @@ local function BuildDamageMeterSection()
 	section.args.bookmarkOptions.args.bookmarkDesc = DescriptionGroup(L["Description"], 1, L["Right click a session window to open the bookmark panel over its bars.\n\nLeft click a bookmark to switch the window to it, right click one to drop it again. Drag one up or down to give it another place. The last slot opens a menu with the types you are missing."])
 	section.args.bookmarkOptions.args.generalOptions = InlineGroup(L["General"], 2)
 	section.args.bookmarkOptions.args.generalOptions.args.showBookmarks = ACH:Toggle(L["Enable"], L["Open the bookmark panel with a right click on a session window."], 1)
-	section.args.bookmarkOptions.args.generalOptions.args.bookmarkDragDrop = ACH:Toggle(L["Drag and Drop"], L["Drag a bookmark up or down to change its place in the panel."], 2, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.showBookmarks end)
+	section.args.bookmarkOptions.args.generalOptions.args.bookmarkDragDrop = ACH:Toggle(L["Drag and Drop"], L["Drag a bookmark up or down to change its place in the panel."], 2, nil, nil, nil, nil, nil, function() local db = Private.Addon.db.profile.damageMeter return not db.enable or not db.showBookmarks end)
 	section.args.bookmarkOptions.args.bookmarks = ACH:MultiSelect(L["Bookmarks"], L["Types the panel offers, new ones are added to the end of the list."], 3, Private.Modules.DamageMeter.TypeMenuNames, nil, nil, function(_, key) return Private.Addon.db.profile.damageMeter.bookmarks[key] and true or false end, function(_, key, value) Private.Modules.DamageMeter:SetBookmark(key, value) Private:DamageMeter_Update() end, function() local db = Private.Addon.db.profile.damageMeter return not db.enable or not db.showBookmarks end)
 	return section
 end
@@ -574,7 +574,7 @@ end
 local ObjectiveTrackerColors = { DEFAULT = L["Default"], CLASS = L["Class Color"], CUSTOM = L["Custom"] }
 
 local function ObjectiveTrackerDisabled()
-	return not Private.Addon.db.profile.misc.objectiveTracker.enable
+	return Private.IsAddOnLoaded('!KalielsTracker') or not Private.Addon.db.profile.misc.objectiveTracker.enable
 end
 
 local function ObjectiveTrackerSkinDisabled()
@@ -608,7 +608,7 @@ end
 
 local function ObjectiveTrackerHeaderGroup(name, key, order)
 	local Get, Set, ColorGet, ColorSet = ObjectiveTrackerGetSet(key)
-	local function NoUnderline() return not Private.Addon.db.profile.misc.objectiveTracker[key].underline end
+	local function NoUnderline() return ObjectiveTrackerDisabled() or not Private.Addon.db.profile.misc.objectiveTracker[key].underline end
 
 	local group = ACH:Group(name, nil, order, nil, Get, Set, ObjectiveTrackerDisabled)
 	group.args.fontOptions = FontGroup(L["Font"], 1, 32)

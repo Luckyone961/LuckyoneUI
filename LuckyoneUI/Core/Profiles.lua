@@ -120,6 +120,5 @@ StaticPopupDialogs['LUCKYONE_IMPORT'] = {
 	EditBoxOnEscapePressed = StaticPopup_StandardEditBoxOnEscapePressed,
 	EditBoxOnTextChanged = StaticPopup_StandardNonEmptyTextHandler,
 	whileDead = 1,
-	preferredIndex = 3,
 	hideOnEscape = 1,
 }

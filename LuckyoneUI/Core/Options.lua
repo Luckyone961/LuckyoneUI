@@ -30,7 +30,8 @@ local CreateAndInitFromMixin = CreateAndInitFromMixin
 local CreateColor = CreateColor
 local CreateColorFromHexString = CreateColorFromHexString
 local CreateFrame = CreateFrame
-local FormatPercentage = FormatPercentage
+local EditBox_ClearFocus = EditBox_ClearFocus
+local FormatPercentageRounded = FormatPercentageRounded
 local MinimalSliderWithSteppersMixin = MinimalSliderWithSteppersMixin
 local PlaySound = PlaySound
 local ProxySettingMixin = ProxySettingMixin
@@ -257,7 +258,7 @@ local function AddRange(category, info, name, desc, get, set, option)
 	end)
 
 	local options = Settings.CreateSliderOptions(min, max, step)
-	options:SetLabelFormatter(MinimalSliderWithSteppersMixin.Label.Right, option.isPercent and FormatPercentage or function(value) return format(fmt, value) end)
+	options:SetLabelFormatter(MinimalSliderWithSteppersMixin.Label.Right, option.isPercent and FormatPercentageRounded or function(value) return format(fmt, value) end)
 
 	return Settings.CreateSlider(category, setting, options, desc)
 end
@@ -480,10 +481,6 @@ local function InputEnterPressed(self)
 	self:ClearFocus()
 end
 
-local function InputEscapePressed(self)
-	self:ClearFocus()
-end
-
 local function InputFocusLost(self)
 	local row = self:GetParent().row
 	self:SetText(tostring(row.get(row.info) or ''))
@@ -597,7 +594,7 @@ local function AddInput(category, info, name, desc, get, set, option, disabled)
 				box:SetAutoFocus(false)
 				box:SetFontObject('GameFontHighlight')
 				box:SetTextInsets(4, 4, 4, 4)
-				box:SetScript('OnEscapePressed', InputEscapePressed)
+				box:SetScript('OnEscapePressed', EditBox_ClearFocus)
 				box:SetScript('OnCursorChanged', ScrollingEdit_OnCursorChanged)
 				box:SetScript('OnTextChanged', MultilineTextChanged)
 				box:SetScript('OnUpdate', ScrollingEdit_OnUpdate)
@@ -665,6 +662,8 @@ local function AddInput(category, info, name, desc, get, set, option, disabled)
 		-- Hiding a focused box runs its focus lost handler, which still reads the row
 		frame.row = nil
 	end)
+
+	Settings.RegisterInitializer(category, initializer)
 
 	return initializer
 end
@@ -748,7 +747,6 @@ local function AddOptions(category, args, path, get, set, disabled, hidden, nest
 				local initializer = AddInput(category, info, name, desc, optionGet, optionSet, option, optionDisabled)
 				initializer:AddSearchTags(name, unpack(tags))
 				ApplyChecks(initializer, {}, optionHidden)
-				Settings.RegisterInitializer(category, initializer)
 			else
 				error(format('LuckyoneUI: %s is a %s, not supported without ElvUI', concat(path, '.'), tostring(optionType)))
 			end

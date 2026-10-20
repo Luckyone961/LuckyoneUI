@@ -7,6 +7,8 @@ local format = string.format
 local gmatch = string.gmatch
 local ipairs = ipairs
 local min = math.min
+local pairs = pairs
+local sort = table.sort
 local strmatch = string.match
 local unpack = unpack
 local wipe = table.wipe
@@ -35,10 +37,6 @@ local currentPage = 0
 
 local function Green(text)
 	return format('|cff4beb2c%s|r', text)
-end
-
-local function Red(text)
-	return format('|cffC80000%s|r', text)
 end
 
 local function ToggleDB(toggle)
@@ -620,6 +618,26 @@ local function Toggle(section, path, labelPath, descPath)
 	return { section = section, key = strmatch(path, '[^.]+$'), label = label, desc = desc, hidden = hidden }
 end
 
+-- Toggles in /lucky config order from top to bottom
+local function ConfigGroup(name, section, path)
+	local args = ConfigOption(path).args or {}
+	local keys = {}
+
+	for key, option in pairs(args) do
+		if option.type == 'toggle' then
+			keys[#keys + 1] = key
+		end
+	end
+
+	sort(keys, function(a, b) return args[a].order < args[b].order end)
+
+	for i, key in ipairs(keys) do
+		keys[i] = Toggle(section, path .. '.' .. key)
+	end
+
+	return Group(name, unpack(keys))
+end
+
 -- ElvUI db keys, the mirror path is written along with the value (castbar transparency)
 local function ElvUIToggle(label, path, mirror)
 	return { elvui = true, section = strmatch(path, '(.+)%.'), key = strmatch(path, '[^.]+$'), label = label, mirror = mirror and ElvUIToggle(nil, mirror) }
@@ -642,7 +660,7 @@ local function BuildPages()
 		-- UI scale
 		Page(L["LuckyoneUI Scale"], {
 			L["1440p = Default | 1080p = Downscaled"] .. '.',
-			Red(L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor pixel offsets."]),
+			format('|cffC80000%s|r', L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor pixel offsets."]),
 			recommended,
 		}, {
 			Button('1440p', function() Private:Setup_Scale(true, true) end, 'native'),
@@ -783,56 +801,14 @@ local function BuildPages()
 
 		-- LuckyoneUI general tab checkboxes
 		Page(L["Quality of Life"], { L["Small tweaks that speed up daily tasks and hide Blizzard frames you do not need."] }, nil, {
-			Group(L["Quality of Life"],
-				Toggle('qualityOfLife', 'general.qualityOfLife.autoAcceptRole'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.autoDismount'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.easyDelete'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.expandMerchant'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.expandQuestLog'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.fasterLoot'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.preventLootAutoShow'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.privacyOverlay'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.quickSignup')
-			),
-			Group(L["Hide Blizzard Frames"],
-				Toggle('disabledFrames', 'general.disabledFrames.AlertFrame'),
-				Toggle('disabledFrames', 'general.disabledFrames.ApplicationCover'),
-				Toggle('disabledFrames', 'general.disabledFrames.BossBanner'),
-				Toggle('disabledFrames', 'general.disabledFrames.HousingDecorAlerts'),
-				Toggle('disabledFrames', 'general.disabledFrames.LossOfControl'),
-				Toggle('disabledFrames', 'general.disabledFrames.TalkingHead'),
-				Toggle('disabledFrames', 'general.disabledFrames.UIErrorsFrame'),
-				Toggle('disabledFrames', 'general.disabledFrames.ZoneTextFrame')
-			),
+			ConfigGroup(L["Quality of Life"], 'qualityOfLife', 'general.qualityOfLife'),
+			ConfigGroup(L["Hide Blizzard Frames"], 'disabledFrames', 'general.disabledFrames'),
 		}),
 
 		-- LuckyoneUI custom skins
 		Page('Skins', { L["Skin the Addons and Blizzard frames below in ElvUI style. Only installed Addons are listed."] }, nil, {
-			Group('AddOns',
-				Toggle('skins', 'skins.addons.AllTheThings'),
-				Toggle('skins', 'skins.addons.Attune'),
-				Toggle('skins', 'skins.addons.Auctionator'),
-				Toggle('skins', 'skins.addons.BigWigs'),
-				Toggle('skins', 'skins.addons.BugSack'),
-				Toggle('skins', 'skins.addons.ForeverDungeonJournal'),
-				Toggle('skins', 'skins.addons.KeystoneLoot'),
-				Toggle('skins', 'skins.addons.LFGBulletinBoard'),
-				Toggle('skins', 'skins.addons.NovaInstanceTracker'),
-				Toggle('skins', 'skins.addons.NovaSpellRankChecker'),
-				Toggle('skins', 'skins.addons.NovaWorldBuffs'),
-				Toggle('skins', 'skins.addons.Plumber'),
-				Toggle('skins', 'skins.addons.PremadeGroupsFilter'),
-				Toggle('skins', 'skins.addons.RCLootCouncil'),
-				Toggle('skins', 'skins.addons.RXPGuides'),
-				Toggle('skins', 'skins.addons.SimpleAddonManager'),
-				Toggle('skins', 'skins.addons.Simulationcraft'),
-				Toggle('skins', 'skins.addons.Tabardy'),
-				Toggle('skins', 'skins.addons.WhatsTraining')
-			),
-			Group('Blizzard',
-				Toggle('skins.Blizzard', 'skins.blizzard.CooldownViewer'),
-				Toggle('skins.Blizzard', 'skins.blizzard.DeveloperConsole')
-			),
+			ConfigGroup('AddOns', 'skins', 'skins.addons'),
+			ConfigGroup('Blizzard', 'skins.Blizzard', 'skins.blizzard'),
 		}, not Private.ElvUI),
 
 		-- Final reload and Discord link

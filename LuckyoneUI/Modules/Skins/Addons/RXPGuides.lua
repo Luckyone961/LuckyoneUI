@@ -344,13 +344,9 @@ end
 -- Active Items and Active Targets, the title sits above the frame's left edge
 local function SkinIconFrame(frame)
 	local title = frame.title
-	if frame.v2 then
-		SkinV2Backdrop(frame, 'Transparent')
-		SkinV2Backdrop(title)
-	else
-		SkinBackdrop(frame, 'Transparent')
-		SkinBackdrop(title)
-	end
+	local skin = frame.v2 and SkinV2Backdrop or SkinBackdrop
+	skin(frame, 'Transparent')
+	skin(title)
 
 	title:ClearAllPoints()
 	title:Point('BOTTOMLEFT', frame, 'TOPLEFT', 0, 1)

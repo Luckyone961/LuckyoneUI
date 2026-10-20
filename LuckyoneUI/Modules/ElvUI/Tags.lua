@@ -181,12 +181,7 @@ local function FormatTargetName(unit, lastPartOnly, withColor)
 	local targetName = UnitName(targetUnit)
 	if not targetName then return end
 
-	if issecretvalue(targetName) then
-		if not withColor then return targetName end
-
-		return WrapString(targetName, GetUnitColor(targetUnit), '|r')
-	end
-
+	-- Last name parts are Classic only, where names are never secret
 	if lastPartOnly then
 		targetName = GetLastNamePart(targetName)
 	end

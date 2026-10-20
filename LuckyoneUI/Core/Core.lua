@@ -64,8 +64,7 @@ end
 -- Restore defaults config buttons, the enable toggle survives the wipe
 function Private:ResetDefaults(db, defaults)
 	local enable = db.enable
-	wipe(db)
-	MergeTable(db, CopyTable(defaults))
+	MergeTable(wipe(db), CopyTable(defaults))
 	db.enable = enable
 end
 
@@ -90,7 +89,7 @@ local function DragList_ScrollTo(frame, offset)
 	frame.offset = offset
 	frame.Layout(frame)
 
-	return true
+	frame.dropIndex = nil
 end
 
 local function DragList_OnMouseWheel(frame, delta)
@@ -130,11 +129,7 @@ local function DragScroll(frame, y, elapsed)
 	if frame.scrollWait > 0 then return end
 
 	frame.scrollWait = 0.15
-
-	-- The rows carry other entries now, the marker has to find its place again
-	if DragList_ScrollTo(frame, frame.offset + direction) then
-		frame.dropIndex = nil
-	end
+	DragList_ScrollTo(frame, frame.offset + direction)
 end
 
 -- The marker sits above the target while moving up and below it while moving down
@@ -300,7 +295,6 @@ StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 		self:HighlightText()
 	end,
 	whileDead = 1,
-	preferredIndex = 3,
 	hideOnEscape = 1,
 }
 

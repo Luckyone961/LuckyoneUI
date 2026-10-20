@@ -44,20 +44,15 @@ local EditBoxKeys = { 'CopperBox', 'GoldBox', 'InputBox', 'MaxBox', 'MinBox', 'N
 
 local auctionHouseSkinned
 
-local function SkinInsetBorder(frame)
-	frame:StripTextures()
-	S:HandleInsetFrame(frame)
-end
-
 local function SkinInset(inset)
 	if not inset or inset.isSkinned then return end
 
-	SkinInsetBorder(inset)
+	inset:StripTextures()
 
 	-- Classic & TBC borders (InsetFrameTemplate4)
 	for _, child in next, { inset:GetChildren() } do
 		if child.BorderTopLeft or child.NineSlice or child.Bg then
-			SkinInsetBorder(child)
+			child:StripTextures()
 		end
 	end
 

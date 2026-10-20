@@ -1272,8 +1272,8 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.player.threatStyle = 'NONE'
 	E.db.unitframe.units.player.width = 280
 
-	-- Player power regen ticks for Vanilla & TBC
-	if Private.isClassic or Private.isTBC then
+	-- Player power regen ticks for Vanilla, TBC & Forever
+	if Private.isClassic or Private.isTBC or Private.isForever then
 		E.db.unitframe.units.player.power.EnergyManaRegen = true
 	end
 

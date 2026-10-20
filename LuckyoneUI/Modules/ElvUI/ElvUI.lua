@@ -28,7 +28,6 @@ function ElvUI:PLAYER_ENTERING_WORLD()
 	if Private.isRetail then
 		Private:MythicVisibility()
 	end
-	Private:TargetTextures_Update()
 end
 
 -- Target and focus changes

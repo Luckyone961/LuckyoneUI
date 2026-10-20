@@ -232,7 +232,7 @@ local function CreatePanel()
 	-- Follow the ElvUI Mail skin so the panel always matches the frame beside it
 	skinned = Private.ElvUI and ElvUI[1].private.skins.blizzard.enable and ElvUI[1].private.skins.blizzard.mail
 
-	-- Non retail got an empty close button the DefaultPanel corner
+	-- The Classic DefaultPanel has an empty close button corner
 	local header = not skinned and Private.isModern
 	inset = (skinned and 6) or (header and 4) or 12
 

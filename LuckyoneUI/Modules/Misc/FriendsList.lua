@@ -5,6 +5,7 @@ local pairs = pairs
 local strmatch = string.match
 local wipe = wipe
 
+local BNet_GetBNetAccountName = BNet_GetBNetAccountName
 local CreateFrame = CreateFrame
 local GetFriendAccountInfo = C_BattleNet.GetFriendAccountInfo
 local GetFriendInfoByIndex = C_FriendList.GetFriendInfoByIndex
@@ -93,7 +94,7 @@ local function GetCharacter(button, db)
 		if not game.characterName or game.characterName == '' then return character end
 
 		character.name = game.characterName
-		character.account = accountInfo.accountName
+		character.account = BNet_GetBNetAccountName(accountInfo)
 		character.realm = (game.realmDisplayName ~= '' and game.realmDisplayName) or game.realmName
 		character.level = game.characterLevel
 		character.className = game.className

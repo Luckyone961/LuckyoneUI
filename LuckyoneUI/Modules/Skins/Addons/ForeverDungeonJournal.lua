@@ -217,8 +217,8 @@ local function Map_Render()
 	end
 end
 
--- Armor type options, the tick box follows ElvUI's menu checkboxes
-local function SkinArmorOption(option)
+-- Drop-down options (armor types, resistances, spell schools)
+local function SkinMenuOption(option)
 	option:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
 	option.box:SetTexture(E.ClearTexture)
 
@@ -235,6 +235,15 @@ local function SkinArmorOption(option)
 	check:SetInside(box)
 end
 
+-- The hook runs after DungeonJournal's OnEnter
+local function LootFilterCheck_OnEnter(check)
+	local tip = check:GetParent().fdjTip
+	if tip and not tip.IsSkinned then
+		tip:SetTemplate('Transparent')
+		tip.IsSkinned = true
+	end
+end
+
 -- Loot Filter window, built on the first click
 local function Skin_LootFilterWindow(frame)
 	local window = frame.lootFilterWindow
@@ -246,6 +255,7 @@ local function Skin_LootFilterWindow(frame)
 	-- The filter starts disabled, ElvUI only clears its disabled texture when the state changes
 	for _, check in next, window.checks do
 		S:HandleCheckBox(check)
+		check:HookScript('OnEnter', LootFilterCheck_OnEnter)
 
 		if not check:IsEnabled() and not check:GetChecked() then
 			check:SetDisabledTexture('')
@@ -254,13 +264,25 @@ local function Skin_LootFilterWindow(frame)
 
 	S:HandleEditBox(window.minBox)
 
-	-- Armor type drop-down
-	local armor = window.armor
-	S:HandleButton(armor)
-	armor.menu:SetTemplate('Transparent')
+	-- Armor type and resistance dropdowns
+	for _, dropdown in next, { window.armor, window.resist } do
+		S:HandleButton(dropdown)
+		dropdown.menu:SetTemplate('Transparent')
 
-	for _, option in next, armor.options do
-		SkinArmorOption(option)
+		for _, option in next, dropdown.options do
+			SkinMenuOption(option)
+		end
+	end
+
+	-- Spell school drop-down
+	local schools = window.schoolArrow
+	if schools then
+		S:HandleNextPrevButton(schools, 'down', nil, true, nil, nil, 18)
+		schools.menu:SetTemplate('Transparent')
+
+		for _, option in next, schools.options do
+			SkinMenuOption(option)
+		end
 	end
 
 	for _, button in next, { window.toggle, window.clear, window.ok, window.show } do
@@ -344,13 +366,73 @@ local function Skin_BugReportWindow(frame)
 	window.IsSkinned = true
 end
 
+-- SetActive runs on every tab switch
+local function SettingsTab_SetActive(tab, active)
+	tab:SetBackdropBorderColor(unpack(active and E.media.rgbvaluecolor or E.media.bordercolor))
+end
+
+-- Content box with the Options view (category list) and Discord view
+local function SkinSettingsBox(box)
+	for _, view in next, { box:GetChildren() } do
+		-- Category list divider
+		for _, region in next, { view:GetRegions() } do
+			if region:IsObjectType('Texture') then
+				region:SetVertexColor(unpack(E.media.bordercolor))
+			end
+		end
+
+		-- Category list header and the Discord link
+		for _, child in next, { view:GetChildren() } do
+			if child:IsObjectType('EditBox') then
+				S:HandleEditBox(child)
+			elseif child.backdropInfo then
+				child:SetTemplate()
+			end
+		end
+	end
+
+	box:SetTemplate()
+end
+
 -- Settings window (minimap right-click, /dj options), built on the first toggle
 local function Skin_SettingsPanel()
 	local panel = ForeverDungeonJournalSettings
 	if panel.IsSkinned then return end
 
+	-- Copied Options window art
+	if panel.fdjNine then
+		panel.fdjNine:Hide()
+	end
+
+	panel:StripTextures()
+
+	-- The resize grip stays
+	for _, child in next, { panel:GetChildren() } do
+		if child:IsObjectType('Button') then
+			local normal = child:GetNormalTexture()
+			if normal and normal:GetAtlas() == 'RedButton-Exit' then
+				S:HandleCloseButton(child)
+			elseif child.Left and child.Right then
+				-- Done
+				S:HandleButton(child)
+			end
+		elseif child.backdropInfo then
+			SkinSettingsBox(child)
+		end
+	end
+
 	panel:SetTemplate()
-	S:HandleCloseButton((panel:GetChildren()))
+
+	for index, tab in next, panel.tabs do
+		tab:StripTextures(nil, true)
+		tab:SetTemplate()
+
+		if tab.SetActive then
+			hooksecurefunc(tab, 'SetActive', SettingsTab_SetActive)
+		end
+
+		SettingsTab_SetActive(tab, panel.selectedTab == index)
+	end
 
 	for _, check in next, panel.checks do
 		S:HandleCheckBox(check)

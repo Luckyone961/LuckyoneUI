@@ -190,18 +190,6 @@ local function Setup_LuckyoneDB()
 	end
 end
 
--- Live AceDB object for private addon dbs
-local function FindAceDB(global)
-	local sv, AceDB = _G[global], LibStub('AceDB-3.0', true)
-	if not (sv and AceDB) then return end
-
-	for object in pairs(AceDB.db_registry) do
-		if object.sv == sv then
-			return object
-		end
-	end
-end
-
 -- Other addons
 local function Setup_Addons()
 	local AceAddon = LibStub('AceAddon-3.0')
@@ -253,7 +241,7 @@ local function Setup_Addons()
 		bugSack.mute = true
 	end
 
-	local clicked = FindAceDB('ClickedDB')
+	local clicked = Private:FindAceDB('ClickedDB')
 	if clicked then
 		clicked.profile.options.minimap.hide = true
 	end
@@ -278,7 +266,7 @@ local function Setup_Addons()
 		instanceTracker.db.global.timeStampFormat = 24
 	end
 
-	local rxp = FindAceDB('RXPSettings')
+	local rxp = Private:FindAceDB('RXPSettings')
 	if rxp then
 		local guides = rxp.profile
 		guides.activeTheme = 'DarkMode'

@@ -133,15 +133,6 @@ local function Handle_OnShow(self)
 	end
 end
 
-local function Handle_OnHide(self)
-	local frame = StopDrag(self)
-	if frame then
-		Positions[frame] = GetAnchor(frame)
-	end
-
-	AutoReset(self:GetParent())
-end
-
 local function Handle_OnDragStart(self)
 	local frame = self:GetParent()
 	if not CanMove(frame) or not ModifierDown() then return end
@@ -150,9 +141,7 @@ local function Handle_OnDragStart(self)
 	local anchor = GetAnchor(frame)
 	if not anchor then return end
 
-	if not Defaults[frame] then
-		Defaults[frame] = GetAnchor(frame)
-	end
+	Defaults[frame] = Defaults[frame] or GetAnchor(frame)
 
 	-- Prevent moving out of the screen
 	self.clamped = frame:IsClampedToScreen()
@@ -171,6 +160,11 @@ local function Handle_OnDragStop(self)
 	if not frame then return end
 
 	Positions[frame] = GetAnchor(frame)
+end
+
+local function Handle_OnHide(self)
+	Handle_OnDragStop(self)
+	AutoReset(self:GetParent())
 end
 
 -- Right click can put a panel back to Blizzard default position

@@ -85,24 +85,26 @@ local function SVProfiles(global, key)
 	end
 end
 
+-- Live AceDB object of an addon SV
+function Private:FindAceDB(global)
+	local sv, AceDB = _G[global], LibStub('AceDB-3.0', true)
+	if not (sv and AceDB) then return end
+
+	for object in pairs(AceDB.db_registry) do
+		if object.sv == sv then
+			return object
+		end
+	end
+end
+
 -- AceDB: Profiles and character keys share one SV
 local function AceApply(global)
 	return function(profile)
 		local db = _G[global]
 		db.profileKeys = db.profileKeys or {}
 
-		local key = charKey
-		local AceDB = LibStub('AceDB-3.0', true)
-		if AceDB then
-			for object in pairs(AceDB.db_registry) do
-				if object.sv == db then
-					key = object.keys.char
-					break
-				end
-			end
-		end
-
-		db.profileKeys[key] = profile
+		local object = Private:FindAceDB(global)
+		db.profileKeys[(object and object.keys.char) or charKey] = profile
 	end
 end
 
@@ -118,6 +120,7 @@ end
 -- Hidden: Skips this handler completely (Wrong game version, no ElvUI, etc)
 -- Profiles: Returns the profile table, keyed by profile name
 -- Apply: Loads the profile on the current character
+-- ElvUI: Turns off the ElvUI parts the profile replaces (only with ElvUI loaded)
 local handlers = {
 	{
 		name = 'ElvUI',
