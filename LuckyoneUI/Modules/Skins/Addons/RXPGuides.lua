@@ -341,7 +341,7 @@ local function CandyBar_Stop(_, bar)
 	end
 end
 
--- Active Items and Active Targets, the title sits above the frame
+-- Active Items and Active Targets, the title sits above the frame's left edge
 local function SkinIconFrame(frame)
 	local title = frame.title
 	if frame.v2 then
@@ -353,7 +353,7 @@ local function SkinIconFrame(frame)
 	end
 
 	title:ClearAllPoints()
-	title:Point('BOTTOMLEFT', frame, 'TOPLEFT', 5, 1)
+	title:Point('BOTTOMLEFT', frame, 'TOPLEFT', 0, 1)
 end
 
 -- Active Items and Active Targets buttons are secure, the addon only creates them out of combat

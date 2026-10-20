@@ -10,6 +10,7 @@ local GetCurrentBindingSet = GetCurrentBindingSet
 local InCombatLockdown = InCombatLockdown
 local SaveBindings = SaveBindings
 local SetBinding = SetBinding
+local SetModifiedClick = SetModifiedClick
 
 local _G = _G
 local LibStub = LibStub
@@ -29,12 +30,13 @@ NUMPAD0 NONE
 BUTTON4 MULTIACTIONBAR2BUTTON4
 INSERT NONE
 DELETE NONE
+/ NONE
 SHIFT-PAGEDOWN NONE
 CTRL-PAGEUP NONE
 CTRL-PAGEDOWN NONE
 CTRL-SHIFT-PAGEDOWN NONE
 R ACTIONBUTTON6
-SHIFT-R MULTIACTIONBAR3BUTTON10
+SHIFT-R MULTIACTIONBAR3BUTTON9
 6 TOGGLEPINGLISTENER
 7 NONE
 8 NONE
@@ -71,8 +73,11 @@ SHIFT-6 NONE
 SHIFT-UP NONE
 SHIFT-MOUSEWHEELUP BONUSACTIONBUTTON1
 SHIFT-DOWN NONE
-SHIFT-MOUSEWHEELDOWN BONUSACTIONBUTTON2
+SHIFT-MOUSEWHEELDOWN BONUSACTIONBUTTON10
 TAB MULTIACTIONBAR1BUTTON9
+SHIFT-TAB NONE
+CTRL-TAB NONE
+CTRL-SHIFT-TAB NONE
 F1 NONE
 SHIFT-F1 NONE
 F2 NONE
@@ -88,7 +93,7 @@ F MULTIACTIONBAR1BUTTON7
 V MULTIACTIONBAR2BUTTON6
 SHIFT-V ACTIONBUTTON10
 T MULTIACTIONBAR1BUTTON6
-SHIFT-T MULTIACTIONBAR3BUTTON8
+SHIFT-T MULTIACTIONBAR3BUTTON7
 C MULTIACTIONBAR2BUTTON7
 B OPENALLBAGS
 SHIFT-B NONE
@@ -98,15 +103,22 @@ F10 NONE
 F11 NONE
 F12 NONE
 SHIFT-I NONE
+SHIFT-P NONE
 SHIFT-SPACE MULTIACTIONBAR2BUTTON10
 Y MULTIACTIONBAR4BUTTON6
 H ACTIONBUTTON8
+U NONE
 NUMPADPLUS NONE
 NUMPADMINUS NONE
+CTRL-M NONE
 CTRL-= NONE
 CTRL-- NONE
+END NONE
+HOME NONE
+CTRL-R MULTIACTIONBAR3BUTTON6
 CTRL-Q ACTIONBUTTON11
 CTRL-E ACTIONBUTTON12
+CTRL-T MULTIACTIONBAR3BUTTON5
 SHIFT-C MULTIACTIONBAR1BUTTON10
 NUMPAD5 NONE
 < ACTIONBUTTON7
@@ -119,11 +131,12 @@ BUTTON5 MULTIACTIONBAR2BUTTON5
 SHIFT-BUTTON5 MULTIACTIONBAR2BUTTON12
 SHIFT-F MULTIACTIONBAR2BUTTON9
 SHIFT-Q MULTIACTIONBAR3BUTTON12
-SHIFT-X NONE
-SHIFT-BUTTON3 MULTIACTIONBAR3BUTTON9
+SHIFT-X MULTIACTIONBAR3BUTTON10
+SHIFT-BUTTON3 MULTIACTIONBAR3BUTTON8
 ALT-V NAMEPLATES
 SHIFT-E NONE
 # TOGGLEWORLDSTATESCORES
+SHIFT-7 NONE
 ]]
 
 local function Setup_Bindings()
@@ -131,6 +144,7 @@ local function Setup_Bindings()
 		SetBinding(key, command ~= 'NONE' and command or nil)
 	end
 
+	SetModifiedClick('SELFCAST', 'NONE')
 	SaveBindings(GetCurrentBindingSet())
 end
 
@@ -172,6 +186,18 @@ local function Setup_LuckyoneDB()
 			end
 		else
 			profile.skins[key] = true
+		end
+	end
+end
+
+-- Live AceDB object for private addon dbs
+local function FindAceDB(global)
+	local sv, AceDB = _G[global], LibStub('AceDB-3.0', true)
+	if not (sv and AceDB) then return end
+
+	for object in pairs(AceDB.db_registry) do
+		if object.sv == sv then
+			return object
 		end
 	end
 end
@@ -227,6 +253,11 @@ local function Setup_Addons()
 		bugSack.mute = true
 	end
 
+	local clicked = FindAceDB('ClickedDB')
+	if clicked then
+		clicked.profile.options.minimap.hide = true
+	end
+
 	local handyNotes = AceAddon:GetAddon('HandyNotes', true)
 	if handyNotes then
 		handyNotes.db.profile.icon_scale = 1.25
@@ -245,6 +276,43 @@ local function Setup_Addons()
 	local instanceTracker = AceAddon:GetAddon('NovaInstanceTracker', true)
 	if instanceTracker then
 		instanceTracker.db.global.timeStampFormat = 24
+	end
+
+	local rxp = FindAceDB('RXPSettings')
+	if rxp then
+		local guides = rxp.profile
+		guides.activeTheme = 'DarkMode'
+		guides.alwaysSendBranded = false
+		guides.arrowScale = 1.25
+		guides.arrowText = 14
+		guides.autoSellJunk = true
+		guides.checkVersions = false
+		guides.enableDrowningScreenFlash = false
+		guides.enableEmergencyIconAnimations = false
+		guides.enableFlyStepAnnouncements = false
+		guides.enableGroupQuests = true
+		guides.enableWorldMapButton = false
+		guides.enableXpStepSkipping = false
+		guides.frameHeight = 271
+		guides.framePositions.activeItemFrame = { { 'CENTER', 'UIParent', 'CENTER', -424, -44 } }
+		guides.framePositions.activeTargetFrame = { { 'CENTER', 'UIParent', 'CENTER', -419, -98 } }
+		guides.framePositions.RXPFrame = { { 'BOTTOMLEFT', 'UIParent', 'BOTTOMLEFT', -2, 280.5 } }
+		guides.frameSizes.RXPFrame = { 402, 271 }
+		guides.guideFontSize = 14
+		guides.hideInRaid = true
+		guides.lockFrames = true
+		guides.notifyOnTargetUpdates = false
+		guides.numMapPins = 10
+		guides.preLoadData = true
+		guides.worldMapPinBackgroundOpacity = 0.4
+
+		-- Skips saving the current frame positions on logout
+		rxp.isResetting = true
+	end
+
+	local simc = AceAddon:GetAddon('Simulationcraft', true)
+	if simc then
+		simc.db.profile.minimap.hide = true
 	end
 
 	local syndicator = _G.SYNDICATOR_CONFIG
