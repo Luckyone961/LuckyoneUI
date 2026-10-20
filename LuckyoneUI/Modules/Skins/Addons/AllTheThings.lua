@@ -39,6 +39,17 @@ local function Window_OnRefreshed(window)
 	end
 end
 
+-- 1px gap to the profession window
+local function Tradeskills_SetTSMCraftingVisible(window)
+	local professions = _G.ProfessionsFrame
+	local _, anchor = window:GetPoint()
+	if professions and anchor == professions then
+		window:ClearAllPoints()
+		window:Point('TOPLEFT', professions, 'TOPRIGHT', 1, 0)
+		window:Point('BOTTOMLEFT', professions, 'BOTTOMRIGHT', 1, 0)
+	end
+end
+
 local function SkinWindow(window)
 	window:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, true)
 
@@ -57,6 +68,10 @@ local function SkinWindow(window)
 	grip:SetTexture(E.Media.Textures.ArrowUp)
 	grip:SetRotation(pi * 1.25)
 	grip:Size(14)
+
+	if window.Suffix == 'Tradeskills' and window.SetTSMCraftingVisible then
+		hooksecurefunc(window, 'SetTSMCraftingVisible', Tradeskills_SetTSMCraftingVisible)
+	end
 end
 
 -- Item icons get cropped with a border
