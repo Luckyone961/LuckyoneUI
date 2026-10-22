@@ -724,13 +724,14 @@ local function BuildPages()
 			Button(L["Setup CVars"], function() Private:Setup_CVars(nil, true) end, 'cvars'),
 		}),
 
-		-- BigWigs profile
-		Page('BigWigs', {
-			L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."],
+		-- Boss Mods choice
+		Page('Boss Mods', {
+			L["Choose between BigWigs and Deadly Boss Mods."],
 			recommended,
 		}, {
 			Button('BigWigs', function() Private:Setup_BigWigs() end, 'bigwigs', 'BigWigs'),
-		}, nil, nil, L["BigWigs profile"]),
+			Button('Deadly Boss Mods', function() Private:Setup_DBM(true) end, 'dbm', 'DBM-Core'),
+		}, nil, nil, L["Boss Mods Profiles"]),
 
 		-- Damage Meter choice
 		Page(L["Damage Meter"], Private.Modules.DamageMeter and {

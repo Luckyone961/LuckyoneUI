@@ -1,6 +1,8 @@
 ## Version 4.27 [Alpha - In Development - Not Yet Released]
 
 **All WoW Versions:**  
+- Added profile for DBM (Basic styles, 1440p only, I personally use BigWigs)  
+- Added skin for DBM options panel  
 - Installer frame size is now dynamic to avoid text overlaps on certain languages  
 - Updated AllTheThings skin  
 - Updated Simple Addon Manager skin  

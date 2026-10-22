@@ -152,6 +152,11 @@ local handlers = {
 		ElvUI = function(E) E.private.chat.enable = false end,
 	},
 	{
+		name = 'DBM-Core',
+		Profiles = function() return _G.DBM_AllSavedOptions end,
+		Apply = function(profile) _G.DBM_UsedProfile = profile end,
+	},
+	{
 		name = 'Details',
 		Profiles = SVProfiles('_detalhes_global', '__profiles'),
 		Apply = function(profile) Private:Details_ApplyProfile(profile) end,

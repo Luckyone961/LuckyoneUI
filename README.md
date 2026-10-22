@@ -38,7 +38,7 @@
 
 ### **ElvUI skins**  
 • Addons: AllTheThings, Attune, Auctionator, BigWigs (/keys and queue timer), BugSack  
-• Addons: ForeverDungeonJournal, KeystoneLoot, LFG Bulletin Board, Nova Instance Tracker  
+• Addons: Deadly Boss Mods (options), ForeverDungeonJournal, KeystoneLoot, LFG Bulletin Board, Nova Instance Tracker  
 • Addons: Nova Spell Rank Checker, Nova World Buffs, Plumber (House list), Premade Groups Filter  
 • Addons: RCLootCouncil, RXPGuides, Simple Addon Manager, Simulationcraft  
 • Addons: Tabardy, WhatsTraining  
@@ -74,7 +74,7 @@
 
 ### **Optimized Addon profiles**  
 • Baganator, BigWigs, BuffReminders  
-• Chattynator, Details, ElvUI  
+• Chattynator, Deadly Boss Mods, Details, ElvUI  
 • MPlusTimer, Northern Sky Raid Tools, PermoksAccountManager  
 • Platynator, Plumber, SkironCooldownManager  
 

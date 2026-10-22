@@ -278,6 +278,7 @@ Private.Defaults = {
 			Auctionator = false,
 			BigWigs = false,
 			BugSack = false,
+			DBM = false,
 			ForeverDungeonJournal = false,
 			KeystoneLoot = false,
 			LFGBulletinBoard = false,

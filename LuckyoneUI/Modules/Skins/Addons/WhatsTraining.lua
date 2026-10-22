@@ -194,7 +194,90 @@ local function Skin_FloatingFrame()
 	frame.isSkinned = true
 end
 
--- WhatsTraining builds its frames on PLAYER_ENTERING_WORLD (Forever controls once Blizzard_PlayerSpells loads), so skin on the first Spellbook open
+local function SkinCanvas(frame)
+	local canvas = frame:GetChildren()
+	local header = canvas:GetChildren()
+	header:Hide()
+
+	canvas:StripTextures()
+	canvas:SetTemplate()
+end
+
+local function CraftingPage_OnShow()
+	ProfessionsFrame.TitleContainer.TitleText:SetAlpha(0)
+end
+
+local function CraftingPage_OnHide()
+	ProfessionsFrame.TitleContainer.TitleText:SetAlpha(1)
+end
+
+local function CraftingTab_SetChecked(tab)
+	tab:ClearAllPoints()
+	tab:Point('BOTTOMLEFT', ProfessionsFrame, 'BOTTOMRIGHT', 3, 1)
+end
+
+-- Profession headers like ElvUI's recipe list categories
+local function SkinCraftingRow(row)
+	if row.isSkinned then return end
+
+	if row.CollapseButton then
+		row:StripTextures()
+		row:CreateBackdrop()
+		row.backdrop:SetInside(row, 0, 1)
+	elseif row.iconBorder then
+		row.iconBorder:SetAlpha(0)
+		S:HandleIcon(row.icon, true)
+	end
+
+	row.isSkinned = true
+end
+
+local function CraftingList_Update(scrollBox)
+	scrollBox:ForEachFrame(SkinCraftingRow)
+end
+
+local function Skin_Crafting()
+	local page = WhatsTrainingCraftingPage
+	if not page or page.isSkinned then return end
+
+	local canvas = page:GetChildren()
+	for _, child in next, { page:GetChildren() } do
+		if child ~= canvas and not child:GetName() then
+			local _, border = child:GetPoint()
+			child:SetOutside(border, 6, 6)
+
+			SkinCanvas(child)
+		end
+	end
+
+	SkinCanvas(page)
+	page:HookScript('OnShow', CraftingPage_OnShow)
+	page:HookScript('OnHide', CraftingPage_OnHide)
+
+	-- Tabs
+	local launcher = WhatsTrainingCraftingTab
+	S:HandleLargeSideTab(launcher)
+	S:HandleLargeSideTab(WhatsTrainingCraftingReturnTab)
+	hooksecurefunc(launcher, 'SetChecked', CraftingTab_SetChecked)
+
+	-- Edit Box
+	S:HandleEditBox(WhatsTrainingCraftingSearchBox)
+
+	-- Filter Dropdown
+	local filterDropdown = WhatsTrainingCraftingFilterDropdown
+	S:HandleButton(filterDropdown, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, true, 'right')
+	S:HandleCloseButton(filterDropdown.ResetButton)
+
+	-- Scroll Bar
+	S:HandleTrimScrollBar(WhatsTrainingCraftingScrollBar)
+
+	-- Rows
+	hooksecurefunc(WhatsTrainingCraftingScrollBox, 'Update', CraftingList_Update)
+
+	page.isSkinned = true
+end
+
+-- Skin on the first Spellbook open
 local function Skin_WhatsTraining()
 	if not Private.Addon.db.profile.skins.WhatsTraining then return end
 
@@ -206,10 +289,13 @@ local function Skin_WhatsTraining()
 	end
 
 	if Private.isForever then
-		-- Needs an owner, an ownerless callback taints Blizzard's shared owner ID counter
 		EventRegistry:RegisterCallback('PlayerSpellsFrame.SpellBookFrame.Show', Skin_Forever, 'LuckyoneUI_WhatsTraining')
 
-		-- The window is created on its first open, from /wt or the Broker button
+		if blizzard.enable and blizzard.tradeskill then
+			EventRegistry:RegisterCallback('ProfessionsFrame.Show', Skin_Crafting, 'LuckyoneUI_WhatsTraining')
+		end
+
+		-- The window is created on its first open
 		hooksecurefunc(SlashCmdList, 'WHATSTRAINING', Skin_FloatingFrame)
 
 		local broker = Private.Libs.LDB:GetDataObjectByName('WhatsTraining')
