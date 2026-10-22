@@ -37,7 +37,7 @@
 • Copy chat frame tweaks. Custom font and size, set with sliders or a resize button.  
 
 ### **ElvUI skins**  
-• Addons: AllTheThings, Attune, Auctionator, BigWigs (/keys and queue timer), BugSack  
+• Addons: AllTheThings, AtlasLoot, Attune, Auctionator, BigWigs (/keys and queue timer), BugSack  
 • Addons: Deadly Boss Mods (options), ForeverDungeonJournal, KeystoneLoot, LFG Bulletin Board, Nova Instance Tracker  
 • Addons: Nova Spell Rank Checker, Nova World Buffs, Plumber (House list), Premade Groups Filter  
 • Addons: RCLootCouncil, RXPGuides, Simple Addon Manager, Simulationcraft  

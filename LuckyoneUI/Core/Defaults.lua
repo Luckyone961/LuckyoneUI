@@ -274,6 +274,7 @@ Private.Defaults = {
 		},
 		skins = {
 			AllTheThings = false,
+			AtlasLoot = false,
 			Attune = false,
 			Auctionator = false,
 			BigWigs = false,
