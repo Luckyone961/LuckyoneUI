@@ -120,7 +120,7 @@ local function ScrollBar_Update()
 		button.Normal:SetTexture(E.Media.Textures.ArrowUp)
 		button.Pushed:SetTexture(E.Media.Textures.ArrowUp)
 		button.Disabled:SetTexture(E.Media.Textures.ArrowUp)
-		button.Highlight:SetTexture(E.ClearTexture)
+		button.Highlight:SetTexture()
 	end
 
 	scrollBar:GetThumbTexture():SetTexture()

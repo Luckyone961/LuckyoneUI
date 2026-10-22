@@ -220,7 +220,7 @@ end
 -- Drop-down options (armor types, resistances, spell schools)
 local function SkinMenuOption(option)
 	option:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
-	option.box:SetTexture(E.ClearTexture)
+	option.box:SetTexture()
 
 	local box = CreateFrame('Frame', nil, option)
 	box:Size(12)
@@ -494,12 +494,7 @@ local function Skin_Frame()
 	frame:StripTextures()
 	frame:CreateBackdrop('Transparent')
 
-	for _, child in next, { frame:GetChildren() } do
-		if child:IsObjectType('Button') and child:GetScript('OnClick') == UIPanelCloseButton_OnClick then
-			S:HandleCloseButton(child)
-		end
-	end
-
+	S:HandleCloseButton(frame.closeButton)
 	S:HandleButton(frame.backButton)
 
 	-- Language select and Report top right

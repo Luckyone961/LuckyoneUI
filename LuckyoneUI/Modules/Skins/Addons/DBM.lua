@@ -4,7 +4,6 @@ if not Private.ElvUI then
 	return
 end
 
-local ipairs = ipairs
 local next = next
 local select = select
 local unpack = unpack
@@ -231,7 +230,7 @@ local function SkinToolWindow(frame)
 	for _, child in next, { frame:GetChildren() } do
 		if child:IsObjectType('ScrollFrame') then
 			S:HandleTrimScrollBar(child.ScrollBar)
-		elseif child:IsObjectType('Button') and not child.LeftActive then
+		elseif child:IsObjectType('Button') and not (child.LeftActive or child.LeftDisabled) then
 			if child:GetScript('OnClick') == _G.UIPanelCloseButton_OnClick then
 				S:HandleCloseButton(child)
 			elseif child.Left then
@@ -247,7 +246,12 @@ local function SkinToolWindow(frame)
 	local inset = Private.isModern and 3 or 10
 	local lastTab
 
-	for _, tab in ipairs(frame.Tabs) do
+	-- Classic Raid Checks tabs use TabButtonTemplate
+	local tabs = frame.Tabs
+	local name = frame:GetName()
+
+	for i = 1, frame.numTabs do
+		local tab = tabs and tabs[i] or _G[name..'Tab'..i]
 		S:HandleTab(tab)
 		tab:ClearAllPoints()
 

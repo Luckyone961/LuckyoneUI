@@ -15,6 +15,7 @@ local _G = _G
 
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
+local TT = E:GetModule('Tooltip')
 
 local function SkinDropDownLists(lib)
 	for level = 1, lib.UIDROPDOWNMENU_MAXLEVELS do
@@ -129,6 +130,11 @@ local function Skin_SimpleAddonManager()
 	if not frame then return end
 
 	frame:HookScript('OnShow', SkinSimpleAddonManager)
+
+	local blizzard = E.private.skins.blizzard
+	if blizzard.enable and blizzard.tooltip then
+		TT:SetStyle(_G.SAM_ADDON_LIST_TOOLTIP)
+	end
 
 	-- Dropdown Menus (also opened by the minimap button without the main frame)
 	local EDDM = LibStub('ElioteDropDownMenu-1.0', true)
