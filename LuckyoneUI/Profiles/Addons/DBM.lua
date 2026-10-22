@@ -28,6 +28,14 @@ function Private:Setup_DBM(installer)
 		data.DBM.SpecialWarningSound4 = nil
 	end
 
+	-- 1080p
+	local scaled = Private.Addon.db.global.scaled
+	if scaled then
+		data.DBT.DBM.TimerY = -106.5 -- 1440p: -165.5
+		data.DBM.InfoFrameX = 475.5 -- 1440p: 575.5
+		data.DBM.RangeFrameRadarX = -495 -- 1440p: -585
+	end
+
 	-- Profile import, overwrites an existing profile with that name
 	_G.DBM_AllSavedOptions[name] = data.DBM
 	_G.DBT_AllPersistentOptions[name] = data.DBT

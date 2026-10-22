@@ -1,7 +1,8 @@
 ﻿## Version 4.27 [Alpha - In Development - Not Yet Released]
 
 **All WoW Versions:**  
-- Added profile for DBM (Basic styles, 1440p only, I personally use BigWigs)  
+- Added a list of all chat commands in the Chat tab of the config  
+- Added profile for DBM (Style and position basics)  
 - Added skin for DBM options panel  
 - Installer frame size is now dynamic to avoid text overlaps on certain languages  
 - Updated AllTheThings skin  
