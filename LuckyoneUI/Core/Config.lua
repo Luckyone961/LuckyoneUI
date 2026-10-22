@@ -8,6 +8,7 @@ local next = next
 local pairs = pairs
 local tonumber = tonumber
 local concat = table.concat
+local tinsert = table.insert
 local format = string.format
 
 local C_UI = C_UI
@@ -168,6 +169,27 @@ end
 
 -- Build Chat Section
 local function BuildChatSection()
+	local commands = {}
+	if Private.ElvUI then
+		tinsert(commands, '|cff4beb2c/lucky bars|r - ' .. L["Swap two action bars or migrate your bars from an older LuckyoneUI version."])
+	end
+	tinsert(commands, '|cff4beb2c/lucky config|r - ' .. L["Open the options."])
+	tinsert(commands, '|cff4beb2c/lucky install|r - ' .. L["Run the installation process."])
+	tinsert(commands, '|cff4beb2c/lucky minimap|r - ' .. L["Hide or show the minimap icon."])
+	if Private.ElvUI and Private.isModern then
+		tinsert(commands, '|cff4beb2c/lucky toggle|r - ' .. L["Hide or show the damage meter."])
+	end
+	if Private.isModern then
+		tinsert(commands, '|cff4beb2c/lucky untrack|r - ' .. L["Untrack all quests, including the hidden ones, to improve performance."])
+	end
+	if Private.ElvUI then
+		tinsert(commands, '|cff4beb2c/luckydebug on|r - ' .. L["Disable every addon except ElvUI and LuckyoneUI for troubleshooting."])
+		tinsert(commands, '|cff4beb2c/luckydebug off|r - ' .. L["Re-enable the addons disabled by /luckydebug on."])
+	end
+	if Private.isRetail then
+		tinsert(commands, '|cff4beb2c/vault|r, |cff4beb2c/weekly|r - ' .. L["Open the Great Vault to check your weekly progress."])
+	end
+
 	local section = ACH:Group(GetIconName(L["Chat"], 'Chat'), nil, 20)
 	section.args.header = ACH:Header(L["Chat"], 1)
 	section.args.chatSetup = InlineGroup(L["Setup Chat"], 2)
@@ -175,6 +197,7 @@ local function BuildChatSection()
 	section.args.chatSetup.args.chattynator = ACH:Execute(L["Use Chattynator Addon"], nil, 2, function() Private:Setup_Chattynator() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('Chattynator'))
 	section.args.chatDesc = DescriptionGroup(L["Description"], 3, L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nChat tabs: [ Main - Log - Whisper - Guild - Party ]"])
 	section.args.chatVars = DescriptionGroup(L["Chat CVars"], 4, '- chatClassColorOverride 0\n- chatMouseScroll 1\n- chatStyle classic\n- colorChatNamesByClass 1\n- showTimestamps %H:%M\n- speechToText 0\n- textToSpeech 0\n- whisperMode inline\n- wholeChatWindowClickable 0')
+	section.args.chatCommands = DescriptionGroup(L["Chat Commands"], 5, concat(commands, '\n'))
 	return section
 end
 

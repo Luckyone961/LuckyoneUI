@@ -83,7 +83,7 @@
 • Included Textures: Luckyone Bubbles and Luckyone Focus  
 
 ### **Chat commands**  
-• /lucky bars -> Swap Blizzard ActionBars to ElvUI ActionBars and vice versa  
+• /lucky bars -> Swap two action bars or migrate your bars from an older LuckyoneUI version  
 • /lucky config -> Opens the ingame options  
 • /lucky install -> Run the installation process  
 • /lucky minimap -> Hide or show the minimap icon  
