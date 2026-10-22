@@ -351,7 +351,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.general.altPowerBar.statusBar = Private.Texture
 	E.db.general.altPowerBar.statusBarColorGradient = true
 	E.db.general.autoAcceptInvite = true
-	E.db.general.autoRepair = (Private.isRetail and 'GUILD') or 'PLAYER'
+	E.db.general.autoRepair = (Private.isRetail and 'GUILD') or 'NONE'
 	E.db.general.bottomPanel = false
 	E.db.general.customGlow.color.a = 1
 	E.db.general.customGlow.color.b = 1
