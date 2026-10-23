@@ -407,7 +407,7 @@ local function UpdateBarIcon(bar, entry, spellMode)
 		-- The death log brings its own icon for environment damage
 		if entry.texture then
 			fileID = entry.texture
-		elseif specIcon and specIcon ~= 0 then
+		elseif specIcon then -- 0 actually reaches Lua as nil
 			fileID = specIcon
 		elseif entry.spellID then
 			-- GetSpellTexture takes secret IDs
@@ -416,7 +416,7 @@ local function UpdateBarIcon(bar, entry, spellMode)
 	else
 		local specIcon = entry.specIconID
 
-		if specIcon and specIcon ~= 0 then
+		if specIcon then -- 0 actually reaches Lua as nil
 			fileID = specIcon
 		elseif entry.classFilename and entry.classFilename ~= '' then
 			classFilename = entry.classFilename
