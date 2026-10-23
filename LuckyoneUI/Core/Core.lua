@@ -37,6 +37,7 @@ local UIParent = _G.UIParent
 
 local Settings_OpenToCategory = _G.Settings.OpenToCategory
 local SlashCmdList = _G.SlashCmdList
+local StaticPopup_Show = _G.StaticPopup_Show
 local StaticPopup_StandardEditBoxOnEscapePressed = _G.StaticPopup_StandardEditBoxOnEscapePressed
 local StaticPopupDialogs = _G.StaticPopupDialogs
 
@@ -373,6 +374,10 @@ end
 local function LoadCommands()
 	_G.SLASH_LUCKYONEUI1 = '/lucky'
 	SlashCmdList.LUCKYONEUI = Toggles
+	_G.SLASH_LUCKYONEUI_BINDS1 = '/lbinds'
+	SlashCmdList.LUCKYONEUI_BINDS = function() StaticPopup_Show('LUCKYONE_KEYBINDS') end
+	_G.SLASH_LUCKYONEUI_CHARSV1 = '/lcharsv'
+	SlashCmdList.LUCKYONEUI_CHARSV = function() StaticPopup_Show('LUCKYONE_CHARSV') end
 	if Private.isModern then
 		commands.untrack = function() Private:UntrackAllQuests() end
 	end

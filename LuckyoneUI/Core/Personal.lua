@@ -3,6 +3,11 @@ local _, Private = ...
 local pairs = pairs
 
 local _G = _G
+local StaticPopupDialogs = _G.StaticPopupDialogs
+local StaticPopup_Show = _G.StaticPopup_Show
+
+local NO = NO
+local YES = YES
 
 -- Luckyone characters by GUID
 local Toons = Private.isRetail and {
@@ -220,3 +225,22 @@ function Private:Setup_Personal()
 		ElvDB.profiles.Default = nil
 	end
 end
+
+function Private:Setup_CharacterSV()
+	_G.BAGANATOR_CURRENT_PROFILE = 'Luckyone'
+	_G.CHATTYNATOR_CURRENT_PROFILE = 'Luckyone'
+	_G.DBM_UsedProfile = 'Luckyone'
+
+	Private:Print('Character settings applied.')
+	StaticPopup_Show('LUCKYONE_RL')
+end
+
+-- StaticPopup_Show('LUCKYONE_CHARSV')
+StaticPopupDialogs['LUCKYONE_CHARSV'] = {
+	text = 'Apply Luckyone\'s character settings (Baganator, Chattynator and DBM profiles)?',
+	button1 = YES,
+	button2 = NO,
+	OnAccept = function() Private:Setup_CharacterSV() end,
+	whileDead = 1,
+	hideOnEscape = false,
+}

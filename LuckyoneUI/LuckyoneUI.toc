@@ -122,6 +122,7 @@ Profiles\Addons\SkironCooldownManager.lua [AllowLoadGameType standard, camelot][
 Profiles\Blizzard\Chat.lua
 Profiles\Blizzard\Console.lua
 Profiles\Blizzard\EditMode.lua [AllowLoadGameType standard]
+Profiles\Blizzard\Keybinds.lua
 Profiles\ElvUI\ElvUI.lua
 Profiles\ElvUI\Filters_Mists.lua [AllowLoadGameType mists]
 Profiles\ElvUI\Filters_Classic.lua [AllowLoadGameType vanilla, tbc, camelot][ExcludeLoadGameType standard, mists]
