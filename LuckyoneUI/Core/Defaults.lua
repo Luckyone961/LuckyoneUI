@@ -283,6 +283,7 @@ Private.Defaults = {
 			BugSack = false,
 			DBM = false,
 			ForeverDungeonJournal = false,
+			HuntersFieldGuide = false,
 			KeystoneLoot = false,
 			LFGBulletinBoard = false,
 			NovaInstanceTracker = false,

@@ -15,6 +15,7 @@
 
 **Forever:**  
 - Added AtlasLoot skin  
+- Added Hunter's Field Guide skin  
 - Added SkironCooldownManager global anchor for trinkets, bandages, healthstone and racials  
 - Added SkironCooldownManager profile for all 9 classes  
 - Simulationcraft is available for Forever, so I ported over my retail skin for it  
