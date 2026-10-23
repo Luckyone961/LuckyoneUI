@@ -1236,6 +1236,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.player.classbar.height = 16
 	E.db.unitframe.units.player.CombatIcon.anchorPoint = 'LEFT'
 	E.db.unitframe.units.player.CombatIcon.customTexture = 'Interface\\AddOns\\LuckyoneUI\\Media\\Icons\\Combat.png'
+	E.db.unitframe.units.player.CombatIcon.enable = false
 	E.db.unitframe.units.player.CombatIcon.size = 32
 	E.db.unitframe.units.player.CombatIcon.texture = 'CUSTOM'
 	E.db.unitframe.units.player.CombatIcon.xOffset = 18
