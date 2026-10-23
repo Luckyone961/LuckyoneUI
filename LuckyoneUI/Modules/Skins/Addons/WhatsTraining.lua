@@ -211,9 +211,17 @@ local function CraftingPage_OnHide()
 	ProfessionsFrame.TitleContainer.TitleText:SetAlpha(1)
 end
 
-local function CraftingTab_SetChecked(tab)
-	tab:ClearAllPoints()
-	tab:Point('BOTTOMLEFT', ProfessionsFrame, 'BOTTOMRIGHT', 3, 1)
+local function CraftingTab_SetPoint(tab, point, relativeTo)
+	local bottom = point == 'TOPRIGHT'
+	tab:Size(bottom and 30 or 36, bottom and 36 or 30)
+
+	if bottom then
+		tab:SetPointsOffset(E:Scale(-1), E:Scale(-3))
+	elseif relativeTo == ProfessionsFrame.ProfessionsOverviewTab then
+		tab:SetPointsOffset(0, E:Scale(3))
+	else
+		tab:SetPointsOffset(E:Scale(3), E:Scale(1))
+	end
 end
 
 -- Profession headers like ElvUI's recipe list categories
@@ -258,7 +266,7 @@ local function Skin_Crafting()
 	local launcher = WhatsTrainingCraftingTab
 	S:HandleLargeSideTab(launcher)
 	S:HandleLargeSideTab(WhatsTrainingCraftingReturnTab)
-	hooksecurefunc(launcher, 'SetChecked', CraftingTab_SetChecked)
+	hooksecurefunc(launcher, 'SetPoint', CraftingTab_SetPoint)
 
 	-- Edit Box
 	S:HandleEditBox(WhatsTrainingCraftingSearchBox)
