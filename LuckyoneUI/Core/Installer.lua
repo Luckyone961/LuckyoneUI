@@ -791,6 +791,7 @@ local function BuildPages()
 				Toggle('nameplates', 'elvuiTweaks.nameplates.textures.focusTextureEnable'),
 				Toggle('nameplates', 'elvuiTweaks.nameplates.absorbs.absorbTextureEnable'),
 				Toggle('nameplates', 'elvuiTweaks.nameplates.absorbs.healAbsorbTextureEnable'),
+				Toggle('nameplates', 'elvuiTweaks.nameplates.colors.questColorEnable'),
 				Toggle('misc', 'general.misc.removeNameplateRealm')
 			),
 			Group(L["UnitFrames"],

@@ -54,6 +54,7 @@ Modules\ElvUI\CopyChat.lua
 Modules\ElvUI\DataTextsTweaks.lua
 Modules\ElvUI\ElvUI.lua
 Modules\ElvUI\MythicVisibility.lua [AllowLoadGameType standard]
+Modules\ElvUI\QuestColor.lua [ExcludeLoadGameType vanilla]
 Modules\ElvUI\Tags.lua
 Modules\ElvUI\TargetTextures.lua
 Modules\General\AutoAcceptRole.lua [AllowLoadGameType standard, mists]

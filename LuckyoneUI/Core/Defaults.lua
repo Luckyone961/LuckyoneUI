@@ -258,6 +258,8 @@ Private.Defaults = {
 			focusTextureEnable = false,
 			healAbsorbTexture = 'Solid',
 			healAbsorbTextureEnable = false,
+			questColor = { r = 1, g = 0.5, b = 0 },
+			questColorEnable = false,
 			targetTexture = 'Solid',
 			targetTextureEnable = false,
 		},
