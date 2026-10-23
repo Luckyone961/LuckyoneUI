@@ -234,7 +234,7 @@ local function Setup_GlobalDB()
 	E.global.datatexts.settings.Time.time24 = true
 	E.global.general.fadeMapWhenMoving = false
 	E.global.general.mapAlphaWhenMoving = 0.35
-	E.global.general.smallerWorldMapScale = 0.8
+	E.global.general.smallerWorldMapScale = 0.9
 	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
 	if not E.global.datatexts.customPanels.Luckyone_ActionBars_DT then
