@@ -180,7 +180,8 @@ function Layout()
 	local db = Private.Addon.db.profile.misc.mailbox
 	local list = db.favorites
 
-	if db.currentRealm then
+	-- Every Forever favorite is on our realm, the option is hidden there
+	if db.currentRealm and not Private.isForever then
 		wipe(display)
 		for _, favorite in ipairs(list) do
 			if IsCurrentRealm(favorite.name) then
@@ -279,12 +280,20 @@ local function CreatePanel()
 end
 
 function Private:MailboxFavorites_Add(name, realm)
-	-- The send editbox wants the normalized realm, no spaces, hyphens or periods
-	local entry = strtrim(name or '') .. '-' .. gsub(strtrim(realm or ''), '[%s%-%.]', '')
+	local entry = strtrim(name or '')
 
-	if not strmatch(entry, '^[^%-]+%-[^%-]+$') then
-		Private:Print(L["Enter a character and a realm name."])
-		return
+	-- Forever has no realms, the entry is only the main and secondary name
+	if not Private.isForever then
+		-- The send editbox wants the normalized realm, no spaces, hyphens or periods
+		entry = entry .. '-' .. gsub(strtrim(realm or ''), '[%s%-%.]', '')
+
+		if not strmatch(entry, '^[^%-]+%-[^%-]+$') then
+			Private:Print(L["Enter a character and a realm name."])
+			return
+		end
+	else
+		-- One space between the main and secondary name, a hyphen would split it like a realm
+		entry = gsub(entry, '[%s%-]+', ' ')
 	end
 
 	if Private:MailboxFavorites_Find(entry) then
