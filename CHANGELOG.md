@@ -3,6 +3,7 @@
 **All WoW Versions:**  
 - Added a list of all chat commands in the Chat tab of the config  
 - Added option to change the health color of quest related enemy NPCs (ElvUI Nameplates)  
+- Added option to hide Event Toasts (Level up, Stages, Great Vault progress, Renown gains)  
 - Added profile for DBM (Style and position basics)  
 - Added skin for DBM options panel  
 - Installer frame size is now dynamic to avoid text overlaps on certain languages  

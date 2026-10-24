@@ -130,6 +130,7 @@ Private.Defaults = {
 			AlertFrame = false,
 			ApplicationCover = false,
 			BossBanner = false,
+			EventToasts = false,
 			HousingDecorAlerts = false,
 			LossOfControl = false,
 			TalkingHead = false,

@@ -47,7 +47,7 @@
 ### **The core features**  
 • Custom damage meter with hundreds of settings based on Blizzards native combat data API  
 • Damage meter extras: Multiple windows per content type, bookmarks, death log at your cursor, test mode  
-• Unregister and hide useless Blizzard elements (Alert frame, Boss banner, Housing alerts)  
+• Unregister and hide useless Blizzard elements (Alert frame, Boss banner, Event toasts, Housing alerts)  
 • Hide the Loss of Control frame, UI errors ("Out of range") and zone text  
 • Restore mouseover tooltips for party and raid applicants even if you are not the leader  
 • Hide the talking head frame but keep sounds and voicelines functionality  
