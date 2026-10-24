@@ -217,8 +217,7 @@ Private.Defaults = {
 			mailbox = {
 				currentRealm = false,
 				enable = false,
-				-- { name = 'Luckyone-LaughingSkull', class = 'DRUID', faction = 'Alliance' }
-				favorites = {},
+				favorites = {}, -- { name = 'Luckyone-LaughingSkull', class = 'DRUID', faction = 'Alliance' }
 				font = Private.Font,
 				fontOutline = 'OUTLINESLUG',
 				fontSize = 14,

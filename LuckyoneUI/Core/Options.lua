@@ -4,9 +4,6 @@ if Private.ElvUI then
 	return
 end
 
--- Standalone config for the Blizzard settings panel
--- Made for the ACH table from Config.lua
-
 local ipairs = ipairs
 local max = math.max
 local min = math.min

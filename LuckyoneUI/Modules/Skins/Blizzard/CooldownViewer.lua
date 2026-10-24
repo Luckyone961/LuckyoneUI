@@ -4,11 +4,6 @@ if not Private.ElvUI then
 	return
 end
 
---[[
-	Settings frame skin is ElvUI's own S:CooldownManager_HandleSettings,
-	the alert editors and layout dialogs are skinned here.
-]]
-
 local next = next
 
 local _G = _G

@@ -36,11 +36,9 @@ local Name, Private = ...
 Private.Addon = {}
 
 Private.Libs = {
-	-- Extras
 	LSM = LibStub('LibSharedMedia-3.0'),
 	LDB = LibStub('LibDataBroker-1.1'),
 	LDBI = LibStub('LibDBIcon-1.0'),
-	-- Custom
 	ACH = LibStub('LibAceConfigHelper'),
 }
 
@@ -73,6 +71,7 @@ Private.isForever = WOW_PROJECT_ID == WOW_PROJECT_CAMELOT
 Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 Private.isModern = Private.isRetail or Private.isForever
 
+-- Controller checks
 local inputTypes = Enum.InputDeviceInterfaceType
 local inputCurrent = C_InputInterfaceStyle and C_InputInterfaceStyle.GetCurrentStyle()
 Private.isGamepadUI = inputTypes and inputTypes.Gamepad == inputCurrent
@@ -215,10 +214,12 @@ loader:RegisterEvent('ADDON_LOADED')
 loader:RegisterEvent('PLAYER_LOGIN')
 loader:RegisterEvent('PLAYER_ENTERING_WORLD')
 loader:RegisterEvent('PLAYER_LOGOUT')
+
 -- ElvUI shows its own reload popup for this
 if Private.isForever and not Private.ElvUI then
 	loader:RegisterEvent('INPUT_DEVICE_INTERFACE_TRANSITION')
 end
+
 loader:SetScript('OnEvent', function(self, event, ...)
 	if event == 'ADDON_LOADED' then
 		local addon = ...

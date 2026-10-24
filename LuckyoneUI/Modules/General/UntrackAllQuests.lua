@@ -5,8 +5,7 @@ local GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
 local GetQuestInfo = C_QuestLog.GetInfo
 local RemoveQuestWatch = C_QuestLog.RemoveQuestWatch
 
--- Source and Credits:
--- https://www.reddit.com/r/WowUI/comments/1qk96mg/otherfixworkaroundhidden_tracked_quests_caused_60/
+-- Source and Credits: https://www.reddit.com/r/WowUI/comments/1qk96mg/otherfixworkaroundhidden_tracked_quests_caused_60/
 function Private:UntrackAllQuests()
 	for i = 1, GetNumQuestLogEntries() do
 		local info = GetQuestInfo(i)

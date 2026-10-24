@@ -31,9 +31,7 @@ local function GetSpecLayout()
 	local spec = GetSpecialization()
 	if not spec then return 'main' end
 
-	-- C_SpecializationInfo returns the role fifth on every client
 	local role = select(5, GetSpecializationInfo(spec))
-
 	return (role == 'HEALER' and 'healing') or 'main'
 end
 

@@ -299,7 +299,7 @@ StaticPopupDialogs['LUCKYONE_EDITBOX'] = {
 	hideOnEscape = 1,
 }
 
--- Without ElvUI we set UIParent scale ourselves like ElvUI does
+-- UIParent scale for standalone mode
 function Core:UpdateScale()
 	if Private.ElvUI or not GetCVarBool('useUiScale') then return end
 
@@ -374,10 +374,6 @@ end
 local function LoadCommands()
 	_G.SLASH_LUCKYONEUI1 = '/lucky'
 	SlashCmdList.LUCKYONEUI = Toggles
-	_G.SLASH_LUCKYONEUI_BINDS1 = '/lbinds'
-	SlashCmdList.LUCKYONEUI_BINDS = function() StaticPopup_Show('LUCKYONE_KEYBINDS') end
-	_G.SLASH_LUCKYONEUI_CHARSV1 = '/lcharsv'
-	SlashCmdList.LUCKYONEUI_CHARSV = function() StaticPopup_Show('LUCKYONE_CHARSV') end
 	if Private.isModern then
 		commands.untrack = function() Private:UntrackAllQuests() end
 	end
@@ -394,6 +390,11 @@ local function LoadCommands()
 		_G.SLASH_LUCKYONEUI_DEBUG1 = '/luckydebug'
 		SlashCmdList.LUCKYONEUI_DEBUG = DebugMode
 	end
+	-- Temporary, undocumented
+	_G.SLASH_LUCKYONEUI_BINDS1 = '/lbinds'
+	SlashCmdList.LUCKYONEUI_BINDS = function() StaticPopup_Show('LUCKYONE_KEYBINDS') end
+	_G.SLASH_LUCKYONEUI_CHARSV1 = '/lcharsv'
+	SlashCmdList.LUCKYONEUI_CHARSV = function() StaticPopup_Show('LUCKYONE_CHARSV') end
 end
 
 function Core:OnLogin(initLogin)

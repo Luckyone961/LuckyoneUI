@@ -4,9 +4,6 @@ if not Private.ElvUI then
 	return
 end
 
--- We only skin the View Houses frame of Plumber
--- Modules, options and everything else remain untouched
-
 local next = next
 local unpack = unpack
 
