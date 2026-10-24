@@ -281,6 +281,16 @@ local function MidnightPopup_ShowMidnightPopup()
 	end
 end
 
+-- Battle res timer (Retail)
+local function SkinBattleRez()
+	local frame = _G.DBMBattleRezTimerFrame
+	if not frame or frame.IsSkinned then return end
+
+	frame:SetTemplate('Transparent')
+	frame.header:FontTemplate()
+	frame.IsSkinned = true
+end
+
 local function Skin_DBMCore()
 	if not Private.Addon.db.profile.skins.DBM then return end
 
@@ -300,6 +310,10 @@ local function Skin_DBMCore()
 
 	if DBM.MidnightPopup then
 		hooksecurefunc(DBM.MidnightPopup, 'ShowMidnightPopup', MidnightPopup_ShowMidnightPopup)
+	end
+
+	if DBM.BattleRezTimer then
+		hooksecurefunc(DBM, 'IsFontValid', SkinBattleRez)
 	end
 
 	-- Copy link dialog and note editor
