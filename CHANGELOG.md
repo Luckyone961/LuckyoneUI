@@ -6,6 +6,7 @@
 - Added profile for DBM (Style and position basics)  
 - Added skin for DBM options panel  
 - Installer frame size is now dynamic to avoid text overlaps on certain languages  
+- Removed the Geist font  
 - Updated AllTheThings skin  
 - Updated Simple Addon Manager skin  
 

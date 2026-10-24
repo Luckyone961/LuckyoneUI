@@ -79,7 +79,7 @@
 • Platynator, Plumber, SkironCooldownManager  
 
 ### **Shared media**  
-• Included Fonts: Expressway and Geist (Bold, Light, Medium, Regular, Semi Bold)  
+• Included Font: Expressway  
 • Included Textures: Luckyone Bubbles and Luckyone Focus  
 
 ### **Chat commands**  
