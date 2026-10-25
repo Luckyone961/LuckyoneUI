@@ -19,10 +19,9 @@ function Private:Setup_BuffReminders()
 	-- Profile import
 	_G.BuffReminders:Import(importString, name)
 
-	-- 1080p: 420
-	-- 1440p: 580
-	if scaled then
-		_G.BuffRemindersDB.profiles[name].categorySettings.main.position.y = 420
+	local profile = _G.BuffRemindersDB.profiles[name]
+	if scaled and profile then
+		profile.categorySettings.main.position.y = 420 -- 1440p: 580
 	end
 
 	Private:Print(L["BuffReminders profile has been set."])

@@ -94,13 +94,16 @@ end
 -- Blizzard blocks StartMoving on the panels, so the drag runs on the cursor itself
 -- A pull mid drag freezes the panel
 local function Handle_OnUpdate(self)
-	if InCombatLockdown() then return end
+	if InCombatLockdown() then self.lastX = nil return end
+
+	local x, y = GetCursorPosition()
+	if x == self.lastX and y == self.lastY then return end
+	self.lastX, self.lastY = x, y
 
 	local frame = self:GetParent()
 	local anchor = self.anchor
 
 	local scale = frame:GetEffectiveScale()
-	local x, y = GetCursorPosition()
 
 	anchor.x = self.offsetX + (x - self.cursorX) / scale
 	anchor.y = self.offsetY + (y - self.cursorY) / scale
@@ -150,6 +153,7 @@ local function Handle_OnDragStart(self)
 	self.anchor = anchor
 	self.offsetX, self.offsetY = anchor.x, anchor.y
 	self.cursorX, self.cursorY = GetCursorPosition()
+	self.lastX, self.lastY = self.cursorX, self.cursorY
 
 	self.moving = true
 	self:SetScript('OnUpdate', Handle_OnUpdate)

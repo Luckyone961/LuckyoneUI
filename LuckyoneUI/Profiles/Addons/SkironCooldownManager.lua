@@ -28,8 +28,9 @@ function Private:Setup_SkironCooldownManager(installer)
 	_G.SCMAPI.ImportProfile(name, importString)
 
 	local DB = _G.SkironCooldownManagerDB
-	if (scaled and DB) then
-		DB.profiles[name].options.anchorConfig[1].anchor = { 'CENTER', 'ElvUIParent,UIParent', 'CENTER', 0, -162 } -- 1440p: -222
+	local profile = DB and DB.profiles[name]
+	if scaled and profile then
+		profile.options.anchorConfig[1].anchor = { 'CENTER', 'ElvUIParent,UIParent', 'CENTER', 0, -162 } -- 1440p: -222
 	end
 
 	Private:Print(L["SkironCooldownManager profile has been set."], installer)

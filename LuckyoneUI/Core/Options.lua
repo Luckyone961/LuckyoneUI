@@ -311,6 +311,7 @@ local function AddSelect(category, info, name, desc, get, set, option, path)
 end
 
 -- Colors
+local hexColor = CreateColor(1, 1, 1)
 local function AddColor(category, info, name, desc, get, set, option, path)
 	if option.hasAlpha then
 		error(format('LuckyoneUI: %s uses alpha, not supported without ElvUI', concat(path, '.')))
@@ -318,7 +319,8 @@ local function AddColor(category, info, name, desc, get, set, option, path)
 
 	local setting = CreateProxy(info, Settings.VarType.String, name, function()
 		local r, g, b = get(info)
-		return CreateColor(r or 1, g or 1, b or 1):GenerateHexColor()
+		hexColor:SetRGB(r or 1, g or 1, b or 1)
+		return hexColor:GenerateHexColor()
 	end, function(hex)
 		local r, g, b = CreateColorFromHexString(hex):GetRGB()
 		set(info, r, g, b)

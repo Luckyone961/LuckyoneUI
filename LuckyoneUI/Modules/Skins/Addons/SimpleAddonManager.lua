@@ -69,7 +69,10 @@ local function ResizeAddonIcons(scrollFrame)
 	for _, button in next, scrollFrame.buttons do
 		local text = button.Name:GetText()
 		if text then
-			button.Name:SetText((text:gsub('^(|[TA][^|]-):20:20:', '%1:16:16:', 1)))
+			local resized, count = text:gsub('^(|[TA][^|]-):20:20:', '%1:16:16:', 1)
+			if count > 0 then
+				button.Name:SetText(resized)
+			end
 		end
 	end
 end

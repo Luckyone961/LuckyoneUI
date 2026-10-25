@@ -24,9 +24,10 @@ function Private:Setup_Chattynator(installer)
 	-- Profile import
 	_G.Chattynator.API.ImportString(importString, name)
 
-	-- The values are always ElvUI chat panel db values -2
-	if scaled then
-		_G.CHATTYNATOR_CONFIG.Profiles[name].windows[1].size = { 442, 208 } -- Width, Height
+	-- The values are always ElvUI chat panel db -2
+	local profile = _G.CHATTYNATOR_CONFIG.Profiles[name]
+	if scaled and profile then
+		profile.windows[1].size = { 442, 208 } -- Width, Height
 	end
 
 	Private:Print(L["Chattynator profile has been set."], installer)
