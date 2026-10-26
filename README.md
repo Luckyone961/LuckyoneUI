@@ -32,6 +32,7 @@
 • Alt setup button. One click loads your existing profiles in every supported Addon.  
 • Option to pick a different texture for targeted nameplates.  
 • Option to pick a different texture for focused nameplates.  
+• Option to pick a health color for quest related enemy NPCs on nameplates.  
 • Option to pick different absorb and heal absorb textures for unitframes and nameplates.  
 • DataText width tweaks that follow your active layout and spec profile.  
 • Copy chat frame tweaks. Custom font and size, set with sliders or a resize button.  
