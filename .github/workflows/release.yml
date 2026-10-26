@@ -7,7 +7,7 @@ on:
 
 jobs:
     release:
-      runs-on: ubuntu-22.04
+      runs-on: ubuntu-latest
 
       environment: packager
 
@@ -17,7 +17,10 @@ jobs:
 
       steps:
         - name: Clone project
-          uses: actions/checkout@v4
+          uses: actions/checkout@v7
+
+        - name: Build release changelog
+          run: awk 'NR==1{sub(/^\357\273\277/,"")} /^## Version/{n++} n<=5' CHANGELOG.md > CURRENT.md
 
         - name: BigWigsPackager
           uses: BigWigsMods/packager@v2
