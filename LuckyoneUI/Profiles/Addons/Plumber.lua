@@ -7,7 +7,7 @@ local type = type
 local _G = _G
 
 -- Plumber profile
-function Private:Setup_Plumber()
+function Private:Setup_Plumber(installer)
 	if not Private.IsAddOnLoaded('Plumber') then Private:Print('Plumber ' .. L["is not installed or enabled."]) return end
 
 	local DB = _G.PlumberDB
@@ -36,5 +36,5 @@ function Private:Setup_Plumber()
 	DB.TooltipDelvesItem = false
 	DB.TransmogOutfitSelect = false
 
-	Private:Print(L["Plumber profile has been set."])
+	Private:Print(L["Plumber profile has been set."], installer)
 end

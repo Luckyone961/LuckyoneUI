@@ -6,6 +6,7 @@ L["- All Fonts: Expressway\n- All Font Outlines: Outline\n- All Textures: Minima
 L["1440p = Default | 1080p = Downscaled"] = "1440p = Par défaut | 1080p = Réduit"
 L["Absorbs"] = true
 L["Action Bars"] = true
+L["Additional Addons"] = true
 L["Addon download:"] = "Téléchargement de l'add-on :"
 L["Addon Profiles"] = "Profils d'add-ons"
 L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your ElvUI profile\nThis includes specialization-based profile loading in ElvUI profiles"] = true
@@ -42,6 +43,7 @@ L["Backdrop Color"] = "Couleur de l'arrière-plan"
 L["Backdrop Height"] = true
 L["Backdrop Width"] = true
 L["Baganator profile has been set."] = "Le profil Baganator a été appliqué."
+L["Baganator replaces the ElvUI bags and Platynator the ElvUI nameplates."] = true
 L["Bags"] = true
 L["Balance"] = "Équilibre"
 L["Bar Alpha"] = true
@@ -369,6 +371,8 @@ L["Open the death log of a death entry at your cursor instead of the Blizzard De
 L["Open the Great Vault to check your weekly progress."] = true
 L["Open the options."] = true
 L["Open World"] = true
+L["Optional Addon Profiles"] = true
+L["Optional step."] = true
 L["Optional step. Dark is applied by default."] = "Étape optionnelle. Sombre est appliqué par défaut"
 L["Options"] = true
 L["Orientation"] = true
@@ -389,6 +393,7 @@ L["Platynator profile has been set."] = "Le profil Platynator a été appliqué.
 L["Please click the button below to apply Luckyones profile for Details! Damage Meter."] = "Merci de cliquer sur le bouton ci-dessous pour appliquer le profil Luckyone pour Details! Damage Meter."
 L["Please click the button below to apply Luckyones profile for MPlusTimer."] = "Merci de cliquer sur le bouton ci-dessous pour appliquer le profil Luckyone pour MPlusTimer."
 L["Please click the button below to apply Luckyones profile for SkironCooldownManager."] = "Merci de cliquer sur le bouton ci-dessous pour appliquer le profil Luckyone pour SkironCooldownManager."
+L["Please click the buttons below to apply Luckyones profiles for the Addons you use."] = true
 L["Please read the steps carefully before clicking any buttons."] = "Merci de lire attentivement les étapes avant de cliquer sur n'importe quel bouton."
 L["Plumber profile has been set."] = "Le profil Plumber a été appliqué."
 L["POI Button"] = true

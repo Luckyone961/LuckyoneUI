@@ -6,6 +6,7 @@ L["- All Fonts: Expressway\n- All Font Outlines: Outline\n- All Textures: Minima
 L["1440p = Default | 1080p = Downscaled"] = "1440p = Padrão | 1080p = Reduzida"
 L["Absorbs"] = "Absorções"
 L["Action Bars"] = "Barras de Ações"
+L["Additional Addons"] = true
 L["Addon download:"] = "Download do Addon:"
 L["Addon Profiles"] = "Perfis dos Addons"
 L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your ElvUI profile\nThis includes specialization-based profile loading in ElvUI profiles"] = "Ajusta a largura do Texto de Dados 'FPS - Tempo de Combate - Durabilidade' com base no seu layout do LuckyoneUI\n\nO layout DPS & Tanques corresponderá à largura padrão das minhas Barras de Ações\nO layout de Cura corresponderá à largura padrão dos meus Quadros de Raide\n\nTodas as alterações mencionadas acima serão acionadas ao mudar seu perfil do ElvUI\nIsso inclui o carregamento de perfil baseado em especialização nos perfis do ElvUI"
@@ -42,6 +43,7 @@ L["Backdrop Color"] = "Cor do Fundo"
 L["Backdrop Height"] = "Altura do Fundo"
 L["Backdrop Width"] = "Largura do Fundo"
 L["Baganator profile has been set."] = "O perfil do Baganator foi configurado."
+L["Baganator replaces the ElvUI bags and Platynator the ElvUI nameplates."] = true
 L["Bags"] = "Bolsas"
 L["Balance"] = "Equilíbrio"
 L["Bar Alpha"] = "Alfa da Barra"
@@ -369,6 +371,8 @@ L["Open the death log of a death entry at your cursor instead of the Blizzard De
 L["Open the Great Vault to check your weekly progress."] = true
 L["Open the options."] = true
 L["Open World"] = "Mundo Aberto"
+L["Optional Addon Profiles"] = true
+L["Optional step."] = true
 L["Optional step. Dark is applied by default."] = "Passo opcional. O estilo Escuro é aplicado por padrão."
 L["Options"] = "Opções"
 L["Orientation"] = "Orientação"
@@ -389,6 +393,7 @@ L["Platynator profile has been set."] = "O perfil do Platynator foi configurado.
 L["Please click the button below to apply Luckyones profile for Details! Damage Meter."] = "Por favor, clique no botão abaixo para aplicar o perfil do Luckyone para o Details! Damage Meter."
 L["Please click the button below to apply Luckyones profile for MPlusTimer."] = "Por favor, clique no botão abaixo para aplicar o perfil do Luckyone para o MPlusTimer."
 L["Please click the button below to apply Luckyones profile for SkironCooldownManager."] = "Por favor, clique no botão abaixo para aplicar o perfil do Luckyone para o SkironCooldownManager."
+L["Please click the buttons below to apply Luckyones profiles for the Addons you use."] = true
 L["Please read the steps carefully before clicking any buttons."] = "Por favor, leia os passos atentamente antes de clicar em qualquer botão."
 L["Plumber profile has been set."] = "O perfil do Plumber foi configurado."
 L["POI Button"] = "Botão de PDI"

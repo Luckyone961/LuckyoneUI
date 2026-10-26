@@ -4,7 +4,7 @@ local L = Private.L
 local _G = _G
 
 -- BuffReminders profile
-function Private:Setup_BuffReminders()
+function Private:Setup_BuffReminders(installer)
 	if not Private.IsAddOnLoaded('BuffReminders') then Private:Print('BuffReminders ' .. L["is not installed or enabled."]) return end
 
 	-- 1080p
@@ -24,5 +24,5 @@ function Private:Setup_BuffReminders()
 		profile.categorySettings.main.position.y = 420 -- 1440p: 580
 	end
 
-	Private:Print(L["BuffReminders profile has been set."])
+	Private:Print(L["BuffReminders profile has been set."], installer)
 end

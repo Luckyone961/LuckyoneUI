@@ -1,6 +1,7 @@
 local _, Private = ...
 local L = Private.L
 
+local ceil = math.ceil
 local concat = table.concat
 local floor = math.floor
 local format = string.format
@@ -32,7 +33,7 @@ Private.Installer = Installer
 
 local installerFrame
 local pages = {}
-local selections = {} -- Key of the option picked last
+local selections = {} -- Keys of the options picked per page
 local currentPage = 0
 
 local function Green(text)
@@ -181,17 +182,19 @@ local function CreateStepButton(sidebar, index, name)
 	return button
 end
 
--- Option buttons
+-- Option buttons, a multi page keeps every applied option selected
 local function Option_OnClick(self)
 	local data = self.data
 
 	-- A step that bails out returns false and stays unchecked
 	if data.func() == false or not data.key then return end
 
-	selections[currentPage] = data.key
+	local picked = (pages[currentPage].multi and selections[currentPage]) or {}
+	picked[data.key] = true
+	selections[currentPage] = picked
 
 	for _, button in ipairs(installerFrame.Content.Options) do
-		SetButtonSelected(button, button.data == data)
+		SetButtonSelected(button, button.data and picked[button.data.key])
 	end
 
 	installerFrame.Sidebar.Buttons[currentPage].icon:Show()
@@ -204,23 +207,21 @@ local function Option_OnEnter(self)
 	end
 end
 
+-- Rows of up to three, the last row sits at the bottom
 local function LayoutOptions(count)
 	local content = installerFrame.Content
+	local rows = ceil(count / 3)
 
 	for index = count + 1, #content.Options do
 		content.Options[index]:Hide()
 	end
 
-	if count == 0 then return end
-
-	local width = min(190, floor((700 - 6 * (count - 1)) / count))
-	local total = count * width + 6 * (count - 1)
-
 	for index = 1, count do
+		local row = floor((index - 1) / 3)
+		local columns = min(3, count - row * 3)
 		local button = content.Options[index]
-		button:SetWidth(width)
 		button:ClearAllPoints()
-		button:SetPoint('BOTTOM', content, 'BOTTOM', -total / 2 + width / 2 + (index - 1) * (width + 6), 56)
+		button:SetPoint('BOTTOM', content, 'BOTTOM', ((index - 1) % 3 - (columns - 1) / 2) * 196, 56 + (rows - 1 - row) * 36)
 	end
 end
 
@@ -484,7 +485,7 @@ local function CreateMainFrame()
 
 	content.Options = {}
 
-	for index = 1, 4 do
+	for index = 1, 6 do
 		local button = CreateButton(content, 190, 30)
 		button:SetScript('OnClick', Option_OnClick)
 		button:SetScript('OnEnter', Option_OnEnter)
@@ -538,6 +539,7 @@ function Installer:SetPage(index)
 	content.SubTitle:SetText(page.title)
 	content.Desc:SetText(page.desc)
 
+	local picked = selections[index]
 	local shown = 0
 	if page.buttons then
 		for _, data in ipairs(page.buttons) do
@@ -550,7 +552,7 @@ function Installer:SetPage(index)
 				button:Show()
 
 				SetButtonEnabled(button, not data.addon or Private.IsAddOnLoaded(data.addon))
-				SetButtonSelected(button, data.key and selections[index] == data.key)
+				SetButtonSelected(button, picked and picked[data.key])
 			end
 		end
 	end
@@ -571,12 +573,12 @@ function Installer:SetPage(index)
 end
 
 -- Checkbox pages only write the db, the note tells the user why nothing changes yet
-local function Page(name, desc, buttons, toggles, hidden, title)
+local function Page(name, desc, buttons, toggles, hidden, title, multi)
 	if toggles then
 		desc[#desc + 1] = L["Checkbox changes are applied on the reload at the end of the installer and might not be visible until then."]
 	end
 
-	return { name = name, title = title or name, desc = concat(desc, '\n\n'), buttons = buttons, toggles = toggles, hidden = hidden }
+	return { name = name, title = title or name, desc = concat(desc, '\n\n'), buttons = buttons, toggles = toggles, hidden = hidden, multi = multi }
 end
 
 local function Button(text, func, key, addon, hidden)
@@ -762,6 +764,20 @@ local function BuildPages()
 		}, {
 			Button('SkironCooldownManager', function() Private:Setup_SkironCooldownManager(true) end, 'scm', 'SkironCooldownManager'),
 		}, nil, not Private.isModern, L["Cooldown Manager profile"]),
+
+		-- Optional addon profiles
+		Page(L["Additional Addons"], {
+			L["Please click the buttons below to apply Luckyones profiles for the Addons you use."],
+			Green(L["Optional step."]),
+			Private.ElvUI and L["Baganator replaces the ElvUI bags and Platynator the ElvUI nameplates."] or nil,
+		}, {
+			Button('Baganator', function() Private:Setup_Baganator(true) end, 'baganator', 'Baganator'),
+			Button('BuffReminders', function() Private:Setup_BuffReminders(true) end, 'buffreminders', 'BuffReminders', not Private.isRetail),
+			Button('Northern Sky Raid Tools', function() Private:Setup_NorthernSkyRaidTools(true) end, 'nsrt', 'NorthernSkyRaidTools', not Private.isRetail),
+			Button('PermoksAccountManager', function() Private:Setup_PermoksAccountManager(true) end, 'permoks', 'PermoksAccountManager', not Private.isRetail),
+			Button('Platynator', function() Private:Setup_Platynator(true) end, 'platynator', 'Platynator'),
+			Button('Plumber', function() Private:Setup_Plumber(true) end, 'plumber', 'Plumber', not (Private.isRetail or Private.isForever or Private.isMists)),
+		}, nil, nil, L["Optional Addon Profiles"], true),
 
 		-- Edit mode string and guide
 		Page(L["Blizzard Edit Mode"], {

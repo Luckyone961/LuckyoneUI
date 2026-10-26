@@ -5,6 +5,7 @@ L["- All Fonts: Expressway\n- All Font Outlines: Outline\n- All Textures: Minima
 L["1440p = Default | 1080p = Downscaled"] = true
 L["Absorbs"] = true
 L["Action Bars"] = true
+L["Additional Addons"] = true
 L["Addon download:"] = true
 L["Addon Profiles"] = true
 L["Adjusts the width of the 'FPS - Combat Time - Durability' DataText based on your LuckyoneUI layout\n\nThe DPS & Tanks layout will match the default width of my Action Bars\nThe Healing layout will match the default width of my Raidframes\n\nAll changes mentioned above will trigger upon changing your ElvUI profile\nThis includes specialization-based profile loading in ElvUI profiles"] = true
@@ -41,6 +42,7 @@ L["Backdrop Color"] = true
 L["Backdrop Height"] = true
 L["Backdrop Width"] = true
 L["Baganator profile has been set."] = true
+L["Baganator replaces the ElvUI bags and Platynator the ElvUI nameplates."] = true
 L["Bags"] = true
 L["Balance"] = true
 L["Bar Alpha"] = true
@@ -368,6 +370,8 @@ L["Open the death log of a death entry at your cursor instead of the Blizzard De
 L["Open the Great Vault to check your weekly progress."] = true
 L["Open the options."] = true
 L["Open World"] = true
+L["Optional Addon Profiles"] = true
+L["Optional step."] = true
 L["Optional step. Dark is applied by default."] = true
 L["Options"] = true
 L["Orientation"] = true
@@ -388,6 +392,7 @@ L["Platynator profile has been set."] = true
 L["Please click the button below to apply Luckyones profile for Details! Damage Meter."] = true
 L["Please click the button below to apply Luckyones profile for MPlusTimer."] = true
 L["Please click the button below to apply Luckyones profile for SkironCooldownManager."] = true
+L["Please click the buttons below to apply Luckyones profiles for the Addons you use."] = true
 L["Please read the steps carefully before clicking any buttons."] = true
 L["Plumber profile has been set."] = true
 L["POI Button"] = true

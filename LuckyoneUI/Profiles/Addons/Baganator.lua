@@ -4,7 +4,7 @@ local L = Private.L
 local _G = _G
 
 -- Baganator profile
-function Private:Setup_Baganator()
+function Private:Setup_Baganator(installer)
 	if not Private.IsAddOnLoaded('Baganator') then Private:Print('Baganator ' .. L["is not installed or enabled."]) return end
 
 	-- Disable ElvUI bags
@@ -37,5 +37,5 @@ function Private:Setup_Baganator()
 		profile.custom_categories = {}
 	end
 
-	Private:Print(L["Baganator profile has been set."])
+	Private:Print(L["Baganator profile has been set."], installer)
 end

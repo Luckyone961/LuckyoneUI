@@ -4,7 +4,7 @@ local L = Private.L
 local _G = _G
 
 -- Northern Sky Raid Tools profile
-function Private:Setup_NorthernSkyRaidTools()
+function Private:Setup_NorthernSkyRaidTools(installer)
 	if not Private.IsAddOnLoaded('NorthernSkyRaidTools') then Private:Print('NorthernSkyRaidTools ' .. L["is not installed or enabled."]) return end
 
 	-- Profile name
@@ -16,5 +16,5 @@ function Private:Setup_NorthernSkyRaidTools()
 	-- Profile import
 	_G.NSAPI:ImportProfileString(importString, name)
 
-	Private:Print(L["Northern Sky Raid Tools profile has been set."])
+	Private:Print(L["Northern Sky Raid Tools profile has been set."], installer)
 end

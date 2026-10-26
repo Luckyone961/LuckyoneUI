@@ -4,7 +4,7 @@ local L = Private.L
 local _G = _G
 
 -- PermoksAccountManager profile
-function Private:Setup_PermoksAccountManager()
+function Private:Setup_PermoksAccountManager(installer)
 	if not Private.IsAddOnLoaded('PermoksAccountManager') then Private:Print('PermoksAccountManager ' .. L["is not installed or enabled."]) return end
 
 	-- Profile string
@@ -13,5 +13,5 @@ function Private:Setup_PermoksAccountManager()
 	-- Profile import
 	_G.PAMAPI.Import(importString)
 
-	Private:Print(L["PermoksAccountManager profile has been set."])
+	Private:Print(L["PermoksAccountManager profile has been set."], installer)
 end
