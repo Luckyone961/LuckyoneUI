@@ -22,7 +22,7 @@ local function GroupingPopup_OnShow(popup)
 	end
 end
 
--- Compact list, shared by the Vanilla/TBC Spellbook page and the Forever /wt window
+-- Compact list, shared by the Vanilla/TBC Spellbook page and the /wt window
 local function SkinCompactFrame(frame)
 	local name = frame:GetName()
 
@@ -181,7 +181,7 @@ local function Skin_Forever()
 	frame.isSkinned = true
 end
 
--- Forever: /wt and Broker window
+-- /wt window, on Forever also opened by the Broker
 local function Skin_FloatingFrame()
 	local frame = WhatsTrainingFloatingFrame
 	if not frame or frame.isSkinned then return end
@@ -303,15 +303,17 @@ local function Skin_WhatsTraining()
 			EventRegistry:RegisterCallback('ProfessionsFrame.Show', Skin_Crafting, 'LuckyoneUI_WhatsTraining')
 		end
 
-		-- The window is created on its first open
-		hooksecurefunc(SlashCmdList, 'WHATSTRAINING', Skin_FloatingFrame)
-
 		local broker = Private.Libs.LDB:GetDataObjectByName('WhatsTraining')
 		if broker then
 			hooksecurefunc(broker, 'OnClick', Skin_FloatingFrame)
 		end
 	else
 		SpellBookFrame:HookScript('OnShow', Skin_Legacy)
+	end
+
+	-- The window is created on its first open, Vanilla and TBC have it since WhatsTraining 11.0.0-beta26
+	if SlashCmdList.WHATSTRAINING then
+		hooksecurefunc(SlashCmdList, 'WHATSTRAINING', Skin_FloatingFrame)
 	end
 end
 
