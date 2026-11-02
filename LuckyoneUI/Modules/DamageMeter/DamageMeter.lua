@@ -39,6 +39,7 @@ local StaticPopup_Show = _G.StaticPopup_Show
 local E = unpack(ElvUI)
 
 DM.windows = {}
+DM.ThreatType = 100
 
 function DM:CreateText(parent, justify)
 	local text = parent:CreateFontString(nil, 'OVERLAY')
@@ -459,6 +460,11 @@ local function Initialize()
 
 	-- Delves skip the loading screen
 	DM:RegisterEvent('ACTIVE_DELVE_DATA_UPDATE')
+
+	-- Threat meter
+	DM:RegisterEvent('UNIT_THREAT_LIST_UPDATE', 'UpdateThreat')
+	DM:RegisterEvent('PLAYER_TARGET_CHANGED', 'UpdateThreat')
+	DM:RegisterEvent('UNIT_TARGET', 'UpdateThreat')
 
 	-- Combat and group changes only touch the visibility rule
 	DM:RegisterEvent('PLAYER_REGEN_DISABLED', 'UpdateShown')

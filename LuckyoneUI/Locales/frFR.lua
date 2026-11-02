@@ -552,6 +552,7 @@ L["This step will configure some of Blizzards console variables."] = "Cette éta
 L["This step will configure the ElvUI layout of your choice."] = "Cette étape configurera la disposition ElvUI de votre choix."
 L["This step will configure your two chat panels."] = "Cette étape configurera vos deux panneaux de discussion."
 L["This will apply Luckyones Aura Indicator edit and set the style to Textured."] = "Cela appliquera l'indicateur d'aura de Luckyone et définira le style sur Texturé."
+L["Threat"] = true
 L["Title Color"] = true
 L["Title X Offset"] = true
 L["Title Y Offset"] = true

@@ -23,6 +23,9 @@
 - Simulationcraft is available for Forever, so I ported over my retail skin for it  
 - Updated Skins for Attune, ForeverDungeonJournal and WhatsTraining  
 
+**Damage Meter:**  
+- Added custom Threat category (Experimental)  
+
 ## Version 4.26 [14-10-2026]
 
 **All WoW Versions:**  

@@ -155,17 +155,21 @@ local function GetSampleWidth(db, key)
 	return width
 end
 
+local function HasPopup(window)
+	return not window.spellMode and window.meterType ~= DM.ThreatType
+end
+
 local function Bar_OnClick(bar, mouseButton)
 	if mouseButton == 'RightButton' then
 		DM:OnWindowRightClick(bar.window)
-	elseif bar.entry and not bar.window.spellMode then
+	elseif bar.entry and HasPopup(bar.window) then
 		DM:OpenPopup(bar.window, bar.entry)
 	end
 end
 
 local function Bar_OnEnter(bar)
 	DM:UpdateHeaderButtons(bar.window)
-	bar.highlight:SetShown(DM.db.mouseoverHighlight)
+	bar.highlight:SetShown(DM.db.mouseoverHighlight and HasPopup(bar.window))
 end
 
 local function Bar_OnLeave(bar)
@@ -545,8 +549,15 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 	end
 end
 
-local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry, recapMode)
+local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry, recapMode, threatMode)
 	local valueText, secondaryText = bar.value, bar.secondary
+
+	if threatMode then -- Threat is already a percentage
+		valueText:SetFormattedText('%.0f%%', entry.totalAmount)
+		secondaryText:SetText('')
+		bar.secondarySecret = false
+		return
+	end
 
 	if recapMode then
 		local percent, seconds = entry.healthPercent, entry.timeBeforeDeath
@@ -698,12 +709,13 @@ function DM:RenderWindow(window)
 
 	-- Only the session windows carry the availability message
 	local infoText = window.infoText
+	local threatMode = window.meterType == DM.ThreatType
 
 	if infoText then
 		local info = ''
 
 		-- Fake data always renders, only the live data can be unavailable
-		if not DM.testMode then
+		if not DM.testMode and not threatMode then
 			local available, failureReason = IsDamageMeterAvailable()
 
 			if not available then
@@ -769,7 +781,7 @@ function DM:RenderWindow(window)
 				UpdateBarIcon(bar, entry, spellMode)
 			end
 			UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
-			UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry, recapMode)
+			UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry, recapMode, threatMode)
 			bar:Show()
 		else
 			bar.entry = nil

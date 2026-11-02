@@ -551,6 +551,7 @@ L["This step will configure some of Blizzards console variables."] = true
 L["This step will configure the ElvUI layout of your choice."] = true
 L["This step will configure your two chat panels."] = true
 L["This will apply Luckyones Aura Indicator edit and set the style to Textured."] = true
+L["Threat"] = true
 L["Title Color"] = true
 L["Title X Offset"] = true
 L["Title Y Offset"] = true
