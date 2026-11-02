@@ -148,11 +148,7 @@ local function Skin_Forever()
 	dropdown:SetTemplate()
 
 	-- Edit Box
-	local searchBox = frame.searchBox
-	S:HandleEditBox(searchBox)
-	searchBox:Height(20)
-	searchBox:ClearAllPoints()
-	searchBox:Point('RIGHT', dropdown, 'LEFT', -5, 0)
+	S:HandleEditBox(frame.searchBox)
 
 	-- Scroll Bars
 	S:HandleTrimScrollBar(frame.scrollFrame.ScrollBar)
