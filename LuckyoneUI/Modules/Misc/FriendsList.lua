@@ -51,12 +51,10 @@ local buttons = {} -- Every list button the hook has seen
 -- Localized class name to class token, Battle.net only hands us the name
 -- Classes of another game version stay nil on Classic
 local ClassTokens = {}
-for token, name in pairs(LOCALIZED_CLASS_NAMES_MALE) do
-	ClassTokens[name] = token
-end
-
-for token, name in pairs(LOCALIZED_CLASS_NAMES_FEMALE) do
-	ClassTokens[name] = token
+for _, names in next, { LOCALIZED_CLASS_NAMES_MALE, LOCALIZED_CLASS_NAMES_FEMALE } do
+	for token, name in pairs(names) do
+		ClassTokens[name] = token
+	end
 end
 
 -- Unknown classes go gray, the gold Blizzard uses looks like a Rogue

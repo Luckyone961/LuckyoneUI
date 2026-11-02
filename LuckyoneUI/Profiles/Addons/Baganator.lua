@@ -2,6 +2,7 @@ local _, Private = ...
 local L = Private.L
 
 local _G = _G
+local next = next
 
 -- Baganator profile
 function Private:Setup_Baganator(installer)
@@ -27,14 +28,10 @@ function Private:Setup_Baganator(installer)
 	if not Private.isRetail then
 		local profile = _G.BAGANATOR_CONFIG.Profiles[name]
 		profile.bag_view_type = 'single'
-		profile.automatic_categories_added = {}
 		profile.category_default_import = 0
-		profile.category_display_order = {}
-		profile.category_hidden = {}
-		profile.category_modifications = {}
-		profile.category_section_toggled = {}
-		profile.category_sections = {}
-		profile.custom_categories = {}
+		for _, key in next, { 'automatic_categories_added', 'category_display_order', 'category_hidden', 'category_modifications', 'category_section_toggled', 'category_sections', 'custom_categories' } do
+			profile[key] = {}
+		end
 	end
 
 	Private:Print(L["Baganator profile has been set."], installer)

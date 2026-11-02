@@ -43,7 +43,7 @@ local function DecodeProfile(text)
 	local serialized = compressed and DecompressString(compressed)
 	local success, data = pcall(DeserializeCBOR, serialized)
 	if success and type(data) == 'table' and type(data.name) == 'string' and type(data.profile) == 'table' then
-		return data.name, data.profile, type(data.movers) == 'table' and data.movers or nil
+		return data.name, data.profile, type(data.movers) == 'table' and data.movers
 	end
 end
 

@@ -257,15 +257,6 @@ local PlacementValues = { AUTO = L["Automatic"], ATTACH = L["Attached"], CUSTOM 
 local SoloPlacementValues = { AUTO = L["Automatic"], CUSTOM = L["Custom"] }
 local ContentWindowValues = { [0] = L["Disabled"], [1] = '1', [2] = '2', [3] = '3', [4] = '4' }
 
-local function DamageMeterGet(info)
-	return Private.Addon.db.profile.damageMeter[info[#info]]
-end
-
-local function DamageMeterSet(info, value)
-	Private.Addon.db.profile.damageMeter[info[#info]] = value
-	Private:DamageMeter_Update()
-end
-
 local function DamageMeterDisabled()
 	return not Private.Addon.db.profile.damageMeter.enable
 end
@@ -329,7 +320,7 @@ end
 -- Build Damage Meter Section
 local function BuildDamageMeterSection()
 	if not (Private.ElvUI and Private.isModern) then return end -- Retail/Forever + ElvUI section
-	local section = ACH:Group(GetIconName(L["Damage Meter"], 'DamageMeter'), nil, 35, 'tab', DamageMeterGet, DamageMeterSet)
+	local section = ACH:Group(GetIconName(L["Damage Meter"], 'DamageMeter'), nil, 35, 'tab', function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_Update() end)
 	section.args.header = ACH:Header(L["Damage Meter"], 1)
 	section.args.general = ACH:Group(L["General"], nil, 2)
 	section.args.general.args.generalOptions = InlineGroup(L["General"], 1)

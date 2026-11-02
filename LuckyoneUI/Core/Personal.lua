@@ -191,7 +191,7 @@ local dualSpec = Private.isRetail and {
 		'Luckyone Healing',
 		['enabled'] = true,
 	},
-} or nil
+}
 
 -- Setup the correct profile for each character after installation
 function Private:Setup_Personal()

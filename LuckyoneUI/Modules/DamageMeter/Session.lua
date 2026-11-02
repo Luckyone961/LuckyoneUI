@@ -1246,16 +1246,19 @@ end
 -- The click area grows with the header, the artwork stays centered in it
 local function CreateHeaderButton(window, icon, onClick)
 	local button = CreateFrame('Button', nil, window.header)
-	button:SetNormalTexture(icon)
 	button:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
 	button:SetScript('OnClick', HeaderButton_OnClick)
 	button.onClick = onClick
 	button.window = window
 	SetHoverScripts(button)
 
-	button.icon = button:GetNormalTexture()
-	button.icon:ClearAllPoints()
-	button.icon:Point('CENTER')
+	-- The type button has no artwork, its text fills the click area
+	if icon then
+		button:SetNormalTexture(icon)
+		button.icon = button:GetNormalTexture()
+		button.icon:ClearAllPoints()
+		button.icon:Point('CENTER')
+	end
 
 	return button
 end
@@ -1280,15 +1283,9 @@ function DM:GetWindow(index)
 	window.sessionButton = CreateHeaderButton(window, Private.IconPath .. 'DM_Sessions.png', SessionButton_OnClick)
 	window.settingsButton = CreateHeaderButton(window, Private.IconPath .. 'DM_Settings.png', SettingsButton_OnClick)
 
-	local typeButton = CreateFrame('Button', nil, header)
-	typeButton:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
-	typeButton:SetScript('OnClick', HeaderButton_OnClick)
-	typeButton.onClick = TypeButton_OnClick
-	typeButton.window = window
-	window.typeButton = typeButton
-	SetHoverScripts(typeButton)
+	window.typeButton = CreateHeaderButton(window, nil, TypeButton_OnClick)
 
-	window.typeText = DM:CreateText(typeButton, 'LEFT')
+	window.typeText = DM:CreateText(window.typeButton, 'LEFT')
 	window.typeText:Point('TOPLEFT')
 	window.typeText:Point('BOTTOMRIGHT')
 
