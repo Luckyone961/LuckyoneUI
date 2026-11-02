@@ -155,21 +155,17 @@ local function GetSampleWidth(db, key)
 	return width
 end
 
-local function HasPopup(window)
-	return not window.spellMode and window.meterType ~= DM.ThreatType
-end
-
 local function Bar_OnClick(bar, mouseButton)
 	if mouseButton == 'RightButton' then
 		DM:OnWindowRightClick(bar.window)
-	elseif bar.entry and HasPopup(bar.window) then
+	elseif bar.entry and not bar.window.spellMode and bar.window.meterType ~= DM.ThreatType then
 		DM:OpenPopup(bar.window, bar.entry)
 	end
 end
 
 local function Bar_OnEnter(bar)
 	DM:UpdateHeaderButtons(bar.window)
-	bar.highlight:SetShown(DM.db.mouseoverHighlight and HasPopup(bar.window))
+	bar.highlight:SetShown(DM.db.mouseoverHighlight and bar.window.meterType ~= DM.ThreatType)
 end
 
 local function Bar_OnLeave(bar)
@@ -552,7 +548,8 @@ end
 local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry, recapMode, threatMode)
 	local valueText, secondaryText = bar.value, bar.secondary
 
-	if threatMode then -- Threat is already a percentage
+	-- Threat is already a percentage
+	if threatMode then
 		valueText:SetFormattedText('%.0f%%', entry.totalAmount)
 		secondaryText:SetText('')
 		bar.secondarySecret = false

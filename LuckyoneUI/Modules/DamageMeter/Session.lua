@@ -158,7 +158,8 @@ end
 
 -- Pets take the class of their owner
 local function AddThreat(count, unit, mob, owner)
-	if not UnitExists(unit) then return count end -- Missing pet token can error
+	-- Missing pet token can error
+	if not UnitExists(unit) then return count end
 
 	local _, _, _, rawPercent = UnitDetailedThreatSituation(unit, mob)
 	if not rawPercent or issecretvalue(rawPercent) or rawPercent <= 0 then return count end
@@ -186,7 +187,6 @@ end
 
 local function GetThreatSession()
 	wipe(threatList)
-	threatSession.maxAmount = 100
 
 	local mob = (UnitCanAttack('player', 'target') and 'target') or (UnitCanAttack('player', 'targettarget') and 'targettarget')
 	if not mob then return threatSession end
@@ -208,8 +208,9 @@ local function GetThreatSession()
 		end
 	end
 
+	-- The bars fill against the top threat
 	if count > 0 then
-		sort(threatList, SortThreat) -- The bars fill against the top threat
+		sort(threatList, SortThreat)
 		threatSession.maxAmount = threatList[1].totalAmount
 	end
 
@@ -1426,11 +1427,10 @@ function DM:ApplyWindowSettings(window)
 
 	-- The icons bring their own size, the click areas fill the header height and move along with x and y
 	local previous, previousX, previousY, previousPad = nil, 0, 0, 0
-	local threat = window.meterType == DM.ThreatType
 
 	for _, info in ipairs(HeaderButtons) do
 		local button = window[info.button]
-		local shown = wdb[info.shown] and not (threat and info.button == 'sessionButton')
+		local shown = wdb[info.shown] and not (info.button == 'sessionButton' and window.meterType == DM.ThreatType)
 		local x, y = db[info.x], db[info.y]
 		local artSize = iconSize - (info.trim or 0)
 
