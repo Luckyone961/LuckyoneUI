@@ -5,9 +5,12 @@ if not Private.ElvUI then
 end
 
 local next = next
+local strfind = strfind
 local unpack = unpack
 
+local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
+local RunNextFrame = RunNextFrame
 
 local _G = _G
 
@@ -133,6 +136,95 @@ local function SkinTab(tab)
 	TabActive_SetShown(tab.active, tab.active:IsShown())
 end
 
+-- Similar to ElvUI menu skin
+local function Menu_Rebuild(menu)
+	local r, g, b = unpack(E.media.rgbvaluecolor)
+
+	for _, item in next, menu.items do
+		local control = item.control
+		if control then
+			local box = item.box
+			if not box then
+				box = CreateFrame('Frame', nil, item)
+				box:Size(12)
+				box:SetTemplate()
+				box:Point('CENTER', control)
+
+				local mark = box:CreateTexture(nil, 'ARTWORK')
+				mark:SetTexture(E.media.normTex)
+				mark:SetVertexColor(r, g, b)
+				mark:SetInside()
+				box.mark = mark
+
+				control:SetAlpha(0)
+				item.check:SetAlpha(0)
+				item.box = box
+			end
+
+			box:SetShown(control:IsShown())
+			box.mark:SetShown(item.check:IsShown())
+		end
+
+		local arrow = item.submenuArrow
+		if arrow and arrow:IsShown() then
+			arrow:SetTexture(E.Media.Textures.ArrowUp)
+			arrow:SetRotation(S.ArrowRotation.right)
+			arrow:SetVertexColor(r, g, b)
+			arrow:Size(12)
+		end
+	end
+end
+
+local SkinMenu
+
+local function Menu_OpenSubmenu(menu)
+	if menu.submenu then
+		SkinMenu(menu.submenu)
+	end
+end
+
+-- WhatsTraining custom menus since 11.0.0-beta29
+function SkinMenu(menu)
+	if menu.isSkinned then return end
+
+	menu.backing:SetAlpha(0)
+	menu:CreateBackdrop('Transparent')
+
+	menu.backdrop:Point('TOPLEFT')
+	menu.backdrop:Point('BOTTOMRIGHT', 0, 7)
+
+	hooksecurefunc(menu, 'Rebuild', Menu_Rebuild)
+	hooksecurefunc(menu, 'OpenSubmenu', Menu_OpenSubmenu)
+	Menu_Rebuild(menu)
+
+	menu.isSkinned = true
+end
+
+local function Dropdown_OpenMenu(dropdown)
+	if dropdown.popup then
+		SkinMenu(dropdown.popup)
+	end
+end
+
+local contextWatcher
+local specialFrames = 0
+local function FindContextMenu()
+	for i = specialFrames + 1, #UISpecialFrames do
+		local name = UISpecialFrames[i]
+		local menu = strfind(name, '^WhatsTrainingMenu') and _G[name]
+		if menu and menu.contextMenu then
+			SkinMenu(menu)
+			contextWatcher:UnregisterAllEvents()
+		end
+	end
+
+	specialFrames = #UISpecialFrames
+end
+
+local function ContextWatcher_OnEvent()
+	RunNextFrame(FindContextMenu)
+end
+
 -- Forever: overlay on the PlayerSpellsFrame, the page keeps the WhatsTraining parchment like the Spellbook
 local function Skin_Forever()
 	local frame = WhatsTrainingFrame
@@ -173,6 +265,10 @@ local function Skin_Forever()
 	-- Center the now smaller buttons on the page label row
 	paging.PrevPageButton.align = 'center'
 	paging.NextPageButton.align = 'center'
+
+	-- Menus
+	hooksecurefunc(dropdown, 'OpenMenu', Dropdown_OpenMenu)
+	hooksecurefunc(priceDropdown, 'OpenMenu', Dropdown_OpenMenu)
 
 	frame.isSkinned = true
 end
@@ -271,6 +367,7 @@ local function Skin_Crafting()
 	local filterDropdown = WhatsTrainingCraftingFilterDropdown
 	S:HandleButton(filterDropdown, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, true, 'right')
 	S:HandleCloseButton(filterDropdown.ResetButton)
+	hooksecurefunc(filterDropdown, 'OpenMenu', Dropdown_OpenMenu)
 
 	-- Scroll Bar
 	S:HandleTrimScrollBar(WhatsTrainingCraftingScrollBar)
@@ -303,6 +400,12 @@ local function Skin_WhatsTraining()
 		if broker then
 			hooksecurefunc(broker, 'OnClick', Skin_FloatingFrame)
 		end
+
+		-- Row, header and tab context menu
+		specialFrames = #UISpecialFrames
+		contextWatcher = CreateFrame('Frame')
+		contextWatcher:RegisterEvent('GLOBAL_MOUSE_UP')
+		contextWatcher:SetScript('OnEvent', ContextWatcher_OnEvent)
 	else
 		SpellBookFrame:HookScript('OnShow', Skin_Legacy)
 	end
