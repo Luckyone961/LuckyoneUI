@@ -19,14 +19,12 @@ local function LayoutTabs(frame, position)
 	for _, tab in next, frame.Tabs do
 		tab:ClearAllPoints()
 
-		if not lastTab then
-			if position == 'top' then
-				tab:Point('BOTTOMLEFT', frame, 'TOPLEFT', -10, 0)
-			else
-				tab:Point('TOPLEFT', frame, 'BOTTOMLEFT', -10, 0)
-			end
-		else
+		if lastTab then
 			tab:Point('TOPLEFT', lastTab, 'TOPRIGHT', -19, 0)
+		elseif position == 'top' then
+			tab:Point('BOTTOMLEFT', frame, 'TOPLEFT', -10, 0)
+		else
+			tab:Point('TOPLEFT', frame, 'BOTTOMLEFT', -10, 0)
 		end
 
 		lastTab = tab

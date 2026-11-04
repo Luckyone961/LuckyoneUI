@@ -8,8 +8,10 @@ local next = next
 local pairs = pairs
 local tonumber = tonumber
 local concat = table.concat
+local tinsert = table.insert
 local format = string.format
 
+local C_UI = C_UI
 local CopyTable = CopyTable
 local GetCVarBool = C_CVar.GetCVarBool
 local SetCVar = C_CVar.SetCVar
@@ -105,11 +107,12 @@ local function BuildGeneralSection()
 	section.args.disabledFrames.args.AlertFrame = ACH:Toggle(L["Alert Frame"], L["Hide the Loot/Alert Frame"], 1)
 	section.args.disabledFrames.args.ApplicationCover = ACH:Toggle(L["Application Cover"], L["Removes the LFG frame overlay and animation which blocks your mouse inputs and tooltip when you are not the party leader."], 2, nil, nil, nil, nil, nil, nil, not (Private.isRetail or Private.isMists))
 	section.args.disabledFrames.args.BossBanner = ACH:Toggle(L["Boss Banner"], L["Hide the Boss Banner"], 3, nil, nil, nil, nil, nil, nil, not Private.isModern)
-	section.args.disabledFrames.args.HousingDecorAlerts = ACH:Toggle(L["Housing Decor Alerts"], L["Hide the Housing Alerts for \n\'New Decor Added\'"], 4, nil, nil, nil, nil, nil, nil, not Private.isRetail)
-	section.args.disabledFrames.args.LossOfControl = ACH:Toggle(L["Loss of Control Frame"], L["Hide the Loss of Control Frame"], 5, nil, nil, nil, nil, nil, nil, not (Private.isModern or Private.isMists))
-	section.args.disabledFrames.args.TalkingHead = ACH:Toggle(L["Talking Head"], L["Hide the Talking Head Frame but keep it's sounds and voicelines."], 6, nil, nil, nil, nil, nil, nil, not Private.isModern)
-	section.args.disabledFrames.args.UIErrorsFrame = ACH:Toggle(L["UI Errors Frame"], L["Hide the UI Errors Frame which usually displays messages like 'Out of range', 'Not enough mana', 'You have no target' - This will also block all quest progress update messages."], 7)
-	section.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle(L["Zone Text"], L["Hide the Zone Text"], 8)
+	section.args.disabledFrames.args.EventToasts = ACH:Toggle(L["Event Toasts"], L["Hide the Event Toasts for level ups, new spells, scenario stages, the Great Vault and renown"], 4, nil, nil, nil, nil, nil, nil, not (Private.isModern or Private.isMists))
+	section.args.disabledFrames.args.HousingDecorAlerts = ACH:Toggle(L["Housing Decor Alerts"], L["Hide the Housing Alerts for \n\'New Decor Added\'"], 5, nil, nil, nil, nil, nil, nil, not Private.isRetail)
+	section.args.disabledFrames.args.LossOfControl = ACH:Toggle(L["Loss of Control Frame"], L["Hide the Loss of Control Frame"], 6, nil, nil, nil, nil, nil, nil, not (Private.isModern or Private.isMists))
+	section.args.disabledFrames.args.TalkingHead = ACH:Toggle(L["Talking Head"], L["Hide the Talking Head Frame but keep it's sounds and voicelines."], 7, nil, nil, nil, nil, nil, nil, not Private.isModern)
+	section.args.disabledFrames.args.UIErrorsFrame = ACH:Toggle(L["UI Errors Frame"], L["Hide the UI Errors Frame which usually displays messages like 'Out of range', 'Not enough mana', 'You have no target' - This will also block all quest progress update messages."], 8)
+	section.args.disabledFrames.args.ZoneTextFrame = ACH:Toggle(L["Zone Text"], L["Hide the Zone Text"], 9)
 	section.args.qualityOfLife = InlineGroup(L["Quality of Life"], 3, function(info) return Private.Addon.db.profile.qualityOfLife[info[#info]] end, function(info, value) Private.Addon.db.profile.qualityOfLife[info[#info]] = value StaticPopup_Show('LUCKYONE_RL') end)
 	section.args.qualityOfLife.args.autoAcceptRole = ACH:Toggle(L["Auto Accept Role"], L["Automatically accept the role check popup when signing up for groups and raids. Hold down the shift key to add a signup note."], 1, nil, nil, nil, nil, nil, nil, not (Private.isRetail or Private.isMists))
 	section.args.qualityOfLife.args.autoDismount = ACH:Toggle(L["Auto Dismount"], L["Automatically dismounts you if all of the following conditions are true:\n\n- You are on a skyriding mount\n- You are on the ground\n- You press any skyriding spell except Skyward Ascent\n\nDoes not work for Druid Travel Form."], 2, nil, nil, nil, nil, nil, nil, not Private.isRetail)
@@ -120,7 +123,7 @@ local function BuildGeneralSection()
 	section.args.qualityOfLife.args.preventLootAutoShow = ACH:Toggle(L["Prevent Loot Overview"], L["Prevents the Blizzard group loot overview frame from auto opening after a boss kill."], 7, nil, nil, nil, nil, nil, nil, not Private.isRetail)
 	section.args.qualityOfLife.args.privacyOverlay = ACH:Toggle(L["Privacy Overlay"], L["Creates an overlay to hide the chat frame in the Communities Frame until you click on it."], 8)
 	section.args.qualityOfLife.args.quickSignup = ACH:Toggle(L["Quick Signup"], L["Speed up the signup process for party and raid applications by double clicking the listing instead of clicking the signup button."], 9, nil, nil, nil, nil, nil, nil, not (Private.isRetail or Private.isMists))
-	section.args.movableFrames = InlineGroup(L["Movable Frames"], 4, function(info) return Private.Addon.db.profile.movableFrames[info[#info]] end, function(info, value) Private.Addon.db.profile.movableFrames[info[#info]] = value StaticPopup_Show('LUCKYONE_RL') end)
+	section.args.movableFrames = InlineGroup(L["Movable Frames"], 4, function(info) return Private.Addon.db.profile.movableFrames[info[#info]] end, function(info, value) Private.Addon.db.profile.movableFrames[info[#info]] = value StaticPopup_Show('LUCKYONE_RL') end, nil, Private.isGamepadUI)
 	section.args.movableFrames.args.enable = ACH:Toggle(L["Enable"], L["Allows you to move Blizzard panels.\n\nRight-Click restores Blizzard default position.\n\nPosition is not stored and resets on reload and relog."], 1)
 	section.args.movableFrames.args.autoReset = ACH:Toggle(L["Auto Reset"], L["Panels return to the Blizzard default position when they open or close.\n\nDisable this to keep a moved panel where you left it until you reload."], 2, nil, nil, nil, nil, function(_, value) Private.Addon.db.profile.movableFrames.autoReset = value end, MovableFramesDisabled)
 	section.args.movableFrames.args.modifier = ACH:Select(L["Modifier"], L["Hold this key down to drag or reset a panel."], 3, { NONE = _G.NONE, SHIFT = _G.SHIFT_KEY_TEXT, ALT = _G.ALT_KEY_TEXT, CTRL = _G.CTRL_KEY_TEXT }, nil, nil, nil, function(_, value) Private.Addon.db.profile.movableFrames.modifier = value end, MovableFramesDisabled)
@@ -136,18 +139,19 @@ local function BuildAddonProfilesSection()
 	local section = ACH:Group(GetIconName(L["Addon Profiles"], 'Addons'), nil, 10)
 	section.args.header1 = ACH:Header(L["Addon Profiles"], 1)
 	section.args.addons = InlineGroup(L["Profiles"], 2)
-	section.args.addons.args.baganator = ACH:Execute('Baganator', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_Baganator() StaticPopup_Show('LUCKYONE_RL') end, nil, true)
-	section.args.addons.args.buffReminders = ACH:Execute('BuffReminders', L["Import LuckyoneUI defaults."], 2, function() Private:Setup_BuffReminders() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.details = ACH:Execute('Details', L["Import LuckyoneUI defaults."], 3, function() Private:Setup_Details() StaticPopup_Show('LUCKYONE_RL') end, nil, true)
-	section.args.addons.args.mplustimer = ACH:Execute('MPlusTimer', L["Import LuckyoneUI defaults."], 4, function() Private:Setup_MPlusTimer() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.nsrt = ACH:Execute('Northern Sky Raid Tools', L["Import LuckyoneUI defaults."], 5, function() Private:Setup_NorthernSkyRaidTools() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.permoksAccountManager = ACH:Execute('PermoksAccountManager', L["Import LuckyoneUI defaults."], 6, function() Private:Setup_PermoksAccountManager() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, nil, not Private.isRetail)
-	section.args.addons.args.plumber = ACH:Execute('Plumber', L["Import LuckyoneUI defaults."], 7, function() Private:Setup_Plumber() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, nil, not Private.isRetail)
+	section.args.addons.args.baganator = ACH:Execute('Baganator', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_Baganator() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('Baganator'))
+	section.args.addons.args.buffReminders = ACH:Execute('BuffReminders', L["Import LuckyoneUI defaults."], 2, function() Private:Setup_BuffReminders() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('BuffReminders'), not Private.isRetail)
+	section.args.addons.args.details = ACH:Execute('Details', L["Import LuckyoneUI defaults."], 3, function() Private:Setup_Details() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('Details'))
+	section.args.addons.args.mplustimer = ACH:Execute('MPlusTimer', L["Import LuckyoneUI defaults."], 4, function() Private:Setup_MPlusTimer() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('MPlusTimer'), not Private.isRetail)
+	section.args.addons.args.nsrt = ACH:Execute('Northern Sky Raid Tools', L["Import LuckyoneUI defaults."], 5, function() Private:Setup_NorthernSkyRaidTools() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('NorthernSkyRaidTools'), not Private.isRetail)
+	section.args.addons.args.permoksAccountManager = ACH:Execute('PermoksAccountManager', L["Import LuckyoneUI defaults."], 6, function() Private:Setup_PermoksAccountManager() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('PermoksAccountManager'), not Private.isRetail)
+	section.args.addons.args.plumber = ACH:Execute('Plumber', L["Import LuckyoneUI defaults."], 7, function() Private:Setup_Plumber() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('Plumber'), not (Private.isRetail or Private.isForever or Private.isMists))
 	section.args.nameplates = InlineGroup(L["Nameplate Profiles"], 3)
 	section.args.nameplates.args.elvui = ACH:Execute('ElvUI', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_NamePlates() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, nil, not Private.ElvUI)
-	section.args.nameplates.args.platynator = ACH:Execute('Platynator', L["Import LuckyoneUI defaults."], 2, function() Private:Setup_Platynator() StaticPopup_Show('LUCKYONE_RL') end, nil, true)
-	section.args.bossmods = InlineGroup(L["BossMods Profiles"], 4)
-	section.args.bossmods.args.bigwigs = ACH:Execute('BigWigs', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_BigWigs() end, nil, true)
+	section.args.nameplates.args.platynator = ACH:Execute('Platynator', L["Import LuckyoneUI defaults."], 2, function() Private:Setup_Platynator() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('Platynator'))
+	section.args.bossmods = InlineGroup(L["Boss Mods Profiles"], 4)
+	section.args.bossmods.args.bigwigs = ACH:Execute('BigWigs', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_BigWigs() end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('BigWigs'))
+	section.args.bossmods.args.dbm = ACH:Execute('Deadly Boss Mods', L["Import LuckyoneUI defaults."], 2, function() Private:Setup_DBM() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('DBM-Core'))
 	section.args.header2 = ACH:Header(L["Blizzard Profiles"], 6, nil, nil, not Private.isRetail)
 	section.args.strings = InlineGroup(L["Profile strings"], 7, nil, nil, nil, not Private.isRetail)
 	section.args.strings.args.editModeString = ACH:Execute(L["Copy Editmode String"], nil, 1, function() Private:Setup_EditMode() end)
@@ -166,13 +170,35 @@ end
 
 -- Build Chat Section
 local function BuildChatSection()
+	local commands = {}
+	if Private.ElvUI then
+		tinsert(commands, '|cff4beb2c/lucky bars|r - ' .. L["Swap two action bars or migrate your bars from an older LuckyoneUI version."])
+	end
+	tinsert(commands, '|cff4beb2c/lucky config|r - ' .. L["Open the options."])
+	tinsert(commands, '|cff4beb2c/lucky install|r - ' .. L["Run the installation process."])
+	tinsert(commands, '|cff4beb2c/lucky minimap|r - ' .. L["Hide or show the minimap icon."])
+	if Private.ElvUI and Private.isModern then
+		tinsert(commands, '|cff4beb2c/lucky toggle|r - ' .. L["Hide or show the damage meter."])
+	end
+	if Private.isModern then
+		tinsert(commands, '|cff4beb2c/lucky untrack|r - ' .. L["Untrack all quests, including the hidden ones, to improve performance."])
+	end
+	if Private.ElvUI then
+		tinsert(commands, '|cff4beb2c/luckydebug on|r - ' .. L["Disable every addon except ElvUI and LuckyoneUI for troubleshooting."])
+		tinsert(commands, '|cff4beb2c/luckydebug off|r - ' .. L["Re-enable the addons disabled by /luckydebug on."])
+	end
+	if Private.isRetail then
+		tinsert(commands, '|cff4beb2c/vault|r, |cff4beb2c/weekly|r - ' .. L["Open the Great Vault to check your weekly progress."])
+	end
+
 	local section = ACH:Group(GetIconName(L["Chat"], 'Chat'), nil, 20)
 	section.args.header = ACH:Header(L["Chat"], 1)
 	section.args.chatSetup = InlineGroup(L["Setup Chat"], 2)
 	section.args.chatSetup.args.chat = ACH:Execute(L["Setup Chat"], nil, 1, function() Private:Setup_Chat() end)
-	section.args.chatSetup.args.chattynator = ACH:Execute(L["Use Chattynator Addon"], nil, 2, function() Private:Setup_Chattynator() StaticPopup_Show('LUCKYONE_RL') end, nil, true)
+	section.args.chatSetup.args.chattynator = ACH:Execute(L["Use Chattynator Addon"], nil, 2, function() Private:Setup_Chattynator() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('Chattynator'))
 	section.args.chatDesc = DescriptionGroup(L["Description"], 3, L["Setup Chat will reset your chat panels to default and create custom chat tabs.\n\nChat tabs: [ Main - Log - Whisper - Guild - Party ]"])
 	section.args.chatVars = DescriptionGroup(L["Chat CVars"], 4, '- chatClassColorOverride 0\n- chatMouseScroll 1\n- chatStyle classic\n- colorChatNamesByClass 1\n- showTimestamps %H:%M\n- speechToText 0\n- textToSpeech 0\n- whisperMode inline\n- wholeChatWindowClickable 0')
+	section.args.chatCommands = DescriptionGroup(L["Chat Commands"], 5, concat(commands, '\n'))
 	return section
 end
 
@@ -223,22 +249,13 @@ local function BuildCDMSection()
 	end
 
 	section.args.addons = InlineGroup(L["Addon Profiles"], 17)
-	section.args.addons.args.scm = ACH:Execute('SkironCooldownManager', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_SkironCooldownManager() StaticPopup_Show('LUCKYONE_RL') end, nil, true)
+	section.args.addons.args.scm = ACH:Execute('SkironCooldownManager', L["Import LuckyoneUI defaults."], 1, function() Private:Setup_SkironCooldownManager() StaticPopup_Show('LUCKYONE_RL') end, nil, true, nil, nil, nil, not Private.IsAddOnLoaded('SkironCooldownManager'))
 	return section
 end
 
 local PlacementValues = { AUTO = L["Automatic"], ATTACH = L["Attached"], CUSTOM = L["Custom"] }
 local SoloPlacementValues = { AUTO = L["Automatic"], CUSTOM = L["Custom"] }
 local ContentWindowValues = { [0] = L["Disabled"], [1] = '1', [2] = '2', [3] = '3', [4] = '4' }
-
-local function DamageMeterGet(info)
-	return Private.Addon.db.profile.damageMeter[info[#info]]
-end
-
-local function DamageMeterSet(info, value)
-	Private.Addon.db.profile.damageMeter[info[#info]] = value
-	Private:DamageMeter_Update()
-end
 
 local function DamageMeterDisabled()
 	return not Private.Addon.db.profile.damageMeter.enable
@@ -303,7 +320,7 @@ end
 -- Build Damage Meter Section
 local function BuildDamageMeterSection()
 	if not (Private.ElvUI and Private.isModern) then return end -- Retail/Forever + ElvUI section
-	local section = ACH:Group(GetIconName(L["Damage Meter"], 'DamageMeter'), nil, 35, 'tab', DamageMeterGet, DamageMeterSet)
+	local section = ACH:Group(GetIconName(L["Damage Meter"], 'DamageMeter'), nil, 35, 'tab', function(info) return Private.Addon.db.profile.damageMeter[info[#info]] end, function(info, value) Private.Addon.db.profile.damageMeter[info[#info]] = value Private:DamageMeter_Update() end)
 	section.args.header = ACH:Header(L["Damage Meter"], 1)
 	section.args.general = ACH:Group(L["General"], nil, 2)
 	section.args.general.args.generalOptions = InlineGroup(L["General"], 1)
@@ -392,7 +409,7 @@ local function BuildDamageMeterSection()
 	section.args.bookmarkOptions.args.bookmarkDesc = DescriptionGroup(L["Description"], 1, L["Right click a session window to open the bookmark panel over its bars.\n\nLeft click a bookmark to switch the window to it, right click one to drop it again. Drag one up or down to give it another place. The last slot opens a menu with the types you are missing."])
 	section.args.bookmarkOptions.args.generalOptions = InlineGroup(L["General"], 2)
 	section.args.bookmarkOptions.args.generalOptions.args.showBookmarks = ACH:Toggle(L["Enable"], L["Open the bookmark panel with a right click on a session window."], 1)
-	section.args.bookmarkOptions.args.generalOptions.args.bookmarkDragDrop = ACH:Toggle(L["Drag and Drop"], L["Drag a bookmark up or down to change its place in the panel."], 2, nil, nil, nil, nil, nil, function() return not Private.Addon.db.profile.damageMeter.showBookmarks end)
+	section.args.bookmarkOptions.args.generalOptions.args.bookmarkDragDrop = ACH:Toggle(L["Drag and Drop"], L["Drag a bookmark up or down to change its place in the panel."], 2, nil, nil, nil, nil, nil, function() local db = Private.Addon.db.profile.damageMeter return not db.enable or not db.showBookmarks end)
 	section.args.bookmarkOptions.args.bookmarks = ACH:MultiSelect(L["Bookmarks"], L["Types the panel offers, new ones are added to the end of the list."], 3, Private.Modules.DamageMeter.TypeMenuNames, nil, nil, function(_, key) return Private.Addon.db.profile.damageMeter.bookmarks[key] and true or false end, function(_, key, value) Private.Modules.DamageMeter:SetBookmark(key, value) Private:DamageMeter_Update() end, function() local db = Private.Addon.db.profile.damageMeter return not db.enable or not db.showBookmarks end)
 	return section
 end
@@ -462,6 +479,9 @@ local function BuildElvUITweaksSection()
 	section.args.nameplates.args.textures.args.targetTextureEnable = ACH:Toggle(L["Enable Target Texture"], nil, 4, nil, nil, 'double')
 	section.args.nameplates.args.textures.args.targetTexture = ACH:SharedMediaStatusbar(L["Select Texture"], nil, 5, nil, nil, nil, function() return not Private.Addon.db.profile.nameplates.targetTextureEnable end)
 	section.args.nameplates.args.absorbs = AbsorbsGroup('nameplates', 2)
+	section.args.nameplates.args.colors = InlineGroup(L["Colors"], 3, function(info) return Private.Addon.db.profile.nameplates[info[#info]] end, function(info, value) Private.Addon.db.profile.nameplates[info[#info]] = value Private:QuestColor_Update() end, nil, Private.isClassic)
+	section.args.nameplates.args.colors.args.questColorEnable = ACH:Toggle(L["Enable Quest Color"], L["Color the health bar of NPCs with an ElvUI quest icon.\n\nNeeds the ElvUI Quest Icon enabled for that nameplate type, turn on its Hide Icon option to get the color without the icon."], 1, nil, nil, 'double')
+	section.args.nameplates.args.colors.args.questColor = ACH:Color(L["Color"], nil, 2, nil, nil, function() local color = Private.Addon.db.profile.nameplates.questColor return color.r, color.g, color.b end, function(_, r, g, b) local color = Private.Addon.db.profile.nameplates.questColor color.r, color.g, color.b = r, g, b Private:QuestColor_Update() end, function() return not Private.Addon.db.profile.nameplates.questColorEnable end)
 	-- Nothing in here on TBC and Vanilla, Mythic Raidframe Visibility is Retail only and absorbs need Mists or newer
 	section.args.unitframes = ACH:Group(L["UnitFrames"], nil, 4, nil, nil, nil, nil, not (Private.isModern or Private.isMists))
 	section.args.unitframes.args.toggles = InlineGroup(L["Toggles"], 1, nil, nil, nil, not Private.isRetail)
@@ -573,7 +593,7 @@ end
 local ObjectiveTrackerColors = { DEFAULT = L["Default"], CLASS = L["Class Color"], CUSTOM = L["Custom"] }
 
 local function ObjectiveTrackerDisabled()
-	return not Private.Addon.db.profile.misc.objectiveTracker.enable
+	return Private.IsAddOnLoaded('!KalielsTracker') or not Private.Addon.db.profile.misc.objectiveTracker.enable
 end
 
 local function ObjectiveTrackerSkinDisabled()
@@ -607,7 +627,7 @@ end
 
 local function ObjectiveTrackerHeaderGroup(name, key, order)
 	local Get, Set, ColorGet, ColorSet = ObjectiveTrackerGetSet(key)
-	local function NoUnderline() return not Private.Addon.db.profile.misc.objectiveTracker[key].underline end
+	local function NoUnderline() return ObjectiveTrackerDisabled() or not Private.Addon.db.profile.misc.objectiveTracker[key].underline end
 
 	local group = ACH:Group(name, nil, order, nil, Get, Set, ObjectiveTrackerDisabled)
 	group.args.fontOptions = FontGroup(L["Font"], 1, 32)
@@ -659,14 +679,14 @@ local function BuildMiscSection()
 	section.args.mailbox = ACH:Group(L["Mailbox Favorites"], nil, 3, nil, function(info) return Private.Addon.db.profile.misc.mailbox[info[#info]] end, function(info, value) Private.Addon.db.profile.misc.mailbox[info[#info]] = value Private:MailboxFavorites() Private:MailboxFavorites_Update() end)
 	section.args.mailbox.args.generalOptions = InlineGroup(L["General"], 1)
 	section.args.mailbox.args.generalOptions.args.enable = ACH:Toggle(L["Enable"], L["Show a favorite list next to the Mailbox while the Send Mail tab is open."], 1)
-	section.args.mailbox.args.generalOptions.args.currentRealm = ACH:Toggle(L["Current Realm Only"], L["Only show favorites that are on the realm you are playing on."], 2, nil, nil, nil, nil, nil, MailboxDisabled)
+	section.args.mailbox.args.generalOptions.args.currentRealm = ACH:Toggle(L["Current Realm Only"], L["Only show favorites that are on the realm you are playing on."], 2, nil, nil, nil, nil, nil, MailboxDisabled, Private.isForever)
 	section.args.mailbox.args.favorites = InlineGroup(L["Favorites"], 2, nil, nil, MailboxDisabled)
 	section.args.mailbox.args.favorites.args.name = ACH:Input(_G.NAME, nil, 1, nil, 'full', function() return mailboxName end, function(_, value) mailboxName = strtrim(value) end)
-	section.args.mailbox.args.favorites.args.realm = ACH:Input(L["Realm"], nil, 2, nil, 'full', function() return mailboxRealm end, function(_, value) mailboxRealm = strtrim(value) end)
-	section.args.mailbox.args.favorites.args.add = ACH:Execute(_G.ADD, nil, 3, function() local entry = Private:MailboxFavorites_Add(mailboxName, mailboxRealm) if entry then mailboxSelected = entry mailboxName = '' end end, nil, nil, nil, nil, nil, function() return MailboxDisabled() or mailboxName == '' or mailboxRealm == '' end)
+	section.args.mailbox.args.favorites.args.realm = ACH:Input(L["Realm"], nil, 2, nil, 'full', function() return mailboxRealm end, function(_, value) mailboxRealm = strtrim(value) end, nil, Private.isForever)
+	section.args.mailbox.args.favorites.args.add = ACH:Execute(_G.ADD, nil, 3, function() local entry = Private:MailboxFavorites_Add(mailboxName, mailboxRealm) if entry then mailboxSelected = entry mailboxName = '' end end, nil, nil, nil, nil, nil, function() return MailboxDisabled() or mailboxName == '' or (mailboxRealm == '' and not Private.isForever) end)
 	section.args.mailbox.args.favoriteOptions = InlineGroup(L["Options"], 3, nil, nil, MailboxDisabled)
 	section.args.mailbox.args.favoriteOptions.args.selected = ACH:Select(L["Favorite"], L["Pick the entry the options below change."], 1, MailboxEntries, nil, 'full', function() return mailboxSelected end, function(_, value) mailboxSelected = value end)
-	section.args.mailbox.args.favoriteOptions.args.class = ACH:Select(_G.CLASS, nil, 2, MailboxClasses, nil, nil, function() local favorite = Private:MailboxFavorites_Find(mailboxSelected) return favorite and favorite.class end, function(_, value) local favorite = Private:MailboxFavorites_Find(mailboxSelected) if favorite then favorite.class = value Private:MailboxFavorites_Update() end end, MailboxNoSelection)
+	section.args.mailbox.args.favoriteOptions.args.class = ACH:Select(_G.CLASS, nil, 2, MailboxClasses(), nil, nil, function() local favorite = Private:MailboxFavorites_Find(mailboxSelected) return favorite and favorite.class end, function(_, value) local favorite = Private:MailboxFavorites_Find(mailboxSelected) if favorite then favorite.class = value Private:MailboxFavorites_Update() end end, MailboxNoSelection)
 	section.args.mailbox.args.favoriteOptions.args.faction = ACH:Select(_G.FACTION, nil, 3, { Alliance = _G.FACTION_ALLIANCE, Horde = _G.FACTION_HORDE }, nil, nil, function() local favorite = Private:MailboxFavorites_Find(mailboxSelected) return favorite and favorite.faction end, function(_, value) local favorite = Private:MailboxFavorites_Find(mailboxSelected) if favorite then favorite.faction = value Private:MailboxFavorites_Update() end end, MailboxNoSelection)
 	section.args.mailbox.args.favoriteOptions.args.remove = ACH:Execute(_G.REMOVE, nil, 4, function() Private:MailboxFavorites_Remove(mailboxSelected) mailboxSelected = nil end, nil, true, nil, nil, nil, MailboxNoSelection)
 	section.args.mailbox.args.fontOptions = FontGroup(L["Font"], 4, 26, MailboxDisabled)
@@ -739,24 +759,27 @@ local function BuildSkinsSection()
 	section.args.header = ACH:Header('Skins', 1)
 	section.args.addons = InlineGroup('AddOns', 2, function(info) return Private.Addon.db.profile.skins[info[#info]] end, function(info, value) Private.Addon.db.profile.skins[info[#info]] = value StaticPopup_Show('LUCKYONE_RL') end)
 	section.args.addons.args.AllTheThings = ACH:Toggle('AllTheThings', L["Skin the Addon in ElvUI style"], 1, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('AllTheThings'))
-	section.args.addons.args.Attune = ACH:Toggle('Attune', L["Skin the Addon in ElvUI style"], 2, nil, nil, nil, nil, nil, nil, not (Private.isForever and Private.IsAddOnLoaded('Attune')))
-	section.args.addons.args.Auctionator = ACH:Toggle('Auctionator', L["Skin the Addon in ElvUI style"], 3, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('Auctionator'))
-	section.args.addons.args.BigWigs = ACH:Toggle('BigWigs', L["Skin the Keystones viewer (/keys, Retail only) and the LFG queue timer bar in ElvUI style. The rest of the Addon is not skinned."], 4, nil, nil, nil, nil, nil, nil, not ((Private.isRetail or Private.isMists) and Private.IsAddOnLoaded('BigWigs')))
-	section.args.addons.args.BugSack = ACH:Toggle('BugSack', L["Skin the Addon in ElvUI style"], 5, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('BugSack'))
-	section.args.addons.args.ForeverDungeonJournal = ACH:Toggle('DungeonJournal', L["Skin the Addon in ElvUI style"], 6, nil, nil, nil, nil, nil, nil, not (Private.isForever and Private.IsAddOnLoaded('ForeverDungeonJournal')))
-	section.args.addons.args.KeystoneLoot = ACH:Toggle('KeystoneLoot', L["Skin the Addon in ElvUI style"], 7, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('KeystoneLoot')))
-	section.args.addons.args.LFGBulletinBoard = ACH:Toggle('LFG Bulletin Board', L["Skin the full bulletin board frame in ElvUI style"], 8, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC or Private.isMists) and Private.IsAddOnLoaded('LFGBulletinBoard')))
-	section.args.addons.args.NovaInstanceTracker = ACH:Toggle('Nova Instance Tracker', L["Skin the Addon in ElvUI style"], 9, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('NovaInstanceTracker'))
-	section.args.addons.args.NovaSpellRankChecker = ACH:Toggle('Nova Spell Rank Checker', L["Skin the Spell Rank Checker button in ElvUI style"], 10, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC) and Private.IsAddOnLoaded('NovaSpellRankChecker')))
-	section.args.addons.args.NovaWorldBuffs = ACH:Toggle('Nova World Buffs', L["Skin the small layer frame on the Minimap in ElvUI style and move it to the bottom left"], 11, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC) and Private.IsAddOnLoaded('NovaWorldBuffs')))
-	section.args.addons.args.Plumber = ACH:Toggle('Plumber', L["Skin the View Houses frame in ElvUI style. The rest of the Addon is not skinned."], 12, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('Plumber')))
-	section.args.addons.args.PremadeGroupsFilter = ACH:Toggle('Premade Groups Filter', L["Skin the Addon in ElvUI style"], 13, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('PremadeGroupsFilter')))
-	section.args.addons.args.RCLootCouncil = ACH:Toggle('RCLootCouncil', L["Skin the Addon in ElvUI style"], 14, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('RCLootCouncil')))
-	section.args.addons.args.RXPGuides = ACH:Toggle('RestedXP Guides', L["Skin the guide window, Active Items, Active Targets and Level Splits in ElvUI style, in the legacy and the V2 interface. The other RestedXP windows are not skinned."], 15, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('RXPGuides'))
-	section.args.addons.args.SimpleAddonManager = ACH:Toggle('Simple Addon Manager', L["Skin the Addon in ElvUI style"], 16, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('SimpleAddonManager'))
-	section.args.addons.args.Simulationcraft = ACH:Toggle('Simulationcraft', L["Skin the Addon in ElvUI style"], 17, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('Simulationcraft')))
-	section.args.addons.args.Tabardy = ACH:Toggle('Tabardy', L["Skin the Addon in ElvUI style"], 18, nil, nil, nil, nil, nil, nil, Private.isForever or not Private.IsAddOnLoaded('Tabardy'))
-	section.args.addons.args.WhatsTraining = ACH:Toggle('WhatsTraining', L["Skin the WhatsTraining page in the Spellbook in ElvUI style"], 19, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC or Private.isForever) and Private.IsAddOnLoaded('WhatsTraining')))
+	section.args.addons.args.AtlasLoot = ACH:Toggle('AtlasLoot', L["Skin the Addon in ElvUI style"], 2, nil, nil, nil, nil, nil, nil, not (Private.isForever and Private.IsAddOnLoaded('AtlasLootClassic')))
+	section.args.addons.args.Attune = ACH:Toggle('Attune', L["Skin the Addon in ElvUI style"], 3, nil, nil, nil, nil, nil, nil, not (Private.isForever and Private.IsAddOnLoaded('Attune')))
+	section.args.addons.args.Auctionator = ACH:Toggle('Auctionator', L["Skin the Addon in ElvUI style"], 4, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('Auctionator'))
+	section.args.addons.args.BigWigs = ACH:Toggle('BigWigs', L["Skin the Keystones viewer (/keys, Retail only) and the LFG queue timer bar in ElvUI style. The rest of the Addon is not skinned."], 5, nil, nil, nil, nil, nil, nil, not ((Private.isRetail or Private.isMists) and Private.IsAddOnLoaded('BigWigs')))
+	section.args.addons.args.BugSack = ACH:Toggle('BugSack', L["Skin the Addon in ElvUI style"], 6, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('BugSack'))
+	section.args.addons.args.DBM = ACH:Toggle('Deadly Boss Mods', L["Skin the options window, the windows opened from it and the battle res timer in ElvUI style. Timer bars, warnings and other boss fight frames are not skinned."], 7, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('DBM-Core'))
+	section.args.addons.args.ForeverDungeonJournal = ACH:Toggle('DungeonJournal', L["Skin the Addon in ElvUI style"], 8, nil, nil, nil, nil, nil, nil, not (Private.isForever and Private.IsAddOnLoaded('ForeverDungeonJournal')))
+	section.args.addons.args.HuntersFieldGuide = ACH:Toggle("Hunter's Field Guide", L["Skin the Addon in ElvUI style"], 9, nil, nil, nil, nil, nil, nil, not (Private.isForever and Private.IsAddOnLoaded('HuntersFieldGuide')))
+	section.args.addons.args.KeystoneLoot = ACH:Toggle('KeystoneLoot', L["Skin the Addon in ElvUI style"], 10, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('KeystoneLoot')))
+	section.args.addons.args.LFGBulletinBoard = ACH:Toggle('LFG Bulletin Board', L["Skin the full bulletin board frame in ElvUI style"], 11, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC or Private.isMists) and Private.IsAddOnLoaded('LFGBulletinBoard')))
+	section.args.addons.args.NovaInstanceTracker = ACH:Toggle('Nova Instance Tracker', L["Skin the Addon in ElvUI style"], 12, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('NovaInstanceTracker'))
+	section.args.addons.args.NovaSpellRankChecker = ACH:Toggle('Nova Spell Rank Checker', L["Skin the Spell Rank Checker button in ElvUI style"], 13, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC or Private.isForever) and Private.IsAddOnLoaded('NovaSpellRankChecker')))
+	section.args.addons.args.NovaWorldBuffs = ACH:Toggle('Nova World Buffs', L["Skin the small layer frame on the Minimap in ElvUI style and move it to the bottom left"], 14, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC) and Private.IsAddOnLoaded('NovaWorldBuffs')))
+	section.args.addons.args.Plumber = ACH:Toggle('Plumber', L["Skin the View Houses frame in ElvUI style. The rest of the Addon is not skinned."], 15, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('Plumber')))
+	section.args.addons.args.PremadeGroupsFilter = ACH:Toggle('Premade Groups Filter', L["Skin the Addon in ElvUI style"], 16, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('PremadeGroupsFilter')))
+	section.args.addons.args.RCLootCouncil = ACH:Toggle('RCLootCouncil', L["Skin the Addon in ElvUI style"], 17, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('RCLootCouncil')))
+	section.args.addons.args.RXPGuides = ACH:Toggle('RestedXP Guides', L["Skin the guide window, Active Items, Active Targets and Level Splits in ElvUI style, in the legacy and the V2 interface. The other RestedXP windows are not skinned."], 18, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('RXPGuides'))
+	section.args.addons.args.SimpleAddonManager = ACH:Toggle('Simple Addon Manager', L["Skin the Addon in ElvUI style"], 19, nil, nil, nil, nil, nil, nil, not Private.IsAddOnLoaded('SimpleAddonManager'))
+	section.args.addons.args.Simulationcraft = ACH:Toggle('Simulationcraft', L["Skin the Addon in ElvUI style"], 20, nil, nil, nil, nil, nil, nil, not (Private.isModern and Private.IsAddOnLoaded('Simulationcraft')))
+	section.args.addons.args.Tabardy = ACH:Toggle('Tabardy', L["Skin the Addon in ElvUI style"], 21, nil, nil, nil, nil, nil, nil, not (Private.isRetail and Private.IsAddOnLoaded('Tabardy')))
+	section.args.addons.args.WhatsTraining = ACH:Toggle('WhatsTraining', L["Skin the Addon in ElvUI style"], 22, nil, nil, nil, nil, nil, nil, not ((Private.isClassic or Private.isTBC or Private.isForever) and Private.IsAddOnLoaded('WhatsTraining')))
 	section.args.blizzard = InlineGroup('Blizzard', 2, function(info) return Private.Addon.db.profile.skins.Blizzard[info[#info]] end, function(info, value) Private.Addon.db.profile.skins.Blizzard[info[#info]] = value StaticPopup_Show('LUCKYONE_RL') end)
 	section.args.blizzard.args.CooldownViewer = ACH:Toggle(L["Cooldown Settings"], nil, 1, nil, nil, nil, nil, nil, nil, not Private.isModern)
 	section.args.blizzard.args.DeveloperConsole = ACH:Toggle('Developer Console', nil, 2)
@@ -851,8 +874,8 @@ local function BuildDevSection()
 	section.args.header2 = ACH:Header('Luckyone\'s Private Section', 5, nil, nil, DevHidden)
 	section.args.syncInfo = DescriptionGroup('Important information', 6, 'Clicking this button will override every single option of the games ESC > Options with Luckyone\'s settings.\n\nThis includes all of gameplay, accessibility, graphics, audio and network.\n\n|cffC80000There is no support for this.\n\nUse at own risk.|r', DevHidden)
 	section.args.spacer = ACH:Spacer(7, 'full', DevHidden)
-	section.args.execute = ACH:Execute('Account CVars', '|cffC80000Do not click without reading the important information!|r', 8, function() Private:SyncSettings() end, nil, true, nil, nil, nil, nil, DevHidden)
-	section.args.executeCharacter = ACH:Execute('Character CVars', 'Set character specific CVars only.', 9, function() Private:SyncSettings(true) end, nil, true, nil, nil, nil, nil, DevHidden)
+	section.args.execute = ACH:Execute('Account CVars', '|cffC80000Do not click without reading the important information!|r', 8, function() Private:SyncSettings() C_UI.Reload() end, nil, true, nil, nil, nil, nil, DevHidden)
+	section.args.executeCharacter = ACH:Execute('Character CVars', 'Set character specific CVars only.', 9, function() Private:SyncSettings(true) C_UI.Reload() end, nil, true, nil, nil, nil, nil, DevHidden)
 	section.args.exportCVars = ACH:Execute('Export CVars', 'Export into the global cvarDump SV table.', 10, function() Private:ExportCVars() end, nil, nil, nil, nil, nil, nil, DevHidden)
 	section.args.wipeCVars = ACH:Execute('Wipe exported CVars', 'Wipe the global cvarDump SV table.', 11, function() Private.Addon.db.global.cvarDump = nil end, nil, nil, nil, nil, nil, nil, function() return not (Private.Addon.db.global.dev and Private.Addon.db.global.cvarDump) end)
 	return section

@@ -4,9 +4,6 @@ if Private.ElvUI then
 	return
 end
 
--- Standalone config for the Blizzard settings panel
--- Made for the ACH table from Config.lua
-
 local ipairs = ipairs
 local max = math.max
 local min = math.min
@@ -30,7 +27,8 @@ local CreateAndInitFromMixin = CreateAndInitFromMixin
 local CreateColor = CreateColor
 local CreateColorFromHexString = CreateColorFromHexString
 local CreateFrame = CreateFrame
-local FormatPercentage = FormatPercentage
+local EditBox_ClearFocus = EditBox_ClearFocus
+local FormatPercentageRounded = FormatPercentageRounded
 local MinimalSliderWithSteppersMixin = MinimalSliderWithSteppersMixin
 local PlaySound = PlaySound
 local ProxySettingMixin = ProxySettingMixin
@@ -257,7 +255,7 @@ local function AddRange(category, info, name, desc, get, set, option)
 	end)
 
 	local options = Settings.CreateSliderOptions(min, max, step)
-	options:SetLabelFormatter(MinimalSliderWithSteppersMixin.Label.Right, option.isPercent and FormatPercentage or function(value) return format(fmt, value) end)
+	options:SetLabelFormatter(MinimalSliderWithSteppersMixin.Label.Right, option.isPercent and FormatPercentageRounded or function(value) return format(fmt, value) end)
 
 	return Settings.CreateSlider(category, setting, options, desc)
 end
@@ -313,6 +311,7 @@ local function AddSelect(category, info, name, desc, get, set, option, path)
 end
 
 -- Colors
+local hexColor = CreateColor(1, 1, 1)
 local function AddColor(category, info, name, desc, get, set, option, path)
 	if option.hasAlpha then
 		error(format('LuckyoneUI: %s uses alpha, not supported without ElvUI', concat(path, '.')))
@@ -320,7 +319,8 @@ local function AddColor(category, info, name, desc, get, set, option, path)
 
 	local setting = CreateProxy(info, Settings.VarType.String, name, function()
 		local r, g, b = get(info)
-		return CreateColor(r or 1, g or 1, b or 1):GenerateHexColor()
+		hexColor:SetRGB(r or 1, g or 1, b or 1)
+		return hexColor:GenerateHexColor()
 	end, function(hex)
 		local r, g, b = CreateColorFromHexString(hex):GetRGB()
 		set(info, r, g, b)
@@ -480,10 +480,6 @@ local function InputEnterPressed(self)
 	self:ClearFocus()
 end
 
-local function InputEscapePressed(self)
-	self:ClearFocus()
-end
-
 local function InputFocusLost(self)
 	local row = self:GetParent().row
 	self:SetText(tostring(row.get(row.info) or ''))
@@ -581,7 +577,10 @@ local function AddInput(category, info, name, desc, get, set, option, disabled)
 				scroll:SetPoint('TOPLEFT', 37, -26)
 				scroll:SetPoint('BOTTOMRIGHT', -60, 6)
 				scroll:EnableMouse(true)
-				scroll:SetScript('OnMouseDown', MultilineScrollMouseDown)
+				-- Gamepad navigation reads the mouse scripts of plain frames inside the settings panel and taints
+				if not Private.isGamepadUI then
+					scroll:SetScript('OnMouseDown', MultilineScrollMouseDown)
+				end
 				scroll:SetScript('OnMouseWheel', MultilineScrollWheel)
 				scroll:SetScript('OnSizeChanged', MultilineScrollSizeChanged)
 				scroll:SetScript('OnScrollRangeChanged', MultilineScrollRangeChanged)
@@ -594,7 +593,7 @@ local function AddInput(category, info, name, desc, get, set, option, disabled)
 				box:SetAutoFocus(false)
 				box:SetFontObject('GameFontHighlight')
 				box:SetTextInsets(4, 4, 4, 4)
-				box:SetScript('OnEscapePressed', InputEscapePressed)
+				box:SetScript('OnEscapePressed', EditBox_ClearFocus)
 				box:SetScript('OnCursorChanged', ScrollingEdit_OnCursorChanged)
 				box:SetScript('OnTextChanged', MultilineTextChanged)
 				box:SetScript('OnUpdate', ScrollingEdit_OnUpdate)
@@ -662,6 +661,8 @@ local function AddInput(category, info, name, desc, get, set, option, disabled)
 		-- Hiding a focused box runs its focus lost handler, which still reads the row
 		frame.row = nil
 	end)
+
+	Settings.RegisterInitializer(category, initializer)
 
 	return initializer
 end
@@ -745,7 +746,6 @@ local function AddOptions(category, args, path, get, set, disabled, hidden, nest
 				local initializer = AddInput(category, info, name, desc, optionGet, optionSet, option, optionDisabled)
 				initializer:AddSearchTags(name, unpack(tags))
 				ApplyChecks(initializer, {}, optionHidden)
-				Settings.RegisterInitializer(category, initializer)
 			else
 				error(format('LuckyoneUI: %s is a %s, not supported without ElvUI', concat(path, '.'), tostring(optionType)))
 			end

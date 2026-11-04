@@ -1,4 +1,32 @@
-﻿## Version 4.26 [14-10-2026]
+﻿## Version 4.27 [04-11-2026]
+
+**All WoW Versions:**  
+- Added a list of all chat commands in the Chat tab of the config  
+- Added option to change the health color of quest related enemy NPCs (ElvUI Nameplates)  
+- Added option to hide Event Toasts (Level up, Stages, Great Vault progress, Renown gains)  
+- Added profile for DBM (Style and position basics)  
+- Added skin for DBM options panel  
+- Installer frame size is now dynamic to avoid text overlaps on certain languages  
+- Removed the Geist font  
+- Updated AllTheThings skin  
+- Updated Simple Addon Manager skin  
+
+**Retail:**  
+- Fixed Northern Sky Raid Tools profile import  
+- Updated SkironCooldownManager profile  
+
+**Forever:**  
+- Added AtlasLoot skin  
+- Added Hunter's Field Guide skin  
+- Added SkironCooldownManager global anchor for trinkets, bandages, healthstone and racials  
+- Added SkironCooldownManager profile for all 9 classes  
+- Simulationcraft is available for Forever, so I ported over my retail skin for it  
+- Updated Skins for Attune, ForeverDungeonJournal and WhatsTraining  
+
+**Damage Meter:**  
+- Added custom Threat category (Experimental)  
+
+## Version 4.26 [14-10-2026]
 
 **All WoW Versions:**  
 - Added new option to automate advanced combat logging based on instance type and difficulty  

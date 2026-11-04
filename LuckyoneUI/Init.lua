@@ -17,6 +17,7 @@ local GetRealmName = GetRealmName
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 local MergeTable = MergeTable
 local RegionalUniqueNamesEnabled = RegionalUniqueNamesEnabled
+local StaticPopup_Show = StaticPopup_Show
 local UnitClass = UnitClass
 local UnitGUID = UnitGUID
 local UnitNameUnmodified = UnitNameUnmodified
@@ -35,11 +36,9 @@ local Name, Private = ...
 Private.Addon = {}
 
 Private.Libs = {
-	-- Extras
 	LSM = LibStub('LibSharedMedia-3.0'),
 	LDB = LibStub('LibDataBroker-1.1'),
 	LDBI = LibStub('LibDBIcon-1.0'),
-	-- Custom
 	ACH = LibStub('LibAceConfigHelper'),
 }
 
@@ -72,25 +71,30 @@ Private.isForever = WOW_PROJECT_ID == WOW_PROJECT_CAMELOT
 Private.isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 Private.isModern = Private.isRetail or Private.isForever
 
+-- Controller checks
+local inputTypes = Enum.InputDeviceInterfaceType
+local inputCurrent = C_InputInterfaceStyle and C_InputInterfaceStyle.GetCurrentStyle()
+Private.isGamepadUI = inputTypes and inputTypes.Gamepad == inputCurrent
+
 -- API checks
 Private.IsAddOnLoaded = IsAddOnLoaded
 
 -- Packager fills the TOC version from the git tag
--- Alpha tags look like 4.27-alpha1 and source keeps raw @project-version@
+-- Alpha tags look like 4.28-alpha1 and source keeps raw @project-version@
 Private.VersionString = GetAddOnMetadata(Name, 'Version')
 Private.Version = strmatch(Private.VersionString, '^[%d%.]+')
 
 -- Bump with every release, same as ElvUI does for source checkouts
 if not Private.Version then
-	Private.Version, Private.VersionString = '4.26', '4.26-git'
+	Private.Version, Private.VersionString = '4.27', '4.27-git'
 end
 
 -- Player utils
 Private.myClass = select(2, UnitClass('player'))
 Private.myGUID = UnitGUID('player')
 Private.myName = UnitNameUnmodified('player')
-Private.myRealm = GetRealmName()
-Private.myNameRealm = Private.myName .. ' - ' .. Private.myRealm
+local myRealm = GetRealmName()
+Private.myNameRealm = Private.myName .. ' - ' .. myRealm
 
 -- Forever names are unique per region, so the key is the full name without a server (Like AceDB)
 if RegionalUniqueNamesEnabled and RegionalUniqueNamesEnabled() then
@@ -99,7 +103,7 @@ if RegionalUniqueNamesEnabled and RegionalUniqueNamesEnabled() then
 end
 
 -- Same as GetNormalizedRealmName, which is still nil this early
-Private.myNormalizedRealm = gsub(Private.myRealm, '[%s%-%.]', '')
+Private.myNormalizedRealm = gsub(myRealm, '[%s%-%.]', '')
 
 -- ElvUI compatibility
 Private.ElvUI = Private.IsAddOnLoaded('ElvUI')
@@ -160,13 +164,11 @@ function db:SetProfile(name)
 end
 
 function db:ResetProfile()
-	wipe(self.profile)
-	FillDefaults(self.profile, Private.Defaults.profile)
+	FillDefaults(wipe(self.profile), Private.Defaults.profile)
 end
 
 function db:CopyProfile(name)
-	wipe(self.profile)
-	MergeTable(self.profile, CopyTable(sv.profiles[name]))
+	MergeTable(wipe(self.profile), CopyTable(sv.profiles[name]))
 	FillDefaults(self.profile, Private.Defaults.profile)
 end
 
@@ -212,6 +214,12 @@ loader:RegisterEvent('ADDON_LOADED')
 loader:RegisterEvent('PLAYER_LOGIN')
 loader:RegisterEvent('PLAYER_ENTERING_WORLD')
 loader:RegisterEvent('PLAYER_LOGOUT')
+
+-- ElvUI shows its own reload popup for this
+if Private.isForever and not Private.ElvUI then
+	loader:RegisterEvent('INPUT_DEVICE_INTERFACE_TRANSITION')
+end
+
 loader:SetScript('OnEvent', function(self, event, ...)
 	if event == 'ADDON_LOADED' then
 		local addon = ...
@@ -255,6 +263,11 @@ loader:SetScript('OnEvent', function(self, event, ...)
 			if module.OnLogin then
 				xpcall(module.OnLogin, geterrorhandler(), module, initLogin)
 			end
+		end
+	elseif event == 'INPUT_DEVICE_INTERFACE_TRANSITION' then
+		local newMode = ... -- Modules read the gamepad UI mode at login
+		if (newMode == Enum.InputDeviceInterfaceType.Gamepad) ~= Private.isGamepadUI then
+			StaticPopup_Show('LUCKYONE_RL')
 		end
 	else
 		Private:StripDefaults(sv.global, Private.Defaults.global)

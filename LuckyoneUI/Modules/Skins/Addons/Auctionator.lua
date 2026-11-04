@@ -44,20 +44,15 @@ local EditBoxKeys = { 'CopperBox', 'GoldBox', 'InputBox', 'MaxBox', 'MinBox', 'N
 
 local auctionHouseSkinned
 
-local function SkinInsetBorder(frame)
-	frame:StripTextures()
-	S:HandleInsetFrame(frame)
-end
-
 local function SkinInset(inset)
 	if not inset or inset.isSkinned then return end
 
-	SkinInsetBorder(inset)
+	inset:StripTextures()
 
 	-- Classic & TBC borders (InsetFrameTemplate4)
 	for _, child in next, { inset:GetChildren() } do
 		if child.BorderTopLeft or child.NineSlice or child.Bg then
-			SkinInsetBorder(child)
+			child:StripTextures()
 		end
 	end
 
@@ -122,7 +117,7 @@ local function SkinItemButton(button)
 	button.Icon:SetInside()
 
 	if button.EmptySlot then
-		button.EmptySlot:SetTexture(E.ClearTexture)
+		button.EmptySlot:SetTexture()
 	end
 
 	if button.IconBorder then
@@ -186,7 +181,7 @@ local function SkinRowCells(row)
 			S:HandleIcon(cell.Icon)
 
 			if cell.IconBorder then
-				cell.IconBorder:SetTexture(E.ClearTexture)
+				cell.IconBorder:SetTexture()
 			end
 
 			cell.isSkinned = true
@@ -225,9 +220,6 @@ local function SkinResultsListing(listing)
 
 	SkinColumnHeaders(listing.HeaderContainer)
 	SkinResultRows(scrollArea.ScrollBox)
-
-	-- The columns are rebuilt whenever the layout of a listing changes
-	hooksecurefunc(listing, 'InitializeTable', function(frame) SkinColumnHeaders(frame.HeaderContainer) end)
 	hooksecurefunc(scrollArea.ScrollBox, 'Update', SkinResultRows)
 
 	listing.isSkinned = true
@@ -319,10 +311,6 @@ local function SkinShoppingDialogs(frame)
 			S:HandleTrimScrollBar(dialog.ScrollBar)
 		end
 
-		if dialog.Recipient then
-			S:HandleEditBox(dialog.Recipient.InputBox)
-		end
-
 		if dialog.CloseDialog then
 			S:HandleCloseButton(dialog.CloseDialog)
 		end
@@ -385,6 +373,8 @@ local function SkinSellingTab(frame)
 
 	SkinInset(frame.BagInset)
 	SkinInset(frame.HistoricalPriceInset)
+	-- Only exists with the Split Panels View selling option
+	SkinInset(frame.CurrentPricesInset)
 	SkinBagListing(frame.BagListing)
 	SkinSaleItem(frame.SaleItemFrame)
 

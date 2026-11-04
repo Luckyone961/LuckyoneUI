@@ -138,8 +138,7 @@ local function GetSampleWidth(db, key)
 	if width then return width end
 
 	if not sampleText then
-		sampleText = E.HiddenFrame:CreateFontString(nil, 'OVERLAY')
-		sampleText:SetWordWrap(false)
+		sampleText = DM:CreateText(E.HiddenFrame, 'LEFT')
 	end
 
 	Private:SetFont(sampleText, db.font, db.fontSize, db.fontOutline)
@@ -159,17 +158,14 @@ end
 local function Bar_OnClick(bar, mouseButton)
 	if mouseButton == 'RightButton' then
 		DM:OnWindowRightClick(bar.window)
-	elseif bar.entry and not bar.window.spellMode then
+	elseif bar.entry and not bar.window.spellMode and bar.window.meterType ~= DM.ThreatType then
 		DM:OpenPopup(bar.window, bar.entry)
 	end
 end
 
 local function Bar_OnEnter(bar)
 	DM:UpdateHeaderButtons(bar.window)
-
-	if not DM.db.mouseoverHighlight then return end
-
-	bar.highlight:Show()
+	bar.highlight:SetShown(DM.db.mouseoverHighlight and bar.window.meterType ~= DM.ThreatType)
 end
 
 local function Bar_OnLeave(bar)
@@ -411,7 +407,7 @@ local function UpdateBarIcon(bar, entry, spellMode)
 		-- The death log brings its own icon for environment damage
 		if entry.texture then
 			fileID = entry.texture
-		elseif specIcon and specIcon ~= 0 then
+		elseif specIcon then -- 0 actually reaches Lua as nil
 			fileID = specIcon
 		elseif entry.spellID then
 			-- GetSpellTexture takes secret IDs
@@ -420,7 +416,7 @@ local function UpdateBarIcon(bar, entry, spellMode)
 	else
 		local specIcon = entry.specIconID
 
-		if specIcon and specIcon ~= 0 then
+		if specIcon then -- 0 actually reaches Lua as nil
 			fileID = specIcon
 		elseif entry.classFilename and entry.classFilename ~= '' then
 			classFilename = entry.classFilename
@@ -549,8 +545,16 @@ local function UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
 	end
 end
 
-local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry, recapMode)
+local function UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry, recapMode, threatMode)
 	local valueText, secondaryText = bar.value, bar.secondary
+
+	-- Threat is already a percentage
+	if threatMode then
+		valueText:SetFormattedText('%.0f%%', entry.totalAmount)
+		secondaryText:SetText('')
+		bar.secondarySecret = false
+		return
+	end
 
 	if recapMode then
 		local percent, seconds = entry.healthPercent, entry.timeBeforeDeath
@@ -634,8 +638,8 @@ end
 local function UpdateValueColumn(db, window)
 	local width, secret = 0, false
 
-	-- Value spacing only applies if the slider is greater than 0 in the config
-	if db.valueSpacing > 0 then
+	-- Value spacing only applies if the slider is greater than 0 and Minimal is not hiding the secondary number
+	if db.valueSpacing > 0 and db.numberDisplay ~= 'MINIMAL' then
 		local bars = window.bars
 
 		for i = 1, window.visibleCount do
@@ -702,12 +706,13 @@ function DM:RenderWindow(window)
 
 	-- Only the session windows carry the availability message
 	local infoText = window.infoText
+	local threatMode = window.meterType == DM.ThreatType
 
 	if infoText then
 		local info = ''
 
 		-- Fake data always renders, only the live data can be unavailable
-		if not DM.testMode then
+		if not DM.testMode and not threatMode then
 			local available, failureReason = IsDamageMeterAvailable()
 
 			if not available then
@@ -773,7 +778,7 @@ function DM:RenderWindow(window)
 				UpdateBarIcon(bar, entry, spellMode)
 			end
 			UpdateBarName(db, bar, entry, rank, rankColumn, spellMode)
-			UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry, recapMode)
+			UpdateBarValue(db, bar, entry, sessionTotal, sessionSecret, persecPrimary, suppressPersec, deathEntry, recapMode, threatMode)
 			bar:Show()
 		else
 			bar.entry = nil

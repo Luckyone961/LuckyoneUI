@@ -28,7 +28,7 @@ local modules = {}
 local blocks = {}
 local lines = {}
 local skinned = {}
-local poiAnchors = {} -- Blizzard y offset of every quest icon, refreshed by each layout
+local poiAnchors = {} -- Blizzard y offset of every quest and adventure icon, refreshed by each layout
 
 -- Delve, currency and timer headers inside the scenario widget containers
 local headerWidgets = {
@@ -332,12 +332,23 @@ local function UpdatePOIButton(block, fresh)
 	poiButton:SetScale(db.poiScale)
 
 	local point, relativeTo, relativePoint, x, y = poiButton:GetPoint(1)
+	if relativeTo ~= block.HeaderText then return end
+
 	if fresh then
 		poiAnchors[poiButton] = y
 	end
 
 	if point and poiAnchors[poiButton] then
 		poiButton:SetPoint(point, relativeTo, relativePoint, x, poiAnchors[poiButton] + db.poiOffset)
+	end
+end
+
+-- They get the offset once the layout is done
+local function Adventure_EndLayout(module)
+	for _, list in pairs(module.usedBlocks) do
+		for _, block in pairs(list) do
+			UpdatePOIButton(block, true)
+		end
 	end
 end
 
@@ -383,6 +394,10 @@ local function UpdateModule(_, module)
 		hooksecurefunc(module, 'LayoutBlock', Module_LayoutBlock)
 		hooksecurefunc(module, 'EndLayout', SkinFindGroupButtons) -- The right edge frames are all there once the layout is done
 		hooksecurefunc(module, 'GetProgressBar', ColorProgressBar)
+
+		if module == _G.AdventureObjectiveTracker then
+			hooksecurefunc(module, 'EndLayout', Adventure_EndLayout)
+		end
 	end
 
 	-- Whatever is on screen right now, pooled quest blocks and the fixed scenario ones

@@ -15,6 +15,7 @@ local _G = _G
 
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
+local TT = E:GetModule('Tooltip')
 
 local function SkinDropDownLists(lib)
 	for level = 1, lib.UIDROPDOWNMENU_MAXLEVELS do
@@ -44,6 +45,13 @@ local function SkinRows(scrollFrame)
 			button.HighlightTexture:SetColorTexture(r, g, b, 0.25)
 			button.PushedTexture:SetColorTexture(r, g, b, 0.1)
 
+			-- Dependency tree view expand/collapse (addon list rows only)
+			local expandButton = button.ExpandOrCollapseButton
+			if expandButton then
+				S:HandleCollapseTexture(expandButton, nil, true)
+				expandButton:SetHighlightTexture(E.ClearTexture)
+			end
+
 			button.isSkinned = true
 		end
 	end
@@ -54,6 +62,19 @@ local function SkinScrollFrame(scrollFrame)
 
 	SkinRows(scrollFrame)
 	hooksecurefunc(scrollFrame, 'update', function() SkinRows(scrollFrame) end)
+end
+
+-- Shrink the 20px title icons to 16px so they stay inside the 20px rows
+local function ResizeAddonIcons(scrollFrame)
+	for _, button in next, scrollFrame.buttons do
+		local text = button.Name:GetText()
+		if text then
+			local resized, count = text:gsub('^(|[TA][^|]-):20:20:', '%1:16:16:', 1)
+			if count > 0 then
+				button.Name:SetText(resized)
+			end
+		end
+	end
 end
 
 local function SkinProfilerFrame(frame)
@@ -92,8 +113,12 @@ local function SkinSimpleAddonManager(frame)
 	end
 
 	-- Addon and Category Lists
-	SkinScrollFrame(frame.AddonListFrame.ScrollFrame)
+	local addonScrollFrame = frame.AddonListFrame.ScrollFrame
+	SkinScrollFrame(addonScrollFrame)
 	SkinScrollFrame(categoryFrame.ScrollFrame)
+
+	ResizeAddonIcons(addonScrollFrame)
+	hooksecurefunc(addonScrollFrame, 'update', function() ResizeAddonIcons(addonScrollFrame) end)
 
 	-- CPU Profiler
 	SkinProfilerFrame(frame.ProfilerFrame)
@@ -108,6 +133,11 @@ local function Skin_SimpleAddonManager()
 	if not frame then return end
 
 	frame:HookScript('OnShow', SkinSimpleAddonManager)
+
+	local blizzard = E.private.skins.blizzard
+	if blizzard.enable and blizzard.tooltip then
+		TT:SetStyle(_G.SAM_ADDON_LIST_TOOLTIP)
+	end
 
 	-- Dropdown Menus (also opened by the minimap button without the main frame)
 	local EDDM = LibStub('ElioteDropDownMenu-1.0', true)

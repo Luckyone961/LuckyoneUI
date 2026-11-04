@@ -89,7 +89,5 @@ function Private:TargetTextures()
 	end)
 
 	-- Plates are recycled and keep the last texture, so re-resolve whenever a unit is assigned
-	hooksecurefunc(NP, 'UpdatePlateBase', function()
-		Private:TargetTextures_Update()
-	end)
+	hooksecurefunc(NP, 'UpdatePlateBase', Private.TargetTextures_Update)
 end

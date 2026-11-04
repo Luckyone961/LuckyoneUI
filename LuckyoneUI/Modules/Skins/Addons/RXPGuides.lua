@@ -120,7 +120,7 @@ local function ScrollBar_Update()
 		button.Normal:SetTexture(E.Media.Textures.ArrowUp)
 		button.Pushed:SetTexture(E.Media.Textures.ArrowUp)
 		button.Disabled:SetTexture(E.Media.Textures.ArrowUp)
-		button.Highlight:SetTexture(E.ClearTexture)
+		button.Highlight:SetTexture()
 	end
 
 	scrollBar:GetThumbTexture():SetTexture()
@@ -341,19 +341,15 @@ local function CandyBar_Stop(_, bar)
 	end
 end
 
--- Active Items and Active Targets, the title sits above the frame
+-- Active Items and Active Targets, the title sits above the frame's left edge
 local function SkinIconFrame(frame)
 	local title = frame.title
-	if frame.v2 then
-		SkinV2Backdrop(frame, 'Transparent')
-		SkinV2Backdrop(title)
-	else
-		SkinBackdrop(frame, 'Transparent')
-		SkinBackdrop(title)
-	end
+	local skin = frame.v2 and SkinV2Backdrop or SkinBackdrop
+	skin(frame, 'Transparent')
+	skin(title)
 
 	title:ClearAllPoints()
-	title:Point('BOTTOMLEFT', frame, 'TOPLEFT', 5, 1)
+	title:Point('BOTTOMLEFT', frame, 'TOPLEFT', 0, 1)
 end
 
 -- Active Items and Active Targets buttons are secure, the addon only creates them out of combat

@@ -18,7 +18,7 @@ local function Add(list, ids)
 	end
 end
 
--- Aura filters: TBC / Classic
+-- Aura filters: Vanilla, TBC and Forever
 function Private:Setup_Filters(installer)
 	-- General vars
 	local aurawatch = E.global.unitframe.aurawatch

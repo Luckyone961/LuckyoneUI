@@ -32,14 +32,15 @@
 • Alt setup button. One click loads your existing profiles in every supported Addon.  
 • Option to pick a different texture for targeted nameplates.  
 • Option to pick a different texture for focused nameplates.  
+• Option to pick a health color for quest related enemy NPCs on nameplates.  
 • Option to pick different absorb and heal absorb textures for unitframes and nameplates.  
 • DataText width tweaks that follow your active layout and spec profile.  
 • Copy chat frame tweaks. Custom font and size, set with sliders or a resize button.  
 
 ### **ElvUI skins**  
-• Addons: AllTheThings, Attune, Auctionator, BigWigs (/keys and queue timer), BugSack  
-• Addons: ForeverDungeonJournal, KeystoneLoot, LFG Bulletin Board, Nova Instance Tracker  
-• Addons: Nova Spell Rank Checker, Nova World Buffs, Plumber (House list), Premade Groups Filter  
+• Addons: AllTheThings, AtlasLoot, Attune, Auctionator, BigWigs, BugSack  
+• Addons: Deadly Boss Mods, ForeverDungeonJournal, Hunter's Field Guide, KeystoneLoot, LFG Bulletin Board, Nova Instance Tracker  
+• Addons: Nova Spell Rank Checker, Nova World Buffs, Plumber, Premade Groups Filter  
 • Addons: RCLootCouncil, RXPGuides, Simple Addon Manager, Simulationcraft  
 • Addons: Tabardy, WhatsTraining  
 • Blizzard: Cooldown Settings viewer, Developer Console  
@@ -47,7 +48,7 @@
 ### **The core features**  
 • Custom damage meter with hundreds of settings based on Blizzards native combat data API  
 • Damage meter extras: Multiple windows per content type, bookmarks, death log at your cursor, test mode  
-• Unregister and hide useless Blizzard elements (Alert frame, Boss banner, Housing alerts)  
+• Unregister and hide useless Blizzard elements (Alert frame, Boss banner, Event toasts, Housing alerts)  
 • Hide the Loss of Control frame, UI errors ("Out of range") and zone text  
 • Restore mouseover tooltips for party and raid applicants even if you are not the leader  
 • Hide the talking head frame but keep sounds and voicelines functionality  
@@ -74,16 +75,16 @@
 
 ### **Optimized Addon profiles**  
 • Baganator, BigWigs, BuffReminders  
-• Chattynator, Details, ElvUI  
+• Chattynator, Deadly Boss Mods, Details, ElvUI  
 • MPlusTimer, Northern Sky Raid Tools, PermoksAccountManager  
 • Platynator, Plumber, SkironCooldownManager  
 
 ### **Shared media**  
-• Included Fonts: Expressway and Geist (Bold, Light, Medium, Regular, Semi Bold)  
+• Included Font: Expressway  
 • Included Textures: Luckyone Bubbles and Luckyone Focus  
 
 ### **Chat commands**  
-• /lucky bars -> Swap Blizzard ActionBars to ElvUI ActionBars and vice versa  
+• /lucky bars -> Swap two action bars or migrate your bars from an older LuckyoneUI version  
 • /lucky config -> Opens the ingame options  
 • /lucky install -> Run the installation process  
 • /lucky minimap -> Hide or show the minimap icon  

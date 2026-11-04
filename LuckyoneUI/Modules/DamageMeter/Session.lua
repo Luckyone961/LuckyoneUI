@@ -23,8 +23,16 @@ local CreateFrame = CreateFrame
 local DoesAncestryIncludeAny = DoesAncestryIncludeAny
 local GetCursorPosition = GetCursorPosition
 local GetMouseFoci = GetMouseFoci
+local GetNumGroupMembers = GetNumGroupMembers
+local GetNumSubgroupMembers = GetNumSubgroupMembers
+local GetUnitName = GetUnitName
+local IsInRaid = IsInRaid
 local IsShiftKeyDown = IsShiftKeyDown
 local InCombatLockdown = InCombatLockdown
+local UnitCanAttack = UnitCanAttack
+local UnitClass = UnitClass
+local UnitDetailedThreatSituation = UnitDetailedThreatSituation
+local UnitExists = UnitExists
 local UnitGUID = UnitGUID
 local GetAvailableCombatSessions = C_DamageMeter.GetAvailableCombatSessions
 local GetCombatSessionFromID = C_DamageMeter.GetCombatSessionFromID
@@ -70,6 +78,7 @@ local TypeNames = {
 	[MeterType.AvoidableDamageTaken] = _G.DAMAGE_METER_TYPE_AVOIDABLE_DAMAGE_TAKEN,
 	[MeterType.Deaths] = _G.DAMAGE_METER_TYPE_DEATHS,
 	[MeterType.EnemyDamageTaken] = _G.DAMAGE_METER_TYPE_ENEMY_DAMAGE_TAKEN,
+	[DM.ThreatType] = L["Threat"],
 }
 
 -- Blizzard keeps Absorbs out of the categories, it has a name but no menu entry
@@ -77,6 +86,7 @@ local TypeCategories = {
 	{ name = _G.DAMAGE_METER_CATEGORY_DAMAGE, types = { MeterType.DamageDone, MeterType.Dps, MeterType.DamageTaken, MeterType.AvoidableDamageTaken, MeterType.EnemyDamageTaken } },
 	{ name = _G.DAMAGE_METER_CATEGORY_HEALING, types = { MeterType.HealingDone, MeterType.Hps } },
 	{ name = _G.DAMAGE_METER_CATEGORY_ACTIONS, types = { MeterType.Interrupts, MeterType.Dispels, MeterType.Deaths } },
+	{ name = L["Custom"], types = { DM.ThreatType } },
 }
 
 -- The types the options offer, same set the type menu and the bookmarks build from
@@ -102,16 +112,18 @@ local TestSources = {
 	{ name = _G.DAMAGE_METER_EDIT_MODE_SOURCE_5 or 'Uther', classFilename = 'PALADIN' },
 }
 
-local testSessions = {}
+local testSessions, testThreat = {}, {}
 
 -- The windows can have different heights
-local function GetTestSession(count)
+local function GetTestSession(count, threat)
 	count = max(count, #TestSources)
 
-	local session = testSessions[count]
+	local cache = (threat and testThreat) or testSessions
+	local session = cache[count]
 	if session then return session end
 
-	local sources, total, amount = {}, 0, 12400000
+	local top = (threat and 100) or 12400000
+	local sources, total, amount = {}, 0, top
 
 	for index = 1, count do
 		local source = TestSources[(index - 1) % #TestSources + 1]
@@ -130,10 +142,79 @@ local function GetTestSession(count)
 	-- The last source is the worst one, it previews the pinned player bar
 	sources[count].isLocalPlayer = true
 
-	session = { combatSources = sources, maxAmount = 12400000, totalAmount = total }
-	testSessions[count] = session
+	session = { combatSources = sources, maxAmount = top, totalAmount = total }
+	cache[count] = session
 
 	return session
+end
+
+-- Threat of the group on the hostile target
+local threatPool, threatList = {}, {}
+local threatSession = { combatSources = threatList }
+
+local function SortThreat(a, b)
+	return a.totalAmount > b.totalAmount
+end
+
+-- Pets take the class of their owner
+local function AddThreat(count, unit, mob, owner)
+	-- Missing pet token can error
+	if not UnitExists(unit) then return count end
+
+	local _, _, _, rawPercent = UnitDetailedThreatSituation(unit, mob)
+	if not rawPercent or issecretvalue(rawPercent) or rawPercent <= 0 then return count end
+
+	count = count + 1
+
+	local entry = threatPool[count]
+	if not entry then
+		entry = {}
+		threatPool[count] = entry
+	end
+
+	local _, classFilename = UnitClass(owner or unit)
+
+	entry.name = GetUnitName(unit, true)
+	entry.sourceGUID = UnitGUID(unit)
+	entry.classFilename = (not issecretvalue(classFilename) and classFilename) or ''
+	entry.totalAmount = rawPercent
+	entry.isLocalPlayer = E:UnitIsUnit(unit, 'player')
+
+	threatList[count] = entry
+
+	return count
+end
+
+local function GetThreatSession()
+	wipe(threatList)
+
+	local mob = (UnitCanAttack('player', 'target') and 'target') or (UnitCanAttack('player', 'targettarget') and 'targettarget')
+	if not mob then return threatSession end
+
+	local count = 0
+
+	if IsInRaid() then
+		for index = 1, GetNumGroupMembers() do
+			count = AddThreat(count, 'raid' .. index, mob)
+			count = AddThreat(count, 'raidpet' .. index, mob, 'raid' .. index)
+		end
+	else
+		count = AddThreat(count, 'player', mob)
+		count = AddThreat(count, 'pet', mob, 'player')
+
+		for index = 1, GetNumSubgroupMembers() do
+			count = AddThreat(count, 'party' .. index, mob)
+			count = AddThreat(count, 'partypet' .. index, mob, 'party' .. index)
+		end
+	end
+
+	-- The bars fill against the top threat
+	if count > 0 then
+		sort(threatList, SortThreat)
+		threatSession.maxAmount = threatList[1].totalAmount
+	end
+
+	return threatSession
 end
 
 -- DamageMeterSessionWindowMixin:GetCombatSession
@@ -146,7 +227,9 @@ local function FetchSession(window)
 	local session
 
 	if DM.testMode then
-		session = GetTestSession(window.visibleCount)
+		session = GetTestSession(window.visibleCount, window.meterType == DM.ThreatType)
+	elseif window.meterType == DM.ThreatType then
+		session = GetThreatSession()
 	elseif window.spellMode then
 		if window.sessionType then
 			session = GetCombatSessionSourceFromType(window.sessionType, window.meterType, window.sourceGUID, window.sourceCreatureID)
@@ -209,8 +292,9 @@ function DM:MarkAllDirty()
 end
 
 -- The current session stays unmarked, only overall and numbered segments get a suffix
+-- Threat does not have sessions
 local function SetHeaderText(text, name, window)
-	if window.sessionType == SessionType.Current then
+	if window.sessionType == SessionType.Current or window.meterType == DM.ThreatType then
 		text:SetText(name)
 	elseif window.sessionType == SessionType.Overall then
 		text:SetFormattedText('%s %s', name, _G.DAMAGE_METER_OVERALL_SESSION)
@@ -239,6 +323,19 @@ function DM:DAMAGE_METER_CURRENT_SESSION_UPDATED()
 	end
 end
 
+function DM:UpdateThreat(event, unit)
+	if not DM.db.enable then return end
+
+	-- Only the target of our target matters
+	if event == 'UNIT_TARGET' and unit ~= 'target' then return end
+
+	for _, window in pairs(DM.windows) do
+		if window.meterType == DM.ThreatType then
+			MarkDirty(window)
+		end
+	end
+end
+
 function DM:DAMAGE_METER_RESET()
 	DM:ClosePopup()
 
@@ -253,6 +350,8 @@ function DM:DAMAGE_METER_RESET()
 		window.offset = 0
 		MarkDirty(window)
 	end
+
+	DM:RefreshAll(true)
 end
 
 -- Header colors
@@ -324,7 +423,7 @@ local function WindowChanged(window)
 	end
 
 	CloseBookmarks(window)
-	SetHeaderText(window.typeText, TypeNames[window.meterType], window)
+	DM:ApplyWindowSettings(window)
 	RefreshWindow(window)
 end
 
@@ -438,13 +537,8 @@ local function Frame_OnShow(frame)
 	frame:RegisterEvent('GLOBAL_MOUSE_DOWN')
 end
 
--- Right click carries through to the window so the bookmarks open from here too
-local function TypeButton_OnClick(button, mouseButton)
-	if mouseButton == 'RightButton' then
-		DM:OnWindowRightClick(button.window)
-	else
-		OpenMenu(button, TypeMenu)
-	end
+local function TypeButton_OnClick(button)
+	OpenMenu(button, TypeMenu)
 end
 
 local function SessionButton_OnClick(button)
@@ -1249,16 +1343,19 @@ end
 -- The click area grows with the header, the artwork stays centered in it
 local function CreateHeaderButton(window, icon, onClick)
 	local button = CreateFrame('Button', nil, window.header)
-	button:SetNormalTexture(icon)
 	button:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
 	button:SetScript('OnClick', HeaderButton_OnClick)
 	button.onClick = onClick
 	button.window = window
 	SetHoverScripts(button)
 
-	button.icon = button:GetNormalTexture()
-	button.icon:ClearAllPoints()
-	button.icon:Point('CENTER')
+	-- The type button has no artwork, its text fills the click area
+	if icon then
+		button:SetNormalTexture(icon)
+		button.icon = button:GetNormalTexture()
+		button.icon:ClearAllPoints()
+		button.icon:Point('CENTER')
+	end
 
 	return button
 end
@@ -1283,14 +1380,9 @@ function DM:GetWindow(index)
 	window.sessionButton = CreateHeaderButton(window, Private.IconPath .. 'DM_Sessions.png', SessionButton_OnClick)
 	window.settingsButton = CreateHeaderButton(window, Private.IconPath .. 'DM_Settings.png', SettingsButton_OnClick)
 
-	local typeButton = CreateFrame('Button', nil, header)
-	typeButton:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
-	typeButton:SetScript('OnClick', TypeButton_OnClick)
-	typeButton.window = window
-	window.typeButton = typeButton
-	SetHoverScripts(typeButton)
+	window.typeButton = CreateHeaderButton(window, nil, TypeButton_OnClick)
 
-	window.typeText = DM:CreateText(typeButton, 'LEFT')
+	window.typeText = DM:CreateText(window.typeButton, 'LEFT')
 	window.typeText:Point('TOPLEFT')
 	window.typeText:Point('BOTTOMRIGHT')
 
@@ -1338,7 +1430,7 @@ function DM:ApplyWindowSettings(window)
 
 	for _, info in ipairs(HeaderButtons) do
 		local button = window[info.button]
-		local shown = wdb[info.shown]
+		local shown = wdb[info.shown] and not (info.button == 'sessionButton' and window.meterType == DM.ThreatType)
 		local x, y = db[info.x], db[info.y]
 		local artSize = iconSize - (info.trim or 0)
 

@@ -5,9 +5,12 @@ if not Private.ElvUI then
 end
 
 local next = next
+local strfind = strfind
 local unpack = unpack
 
+local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
+local RunNextFrame = RunNextFrame
 
 local _G = _G
 
@@ -15,7 +18,14 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local TT = E:GetModule('Tooltip')
 
--- Compact list, shared by the Vanilla/TBC Spellbook page and the Forever /wt window
+-- Waypoint provider radios
+local function GroupingPopup_OnShow(popup)
+	for _, radio in next, popup.providerRadios do
+		S:HandleRadioButton(radio)
+	end
+end
+
+-- Compact list, shared by the Vanilla/TBC Spellbook page and the /wt window
 local function SkinCompactFrame(frame)
 	local name = frame:GetName()
 
@@ -46,6 +56,11 @@ local function SkinCompactFrame(frame)
 
 	for _, radio in next, popup.radios do
 		S:HandleRadioButton(radio)
+	end
+
+	-- WhatsTraining 11.0.0-beta20+
+	if popup.providerRadios then
+		popup:HookScript('OnShow', GroupingPopup_OnShow)
 	end
 
 	S:HandleButton(_G[name..'GroupingPopupDone'])
@@ -121,6 +136,95 @@ local function SkinTab(tab)
 	TabActive_SetShown(tab.active, tab.active:IsShown())
 end
 
+-- Similar to ElvUI menu skin
+local function Menu_Rebuild(menu)
+	local r, g, b = unpack(E.media.rgbvaluecolor)
+
+	for _, item in next, menu.items do
+		local control = item.control
+		if control then
+			local box = item.box
+			if not box then
+				box = CreateFrame('Frame', nil, item)
+				box:Size(12)
+				box:SetTemplate()
+				box:Point('CENTER', control)
+
+				local mark = box:CreateTexture(nil, 'ARTWORK')
+				mark:SetTexture(E.media.normTex)
+				mark:SetVertexColor(r, g, b)
+				mark:SetInside()
+				box.mark = mark
+
+				control:SetAlpha(0)
+				item.check:SetAlpha(0)
+				item.box = box
+			end
+
+			box:SetShown(control:IsShown())
+			box.mark:SetShown(item.check:IsShown())
+		end
+
+		local arrow = item.submenuArrow
+		if arrow and arrow:IsShown() then
+			arrow:SetTexture(E.Media.Textures.ArrowUp)
+			arrow:SetRotation(S.ArrowRotation.right)
+			arrow:SetVertexColor(r, g, b)
+			arrow:Size(12)
+		end
+	end
+end
+
+local SkinMenu
+
+local function Menu_OpenSubmenu(menu)
+	if menu.submenu then
+		SkinMenu(menu.submenu)
+	end
+end
+
+-- WhatsTraining custom menus since 11.0.0-beta29
+function SkinMenu(menu)
+	if menu.isSkinned then return end
+
+	menu.backing:SetAlpha(0)
+	menu:CreateBackdrop('Transparent')
+
+	menu.backdrop:Point('TOPLEFT')
+	menu.backdrop:Point('BOTTOMRIGHT', 0, 7)
+
+	hooksecurefunc(menu, 'Rebuild', Menu_Rebuild)
+	hooksecurefunc(menu, 'OpenSubmenu', Menu_OpenSubmenu)
+	Menu_Rebuild(menu)
+
+	menu.isSkinned = true
+end
+
+local function Dropdown_OpenMenu(dropdown)
+	if dropdown.popup then
+		SkinMenu(dropdown.popup)
+	end
+end
+
+local contextWatcher
+local specialFrames = 0
+local function FindContextMenu()
+	for i = specialFrames + 1, #UISpecialFrames do
+		local name = UISpecialFrames[i]
+		local menu = strfind(name, '^WhatsTrainingMenu') and _G[name]
+		if menu and menu.contextMenu then
+			SkinMenu(menu)
+			contextWatcher:UnregisterAllEvents()
+		end
+	end
+
+	specialFrames = #UISpecialFrames
+end
+
+local function ContextWatcher_OnEvent()
+	RunNextFrame(FindContextMenu)
+end
+
 -- Forever: overlay on the PlayerSpellsFrame, the page keeps the WhatsTraining parchment like the Spellbook
 local function Skin_Forever()
 	local frame = WhatsTrainingFrame
@@ -136,11 +240,7 @@ local function Skin_Forever()
 	dropdown:SetTemplate()
 
 	-- Edit Box
-	local searchBox = frame.searchBox
-	S:HandleEditBox(searchBox)
-	searchBox:Height(20)
-	searchBox:ClearAllPoints()
-	searchBox:Point('RIGHT', dropdown, 'LEFT', -5, 0)
+	S:HandleEditBox(frame.searchBox)
 
 	-- Scroll Bars
 	S:HandleTrimScrollBar(frame.scrollFrame.ScrollBar)
@@ -166,10 +266,14 @@ local function Skin_Forever()
 	paging.PrevPageButton.align = 'center'
 	paging.NextPageButton.align = 'center'
 
+	-- Menus
+	hooksecurefunc(dropdown, 'OpenMenu', Dropdown_OpenMenu)
+	hooksecurefunc(priceDropdown, 'OpenMenu', Dropdown_OpenMenu)
+
 	frame.isSkinned = true
 end
 
--- Forever: /wt and Broker window
+-- /wt window, on Forever also opened by the Broker
 local function Skin_FloatingFrame()
 	local frame = WhatsTrainingFloatingFrame
 	if not frame or frame.isSkinned then return end
@@ -182,7 +286,99 @@ local function Skin_FloatingFrame()
 	frame.isSkinned = true
 end
 
--- WhatsTraining builds its frames on PLAYER_ENTERING_WORLD (Forever controls once Blizzard_PlayerSpells loads), so skin on the first Spellbook open
+local function SkinCanvas(frame)
+	local canvas = frame:GetChildren()
+	local header = canvas:GetChildren()
+	header:Hide()
+
+	canvas:StripTextures()
+	canvas:SetTemplate()
+end
+
+local function CraftingPage_OnShow()
+	ProfessionsFrame.TitleContainer.TitleText:SetAlpha(0)
+end
+
+local function CraftingPage_OnHide()
+	ProfessionsFrame.TitleContainer.TitleText:SetAlpha(1)
+end
+
+local function CraftingTab_SetPoint(tab, point, relativeTo)
+	local bottom = point == 'TOPRIGHT'
+	tab:Size(bottom and 30 or 36, bottom and 36 or 30)
+
+	if bottom then
+		tab:SetPointsOffset(E:Scale(-1), E:Scale(-3))
+	elseif relativeTo == ProfessionsFrame.ProfessionsOverviewTab then
+		tab:SetPointsOffset(0, E:Scale(3))
+	else
+		tab:SetPointsOffset(E:Scale(3), E:Scale(1))
+	end
+end
+
+-- Profession headers like ElvUI's recipe list categories
+local function SkinCraftingRow(row)
+	if row.isSkinned then return end
+
+	if row.CollapseButton then
+		row:StripTextures()
+		row:CreateBackdrop()
+		row.backdrop:SetInside(row, 0, 1)
+	elseif row.iconBorder then
+		row.iconBorder:SetAlpha(0)
+		S:HandleIcon(row.icon, true)
+	end
+
+	row.isSkinned = true
+end
+
+local function CraftingList_Update(scrollBox)
+	scrollBox:ForEachFrame(SkinCraftingRow)
+end
+
+local function Skin_Crafting()
+	local page = WhatsTrainingCraftingPage
+	if not page or page.isSkinned then return end
+
+	local canvas = page:GetChildren()
+	for _, child in next, { page:GetChildren() } do
+		if child ~= canvas and not child:GetName() then
+			local _, border = child:GetPoint()
+			child:SetOutside(border, 6, 6)
+
+			SkinCanvas(child)
+		end
+	end
+
+	SkinCanvas(page)
+	page:HookScript('OnShow', CraftingPage_OnShow)
+	page:HookScript('OnHide', CraftingPage_OnHide)
+
+	-- Tabs
+	local launcher = WhatsTrainingCraftingTab
+	S:HandleLargeSideTab(launcher)
+	S:HandleLargeSideTab(WhatsTrainingCraftingReturnTab)
+	hooksecurefunc(launcher, 'SetPoint', CraftingTab_SetPoint)
+
+	-- Edit Box
+	S:HandleEditBox(WhatsTrainingCraftingSearchBox)
+
+	-- Filter Dropdown
+	local filterDropdown = WhatsTrainingCraftingFilterDropdown
+	S:HandleButton(filterDropdown, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, true, 'right')
+	S:HandleCloseButton(filterDropdown.ResetButton)
+	hooksecurefunc(filterDropdown, 'OpenMenu', Dropdown_OpenMenu)
+
+	-- Scroll Bar
+	S:HandleTrimScrollBar(WhatsTrainingCraftingScrollBar)
+
+	-- Rows
+	hooksecurefunc(WhatsTrainingCraftingScrollBox, 'Update', CraftingList_Update)
+
+	page.isSkinned = true
+end
+
+-- Skin on the first Spellbook open
 local function Skin_WhatsTraining()
 	if not Private.Addon.db.profile.skins.WhatsTraining then return end
 
@@ -194,18 +390,29 @@ local function Skin_WhatsTraining()
 	end
 
 	if Private.isForever then
-		-- Needs an owner, an ownerless callback taints Blizzard's shared owner ID counter
 		EventRegistry:RegisterCallback('PlayerSpellsFrame.SpellBookFrame.Show', Skin_Forever, 'LuckyoneUI_WhatsTraining')
 
-		-- The window is created on its first open, from /wt or the Broker button
-		hooksecurefunc(SlashCmdList, 'WHATSTRAINING', Skin_FloatingFrame)
+		if blizzard.enable and blizzard.tradeskill then
+			EventRegistry:RegisterCallback('ProfessionsFrame.Show', Skin_Crafting, 'LuckyoneUI_WhatsTraining')
+		end
 
 		local broker = Private.Libs.LDB:GetDataObjectByName('WhatsTraining')
 		if broker then
 			hooksecurefunc(broker, 'OnClick', Skin_FloatingFrame)
 		end
+
+		-- Row, header and tab context menu
+		specialFrames = #UISpecialFrames
+		contextWatcher = CreateFrame('Frame')
+		contextWatcher:RegisterEvent('GLOBAL_MOUSE_UP')
+		contextWatcher:SetScript('OnEvent', ContextWatcher_OnEvent)
 	else
 		SpellBookFrame:HookScript('OnShow', Skin_Legacy)
+	end
+
+	-- The window is created on its first open, Vanilla and TBC have it since WhatsTraining 11.0.0-beta26
+	if SlashCmdList.WHATSTRAINING then
+		hooksecurefunc(SlashCmdList, 'WHATSTRAINING', Skin_FloatingFrame)
 	end
 end
 

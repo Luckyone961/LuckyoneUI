@@ -5,6 +5,7 @@ local pairs = pairs
 local strmatch = string.match
 local wipe = wipe
 
+local BNet_GetBNetAccountName = BNet_GetBNetAccountName
 local CreateFrame = CreateFrame
 local GetFriendAccountInfo = C_BattleNet.GetFriendAccountInfo
 local GetFriendInfoByIndex = C_FriendList.GetFriendInfoByIndex
@@ -50,12 +51,10 @@ local buttons = {} -- Every list button the hook has seen
 -- Localized class name to class token, Battle.net only hands us the name
 -- Classes of another game version stay nil on Classic
 local ClassTokens = {}
-for token, name in pairs(LOCALIZED_CLASS_NAMES_MALE) do
-	ClassTokens[name] = token
-end
-
-for token, name in pairs(LOCALIZED_CLASS_NAMES_FEMALE) do
-	ClassTokens[name] = token
+for _, names in next, { LOCALIZED_CLASS_NAMES_MALE, LOCALIZED_CLASS_NAMES_FEMALE } do
+	for token, name in pairs(names) do
+		ClassTokens[name] = token
+	end
 end
 
 -- Unknown classes go gray, the gold Blizzard uses looks like a Rogue
@@ -93,7 +92,7 @@ local function GetCharacter(button, db)
 		if not game.characterName or game.characterName == '' then return character end
 
 		character.name = game.characterName
-		character.account = accountInfo.accountName
+		character.account = BNet_GetBNetAccountName(accountInfo)
 		character.realm = (game.realmDisplayName ~= '' and game.realmDisplayName) or game.realmName
 		character.level = game.characterLevel
 		character.className = game.className

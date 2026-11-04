@@ -75,6 +75,18 @@ function Private:DisabledFrames()
 		DisableFrame('BossBanner', 'BossBannerMover')
 	end
 
+	if db.EventToasts then
+		if Private.isModern then
+			DisableFrame('EventToastManagerFrame', 'EventToastMover')
+			DisableFrame('MajorFactionsRenownToast')
+			DisableFrame('MajorFactionUnlockToast')
+			DisableFrame('CovenantRenownToast')
+			DisableFrame('HousingTopBannerFrame')
+		elseif Private.isMists then
+			HideFrame(_G.LevelUpDisplay)
+		end
+	end
+
 	if db.ZoneTextFrame then
 		DisableFrame('ZoneTextFrame')
 	end
@@ -84,11 +96,9 @@ function Private:DisabledFrames()
 	end
 
 	if db.HousingDecorAlerts and Private.isRetail then
-		-- HousingEventHandler is local to Blizzard; EventRegistry unregister needs that owner.
-		-- Zero the queue limits instead, AddAlert drops the toast on its own.
-		local system = _G.HousingItemEarnedAlertFrameSystem
-		if system then
-			system.maxAlerts, system.maxQueue = 0, 0
+		local frame = _G.EventRegistry.frameEventFrame
+		if frame then
+			frame:UnregisterEvent('NEW_HOUSING_ITEM_ACQUIRED')
 		end
 	end
 

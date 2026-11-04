@@ -39,6 +39,7 @@ local StaticPopup_Show = _G.StaticPopup_Show
 local E = unpack(ElvUI)
 
 DM.windows = {}
+DM.ThreatType = 100
 
 function DM:CreateText(parent, justify)
 	local text = parent:CreateFontString(nil, 'OVERLAY')
@@ -101,7 +102,7 @@ function DM:UpdateShown()
 	DM.holder:SetShown(shown)
 
 	if shown then
-		DM:MarkAllDirty()
+		DM:RefreshAll()
 	else
 		DM:ClosePopup()
 		DM:CloseAllBookmarks()
@@ -460,6 +461,11 @@ local function Initialize()
 	-- Delves skip the loading screen
 	DM:RegisterEvent('ACTIVE_DELVE_DATA_UPDATE')
 
+	-- Threat meter
+	DM:RegisterEvent('UNIT_THREAT_LIST_UPDATE', 'UpdateThreat')
+	DM:RegisterEvent('PLAYER_TARGET_CHANGED', 'UpdateThreat')
+	DM:RegisterEvent('UNIT_TARGET', 'UpdateThreat')
+
 	-- Combat and group changes only touch the visibility rule
 	DM:RegisterEvent('PLAYER_REGEN_DISABLED', 'UpdateShown')
 	DM:RegisterEvent('GROUP_ROSTER_UPDATE', 'UpdateShown')
@@ -480,7 +486,6 @@ _G.StaticPopupDialogs['LUCKYONE_DM_RESET'] = {
 	OnAccept = function() DM:ResetData() end,
 	whileDead = 1,
 	hideOnEscape = 1,
-	preferredIndex = 3,
 }
 
 -- Instance types the auto reset can watch, scenarios cover Delves

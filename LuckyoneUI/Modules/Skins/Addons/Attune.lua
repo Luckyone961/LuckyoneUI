@@ -42,6 +42,20 @@ local function Skin_ToggleView()
 	end
 end
 
+-- Icon grid in the selection pane
+local function Skin_IconView()
+	local view = attunelocal_iconView
+	if not view then return end
+
+	S:HandleScrollBar(view.bar)
+
+	for _, button in next, view.icons do
+		if not button.icon.backdrop then
+			S:HandleIcon(button.icon, true)
+		end
+	end
+end
+
 -- Box behind the steps inside the dungeon
 local function Skin_Select()
 	local sideBox = Attune_SideBox
@@ -110,6 +124,19 @@ local function Skin_QuestDetail()
 	panel.isSkinned = true
 end
 
+-- Results grid
+local function Skin_ResultHolder()
+	local holder = attunelocal_resultHolder
+	if holder.isSkinned then return end
+
+	holder:SetTemplate('Transparent')
+
+	S:HandleScrollBar(holder.vbar)
+	S:HandleScrollBar(holder.hbar)
+
+	holder.isSkinned = true
+end
+
 -- Sync progress (/attune sync)
 local function Skin_SyncProgress()
 	Attune_SyncProgress_Frame:SetTemplate('Transparent')
@@ -128,9 +155,11 @@ local function Skin_Attune()
 	if not Private.Addon.db.profile.skins.Attune then return end
 
 	hooksecurefunc('Attune_Frame', Skin_Frame)
+	hooksecurefunc('Attune_LayoutIconView', Skin_IconView)
 	hooksecurefunc('Attune_Select', Skin_Select)
 	hooksecurefunc('Attune_CreateNode', Skin_Node)
 	hooksecurefunc('Attune_ShowQuestDetail', Skin_QuestDetail)
+	hooksecurefunc('Attune_EnsureResultHolder', Skin_ResultHolder)
 	hooksecurefunc('Attune_StartSync', Skin_SyncProgress)
 
 	-- Only restores what ElvUI's Ace3 skin set

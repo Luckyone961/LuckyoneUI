@@ -1,12 +1,15 @@
 local _, Private = ...
 local L = Private.L
 
+local ceil = math.ceil
 local concat = table.concat
 local floor = math.floor
 local format = string.format
 local gmatch = string.gmatch
 local ipairs = ipairs
 local min = math.min
+local pairs = pairs
+local sort = table.sort
 local strmatch = string.match
 local unpack = unpack
 local wipe = table.wipe
@@ -30,15 +33,11 @@ Private.Installer = Installer
 
 local installerFrame
 local pages = {}
-local selections = {} -- Key of the option picked last
+local selections = {} -- Keys of the options picked per page
 local currentPage = 0
 
 local function Green(text)
 	return format('|cff4beb2c%s|r', text)
-end
-
-local function Red(text)
-	return format('|cffC80000%s|r', text)
 end
 
 local function ToggleDB(toggle)
@@ -183,17 +182,19 @@ local function CreateStepButton(sidebar, index, name)
 	return button
 end
 
--- Option buttons
+-- Option buttons, a multi page keeps every applied option selected
 local function Option_OnClick(self)
 	local data = self.data
 
 	-- A step that bails out returns false and stays unchecked
 	if data.func() == false or not data.key then return end
 
-	selections[currentPage] = data.key
+	local picked = (pages[currentPage].multi and selections[currentPage]) or {}
+	picked[data.key] = true
+	selections[currentPage] = picked
 
 	for _, button in ipairs(installerFrame.Content.Options) do
-		SetButtonSelected(button, button.data == data)
+		SetButtonSelected(button, button.data and picked[button.data.key])
 	end
 
 	installerFrame.Sidebar.Buttons[currentPage].icon:Show()
@@ -206,23 +207,21 @@ local function Option_OnEnter(self)
 	end
 end
 
+-- Rows of up to three, the last row sits at the bottom
 local function LayoutOptions(count)
 	local content = installerFrame.Content
+	local rows = ceil(count / 3)
 
 	for index = count + 1, #content.Options do
 		content.Options[index]:Hide()
 	end
 
-	if count == 0 then return end
-
-	local width = min(190, floor((700 - 6 * (count - 1)) / count))
-	local total = count * width + 6 * (count - 1)
-
 	for index = 1, count do
+		local row = floor((index - 1) / 3)
+		local columns = min(3, count - row * 3)
 		local button = content.Options[index]
-		button:SetWidth(width)
 		button:ClearAllPoints()
-		button:SetPoint('BOTTOM', content, 'BOTTOM', -total / 2 + width / 2 + (index - 1) * (width + 6), 56)
+		button:SetPoint('BOTTOM', content, 'BOTTOM', ((index - 1) % 3 - (columns - 1) / 2) * 196, 56 + (rows - 1 - row) * 36)
 	end
 end
 
@@ -269,11 +268,12 @@ local function CreateCheckBox(parent)
 	return check
 end
 
--- Two columns
+-- Two columns, returns the number used so the installer can grow until a page fits
 local function LayoutToggles(page)
 	local content = installerFrame.Content
 	local container = content.Toggles
-	local rows = floor((422 - 44 - content.Desc:GetStringHeight() - 16 - (page.buttons and 100 or 40)) / 24)
+	-- Header and footer take 78 of the frame height, pages without buttons never show the status line
+	local rows = floor((installerFrame:GetHeight() - 78 - 44 - content.Desc:GetStringHeight() - 16 - (page.buttons and 100 or 16)) / 24)
 	local column, row = 0, 0
 	local headers, checks = 0, 0
 
@@ -327,6 +327,23 @@ local function LayoutToggles(page)
 
 	for index = checks + 1, #container.Checks do
 		container.Checks[index]:Hide()
+	end
+
+	return column + 1
+end
+
+-- Grow the installer one row at a time until every checkbox page fits in two columns
+local function FitToggles()
+	local desc = installerFrame.Content.Desc
+
+	for _, page in ipairs(pages) do
+		if page.toggles then
+			desc:SetText(page.desc)
+
+			while LayoutToggles(page) > 2 do
+				installerFrame:SetHeight(installerFrame:GetHeight() + 24)
+			end
+		end
 	end
 end
 
@@ -425,10 +442,11 @@ local function CreateMainFrame()
 	bar.text = CreateText(bar, 13)
 	bar.text:SetPoint('CENTER')
 
-	-- Step list, its own frame next to the main one so it moves and hides along with it
+	-- Step list, its own frame next to the main one so it moves, hides and grows along with it
 	local sidebar = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
-	sidebar:SetSize(200, 500)
+	sidebar:SetWidth(200)
 	sidebar:SetPoint('TOPLEFT', frame, 'TOPRIGHT', 1, 0)
+	sidebar:SetPoint('BOTTOMLEFT', frame, 'BOTTOMRIGHT', 1, 0)
 	sidebar:EnableMouse(true)
 	sidebar.Buttons = {}
 	frame.Sidebar = sidebar
@@ -445,8 +463,8 @@ local function CreateMainFrame()
 
 	-- Content: Subtitle, description, checkboxes, option buttons and the status line
 	local content = CreateFrame('Frame', nil, frame)
-	content:SetSize(740, 422)
 	content:SetPoint('TOPLEFT', header, 'BOTTOMLEFT', 0, -1)
+	content:SetPoint('BOTTOMRIGHT', footer, 'TOPRIGHT', 0, 1)
 	frame.Content = content
 
 	content.SubTitle = CreateText(content, 16)
@@ -467,7 +485,7 @@ local function CreateMainFrame()
 
 	content.Options = {}
 
-	for index = 1, 4 do
+	for index = 1, 6 do
 		local button = CreateButton(content, 190, 30)
 		button:SetScript('OnClick', Option_OnClick)
 		button:SetScript('OnEnter', Option_OnEnter)
@@ -521,6 +539,7 @@ function Installer:SetPage(index)
 	content.SubTitle:SetText(page.title)
 	content.Desc:SetText(page.desc)
 
+	local picked = selections[index]
 	local shown = 0
 	if page.buttons then
 		for _, data in ipairs(page.buttons) do
@@ -533,7 +552,7 @@ function Installer:SetPage(index)
 				button:Show()
 
 				SetButtonEnabled(button, not data.addon or Private.IsAddOnLoaded(data.addon))
-				SetButtonSelected(button, data.key and selections[index] == data.key)
+				SetButtonSelected(button, picked and picked[data.key])
 			end
 		end
 	end
@@ -554,12 +573,12 @@ function Installer:SetPage(index)
 end
 
 -- Checkbox pages only write the db, the note tells the user why nothing changes yet
-local function Page(name, desc, buttons, toggles, hidden, title)
+local function Page(name, desc, buttons, toggles, hidden, title, multi)
 	if toggles then
 		desc[#desc + 1] = L["Checkbox changes are applied on the reload at the end of the installer and might not be visible until then."]
 	end
 
-	return { name = name, title = title or name, desc = concat(desc, '\n\n'), buttons = buttons, toggles = toggles, hidden = hidden }
+	return { name = name, title = title or name, desc = concat(desc, '\n\n'), buttons = buttons, toggles = toggles, hidden = hidden, multi = multi }
 end
 
 local function Button(text, func, key, addon, hidden)
@@ -601,6 +620,26 @@ local function Toggle(section, path, labelPath, descPath)
 	return { section = section, key = strmatch(path, '[^.]+$'), label = label, desc = desc, hidden = hidden }
 end
 
+-- Toggles in /lucky config order from top to bottom
+local function ConfigGroup(name, section, path)
+	local args = ConfigOption(path).args or {}
+	local keys = {}
+
+	for key, option in pairs(args) do
+		if option.type == 'toggle' then
+			keys[#keys + 1] = key
+		end
+	end
+
+	sort(keys, function(a, b) return args[a].order < args[b].order end)
+
+	for i, key in ipairs(keys) do
+		keys[i] = Toggle(section, path .. '.' .. key)
+	end
+
+	return Group(name, unpack(keys))
+end
+
 -- ElvUI db keys, the mirror path is written along with the value (castbar transparency)
 local function ElvUIToggle(label, path, mirror)
 	return { elvui = true, section = strmatch(path, '(.+)%.'), key = strmatch(path, '[^.]+$'), label = label, mirror = mirror and ElvUIToggle(nil, mirror) }
@@ -623,7 +662,7 @@ local function BuildPages()
 		-- UI scale
 		Page(L["LuckyoneUI Scale"], {
 			L["1440p = Default | 1080p = Downscaled"] .. '.',
-			Red(L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor pixel offsets."]),
+			format('|cffC80000%s|r', L["Keep in mind I play on 1440p.\nThe 1080p layout might experience some minor pixel offsets."]),
 			recommended,
 		}, {
 			Button('1440p', function() Private:Setup_Scale(true, true) end, 'native'),
@@ -687,13 +726,14 @@ local function BuildPages()
 			Button(L["Setup CVars"], function() Private:Setup_CVars(nil, true) end, 'cvars'),
 		}),
 
-		-- BigWigs profile
-		Page('BigWigs', {
-			L["Please click the button below to apply Luckyones profile for BigWigs and LittleWigs."],
+		-- Boss Mods choice
+		Page('Boss Mods', {
+			L["Choose between BigWigs and Deadly Boss Mods."],
 			recommended,
 		}, {
 			Button('BigWigs', function() Private:Setup_BigWigs() end, 'bigwigs', 'BigWigs'),
-		}, nil, nil, L["BigWigs profile"]),
+			Button('Deadly Boss Mods', function() Private:Setup_DBM(true) end, 'dbm', 'DBM-Core'),
+		}, nil, nil, L["Boss Mods Profiles"]),
 
 		-- Damage Meter choice
 		Page(L["Damage Meter"], Private.Modules.DamageMeter and {
@@ -725,6 +765,20 @@ local function BuildPages()
 			Button('SkironCooldownManager', function() Private:Setup_SkironCooldownManager(true) end, 'scm', 'SkironCooldownManager'),
 		}, nil, not Private.isModern, L["Cooldown Manager profile"]),
 
+		-- Optional addon profiles
+		Page(L["Additional Addons"], {
+			L["Please click the buttons below to apply Luckyones profiles for the Addons you use."],
+			Green(L["Optional step."]),
+			Private.ElvUI and L["Baganator replaces the ElvUI bags and Platynator the ElvUI nameplates."] or nil,
+		}, {
+			Button('Baganator', function() Private:Setup_Baganator(true) end, 'baganator', 'Baganator'),
+			Button('BuffReminders', function() Private:Setup_BuffReminders(true) end, 'buffreminders', 'BuffReminders', not Private.isRetail),
+			Button('Northern Sky Raid Tools', function() Private:Setup_NorthernSkyRaidTools(true) end, 'nsrt', 'NorthernSkyRaidTools', not Private.isRetail),
+			Button('PermoksAccountManager', function() Private:Setup_PermoksAccountManager(true) end, 'permoks', 'PermoksAccountManager', not Private.isRetail),
+			Button('Platynator', function() Private:Setup_Platynator(true) end, 'platynator', 'Platynator'),
+			Button('Plumber', function() Private:Setup_Plumber(true) end, 'plumber', 'Plumber', not (Private.isRetail or Private.isForever or Private.isMists)),
+		}, nil, nil, L["Optional Addon Profiles"], true),
+
 		-- Edit mode string and guide
 		Page(L["Blizzard Edit Mode"], {
 			Green(L["Step 1:"]) .. '\n' .. L["Click the first button for the import.\nUse CTRL+C to copy the string from the popup."],
@@ -753,6 +807,7 @@ local function BuildPages()
 				Toggle('nameplates', 'elvuiTweaks.nameplates.textures.focusTextureEnable'),
 				Toggle('nameplates', 'elvuiTweaks.nameplates.absorbs.absorbTextureEnable'),
 				Toggle('nameplates', 'elvuiTweaks.nameplates.absorbs.healAbsorbTextureEnable'),
+				Toggle('nameplates', 'elvuiTweaks.nameplates.colors.questColorEnable'),
 				Toggle('misc', 'general.misc.removeNameplateRealm')
 			),
 			Group(L["UnitFrames"],
@@ -764,56 +819,14 @@ local function BuildPages()
 
 		-- LuckyoneUI general tab checkboxes
 		Page(L["Quality of Life"], { L["Small tweaks that speed up daily tasks and hide Blizzard frames you do not need."] }, nil, {
-			Group(L["Quality of Life"],
-				Toggle('qualityOfLife', 'general.qualityOfLife.autoAcceptRole'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.autoDismount'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.easyDelete'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.expandMerchant'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.expandQuestLog'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.fasterLoot'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.preventLootAutoShow'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.privacyOverlay'),
-				Toggle('qualityOfLife', 'general.qualityOfLife.quickSignup')
-			),
-			Group(L["Hide Blizzard Frames"],
-				Toggle('disabledFrames', 'general.disabledFrames.AlertFrame'),
-				Toggle('disabledFrames', 'general.disabledFrames.ApplicationCover'),
-				Toggle('disabledFrames', 'general.disabledFrames.BossBanner'),
-				Toggle('disabledFrames', 'general.disabledFrames.HousingDecorAlerts'),
-				Toggle('disabledFrames', 'general.disabledFrames.LossOfControl'),
-				Toggle('disabledFrames', 'general.disabledFrames.TalkingHead'),
-				Toggle('disabledFrames', 'general.disabledFrames.UIErrorsFrame'),
-				Toggle('disabledFrames', 'general.disabledFrames.ZoneTextFrame')
-			),
+			ConfigGroup(L["Quality of Life"], 'qualityOfLife', 'general.qualityOfLife'),
+			ConfigGroup(L["Hide Blizzard Frames"], 'disabledFrames', 'general.disabledFrames'),
 		}),
 
 		-- LuckyoneUI custom skins
 		Page('Skins', { L["Skin the Addons and Blizzard frames below in ElvUI style. Only installed Addons are listed."] }, nil, {
-			Group('AddOns',
-				Toggle('skins', 'skins.addons.AllTheThings'),
-				Toggle('skins', 'skins.addons.Attune'),
-				Toggle('skins', 'skins.addons.Auctionator'),
-				Toggle('skins', 'skins.addons.BigWigs'),
-				Toggle('skins', 'skins.addons.BugSack'),
-				Toggle('skins', 'skins.addons.ForeverDungeonJournal'),
-				Toggle('skins', 'skins.addons.KeystoneLoot'),
-				Toggle('skins', 'skins.addons.LFGBulletinBoard'),
-				Toggle('skins', 'skins.addons.NovaInstanceTracker'),
-				Toggle('skins', 'skins.addons.NovaSpellRankChecker'),
-				Toggle('skins', 'skins.addons.NovaWorldBuffs'),
-				Toggle('skins', 'skins.addons.Plumber'),
-				Toggle('skins', 'skins.addons.PremadeGroupsFilter'),
-				Toggle('skins', 'skins.addons.RCLootCouncil'),
-				Toggle('skins', 'skins.addons.RXPGuides'),
-				Toggle('skins', 'skins.addons.SimpleAddonManager'),
-				Toggle('skins', 'skins.addons.Simulationcraft'),
-				Toggle('skins', 'skins.addons.Tabardy'),
-				Toggle('skins', 'skins.addons.WhatsTraining')
-			),
-			Group('Blizzard',
-				Toggle('skins.Blizzard', 'skins.blizzard.CooldownViewer'),
-				Toggle('skins.Blizzard', 'skins.blizzard.DeveloperConsole')
-			),
+			ConfigGroup('AddOns', 'skins', 'skins.addons'),
+			ConfigGroup('Blizzard', 'skins.Blizzard', 'skins.blizzard'),
 		}, not Private.ElvUI),
 
 		-- Final reload and Discord link
@@ -855,6 +868,9 @@ function Installer:Show()
 	end
 
 	installerFrame:Show()
+
+	-- Sized on the shown frame before page one, so it never changes size while paging
+	FitToggles()
 	self:SetPage(1)
 end
 

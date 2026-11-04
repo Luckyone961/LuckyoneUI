@@ -130,6 +130,7 @@ Private.Defaults = {
 			AlertFrame = false,
 			ApplicationCover = false,
 			BossBanner = false,
+			EventToasts = false,
 			HousingDecorAlerts = false,
 			LossOfControl = false,
 			TalkingHead = false,
@@ -217,8 +218,7 @@ Private.Defaults = {
 			mailbox = {
 				currentRealm = false,
 				enable = false,
-				-- { name = 'Luckyone-LaughingSkull', class = 'DRUID', faction = 'Alliance' }
-				favorites = {},
+				favorites = {}, -- { name = 'Luckyone-LaughingSkull', class = 'DRUID', faction = 'Alliance' }
 				font = Private.Font,
 				fontOutline = 'OUTLINESLUG',
 				fontSize = 14,
@@ -258,6 +258,8 @@ Private.Defaults = {
 			focusTextureEnable = false,
 			healAbsorbTexture = 'Solid',
 			healAbsorbTextureEnable = false,
+			questColor = { r = 1, g = 0.5, b = 0 },
+			questColorEnable = false,
 			targetTexture = 'Solid',
 			targetTextureEnable = false,
 		},
@@ -274,11 +276,14 @@ Private.Defaults = {
 		},
 		skins = {
 			AllTheThings = false,
+			AtlasLoot = false,
 			Attune = false,
 			Auctionator = false,
 			BigWigs = false,
 			BugSack = false,
+			DBM = false,
 			ForeverDungeonJournal = false,
+			HuntersFieldGuide = false,
 			KeystoneLoot = false,
 			LFGBulletinBoard = false,
 			NovaInstanceTracker = false,

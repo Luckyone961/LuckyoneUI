@@ -45,7 +45,6 @@ function General:OnLogin()
 	if Private.isRetail then
 		Private:AutoDismount()
 	end
-	Private:DisabledFrames()
 	EasyDelete()
 	Private:ExpandMerchant()
 	if Private.isClassic or Private.isTBC then
@@ -59,4 +58,8 @@ function General:OnLogin()
 		Private:QuickSignup()
 	end
 	RemoveNameplateRealm()
+end
+
+function General:OnEnable()
+	Private:DisabledFrames()
 end

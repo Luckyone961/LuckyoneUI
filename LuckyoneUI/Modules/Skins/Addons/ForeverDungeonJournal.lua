@@ -91,10 +91,13 @@ end
 local function SkinItemButton(button)
 	SkinRowBackdrop(button)
 
+	local holder = CreateFrame('Frame', nil, button)
+	holder:SetAllPoints()
+
 	local icon = button.icon
 	icon:SetTexCoords()
-	icon:CreateBackdrop(nil, nil, nil, nil, nil, nil, nil, nil, true)
-	icon:SetParent(icon.backdrop)
+	icon:SetParent(holder)
+	icon:CreateBackdrop()
 
 	button.IsSkinned = true
 end
@@ -121,10 +124,21 @@ local function BossContent_SetHeight(content)
 	end
 end
 
+-- Recipes, shared loot, repeatable quests
+local function SkinDivider(line)
+	line:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
+	line.IsSkinned = true
+end
+
 local function QuestContent_SetHeight(content)
+	local divider = ForeverDungeonJournalFrame.questRepeatLine
 	for _, row in next, { content:GetChildren() } do
 		if not row.IsSkinned then
-			SkinQuestRow(row)
+			if row == divider then
+				SkinDivider(row)
+			else
+				SkinQuestRow(row)
+			end
 		end
 	end
 end
@@ -144,9 +158,16 @@ local function LootContent_SetHeight(content)
 	local frame = ForeverDungeonJournalFrame
 	for _, line in next, { frame.lootRecipeLine, frame.lootSharedLine } do
 		if not line.IsSkinned then
-			line:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
-			line.IsSkinned = true
+			SkinDivider(line)
 		end
+	end
+end
+
+-- The compact view toggle
+local function LootTitle_Show()
+	local button = ForeverDungeonJournalFrame.lootCompactButton
+	if button and not button.IsSkinned then
+		SkinBackdropButton(button)
 	end
 end
 
@@ -194,9 +215,20 @@ local function Results_SetHeight(results)
 	end
 end
 
--- Floor buttons of multi level dungeons
+-- Floor buttons of multi level dungeons and the boss icon size control
 local function Map_Render()
-	local buttons = ForeverDungeonJournalFrame.dungeonMapFloorButtons
+	local frame = ForeverDungeonJournalFrame
+
+	local sizer = frame.dungeonMapPanel.fdjBossSizer
+	if sizer and not sizer.IsSkinned then
+		sizer:SetTemplate('Transparent')
+		S:HandleButton(sizer.minus)
+		S:HandleButton(sizer.plus)
+
+		sizer.IsSkinned = true
+	end
+
+	local buttons = frame.dungeonMapFloorButtons
 	if not buttons then return end
 
 	for _, button in next, buttons do
@@ -206,10 +238,10 @@ local function Map_Render()
 	end
 end
 
--- Armor type options, the tick box follows ElvUI's menu checkboxes
-local function SkinArmorOption(option)
+-- Drop-down options (armor types, resistances, spell schools)
+local function SkinMenuOption(option)
 	option:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
-	option.box:SetTexture(E.ClearTexture)
+	option.box:SetTexture()
 
 	local box = CreateFrame('Frame', nil, option)
 	box:Size(12)
@@ -224,6 +256,15 @@ local function SkinArmorOption(option)
 	check:SetInside(box)
 end
 
+-- The hook runs after DungeonJournal's OnEnter
+local function LootFilterCheck_OnEnter(check)
+	local tip = check:GetParent().fdjTip
+	if tip and not tip.IsSkinned then
+		tip:SetTemplate('Transparent')
+		tip.IsSkinned = true
+	end
+end
+
 -- Loot Filter window, built on the first click
 local function Skin_LootFilterWindow(frame)
 	local window = frame.lootFilterWindow
@@ -235,6 +276,7 @@ local function Skin_LootFilterWindow(frame)
 	-- The filter starts disabled, ElvUI only clears its disabled texture when the state changes
 	for _, check in next, window.checks do
 		S:HandleCheckBox(check)
+		check:HookScript('OnEnter', LootFilterCheck_OnEnter)
 
 		if not check:IsEnabled() and not check:GetChecked() then
 			check:SetDisabledTexture('')
@@ -243,13 +285,25 @@ local function Skin_LootFilterWindow(frame)
 
 	S:HandleEditBox(window.minBox)
 
-	-- Armor type drop-down
-	local armor = window.armor
-	S:HandleButton(armor)
-	armor.menu:SetTemplate('Transparent')
+	-- Armor type, weapon type and resistance dropdowns
+	for _, dropdown in next, { window.armor, window.weapon, window.resist } do
+		S:HandleButton(dropdown)
+		dropdown.menu:SetTemplate('Transparent')
 
-	for _, option in next, armor.options do
-		SkinArmorOption(option)
+		for _, option in next, dropdown.options do
+			SkinMenuOption(option)
+		end
+	end
+
+	-- Spell school drop-down
+	local schools = window.schoolArrow
+	if schools then
+		S:HandleNextPrevButton(schools, 'down', nil, true, nil, nil, 18)
+		schools.menu:SetTemplate('Transparent')
+
+		for _, option in next, schools.options do
+			SkinMenuOption(option)
+		end
 	end
 
 	for _, button in next, { window.toggle, window.clear, window.ok, window.show } do
@@ -301,6 +355,26 @@ local function Skin_FavouriteMenu()
 	menu.IsSkinned = true
 end
 
+-- Right-click menu on the Looking For Group eye
+local function Skin_LFGMenu()
+	local menu = ForeverDungeonJournalLFGMenu
+	if menu.IsSkinned then return end
+
+	menu:SetTemplate('Transparent')
+	menu.disable:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
+
+	menu.IsSkinned = true
+end
+
+-- Points at the Group Browser tab
+local function Skin_BrowseHint()
+	local hint = FDJ.browseHint
+	if not hint or hint.IsSkinned then return end
+
+	hint:SetTemplate('Transparent')
+	hint.IsSkinned = true
+end
+
 -- Report window, built on the first click
 local function Skin_BugReportWindow(frame)
 	local window = frame.bugReportWindow
@@ -313,13 +387,73 @@ local function Skin_BugReportWindow(frame)
 	window.IsSkinned = true
 end
 
+-- SetActive runs on every tab switch
+local function SettingsTab_SetActive(tab, active)
+	tab:SetBackdropBorderColor(unpack(active and E.media.rgbvaluecolor or E.media.bordercolor))
+end
+
+-- Content box with the Options view (category list) and Discord view
+local function SkinSettingsBox(box)
+	for _, view in next, { box:GetChildren() } do
+		-- Category list divider
+		for _, region in next, { view:GetRegions() } do
+			if region:IsObjectType('Texture') then
+				region:SetVertexColor(unpack(E.media.bordercolor))
+			end
+		end
+
+		-- Category list header and the Discord link
+		for _, child in next, { view:GetChildren() } do
+			if child:IsObjectType('EditBox') then
+				S:HandleEditBox(child)
+			elseif child.backdropInfo then
+				child:SetTemplate()
+			end
+		end
+	end
+
+	box:SetTemplate()
+end
+
 -- Settings window (minimap right-click, /dj options), built on the first toggle
 local function Skin_SettingsPanel()
 	local panel = ForeverDungeonJournalSettings
 	if panel.IsSkinned then return end
 
+	-- Copied Options window art
+	if panel.fdjNine then
+		panel.fdjNine:Hide()
+	end
+
+	panel:StripTextures()
+
+	-- The resize grip stays
+	for _, child in next, { panel:GetChildren() } do
+		if child:IsObjectType('Button') then
+			local normal = child:GetNormalTexture()
+			if normal and normal:GetAtlas() == 'RedButton-Exit' then
+				S:HandleCloseButton(child)
+			elseif child.Left and child.Right then
+				-- Done
+				S:HandleButton(child)
+			end
+		elseif child.backdropInfo then
+			SkinSettingsBox(child)
+		end
+	end
+
 	panel:SetTemplate()
-	S:HandleCloseButton((panel:GetChildren()))
+
+	for index, tab in next, panel.tabs do
+		tab:StripTextures(nil, true)
+		tab:SetTemplate()
+
+		if tab.SetActive then
+			hooksecurefunc(tab, 'SetActive', SettingsTab_SetActive)
+		end
+
+		SettingsTab_SetActive(tab, panel.selectedTab == index)
+	end
 
 	for _, check in next, panel.checks do
 		S:HandleCheckBox(check)
@@ -381,12 +515,7 @@ local function Skin_Frame()
 	frame:StripTextures()
 	frame:CreateBackdrop('Transparent')
 
-	for _, child in next, { frame:GetChildren() } do
-		if child:IsObjectType('Button') and child:GetScript('OnClick') == UIPanelCloseButton_OnClick then
-			S:HandleCloseButton(child)
-		end
-	end
-
+	S:HandleCloseButton(frame.closeButton)
 	S:HandleButton(frame.backButton)
 
 	-- Language select and Report top right
@@ -449,6 +578,9 @@ local function Skin_Frame()
 		SkinTab(tab)
 	end
 
+	hooksecurefunc(FDJ, 'ShowLFGMenu', Skin_LFGMenu)
+	hooksecurefunc(FDJ, 'ShowBrowseHint', Skin_BrowseHint)
+
 	-- Bosses
 	SkinPanel(frame.leftPanel)
 	SkinPanel(frame.rightPanel)
@@ -460,6 +592,7 @@ local function Skin_Frame()
 
 	hooksecurefunc(frame.bossContent, 'SetHeight', BossContent_SetHeight)
 	hooksecurefunc(frame.lootContent, 'SetHeight', LootContent_SetHeight)
+	hooksecurefunc(frame.lootTitle, 'Show', LootTitle_Show)
 	BossContent_SetHeight(frame.bossContent)
 	LootContent_SetHeight(frame.lootContent)
 

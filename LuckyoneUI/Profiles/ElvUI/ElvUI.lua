@@ -234,7 +234,7 @@ local function Setup_GlobalDB()
 	E.global.datatexts.settings.Time.time24 = true
 	E.global.general.fadeMapWhenMoving = false
 	E.global.general.mapAlphaWhenMoving = 0.35
-	E.global.general.smallerWorldMapScale = 0.8
+	E.global.general.smallerWorldMapScale = 0.9
 	E.global.general.WorldMapCoordinates.position = 'TOPLEFT'
 
 	if not E.global.datatexts.customPanels.Luckyone_ActionBars_DT then
@@ -351,7 +351,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.general.altPowerBar.statusBar = Private.Texture
 	E.db.general.altPowerBar.statusBarColorGradient = true
 	E.db.general.autoAcceptInvite = true
-	E.db.general.autoRepair = (Private.isRetail and 'GUILD') or 'PLAYER'
+	E.db.general.autoRepair = (Private.isRetail and 'GUILD') or 'NONE'
 	E.db.general.bottomPanel = false
 	E.db.general.customGlow.color.a = 1
 	E.db.general.customGlow.color.b = 1
@@ -1236,6 +1236,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.player.classbar.height = 16
 	E.db.unitframe.units.player.CombatIcon.anchorPoint = 'LEFT'
 	E.db.unitframe.units.player.CombatIcon.customTexture = 'Interface\\AddOns\\LuckyoneUI\\Media\\Icons\\Combat.png'
+	E.db.unitframe.units.player.CombatIcon.enable = false
 	E.db.unitframe.units.player.CombatIcon.size = 32
 	E.db.unitframe.units.player.CombatIcon.texture = 'CUSTOM'
 	E.db.unitframe.units.player.CombatIcon.xOffset = 18
@@ -1272,8 +1273,8 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.unitframe.units.player.threatStyle = 'NONE'
 	E.db.unitframe.units.player.width = 280
 
-	-- Player power regen ticks for Vanilla & TBC
-	if Private.isClassic or Private.isTBC then
+	-- Player power regen ticks for Vanilla, TBC & Forever
+	if Private.isClassic or Private.isTBC or Private.isForever then
 		E.db.unitframe.units.player.power.EnergyManaRegen = true
 	end
 
@@ -1643,7 +1644,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-83'
 
 	if Private.isForever then
-		E.db.movers.ShardTransferMover = 'TOPLEFT,ElvUIParent,TOPLEFT,30,-32'
+		E.db.movers.ShardTransferMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-306,260') or 'BOTTOM,ElvUIParent,BOTTOM,-306,380'
 	end
 
 	if layout == 'main' then

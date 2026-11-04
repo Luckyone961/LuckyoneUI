@@ -4,9 +4,6 @@ if not Private.ElvUI then
 	return
 end
 
--- We skin the loot window, its menus and the popup windows
--- The item cards in the drop and Mythic+ popups and the minimap button remain untouched
-
 local next = next
 local unpack = unpack
 

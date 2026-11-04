@@ -28,7 +28,6 @@ function ElvUI:PLAYER_ENTERING_WORLD()
 	if Private.isRetail then
 		Private:MythicVisibility()
 	end
-	Private:TargetTextures_Update()
 end
 
 -- Target and focus changes
@@ -36,15 +35,12 @@ function ElvUI:TargetTextures_Update()
 	Private:TargetTextures_Update()
 end
 
+-- Spec and difficulty changes
 -- DataTextsTweaks follows spec switches through the ElvUI OnProfileChanged callback instead
-function ElvUI:PLAYER_SPECIALIZATION_CHANGED(_, unit)
-	-- Fires for other units as well, only react to the player
-	if unit ~= 'player' then return end
+function ElvUI:MythicVisibility_Update(_, unit)
+	-- The spec event fires for other units as well, only react to the player
+	if unit and unit ~= 'player' then return end
 
-	Private:MythicVisibility()
-end
-
-function ElvUI:PLAYER_DIFFICULTY_CHANGED()
 	Private:MythicVisibility()
 end
 
@@ -80,7 +76,7 @@ function ElvUI:OnEnable()
 	end
 
 	if Private.isRetail then
-		self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
-		self:RegisterEvent('PLAYER_DIFFICULTY_CHANGED')
+		self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED', 'MythicVisibility_Update')
+		self:RegisterEvent('PLAYER_DIFFICULTY_CHANGED', 'MythicVisibility_Update')
 	end
 end
