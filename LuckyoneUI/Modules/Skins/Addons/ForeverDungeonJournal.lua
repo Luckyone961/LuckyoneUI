@@ -91,10 +91,13 @@ end
 local function SkinItemButton(button)
 	SkinRowBackdrop(button)
 
+	local holder = CreateFrame('Frame', nil, button)
+	holder:SetAllPoints()
+
 	local icon = button.icon
 	icon:SetTexCoords()
-	icon:CreateBackdrop(nil, nil, nil, nil, nil, nil, nil, nil, true)
-	icon:SetParent(icon.backdrop)
+	icon:SetParent(holder)
+	icon:CreateBackdrop()
 
 	button.IsSkinned = true
 end
@@ -121,10 +124,21 @@ local function BossContent_SetHeight(content)
 	end
 end
 
+-- Recipes, shared loot, repeatable quests
+local function SkinDivider(line)
+	line:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
+	line.IsSkinned = true
+end
+
 local function QuestContent_SetHeight(content)
+	local divider = ForeverDungeonJournalFrame.questRepeatLine
 	for _, row in next, { content:GetChildren() } do
 		if not row.IsSkinned then
-			SkinQuestRow(row)
+			if row == divider then
+				SkinDivider(row)
+			else
+				SkinQuestRow(row)
+			end
 		end
 	end
 end
@@ -144,9 +158,16 @@ local function LootContent_SetHeight(content)
 	local frame = ForeverDungeonJournalFrame
 	for _, line in next, { frame.lootRecipeLine, frame.lootSharedLine } do
 		if not line.IsSkinned then
-			line:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
-			line.IsSkinned = true
+			SkinDivider(line)
 		end
+	end
+end
+
+-- The compact view toggle
+local function LootTitle_Show()
+	local button = ForeverDungeonJournalFrame.lootCompactButton
+	if button and not button.IsSkinned then
+		SkinBackdropButton(button)
 	end
 end
 
@@ -264,8 +285,8 @@ local function Skin_LootFilterWindow(frame)
 
 	S:HandleEditBox(window.minBox)
 
-	-- Armor type and resistance dropdowns
-	for _, dropdown in next, { window.armor, window.resist } do
+	-- Armor type, weapon type and resistance dropdowns
+	for _, dropdown in next, { window.armor, window.weapon, window.resist } do
 		S:HandleButton(dropdown)
 		dropdown.menu:SetTemplate('Transparent')
 
@@ -571,6 +592,7 @@ local function Skin_Frame()
 
 	hooksecurefunc(frame.bossContent, 'SetHeight', BossContent_SetHeight)
 	hooksecurefunc(frame.lootContent, 'SetHeight', LootContent_SetHeight)
+	hooksecurefunc(frame.lootTitle, 'Show', LootTitle_Show)
 	BossContent_SetHeight(frame.bossContent)
 	LootContent_SetHeight(frame.lootContent)
 
