@@ -12,7 +12,7 @@
 ## Title: |cff4beb2cLuckyoneUI|r |cff67f100TBC|r [AllowLoadGameType tbc]
 ## Title: |cff4beb2cLuckyoneUI|r |cffe6cc80Forever|r [AllowLoadGameType camelot][ExcludeLoadGameType standard, classic]
 
-## X-Required-ElvUI: 16.00
+## X-Required-ElvUI: 16.01
 ## X-Curse-Project-ID: 363472
 ## X-Wago-ID: Rn6VLGdB
 
