@@ -1,4 +1,4 @@
-﻿## Version 4.27 [Alpha - In Development - Not Yet Released]
+﻿## Version 4.27 [04-11-2026]
 
 **All WoW Versions:**  
 - Added a list of all chat commands in the Chat tab of the config  
