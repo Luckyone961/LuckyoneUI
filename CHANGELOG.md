@@ -1,4 +1,9 @@
-﻿## Version 4.27 [04-11-2026]
+﻿## Version 4.28 [Alpha - In Development - Not Yet Released]
+
+**Forever:**
+- Updated SkironCooldownManager profile (Castbar, Mana ticks, Hunter abilities)  
+
+## Version 4.27 [04-11-2026]
 
 **All WoW Versions:**  
 - Added a list of all chat commands in the Chat tab of the config  
