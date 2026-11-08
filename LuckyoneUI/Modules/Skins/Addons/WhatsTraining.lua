@@ -25,6 +25,29 @@ local function GroupingPopup_OnShow(popup)
 	end
 end
 
+-- Options popup
+local function SkinOptionsPopup(popup)
+	if popup.isSkinned then return end
+
+	local name = popup:GetName()
+	popup:SetTemplate('Transparent')
+
+	for _, radio in next, popup.radios do
+		S:HandleRadioButton(radio)
+	end
+
+	popup:HookScript('OnShow', GroupingPopup_OnShow)
+
+	if popup:IsShown() then
+		GroupingPopup_OnShow(popup)
+	end
+
+	S:HandleButton(_G[name..'Done'])
+	S:HandleCheckBox(_G[name..'ShowKnown'])
+
+	popup.isSkinned = true
+end
+
 -- Compact list, shared by the Vanilla/TBC Spellbook page and the /wt window
 local function SkinCompactFrame(frame)
 	local name = frame:GetName()
@@ -50,26 +73,7 @@ local function SkinCompactFrame(frame)
 	groupingButton:ClearAllPoints()
 	groupingButton:Point('LEFT', toggleButton, 'RIGHT', 3, 0)
 
-	-- Grouping Popup
-	local popup = frame.groupingPopup
-	popup:SetTemplate('Transparent')
-
-	for _, radio in next, popup.radios do
-		S:HandleRadioButton(radio)
-	end
-
-	-- WhatsTraining 11.0.0-beta20+
-	if popup.providerRadios then
-		popup:HookScript('OnShow', GroupingPopup_OnShow)
-	end
-
-	S:HandleButton(_G[name..'GroupingPopupDone'])
-
-	-- Show Known checkbox, WhatsTraining 11+
-	local showKnown = _G[name..'GroupingPopupShowKnown']
-	if showKnown then
-		S:HandleCheckBox(showKnown)
-	end
+	SkinOptionsPopup(frame.groupingPopup)
 end
 
 -- Vanilla and TBC: own page inside the SpellBookFrame
@@ -281,9 +285,51 @@ local function Skin_FloatingFrame()
 	S:HandleFrame(frame)
 	S:HandleCloseButton(WhatsTrainingFloatingFrameClose)
 
-	SkinCompactFrame(frame)
+	SkinCompactFrame(frame.spellsPage)
+
+	-- Professions toggle and page
+	local toggle = WhatsTrainingFloatingFrameProfessionToggle
+	S:HandleButton(toggle)
+	toggle:Size(24)
+	toggle.Icon:SetTexCoords()
+
+	local list = frame.professionsPage.recipeList
+	S:HandleEditBox(list.searchBox)
+	S:HandleScrollBar(list.scroll.ScrollBar)
+
+	local filterDropdown = list.filterDropdown
+	S:HandleButton(filterDropdown, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, true, 'right')
+	S:HandleCloseButton(filterDropdown.ResetButton)
+
+	if Private.isForever then
+		hooksecurefunc(filterDropdown, 'OpenMenu', Dropdown_OpenMenu)
+	end
 
 	frame.isSkinned = true
+end
+
+local function MinimapLauncher_OnClick(button)
+	if Private.isForever then
+		Skin_FloatingFrame()
+	elseif button.optionsPopup then
+		SkinOptionsPopup(button.optionsPopup)
+	end
+end
+
+local function HookMinimapLauncher()
+	local launcher = Private.Libs.LDB:GetDataObjectByName('WhatsTrainingMinimap')
+	if launcher then
+		hooksecurefunc(launcher, 'OnClick', MinimapLauncher_OnClick)
+	end
+end
+
+-- Train All
+local function ClassTrainerFrame_OnShow()
+	S:HandleButton(WhatsTrainingTrainAllButton)
+end
+
+local function Skin_Trainer()
+	ClassTrainerFrame:HookScript('OnShow', ClassTrainerFrame_OnShow)
 end
 
 local function SkinCanvas(frame)
@@ -384,7 +430,7 @@ local function Skin_WhatsTraining()
 
 	local blizzard = E.private.skins.blizzard
 	if blizzard.enable and blizzard.tooltip then
-		for _, tooltip in next, { WhatsTrainingTooltip, WhatsTrainingCompareTooltip, WhatsTrainingForeverTooltip } do
+		for _, tooltip in next, { WhatsTrainingTooltip, WhatsTrainingCompareTooltip, WhatsTrainingForeverTooltip, WhatsTrainingTrainerTooltip } do
 			TT:SetStyle(tooltip)
 		end
 	end
@@ -394,6 +440,10 @@ local function Skin_WhatsTraining()
 
 		if blizzard.enable and blizzard.tradeskill then
 			EventRegistry:RegisterCallback('ProfessionsFrame.Show', Skin_Crafting, 'LuckyoneUI_WhatsTraining')
+		end
+
+		if blizzard.enable and blizzard.trainer then
+			S:AddCallbackForAddon('Blizzard_TrainerUI', 'LuckyoneUI_WhatsTrainingTrainer', Skin_Trainer)
 		end
 
 		local broker = Private.Libs.LDB:GetDataObjectByName('WhatsTraining')
@@ -414,6 +464,8 @@ local function Skin_WhatsTraining()
 	if SlashCmdList.WHATSTRAINING then
 		hooksecurefunc(SlashCmdList, 'WHATSTRAINING', Skin_FloatingFrame)
 	end
+
+	RunNextFrame(HookMinimapLauncher)
 end
 
 S:AddCallbackForAddon('WhatsTraining', 'LuckyoneUI_WhatsTraining', Skin_WhatsTraining)

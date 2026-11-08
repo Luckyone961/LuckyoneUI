@@ -156,7 +156,7 @@ local function LootContent_SetHeight(content)
 	ItemContent_SetHeight(content)
 
 	local frame = ForeverDungeonJournalFrame
-	for _, line in next, { frame.lootRecipeLine, frame.lootSharedLine } do
+	for _, line in next, { frame.lootRecipeLine, frame.lootSharedLine, frame.lootProbableLine } do
 		if not line.IsSkinned then
 			SkinDivider(line)
 		end
@@ -488,11 +488,23 @@ local function Text_SetTextColor(text, r, g, b)
 	end
 end
 
--- The "You will also receive" header is created on demand in a black font
+-- The "You will also receive" header and the dark red "Requires:" line are created on demand
 local function QuestDetail_SetHeight()
-	local header = ForeverDungeonJournalFrame.questAlsoReceiveHeader
-	if header then
-		header:SetTextColor(1, 1, 1)
+	local frame = ForeverDungeonJournalFrame
+	for _, text in next, { frame.questAlsoReceiveHeader, frame.questStartRequiresText } do
+		text:SetTextColor(1, 1, 1)
+	end
+end
+
+-- Show on Map under the objective and Turn in: Dungeon, created on demand
+local function QuestDetail_Buttons()
+	local frame = ForeverDungeonJournalFrame
+	if frame.questObjectiveMapButton then
+		S:HandleButton(frame.questObjectiveMapButton)
+	end
+
+	if frame.questStepHaveIt then
+		S:HandleButton(frame.questStepHaveIt.button)
 	end
 end
 
@@ -604,6 +616,7 @@ local function Skin_Frame()
 
 	SkinListRow(frame.allianceQuestButton)
 	SkinListRow(frame.hordeQuestButton)
+	S:HandleButton(frame.questTrackButton)
 
 	S:HandleScrollBar(frame.questListScroll.ScrollBar)
 	S:HandleScrollBar(frame.questDetailScroll.ScrollBar)
@@ -634,7 +647,7 @@ local function Skin_Frame()
 
 	SkinBackdropButton(frame.questShareButton)
 
-	for _, button in next, { frame.questMapButton, frame.questChainButton, frame.questStartLinkButton, frame.questLeadsToButton } do
+	for _, button in next, { frame.questMapButton, frame.questTurninMapButton, frame.questChainButton, frame.questStartLinkButton, frame.questLeadsToButton } do
 		S:HandleButton(button)
 	end
 	S:HandleNextPrevButton(frame.questPrevStepButton, 'left', nil, true)
@@ -646,6 +659,7 @@ local function Skin_Frame()
 	hooksecurefunc(FDJ, 'LayoutRepPills', RepPills_Layout)
 
 	hooksecurefunc(frame.questDetailContent, 'SetHeight', ItemContent_SetHeight)
+	hooksecurefunc(frame.questDetailContent, 'SetHeight', QuestDetail_Buttons)
 	ItemContent_SetHeight(frame.questDetailContent)
 
 	-- Dungeon Map
@@ -665,6 +679,7 @@ local function Skin_Frame()
 
 	-- Settings window
 	hooksecurefunc(FDJ, 'ToggleSettingsPanel', Skin_SettingsPanel)
+	hooksecurefunc(FDJ, 'OpenSettingsAt', Skin_SettingsPanel)
 
 	-- Options > AddOns page
 	local options = ForeverDungeonJournalOptionsPanel

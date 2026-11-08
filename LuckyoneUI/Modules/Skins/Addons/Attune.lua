@@ -150,6 +150,39 @@ local function Skin_SyncProgress()
 	end
 end
 
+local function Skin_SkipCheck()
+	local holder = AttuneSkipCheck
+	if not holder then return end
+
+	if not holder.backdrop then
+		local box, check, highlight = holder:GetRegions()
+		box:SetTexture()
+		highlight:SetTexture()
+
+		holder:CreateBackdrop()
+		holder.backdrop:SetInside(box, 4, 4)
+
+		check:SetParent(holder.backdrop)
+		if E.private.skins.checkBoxSkin then
+			check:SetTexture(E.Media.Textures.Melli)
+			check:SetVertexColor(1, 0.82, 0, 0.8)
+			check:SetInside(holder.backdrop)
+		end
+	end
+
+	holder.backdrop:SetFrameLevel(holder:GetFrameLevel() + 1)
+end
+
+local function Skin_NextFrame()
+	local frame = AttuneNextFrame
+	if not frame or frame.isSkinned then return end
+
+	frame:StripTextures()
+	frame:SetTemplate('Transparent')
+
+	frame.isSkinned = true
+end
+
 -- Attune builds its window on the first /attune or Broker click
 local function Skin_Attune()
 	if not Private.Addon.db.profile.skins.Attune then return end
@@ -161,6 +194,8 @@ local function Skin_Attune()
 	hooksecurefunc('Attune_ShowQuestDetail', Skin_QuestDetail)
 	hooksecurefunc('Attune_EnsureResultHolder', Skin_ResultHolder)
 	hooksecurefunc('Attune_StartSync', Skin_SyncProgress)
+	hooksecurefunc('Attune_CreateSkipCheck', Skin_SkipCheck)
+	hooksecurefunc('Attune_NextFrameEnsure', Skin_NextFrame)
 
 	-- Only restores what ElvUI's Ace3 skin set
 	if E.private.skins.ace3Enable then

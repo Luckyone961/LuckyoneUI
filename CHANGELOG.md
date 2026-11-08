@@ -1,6 +1,13 @@
 ﻿## Version 4.28 [Alpha - In Development - Not Yet Released]
 
+**All WoW Versions:**  
+- Updated Skin for Auctionator  
+
+**Retail:**  
+- Updated Skin for RCLootCouncil  
+
 **Forever:**
+- Updated Skins for Attune, ForeverDungeonJournal and WhatsTraining  
 - Updated SkironCooldownManager profile (Castbar, Mana ticks, Hunter abilities)  
 
 ## Version 4.27 [04-11-2026]

@@ -53,6 +53,11 @@ local function SkinIconBordered(button)
 	highlight:SetInside()
 end
 
+local function SkinIconBorderedInit(button)
+	SkinIconBordered(button)
+	hooksecurefunc(button, 'Init', SkinIconBordered)
+end
+
 local function SkinButton(button)
 	S:HandleButton(button)
 end
@@ -60,7 +65,7 @@ end
 local Elements = {
 	RCFrame = SkinFrame,
 	RCButton = SkinButton,
-	IconBordered = SkinIconBordered,
+	IconBordered = SkinIconBorderedInit,
 }
 
 -- Every window, button and item icon goes through the addon's element factory
@@ -183,6 +188,7 @@ local function LootHistory_GetFrame()
 	if not frame then return end
 
 	SkinPageButton(frame.moreInfoBtn, 'left')
+	S:HandleButton(frame.filter, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, true, 'right')
 end
 
 -- Responses popup on history entries

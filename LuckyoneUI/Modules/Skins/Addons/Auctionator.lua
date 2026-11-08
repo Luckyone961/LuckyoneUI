@@ -418,7 +418,7 @@ local function SkinConfigTab(frame)
 
 	SkinButtons({ frame.ScanButton, frame.OptionsButton })
 
-	for _, link in next, { frame.ContributeLink, frame.DiscordLink, frame.BugReportLink } do
+	for _, link in next, { frame.ContributeLink, frame.DiscordLink } do
 		if link.InputBox then
 			S:HandleEditBox(link.InputBox)
 		end
