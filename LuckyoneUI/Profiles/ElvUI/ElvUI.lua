@@ -1644,7 +1644,7 @@ local function Setup_ElvUI(layout, partyStyle)
 	E.db.movers.VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,1,-83'
 
 	if Private.isForever then
-		E.db.movers.ShardTransferMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-306,260') or 'BOTTOM,ElvUIParent,BOTTOM,-306,380'
+		E.db.movers.ShardTransferMover = (scaled and 'BOTTOM,ElvUIParent,BOTTOM,-306,260') or 'BOTTOM,ElvUIParent,BOTTOM,-306,370'
 	end
 
 	if layout == 'main' then
