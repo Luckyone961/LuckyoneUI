@@ -344,6 +344,60 @@ local function Skin_FavouritesWindow(frame)
 	window.IsSkinned = true
 end
 
+-- Character Logs run list
+local function RunLogList_SetHeight(list)
+	local r, g, b = unpack(E.media.rgbvaluecolor)
+
+	for _, row in next, { list:GetChildren() } do
+		if row.del and not row.IsSkinned then
+			row:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
+			row.sel:SetColorTexture(r, g, b, 0.25)
+			SkinBackdropButton(row.del)
+
+			row.IsSkinned = true
+		end
+	end
+end
+
+-- Character Logs details
+local function RunLogDetail_SetHeight(detail)
+	for _, child in next, { detail:GetChildren() } do
+		if not child.IsSkinned then
+			if child.icon and child.name then
+				child:SetHighlightTexture(E.ClearTexture)
+				SkinItemButton(child)
+			elseif child.backdropInfo then
+				child:SetTemplate('Transparent')
+				child.IsSkinned = true
+			end
+		end
+	end
+
+	local party = ForeverDungeonJournalRunLog.partyButton
+	if party and not party.IsSkinned then
+		S:HandleButton(party)
+		party.list:SetTemplate('Transparent')
+	end
+end
+
+-- Character Logs window
+local function Skin_RunLogWindow()
+	local window = ForeverDungeonJournalRunLog
+	if window.IsSkinned then return end
+
+	S:HandlePortraitFrame(window)
+	S:HandleScrollBar(window.listScroll.ScrollBar)
+	S:HandleScrollBar(window.detailScroll.ScrollBar)
+	S:HandleButton(window.trackButton)
+
+	hooksecurefunc(window.list, 'SetHeight', RunLogList_SetHeight)
+	hooksecurefunc(window.detail, 'SetHeight', RunLogDetail_SetHeight)
+	RunLogList_SetHeight(window.list)
+	RunLogDetail_SetHeight(window.detail)
+
+	window.IsSkinned = true
+end
+
 -- Right-click menu on items, built on the first use
 local function Skin_FavouriteMenu()
 	local menu = ForeverDungeonJournalFavouriteContextMenu
@@ -459,6 +513,10 @@ local function Skin_SettingsPanel()
 		S:HandleCheckBox(check)
 	end
 
+	for _, slider in next, panel.sliders do
+		S:HandleSliderFrame(slider)
+	end
+
 	-- The key binding button recolors its border on every show
 	for _, button in next, panel.keybinds do
 		SkinBackdropButton(button)
@@ -530,6 +588,10 @@ local function Skin_Frame()
 	S:HandleCloseButton(frame.closeButton)
 	S:HandleButton(frame.backButton)
 
+	-- Previous and next dungeon
+	S:HandleNextPrevButton(frame.prevDungeonButton, 'left', nil, nil, nil, nil, 24)
+	S:HandleNextPrevButton(frame.nextDungeonButton, 'right', nil, nil, nil, nil, 24)
+
 	-- Language select and Report top right
 	S:HandleButton(frame.languageSelectorButton)
 	S:HandleButton(frame.bugReportButton)
@@ -571,6 +633,11 @@ local function Skin_Frame()
 
 	hooksecurefunc(FDJ, 'ToggleFavouritesWindow', Skin_FavouritesWindow)
 	hooksecurefunc(FDJ, 'ShowItemFavouriteMenu', Skin_FavouriteMenu)
+
+	-- Character Logs
+	SkinBackdropButton(frame.runLogButton)
+	frame.runLogButton.icon:SetInside()
+	hooksecurefunc(FDJ, 'ToggleRunLog', Skin_RunLogWindow)
 
 	S:HandleScrollBar(frame.homeScroll.ScrollBar)
 

@@ -71,6 +71,12 @@ local function Skin_Journal(frame, pager)
 		S:HandleButton(button)
 	end
 
+	-- Settings view and welcome view
+	local settings, welcome = frame.settingsView, frame.modeChoice
+	for _, button in next, { settings.scan, settings.clear, settings.minus, settings.plus, settings.auto, welcome.done, settings.pad, welcome.next, welcome.back2 } do
+		S:HandleButton(button)
+	end
+
 	-- Search Box
 	S:HandleEditBox(frame.search)
 

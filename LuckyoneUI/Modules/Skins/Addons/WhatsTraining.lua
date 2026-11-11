@@ -45,6 +45,11 @@ local function SkinOptionsPopup(popup)
 	S:HandleButton(_G[name..'Done'])
 	S:HandleCheckBox(_G[name..'ShowKnown'])
 
+	-- Vanilla and TBC only
+	if popup.hideMinimap then
+		S:HandleCheckBox(popup.hideMinimap)
+	end
+
 	popup.isSkinned = true
 end
 
@@ -323,9 +328,19 @@ local function HookMinimapLauncher()
 	end
 end
 
--- Train All
+-- Train All and confirmation frame
 local function ClassTrainerFrame_OnShow()
+	local confirmation = WhatsTrainingTrainAllConfirmation
+	if confirmation.isSkinned then return end
+
 	S:HandleButton(WhatsTrainingTrainAllButton)
+
+	confirmation:StripTextures()
+	confirmation:SetTemplate('Transparent')
+	S:HandleButton(WhatsTrainingTrainAllAccept)
+	S:HandleButton(WhatsTrainingTrainAllCancel)
+
+	confirmation.isSkinned = true
 end
 
 local function Skin_Trainer()
@@ -397,6 +412,14 @@ local function Skin_Crafting()
 	end
 
 	SkinCanvas(page)
+
+	-- Cover under the recipe list
+	for _, child in next, { WhatsTrainingCraftingRecipeList:GetChildren() } do
+		if not child:GetName() and child:DoesClipChildren() then
+			SkinCanvas(child)
+		end
+	end
+
 	page:HookScript('OnShow', CraftingPage_OnShow)
 	page:HookScript('OnHide', CraftingPage_OnHide)
 
