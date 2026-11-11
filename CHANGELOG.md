@@ -1,14 +1,15 @@
 ﻿## Version 4.28 [Alpha - In Development - Not Yet Released]
 
 **All WoW Versions:**  
+- Updated Chattynator profile for the latest version (Removes the fade again)  
 - Updated Skin for Auctionator  
 
 **Retail:**  
 - Updated Skin for RCLootCouncil  
 
 **Forever:**
-- Updated Skins for Attune, ForeverDungeonJournal and WhatsTraining  
-- Updated SkironCooldownManager profile (Castbar, Mana ticks, Hunter abilities)  
+- Updated Skins for Attune, ForeverDungeonJournal, HuntersFieldGuide and WhatsTraining  
+- Updated SkironCooldownManager profile (Castbar, Mana bar, Hunter abilities, Swing Timers)  
 
 ## Version 4.27 [04-11-2026]
 
