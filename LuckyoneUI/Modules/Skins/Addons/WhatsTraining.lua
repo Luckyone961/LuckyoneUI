@@ -48,6 +48,7 @@ local function SkinOptionsPopup(popup)
 	-- Vanilla and TBC only
 	if popup.hideMinimap then
 		S:HandleCheckBox(popup.hideMinimap)
+		S:HandleCheckBox(popup.enableProfessions)
 	end
 
 	popup.isSkinned = true

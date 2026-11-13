@@ -77,6 +77,8 @@ local function Skin_Journal(frame, pager)
 		S:HandleButton(button)
 	end
 
+	S:HandleEditBox(settings.discord)
+
 	-- Search Box
 	S:HandleEditBox(frame.search)
 
@@ -132,6 +134,7 @@ local function Skin_Export()
 
 	frame:SetTemplate('Transparent')
 	S:HandleScrollBar(_G.FieldGuideExportScroll.ScrollBar)
+	S:HandleEditBox(frame.link)
 
 	-- Close button
 	for _, child in next, { frame:GetChildren() } do

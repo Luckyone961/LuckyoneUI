@@ -228,6 +228,14 @@ local function Map_Render()
 		sizer.IsSkinned = true
 	end
 
+	local questToggle = frame.dungeonMapPanel.fdjQuestToggle
+	if questToggle and not questToggle.IsSkinned then
+		questToggle:SetTemplate('Transparent')
+		S:HandleCheckBox(questToggle.check)
+
+		questToggle.IsSkinned = true
+	end
+
 	local buttons = frame.dungeonMapFloorButtons
 	if not buttons then return end
 
@@ -460,6 +468,15 @@ local function SkinSettingsBox(box)
 		for _, child in next, { view:GetChildren() } do
 			if child:IsObjectType('EditBox') then
 				S:HandleEditBox(child)
+			elseif child.scrollBar then
+				-- Scrolling options page and its Export and Import buttons
+				S:HandleTrimScrollBar(child.scrollBar)
+
+				for _, button in next, { child.content:GetChildren() } do
+					if button.Left and button.Right then
+						S:HandleButton(button)
+					end
+				end
 			elseif child.backdropInfo then
 				child:SetTemplate()
 			end
@@ -487,9 +504,6 @@ local function Skin_SettingsPanel()
 			local normal = child:GetNormalTexture()
 			if normal and normal:GetAtlas() == 'RedButton-Exit' then
 				S:HandleCloseButton(child)
-			elseif child.Left and child.Right then
-				-- Done
-				S:HandleButton(child)
 			end
 		elseif child.backdropInfo then
 			SkinSettingsBox(child)
@@ -563,6 +577,17 @@ local function QuestDetail_Buttons()
 
 	if frame.questStepHaveIt then
 		S:HandleButton(frame.questStepHaveIt.button)
+	end
+
+	if frame.questGuideButton then
+		S:HandleButton(frame.questGuideButton)
+	end
+end
+
+-- Guide button on guide quest rows
+local function QuestRow_SetGuideButton(row)
+	if row.guideToggle then
+		S:HandleButton(row.guideToggle)
 	end
 end
 
@@ -689,6 +714,7 @@ local function Skin_Frame()
 	S:HandleScrollBar(frame.questDetailScroll.ScrollBar)
 
 	hooksecurefunc(frame.questContent, 'SetHeight', QuestContent_SetHeight)
+	hooksecurefunc(FDJ, 'SetRowGuideButton', QuestRow_SetGuideButton)
 	QuestContent_SetHeight(frame.questContent)
 
 	-- Quest Details
