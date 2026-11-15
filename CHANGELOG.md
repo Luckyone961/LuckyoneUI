@@ -8,6 +8,7 @@
 - Updated Skin for RCLootCouncil  
 
 **Forever:**
+- Added Forever Trinket Menu skin  
 - Updated Skins for Attune, ForeverDungeonJournal, HuntersFieldGuide and WhatsTraining  
 - Updated SkironCooldownManager profile (Castbar, Mana bar, Hunter abilities, Swing Timers)  
 
