@@ -7,7 +7,7 @@
 **Retail:**  
 - Updated Skin for RCLootCouncil  
 
-**Forever:**
+**Forever:**  
 - Added Forever Trinket Menu skin  
 - ElvUI anchor for Shard Transfer Frame moved down some pixels  
 - Updated Attune skin  
