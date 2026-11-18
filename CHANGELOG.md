@@ -9,8 +9,13 @@
 
 **Forever:**
 - Added Forever Trinket Menu skin  
-- Updated Skins for Attune, ForeverDungeonJournal, HuntersFieldGuide and WhatsTraining  
-- Updated SkironCooldownManager profile (Castbar, Mana bar, Hunter abilities, Swing Timers)  
+- ElvUI anchor for Shard Transfer Frame moved down some pixels  
+- Updated Attune skin  
+- Updated DungeonJournal skin  
+- Updated Hunter's Field Guide skin  
+- Updated Nova Spell Rank Checker skin  
+- Updated WhatsTraining skin  
+- Updated SkironCooldownManager profile  
 
 ## Version 4.27 [04-11-2026]
 
