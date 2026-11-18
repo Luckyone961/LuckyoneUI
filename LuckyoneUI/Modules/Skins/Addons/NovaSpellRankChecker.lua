@@ -22,11 +22,13 @@ end
 -- Forever builds the button when Blizzard_PlayerSpells loads
 local function SpellBookFrame_Show()
 	local button = PlayerSpellsFrameScanButton
-	if not button or button.IsSkinned then return end
+	if not button then return end
+
+	button:Show()
+	if button.IsSkinned then return end
 
 	local spellBook = PlayerSpellsFrame.SpellBookFrame
 	button:SetParent(spellBook)
-	button:Show()
 
 	S:HandleButton(button)
 	button:SetScale(1)

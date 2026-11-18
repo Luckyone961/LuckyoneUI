@@ -1,4 +1,23 @@
-﻿## Version 4.27 [04-11-2026]
+﻿## Version 4.28 [18-11-2026]
+
+**All WoW Versions:**  
+- Updated Chattynator profile for the latest version (Removes the fade again)  
+- Updated Skin for Auctionator  
+
+**Retail:**  
+- Updated Skin for RCLootCouncil  
+
+**Forever:**
+- Added Forever Trinket Menu skin  
+- ElvUI anchor for Shard Transfer Frame moved down some pixels  
+- Updated Attune skin  
+- Updated DungeonJournal skin  
+- Updated Hunter's Field Guide skin  
+- Updated Nova Spell Rank Checker skin  
+- Updated SkironCooldownManager profile  
+- Updated WhatsTraining skin  
+
+## Version 4.27 [04-11-2026]
 
 **All WoW Versions:**  
 - Added a list of all chat commands in the Chat tab of the config  

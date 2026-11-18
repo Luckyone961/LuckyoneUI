@@ -115,10 +115,15 @@ local function SkinTab(tab)
 	Tab_UpdateBorder(tab)
 end
 
+local function BossRow_SetSize(row, width)
+	row:Width(width - 9)
+end
+
 local function BossContent_SetHeight(content)
 	for _, row in next, { content:GetChildren() } do
 		if not row.IsSkinned then
-			row:Width(306)
+			row:Width(row:GetWidth() - 9)
+			hooksecurefunc(row, 'SetSize', BossRow_SetSize)
 			SkinListRow(row)
 		end
 	end
@@ -156,7 +161,7 @@ local function LootContent_SetHeight(content)
 	ItemContent_SetHeight(content)
 
 	local frame = ForeverDungeonJournalFrame
-	for _, line in next, { frame.lootRecipeLine, frame.lootSharedLine } do
+	for _, line in next, { frame.lootRecipeLine, frame.lootSharedLine, frame.lootProbableLine } do
 		if not line.IsSkinned then
 			SkinDivider(line)
 		end
@@ -228,6 +233,14 @@ local function Map_Render()
 		sizer.IsSkinned = true
 	end
 
+	local questToggle = frame.dungeonMapPanel.fdjQuestToggle
+	if questToggle and not questToggle.IsSkinned then
+		questToggle:SetTemplate('Transparent')
+		S:HandleCheckBox(questToggle.check)
+
+		questToggle.IsSkinned = true
+	end
+
 	local buttons = frame.dungeonMapFloorButtons
 	if not buttons then return end
 
@@ -295,6 +308,8 @@ local function Skin_LootFilterWindow(frame)
 		end
 	end
 
+	window.armor.slotMenu:SetTemplate('Transparent')
+
 	-- Spell school drop-down
 	local schools = window.schoolArrow
 	if schools then
@@ -329,6 +344,51 @@ local function Skin_LootFilterResults(frame)
 	panel.IsSkinned = true
 end
 
+local function Skin_LootFilterLoading(frame)
+	local box = frame.lootFilterLoading
+	if not box or box.IsSkinned then return end
+
+	box:SetTemplate('Transparent')
+	box.bar:SetStatusBarTexture(E.media.normTex)
+	box.bar:CreateBackdrop()
+
+	box.IsSkinned = true
+end
+
+-- Tier Sets page
+local function Skin_TierPanel()
+	local panel = ForeverDungeonJournalTierPanel
+	if not panel or panel.IsSkinned then return end
+
+	SkinBackdropButton(panel.compact)
+	S:HandleButton(panel.classes)
+	panel.classes.menu:SetTemplate('Transparent')
+
+	for _, option in next, panel.classes.menu.options do
+		SkinMenuOption(option)
+	end
+
+	S:HandleScrollBar(panel.scroll.ScrollBar)
+
+	panel.IsSkinned = true
+end
+
+local function TierBack_Update()
+	local back = ForeverDungeonJournalFrame.fdjTierBack
+	if back then
+		S:HandleButton(back)
+	end
+end
+
+-- Profession icons on Recipes and Patterns pages
+local function LootScrollBar_SetShown()
+	local box = ForeverDungeonJournalFrame.recipeProfBox
+	if box and not box.IsSkinned then
+		box:SetTemplate('Transparent')
+		box.IsSkinned = true
+	end
+end
+
 -- Favourites window, built on the first click
 local function Skin_FavouritesWindow(frame)
 	local window = frame.favouritesWindow
@@ -340,6 +400,60 @@ local function Skin_FavouritesWindow(frame)
 
 	hooksecurefunc(window.fdjContent, 'SetHeight', FavouritesContent_SetHeight)
 	FavouritesContent_SetHeight(window.fdjContent)
+
+	window.IsSkinned = true
+end
+
+-- Character Logs run list
+local function RunLogList_SetHeight(list)
+	local r, g, b = unpack(E.media.rgbvaluecolor)
+
+	for _, row in next, { list:GetChildren() } do
+		if row.del and not row.IsSkinned then
+			row:GetHighlightTexture():SetColorTexture(1, 1, 1, 0.25)
+			row.sel:SetColorTexture(r, g, b, 0.25)
+			SkinBackdropButton(row.del)
+
+			row.IsSkinned = true
+		end
+	end
+end
+
+-- Character Logs details
+local function RunLogDetail_SetHeight(detail)
+	for _, child in next, { detail:GetChildren() } do
+		if not child.IsSkinned then
+			if child.icon and child.name then
+				child:SetHighlightTexture(E.ClearTexture)
+				SkinItemButton(child)
+			elseif child.backdropInfo then
+				child:SetTemplate('Transparent')
+				child.IsSkinned = true
+			end
+		end
+	end
+
+	local party = ForeverDungeonJournalRunLog.partyButton
+	if party and not party.IsSkinned then
+		S:HandleButton(party)
+		party.list:SetTemplate('Transparent')
+	end
+end
+
+-- Character Logs window
+local function Skin_RunLogWindow()
+	local window = ForeverDungeonJournalRunLog
+	if window.IsSkinned then return end
+
+	S:HandlePortraitFrame(window)
+	S:HandleScrollBar(window.listScroll.ScrollBar)
+	S:HandleScrollBar(window.detailScroll.ScrollBar)
+	S:HandleButton(window.trackButton)
+
+	hooksecurefunc(window.list, 'SetHeight', RunLogList_SetHeight)
+	hooksecurefunc(window.detail, 'SetHeight', RunLogDetail_SetHeight)
+	RunLogList_SetHeight(window.list)
+	RunLogDetail_SetHeight(window.detail)
 
 	window.IsSkinned = true
 end
@@ -406,6 +520,15 @@ local function SkinSettingsBox(box)
 		for _, child in next, { view:GetChildren() } do
 			if child:IsObjectType('EditBox') then
 				S:HandleEditBox(child)
+			elseif child.scrollBar then
+				-- Scrolling options page and its Export and Import buttons
+				S:HandleTrimScrollBar(child.scrollBar)
+
+				for _, button in next, { child.content:GetChildren() } do
+					if button.Left and button.Right then
+						S:HandleButton(button)
+					end
+				end
 			elseif child.backdropInfo then
 				child:SetTemplate()
 			end
@@ -433,9 +556,6 @@ local function Skin_SettingsPanel()
 			local normal = child:GetNormalTexture()
 			if normal and normal:GetAtlas() == 'RedButton-Exit' then
 				S:HandleCloseButton(child)
-			elseif child.Left and child.Right then
-				-- Done
-				S:HandleButton(child)
 			end
 		elseif child.backdropInfo then
 			SkinSettingsBox(child)
@@ -457,6 +577,10 @@ local function Skin_SettingsPanel()
 
 	for _, check in next, panel.checks do
 		S:HandleCheckBox(check)
+	end
+
+	for _, slider in next, panel.sliders do
+		S:HandleSliderFrame(slider)
 	end
 
 	-- The key binding button recolors its border on every show
@@ -488,11 +612,38 @@ local function Text_SetTextColor(text, r, g, b)
 	end
 end
 
--- The "You will also receive" header is created on demand in a black font
+-- The "You will also receive" header and the dark red "Requires:" line are created on demand
 local function QuestDetail_SetHeight()
-	local header = ForeverDungeonJournalFrame.questAlsoReceiveHeader
-	if header then
-		header:SetTextColor(1, 1, 1)
+	local frame = ForeverDungeonJournalFrame
+	for _, text in next, { frame.questAlsoReceiveHeader, frame.questStartRequiresText } do
+		text:SetTextColor(1, 1, 1)
+	end
+end
+
+-- Show on Map under the objective and Turn in: Dungeon, created on demand
+local function QuestDetail_Buttons()
+	local frame = ForeverDungeonJournalFrame
+	if frame.questObjectiveMapButton then
+		S:HandleButton(frame.questObjectiveMapButton)
+	end
+
+	if frame.questStepHaveIt then
+		S:HandleButton(frame.questStepHaveIt.button)
+	end
+
+	if frame.questGuideButton then
+		S:HandleButton(frame.questGuideButton)
+	end
+
+	if frame.questSummonButton then
+		S:HandleButton(frame.questSummonButton)
+	end
+end
+
+-- Guide button on guide quest rows
+local function QuestRow_SetGuideButton(row)
+	if row.guideToggle then
+		S:HandleButton(row.guideToggle)
 	end
 end
 
@@ -517,6 +668,10 @@ local function Skin_Frame()
 
 	S:HandleCloseButton(frame.closeButton)
 	S:HandleButton(frame.backButton)
+
+	-- Previous and next dungeon
+	S:HandleNextPrevButton(frame.prevDungeonButton, 'left', nil, nil, nil, nil, 24)
+	S:HandleNextPrevButton(frame.nextDungeonButton, 'right', nil, nil, nil, nil, 24)
 
 	-- Language select and Report top right
 	S:HandleButton(frame.languageSelectorButton)
@@ -547,18 +702,29 @@ local function Skin_Frame()
 	home:StripTextures()
 
 	SkinBackdropButton(frame.hideDungeonsButton)
+	SkinBackdropButton(frame.homeShowAllButton)
 
 	-- Loot Filter
 	SkinBackdropButton(frame.lootFilterButton)
 
 	hooksecurefunc(FDJ, 'ToggleLootFilterWindow', Skin_LootFilterWindow)
 	hooksecurefunc(FDJ, 'ShowLootFilterList', Skin_LootFilterResults)
+	hooksecurefunc(FDJ, 'ShowLootFilterResults', Skin_LootFilterLoading)
+
+	-- Tier Sets
+	hooksecurefunc(FDJ, 'OpenTierPage', Skin_TierPanel)
+	hooksecurefunc(FDJ, 'UpdateDungeonArrows', TierBack_Update)
 
 	-- Favourites
 	SkinBackdropButton(frame.favouritesButton)
 
 	hooksecurefunc(FDJ, 'ToggleFavouritesWindow', Skin_FavouritesWindow)
 	hooksecurefunc(FDJ, 'ShowItemFavouriteMenu', Skin_FavouriteMenu)
+
+	-- Character Logs
+	SkinBackdropButton(frame.runLogButton)
+	frame.runLogButton.icon:SetInside()
+	hooksecurefunc(FDJ, 'ToggleRunLog', Skin_RunLogWindow)
 
 	S:HandleScrollBar(frame.homeScroll.ScrollBar)
 
@@ -589,6 +755,7 @@ local function Skin_Frame()
 
 	S:HandleScrollBar(frame.bossListScroll.ScrollBar)
 	S:HandleScrollBar(frame.lootScroll.ScrollBar)
+	hooksecurefunc(frame.lootScroll.ScrollBar, 'SetShown', LootScrollBar_SetShown)
 
 	hooksecurefunc(frame.bossContent, 'SetHeight', BossContent_SetHeight)
 	hooksecurefunc(frame.lootContent, 'SetHeight', LootContent_SetHeight)
@@ -604,11 +771,13 @@ local function Skin_Frame()
 
 	SkinListRow(frame.allianceQuestButton)
 	SkinListRow(frame.hordeQuestButton)
+	S:HandleButton(frame.questTrackButton)
 
 	S:HandleScrollBar(frame.questListScroll.ScrollBar)
 	S:HandleScrollBar(frame.questDetailScroll.ScrollBar)
 
 	hooksecurefunc(frame.questContent, 'SetHeight', QuestContent_SetHeight)
+	hooksecurefunc(FDJ, 'SetRowGuideButton', QuestRow_SetGuideButton)
 	QuestContent_SetHeight(frame.questContent)
 
 	-- Quest Details
@@ -634,7 +803,7 @@ local function Skin_Frame()
 
 	SkinBackdropButton(frame.questShareButton)
 
-	for _, button in next, { frame.questMapButton, frame.questChainButton, frame.questStartLinkButton, frame.questLeadsToButton } do
+	for _, button in next, { frame.questMapButton, frame.questTurninMapButton, frame.questChainButton, frame.questStartLinkButton, frame.questLeadsToButton } do
 		S:HandleButton(button)
 	end
 	S:HandleNextPrevButton(frame.questPrevStepButton, 'left', nil, true)
@@ -646,6 +815,7 @@ local function Skin_Frame()
 	hooksecurefunc(FDJ, 'LayoutRepPills', RepPills_Layout)
 
 	hooksecurefunc(frame.questDetailContent, 'SetHeight', ItemContent_SetHeight)
+	hooksecurefunc(frame.questDetailContent, 'SetHeight', QuestDetail_Buttons)
 	ItemContent_SetHeight(frame.questDetailContent)
 
 	-- Dungeon Map
@@ -665,6 +835,7 @@ local function Skin_Frame()
 
 	-- Settings window
 	hooksecurefunc(FDJ, 'ToggleSettingsPanel', Skin_SettingsPanel)
+	hooksecurefunc(FDJ, 'OpenSettingsAt', Skin_SettingsPanel)
 
 	-- Options > AddOns page
 	local options = ForeverDungeonJournalOptionsPanel
