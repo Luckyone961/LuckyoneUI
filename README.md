@@ -39,7 +39,7 @@
 
 ### **ElvUI skins**  
 • Addons: AllTheThings, AtlasLoot, Attune, Auctionator, BigWigs, BugSack  
-• Addons: Deadly Boss Mods, ForeverDungeonJournal, Forever Trinket Menu, Hunter's Field Guide, KeystoneLoot, LFG Bulletin Board, Nova Instance Tracker  
+• Addons: Deadly Boss Mods, DungeonJournal, Forever Trinket Menu, Hunter's Field Guide, KeystoneLoot, LFG Bulletin Board, Nova Instance Tracker  
 • Addons: Nova Spell Rank Checker, Nova World Buffs, Plumber, Premade Groups Filter  
 • Addons: RCLootCouncil, RXPGuides, Simple Addon Manager, Simulationcraft  
 • Addons: Tabardy, WhatsTraining  
