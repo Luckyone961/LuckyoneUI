@@ -115,10 +115,15 @@ local function SkinTab(tab)
 	Tab_UpdateBorder(tab)
 end
 
+local function BossRow_SetSize(row, width)
+	row:Width(width - 9)
+end
+
 local function BossContent_SetHeight(content)
 	for _, row in next, { content:GetChildren() } do
 		if not row.IsSkinned then
-			row:Width(306)
+			row:Width(row:GetWidth() - 9)
+			hooksecurefunc(row, 'SetSize', BossRow_SetSize)
 			SkinListRow(row)
 		end
 	end
@@ -303,6 +308,8 @@ local function Skin_LootFilterWindow(frame)
 		end
 	end
 
+	window.armor.slotMenu:SetTemplate('Transparent')
+
 	-- Spell school drop-down
 	local schools = window.schoolArrow
 	if schools then
@@ -335,6 +342,51 @@ local function Skin_LootFilterResults(frame)
 	Results_SetHeight(panel.content)
 
 	panel.IsSkinned = true
+end
+
+local function Skin_LootFilterLoading(frame)
+	local box = frame.lootFilterLoading
+	if not box or box.IsSkinned then return end
+
+	box:SetTemplate('Transparent')
+	box.bar:SetStatusBarTexture(E.media.normTex)
+	box.bar:CreateBackdrop()
+
+	box.IsSkinned = true
+end
+
+-- Tier Sets page
+local function Skin_TierPanel()
+	local panel = ForeverDungeonJournalTierPanel
+	if not panel or panel.IsSkinned then return end
+
+	SkinBackdropButton(panel.compact)
+	S:HandleButton(panel.classes)
+	panel.classes.menu:SetTemplate('Transparent')
+
+	for _, option in next, panel.classes.menu.options do
+		SkinMenuOption(option)
+	end
+
+	S:HandleScrollBar(panel.scroll.ScrollBar)
+
+	panel.IsSkinned = true
+end
+
+local function TierBack_Update()
+	local back = ForeverDungeonJournalFrame.fdjTierBack
+	if back then
+		S:HandleButton(back)
+	end
+end
+
+-- Profession icons on Recipes and Patterns pages
+local function LootScrollBar_SetShown()
+	local box = ForeverDungeonJournalFrame.recipeProfBox
+	if box and not box.IsSkinned then
+		box:SetTemplate('Transparent')
+		box.IsSkinned = true
+	end
 end
 
 -- Favourites window, built on the first click
@@ -582,6 +634,10 @@ local function QuestDetail_Buttons()
 	if frame.questGuideButton then
 		S:HandleButton(frame.questGuideButton)
 	end
+
+	if frame.questSummonButton then
+		S:HandleButton(frame.questSummonButton)
+	end
 end
 
 -- Guide button on guide quest rows
@@ -646,12 +702,18 @@ local function Skin_Frame()
 	home:StripTextures()
 
 	SkinBackdropButton(frame.hideDungeonsButton)
+	SkinBackdropButton(frame.homeShowAllButton)
 
 	-- Loot Filter
 	SkinBackdropButton(frame.lootFilterButton)
 
 	hooksecurefunc(FDJ, 'ToggleLootFilterWindow', Skin_LootFilterWindow)
 	hooksecurefunc(FDJ, 'ShowLootFilterList', Skin_LootFilterResults)
+	hooksecurefunc(FDJ, 'ShowLootFilterResults', Skin_LootFilterLoading)
+
+	-- Tier Sets
+	hooksecurefunc(FDJ, 'OpenTierPage', Skin_TierPanel)
+	hooksecurefunc(FDJ, 'UpdateDungeonArrows', TierBack_Update)
 
 	-- Favourites
 	SkinBackdropButton(frame.favouritesButton)
@@ -693,6 +755,7 @@ local function Skin_Frame()
 
 	S:HandleScrollBar(frame.bossListScroll.ScrollBar)
 	S:HandleScrollBar(frame.lootScroll.ScrollBar)
+	hooksecurefunc(frame.lootScroll.ScrollBar, 'SetShown', LootScrollBar_SetShown)
 
 	hooksecurefunc(frame.bossContent, 'SetHeight', BossContent_SetHeight)
 	hooksecurefunc(frame.lootContent, 'SetHeight', LootContent_SetHeight)
