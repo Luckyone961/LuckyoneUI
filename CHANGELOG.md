@@ -1,4 +1,4 @@
-﻿## Version 4.28 [Alpha - In Development - Not Yet Released]
+﻿## Version 4.28 [18-11-2026]
 
 **All WoW Versions:**  
 - Updated Chattynator profile for the latest version (Removes the fade again)  
@@ -14,8 +14,8 @@
 - Updated DungeonJournal skin  
 - Updated Hunter's Field Guide skin  
 - Updated Nova Spell Rank Checker skin  
-- Updated WhatsTraining skin  
 - Updated SkironCooldownManager profile  
+- Updated WhatsTraining skin  
 
 ## Version 4.27 [04-11-2026]
 
