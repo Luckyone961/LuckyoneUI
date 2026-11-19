@@ -31,7 +31,6 @@ local function HandleItemButton(button)
 		button.cooldown:SetInside()
 
 		button.flatBorder:SetAlpha(0)
-		button.queueBorder:SetAlpha(0)
 
 		if button.bisBorder then
 			button.bisBorder:SetAlpha(0)
@@ -107,10 +106,8 @@ local function Bar_Layout(frame, buttons)
 	end
 end
 
--- Item list and pinned list grid
+-- Item list, pinned list and combat list grid
 local function List_Layout(frame, columns)
-	if not frame:IsShown() then return end
-
 	local buttons = frame.buttons
 	local first = buttons[1]
 	if not first or not first:IsShown() then return end
@@ -147,19 +144,36 @@ local function Update(addon)
 	local menu = addon.itemMenu
 	if menu then
 		HandleBar(menu, menu.buttons, db.hideMenuBorder)
-		List_Layout(menu, db.columns)
 
-		if db.hideMenuBorder and menu:IsShown() then
-			local point, anchor, relativePoint, x, y = menu:GetPoint()
-			menu:ClearAllPoints()
-			menu:Point(point, anchor, relativePoint, x > 0.5 and 2 or x < -0.5 and -2 or 0, y > 0.5 and 2 or y < -0.5 and -2 or 0)
+		if menu:IsShown() then
+			List_Layout(menu, db.columns)
+
+			if db.hideMenuBorder then
+				local point, anchor, relativePoint, x, y = menu:GetPoint()
+				menu:ClearAllPoints()
+				menu:Point(point, anchor, relativePoint, x > 0.5 and 2 or x < -0.5 and -2 or 0, y > 0.5 and 2 or y < -0.5 and -2 or 0)
+			end
 		end
 	end
 
 	local pinned = addon.pinned
 	if pinned then
 		HandleBar(pinned, pinned.buttons, db.hideMenuBorder)
-		List_Layout(pinned, db.columns)
+
+		if pinned:IsShown() then
+			List_Layout(pinned, db.columns)
+		end
+	end
+end
+
+-- Secure weapon lists for combat
+local function PrepareCombatLists(addon)
+	local lists = addon.combatLists
+	if not lists or InCombatLockdown() then return end
+
+	for _, list in next, lists do
+		HandleBar(list, list.buttons)
+		List_Layout(list, _G.TrinketMenuDB.columns)
 	end
 end
 
@@ -178,14 +192,15 @@ local function UpdateLockAppearance(addon)
 end
 
 local function Button_UpdateBorder(button)
-	button:SetBackdropBorderColor(unpack(button:IsEnabled() and E.media.bordercolor or E.media.rgbvaluecolor))
+	button:SetBackdropBorderColor(unpack(button:IsHighlightLocked() and E.media.rgbvaluecolor or E.media.bordercolor))
 end
 
 local function HandleButton(button)
 	S:HandleButton(button)
 
-	button:HookScript('OnEnable', Button_UpdateBorder)
-	button:HookScript('OnDisable', Button_UpdateBorder)
+	hooksecurefunc(button, 'LockHighlight', Button_UpdateBorder)
+	hooksecurefunc(button, 'UnlockHighlight', Button_UpdateBorder)
+	button:HookScript('OnLeave', Button_UpdateBorder)
 	Button_UpdateBorder(button)
 end
 
@@ -199,10 +214,69 @@ local function RefreshQueuePanel(addon)
 			S:HandleIcon(row.icon, true)
 			S:HandleButton(row.btn)
 			S:HandleButton(row.hideBtn)
+			HandleButton(row.optBtn)
+			S:HandleNextPrevButton(row.up, 'up')
+			S:HandleNextPrevButton(row.down, 'down')
 
 			row.IsSkinned = true
 		end
 	end
+end
+
+-- Per item settings next to the options
+local function ShowItemOptions(addon)
+	local window = addon.options.itemOptions
+	if window.IsSkinned then return end
+
+	window:SetTemplate('Transparent')
+	S:HandleCloseButton((window:GetChildren()))
+
+	S:HandleCheckBox(window.priority)
+	S:HandleCheckBox(window.keep)
+	window.priority:Size(26)
+	window.keep:Size(26)
+
+	S:HandleEditBox(window.delay)
+
+	window.IsSkinned = true
+end
+
+-- Saved queues next to the options
+local function ToggleProfiles(addon)
+	local window = addon.options.profiles
+	if window.IsSkinned then return end
+
+	window:SetTemplate('Transparent')
+	S:HandleCloseButton((window:GetChildren()))
+
+	S:HandleEditBox(window.name)
+	S:HandleButton(window.save)
+
+	for _, row in next, window.rows do
+		S:HandleButton(row.load)
+		S:HandleButton(row.delete)
+	end
+
+	window.IsSkinned = true
+end
+
+-- Gear bar slots next to the options
+local function ToggleGearSlotPicker(addon)
+	local window = addon.gearPicker
+	if window.IsSkinned then return end
+
+	window:SetTemplate('Transparent')
+	S:HandleCloseButton((window:GetChildren()))
+
+	for _, check in next, window.checks do
+		S:HandleCheckBox(check)
+	end
+
+	for _, check in next, window.always do
+		S:HandleCheckBox(check)
+	end
+
+	window.IsSkinned = true
 end
 
 local function Skin_Options(addon)
@@ -216,18 +290,21 @@ local function Skin_Options(addon)
 	frame:SetTemplate('Transparent')
 
 	-- Tabs
-	HandleButton(frame.tabGeneral)
-	HandleButton(frame.tabQueue)
+	for _, tab in next, frame.tabs do
+		HandleButton(tab)
+	end
 
-	for _, panel in next, { frame.panelGeneral, frame.panelQueue } do
+	for _, panel in next, frame.panels do
 		for _, child in next, { panel:GetChildren() } do
 			if child:IsObjectType('CheckButton') then
 				S:HandleCheckBox(child)
 
-				-- The rows are 22 apart
+				-- The rows are 24 apart
 				child:Size(26)
 			elseif child:IsObjectType('Button') then
 				HandleButton(child)
+			elseif child:IsObjectType('EditBox') then
+				S:HandleEditBox(child)
 			end
 		end
 	end
@@ -242,8 +319,9 @@ local function Skin_ForeverTrinketMenu()
 
 	local addon = _G.ForeverTrinketMenuEventFrame
 
-	-- Bars, item list and pinned list
+	-- Bars, item list, pinned list and combat lists
 	hooksecurefunc(addon, 'CreateGearBar', Update)
+	hooksecurefunc(addon, 'PrepareCombatLists', PrepareCombatLists)
 	hooksecurefunc(addon, 'RefreshPinned', Update)
 	hooksecurefunc(addon, 'ShowItemMenu', Update)
 	hooksecurefunc(addon, 'UpdateLockAppearance', UpdateLockAppearance)
@@ -251,7 +329,10 @@ local function Skin_ForeverTrinketMenu()
 
 	-- Options
 	hooksecurefunc(addon, 'RefreshQueuePanel', RefreshQueuePanel)
+	hooksecurefunc(addon, 'ShowItemOptions', ShowItemOptions)
+	hooksecurefunc(addon, 'ToggleGearSlotPicker', ToggleGearSlotPicker)
 	hooksecurefunc(addon, 'ToggleOptions', Skin_Options)
+	hooksecurefunc(addon, 'ToggleProfiles', ToggleProfiles)
 
 	UpdateLockAppearance(addon)
 end
