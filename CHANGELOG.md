@@ -1,4 +1,9 @@
-﻿## Version 4.28 [18-11-2026]
+﻿## Version 4.29 [Alpha - Not Yet Released - In Development]
+
+**Forever:**  
+- Updated Forever Trinket Menu skin  
+
+## Version 4.28 [18-11-2026]
 
 **All WoW Versions:**  
 - Updated Chattynator profile for the latest version (Removes the fade again)  
