@@ -218,9 +218,19 @@ local function V2_UpdateMenuTheme(_, listFrame, enabled)
 
 	HideV2Backdrop(listFrame)
 
-	local menuBackdrop = _G[listFrame:GetName() .. 'MenuBackdrop']
+	local name = listFrame:GetName()
+	local menuBackdrop = _G[name .. 'MenuBackdrop']
 	if menuBackdrop then
 		menuBackdrop:Show()
+	end
+
+	-- Checkboxes
+	for index = 1, listFrame.numButtons or 0 do
+		local button = _G[name .. 'Button' .. index]
+		local checkbox = button and button.rxpV2Checkbox
+		if checkbox and not checkbox.v2Backdrop then
+			SkinV2Backdrop(checkbox)
+		end
 	end
 end
 
@@ -289,7 +299,9 @@ local function SkinV2GuideWindow()
 	S:HandleScrollBar(scroll.scrollbar)
 	scroll.scrollbg:SetAlpha(0)
 	V2Scroll_RefreshVisuals(scroll)
-	hooksecurefunc(scroll, 'RefreshVisuals', V2Scroll_RefreshVisuals)
+
+	-- RefreshVisuals up to RXP 4.11.37
+	hooksecurefunc(scroll, scroll.RefreshVisuals and 'RefreshVisuals' or 'UpdateSubTheme', V2Scroll_RefreshVisuals)
 
 	GuideSteps_SetRows(guideSteps)
 	hooksecurefunc(guideSteps, 'SetRows', GuideSteps_SetRows)
@@ -300,11 +312,6 @@ local function SkinV2GuideWindow()
 	ReplaceFont(window.footerText)
 
 	hooksecurefunc(v2, 'UpdateMenuTheme', V2_UpdateMenuTheme)
-
-	local ui = addon.ui.v2
-	hooksecurefunc(ui, 'ApplyFrameBackdrop', V2_ApplyFrameBackdrop)
-	hooksecurefunc(ui, 'AddFrameShadow', V2_ApplyFrameBackdrop)
-	hooksecurefunc(ui, 'SetFrameBackdropShown', V2_SetFrameBackdropShown)
 
 	-- Cards RXP built in its own initialization
 	local playerState = v2.state.player[addon.player.name]
@@ -342,9 +349,9 @@ local function CandyBar_Stop(_, bar)
 end
 
 -- Active Items and Active Targets, the title sits above the frame's left edge
-local function SkinIconFrame(frame)
+local function SkinIconFrame(frame, v2Enabled)
 	local title = frame.title
-	local skin = frame.v2 and SkinV2Backdrop or SkinBackdrop
+	local skin = v2Enabled and SkinV2Backdrop or SkinBackdrop
 	skin(frame, 'Transparent')
 	skin(title)
 
@@ -434,9 +441,9 @@ local function ActiveTargets_Update(targeting)
 	frame:Height(12 + (enemyRows + friendlyRows) * 25 + (enemyRows > 0 and friendlyRows > 0 and 2 or 0))
 end
 
-local function SkinIconFrames()
+local function SkinIconFrames(v2Enabled)
 	local itemFrame = addon.activeItemFrame
-	SkinIconFrame(itemFrame)
+	SkinIconFrame(itemFrame, v2Enabled)
 
 	ActiveItems_Update()
 	hooksecurefunc(addon, 'UpdateItemFrame', ActiveItems_Update)
@@ -445,7 +452,7 @@ local function SkinIconFrames()
 	hooksecurefunc(itemFrame, 'UpdateFrame', ActiveItems_Update)
 
 	local targeting = addon.targeting
-	SkinIconFrame(targeting.activeTargetFrame)
+	SkinIconFrame(targeting.activeTargetFrame, v2Enabled)
 
 	ActiveTargets_Update(targeting)
 	hooksecurefunc(targeting, 'UpdateTargetFrame', ActiveTargets_Update)
@@ -476,7 +483,7 @@ local function SkinFonts()
 	ReplaceFont(addon.arrowFrame.text)
 end
 
--- Level Splits, title centered above the frame
+-- Level Splits up to RXP 4.11.37, title centered above the frame
 local function Tracker_CreateLevelSplits(tracker)
 	local frame = tracker.levelSplits
 	if not frame or frame.IsSkinned then return end
@@ -490,6 +497,48 @@ local function Tracker_CreateLevelSplits(tracker)
 	title:Point('BOTTOM', frame, 'TOP', 0, 1)
 
 	frame.IsSkinned = true
+end
+
+local function SkinSplitsRow(row)
+	local background = row.background
+	if not background.v2Backdrop then
+		SkinV2Backdrop(background, 'Transparent')
+	end
+end
+
+-- Level Splits rows
+local function Splits_Update(splits)
+	local frame = splits.frame
+	if not frame then return end
+
+	SkinSplitsRow(frame.current)
+	SkinSplitsRow(frame.total)
+
+	for _, row in next, frame.history.children do
+		SkinSplitsRow(row)
+	end
+end
+
+-- Level Splits after RXP 4.11.37
+local function Splits_Create(splits)
+	local frame = splits.frame
+	if not frame or frame.v2Backdrop then return end
+
+	SkinV2Backdrop(frame, 'Transparent')
+
+	local title = frame.title
+	SkinV2Backdrop(title)
+	ReplaceFont(title.text)
+	title:ClearAllPoints()
+	title:Point('BOTTOM', frame, 'TOP', 0, 1)
+
+	local history = frame.history
+	S:HandleScrollBar(history.scrollbar)
+	history.scrollbg:SetAlpha(0)
+	V2Scroll_RefreshVisuals(history)
+	hooksecurefunc(history, 'UpdateSubTheme', V2Scroll_RefreshVisuals)
+
+	Splits_Update(splits)
 end
 
 -- Talent guides button, styled like the spec tabs it sits below (Vanilla and TBC)
@@ -536,20 +585,35 @@ local function Skin_RXPGuides()
 
 	SkinFonts()
 
-	if addon.v2:IsGuideWindowEnabled() then
+	local profile = addon.settings.profile
+	local v2Enabled = profile.enableBetaFeatures and profile.enableV2Interface
+
+	if v2Enabled then
 		SkinV2GuideWindow()
 	else
 		SkinGuideWindow()
 	end
 
+	local ui = addon.ui.v2
+	hooksecurefunc(ui, 'ApplyFrameBackdrop', V2_ApplyFrameBackdrop)
+	hooksecurefunc(ui, 'AddFrameShadow', V2_ApplyFrameBackdrop)
+	hooksecurefunc(ui, 'SetFrameBackdropShown', V2_SetFrameBackdropShown)
+
 	hooksecurefunc(addon, 'StartTimer', Timer_Start)
 	LibStub('LibCandyBar-3.0').RegisterCallback('LuckyoneUI_RXPGuides', 'LibCandyBar_Stop', CandyBar_Stop)
 
-	SkinIconFrames()
+	SkinIconFrames(v2Enabled)
 
 	local tracker = addon.tracker
-	Tracker_CreateLevelSplits(tracker)
-	hooksecurefunc(tracker, 'CreateLevelSplits', Tracker_CreateLevelSplits)
+	local splits = tracker.splits
+	if splits then
+		Splits_Create(splits)
+		hooksecurefunc(splits, 'Create', Splits_Create)
+		hooksecurefunc(splits, 'Update', Splits_Update)
+	else
+		Tracker_CreateLevelSplits(tracker)
+		hooksecurefunc(tracker, 'CreateLevelSplits', Tracker_CreateLevelSplits)
+	end
 
 	SkinBlizzardAdditions()
 end

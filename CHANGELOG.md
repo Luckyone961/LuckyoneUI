@@ -1,5 +1,8 @@
 ﻿## Version 4.29 [Alpha - Not Yet Released - In Development]
 
+**All WoW Versions:**  
+- Updated RXPGuides skin  
+
 **Forever:**  
 - Updated Forever Trinket Menu skin  
 
