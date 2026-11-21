@@ -15,7 +15,6 @@ local unpack = unpack
 local wipe = table.wipe
 
 local GetClassColor = C_ClassColor.GetClassColor
-local GetCreatureDifficultyColor = GetCreatureDifficultyColor
 local GetPetHappiness = (C_PetInfo and C_PetInfo.GetPetHappiness) or GetPetHappiness
 local HasPetUI = HasPetUI
 local hooksecurefunc = hooksecurefunc
@@ -376,7 +375,7 @@ if not Private.isRetail then
 		if E:XPIsLevelMax() then return end
 
 		local level = UnitLevel(unit)
-		local color = (level > 0) and GetCreatureDifficultyColor(level) or QuestDifficultyColors.impossible
+		local color = (level > 0) and E:GetCreatureDifficultyColor(level) or QuestDifficultyColors.impossible
 
 		return Hex(color.r, color.g, color.b) .. ((level > 0) and level or '??')
 	end)
