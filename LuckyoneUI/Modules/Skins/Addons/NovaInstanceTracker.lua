@@ -89,7 +89,7 @@ local function NIT_OpenTradeCopyFrame(addon)
 	slider.IsSkinned = true
 end
 
--- Rested filter, level slider and the Season of Discovery loot button
+-- Rested filter
 local function NIT_OpenAltsFrame(addon)
 	local slider = addon.charsMinLevelSlider
 	if slider.IsSkinned then return end
@@ -97,8 +97,13 @@ local function NIT_OpenAltsFrame(addon)
 	S:HandleCheckBox(addon.altsFrameCheckbox)
 	S:HandleSliderFrame(slider)
 
-	if addon.altsLootReminderButton then
-		S:HandleButton(addon.altsLootReminderButton)
+	local reals = addon.altsLootReminderButton
+	if reals then
+		S:HandleButton(reals)
+
+		-- Center the icon so its border matches the button height
+		S:HandleIcon(reals.leftIcon, true)
+		reals.leftIcon:Point('RIGHT', reals, 'LEFT', -3, 0)
 	end
 
 	slider.IsSkinned = true
@@ -128,6 +133,16 @@ local function LevelLog_CreateSimpleLineFrame(index)
 	S:HandleFrame(_G['NITLevelLogFrameLineTooltip'..index])
 end
 
+-- Reals list
+local function NIT_LoadLootReminderListFrame()
+	local frame = _G.NITLootReminderListFrame
+	if frame.IsSkinned then return end
+
+	SkinSimpleScrollWindow(frame, -22)
+
+	frame.IsSkinned = true
+end
+
 -- Level Log window, built on its first open
 local function NIT_CreateLevelLogFrame()
 	local frame = _G.NITLevelLogFrame
@@ -149,15 +164,32 @@ local function Skin_NovaInstanceTracker()
 	if not addon then return end
 
 	-- Instance Log
-	SkinScrollWindow(_G.NITInstanceFrame, _G.NITInstanceFrameClose)
+	local instanceFrame = _G.NITInstanceFrame
+	SkinScrollWindow(instanceFrame, _G.NITInstanceFrameClose)
 	S:HandleFrame(_G.NITInstanceDragTooltip)
+
+	instanceFrame.fs4:ClearAllPoints()
+	instanceFrame.fs4:Point('TOP', instanceFrame.backdrop, 'BOTTOM', 0, -3)
 
 	for _, button in next, { _G.NITInstanceFrameRestedButton, _G.NITInstanceFrameConfButton, _G.NITInstanceFrameLockoutsButton, _G.NITInstanceFrameTradesButton } do
 		S:HandleButton(button)
 	end
 
-	-- Your Characters overlapped Options by 2px
-	_G.NITInstanceFrameRestedButton:Height(23)
+	-- The scroll frame clipped the top 2px of the first row
+	-- Lower it and share one border with Options like the buttons below
+	local rested = _G.NITInstanceFrameRestedButton
+	rested:ClearAllPoints()
+	rested:Point('TOPRIGHT', -6, 0)
+	rested:Height(22)
+
+	-- Reals button
+	local reals = _G.NITInstanceFrameLootReminderButton
+	if reals then
+		S:HandleButton(reals)
+		reals:ClearAllPoints()
+		reals:Point('TOPRIGHT', -120, 0)
+		reals:Height(22)
+	end
 
 	-- Post Stats popup on a line click
 	_G.NITPostInstanceStatsFrame:SetTemplate()
@@ -202,6 +234,11 @@ local function Skin_NovaInstanceTracker()
 
 	hooksecurefunc(addon, 'openAltsFrame', NIT_OpenAltsFrame)
 	hooksecurefunc(addon, 'createAltsLineFrame', NIT_CreateAltsLineFrame)
+
+	-- Reals list
+	if addon.loadLootReminderListFrame then
+		hooksecurefunc(addon, 'loadLootReminderListFrame', NIT_LoadLootReminderListFrame)
+	end
 
 	-- Lockouts and Level Log
 	hooksecurefunc(addon, 'createSimpleScrollFrame', NIT_CreateSimpleScrollFrame)
