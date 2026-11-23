@@ -299,9 +299,7 @@ local function SkinV2GuideWindow()
 	S:HandleScrollBar(scroll.scrollbar)
 	scroll.scrollbg:SetAlpha(0)
 	V2Scroll_RefreshVisuals(scroll)
-
-	-- RefreshVisuals up to RXP 4.11.37
-	hooksecurefunc(scroll, scroll.RefreshVisuals and 'RefreshVisuals' or 'UpdateSubTheme', V2Scroll_RefreshVisuals)
+	hooksecurefunc(scroll, 'UpdateSubTheme', V2Scroll_RefreshVisuals)
 
 	GuideSteps_SetRows(guideSteps)
 	hooksecurefunc(guideSteps, 'SetRows', GuideSteps_SetRows)
@@ -348,15 +346,14 @@ local function CandyBar_Stop(_, bar)
 	end
 end
 
--- Active Items and Active Targets, the title sits above the frame's left edge
-local function SkinIconFrame(frame, v2Enabled)
-	local title = frame.title
-	local skin = v2Enabled and SkinV2Backdrop or SkinBackdrop
-	skin(frame, 'Transparent')
-	skin(title)
+-- Active Items, Active Targets and Level Splits, the title sits above the frame
+local function SkinMiniFrame(window, titlePoint, framePoint)
+	local frame, title = window.frame, window.title
+	SkinV2Backdrop(frame, 'Transparent')
+	SkinV2Backdrop(title)
 
 	title:ClearAllPoints()
-	title:Point('BOTTOMLEFT', frame, 'TOPLEFT', 0, 1)
+	title:Point(titlePoint, frame, framePoint, 0, 1)
 end
 
 -- Active Items and Active Targets buttons are secure, the addon only creates them out of combat
@@ -377,10 +374,16 @@ end
 local function ActiveItems_Update()
 	if InCombatLockdown() then return end
 
-	local frame = addon.activeItemFrame
-	for _, button in next, frame.buttonList do
+	local window = addon.activeItemWindow
+	local frame = window.frame
+	for index, button in next, window.buttonList do
 		if not button.IsSkinned then
 			SkinIconButton(button)
+
+			if index == 1 then
+				button:ClearAllPoints()
+				button:Point('BOTTOMLEFT', frame, 'BOTTOMLEFT', 4, 2)
+			end
 
 			S:HandleIcon(button.icon)
 			button.icon:SetInside()
@@ -420,8 +423,9 @@ end
 local function ActiveTargets_Update(targeting)
 	if InCombatLockdown() then return end
 
-	local frame = targeting.activeTargetFrame
-	local enemies, friendlies = frame.enemyTargetButtons, frame.friendlyTargetButtons
+	local window = targeting.activeTargetWindow
+	local frame = window.frame
+	local enemies, friendlies = window.enemyTargetButtons, window.friendlyTargetButtons
 	local enemyRows, friendlyRows = SkinTargetButtons(enemies), SkinTargetButtons(friendlies)
 
 	-- RXP keeps room on top for the title, which sits above the frame here
@@ -441,18 +445,14 @@ local function ActiveTargets_Update(targeting)
 	frame:Height(12 + (enemyRows + friendlyRows) * 25 + (enemyRows > 0 and friendlyRows > 0 and 2 or 0))
 end
 
-local function SkinIconFrames(v2Enabled)
-	local itemFrame = addon.activeItemFrame
-	SkinIconFrame(itemFrame, v2Enabled)
+local function SkinIconFrames()
+	SkinMiniFrame(addon.activeItemWindow, 'BOTTOMLEFT', 'TOPLEFT')
 
 	ActiveItems_Update()
 	hooksecurefunc(addon, 'UpdateItemFrame', ActiveItems_Update)
 
-	-- The frame keeps the original function as its UpdateFrame
-	hooksecurefunc(itemFrame, 'UpdateFrame', ActiveItems_Update)
-
 	local targeting = addon.targeting
-	SkinIconFrame(targeting.activeTargetFrame, v2Enabled)
+	SkinMiniFrame(targeting.activeTargetWindow, 'BOTTOMLEFT', 'TOPLEFT')
 
 	ActiveTargets_Update(targeting)
 	hooksecurefunc(targeting, 'UpdateTargetFrame', ActiveTargets_Update)
@@ -478,25 +478,10 @@ local function SkinFonts()
 
 	-- Texts the addon already created with the theme font
 	addon.UpdateGuideFontSize()
-	addon.activeItemFrame:UpdateVisuals()
-	addon.targeting.activeTargetFrame:UpdateVisuals()
+	addon.activeItemWindow:UpdateTheme()
+	addon.targeting:UpdateTheme()
+	addon.tracker.splits:UpdateTheme()
 	ReplaceFont(addon.arrowFrame.text)
-end
-
--- Level Splits up to RXP 4.11.37, title centered above the frame
-local function Tracker_CreateLevelSplits(tracker)
-	local frame = tracker.levelSplits
-	if not frame or frame.IsSkinned then return end
-
-	SkinBackdrop(frame, 'Transparent')
-
-	local title = frame.title
-	SkinBackdrop(title)
-	ReplaceFont(title.text)
-	title:ClearAllPoints()
-	title:Point('BOTTOM', frame, 'TOP', 0, 1)
-
-	frame.IsSkinned = true
 end
 
 local function SkinSplitsRow(row)
@@ -508,31 +493,23 @@ end
 
 -- Level Splits rows
 local function Splits_Update(splits)
-	local frame = splits.frame
-	if not frame then return end
+	if not splits.window then return end
 
-	SkinSplitsRow(frame.current)
-	SkinSplitsRow(frame.total)
+	SkinSplitsRow(splits.current)
+	SkinSplitsRow(splits.total)
 
-	for _, row in next, frame.history.children do
+	for _, row in next, splits.history.children do
 		SkinSplitsRow(row)
 	end
 end
 
--- Level Splits after RXP 4.11.37
 local function Splits_Create(splits)
-	local frame = splits.frame
-	if not frame or frame.v2Backdrop then return end
+	local window = splits.window
+	if not window or window.frame.v2Backdrop then return end
 
-	SkinV2Backdrop(frame, 'Transparent')
+	SkinMiniFrame(window, 'BOTTOM', 'TOP')
 
-	local title = frame.title
-	SkinV2Backdrop(title)
-	ReplaceFont(title.text)
-	title:ClearAllPoints()
-	title:Point('BOTTOM', frame, 'TOP', 0, 1)
-
-	local history = frame.history
+	local history = splits.history
 	S:HandleScrollBar(history.scrollbar)
 	history.scrollbg:SetAlpha(0)
 	V2Scroll_RefreshVisuals(history)
@@ -585,10 +562,7 @@ local function Skin_RXPGuides()
 
 	SkinFonts()
 
-	local profile = addon.settings.profile
-	local v2Enabled = profile.enableBetaFeatures and profile.enableV2Interface
-
-	if v2Enabled then
+	if addon.v2:IsEnabled() then
 		SkinV2GuideWindow()
 	else
 		SkinGuideWindow()
@@ -602,18 +576,12 @@ local function Skin_RXPGuides()
 	hooksecurefunc(addon, 'StartTimer', Timer_Start)
 	LibStub('LibCandyBar-3.0').RegisterCallback('LuckyoneUI_RXPGuides', 'LibCandyBar_Stop', CandyBar_Stop)
 
-	SkinIconFrames(v2Enabled)
+	SkinIconFrames()
 
-	local tracker = addon.tracker
-	local splits = tracker.splits
-	if splits then
-		Splits_Create(splits)
-		hooksecurefunc(splits, 'Create', Splits_Create)
-		hooksecurefunc(splits, 'Update', Splits_Update)
-	else
-		Tracker_CreateLevelSplits(tracker)
-		hooksecurefunc(tracker, 'CreateLevelSplits', Tracker_CreateLevelSplits)
-	end
+	local splits = addon.tracker.splits
+	Splits_Create(splits)
+	hooksecurefunc(splits, 'Create', Splits_Create)
+	hooksecurefunc(splits, 'Update', Splits_Update)
 
 	SkinBlizzardAdditions()
 end
