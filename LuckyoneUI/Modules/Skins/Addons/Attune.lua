@@ -56,11 +56,16 @@ local function Skin_IconView()
 	end
 end
 
--- Box behind the steps inside the dungeon
+-- Boxes behind the steps inside the dungeon and the follow-up quests
 local function Skin_Select()
 	local sideBox = Attune_SideBox
 	if sideBox then
 		sideBox:SetTemplate('Transparent', nil, true)
+	end
+
+	local followBox = Attune_FollowBox
+	if followBox then
+		followBox:SetTemplate('Transparent', nil, true)
 	end
 end
 
