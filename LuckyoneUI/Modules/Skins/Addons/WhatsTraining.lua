@@ -6,6 +6,7 @@ end
 
 local next = next
 local strfind = strfind
+local type = type
 local unpack = unpack
 
 local CreateFrame = CreateFrame
@@ -221,7 +222,7 @@ local specialFrames = 0
 local function FindContextMenu()
 	for i = specialFrames + 1, #UISpecialFrames do
 		local name = UISpecialFrames[i]
-		local menu = strfind(name, '^WhatsTrainingMenu') and _G[name]
+		local menu = type(name) == 'string' and strfind(name, '^WhatsTrainingMenu') and _G[name]
 		if menu and menu.contextMenu then
 			SkinMenu(menu)
 			contextWatcher:UnregisterAllEvents()
