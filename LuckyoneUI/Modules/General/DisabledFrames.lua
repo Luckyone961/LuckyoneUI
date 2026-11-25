@@ -4,6 +4,8 @@ local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
 local RunNextFrame = RunNextFrame
 
+local C_EventToastManager = C_EventToastManager
+
 local _G = _G
 local UIParent = UIParent
 
@@ -39,6 +41,13 @@ local function HideFrame(frame)
 	frame:UnregisterAllEvents()
 	frame:SetParent(HiddenFrame)
 	frame:Hide()
+end
+
+-- Avoid queued toasts after reload
+local function ClearEventToasts()
+	while C_EventToastManager.GetNextToastToDisplay() do
+		C_EventToastManager.RemoveCurrentToast()
+	end
 end
 
 local function TalkingHead_IgnoreManager(frame)
@@ -82,6 +91,11 @@ function Private:DisabledFrames()
 			DisableFrame('MajorFactionUnlockToast')
 			DisableFrame('CovenantRenownToast')
 			DisableFrame('HousingTopBannerFrame')
+
+			local frame = CreateFrame('Frame')
+			frame:RegisterEvent('DISPLAY_EVENT_TOASTS')
+			frame:SetScript('OnEvent', ClearEventToasts)
+			ClearEventToasts()
 		elseif Private.isMists then
 			HideFrame(_G.LevelUpDisplay)
 		end
