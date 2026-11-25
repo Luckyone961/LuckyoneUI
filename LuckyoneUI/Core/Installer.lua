@@ -774,7 +774,7 @@ local function BuildPages()
 			Button('Baganator', function() Private:Setup_Baganator(true) end, 'baganator', 'Baganator'),
 			Button('BuffReminders', function() Private:Setup_BuffReminders(true) end, 'buffreminders', 'BuffReminders', not Private.isRetail),
 			Button('Northern Sky Raid Tools', function() Private:Setup_NorthernSkyRaidTools(true) end, 'nsrt', 'NorthernSkyRaidTools', not Private.isRetail),
-			Button('PermoksAccountManager', function() Private:Setup_PermoksAccountManager(true) end, 'permoks', 'PermoksAccountManager', not Private.isRetail),
+			Button('PermoksAccountManager', function() Private:Setup_PermoksAccountManager(true) end, 'permoks', 'PermoksAccountManager', not Private.isModern),
 			Button('Platynator', function() Private:Setup_Platynator(true) end, 'platynator', 'Platynator'),
 			Button('Plumber', function() Private:Setup_Plumber(true) end, 'plumber', 'Plumber', not (Private.isRetail or Private.isForever or Private.isMists)),
 		}, nil, nil, L["Optional Addon Profiles"], true),

@@ -116,7 +116,7 @@ Profiles\Addons\DBM.lua
 Profiles\Addons\Details.lua
 Profiles\Addons\MPlusTimer.lua [AllowLoadGameType standard]
 Profiles\Addons\NorthernSkyRaidTools.lua [AllowLoadGameType standard]
-Profiles\Addons\PermoksAccountManager.lua [AllowLoadGameType standard]
+Profiles\Addons\PermoksAccountManager.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]
 Profiles\Addons\Platynator.lua
 Profiles\Addons\Plumber.lua [AllowLoadGameType standard, camelot, mists][ExcludeLoadGameType vanilla, tbc]
 Profiles\Addons\SkironCooldownManager.lua [AllowLoadGameType standard, camelot][ExcludeLoadGameType classic]

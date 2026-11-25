@@ -4,6 +4,7 @@
 - Updated RXPGuides skin  
 
 **Forever:**  
+- Added PermoksAccountManager profile  
 - Updated Forever Trinket Menu skin  
 
 ## Version 4.28 [18-11-2026]
