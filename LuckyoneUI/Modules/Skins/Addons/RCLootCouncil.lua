@@ -62,10 +62,24 @@ local function SkinButton(button)
 	S:HandleButton(button)
 end
 
+local function ScrollTable_SetBackdrop(st)
+	SkinTransparent(st.frame)
+end
+
+local function SkinScrollTable(st)
+	ScrollTable_SetBackdrop(st)
+	hooksecurefunc(st, 'SetBackdrop', ScrollTable_SetBackdrop)
+
+	local name = st.frame:GetName()
+	S:HandleScrollBar(_G[name .. 'ScrollFrameScrollBar'])
+	_G[name .. 'ScrollTrough']:Hide()
+end
+
 local Elements = {
 	RCFrame = SkinFrame,
 	RCButton = SkinButton,
 	IconBordered = SkinIconBorderedInit,
+	LibST = SkinScrollTable,
 }
 
 -- Every window, button and item icon goes through the addon's element factory
@@ -79,21 +93,6 @@ local function UI_New(ui, elementType)
 		skin(frame)
 		frame.isSkinned = true
 	end
-end
-
--- lib-st tables
-local function SkinScrollTable(lib, _, _, _, _, parent)
-	local parentName = parent and parent.GetName and parent:GetName()
-	if not (parentName and strfind(parentName, '^RC')) then return end
-
-	local frame = _G['ScrollTable' .. (lib.framecount - 1)]
-	if not frame then return end
-
-	frame:SetTemplate('Transparent')
-
-	local name = frame:GetName()
-	S:HandleScrollBar(_G[name .. 'ScrollFrameScrollBar'])
-	_G[name .. 'ScrollTrough']:Hide()
 end
 
 -- LibDialog popups, the dialog frames and their widgets
@@ -118,6 +117,14 @@ local function SkinDialogs(lib)
 		for _, checkBox in next, dialog.checkboxes or {} do
 			S:HandleCheckBox(checkBox)
 		end
+	end
+
+	-- Loot method picker on the Forever usage popup
+	local dropdown = _G.RCLOOTCOUNCIL_USAGE_DROPDOWN_MENU
+	if dropdown and not dropdown.isSkinned then
+		S:HandleDropDownBox(dropdown, dropdown:GetWidth())
+
+		dropdown.isSkinned = true
 	end
 end
 
@@ -205,8 +212,7 @@ end
 
 -- Session Setup
 local function SessionFrame_GetFrame()
-	local toggle = _G.DefaultRCSessionSetupFrameToggle
-	if toggle then
+	for _, toggle in next, { _G.DefaultRCSessionSetupFrameToggle, _G.DefaultRCSessionSetupFrameToggleMlToPlayer } do
 		S:HandleCheckBox(toggle)
 	end
 end
@@ -266,14 +272,8 @@ local function Skin_RCLootCouncil()
 	hooksecurefunc(addon.UI, 'New', UI_New)
 	hooksecurefunc(addon.UI, 'NewNamed', UI_New)
 
-	-- Tables
-	local ScrollingTable = LibStub('ScrollingTable', true)
-	if ScrollingTable then
-		hooksecurefunc(ScrollingTable, 'CreateST', SkinScrollTable)
-	end
-
 	-- Popups
-	local LibDialog = LibStub('LibDialog-1.1', true)
+	local LibDialog = LibStub('LibDialog-1.0', true)
 	if LibDialog then
 		hooksecurefunc(LibDialog, 'Spawn', SkinDialogs)
 	end

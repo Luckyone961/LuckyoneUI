@@ -3,8 +3,12 @@
 **All WoW Versions:**  
 - Updated RXPGuides skin  
 
+**Retail:**  
+- Updated RCLootCouncil skin  
+
 **Forever:**  
 - Added PermoksAccountManager profile  
+- Added RCLootCouncil skin  
 - Updated Forever Trinket Menu skin  
 
 ## Version 4.28 [18-11-2026]
