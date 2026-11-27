@@ -9,6 +9,7 @@
 **Forever:**  
 - Added PermoksAccountManager profile  
 - Added RCLootCouncil skin  
+- Removed Hunter's Field Guide skin  
 - Updated Forever Trinket Menu skin  
 
 ## Version 4.28 [18-11-2026]

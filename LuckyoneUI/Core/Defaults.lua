@@ -284,7 +284,6 @@ Private.Defaults = {
 			DBM = false,
 			ForeverDungeonJournal = false,
 			ForeverTrinketMenu = false,
-			HuntersFieldGuide = false,
 			KeystoneLoot = false,
 			LFGBulletinBoard = false,
 			NovaInstanceTracker = false,
