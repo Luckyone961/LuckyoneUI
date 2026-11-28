@@ -196,6 +196,7 @@ Private.Defaults = {
 				fontSize = 14,
 			},
 			dataTextsTweaks = false,
+			declineInvites = false,
 			friendsList = {
 				enable = false,
 				classColor = true,

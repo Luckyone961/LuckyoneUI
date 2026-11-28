@@ -78,6 +78,7 @@ Modules\Map\WorldMap_TBC.lua [AllowLoadGameType tbc]
 Modules\Map\WorldMap_Vanilla.lua [AllowLoadGameType vanilla]
 Modules\Misc\CombatLogging.lua
 Modules\Misc\CombatText.lua
+Modules\Misc\DeclineInvites.lua [AllowLoadGameType camelot]
 Modules\Misc\FriendsList.lua
 Modules\Misc\MailboxFavorites.lua
 Modules\Misc\Misc.lua

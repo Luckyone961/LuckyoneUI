@@ -3,6 +3,9 @@ local Misc = Private.Modules.Misc
 
 function Misc:OnLogin()
 	Private:CombatLogging()
+	if Private.isForever then
+		Private:DeclineInvites()
+	end
 	Private:FriendsList()
 	Private:MailboxFavorites()
 end

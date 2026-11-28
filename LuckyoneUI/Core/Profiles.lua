@@ -28,8 +28,9 @@ local CANCEL = CANCEL
 function Private:ExportProfile()
 	local data = CopyTable(Private.Addon.db.profile)
 
-	-- Never export character list of mailbox favorites
+	-- Never export character list of mailbox favorites or the invite blocker
 	data.misc.mailbox.favorites = nil
+	data.misc.declineInvites = nil
 	Private:StripDefaults(data, Private.Defaults.profile)
 
 	local compressed = CompressString(SerializeCBOR({ name = Private.Addon.db:GetCurrentProfile(), profile = data, movers = Private.Modules.DamageMeter and Private:DamageMeter_ExportMovers() }))
@@ -51,11 +52,18 @@ local function LoadProfile(name, data, movers)
 	local db = Private.Addon.db
 
 	local old = db.profiles[name]
-	local favorites = old and old.misc and old.misc.mailbox and old.misc.mailbox.favorites
+	local oldMisc = old and old.misc
+	local favorites = oldMisc and oldMisc.mailbox and oldMisc.mailbox.favorites
 	if favorites then
 		data.misc = data.misc or {}
 		data.misc.mailbox = data.misc.mailbox or {}
 		data.misc.mailbox.favorites = favorites
+	end
+
+	-- Not exported either, the profile keeps its own setting
+	if oldMisc and oldMisc.declineInvites then
+		data.misc = data.misc or {}
+		data.misc.declineInvites = true
 	end
 
 	db.profiles[name] = data
